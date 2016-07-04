@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  username: ivan
+  password:
+
+development:
+  <<: *default
+  database: psychometrics_development
+
+test:
+  <<: *default
+  database: psychometrics_test
+
+production:
+  <<: *default
+  database: psychometrics_production
+
