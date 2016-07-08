@@ -13,19 +13,13 @@ gem 'jbuilder',                   '~> 2.5'
 ### Authentication and authorization
 gem 'devise',                     '~> 4.2.0'
 gem 'role_model',                 '~> 0.8.2'
-# Localization
 gem 'devise-i18n',                '~> 1.1.0'
-###
-
 ### STYLES
 gem 'bootstrap-sass',             '~> 3.3.6'
-
 ### TEMPLATES
 gem 'slim-rails',                 '~> 3.1.0'
-
 ### FORM BUILDERS
 gem 'simple_form',                '~> 3.2.1'
-
 ### Pagination helpers
 gem 'kaminari',                   '~> 0.16.3'
 
@@ -43,4 +37,8 @@ group :development do
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+
+  gem 'capistrano',               '~> 3.5'
+  gem 'capistrano-rails',         '~> 1.1.6'
+  gem 'capistrano-rvm',           '~> 0.1.2'
 end
