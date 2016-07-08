@@ -1,0 +1,9 @@
+en:
+  devise:
+    administrators:
+      shared:
+        links:
+          app_name: '© 2016 AppName'
+          about: 'About'
+          privacy: 'Privacy'
+          contact_us: 'Contact Us'

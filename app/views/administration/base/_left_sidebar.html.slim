@@ -1,0 +1,117 @@
+/! START PAGE SIDEBAR
+.page-sidebar
+  /! START X-NAVIGATION
+  ul.x-navigation
+    li.xn-logo
+      a href="index.html"  Joli Admin
+      a.x-navigation-control href="#"
+    li.xn-profile
+      = link_to administration_root_path, class: 'profile-mini'
+        = image_tag 'administration/assets/users/avatar.jpg'
+      .profile
+        .profile-image
+          = image_tag 'administration/assets/users/avatar.jpg'
+        .profile-data
+          .profile-data-name John Doe
+          .profile-data-title Web Developer/Designer
+        .profile-controls
+          a.profile-control-left href="pages-profile.html"
+            span.fa.fa-info
+          a.profile-control-right href="pages-messages.html"
+            span.fa.fa-envelope
+    li.xn-title Navigation
+    li.active
+      = link_to administration_root_path
+        span.xn-text Dashboard
+    li.xn-openable
+      a href="#"
+        span.xn-text Surveys
+      ul
+        li
+          a href="#" Psychometric
+        li
+          a href="#" 360
+        li
+          a href="#" Organisational
+    li.xn-openable
+      a href="#"
+        span.xn-text Create
+      ul
+        li.xn-openable
+          a href="#" Assessment
+          ul
+            li
+              a href="#" Psychometric
+        li.xn-openable
+          a href="#" Survey
+          ul
+            li
+              a href="#" 360
+            li
+              a href="#" Organisational
+        li.xn-openable
+          a href="#" User(s)
+          ul
+            li
+              a href="#" Add New
+            li
+              a href="#" Import
+        li
+          a href="#" Client Tenancy
+        li.xn-openable
+          a href="#" Report
+          ul
+            li
+              a href="#" Psychometric
+            li
+              a href="#" 360
+            li
+              a href="#" Organisational
+        li
+          a href="#" Norm
+        li
+          a href="#" Dimension
+        li.xn-openable
+          a href="#" Benchmarks
+          ul
+            li
+              a href="#" Historical
+            li
+              a href="#" External
+        li
+          a href="#" Email Template
+        li
+          a href="#" Theme
+        li
+          a href="#" Org Structure
+        li
+          a href="#" Library
+        li
+          a href="#" Action Plan
+    li
+      a href='#' Client Tenancies
+    li
+      a href='#' Libraries
+    li
+      a href='#' Retail
+    li.xn-openable
+      a href='#' Reporting
+      ul
+        li
+          a href="#" Psychometric
+        li
+          a href="#" 360
+        li
+          a href="#" Organisational
+
+    li
+      a href='#' Administrators
+    li
+      a href='#' Scoring
+    li
+      a href='#' API Integrations
+    li
+      a href='#' Help
+
+  /! END X-NAVIGATION
+/! END PAGE SIDEBAR

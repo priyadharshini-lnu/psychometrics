@@ -1,0 +1,18 @@
+.login-container
+  .login-box.animated.fadeInDown
+    .login-logo
+    .login-body
+      .login-title
+        = t('.title')
+      = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' }) do |f|
+        == flash_messages
+        .form-group
+          .col-md-12
+            = f.input_field :email, required: true, placeholder: true, class: 'form-control'
+        .form-group
+          .col-md-6
+            = link_to t('.back'), new_session_path(resource_name), class: 'btn btn-link btn-block'
+          .col-md-6
+            = f.submit t('.submit'), class: 'btn btn-info btn-block'
+    = render 'devise/administrators/shared/links'
+

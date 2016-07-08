@@ -1,0 +1,8 @@
+en:
+  devise:
+    administrators:
+      sessions:
+        new:
+          title: '<strong>Welcome</strong>, Please login'
+          forgot_password: 'Forgot your password?'
+          submit: 'Log In'
