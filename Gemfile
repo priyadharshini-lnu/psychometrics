@@ -16,6 +16,7 @@ gem 'role_model',                 '~> 0.8.2'
 gem 'devise-i18n',                '~> 1.1.0'
 ### STYLES
 gem 'bootstrap-sass',             '~> 3.3.6'
+gem 'font-awesome-rails',         '~> 4.6.3.0'
 ### TEMPLATES
 gem 'slim-rails',                 '~> 3.1.0'
 ### FORM BUILDERS
