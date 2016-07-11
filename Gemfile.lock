@@ -47,6 +47,7 @@ GEM
     bootstrap-sass (3.3.6)
       autoprefixer-rails (>= 5.2.1)
       sass (>= 3.3.4)
+    breadcrumbs_on_rails (2.3.1)
     builder (3.2.2)
     byebug (9.0.5)
     capistrano (3.5.0)
@@ -125,6 +126,8 @@ GEM
     pg (0.18.4)
     pkg-config (1.1.7)
     puma (3.4.0)
+    pundit (1.1.0)
+      activesupport (>= 3.0.0)
     rack (2.0.1)
     rack-test (0.6.3)
       rack (>= 1.0)
@@ -216,6 +219,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-sass (~> 3.3.6)
+  breadcrumbs_on_rails (~> 2.3.1)
   byebug
   capistrano (~> 3.5)
   capistrano-rails (~> 1.1.6)
@@ -230,6 +234,7 @@ DEPENDENCIES
   listen (~> 3.0.5)
   pg (~> 0.18.4)
   puma (~> 3.0)
+  pundit (~> 1.1.0)
   rails (~> 5.0.0)
   role_model (~> 0.8.2)
   sass-rails (~> 5.0)
