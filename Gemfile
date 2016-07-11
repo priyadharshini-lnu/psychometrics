@@ -14,6 +14,7 @@ gem 'jbuilder',                   '~> 2.5'
 gem 'devise',                     '~> 4.2.0'
 gem 'role_model',                 '~> 0.8.2'
 gem 'devise-i18n',                '~> 1.1.0'
+gem 'pundit',                     '~> 1.1.0'
 ### STYLES
 gem 'bootstrap-sass',             '~> 3.3.6'
 gem 'font-awesome-rails',         '~> 4.6.3.0'
@@ -23,6 +24,8 @@ gem 'slim-rails',                 '~> 3.1.0'
 gem 'simple_form',                '~> 3.2.1'
 ### Pagination helpers
 gem 'kaminari',                   '~> 0.16.3'
+### Breadcrumbs
+gem 'breadcrumbs_on_rails',       '~> 2.3.1'
 
 
 

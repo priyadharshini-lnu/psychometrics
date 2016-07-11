@@ -10,3 +10,7 @@ html.body-full-height
     = javascript_include_tag 'administration'
   body
     = yield
+    /! START PRELOADS
+    = audio_tag('administration/alert.mp3', preload: 'auto', id: 'audio-alert')
+    = audio_tag('administration/fail.mp3', preload: 'auto', id: 'audio-fail')
+    /! END PRELOADS

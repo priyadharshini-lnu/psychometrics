@@ -1,0 +1,10 @@
+en:
+  administration:
+    base:
+      top_sidebar:
+        search: Search...
+        sign_out_message:
+          title: Log <strong>Out</strong> ?
+          body: >
+            <p>Are you sure you want to log out?</p>
+            <p>Press No if youwant to continue work. Press Yes to logout current user.</p>
