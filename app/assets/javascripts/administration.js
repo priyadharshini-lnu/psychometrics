@@ -20,4 +20,4 @@
 //= require administration/actions.js
 //= require administration/plugins.js
 
-//= require overrides/confirm-override.js
+//= require overrides/confirm.js
