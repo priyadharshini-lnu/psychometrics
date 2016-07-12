@@ -80,8 +80,8 @@ $(document).ready(function(){
         }
         return false;
     });
-    $('body').on('click', ".mb-control-close", function(){
-        $(this).parents(".message-box").removeClass("open");
+    $(document).on('click', ".mb-control-close", function(){
+        $(this).parents(".message-box").remove();
         return false;
     });
     /* END MESSAGE BOX */
@@ -455,28 +455,6 @@ function x_navigation(){
 
     });
 
-// this behaviour adds popups in the navigation bar
-    // and this behaviour overrides default behaviour with link confirmation
-    //$(".x-navigation li").click(function (event) {
-    //event.stopPropagation();
-    //
-    //var li = $(this);
-    //
-    //    if(li.children("ul").length > 0 || li.children(".panel").length > 0 || $(this).hasClass("xn-profile") > 0){
-    //        if(li.hasClass("active")){
-    //            li.removeClass("active");
-    //            li.find("li.active").removeClass("active");
-    //        }else
-    //            li.addClass("active");
-    //
-    //        onresize();
-    //
-    //        if($(this).hasClass("xn-profile") > 0)
-    //            return true;
-    //        else
-    //            return false;
-    //    }
-    //});
 
     /* XN-SEARCH */
     $(".xn-search").on("click",function(){

@@ -1,7 +1,7 @@
 module AdministrationHelper
   def flash_messages
     out         = []
-    flash_types = {'success' => 'success', 'error' => 'danger', 'notice' => 'info'}
+    flash_types = { 'success' => 'success', 'error' => 'danger', 'notice' => 'info' }
     flash.delete('timedout')
     flash.each do |key, value|
       class_flash = flash_types[key] ? "alert-#{flash_types[key]}" : 'alert-danger'
@@ -26,7 +26,8 @@ module AdministrationHelper
   #
   # Example:
   # ```
-  #  = confirmation_link destroy_administrator_session_path, method: :delete, data: {confirm: t('.sign_out_message.body'), title: t('.sign_out_message.title'), icon: 'fa-sign-out' } do
+  #  = confirmation_link destroy_administrator_session_path, method: :delete,
+  # data: {confirm: t('.sign_out_message.body'), title: t('.sign_out_message.title'), icon: 'fa-sign-out' } do
   #    span.fa.fa-sign-out
   # ```
   #
