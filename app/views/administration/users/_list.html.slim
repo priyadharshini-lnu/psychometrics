@@ -1,0 +1,15 @@
+.table-responsive
+  table.table.table-bordered.table-striped.table-actions
+    thead
+      tr
+        th.text-center width="50"  = User.human_attribute_name(:id)
+        th.text-center width="100" Active
+        th = User.human_attribute_name(:first_name)
+        th = User.human_attribute_name(:last_name)
+        th = User.human_attribute_name(:email)
+        th = User.human_attribute_name(:client_id)
+        th = User.human_attribute_name(:role)
+        th width='150' Actions
+    tbody
+      = render partial: 'user', collection: @users
+

@@ -2,12 +2,13 @@ class Administration::BasePolicy
   attr_reader :user, :record
 
   def initialize(user, record)
-    @user = current_administrator
+    @user = user
     @record = record
   end
 
   def index?
-    @user.superadmin?
+    return true if @user.superadmin?
+    false
   end
 
   def show?
@@ -15,7 +16,8 @@ class Administration::BasePolicy
   end
 
   def create?
-    @user.superadmin?
+    return true if @user.superadmin?
+    false
   end
 
   def new?
@@ -23,7 +25,8 @@ class Administration::BasePolicy
   end
 
   def update?
-    @user.superadmin?
+    return true if @user.superadmin?
+    false
   end
 
   def edit?
@@ -31,7 +34,8 @@ class Administration::BasePolicy
   end
 
   def destroy?
-    @user.superadmin?
+    return true if @user.superadmin?
+    false
   end
 
   def scope

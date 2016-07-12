@@ -1,7 +1,7 @@
 class Administration::UserPolicy < Administration::BasePolicy
-  def initialize(user, record)
-    @user = user
-    @record = record
+  def index?
+    return true if @user.admin?
+    super
   end
 
   def edit?

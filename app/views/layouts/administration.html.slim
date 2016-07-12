@@ -9,7 +9,12 @@ html.body-full-height
     = stylesheet_link_tag    'administration', media: 'all'
     = javascript_include_tag 'administration'
   body
-    = yield
+    .page-container
+      = render partial: 'left_sidebar'
+      .page-content
+        = render partial: 'top_sidebar'
+        .page-content-wrap
+          = yield
     /! START PRELOADS
     = audio_tag('administration/alert.mp3', preload: 'auto', id: 'audio-alert')
     = audio_tag('administration/fail.mp3', preload: 'auto', id: 'audio-fail')

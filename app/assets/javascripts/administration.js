@@ -21,3 +21,6 @@
 //= require administration/plugins.js
 
 //= require overrides/confirm.js
+//= require filterrific/filterrific-jquery
+
+//= require_tree ./administration

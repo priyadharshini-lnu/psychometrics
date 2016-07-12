@@ -1,3 +1,11 @@
+/ = active_link_to(admin_root_path, :active => :exclusive, :wrap_tag => :li)
+/   i.fa.fa-home
+/   = t '.navigations.home'
+/ - if policy(:company).index?
+/   = active_link_to(admin_companies_path, :wrap_tag => :li, :active => :inclusive)
+/     i.fa.fa-building
+/     = t '.navigations.companies'
+
 /! START PAGE SIDEBAR
 .page-sidebar
   /! START X-NAVIGATION
@@ -13,9 +21,13 @@
           = link_to current_administrator.full_name, edit_administration_profiles_path, class: 'profile-data-name'
           .profile-data-title = current_administrator.role
     li.xn-title Navigation
-    li.active
-      = link_to administration_root_path
-        span.xn-text Dashboard
+    = active_link_to administration_root_path, active: :exclusive, wrap_tag: :li
+      i.fa.fa-home
+      span.xn-text = t('administration.navigation.home')
+    - if policy(:user).index?
+      = active_link_to(administration_users_path, wrap_tag: :li)
+        i.fa.fa-users
+        span.xn-text = t('administration.navigation.users')
     li.xn-openable
       a href="#"
         span.xn-text Surveys

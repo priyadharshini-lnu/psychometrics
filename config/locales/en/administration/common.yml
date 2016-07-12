@@ -1,4 +1,10 @@
 en:
   administration:
+    search: Search
+
+    navigation: &NAVIGATION
+      home: Dashboard
+      users: Users
+
     breadcrumbs:
-      home: 'Dashboard'
+      <<: *NAVIGATION

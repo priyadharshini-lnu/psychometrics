@@ -1,16 +1,22 @@
 en:
   activerecord:
     models:
-      user: 'Users'
+      user: Users
     attributes:
       user: &DEFAULT
-        id: 'ID'
-        first_name: 'First Name'
-        last_name: 'Last Name'
-        email: 'E-mail'
-        current_password: 'Current password'
-        password: 'Password'
-        password_confirmation: 'Password confirmation'
+        id: ID
+        first_name: First Name
+        last_name: Last Name
+        email: E-mail
+        current_password: Current password
+        password: Password
+        password_confirmation: Password confirmation
+        role: Role
+        roles:
+          user: User
+          manager: Manager
+          admin: Client Admin
+          superadmin: Super Admin
   simple_form:
     placeholders:
       user:

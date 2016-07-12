@@ -1,0 +1,9 @@
+en:
+  administration:
+    users:
+      list:
+        filterrific:
+          with_role:
+            all: 'All'
+            users: 'Users'
+            administrators: 'Administrators'

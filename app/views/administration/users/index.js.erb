@@ -1,0 +1,4 @@
+<% users_list = escape_javascript(
+  render(partial: 'list')
+) %>
+$('#filterrific_results').replaceWith('<%= users_list %>');

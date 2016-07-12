@@ -1,0 +1,21 @@
+/! START RESPONSIVE TABLES
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Users
+      .panel-body
+        = render_filterrific_spinner
+        = form_for_filterrific @filterrific do |f|
+          .row.mbm
+            .col-sm-6.phn
+              .btn-group data-toggle="buttons"
+                - @filterrific.select_options[:with_role].each do |value|
+                  label.btn.btn-default
+                    = f.radio_button(:with_role, value)
+                    = t(".filterrific.with_role.#{value}")
+            .col-md-3.col-md-offset-3.col-sm-4.col-sm-offset-2.phn
+              = f.text_field(:search_query, placeholder: t('administration.search'), class: 'filterrific-periodically-observed form-control')
+          .clearfix
+        #filterrific_results
+          = render partial: 'list'
