@@ -15,7 +15,6 @@ module AdministrationHelper
     out.join('').html_safe
   end
 
-
   #
   # Generate link with confirmation
   # Inherit rails confirmation behaviour
