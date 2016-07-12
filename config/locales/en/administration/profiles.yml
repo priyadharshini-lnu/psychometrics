@@ -1,0 +1,5 @@
+en:
+  administration:
+    profiles:
+      edit:
+        success: "Profile was successfully updated."

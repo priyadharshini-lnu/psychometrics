@@ -24,4 +24,5 @@ en:
   'no': 'No'
   confirmation:
     default_title: "Confirmation"
-    "default_body":  "Are you sure?"
+    default_body:  "Are you sure?"
+  update: 'Update'
