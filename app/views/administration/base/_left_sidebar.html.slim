@@ -3,22 +3,15 @@
   /! START X-NAVIGATION
   ul.x-navigation
     li.xn-logo
-      a href="index.html"  Joli Admin
+      a href="index.html" Psychometrics
       a.x-navigation-control href="#"
     li.xn-profile
       = link_to administration_root_path, class: 'profile-mini'
         = image_tag 'administration/assets/users/avatar.jpg'
       .profile
-        .profile-image
-          = image_tag 'administration/assets/users/avatar.jpg'
         .profile-data
-          .profile-data-name John Doe
-          .profile-data-title Web Developer/Designer
-        .profile-controls
-          a.profile-control-left href="pages-profile.html"
-            span.fa.fa-info
-          a.profile-control-right href="pages-messages.html"
-            span.fa.fa-envelope
+          = link_to current_administrator.full_name, edit_administration_profiles_path, class: 'profile-data-name'
+          .profile-data-title = current_administrator.role
     li.xn-title Navigation
     li.active
       = link_to administration_root_path
