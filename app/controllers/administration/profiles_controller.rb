@@ -2,9 +2,6 @@ class Administration::ProfilesController < Administration::BaseController
   before_action :set_profile, only: [:edit, :update]
   add_breadcrumb I18n.t('administration.breadcrumbs.home'), :administration_root_path
 
-  # Skip verify_policy_scoped defined in base controller
-  before_action :skip_policy_scope
-
   # GET /administration/users/1/edit
   def edit
     authorize @user
@@ -17,7 +14,7 @@ class Administration::ProfilesController < Administration::BaseController
     respond_to do |format|
       if @user.update(profile_params)
         sign_in :administrator, @user, bypass: true
-        format.html { redirect_to edit_administration_profiles_path, notice: I18n.t('administration.profiles.edit.success') }
+        format.html { redirect_to edit_administration_profiles_path, notice: t('.edit.success') }
       else
         format.html { render :edit }
       end
@@ -25,6 +22,7 @@ class Administration::ProfilesController < Administration::BaseController
   end
 
   private
+
   def set_profile
     @user = current_administrator
   end
