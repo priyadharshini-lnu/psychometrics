@@ -8,9 +8,9 @@ class User < ApplicationRecord
 
   def full_name
     if first_name.present? || last_name.present?
-      "#{first_name} #{last_name}"
+      "#{first_name} #{last_name}".to_s
     else
-      "#{email}"
+      email
     end
   end
 end

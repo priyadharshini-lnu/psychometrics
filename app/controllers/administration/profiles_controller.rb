@@ -7,7 +7,6 @@ class Administration::ProfilesController < Administration::BaseController
     authorize @user
   end
 
-
   # PATCH/PUT /administration/users/1
   def update
     authorize @user
