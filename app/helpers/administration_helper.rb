@@ -33,5 +33,4 @@ module AdministrationHelper
   def confirmation_link(name = nil, options = nil, html_options = nil, &block)
     link_to name, options, html_options, &block
   end
-
 end
