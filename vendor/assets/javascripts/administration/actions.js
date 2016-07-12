@@ -431,6 +431,26 @@ function x_navigation(){
         x_navigation_minimize("close");
     }
 
+    $(".x-navigation li").click(function(event){
+
+        var li = $(this);
+
+        if(li.children("ul").length > 0 || li.children(".panel").length > 0 || $(this).hasClass("xn-profile") > 0){
+            if(li.hasClass("active")){
+                li.removeClass("active");
+                li.find("li.active").removeClass("active");
+            }else
+                li.addClass("active");
+
+            onresize();
+
+            if($(this).hasClass("xn-profile") > 0)
+                return true;
+            else
+                return false;
+        }
+    });
+
     $(".x-navigation-minimize").click(function(){
 
         if($(".page-sidebar .x-navigation").hasClass("x-navigation-minimized")){
