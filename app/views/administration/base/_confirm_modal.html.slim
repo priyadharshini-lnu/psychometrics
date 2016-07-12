@@ -1,0 +1,13 @@
+#mb-confirm.message-box.animated.fadeIn data-sound="alert"
+  .mb-container
+    .mb-middle
+      .mb-title
+        span.mb-title-icon.fa.fa-warning
+        span.mb-title-text
+          == t('confirmation.default_title')
+      .mb-content
+        == t('confirmation.default_body')
+      .mb-footer
+        .pull-right
+          = link_to t('yes'), '#', method: :delete, class: 'btn btn-success btn-lg mb-confirm-yes'
+          button.btn.btn-default.btn-lg.mb-control-close data-dismiss="modal" = t('no')

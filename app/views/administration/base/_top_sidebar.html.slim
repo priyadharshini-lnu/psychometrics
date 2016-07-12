@@ -12,7 +12,7 @@ ul.x-navigation.x-navigation-horizontal.x-navigation-panel
   /! END SEARCH
   /! SIGN OUT
   li.xn-icon-button.pull-right
-    a.mb-control data-box="#mb-signout" href="#"
+    = confirmation_link destroy_administrator_session_path, method: :delete, data: {confirm: t('.sign_out_message.body'), title: t('.sign_out_message.title'), icon: 'fa-sign-out' } do
       span.fa.fa-sign-out
   /! END SIGN OUT
 /! END X-NAVIGATION VERTICAL
@@ -20,18 +20,3 @@ ul.x-navigation.x-navigation-horizontal.x-navigation-panel
 ul.breadcrumb
   = render_breadcrumbs tag: :li, separator: ''
 /! END BREADCRUMB
-
-/! MESSAGE BOX
-#mb-signout.message-box.animated.fadeIn data-sound="alert"
-  .mb-container
-    .mb-middle
-      .mb-title
-        span.fa.fa-sign-out
-        == t('.sign_out_message.title')
-      .mb-content
-        == t('.sign_out_message.body')
-      .mb-footer
-        .pull-right
-          = link_to t('yes'), destroy_administrator_session_path, method: :delete, class: 'btn btn-success btn-lg'
-          button.btn.btn-default.btn-lg.mb-control-close = t('no')
-/! END MESSAGE BOX

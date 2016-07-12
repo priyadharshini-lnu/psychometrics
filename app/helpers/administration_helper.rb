@@ -1,7 +1,7 @@
 module AdministrationHelper
   def flash_messages
-    out = []
-    flash_types = { 'success' => 'success', 'error' => 'danger', 'notice' => 'info' }
+    out         = []
+    flash_types = {'success' => 'success', 'error' => 'danger', 'notice' => 'info'}
     flash.delete('timedout')
     flash.each do |key, value|
       class_flash = flash_types[key] ? "alert-#{flash_types[key]}" : 'alert-danger'
@@ -14,4 +14,24 @@ module AdministrationHelper
     end
     out.join('').html_safe
   end
+
+
+  #
+  # Generate link with confirmation
+  # Inherit rails confirmation behaviour
+  # Custom data:
+  # data-confirm - modal title
+  # data-content - modal content
+  # data-icon - modal icon
+  #
+  # Example:
+  # ```
+  #  = confirmation_link destroy_administrator_session_path, method: :delete, data: {confirm: t('.sign_out_message.body'), title: t('.sign_out_message.title'), icon: 'fa-sign-out' } do
+  #    span.fa.fa-sign-out
+  # ```
+  #
+  def confirmation_link(name = nil, options = nil, html_options = nil, &block)
+    link_to name, options, html_options, &block
+  end
+
 end

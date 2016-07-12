@@ -20,5 +20,8 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 en:
-  yes: 'Yes'
-  no: 'No'
+  'yes': 'Yes'
+  'no': 'No'
+  confirmation:
+    default_title: "Confirmation"
+    "default_body":  "Are you sure?"

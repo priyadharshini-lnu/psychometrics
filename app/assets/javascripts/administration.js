@@ -19,3 +19,5 @@
 // START TEMPLATE
 //= require administration/actions.js
 //= require administration/plugins.js
+
+//= require confirm-override.js
