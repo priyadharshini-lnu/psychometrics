@@ -7,7 +7,7 @@
       a.x-navigation-control href="#"
     li.xn-profile
       = link_to administration_root_path, class: 'profile-mini'
-        = image_tag 'administration/assets/users/avatar.jpg'
+        span.mb-title-icon.fa.fa-user
       .profile
         .profile-data
           = link_to current_administrator.full_name, edit_administration_profiles_path, class: 'profile-data-name'
