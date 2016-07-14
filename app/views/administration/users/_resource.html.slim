@@ -17,7 +17,9 @@ tr id=dom_id(resource)
       i.fa.fa-pie-chart.man
     = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.mail') }
       i.fa.fa-envelope-o.man
-    = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
-      i.fa.fa-pencil.man
-    = confirmation_link [:administration, resource], method: :delete, class: 'btn btn-danger btn-rounded btn-sm', data: { confirm: t('.confirmations.delete.body'), confirm_title: t('.confirmations.delete.title'), icon: 'fa-times', toggle: 'tooltip', title: t('.tooltips.delete') }
-      i.fa.fa-times.man
+    - if policy(resource).edit?
+      = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
+        i.fa.fa-pencil.man
+    - if policy(resource).destroy?
+      = confirmation_link [:administration, resource], method: :delete, class: 'btn btn-danger btn-rounded btn-sm', data: { confirm: t('.confirmations.delete.body'), confirm_title: t('.confirmations.delete.title'), icon: 'fa-times', toggle: 'tooltip', title: t('.tooltips.delete') }
+        i.fa.fa-times.man
