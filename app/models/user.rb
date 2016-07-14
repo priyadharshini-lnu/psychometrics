@@ -26,7 +26,7 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Roles
+  # Roles constant
   USER_ROLES = {
     superadmin: 'superadmin',
     admin: 'admin',
@@ -83,7 +83,7 @@ class User < ApplicationRecord
       order("users.email #{direction}")
     when /^client_name_/
       # TODO: Uncomment when will be created client's model
-      #joins(:client).select('users.*, clients.name AS client_name').order("client_name #{ direction }")
+      # joins(:client).select('users.*, clients.name AS client_name').order("client_name #{ direction }")
     when /^role_/
       order("users.role #{direction}")
     end
@@ -97,7 +97,7 @@ class User < ApplicationRecord
   # Fileter by client
   scope :with_client, lambda { |client_id|
     # TODO: Uncomment when will be created client's model
-    #where(client_id: client_id)
+    # where(client_id: client_id)
   }
 
   # Fileter by role
