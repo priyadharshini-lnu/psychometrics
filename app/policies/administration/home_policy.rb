@@ -5,6 +5,8 @@ class Administration::HomePolicy < Struct.new(:administrator, :home)
   end
 
   def index?
-    @user.superadmin?
+    return true if @user.superadmin?
+    return true if @user.admin?
+    false
   end
 end

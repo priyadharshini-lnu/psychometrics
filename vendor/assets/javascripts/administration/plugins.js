@@ -1,6 +1,6 @@
 $(function() {
 
-    var formElements = function(){
+    window.formElements = function(){
         // Bootstrap datepicker
         var feDatepicker = function(){
             if($(".datepicker").length > 0){
@@ -105,7 +105,7 @@ $(function() {
         }
     }();
 
-    var uiElements = function(){
+    window.uiElements = function(){
 
         //Datatables
         var uiDatatable = function(){
@@ -201,7 +201,7 @@ $(function() {
 
     }();
 
-    var templatePlugins = function(){
+    window.templatePlugins = function(){
 
         var tp_clock = function(){
 
@@ -253,9 +253,9 @@ $(function() {
     }();
 
 
-    formElements.init();
-    uiElements.init();
-    templatePlugins.init();
+    window.formElements.init();
+    window.uiElements.init();
+    window.templatePlugins.init();
 
     // New selector case insensivity
      $.expr[':'].containsi = function(a, i, m) {

@@ -10,6 +10,7 @@ gem 'therubyracer',               '~> 0.12.2', platforms: :ruby
 gem 'jquery-rails',               '~> 4.1.1'
 gem 'jbuilder',                   '~> 2.5'
 
+
 ### Authentication and authorization
 gem 'devise',                     '~> 4.2.0'
 gem 'role_model',                 '~> 0.8.2'
@@ -23,10 +24,16 @@ gem 'slim-rails',                 '~> 3.1.0'
 ### FORM BUILDERS
 gem 'simple_form',                '~> 3.2.1'
 ### Pagination helpers
-gem 'kaminari',                   '~> 0.16.3'
+gem 'kaminari',                   '~> 0.17.0'
+gem 'bootstrap-kaminari-views',   '~> 0.0.5'
 ### Breadcrumbs
 gem 'breadcrumbs_on_rails',       '~> 2.3.1'
+### Filter data list
+gem 'filterrific',                '~> 2.0.5'
+### Navigation helper
+gem 'active_link_to',             '~> 1.0.3'
 
+gem 'annotate',                   '~> 2.7.0', github: 'ctran/annotate_models'
 
 
 group :development, :test do

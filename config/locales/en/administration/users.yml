@@ -1,0 +1,33 @@
+en:
+  administration:
+    users:
+      index:
+        title: Users
+      create:
+        successfully: User was successfully created.
+      update:
+        successfully: User was successfully updated.
+      destroy:
+        successfully: User was successfully destroyed.
+      toggle_status:
+        successfully: User was successfully updated.
+      list:
+        filterrific:
+          with_role:
+            all: All
+            users: Users
+            administrators: Administrators
+      resource:
+        tooltips:
+          change_password: Change password
+          sign_in: Sign in as user
+          chart: View user report
+          mail: Send mail
+          edit: Edit user
+          delete: Delete user
+        confirmations:
+          delete:
+            title:
+              Delete <strong>User</strong> ?
+            body: >
+              <p>Are you sure you want to delete this user?</p>

@@ -1,18 +1,36 @@
 class Administration::UserPolicy < Administration::BasePolicy
-  def initialize(user, record)
-    @user = user
-    @record = record
-  end
-
-  def edit?
+  def index?
     return true if @user.superadmin?
     return true if @user.admin?
-    @record == @user
+    false
   end
 
   def update?
     return true if @user.superadmin?
     return true if @user.admin?
     @record == @user
+  end
+
+  def edit?
+    update?
+  end
+
+  def toggle_status?
+    update?
+  end
+
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      return [scope].flatten.last if @user.superadmin?
+      # TODO: uncomment it when will be created Client model
+      [scope].flatten.last # .where(client_id: @user.client_id)
+    end
   end
 end

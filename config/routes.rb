@@ -9,6 +9,11 @@ Rails.application.routes.draw do
   namespace :administration do
     root to: 'home#index'
     resource :profiles
+    resources :users do
+      member do
+        get 'toggle/status', action: 'toggle_status'
+      end
+    end
   end
 
   root to: "home#index"

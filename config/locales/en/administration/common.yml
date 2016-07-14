@@ -1,4 +1,13 @@
 en:
   administration:
+    meta_title: Administration panel
+    search: Search
+    active: Active
+    actions: Actions
+    noty:
+      error_500: Something went wrong. Contact your administrator.
+    navigation: &NAVIGATION
+      home: Dashboard
+      users: Users
     breadcrumbs:
-      home: 'Dashboard'
+      <<: *NAVIGATION
