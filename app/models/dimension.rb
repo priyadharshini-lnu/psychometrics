@@ -5,13 +5,13 @@ class Dimension < ApplicationRecord
 
   filterrific(
     default_filter_params: {
-        sorted_by: 'created_at_desc'
+      sorted_by: 'created_at_desc'
     },
     available_filters: [
-         :sorted_by,
-         :search_query,
-         :with_client,
-         :with_role
+       :sorted_by,
+       :search_query,
+       :with_client,
+       :with_role
      ]
   )
 
