@@ -10,7 +10,7 @@ class Administration::DimensionsController < Administration::BaseController
     @filterrific = initialize_filterrific(
         Dimension,
         params[:filterrific]) || return
-    @dimensions = @filterrific.find.page(params[:page])
+    @dimensions  = @filterrific.find.page(params[:page])
   end
 
   def new
@@ -42,7 +42,12 @@ class Administration::DimensionsController < Administration::BaseController
   def destroy
     @dimension.destroy
     respond_to do |format|
-      format.html { redirect_to administration_dimensions_url, notice: t('administration.dimensions.destroy.successfully_destroyed', id: @dimension.id) }
+      format.html {
+        redirect_to(
+            administration_dimensions_url,
+            notice: t('administration.dimensions.destroy.successfully_destroyed', id: @dimension.id)
+        )
+      }
       format.json { head :no_content }
     end
   end
