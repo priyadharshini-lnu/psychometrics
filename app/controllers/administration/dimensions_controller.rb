@@ -2,7 +2,7 @@ class Administration::DimensionsController < Administration::BaseController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:edit, :update, :destroy]
   before_action :skip_policy_scope
-  append_before_action :pundit_authorize, only: [:index, :new, :edit, :create, :update, :destroy]
+  append_before_action :pundit_authorize
   before_filter :init_breadcrumbs
 
   def index
