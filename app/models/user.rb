@@ -22,7 +22,6 @@
 #
 
 class User < ApplicationRecord
-
   # Authentication
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
