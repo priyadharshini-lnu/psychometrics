@@ -33,4 +33,22 @@ module AdministrationHelper
   def confirmation_link(name = nil, options = nil, html_options = nil, &block)
     link_to name, options, html_options, &block
   end
+
+  #
+  # Generate th with sortable link
+  # Provided by filterrific (more https://github.com/jhund/filterrific)
+  #
+  # Example:
+  # ```
+  #  = sorting 'Name', :name, @filterrific
+  # ```
+  #
+  def sorting(label, name, filterrific)
+    # extract the sort direction from the param value.
+    klass = 'sorting'
+    klass = (filterrific.sorted_by =~ /desc$/) ? 'sorting_desc' : 'sorting_asc' if filterrific.sorted_by =~ /#{name}/
+    content_tag :div, class: klass do
+      filterrific_sorting_link(filterrific, name, { ascending_indicator: '', descending_indicator: '', label: label })
+    end
+  end
 end

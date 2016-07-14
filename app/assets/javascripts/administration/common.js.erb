@@ -1,0 +1,8 @@
+$(function(){
+  $(document).on('ajax:error', '[data-remote="true"]', function(e){
+    noty({text: "<%= I18n.t('administration.noty.error_500') %>", layout: 'topCenter', type: 'error'});
+  });
+  $('.x-navigation .xn-openable .active').each(function() {
+    $(this).parents('.xn-openable').addClass('active');
+  });
+});

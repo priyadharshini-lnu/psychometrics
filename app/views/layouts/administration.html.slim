@@ -4,7 +4,7 @@ html.body-full-height
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
-    title Administrator
+    title = t('administration.meta_title')
     = csrf_meta_tags
     = stylesheet_link_tag    'administration', media: 'all'
     = javascript_include_tag 'administration'
@@ -14,9 +14,9 @@ html.body-full-height
       .page-content
         = render partial: 'top_sidebar'
         .page-content-wrap
-
-          .col-md-12
-            == flash_messages
+          .row
+            .col-md-12
+              == flash_messages
           = yield
     /! START PRELOADS
     = audio_tag('administration/alert.mp3', preload: 'auto', id: 'audio-alert')

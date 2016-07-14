@@ -7,12 +7,16 @@ en:
     new: New
     show: Show
     actions: Actions
+    meta_title: Administration panel
+    search: Search
+    active: Active
     copy: Copy
+    noty:
+      error_500: Something went wrong. Contact your administrator.
     navigation: &NAVIGATION
       home: Dashboard
       users: Users
       dimensions: Dimensions
       dimension: Dimension
-
     breadcrumbs:
       <<: *NAVIGATION

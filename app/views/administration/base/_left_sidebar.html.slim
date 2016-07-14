@@ -3,7 +3,7 @@
   /! START X-NAVIGATION
   ul.x-navigation
     li.xn-logo
-      a href="index.html" Psychometrics
+      a href="#" Psychometrics
       a.x-navigation-control href="#"
     li.xn-profile
       = link_to administration_root_path, class: 'profile-mini'
@@ -13,9 +13,13 @@
           = link_to current_administrator.full_name, edit_administration_profiles_path, class: 'profile-data-name'
           .profile-data-title = current_administrator.role
     li.xn-title Navigation
-    li
-      = link_to administration_root_path
-        span.xn-text Dashboard
+    = active_link_to administration_root_path, active: :exclusive, wrap_tag: :li
+      i.fa.fa-home
+      span.xn-text = t('administration.navigation.home')
+    - if policy(:user).index?
+      = active_link_to(administration_users_path, wrap_tag: :li)
+        i.fa.fa-users
+        span.xn-text = t('administration.navigation.users')
     li.xn-openable
       a href="#"
         span.xn-text Surveys

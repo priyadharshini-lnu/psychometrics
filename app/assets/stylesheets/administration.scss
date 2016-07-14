@@ -1,4 +1,5 @@
 // Theme import
 @import 'administration/theme-default';
 @import 'common/helper';
-@import 'overrides/bootstrap';
+@import 'administration/overrides/bootstrap';
+@import './administration/*';

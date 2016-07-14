@@ -10,3 +10,4 @@ Rails.application.config.assets.version = '1.0'
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
 Rails.application.config.assets.precompile += %w( administration.scss administration.js )
 Rails.application.config.assets.precompile << /administration\/.*$/
+Rails.application.config.assets.precompile << 'filterrific/filterrific-spinner.gif'

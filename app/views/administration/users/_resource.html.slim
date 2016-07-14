@@ -1,0 +1,25 @@
+tr id=dom_id(resource)
+  td.text-center = resource.id
+  td.text-center
+    = link_to [:toggle_status, :administration, resource], remote: true
+      = user_status resource.active?
+  td = resource.first_name
+  td = resource.last_name
+  td = resource.email
+  td Not implemented
+  td = @resource_class.human_enum_name(:role, resource.role)
+  td
+    = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.change_password') }
+      i.fa.fa-key.man
+    = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.sign_in') }
+      i.fa.fa-sign-in.man
+    = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.chart') }
+      i.fa.fa-pie-chart.man
+    = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.mail') }
+      i.fa.fa-envelope-o.man
+    - if policy(resource).edit?
+      = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
+        i.fa.fa-pencil.man
+    - if policy(resource).destroy?
+      = confirmation_link [:administration, resource], method: :delete, class: 'btn btn-danger btn-rounded btn-sm', data: { confirm: t('.confirmations.delete.body'), confirm_title: t('.confirmations.delete.title'), icon: 'fa-times', toggle: 'tooltip', title: t('.tooltips.delete') }
+        i.fa.fa-times.man

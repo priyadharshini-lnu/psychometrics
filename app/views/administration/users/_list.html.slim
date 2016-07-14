@@ -1,0 +1,18 @@
+.table-responsive
+  table.table.table-bordered.table-actions.table-hover.mbn
+    thead
+      tr
+        th.text-center width="50"
+          = sorting @resource_class.human_attribute_name(:id), :id, @filterrific
+        th.text-center width="100"
+          = sorting t('administration.active'), :status, @filterrific
+        th = sorting @resource_class.human_attribute_name(:first_name), :first_name, @filterrific
+        th = sorting @resource_class.human_attribute_name(:last_name), :last_name, @filterrific
+        th = sorting @resource_class.human_attribute_name(:email), :email, @filterrific
+        th = sorting @resource_class.human_attribute_name(:client_id), :client_name, @filterrific
+        th = sorting @resource_class.human_attribute_name(:role), :role, @filterrific
+        th width='300' = t('administration.actions')
+    tbody
+      = render partial: 'resource', collection: @resources
+  = paginate @resources, theme: 'twitter-bootstrap-3'
+
