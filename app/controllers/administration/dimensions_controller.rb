@@ -9,7 +9,7 @@ class Administration::DimensionsController < Administration::BaseController
   def index
     @filterrific = initialize_filterrific(
         Dimension,
-        params[:filterrific]) or return
+        params[:filterrific]) || return
     @dimensions = @filterrific.find.page(params[:page])
   end
 
