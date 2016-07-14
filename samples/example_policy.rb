@@ -1,4 +1,4 @@
-class Administration::DimensionPolicy < Administration::BasePolicy
+class Administration::ExamplePolicy < Administration::BasePolicy
   def initialize(user, record)
     @user   = user
     @record = record
@@ -29,11 +29,4 @@ class Administration::DimensionPolicy < Administration::BasePolicy
     edit?
   end
 
-  def copy?
-    @user.can?(:admin, :superadmin)
-  end
-
-  def toggle_status?
-    @user.can?(:admin, :superadmin)
-  end
 end

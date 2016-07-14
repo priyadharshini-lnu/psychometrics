@@ -1,0 +1,9 @@
+<% if @resource.errors.empty? %>
+  $('#modal-container').html('<%= j render(partial: 'modal', locals: { header: t('.header') }) %>');
+  $('#modal-container').find('.modal').modal('show');
+  $('#modal-container').find('.modal').on('hidden.bs.modal', function () {
+    $(this).remove();
+  });
+<% else %>
+  $('#modal-container').find('form').html('<%= j render(partial: 'form') %>');
+<% end %>
