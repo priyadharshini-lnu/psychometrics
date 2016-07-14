@@ -28,5 +28,4 @@ class Administration::ExamplePolicy < Administration::BasePolicy
   def update?
     edit?
   end
-
 end
