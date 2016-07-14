@@ -59,7 +59,7 @@ class Administration::DimensionsController < Administration::BaseController
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), {action: :index}
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{ @resource_class.model_name.plural }"), {action: :index}
   end
 
   def set_resource
