@@ -2,14 +2,15 @@ class Administration::UsersController < Administration::BaseController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:show, :edit, :update, :destroy]
   before_filter :init_breadcrumbs
+  append_before_action :pundit_authorize
 
   # Skip verify_policy_scoped defined in base controller
-  before_action :skip_policy_scope
+  #before_action :skip_policy_scope
 
   # GET /administration/resources
   def index
     @filterrific = initialize_filterrific(
-      @resource_class,
+      policy_scope(@resource_class),
       params[:filterrific],
       select_options: {
         with_role: @resource_class.options_for_with_role
@@ -36,7 +37,7 @@ class Administration::UsersController < Administration::BaseController
 
     respond_to do |format|
       if @resource.save
-        format.html { redirect_to @resource, success: t('.successfully') }
+        format.html { redirect_to [:administration, @resource_class.model_name.plural], success: t('.successfully') }
       else
         format.html { render :new }
       end
@@ -47,7 +48,7 @@ class Administration::UsersController < Administration::BaseController
   def update
     respond_to do |format|
       if @resource.update(resource_params)
-        format.html { redirect_to @resource, success: t('.successfully') }
+        format.html { redirect_to [:administration, @resource_class.model_name.plural], success: t('.successfully') }
       else
         format.html { render :edit }
       end
@@ -58,7 +59,7 @@ class Administration::UsersController < Administration::BaseController
   def destroy
     @resource.destroy
     respond_to do |format|
-      format.html { redirect_to resources_url, success: t('.successfully') }
+      format.html { redirect_to :back, success: t('.successfully') }
     end
   end
 
@@ -66,9 +67,10 @@ class Administration::UsersController < Administration::BaseController
 
     def init_breadcrumbs
       add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{ @resource_class.model_name.plural }"), { action: :index }
     end
 
+    # Set model
     def set_resource_class
       @resource_class ||= User
     end
@@ -79,5 +81,10 @@ class Administration::UsersController < Administration::BaseController
 
     def resource_params
       params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :client_id)
+    end
+
+    # Authorisation user
+    def pundit_authorize
+      authorize @resource || @resource_class
     end
 end

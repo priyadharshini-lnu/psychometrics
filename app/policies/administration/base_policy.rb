@@ -50,8 +50,11 @@ class Administration::BasePolicy
       @scope = scope
     end
 
+    # scope - could be array
+    # [:administration, Model]
+    #
     def resolve
-      scope
+      [scope].flatten.last
     end
   end
 end

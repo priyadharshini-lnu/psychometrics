@@ -15,4 +15,19 @@ class Administration::UserPolicy < Administration::BasePolicy
     return true if @user.admin?
     @record == @user
   end
+
+  class Scope
+    attr_reader :user, :scope
+
+    def initialize(user, scope)
+      @user = user
+      @scope = scope
+    end
+
+    def resolve
+      return [scope].flatten.last if @user.superadmin?
+      # TODO uncommit it when will be created Client model
+      [scope].flatten.last# .where(client_id: @user.client_id)
+    end
+  end
 end

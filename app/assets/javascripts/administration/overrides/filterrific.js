@@ -15,10 +15,6 @@ window.Filterrific.submitFilterForm = function(){
     dataType: 'script'
   }).done(function( msg ) {
     panel_refresh(panel);
-
-    // Reinit all plugins
-    // vendor/javascript/administration/plugins.js
-    window.uiElements.init();
   });
 };
 
