@@ -47,7 +47,7 @@ class Dimension < ApplicationRecord
   end
 
   def gen_uniq_name
-    while Dimension.exists?(name: name)  do
+    while Dimension.exists?(name: name)
       number = name.scan(/\((\d+)\)$/).flatten.join('').to_i
       if number == 0
         self.name = "#{name} (1)"
