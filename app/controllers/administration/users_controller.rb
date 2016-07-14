@@ -11,7 +11,7 @@ class Administration::UsersController < Administration::BaseController
       params[:filterrific],
       select_options: {
         with_role: @resource_class.options_for_with_role
-      }) or return
+      }) || return
     @resources = @filterrific.find.page(params[:page])
   end
 
@@ -62,26 +62,26 @@ class Administration::UsersController < Administration::BaseController
 
   private
 
-    def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{ @resource_class.model_name.plural }"), { action: :index }
-    end
+  def init_breadcrumbs
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+  end
 
-    # Set model
-    def set_resource_class
-      @resource_class ||= User
-    end
+  # Set model
+  def set_resource_class
+    @resource_class ||= User
+  end
 
-    def set_resource
-      @resource = @resource_class.find(params[:id])
-    end
+  def set_resource
+    @resource = @resource_class.find(params[:id])
+  end
 
-    def resource_params
-      params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :client_id)
-    end
+  def resource_params
+    params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :client_id)
+  end
 
-    # Authorisation user
-    def pundit_authorize
-      authorize @resource || @resource_class
-    end
+  # Authorisation user
+  def pundit_authorize
+    authorize @resource || @resource_class
+  end
 end

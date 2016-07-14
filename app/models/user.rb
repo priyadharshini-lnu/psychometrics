@@ -33,12 +33,12 @@ class User < ApplicationRecord
     admin: 'admin',
     manager: 'manager',
     user: 'user'
-  }
+  }.freeze
 
   GROUP_USER_ROLES = {
     administrators: USER_ROLES.slice(:superadmin, :admin).keys,
     users:          USER_ROLES.slice(:manager, :user).keys
-  }
+  }.freeze
 
   enum role: USER_ROLES
 

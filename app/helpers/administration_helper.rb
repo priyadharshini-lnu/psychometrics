@@ -43,7 +43,7 @@ module AdministrationHelper
   #  = sorting 'Name', :name, @filterrific
   # ```
   #
-  def sorting label, name, filterrific
+  def sorting(label, name, filterrific)
     # extract the sort direction from the param value.
     klass = 'sorting'
     klass = (filterrific.sorted_by =~ /desc$/) ? 'sorting_desc' : 'sorting_asc' if filterrific.sorted_by =~ /#{name}/
