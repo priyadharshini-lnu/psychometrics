@@ -4,12 +4,15 @@ class Dimension < ApplicationRecord
   validates :name, uniqueness: true
 
   filterrific(
-      default_filter_params: {
-          sorted_by: 'created_at_desc'
-                              },
-      available_filters:     [
-                                 :search_query, :sorted_by
-                             ]
+    default_filter_params: {
+        sorted_by: 'created_at_desc'
+    },
+    available_filters: [
+         :sorted_by,
+         :search_query,
+         :with_client,
+         :with_role
+     ]
   )
 
   # Search entity by word
