@@ -21,6 +21,11 @@
 //= require administration/actions.js
 //= require administration/plugins.js
 
+// Notification plugin
+//= require administration/plugins/noty/jquery.noty
+//= require administration/plugins/noty/layouts/topCenter
+//= require administration/plugins/noty/themes/default
+
 //= require filterrific/filterrific-jquery
 
 //= require_tree ./administration

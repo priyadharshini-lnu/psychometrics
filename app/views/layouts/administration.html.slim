@@ -14,6 +14,9 @@ html.body-full-height
       .page-content
         = render partial: 'top_sidebar'
         .page-content-wrap
+          .row
+            .col-md-12
+              == flash_messages
           = yield
     /! START PRELOADS
     = audio_tag('administration/alert.mp3', preload: 'auto', id: 'audio-alert')

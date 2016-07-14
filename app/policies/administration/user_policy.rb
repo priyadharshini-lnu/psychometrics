@@ -1,19 +1,22 @@
 class Administration::UserPolicy < Administration::BasePolicy
   def index?
-    return true if @user.admin?
-    super
-  end
-
-  def edit?
     return true if @user.superadmin?
     return true if @user.admin?
-    @record == @user
+    false
   end
 
   def update?
     return true if @user.superadmin?
     return true if @user.admin?
     @record == @user
+  end
+
+  def edit?
+    update?
+  end
+
+  def toggle_status?
+    update?
   end
 
   class Scope

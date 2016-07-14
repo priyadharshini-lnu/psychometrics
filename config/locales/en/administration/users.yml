@@ -9,6 +9,8 @@ en:
         successfully: User was successfully updated.
       destroy:
         successfully: User was successfully destroyed.
+      toggle_status:
+        successfully: User was successfully updated.
       list:
         filterrific:
           with_role:
