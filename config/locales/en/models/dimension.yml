@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      dimension: 'Dimensions'
+    attributes:
+      dimension: &DEFAULT
+        id: 'ID'
+        name: 'Name'
+        favourite: 'Favourite'
+        craeted_at: 'Created'
+        updated_at: 'Modified'
+        active: 'Active'
+  simple_form:
+    placeholders:
+      dimension:
+        <<: *DEFAULT

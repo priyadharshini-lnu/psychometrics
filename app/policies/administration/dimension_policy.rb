@@ -5,26 +5,27 @@ class Administration::DimensionPolicy < Administration::BasePolicy
   end
 
   def index?
-    @user.can?(:admin)
+    @user.can?(:admin, :superadmin)
+    # false
   end
 
   def destroy?
-    @user.can?(:admin)
+    @user.can?(:admin, :superadmin)
   end
 
   def new?
-    @user.can?(:admin)
+    @user.can?(:admin, :superadmin)
   end
 
   def create?
-    @user.can?(:admin)
+    @user.can?(:admin, :superadmin)
   end
 
   def edit?
-    @user.can?(:admin)
+    @user.can?(:admin, :superadmin)
   end
 
   def update?
-    @user.can?(:admin)
+    @user.can?(:admin, :superadmin)
   end
 end

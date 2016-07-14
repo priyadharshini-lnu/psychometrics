@@ -1,7 +1,7 @@
 class Administration::DimensionsController < Administration::BaseController
   before_action :set_dimension, only: [:edit, :update, :destroy]
-  before_action :pundit_authorize, only: [:new, :edit, :create, :update, :destroy]
   before_action :skip_policy_scope
+  append_before_action :pundit_authorize, only: [:index, :new, :edit, :create, :update, :destroy]
 
   add_breadcrumb I18n.t('administration.breadcrumbs.home'), :administration_root_path
   add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), :administration_dimensions_path
@@ -42,12 +42,11 @@ class Administration::DimensionsController < Administration::BaseController
   def destroy
     @dimension.destroy
     respond_to do |format|
-      format.html {
+      format.html
         redirect_to(
             administration_dimensions_url,
             notice: t('administration.dimensions.destroy.successfully_destroyed', id: @dimension.id)
         )
-      }
       format.json { head :no_content }
     end
   end

@@ -14,11 +14,16 @@ class User < ApplicationRecord
     end
   end
 
-  def can?(role)
-    case role
-    when :superadmin then superadmin?
-    when :admin then admin? || superadmin?
-    else raise 'Not impl'
+  def can?(*roles)
+    roles.each do |role|
+      case role
+      when :superadmin then return true if superadmin?
+      when :admin then return true if admin?
+      when :manager then return true if manager?
+      when :user then return true if user?
+      else raise 'Not impl'
+      end
     end
+    false
   end
 end

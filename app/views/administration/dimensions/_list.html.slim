@@ -2,12 +2,12 @@
   table.table.table-bordered.table-actions.table-hover
     thead
       tr
-        th.text-center width="50" = ApplicationRecord.human_attribute_name(:id)
-        th.text-center width="100" = ApplicationRecord.human_attribute_name(:favourite)
-        th.text-center width="100" = t 'administration.active'
-        th = ApplicationRecord.human_attribute_name(:name)
+        th.text-center width="50" = Dimension.human_attribute_name(:id)
+        th.text-center width="100" = Dimension.human_attribute_name(:favourite)
+        th.text-center width="100" = Dimension.human_attribute_name(:active)
+        th = Dimension.human_attribute_name(:name)
         th width='150' = t 'administration.actions'
-        th width='150' = t 'administration.created'
-        th width='150' = t 'administration.modified'
+        th width='150' = t Dimension.human_attribute_name(:created_at)
+        th width='150' = t Dimension.human_attribute_name(:updated_at)
     tbody
       = render partial: 'resource', collection: @dimensions

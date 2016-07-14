@@ -7,13 +7,11 @@ en:
     new: New
     show: Show
     actions: Actions
-    created: Created
-    modified: Modified
-    active: Active
     navigation: &NAVIGATION
       home: Dashboard
       users: Users
       dimensions: Dimensions
+      dimension: Dimension
 
     breadcrumbs:
       <<: *NAVIGATION
