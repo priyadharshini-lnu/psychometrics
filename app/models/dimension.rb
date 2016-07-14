@@ -22,23 +22,23 @@ class Dimension < ApplicationRecord
     # extract the sort direction from the param value.
     direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
     case sort_key.to_s
-      when /^id_/
-        order("dimensions.id #{direction}")
-      when /^favourite_/
-        order("dimensions.favourite #{direction}")
-      when /^active_/
-        order("dimensions.disabled #{direction}")
-      when /^name_/
-        order("dimensions.name #{direction}")
-      when /^created_at_/
-        order("dimensions.created_at #{direction}")
-      when /^updated_at_/
-        order("dimensions.updated_at #{direction}")
+    when /^id_/
+      order("dimensions.id #{direction}")
+    when /^favourite_/
+      order("dimensions.favourite #{direction}")
+    when /^active_/
+      order("dimensions.disabled #{direction}")
+    when /^name_/
+      order("dimensions.name #{direction}")
+    when /^created_at_/
+      order("dimensions.created_at #{direction}")
+    when /^updated_at_/
+      order("dimensions.updated_at #{direction}")
     end
   }
 
   def clone
-    @cloned_dimension = self.dup
+    @cloned_dimension = dup
     @cloned_dimension.gen_uniq_name
     @cloned_dimension
   end
