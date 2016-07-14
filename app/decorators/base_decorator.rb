@@ -3,9 +3,13 @@ class BaseDecorator < Draper::Decorator
 
   def status
     if object.disabled
-      h.content_tag(:i, '', class: 'fa fa-times')
+      h.link_to '#' do
+        h.content_tag(:i, '', class: 'fa fa-times')
+      end
     else
-      h.content_tag(:i, '', class: 'fa fa-check')
+      h.link_to '#' do
+        h.content_tag(:i, '', class: 'fa fa-check')
+      end
     end
   end
 
