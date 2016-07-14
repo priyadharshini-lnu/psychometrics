@@ -1,6 +1,6 @@
 $('#modal-container').find('.modal').modal('hide');
 $('#modal-container').find('.modal').on('hidden.bs.modal', function(){
-  $('#<%= dom_id(@dimension) %>').hide("fast", function(){
-    $(this).replaceWith('<%= j render(partial: 'resource', locals: { resource: @dimension }) %>').show('slow');
+  $('#<%= dom_id(@resource) %>').hide("fast", function(){
+    $(this).replaceWith('<%= j render(partial: 'resource', locals: { resource: @resource }) %>').show('slow');
   })
 });

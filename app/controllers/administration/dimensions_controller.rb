@@ -1,27 +1,26 @@
 class Administration::DimensionsController < Administration::BaseController
-  before_action :set_dimension, only: [:edit, :update, :destroy]
+  prepend_before_action :set_resource_class
+  before_action :set_resource, only: [:edit, :update, :destroy]
   before_action :skip_policy_scope
   append_before_action :pundit_authorize, only: [:index, :new, :edit, :create, :update, :destroy]
-
-  add_breadcrumb I18n.t('administration.breadcrumbs.home'), :administration_root_path
-  add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), :administration_dimensions_path
+  before_filter :init_breadcrumbs
 
   def index
     @filterrific = initialize_filterrific(
-        Dimension,
+        @resource_class,
         params[:filterrific]) || return
-    @dimensions  = @filterrific.find.page(params[:page])
+    @resources  = @filterrific.find.page(params[:page])
   end
 
   def new
-    @dimension = Dimension.new
+    @resource = @resource_class.new
   end
 
   def create
-    @dimension = Dimension.new(dimension_params)
+    @resource = @resource_class.new(resource_params)
 
     respond_to do |format|
-      if @dimension.save
+      if @resource.save
         format.js
       else
         format.js { render :new }
@@ -31,7 +30,7 @@ class Administration::DimensionsController < Administration::BaseController
 
   def update
     respond_to do |format|
-      if @dimension.update(dimension_params)
+      if @resource.update(resource_params)
         format.js
       else
         format.js { render :edit }
@@ -40,12 +39,12 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def destroy
-    @dimension.destroy
+    @resource.destroy
     respond_to do |format|
       format.html
         redirect_to(
-            administration_dimensions_url,
-            notice: t('administration.dimensions.destroy.successfully_destroyed', id: @dimension.id)
+            [:administration, @resource_class.model_name.plural],
+            notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully_destroyed", id: @resource.id)
         )
       format.json { head :no_content }
     end
@@ -53,15 +52,24 @@ class Administration::DimensionsController < Administration::BaseController
 
   private
 
-  def set_dimension
-    @dimension = Dimension.find(params[:id])
+  def set_resource_class
+    @resource_class ||= Dimension
   end
 
-  def dimension_params
-    params.require(:dimension).permit(:name, :favourite)
+  def init_breadcrumbs
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+  end
+
+  def set_resource
+    @resource = @resource_class.find(params[:id])
+  end
+
+  def resource_params
+    params.require(:resource).permit(:name, :favourite)
   end
 
   def pundit_authorize
-    authorize @dimension || :dimension
+    authorize @resource || @resource_class
   end
 end
