@@ -432,6 +432,10 @@ function x_navigation(){
     }
 
     $(".x-navigation li").click(function(event){
+        if ($(this).has('[data-confirm]').length == 1) {
+            return true;
+        }
+        event.stopPropagation();
 
         var li = $(this);
 

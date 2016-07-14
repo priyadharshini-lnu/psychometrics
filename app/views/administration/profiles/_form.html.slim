@@ -1,15 +1,14 @@
-.col-md-12
-  = simple_form_for(@user, url: administration_profiles_url) do |f|
-    = f.error_notification
-    == flash_messages
-    .form-group
-      = f.input :email
-    .form-group
-      = f.input :password
-    .form-group
-      = f.input :first_name
-    .form-group
-      = f.input :last_name
+= simple_form_for(@user, url: administration_profiles_url) do |f|
+  = f.error_notification
+  == flash_messages
+  .form-group
+    = f.input :email
+  .form-group
+    = f.input :password
+  .form-group
+    = f.input :first_name
+  .form-group
+    = f.input :last_name
 
-    .form-group
-      = f.button :submit, t('update'), class: 'btn-info'
+  .form-group
+    = f.button :submit, t('administration.update'), class: 'btn-info'

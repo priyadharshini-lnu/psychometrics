@@ -1,4 +1,19 @@
 en:
   administration:
+    close: Close
+    update: Update
+    search: Search
+    edit: Edit
+    new: New
+    show: Show
+    actions: Actions
+    created: Created
+    modified: Modified
+    active: Active
+    navigation: &NAVIGATION
+      home: Dashboard
+      users: Users
+      dimensions: Dimensions
+
     breadcrumbs:
-      home: 'Dashboard'
+      <<: *NAVIGATION

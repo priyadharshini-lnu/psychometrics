@@ -26,6 +26,15 @@ gem 'simple_form',                '~> 3.2.1'
 gem 'kaminari',                   '~> 0.16.3'
 ### Breadcrumbs
 gem 'breadcrumbs_on_rails',       '~> 2.3.1'
+### Filter data list
+gem 'filterrific',                '~> 2.0.5'
+### Navigation helper
+gem 'active_link_to',             '~> 1.0.3'
+
+gem 'annotate',                   '~> 2.7.0', github: 'ctran/annotate_models'
+### Decorator
+gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 
 
 

@@ -1,0 +1,12 @@
+= simple_form_for(@dimension, url: { action: @dimension.new_record? ? :create : :update }, remote: true) do |f|
+  .modal-body
+    = f.error_notification
+
+    .form-inputs.clearfix
+      = f.input :name
+      = f.input :favourite
+
+  .modal-footer
+    .btn-group
+      = f.button :submit, t('administration.update'), class: 'btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'

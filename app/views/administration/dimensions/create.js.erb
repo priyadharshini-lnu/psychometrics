@@ -1,0 +1,6 @@
+$('#modal-container').find('.modal').modal('hide');
+$('#modal-container').find('.modal').on('hidden.bs.modal', function(){
+  $('#resource_list').find('tbody').prepend('<%= j render(partial: 'resource', locals: { resource: @dimension }) %>')
+      .find('#<%= dom_id(@dimension) %>').hide().show('slow');
+  $('#resource_list').find('.no_records').remove();
+});

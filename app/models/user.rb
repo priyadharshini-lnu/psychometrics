@@ -13,4 +13,12 @@ class User < ApplicationRecord
       email
     end
   end
+
+  def can?(role)
+    case role
+      when :superadmin then superadmin?
+      when :admin then admin? || superadmin?
+      else raise 'Not impl'
+    end
+  end
 end

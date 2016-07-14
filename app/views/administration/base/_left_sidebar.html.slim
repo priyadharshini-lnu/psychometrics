@@ -13,7 +13,7 @@
           = link_to current_administrator.full_name, edit_administration_profiles_path, class: 'profile-data-name'
           .profile-data-title = current_administrator.role
     li.xn-title Navigation
-    li.active
+    li
       = link_to administration_root_path
         span.xn-text Dashboard
     li.xn-openable
@@ -63,7 +63,7 @@
         li
           a href="#" Norm
         li
-          a href="#" Dimension
+          = active_link_to 'Dimension', administration_dimensions_path, active: :exclusive, wrap_tag: :li
         li.xn-openable
           a href="#" Benchmarks
           ul

@@ -1,0 +1,19 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title Dimensions
+        ul.panel-controls
+          li
+            = link_to new_administration_dimension_path, remote: true do
+              span.fa.fa-plus
+      .panel-body
+        /= render_filterrific_spinner
+        = form_for_filterrific @filterrific do |f|
+          .row.mbm
+            .col-md-8.col-md-offset-2.col-sm-4.col-sm-offset-2.phn
+              = f.text_field(:search_query, placeholder: t('administration.search'), class: 'filterrific-periodically-observed form-control')
+          .clearfix
+
+        #filterrific_results
+          = render partial: 'list'

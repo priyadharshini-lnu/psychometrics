@@ -1,0 +1,9 @@
+en:
+  administration:
+    dimensions:
+      new:
+        header: 'New dimension'
+      edit:
+        header: 'Edit dimension'
+      destroy:
+        successfully_destroyed: 'Dimension #%{id} was successfully destroyed.'
