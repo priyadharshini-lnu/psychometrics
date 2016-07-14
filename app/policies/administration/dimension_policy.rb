@@ -27,5 +27,4 @@ class Administration::DimensionPolicy < Administration::BasePolicy
   def update?
     @user.can?(:admin)
   end
-
 end
