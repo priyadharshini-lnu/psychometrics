@@ -4,9 +4,6 @@ class Administration::UsersController < Administration::BaseController
   before_filter :init_breadcrumbs
   append_before_action :pundit_authorize
 
-  # Skip verify_policy_scoped defined in base controller
-  #before_action :skip_policy_scope
-
   # GET /administration/resources
   def index
     @filterrific = initialize_filterrific(

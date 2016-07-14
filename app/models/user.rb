@@ -83,7 +83,7 @@ class User < ApplicationRecord
     when /^email_/
       order("users.email #{ direction }")
     when /^client_name_/
-      # TODO Uncommit when will be created client's model
+      # TODO Uncomment when will be created client's model
       #joins(:client).select('users.*, clients.name AS client_name').order("client_name #{ direction }")
     when /^role_/
       order("users.role #{ direction }")
@@ -97,7 +97,7 @@ class User < ApplicationRecord
 
   # Fileter by client
   scope :with_client, -> (client_id) do
-    # TODO Uncommit when will be created client's model
+    # TODO Uncomment when will be created client's model
     #where(client_id: client_id)
   end
 
