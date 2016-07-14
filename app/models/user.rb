@@ -36,8 +36,8 @@ class User < ApplicationRecord
   }
 
   GROUP_USER_ROLES = {
-    administrators: USER_ROLES.slice(:superadmin, :admin),
-    users:          USER_ROLES.slice(:manager, :user)
+    administrators: USER_ROLES.slice(:superadmin, :admin).keys,
+    users:          USER_ROLES.slice(:manager, :user).keys
   }
 
   enum role: USER_ROLES
@@ -56,31 +56,62 @@ class User < ApplicationRecord
 
   filterrific(
     default_filter_params: {
-      sorted_by: 'created_at_desc',
+      sorted_by: 'id_desc',
       with_role: 'all'
     },
     available_filters: [
       :sorted_by,
       :search_query,
+      :with_client,
       :with_role
     ]
   )
+
+  # Sorting
   scope :sorted_by, lambda { |sort_key|
-    # Sorts students by sort_key
+    # extract the sort direction from the param value.
+    direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
+    case sort_key.to_s
+    when /^id_/
+      order("users.id #{ direction }")
+    when /^status_/
+      order("users.disabled #{ direction }")
+    when /^first_name_/
+      order("users.first_name #{ direction }")
+    when /^last_name_/
+      order("users.last_name #{ direction }")
+    when /^email_/
+      order("users.email #{ direction }")
+    when /^client_name_/
+      # TODO Uncommit when will be created client's model
+      #joins(:client).select('users.*, clients.name AS client_name').order("client_name #{ direction }")
+    when /^role_/
+      order("users.role #{ direction }")
+    end
   }
 
+  # Search entity by word
   scope :search_query, lambda { |query|
-    # Filters students whose name or email matches the query
+    where('first_name ILIKE ? OR last_name ILIKE ? OR email ILIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
   }
 
+  # Fileter by client
+  scope :with_client, -> (client_id) do
+    # TODO Uncommit when will be created client's model
+    #where(client_id: client_id)
+  end
+
+  # Fileter by role
   scope :with_role, -> (role) do
     if role == 'users'
-      where(role: GROUP_USER_ROLES[:users].keys)
+      where(role: GROUP_USER_ROLES[:users])
     elsif role == 'administrators'
-      where(role: GROUP_USER_ROLES[:administrators].keys) if role == 'administrators'
+      where(role: GROUP_USER_ROLES[:administrators])
     end
   end
 
+  # Available role for the filter form
+  #
   def self.options_for_with_role
     [
       'all',

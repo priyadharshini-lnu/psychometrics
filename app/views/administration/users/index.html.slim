@@ -3,10 +3,9 @@
   .col-md-12
     .panel.panel-default
       .panel-heading
-        h3.panel-title Users
+        h3.panel-title = t('.title')
       .panel-body
-        = render_filterrific_spinner
-        = form_for_filterrific @filterrific do |f|
+        = form_for_filterrific @filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
           .row.mbm
             .col-sm-6.phn
               .btn-group data-toggle="buttons"
@@ -14,8 +13,13 @@
                   label.btn.btn-default
                     = f.radio_button(:with_role, value)
                     = t(".filterrific.with_role.#{value}")
+              .form-group
+                = f.select(:with_client, [], { include_blank: '- Any -' }, class: 'form-control select mll')
             .col-md-3.col-md-offset-3.col-sm-4.col-sm-offset-2.phn
-              = f.text_field(:search_query, placeholder: t('administration.search'), class: 'filterrific-periodically-observed form-control')
+              .input-group.pull-right
+                = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')
+                span.input-group-addon
+                  .fa.fa-search
           .clearfix
         #filterrific_results
           = render partial: 'list'

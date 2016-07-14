@@ -1,6 +1,8 @@
 en:
   administration:
     search: Search
+    active: Active
+    actions: Actions
 
     navigation: &NAVIGATION
       home: Dashboard

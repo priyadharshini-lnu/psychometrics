@@ -1,4 +1,4 @@
 <% users_list = escape_javascript(
   render(partial: 'list')
 ) %>
-$('#filterrific_results').replaceWith('<%= users_list %>');
+$('#filterrific_results').html('<%= users_list %>');

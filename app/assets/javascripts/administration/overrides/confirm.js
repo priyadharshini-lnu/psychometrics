@@ -15,7 +15,7 @@ $(document).ready(function () {
     $.rails.showConfirmationDialog = function (link) {
         var modal = $('#mb-confirm').clone();
         if (link.data('title')) {
-            modal.find('.mb-title-text').html(link.data('title'));
+            modal.find('.mb-title-text').html(link.data('confirm-title'));
         }
         if (link.data('icon')) {
             modal.find('.mb-title-icon').removeClass().addClass('mb-title-icon fa ' + link.data('icon'));
@@ -27,8 +27,10 @@ $(document).ready(function () {
         if (modal.data("sound")) {
             playAudio(modal.data("sound"));
         }
-        modal.find('.mb-confirm-yes').attr('href', link.attr('href'));
-        modal.find('.mb-confirm-yes').data('method', link.data('method'));
+        modal.find('.mb-confirm-yes').
+            attr('href', link.attr('href')).
+            data('method', link.data('method'));
+
         $('body').append(modal);
     }
 });

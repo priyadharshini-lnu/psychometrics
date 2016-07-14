@@ -3,6 +3,7 @@
 
 // START PLUGINS
 //= require administration/plugins/bootstrap/bootstrap.min.js
+//= require administration/plugins/bootstrap/bootstrap-select.js
 // END PLUGINS
 
 // START THIS PAGE PLUGINS
@@ -20,7 +21,6 @@
 //= require administration/actions.js
 //= require administration/plugins.js
 
-//= require overrides/confirm.js
 //= require filterrific/filterrific-jquery
 
 //= require_tree ./administration

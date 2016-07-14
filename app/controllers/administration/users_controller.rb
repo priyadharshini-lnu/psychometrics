@@ -1,73 +1,83 @@
 class Administration::UsersController < Administration::BaseController
-  before_action :set_user, only: [:show, :edit, :update, :destroy]
-  add_breadcrumb I18n.t('administration.breadcrumbs.home'), :administration_root_path
+  prepend_before_action :set_resource_class
+  before_action :set_resource, only: [:show, :edit, :update, :destroy]
+  before_filter :init_breadcrumbs
 
   # Skip verify_policy_scoped defined in base controller
   before_action :skip_policy_scope
 
-  # GET /administration/users
+  # GET /administration/resources
   def index
-    add_breadcrumb I18n.t('administration.breadcrumbs.users'), administration_users_path
     @filterrific = initialize_filterrific(
-      User,
+      @resource_class,
       params[:filterrific],
       select_options: {
-        with_role: User.options_for_with_role
+        with_role: @resource_class.options_for_with_role
       }) or return
-    @users = @filterrific.find.page(params[:page])
+    @resources = @filterrific.find.page(params[:page])
   end
 
-  # GET /administration/users/1
+  # GET /administration/resources/1
   def show
   end
 
-  # GET /administration/users/new
+  # GET /administration/resources/new
   def new
-    @user = User.new
+    @resource = @resource_class.new
   end
 
-  # GET /administration/users/1/edit
+  # GET /administration/resources/1/edit
   def edit
   end
 
-  # POST /administration/users
+  # POST /administration/resources
   def create
-    @user = User.new(user_params)
+    @resource = @resource_class.new(resource_params)
 
     respond_to do |format|
-      if @user.save
-        format.html { redirect_to @user, notice: 'High score was successfully created.' }
+      if @resource.save
+        format.html { redirect_to @resource, success: t('.successfully') }
       else
         format.html { render :new }
       end
     end
   end
 
-  # PATCH/PUT /administration/users/1
+  # PATCH/PUT /administration/resources/1
   def update
     respond_to do |format|
-      if @user.update(user_params)
-        format.html { redirect_to @user, notice: 'High score was successfully updated.' }
+      if @resource.update(resource_params)
+        format.html { redirect_to @resource, success: t('.successfully') }
       else
         format.html { render :edit }
       end
     end
   end
 
-  # DELETE /administration/users/1
+  # DELETE /administration/resources/1
   def destroy
-    @user.destroy
+    @resource.destroy
     respond_to do |format|
-      format.html { redirect_to users_url, notice: 'High score was successfully destroyed.' }
+      format.html { redirect_to resources_url, success: t('.successfully') }
     end
   end
 
   private
-    def set_user
-      @user = User.find(params[:id])
+
+    def init_breadcrumbs
+      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
     end
 
-    def user_params
-      params.require(:user).permit(:first_name, :last_name, :email, :disabled, :client_id)
+    def set_resource_class
+      @resource_class ||= User
+    end
+
+    def set_resource
+      @resource = @resource_class.find(params[:id])
+    end
+
+    def resource_params
+      params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :client_id)
     end
 end

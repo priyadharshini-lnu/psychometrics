@@ -1,17 +1,9 @@
-/ = active_link_to(admin_root_path, :active => :exclusive, :wrap_tag => :li)
-/   i.fa.fa-home
-/   = t '.navigations.home'
-/ - if policy(:company).index?
-/   = active_link_to(admin_companies_path, :wrap_tag => :li, :active => :inclusive)
-/     i.fa.fa-building
-/     = t '.navigations.companies'
-
 /! START PAGE SIDEBAR
 .page-sidebar
   /! START X-NAVIGATION
   ul.x-navigation
     li.xn-logo
-      a href="index.html" Psychometrics
+      a href="#" Psychometrics
       a.x-navigation-control href="#"
     li.xn-profile
       = link_to administration_root_path, class: 'profile-mini'

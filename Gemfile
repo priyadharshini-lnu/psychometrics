@@ -24,7 +24,7 @@ gem 'slim-rails',                 '~> 3.1.0'
 ### FORM BUILDERS
 gem 'simple_form',                '~> 3.2.1'
 ### Pagination helpers
-gem 'kaminari',                   '~> 0.16.3'
+gem 'kaminari',                   '~> 0.17.0'
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
 ### Breadcrumbs
 gem 'breadcrumbs_on_rails',       '~> 2.3.1'
