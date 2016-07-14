@@ -1,6 +1,6 @@
 class Administration::DimensionsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :copy]
+  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status]
   before_action :skip_policy_scope
   append_before_action :pundit_authorize
   before_filter :init_breadcrumbs
@@ -25,6 +25,13 @@ class Administration::DimensionsController < Administration::BaseController
       else
         format.js { render :new }
       end
+    end
+  end
+
+  def toggle_status
+    @resource.toggle(:disabled).save
+    respond_to do |format|
+      format.js
     end
   end
 

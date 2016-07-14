@@ -11,3 +11,5 @@ en:
         successfully_destroyed: 'Dimension #%{id} was successfully destroyed.'
       copy:
         error: 'Dimension #%{id} was not copied.'
+      toggle_status:
+        successfully: 'Dimension was successfully updated.'

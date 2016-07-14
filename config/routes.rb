@@ -12,6 +12,9 @@ Rails.application.routes.draw do
 
     resources :dimensions do
       get :copy, on: :member
+      member do
+        get 'toggle/status', action: 'toggle_status'
+      end
     end
 
     resources :users do
