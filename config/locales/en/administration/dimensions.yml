@@ -1,6 +1,8 @@
 en:
   administration:
     dimensions:
+      index:
+        title: Dimensions
       new:
         header: 'New dimension'
       edit:

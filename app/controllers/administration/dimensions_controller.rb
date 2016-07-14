@@ -7,7 +7,7 @@ class Administration::DimensionsController < Administration::BaseController
 
   def index
     @filterrific = initialize_filterrific(
-        @resource_class,
+        policy_scope(@resource_class),
         params[:filterrific]) || return
     @resources   = @filterrific.find.page(params[:page])
   end

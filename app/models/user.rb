@@ -86,7 +86,7 @@ class User < ApplicationRecord
     case sort_key.to_s
     when /^id_/
       order("users.id #{direction}")
-    when /^status_/
+    when /^active_/
       order("users.disabled #{direction}")
     when /^first_name_/
       order("users.first_name #{direction}")
