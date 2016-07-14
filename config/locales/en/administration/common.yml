@@ -3,10 +3,10 @@ en:
     search: Search
     active: Active
     actions: Actions
-
+    noty:
+      error_500: Something went wrong. Contact your administrator.
     navigation: &NAVIGATION
       home: Dashboard
       users: Users
-
     breadcrumbs:
       <<: *NAVIGATION

@@ -10,7 +10,7 @@
             .col-sm-6.phn
               .btn-group data-toggle="buttons"
                 - @filterrific.select_options[:with_role].each do |value|
-                  label.btn.btn-default
+                  label class="btn btn-default #{'active' if f.object.with_role == value}"
                     = f.radio_button(:with_role, value)
                     = t(".filterrific.with_role.#{value}")
               .form-group
