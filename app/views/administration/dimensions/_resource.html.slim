@@ -6,6 +6,8 @@ tr id=dom_id(resource)
   td
     = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-success btn-rounded btn-sm'  do
       span.fa.fa-pencil
+    = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-success btn-rounded btn-sm'  do
+      span.fa.fa-copy
     = confirmation_link [:administration, resource], class: 'btn btn-success btn-rounded btn-sm', method: 'delete', data: {confirm: ''} do
       span.fa.fa-times
   td = resource.decorate.created_at

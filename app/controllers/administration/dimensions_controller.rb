@@ -1,6 +1,6 @@
 class Administration::DimensionsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy]
+  before_action :set_resource, only: [:edit, :update, :destroy, :copy]
   before_action :skip_policy_scope
   append_before_action :pundit_authorize
   before_filter :init_breadcrumbs
@@ -48,6 +48,17 @@ class Administration::DimensionsController < Administration::BaseController
         )
       }
       format.json { head :no_content }
+    end
+  end
+
+  def copy
+    @cloned_resource = @resource.clone
+    respond_to do |format|
+      if @cloned_resource.save
+        format.js
+      else
+        format.js { render :error, locals: {message: t('administration.dimensions.copy.error', { id: @resource.id })} }
+      end
     end
   end
 

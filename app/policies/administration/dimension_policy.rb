@@ -28,4 +28,8 @@ class Administration::DimensionPolicy < Administration::BasePolicy
   def update?
     @user.can?(:admin, :superadmin)
   end
+
+  def copy?
+    @user.can?(:admin, :superadmin)
+  end
 end

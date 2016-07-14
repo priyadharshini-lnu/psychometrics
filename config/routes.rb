@@ -9,7 +9,9 @@ Rails.application.routes.draw do
   namespace :administration do
     root to: 'home#index'
     resource :profiles
-    resources :dimensions
+    resources :dimensions do
+      get :copy, on: :member
+    end
   end
 
   root to: "home#index"

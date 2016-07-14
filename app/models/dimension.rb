@@ -17,4 +17,10 @@ class Dimension < ApplicationRecord
   scope :sorted_by, lambda { |sort_key|
     # Sorts students by sort_key
   }
+
+  def clone
+    @cloned_dimension = self.dup
+    @cloned_dimension.name = "#{@cloned_dimension.name} (#{I18n.t('administration.copy')})"
+    @cloned_dimension
+  end
 end
