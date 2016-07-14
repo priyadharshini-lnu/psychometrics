@@ -7,8 +7,8 @@ class Administration::ExamplesController < Administration::BaseController
 
   def index
     @filterrific = initialize_filterrific(
-        policy_scope(@resource_class),
-        params[:filterrific]) || return
+      policy_scope(@resource_class),
+      params[:filterrific]) || return
     @resources   = @filterrific.find.page(params[:page])
   end
 
@@ -43,8 +43,8 @@ class Administration::ExamplesController < Administration::BaseController
     respond_to do |format|
       format.html {
         redirect_to(
-            [:administration, @resource_class.model_name.plural],
-            notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully_destroyed", id: @resource.id)
+          [:administration, @resource_class.model_name.plural],
+          notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully_destroyed", id: @resource.id)
         )
       }
       format.json { head :no_content }
