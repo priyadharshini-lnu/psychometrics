@@ -1,5 +1,6 @@
 class Dimension < ApplicationRecord
   validates :name, presence: true
+  validates :name, length: { maximum: 150 }, allow_blank: true
   validates :name, uniqueness: true
 
   filterrific(
@@ -38,7 +39,18 @@ class Dimension < ApplicationRecord
 
   def clone
     @cloned_dimension = self.dup
-    @cloned_dimension.name = "#{@cloned_dimension.name} (#{I18n.t('administration.copy')})"
+    @cloned_dimension.gen_uniq_name
     @cloned_dimension
+  end
+
+  def gen_uniq_name
+    while Dimension.exists?(name: self.name)  do
+      number = name.scan(/\((\d+)\)$/).flatten.join('').to_i
+      if number == 0
+        self.name = "#{name} (1)"
+      else
+        self.name.gsub!(/\((\d+)\)$/, "(#{number + 1})")
+      end
+    end
   end
 end
