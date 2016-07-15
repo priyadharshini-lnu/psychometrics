@@ -62,16 +62,11 @@ class Administration::UsersController < Administration::BaseController
   # Change resources's status to active/disabled
   #
   def toggle_status
-    @resource.toggle(:disabled).save
+    @resource.toggle!(:disabled)
     respond_to do |format|
       format.html { redirect_to :back, success: t('.successfully') }
       format.js
     end
-  end
-
-  # Render resource's left side bar menu
-  #
-  def sidebar
   end
 
   private

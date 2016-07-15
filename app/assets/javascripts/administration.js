@@ -2,7 +2,7 @@
 //= require jquery_ujs
 
 ///// START PLUGINS
-//= require administration/plugins/bootstrap/bootstrap.min.js
+//= require bootstrap-sprockets
 //= require administration/plugins/bootstrap/bootstrap-select.js
 
 
