@@ -4,3 +4,4 @@ $('#modal-container').find('.modal').on('hidden.bs.modal', function(){
     $(this).replaceWith('<%= j render(partial: 'resource', locals: { resource: @resource }) %>').show('slow');
   })
 });
+$(document).trigger('initPlugins');
