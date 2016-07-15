@@ -48,9 +48,9 @@ class Dimension < ApplicationRecord
     while Dimension.exists?(name: name)
       number = name.scan(/\((\d+)\)$/).flatten.join('').to_i
       if number == 0
-        name = "#{name} (1)"
+        self.name = "#{name} (1)"
       else
-        name.gsub!(/\((\d+)\)$/, "(#{number + 1})")
+        self.name.gsub!(/\((\d+)\)$/, "(#{number + 1})")
       end
     end
   end
