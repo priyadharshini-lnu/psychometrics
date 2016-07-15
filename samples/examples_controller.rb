@@ -41,12 +41,12 @@ class Administration::ExamplesController < Administration::BaseController
   def destroy
     @resource.destroy
     respond_to do |format|
-      format.html {
+      format.html do
         redirect_to(
           [:administration, @resource_class.model_name.plural],
           notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully_destroyed", id: @resource.id)
         )
-      }
+      end
       format.json { head :no_content }
     end
   end
@@ -59,7 +59,7 @@ class Administration::ExamplesController < Administration::BaseController
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), {action: :index}
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
   end
 
   def set_resource

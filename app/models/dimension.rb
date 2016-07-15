@@ -9,10 +9,8 @@ class Dimension < ApplicationRecord
     },
     available_filters: [
        :sorted_by,
-       :search_query,
-       :with_client,
-       :with_role
-     ]
+       :search_query
+    ]
   )
 
   # Search entity by word

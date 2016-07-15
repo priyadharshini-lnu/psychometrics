@@ -5,4 +5,4 @@ $('#filterrific_results').html('<%= resources_list %>');
 
 // Reinit all plugins
 // vendor/javascript/administration/plugins.js
-window.uiElements.init();
+$(document).trigger('initPlugins');

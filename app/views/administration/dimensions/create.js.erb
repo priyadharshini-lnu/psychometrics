@@ -4,3 +4,4 @@ $('#modal-container').find('.modal').on('hidden.bs.modal', function(){
       .find('#<%= dom_id(@resource) %>').hide().show('slow');
   $('#resource_list').find('.no_records').remove();
 });
+$(document).trigger('initPlugins');
