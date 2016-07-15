@@ -1,6 +1,10 @@
 en:
   administration:
     users:
+      new:
+        header: 'New user'
+      edit:
+        header: 'Edit user'
       index:
         title: Users
       create:

@@ -15,30 +15,28 @@ class Administration::UsersController < Administration::BaseController
     @resources = @filterrific.find.page(params[:page])
   end
 
-  # GET /administration/resources/1
-  def show
-  end
-
-  # GET /administration/resources/new
   def new
     @resource = @resource_class.new
   end
 
-  # GET /administration/resources/1/edit
-  def edit
-  end
-
-  # POST /administration/resources
   def create
     @resource = @resource_class.new(resource_params)
 
     respond_to do |format|
       if @resource.save
-        format.html { redirect_to [:administration, @resource_class.model_name.plural], success: t('.successfully') }
+        format.js
       else
-        format.html { render :new }
+        format.js { render :new }
       end
     end
+  end
+
+  # GET /administration/resources/1
+  def show
+  end
+
+  # GET /administration/resources/1/edit
+  def edit
   end
 
   # PATCH/PUT /administration/resources/1
@@ -85,7 +83,7 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :client_id)
+    params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :client_id, :password)
   end
 
   # Authorisation user
