@@ -5,8 +5,6 @@ class Administration::UsersController < Administration::BaseController
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
 
-
-
   # GET /administration/resources
   def index
     @filterrific = initialize_filterrific(
@@ -75,7 +73,6 @@ class Administration::UsersController < Administration::BaseController
   # Render resource's left side bar menu
   #
   def sidebar
-
   end
 
   private
