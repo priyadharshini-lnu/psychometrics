@@ -21,11 +21,13 @@ class Administration::UsersController < Administration::BaseController
 
   def create
     @resource = @resource_class.new(resource_params)
-
+    Rails.logger.warn "current_administrator #{current_administrator.inspect}"
     respond_to do |format|
       if @resource.save
+        @resource.invite!(current_administrator)
         format.js
       else
+        Rails.logger.warn "current_administrator #{@resource.errors.inspect}"
         format.js { render :new }
       end
     end
@@ -83,7 +85,7 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :client_id, :password)
+    params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :client_id, :password, :role)
   end
 
   # Authorisation user

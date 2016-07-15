@@ -10,6 +10,9 @@ Rails.application.configure do
   # Rake tasks automatically ignore this option for performance.
   config.eager_load = true
 
+  # Use default logging formatter so that PID and timestamp are not suppressed.
+  config.log_formatter = ::Logger::Formatter.new
+
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
   config.action_controller.perform_caching = true
@@ -56,6 +59,19 @@ Rails.application.configure do
   # config.active_job.queue_adapter     = :resque
   # config.active_job.queue_name_prefix = "psychometrics_#{Rails.env}"
   config.action_mailer.perform_caching = false
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default charset: 'utf-8'
+
+  config.action_mailer.smtp_settings =  {
+      user_name: ENV['MAIL_USERNAME'],
+      password: ENV['MAIL_PASSWORD'],
+      domain: ENV['MAIL_DOMAIN'],
+      address: 'smtp.sendgrid.net',
+      port: 587,
+      authentication: :plain,
+      enable_starttls_auto: true
+  }
 
   # Ignore bad email addresses and do not raise email delivery errors.
   # Set this to true and configure the email server for immediate delivery to raise delivery errors.

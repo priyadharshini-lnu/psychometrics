@@ -1,0 +1,6 @@
+en:
+  administration:
+    user_mailer:
+      send_invitation:
+        invitation: "invitation"
+        invitation_desc: "You was added on service %{project_name}"

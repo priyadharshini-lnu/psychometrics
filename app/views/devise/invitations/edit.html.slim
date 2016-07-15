@@ -1,0 +1,20 @@
+.login-container
+  .login-box.animated.fadeInDown
+    .login-body
+      .login-title
+        == t 'devise.invitations.edit.header'
+      = simple_form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f|
+        == flash_messages
+        == devise_error_messages!
+        = f.hidden_field :invitation_token
+        .form-group
+          .col-md-12
+            = f.input_field :password, required: true, placeholder: true, class: 'form-control'
+        .form-group
+          .col-md-12
+            = f.input_field :password_confirmation, placeholder: true, class: 'form-control'
+        .form-group
+          .col-md-6
+          .col-md-6
+            = f.submit t('devise.invitations.edit.submit_button'), class: 'btn btn-info btn-block'
+    = render 'devise/administrators/shared/links'
