@@ -1,12 +1,15 @@
 <% resource = escape_javascript(
   render(partial: 'resource', locals: { resource: @resource })
 ) %>
-$('#<%= dom_id(@resource) %>').hide("fast", function(){
-  $(this).replaceWith('<%= resource %>').show('slow');
-  // Reinit all plugins
-  // vendor/javascript/administration/plugins.js
-  $(document).trigger('initPlugins');
-  noty({text: '<%= t('.successfully') %>', layout: 'topCenter', type: 'success'});
 
-})
+$('#<%= dom_id(@resource) %>').hide('fast', function(){
+  $(this).replaceWith('<%= resource %>').show('slow');
+  $(document).trigger('load_sidebar', ['#<%= dom_id(@resource) %>']);
+
+  // Reinit all plugins
+  $(document).trigger('initPlugins');
+
+  // Notify message
+  noty({text: '<%= t('.successfully') %>', layout: 'topCenter', type: 'success'});
+});
 

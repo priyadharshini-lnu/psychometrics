@@ -9,6 +9,14 @@ class BaseDecorator < Draper::Decorator
     end
   end
 
+  def toggle_status_text
+    if object.disabled
+      I18n.t('administration.enable')
+    else
+      I18n.t('administration.disable')
+    end
+  end
+
   def created_at
     I18n.l object.created_at, format: :short
   end

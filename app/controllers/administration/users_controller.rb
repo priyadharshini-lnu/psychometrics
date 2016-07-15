@@ -1,8 +1,11 @@
 class Administration::UsersController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status]
-  before_filter :init_breadcrumbs
-  append_before_action :pundit_authorize
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar]
+  before_action :skip_authorization, only: [:sidebar]
+  before_action :init_breadcrumbs
+  append_before_action :pundit_authorize, except: [:sidebar]
+
+
 
   # GET /administration/resources
   def index
@@ -58,12 +61,21 @@ class Administration::UsersController < Administration::BaseController
     end
   end
 
+  # Change resources's status to active/disabled
+  #
   def toggle_status
     @resource.toggle(:disabled).save
+    p @resource.errors
     respond_to do |format|
       format.html { redirect_to :back, success: t('.successfully') }
       format.js
     end
+  end
+
+  # Render resource's left side bar menu
+  #
+  def sidebar
+
   end
 
   private

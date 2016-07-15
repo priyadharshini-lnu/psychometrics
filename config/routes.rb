@@ -20,6 +20,7 @@ Rails.application.routes.draw do
     resources :users do
       member do
         patch 'toggle/status', action: 'toggle_status'
+        get 'sidebar', action: 'sidebar'
       end
     end
 
