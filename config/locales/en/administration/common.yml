@@ -18,5 +18,7 @@ en:
       users: Users
       dimensions: Dimensions
       dimension: Dimension
+      surveys: Surveys
+      survey: Survey
     breadcrumbs:
       <<: *NAVIGATION

@@ -17,10 +17,10 @@ ActiveRecord::Schema.define(version: 20160715101548) do
 
   create_table "dimensions", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "favourite"
-    t.boolean  "disabled"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "favourite",  default: false
+    t.boolean  "disabled",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
 # Could not dump table "users" because of following StandardError

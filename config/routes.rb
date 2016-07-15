@@ -23,6 +23,7 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :surveys
   end
 
   root to: 'home#index'
