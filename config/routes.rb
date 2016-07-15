@@ -11,8 +11,8 @@ Rails.application.routes.draw do
     resource :profiles
 
     resources :dimensions do
-      get :copy, on: :member
       member do
+        get :copy
         get 'toggle/status', action: 'toggle_status'
       end
     end

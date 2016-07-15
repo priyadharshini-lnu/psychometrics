@@ -8,7 +8,6 @@
             = link_to [:new, :administration, @resource_class.model_name.singular], remote: true do
               span.fa.fa-plus
       .panel-body
-        /= render_filterrific_spinner
         = form_for_filterrific @filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
           .row.mbm
             .col-sm-6.phn

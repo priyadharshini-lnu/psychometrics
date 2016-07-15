@@ -5,7 +5,7 @@ $('#<%= dom_id(@resource) %>').hide("fast", function(){
   $(this).replaceWith('<%= resource %>').show('slow');
   // Reinit all plugins
   // vendor/javascript/administration/plugins.js
-  window.uiElements.init();
+  $(document).trigger('initPlugins');
   noty({text: '<%= t('.successfully') %>', layout: 'topCenter', type: 'success'});
 
 })

@@ -6,6 +6,6 @@ $('#<%= dom_id(@resource) %>').hide("fast", function(){
   // Reinit all plugins
   // vendor/javascript/administration/plugins.js
   noty({text: '<%= t('.successfully') %>', layout: 'topCenter', type: 'success'});
-
+  $(document).trigger('initPlugins');
 });
 
