@@ -5,6 +5,14 @@ class Administration::UserPolicy < Administration::BasePolicy
     false
   end
 
+  def new?
+    @user.can?(:superadmin)
+  end
+
+  def create?
+    new?
+  end
+
   def update?
     return true if @user.superadmin?
     return true if @user.admin?

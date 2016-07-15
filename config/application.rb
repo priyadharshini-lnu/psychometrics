@@ -15,5 +15,7 @@ module Psychometrics
     # Load all translates inside folders
     #
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
+
+    config.autoload_paths << Rails.root.join('app/validators')
   end
 end

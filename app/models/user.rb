@@ -23,21 +23,27 @@
 
 class User < ApplicationRecord
   # Authentication
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Roles constant
   USER_ROLES = {
-    superadmin: 'superadmin',
-    admin: 'admin',
-    manager: 'manager',
-    user: 'user'
+      superadmin: 'superadmin',
+      admin: 'admin',
+      manager: 'manager',
+      user: 'user'
   }.freeze
 
   GROUP_USER_ROLES = {
-    administrators: USER_ROLES.slice(:superadmin, :admin).keys,
-    users:          USER_ROLES.slice(:manager, :user).keys
+      administrators: USER_ROLES.slice(:superadmin, :admin).keys,
+      users:          USER_ROLES.slice(:manager, :user).keys
   }.freeze
+
+  validates :first_name, :last_name, :email, :role, presence: true
+  validates :first_name, :last_name, :email, length: { maximum: 100 }, allow_blank: true
+  validates :email, uniqueness: true
+  validates_with EmailValidator, fields: [:email], allow_nil: true
+  validates :role, inclusion: { in: USER_ROLES.values }, allow_nil: true
 
   enum role: USER_ROLES
 
@@ -47,6 +53,25 @@ class User < ApplicationRecord
     else
       email
     end
+  end
+
+  # We won't set password, we will send inviting
+  def password_required?
+    return false if new_record?
+    super
+  end
+
+  def can?(*roles)
+    roles.each do |role|
+      case role
+      when :superadmin then return true if superadmin?
+      when :admin then return true if admin?
+      when :manager then return true if manager?
+      when :user then return true if user?
+      else raise 'Not impl'
+      end
+    end
+    false
   end
 
   def active?
@@ -73,7 +98,7 @@ class User < ApplicationRecord
     case sort_key.to_s
     when /^id_/
       order("users.id #{direction}")
-    when /^status_/
+    when /^active_/
       order("users.disabled #{direction}")
     when /^first_name_/
       order("users.first_name #{direction}")

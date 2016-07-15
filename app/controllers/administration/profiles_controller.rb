@@ -1,7 +1,7 @@
 class Administration::ProfilesController < Administration::BaseController
   before_action :set_profile, only: [:edit, :update]
   add_breadcrumb I18n.t('administration.breadcrumbs.home'), :administration_root_path
-
+  before_action :skip_policy_scope
   # GET /administration/users/1/edit
   def edit
     authorize @user

@@ -1,0 +1,14 @@
+= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, remote: true) do |f|
+  .modal-body
+    = f.error_notification
+
+    .form-inputs.clearfix
+      = f.input :email
+      = f.input :first_name
+      = f.input :last_name
+      = f.input :role, as: :select, collection: User::USER_ROLES, class: 'form-control select mll', include_blank: ' - Choose - '
+
+  .modal-footer
+    .btn-group
+      = f.button :submit, t('administration.update'), class: 'btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'

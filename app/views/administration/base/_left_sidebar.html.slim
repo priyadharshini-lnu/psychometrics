@@ -3,7 +3,7 @@
   /! START X-NAVIGATION
   ul.x-navigation
     li.xn-logo
-      a href="#" Psychometrics
+      a href="#" = Settings.project_name
       a.x-navigation-control href="#"
     li.xn-profile
       = link_to administration_root_path, class: 'profile-mini'
@@ -67,7 +67,7 @@
         li
           a href="#" Norm
         li
-          a href="#" Dimension
+          = active_link_to t('administration.breadcrumbs.dimension'), administration_dimensions_path, active: :exclusive, wrap_tag: :li
         li.xn-openable
           a href="#" Benchmarks
           ul
