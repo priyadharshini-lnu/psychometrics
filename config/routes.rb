@@ -13,13 +13,13 @@ Rails.application.routes.draw do
     resources :dimensions do
       member do
         get :copy
-        get 'toggle/status', action: 'toggle_status'
+        patch 'toggle/status', action: 'toggle_status'
       end
     end
 
     resources :users do
       member do
-        get 'toggle/status', action: 'toggle_status'
+        patch 'toggle/status', action: 'toggle_status'
       end
     end
 

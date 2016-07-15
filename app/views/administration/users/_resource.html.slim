@@ -1,7 +1,7 @@
 tr id=dom_id(resource)
   td.text-center = resource.id
   td.text-center
-    = link_to [:toggle_status, :administration, resource], remote: true
+    = link_to [:toggle_status, :administration, resource], method: :patch, remote: true
       = user_status resource.active?
   td = resource.first_name
   td = resource.last_name
