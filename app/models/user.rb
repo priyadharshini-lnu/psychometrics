@@ -45,7 +45,6 @@ class User < ApplicationRecord
   validates_with EmailValidator, fields: [:email], allow_nil: true
   validates :role, inclusion: { in: USER_ROLES.values }, allow_nil: true
 
-
   enum role: USER_ROLES
 
   def full_name
