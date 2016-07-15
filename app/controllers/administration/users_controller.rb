@@ -63,7 +63,6 @@ class Administration::UsersController < Administration::BaseController
   #
   def toggle_status
     @resource.toggle(:disabled).save
-    p @resource.errors
     respond_to do |format|
       format.html { redirect_to :back, success: t('.successfully') }
       format.js
