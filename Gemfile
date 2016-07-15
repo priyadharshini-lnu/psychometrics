@@ -33,7 +33,6 @@ gem 'filterrific',                '~> 2.0.5'
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.3'
 
-gem 'annotate',                   '~> 2.7.0', github: 'ctran/annotate_models'
 ### Decorator
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'

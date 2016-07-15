@@ -26,24 +26,25 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # Roles constant
+  USER_ROLES = {
+      superadmin: 'superadmin',
+      admin: 'admin',
+      manager: 'manager',
+      user: 'user'
+  }.freeze
+
+  GROUP_USER_ROLES = {
+      administrators: USER_ROLES.slice(:superadmin, :admin).keys,
+      users:          USER_ROLES.slice(:manager, :user).keys
+  }.freeze
+
   validates :first_name, :last_name, :email, :password, :role, presence: true
   validates :first_name, :last_name, :email, length: { maximum: 100 }, allow_blank: true
   validates :email, uniqueness: true
   validates_with EmailValidator, fields: [:email], allow_nil: true
   validates :role, inclusion: { in: USER_ROLES }, allow_nil: true
 
-  # Roles constant
-  USER_ROLES = {
-    superadmin: 'superadmin',
-    admin: 'admin',
-    manager: 'manager',
-    user: 'user'
-  }.freeze
-
-  GROUP_USER_ROLES = {
-    administrators: USER_ROLES.slice(:superadmin, :admin).keys,
-    users:          USER_ROLES.slice(:manager, :user).keys
-  }.freeze
 
   enum role: USER_ROLES
 
