@@ -1,6 +1,6 @@
 class Administration::FactorsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy]
+  before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
   before_action :set_dimension
   before_action :skip_policy_scope
   append_before_action :pundit_authorize

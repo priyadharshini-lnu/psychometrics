@@ -11,13 +11,11 @@ $(function(){
   });
 
   $(document).on('click', 'table.selectable tbody tr', function(e){
-      console.log('sssss');
     $(document).trigger('load_sidebar', [this]);
   });
 
   // Load sidebar
   $(document).on('load_sidebar', function(e, resource){
-      console.log(';load');
     var $resource = $(resource),
         url = $resource.data('sidebar');
 

@@ -36,4 +36,8 @@ class Administration::DimensionPolicy < Administration::BasePolicy
   def toggle_status?
     @user.can?(:admin, :superadmin)
   end
+
+  def sidebar?
+    @user.can?(:admin, :superadmin)
+  end
 end

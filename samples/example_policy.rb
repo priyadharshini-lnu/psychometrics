@@ -28,4 +28,8 @@ class Administration::ExamplePolicy < Administration::BasePolicy
   def update?
     edit?
   end
+
+  def sidebar?
+    @user.can?(:admin, :superadmin)
+  end
 end

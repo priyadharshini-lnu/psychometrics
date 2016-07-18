@@ -1,9 +1,8 @@
 class Administration::DimensionsController < Administration::BaseController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar]
-  before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
-  append_before_action :pundit_authorize, except: [:sidebar]
+  append_before_action :pundit_authorize
 
 
   def index

@@ -13,3 +13,6 @@ en:
         error: 'Factor #%{id} was not copied.'
       toggle_status:
         successfully: 'Factor was successfully updated.'
+      sidebar:
+        title: Factor's options
+        edit: Edit

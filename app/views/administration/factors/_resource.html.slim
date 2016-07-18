@@ -1,4 +1,4 @@
-tr id=dom_id(resource)
+tr data-sidebar=url_for([:sidebar, :administration, :dimension, :factor, { dimension_id: @dimension.id, id: resource.id }]) id=dom_id(resource)
   td.text-center = resource.id
   td = resource.name
   td.text-center = resource.decorate.subfactors

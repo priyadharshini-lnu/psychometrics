@@ -16,7 +16,11 @@ Rails.application.routes.draw do
         get :sidebar
         patch :toggle_status
       end
-      resources :factors
+      resources :factors do
+        member do
+          get :sidebar
+        end
+      end
     end
 
     resources :users do
