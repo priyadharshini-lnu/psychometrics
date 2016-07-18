@@ -1,0 +1,18 @@
+en:
+  administration:
+    sub_factors:
+      index:
+        title: 'Sub-Factors'
+      new:
+        header: 'New Sub-Factor'
+      edit:
+        header: 'Edit Sub-Factor'
+      destroy:
+        successfully_destroyed: 'Sub-Factor #%{id} was successfully destroyed.'
+      copy:
+        error: 'Sub-Factor #%{id} was not copied.'
+      toggle_status:
+        successfully: 'Sub-Factor was successfully updated.'
+      sidebar:
+        title: Sub-Factor's options
+        edit: Edit

@@ -34,6 +34,8 @@ class Factor < ApplicationRecord
       order("factors.name #{direction}")
     when /^subfactors_count_/
       order("factors.subfactors_count #{direction}")
+    when /^questions_count_/
+      order("factors.questions_count #{direction}")
     when /^created_at_/
       order("factors.created_at #{direction}")
     when /^updated_at_/

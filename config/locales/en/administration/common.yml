@@ -23,6 +23,7 @@ en:
       users: Users
       dimensions: Dimensions
       factors: Factors
+      sub_factors: Sub-Factors
       dimension: Dimension
       surveys: Surveys
       survey: Survey

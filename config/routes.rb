@@ -20,6 +20,11 @@ Rails.application.routes.draw do
         member do
           get :sidebar
         end
+        resources :sub_factors do
+          member do
+            get :sidebar
+          end
+        end
       end
     end
 

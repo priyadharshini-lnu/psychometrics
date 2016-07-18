@@ -1,0 +1,11 @@
+tr data-sidebar=url_for(sidebar_administration_dimension_factor_sub_factor_path(dimension_id: @dimension.id, factor_id: @factor.id, id: resource.id)) id=dom_id(resource)
+  td.text-center = resource.id
+  td = resource.name
+  td = resource.decorate.questions
+  td
+    = link_to edit_administration_dimension_factor_sub_factor_path(dimension_id: @dimension.id, factor_id: @factor.id, id: resource.id), remote: true, class: 'btn btn-default btn-rounded btn-sm mrm'  do
+      span.fa.fa-pencil
+    = confirmation_link administration_dimension_factor_sub_factor_path(dimension_id: @dimension.id, factor_id: @factor.id, id: resource.id), class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: {confirm: ''} do
+      span.fa.fa-times
+  td = resource.decorate.created_at
+  td = resource.decorate.updated_at
