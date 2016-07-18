@@ -10,7 +10,12 @@ $(function(){
                   find('.content').html('');
   });
 
-  $(document).on('click', 'table.selectable tbody tr', function(e){
+  // Stop propagation, when clicked to action dom
+  $(document).on('click', 'table.selectable tbody tr a', function(event){
+    event.stopPropagation();
+  });
+
+  $(document).on('click', 'table.selectable tbody tr', function(event){
     $(document).trigger('load_sidebar', [this]);
   });
 

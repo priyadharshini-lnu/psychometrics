@@ -21,6 +21,7 @@ Rails.application.routes.draw do
       member do
         patch 'toggle_status'
         get 'sidebar'
+        get 'reset_password'
       end
     end
 

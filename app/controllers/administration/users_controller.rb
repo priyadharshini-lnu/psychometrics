@@ -69,6 +69,15 @@ class Administration::UsersController < Administration::BaseController
     end
   end
 
+  # Send user instruction with reset password
+  #
+  def reset_password
+    @user = policy_scope(User).find(params[:id])
+    @user.send_reset_password_instructions
+    flash[:success] = t('.successfully')
+    redirect_to :back
+  end
+
   private
 
   def init_breadcrumbs
