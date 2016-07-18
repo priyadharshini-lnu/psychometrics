@@ -4,8 +4,6 @@
 
     .form-inputs.clearfix
       = f.input :name
-      /= f.input :dimension_id, as: :select, collection: Dimension.order(id: :asc).all.collect {|p| [ p.name, p.id ] }, class: 'form-control select mll', include_blank: t('administration.choose')
-      /= f.input :parent_id, as: :select, collection: Factor.roots.order(id: :asc).all.collect {|p| [ p.name, p.id ] }, class: 'form-control select mll', include_blank: t('administration.choose')
 
   .modal-footer
     .btn-group
