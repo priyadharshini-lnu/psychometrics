@@ -11,6 +11,9 @@ $(function(){
   });
 
   $(document).on('click', 'table.selectable tbody tr', function(e){
+      if ($(e.target).prop('tagName') == 'A') {
+          return;
+      }
     $(document).trigger('load_sidebar', [this]);
   });
 
