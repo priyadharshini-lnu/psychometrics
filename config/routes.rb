@@ -13,17 +13,19 @@ Rails.application.routes.draw do
     resources :dimensions do
       member do
         get :copy
-        get 'toggle/status', action: 'toggle_status'
+        patch 'toggle_status'
       end
       resources :factors
     end
 
     resources :users do
       member do
-        get 'toggle/status', action: 'toggle_status'
+        patch 'toggle_status'
+        get 'sidebar'
       end
     end
 
+    resources :surveys
   end
 
   root to: 'home#index'

@@ -2,7 +2,7 @@ tr id=dom_id(resource)
   td.text-center = resource.id
   td.text-center = resource.decorate.favourite
   td.text-center
-    = link_to [:toggle_status, :administration, resource], remote: true do
+    = link_to [:toggle_status, :administration, resource], method: :patch, remote: true do
       = resource.decorate.status
   td = link_to resource.name, [:administration, :dimension, :factors, { dimension_id: resource.id }]
   td

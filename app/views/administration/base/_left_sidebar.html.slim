@@ -3,7 +3,7 @@
   /! START X-NAVIGATION
   ul.x-navigation
     li.xn-logo
-      a href="#" Psychometrics
+      a href="#" = Settings.project_name
       a.x-navigation-control href="#"
     li.xn-profile
       = link_to administration_root_path, class: 'profile-mini'
@@ -38,7 +38,8 @@
           a href="#" Assessment
           ul
             li
-              a href="#" Psychometric
+              = active_link_to(administration_surveys_path, wrap_tag: :li)
+                = t('administrator.psychometrics')
         li.xn-openable
           a href="#" Survey
           ul

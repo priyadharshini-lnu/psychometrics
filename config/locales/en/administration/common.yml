@@ -2,6 +2,8 @@ en:
   administration:
     close: Close
     update: Update
+    enable: Enable
+    disable: Disable
     search: Search
     edit: Edit
     new: New
@@ -12,6 +14,7 @@ en:
     active: Active
     copy: Copy
     choose: ' - Choose - '
+    psychometrics: Psychometrics
     noty:
       error_500: Something went wrong. Contact your administrator.
     navigation: &NAVIGATION
@@ -19,5 +22,8 @@ en:
       users: Users
       dimensions: Dimensions
       factors: Factors
+      dimension: Dimension
+      surveys: Surveys
+      survey: Survey
     breadcrumbs:
       <<: *NAVIGATION

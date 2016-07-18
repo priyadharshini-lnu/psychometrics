@@ -15,6 +15,17 @@ en:
         successfully: User was successfully destroyed.
       toggle_status:
         successfully: User was successfully updated.
+      sidebar:
+        title: User's options
+        disable: Disable
+        enable: Enable
+        edit: Edit
+        new_user: New User
+        import_users: Import Users
+        export_users: Export Users
+        email: E-mail
+        view_report: View Report(s)
+        login_as_user: Login as User
       list:
         filterrific:
           with_role:

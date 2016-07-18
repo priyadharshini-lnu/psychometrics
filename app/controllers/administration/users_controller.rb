@@ -1,8 +1,9 @@
 class Administration::UsersController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status]
-  before_filter :init_breadcrumbs
-  append_before_action :pundit_authorize
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar]
+  before_action :skip_authorization, only: [:sidebar]
+  before_action :init_breadcrumbs
+  append_before_action :pundit_authorize, except: [:sidebar]
 
   # GET /administration/resources
   def index
@@ -21,9 +22,9 @@ class Administration::UsersController < Administration::BaseController
 
   def create
     @resource = @resource_class.new(resource_params)
-
     respond_to do |format|
       if @resource.save
+        @resource.invite!(current_administrator)
         format.js
       else
         format.js { render :new }
@@ -58,8 +59,10 @@ class Administration::UsersController < Administration::BaseController
     end
   end
 
+  # Change resources's status to active/disabled
+  #
   def toggle_status
-    @resource.toggle(:disabled).save
+    @resource.toggle!(:disabled)
     respond_to do |format|
       format.html { redirect_to :back, success: t('.successfully') }
       format.js
@@ -83,7 +86,7 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :client_id, :password)
+    params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :client_id, :role)
   end
 
   # Authorisation user

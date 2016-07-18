@@ -2,7 +2,7 @@ default: &default
   adapter: postgresql
   pool: 5
   timeout: 5000
-
+  
 development:
   <<: *default
   database: psychometrics_development
@@ -14,4 +14,3 @@ test:
 production:
   <<: *default
   database: psychometrics_production
-

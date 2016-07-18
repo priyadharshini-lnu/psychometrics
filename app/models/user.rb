@@ -23,7 +23,7 @@
 
 class User < ApplicationRecord
   # Authentication
-  devise :database_authenticatable, :registerable,
+  devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
   # Roles constant
@@ -39,11 +39,11 @@ class User < ApplicationRecord
       users:          USER_ROLES.slice(:manager, :user).keys
   }.freeze
 
-  validates :first_name, :last_name, :email, :password, :role, presence: true
+  validates :first_name, :last_name, :email, :role, presence: true
   validates :first_name, :last_name, :email, length: { maximum: 100 }, allow_blank: true
   validates :email, uniqueness: true
   validates_with EmailValidator, fields: [:email], allow_nil: true
-  validates :role, inclusion: { in: USER_ROLES }, allow_nil: true
+  validates :role, inclusion: { in: USER_ROLES.values }, allow_nil: true
 
   enum role: USER_ROLES
 
@@ -53,6 +53,12 @@ class User < ApplicationRecord
     else
       email
     end
+  end
+
+  # We won't set password, we will send inviting
+  def password_required?
+    return false if new_record?
+    super
   end
 
   def can?(*roles)

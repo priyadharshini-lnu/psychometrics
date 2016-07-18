@@ -35,6 +35,14 @@ GIT
     ancestry (1.4.1)
       activerecord (>= 3.0.0)
 
+GIT
+  remote: git@github.com:SumatoSoft/psychometrics-survey.git
+  revision: 037b1dd84ddf473baaaf3c24c0227e97f6c93c6c
+  specs:
+    psychometrics-survey (0.0.1)
+      railties (>= 4.2.0)
+      thor (>= 0.14, < 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -116,7 +124,11 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     concurrent-ruby (1.0.2)
+    config (1.2.1)
+      activesupport (>= 3.0)
+      deep_merge (~> 1.0, >= 1.0.1)
     debug_inspector (0.0.2)
+    deep_merge (1.0.1)
     devise (4.2.0)
       bcrypt (~> 3.0)
       orm_adapter (~> 0.1)
@@ -124,9 +136,14 @@ GEM
       responders
       warden (~> 1.2.3)
     devise-i18n (1.1.0)
+    devise_invitable (1.6.0)
+      actionmailer (>= 3.2.6)
+      devise (>= 3.2.0)
     erubis (2.7.0)
     execjs (2.7.0)
     ffi (1.9.14)
+    figaro (1.1.1)
+      thor (~> 0.14)
     filterrific (2.0.5)
       rails (>= 3.1.0)
     font-awesome-rails (4.6.3.1)
@@ -276,9 +293,12 @@ DEPENDENCIES
   capistrano-rails (~> 1.1.6)
   capistrano-rvm (~> 0.1.2)
   coffee-rails (~> 4.2)
+  config (~> 1.2.1)
   devise (~> 4.2.0)
   devise-i18n (~> 1.1.0)
+  devise_invitable (~> 1.6.0)
   draper!
+  figaro (~> 1.1.1)
   filterrific (~> 2.0.5)
   font-awesome-rails (~> 4.6.3.0)
   jbuilder (~> 2.5)
@@ -286,6 +306,7 @@ DEPENDENCIES
   kaminari (~> 0.17.0)
   listen (~> 3.0.5)
   pg (~> 0.18.4)
+  psychometrics-survey!
   puma (~> 3.0)
   pundit (~> 1.1.0)
   rails (~> 5.0.0)
