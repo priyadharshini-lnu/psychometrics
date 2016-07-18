@@ -11,12 +11,13 @@ en:
     search: Search
     active: Active
     copy: Copy
+    choose: ' - Choose - '
     noty:
       error_500: Something went wrong. Contact your administrator.
     navigation: &NAVIGATION
       home: Dashboard
       users: Users
       dimensions: Dimensions
-      dimension: Dimension
+      factors: Factors
     breadcrumbs:
       <<: *NAVIGATION

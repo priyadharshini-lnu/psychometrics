@@ -7,7 +7,7 @@
       = f.input :first_name
       = f.input :last_name
       = f.input :password
-      = f.input :role, as: :select, collection: User::USER_ROLES, class: 'form-control select mll', include_blank: ' - Choose - '
+      = f.input :role, as: :select, collection: User::USER_ROLES, class: 'form-control select mll', include_blank: t('administration.choose')
 
   .modal-footer
     .btn-group

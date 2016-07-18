@@ -1,16 +1,18 @@
 en:
   activerecord:
     models:
-      dimension: 'Dimensions'
+      factor: 'Factors'
     attributes:
-      dimension: &DEFAULT
+      factor: &DEFAULT
         id: 'ID'
         name: 'Name'
+        subfactors_count: 'No. Sub-Factors'
         favourite: 'Favourite'
         created_at: 'Created'
         updated_at: 'Modified'
         active: 'Active'
+        parent_id: 'Parent'
   simple_form:
     placeholders:
-      dimension:
+      factor:
         <<: *DEFAULT

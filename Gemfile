@@ -38,7 +38,7 @@ gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 
 gem 'annotate',                   '~> 2.7.0', github: 'ctran/annotate_models'
-
+gem 'ancestry',                  github: 'stefankroes/ancestry', branch: '2-1-stable'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

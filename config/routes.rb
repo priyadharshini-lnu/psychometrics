@@ -15,6 +15,7 @@ Rails.application.routes.draw do
         get :copy
         get 'toggle/status', action: 'toggle_status'
       end
+      resources :factors
     end
 
     resources :users do
