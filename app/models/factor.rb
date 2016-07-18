@@ -45,5 +45,4 @@ class Factor < ApplicationRecord
   scope :with_dimension, lambda { |dimension_id|
     where(dimension_id: dimension_id)
   }
-
 end
