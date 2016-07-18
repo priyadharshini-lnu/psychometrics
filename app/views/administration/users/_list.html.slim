@@ -9,6 +9,7 @@
         th = sorting @resource_class, :email, @filterrific
         th = sorting @resource_class, :client_name, @filterrific
         th = sorting @resource_class, :role, @filterrific
+        th = sorting @resource_class, :created_at, @filterrific
         th width='300' = t('administration.actions')
     tbody
       - if @resources.present?

@@ -115,6 +115,10 @@ class User < ApplicationRecord
       # joins(:client).select('users.*, clients.name AS client_name').order("client_name #{ direction }")
     when /^role_/
       order("users.role #{direction}")
+    when /^created_at_/
+      order("users.created_at #{direction}")
+    when /^updated_at_/
+      order("users.updated_at #{direction}")
     end
   }
 

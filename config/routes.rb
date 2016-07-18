@@ -36,6 +36,9 @@ Rails.application.routes.draw do
         get :sidebar
         get :reset_password
       end
+      collection do
+        get 'export'
+      end
     end
 
     resources :norms do

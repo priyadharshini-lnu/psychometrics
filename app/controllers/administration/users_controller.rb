@@ -79,6 +79,16 @@ class Administration::UsersController < Administration::BaseController
     redirect_to :back
   end
 
+  def export
+    @resources = policy_scope(@resource_class).all
+    respond_to do |format|
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"#{@resource_class.model_name.plural}-#{Date.today}.csv\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
+  end
+
   private
 
   def init_breadcrumbs

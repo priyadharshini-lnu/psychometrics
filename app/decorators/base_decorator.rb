@@ -9,6 +9,14 @@ class BaseDecorator < Draper::Decorator
     end
   end
 
+  def status_text
+    if object.disabled
+      I18n.t('no')
+    else
+      I18n.t('yes')
+    end
+  end
+
   def toggle_status_text
     if object.disabled
       I18n.t('administration.enable')
