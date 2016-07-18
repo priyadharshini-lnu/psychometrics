@@ -3,7 +3,7 @@ class Administration::DimensionsController < Administration::BaseController
   before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status]
   before_action :skip_policy_scope
   append_before_action :pundit_authorize
-  before_filter :init_breadcrumbs
+  before_action :init_breadcrumbs
 
   def index
     @filterrific = initialize_filterrific(

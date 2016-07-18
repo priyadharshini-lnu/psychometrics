@@ -2,6 +2,8 @@ en:
   administration:
     close: Close
     update: Update
+    enable: Enable
+    disable: Disable
     search: Search
     edit: Edit
     new: New

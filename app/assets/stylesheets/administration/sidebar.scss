@@ -1,0 +1,30 @@
+.sidebar {
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.64);
+  position: fixed;
+  z-index: 10;
+
+  &.right {
+    top: 50px;
+    right: 0;
+    bottom: 0;
+    width: 270px;
+    background: #1b1e24;
+  }
+
+  .close {
+    position: absolute;
+    top: 0;
+    left: -53px;
+    color: #fff;
+    background: #000;
+    padding: 13px 20px;
+    font-size: 2em;
+    display: none;
+  }
+
+  &.opened {
+    .close {
+      display: inherit;
+    }
+  }
+}

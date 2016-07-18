@@ -1,0 +1,15 @@
+ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(@resource)}"
+  li.xn-title = t('.title')
+  - if policy(@resource).edit?
+    li = link_to @resource.decorate.toggle_status_text, [:toggle_status, :administration, @resource], remote: true, method: :patch
+  - if policy(@resource).edit?
+    li.xn-title = t('.edit')
+  - if policy(@resource).new?
+    li.xn-title = t('.new_user')
+  - if policy(@resource).new?
+    li.xn-title = t('.import_users')
+  li.xn-title = t('.export_users')
+  li.xn-title = t('.email')
+  li.xn-title = t('.view_report')
+  li.xn-title = t('.login_as_user')
+  li.xn-title = t('.reset_password')
