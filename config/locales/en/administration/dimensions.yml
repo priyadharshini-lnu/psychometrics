@@ -13,3 +13,10 @@ en:
         error: 'Dimension #%{id} was not copied.'
       toggle_status:
         successfully: 'Dimension was successfully updated.'
+      sidebar:
+        title: Dimension's options
+        disable: Disable
+        enable: Enable
+        edit: Edit
+        new: New Dimension
+        copy: Copy Dimension

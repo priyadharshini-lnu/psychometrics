@@ -9,5 +9,5 @@
 
   .modal-footer
     .btn-group
-      = f.button :submit, t('administration.update'), class: 'btn-info'
+      = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
       a.btn.btn-default data-dismiss='modal' = t 'administration.close'

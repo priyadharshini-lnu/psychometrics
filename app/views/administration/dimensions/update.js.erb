@@ -3,5 +3,6 @@ $('#modal-container').find('.modal').on('hidden.bs.modal', function(){
   $('#<%= dom_id(@resource) %>').hide("fast", function(){
     $(this).replaceWith('<%= j render(partial: 'resource', locals: { resource: @resource }) %>').show('slow');
     $(document).trigger('initPlugins');
+    $(document).trigger('load_sidebar', ['#<%= dom_id(@resource) %>']);
   })
 });
