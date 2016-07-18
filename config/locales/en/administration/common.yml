@@ -13,6 +13,7 @@ en:
     search: Search
     active: Active
     copy: Copy
+    psychometrics: Psychometrics
     noty:
       error_500: Something went wrong. Contact your administrator.
     navigation: &NAVIGATION
@@ -20,5 +21,7 @@ en:
       users: Users
       dimensions: Dimensions
       dimension: Dimension
+      surveys: Surveys
+      survey: Survey
     breadcrumbs:
       <<: *NAVIGATION
