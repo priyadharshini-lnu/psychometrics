@@ -28,5 +28,7 @@ en:
       dimension: Dimension
       surveys: Surveys
       survey: Survey
+      norm: Norm
+      norms: Norms
     breadcrumbs:
       <<: *NAVIGATION

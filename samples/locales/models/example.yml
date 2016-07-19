@@ -1,9 +1,9 @@
 en:
   activerecord:
     models:
-      dimension: 'Dimensions'
+      norm: 'Norms'
     attributes:
-      dimension: &DEFAULT
+      norm: &DEFAULT
         id: 'ID'
         name: 'Name'
         created_at: 'Created'
@@ -11,5 +11,5 @@ en:
         active: 'Active'
   simple_form:
     placeholders:
-      dimension:
+      norm:
         <<: *DEFAULT

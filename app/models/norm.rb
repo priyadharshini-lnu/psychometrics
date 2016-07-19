@@ -1,7 +1,6 @@
-class Dimension < ApplicationRecord
+class Norm < ApplicationRecord
   include Copyable
 
-  has_many :factors
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
   validates :name, uniqueness: true
@@ -27,22 +26,18 @@ class Dimension < ApplicationRecord
     direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
     case sort_key.to_s
     when /^id_/
-      order("dimensions.id #{direction}")
+      order("norms.id #{direction}")
     when /^active_/
-      order("dimensions.disabled #{direction}")
+      order("norms.disabled #{direction}")
     when /^name_/
-      order("dimensions.name #{direction}")
+      order("norms.name #{direction}")
+    when /^updated_by_/
+      order("norms.updated_by #{direction}")
     when /^created_at_/
-      order("dimensions.created_at #{direction}")
+      order("norms.created_at #{direction}")
     when /^updated_at_/
-      order("dimensions.updated_at #{direction}")
+      order("norms.updated_at #{direction}")
     end
   }
-
-  def clone
-    @cloned_dimension = dup
-    @cloned_dimension.gen_uniq_name
-    @cloned_dimension
-  end
 
 end

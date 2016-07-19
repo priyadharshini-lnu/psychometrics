@@ -1,4 +1,4 @@
-class Administration::DimensionPolicy < Administration::BasePolicy
+class Administration::NormPolicy < Administration::BasePolicy
   def copy?
     @user.can?(:superadmin)
   end

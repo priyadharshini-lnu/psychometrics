@@ -11,4 +11,10 @@ module Copyable
       end
     end
   end
+
+  def clone
+    @cloned_item = dup
+    @cloned_item.gen_uniq_name
+    @cloned_item
+  end
 end

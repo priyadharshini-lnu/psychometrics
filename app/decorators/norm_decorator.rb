@@ -1,0 +1,2 @@
+class NormDecorator < BaseDecorator
+end
