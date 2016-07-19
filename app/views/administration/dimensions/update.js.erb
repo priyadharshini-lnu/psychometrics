@@ -1,7 +1,8 @@
 $('#modal-container').find('.modal').modal('hide');
 $('#modal-container').find('.modal').on('hidden.bs.modal', function(){
   $('#<%= dom_id(@resource) %>').hide("fast", function(){
-    $(this).replaceWith('<%= j render(partial: 'resource', locals: { resource: @resource }) %>').show('slow');
+    var resource = $('<%= j render(partial: 'resource', locals: { resource: @resource }) %>').hide();
+    $(this).replaceWithPush(resource).addClass('active').show('slow');
     $(document).trigger('initPlugins');
-  })
+  });
 });
