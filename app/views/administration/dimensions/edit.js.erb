@@ -8,4 +8,3 @@
   $('#modal-container').find('form').html('<%= j render(partial: 'form') %>');
 <% end %>
 $(document).trigger('initPlugins');
-$(document).trigger('load_sidebar', ['#<%= dom_id(@resource) %>']);
