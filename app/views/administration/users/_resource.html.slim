@@ -9,7 +9,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td Not implemented
   td = @resource_class.human_enum_name(:role, resource.role)
   td
-    = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.change_password') }
+    = link_to [:reset_password, :administration, resource], class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.change_password') }
       i.fa.fa-key.man
     = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.sign_in') }
       i.fa.fa-sign-in.man

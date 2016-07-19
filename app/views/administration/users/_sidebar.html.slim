@@ -12,4 +12,5 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(@resource)}"
   li.xn-title = t('.email')
   li.xn-title = t('.view_report')
   li.xn-title = t('.login_as_user')
-  li.xn-title = t('.reset_password')
+  - if policy(@resource).reset_password?
+    li = link_to t('.reset_password'), [:reset_password, :administration, @resource]

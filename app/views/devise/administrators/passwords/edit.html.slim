@@ -1,0 +1,21 @@
+.login-container
+  .login-box.animated.fadeInDown
+    .login-logo
+    .login-body
+      .login-title
+        = t('.title')
+      = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f|
+        = f.input :reset_password_token, as: :hidden
+        = f.full_error :reset_password_token
+        == flash_messages
+        .form-group
+          .col-md-12
+            = f.input_field :password, placeholder: true, class: 'form-control'
+        .form-group
+          .col-md-12
+            = f.input_field :password_confirmation, placeholder: true, class: 'form-control'
+        .clearfix
+        .form-group
+          .col-md-6.col-md-offset-6
+            = f.submit t('.submit'), class: 'btn btn-info btn-block'
+    = render 'devise/administrators/shared/links'
