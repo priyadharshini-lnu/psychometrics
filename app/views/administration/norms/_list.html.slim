@@ -8,6 +8,7 @@
         th.text-center width='190' = t 'administration.actions'
         th width='150' = sorting @resource_class, :created_at, @filterrific
         th width='150' = sorting @resource_class, :updated_at, @filterrific
+        th width='150' = sorting @resource_class, :updated_by, @filterrific
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

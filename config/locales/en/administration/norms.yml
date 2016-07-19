@@ -14,9 +14,14 @@ en:
       toggle_status:
         successfully: 'Norm was successfully updated.'
       sidebar:
-        title: Norm's options
-        disable: Disable
-        enable: Enable
-        edit: Edit
-        new: New Norm
-        copy: Copy Norm
+        title: "Norm\'s options"
+        disable: 'Disable'
+        enable: 'Enable'
+        edit: 'Edit Norm'
+        new: 'New Norm'
+        copy: 'Copy Norm'
+        assign: 'Assign Norm'
+        view: 'View Norm'
+        import: 'Import Norm'
+        export: 'Export Norm'
+        surveys: 'Linked Surveys'
