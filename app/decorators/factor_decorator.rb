@@ -1,3 +1,2 @@
 class FactorDecorator < BaseDecorator
-
 end
