@@ -3,9 +3,9 @@
     thead
       tr
         th.text-center width="50" = sorting @resource_class, :id, @filterrific
-        th.text-center width="100" = sorting @resource_class, :active, @filterrific
         th = sorting @resource_class, :name, @filterrific
-        th.text-center width='190' = t 'administration.actions'
+        th = sorting @resource_class, :questions_count, @filterrific
+        th.text-center width='120' = t 'administration.actions'
         th width='150' = sorting @resource_class, :created_at, @filterrific
         th width='150' = sorting @resource_class, :updated_at, @filterrific
     tbody
@@ -13,5 +13,5 @@
         = render partial: 'resource', collection: @resources
       - else
         tr.no_records
-          td align='center' colspan='7' = t('administration.no_data_found')
+          td align='center' colspan='8' = t('administration.no_data_found')
   = paginate @resources, theme: 'twitter-bootstrap-3'

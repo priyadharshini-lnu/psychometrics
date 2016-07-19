@@ -3,6 +3,7 @@
 ) %>
 $('#<%= dom_id(@resource) %>').hide("fast", function(){
   $(this).replaceWith('<%= resource %>').show('slow');
+  $(document).trigger('load_sidebar', ['#<%= dom_id(@resource) %>']);
   // Reinit all plugins
   // vendor/javascript/administration/plugins.js
   noty({text: '<%= t('.successfully') %>', layout: 'topCenter', type: 'success'});

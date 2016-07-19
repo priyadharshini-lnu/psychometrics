@@ -1,0 +1,11 @@
+tr data-sidebar=url_for([:sidebar, :administration, @dimension, resource]) id=dom_id(resource)
+  td.text-center = resource.id
+  td = link_to resource.name, [:administration, @dimension, resource, :sub_factors]
+  td.text-center = resource.subfactors_count
+  td
+    = link_to [:edit, :administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm'  do
+      span.fa.fa-pencil
+    = confirmation_link [:administration, @dimension, resource], class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: {confirm: ''} do
+      span.fa.fa-times
+  td.text-center = resource.decorate.created_at
+  td.text-center = resource.decorate.updated_at

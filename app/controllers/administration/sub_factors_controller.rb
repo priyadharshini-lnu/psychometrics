@@ -1,14 +1,15 @@
-class Administration::DimensionsController < Administration::BaseController
+class Administration::SubFactorsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar]
+  before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
   before_action :skip_authorization, only: [:sidebar]
+  before_action :set_dimension
+  before_action :set_factor
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
 
-
   def index
     @filterrific = initialize_filterrific(
-      policy_scope(@resource_class),
+      policy_scope(@resource_class).find(@factor.id).children,
       params[:filterrific]) || return
     @resources   = @filterrific.find.page(params[:page])
   end
@@ -18,21 +19,14 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def create
-    @resource = @resource_class.new(resource_params)
-
+    @resource = @dimension.factors.new(resource_params)
+    @resource.parent_id = @factor.id
     respond_to do |format|
       if @resource.save
         format.js
       else
         format.js { render :new }
       end
-    end
-  end
-
-  def toggle_status
-    @resource.toggle(:disabled).save
-    respond_to do |format|
-      format.js
     end
   end
 
@@ -52,19 +46,8 @@ class Administration::DimensionsController < Administration::BaseController
       format.html do
         redirect_to(
           :back,
-          notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully", id: @resource.id)
+          notice: t('administration.sub_factors.destroy.successfully', id: @resource.id)
         )
-      end
-    end
-  end
-
-  def copy
-    @cloned_resource = @resource.clone
-    respond_to do |format|
-      if @cloned_resource.save
-        format.js
-      else
-        format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: @resource.id }) } }
       end
     end
   end
@@ -72,20 +55,32 @@ class Administration::DimensionsController < Administration::BaseController
   private
 
   def set_resource_class
-    @resource_class ||= Dimension
+    @resource_class ||= Factor
   end
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+    add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
+    add_breadcrumb @dimension.name
+    add_breadcrumb I18n.t('administration.breadcrumbs.factors'), administration_dimension_factors_path
+    add_breadcrumb @factor.name
+    add_breadcrumb I18n.t('administration.breadcrumbs.sub_factors'), { action: :index }
   end
 
   def set_resource
     @resource = @resource_class.find(params[:id])
   end
 
+  def set_dimension
+    @dimension = Dimension.find(params[:dimension_id])
+  end
+
+  def set_factor
+    @factor = Factor.find(params[:factor_id])
+  end
+
   def resource_params
-    params.require(:resource).permit(:name, :favourite)
+    params.require(:resource).permit(:name, :dimension_id, :parent_id)
   end
 
   def pundit_authorize

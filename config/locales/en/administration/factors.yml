@@ -1,0 +1,18 @@
+en:
+  administration:
+    factors:
+      index:
+        title: Factors
+      new:
+        header: 'New factor'
+      edit:
+        header: 'Edit factor'
+      destroy:
+        successfully: 'Factor #%{id} was successfully destroyed.'
+      copy:
+        error: 'Factor #%{id} was not copied.'
+      toggle_status:
+        successfully: 'Factor was successfully updated.'
+      sidebar:
+        title: Factor's options
+        edit: Edit

@@ -1,6 +1,5 @@
 tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resource)
   td.text-center = resource.id
-  td.text-center = resource.decorate.favourite
   td.text-center
     = link_to [:toggle_status, :administration, resource], method: :patch, remote: true do
       = resource.decorate.status
