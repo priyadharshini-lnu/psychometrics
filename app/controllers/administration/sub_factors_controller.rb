@@ -47,7 +47,7 @@ class Administration::SubFactorsController < Administration::BaseController
       format.html do
         redirect_to(
           :back,
-          notice: t("administration.sub_factors.destroy.successfully", id: @resource.id)
+          notice: t('administration.sub_factors.destroy.successfully', id: @resource.id)
         )
       end
       format.json { head :no_content }
