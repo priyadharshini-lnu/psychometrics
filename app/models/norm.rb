@@ -12,8 +12,8 @@ class Norm < ApplicationRecord
       sorted_by: 'created_at_desc'
     },
     available_filters: [
-       :sorted_by,
-       :search_query
+      :sorted_by,
+      :search_query
     ]
   )
 
@@ -41,5 +41,4 @@ class Norm < ApplicationRecord
       order("norms.updated_at #{direction}")
     end
   }
-
 end
