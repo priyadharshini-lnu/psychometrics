@@ -49,7 +49,6 @@ class Administration::SubFactorsController < Administration::BaseController
           notice: t('administration.sub_factors.destroy.successfully', id: @resource.id)
         )
       end
-      format.json { head :no_content }
     end
   end
 

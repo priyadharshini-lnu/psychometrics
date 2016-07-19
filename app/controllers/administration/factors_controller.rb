@@ -47,7 +47,6 @@ class Administration::FactorsController < Administration::BaseController
           notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully", id: @resource.id)
         )
       end
-      format.json { head :no_content }
     end
   end
 

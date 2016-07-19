@@ -1,7 +1,7 @@
 tr data-sidebar=url_for(sidebar_administration_dimension_factor_sub_factor_path(@dimension, @factor, resource)) id=dom_id(resource)
   td.text-center = resource.id
   td = resource.name
-  td = resource.decorate.questions
+  td = resource.questions_count
   td
     = link_to edit_administration_dimension_factor_sub_factor_path(@dimension, @factor, resource), remote: true, class: 'btn btn-default btn-rounded btn-sm mrm'  do
       span.fa.fa-pencil

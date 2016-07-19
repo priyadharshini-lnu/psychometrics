@@ -1,9 +1,4 @@
 class Administration::ExamplePolicy < Administration::BasePolicy
-  def initialize(user, record)
-    @user   = user
-    @record = record
-  end
-
   def index?
     @user.can?(:admin, :superadmin)
     # false
