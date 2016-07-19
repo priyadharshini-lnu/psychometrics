@@ -1,9 +1,9 @@
 class Administration::ExamplesController < Administration::BaseController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
-  before_action :skip_policy_scope
-  append_before_action :pundit_authorize
-  before_action :init_breadcrumbs
+  before_action :skip_authorization, only: [:sidebar]
+  append_before_action :init_breadcrumbs
+  append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
     @filterrific = initialize_filterrific(
