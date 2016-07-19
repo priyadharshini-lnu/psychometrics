@@ -8,7 +8,7 @@ en:
       edit:
         header: 'Edit factor'
       destroy:
-        successfully_destroyed: 'Factor #%{id} was successfully destroyed.'
+        successfully: 'Factor #%{id} was successfully destroyed.'
       copy:
         error: 'Factor #%{id} was not copied.'
       toggle_status:

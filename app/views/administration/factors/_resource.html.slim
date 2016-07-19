@@ -1,11 +1,11 @@
-tr data-sidebar=url_for([:sidebar, :administration, :dimension, :factor, { dimension_id: @dimension.id, id: resource.id }]) id=dom_id(resource)
+tr data-sidebar=url_for([:sidebar, :administration, @dimension, resource]) id=dom_id(resource)
   td.text-center = resource.id
-  td = link_to resource.name, [:administration, :dimension, :factor, :sub_factors, { dimension_id: @dimension.id, factor_id: resource.id }]
+  td = link_to resource.name, [:administration, @dimension, resource, :sub_factors]
   td.text-center = resource.decorate.sub_factors
   td
-    = link_to [:edit, :administration, :dimension, :factor, {id: resource.id, dimension_id: resource.dimension_id }], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm'  do
+    = link_to [:edit, :administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm'  do
       span.fa.fa-pencil
-    = confirmation_link [:administration, :dimension, :factor, {id: resource.id, dimension_id: resource.dimension_id }], class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: {confirm: ''} do
+    = confirmation_link [:administration, @dimension, resource], class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: {confirm: ''} do
       span.fa.fa-times
   td.text-center = resource.decorate.created_at
   td.text-center = resource.decorate.updated_at

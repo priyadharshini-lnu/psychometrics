@@ -44,7 +44,7 @@ class Administration::ExamplesController < Administration::BaseController
       format.html do
         redirect_to(
           [:administration, @resource_class.model_name.plural],
-          notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully_destroyed", id: @resource.id)
+          notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully", id: @resource.id)
         )
       end
       format.json { head :no_content }

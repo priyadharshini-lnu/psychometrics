@@ -1,6 +1,7 @@
 class Dimension < ApplicationRecord
   include Copyable
 
+  has_many :factors
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
   validates :name, uniqueness: true

@@ -8,7 +8,7 @@ en:
       edit:
         header: 'Edit dimension'
       destroy:
-        successfully_destroyed: 'Dimension #%{id} was successfully destroyed.'
+        successfully: 'Dimension #%{id} was successfully destroyed.'
       copy:
         error: 'Dimension #%{id} was not copied.'
       toggle_status:

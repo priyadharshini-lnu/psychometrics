@@ -1,10 +1,10 @@
 class Administration::FactorsController < Administration::BaseController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
+  before_action :skip_authorization, only: [:sidebar]
   before_action :set_dimension
-  before_action :skip_policy_scope
-  append_before_action :pundit_authorize
-  before_filter :init_breadcrumbs
+  append_before_action :init_breadcrumbs
+  append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
     @filterrific = initialize_filterrific(
@@ -18,8 +18,7 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def create
-    @resource = @resource_class.new(resource_params)
-    @resource.dimension_id = @dimension.id
+    @resource = @dimension.factors.new(resource_params)
     respond_to do |format|
       if @resource.save
         format.js
@@ -44,8 +43,8 @@ class Administration::FactorsController < Administration::BaseController
     respond_to do |format|
       format.html do
         redirect_to(
-          [:administration, :dimension, :factors, { dimension_id: @dimension.id }],
-          notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully_destroyed", id: @resource.id)
+          :back,
+          notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully", id: @resource.id)
         )
       end
       format.json { head :no_content }

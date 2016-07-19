@@ -4,7 +4,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td.text-center
     = link_to [:toggle_status, :administration, resource], method: :patch, remote: true do
       = resource.decorate.status
-  td = link_to resource.name, [:administration, :dimension, :factors, { dimension_id: resource.id }]
+  td = link_to resource.name, [:administration, resource, :factors]
   td
     = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm'  do
       span.fa.fa-pencil

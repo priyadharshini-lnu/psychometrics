@@ -1,11 +1,11 @@
 class Administration::SubFactorsController < Administration::BaseController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
+  before_action :skip_authorization, only: [:sidebar]
   before_action :set_dimension
   before_action :set_factor
-  before_action :skip_policy_scope
-  append_before_action :pundit_authorize
-  before_filter :init_breadcrumbs
+  append_before_action :init_breadcrumbs
+  append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
     @filterrific = initialize_filterrific(
@@ -46,8 +46,8 @@ class Administration::SubFactorsController < Administration::BaseController
     respond_to do |format|
       format.html do
         redirect_to(
-          administration_dimension_factor_sub_factors_path(dimension_id: @dimension.id, factor_id: @factor.id),
-          notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully_destroyed", id: @resource.id)
+          :back,
+          notice: t("administration.sub_factors.destroy.successfully", id: @resource.id)
         )
       end
       format.json { head :no_content }

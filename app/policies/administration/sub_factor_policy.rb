@@ -3,33 +3,4 @@ class Administration::SubFactorPolicy < Administration::BasePolicy
     @user   = user
     @record = record
   end
-
-  def index?
-    @user.can?(:admin, :superadmin)
-    # false
-  end
-
-  def destroy?
-    @user.can?(:admin, :superadmin)
-  end
-
-  def new?
-    @user.can?(:admin, :superadmin)
-  end
-
-  def create?
-    new?
-  end
-
-  def edit?
-    @user.can?(:admin, :superadmin)
-  end
-
-  def update?
-    edit?
-  end
-
-  def sidebar?
-    @user.can?(:admin, :superadmin)
-  end
 end
