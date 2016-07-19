@@ -18,7 +18,9 @@ Rails.application.routes.draw do
       end
       resources :factors do
         member do
+          get :copy
           get :sidebar
+          patch :toggle_status
         end
         resources :sub_factors do
           member do

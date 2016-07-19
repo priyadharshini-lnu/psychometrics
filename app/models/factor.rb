@@ -1,4 +1,5 @@
 class Factor < ApplicationRecord
+  include Copyable
   has_ancestry ancestry_column: :parent_id
   belongs_to :dimension
   belongs_to :parent, class_name: 'Factor', counter_cache: :subfactors_count

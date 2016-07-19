@@ -2,7 +2,7 @@ en:
   administration:
     factors:
       index:
-        title: Factors
+        title: "Factors"
       new:
         header: 'New factor'
       edit:
@@ -14,5 +14,7 @@ en:
       toggle_status:
         successfully: 'Factor was successfully updated.'
       sidebar:
-        title: Factor's options
-        edit: Edit
+        title: "Factor's options"
+        edit: 'Edit Factor'
+        new: 'Add Factor'
+        remove: 'Remove Factor'

@@ -1,6 +1,6 @@
 class Administration::FactorsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
+  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar]
   before_action :skip_authorization, only: [:sidebar]
   before_action :set_dimension
   append_before_action :init_breadcrumbs
@@ -47,6 +47,24 @@ class Administration::FactorsController < Administration::BaseController
           notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully", id: @resource.id)
         )
       end
+    end
+  end
+
+  def copy
+    @cloned_resource = @resource.clone
+    respond_to do |format|
+      if @cloned_resource.save
+        format.js
+      else
+        format.js { render :error, locals: { message: t('administration.factors.copy.error', { id: @resource.id }) } }
+      end
+    end
+  end
+
+  def toggle_status
+    @resource.toggle(:disabled).save
+    respond_to do |format|
+      format.js
     end
   end
 

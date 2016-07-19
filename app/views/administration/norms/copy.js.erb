@@ -1,3 +1,0 @@
-$('#resource_list').find('tbody').prepend('<%= j render(partial: 'resource', locals: { resource: @cloned_resource }) %>')
-    .find('#<%= dom_id(@cloned_resource) %>').hide().show('slow');
-$(document).trigger('initPlugins');

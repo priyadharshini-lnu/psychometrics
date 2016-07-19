@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719101711) do
+ActiveRecord::Schema.define(version: 20160719133948) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -27,10 +27,11 @@ ActiveRecord::Schema.define(version: 20160719101711) do
     t.string   "name"
     t.integer  "subfactors_count", default: 0
     t.integer  "questions_count",  default: 0
-    t.datetime "created_at",                   null: false
-    t.datetime "updated_at",                   null: false
+    t.datetime "created_at",                       null: false
+    t.datetime "updated_at",                       null: false
     t.integer  "dimension_id"
     t.string   "parent_id"
+    t.boolean  "disabled",         default: false
     t.index ["dimension_id"], name: "index_factors_on_dimension_id", using: :btree
     t.index ["parent_id"], name: "index_factors_on_parent_id", using: :btree
   end
