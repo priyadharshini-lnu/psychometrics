@@ -7,8 +7,7 @@ class Administration::BasePolicy
   end
 
   def index?
-    return true if @user.superadmin?
-    false
+    @user.can?(:superadmin)
   end
 
   def show?
@@ -16,8 +15,7 @@ class Administration::BasePolicy
   end
 
   def create?
-    return true if @user.superadmin?
-    false
+    @user.can?(:superadmin)
   end
 
   def new?
@@ -25,8 +23,7 @@ class Administration::BasePolicy
   end
 
   def update?
-    return true if @user.superadmin?
-    false
+    @user.can?(:superadmin)
   end
 
   def edit?
@@ -34,8 +31,15 @@ class Administration::BasePolicy
   end
 
   def destroy?
-    return true if @user.superadmin?
-    false
+    @user.can?(:superadmin)
+  end
+
+  def copy?
+    @user.can?(:superadmin)
+  end
+
+  def toggle_status?
+    @user.can?(:superadmin)
   end
 
   def scope
