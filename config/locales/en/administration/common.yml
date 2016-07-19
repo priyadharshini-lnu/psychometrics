@@ -16,6 +16,7 @@ en:
     copy: Copy
     choose: ' - Choose - '
     psychometrics: Psychometrics
+    no_data_found: No data found
     noty:
       error_500: Something went wrong. Contact your administrator.
     navigation: &NAVIGATION

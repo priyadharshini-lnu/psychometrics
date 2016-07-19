@@ -27,6 +27,10 @@ class Administration::UserPolicy < Administration::BasePolicy
     update?
   end
 
+  def reset_password?
+    update?
+  end
+
   class Scope
     attr_reader :user, :scope
 
