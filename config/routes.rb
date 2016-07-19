@@ -1,10 +1,10 @@
 Rails.application.routes.draw do
   devise_for :administrators, path: 'administration/administrators', as: :devise,
-             name:                  :administrator, singular: :administrator, to: 'User',
-             class_name:            'User'
+             name: :administrator, singular: :administrator, to: 'User',
+             class_name: 'User'
   devise_for :users, path: 'users', as: :devise,
-             name:         :user, singular: :user, to: 'User',
-             class_name:   'User'
+             name: :user, singular: :user, to: 'User',
+             class_name: 'User'
 
   namespace :administration do
     root to: 'home#index'
@@ -12,8 +12,8 @@ Rails.application.routes.draw do
 
     resources :dimensions do
       member do
-        get   :copy
-        get   :sidebar
+        get :copy
+        get :sidebar
         patch :toggle_status
       end
       resources :factors do
@@ -31,8 +31,8 @@ Rails.application.routes.draw do
     resources :users do
       member do
         patch :toggle_status
-        get   :sidebar
-        get   :reset_password
+        get :sidebar
+        get :reset_password
       end
     end
 
