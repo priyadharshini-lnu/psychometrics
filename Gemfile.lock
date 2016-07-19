@@ -28,6 +28,14 @@ GIT
       builder (~> 3.1)
 
 GIT
+  remote: git://github.com/stefankroes/ancestry.git
+  revision: 3aae846759ffc485bc427d732eae54285d9d3c3f
+  branch: 2-1-stable
+  specs:
+    ancestry (1.4.1)
+      activerecord (>= 3.0.0)
+
+GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
   revision: 037b1dd84ddf473baaaf3c24c0227e97f6c93c6c
   specs:
@@ -275,6 +283,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to (~> 1.0.3)
   activemodel-serializers-xml!
+  ancestry!
   annotate (~> 2.7.0)!
   bootstrap-kaminari-views (~> 0.0.5)
   bootstrap-sass (~> 3.3.6)

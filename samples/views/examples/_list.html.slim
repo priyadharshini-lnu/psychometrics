@@ -3,7 +3,6 @@
     thead
       tr
         th.text-center width="50" = sorting @resource_class, :id, @filterrific
-        th.text-center width="100" = sorting @resource_class, :favourite, @filterrific
         th.text-center width="100" = sorting @resource_class, :active, @filterrific
         th = sorting @resource_class, :name, @filterrific
         th.text-center width='190' = t 'administration.actions'
@@ -13,6 +12,6 @@
       - if @resources.present?
         = render partial: 'resource', collection: @resources
       - else
-        tr
+        tr.no_records
           td align='center' colspan='7' = t('administration.no_data_found')
   = paginate @resources, theme: 'twitter-bootstrap-3'

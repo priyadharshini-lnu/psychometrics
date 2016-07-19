@@ -5,7 +5,7 @@
         h3.panel-title = t '.title'
         ul.panel-controls
           li
-            = link_to [:new, :administration, @resource_class.model_name.singular], remote: true do
+            = link_to new_administration_dimension_factor_sub_factor_path, remote: true do
               span.fa.fa-plus
       .panel-body
         = form_for_filterrific @filterrific, html: { class: 'form-inline', id: 'filter' } do |f|

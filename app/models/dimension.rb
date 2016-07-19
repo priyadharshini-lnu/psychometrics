@@ -1,4 +1,7 @@
 class Dimension < ApplicationRecord
+  include Copyable
+
+  has_many :factors
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
   validates :name, uniqueness: true
@@ -44,14 +47,4 @@ class Dimension < ApplicationRecord
     @cloned_dimension
   end
 
-  def gen_uniq_name
-    while Dimension.exists?(name: name)
-      number = name.scan(/\((\d+)\)$/).flatten.join('').to_i
-      if number == 0
-        self.name = "#{name} (1)"
-      else
-        self.name.gsub!(/\((\d+)\)$/, "(#{number + 1})")
-      end
-    end
-  end
 end

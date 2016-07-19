@@ -1,10 +1,10 @@
-tr id=dom_id(resource)
+tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resource)
   td.text-center = resource.id
   td.text-center = resource.decorate.favourite
   td.text-center
     = link_to [:toggle_status, :administration, resource], method: :patch, remote: true do
       = resource.decorate.status
-  td = resource.name
+  td = link_to resource.name, [:administration, resource, :factors]
   td
     = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm'  do
       span.fa.fa-pencil

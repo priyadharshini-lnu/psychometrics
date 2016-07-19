@@ -2,6 +2,7 @@ en:
   administration:
     close: Close
     update: Update
+    create: Create
     enable: Enable
     disable: Disable
     search: Search
@@ -13,6 +14,7 @@ en:
     search: Search
     active: Active
     copy: Copy
+    choose: ' - Choose - '
     psychometrics: Psychometrics
     no_data_found: No data found
     noty:
@@ -21,6 +23,8 @@ en:
       home: Dashboard
       users: Users
       dimensions: Dimensions
+      factors: Factors
+      sub_factors: Sub-Factors
       dimension: Dimension
       surveys: Surveys
       survey: Survey

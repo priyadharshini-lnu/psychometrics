@@ -1,14 +1,14 @@
-class Administration::DimensionsController < Administration::BaseController
+class Administration::FactorsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar]
+  before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
   before_action :skip_authorization, only: [:sidebar]
+  before_action :set_dimension
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
 
-
   def index
     @filterrific = initialize_filterrific(
-      policy_scope(@resource_class),
+      policy_scope(@resource_class).roots.with_dimension(@dimension.id),
       params[:filterrific]) || return
     @resources   = @filterrific.find.page(params[:page])
   end
@@ -18,21 +18,13 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def create
-    @resource = @resource_class.new(resource_params)
-
+    @resource = @dimension.factors.new(resource_params)
     respond_to do |format|
       if @resource.save
         format.js
       else
         format.js { render :new }
       end
-    end
-  end
-
-  def toggle_status
-    @resource.toggle(:disabled).save
-    respond_to do |format|
-      format.js
     end
   end
 
@@ -58,25 +50,16 @@ class Administration::DimensionsController < Administration::BaseController
     end
   end
 
-  def copy
-    @cloned_resource = @resource.clone
-    respond_to do |format|
-      if @cloned_resource.save
-        format.js
-      else
-        format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: @resource.id }) } }
-      end
-    end
-  end
-
   private
 
   def set_resource_class
-    @resource_class ||= Dimension
+    @resource_class ||= Factor
   end
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
+    add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
+    add_breadcrumb @dimension.name
     add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
   end
 
@@ -84,8 +67,12 @@ class Administration::DimensionsController < Administration::BaseController
     @resource = @resource_class.find(params[:id])
   end
 
+  def set_dimension
+    @dimension = Dimension.find(params[:dimension_id])
+  end
+
   def resource_params
-    params.require(:resource).permit(:name, :favourite)
+    params.require(:resource).permit(:name, :dimension_id)
   end
 
   def pundit_authorize
