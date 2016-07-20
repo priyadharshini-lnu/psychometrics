@@ -1,0 +1,26 @@
+csv << [
+        @resource_class.human_attribute_name('id').capitalize,
+        @resource_class.human_attribute_name('active'),
+        @resource_class.human_attribute_name('first_name'),
+        @resource_class.human_attribute_name('last_name'),
+        @resource_class.human_attribute_name('email'),
+        @resource_class.human_attribute_name('client_name'),
+        @resource_class.human_attribute_name('role'),
+        @resource_class.human_attribute_name('created_at'),
+        @resource_class.human_attribute_name('updated_at')
+       ]
+
+# TODO: replace not_implemented to resource.client.name
+@resources.each do |resource|
+  csv << [
+          resource.id,
+          resource.decorate.status_text,
+          resource.first_name,
+          resource.last_name,
+          resource.email,
+          '- not implemented - ',
+          @resource_class.human_enum_name(:role, resource.role),
+          resource.decorate.created_at,
+          resource.decorate.updated_at
+         ]
+end

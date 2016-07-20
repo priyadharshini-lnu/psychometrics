@@ -38,13 +38,14 @@ class Administration::UsersController < Administration::BaseController
 
   # GET /administration/resources/1/edit
   def edit
+    add_breadcrumb @resource.name, { action: :edit, id: @resource.id }
   end
 
   # PATCH/PUT /administration/resources/1
   def update
     respond_to do |format|
       if @resource.update(resource_params)
-        format.html { redirect_to [:administration, @resource_class.model_name.plural], success: t('.successfully') }
+        format.html { redirect_to([:administration, @resource_class.model_name.plural], success: t('.successfully')) }
       else
         format.html { render :edit }
       end
@@ -55,7 +56,7 @@ class Administration::UsersController < Administration::BaseController
   def destroy
     @resource.destroy
     respond_to do |format|
-      format.html { redirect_to :back, success: t('.successfully') }
+      format.html { redirect_to(:back, success: t('.successfully')) }
     end
   end
 
@@ -64,7 +65,7 @@ class Administration::UsersController < Administration::BaseController
   def toggle_status
     @resource.toggle!(:disabled)
     respond_to do |format|
-      format.html { redirect_to :back, success: t('.successfully') }
+      format.html { redirect_to(:back, success: t('.successfully')) }
       format.js
     end
   end
@@ -76,6 +77,16 @@ class Administration::UsersController < Administration::BaseController
     @user.send_reset_password_instructions
     flash[:success] = t('.successfully')
     redirect_to :back
+  end
+
+  def export
+    @resources = policy_scope(@resource_class).all
+    respond_to do |format|
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"#{@resource_class.model_name.plural}-#{Date.today}.csv\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
   end
 
   private

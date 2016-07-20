@@ -19,4 +19,6 @@ class Administration::BaseController < ActionController::Base
   before_action :authenticate_administrator!
 
   protect_from_forgery with: :exception
+
+  add_flash_types :notice, :error, :success
 end
