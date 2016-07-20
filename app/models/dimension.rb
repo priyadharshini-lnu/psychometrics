@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: dimensions
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  favourite  :boolean
+#  disabled   :boolean
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Dimension < ApplicationRecord
   include Copyable
 

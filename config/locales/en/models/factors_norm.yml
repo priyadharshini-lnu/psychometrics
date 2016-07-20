@@ -1,0 +1,20 @@
+en:
+  activerecord:
+    models:
+      factors_norm: 'factors_norms'
+    attributes:
+      norm: &DEFAULT
+        id: 'ID'
+        name: 'Name'
+        created_at: 'Created'
+        updated_at: 'Modified'
+        active: 'Active'
+        updated_by: 'Edited by'
+    errors:
+      models:
+        factors_norm:
+          score_to_less_than_score_from: 'Score to is less than Score from'
+  simple_form:
+    placeholders:
+      norm:
+        <<: *DEFAULT
