@@ -34,6 +34,9 @@ gem 'filterrific',                '~> 2.0.5'
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.3'
 
+### Translaters for javascripts
+gem 'i18n-js',                    '~> 3.0.0.rc3'
+
 ### Decorator
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 ### Fixed gem for decorator (rails 5)
