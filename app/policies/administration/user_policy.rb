@@ -1,26 +1,22 @@
 class Administration::UserPolicy < Administration::BasePolicy
   def index?
-    return true if @user.superadmin?
-    return true if @user.admin?
-    false
+    @user.can?(:superadmin, :admin)
   end
 
   def new?
-    @user.can?(:superadmin)
+    create?
   end
 
   def create?
-    new?
-  end
-
-  def update?
-    return true if @user.superadmin?
-    return true if @user.admin?
-    @record == @user
+    @user.can?(:superadmin, :admin)
   end
 
   def edit?
     update?
+  end
+
+  def update?
+    @user.can?(:superadmin, :admin)
   end
 
   def toggle_status?
@@ -29,6 +25,10 @@ class Administration::UserPolicy < Administration::BasePolicy
 
   def reset_password?
     update?
+  end
+
+  def export?
+    index?
   end
 
   class Scope

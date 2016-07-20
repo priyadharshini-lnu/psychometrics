@@ -8,12 +8,14 @@ en:
         first_name: First Name
         last_name: Last Name
         email: E-mail
-        active: Active
         current_password: Current password
         password: Password
         password_confirmation: Password confirmation
         role: Role
-        disabled: 'Disable'
+        disabled: Disable
+        active: Active
+        created_at: Created
+        updated_at: Modified
         roles:
           user: User
           manager: Manager
