@@ -53,8 +53,6 @@ gem 'psychometrics-survey', git: 'git@github.com:SumatoSoft/psychometrics-survey
 gem 'rubyXL'
 gem 'file_validators'
 
-gem 'file_validators'
-
 # For import csv
 gem 'smarter_csv',                '~> 1.1.0'
 # For unpoad file as Ajax

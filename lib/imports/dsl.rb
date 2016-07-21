@@ -16,6 +16,12 @@ module Imports
         formats: {
           csv: Imports::Csv::UserImport
         }
+      },
+      norm: {
+        form: NormImportForm,
+        formats: {
+          csv: Imports::Xls::NormImport
+        }
       }
     }.freeze
 

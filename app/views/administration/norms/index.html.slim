@@ -5,7 +5,7 @@
         h3.panel-title = t '.title'
         ul.panel-controls
           li
-            = link_to [:new, :administration, @resource_class.model_name.singular], remote: true do
+            = link_to [:new, :administration, :import, { resource: @resource_class.model_name.singular, type: :xls }], remote: true do
               span.fa.fa-building-o
             = link_to [:new, :administration, @resource_class.model_name.singular], remote: true do
               span.fa.fa-plus
