@@ -15,16 +15,22 @@ class FactorsNorm < ApplicationRecord
   belongs_to :factor
   belongs_to :norm
 
+  #
+  # Disables single column inheritance
+  #
+  self.inheritance_column = :_type_disabled
+
   # Types constant
   TYPES = {
       yti: 'yti',
       eti: 'eti'
   }.freeze
 
-  LEVELS = %w(very_low low average high very_high)
+  LEVELS = ['Very Low', 'Low', 'Average', 'High', 'Very High']
 
   validates :level, :type, :factor, :norm, presence: true
   validates :type, inclusion: { in: TYPES.values }, allow_nil: true
+  validates :level, inclusion: { in: LEVELS }, allow_nil: true
   validates :score_from, :score_to, numericality: true, allow_nil: true
   validate :score_from_less_than_score_to
 

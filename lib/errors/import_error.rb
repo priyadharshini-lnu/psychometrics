@@ -1,14 +1,13 @@
 module Errors
   class ImportError < StandardError
-    attr_accessor :description, :status
+    attr_accessor :description
 
-    def initialize(description = nil, status = 400)
+    def initialize(description)
       @description = description
-      @status      = status
     end
 
     def to_s
-      "[#{status}] #{description}"
+      "#{description}"
     end
   end
 end

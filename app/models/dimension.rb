@@ -16,7 +16,6 @@ class Dimension < ApplicationRecord
   has_many :factors
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
-  validates :name, uniqueness: true
 
   filterrific(
     default_filter_params: {

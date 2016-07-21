@@ -23,7 +23,6 @@ class Factor < ApplicationRecord
 
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 100 }, allow_blank: true
-  validates :name, uniqueness: true
 
   filterrific(
     default_filter_params: {

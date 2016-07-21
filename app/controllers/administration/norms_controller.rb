@@ -60,7 +60,7 @@ class Administration::NormsController < Administration::BaseController
       if @cloned_resource.save
         format.js
       else
-        format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: @resource.id }) } }
+        format.js { render :error, locals: { message: t('administration.norms.copy.error', { id: @resource.id }) } }
       end
     end
   end
