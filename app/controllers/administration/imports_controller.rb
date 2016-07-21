@@ -35,5 +35,4 @@ class Administration::ImportsController < Administration::BaseController
   def pundit_authorize
     authorize @import.resource, :import?
   end
-
 end
