@@ -1,6 +1,9 @@
 // Theme import
 @import 'administration/theme-default';
 
+@import 'jquery.fileupload';
+@import 'jquery.fileupload-ui';
+
 @import 'common/helper';
 @import 'administration/overrides/bootstrap';
 @import './administration/*';

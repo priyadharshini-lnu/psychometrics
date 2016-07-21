@@ -1,13 +1,1 @@
-module Errors
-  class ImportError < StandardError
-    attr_accessor :description
-
-    def initialize(description)
-      @description = description
-    end
-
-    def to_s
-      "#{description}"
-    end
-  end
-end
+class ::Errors::ImportError < StandardError; end

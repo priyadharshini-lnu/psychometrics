@@ -10,6 +10,8 @@ Rails.application.routes.draw do
     root to: 'home#index'
     resource :profiles
 
+    resources :imports, only: [:new, :create]
+
     resources :dimensions do
       member do
         get :copy
@@ -37,8 +39,8 @@ Rails.application.routes.draw do
         get :reset_password
       end
       collection do
-        get 'export'
-    end
+        get :export
+      end
     end
 
     resources :norms do

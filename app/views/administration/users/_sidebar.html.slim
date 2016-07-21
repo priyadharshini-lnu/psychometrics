@@ -4,10 +4,10 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(@resource)}"
     li = link_to @resource.decorate.toggle_status_text, [:toggle_status, :administration, @resource], remote: true, method: :patch
   - if policy(@resource).edit?
     li = link_to t('.edit_user'), [:edit, :administration, @resource]
-  - if policy(@resource).new?
-    li.xn-title = t('.new_user')
   - if policy(@resource_class).new?
-    li.xn-title = t('.import_users')
+    li = link_to t('.new_user'), [:new, :administration, @resource_class.model_name.singular], remote: true
+  - if policy(@resource_class).new?
+    li = link_to t('.import_users'), [:new, :administration, :import, { resource: @resource_class.model_name.singular, type: :csv }], remote: true
   - if policy(@resource_class).export?
     li = link_to t('.export_users'), [:export, :administration, @resource_class.model_name.plural, { format: :csv }], target: :_blank
   li.xn-title = t('.email')

@@ -39,5 +39,6 @@
 //= require i18n
 //= require i18n/translations
 
+//= require jquery-fileupload/basic
 
 //= require_tree ./administration

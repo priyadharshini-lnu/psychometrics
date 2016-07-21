@@ -49,7 +49,6 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :email, :role, presence: true
   validates :first_name, :last_name, :email, length: { maximum: 100 }, allow_blank: true
-  validates :email, uniqueness: true
   validates_with EmailValidator, fields: [:email], allow_nil: true
   validates :role, inclusion: { in: USER_ROLES.values }, allow_nil: true
 

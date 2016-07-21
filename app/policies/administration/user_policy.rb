@@ -31,6 +31,10 @@ class Administration::UserPolicy < Administration::BasePolicy
     index?
   end
 
+  def import?
+    create?
+  end
+
   class Scope
     attr_reader :user, :scope
 
