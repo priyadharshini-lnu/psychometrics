@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  mount ActionCable.server => '/cable'
   devise_for :administrators, path: 'administration/administrators', as: :devise,
              name: :administrator, singular: :administrator, to: 'User',
              class_name: 'User'
