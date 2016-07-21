@@ -29,6 +29,7 @@
 /////Notification plugin
 //= require administration/plugins/noty/jquery.noty
 //= require administration/plugins/noty/layouts/topCenter
+//= require administration/plugins/noty/layouts/topRight
 //= require administration/plugins/noty/themes/default
 
 
