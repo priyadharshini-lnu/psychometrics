@@ -1,7 +1,9 @@
 en:
   administration:
+    clear: Clear
     close: Close
     update: Update
+    create: Create
     enable: Enable
     disable: Disable
     search: Search
@@ -13,15 +15,21 @@ en:
     search: Search
     active: Active
     copy: Copy
+    choose: ' - Choose - '
     psychometrics: Psychometrics
+    no_data_found: No data found
     noty:
       error_500: Something went wrong. Contact your administrator.
     navigation: &NAVIGATION
       home: Dashboard
       users: Users
       dimensions: Dimensions
+      factors: Factors
+      sub_factors: Sub-Factors
       dimension: Dimension
       surveys: Surveys
       survey: Survey
+      norm: Norm
+      norms: Norms
     breadcrumbs:
       <<: *NAVIGATION

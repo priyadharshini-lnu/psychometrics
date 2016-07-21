@@ -78,6 +78,10 @@ class User < ApplicationRecord
     !disabled
   end
 
+  def name
+    "#{first_name} #{last_name}"
+  end
+
   filterrific(
     default_filter_params: {
       sorted_by: 'id_desc',
@@ -111,6 +115,10 @@ class User < ApplicationRecord
       # joins(:client).select('users.*, clients.name AS client_name').order("client_name #{ direction }")
     when /^role_/
       order("users.role #{direction}")
+    when /^created_at_/
+      order("users.created_at #{direction}")
+    when /^updated_at_/
+      order("users.updated_at #{direction}")
     end
   }
 
@@ -138,5 +146,9 @@ class User < ApplicationRecord
   #
   def self.options_for_with_role
     %w(all users administrators)
+  end
+
+  def self.human_role_options
+    USER_ROLES.keys.map { |role| [human_enum_name(:role, role), role] }
   end
 end

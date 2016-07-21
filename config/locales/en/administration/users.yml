@@ -4,7 +4,7 @@ en:
       new:
         header: 'New user'
       edit:
-        header: 'Edit user'
+        title: 'Edit user'
       index:
         title: Users
       create:
@@ -15,11 +15,13 @@ en:
         successfully: User was successfully destroyed.
       toggle_status:
         successfully: User was successfully updated.
+      reset_password:
+        successfully: User will receive an email with instructions on how to reset his (her) password in a few minutes.
       sidebar:
-        title: User's options
+        title: "#%{id} user's options"
         disable: Disable
         enable: Enable
-        edit: Edit
+        edit_user: Edit User
         new_user: New User
         import_users: Import Users
         export_users: Export Users
@@ -32,6 +34,8 @@ en:
             all: All
             users: Users
             administrators: Administrators
+      form:
+        choose: ' - Choose - '
       resource:
         tooltips:
           change_password: Change password

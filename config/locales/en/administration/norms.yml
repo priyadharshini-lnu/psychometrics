@@ -1,0 +1,27 @@
+en:
+  administration:
+    norms:
+      index:
+        title: Norms
+      new:
+        header: 'New norm'
+      edit:
+        header: 'Edit norm'
+      destroy:
+        successfully: 'Norm #%{id} was successfully destroyed.'
+      copy:
+        error: 'Norm #%{id} was not copied.'
+      toggle_status:
+        successfully: 'Norm was successfully updated.'
+      sidebar:
+        title: "Norm\'s options"
+        disable: 'Disable'
+        enable: 'Enable'
+        edit: 'Edit Norm'
+        new: 'New Norm'
+        copy: 'Copy Norm'
+        assign: 'Assign Norm'
+        view: 'View Norm'
+        import: 'Import Norm'
+        export: 'Export Norm'
+        surveys: 'Linked Surveys'

@@ -66,7 +66,7 @@
             li
               a href="#" Organisational
         li
-          a href="#" Norm
+          = active_link_to t('administration.breadcrumbs.norms'), administration_norms_path, active: :exclusive, wrap_tag: :li
         li
           = active_link_to t('administration.breadcrumbs.dimension'), administration_dimensions_path, active: :exclusive, wrap_tag: :li
         li.xn-openable

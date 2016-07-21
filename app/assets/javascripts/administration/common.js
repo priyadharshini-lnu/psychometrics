@@ -1,12 +1,21 @@
 $(function() {
   // Show error message, when server retuen 500 erorr
   $(document).ajaxError(function(){
-    noty({text: "<%= I18n.t('administration.noty.error_500') %>", layout: 'topCenter', type: 'error'});
+    noty({text: I18n.t('administration.noty.error_500'), layout: 'topCenter', type: 'error'});
   });
   $('.x-navigation .xn-openable .active').each(function () {
     $(this).parents('.xn-openable').addClass('active');
   });
   $(document).on('initPlugins', function () {
     window.uiElements.init();
+    window.formElements.init();
   });
 });
+
+// Replace with return new DOM
+$.fn.replaceWithPush = function(a) {
+  var $a = $(a);
+
+  this.replaceWith($a);
+  return $a;
+};

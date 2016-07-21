@@ -26,14 +26,19 @@
 //= require administration/plugins.js
 
 
-/////Notification plugin
+///// Notification plugin
 //= require administration/plugins/noty/jquery.noty
 //= require administration/plugins/noty/layouts/topCenter
 //= require administration/plugins/noty/layouts/topRight
 //= require administration/plugins/noty/themes/default
 
 
-/////Filter form
+///// Filter form
 //= require filterrific/filterrific-jquery
+
+///// Translations
+//= require i18n
+//= require i18n/translations
+
 
 //= require_tree ./administration

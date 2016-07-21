@@ -28,6 +28,14 @@ GIT
       builder (~> 3.1)
 
 GIT
+  remote: git://github.com/stefankroes/ancestry.git
+  revision: 3aae846759ffc485bc427d732eae54285d9d3c3f
+  branch: 2-1-stable
+  specs:
+    ancestry (1.4.1)
+      activerecord (>= 3.0.0)
+
+GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
   revision: 0a2f5957857c96a85f4411efe602f8eb3cb03f16
   specs:
@@ -143,6 +151,8 @@ GEM
     globalid (0.3.6)
       activesupport (>= 4.1.0)
     i18n (0.7.0)
+    i18n-js (3.0.0.rc13)
+      i18n (~> 0.6, >= 0.6.6)
     jbuilder (2.5.0)
       activesupport (>= 3.0.0, < 5.1)
       multi_json (~> 1.2)
@@ -276,6 +286,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to (~> 1.0.3)
   activemodel-serializers-xml!
+  ancestry!
   annotate (~> 2.7.0)!
   bootstrap-kaminari-views (~> 0.0.5)
   bootstrap-sass (~> 3.3.6)
@@ -293,6 +304,7 @@ DEPENDENCIES
   figaro (~> 1.1.1)
   filterrific (~> 2.0.5)
   font-awesome-rails (~> 4.6.3.0)
+  i18n-js (~> 3.0.0.rc3)
   jbuilder (~> 2.5)
   jquery-rails (~> 4.1.1)
   kaminari (~> 0.17.0)

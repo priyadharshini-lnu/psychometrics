@@ -30,5 +30,4 @@ namespace :devops do
       end
     end
   end
-
 end

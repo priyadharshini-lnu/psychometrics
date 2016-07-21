@@ -6,8 +6,7 @@ en:
       dimension: &DEFAULT
         id: 'ID'
         name: 'Name'
-        favourite: 'Favourite'
-        craeted_at: 'Created'
+        created_at: 'Created'
         updated_at: 'Modified'
         active: 'Active'
   simple_form:

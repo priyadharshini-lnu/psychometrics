@@ -14,17 +14,41 @@ Rails.application.routes.draw do
     resources :dimensions do
       member do
         get :copy
-        patch 'toggle_status'
+        get :sidebar
+        patch :toggle_status
+      end
+      resources :factors do
+        member do
+          get :copy
+          get :sidebar
+          patch :toggle_status
+        end
+        resources :sub_factors do
+          member do
+            get :sidebar
+          end
+        end
       end
     end
 
     resources :users do
       member do
-        patch 'toggle_status'
-        get 'sidebar'
+        patch :toggle_status
+        get :sidebar
+        get :reset_password
+      end
+      collection do
+        get 'export'
       end
     end
 
+    resources :norms do
+      member do
+        get :copy
+        patch :toggle_status
+        get :sidebar
+      end
+    end
     resources :surveys
   end
 

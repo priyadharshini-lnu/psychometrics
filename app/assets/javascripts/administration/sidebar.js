@@ -5,13 +5,22 @@ $(function(){
   // Close sidebar by click to button
   $(document).on('click', '#sidebar .close', function(e){
     e.preventDefault();
-    $('#sidebar').trigger("sidebar:close").
-                  removeClass('opened').
-                  find('.content').html('');
+    $(document).trigger('close_sidebar');
   });
 
-  $(document).on('click', 'table.selectable tbody tr', function(e){
+  // Stop propagation, when clicked to action dom
+  $(document).on('click', 'table.selectable tbody tr a', function(event){
+    event.stopPropagation();
+  });
+
+  $(document).on('click', 'table.selectable tbody tr', function(event){
+    event.stopPropagation();
     $(document).trigger('load_sidebar', [this]);
+  });
+
+  // Close sidebar when click not to table
+  $(document).on('click', 'body, table.selectable thead a', function(event){
+    $(document).trigger('close_sidebar');
   });
 
   // Load sidebar
@@ -36,5 +45,13 @@ $(function(){
       type: 'GET',
       dataType: 'script'
     });
+  });
+
+  // Close sidebar
+  $(document).on('close_sidebar', function(event) {
+    $('#sidebar').trigger("sidebar:close").
+                  removeClass('opened').
+                  find('.content').html('');
+    $('table.selectable tbody tr.active').removeClass('active');
   });
 });
