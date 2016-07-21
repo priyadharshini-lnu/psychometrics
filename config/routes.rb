@@ -10,7 +10,6 @@ Rails.application.routes.draw do
     root to: 'home#index'
     resource :profiles
 
-
     resources :imports, only: [:new, :create]
 
     resources :dimensions do

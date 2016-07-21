@@ -1,6 +1,5 @@
 module Imports
   class Dsl
-
     #
     # Template:
     # resource: {
@@ -23,8 +22,10 @@ module Imports
     attr_accessor :config, :resource, :format
 
     def initialize(resource, format)
-      @resource, @format = resource.to_sym, format.to_sym
-      @config = CONFIG[@resource]
+      @resource = resource.to_sym
+      @format   = format.to_sym
+      @config   = CONFIG[@resource]
+
       raise 'Imports: There is no resource'    unless @config
       raise 'Imports: Invalid config'          unless @config[:form] || !@config[:formats]
       raise 'Imports: Not supported format'    unless @config[:formats][@format]
@@ -37,6 +38,5 @@ module Imports
     def engine
       @config[:formats][@format]
     end
-
   end
 end

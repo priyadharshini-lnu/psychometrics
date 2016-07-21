@@ -12,10 +12,8 @@
 #   do error login
 #
 class BaseForm
-
   include ActiveModel::Validations
   include ActiveModel::Conversion
   include ActiveModel::Model
   extend ActiveModel::Naming
-
 end
