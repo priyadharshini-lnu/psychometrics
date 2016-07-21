@@ -6,6 +6,8 @@
         ul.panel-controls
           li
             = link_to [:new, :administration, @resource_class.model_name.singular], remote: true do
+              span.fa.fa-building-o
+            = link_to [:new, :administration, @resource_class.model_name.singular], remote: true do
               span.fa.fa-plus
       .panel-body
         = form_for_filterrific @filterrific, html: { class: 'form-inline', id: 'filter' } do |f|

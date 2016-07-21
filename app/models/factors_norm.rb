@@ -21,7 +21,7 @@ class FactorsNorm < ApplicationRecord
       eti: 'eti'
   }.freeze
 
-  LEVELS = %w(all users administrators)
+  LEVELS = %w(very_low low average high very_high)
 
   validates :level, :type, :factor, :norm, presence: true
   validates :type, inclusion: { in: TYPES.values }, allow_nil: true

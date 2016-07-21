@@ -1,8 +1,8 @@
 #
-# Abstract Form
-
+# Base Form
+#
 # use case:
-# 1. Implement AbstractForm (for example: MyForm)
+# 1. Implement BaseForm (for example: MyForm)
 # 2. Use in the controller:
 #
 # data = MyForm.new(file: 'my_file')
@@ -11,7 +11,7 @@
 # else
 #   do error login
 #
-class AbstractForm
+class BaseForm
 
   include ActiveModel::Validations
   include ActiveModel::Conversion

@@ -38,7 +38,7 @@ Rails.application.routes.draw do
       end
       collection do
         get 'export'
-      end
+    end
     end
 
     resources :norms do
@@ -46,6 +46,10 @@ Rails.application.routes.draw do
         get :copy
         patch :toggle_status
         get :sidebar
+      end
+      collection do
+        get :imports
+        post :import_process
       end
     end
     resources :surveys
