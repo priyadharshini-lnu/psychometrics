@@ -13,7 +13,7 @@ en:
     errors:
       models:
         factors_norm:
-          score_to_less_than_score_from: 'Score to is less than Score from'
+          score_to_less_than_score_from: 'is less than Score from'
   simple_form:
     placeholders:
       norm:

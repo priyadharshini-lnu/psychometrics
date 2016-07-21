@@ -1,0 +1,10 @@
+en:
+  administration:
+    imports:
+      new:
+        header: 'Import'
+      form:
+        import: Import
+      errors:
+        norm:
+          factor_is_not_described: "[#%{coords}] factor %{factor} is not described above"

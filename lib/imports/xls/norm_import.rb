@@ -2,7 +2,7 @@ module Imports
   module Xls
     class NormImport < Imports::BaseImport
 
-      # take out from file, if client must configure this
+      # take out to another file, if client must configure this
       XLS_CONFIG = {
           factor_start_row:  4,
           factor_start_ceil: 2,
@@ -21,8 +21,9 @@ module Imports
           @current_sheet = sheet
           import_data
         end
+        true
       rescue ActiveRecord::RecordInvalid => e
-        puts "[#{e.record.model_name}] [#{(@cursor_y + 1)}-#{(@cursor_x + 1).alph.upcase}] #{e.to_s}"
+        puts "[#{e.record.model_name}] [#{human_coordinates}] #{e.record.errors.full_messages[0]}"
         # raise Errors::ImportError.new("[#{@cursor.join(', ')}] #{e.to_s}")
       end
 
@@ -34,6 +35,7 @@ module Imports
         @norm              = Norm.create!(name: sheet_name_arr.join('')) unless @norm
         @dimension         = Dimension.create!(name: sheet_name_arr.join('')) unless @dimension
         import_factors
+        import_sub_factors
       end
 
       def import_factors
@@ -44,9 +46,36 @@ module Imports
           break unless factor_name
           @cursor_x = factor_start_ceil
           @cursor_y = i
-          factor    = Factor.where(dimension_id: @dimension.id, name: factor_name).first
-          factor    = @dimension.factors.create!(name: factor_name) unless factor
-          import_factor_norms(factor, i, factor_start_ceil + 1)
+          @factor   = Factor.where(dimension_id: @dimension.id, name: factor_name).first
+          @factor   = @dimension.factors.create!(name: factor_name) unless @factor
+          import_factor_norms(@factor, i, factor_start_ceil + 1)
+        end
+      end
+
+      def import_sub_factors
+        factor_start_ceil = XLS_CONFIG[:factor_start_ceil]-1
+        factor_start_row = nil
+        (@cursor_y...@current_sheet.count).each do |i|
+          if @current_sheet[i][0].value
+            factor_start_row = i
+            break
+          end
+        end
+        (factor_start_row+1...@current_sheet.count).each do |i|
+          @cursor_x   = 0
+          @cursor_y   = i
+          factor_name = @current_sheet[i][0].value
+          sub_factor_name = @current_sheet[i][1].value
+          break unless factor_name
+          @factor = Factor.where(dimension_id: @dimension.id, name: factor_name).first
+          unless @factor
+            raise Errors::ImportError.new(I18n.t('administration.imports.errors.norm.factor_is_not_described',
+                coords: human_coordinates,
+                factor: factor_name))
+          end
+          @sub_factor   = Factor.where(dimension_id: @dimension.id, name: sub_factor_name, parent_id: @factor.id).first
+          @sub_factor   = @dimension.factors.create!(name: sub_factor_name, parent_id: @factor.id) unless @sub_factor
+          import_factor_norms(@sub_factor, i, factor_start_ceil + 1)
         end
       end
 
@@ -63,6 +92,9 @@ module Imports
         end
       end
 
+      def human_coordinates
+        "#{(@cursor_y + 1)}-#{(@cursor_x + 1).alph.upcase}"
+      end
     end
   end
 end
