@@ -89,6 +89,20 @@ class Administration::UsersController < Administration::BaseController
     end
   end
 
+  def import
+    @import = UserImportForm.new
+    respond_to do |format|
+      format.js { render 'base/import/import' }
+    end
+  end
+
+  def import_process
+    @import = UserImportForm.new(params.require(:import).permit(:file))
+    p @import.valid?
+    p @import.errors
+    #redirect_to :back, success: t('.successfully')
+  end
+
   private
 
   def init_breadcrumbs

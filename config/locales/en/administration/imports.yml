@@ -1,0 +1,9 @@
+en:
+  administration:
+    imports:
+      csv:
+        not_valid: '[Row %{row}] %{error}'
+      new:
+        header: 'Import'
+      form:
+        import: Import
