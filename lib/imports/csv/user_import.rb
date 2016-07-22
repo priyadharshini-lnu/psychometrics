@@ -19,7 +19,7 @@ module Imports
       def process
         row = 1
         User.transaction do
-          SmarterCSV.process(@file.path, OPTIONS) do |users|
+          SmarterCSV.process(@file, OPTIONS) do |users|
             users.each do |user|
               row += 1
               begin
