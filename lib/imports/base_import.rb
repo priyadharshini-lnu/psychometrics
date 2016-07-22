@@ -7,7 +7,7 @@ module Imports
     end
 
     def process
-      raise 'should be implemented'
+      raise 'Should be implemented'
     end
   end
 end

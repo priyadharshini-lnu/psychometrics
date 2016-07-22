@@ -3,7 +3,11 @@ class Administration::ImportsController < Administration::BaseController
   append_before_action :pundit_authorize
 
   def init_import
+<<<<<<< HEAD
     @import = ::Imports::Dsl.new(params.require(:resource), params.require(:type))
+=======
+    @import = ::Imports::Config.new params.require(:resource), params.require(:type)
+>>>>>>> origin/feature/ii-import_users-17
   end
 
   def new
