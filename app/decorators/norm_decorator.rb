@@ -1,5 +1,5 @@
 class NormDecorator < BaseDecorator
   def updater
-    object.updater.try(:full_name)
+    object.updater.try(:decorate).try(:display_name)
   end
 end
