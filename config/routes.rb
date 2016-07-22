@@ -50,6 +50,7 @@ Rails.application.routes.draw do
         get :copy
         patch :toggle_status
         get :sidebar
+        get :export
       end
     end
     resources :surveys
