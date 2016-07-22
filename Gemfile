@@ -50,8 +50,8 @@ gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
 gem 'psychometrics-survey', git: 'git@github.com:SumatoSoft/psychometrics-survey.git'
-gem 'rubyXL'
-gem 'file_validators'
+gem 'rubyXL',                     '~ 3.3.21'
+gem 'file_validators',            '~ 2.1.0'
 
 # For import csv
 gem 'smarter_csv',                '~> 1.1.0'
