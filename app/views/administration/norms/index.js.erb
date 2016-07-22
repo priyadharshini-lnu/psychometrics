@@ -2,4 +2,8 @@
   render(partial: 'list')
 ) %>
 $('#filterrific_results').html('<%= resources_list %>');
+
+// Change form object
+$('#filterrific_sorted_by').val('<%= @filterrific.sorted_by %>');
+
 $(document).trigger('initPlugins');
