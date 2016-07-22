@@ -24,9 +24,6 @@ module Imports
         true
       rescue ActiveRecord::RecordInvalid => e
         raise Errors::ImportError, "[#{e.record.model_name}] [#{human_coordinates}] #{e.record.errors.full_messages[0]}"
-      rescue Exception => e
-        Rails.logger.error(e.message + "\n" + e.backtrace.join("\n"))
-        raise Errors::ImportError, I18n.t('administration.imports.errors.norm.incorrect_xls_format')
       end
 
       private
