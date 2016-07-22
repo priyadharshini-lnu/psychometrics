@@ -87,11 +87,11 @@ module Imports
         (ceil...ceil + FactorsNorm::LEVELS.size * 2).each_slice(2) do |score_from, score_to|
           @cursor_x = score_from
           factor.factors_norms.create!(
-              score_from: @current_sheet[row][score_from].value,
-              score_to:   @current_sheet[row][score_to].value,
-              level:      @current_sheet[XLS_CONFIG[:factor_start_row] - 2][score_from].value,
-              type:       @current_norm_type,
-              norm_id:    @norm.id
+            score_from: @current_sheet[row][score_from].value,
+            score_to:   @current_sheet[row][score_to].value,
+            level:      @current_sheet[XLS_CONFIG[:factor_start_row] - 2][score_from].value,
+            type:       @current_norm_type,
+            norm_id:    @norm.id
           )
         end
       end
