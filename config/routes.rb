@@ -38,6 +38,7 @@ Rails.application.routes.draw do
         patch :toggle_status
         get :sidebar
         get :reset_password
+        get :spoof
       end
       collection do
         get :export

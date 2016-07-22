@@ -10,10 +10,11 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td = @resource_class.human_enum_name(:role, resource.role)
   td = resource.decorate.created_at
   td
-    = link_to [:reset_password, :administration, resource], class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.change_password') }
+    = confirmation_link [:reset_password, :administration, resource], method: :get, class: 'btn btn-default btn-rounded btn-sm mrm', data: { confirm: t('.confirmations.change_password.body'), confirm_title: t('.confirmations.change_password.title'), icon: 'fa-key', toggle: 'tooltip', title: t('.tooltips.change_password') }
       i.fa.fa-key.man
-    = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.sign_in') }
-      i.fa.fa-sign-in.man
+    - if policy(resource).spoof?
+      = link_to [:spoof, :administration, resource], class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.sign_in') }
+        i.fa.fa-sign-in.man
     = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.chart') }
       i.fa.fa-pie-chart.man
     = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.mail') }

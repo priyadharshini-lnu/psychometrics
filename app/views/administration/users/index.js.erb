@@ -3,5 +3,8 @@
 ) %>
 $('#filterrific_results').html('<%= resources_list %>');
 
+// Change form object
+$('#filterrific_sorted_by').val('<%= @filterrific.sorted_by %>');
+
 // Reinit all plugins
 $(document).trigger('initPlugins');

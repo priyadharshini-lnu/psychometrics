@@ -10,7 +10,7 @@
         span.mb-title-icon.fa.fa-user
       .profile
         .profile-data
-          = link_to current_administrator.full_name, edit_administration_profiles_path, class: 'profile-data-name'
+          = link_to current_administrator.decorate.display_name, edit_administration_profiles_path, class: 'profile-data-name'
           .profile-data-title = current_administrator.role
     li.xn-title Navigation
     = active_link_to administration_root_path, active: :exclusive, wrap_tag: :li
