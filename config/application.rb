@@ -20,5 +20,7 @@ module Psychometrics
     config.autoload_paths << Rails.root.join('app/validators')
     config.autoload_paths << Rails.root.join('app/forms')
     config.autoload_paths << Rails.root.join('lib')
+
+    config.eager_load_paths << Rails.root.join('lib')
   end
 end
