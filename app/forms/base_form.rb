@@ -17,5 +17,4 @@ class BaseForm
   include ActiveModel::Conversion
   include ActiveModel::Model
   extend ActiveModel::Naming
-
 end
