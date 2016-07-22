@@ -41,13 +41,23 @@ gem 'i18n-js',                    '~> 3.0.0.rc3'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 ### Fixed gem for decorator (rails 5)
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
-
+### Generate schema in each model
 gem 'annotate',                   '~> 2.7.0', github: 'ctran/annotate_models'
+### Tree
 gem 'ancestry',                  github: 'stefankroes/ancestry', branch: '2-1-stable'
+### For organisation ENV variable
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
+
 gem 'psychometrics-survey', git: 'git@github.com:SumatoSoft/psychometrics-survey.git'
 gem 'redis'
+
+gem 'file_validators'
+
+# For import csv
+gem 'smarter_csv',                '~> 1.1.0'
+# For unpoad file as Ajax
+gem 'jquery-fileupload-rails',    '~> 0.4.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
