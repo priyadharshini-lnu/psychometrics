@@ -6,5 +6,6 @@ class NormImportForm < BaseForm
                    file_content_type: { allow: [
                                                    'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                    'application/vnd.ms-excel'
-                                               ] }
+                                               ]
+                                       }
 end
