@@ -15,7 +15,7 @@ class Administration::ImportsController < Administration::BaseController
     respond_to do |format|
       if @form.valid?
         begin
-          engine = @import.engine.new(@form.file, current_administrator).process
+          @import.engine.new(@form.file, current_administrator).process
         rescue ::Errors::ImportError => message
           format.js { render :error, locals: { message: message } }
         end
