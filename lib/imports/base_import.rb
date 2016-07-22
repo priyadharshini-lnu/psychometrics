@@ -3,7 +3,6 @@ module Imports
     def initialize(file, importer)
       @file = file
       @importer = importer
-      process
     end
 
     def process

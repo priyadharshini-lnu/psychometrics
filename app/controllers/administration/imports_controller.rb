@@ -3,7 +3,7 @@ class Administration::ImportsController < Administration::BaseController
   append_before_action :pundit_authorize
 
   def init_import
-    @import = ::Imports::Dsl.new params.require(:resource), params.require(:type)
+    @import = ::Imports::Config.new params.require(:resource), params.require(:type)
   end
 
   def new
@@ -15,7 +15,7 @@ class Administration::ImportsController < Administration::BaseController
     respond_to do |format|
       if @form.valid?
         begin
-          @engine = @import.engine.new(@form.file, current_administrator)
+          engine = @import.engine.new(@form.file, current_administrator).process
         rescue ::Errors::ImportError => message
           format.js { render :error, locals: { message: message } }
         end

@@ -1,5 +1,5 @@
 module Imports
-  class Dsl
+  class Config
     #
     # Template:
     # resource: {
