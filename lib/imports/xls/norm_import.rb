@@ -46,7 +46,7 @@ module Imports
         factor_start_ceil = XLS_CONFIG[:factor_start_ceil] - 1
         factor_start_row  = XLS_CONFIG[:factor_start_row] - 1
         (factor_start_row...@current_sheet.count).each do |i|
-          factor_name = @current_sheet[i][factor_start_ceil].value if @current_sheet[i] && @current_sheet[i][factor_start_ceil]
+          factor_name = @current_sheet.try(:[], i).try(:[], factor_start_ceil).try(:value)
           break unless factor_name
           @cursor_x = factor_start_ceil
           @cursor_y = i
@@ -60,7 +60,7 @@ module Imports
         factor_start_ceil = XLS_CONFIG[:factor_start_ceil] - 1
         factor_start_row  = nil
         (@cursor_y...@current_sheet.count).each do |i|
-          if @current_sheet[i] && @current_sheet[i][0] && @current_sheet[i][0].value
+          if @current_sheet.try(:[], i).try(:[], 0).try(:value)
             factor_start_row = i
             break
           end
@@ -68,8 +68,8 @@ module Imports
         (factor_start_row + 1...@current_sheet.count).each do |i|
           @cursor_x       = 0
           @cursor_y       = i
-          factor_name     = @current_sheet[i][0].value if @current_sheet[i] && @current_sheet[i][0]
-          sub_factor_name = @current_sheet[i][1].value if @current_sheet[i] && @current_sheet[i][1]
+          factor_name     = @current_sheet.try(:[], i).try(:[], 0).try(:value)
+          sub_factor_name = @current_sheet.try(:[], i).try(:[], 1).try(:value)
           break unless factor_name
           factor = Factor.where(dimension_id: @dimension.id, name: factor_name).first
           unless factor

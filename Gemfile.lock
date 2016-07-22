@@ -313,7 +313,7 @@ DEPENDENCIES
   devise_invitable (~> 1.6.0)
   draper!
   figaro (~> 1.1.1)
-  file_validators
+  file_validators (~> 2.1.0)
   filterrific (~> 2.0.5)
   font-awesome-rails (~> 4.6.3.0)
   i18n-js (~> 3.0.0.rc3)
@@ -328,7 +328,7 @@ DEPENDENCIES
   pundit (~> 1.1.0)
   rails (~> 5.0.0)
   role_model (~> 0.8.2)
-  rubyXL
+  rubyXL (~> 3.3.21)
   sass-rails (~> 5.0)
   simple_form (~> 3.2.1)
   slim-rails (~> 3.1.0)
