@@ -69,7 +69,7 @@ module Imports
             break
           end
         end
-        (factor_start_row+1...@current_sheet.count).each do |i|
+        (factor_start_row + 1...@current_sheet.count).each do |i|
           @cursor_x       = 0
           @cursor_y       = i
           factor_name     = @current_sheet[i][0].value if @current_sheet[i] && @current_sheet[i][0]
@@ -88,7 +88,7 @@ module Imports
       end
 
       def import_factor_norms(factor, row, ceil)
-        (ceil...ceil+FactorsNorm::LEVELS.size*2).each_slice(2) do |score_from, score_to|
+        (ceil...ceil + FactorsNorm::LEVELS.size*2).each_slice(2) do |score_from, score_to|
           @cursor_x = score_from
           factor.factors_norms.create!(
               score_from: @current_sheet[row][score_from].value,
