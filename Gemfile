@@ -57,6 +57,7 @@ gem 'file_validators',            '~> 2.1.0'
 gem 'smarter_csv',                '~> 1.1.0'
 # For unpoad file as Ajax
 gem 'jquery-fileupload-rails',    '~> 0.4.6'
+gem 'redis'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

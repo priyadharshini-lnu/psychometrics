@@ -37,7 +37,7 @@ GIT
 
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: 037b1dd84ddf473baaaf3c24c0227e97f6c93c6c
+  revision: 0a2f5957857c96a85f4411efe602f8eb3cb03f16
   specs:
     psychometrics-survey (0.0.1)
       railties (>= 4.2.0)
@@ -228,6 +228,7 @@ GEM
     rb-fsevent (0.9.7)
     rb-inotify (0.9.7)
       ffi (>= 0.5.0)
+    redis (3.3.0)
     ref (2.0.0)
     request_store (1.3.1)
     responders (2.2.0)
@@ -327,6 +328,7 @@ DEPENDENCIES
   puma (~> 3.0)
   pundit (~> 1.1.0)
   rails (~> 5.0.0)
+  redis
   role_model (~> 0.8.2)
   rubyXL (~> 3.3.21)
   sass-rails (~> 5.0)
