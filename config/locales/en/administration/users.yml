@@ -17,6 +17,8 @@ en:
         successfully: User was successfully updated.
       reset_password:
         successfully: User will receive an email with instructions on how to reset his (her) password in a few minutes.
+      spoof:
+        successfully: You was successfully sign in as %{display_name}
       sidebar:
         title: "#%{id} user's options"
         disable: Disable
@@ -45,6 +47,10 @@ en:
           edit: Edit user
           delete: Delete user
         confirmations:
+          change_password:
+            title: Change <strong>password</strong> ?
+            body: >
+              <p>Are you sure you want to send instructions with link to change password?</p>
           delete:
             title:
               Delete <strong>User</strong> ?

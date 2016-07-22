@@ -34,9 +34,17 @@ class User < ApplicationRecord
       user: 'user'
   }.freeze
 
-  GROUP_USER_ROLES = {
-      administrators: USER_ROLES.slice(:superadmin, :admin).keys,
-      users:          USER_ROLES.slice(:manager, :user).keys
+  USER_ROLES_SCOPES = {
+      administrator: USER_ROLES.slice(:superadmin, :admin).keys,
+      user:          USER_ROLES.slice(:manager, :user).keys
+  }.freeze
+
+  # Contain information about ability to manage list of roles
+  USER_ROLES_HIERARCHY = {
+    superadmin: USER_ROLES.keys,
+    admin: [:manager, :user],
+    manager: [:user],
+    user: []
   }.freeze
 
   validates :first_name, :last_name, :email, :role, presence: true
@@ -46,21 +54,13 @@ class User < ApplicationRecord
 
   enum role: USER_ROLES
 
-  def full_name
-    if first_name.present? || last_name.present?
-      "#{first_name} #{last_name}".to_s
-    else
-      email
-    end
-  end
-
   # We won't set password, we will send inviting
   def password_required?
     return false if new_record?
     super
   end
 
-  def can?(*roles)
+  def is?(*roles)
     roles.each do |role|
       case role
       when :superadmin then return true if superadmin?
@@ -73,12 +73,17 @@ class User < ApplicationRecord
     false
   end
 
-  def active?
-    !disabled
+  # Return true if current user/admin has ability to manage passed user
+  def can_manage?(user)
+    (USER_ROLES_HIERARCHY[role.to_sym] || []).include?(user.role.to_sym)
   end
 
-  def name
-    "#{first_name} #{last_name}"
+  # Return devise scope
+  # :administrator, :user
+  def role_scope
+    USER_ROLES_SCOPES.each do |scope, roles|
+      break scope if is?(*roles)
+    end
   end
 
   filterrific(
@@ -135,9 +140,9 @@ class User < ApplicationRecord
   # Fileter by role
   scope :with_role, lambda { |role|
     if role == 'users'
-      where(role: GROUP_USER_ROLES[:users])
+      where(role: USER_ROLES_SCOPES[:user])
     elsif role == 'administrators'
-      where(role: GROUP_USER_ROLES[:administrators])
+      where(role: USER_ROLES_SCOPES[:administrator])
     end
   }
 
@@ -148,6 +153,6 @@ class User < ApplicationRecord
   end
 
   def self.human_role_options
-    USER_ROLES.keys.map { |role| [human_enum_name(:role, role), role] }
+    USER_ROLES.values.map { |role| [human_enum_name(:role, role), role] }
   end
 end
