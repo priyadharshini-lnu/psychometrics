@@ -3,11 +3,11 @@ class Administration::BasePolicy
 
   def initialize(user, record)
     @user = user
-    @record = record
+    @record = [record].flatten.last
   end
 
   def index?
-    @user.can?(:superadmin)
+    @user.is?(:superadmin)
   end
 
   def show?
@@ -15,7 +15,7 @@ class Administration::BasePolicy
   end
 
   def create?
-    @user.can?(:superadmin)
+    @user.is?(:superadmin)
   end
 
   def new?
@@ -23,7 +23,7 @@ class Administration::BasePolicy
   end
 
   def update?
-    @user.can?(:superadmin)
+    @user.is?(:superadmin)
   end
 
   def edit?
@@ -31,15 +31,15 @@ class Administration::BasePolicy
   end
 
   def destroy?
-    @user.can?(:superadmin)
+    @user.is?(:superadmin)
   end
 
   def copy?
-    @user.can?(:superadmin)
+    @user.is?(:superadmin)
   end
 
   def toggle_status?
-    @user.can?(:superadmin)
+    @user.is?(:superadmin)
   end
 
   def scope

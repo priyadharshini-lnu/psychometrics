@@ -1,6 +1,6 @@
 class Administration::UserPolicy < Administration::BasePolicy
   def index?
-    @user.can?(:superadmin, :admin)
+    @user.is?(:superadmin, :admin)
   end
 
   def new?
@@ -8,7 +8,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def create?
-    @user.can?(:superadmin, :admin)
+    @user.is?(:superadmin, :admin)
   end
 
   def edit?
@@ -16,7 +16,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def update?
-    @user.can?(:superadmin, :admin)
+    @user.is?(:superadmin, :admin)
   end
 
   def toggle_status?
@@ -33,6 +33,10 @@ class Administration::UserPolicy < Administration::BasePolicy
 
   def import?
     create?
+  end
+
+  def spoof?
+    @user.can_manage?(@record)
   end
 
   class Scope

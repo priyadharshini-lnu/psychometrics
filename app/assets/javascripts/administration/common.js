@@ -3,9 +3,11 @@ $(function() {
   $(document).ajaxError(function(){
     noty({text: I18n.t('administration.noty.error_500'), layout: 'topCenter', type: 'error'});
   });
+
   $('.x-navigation .xn-openable .active').each(function() {
     $(this).parents('.xn-openable').addClass('active');
   });
+
   $(document).on('initPlugins', function() {
     window.uiElements.init();
     window.formElements.init();

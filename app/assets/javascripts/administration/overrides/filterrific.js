@@ -17,8 +17,7 @@ window.Filterrific.submitFilterForm = function(){
   });
 };
 
-// Initialize event observers on document ready and turbolinks page:load
-jQuery(document).on('ready page:load', function() {
+window.Filterrific.initListener = function(){
   // Add change event handler to all Filterrific filter inputs.
   $('#filter').on(
     'change',
@@ -32,4 +31,8 @@ jQuery(document).on('ready page:load', function() {
     0.5,
     window.Filterrific.submitFilterForm
   );
-});
+}
+
+// Initialize event observers on document ready and turbolinks page:load
+jQuery(document).on('ready page:load', window.Filterrific.initListener);
+

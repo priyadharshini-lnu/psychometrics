@@ -25,6 +25,12 @@ class BaseDecorator < Draper::Decorator
     end
   end
 
+  # Common method for all entities
+  # Return string
+  def display_name
+    object.name
+  end
+
   def created_at
     I18n.l object.created_at, format: :short
   end

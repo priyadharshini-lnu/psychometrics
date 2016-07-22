@@ -12,7 +12,7 @@ class ApplicationController < ActionController::Base
   # Redirect administrator after log in
   #
   def after_sign_in_path_for(resource)
-    return administration_root_path if resource.superadmin?
+    return administration_root_path if resource.is?(:superadmin, :admin)
     super
   end
 
