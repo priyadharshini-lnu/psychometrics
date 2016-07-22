@@ -6,26 +6,28 @@ module Imports
       XLS_CONFIG = {
           factor_start_row:  4,
           factor_start_ceil: 2,
+          pages_count: 2
       }.freeze
 
-      def initialize(file)
-        super(file)
+      def initialize(file, importer)
+        super(file, importer)
         @cursor_x = 0
         @cursor_y = 0
       end
 
       def process
         ActiveRecord::Base.transaction do
-          @file  = 'ETI_Oman Norms_Mar 2015.xlsx'
           sheets = RubyXL::Parser.parse(@file)
-          sheets.each do |sheet|
-            import_by_sheet(sheet)
+          (0...XLS_CONFIG[:pages_count]).each do |i|
+            import_by_sheet(sheets[i])
           end
         end
         true
       rescue ActiveRecord::RecordInvalid => e
-        puts "[#{e.record.model_name}] [#{human_coordinates}] #{e.record.errors.full_messages[0]}"
-        # raise Errors::ImportError.new("[#{@cursor.join(', ')}] #{e.to_s}")
+        raise Errors::ImportError, "[#{e.record.model_name}] [#{human_coordinates}] #{e.record.errors.full_messages[0]}"
+      rescue Exception => e
+        Rails.logger.error("\n" + e.backtrace.join("\n"))
+        raise Errors::ImportError, I18n.t('administration.imports.errors.norm.incorrect_xls_format')
       end
 
       private
@@ -40,7 +42,7 @@ module Imports
       def import_by_sheet_name(sheet_name)
         sheet_name_arr     = sheet_name.split
         @current_norm_type = sheet_name_arr.pop.downcase
-        @norm              = Norm.create!(name: sheet_name_arr.join('')) unless @norm
+        @norm              = Norm.create!(name: sheet_name_arr.join(''), updated_by: @importer.id) unless @norm
         @dimension         = Dimension.create!(name: sheet_name_arr.join('')) unless @dimension
       end
 
@@ -48,7 +50,7 @@ module Imports
         factor_start_ceil = XLS_CONFIG[:factor_start_ceil] - 1
         factor_start_row  = XLS_CONFIG[:factor_start_row] - 1
         (factor_start_row...@current_sheet.count).each do |i|
-          factor_name = @current_sheet[i][factor_start_ceil].value
+          factor_name = @current_sheet[i][factor_start_ceil].value if  @current_sheet[i][factor_start_ceil].present?
           break unless factor_name
           @cursor_x = factor_start_ceil
           @cursor_y = i
@@ -62,7 +64,7 @@ module Imports
         factor_start_ceil = XLS_CONFIG[:factor_start_ceil] - 1
         factor_start_row  = nil
         (@cursor_y...@current_sheet.count).each do |i|
-          if @current_sheet[i][0].value
+          if @current_sheet[i][0] && @current_sheet[i][0].value
             factor_start_row = i
             break
           end
@@ -70,8 +72,8 @@ module Imports
         (factor_start_row+1...@current_sheet.count).each do |i|
           @cursor_x       = 0
           @cursor_y       = i
-          factor_name     = @current_sheet[i][0].value
-          sub_factor_name = @current_sheet[i][1].value
+          factor_name     = @current_sheet[i][0].value if @current_sheet[i][0]
+          sub_factor_name = @current_sheet[i][1].value if @current_sheet[i][1]
           break unless factor_name
           factor = Factor.where(dimension_id: @dimension.id, name: factor_name).first
           unless factor

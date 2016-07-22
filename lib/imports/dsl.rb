@@ -20,7 +20,7 @@ module Imports
       norm: {
         form: NormImportForm,
         formats: {
-          csv: Imports::Xls::NormImport
+          xls: Imports::Xls::NormImport
         }
       }
     }.freeze
@@ -28,10 +28,13 @@ module Imports
     attr_accessor :config, :resource, :format
 
     def initialize(resource, format)
+      Rails.logger.warn "@initialize "
       @resource = resource.to_sym
       @format   = format.to_sym
       @config   = CONFIG[@resource]
-
+      Rails.logger.warn "@resource #{@resource}"
+      Rails.logger.warn "@@format #{@format}"
+      Rails.logger.warn "@@@config #{@config}"
       raise 'Imports: There is no resource'    unless @config
       raise 'Imports: Invalid config'          unless @config[:form] || !@config[:formats]
       raise 'Imports: Not supported format'    unless @config[:formats][@format]

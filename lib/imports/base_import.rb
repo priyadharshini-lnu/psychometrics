@@ -1,8 +1,9 @@
 module Imports
   class BaseImport
 
-    def initialize(file)
-      @file = file
+    def initialize(file, importer)
+      @importer = importer
+      @file     = file
     end
 
     def process

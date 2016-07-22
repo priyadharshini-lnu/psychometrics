@@ -10,3 +10,4 @@ en:
       errors:
         norm:
           factor_is_not_described: "[#%{coords}] factor %{factor} is not described above"
+          incorrect_xls_format: "Import document is incorrect"
