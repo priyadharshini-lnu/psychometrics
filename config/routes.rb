@@ -49,10 +49,6 @@ Rails.application.routes.draw do
         patch :toggle_status
         get :sidebar
       end
-      collection do
-        get :imports
-        post :import_process
-      end
     end
     resources :surveys
   end

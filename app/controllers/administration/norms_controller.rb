@@ -72,17 +72,6 @@ class Administration::NormsController < Administration::BaseController
     end
   end
 
-  def import
-    @resource.toggle(:disabled).save
-    respond_to do |format|
-      format.js
-    end
-  end
-
-  def import_process
-
-  end
-
   private
 
   def set_resource_class
