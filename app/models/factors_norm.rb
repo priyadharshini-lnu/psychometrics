@@ -26,7 +26,7 @@ class FactorsNorm < ApplicationRecord
       eti: 'eti'
   }.freeze
 
-  LEVELS = ['Very Low', 'Low', 'Average', 'High', 'Very High']
+  LEVELS = ['Very Low', 'Low', 'Average', 'High', 'Very High'].freeze
 
   validates :level, :type, :factor, :norm, presence: true
   validates :type, inclusion: { in: TYPES.values }, allow_nil: true

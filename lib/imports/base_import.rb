@@ -1,6 +1,5 @@
 module Imports
   class BaseImport
-
     def initialize(file, importer)
       @importer = importer
       @file     = file
