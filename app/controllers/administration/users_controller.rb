@@ -92,7 +92,8 @@ class Administration::UsersController < Administration::BaseController
   # Spoof as user
   def spoof
     sign_in(@resource.role_scope, @resource, { bypass: true })
-    redirect_to (@resource.is?(:superadmin, :admin) ? administration_root_path : root_path), success: t('.successfully', display_name: @resource.decorate.display_name)
+    redirect_to (@resource.is?(:superadmin, :admin) ? administration_root_path : root_path),
+                success: t('.successfully', display_name: @resource.decorate.display_name)
   end
 
   private
