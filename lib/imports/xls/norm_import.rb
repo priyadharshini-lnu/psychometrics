@@ -73,9 +73,9 @@ module Imports
           break unless factor_name
           factor = Factor.where(dimension_id: @dimension.id, name: factor_name).first
           unless factor
-            raise Errors::ImportError.new(I18n.t('administration.imports.errors.norm.factor_is_not_described',
+            raise Errors::ImportError, I18n.t('administration.imports.errors.norm.factor_is_not_described',
                                           coords: human_coordinates,
-                                          factor: factor_name))
+                                          factor: factor_name)
           end
           sub_factor = Factor.where(dimension_id: @dimension.id, name: sub_factor_name, parent_id: factor.id).first
           sub_factor = @dimension.factors.create!(name: sub_factor_name, parent_id: factor.id) unless sub_factor
