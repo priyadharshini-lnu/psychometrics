@@ -72,6 +72,15 @@ class Administration::NormsController < Administration::BaseController
     end
   end
 
+  def inplace
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+    @filterrific = initialize_filterrific(
+        policy_scope(@resource_class),
+        params[:filterrific]) || return
+    @resources   = @filterrific.find.page(params[:page])
+  end
+
   private
 
   def set_resource_class

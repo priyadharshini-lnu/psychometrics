@@ -13,6 +13,8 @@ en:
         error: 'Norm #%{id} was not copied.'
       toggle_status:
         successfully: 'Norm was successfully updated.'
+      inplace:
+        title: 'Norm Editor'
       sidebar:
         title: "Norm\'s options"
         disable: 'Disable'
