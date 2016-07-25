@@ -7,7 +7,7 @@ class Administration::NormsController < Administration::BaseController
 
   def index
     @filterrific = initialize_filterrific(
-      policy_scope(@resource_class),
+      policy_scope(@resource_class).includes(:updater),
       params[:filterrific]) || return
     @resources   = @filterrific.find.page(params[:page])
   end
