@@ -51,7 +51,6 @@ gem 'config',                     '~> 1.2.1'
 
 gem 'psychometrics-survey', git: 'git@github.com:SumatoSoft/psychometrics-survey.git'
 ### XLS import
-# TODO use axlsx instead rebyXL (if it is possible)
 gem 'rubyXL',                     '~> 3.0.2'
 gem 'file_validators',            '~> 2.1.0'
 
