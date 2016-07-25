@@ -3,8 +3,8 @@ class FactorDecorator < BaseDecorator
     result = [nil, object.name]
     FactorsNorm::LEVELS.each do |level|
       current_factor_norm = object.factors_norms.where(level: level, type: type).first
-      result << current_factor_norm.try(:score_from)
-      result << current_factor_norm.try(:score_to)
+      result << current_factor_norm.try(:score_from).try(:round, 5)
+      result << current_factor_norm.try(:score_to).try(:round, 5)
     end
     result
   end
@@ -13,8 +13,8 @@ class FactorDecorator < BaseDecorator
     result = [object.root.name, object.name]
     FactorsNorm::LEVELS.each do |level|
       current_factor_norm = object.factors_norms.where(level: level, type: type).first
-      result << current_factor_norm.try(:score_from)
-      result << current_factor_norm.try(:score_to)
+      result << current_factor_norm.try(:score_from).try(:round, 5)
+      result << current_factor_norm.try(:score_to).try(:round, 5)
     end
     result
   end
