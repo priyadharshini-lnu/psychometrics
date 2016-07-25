@@ -1,7 +1,27 @@
 wb = xlsx_package.workbook
-wb.add_worksheet(name: "Buttons") do |sheet|
-  sheet.add_row
-  @norms.each do |button|
-    sheet.add_row [button.name, button.created_at, button.updated_at]
-  end
+FactorsNorm::TYPES.each do |_, type|
+    styles = wb.styles
+    text_center = styles.add_style :alignment => {:horizontal => :center, :vertical => :center }
+    text_bold = styles.add_style :b => true
+
+    wb.add_worksheet(name: "#{@resource.name} #{type.upcase}") do |sheet|
+      sheet.add_row
+      sheet.add_row
+      sheet.add_row @resource.decorate.xls_levels_row, :style => text_center
+      @dimension.factors.roots.each do |factor|
+        sheet.add_row(factor.decorate.xls_factor_score_row(type))
+      end
+      sheet.add_row
+      sheet.add_row
+      sheet.add_row ['factor', 'sub-factor'], :style => text_bold
+      @dimension.factors.no_roots.each do |factor|
+        sheet.add_row factor.decorate.xls_subfactor_score_row(type)
+      end
+
+      sheet.merge_cells "C3:D3"
+      sheet.merge_cells "E3:F3"
+      sheet.merge_cells "G3:H3"
+      sheet.merge_cells "I3:J3"
+      sheet.merge_cells "K3:L3"
+    end
 end

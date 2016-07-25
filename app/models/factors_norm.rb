@@ -22,8 +22,8 @@ class FactorsNorm < ApplicationRecord
 
   # Types constant
   TYPES = {
-      yti: 'yti',
-      eti: 'eti'
+      eti: 'eti',
+      yti: 'yti'
   }.freeze
 
   LEVELS = ['Very Low', 'Low', 'Average', 'High', 'Very High'].freeze

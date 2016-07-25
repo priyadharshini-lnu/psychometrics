@@ -1,6 +1,6 @@
 class Administration::NormsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar]
+  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :export]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -73,7 +73,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def export
-    @norms = Norm.all
+    @dimension = Dimension.last
     respond_to do |format|
       format.xlsx
     end

@@ -12,5 +12,5 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(@resource)}"
     li = link_to t('.copy'), [:copy, :administration, @resource], remote: true
   li.xn-title = t('.import')
   - if policy(@resource).export?
-    li = link_to t('.export'), [:export, :administration, @resource_class.model_name.plural, { format: :xls }], target: :_blank
+    li = link_to t('.export'), [:export, :administration, @resource, { format: :xlsx }], target: :_blank
   li.xn-title = t('.surveys')

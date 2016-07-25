@@ -33,7 +33,7 @@ class Factor < ApplicationRecord
       :search_query
     ]
   )
-
+  scope :no_roots, -> { where.not(parent_id: nil) }
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
