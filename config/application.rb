@@ -17,7 +17,6 @@ module Psychometrics
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.available_locales = [:en]
 
-    config.autoload_paths << Rails.root.join('app/validators')
     config.autoload_paths << Rails.root.join('app/forms')
     config.autoload_paths << Rails.root.join('lib')
 

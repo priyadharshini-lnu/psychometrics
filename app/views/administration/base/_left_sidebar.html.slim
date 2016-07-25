@@ -49,11 +49,12 @@
               a href="#" Organisational
         li.xn-openable
           a href="#" User(s)
-          ul
-            li
-              a href="#" Add New
-            li
-              a href="#" Import
+          - if policy(:user).new? || policy(:user).import?
+            ul
+              - if policy(:user).new?
+                li = link_to t('administration.navigation.users_add'), [:new, :administration, :user], remote: true
+              - if policy(:user).import?
+                li = link_to t('administration.navigation.users_import'), [:new, :administration, :import, { resource: :user, type: :csv }], remote: true
         li
           a href="#" Client Tenancy
         li.xn-openable

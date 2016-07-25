@@ -23,6 +23,8 @@ en:
     navigation: &NAVIGATION
       home: Dashboard
       users: Users
+      users_add: Add New
+      users_import: Import
       dimensions: Dimensions
       factors: Factors
       sub_factors: Sub-Factors
