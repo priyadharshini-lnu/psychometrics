@@ -73,14 +73,12 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def export
-    @resources = policy_scope(@resource_class).all
+    @norms = Norm.all
     respond_to do |format|
-      format.csv do
-        headers['Content-Disposition'] = "attachment; filename=\"#{@resource_class.model_name.plural}-#{Date.today}.xlsx\""
-        headers['Content-Type'] ||= 'application/vnd.ms-excel'
-      end
+      format.xlsx
     end
   end
+
   private
 
   def set_resource_class

@@ -1,0 +1,7 @@
+wb = xlsx_package.workbook
+wb.add_worksheet(name: "Buttons") do |sheet|
+  sheet.add_row
+  @norms.each do |button|
+    sheet.add_row [button.name, button.created_at, button.updated_at]
+  end
+end
