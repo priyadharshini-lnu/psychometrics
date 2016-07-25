@@ -1,5 +1,4 @@
 class FactorDecorator < BaseDecorator
-
   def xls_factor_score_row(type)
     result = [object.root? ? nil : object.root.name, object.name]
     FactorsNorm::LEVELS.each do |level|
