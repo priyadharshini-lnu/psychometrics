@@ -431,10 +431,14 @@ function x_navigation(){
         x_navigation_minimize("close");
     }
 
-    $(".x-navigation li").click(function(event){
-        if ($(this).has('[data-confirm]').length == 1) {
-            return true;
+    $(document).on('click', '.x-navigation li', function(event){
+        if ($(this).has('> [data-confirm]').length == 1) {
+            return false;
         }
+        if ($(this).has('> [data-remote]').length == 1) {
+            return ;
+        }
+
         event.stopPropagation();
 
         var li = $(this);
