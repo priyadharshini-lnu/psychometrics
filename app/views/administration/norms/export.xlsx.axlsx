@@ -15,7 +15,7 @@ FactorsNorm::TYPES.each do |_, type|
       sheet.add_row
       sheet.add_row ['factor', 'sub-factor'], :style => text_bold
       @dimension.factors.no_roots.each do |factor|
-        sheet.add_row factor.decorate.xls_subfactor_score_row(type)
+        sheet.add_row factor.decorate.xls_factor_score_row(type)
       end
 
       sheet.merge_cells "C3:D3"
