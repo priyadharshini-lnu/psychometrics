@@ -73,7 +73,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def export
-    # TODO remove it, when we get relation between norm and dimension
+    # TODO: remove it, when we get relation between norm and dimension
     @dimension = Dimension.last
     respond_to do |format|
       format.xlsx
