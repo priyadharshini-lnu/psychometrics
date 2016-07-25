@@ -51,7 +51,7 @@ gem 'config',                     '~> 1.2.1'
 
 gem 'psychometrics-survey', git: 'git@github.com:SumatoSoft/psychometrics-survey.git'
 ### XLS import
-gem 'rubyXL',                     '~> 3.0.2'
+gem 'rubyXL'
 gem 'file_validators',            '~> 2.1.0'
 
 # For import csv
@@ -61,7 +61,7 @@ gem 'jquery-fileupload-rails',    '~> 0.4.6'
 gem 'redis'
 
 ### dependencies for XLS export (via templates)
-gem 'axlsx', '= 2.0.1'
+gem 'axlsx', github: 'randym/axlsx', ref: '7026a84'
 gem 'axlsx_rails', '~> 0.4.0'
 
 group :development, :test do
