@@ -20,12 +20,12 @@
       = active_link_to(administration_users_path, wrap_tag: :li)
         i.fa.fa-users
         span.xn-text = t('administration.navigation.users')
-    li
-      = active_link_to(administration_norms_path, active: :exclusive, wrap_tag: :li)
+    - if policy(:norm).index?
+      = active_link_to(administration_norms_path, wrap_tag: :li)
         i.fa.fa-file-text-o
         span.xn-text = t('administration.navigation.norms')
-    li
-      = active_link_to(administration_dimensions_path, active: :exclusive, wrap_tag: :li)
+    - if policy(:dimensions).index?
+      = active_link_to(administration_dimensions_path, wrap_tag: :li)
         i.fa.fa-file-text-o
         span.xn-text = t('administration.navigation.dimensions')
     li.xn-openable
