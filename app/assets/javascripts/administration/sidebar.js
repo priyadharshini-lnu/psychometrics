@@ -26,7 +26,8 @@ $(function(){
   // Load sidebar
   $(document).on('load_sidebar', function(e, resource){
     var $resource = $(resource),
-        url = $resource.data('sidebar');
+        url = $resource.data('sidebar'),
+        $panel = $('#sidebar .panel');
 
     // Remove active class from other active tr
     $resource.closest('tbody').
@@ -43,7 +44,13 @@ $(function(){
     $.ajax({
       url: url,
       type: 'GET',
-      dataType: 'script'
+      dataType: 'script',
+      beforeSend: function(){
+        panel_refresh($panel);
+      },
+      complete: function(){
+        panel_refresh($panel);
+      }
     });
   });
 

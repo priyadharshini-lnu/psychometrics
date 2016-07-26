@@ -1,12 +1,12 @@
 .sidebar {
-  position: fixed;
-  z-index: 10;
+  width: 220px;
+  position: absolute;
+  z-index: 3;
 
   &.right {
     top: 50px;
     right: 0;
     bottom: 0;
-    width: 270px;
     background: #fff;
   }
 
@@ -31,5 +31,10 @@
     font-size: 1.4em;
     text-transform: uppercase;
     text-align: center;
+  }
+
+  .content {
+    height: 100%;
+    border-top: 0;
   }
 }
