@@ -1,7 +1,0 @@
-$('#modal-container').find('.modal').modal('hide');
-$('#modal-container').find('.modal').on('hidden.bs.modal', function(){
-  $('#<%= @resource_class.model_name.plural %>_list').find('tbody').prepend('<%= j render(partial: 'resource', locals: { resource: @resource }) %>')
-      .find('#<%= dom_id(@resource) %>').hide().show('slow');
-  $('#<%= @resource_class.model_name.plural %>_list').find('.no_records').remove();
-  $(document).trigger('initPlugins');
-});
