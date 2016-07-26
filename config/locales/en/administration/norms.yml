@@ -13,7 +13,7 @@ en:
         error: 'Norm #%{id} was not copied.'
       toggle_status:
         successfully: 'Norm was successfully updated.'
-      inplace:
+      editor:
         title: 'Norm Editor'
         factors: 'Factors'
         sub_factors: 'Sub Factors'

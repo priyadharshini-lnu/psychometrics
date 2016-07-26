@@ -33,6 +33,6 @@ en:
       survey: Survey
       norm: Norm
       norms: Norms
-      norms_inplace: Norm Editor
+      norms_editor: Norm Editor
     breadcrumbs:
       <<: *NAVIGATION

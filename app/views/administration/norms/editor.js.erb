@@ -1,0 +1,6 @@
+<% resources_list = escape_javascript(
+  render(partial: 'editor-list')
+) %>
+$('#editor-container').html('<%= resources_list %>');
+
+$(document).trigger('initPlugins');

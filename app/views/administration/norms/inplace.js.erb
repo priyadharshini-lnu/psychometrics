@@ -1,6 +1,0 @@
-<% resources_list = escape_javascript(
-  render(partial: 'inplace-list')
-) %>
-$('#inplace-container').html('<%= resources_list %>');
-
-$(document).trigger('initPlugins');

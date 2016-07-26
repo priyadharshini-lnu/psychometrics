@@ -3,7 +3,7 @@ class Administration::NormPolicy < Administration::BasePolicy
     create?
   end
 
-  def inplace?
+  def editor?
     create?
   end
 

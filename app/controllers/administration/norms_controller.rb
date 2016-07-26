@@ -1,6 +1,6 @@
 class Administration::NormsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :export, :inplace]
+  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :export, :editor]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -83,12 +83,12 @@ class Administration::NormsController < Administration::BaseController
     end
   end
 
-  def inplace
+  def editor
     @filter_data = NormInplaceFilterForm.new(inplace_filter_params)
     # TODO: remove it, when we get relation between norm and dimension
     @dimension = Dimension.last
     add_breadcrumb @resource.name
-    add_breadcrumb I18n.t('administration.breadcrumbs.norms_inplace')
+    add_breadcrumb I18n.t('administration.breadcrumbs.norms_editor')
     respond_to do |format|
       format.js
       format.html
