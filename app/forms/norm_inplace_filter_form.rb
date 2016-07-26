@@ -1,4 +1,4 @@
-class NormInplaceForm < BaseForm
+class NormInplaceFilterForm < BaseForm
   attr_accessor :factor_type, :norm_type
   validates :norm_type, inclusion: { in: FactorsNorm::NORM_TYPES }, allow_nil: true
   validates :factor_type, inclusion: { in: FactorsNorm::FACTOR_TYPES }, allow_nil: true

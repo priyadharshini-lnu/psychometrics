@@ -84,7 +84,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def inplace
-    @filter_data = NormInplaceForm.new(inplace_filter_params)
+    @filter_data = NormInplaceFilterForm.new(inplace_filter_params)
     # TODO: remove it, when we get relation between norm and dimension
     @dimension = Dimension.last
     add_breadcrumb @resource.name
