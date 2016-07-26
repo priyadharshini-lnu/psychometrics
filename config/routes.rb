@@ -54,6 +54,8 @@ Rails.application.routes.draw do
         get :export
       end
     end
+
+    resources :factors_norms
     resources :surveys
   end
 

@@ -84,7 +84,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def editor
-    @filter_data = NormInplaceFilterForm.new(inplace_filter_params)
+    @filter_data = NormEditorForm.new(editor_params)
     # TODO: remove it, when we get relation between norm and dimension
     @dimension = Dimension.last
     add_breadcrumb @resource.name
@@ -114,7 +114,7 @@ class Administration::NormsController < Administration::BaseController
     params.require(:resource).permit(:name, :favourite)
   end
 
-  def inplace_filter_params
+  def editor_params
     params.permit(:norm_type, :factor_type)
   end
 

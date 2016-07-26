@@ -43,3 +43,6 @@
 //= require jquery-fileupload/basic
 
 //= require_tree ./administration
+
+//= require x-editable/dist/bootstrap3-editable/js/bootstrap-editable
+

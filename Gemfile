@@ -82,3 +82,7 @@ group :development do
   gem 'capistrano-rails',         '~> 1.1.6'
   gem 'capistrano-rvm',           '~> 0.1.2'
 end
+
+source 'https://rails-assets.org' do
+  gem 'rails-assets-x-editable', '1.5.0'
+end

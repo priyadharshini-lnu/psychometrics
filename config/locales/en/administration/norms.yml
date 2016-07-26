@@ -17,6 +17,7 @@ en:
         title: 'Norm Editor'
         factors: 'Factors'
         sub_factors: 'Sub Factors'
+        inplace_title: 'Enter value'
       sidebar:
         title: "Norm\'s options"
         disable: 'Disable'

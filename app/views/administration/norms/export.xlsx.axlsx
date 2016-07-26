@@ -10,13 +10,13 @@ FactorsNorm::NORM_TYPES.each do |type|
       sheet.add_row
       sheet.add_row @resource.decorate.xls_levels_row, :style => text_center
       @dimension.factors.roots.each do |factor|
-        sheet.add_row([nil] + factor.decorate.factor_score_row(type))
+        sheet.add_row([nil] + factor.decorate.factor_score_row(type).pluck(:value))
       end
       sheet.add_row
       sheet.add_row
       sheet.add_row ['factor', 'sub-factor'], :style => text_bold
       @dimension.factors.no_roots.each do |factor|
-        sheet.add_row factor.decorate.factor_score_row(type)
+        sheet.add_row factor.decorate.factor_score_row(type).pluck(:value)
       end
 
       sheet.merge_cells "C3:D3"

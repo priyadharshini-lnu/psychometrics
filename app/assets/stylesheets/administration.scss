@@ -5,6 +5,7 @@
 @import 'jquery.fileupload-ui';
 
 @import 'common/helper';
-@import 'administration/overrides/bootstrap';
+@import 'administration/overrides/editable';
 @import './administration/*';
-@import 'psychometrics_app'
+@import 'psychometrics_app';
+@import 'x-editable/dist/bootstrap3-editable/css/bootstrap-editable';

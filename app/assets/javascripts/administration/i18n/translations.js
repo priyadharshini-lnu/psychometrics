@@ -4,14 +4,33 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "attributes": {
       "dimension": {
         "active": "Active",
-        "craeted_at": "Created",
-        "favourite": "Favourite",
+        "created_at": "Created",
         "id": "ID",
         "name": "Name",
         "updated_at": "Modified"
       },
+      "factor": {
+        "active": "Active",
+        "created_at": "Created",
+        "favourite": "Favourite",
+        "id": "ID",
+        "name": "Name",
+        "parent_id": "Parent",
+        "questions_count": "No. Questions",
+        "subfactors_count": "No. Sub-Factors",
+        "updated_at": "Modified"
+      },
+      "norm": {
+        "active": "Active",
+        "created_at": "Created",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified",
+        "updated_by": "Edited by"
+      },
       "user": {
         "active": "Active",
+        "created_at": "Created",
         "current_password": "Current password",
         "disabled": "Disable",
         "email": "E-mail",
@@ -29,7 +48,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "superadmin": "Super Admin",
           "user": "User"
         },
-        "unlock_token": "Unlock token"
+        "unlock_token": "Unlock token",
+        "updated_at": "Modified"
       }
     },
     "errors": {
@@ -39,10 +59,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "has_many": "Cannot delete record because dependent %{record} exist",
           "has_one": "Cannot delete record because a dependent %{record} exists"
         }
+      },
+      "models": {
+        "factors_norm": {
+          "score_to_less_than_score_from": "is less than Score from"
+        }
       }
     },
     "models": {
       "dimension": "Dimensions",
+      "factor": "Factors",
+      "factors_norm": "factors_norms",
+      "norm": "Norms",
       "user": "Users"
     }
   },
@@ -61,20 +89,29 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "breadcrumbs": {
       "dimension": "Dimension",
       "dimensions": "Dimensions",
+      "factors": "Factors",
       "home": "Dashboard",
+      "norm": "Norm",
+      "norms": "Norms",
+      "norms_editor": "Norm Editor",
+      "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
-      "users": "Users"
+      "users": "Users",
+      "users_add": "Add New",
+      "users_import": "Import"
     },
+    "choose": " - Choose - ",
     "clear": "Clear",
     "close": "Close",
     "copy": "Copy",
+    "create": "Create",
     "dimensions": {
       "copy": {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully_destroyed": "Dimension #%{id} was successfully destroyed."
+        "successfully": "Dimension #%{id} was successfully destroyed."
       },
       "edit": {
         "header": "Edit dimension"
@@ -85,6 +122,15 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "new": {
         "header": "New dimension"
       },
+      "sidebar": {
+        "assign": "Assign Dimension",
+        "copy": "Copy Dimension",
+        "disable": "Disable",
+        "edit": "Edit",
+        "enable": "Enable",
+        "new": "New Dimension",
+        "title": "Dimension's options"
+      },
       "toggle_status": {
         "successfully": "Dimension was successfully updated."
       }
@@ -92,17 +138,105 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "disable": "Disable",
     "edit": "Edit",
     "enable": "Enable",
+    "factors": {
+      "copy": {
+        "error": "Factor #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Factor #%{id} was successfully destroyed."
+      },
+      "edit": {
+        "header": "Edit factor"
+      },
+      "index": {
+        "title": "Factors"
+      },
+      "new": {
+        "header": "New factor"
+      },
+      "sidebar": {
+        "edit": "Edit Factor",
+        "new": "Add Factor",
+        "remove": "Remove Factor",
+        "title": "Factor's options"
+      },
+      "toggle_status": {
+        "successfully": "Factor was successfully updated."
+      }
+    },
+    "imports": {
+      "csv": {
+        "not_valid": "[Row %{row}] %{error}"
+      },
+      "errors": {
+        "norm": {
+          "factor_is_not_described": "[#%{coords}] factor %{factor} is not described above"
+        }
+      },
+      "form": {
+        "import": "Import"
+      },
+      "new": {
+        "header": "Import"
+      }
+    },
     "meta_title": "Administration panel",
     "navigation": {
       "dimension": "Dimension",
       "dimensions": "Dimensions",
+      "factors": "Factors",
       "home": "Dashboard",
+      "norm": "Norm",
+      "norms": "Norms",
+      "norms_editor": "Norm Editor",
+      "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
-      "users": "Users"
+      "users": "Users",
+      "users_add": "Add New",
+      "users_import": "Import"
     },
     "new": "New",
     "no_data_found": "No data found",
+    "norms": {
+      "copy": {
+        "error": "Norm #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Norm #%{id} was successfully destroyed."
+      },
+      "edit": {
+        "header": "Edit norm"
+      },
+      "editor": {
+        "factors": "Factors",
+        "inplace_title": "Enter value",
+        "sub_factors": "Sub Factors",
+        "title": "Norm Editor"
+      },
+      "index": {
+        "title": "Norms"
+      },
+      "new": {
+        "header": "New norm"
+      },
+      "sidebar": {
+        "assign": "Assign Norm",
+        "copy": "Copy Norm",
+        "disable": "Disable",
+        "edit": "Edit Norm",
+        "enable": "Enable",
+        "export": "Export Norm",
+        "import": "Import Norm",
+        "new": "New Norm",
+        "surveys": "Linked Surveys",
+        "title": "Norm's options",
+        "view": "View Norm"
+      },
+      "toggle_status": {
+        "successfully": "Norm was successfully updated."
+      }
+    },
     "noty": {
       "error_500": "Something went wrong. Contact your administrator."
     },
@@ -114,6 +248,30 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "psychometrics": "Psychometrics",
     "search": "Search",
     "show": "Show",
+    "sub_factors": {
+      "copy": {
+        "error": "Sub-Factor #%{id} was not copied."
+      },
+      "destroy": {
+        "successfully": "Sub-Factor #%{id} was successfully destroyed."
+      },
+      "edit": {
+        "header": "Edit Sub-Factor"
+      },
+      "index": {
+        "title": "Sub-Factors"
+      },
+      "new": {
+        "header": "New Sub-Factor"
+      },
+      "sidebar": {
+        "edit": "Edit",
+        "title": "Sub-Factor's options"
+      },
+      "toggle_status": {
+        "successfully": "Sub-Factor was successfully updated."
+      }
+    },
     "update": "Update",
     "users": {
       "create": {
@@ -148,6 +306,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "resource": {
         "confirmations": {
+          "change_password": {
+            "body": "<p>Are you sure you want to send instructions with link to change password?</p>\n",
+            "title": "Change <strong>password</strong> ?"
+          },
           "delete": {
             "body": "<p>Are you sure you want to delete this user?</p>\n",
             "title": "Delete <strong>User</strong> ?"
@@ -171,8 +333,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "import_users": "Import Users",
         "login_as_user": "Login as User",
         "new_user": "New User",
-        "title": "User's options",
+        "title": "#%{id} user's options",
         "view_report": "View Report(s)"
+      },
+      "spoof": {
+        "successfully": "You was successfully sign in as %{display_name}"
       },
       "toggle_status": {
         "successfully": "User was successfully updated."
@@ -481,6 +646,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "format": "%{attribute} %{message}",
     "messages": {
       "accepted": "must be accepted",
+      "allowed_file_content_types": "file should be one of %{types}",
       "already_confirmed": "was already confirmed, please try signing in",
       "blank": "can't be blank",
       "confirmation": "doesn't match %{attribute}",
@@ -488,8 +654,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "empty": "can't be empty",
       "equal_to": "must be equal to %{count}",
       "even": "must be even",
+      "excluded_file_content_types": "file cannot be %{types}",
       "exclusion": "is reserved",
       "expired": "has expired, please request a new one",
+      "file_size_is_greater_than": "file size must be greater than %{count}",
+      "file_size_is_greater_than_or_equal_to": "file size must be greater than or equal to %{count}",
+      "file_size_is_in": "file size must be between %{min} and %{max}",
+      "file_size_is_less_than": "file size must be less than %{count}",
+      "file_size_is_less_than_or_equal_to": "file size must be less than or equal to %{count}",
       "greater_than": "must be greater than %{count}",
       "greater_than_or_equal_to": "must be greater than or equal to %{count}",
       "inclusion": "is not included in the list",
@@ -560,6 +732,125 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "create": "Create %{model}",
       "submit": "Save %{model}",
       "update": "Update %{model}"
+    }
+  },
+  "i18n_tasks": {
+    "add_missing": {
+      "added": {
+        "one": "Added %{count} key",
+        "other": "Added %{count} keys"
+      }
+    },
+    "cmd": {
+      "args": {
+        "default_text": "Default: %{value}",
+        "desc": {
+          "confirm": "Confirm automatically",
+          "data_format": "Data format: %{valid_text}.",
+          "key_pattern": "Filter by key pattern (e.g. 'common.*')",
+          "key_pattern_to_rename": "Full key (pattern) to rename. Required",
+          "locale": "i18n_tasks.common.locale",
+          "locale_to_translate_from": "Locale to translate from",
+          "locales_filter": "Locale(s) to process. Special: base",
+          "missing_types": "Filter by types: %{valid}",
+          "new_key_name": "New name, interpolates original name as %{key}. Required",
+          "nostdin": "Do not read from stdin",
+          "out_format": "Output format: %{valid_text}",
+          "pattern_router": "Use pattern router: keys moved per config data.write",
+          "strict": "Avoid inferring dynamic key usages such as t(\"cats.#{cat}.name\"). Takes precedence over the config setting if set.",
+          "value": "Value. Interpolates: %{value}, %{human_key}, %{key}, %{default}, %{value_or_human_key}, %{value_or_default_or_human_key}"
+        }
+      },
+      "desc": {
+        "add_missing": "add missing keys to locale data",
+        "config": "display i18n-tasks configuration",
+        "data": "show locale data",
+        "data_merge": "merge locale data with trees",
+        "data_remove": "remove keys present in tree from data",
+        "data_write": "replace locale data with tree",
+        "eq_base": "show translations equal to base value",
+        "find": "show where keys are used in the code",
+        "gem_path": "show path to the gem",
+        "health": "is everything OK?",
+        "irb": "start REPL session within i18n-tasks context",
+        "missing": "show missing translations",
+        "normalize": "normalize translation data: sort and move to the right files",
+        "remove_unused": "remove unused keys",
+        "translate_missing": "translate missing keys with Google Translate",
+        "tree_convert": "convert tree between formats",
+        "tree_filter": "filter tree by key pattern",
+        "tree_merge": "merge trees",
+        "tree_rename_key": "rename tree node",
+        "tree_set_value": "set values of keys, optionally match a pattern",
+        "tree_subtract": "tree A minus the keys in tree B",
+        "tree_translate": "Google Translate a tree to root locales",
+        "unused": "show unused translations",
+        "xlsx_report": "save missing and unused translations to an Excel file"
+      },
+      "encourage": [
+        "Good job!",
+        "Well done!",
+        "Perfect!"
+      ],
+      "enum_list_opt": {
+        "invalid": "%{invalid} is not in: %{valid}."
+      },
+      "enum_opt": {
+        "invalid": "%{invalid} is not one of: %{valid}."
+      },
+      "errors": {
+        "invalid_format": "invalid format: %{invalid}. valid: %{valid}.",
+        "invalid_locale": "invalid locale: %{invalid}",
+        "invalid_missing_type": {
+          "one": "invalid type: %{invalid}. valid: %{valid}.",
+          "other": "unknown types: %{invalid}. valid: %{valid}."
+        },
+        "pass_forest": "pass locale forest"
+      }
+    },
+    "common": {
+      "base_value": "Base Value",
+      "continue_q": "Continue?",
+      "key": "Key",
+      "locale": "Locale",
+      "n_more": "%{count} more",
+      "type": "Type",
+      "value": "Value"
+    },
+    "data_stats": {
+      "text": "has %{key_count} keys across %{locale_count} locales. On average, values are %{value_chars_avg} characters long, keys have %{key_segments_avg} segments, a locale has %{per_locale_avg} keys.",
+      "text_single_locale": "has %{key_count} keys in total. On average, values are %{value_chars_avg} characters long, keys have %{key_segments_avg} segments.",
+      "title": "Forest (%{locales})"
+    },
+    "google_translate": {
+      "errors": {
+        "no_api_key": "Set Google API key via GOOGLE_TRANSLATE_API_KEY environment variable or translation.api_key in config/i18n-tasks.yml. Get the key at https://code.google.com/apis/console.",
+        "no_results": "Google Translate returned no results. Make sure billing information is set at https://code.google.com/apis/console."
+      }
+    },
+    "health": {
+      "no_keys_detected": "No keys detected. Check data.read in config/i18n-tasks.yml."
+    },
+    "missing": {
+      "details_title": "Value in other locales or source",
+      "none": "No translations are missing."
+    },
+    "remove_unused": {
+      "confirm": {
+        "one": "%{count} translation will be removed from %{locales}.",
+        "other": "%{count} translation will be removed from %{locales}."
+      },
+      "noop": "No unused keys to remove",
+      "removed": "Removed %{count} keys"
+    },
+    "translate_missing": {
+      "translated": "Translated %{count} keys"
+    },
+    "unused": {
+      "none": "Every translation is in use."
+    },
+    "usages": {
+      "none": "No key usages found."
     }
   },
   "no": "No",
@@ -636,6 +927,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "placeholders": {
       "administrator": {
         "active": "Active",
+        "created_at": "Created",
         "current_password": "Current password",
         "disabled": "Disable",
         "email": "E-mail",
@@ -650,18 +942,38 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "manager": "Manager",
           "superadmin": "Super Admin",
           "user": "User"
-        }
+        },
+        "updated_at": "Modified"
       },
       "dimension": {
         "active": "Active",
-        "craeted_at": "Created",
-        "favourite": "Favourite",
+        "created_at": "Created",
         "id": "ID",
         "name": "Name",
         "updated_at": "Modified"
       },
+      "factor": {
+        "active": "Active",
+        "created_at": "Created",
+        "favourite": "Favourite",
+        "id": "ID",
+        "name": "Name",
+        "parent_id": "Parent",
+        "questions_count": "No. Questions",
+        "subfactors_count": "No. Sub-Factors",
+        "updated_at": "Modified"
+      },
+      "norm": {
+        "active": "Active",
+        "created_at": "Created",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified",
+        "updated_by": "Edited by"
+      },
       "user": {
         "active": "Active",
+        "created_at": "Created",
         "current_password": "Current password",
         "disabled": "Disable",
         "email": "E-mail",
@@ -676,7 +988,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "manager": "Manager",
           "superadmin": "Super Admin",
           "user": "User"
-        }
+        },
+        "updated_at": "Modified"
       }
     },
     "required": {

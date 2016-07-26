@@ -8,5 +8,7 @@ table.table.table-bordered.table-actions.table-hover.selectable.mbn.table-conden
   tbody
     - @dimension.factors.no_roots.each do |factor|
       tr
-        - factor.decorate.factor_score_row(@filter_data.norm_type).each do |value|
-          td.text-center = value if value
+        - factor.decorate.factor_score_row(@filter_data.norm_type).each do |data|
+          td.text-center
+            div class="#{'editable' if data[:id]}" data-pk="#{data[:id]}"  data-name=data[:name] data-url="#{url_for(administration_factors_norm_path(data[:id])) if data[:id]}"
+              = data[:value] if data[:value]
