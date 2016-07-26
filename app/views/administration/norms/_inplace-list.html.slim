@@ -1,0 +1,13 @@
+.row.mbm
+  .col-sm-6.phn
+    .btn-group
+      - FactorsNorm::NORM_TYPES.each do |value|
+        = link_to value.upcase,
+                [:inplace, :administration, @resource, factor_type: @filter_data.factor_type, norm_type: value],
+                class: "btn btn-default #{'active' if @filter_data.norm_type == value}", remote: true
+    .btn-group.mll
+      - FactorsNorm::FACTOR_TYPES.each do |value|
+        = link_to t("administration.norms.inplace.#{value}"),
+                [:inplace, :administration, @resource, factor_type: value, norm_type: @filter_data.norm_type],
+                class: "btn btn-default #{'active' if @filter_data.factor_type == value}", remote: true
+= render partial: @filter_data.factor_type

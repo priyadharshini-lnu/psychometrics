@@ -85,16 +85,14 @@ class Administration::NormsController < Administration::BaseController
 
   def inplace
     @filter_data = NormInplaceForm.new(inplace_filter_params)
-    # @norm_type = @filter_params.norm_type == 'yti' ? 'yti' : 'eti'
-    # @factor_type = @filter_params.factor_type == 'sub_factors' ? 'sub_factors' : 'factors'
     # TODO: remove it, when we get relation between norm and dimension
     @dimension = Dimension.last
     add_breadcrumb @resource.name
     add_breadcrumb I18n.t('administration.breadcrumbs.norms_inplace')
-    @filterrific = initialize_filterrific(
-        policy_scope(@resource_class),
-        params[:filterrific]) || return
-    @resources   = @filterrific.find.page(params[:page])
+    respond_to do |format|
+      format.js
+      format.html
+    end
   end
 
   private

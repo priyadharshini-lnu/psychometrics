@@ -1,7 +1,7 @@
 class NormInplaceForm < BaseForm
   attr_accessor :factor_type, :norm_type
-  validates :norm_type, inclusion: { in: FactorsNorm::TYPES.values }, allow_nil: true
-  validates :factor_type, inclusion: { in: %w(sub_factors factors) }, allow_nil: true
+  validates :norm_type, inclusion: { in: FactorsNorm::NORM_TYPES }, allow_nil: true
+  validates :factor_type, inclusion: { in: FactorsNorm::FACTOR_TYPES }, allow_nil: true
 
   def initialize(data)
     super(data)
