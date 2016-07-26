@@ -1,6 +1,6 @@
 class Administration::NormsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :export]
+  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :export, :inplace]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -84,8 +84,13 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def inplace
-    add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+    @filter_data = NormInplaceForm.new(inplace_filter_params)
+    # @norm_type = @filter_params.norm_type == 'yti' ? 'yti' : 'eti'
+    # @factor_type = @filter_params.factor_type == 'sub_factors' ? 'sub_factors' : 'factors'
+    # TODO: remove it, when we get relation between norm and dimension
+    @dimension = Dimension.last
+    add_breadcrumb @resource.name
+    add_breadcrumb I18n.t('administration.breadcrumbs.norms_inplace')
     @filterrific = initialize_filterrific(
         policy_scope(@resource_class),
         params[:filterrific]) || return
@@ -109,6 +114,10 @@ class Administration::NormsController < Administration::BaseController
 
   def resource_params
     params.require(:resource).permit(:name, :favourite)
+  end
+
+  def inplace_filter_params
+    params.permit(:norm_type, :factor_type)
   end
 
   def pundit_authorize

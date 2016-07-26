@@ -64,6 +64,7 @@ gem 'redis'
 gem 'axlsx', github: 'randym/axlsx', ref: '7026a84'
 gem 'axlsx_rails', '~> 0.4.0'
 
+gem 'i18n-tasks'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

@@ -1,0 +1,12 @@
+table.table.table-bordered.table-actions.table-hover.selectable.mbn.table-condensed
+  thead
+    tr
+      th.text-center = t 'administration.norms.inplace.factors'
+      th.text-center = t 'administration.norms.inplace.sub_factors'
+      - FactorsNorm::LEVELS.each do |level|
+        th.text-center colspan="2" width="150" = level
+  tbody
+    - @dimension.factors.no_roots.each do |factor|
+      tr
+        - factor.decorate.factor_score_row(@filter_data.norm_type).each do |value|
+          td.text-center = value if value
