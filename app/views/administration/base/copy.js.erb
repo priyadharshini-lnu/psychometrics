@@ -1,3 +1,12 @@
-$('#resource_list').find('tbody').prepend('<%= j render(partial: 'resource', locals: { resource: @cloned_resource }) %>')
-    .find('#<%= dom_id(@cloned_resource) %>').hide().show('slow');
+$cloned_resource = $('<%= j render(partial: 'resource', locals: { resource: @cloned_resource }) %>').hide();
+$('#<%= @resource_class.model_name.plural %>_list')
+    .find('#<%= dom_id(@cloned_resource) %>')
+    .before($cloned_resource);
+
+$cloned_resource.show('slow');
+
+// Reinit plugins
 $(document).trigger('initPlugins');
+
+// Notify message
+noty({text: '<%= t("administration.#{@resource_class.model_name.plural}.update.successfully") %>', type: 'success'});

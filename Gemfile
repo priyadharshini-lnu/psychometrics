@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'bundler',                    '>= 1.8.4'
 
 gem 'rails',                      '~> 5.0.0'
 gem 'pg',                         '~> 0.18.4'
@@ -11,15 +12,20 @@ gem 'jquery-rails',               '~> 4.1.1'
 gem 'jbuilder',                   '~> 2.5'
 
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-noty'
+end
+
 ### Authentication and authorization
 gem 'devise',                     '~> 4.2.0'
 gem 'devise_invitable',           '~> 1.6.0'
-gem 'role_model',                 '~> 0.8.2'
 gem 'devise-i18n',                '~> 1.1.0'
 gem 'pundit',                     '~> 1.1.0'
-### STYLES
+### Assets
 gem 'bootstrap-sass',             '~> 3.3.6'
 gem 'font-awesome-rails',         '~> 4.6.3.0'
+#gem 'noty-rails',                 '~> 2.3.8'
+
 ### TEMPLATES
 gem 'slim-rails',                 '~> 3.1.0'
 ### FORM BUILDERS

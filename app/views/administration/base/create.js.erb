@@ -16,4 +16,7 @@ $('#modal-container').find('.modal').on('hidden.bs.modal', function(){
 
   // Reinit all plugins
   $(document).trigger('initPlugins');
+
+  // Notify message
+  noty({text: '<%= t("administration.#{@resource_class.model_name.plural}.update.successfully") %>', type: 'success'});
 });
