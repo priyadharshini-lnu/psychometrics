@@ -16,13 +16,14 @@ module Imports
             end
             (1..@sheet.count).each do |row|
               (0..@headers.size).each do |cell|
-              @sheet[row]
+                @sheet[row][cell]
+              end
             end
           end
-          true
         rescue ActiveRecord::RecordInvalid => e
           raise Errors::ImportError, "[#{human_coordinates}] #{e.record.errors.full_messages[0]}"
         end
+        true
       end
 
       private
