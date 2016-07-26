@@ -4,3 +4,13 @@
   color: inherit;
   display: block;
 }
+
+.list {
+  margin-bottom: 0;
+
+  tbody {
+    .fa {
+      margin-right: 0;
+    }
+  }
+}

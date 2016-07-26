@@ -20,7 +20,7 @@ en:
       spoof:
         successfully: You was successfully sign in as %{display_name}
       sidebar:
-        title: "user's options (#%{id})"
+        title: User's options (#%{id})
         disable: Disable
         enable: Enable
         edit_user: Edit User

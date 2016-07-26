@@ -11,17 +11,17 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td = resource.decorate.created_at
   td
     = confirmation_link [:reset_password, :administration, resource], method: :get, class: 'btn btn-default btn-rounded btn-sm mrm', data: { confirm: t('.confirmations.change_password.body'), confirm_title: t('.confirmations.change_password.title'), icon: 'fa-key', toggle: 'tooltip', title: t('.tooltips.change_password') }
-      i.fa.fa-key.man
+      i.fa.fa-key
     - if policy(resource).spoof?
       = link_to [:spoof, :administration, resource], class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.sign_in') }
-        i.fa.fa-sign-in.man
+        i.fa.fa-sign-in
     = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.chart') }
-      i.fa.fa-pie-chart.man
+      i.fa.fa-pie-chart
     = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.mail') }
-      i.fa.fa-envelope-o.man
+      i.fa.fa-envelope-o
     - if policy(resource).edit?
       = link_to [:edit, :administration, resource], class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
-        i.fa.fa-pencil.man
+        i.fa.fa-pencil
     - if policy(resource).destroy?
       = confirmation_link [:administration, resource], method: :delete, class: 'btn btn-danger btn-rounded btn-sm', data: { confirm: t('.confirmations.delete.body'), confirm_title: t('.confirmations.delete.title'), icon: 'fa-times', toggle: 'tooltip', title: t('.tooltips.delete') }
-        i.fa.fa-times.man
+        i.fa.fa-times
