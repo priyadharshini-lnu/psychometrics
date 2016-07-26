@@ -65,6 +65,8 @@ class User < ApplicationRecord
 
   enum role: USER_ROLES
 
+  before_validation :check_operator_can_manage
+
   # We won't set password, we will send inviting
   def password_required?
     return false if new_record?
@@ -170,12 +172,9 @@ class User < ApplicationRecord
     end
   end
 
-  before_validation :check_operator_can_manage
-
   private
 
   def check_operator_can_manage
     errors.add(:role, :invalid) if operator.nil? || !operator.try(:can_manage?, self)
   end
-
 end

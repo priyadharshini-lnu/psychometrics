@@ -12,19 +12,19 @@ module Imports
     #
     CONFIG = {
       user: {
-        form: UserImportForm,
+        form: Imports::UserForm,
         formats: {
           csv: Imports::Csv::UserImport
         }
       },
       hris: {
-        form: HrisImportForm,
+        form: Imports::HrisForm,
         formats: {
           xls: Imports::Xls::HrisImport
         }
       },
       norm: {
-        form: NormImportForm,
+        form: Imports::NormForm,
         formats: {
           xls: Imports::Xls::NormImport
         }
