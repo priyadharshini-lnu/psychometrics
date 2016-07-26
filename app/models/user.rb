@@ -65,7 +65,7 @@ class User < ApplicationRecord
 
   enum role: USER_ROLES
 
-  before_validation :check_operator_can_manage
+  before_validation :check_operator_can_manage, if: :role_changed?
 
   # We won't set password, we will send inviting
   def password_required?
