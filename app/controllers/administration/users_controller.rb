@@ -14,6 +14,11 @@ class Administration::UsersController < Administration::BaseController
         with_role: @resource_class.options_for_with_role
       }) || return
     @resources = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js { render :index, formats: [:js] }
+    end
   end
 
   def new
@@ -22,6 +27,7 @@ class Administration::UsersController < Administration::BaseController
 
   def create
     @resource = @resource_class.new(resource_params)
+    @resource.operator = current_administrator
     respond_to do |format|
       if @resource.save
         @resource.invite!(current_administrator)
@@ -43,6 +49,7 @@ class Administration::UsersController < Administration::BaseController
 
   # PATCH/PUT /administration/resources/1
   def update
+    @resource.operator = current_administrator
     respond_to do |format|
       if @resource.update(resource_params)
         format.html { redirect_to([:administration, @resource_class.model_name.plural], success: t('.successfully')) }

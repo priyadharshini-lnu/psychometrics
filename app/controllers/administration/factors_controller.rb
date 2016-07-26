@@ -11,6 +11,11 @@ class Administration::FactorsController < Administration::BaseController
       policy_scope(@resource_class).roots.with_dimension(@dimension.id),
       params[:filterrific]) || return
     @resources   = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js { render :index, formats: [:js] }
+    end
   end
 
   def new

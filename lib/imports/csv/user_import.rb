@@ -12,7 +12,8 @@ module Imports
           first_name: :first_name,
           last_name: :last_name,
           e_mail: :email,
-          email: :email
+          email: :email,
+          role: :role
         }
       }.freeze
 
@@ -20,10 +21,12 @@ module Imports
         row = 1
         User.transaction do
           SmarterCSV.process(@file, OPTIONS) do |users|
-            users.each do |user|
+            users.each do |user_params|
               row += 1
               begin
-                user = User.create!(user)
+                user_params[:role] = user_params[:role].try(:downcase)
+                user_params[:operator] = @importer
+                user = User.create!(user_params)
               rescue ActiveRecord::RecordInvalid => e
                 raise ::Errors::ImportError, I18n.t('administration.imports.csv.not_valid', row: row, error: e.to_s)
               end

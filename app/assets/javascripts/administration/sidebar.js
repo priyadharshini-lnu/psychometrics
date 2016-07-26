@@ -9,11 +9,11 @@ $(function(){
   });
 
   // Stop propagation, when clicked to action dom
-  $(document).on('click', 'table.selectable tbody tr a', function(event){
+  $(document).on('click', 'table.selectable tbody tr[data-sidebar] a', function(event){
     event.stopPropagation();
   });
 
-  $(document).on('click', 'table.selectable tbody tr', function(event){
+  $(document).on('click', 'table.selectable tbody tr[data-sidebar]', function(event){
     event.stopPropagation();
     $(document).trigger('load_sidebar', [this]);
   });

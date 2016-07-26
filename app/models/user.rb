@@ -34,6 +34,9 @@ class User < ApplicationRecord
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
 
+  # User, who try update or create entity
+  attr_accessor :operator
+
   # Roles constant
   USER_ROLES = {
       superadmin: 'superadmin',
@@ -57,10 +60,12 @@ class User < ApplicationRecord
 
   validates :first_name, :last_name, :email, :role, presence: true
   validates :first_name, :last_name, :email, length: { maximum: 100 }, allow_blank: true
-  validates_with EmailValidator, fields: [:email], allow_nil: true
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
   validates :role, inclusion: { in: USER_ROLES.values }, allow_nil: true
 
   enum role: USER_ROLES
+
+  before_validation :check_operator_can_manage
 
   # We won't set password, we will send inviting
   def password_required?
@@ -83,7 +88,12 @@ class User < ApplicationRecord
 
   # Return true if current user/admin has ability to manage passed user
   def can_manage?(user)
-    (USER_ROLES_HIERARCHY[role.to_sym] || []).include?(user.role.to_sym)
+    can_manage.include?(user.role.to_sym)
+  end
+
+  # Return list of roles, that can manage
+  def can_manage
+    (USER_ROLES_HIERARCHY[role.to_sym] || [])
   end
 
   # Return devise scope
@@ -154,13 +164,17 @@ class User < ApplicationRecord
     end
   }
 
-  # Available role for the filter form
-  #
-  def self.options_for_with_role
-    %w(all users administrators)
+  class << self
+    # Available role for the filter form
+    #
+    def options_for_with_role
+      %w(all users administrators)
+    end
   end
 
-  def self.human_role_options
-    USER_ROLES.values.map { |role| [human_enum_name(:role, role), role] }
+  private
+
+  def check_operator_can_manage
+    errors.add(:role, :invalid) if operator.nil? || !operator.try(:can_manage?, self)
   end
 end

@@ -1,15 +1,20 @@
 class Administration::NormsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar]
+  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :export]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
     @filterrific = initialize_filterrific(
-      policy_scope(@resource_class),
+      policy_scope(@resource_class).includes(:updater),
       params[:filterrific]) || return
     @resources   = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js { render :index, formats: [:js] }
+    end
   end
 
   def new
@@ -17,7 +22,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def create
-    @resource = @resource_class.new(resource_params)
+    @resource         = @resource_class.new(resource_params)
     @resource.creator = current_administrator
     @resource.updater = current_administrator
     respond_to do |format|
@@ -53,7 +58,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def copy
-    @cloned_resource = @resource.clone
+    @cloned_resource         = @resource.clone
     @cloned_resource.updater = current_administrator
     @cloned_resource.creator = current_administrator
     respond_to do |format|
@@ -69,6 +74,17 @@ class Administration::NormsController < Administration::BaseController
     @resource.toggle(:disabled).save
     respond_to do |format|
       format.js
+    end
+  end
+
+  def export
+    # TODO: remove it, when we get relation between norm and dimension
+    @dimension = Dimension.last
+    respond_to do |format|
+      format.xlsx do
+        headers['Content-Disposition'] = "attachment; filename=\"#{@resource.name}-#{Date.today}.xlsx\""
+        headers['Content-Type']        = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
+      end
     end
   end
 
