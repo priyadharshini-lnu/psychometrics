@@ -17,6 +17,12 @@ module Imports
           csv: Imports::Csv::UserImport
         }
       },
+      hris: {
+        form: HrisImportForm,
+        formats: {
+          xls: Imports::Xls::HrisImport
+        }
+      },
       norm: {
         form: NormImportForm,
         formats: {

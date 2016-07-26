@@ -14,6 +14,11 @@ class Administration::UsersController < Administration::BaseController
         with_role: @resource_class.options_for_with_role
       }) || return
     @resources = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js { render :index, formats: [:js] }
+    end
   end
 
   def new
