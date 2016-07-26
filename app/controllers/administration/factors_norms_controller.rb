@@ -1,12 +1,13 @@
 class Administration::FactorsNormsController < Administration::BaseController
   before_action :set_resource, only: [:update]
+  append_before_action :pundit_authorize
 
   def update
     respond_to do |format|
       if @resource.update(resource_params)
-        format.js
+        format.js { head :ok }
       else
-        format.js { render :edit }
+        format.js { render plain: @resource.errors.full_messages[0], status: 400 }
       end
     end
   end
@@ -14,14 +15,14 @@ class Administration::FactorsNormsController < Administration::BaseController
   private
 
   def set_resource
-    @resource = @resource_class.find(params[:id])
-  end
-
-  def set_dimension
-    @dimension = Dimension.find(params[:dimension_id])
+    @resource = FactorsNorm.find(params[:id])
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :dimension_id)
+    params.permit(:score_from, :score_to)
+  end
+
+  def pundit_authorize
+    authorize @resource || FactorsNorm
   end
 end
