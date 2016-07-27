@@ -1,10 +1,6 @@
 class FactorDecorator < BaseDecorator
   def factor_score_row(type)
-    if object.root?
-      result = [value: object.name]
-    else
-      result = [{ value: object.root.name }, { value: object.name }]
-    end
+    result = object.root? ? [value: object.name] : [{ value: object.root.name }, { value: object.name }]
     # TODO: optimize after elaborate of levels (use 1 query instead 5, sort through ruby, or add queue logic in DB)
     FactorsNorm::LEVELS.each do |level|
       current_factor_norm = object.factors_norms.where(level: level, type: type).first
