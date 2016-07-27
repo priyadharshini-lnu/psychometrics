@@ -19,7 +19,7 @@ en:
         sub_factors: 'Sub Factors'
         inplace_title: 'Enter value'
       sidebar:
-        title: "Norm\'s options"
+        title: Norm's options (#%{id})
         disable: 'Disable'
         enable: 'Enable'
         edit: 'Edit Norm'

@@ -14,7 +14,7 @@ en:
       toggle_status:
         successfully: 'Dimension was successfully updated.'
       sidebar:
-        title: Dimension's options
+        title: Dimension's options (#%{id})
         disable: Disable
         enable: Enable
         edit: Edit

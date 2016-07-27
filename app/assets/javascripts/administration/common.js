@@ -15,6 +15,15 @@ $(function() {
     window.formElements.init();
   });
 
+
+  // Noty plugin settings
+  $.noty.defaults.timeout = 4000;
+  $.noty.defaults.layout = 'topCenter';
+  $.noty.defaults.animation.open   = { opacity: 'toggle' };
+  $.noty.defaults.animation.speed  = 100;
+  $.noty.defaults.animation.easing = 'linear';
+
+  // Reload filter form
   $(document).on('reloadList', '#filter', window.Filterrific.submitFilterForm);
 
 });
@@ -26,3 +35,4 @@ $.fn.replaceWithPush = function(a) {
   this.replaceWith($a);
   return $a;
 };
+
