@@ -7,6 +7,11 @@ en:
         title: 'Edit user'
       index:
         title: Users
+        filterrific:
+          with_role:
+            all: All
+            users: Users
+            administrators: Administrators
       create:
         successfully: User was successfully created.
       update:
@@ -20,7 +25,7 @@ en:
       spoof:
         successfully: You was successfully sign in as %{display_name}
       sidebar:
-        title: "#%{id} user's options"
+        title: User's options (#%{id})
         disable: Disable
         enable: Enable
         edit_user: Edit User
@@ -31,11 +36,7 @@ en:
         view_report: View Report(s)
         login_as_user: Login as User
       list:
-        filterrific:
-          with_role:
-            all: All
-            users: Users
-            administrators: Administrators
+
       form:
         choose: ' - Choose - '
       resource:

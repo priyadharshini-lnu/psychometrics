@@ -14,5 +14,5 @@ en:
       toggle_status:
         successfully: 'Sub-Factor was successfully updated.'
       sidebar:
-        title: Sub-Factor's options
+        title: Sub-Factor's options (#%{id})
         edit: Edit

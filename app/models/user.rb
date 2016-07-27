@@ -33,6 +33,7 @@ class User < ApplicationRecord
   # Authentication
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
   # User, who try update or create entity
   attr_accessor :operator
 
@@ -64,10 +65,7 @@ class User < ApplicationRecord
 
   enum role: USER_ROLES
 
-  before_validation :check_operator_can_manage
-  def check_operator_can_manage
-    errors.add(:role, :invalid) if operator.nil? || !operator.try(:can_manage?, self)
-  end
+  before_validation :check_operator_can_manage, if: :role_changed?
 
   # We won't set password, we will send inviting
   def password_required?
@@ -90,7 +88,7 @@ class User < ApplicationRecord
 
   # Return true if current user/admin has ability to manage passed user
   def can_manage?(user)
-    (USER_ROLES_HIERARCHY[role.to_sym] || []).include?(user.role.to_sym)
+    can_manage.include?(user.role.to_sym)
   end
 
   # Return list of roles, that can manage
@@ -172,9 +170,11 @@ class User < ApplicationRecord
     def options_for_with_role
       %w(all users administrators)
     end
+  end
 
-    def human_role_options
-      USER_ROLES.values.map { |role| [human_enum_name(:role, role), role] }
-    end
+  private
+
+  def check_operator_can_manage
+    errors.add(:role, :invalid) if operator.nil? || !operator.try(:can_manage?, self)
   end
 end

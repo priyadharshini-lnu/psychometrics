@@ -13,13 +13,21 @@
           = link_to current_administrator.decorate.display_name, edit_administration_profiles_path, class: 'profile-data-name'
           .profile-data-title = current_administrator.role
     li.xn-title Navigation
-    = active_link_to administration_root_path, active: :exclusive, wrap_tag: :li
+    = active_link_to(administration_root_path, active: :exclusive, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.home'), placement: 'right' })
       i.fa.fa-home
       span.xn-text = t('administration.navigation.home')
     - if policy(:user).index?
-      = active_link_to(administration_users_path, wrap_tag: :li)
+      = active_link_to(administration_users_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.users'), placement: 'right' })
         i.fa.fa-users
         span.xn-text = t('administration.navigation.users')
+    - if policy(:norm).index?
+      = active_link_to(administration_norms_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.norms'), placement: 'right' })
+        i.fa.fa-file-text-o
+        span.xn-text = t('administration.navigation.norms')
+    - if policy(:dimension).index?
+      = active_link_to(administration_dimensions_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.dimensions'), placement: 'right' })
+        i.fa.fa-file-text-o
+        span.xn-text = t('administration.navigation.dimensions')
     li.xn-openable
       a href="#"
         span.xn-text Surveys
@@ -66,10 +74,6 @@
               a href="#" 360
             li
               a href="#" Organisational
-        li
-          = active_link_to t('administration.breadcrumbs.norms'), administration_norms_path, active: :exclusive, wrap_tag: :li
-        li
-          = active_link_to t('administration.breadcrumbs.dimension'), administration_dimensions_path, active: :exclusive, wrap_tag: :li
         li.xn-openable
           a href="#" Benchmarks
           ul

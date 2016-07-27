@@ -1,7 +1,0 @@
-<% sidebar = escape_javascript(
-  render(partial: 'sidebar')
-) %>
-$('#sidebar .content').html('<%= sidebar %>');
-
-// Reinit all plugins
-$(document).trigger('initPlugins');

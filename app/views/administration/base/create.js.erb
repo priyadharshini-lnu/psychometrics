@@ -1,0 +1,22 @@
+$('#modal-container').find('.modal').modal('hide');
+$('#modal-container').find('.modal').on('hidden.bs.modal', function(){
+  // Process to insert new record
+  $('#<%= @resource_class.model_name.plural %>_list').
+    find('tbody').
+    prepend(
+      $('<%= j render(partial: 'resource', locals: { resource: @resource }) %>').hide()
+    ).
+    find('#<%= dom_id(@resource) %>').
+    show('slow');
+
+  // Remove no record row if exist
+  $('#<%= @resource_class.model_name.plural %>_list').
+    find('.no_records').
+    remove();
+
+  // Reinit all plugins
+  $(document).trigger('initPlugins');
+
+  // Notify message
+  noty({text: '<%= t("administration.#{@resource_class.model_name.plural}.update.successfully") %>', type: 'success'});
+});
