@@ -14,7 +14,5 @@ $(function () {
         });
     }
     init();
-    $(document).on('initPlugins', function() {
-        init();
-    });
+    $(document).on('initEditable', init);
 });
