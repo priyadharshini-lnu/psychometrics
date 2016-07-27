@@ -8,12 +8,11 @@
 
 ///// START THIS PAGE PLUGINS
 //= require administration/plugins/icheck/icheck.min.js
-//= require malihu-custom-scrollbar-plugin
+//= require administration/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min
+
 // ---- TODO: insert button for scroll to top
 //= require administration/plugins/scrolltotop/scrolltopcontrol.js
-
 //= require administration/plugins/bootstrap/bootstrap-datepicker.js
-
 //= require administration/plugins/moment.min.js
 //= require administration/plugins/daterangepicker/daterangepicker.js
 
