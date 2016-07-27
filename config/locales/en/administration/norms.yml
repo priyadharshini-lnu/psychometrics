@@ -14,7 +14,7 @@ en:
       toggle_status:
         successfully: 'Norm was successfully updated.'
       sidebar:
-        title: "Norm\'s options"
+        title: Norm's options (#%{id})
         disable: 'Disable'
         enable: 'Enable'
         edit: 'Edit Norm'

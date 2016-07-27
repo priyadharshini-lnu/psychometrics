@@ -1,11 +1,24 @@
+# == Schema Information
+#
+# Table name: norms
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  disabled   :boolean          default(FALSE)
+#  created_by :integer
+#  updated_by :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Norm < ApplicationRecord
   include Copyable
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
+  has_many :factors_norms
 
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
-  validates :name, uniqueness: true
 
   filterrific(
     default_filter_params: {

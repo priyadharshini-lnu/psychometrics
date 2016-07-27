@@ -1,0 +1,12 @@
+en:
+  administration:
+    imports:
+      csv:
+        not_valid: '[Row %{row}] %{error}'
+      new:
+        header: 'Import'
+      form:
+        import: Import
+      errors:
+        norm:
+          factor_is_not_described: "[#%{coords}] factor %{factor} is not described above"

@@ -19,12 +19,23 @@
 #  last_name              :string
 #  disabled               :boolean          default(FALSE)
 #  role                   :enum             default("user")
+#  invitation_token       :string
+#  invitation_created_at  :datetime
+#  invitation_sent_at     :datetime
+#  invitation_accepted_at :datetime
+#  invitation_limit       :integer
+#  invited_by_type        :string
+#  invited_by_id          :integer
+#  invitations_count      :integer          default(0)
 #
 
 class User < ApplicationRecord
   # Authentication
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable
+
+  # User, who try update or create entity
+  attr_accessor :operator
 
   # Roles constant
   USER_ROLES = {
@@ -34,26 +45,27 @@ class User < ApplicationRecord
       user: 'user'
   }.freeze
 
-  GROUP_USER_ROLES = {
-      administrators: USER_ROLES.slice(:superadmin, :admin).keys,
-      users:          USER_ROLES.slice(:manager, :user).keys
+  USER_ROLES_SCOPES = {
+      administrator: USER_ROLES.slice(:superadmin, :admin).keys,
+      user:          USER_ROLES.slice(:manager, :user).keys
+  }.freeze
+
+  # Contain information about ability to manage list of roles
+  USER_ROLES_HIERARCHY = {
+    superadmin: USER_ROLES.keys,
+    admin: [:manager, :user],
+    manager: [:user],
+    user: []
   }.freeze
 
   validates :first_name, :last_name, :email, :role, presence: true
   validates :first_name, :last_name, :email, length: { maximum: 100 }, allow_blank: true
-  validates :email, uniqueness: true
-  validates_with EmailValidator, fields: [:email], allow_nil: true
+  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
   validates :role, inclusion: { in: USER_ROLES.values }, allow_nil: true
 
   enum role: USER_ROLES
 
-  def full_name
-    if first_name.present? || last_name.present?
-      "#{first_name} #{last_name}".to_s
-    else
-      email
-    end
-  end
+  before_validation :check_operator_can_manage, if: :role_changed?
 
   # We won't set password, we will send inviting
   def password_required?
@@ -61,7 +73,7 @@ class User < ApplicationRecord
     super
   end
 
-  def can?(*roles)
+  def is?(*roles)
     roles.each do |role|
       case role
       when :superadmin then return true if superadmin?
@@ -74,12 +86,22 @@ class User < ApplicationRecord
     false
   end
 
-  def active?
-    !disabled
+  # Return true if current user/admin has ability to manage passed user
+  def can_manage?(user)
+    can_manage.include?(user.role.to_sym)
   end
 
-  def name
-    "#{first_name} #{last_name}"
+  # Return list of roles, that can manage
+  def can_manage
+    (USER_ROLES_HIERARCHY[role.to_sym] || [])
+  end
+
+  # Return devise scope
+  # :administrator, :user
+  def role_scope
+    USER_ROLES_SCOPES.each do |scope, roles|
+      break scope if is?(*roles)
+    end
   end
 
   filterrific(
@@ -136,19 +158,23 @@ class User < ApplicationRecord
   # Fileter by role
   scope :with_role, lambda { |role|
     if role == 'users'
-      where(role: GROUP_USER_ROLES[:users])
+      where(role: USER_ROLES_SCOPES[:user])
     elsif role == 'administrators'
-      where(role: GROUP_USER_ROLES[:administrators])
+      where(role: USER_ROLES_SCOPES[:administrator])
     end
   }
 
-  # Available role for the filter form
-  #
-  def self.options_for_with_role
-    %w(all users administrators)
+  class << self
+    # Available role for the filter form
+    #
+    def options_for_with_role
+      %w(all users administrators)
+    end
   end
 
-  def self.human_role_options
-    USER_ROLES.keys.map { |role| [human_enum_name(:role, role), role] }
+  private
+
+  def check_operator_can_manage
+    errors.add(:role, :invalid) if operator.nil? || !operator.try(:can_manage?, self)
   end
 end

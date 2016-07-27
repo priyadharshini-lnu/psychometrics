@@ -1,15 +1,15 @@
 class Administration::ExamplePolicy < Administration::BasePolicy
   def index?
-    @user.can?(:admin, :superadmin)
+    @user.is?(:admin, :superadmin)
     # false
   end
 
   def destroy?
-    @user.can?(:admin, :superadmin)
+    @user.is?(:admin, :superadmin)
   end
 
   def new?
-    @user.can?(:admin, :superadmin)
+    @user.is?(:admin, :superadmin)
   end
 
   def create?
@@ -17,7 +17,7 @@ class Administration::ExamplePolicy < Administration::BasePolicy
   end
 
   def edit?
-    @user.can?(:admin, :superadmin)
+    @user.is?(:admin, :superadmin)
   end
 
   def update?

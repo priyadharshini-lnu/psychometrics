@@ -9,11 +9,11 @@ $(function(){
   });
 
   // Stop propagation, when clicked to action dom
-  $(document).on('click', 'table.selectable tbody tr a', function(event){
+  $(document).on('click', 'table.selectable tbody tr[data-sidebar] a, #modal-container .modal', function(event){
     event.stopPropagation();
   });
 
-  $(document).on('click', 'table.selectable tbody tr', function(event){
+  $(document).on('click', 'table.selectable tbody tr[data-sidebar]', function(event){
     event.stopPropagation();
     $(document).trigger('load_sidebar', [this]);
   });
@@ -26,7 +26,8 @@ $(function(){
   // Load sidebar
   $(document).on('load_sidebar', function(e, resource){
     var $resource = $(resource),
-        url = $resource.data('sidebar');
+        url = $resource.data('sidebar'),
+        $panel = $('#sidebar .panel');
 
     // Remove active class from other active tr
     $resource.closest('tbody').
@@ -43,7 +44,13 @@ $(function(){
     $.ajax({
       url: url,
       type: 'GET',
-      dataType: 'script'
+      dataType: 'script',
+      beforeSend: function(){
+        panel_refresh($panel);
+      },
+      complete: function(){
+        panel_refresh($panel);
+      }
     });
   });
 

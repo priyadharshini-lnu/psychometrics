@@ -1,0 +1,20 @@
+= simple_form_for(@form, as: :import, url: { action: :create, resource: @import.resource, type: @import.format }, remote: true, html: { multipart: true }) do |f|
+  .modal-body
+    .form-inputs.clearfix
+      = f.input :file, as: :file
+  .modal-footer
+    .btn-group
+      = f.button :submit, t('.import'), type: :button, class: 'btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+javascript:
+  $(function(){
+    $('#new_import').fileupload({
+      autoUpload: false,
+      replaceFileInput:false,
+      add: function (e, data) {
+        $('#new_import [name="commit"]').off('click').on('click', function () {
+          data.submit();
+        });
+      }
+    });
+  });

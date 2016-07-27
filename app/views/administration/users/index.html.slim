@@ -9,6 +9,7 @@
               span.fa.fa-plus
       .panel-body
         = form_for_filterrific @filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
+          = f.hidden_field :sorted_by
           .row.mbm
             .col-sm-6.phn
               .btn-group data-toggle="buttons"

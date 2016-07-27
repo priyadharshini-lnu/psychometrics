@@ -1,13 +1,28 @@
+# == Schema Information
+#
+# Table name: factors
+#
+#  id               :integer          not null, primary key
+#  name             :string
+#  subfactors_count :integer          default(0)
+#  questions_count  :integer          default(0)
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  dimension_id     :integer
+#  parent_id        :string
+#  disabled         :boolean          default(FALSE)
+#
+
 class Factor < ApplicationRecord
   include Copyable
   has_ancestry ancestry_column: :parent_id
   belongs_to :dimension
   belongs_to :parent, class_name: 'Factor', counter_cache: :subfactors_count
   has_many :sub_factors, foreign_key: :parent_id, class_name: 'Factor'
+  has_many :factors_norms
 
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 100 }, allow_blank: true
-  validates :name, uniqueness: true
 
   filterrific(
     default_filter_params: {
@@ -18,7 +33,7 @@ class Factor < ApplicationRecord
       :search_query
     ]
   )
-
+  scope :no_roots, -> { where.not(parent_id: nil) }
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")

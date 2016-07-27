@@ -10,17 +10,17 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160719133948) do
+ActiveRecord::Schema.define(version: 20160720135509) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "dimensions", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "favourite"
-    t.boolean  "disabled"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.boolean  "favourite",  default: false
+    t.boolean  "disabled",   default: false
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "factors", force: :cascade do |t|
@@ -35,6 +35,9 @@ ActiveRecord::Schema.define(version: 20160719133948) do
     t.index ["dimension_id"], name: "index_factors_on_dimension_id", using: :btree
     t.index ["parent_id"], name: "index_factors_on_parent_id", using: :btree
   end
+
+# Could not dump table "factors_norms" because of following StandardError
+#   Unknown type 'factors_norms_types' for column 'type'
 
   create_table "norms", force: :cascade do |t|
     t.string   "name"

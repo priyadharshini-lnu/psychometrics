@@ -11,6 +11,8 @@ Rails.application.routes.draw do
     root to: 'home#index'
     resource :profiles
 
+    resources :imports, only: [:new, :create]
+
     resources :dimensions do
       member do
         get :copy
@@ -36,9 +38,10 @@ Rails.application.routes.draw do
         patch :toggle_status
         get :sidebar
         get :reset_password
+        get :spoof
       end
       collection do
-        get 'export'
+        get :export
       end
     end
 
@@ -47,6 +50,7 @@ Rails.application.routes.draw do
         get :copy
         patch :toggle_status
         get :sidebar
+        get :export
       end
     end
     resources :surveys

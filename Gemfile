@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+gem 'bundler',                    '>= 1.8.4'
 
 gem 'rails',                      '~> 5.0.0'
 gem 'pg',                         '~> 0.18.4'
@@ -11,15 +12,20 @@ gem 'jquery-rails',               '~> 4.1.1'
 gem 'jbuilder',                   '~> 2.5'
 
 
+source 'https://rails-assets.org' do
+  gem 'rails-assets-noty'
+end
+
 ### Authentication and authorization
 gem 'devise',                     '~> 4.2.0'
 gem 'devise_invitable',           '~> 1.6.0'
-gem 'role_model',                 '~> 0.8.2'
 gem 'devise-i18n',                '~> 1.1.0'
 gem 'pundit',                     '~> 1.1.0'
-### STYLES
+### Assets
 gem 'bootstrap-sass',             '~> 3.3.6'
 gem 'font-awesome-rails',         '~> 4.6.3.0'
+#gem 'noty-rails',                 '~> 2.3.8'
+
 ### TEMPLATES
 gem 'slim-rails',                 '~> 3.1.0'
 ### FORM BUILDERS
@@ -41,13 +47,28 @@ gem 'i18n-js',                    '~> 3.0.0.rc3'
 gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 ### Fixed gem for decorator (rails 5)
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
-
+### Generate schema in each model
 gem 'annotate',                   '~> 2.7.0', github: 'ctran/annotate_models'
+### Tree
 gem 'ancestry',                  github: 'stefankroes/ancestry', branch: '2-1-stable'
+### For organisation ENV variable
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
+
 gem 'psychometrics-survey', git: 'git@github.com:SumatoSoft/psychometrics-survey.git'
+### XLS import
+gem 'rubyXL'
+gem 'file_validators',            '~> 2.1.0'
+
+# For import csv
+gem 'smarter_csv',                '~> 1.1.0'
+# For unpoad file as Ajax
+gem 'jquery-fileupload-rails',    '~> 0.4.6'
 gem 'redis'
+
+### dependencies for XLS export (via templates)
+gem 'axlsx', github: 'randym/axlsx', ref: '7026a84'
+gem 'axlsx_rails', '~> 0.4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

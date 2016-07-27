@@ -1,14 +1,25 @@
+# == Schema Information
+#
+# Table name: dimensions
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  favourite  :boolean
+#  disabled   :boolean
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Dimension < ApplicationRecord
   include Copyable
 
-  has_many :factors
+  has_many :factors, -> { order(id: :asc) }
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
-  validates :name, uniqueness: true
 
   filterrific(
     default_filter_params: {
-      sorted_by: 'created_at_desc'
+      sorted_by: 'id_desc'
     },
     available_filters: [
        :sorted_by,
