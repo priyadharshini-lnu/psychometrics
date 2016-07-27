@@ -8,7 +8,7 @@
 
 ///// START THIS PAGE PLUGINS
 //= require administration/plugins/icheck/icheck.min.js
-//= require administration/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min.js
+//= require malihu-custom-scrollbar-plugin
 // ---- TODO: insert button for scroll to top
 //= require administration/plugins/scrolltotop/scrolltopcontrol.js
 

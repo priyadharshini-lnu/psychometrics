@@ -230,6 +230,12 @@ GEM
       bundler (>= 1.3.0, < 2.0)
       railties (= 5.0.0)
       sprockets-rails (>= 2.0.0)
+    rails-assets-jquery (3.1.0)
+    rails-assets-jquery-mousewheel (3.1.13)
+      rails-assets-jquery (>= 1.2.2)
+    rails-assets-malihu-custom-scrollbar-plugin (3.1.5)
+      rails-assets-jquery (>= 1.6)
+      rails-assets-jquery-mousewheel (>= 3.0.6)
     rails-assets-noty (2.3.8)
     rails-dom-testing (2.0.1)
       activesupport (>= 4.2.0, < 6.0)
@@ -348,6 +354,7 @@ DEPENDENCIES
   puma (~> 3.0)
   pundit (~> 1.1.0)
   rails (~> 5.0.0)
+  rails-assets-malihu-custom-scrollbar-plugin!
   rails-assets-noty!
   redis
   rubyXL
