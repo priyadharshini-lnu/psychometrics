@@ -33,6 +33,25 @@ class FactorsNorm < ApplicationRecord
   validates :score_from, :score_to, numericality: true, allow_nil: true
   validate :score_from_less_than_score_to
 
+  filterrific(
+      available_filters: [
+                                 :by_factor_type,
+                                 :by_norm_type
+                             ]
+  )
+
+  scope :by_factor_type, lambda { |type|
+    type = type.to_s
+    raise "supported types: #{FACTOR_TYPES}" unless FACTOR_TYPES.include? type
+    result = joins(:factor).where('factors.parent_id': nil) if type == 'factors'
+    result = joins(:factor).where.not('factors.parent_id': nil) if type == 'sub_factors'
+    result
+  }
+
+  scope :by_norm_type, lambda { |type|
+    where('type': type)
+  }
+
   private
 
   def score_from_less_than_score_to

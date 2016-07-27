@@ -11,7 +11,7 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  config.log_level = :info
+  config.log_level = :debug
 
   # Show full error reports.
   config.consider_all_requests_local = true

@@ -89,6 +89,12 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def editor
+
+    @filterrific = initialize_filterrific(
+        FactorsNorm,
+        params[:filterrific]) || return
+    @resources   = @filterrific.find.where(norm_id: @resource.id)
+
     @filter_data = NormEditorForm.new(editor_params)
     # TODO: remove it, when we get relation between norm and dimension
     @dimension = Dimension.last
