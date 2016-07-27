@@ -40,8 +40,9 @@
 //= require i18n/translations
 
 //= require jquery-fileupload/basic
+///// inplace edit
+//= require x-editable/dist/bootstrap3-editable/js/bootstrap-editable
 
 //= require_tree ./administration
 
-//= require x-editable/dist/bootstrap3-editable/js/bootstrap-editable
 
