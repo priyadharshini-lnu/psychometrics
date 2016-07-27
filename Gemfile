@@ -90,5 +90,6 @@ group :development do
 end
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery', '1.12'
   gem 'rails-assets-x-editable', '1.5.0'
 end

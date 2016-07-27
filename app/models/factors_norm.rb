@@ -34,6 +34,10 @@ class FactorsNorm < ApplicationRecord
   validate :score_from_less_than_score_to
 
   filterrific(
+      default_filter_params: {
+          by_factor_type: 'factors',
+          by_norm_type: 'eti'
+      },
       available_filters: [
                                  :by_factor_type,
                                  :by_norm_type

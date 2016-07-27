@@ -4,4 +4,18 @@
       .panel-heading
         h3.panel-title = t '.title'
       #editor-container.panel-body
+        = form_for_filterrific @filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
+          .row.mbm
+            .col-sm-12.phn
+              .btn-group data-toggle="buttons"
+                - @filterrific.select_options[:by_norm_type].each do |value|
+                  label class="btn btn-default #{'active' if f.object.by_norm_type == value}"
+                    = f.radio_button(:by_norm_type, value)
+                    = value.upcase
+              .btn-group.mll data-toggle="buttons"
+                - @filterrific.select_options[:by_factor_type].each do |value|
+                  label class="btn btn-default #{'active' if f.object.by_factor_type == value}"
+                    = f.radio_button(:by_factor_type, value)
+                    = t("administration.norms.editor.#{value}")
+            .clearfix
         = render partial: 'editor-list'

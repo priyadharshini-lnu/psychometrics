@@ -92,9 +92,13 @@ class Administration::NormsController < Administration::BaseController
 
     @filterrific = initialize_filterrific(
         FactorsNorm,
-        params[:filterrific]) || return
-    @resources   = @filterrific.find.where(norm_id: @resource.id)
-
+        params[:filterrific],
+        select_options: {
+            by_norm_type: FactorsNorm::NORM_TYPES,
+            by_factor_type: FactorsNorm::FACTOR_TYPES
+        }) || return
+    @resources   = @filterrific.find.where(norm_id: @resource.id).
+        group_by(&:factor_id).inject({}) { |sum, i| sum[i.first] = i.last.group_by(&:level); sum }
     @filter_data = NormEditorForm.new(editor_params)
     # TODO: remove it, when we get relation between norm and dimension
     @dimension = Dimension.last
