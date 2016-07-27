@@ -64,7 +64,7 @@ class User < ApplicationRecord
 
   enum role: USER_ROLES
 
-  before_validation :check_operator_can_manage
+  before_validation :check_operator_can_manage, if: :role_changed?
   def check_operator_can_manage
     errors.add(:role, :invalid) if operator.nil? || !operator.try(:can_manage?, self)
   end
