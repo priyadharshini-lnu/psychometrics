@@ -14,8 +14,6 @@ gem 'jbuilder',                   '~> 2.5'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-noty'
-  # MCustomScrollBar
-  gem 'rails-assets-malihu-custom-scrollbar-plugin'
 end
 
 ### Authentication and authorization
