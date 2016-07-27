@@ -6,9 +6,15 @@ table.table.table-bordered.table-actions.table-hover.selectable.mbn.table-conden
       - FactorsNorm::LEVELS.each do |level|
         th.text-center colspan="2" width="150" = level
   tbody
-    - @dimension.factors.no_roots.each do |factor|
+    - @resources.each do |factor_name, factors_norms|
       tr
-        - factor.decorate.factor_score_row(@filter_data.norm_type).each do |data|
+        td.text-center = factors_norms[FactorsNorm::LEVELS.first].try(:first).try(:parent_factor_name)
+        td.text-center = factor_name
+        - FactorsNorm::LEVELS.each do |level|
+          - current_factor_norm = factors_norms[level].first
           td.text-center
-            div class="#{'editable' if data[:id]}" data-pk="#{data[:id]}"  data-name=data[:name] data-url="#{url_for(administration_factors_norm_path(data[:id])) if data[:id]}"
-              = data.try(:[], :value)
+            div class="editable" data-pk="#{current_factor_norm.try(:id)}"  data-name="score_from" data-url="#{url_for(administration_factors_norm_path(current_factor_norm.id)) if current_factor_norm }"
+              = current_factor_norm.try(:score_from)
+          td.text-center
+            div class="editable" data-pk="#{current_factor_norm.try(:id)}"  data-name="score_to" data-url="#{url_for(administration_factors_norm_path(current_factor_norm.id)) if current_factor_norm }"
+              = current_factor_norm.try(:score_to)
