@@ -89,12 +89,12 @@ class Administration::NormsController < Administration::BaseController
 
   def editor
     @filterrific = initialize_filterrific(
-    FactorsNorm,
-    params[:filterrific],
-    select_options: {
-      by_norm_type: FactorsNorm::NORM_TYPES,
-      by_factor_type: FactorsNorm::FACTOR_TYPES
-    }) || return
+      FactorsNorm,
+      params[:filterrific],
+      select_options: {
+        by_norm_type: FactorsNorm::NORM_TYPES,
+        by_factor_type: FactorsNorm::FACTOR_TYPES
+      }) || return
     @resources = FactorsNorm.structured_hash(
       @filterrific.find.where(norm_id: @resource.id),
       @filterrific.by_factor_type == 'sub_factors'
