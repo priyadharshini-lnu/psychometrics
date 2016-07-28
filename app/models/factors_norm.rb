@@ -35,16 +35,16 @@ class FactorsNorm < ApplicationRecord
 
   filterrific(
     default_filter_params: {
-      by_factor_type: FACTOR_TYPES.first,
-      by_norm_type:   NORM_TYPES.first
+      with_factor_type: FACTOR_TYPES.first,
+      with_norm_type:   NORM_TYPES.first
     },
     available_filters: [
-      :by_factor_type,
-      :by_norm_type
+      :with_factor_type,
+      :with_norm_type
     ]
   )
 
-  scope :by_factor_type, lambda { |type|
+  scope :with_factor_type, lambda { |type|
     type = type.to_s
     raise "supported types: #{FACTOR_TYPES}" unless FACTOR_TYPES.include? type
     result = joins(:factor).where('factors.parent_id': nil) if type == 'factors'
@@ -52,7 +52,7 @@ class FactorsNorm < ApplicationRecord
     result
   }
 
-  scope :by_norm_type, lambda { |type|
+  scope :with_norm_type, lambda { |type|
     where('type': type)
   }
 
@@ -96,7 +96,7 @@ class FactorsNorm < ApplicationRecord
     FactorsNorm::NORM_TYPES.inject(Hash.new({})) do |sum, norm_type|
         sum[norm_type] = {}
         FactorsNorm::FACTOR_TYPES.each do |factor_type|
-          sql = FactorsNorm.by_norm_type(norm_type).by_factor_type(factor_type).where(norm_id: norm_id)
+          sql = FactorsNorm.with_norm_type(norm_type).with_factor_type(factor_type).where(norm_id: norm_id)
           sum[norm_type][factor_type] = FactorsNorm.structured_hash(sql)
         end
         sum

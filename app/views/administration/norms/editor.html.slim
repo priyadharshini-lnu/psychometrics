@@ -8,16 +8,16 @@
           .row.mbm
             .col-sm-12.phn
               .btn-group data-toggle="buttons"
-                - @filterrific.select_options[:by_norm_type].each do |value|
-                  label class="btn btn-default #{'active' if f.object.by_norm_type == value}"
-                    = f.radio_button(:by_norm_type, value)
+                - @filterrific.select_options[:with_norm_type].each do |value|
+                  label class="btn btn-default #{'active' if f.object.with_norm_type == value}"
+                    = f.radio_button(:with_norm_type, value)
                     = value.upcase
               .btn-group.mll data-toggle="buttons"
-                - @filterrific.select_options[:by_factor_type].each do |value|
-                  label class="btn btn-default #{'active' if f.object.by_factor_type == value}"
-                    = f.radio_button(:by_factor_type, value)
+                - @filterrific.select_options[:with_factor_type].each do |value|
+                  label class="btn btn-default #{'active' if f.object.with_factor_type == value}"
+                    = f.radio_button(:with_factor_type, value)
                     = t("administration.norms.editor.#{value}")
             .clearfix
 
         #filterrific_results
-          = render partial: @filterrific.by_factor_type
+          = render partial: @filterrific.with_factor_type

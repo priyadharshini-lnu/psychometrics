@@ -94,11 +94,11 @@ class Administration::NormsController < Administration::BaseController
       FactorsNorm,
       params[:filterrific],
       select_options: {
-        by_norm_type: FactorsNorm::NORM_TYPES,
-        by_factor_type: FactorsNorm::FACTOR_TYPES
+        with_norm_type: FactorsNorm::NORM_TYPES,
+        with_factor_type: FactorsNorm::FACTOR_TYPES
       }) || return
     @resources = FactorsNorm.structured_hash(
-      @filterrific.find.where(norm_id: @resource.id)
+      @filterrific.find.where(norm_id: @resource.id).joins(:factor)
     )
     respond_to do |format|
       format.js
