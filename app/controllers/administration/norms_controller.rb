@@ -90,7 +90,9 @@ class Administration::NormsController < Administration::BaseController
   def editor
     add_breadcrumb @resource.name
     add_breadcrumb I18n.t('administration.breadcrumbs.norms_editor')
-    @filterrific = initialize_filterrific(FactorsNorm, params[:filterrific],
+    @filterrific = initialize_filterrific(
+      FactorsNorm,
+      params[:filterrific],
       select_options: {
         by_norm_type: FactorsNorm::NORM_TYPES,
         by_factor_type: FactorsNorm::FACTOR_TYPES
