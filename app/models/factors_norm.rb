@@ -35,8 +35,8 @@ class FactorsNorm < ApplicationRecord
 
   filterrific(
     default_filter_params: {
-      by_factor_type: 'factors',
-      by_norm_type:   'eti'
+      by_factor_type: FACTOR_TYPES.first,
+      by_norm_type:   NORM_TYPES.first
     },
     available_filters: [
       :by_factor_type,
