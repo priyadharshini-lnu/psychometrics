@@ -82,7 +82,9 @@ class Administration::AssessmentsController < Administration::BaseController
       if @cloned_resource.save
         format.js
       else
-        format.js { render :error, locals: { message: t("administration.#{@resource_class.model_name.plural}.copy.error", { id: @resource.id }) } }
+        format.js do
+          render(:error, locals: { message: t("administration.#{@resource_class.model_name.plural}.copy.error", id: @resource.id) })
+        end
       end
     end
   end

@@ -8,7 +8,6 @@ class Assessment < ApplicationRecord
     '360': '360'
   }.freeze
 
-  #has_many :factors, -> { order(id: :asc) }
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
@@ -20,9 +19,9 @@ class Assessment < ApplicationRecord
       with_category: CATEGORIES.values.first
     },
     available_filters: [
-       :sorted_by,
-       :search_query,
-       :with_category
+      :sorted_by,
+      :search_query,
+      :with_category
     ]
   )
 
@@ -53,7 +52,6 @@ class Assessment < ApplicationRecord
   scope :with_category, lambda { |category|
     where(category: category)
   }
-
 
   class << self
     # Available role for the filter form

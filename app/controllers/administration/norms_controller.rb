@@ -9,7 +9,7 @@ class Administration::NormsController < Administration::BaseController
     @filter = initialize_filterrific(
       policy_scope(@resource_class).includes(:updater),
       params[:filter]) || return
-    @resources   = @filter.find.page(params[:page])
+    @resources = @filter.find.page(params[:page])
 
     respond_to do |format|
       format.html
