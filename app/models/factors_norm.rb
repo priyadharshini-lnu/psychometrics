@@ -81,7 +81,6 @@ class FactorsNorm < ApplicationRecord
     scope.order(id: :asc).group_by(&:factor_name).inject({}) { |sum, i| sum[i.first] = i.last.group_by(&:level); sum }
   end
 
-
   #
   # Return list of structured hashes
   #
