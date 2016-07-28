@@ -8,12 +8,12 @@
             = link_to [:new, :administration, @resource_class.model_name.singular], remote: true do
               span.fa.fa-plus
       .panel-body
-        = form_for_filterrific @filter, as: :filter, html: { class: 'form-inline', id: 'filter' } do |f|
+        = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
           = f.hidden_field :sorted_by
           .row.mbm
             .col-sm-6.phn
               .btn-group data-toggle="buttons"
-                - @filter.select_options[:with_role].each do |value|
+                - @filterrific.select_options[:with_role].each do |value|
                   label class="btn btn-default #{'active' if f.object.with_role == value}"
                     = f.radio_button(:with_role, value)
                     = t(".filterrific.with_role.#{value}")
