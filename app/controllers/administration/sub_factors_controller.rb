@@ -8,10 +8,10 @@ class Administration::SubFactorsController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
-    @filter = initialize_filterrific(
+    @filterrific = initialize_filterrific(
       policy_scope(@resource_class).find(@factor.id).children,
-      params[:filter]) || return
-    @resources = @filter.find.page(params[:page])
+      params[:filterrific]) || return
+    @resources = @filterrific.find.page(params[:page])
 
     respond_to do |format|
       format.html

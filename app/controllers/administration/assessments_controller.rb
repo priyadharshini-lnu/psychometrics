@@ -7,15 +7,15 @@ class Administration::AssessmentsController < Administration::BaseController
 
   # GET /administration/resources
   def index
-    @filter = initialize_filterrific(
+    @filterrific = initialize_filterrific(
       policy_scope(@resource_class),
-      params[:filter],
+      params[:filterrific],
       select_options: {
         with_category: @resource_class.options_for_with_category
       }
     ) || return
 
-    @resources = @filter.find.page(params[:page])
+    @resources = @filterrific.find.page(params[:page])
 
     respond_to do |format|
       format.html
