@@ -1,7 +1,7 @@
 $('#filterrific_results').html('<%= j render(partial: 'list') %>');
 
 // Change form object
-$('#filterrific_sorted_by').val('<%= @filter.sorted_by %>');
+$('#filterrific_sorted_by').val('<%= @filterrific.sorted_by %>');
 
 // Reinit all plugins
 $(document).trigger('initPlugins');
