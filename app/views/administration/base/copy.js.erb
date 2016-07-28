@@ -9,4 +9,4 @@ $cloned_resource.show('slow');
 $(document).trigger('initPlugins');
 
 // Notify message
-noty({text: '<%= t("administration.#{@resource_class.model_name.plural}.update.successfully") %>', type: 'success'});
+noty({text: '<%= t("administration.#{@resource_class.model_name.plural}.copy.successfully", name: @resource.decorate.display_name) %>', type: 'success'});

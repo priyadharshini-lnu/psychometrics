@@ -18,5 +18,5 @@ $('#modal-container').find('.modal').on('hidden.bs.modal', function(){
   $(document).trigger('initPlugins');
 
   // Notify message
-  noty({text: '<%= t("administration.#{@resource_class.model_name.plural}.update.successfully") %>', type: 'success'});
+  noty({text: '<%= t("administration.#{@resource_class.model_name.plural}.update.successfully", name: @resource.decorate.display_name) %>', type: 'success'});
 });

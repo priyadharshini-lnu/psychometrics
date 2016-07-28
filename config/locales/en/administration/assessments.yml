@@ -1,0 +1,44 @@
+en:
+  administration:
+    assessments:
+      index:
+        title: Assessments
+        filterrific:
+          with_category:
+            psychometric: 'Psychometric Assess'
+            organisational: 'Organisational Assess'
+            '360': '360 Assess'
+      new:
+        header: 'New assessment'
+      edit:
+        header: 'Edit assessment'
+      destroy:
+        successfully: 'Assessment %{name} was successfully destroyed.'
+      copy:
+        successfully: 'Assessment %{name} was successfully copied.'
+        error: 'Assessment #%{name} was not copied.'
+      create:
+        successfully: 'Assessment %{name} was successfully created.'
+      update:
+        successfully: 'Assessment %{name} was successfully updated.'
+      toggle_status:
+        successfully: 'Assessment %{name} was successfully updated.'
+      sidebar:
+        title: Assessment's options (#%{id})
+        disable: Disable
+        enable: Enable
+        edit: Edit
+        new: New Assessment
+        copy: Copy Assessment
+        assign: 'Assign Assessment'
+      resource:
+        tooltips:
+          copy: Copy
+          edit: Edit Assessment
+          delete: Delete Assessment
+        confirmations:
+          delete:
+            title:
+              Delete <strong>Assessment</strong> ?
+            body: >
+              <p>Are you sure you want to delete this assessment?</p>
