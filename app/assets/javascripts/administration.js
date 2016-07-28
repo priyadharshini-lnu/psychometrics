@@ -3,7 +3,7 @@
 
 ///// START PLUGINS
 //= require bootstrap-sprockets
-//= require administration/plugins/bootstrap/bootstrap-select.js
+//= require bootstrap-select
 
 
 ///// START THIS PAGE PLUGINS

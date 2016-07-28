@@ -10,10 +10,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160720135509) do
+ActiveRecord::Schema.define(version: 20160727114043) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+# Could not dump table "assessments" because of following StandardError
+#   Unknown type 'assessment_categories' for column 'category'
 
   create_table "dimensions", force: :cascade do |t|
     t.string   "name"

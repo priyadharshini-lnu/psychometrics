@@ -31,6 +31,10 @@ class BaseDecorator < Draper::Decorator
     object.name
   end
 
+  def id
+    "##{object.id}"
+  end
+
   def created_at
     I18n.l object.created_at, format: :short
   end

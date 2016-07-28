@@ -13,26 +13,43 @@ Rails.application.routes.draw do
 
     resources :imports, only: [:new, :create]
 
+    ### ASSESSMENTS
+    resources :assessments do
+      member do
+        get :copy
+        get :sidebar
+        patch :toggle_status
+      end
+    end
+    ### END ASSESSMENTS
+
+    ### DIMENSIONS
     resources :dimensions do
       member do
         get :copy
         get :sidebar
         patch :toggle_status
       end
+      ### FACTORS
       resources :factors do
         member do
           get :copy
           get :sidebar
           patch :toggle_status
         end
+        ### SUB-FACTORS
         resources :sub_factors do
           member do
             get :sidebar
           end
         end
+        ### END SUB-FACTORS
       end
+      ### END FACTORS
     end
+    ### END DIMENSIONS
 
+    ### USERS
     resources :users do
       member do
         patch :toggle_status
@@ -44,7 +61,9 @@ Rails.application.routes.draw do
         get :export
       end
     end
+    ### END USERS
 
+    ### NORMS
     resources :norms do
       member do
         get :copy
@@ -54,6 +73,7 @@ Rails.application.routes.draw do
         get :export
       end
     end
+    ### END NORMS
 
     resources :factors_norms
     resources :surveys

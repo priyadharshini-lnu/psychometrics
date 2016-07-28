@@ -28,16 +28,10 @@
       = active_link_to(administration_dimensions_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.dimensions'), placement: 'right' })
         i.fa.fa-file-text-o
         span.xn-text = t('administration.navigation.dimensions')
-    li.xn-openable
-      a href="#"
-        span.xn-text Surveys
-      ul
-        li
-          a href="#" Psychometric
-        li
-          a href="#" 360
-        li
-          a href="#" Organisational
+    - if policy(:assessment).index?
+      = active_link_to(administration_assessments_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.assessments'), placement: 'right' })
+        i.fa.fa-universal-access
+        span.xn-text= t('administration.navigation.assessments')
     li.xn-openable
       a href="#"
         span.xn-text Create
