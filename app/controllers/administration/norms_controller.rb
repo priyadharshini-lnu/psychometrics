@@ -98,8 +98,7 @@ class Administration::NormsController < Administration::BaseController
         by_factor_type: FactorsNorm::FACTOR_TYPES
       }) || return
     @resources = FactorsNorm.structured_hash(
-      @filterrific.find.where(norm_id: @resource.id),
-      @filterrific.by_factor_type == 'sub_factors'
+      @filterrific.find.where(norm_id: @resource.id)
     )
     respond_to do |format|
       format.js
