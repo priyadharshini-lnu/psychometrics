@@ -93,27 +93,13 @@ class FactorsNorm < ApplicationRecord
   #
   #
   def self.export_structured_hash(norm_id)
-    # @result = {}
-    # FactorsNorm::NORM_TYPES.each do |norm_type|
-    #   @result[norm_type] = {}
-    #   FactorsNorm::FACTOR_TYPES.each do |factor_type|
-    #     sql = FactorsNorm.by_norm_type(norm_type).by_factor_type(factor_type).where(norm_id: norm_id)
-    #     @result[norm_type][factor_type] = FactorsNorm.structured_hash(sql, factor_type == 'sub_factors')
-    #   end
-    # end
     FactorsNorm::NORM_TYPES.inject(Hash.new({})) do |sum, norm_type|
         FactorsNorm::FACTOR_TYPES.each do |factor_type|
           sql = FactorsNorm.by_norm_type(norm_type).by_factor_type(factor_type).where(norm_id: norm_id)
           sum[norm_type][factor_type] = FactorsNorm.structured_hash(sql)
         end
         sum
-      # @result[norm_type] = {}
-      # FactorsNorm::FACTOR_TYPES.each do |factor_type|
-      #   sql = FactorsNorm.by_norm_type(norm_type).by_factor_type(factor_type).where(norm_id: norm_id)
-      #   @result[norm_type][factor_type] = FactorsNorm.structured_hash(sql, factor_type == 'sub_factors')
-      # end
     end
-    # @result
   end
 
   private
