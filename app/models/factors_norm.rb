@@ -35,13 +35,13 @@ class FactorsNorm < ApplicationRecord
 
   filterrific(
       default_filter_params: {
-          by_factor_type: 'factors',
-          by_norm_type:   'eti'
+        by_factor_type: 'factors',
+        by_norm_type:   'eti'
       },
-      available_filters:     [
-                                 :by_factor_type,
-                                 :by_norm_type
-                             ]
+      available_filters: [
+        :by_factor_type,
+        :by_norm_type
+      ]
   )
 
   scope :by_factor_type, lambda { |type|
@@ -74,7 +74,7 @@ class FactorsNorm < ApplicationRecord
   def self.structured_hash(scope, include_parent = false)
     if include_parent
       scope = scope.select('factors_norms.*, factors.name as factor_name, pf.name as parent_factor_name').
-          joins('LEFT JOIN factors pf on factors.parent_id is not null and factors.parent_id::INTEGER = pf.id::INTEGER')
+              joins('LEFT JOIN factors pf on factors.parent_id is not null and factors.parent_id::INTEGER = pf.id::INTEGER')
     else
       scope = scope.select('factors_norms.*, factors.name as factor_name')
     end
@@ -102,16 +102,12 @@ class FactorsNorm < ApplicationRecord
     FactorsNorm::NORM_TYPES.each do |norm_type|
       @result[norm_type] = {}
       FactorsNorm::FACTOR_TYPES.each do |factor_type|
-        @result[norm_type][factor_type] = FactorsNorm.structured_hash(FactorsNorm.
-            by_norm_type(norm_type).
-            by_factor_type(factor_type).
-            where(norm_id: norm_id), factor_type == 'sub_factors'
-        )
+        sql = FactorsNorm.by_norm_type(norm_type).by_factor_type(factor_type).where(norm_id: norm_id)
+        @result[norm_type][factor_type] = FactorsNorm.structured_hash(sql, factor_type == 'sub_factors')
       end
     end
     @result
   end
-
 
   private
 

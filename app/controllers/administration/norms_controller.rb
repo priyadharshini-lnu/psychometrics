@@ -99,7 +99,6 @@ class Administration::NormsController < Administration::BaseController
         @filterrific.find.where(norm_id: @resource.id),
         @filterrific.by_factor_type == 'sub_factors'
     )
-    @filter_data = NormEditorForm.new(editor_params)
     add_breadcrumb @resource.name
     add_breadcrumb I18n.t('administration.breadcrumbs.norms_editor')
     respond_to do |format|
