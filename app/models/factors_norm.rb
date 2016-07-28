@@ -36,9 +36,9 @@ class FactorsNorm < ApplicationRecord
   filterrific(
       default_filter_params: {
           by_factor_type: 'factors',
-          by_norm_type: 'eti'
+          by_norm_type:   'eti'
       },
-      available_filters: [
+      available_filters:     [
                                  :by_factor_type,
                                  :by_norm_type
                              ]
@@ -55,6 +55,63 @@ class FactorsNorm < ApplicationRecord
   scope :by_norm_type, lambda { |type|
     where('type': type)
   }
+
+  #
+  # Return structured hash
+  # {
+  #   "factor_name": {
+  #     "level_type": [
+  #       FactorsNorm,
+  #       FactorsNorm,
+  #       FactorsNorm,
+  #       FactorsNorm,
+  #       FactorsNorm
+  #     ]
+  #   }
+  # }
+  #
+  #
+  def self.structured_hash(scope, include_parent = false)
+    if include_parent
+      scope = scope.select('factors_norms.*, factors.name as factor_name, pf.name as parent_factor_name').
+          joins('LEFT JOIN factors pf on factors.parent_id is not null and factors.parent_id::INTEGER = pf.id::INTEGER')
+    else
+      scope = scope.select('factors_norms.*, factors.name as factor_name')
+    end
+    scope.order(id: :asc).group_by(&:factor_name).inject({}) { |sum, i| sum[i.first] = i.last.group_by(&:level); sum }
+  end
+
+
+  #
+  # Return list of structured hashes
+  #
+  # {
+  #   "eti": {
+  #     "factors": <structured_hash>
+  #     "sub_factors": <structured_hash>
+  #   },
+  #   "yti": {
+  #     "factors": <structured_hash>
+  #     "sub_factors": <structured_hash>
+  #   },
+  # }
+  #
+  #
+  def self.export_structured_hash(norm_id)
+    @result = {}
+    FactorsNorm::NORM_TYPES.each do |norm_type|
+      @result[norm_type] = {}
+      FactorsNorm::FACTOR_TYPES.each do |factor_type|
+        @result[norm_type][factor_type] = FactorsNorm.structured_hash(FactorsNorm.
+            by_norm_type(norm_type).
+            by_factor_type(factor_type).
+            where(norm_id: norm_id), factor_type == 'sub_factors'
+        )
+      end
+    end
+    @result
+  end
+
 
   private
 

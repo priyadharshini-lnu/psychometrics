@@ -78,8 +78,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def export
-    # TODO: remove it, when we get relation between norm and dimension
-    @dimension = Dimension.last
+    @factors_norms = FactorsNorm.export_structured_hash(@resource.id)
     respond_to do |format|
       format.xlsx do
         headers['Content-Disposition'] = "attachment; filename=\"#{@resource.name}-#{Date.today}.xlsx\""
@@ -96,12 +95,10 @@ class Administration::NormsController < Administration::BaseController
             by_norm_type: FactorsNorm::NORM_TYPES,
             by_factor_type: FactorsNorm::FACTOR_TYPES
         }) || return
-    @resources   = @filterrific.find.
-        select('factors_norms.*, factors.name as factor_name, pf.name as parent_factor_name').
-        joins('LEFT JOIN factors pf on factors.parent_id is not null and factors.parent_id::INTEGER = pf.id::INTEGER').
-        where(norm_id: @resource.id).
-        order(id: :asc).
-        group_by(&:factor_name).inject({}) { |sum, i| sum[i.first] = i.last.group_by(&:level); sum }
+    @resources   = FactorsNorm.structured_hash(
+        @filterrific.find.where(norm_id: @resource.id),
+        @filterrific.by_factor_type == 'sub_factors'
+    )
     @filter_data = NormEditorForm.new(editor_params)
     add_breadcrumb @resource.name
     add_breadcrumb I18n.t('administration.breadcrumbs.norms_editor')
