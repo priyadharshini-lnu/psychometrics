@@ -16,6 +16,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '1.12'
   gem 'rails-assets-noty'
   gem 'rails-assets-bootstrap-select'
+  gem 'rails-assets-x-editable', '1.5.0'
 end
 
 ### Authentication and authorization
@@ -72,6 +73,7 @@ gem 'redis'
 gem 'axlsx', github: 'randym/axlsx', ref: '7026a84'
 gem 'axlsx_rails', '~> 0.4.0'
 
+gem 'i18n-tasks'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

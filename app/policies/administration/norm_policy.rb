@@ -3,6 +3,10 @@ class Administration::NormPolicy < Administration::BasePolicy
     create?
   end
 
+  def editor?
+    create?
+  end
+
   def export?
     @user.is?(:superadmin)
   end

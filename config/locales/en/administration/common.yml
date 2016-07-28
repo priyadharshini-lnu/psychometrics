@@ -33,6 +33,7 @@ en:
       survey: Survey
       norm: Norm
       norms: Norms
+      norms_editor: Norm Editor
       assessments: Assessments
     breadcrumbs:
       <<: *NAVIGATION

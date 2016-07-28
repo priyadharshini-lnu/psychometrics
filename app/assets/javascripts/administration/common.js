@@ -1,7 +1,9 @@
 $(function() {
   // Show error message, when server retuen 500 erorr
-  $(document).ajaxError(function(){
-    noty({text: I18n.t('administration.noty.error_500'), layout: 'topCenter', type: 'error'});
+  $(document).ajaxError(function(_, data){
+     if (data.status == 500) {
+        noty({text: I18n.t('administration.noty.error_500'), layout: 'topCenter', type: 'error'});
+     }
   });
 
   $('.x-navigation .xn-openable .active').each(function() {

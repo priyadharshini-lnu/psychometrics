@@ -69,11 +69,13 @@ Rails.application.routes.draw do
         get :copy
         patch :toggle_status
         get :sidebar
+        get :editor
         get :export
       end
     end
     ### END NORMS
 
+    resources :factors_norms
     resources :surveys
   end
 

@@ -13,6 +13,11 @@ en:
         error: 'Norm #%{id} was not copied.'
       toggle_status:
         successfully: 'Norm was successfully updated.'
+      editor:
+        title: 'Norm Editor'
+        factors: 'Factors'
+        sub_factors: 'Sub Factors'
+        inplace_title: 'Enter value'
       sidebar:
         title: Norm's options (#%{id})
         disable: 'Disable'
@@ -25,3 +30,15 @@ en:
         import: 'Import Norm'
         export: 'Export Norm'
         surveys: 'Linked Surveys'
+
+      resource:
+        tooltips:
+          copy: Copy Norm
+          edit: Edit Norm
+          delete: Delete Norm
+        confirmations:
+          delete:
+            title:
+              Delete <strong>Norm</strong> ?
+            body: >
+              <p>Are you sure you want to delete this norm?</p>
