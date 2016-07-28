@@ -4,10 +4,13 @@ en:
       index:
         title: Assessments
         filterrific:
-          with_category:
+          with_category: &categories
             psychometric: 'Psychometric Assess'
             organisational: 'Organisational Assess'
             '360': '360 Assess'
+      form:
+        categories:
+          <<: *categories
       new:
         header: 'New assessment'
       edit:

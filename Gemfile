@@ -13,7 +13,9 @@ gem 'jbuilder',                   '~> 2.5'
 
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery', '1.12'
   gem 'rails-assets-noty'
+  gem 'rails-assets-bootstrap-select'
 end
 
 ### Authentication and authorization

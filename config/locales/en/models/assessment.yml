@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      assessment: 'Assessments'
+    attributes:
+      assessment: &DEFAULT
+        id: 'ID'
+        name: 'Name'
+        category: Category
+        created_at: 'Created'
+        updated_at: 'Modified'
+        active: 'Active'
+  simple_form:
+    placeholders:
+      assessment:
+        <<: *DEFAULT

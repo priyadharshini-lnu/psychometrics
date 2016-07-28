@@ -3,6 +3,7 @@
     = f.error_notification
 
     .form-inputs.clearfix
+      = f.input :category, collection: @resource_class::CATEGORIES.values.map { |cat| [t(".categories.#{cat}"), cat] }, include_blank: false
       = f.input :name
 
   .modal-footer

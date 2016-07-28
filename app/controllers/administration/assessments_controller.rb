@@ -25,6 +25,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def new
     @resource = @resource_class.new
+    @resource.category = params[:with_category] if params[:with_category]
   end
 
   def create
