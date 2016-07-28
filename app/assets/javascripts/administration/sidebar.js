@@ -9,9 +9,9 @@ $(function(){
   });
 
   // Stop propagation, when clicked to action dom
-  $(document).on('click', 'table.selectable tbody tr[data-sidebar] a, #modal-container .modal', function(event){
-    event.stopPropagation();
-  });
+  // $(document).on('click', 'table.selectable tbody tr[data-sidebar] a, #modal-container .modal', function(event){
+  //   event.stopPropagation();
+  // });
 
   $(document).on('click', 'table.selectable tbody tr[data-sidebar]', function(event){
     event.stopPropagation();
@@ -19,9 +19,9 @@ $(function(){
   });
 
   // Close sidebar when click not to table
-  $(document).on('click', 'body, table.selectable thead a', function(event){
-    $(document).trigger('close_sidebar');
-  });
+  // $(document).on('click', 'body, table.selectable thead a', function(event){
+  //   $(document).trigger('close_sidebar');
+  // });
 
   // Load sidebar
   $(document).on('load_sidebar', function(e, resource){

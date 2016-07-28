@@ -33,5 +33,6 @@ en:
       survey: Survey
       norm: Norm
       norms: Norms
+      assessments: Assessments
     breadcrumbs:
       <<: *NAVIGATION

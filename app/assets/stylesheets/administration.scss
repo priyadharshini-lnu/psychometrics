@@ -4,7 +4,11 @@
 @import 'jquery.fileupload';
 @import 'jquery.fileupload-ui';
 
+@import 'bootstrap-select';
+
 @import 'common/helper';
 @import 'administration/overrides/bootstrap';
+
+@import 'psychometrics_app';
+
 @import './administration/*';
-@import 'psychometrics_app'
