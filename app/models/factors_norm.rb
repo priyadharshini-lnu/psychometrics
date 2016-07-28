@@ -72,7 +72,7 @@ class FactorsNorm < ApplicationRecord
   #
   #
   def self.structured_hash(scope)
-    scope.select('factors_norms.*, factors.name as factor_name, pf.name as parent_factor_name').
+      scope.select('factors_norms.*, factors.name as factor_name, pf.name as parent_factor_name').
               joins('LEFT JOIN factors pf on  pf.id::INTEGER = factors.parent_id::INTEGER').
               order(id: :asc).group_by(&:factor_name).inject({}) { |sum, i| sum[i.first] = i.last.group_by(&:level); sum }
   end
