@@ -7,13 +7,13 @@ class Administration::UsersController < Administration::BaseController
 
   # GET /administration/resources
   def index
-    @filterrific = initialize_filterrific(
+    @filter = initialize_filterrific(
       policy_scope(@resource_class),
-      params[:filterrific],
+      params[:filter],
       select_options: {
         with_role: @resource_class.options_for_with_role
       }) || return
-    @resources = @filterrific.find.page(params[:page])
+    @resources = @filter.find.page(params[:page])
 
     respond_to do |format|
       format.html

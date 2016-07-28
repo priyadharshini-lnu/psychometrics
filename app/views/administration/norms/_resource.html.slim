@@ -5,11 +5,11 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
       = resource.decorate.status
   td = resource.name
   td
-    = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm'  do
+    = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
       span.fa.fa-pencil
-    = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm'  do
+    = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
       span.fa.fa-copy
-    = confirmation_link [:administration, resource], class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: {confirm: ''} do
+    = confirmation_link [:administration, resource], class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: {confirm: t('.confirmations.delete.body'), confirm_title: t('.confirmations.delete.title'), icon: 'fa-times', toggle: 'tooltip', title: t('.tooltips.delete')}
       span.fa.fa-times
   td = resource.decorate.created_at
   td = resource.decorate.updated_at

@@ -1,6 +1,4 @@
 = simple_form_for(@user, url: administration_profiles_url) do |f|
-  = f.error_notification
-  == flash_messages
   = f.input :email
   = f.input :password
   = f.input :first_name

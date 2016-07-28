@@ -4,7 +4,7 @@ class NormDecorator < BaseDecorator
   end
 
   def xls_levels_row
-    levels = [nil, nil]
+    levels = []
     FactorsNorm::LEVELS.each do |level|
       levels << level
       levels << nil

@@ -1,24 +1,39 @@
 xlsx_package.use_shared_strings = true
 wb = xlsx_package.workbook
-FactorsNorm::TYPES.each do |_, type|
+FactorsNorm::NORM_TYPES.each do |type|
     styles = wb.styles
-    text_center = styles.add_style :alignment => {:horizontal => :center, :vertical => :center }
-    text_bold = styles.add_style :b => true
+    text_center_bold = styles.add_style :alignment => {:horizontal => :center, :vertical => :center }, :b => true
 
     wb.add_worksheet(name: "#{@resource.name} #{type.upcase}") do |sheet|
       sheet.add_row
       sheet.add_row
-      sheet.add_row @resource.decorate.xls_levels_row, :style => text_center
-      @dimension.factors.roots.each do |factor|
-        sheet.add_row(factor.decorate.xls_factor_score_row(type))
+      sheet.add_row [nil, nil] + @resource.decorate.xls_levels_row, :style => text_center_bold
+      @factors_norms[type]['factors'].each do |factor_name, factors_norms|
+        current_row = [nil, factor_name]
+            FactorsNorm::LEVELS.each do |level|
+                current_factor_norm = factors_norms[level].first
+                current_row << current_factor_norm.try(:score_from)
+                current_row << current_factor_norm.try(:score_to)
+            end
+        sheet.add_row current_row
       end
       sheet.add_row
       sheet.add_row
-      sheet.add_row ['factor', 'sub-factor'], :style => text_bold
-      @dimension.factors.no_roots.each do |factor|
-        sheet.add_row factor.decorate.xls_factor_score_row(type)
+      a = sheet.add_row ['factor', 'sub-factor'] + @resource.decorate.xls_levels_row, :style => text_center_bold
+      sheet.merge_cells "C#{sheet.rows.size}:D#{sheet.rows.size}"
+      sheet.merge_cells "E#{sheet.rows.size}:F#{sheet.rows.size}"
+      sheet.merge_cells "G#{sheet.rows.size}:H#{sheet.rows.size}"
+      sheet.merge_cells "I#{sheet.rows.size}:J#{sheet.rows.size}"
+      sheet.merge_cells "K#{sheet.rows.size}:L#{sheet.rows.size}"
+      @factors_norms[type]['sub_factors'].each do |factor_name, factors_norms|
+        current_row = [factors_norms[FactorsNorm::LEVELS.first].try(:first).try(:parent_factor_name), factor_name]
+            FactorsNorm::LEVELS.each do |level|
+                current_factor_norm = factors_norms[level].first
+                current_row << current_factor_norm.try(:score_from)
+                current_row << current_factor_norm.try(:score_to)
+            end
+        sheet.add_row current_row
       end
-
       sheet.merge_cells "C3:D3"
       sheet.merge_cells "E3:F3"
       sheet.merge_cells "G3:H3"

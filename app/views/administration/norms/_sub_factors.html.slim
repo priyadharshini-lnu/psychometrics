@@ -1,0 +1,20 @@
+table.table.table-bordered.table-actions.table-hover.selectable.mbn.table-condensed
+  thead
+    tr
+      th.text-center = t 'administration.norms.editor.factors'
+      th.text-center = t 'administration.norms.editor.sub_factors'
+      - FactorsNorm::LEVELS.each do |level|
+        th.text-center colspan="2" width="150" = level
+  tbody
+    - @resources.each do |factor_name, factors_norms|
+      tr
+        td.text-center = factors_norms[FactorsNorm::LEVELS.first].try(:first).try(:parent_factor_name)
+        td.text-center = factor_name
+        - FactorsNorm::LEVELS.each do |level|
+          - current_factor_norm = factors_norms[level].first
+          td.text-center
+            div class="editable" data-pk="#{current_factor_norm.try(:id)}"  data-name="score_from" data-url="#{url_for(administration_factors_norm_path(current_factor_norm.id)) if current_factor_norm }"
+              = current_factor_norm.try(:score_from)
+          td.text-center
+            div class="editable" data-pk="#{current_factor_norm.try(:id)}"  data-name="score_to" data-url="#{url_for(administration_factors_norm_path(current_factor_norm.id)) if current_factor_norm }"
+              = current_factor_norm.try(:score_to)

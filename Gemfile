@@ -13,7 +13,10 @@ gem 'jbuilder',                   '~> 2.5'
 
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery', '1.12'
   gem 'rails-assets-noty'
+  gem 'rails-assets-bootstrap-select'
+  gem 'rails-assets-x-editable', '1.5.0'
 end
 
 ### Authentication and authorization
@@ -70,6 +73,7 @@ gem 'redis'
 gem 'axlsx', github: 'randym/axlsx', ref: '7026a84'
 gem 'axlsx_rails', '~> 0.4.0'
 
+gem 'i18n-tasks'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -83,7 +87,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'capistrano',               '~> 3.5'
+  gem 'capistrano',               '~> 3.5.0'
   gem 'capistrano-rails',         '~> 1.1.6'
   gem 'capistrano-rvm',           '~> 0.1.2'
 end

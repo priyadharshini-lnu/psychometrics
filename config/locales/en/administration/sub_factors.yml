@@ -16,3 +16,15 @@ en:
       sidebar:
         title: Sub-Factor's options (#%{id})
         edit: Edit
+
+      resource:
+        tooltips:
+          copy: Copy Sub-Factor
+          edit: Edit Sub-Factor
+          delete: Delete Sub-Factor
+        confirmations:
+          delete:
+            title:
+              Delete <strong>Sub-Factor</strong> ?
+            body: >
+              <p>Are you sure you want to delete this Sub-Factor?</p>
