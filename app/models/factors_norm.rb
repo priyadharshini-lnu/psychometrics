@@ -94,6 +94,7 @@ class FactorsNorm < ApplicationRecord
   #
   def self.export_structured_hash(norm_id)
     FactorsNorm::NORM_TYPES.inject(Hash.new({})) do |sum, norm_type|
+        sum[norm_type] = {}
         FactorsNorm::FACTOR_TYPES.each do |factor_type|
           sql = FactorsNorm.by_norm_type(norm_type).by_factor_type(factor_type).where(norm_id: norm_id)
           sum[norm_type][factor_type] = FactorsNorm.structured_hash(sql)
