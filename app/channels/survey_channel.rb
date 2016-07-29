@@ -8,13 +8,25 @@
 #     end
 # 3. include Actions::Block
 #
-class AssessmentChannel < ApplicationCable::Channel
+class SurveyChannel < ApplicationCable::Channel
 
-  include Actions::Block
+  # include Actions::Block
 
   def subscribed
-    stream_from 'assessment'
+    Rails.logger.warn "subscribed #{current_administrator.inspect}"
+    stream_from 'survey'
   end
+
+  def speak
+    # event = WsEvents::BaseEvent.build(current_user, data)
+    # event.response
+    ActionCable.server.broadcast('survey', message: 'hello',
+        notification: { level: 'success', message: 'New Message' })
+  end
+
+
+
+
 
   # def action(name, &block)
   #       define_method name do |data|

@@ -1,14 +1,13 @@
 # Extend Pundit helper for use in administration namespace
 module Actions
-  module Block
+  module Question
     extend Actions::Action
 
     action :create do
       data
       Block.new(data.data)
       send
-      {a: 1}}
-      puts "create"
+      {a: 1}
     end
 
     action :update do
@@ -36,6 +35,14 @@ module Actions
     end
 
     action :permanent_destroy do
+
+    end
+
+    action :add_comment do
+
+    end
+
+    action :remove_comment do
 
     end
 
