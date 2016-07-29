@@ -2,7 +2,7 @@ module Actions
   module Block
     extend Actions::Action
 
-    action :create do |data, current_administrator, assessment|
+    action :create do |data, _current_administrator, assessment|
       assessment.blocks.create!(data)
     end
 
