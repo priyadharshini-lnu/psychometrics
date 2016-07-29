@@ -11,7 +11,7 @@ module Actions
       ::Block.update(id, data)
     end
 
-    action :destroy do |data|
+    action :destroy do
       raise 'should be impl'
     end
 
@@ -31,7 +31,7 @@ module Actions
       raise 'should be impl'
     end
 
-    action :permanent_destroy do
+    action :permanent_destroy do |data|
       ::Block.delete(data['id'])
       {}
     end
