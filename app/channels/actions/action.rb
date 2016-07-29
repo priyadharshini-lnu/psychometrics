@@ -3,6 +3,7 @@ module Actions
     def action(action_name, &block)
       action_name = "#{name.downcase.split('::').last}_#{action_name}"
       define_method action_name do |request|
+        # TODO: delete
         assessment = Assessment.find_by_id(params['id']) || Assessment.last
         if policy(assessment).open_channel?
           begin
@@ -15,7 +16,6 @@ module Actions
                 request_id: request['request_id']
             })
           rescue Exception => e
-            # add success of error
             Rails.logger.error("#{e.message}\n")
             Rails.logger.error(e.backtrace.join("\n"))
             transmit(notification: { level: 'error', message: e.message }, 'action': action_name, type: 'error')

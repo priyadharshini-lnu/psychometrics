@@ -4,10 +4,7 @@ module Actions
     extend Actions::Action
 
     action :create do
-      data
-      Block.new(data.data)
-      send
-      {a: 1}
+
     end
 
     action :update do

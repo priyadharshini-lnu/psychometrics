@@ -8,6 +8,8 @@
 #     end
 # 3. include Actions::Block
 #
+
+# TODO: rename to assessment_channel!!!
 class SurveyChannel < ApplicationCable::Channel
   include Actions::Block
 
@@ -15,15 +17,13 @@ class SurveyChannel < ApplicationCable::Channel
   include Administration::Policies
 
   def subscribed
-
     stream_from 'survey'
-    Rails.logger.warn  " params #{current_administrator.inspect}"
-    Rails.logger.warn  " sss SS #{params.inspect}"
   end
 
-  def fetch(data)
+  def fetch
     @assessment = Assessment.last
-
+    # use params['assessment_id']
+    transmit({'fetch_your_data': true})
   end
 
   def pundit_user
