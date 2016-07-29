@@ -21,8 +21,10 @@ ActiveRecord::Schema.define(version: 20160729132345) do
   create_table "blocks", force: :cascade do |t|
     t.string   "name"
     t.integer  "position"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "assessment_id"
+    t.index ["assessment_id"], name: "index_blocks_on_assessment_id", using: :btree
   end
 
   create_table "comments", force: :cascade do |t|
@@ -60,20 +62,18 @@ ActiveRecord::Schema.define(version: 20160729132345) do
 
   create_table "norms", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "disabled",      default: false
+    t.boolean  "disabled",   default: false
     t.integer  "created_by"
     t.integer  "updated_by"
-    t.datetime "created_at",                    null: false
-    t.datetime "updated_at",                    null: false
-    t.integer  "assessment_id"
-    t.index ["assessment_id"], name: "index_norms_on_assessment_id", using: :btree
+    t.datetime "created_at",                 null: false
+    t.datetime "updated_at",                 null: false
   end
 
   create_table "questions", force: :cascade do |t|
     t.string   "name"
     t.integer  "position"
     t.string   "type"
-    t.string   "props"
+    t.json     "props"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "block_id"

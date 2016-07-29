@@ -2,14 +2,13 @@
 #
 # Table name: norms
 #
-#  id            :integer          not null, primary key
-#  name          :string
-#  disabled      :boolean          default(FALSE)
-#  created_by    :integer
-#  updated_by    :integer
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  assessment_id :integer
+#  id         :integer          not null, primary key
+#  name       :string
+#  disabled   :boolean          default(FALSE)
+#  created_by :integer
+#  updated_by :integer
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
 #
 
 class Norm < ApplicationRecord

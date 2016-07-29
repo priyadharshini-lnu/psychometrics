@@ -6,6 +6,6 @@ class Block < ActiveRecord::Migration[5.0]
 
       t.timestamps
     end
-    add_reference :norms, :assessment
+    add_reference :blocks, :assessment
   end
 end

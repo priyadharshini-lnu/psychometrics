@@ -4,7 +4,7 @@ class Question < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :position
       t.string :type
-      t.string :props
+      t.json :props
 
       t.timestamps
     end
