@@ -11,7 +11,6 @@
 #
 
 class Block < ApplicationRecord
-
   belongs_to :assessment
   has_many :questions, -> { order(position: :asc) }
   validates :name, presence: true
