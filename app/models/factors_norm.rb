@@ -6,7 +6,7 @@
 #  level      :string
 #  score_from :float
 #  score_to   :float
-#  type       :string
+#  type       :enum
 #  factor_id  :integer
 #  norm_id    :integer
 #

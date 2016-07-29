@@ -10,15 +10,9 @@
 #
 class SurveyChannel < ApplicationCable::Channel
   include Actions::Block
-  # Authorisation flow
-  #
+
   include Pundit
-  ## Prepend :administration namespace to policy
   include Administration::Policies
-  ## Custom current user helper for Pundit
-  def pundit_user
-    current_administrator
-  end
 
   def subscribed
 
@@ -30,5 +24,9 @@ class SurveyChannel < ApplicationCable::Channel
   def fetch(data)
     @assessment = Assessment.last
 
+  end
+
+  def pundit_user
+    current_administrator
   end
 end

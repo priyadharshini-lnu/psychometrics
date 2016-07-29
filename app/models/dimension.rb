@@ -4,8 +4,8 @@
 #
 #  id         :integer          not null, primary key
 #  name       :string
-#  favourite  :boolean
-#  disabled   :boolean
+#  favourite  :boolean          default(FALSE)
+#  disabled   :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
 #

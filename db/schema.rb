@@ -10,13 +10,29 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160727114043) do
+ActiveRecord::Schema.define(version: 20160729132345) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
 # Could not dump table "assessments" because of following StandardError
 #   Unknown type 'assessment_categories' for column 'category'
+
+  create_table "blocks", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "position"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "comments", force: :cascade do |t|
+    t.string   "text"
+    t.integer  "created_by"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "question_id"
+    t.index ["question_id"], name: "index_comments_on_question_id", using: :btree
+  end
 
   create_table "dimensions", force: :cascade do |t|
     t.string   "name"
@@ -44,16 +60,30 @@ ActiveRecord::Schema.define(version: 20160727114043) do
 
   create_table "norms", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "disabled",   default: false
+    t.boolean  "disabled",      default: false
     t.integer  "created_by"
     t.integer  "updated_by"
-    t.datetime "created_at",                 null: false
-    t.datetime "updated_at",                 null: false
+    t.datetime "created_at",                    null: false
+    t.datetime "updated_at",                    null: false
+    t.integer  "assessment_id"
+    t.index ["assessment_id"], name: "index_norms_on_assessment_id", using: :btree
+  end
+
+  create_table "questions", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "position"
+    t.string   "type"
+    t.string   "props"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "block_id"
+    t.index ["block_id"], name: "index_questions_on_block_id", using: :btree
   end
 
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'user_roles' for column 'role'
 
+  add_foreign_key "comments", "users", column: "created_by"
   add_foreign_key "norms", "users", column: "created_by"
   add_foreign_key "norms", "users", column: "updated_by"
 end
