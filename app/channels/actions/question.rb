@@ -42,6 +42,5 @@ module Actions
     action :remove_comment do
 
     end
-
   end
 end
