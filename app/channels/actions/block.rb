@@ -1,12 +1,14 @@
-# Extend Pundit helper for use in administration namespace
 module Actions
   module Block
     extend Actions::Action
 
-    action :create do
+    action :create do |data, current_administrator, assessment|
       # data
       # Block.new(data.data)
       # send
+      Rails.logger.warn "current_administrator #{current_administrator}"
+      Rails.logger.warn "data #{data}"
+      Rails.logger.warn "@assessment #{assessment.inspect}"
       {a: 1}
     end
 
