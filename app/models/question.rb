@@ -14,8 +14,15 @@
 
 class Question < ApplicationRecord
   belongs_to :block
-  has_many :comments, -> { order(id: :asc) }
+  has_many :comments, -> { order(position: :asc) }
 
-  validates :name, :type, :block, presence: true
+  #
+  # Disables single column inheritance
+  #
+  self.inheritance_column = :_type_disabled
+
+  validates :name, :type, presence: true
   validates :name, length: { maximum: 255 }, allow_blank: true
+
+  acts_as_list scope: :block
 end
