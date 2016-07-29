@@ -12,8 +12,11 @@
 
 class Block < ApplicationRecord
 
-  has_many :questions, -> { order(id: :asc) }
-  validates :name, :position, presence: true
+  belongs_to :assessment
+  has_many :questions, -> { order(position: :asc) }
+  validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
+
+  acts_as_list scope: :assessment
 
 end

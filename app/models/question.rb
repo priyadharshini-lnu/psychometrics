@@ -17,6 +17,6 @@ class Question < ApplicationRecord
   belongs_to :block
   has_many :comments, -> { order(id: :asc) }
 
-  validates :name, :type, :position, :block, presence: true
+  validates :name, :type, :block, presence: true
   validates :name, length: { maximum: 255 }, allow_blank: true
 end

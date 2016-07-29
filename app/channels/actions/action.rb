@@ -2,18 +2,18 @@ module Actions
   module Action
     def action(action_name, &block)
       action_name = "#{name.downcase.split('::').last}_#{action_name}"
-      define_method action_name do |data|
+      define_method action_name do |request|
         assessment = Assessment.find_by_id(params['id']) || Assessment.last
         if policy(assessment).open_channel?
           begin
-            response = block.call(data, current_administrator, assessment) || {}
-            response.merge!({
+            response = block.call(request['data'], current_administrator, assessment) || {}
+            transmit({
                 type: 'success',
+                data: response,
                 notification: { level: 'success', message: I18n.t("administration.cable.notification.#{action_name}") },
                 action: action_name,
-                request_id: data['request_id']
+                request_id: request['request_id']
             })
-            transmit(response)
           rescue Exception => e
             # add success of error
             Rails.logger.error("#{e.message}\n")

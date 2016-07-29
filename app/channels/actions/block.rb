@@ -3,20 +3,16 @@ module Actions
     extend Actions::Action
 
     action :create do |data, current_administrator, assessment|
-      # data
-      # Block.new(data.data)
-      # send
-      Rails.logger.warn "current_administrator #{current_administrator}"
-      Rails.logger.warn "data #{data}"
-      Rails.logger.warn "@assessment #{assessment.inspect}"
-      {a: 1}
+      assessment.blocks.create!(data)
     end
 
-    action :update do
+    action :update do |data|
+      id = data.delete('id')
+      ::Block.update(id, data)
     end
 
-    action :destroy do
-
+    action :destroy do |data|
+      ::Block.delete(data['id'])
     end
 
     action :rename do

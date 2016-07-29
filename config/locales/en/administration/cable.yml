@@ -2,5 +2,6 @@ en:
   administration:
     cable:
       notification:
-        block_create: "Block created"
-        block_update: "Block updated"
+        block_create: "Block is created"
+        block_update: "Block is updated"
+        block_destroy: "Block is destroyed"
