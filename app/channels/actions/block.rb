@@ -13,6 +13,7 @@ module Actions
 
     action :destroy do |data|
       ::Block.delete(data['id'])
+      {}
     end
 
     action :rename do
