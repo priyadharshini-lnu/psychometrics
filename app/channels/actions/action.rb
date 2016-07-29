@@ -1,13 +1,13 @@
 module Actions
   module Action
-    def action(action_name, &block)
+    def action(action_name)
       action_name = "#{name.downcase.split('::').last}_#{action_name}"
       define_method action_name do |request|
         # TODO: delete
         assessment = Assessment.find_by_id(params['id']) || Assessment.last
         if policy(assessment).open_channel?
           begin
-            response = block.call(request['data'], current_administrator, assessment) || {}
+            response = yield(request['data'], current_administrator, assessment) || {}
             transmit({
                 type: 'success',
                 data: response,
