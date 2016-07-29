@@ -346,7 +346,7 @@ PLATFORMS
 DEPENDENCIES
   active_link_to (~> 1.0.3)
   activemodel-serializers-xml!
-  acts_as_list
+  acts_as_list (~> 0.7.6)
   ancestry!
   annotate (~> 2.7.0)!
   axlsx!
@@ -370,7 +370,7 @@ DEPENDENCIES
   filterrific (~> 2.0.5)
   font-awesome-rails (~> 4.6.3.0)
   i18n-js (~> 3.0.0.rc3)
-  i18n-tasks
+  i18n-tasks (~> 0.9.5)
   jbuilder (~> 2.5)
   jquery-fileupload-rails (~> 0.4.6)
   jquery-rails (~> 4.1.1)

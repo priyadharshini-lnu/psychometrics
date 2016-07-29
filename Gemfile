@@ -73,10 +73,10 @@ gem 'redis'
 gem 'axlsx', github: 'randym/axlsx', ref: '7026a84'
 gem 'axlsx_rails', '~> 0.4.0'
 
-gem 'i18n-tasks'
+gem 'i18n-tasks', '~> 0.9.5'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
-gem 'acts_as_list'
+gem 'acts_as_list', '~> 0.7.6'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
