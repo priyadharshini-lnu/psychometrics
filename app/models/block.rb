@@ -18,4 +18,5 @@ class Block < ApplicationRecord
   validates :name, length: { maximum: 150 }, allow_blank: true
 
   acts_as_list scope: :assessment
+  acts_as_paranoid
 end

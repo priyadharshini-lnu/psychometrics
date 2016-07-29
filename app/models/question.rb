@@ -25,4 +25,5 @@ class Question < ApplicationRecord
   validates :name, length: { maximum: 255 }, allow_blank: true
 
   acts_as_list scope: :block
+  acts_as_paranoid
 end

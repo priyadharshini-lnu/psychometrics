@@ -11,19 +11,20 @@ module Actions
       ::Block.update(id, data)
     end
 
-    action :destroy do
-      raise 'should be impl'
+    action :destroy do |data|
+      ::Block.destroy(data['id'])
+      {}
     end
 
     action :rename do
       raise 'should be impl'
     end
 
-    action :move_up do
+    action :move_up do |data|
       ::Block.find(data['id']).move_higher
     end
 
-    action :move_down do
+    action :move_down do |data|
       ::Block.find(data['id']).move_lower
     end
 
@@ -32,7 +33,7 @@ module Actions
     end
 
     action :permanent_destroy do |data|
-      ::Block.delete(data['id'])
+      ::Block.really_destroy!(data['id'])
       {}
     end
   end

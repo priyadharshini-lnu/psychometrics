@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729132345) do
+ActiveRecord::Schema.define(version: 20160729153128) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -24,7 +24,9 @@ ActiveRecord::Schema.define(version: 20160729132345) do
     t.datetime "created_at",    null: false
     t.datetime "updated_at",    null: false
     t.integer  "assessment_id"
+    t.datetime "deleted_at"
     t.index ["assessment_id"], name: "index_blocks_on_assessment_id", using: :btree
+    t.index ["deleted_at"], name: "index_blocks_on_deleted_at", using: :btree
   end
 
   create_table "comments", force: :cascade do |t|
@@ -77,7 +79,9 @@ ActiveRecord::Schema.define(version: 20160729132345) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer  "block_id"
+    t.datetime "deleted_at"
     t.index ["block_id"], name: "index_questions_on_block_id", using: :btree
+    t.index ["deleted_at"], name: "index_questions_on_deleted_at", using: :btree
   end
 
 # Could not dump table "users" because of following StandardError

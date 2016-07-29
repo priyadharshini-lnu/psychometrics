@@ -39,6 +39,14 @@ GIT
       rubyzip (~> 1.1.7)
 
 GIT
+  remote: git://github.com/rubysherpas/paranoia.git
+  revision: 70f6e37b7b32cf4f70c5b852a38597699f476c62
+  branch: rails5
+  specs:
+    paranoia (2.2.0.pre)
+      activerecord (>= 4.0, < 5.1)
+
+GIT
   remote: git://github.com/stefankroes/ancestry.git
   revision: 3aae846759ffc485bc427d732eae54285d9d3c3f
   branch: 2-1-stable
@@ -376,6 +384,7 @@ DEPENDENCIES
   jquery-rails (~> 4.1.1)
   kaminari (~> 0.17.0)
   listen (~> 3.0.5)
+  paranoia!
   pg (~> 0.18.4)
   psychometrics-survey!
   puma (~> 3.0)
