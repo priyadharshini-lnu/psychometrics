@@ -5,7 +5,7 @@ module ApplicationCable
 
     def connect
       self.current_administrator = find_verified_administrator
-      logger.add_tags "ws: #{current_administrator.email}"
+      logger.add_tags current_administrator.email
     end
 
     protected

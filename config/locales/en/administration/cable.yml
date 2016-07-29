@@ -1,0 +1,6 @@
+en:
+  administration:
+    cable:
+      notification:
+        block_create: "Block created"
+        block_update: "Block updated"

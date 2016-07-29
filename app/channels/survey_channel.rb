@@ -9,40 +9,16 @@
 # 3. include Actions::Block
 #
 class SurveyChannel < ApplicationCable::Channel
-
-  # include Actions::Block
+  include Actions::Block
 
   def subscribed
-    Rails.logger.warn "subscribed #{current_administrator.inspect}"
     stream_from 'survey'
+    Rails.logger.warn  " params #{current_administrator.inspect}"
+    Rails.logger.warn  " sss SS #{params.inspect}"
   end
 
-  def speak
-    # event = WsEvents::BaseEvent.build(current_user, data)
-    # event.response
-    ActionCable.server.broadcast('survey', message: 'hello',
-        notification: { level: 'success', message: 'New Message' })
+  def fetch(data)
+    @assessment = Assessment.last
+
   end
-
-
-
-
-
-  # def action(name, &block)
-  #       define_method name do |data|
-  #         request_id = data.req_id
-  #         block.call(data)
-  #
-  #       end
-  # end
-  #
-  # action :add_block do |data|
-  #
-  #
-  # end
-  #
-  # action :add_block do |data|
-  #
-  # end
-
 end
