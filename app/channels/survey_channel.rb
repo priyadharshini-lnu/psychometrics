@@ -12,7 +12,6 @@
 # TODO: rename to assessment_channel!!!
 class SurveyChannel < ApplicationCable::Channel
   include Actions::Block
-
   include Pundit
   include Administration::Policies
 
@@ -23,7 +22,7 @@ class SurveyChannel < ApplicationCable::Channel
   def fetch
     @assessment = Assessment.last
     # use params['assessment_id']
-    transmit({'fetch_your_data': true})
+    transmit('fetch_your_data': true)
   end
 
   def pundit_user
