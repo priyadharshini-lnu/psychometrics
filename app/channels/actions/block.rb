@@ -17,24 +17,18 @@ module Actions
     end
 
     action :rename do
-
     end
 
     action :move_up do
-
     end
 
     action :move_down do
-
     end
 
     action :restore do
-
     end
 
     action :permanent_destroy do
-
     end
-
   end
 end
