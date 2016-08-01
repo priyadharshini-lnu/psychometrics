@@ -16,14 +16,16 @@ class SurveyChannel < ApplicationCable::Channel
   include Administration::Policies
 
   def subscribed
+    # params['assessment_id']
+    # Ser.new()
     stream_from 'survey'
   end
-
-  def fetch
-    @assessment = Assessment.last
-    # use params['assessment_id']
-    transmit('fetch_your_data': true)
-  end
+  #
+  # def fetch
+  #   @assessment = Assessment.last
+  #   # use params['assessment_id']
+  #   transmit('fetch_your_data': true)
+  # end
 
   def pundit_user
     current_administrator
