@@ -20,15 +20,8 @@ class SurveyChannel < ApplicationCable::Channel
     # Ser.new()
     stream_from 'survey'
     assessment = Assessment.find_by_id(params['assessment_id']) || Assessment.last
-    transmit(AssessmentSerializer.new(assessment, include: '**').serializable_hash)
-    transmit(BlockSerializer.new(Block.find(44)).serializable_hash)
+    transmit(AssessmentSerializer.new(assessment).to_hash(include: '**'))
   end
-  #
-  # def fetch
-  #   @assessment = Assessment.last
-  #   # use params['assessment_id']
-  #   transmit('fetch_your_data': true)
-  # end
 
   def pundit_user
     current_administrator
