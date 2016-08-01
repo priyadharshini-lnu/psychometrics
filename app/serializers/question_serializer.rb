@@ -15,5 +15,4 @@
 
 class QuestionSerializer < ActiveModel::Serializer
   attributes :id, :name, :type, :position, :props, :created_at
-
 end
