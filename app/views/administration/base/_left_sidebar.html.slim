@@ -32,6 +32,10 @@
       = active_link_to(administration_assessments_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.assessments'), placement: 'right' })
         i.fa.fa-universal-access
         span.xn-text= t('administration.navigation.assessments')
+    - if policy(:client).index?
+      = active_link_to(administration_clients_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.clients'), placement: 'right' })
+        .fa.fa-briefcase
+        span.xn-text= t('administration.navigation.clients')
     li.xn-openable
       a href="#"
         span.xn-text Create

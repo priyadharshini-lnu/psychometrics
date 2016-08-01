@@ -1,6 +1,6 @@
-class Administration::ExamplesController < Administration::BaseController
+class Administration::ClientsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
+  before_action :set_resource, only: [:edit, :update, :destroy, :sidebar, :toggle_status, :copy, :license]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -49,8 +49,31 @@ class Administration::ExamplesController < Administration::BaseController
       format.html do
         redirect_to(
           [:administration, @resource_class.model_name.plural],
-          notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully", id: @resource.id)
+          notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully", name: @resource.decorate.display_name)
         )
+      end
+    end
+  end
+
+  # Change resources's status to active/disabled
+  #
+  def toggle_status
+    @resource.toggle!(:disabled)
+    respond_to do |format|
+      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.js
+    end
+  end
+
+  def copy
+    @cloned_resource = @resource.clone
+    respond_to do |format|
+      if @cloned_resource.save
+        format.js
+      else
+        format.js do
+          render(:error, locals: { message: t("administration.#{@resource_class.model_name.plural}.copy.error", name: @resource.decorate.display_name) })
+        end
       end
     end
   end
@@ -58,7 +81,7 @@ class Administration::ExamplesController < Administration::BaseController
   private
 
   def set_resource_class
-    @resource_class ||= Dimension
+    @resource_class ||= Client
   end
 
   def init_breadcrumbs
@@ -71,7 +94,7 @@ class Administration::ExamplesController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :favourite)
+    params.require(:resource).permit(:name, :licenses, :licenses_used, :licenses_expire)
   end
 
   def pundit_authorize

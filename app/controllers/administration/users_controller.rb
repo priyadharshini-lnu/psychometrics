@@ -1,6 +1,6 @@
 class Administration::UsersController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof, :reset_password]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -52,7 +52,7 @@ class Administration::UsersController < Administration::BaseController
     @resource.operator = current_administrator
     respond_to do |format|
       if @resource.update(resource_params)
-        format.html { redirect_to([:administration, @resource_class.model_name.plural], success: t('.successfully')) }
+        format.html { redirect_to([:administration, @resource_class.model_name.plural], success: t('.successfully', name: @resource.decorate.display_name)) }
       else
         format.html { render :edit }
       end
@@ -63,7 +63,8 @@ class Administration::UsersController < Administration::BaseController
   def destroy
     @resource.destroy
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully')) }
+      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.js
     end
   end
 
@@ -72,7 +73,7 @@ class Administration::UsersController < Administration::BaseController
   def toggle_status
     @resource.toggle!(:disabled)
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully')) }
+      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
       format.js
     end
   end
@@ -80,10 +81,8 @@ class Administration::UsersController < Administration::BaseController
   # Send user instruction with reset password
   #
   def reset_password
-    @user = policy_scope(User).find(params[:id])
-    @user.send_reset_password_instructions
-    flash[:success] = t('.successfully')
-    redirect_to :back
+    @resource.send_reset_password_instructions
+    redirect_to :back, success: t('.successfully', name: @resource.decorate.display_name)
   end
 
   def export
@@ -100,7 +99,7 @@ class Administration::UsersController < Administration::BaseController
   def spoof
     sign_in(@resource.role_scope, @resource, { bypass: true })
     redirect_to (@resource.is?(:superadmin, :admin) ? administration_root_path : root_path),
-                success: t('.successfully', display_name: @resource.decorate.display_name)
+                success: t('.successfully', name: @resource.decorate.display_name)
   end
 
   private
@@ -116,7 +115,7 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def set_resource
-    @resource = @resource_class.find(params[:id])
+    @resource = policy_scope(@resource_class).find(params[:id])
   end
 
   def resource_params

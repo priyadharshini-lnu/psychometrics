@@ -51,7 +51,7 @@ class Administration::BasePolicy
 
     def initialize(user, scope)
       @user = user
-      @scope = scope
+      @scope = [scope].flatten.last
     end
 
     # scope - could be array
