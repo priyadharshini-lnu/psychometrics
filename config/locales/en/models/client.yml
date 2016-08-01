@@ -1,0 +1,20 @@
+en:
+  activerecord:
+    models:
+      client: 'Clients'
+    attributes:
+      client: &DEFAULT
+        id: 'ID'
+        name: 'Name'
+        category: Category
+        created_at: 'Created'
+        updated_at: 'Modified'
+        licenses: License number
+        licenses_used: Used license number
+        licenses_expire: License expire
+        subdomain: Subdomain
+        logo: Client logo
+  simple_form:
+    placeholders:
+      client:
+        <<: *DEFAULT

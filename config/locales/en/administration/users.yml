@@ -13,17 +13,17 @@ en:
             users: Users
             administrators: Administrators
       create:
-        successfully: User was successfully created.
+        successfully: User %{name} was successfully created.
       update:
-        successfully: User was successfully updated.
+        successfully: User %{name} was successfully updated.
       destroy:
-        successfully: User was successfully destroyed.
+        successfully: User %{name} was successfully destroyed.
       toggle_status:
-        successfully: User was successfully updated.
+        successfully: User %{name} was successfully updated.
       reset_password:
-        successfully: User will receive an email with instructions on how to reset his (her) password in a few minutes.
+        successfully: User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes.
       spoof:
-        successfully: You was successfully sign in as %{display_name}
+        successfully: You was successfully sign in as %{name}
       sidebar:
         title: User's options (#%{id})
         disable: Disable
@@ -49,11 +49,11 @@ en:
           delete: Delete user
         confirmations:
           change_password:
-            title: Change <strong>password</strong> ?
+            title: Change password <strong>%{name}</strong> ?
             body: >
               <p>Are you sure you want to send instructions with link to change password?</p>
           delete:
             title:
-              Delete <strong>User</strong> ?
+              Delete <strong>%{name}</strong> ?
             body: >
               <p>Are you sure you want to delete this user?</p>

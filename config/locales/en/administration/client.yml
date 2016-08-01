@@ -1,0 +1,52 @@
+en:
+  administration:
+    clients:
+      index:
+        title: Clients
+      new:
+        header: 'New client'
+      edit:
+        header: 'Edit client'
+      license:
+        header: '%{name} - Edit license'
+      destroy:
+        successfully: 'Client %{name} was successfully destroyed.'
+      copy:
+        successfully: 'Client %{name} was successfully copied.'
+        error: 'Client #%{name} was not copied.'
+      create:
+        successfully: 'Client %{name} was successfully created.'
+      update:
+        successfully: 'Client %{name} was successfully updated.'
+      toggle_status:
+        successfully: 'Client %{name} was successfully updated.'
+      sidebar:
+        title: Client's options (#%{id})
+        disable: Disable
+        enable: Enable
+        edit: Edit
+        new: New Client
+        copy: Copy Client
+        design: Edit Design
+        licenses: Edit Licenses
+      resource:
+        tooltips:
+          copy: Copy
+          edit: Edit Client
+          delete: Delete Client
+        confirmations:
+          disable:
+            title:
+              Disable <strong>%{name}</strong> ?
+            body:
+              <p>Are you sure you want to disable this client?</p>
+          enable:
+            title:
+              Enable <strong>%{name}</strong> ?
+            body:
+              <p>Are you sure you want to enable this client?</p>
+          delete:
+            title:
+              Delete <strong>%{name}</strong> ?
+            body:
+              <p>Are you sure you want to delete this client?</p>

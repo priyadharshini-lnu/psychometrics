@@ -35,5 +35,6 @@ en:
       norms: Norms
       norms_editor: Norm Editor
       assessments: Assessments
+      clients: Clients
     breadcrumbs:
       <<: *NAVIGATION

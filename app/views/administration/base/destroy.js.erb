@@ -1,0 +1,3 @@
+$('#<%= dom_id(@resource) %>').hide('slow')
+// Notify message
+noty({text: '<%= t("administration.#{@resource_class.model_name.plural}.destroy.successfully", name: @resource.decorate.display_name) %>', type: 'success'});
