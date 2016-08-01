@@ -12,7 +12,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "factor": {
         "active": "Active",
         "created_at": "Created",
-        "favourite": "Favourite",
         "id": "ID",
         "name": "Name",
         "parent_id": "Parent",

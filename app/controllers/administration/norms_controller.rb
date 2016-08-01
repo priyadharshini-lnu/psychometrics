@@ -122,7 +122,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :favourite)
+    params.require(:resource).permit(:name)
   end
 
   def editor_params

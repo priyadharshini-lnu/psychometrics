@@ -16,13 +16,11 @@ class SurveyChannel < ApplicationCable::Channel
   include Administration::Policies
 
   def subscribed
+    # params['assessment_id']
+    # Ser.new()
     stream_from 'survey'
-  end
-
-  def fetch
-    @assessment = Assessment.last
-    # use params['assessment_id']
-    transmit('fetch_your_data': true)
+    assessment = Assessment.find_by_id(params['assessment_id']) || Assessment.last
+    transmit(AssessmentSerializer.new(assessment).to_hash(include: '**'))
   end
 
   def pundit_user

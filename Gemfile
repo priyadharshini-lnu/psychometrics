@@ -82,7 +82,8 @@ gem 'i18n-tasks', '~> 0.9.5'
 gem 'acts_as_list', '~> 0.7.6'
 
 ### add fake destroying logic for models
-gem "paranoia", github: "rubysherpas/paranoia", branch: "rails5"
+gem 'paranoia', github: 'rubysherpas/paranoia', branch: 'rails5'
+gem 'active_model_serializers', '~> 0.10.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
