@@ -11,7 +11,7 @@ class Administration::SubFactorsController < Administration::BaseController
     @filterrific = initialize_filterrific(
       policy_scope(@resource_class).find(@factor.id).children,
       params[:filterrific]) || return
-    @resources   = @filterrific.find.page(params[:page])
+    @resources = @filterrific.find.page(params[:page])
 
     respond_to do |format|
       format.html

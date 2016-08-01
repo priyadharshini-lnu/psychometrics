@@ -13,7 +13,11 @@ gem 'jbuilder',                   '~> 2.5'
 
 
 source 'https://rails-assets.org' do
+  gem 'rails-assets-jquery', '1.12'
   gem 'rails-assets-noty'
+  gem 'rails-assets-bootstrap-select'
+  gem 'rails-assets-x-editable', '1.5.0'
+  gem 'rails-assets-mustache.js'
 end
 
 ### Authentication and authorization
@@ -66,10 +70,20 @@ gem 'smarter_csv',                '~> 1.1.0'
 gem 'jquery-fileupload-rails',    '~> 0.4.6'
 gem 'redis'
 
+gem 'paperclip',                  '~> 5.0.0'
+
 ### dependencies for XLS export (via templates)
 gem 'axlsx', github: 'randym/axlsx', ref: '7026a84'
 gem 'axlsx_rails', '~> 0.4.0'
 
+gem 'i18n-tasks', '~> 0.9.5'
+
+### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
+gem 'acts_as_list', '~> 0.7.6'
+
+### add fake destroying logic for models
+gem 'paranoia', github: 'rubysherpas/paranoia', branch: 'rails5'
+gem 'active_model_serializers', '~> 0.10.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -83,7 +97,7 @@ group :development do
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
 
-  gem 'capistrano',               '~> 3.5'
+  gem 'capistrano',               '~> 3.5.0'
   gem 'capistrano-rails',         '~> 1.1.6'
   gem 'capistrano-rvm',           '~> 0.1.2'
 end

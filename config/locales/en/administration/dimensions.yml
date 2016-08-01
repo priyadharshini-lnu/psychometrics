@@ -21,3 +21,15 @@ en:
         new: New Dimension
         copy: Copy Dimension
         assign: 'Assign Dimension'
+
+      resource:
+        tooltips:
+          copy: Copy Dimension
+          edit: Edit Dimension
+          delete: Delete Dimension
+        confirmations:
+          delete:
+            title:
+              Delete <strong>Dimension</strong> ?
+            body: >
+              <p>Are you sure you want to delete this Dimension?</p>

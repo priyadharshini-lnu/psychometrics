@@ -1,0 +1,2 @@
+class AssessmentDecorator < BaseDecorator
+end

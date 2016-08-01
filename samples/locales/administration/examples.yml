@@ -20,3 +20,15 @@ en:
         edit: Edit
         new: New Norm
         copy: Copy Norm
+
+      resource:
+        tooltips:
+          copy: Copy Norm
+          edit: Edit Norm
+          delete: Delete Norm
+        confirmations:
+          delete:
+            title:
+              Delete <strong>Norm</strong> ?
+            body: >
+              <p>Are you sure you want to delete this norm?</p>

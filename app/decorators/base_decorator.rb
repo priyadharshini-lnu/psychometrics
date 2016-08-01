@@ -1,6 +1,12 @@
 class BaseDecorator < Draper::Decorator
   delegate_all
 
+  # Common method for all entities
+  # Return string
+  def display_name
+    object.name
+  end
+
   def status
     if object.disabled
       h.content_tag(:i, '', class: 'fa fa-times')
@@ -25,10 +31,8 @@ class BaseDecorator < Draper::Decorator
     end
   end
 
-  # Common method for all entities
-  # Return string
-  def display_name
-    object.name
+  def id
+    "##{object.id}"
   end
 
   def created_at
@@ -37,5 +41,12 @@ class BaseDecorator < Draper::Decorator
 
   def updated_at
     I18n.l object.updated_at, format: :short
+  end
+
+  def delete_confirmation
+    {
+      title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.title", name: display_name),
+      body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.body")
+    }.to_json
   end
 end

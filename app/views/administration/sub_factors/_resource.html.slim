@@ -3,9 +3,9 @@ tr data-sidebar=url_for(sidebar_administration_dimension_factor_sub_factor_path(
   td = resource.name
   td = resource.questions_count
   td
-    = link_to edit_administration_dimension_factor_sub_factor_path(@dimension, @factor, resource), remote: true, class: 'btn btn-default btn-rounded btn-sm mrm'  do
+    = link_to edit_administration_dimension_factor_sub_factor_path(@dimension, @factor, resource), remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
       span.fa.fa-pencil
-    = confirmation_link administration_dimension_factor_sub_factor_path(dimension_id: @dimension.id, factor_id: @factor.id, id: resource.id), class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: {confirm: ''} do
+    = link_to administration_dimension_factor_sub_factor_path(@dimension, @factor, resource), class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
       span.fa.fa-times
   td = resource.decorate.created_at
   td = resource.decorate.updated_at

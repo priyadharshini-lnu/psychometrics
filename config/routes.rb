@@ -13,26 +13,54 @@ Rails.application.routes.draw do
 
     resources :imports, only: [:new, :create]
 
+    ### CLIENTS
+    resources :clients do
+      member do
+        get :copy
+        get :sidebar
+        patch :toggle_status
+        get :license
+      end
+    end
+    ### END CLIENTS
+
+    ### ASSESSMENTS
+    resources :assessments do
+      member do
+        get :copy
+        get :sidebar
+        patch :toggle_status
+      end
+    end
+    ### END ASSESSMENTS
+
+    ### DIMENSIONS
     resources :dimensions do
       member do
         get :copy
         get :sidebar
         patch :toggle_status
       end
+      ### FACTORS
       resources :factors do
         member do
           get :copy
           get :sidebar
           patch :toggle_status
         end
+        ### SUB-FACTORS
         resources :sub_factors do
           member do
             get :sidebar
           end
         end
+        ### END SUB-FACTORS
       end
+      ### END FACTORS
     end
+    ### END DIMENSIONS
 
+    ### USERS
     resources :users do
       member do
         patch :toggle_status
@@ -44,16 +72,21 @@ Rails.application.routes.draw do
         get :export
       end
     end
+    ### END USERS
 
+    ### NORMS
     resources :norms do
       member do
         get :copy
         patch :toggle_status
         get :sidebar
+        get :editor
         get :export
       end
     end
-    resources :surveys
+    ### END NORMS
+
+    resources :factors_norms
   end
 
   root to: 'home#index'

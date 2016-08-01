@@ -3,7 +3,7 @@
 
 ///// START PLUGINS
 //= require bootstrap-sprockets
-//= require administration/plugins/bootstrap/bootstrap-select.js
+//= require bootstrap-select
 
 
 ///// START THIS PAGE PLUGINS
@@ -39,5 +39,12 @@
 //= require i18n/translations
 
 //= require jquery-fileupload/basic
+///// inplace edit
+//= require x-editable/dist/bootstrap3-editable/js/bootstrap-editable
+
+///// Use mustache for js template
+//= require mustache.js.js
 
 //= require_tree ./administration
+
+

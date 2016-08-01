@@ -1,6 +1,6 @@
 class Administration::NormsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :export]
+  before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :export, :editor]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -9,7 +9,7 @@ class Administration::NormsController < Administration::BaseController
     @filterrific = initialize_filterrific(
       policy_scope(@resource_class).includes(:updater),
       params[:filterrific]) || return
-    @resources   = @filterrific.find.page(params[:page])
+    @resources = @filterrific.find.page(params[:page])
 
     respond_to do |format|
       format.html
@@ -78,13 +78,31 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def export
-    # TODO: remove it, when we get relation between norm and dimension
-    @dimension = Dimension.last
+    @factors_norms = FactorsNorm.export_structured_hash(@resource.id)
     respond_to do |format|
       format.xlsx do
         headers['Content-Disposition'] = "attachment; filename=\"#{@resource.name}-#{Date.today}.xlsx\""
         headers['Content-Type']        = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
       end
+    end
+  end
+
+  def editor
+    add_breadcrumb @resource.name
+    add_breadcrumb I18n.t('administration.breadcrumbs.norms_editor')
+    @filterrific = initialize_filterrific(
+      FactorsNorm,
+      params[:filterrific],
+      select_options: {
+        with_norm_type: FactorsNorm::NORM_TYPES,
+        with_factor_type: FactorsNorm::FACTOR_TYPES
+      }) || return
+    @resources = FactorsNorm.structured_hash(
+      @filterrific.find.where(norm_id: @resource.id).joins(:factor)
+    )
+    respond_to do |format|
+      format.js
+      format.html
     end
   end
 
@@ -104,7 +122,11 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :favourite)
+    params.require(:resource).permit(:name)
+  end
+
+  def editor_params
+    params.permit(:norm_type, :factor_type)
   end
 
   def pundit_authorize

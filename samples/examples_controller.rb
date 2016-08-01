@@ -10,6 +10,11 @@ class Administration::ExamplesController < Administration::BaseController
       policy_scope(@resource_class),
       params[:filterrific]) || return
     @resources   = @filterrific.find.page(params[:page])
+
+    respond_to do |format|
+      format.html
+      format.js { render :index, formats: [:js] }
+    end
   end
 
   def new
@@ -66,7 +71,7 @@ class Administration::ExamplesController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :favourite)
+    params.require(:resource).permit(:name)
   end
 
   def pundit_authorize

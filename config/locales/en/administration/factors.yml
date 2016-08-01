@@ -18,3 +18,15 @@ en:
         edit: 'Edit Factor'
         new: 'Add Factor'
         remove: 'Remove Factor'
+
+      resource:
+        tooltips:
+          copy: Copy Factor
+          edit: Edit Factor
+          delete: Delete Factor
+        confirmations:
+          delete:
+            title:
+              Delete <strong>Factor</strong> ?
+            body: >
+              <p>Are you sure you want to delete this Factor?</p>

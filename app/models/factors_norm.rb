@@ -6,7 +6,7 @@
 #  level      :string
 #  score_from :float
 #  score_to   :float
-#  type       :string
+#  type       :enum
 #  factor_id  :integer
 #  norm_id    :integer
 #
@@ -20,19 +20,88 @@ class FactorsNorm < ApplicationRecord
   #
   self.inheritance_column = :_type_disabled
 
-  # Types constant
-  TYPES = {
-      eti: 'eti',
-      yti: 'yti'
-  }.freeze
+  # norm types constant
+  NORM_TYPES = %w(eti yti).freeze
+  # factor types constant
+  FACTOR_TYPES = %w(factors sub_factors).freeze
 
   LEVELS = ['Very Low', 'Low', 'Average', 'High', 'Very High'].freeze
 
   validates :level, :type, :factor, :norm, presence: true
-  validates :type, inclusion: { in: TYPES.values }, allow_nil: true
+  validates :type, inclusion: { in: NORM_TYPES }, allow_nil: true
   validates :level, inclusion: { in: LEVELS }, allow_nil: true
   validates :score_from, :score_to, numericality: true, allow_nil: true
   validate :score_from_less_than_score_to
+
+  filterrific(
+    default_filter_params: {
+      with_factor_type: FACTOR_TYPES.first,
+      with_norm_type:   NORM_TYPES.first
+    },
+    available_filters: [
+      :with_factor_type,
+      :with_norm_type
+    ]
+  )
+
+  scope :with_factor_type, lambda { |type|
+    type = type.to_s
+    raise "supported types: #{FACTOR_TYPES}" unless FACTOR_TYPES.include? type
+    result = joins(:factor).where('factors.parent_id': nil) if type == 'factors'
+    result = joins(:factor).where.not('factors.parent_id': nil) if type == 'sub_factors'
+    result
+  }
+
+  scope :with_norm_type, lambda { |type|
+    where('type': type)
+  }
+
+  #
+  # Return structured hash
+  # {
+  #   "factor_name": {
+  #     "level_type": [
+  #       FactorsNorm,
+  #       FactorsNorm,
+  #       FactorsNorm,
+  #       FactorsNorm,
+  #       FactorsNorm
+  #     ]
+  #   }
+  # }
+  #
+  #
+  def self.structured_hash(scope)
+    scope.select('factors_norms.*, factors.name as factor_name, pf.name as parent_factor_name').
+      joins('LEFT JOIN factors pf on  pf.id::INTEGER = factors.parent_id::INTEGER').
+      order(id: :asc).group_by(&:factor_name).inject({}) { |sum, i| sum[i.first] = i.last.group_by(&:level); sum }
+  end
+
+  #
+  # Return list of structured hashes
+  #
+  # {
+  #   "eti": {
+  #     "factors": <structured_hash>
+  #     "sub_factors": <structured_hash>
+  #   },
+  #   "yti": {
+  #     "factors": <structured_hash>
+  #     "sub_factors": <structured_hash>
+  #   },
+  # }
+  #
+  #
+  def self.export_structured_hash(norm_id)
+    FactorsNorm::NORM_TYPES.inject(Hash.new({})) do |sum, norm_type|
+        sum[norm_type] = {}
+        FactorsNorm::FACTOR_TYPES.each do |factor_type|
+          sql = FactorsNorm.with_norm_type(norm_type).with_factor_type(factor_type).where(norm_id: norm_id)
+          sum[norm_type][factor_type] = FactorsNorm.structured_hash(sql)
+        end
+        sum
+    end
+  end
 
   private
 
