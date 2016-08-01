@@ -72,7 +72,12 @@ class Administration::ClientsController < Administration::BaseController
         format.js
       else
         format.js do
-          render(:error, locals: { message: t("administration.#{@resource_class.model_name.plural}.copy.error", name: @resource.decorate.display_name) })
+          render(
+            :error,
+            locals: {
+              message: t("administration.#{@resource_class.model_name.plural}.copy.error", name: @resource.decorate.display_name)
+            }
+          )
         end
       end
     end

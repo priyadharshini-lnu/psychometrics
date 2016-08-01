@@ -10,8 +10,8 @@ class UserDecorator < BaseDecorator
 
   def change_password_confirmation
     {
-      title: I18n.t("administration.users.resource.confirmations.change_password.title", name: display_name),
-      body: I18n.t("administration.users.resource.confirmations.change_password.body")
+      title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),
+      body: I18n.t('administration.users.resource.confirmations.change_password.body')
     }.to_json
   end
 end

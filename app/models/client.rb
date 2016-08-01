@@ -10,8 +10,8 @@ class Client < ApplicationRecord
       sorted_by: 'id_desc'
     },
     available_filters: [
-       :sorted_by,
-       :search_query
+      :sorted_by,
+      :search_query
     ]
   )
 
@@ -33,6 +33,6 @@ class Client < ApplicationRecord
   }
 
   def self.options_for_select
-    self.all.map { |client| [client.decorate.display_name, client.id] }
+    all.map { |client| [client.decorate.display_name, client.id] }
   end
 end

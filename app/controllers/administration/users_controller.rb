@@ -52,7 +52,12 @@ class Administration::UsersController < Administration::BaseController
     @resource.operator = current_administrator
     respond_to do |format|
       if @resource.update(resource_params)
-        format.html { redirect_to([:administration, @resource_class.model_name.plural], success: t('.successfully', name: @resource.decorate.display_name)) }
+        format.html do
+          redirect_to(
+            [:administration, @resource_class.model_name.plural],
+            success: t('.successfully', name: @resource.decorate.display_name)
+          )
+        end
       else
         format.html { render :edit }
       end

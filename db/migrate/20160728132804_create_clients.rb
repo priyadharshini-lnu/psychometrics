@@ -4,8 +4,8 @@ class CreateClients < ActiveRecord::Migration[5.0]
       t.string :name
       t.integer :licenses, default: 0
       t.integer :licenses_used, default: 0
-      t.date  :licenses_expire
-      t.string  :subdomain
+      t.date :licenses_expire
+      t.string :subdomain
       t.attachment :logo
       t.json :design
       t.boolean :disabled, default: false
