@@ -1,6 +1,20 @@
+# == Schema Information
+#
+# Table name: assessments
+#
+#  id         :integer          not null, primary key
+#  name       :string
+#  category   :enum             default("psychometric")
+#  norm_id    :integer
+#  disabled   :boolean          default(FALSE)
+#  created_at :datetime         not null
+#  updated_at :datetime         not null
+#
+
 class Assessment < ApplicationRecord
   include Copyable
 
+  has_many :blocks, -> { order(position: :asc) }
   # CATEGORIES constant
   CATEGORIES = {
     psychometric: 'psychometric',

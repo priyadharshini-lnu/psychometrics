@@ -10,13 +10,24 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160728132804) do
+ActiveRecord::Schema.define(version: 20160801134001) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
 # Could not dump table "assessments" because of following StandardError
 #   Unknown type 'assessment_categories' for column 'category'
+
+  create_table "blocks", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "position"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.integer  "assessment_id"
+    t.datetime "deleted_at"
+    t.index ["assessment_id"], name: "index_blocks_on_assessment_id", using: :btree
+    t.index ["deleted_at"], name: "index_blocks_on_deleted_at", using: :btree
+  end
 
   create_table "clients", force: :cascade do |t|
     t.string   "name"
@@ -35,9 +46,17 @@ ActiveRecord::Schema.define(version: 20160728132804) do
     t.index ["subdomain"], name: "index_clients_on_subdomain", unique: true, using: :btree
   end
 
+  create_table "comments", force: :cascade do |t|
+    t.string   "text"
+    t.integer  "created_by"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
+    t.integer  "question_id"
+    t.index ["question_id"], name: "index_comments_on_question_id", using: :btree
+  end
+
   create_table "dimensions", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "favourite",  default: false
     t.boolean  "disabled",   default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false
@@ -59,10 +78,6 @@ ActiveRecord::Schema.define(version: 20160728132804) do
 # Could not dump table "factors_norms" because of following StandardError
 #   Unknown type 'factors_norms_types' for column 'type'
 
-  create_table "json_test", force: :cascade do |t|
-    t.jsonb "data"
-  end
-
   create_table "norms", force: :cascade do |t|
     t.string   "name"
     t.boolean  "disabled",   default: false
@@ -72,9 +87,23 @@ ActiveRecord::Schema.define(version: 20160728132804) do
     t.datetime "updated_at",                 null: false
   end
 
+  create_table "questions", force: :cascade do |t|
+    t.string   "name"
+    t.integer  "position"
+    t.string   "type"
+    t.json     "props"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.integer  "block_id"
+    t.datetime "deleted_at"
+    t.index ["block_id"], name: "index_questions_on_block_id", using: :btree
+    t.index ["deleted_at"], name: "index_questions_on_deleted_at", using: :btree
+  end
+
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'user_roles' for column 'role'
 
+  add_foreign_key "comments", "users", column: "created_by"
   add_foreign_key "norms", "users", column: "created_by"
   add_foreign_key "norms", "users", column: "updated_by"
 end
