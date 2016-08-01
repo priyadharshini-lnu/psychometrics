@@ -87,7 +87,6 @@ Rails.application.routes.draw do
     ### END NORMS
 
     resources :factors_norms
-    resources :surveys
   end
 
   root to: 'home#index'

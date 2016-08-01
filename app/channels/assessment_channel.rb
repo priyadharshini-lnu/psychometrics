@@ -9,14 +9,13 @@
 # 3. include Actions::Block
 #
 
-# TODO: rename to assessment_channel!!!
-class SurveyChannel < ApplicationCable::Channel
+class AssessmentChannel < ApplicationCable::Channel
   include Actions::Block
   include Pundit
   include Administration::Policies
 
   def subscribed
-    stream_from 'survey'
+    stream_from 'assessment'
   end
 
   def fetch
