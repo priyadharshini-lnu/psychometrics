@@ -56,7 +56,7 @@ GIT
 
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: a870b848f2b27e4c338a395dfde940f443701a8f
+  revision: d2bb3c537760a8d6beeadb3d6ac8fb7909f54d55
   specs:
     psychometrics-survey (0.0.1)
       railties (>= 4.2.0)
@@ -150,6 +150,7 @@ GEM
       activesupport (>= 3.0)
     cocaine (0.5.8)
       climate_control (>= 0.0.3, < 1.0)
+    coderay (1.1.1)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -255,6 +256,10 @@ GEM
       ast (~> 2.2)
     pg (0.18.4)
     pkg-config (1.1.7)
+    pry (0.10.4)
+      coderay (~> 1.1.0)
+      method_source (~> 0.8.1)
+      slop (~> 3.4)
     puma (3.6.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
@@ -321,6 +326,7 @@ GEM
       actionpack (>= 3.1)
       railties (>= 3.1)
       slim (~> 3.0)
+    slop (3.6.0)
     smarter_csv (1.1.0)
     spring (1.7.2)
     spring-watcher-listen (2.0.0)
@@ -403,6 +409,7 @@ DEPENDENCIES
   paperclip (~> 5.0.0)
   paranoia!
   pg (~> 0.18.4)
+  pry
   psychometrics-survey!
   puma (~> 3.0)
   pundit (~> 1.1.0)
