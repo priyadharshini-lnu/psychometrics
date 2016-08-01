@@ -1,20 +1,22 @@
 module Actions
   module Action
-    def action(action_name)
-      action_name = "#{name.downcase.split('::').last}_#{action_name}"
+    def action(route)
+      controller  = name.downcase.split('::').last
+      action_name = "#{controller}_#{route}"
       define_method action_name do |request|
         # TODO: delete
-        assessment = Assessment.find_by_id(params['id']) || Assessment.last
+        assessment = Assessment.find_by_id(params['assessment_id']) || Assessment.last
         if policy(assessment).open_channel?
           begin
-            response = yield(request['data'], current_administrator, assessment) || {}
-            transmit({
-                type: 'success',
-                data: response,
+            data            = yield(request['data'], current_administrator, assessment)
+            response        = {
+                type:         'success',
                 notification: { level: 'success', message: I18n.t("administration.cable.notification.#{action_name}") },
-                action: action_name,
-                request_id: request['request_id']
-            })
+                action:       action_name,
+                request_id:   request['request_id']
+            }
+            response[:data] = data if data
+            transmit(response)
           rescue Exception => e
             Rails.logger.error("#{e.message}\n")
             Rails.logger.error(e.backtrace.join("\n"))

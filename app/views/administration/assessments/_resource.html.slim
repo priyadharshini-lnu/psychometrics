@@ -3,7 +3,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td.text-center
     = link_to [:toggle_status, :administration, resource], method: :patch, remote: true do
       = resource.decorate.status
-  td = link_to resource.name, administration_surveys_path
+  td = link_to resource.name, administration_assessment_path(resource)
   td
     = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }do
       span.fa.fa-pencil

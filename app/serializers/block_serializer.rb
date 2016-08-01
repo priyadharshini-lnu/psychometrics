@@ -11,13 +11,8 @@
 #  deleted_at    :datetime
 #
 
-class Block < ApplicationRecord
-  belongs_to :assessment
-  has_many :questions, -> { order(position: :asc) }
+class BlockSerializer < ActiveModel::Serializer
+  attributes :id, :name, :position, :created_at
 
-  validates :name, presence: true
-  validates :name, length: { maximum: 150 }, allow_blank: true
-
-  acts_as_list scope: :assessment
-  acts_as_paranoid
+  has_many :questions, serializer: QuestionSerializer
 end
