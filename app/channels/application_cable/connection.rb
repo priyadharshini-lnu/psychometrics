@@ -11,8 +11,7 @@ module ApplicationCable
 
     def find_verified_administrator
       verified_user = User.find_by_id(cookies.signed['administrator.id'])
-      if verified_user && cookies.signed['administrator.expires_at'] &&
-         cookies.signed['administrator.expires_at'] > Time.now
+      if verified_user
         verified_user
       else
         reject_unauthorized_connection
