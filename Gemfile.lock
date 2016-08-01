@@ -142,6 +142,10 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    climate_control (0.0.3)
+      activesupport (>= 3.0)
+    cocaine (0.5.8)
+      climate_control (>= 0.0.3, < 1.0)
     coffee-rails (4.2.1)
       coffee-script (>= 2.2.0)
       railties (>= 4.0.0, < 5.2.x)
@@ -237,6 +241,12 @@ GEM
       mini_portile2 (~> 2.1.0)
       pkg-config (~> 1.1.7)
     orm_adapter (0.5.0)
+    paperclip (5.0.0)
+      activemodel (>= 4.2.0)
+      activesupport (>= 4.2.0)
+      cocaine (~> 0.5.5)
+      mime-types
+      mimemagic (~> 0.3.0)
     parser (2.3.1.2)
       ast (~> 2.2)
     pg (0.18.4)
@@ -262,6 +272,7 @@ GEM
     rails-assets-bootstrap-select (1.10.0)
       rails-assets-jquery (>= 1.8)
     rails-assets-jquery (1.12.0)
+    rails-assets-mustache.js (2.2.1)
     rails-assets-noty (2.3.8)
     rails-assets-x-editable (1.5.0)
       rails-assets-jquery (>= 1.6)
@@ -384,6 +395,7 @@ DEPENDENCIES
   jquery-rails (~> 4.1.1)
   kaminari (~> 0.17.0)
   listen (~> 3.0.5)
+  paperclip (~> 5.0.0)
   paranoia!
   pg (~> 0.18.4)
   psychometrics-survey!
@@ -392,6 +404,7 @@ DEPENDENCIES
   rails (~> 5.0.0)
   rails-assets-bootstrap-select!
   rails-assets-jquery (= 1.12)!
+  rails-assets-mustache.js!
   rails-assets-noty!
   rails-assets-x-editable (= 1.5.0)!
   redis

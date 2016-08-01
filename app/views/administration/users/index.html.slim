@@ -8,18 +8,17 @@
             = link_to [:new, :administration, @resource_class.model_name.singular], remote: true do
               span.fa.fa-plus
       .panel-body
-        = form_for_filterrific @filter, as: :filter, html: { class: 'form-inline', id: 'filter' } do |f|
+        = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
           = f.hidden_field :sorted_by
           .row.mbm
             .col-sm-6.phn
               .btn-group data-toggle="buttons"
-                - @filter.select_options[:with_role].each do |value|
+                - @filterrific.select_options[:with_role].each do |value|
                   label class="btn btn-default #{'active' if f.object.with_role == value}"
                     = f.radio_button(:with_role, value)
                     = t(".filterrific.with_role.#{value}")
               .form-group
-                // TODO  Load all availabe clients when will be created Client model
-                = f.select(:with_client, [], { include_blank: '- Any -' }, class: 'form-control select mll')
+                = f.select(:with_client, policy_scope(Client).options_for_select, { include_blank: '- Any -' }, class: 'form-control select mll')
             .col-md-3.col-md-offset-3.col-sm-4.col-sm-offset-2.phn
               .input-group.pull-right
                 = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')

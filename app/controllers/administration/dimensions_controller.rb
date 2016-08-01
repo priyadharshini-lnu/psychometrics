@@ -7,10 +7,10 @@ class Administration::DimensionsController < Administration::BaseController
 
 
   def index
-    @filter = initialize_filterrific(
+    @filterrific = initialize_filterrific(
       policy_scope(@resource_class),
-      params[:filter]) || return
-    @resources = @filter.find.page(params[:page])
+      params[:filterrific]) || return
+    @resources = @filterrific.find.page(params[:page])
 
     respond_to do |format|
       format.html
@@ -90,7 +90,7 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :favourite)
+    params.require(:resource).permit(:name)
   end
 
   def pundit_authorize

@@ -5,17 +5,17 @@
         h3.panel-title = t '.title'
         ul.panel-controls
           li
-            = link_to [:new, :administration, @resource_class.model_name.singular, with_category: @filter.with_category ], remote: true do
+            = link_to [:new, :administration, @resource_class.model_name.singular, with_category: @filterrific.with_category ], remote: true do
               span.fa.fa-plus
       .panel-body
         .row.mbm
           .col-sm-6.phn
             .btn-group
-              - @filter.select_options[:with_category].each do |value|
-                = link_to [:administration, @resource_class.model_name.plural, filter: { with_category: value } ], class: "btn btn-default #{'active' if @filter.with_category.to_s == value.to_s}"
+              - @filterrific.select_options[:with_category].each do |value|
+                = link_to [:administration, @resource_class.model_name.plural, filterrific: { with_category: value } ], class: "btn btn-default #{'active' if @filterrific.with_category.to_s == value.to_s}"
                   = t(".filterrific.with_category.#{value}")
           .col-md-3.col-md-offset-3.col-sm-4.col-sm-offset-2.phn
-            = form_for_filterrific @filter, as: :filter, html: { class: 'form-inline', id: 'filter' } do |f|
+            = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
               = f.hidden_field :sorted_by
               .input-group.pull-right
                 = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')

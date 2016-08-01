@@ -42,6 +42,9 @@
 ///// inplace edit
 //= require x-editable/dist/bootstrap3-editable/js/bootstrap-editable
 
+///// Use mustache for js template
+//= require mustache.js.js
+
 //= require_tree ./administration
 
 

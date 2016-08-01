@@ -1,21 +1,15 @@
-class Administration::AssessmentsController < Administration::BaseController
+class Administration::ClientsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy]
+  before_action :set_resource, only: [:edit, :update, :destroy, :sidebar, :toggle_status, :copy, :license]
   before_action :skip_authorization, only: [:sidebar]
-  before_action :init_breadcrumbs
+  append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
 
-  # GET /administration/resources
   def index
     @filterrific = initialize_filterrific(
       policy_scope(@resource_class),
-      params[:filterrific],
-      select_options: {
-        with_category: @resource_class.options_for_with_category
-      }
-    ) || return
-
-    @resources = @filterrific.find.page(params[:page])
+      params[:filterrific]) || return
+    @resources   = @filterrific.find.page(params[:page])
 
     respond_to do |format|
       format.html
@@ -25,11 +19,11 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def new
     @resource = @resource_class.new
-    @resource.category = params[:with_category] if params[:with_category]
   end
 
   def create
     @resource = @resource_class.new(resource_params)
+
     respond_to do |format|
       if @resource.save
         format.js
@@ -39,16 +33,6 @@ class Administration::AssessmentsController < Administration::BaseController
     end
   end
 
-  # GET /administration/resources/1
-  def show
-  end
-
-  # GET /administration/resources/1/edit
-  def edit
-    add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
-  end
-
-  # PATCH/PUT /administration/resources/1
   def update
     respond_to do |format|
       if @resource.update(resource_params)
@@ -59,11 +43,15 @@ class Administration::AssessmentsController < Administration::BaseController
     end
   end
 
-  # DELETE /administration/resources/1
   def destroy
     @resource.destroy
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully', id: @resource.id)) }
+      format.html do
+        redirect_to(
+          [:administration, @resource_class.model_name.plural],
+          notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully", name: @resource.decorate.display_name)
+        )
+      end
     end
   end
 
@@ -72,7 +60,7 @@ class Administration::AssessmentsController < Administration::BaseController
   def toggle_status
     @resource.toggle!(:disabled)
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully')) }
+      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
       format.js
     end
   end
@@ -84,7 +72,12 @@ class Administration::AssessmentsController < Administration::BaseController
         format.js
       else
         format.js do
-          render(:error, locals: { message: t("administration.#{@resource_class.model_name.plural}.copy.error", id: @resource.id) })
+          render(
+            :error,
+            locals: {
+              message: t("administration.#{@resource_class.model_name.plural}.copy.error", name: @resource.decorate.display_name)
+            }
+          )
         end
       end
     end
@@ -92,14 +85,13 @@ class Administration::AssessmentsController < Administration::BaseController
 
   private
 
+  def set_resource_class
+    @resource_class ||= Client
+  end
+
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
     add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
-  end
-
-  # Set model
-  def set_resource_class
-    @resource_class ||= Assessment
   end
 
   def set_resource
@@ -107,10 +99,9 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :category, :norm_id)
+    params.require(:resource).permit(:name, :licenses, :licenses_used, :licenses_expire)
   end
 
-  # Authorisation user
   def pundit_authorize
     authorize @resource || @resource_class
   end

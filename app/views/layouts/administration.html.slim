@@ -22,10 +22,13 @@ html.body-full-height
     = audio_tag('administration/alert.mp3', preload: 'auto', id: 'audio-alert')
     = audio_tag('administration/fail.mp3', preload: 'auto', id: 'audio-fail')
     /! END PRELOADS
-    = render partial: 'administration/base/confirm_modal'
+
     #modal-container
+    #confirm-container
 
     #sidebar.sidebar.right
       button.close type='button' &times;
       .content.panel
       .clearfix
+
+    = render partial: 'administration/base/confirm_modal'

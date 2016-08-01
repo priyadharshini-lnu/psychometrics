@@ -17,6 +17,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-noty'
   gem 'rails-assets-bootstrap-select'
   gem 'rails-assets-x-editable', '1.5.0'
+  gem 'rails-assets-mustache.js'
 end
 
 ### Authentication and authorization
@@ -68,6 +69,8 @@ gem 'smarter_csv',                '~> 1.1.0'
 # For unpoad file as Ajax
 gem 'jquery-fileupload-rails',    '~> 0.4.6'
 gem 'redis'
+
+gem 'paperclip',                  '~> 5.0.0'
 
 ### dependencies for XLS export (via templates)
 gem 'axlsx', github: 'randym/axlsx', ref: '7026a84'

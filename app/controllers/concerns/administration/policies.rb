@@ -12,6 +12,11 @@ module Administration::Policies
     super
   end
 
+  def pundit_policy_scope(scope)
+    scope = [:administration, scope] unless [scope].flatten.include? :administration
+    super
+  end
+
   def policy(record)
     record = [:administration, record] unless [record].flatten.include? :administration
     super

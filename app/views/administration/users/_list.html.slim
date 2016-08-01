@@ -2,14 +2,14 @@
   table.table.table-bordered.table-actions.table-hover.selectable.list id="#{@resource_class.model_name.plural}_list"
     thead
       tr
-        th.text-center width="50" = sorting @resource_class, :id, @filter
-        th.text-center width="100" = sorting @resource_class, :active, @filter
-        th = sorting @resource_class, :first_name, @filter
-        th = sorting @resource_class, :last_name, @filter
-        th = sorting @resource_class, :email, @filter
-        th = sorting @resource_class, :client_name, @filter
-        th = sorting @resource_class, :role, @filter
-        th = sorting @resource_class, :created_at, @filter
+        th.text-center width="50" = sorting @resource_class, :id, @filterrific
+        th.text-center width="100" = sorting @resource_class, :active, @filterrific
+        th = sorting @resource_class, :first_name, @filterrific
+        th = sorting @resource_class, :last_name, @filterrific
+        th = sorting @resource_class, :email, @filterrific
+        th = sorting @resource_class, :client_name, @filterrific
+        th = sorting @resource_class, :role, @filterrific
+        th = sorting @resource_class, :created_at, @filterrific
         th width='300' = t('administration.actions')
     tbody
       - if @resources.present?

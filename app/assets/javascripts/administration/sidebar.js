@@ -9,9 +9,9 @@ $(function(){
   });
 
   // Stop propagation, when clicked to action dom
-  // $(document).on('click', 'table.selectable tbody tr[data-sidebar] a, #modal-container .modal', function(event){
-  //   event.stopPropagation();
-  // });
+  $(document).on('click', 'table.selectable tbody tr[data-sidebar] a', function(event){
+    event.stopPropagation();
+  });
 
   $(document).on('click', 'table.selectable tbody tr[data-sidebar]', function(event){
     event.stopPropagation();

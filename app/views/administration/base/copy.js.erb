@@ -1,8 +1,5 @@
 $cloned_resource = $('<%= j render(partial: 'resource', locals: { resource: @cloned_resource }) %>').hide();
-$('#<%= @resource_class.model_name.plural %>_list')
-    .find('#<%= dom_id(@resource) %>')
-    .before($cloned_resource);
-
+$('#<%= dom_id(@resource) %>').before($cloned_resource);
 $cloned_resource.show('slow');
 
 // Reinit plugins

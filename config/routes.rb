@@ -13,6 +13,17 @@ Rails.application.routes.draw do
 
     resources :imports, only: [:new, :create]
 
+    ### CLIENTS
+    resources :clients do
+      member do
+        get :copy
+        get :sidebar
+        patch :toggle_status
+        get :license
+      end
+    end
+    ### END CLIENTS
+
     ### ASSESSMENTS
     resources :assessments do
       member do
