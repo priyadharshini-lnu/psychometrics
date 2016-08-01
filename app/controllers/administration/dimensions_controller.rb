@@ -90,7 +90,7 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :favourite)
+    params.require(:resource).permit(:name)
   end
 
   def pundit_authorize

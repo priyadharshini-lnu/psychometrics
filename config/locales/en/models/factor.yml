@@ -8,7 +8,6 @@ en:
         name: 'Name'
         subfactors_count: 'No. Sub-Factors'
         questions_count: 'No. Questions'
-        favourite: 'Favourite'
         created_at: 'Created'
         updated_at: 'Modified'
         active: 'Active'
