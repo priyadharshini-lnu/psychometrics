@@ -14,6 +14,7 @@ en:
         role: Role
         disabled: Disable
         active: Active
+        memberships: Memberships
         created_at: Created
         updated_at: Modified
         roles:

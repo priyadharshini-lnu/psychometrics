@@ -58,6 +58,9 @@ class User < ApplicationRecord
     user: []
   }.freeze
 
+  has_many :memberships
+  has_many :clients, through: :memberships
+
   validates :first_name, :last_name, :email, :role, presence: true
   validates :first_name, :last_name, :email, length: { maximum: 100 }, allow_blank: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
@@ -132,9 +135,6 @@ class User < ApplicationRecord
       order("users.last_name #{direction}")
     when /^email_/
       order("users.email #{direction}")
-    when /^client_name_/
-      # TODO: Uncomment when will be created client's model
-      # joins(:client).select('users.*, clients.name AS client_name').order("client_name #{ direction }")
     when /^role_/
       order("users.role #{direction}")
     when /^created_at_/
@@ -151,8 +151,7 @@ class User < ApplicationRecord
 
   # Fileter by client
   scope :with_client, lambda { |client_id|
-    # TODO: Uncomment when will be created client's model
-    # where(client_id: client_id)
+    joins(:clients).where(clients: { id: client_id})
   }
 
   # Fileter by role

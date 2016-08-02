@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160729153128) do
+ActiveRecord::Schema.define(version: 20160801114116) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -79,6 +79,14 @@ ActiveRecord::Schema.define(version: 20160729153128) do
 # Could not dump table "factors_norms" because of following StandardError
 #   Unknown type 'factors_norms_types' for column 'type'
 
+  create_table "memberships", force: :cascade do |t|
+    t.integer "client_id"
+    t.integer "user_id"
+    t.index ["client_id", "user_id"], name: "index_memberships_on_client_id_and_user_id", unique: true, using: :btree
+    t.index ["client_id"], name: "index_memberships_on_client_id", using: :btree
+    t.index ["user_id"], name: "index_memberships_on_user_id", using: :btree
+  end
+
   create_table "norms", force: :cascade do |t|
     t.string   "name"
     t.boolean  "disabled",   default: false
@@ -105,6 +113,8 @@ ActiveRecord::Schema.define(version: 20160729153128) do
 #   Unknown type 'user_roles' for column 'role'
 
   add_foreign_key "comments", "users", column: "created_by"
+  add_foreign_key "memberships", "clients", on_delete: :cascade
+  add_foreign_key "memberships", "users", on_delete: :cascade
   add_foreign_key "norms", "users", column: "created_by"
   add_foreign_key "norms", "users", column: "updated_by"
 end
