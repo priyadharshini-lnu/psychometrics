@@ -15,6 +15,7 @@ class Assessment < ApplicationRecord
   include Copyable
 
   has_many :blocks, -> { order(position: :asc) }
+  has_many :questions, through: :blocks
   # CATEGORIES constant
   CATEGORIES = {
     psychometric: 'psychometric',

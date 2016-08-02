@@ -15,7 +15,9 @@
 
 class Question < ApplicationRecord
   belongs_to :block
-  has_many :comments, -> { order(position: :asc) }
+  has_many :comments
+
+  scope :deleted, -> { where.not(deleted_at: nil) }
 
   #
   # Disables single column inheritance
