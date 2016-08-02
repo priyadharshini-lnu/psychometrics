@@ -23,6 +23,6 @@ class QuestionSerializer < ActiveModel::Serializer
   end
 
   def props
-    JSON.parse(object.props)  if object.props
+    JSON.parse(object.props) if object.props
   end
 end
