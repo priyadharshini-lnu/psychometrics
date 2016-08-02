@@ -11,19 +11,16 @@
 
 class AssessmentChannel < ApplicationCable::Channel
   include Actions::Block
+  include Actions::Question
   include Pundit
   include Administration::Policies
 
   def subscribed
-    stream_from 'assessment'
-  end
-
-  def fetch
-    # params['assessment_id']
-    # Ser.new()
-    stream_from 'survey'
-    assessment = Assessment.find_by_id(params['assessment_id']) || Assessment.last
-    transmit(AssessmentSerializer.new(assessment).to_hash(include: '**'))
+    assessment = Assessment.find_by_id(params['assessment_id'])
+    transmit({
+        action: 'assessment_data',
+        data: AssessmentSerializer.new(assessment).to_hash(include: '**')
+    })
   end
 
   def pundit_user

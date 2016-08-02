@@ -14,5 +14,9 @@
 #
 
 class QuestionSerializer < ActiveModel::Serializer
-  attributes :id, :name, :type, :position, :props, :created_at
+  attributes :id, :name, :type, :position, :props, :deleted, :created_at
+
+  def deleted
+    !!object.deleted_at
+  end
 end

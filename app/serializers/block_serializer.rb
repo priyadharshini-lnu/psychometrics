@@ -12,7 +12,11 @@
 #
 
 class BlockSerializer < ActiveModel::Serializer
-  attributes :id, :name, :position, :created_at
+  attributes :id, :name, :position, :deleted, :created_at
 
   has_many :questions, serializer: QuestionSerializer
+
+  def deleted
+    !!object.deleted_at
+  end
 end
