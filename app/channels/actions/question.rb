@@ -1,4 +1,3 @@
-# Extend Pundit helper for use in administration namespace
 module Actions
   module Question
     extend Actions::Action
@@ -20,13 +19,13 @@ module Actions
       nil
     end
 
-    action :rename do
+    action :rename do |data|
       ::Question.find(data['id']).update(name: data['name'])
       nil
     end
 
     action :move_up do |data|
-      ::Question.find(data['id']).update(name: data['name'])
+      ::Question.find(data['id']).update(position: data['position'])
       nil
     end
 
@@ -35,7 +34,7 @@ module Actions
       nil
     end
 
-    action :restore do
+    action :restore do |data|
       question = ::Question.find(data['id'])
       question.update(deleted_at: nil)
       QuestionSerializer.new(question).serializable_hash

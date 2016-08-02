@@ -9,6 +9,7 @@
 #  updated_at    :datetime         not null
 #  assessment_id :integer
 #  deleted_at    :datetime
+#  props         :json
 #
 
 class Block < ApplicationRecord
@@ -20,4 +21,9 @@ class Block < ApplicationRecord
 
   scope :deleted, -> { where.not(deleted_at: nil) }
 
+  before_create :init
+
+  def init
+    self.props ||= Settings.block.default_buttons.to_json
+  end
 end

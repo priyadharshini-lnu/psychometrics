@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160801114116) do
+ActiveRecord::Schema.define(version: 20160802125448) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -25,6 +25,7 @@ ActiveRecord::Schema.define(version: 20160801114116) do
     t.datetime "updated_at",    null: false
     t.integer  "assessment_id"
     t.datetime "deleted_at"
+    t.json     "props"
     t.index ["assessment_id"], name: "index_blocks_on_assessment_id", using: :btree
     t.index ["deleted_at"], name: "index_blocks_on_deleted_at", using: :btree
   end
@@ -57,7 +58,6 @@ ActiveRecord::Schema.define(version: 20160801114116) do
 
   create_table "dimensions", force: :cascade do |t|
     t.string   "name"
-    t.boolean  "favourite",  default: false
     t.boolean  "disabled",   default: false
     t.datetime "created_at",                 null: false
     t.datetime "updated_at",                 null: false

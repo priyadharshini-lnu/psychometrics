@@ -1,1 +1,5 @@
 project_name: Psychometrics
+block:
+  default_buttons:
+    prev_button: "Previous"
+    next_button: "Next"
