@@ -18,7 +18,8 @@ class AssessmentChannel < ApplicationCable::Channel
   include Administration::Policies
 
   def subscribed
-    assessment = Assessment.find_by_id(params['assessment_id'])
+    assessment = Assessment.where(id: params['assessment_id']).includes(blocks: {questions: :comments}).first
+    raise "Can't find Assessment with id=#{params['assessment_id']}" unless assessment
     transmit({
         action: 'assessment_data',
         data: AssessmentSerializer.new(assessment).to_hash(include: '**')

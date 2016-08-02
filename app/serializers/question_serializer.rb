@@ -16,13 +16,10 @@
 class QuestionSerializer < ActiveModel::Serializer
   attributes :id, :name, :type, :position, :props, :deleted, :created_at
 
-  has_many :comments
+  has_many :comments, serializer: CommentSerializer
 
   def deleted
     !!object.deleted_at
   end
 
-  def props
-    JSON.parse(object.props) if object.props
-  end
 end

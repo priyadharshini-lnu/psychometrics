@@ -21,7 +21,4 @@ class BlockSerializer < ActiveModel::Serializer
     !!object.deleted_at
   end
 
-  def props
-    JSON.parse(object.props) if object.props
-  end
 end

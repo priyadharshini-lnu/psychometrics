@@ -24,6 +24,6 @@ class Block < ApplicationRecord
   before_create :init
 
   def init
-    self.props ||= Settings.block.default_buttons.to_json
+    self.props ||= Settings.block.default_buttons
   end
 end
