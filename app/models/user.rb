@@ -151,7 +151,7 @@ class User < ApplicationRecord
 
   # Fileter by client
   scope :with_client, lambda { |client_id|
-    joins(:clients).where(clients: { id: client_id})
+    joins(:clients).where(clients: { id: client_id })
   }
 
   # Fileter by role
