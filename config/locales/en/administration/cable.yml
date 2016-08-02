@@ -2,7 +2,7 @@ en:
   administration:
     cable:
       notification:
-        block_create: "Block is created"
+        block_create: "Block %{name} is created"
         block_update: "Block is updated"
         block_destroy: "Block is destroyed"
         block_permanent_destroy: "Block is permanent destroyed"
