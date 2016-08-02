@@ -18,4 +18,6 @@ class Block < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
+  scope :deleted, -> { where.not(deleted_at: nil) }
+
 end

@@ -45,13 +45,5 @@ module Actions
       ::Question.destroy(data['id'])
       nil
     end
-
-    action :add_comment do
-      raise 'should be impl'
-    end
-
-    action :remove_comment do
-      raise 'should be impl'
-    end
   end
 end
