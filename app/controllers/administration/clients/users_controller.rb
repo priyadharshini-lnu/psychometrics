@@ -9,7 +9,7 @@ class Administration::Clients::UsersController < Administration::UsersController
         with_role: @resource_class.options_for_with_role
       },
       available_filters: [:with_role, :sorted_by, :search_query]
-      ) || return
+    ) || return
     @resources = @filterrific.find.preload(:clients).with_client(@client.id).page(params[:page])
 
     respond_to do |format|
@@ -47,9 +47,9 @@ class Administration::Clients::UsersController < Administration::UsersController
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.clients"), [:administration, :clients]
+    add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
     add_breadcrumb @client.decorate.display_name, '#'
-    add_breadcrumb I18n.t("administration.breadcrumbs.users"), { action: :index }
+    add_breadcrumb I18n.t('administration.breadcrumbs.users'), { action: :index }
   end
 
   # Set model
@@ -64,7 +64,6 @@ class Administration::Clients::UsersController < Administration::UsersController
   def set_resource
     @resource = policy_scope(@resource_class).find(params[:id])
   end
-
 
   def resource_params
     params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :role)
