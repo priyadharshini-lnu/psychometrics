@@ -1,7 +1,7 @@
-tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resource)
+tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
   td.text-center = resource.id
   td.text-center
-    = link_to [:toggle_status, :administration, resource], remote: true, method: :patch
+    = link_to({ action: :toggle_status, id: resource }, remote: true, method: :patch)
       = resource.decorate.status
   td = resource.first_name
   td = resource.last_name
@@ -10,18 +10,18 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td = @resource_class.human_enum_name(:role, resource.role)
   td = resource.decorate.created_at
   td
-    = link_to [:reset_password, :administration, resource], method: :get, class: 'btn btn-default btn-rounded btn-sm mrm', data: { confirm: resource.decorate.change_password_confirmation, toggle: 'tooltip', title: t('.tooltips.change_password') }
+    = link_to({ action: :reset_password, id: resource }, method: :get, class: 'btn btn-default btn-rounded btn-sm mrm', data: { confirm: resource.decorate.change_password_confirmation, toggle: 'tooltip', title: t('.tooltips.change_password') })
       i.fa.fa-key
     - if policy(resource).spoof?
-      = link_to [:spoof, :administration, resource], class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.sign_in') }
+      = link_to({ action: :spoof, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.sign_in') })
         i.fa.fa-sign-in
     = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.chart') }
       i.fa.fa-pie-chart
     = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.mail') }
       i.fa.fa-envelope-o
     - if policy(resource).edit?
-      = link_to [:edit, :administration, resource], class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
+      = link_to({ action: :edit, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
         i.fa.fa-pencil
     - if policy(resource).destroy?
-      = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
+      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
         span.fa.fa-times

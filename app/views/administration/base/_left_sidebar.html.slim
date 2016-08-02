@@ -38,14 +38,13 @@
         span.xn-text= t('administration.navigation.clients')
     li.xn-openable
       a href="#"
-        span.xn-text Create
+        .fa.fa-plus
+        span.xn-text = t('administration.navigation.create')
       ul
         li.xn-openable
           a href="#" Assessment
           ul
-            li
-              = link_to('#', wrap_tag: :li)
-                = t('administrator.psychometrics')
+            li = link_to(t('administration.navigation.psychometrics'), '#')
         li.xn-openable
           a href="#" Survey
           ul
@@ -61,8 +60,8 @@
                 li = link_to t('administration.navigation.users_add'), [:new, :administration, :user], remote: true
               - if policy(:user).import?
                 li = link_to t('administration.navigation.users_import'), [:new, :administration, :import, { resource: :user, type: :csv }], remote: true
-        li
-          a href="#" Client Tenancy
+        - if policy(:client).new?
+          li = link_to(t('administration.navigation.client'), [:new, :administration, :client], remote: true)
         li.xn-openable
           a href="#" Report
           ul

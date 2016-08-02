@@ -37,5 +37,9 @@ en:
       norms_editor: Norm Editor
       assessments: Assessments
       clients: Clients
+      client: Client Tenancy
+      create: Create
+      reporting: Reporting
+      design: Design
     breadcrumbs:
       <<: *NAVIGATION

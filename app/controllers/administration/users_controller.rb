@@ -53,10 +53,7 @@ class Administration::UsersController < Administration::BaseController
     respond_to do |format|
       if @resource.update(resource_params)
         format.html do
-          redirect_to(
-            [:administration, @resource_class.model_name.plural],
-            success: t('.successfully', name: @resource.decorate.display_name)
-          )
+          redirect_to({ action: :index }, success: t('.successfully', name: @resource.decorate.display_name))
         end
       else
         format.html { render :edit }
