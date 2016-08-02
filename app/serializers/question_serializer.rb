@@ -21,4 +21,8 @@ class QuestionSerializer < ActiveModel::Serializer
   def deleted
     !!object.deleted_at
   end
+
+  def props
+    JSON.parse(object.props)  if object.props
+  end
 end

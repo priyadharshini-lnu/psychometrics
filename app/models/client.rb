@@ -1,3 +1,23 @@
+# == Schema Information
+#
+# Table name: clients
+#
+#  id                :integer          not null, primary key
+#  name              :string
+#  licenses          :integer          default(0)
+#  licenses_used     :integer          default(0)
+#  licenses_expire   :date
+#  subdomain         :string
+#  logo_file_name    :string
+#  logo_content_type :string
+#  logo_file_size    :integer
+#  logo_updated_at   :datetime
+#  design            :json
+#  disabled          :boolean          default(FALSE)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
 class Client < ApplicationRecord
   include Copyable
 
