@@ -16,6 +16,7 @@ en:
     active: Active
     copy: Copy
     choose: ' - Choose - '
+    any: ' - Any - '
     psychometrics: Psychometrics
     no_data_found: No data found
     noty:

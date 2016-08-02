@@ -4,7 +4,6 @@ $(document).ready(function () {
 
   //Override the default confirm dialog by rails
   $.rails.allowAction = function (link) {
-    debugger;
     if (!link.attr('data-confirm')) {
       return true;
     }

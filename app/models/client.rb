@@ -1,7 +1,9 @@
 class Client < ApplicationRecord
   include Copyable
 
-  has_many :factors, -> { order(id: :asc) }
+  has_many :memberships
+  has_many :users, through: :memberships
+
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 

@@ -14,4 +14,8 @@ class UserDecorator < BaseDecorator
       body: I18n.t('administration.users.resource.confirmations.change_password.body')
     }.to_json
   end
+
+  def clients_name
+    object.clients.map { |client| client.decorate.display_name }.join(', ')
+  end
 end
