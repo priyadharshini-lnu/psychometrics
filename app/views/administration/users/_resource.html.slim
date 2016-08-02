@@ -6,7 +6,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td = resource.first_name
   td = resource.last_name
   td = resource.email
-  td Not implemented
+  td = resource.decorate.clients_name
   td = @resource_class.human_enum_name(:role, resource.role)
   td = resource.decorate.created_at
   td

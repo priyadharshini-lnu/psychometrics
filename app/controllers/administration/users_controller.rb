@@ -13,7 +13,7 @@ class Administration::UsersController < Administration::BaseController
       select_options: {
         with_role: @resource_class.options_for_with_role
       }) || return
-    @resources = @filterrific.find.page(params[:page])
+    @resources = @filterrific.find.preload(:clients).page(params[:page])
 
     respond_to do |format|
       format.html
@@ -91,7 +91,7 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def export
-    @resources = policy_scope(@resource_class).all
+    @resources = policy_scope(@resource_class).includes(:clients).all
     respond_to do |format|
       format.csv do
         headers['Content-Disposition'] = "attachment; filename=\"#{@resource_class.model_name.plural}-#{Date.today}.csv\""
