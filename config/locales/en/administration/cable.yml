@@ -10,6 +10,7 @@ en:
         block_move_up: "Block is moved up"
         block_move_down: "Block is moved down"
         block_restore: "Block is restored"
+        block_clone: "Block is copied"
         question_create: "Question %{name} is created"
         question_update: "Question is updated"
         question_destroy: "Question is destroyed"

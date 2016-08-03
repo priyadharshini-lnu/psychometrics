@@ -26,4 +26,13 @@ class Block < ApplicationRecord
   def init
     self.props ||= Settings.block.default_buttons
   end
+
+  def deep_clone(name:, position:)
+    cloned_block = self.dup
+    cloned_block.position = position if position
+    cloned_block.name = name if name
+    cloned_block.save
+    cloned_block.questions.create(questions.map { |question| question.attributes.except('id', 'created_at', 'updated_at') })
+    cloned_block
+  end
 end

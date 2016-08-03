@@ -4,7 +4,7 @@ module Actions
 
     action :create do |data, _current_administrator, assessment|
       block = assessment.blocks.create!(data)
-      BlockSerializer.new(block).serializable_hash
+      BlockSerializer.new(block).to_hash
     end
 
     action :update do |data|
@@ -38,12 +38,18 @@ module Actions
     action :restore do |data|
       block = ::Block.find(data['id'])
       block.update(deleted_at: nil, position: data['position'])
-      BlockSerializer.new(block).serializable_hash
+      BlockSerializer.new(block).to_hash
     end
 
     action :permanent_destroy do |data|
       ::Block.destroy(data['id'])
       nil
+    end
+
+    action :clone do |data|
+      block = ::Block.find(data['id'])
+      block.deep_clone(name: data['name'], position: data['position'])
+      BlockSerializer.new(block).to_hash
     end
   end
 end
