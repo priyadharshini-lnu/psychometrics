@@ -15,5 +15,5 @@ User.create(
 ) if User.all.empty?
 
 Notification.create(
-                [{ text: 'first message' }, { text: 'second message' }, { text: 'third message' }]
+  [{ text: 'first message' }, { text: 'second message' }, { text: 'third message' }]
 ) if Notification.all.empty?
