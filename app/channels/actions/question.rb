@@ -36,13 +36,36 @@ module Actions
 
     action :restore do |data|
       question = ::Question.find(data['id'])
-      question.update(deleted_at: nil)
+      question.update(deleted_at: nil, position: data['position'])
       QuestionSerializer.new(question).serializable_hash
     end
 
     action :permanent_destroy do |data|
       ::Question.destroy(data['id'])
       nil
+    end
+
+    action :insert_after do |data|
+      parent = ::Question.find(data['parent_id'])
+      ::Question.increment_all_positions(parent.position)
+      question = ::Question.create!(data['question'])
+      QuestionSerializer.new(question).serializable_hash
+    end
+
+    action :insert_before do |data|
+      parent = ::Question.find(data['parent_id'])
+      ::Question.increment_all_positions(parent.position - 1)
+      question = ::Question.create!(data['question'])
+      QuestionSerializer.new(question).serializable_hash
+    end
+
+    action :clone do |data|
+      parent = ::Question.find(data['id'])
+      question = parent.clone
+      ::Question.increment_all_positions(parent.position)
+      question.position = parent.position + 1
+      question.save
+      QuestionSerializer.new(question).serializable_hash
     end
   end
 end

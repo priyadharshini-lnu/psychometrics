@@ -37,7 +37,7 @@ module Actions
 
     action :restore do |data|
       block = ::Block.find(data['id'])
-      block.update(deleted_at: nil)
+      block.update(deleted_at: nil, position: data['position'])
       BlockSerializer.new(block).serializable_hash
     end
 
