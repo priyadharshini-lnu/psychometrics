@@ -1,1 +1,41 @@
-h1 Dashboard
+.row
+  .col-md-4
+    div.widget.widget-success.widget-no-subtitle
+      div.widget-big-int
+        span.num-count Something
+      div.widget-subtitle Something else
+      div.widget-controls
+        a.widget-control-left href="#"
+          span.fa.fa-cloud
+  .col-md-4
+    div.widget.widget-success.widget-no-subtitle
+      div.widget-big-int
+        span.num-count Something
+      div.widget-subtitle Something else
+      div.widget-controls
+        a.widget-control-left href="#"
+          span.fa.fa-cloud
+  .col-md-4
+    div.widget.widget-success.widget-no-subtitle
+      div.widget-big-int
+        span.num-count Something
+      div.widget-subtitle Something else
+      div.widget-controls
+        a.widget-control-left href="#"
+          span.fa.fa-cloud
+.row
+  .col-md-6
+    .panel.panel-default
+      div.panel-heading
+        h3.panel-title = t('.notifications')
+      = render partial: 'notification', collection: @notifications
+  .col-md-6
+    .panel.panel-default
+      div.panel-heading
+        h3.panel-title Something else
+      div.panel-body.list-group.list-group-contacts
+        .list-group-item
+          span.contacts-title #1
+      div.panel-body.list-group.list-group-contacts
+        .list-group-item
+          span.contacts-title #2
