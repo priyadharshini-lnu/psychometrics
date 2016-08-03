@@ -41,6 +41,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   # GET /administration/resources/1
   def show
+    add_breadcrumb @resource.decorate.display_name
   end
 
   # GET /administration/resources/1/edit
