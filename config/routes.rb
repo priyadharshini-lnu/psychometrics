@@ -21,6 +21,19 @@ Rails.application.routes.draw do
         patch :toggle_status
         get :license
       end
+      scope module: :clients do
+        resources :users do
+          member do
+            patch :toggle_status
+            get :sidebar
+            get :reset_password
+            get :spoof
+          end
+          collection do
+            get :export
+          end
+        end
+      end
     end
     ### END CLIENTS
 

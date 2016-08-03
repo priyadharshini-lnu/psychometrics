@@ -25,6 +25,7 @@ module Imports
               row += 1
               begin
                 user_params[:role] = user_params[:role].try(:downcase)
+                user_params[:client_ids] = [Client.first.id]
                 user_params[:operator] = @importer
                 user = User.create!(user_params)
               rescue ActiveRecord::RecordInvalid => e

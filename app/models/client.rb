@@ -49,7 +49,7 @@ class Client < ApplicationRecord
     column = sort_key.gsub("_#{direction}", '')
     if column.in?(%w(id active name created_at updated_at licenses_used licenses_expire))
       order("clients.#{column} #{direction}")
-    elsif 'active'
+    elsif column == 'active'
       order("clients.disabled #{direction}")
     end
   }
