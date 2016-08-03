@@ -48,8 +48,8 @@ module Actions
 
     action :clone do |data|
       block = ::Block.find(data['id'])
-      block.deep_clone(name: data['name'], position: data['position'])
-      BlockSerializer.new(block).to_hash
+      clonned_block = block.deep_clone(name: data['name'], position: data['position'])
+      BlockSerializer.new(clonned_block).to_hash
     end
   end
 end
