@@ -28,7 +28,7 @@ class Block < ApplicationRecord
   end
 
   def deep_clone(name:, position:)
-    cloned_block = self.dup
+    cloned_block = dup
     cloned_block.position = position if position
     cloned_block.name = name if name
     cloned_block.save
