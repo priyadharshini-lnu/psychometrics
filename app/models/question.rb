@@ -14,6 +14,7 @@
 #
 
 class Question < ApplicationRecord
+  include Copyable
   belongs_to :block
   has_many :comments
 
