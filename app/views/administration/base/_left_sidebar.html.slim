@@ -3,7 +3,7 @@
   /! START X-NAVIGATION
   ul.x-navigation
     li.xn-logo
-      a href="#" = Settings.project_name
+      = link_to Settings.project_name, administration_root_path
       a.x-navigation-control href="#"
     li.xn-profile
       = link_to administration_root_path, class: 'profile-mini'

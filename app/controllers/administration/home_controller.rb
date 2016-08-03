@@ -6,5 +6,6 @@ class Administration::HomeController < Administration::BaseController
 
   def index
     authorize :home
+    @notifications = Notification.order(id: :desc).last(5)
   end
 end

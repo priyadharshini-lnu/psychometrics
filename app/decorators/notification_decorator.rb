@@ -1,0 +1,2 @@
+class NotificationDecorator < BaseDecorator
+end
