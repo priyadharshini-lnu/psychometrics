@@ -28,14 +28,4 @@ class Question < ApplicationRecord
   validates :name, :type, presence: true
   validates :name, length: { maximum: 255 }, allow_blank: true
 
-  #
-  # Move down all questions, which have position more than base_position
-  #
-  def self.increment_all_positions(base_position)
-    ::Question.where("position > #{base_position}").update_all('position = position + 1')
-  end
-
-  def attributes_list
-    attributes.except('id', 'created_at', 'updated_at')
-  end
 end

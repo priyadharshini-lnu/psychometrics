@@ -5,7 +5,7 @@ module Actions
     action :create do |data, _current_administrator|
       question = ::Question.find(data.delete('question_id'))
       comment  = question.comments.create!(data.merge(created_by: _current_administrator.id))
-      CommentSerializer.new(comment).serializable_hash
+      CommentSerializer.new(comment).to_hash
     end
 
     action :destroy do |data|

@@ -35,4 +35,11 @@ class Block < ApplicationRecord
     cloned_block.questions.create(questions.map { |question| question.attributes.except('id', 'created_at', 'updated_at') })
     cloned_block
   end
+
+  #
+  # Move down all questions, which have position more than base_position
+  #
+  def increment_all_questions(base_position)
+    questions.where("position > #{base_position}").update_all('position = position + 1')
+  end
 end

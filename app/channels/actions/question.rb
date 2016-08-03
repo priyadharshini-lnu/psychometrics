@@ -5,7 +5,7 @@ module Actions
     action :create do |data|
       block = ::Block.find(data.delete('block_id'))
       question = block.questions.create!(data)
-      QuestionSerializer.new(question).serializable_hash
+      QuestionSerializer.new(question).to_hash
     end
 
     action :update do |data|
@@ -37,7 +37,7 @@ module Actions
     action :restore do |data|
       question = ::Question.find(data['id'])
       question.update(deleted_at: nil, position: data['position'])
-      QuestionSerializer.new(question).serializable_hash
+      QuestionSerializer.new(question).to_hash
     end
 
     action :permanent_destroy do |data|
@@ -47,25 +47,25 @@ module Actions
 
     action :insert_after do |data|
       parent = ::Question.find(data['parent_id'])
-      ::Question.increment_all_positions(parent.position)
+      parent.block.increment_all_questions(parent.position)
       question = ::Question.create!(data['question'])
-      QuestionSerializer.new(question).serializable_hash
+      QuestionSerializer.new(question).to_hash
     end
 
     action :insert_before do |data|
       parent = ::Question.find(data['parent_id'])
-      ::Question.increment_all_positions(parent.position - 1)
+      parent.block.increment_all_questions(parent.position - 1)
       question = ::Question.create!(data['question'])
-      QuestionSerializer.new(question).serializable_hash
+      QuestionSerializer.new(question).to_hash
     end
 
     action :clone do |data|
       parent = ::Question.find(data['id'])
       question = parent.clone
-      ::Question.increment_all_positions(parent.position)
+      parent.block.increment_all_questions(parent.position)
       question.position = parent.position + 1
       question.save
-      QuestionSerializer.new(question).serializable_hash
+      QuestionSerializer.new(question).to_hash
     end
   end
 end
