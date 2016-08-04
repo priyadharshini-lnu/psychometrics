@@ -8,18 +8,18 @@ en:
       edit:
         header: 'Edit dimension'
       destroy:
-        successfully: 'Dimension #%{id} was successfully destroyed.'
+        successfully: 'Dimension %{name} was successfully destroyed.'
       copy:
         error: 'Dimension #%{id} was not copied.'
       toggle_status:
         successfully: 'Dimension was successfully updated.'
       sidebar:
-        title: Dimension's options (#%{id})
-        disable: Disable
-        enable: Enable
-        edit: Edit
-        new: New Dimension
-        copy: Copy Dimension
+        title: "Dimension's options (#%{id})"
+        disable: 'Disable Dimension'
+        enable: 'Enable Dimension'
+        edit: 'Edit Dimension'
+        new: 'New Dimension'
+        copy: 'Copy Dimension'
         assign: 'Assign Dimension'
 
       resource:
