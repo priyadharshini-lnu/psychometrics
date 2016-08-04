@@ -3,12 +3,15 @@ en:
     norms:
       index:
         title: Norms
+        tooltips:
+          import: Import
+          create: Create
       new:
         header: 'New norm'
       edit:
         header: 'Edit norm'
       destroy:
-        successfully: 'Norm #%{id} was successfully destroyed.'
+        successfully: 'Norm %{name} was successfully destroyed.'
       copy:
         error: 'Norm #%{id} was not copied.'
       toggle_status:
@@ -23,6 +26,7 @@ en:
         disable: 'Disable'
         enable: 'Enable'
         edit: 'Edit Norm'
+        editor: 'Norm Editor'
         new: 'New Norm'
         copy: 'Copy Norm'
         assign: 'Assign Norm'
@@ -30,7 +34,7 @@ en:
         import: 'Import Norm'
         export: 'Export Norm'
         surveys: 'Linked Surveys'
-
+        destroy: 'Delete Norm'
       resource:
         tooltips:
           copy: Copy Norm

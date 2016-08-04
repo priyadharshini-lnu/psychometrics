@@ -11,7 +11,7 @@
         h3.panel-title = t('.title')
         ul.panel-controls
           li
-            = link_to({ action: :new }, remote: true)
+            = link_to({ action: :new }, remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') })
               span.fa.fa-plus
       .panel-body
         = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|

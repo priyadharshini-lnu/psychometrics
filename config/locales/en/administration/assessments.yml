@@ -3,6 +3,8 @@ en:
     assessments:
       index:
         title: Assessments
+        tooltips:
+          create: Create
         filterrific:
           with_category: &categories
             psychometric: 'Psychometric Assess'
@@ -30,13 +32,14 @@ en:
         title: Assessment's options (#%{id})
         disable: Disable
         enable: Enable
-        edit: Edit
+        edit: Edit Assessment
         new: New Assessment
         copy: Copy Assessment
         assign: 'Assign Assessment'
+        destroy: 'Delete Assessment'
       resource:
         tooltips:
-          copy: Copy
+          copy: Copy Assessment
           edit: Edit Assessment
           delete: Delete Assessment
         confirmations:

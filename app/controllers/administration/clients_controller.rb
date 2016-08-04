@@ -43,15 +43,12 @@ class Administration::ClientsController < Administration::BaseController
     end
   end
 
+  # DELETE /administration/resources/1
   def destroy
     @resource.destroy
     respond_to do |format|
-      format.html do
-        redirect_to(
-          [:administration, @resource_class.model_name.plural],
-          notice: t("administration.#{@resource_class.model_name.plural}.destroy.successfully", name: @resource.decorate.display_name)
-        )
-      end
+      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.js
     end
   end
 

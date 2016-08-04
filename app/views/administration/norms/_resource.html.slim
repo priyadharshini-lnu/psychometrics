@@ -1,5 +1,4 @@
 tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resource)
-  td.text-center = resource.id
   td.text-center
     = link_to [:toggle_status, :administration, resource], method: :patch, remote: true do
       = resource.decorate.status
@@ -9,7 +8,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
       span.fa.fa-pencil
     = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
       span.fa.fa-copy
-    = link_to [:administration, resource], class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
+    = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
       span.fa.fa-times
   td = resource.decorate.created_at
   td = resource.decorate.updated_at

@@ -45,15 +45,12 @@ class Administration::SubFactorsController < Administration::BaseController
     end
   end
 
+  # DELETE /administration/resources/1
   def destroy
     @resource.destroy
     respond_to do |format|
-      format.html do
-        redirect_to(
-          :back,
-          notice: t('administration.sub_factors.destroy.successfully', id: @resource.id)
-        )
-      end
+      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.js
     end
   end
 

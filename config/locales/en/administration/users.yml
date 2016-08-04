@@ -12,6 +12,10 @@ en:
             all: All
             users: Users
             administrators: Administrators
+        tooltips:
+          import: Import
+          export: Export
+          create: Create
       create:
         successfully: User %{name} was successfully created.
       update:
@@ -23,18 +27,20 @@ en:
       reset_password:
         successfully: User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes.
       spoof:
-        successfully: You was successfully sign in as %{name}
+        successfully: You was successfully login as %{name}
       sidebar:
         title: User's options (#%{id})
         disable: Disable
         enable: Enable
         edit_user: Edit User
         new_user: New User
-        import_users: Import Users
-        export_users: Export Users
-        email: E-mail
-        view_report: View Report(s)
+        import_users: Import users
+        reset_password: Change Password
+        export_users: Export users
+        email: Send mail
+        view_report: View user report
         login_as_user: Login as User
+        destroy: Delete User
       list:
 
       form:
@@ -42,7 +48,7 @@ en:
       resource:
         tooltips:
           change_password: Change password
-          sign_in: Sign in as user
+          sign_in: Login as user
           chart: View user report
           mail: Send mail
           edit: Edit user

@@ -5,4 +5,4 @@ en:
         new:
           title: '<strong>Welcome</strong>, Please login'
           forgot_password: 'Forgot your password?'
-          submit: 'Log In'
+          submit: 'Login'

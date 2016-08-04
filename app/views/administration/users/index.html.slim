@@ -5,8 +5,15 @@
         h3.panel-title = t('.title')
         ul.panel-controls
           li
-            = link_to({ action: :new }, remote: true)
-              span.fa.fa-plus
+            - if policy(@resource_class).export?
+              = link_to({ action: :export, format: :csv }, data: { toggle: 'tooltip', title: t('.tooltips.export') })
+                span.fa.fa-download
+            - if policy(@resource_class).import?
+              = link_to [:new, :administration, :import, { resource: @resource_class.model_name.singular, type: :csv }], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.import') } do
+                span.fa.fa-upload
+            - if policy(@resource_class).create?
+              = link_to({ action: :new }, remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') })
+                span.fa.fa-plus
       .panel-body
         = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
           = f.hidden_field :sorted_by
