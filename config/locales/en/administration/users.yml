@@ -27,20 +27,20 @@ en:
       reset_password:
         successfully: User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes.
       spoof:
-        successfully: You was successfully sign in as %{name}
+        successfully: You was successfully login as %{name}
       sidebar:
         title: User's options (#%{id})
         disable: Disable
         enable: Enable
-        edit_user: Edit user
-        new_user: New user
+        edit_user: Edit User
+        new_user: New User
         import_users: Import users
-        reset_password: Change password
+        reset_password: Change Password
         export_users: Export users
         email: Send mail
         view_report: View user report
-        login_as_user: Login as user
-        destroy: Delete user
+        login_as_user: Login as User
+        destroy: Delete User
       list:
 
       form:

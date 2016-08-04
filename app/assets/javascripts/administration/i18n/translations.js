@@ -2,6 +2,26 @@ I18n.translations || (I18n.translations = {});
 I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "activerecord": {
     "attributes": {
+      "assessment": {
+        "active": "Active",
+        "category": "Category",
+        "created_at": "Created",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified"
+      },
+      "client": {
+        "category": "Category",
+        "created_at": "Created",
+        "id": "ID",
+        "licenses": "License number",
+        "licenses_expire": "License expire",
+        "licenses_used": "Used license number",
+        "logo": "Client logo",
+        "name": "Name",
+        "subdomain": "Subdomain",
+        "updated_at": "Modified"
+      },
       "dimension": {
         "active": "Active",
         "created_at": "Created",
@@ -36,6 +56,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "first_name": "First Name",
         "id": "ID",
         "last_name": "Last Name",
+        "memberships": "Memberships",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "remember_me": "Remember me",
@@ -66,6 +87,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     },
     "models": {
+      "assessment": "Assessments",
+      "client": "Clients",
       "dimension": "Dimensions",
       "factor": "Factors",
       "factors_norm": "factors_norms",
@@ -76,6 +99,74 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "administration": {
     "actions": "Actions",
     "active": "Active",
+    "any": " - Any - ",
+    "assessments": {
+      "copy": {
+        "error": "Assessment #%{name} was not copied.",
+        "successfully": "Assessment %{name} was successfully copied."
+      },
+      "create": {
+        "successfully": "Assessment %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "Assessment %{name} was successfully destroyed."
+      },
+      "edit": {
+        "header": "Edit assessment"
+      },
+      "form": {
+        "categories": {
+          "360": "360 Assess",
+          "organisational": "Organisational Assess",
+          "psychometric": "Psychometric Assess"
+        }
+      },
+      "index": {
+        "filterrific": {
+          "with_category": {
+            "360": "360 Assess",
+            "organisational": "Organisational Assess",
+            "psychometric": "Psychometric Assess"
+          }
+        },
+        "title": "Assessments",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "new": {
+        "header": "New assessment"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this assessment?</p>\n",
+            "title": "Delete <strong>Assessment</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Assessment",
+          "delete": "Delete Assessment",
+          "edit": "Edit Assessment"
+        }
+      },
+      "sidebar": {
+        "assign": "Assign Assessment",
+        "copy": "Copy Assessment",
+        "destroy": "Delete Assessment",
+        "disable": "Disable",
+        "edit": "Edit Assessment",
+        "enable": "Enable",
+        "new": "New Assessment",
+        "title": "Assessment's options (#%{id})"
+      },
+      "toggle_status": {
+        "successfully": "Assessment %{name} was successfully updated."
+      },
+      "update": {
+        "successfully": "Assessment %{name} was successfully updated."
+      }
+    },
     "base": {
       "top_sidebar": {
         "search": "Search...",
@@ -86,6 +177,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     },
     "breadcrumbs": {
+      "assessments": "Assessments",
+      "client": "Client Tenancy",
+      "clients": "Clients",
+      "create": "Create",
+      "design": "Design",
       "dimension": "Dimension",
       "dimensions": "Dimensions",
       "factors": "Factors",
@@ -93,6 +189,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
+      "reporting": "Reporting",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -100,8 +197,179 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "users_add": "Add New",
       "users_import": "Import"
     },
+    "cable": {
+      "notification": {
+        "block_clone": "Block is copied",
+        "block_create": "Block %{name} is created",
+        "block_destroy": "Block is destroyed",
+        "block_move_down": "Block is moved down",
+        "block_move_up": "Block is moved up",
+        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_rename": "Block is renamed",
+        "block_restore": "Block is restored",
+        "block_update": "Block is updated",
+        "comment_create": "Comment is created",
+        "comment_destroy": "Comment is destroyed",
+        "question_clone": "Question is copied",
+        "question_create": "Question %{name} is created",
+        "question_destroy": "Question is destroyed",
+        "question_insert_after": "Question is inserted after",
+        "question_insert_before": "Question is inserted before",
+        "question_move_down": "Question is moved down",
+        "question_move_up": "Question is moved up",
+        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_rename": "Question is renamed",
+        "question_restore": "Question is restored",
+        "question_update": "Question is updated",
+        "trash_empty": "Trash is empty"
+      }
+    },
     "choose": " - Choose - ",
     "clear": "Clear",
+    "clients": {
+      "copy": {
+        "error": "Client #%{name} was not copied.",
+        "successfully": "Client %{name} was successfully copied."
+      },
+      "create": {
+        "successfully": "Client %{name} was successfully created."
+      },
+      "destroy": {
+        "successfully": "Client %{name} was successfully destroyed."
+      },
+      "edit": {
+        "header": "Edit client"
+      },
+      "index": {
+        "title": "Clients",
+        "tooltips": {
+          "create": "Create"
+        }
+      },
+      "license": {
+        "header": "%{name} - Edit license"
+      },
+      "new": {
+        "header": "New client"
+      },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this client?</p>",
+            "title": "Delete <strong>%{name}</strong> ?"
+          },
+          "disable": {
+            "body": "<p>Are you sure you want to disable this client?</p>",
+            "title": "Disable <strong>%{name}</strong> ?"
+          },
+          "enable": {
+            "body": "<p>Are you sure you want to enable this client?</p>",
+            "title": "Enable <strong>%{name}</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Client",
+          "delete": "Delete Client",
+          "edit": "Edit Client"
+        }
+      },
+      "sidebar": {
+        "copy": "Copy Client",
+        "design": "Edit Design",
+        "destroy": "Destroy Client",
+        "disable": "Disable",
+        "edit": "Edit Client",
+        "enable": "Enable",
+        "licenses": "Edit Licenses",
+        "new": "New Client",
+        "title": "Client's options (#%{id})"
+      },
+      "toggle_status": {
+        "successfully": "Client %{name} was successfully updated."
+      },
+      "update": {
+        "successfully": "Client %{name} was successfully updated."
+      },
+      "users": {
+        "create": {
+          "successfully": "User %{name} was successfully created."
+        },
+        "destroy": {
+          "successfully": "User %{name} was successfully destroyed."
+        },
+        "edit": {
+          "title": "Edit user"
+        },
+        "form": {
+          "choose": " - Choose - "
+        },
+        "index": {
+          "filterrific": {
+            "with_role": {
+              "administrators": "Administrators",
+              "all": "All",
+              "users": "Users"
+            }
+          },
+          "title": "Users",
+          "tooltips": {
+            "create": "Create",
+            "export": "Export",
+            "import": "Import"
+          }
+        },
+        "list": null,
+        "new": {
+          "header": "New user"
+        },
+        "reset_password": {
+          "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
+        },
+        "resource": {
+          "confirmations": {
+            "change_password": {
+              "body": "<p>Are you sure you want to send instructions with link to change password?</p>\n",
+              "title": "Change password <strong>%{name}</strong> ?"
+            },
+            "delete": {
+              "body": "<p>Are you sure you want to delete this user?</p>\n",
+              "title": "Delete <strong>%{name}</strong> ?"
+            }
+          },
+          "tooltips": {
+            "change_password": "Change password",
+            "chart": "View user report",
+            "delete": "Delete user",
+            "edit": "Edit user",
+            "mail": "Send mail",
+            "sign_in": "Login as user"
+          }
+        },
+        "sidebar": {
+          "destroy": "Delete user",
+          "disable": "Disable",
+          "edit_user": "Edit user",
+          "email": "Send mail",
+          "enable": "Enable",
+          "export_users": "Export users",
+          "import_users": "Import users",
+          "login_as_user": "Login as user",
+          "new_user": "New user",
+          "reset_password": "Change password",
+          "title": "User's options (#%{id})",
+          "view_report": "View user report"
+        },
+        "spoof": {
+          "successfully": "You was successfully login as %{name}"
+        },
+        "toggle_status": {
+          "successfully": "User %{name} was successfully updated."
+        },
+        "update": {
+          "successfully": "User %{name} was successfully updated."
+        }
+      }
+    },
     "close": "Close",
     "copy": "Copy",
     "create": "Create",
@@ -110,25 +378,42 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension #%{id} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully destroyed."
       },
       "edit": {
         "header": "Edit dimension"
       },
       "index": {
-        "title": "Dimensions"
+        "title": "Dimensions",
+        "tooltips": {
+          "create": "Create"
+        }
       },
       "new": {
         "header": "New dimension"
       },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Dimension?</p>\n",
+            "title": "Delete <strong>Dimension</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Dimension",
+          "delete": "Delete Dimension",
+          "edit": "Edit Dimension"
+        }
+      },
       "sidebar": {
         "assign": "Assign Dimension",
         "copy": "Copy Dimension",
-        "disable": "Disable",
-        "edit": "Edit",
-        "enable": "Enable",
+        "destroy": "Delete Dimension",
+        "disable": "Disable Dimension",
+        "edit": "Edit Dimension",
+        "enable": "Enable Dimension",
         "new": "New Dimension",
-        "title": "Dimension's options"
+        "title": "Dimension's options (#%{id})"
       },
       "toggle_status": {
         "successfully": "Dimension was successfully updated."
@@ -142,25 +427,46 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor #%{id} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully destroyed."
       },
       "edit": {
         "header": "Edit factor"
       },
       "index": {
-        "title": "Factors"
+        "title": "Factors",
+        "tooltips": {
+          "create": "Create"
+        }
       },
       "new": {
         "header": "New factor"
       },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Factor?</p>",
+            "title": "Delete <strong>Factor</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Factor",
+          "delete": "Delete Factor",
+          "edit": "Edit Factor"
+        }
+      },
       "sidebar": {
+        "copy": "Copy Factor",
+        "destroy": "Delete Factor",
         "edit": "Edit Factor",
-        "new": "Add Factor",
-        "remove": "Remove Factor",
-        "title": "Factor's options"
+        "title": "Factor's options (#%{id})"
       },
       "toggle_status": {
         "successfully": "Factor was successfully updated."
+      }
+    },
+    "home": {
+      "index": {
+        "notifications": "Notifications"
       }
     },
     "imports": {
@@ -181,6 +487,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "meta_title": "Administration panel",
     "navigation": {
+      "assessments": "Assessments",
+      "client": "Client Tenancy",
+      "clients": "Clients",
+      "create": "Create",
+      "design": "Design",
       "dimension": "Dimension",
       "dimensions": "Dimensions",
       "factors": "Factors",
@@ -188,6 +499,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "norm": "Norm",
       "norms": "Norms",
       "norms_editor": "Norm Editor",
+      "reporting": "Reporting",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -202,7 +514,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "error": "Norm #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Norm #%{id} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully destroyed."
       },
       "edit": {
         "header": "Edit norm"
@@ -214,22 +526,41 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "title": "Norm Editor"
       },
       "index": {
-        "title": "Norms"
+        "title": "Norms",
+        "tooltips": {
+          "create": "Create",
+          "import": "Import"
+        }
       },
       "new": {
         "header": "New norm"
       },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this norm?</p>\n",
+            "title": "Delete <strong>Norm</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Norm",
+          "delete": "Delete Norm",
+          "edit": "Edit Norm"
+        }
+      },
       "sidebar": {
         "assign": "Assign Norm",
         "copy": "Copy Norm",
+        "destroy": "Delete Norm",
         "disable": "Disable",
         "edit": "Edit Norm",
+        "editor": "Norm Editor",
         "enable": "Enable",
         "export": "Export Norm",
         "import": "Import Norm",
         "new": "New Norm",
         "surveys": "Linked Surveys",
-        "title": "Norm's options",
+        "title": "Norm's options (#%{id})",
         "view": "View Norm"
       },
       "toggle_status": {
@@ -241,7 +572,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "profiles": {
       "edit": {
-        "success": "Profile was successfully updated."
+        "success": "Profile was successfully updated.",
+        "title": "Profile Editor"
       }
     },
     "psychometrics": "Psychometrics",
@@ -252,20 +584,37 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor #%{id} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully destroyed."
       },
       "edit": {
         "header": "Edit Sub-Factor"
       },
       "index": {
-        "title": "Sub-Factors"
+        "title": "Sub-Factors",
+        "tooltips": {
+          "create": "Create"
+        }
       },
       "new": {
         "header": "New Sub-Factor"
       },
+      "resource": {
+        "confirmations": {
+          "delete": {
+            "body": "<p>Are you sure you want to delete this Sub-Factor?</p>",
+            "title": "Delete <strong>Sub-Factor</strong> ?"
+          }
+        },
+        "tooltips": {
+          "copy": "Copy Sub-Factor",
+          "delete": "Delete Sub-Factor",
+          "edit": "Edit Sub-Factor"
+        }
+      },
       "sidebar": {
-        "edit": "Edit",
-        "title": "Sub-Factor's options"
+        "destroy": "Delete Sub-Factor",
+        "edit": "Edit Sub-Factor",
+        "title": "Sub-Factor's options (#%{id})"
       },
       "toggle_status": {
         "successfully": "Sub-Factor was successfully updated."
@@ -274,10 +623,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "update": "Update",
     "users": {
       "create": {
-        "successfully": "User was successfully created."
+        "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User was successfully destroyed."
+        "successfully": "User %{name} was successfully destroyed."
       },
       "edit": {
         "title": "Edit user"
@@ -286,32 +635,36 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "choose": " - Choose - "
       },
       "index": {
-        "title": "Users"
-      },
-      "list": {
         "filterrific": {
           "with_role": {
             "administrators": "Administrators",
             "all": "All",
             "users": "Users"
           }
+        },
+        "title": "Users",
+        "tooltips": {
+          "create": "Create",
+          "export": "Export",
+          "import": "Import"
         }
       },
+      "list": null,
       "new": {
         "header": "New user"
       },
       "reset_password": {
-        "successfully": "User will receive an email with instructions on how to reset his (her) password in a few minutes."
+        "successfully": "User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes."
       },
       "resource": {
         "confirmations": {
           "change_password": {
             "body": "<p>Are you sure you want to send instructions with link to change password?</p>\n",
-            "title": "Change <strong>password</strong> ?"
+            "title": "Change password <strong>%{name}</strong> ?"
           },
           "delete": {
             "body": "<p>Are you sure you want to delete this user?</p>\n",
-            "title": "Delete <strong>User</strong> ?"
+            "title": "Delete <strong>%{name}</strong> ?"
           }
         },
         "tooltips": {
@@ -320,29 +673,31 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "delete": "Delete user",
           "edit": "Edit user",
           "mail": "Send mail",
-          "sign_in": "Sign in as user"
+          "sign_in": "Login as user"
         }
       },
       "sidebar": {
+        "destroy": "Delete user",
         "disable": "Disable",
-        "edit_user": "Edit User",
-        "email": "E-mail",
+        "edit_user": "Edit user",
+        "email": "Send mail",
         "enable": "Enable",
-        "export_users": "Export Users",
-        "import_users": "Import Users",
-        "login_as_user": "Login as User",
-        "new_user": "New User",
-        "title": "#%{id} user's options",
-        "view_report": "View Report(s)"
+        "export_users": "Export users",
+        "import_users": "Import users",
+        "login_as_user": "Login as user",
+        "new_user": "New user",
+        "reset_password": "Change password",
+        "title": "User's options (#%{id})",
+        "view_report": "View user report"
       },
       "spoof": {
-        "successfully": "You was successfully sign in as %{display_name}"
+        "successfully": "You was successfully login as %{name}"
       },
       "toggle_status": {
-        "successfully": "User was successfully updated."
+        "successfully": "User %{name} was successfully updated."
       },
       "update": {
-        "successfully": "User was successfully updated."
+        "successfully": "User %{name} was successfully updated."
       }
     }
   },
@@ -469,7 +824,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   },
   "devise": {
     "administrators": {
-      "meta_title": "Sign in to administration panel",
+      "meta_title": "Login to administration panel",
       "passwords": {
         "edit": {
           "submit": "Set new password",
@@ -484,7 +839,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "sessions": {
         "new": {
           "forgot_password": "Forgot your password?",
-          "submit": "Log In",
+          "submit": "Login",
           "title": "<strong>Welcome</strong>, Please login"
         }
       },
@@ -513,8 +868,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "last_attempt": "You have one more attempt before your account is locked.",
       "locked": "Your account is locked.",
       "not_found_in_database": "Invalid %{authentication_keys} or password.",
-      "timeout": "Your session expired. Please sign in again to continue.",
-      "unauthenticated": "You need to sign in or sign up before continuing.",
+      "timeout": "Your session expired. Please login again to continue.",
+      "unauthenticated": "You need to login or register before continuing.",
       "unconfirmed": "You have to confirm your email address before continuing."
     },
     "invitations": {
@@ -637,7 +992,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "send_instructions": "You will receive an email with instructions for how to unlock your account in a few minutes.",
       "send_paranoid_instructions": "If your account exists, you will receive an email with instructions for how to unlock it in a few minutes.",
-      "unlocked": "Your account has been unlocked successfully. Please sign in to continue."
+      "unlocked": "Your account has been unlocked successfully. Please login to continue."
     }
   },
   "errors": {
@@ -663,6 +1018,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "file_size_is_less_than_or_equal_to": "file size must be less than or equal to %{count}",
       "greater_than": "must be greater than %{count}",
       "greater_than_or_equal_to": "must be greater than or equal to %{count}",
+      "in_between": "must be in between %{min} and %{max}",
       "inclusion": "is not included in the list",
       "invalid": "is invalid",
       "less_than": "must be less than %{count}",
@@ -680,6 +1036,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "other_than": "must be other than %{count}",
       "present": "must be blank",
       "required": "must exist",
+      "spoofed_media_type": "has contents that are not what they are reported to be",
       "taken": "has already been taken",
       "too_long": {
         "one": "is too long (maximum is 1 character)",
@@ -933,6 +1290,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "first_name": "First Name",
         "id": "ID",
         "last_name": "Last Name",
+        "memberships": "Memberships",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
@@ -942,6 +1300,26 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "superadmin": "Super Admin",
           "user": "User"
         },
+        "updated_at": "Modified"
+      },
+      "assessment": {
+        "active": "Active",
+        "category": "Category",
+        "created_at": "Created",
+        "id": "ID",
+        "name": "Name",
+        "updated_at": "Modified"
+      },
+      "client": {
+        "category": "Category",
+        "created_at": "Created",
+        "id": "ID",
+        "licenses": "License number",
+        "licenses_expire": "License expire",
+        "licenses_used": "Used license number",
+        "logo": "Client logo",
+        "name": "Name",
+        "subdomain": "Subdomain",
         "updated_at": "Modified"
       },
       "dimension": {
@@ -954,7 +1332,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "factor": {
         "active": "Active",
         "created_at": "Created",
-        "favourite": "Favourite",
         "id": "ID",
         "name": "Name",
         "parent_id": "Parent",
@@ -979,6 +1356,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "first_name": "First Name",
         "id": "ID",
         "last_name": "Last Name",
+        "memberships": "Memberships",
         "password": "Password",
         "password_confirmation": "Password confirmation",
         "role": "Role",
