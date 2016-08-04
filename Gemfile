@@ -8,7 +8,7 @@ gem 'sass-rails',                 '~> 5.0'
 gem 'uglifier',                   '>= 1.3.0'
 gem 'coffee-rails',               '~> 4.2'
 gem 'jquery-rails',               '~> 4.1.1'
-
+gem 'jquery-rails-cdn',           '~> 1.1.2'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '1.12'

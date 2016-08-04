@@ -6,6 +6,7 @@ html.body-full-height
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
     title = t('devise.administrators.meta_title')
     = csrf_meta_tags
+    = jquery_include_tag :google
     = stylesheet_link_tag    'administration', media: 'all'
     = javascript_include_tag 'administration'
   body
