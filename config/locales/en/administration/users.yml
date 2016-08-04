@@ -12,6 +12,10 @@ en:
             all: All
             users: Users
             administrators: Administrators
+        tooltips:
+          import: Import
+          export: Export
+          create: Create
       create:
         successfully: User %{name} was successfully created.
       update:
@@ -28,13 +32,15 @@ en:
         title: User's options (#%{id})
         disable: Disable
         enable: Enable
-        edit_user: Edit User
-        new_user: New User
-        import_users: Import Users
-        export_users: Export Users
-        email: E-mail
-        view_report: View Report(s)
-        login_as_user: Login as User
+        edit_user: Edit user
+        new_user: New user
+        import_users: Import users
+        reset_password: Change password
+        export_users: Export users
+        email: Send mail
+        view_report: View user report
+        login_as_user: Login as user
+        destroy: Delete user
       list:
 
       form:
@@ -42,7 +48,7 @@ en:
       resource:
         tooltips:
           change_password: Change password
-          sign_in: Sign in as user
+          sign_in: Login as user
           chart: View user report
           mail: Send mail
           edit: Edit user

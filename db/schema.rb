@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160802155248) do
+ActiveRecord::Schema.define(version: 20160804080947) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -118,9 +118,9 @@ ActiveRecord::Schema.define(version: 20160802155248) do
 # Could not dump table "users" because of following StandardError
 #   Unknown type 'user_roles' for column 'role'
 
-  add_foreign_key "comments", "users", column: "created_by"
+  add_foreign_key "comments", "users", column: "created_by", on_delete: :nullify
   add_foreign_key "memberships", "clients", on_delete: :cascade
   add_foreign_key "memberships", "users", on_delete: :cascade
-  add_foreign_key "norms", "users", column: "created_by"
-  add_foreign_key "norms", "users", column: "updated_by"
+  add_foreign_key "norms", "users", column: "created_by", on_delete: :nullify
+  add_foreign_key "norms", "users", column: "updated_by", on_delete: :nullify
 end
