@@ -57,5 +57,4 @@ class BaseDecorator < Draper::Decorator
         body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.toggle_status.body", status: status.downcase)
     }.to_json
   end
-
 end
