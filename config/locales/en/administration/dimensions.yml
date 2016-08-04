@@ -3,6 +3,8 @@ en:
     dimensions:
       index:
         title: Dimensions
+        tooltips:
+          create: Create
       new:
         header: 'New dimension'
       edit:
@@ -21,6 +23,7 @@ en:
         new: 'New Dimension'
         copy: 'Copy Dimension'
         assign: 'Assign Dimension'
+        destroy: 'Delete Dimension'
 
       resource:
         tooltips:

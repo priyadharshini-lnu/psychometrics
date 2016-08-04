@@ -64,7 +64,8 @@ class Administration::AssessmentsController < Administration::BaseController
   def destroy
     @resource.destroy
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully', id: @resource.id)) }
+      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.js
     end
   end
 

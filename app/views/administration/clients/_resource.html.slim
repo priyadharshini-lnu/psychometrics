@@ -14,7 +14,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
       = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
         span.fa.fa-copy
     - if policy(resource).destroy?
-      = link_to [:administration, resource], class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
+      = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
         span.fa.fa-times
   td = resource.decorate.created_at
   td = resource.decorate.updated_at

@@ -3,6 +3,8 @@ en:
     clients:
       index:
         title: Clients
+        tooltips:
+          create: Create
       new:
         header: 'New client'
       edit:
@@ -24,14 +26,15 @@ en:
         title: Client's options (#%{id})
         disable: Disable
         enable: Enable
-        edit: Edit
+        edit: Edit Client
+        destroy: Destroy Client
         new: New Client
         copy: Copy Client
         design: Edit Design
         licenses: Edit Licenses
       resource:
         tooltips:
-          copy: Copy
+          copy: Copy Client
           edit: Edit Client
           delete: Delete Client
         confirmations:
