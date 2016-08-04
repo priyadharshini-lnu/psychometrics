@@ -4,6 +4,8 @@ require "capistrano/setup"
 # Include default deployment tasks
 require "capistrano/deploy"
 
+require "capistrano/passenger"
+
 require 'capistrano/rvm'
 require 'capistrano/bundler'
 require 'capistrano/rails/assets'

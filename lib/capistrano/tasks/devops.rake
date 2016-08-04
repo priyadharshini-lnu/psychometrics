@@ -20,14 +20,4 @@ namespace :devops do
       end
     end
   end
-
-  desc "Restart Passenger"
-  task :restart_passenger do
-    on roles(:app), in: :sequence, wait: 5 do
-      within release_path do
-        execute :mkdir, "-p", "tmp"
-        execute :touch, "tmp/restart.txt"
-      end
-    end
-  end
 end

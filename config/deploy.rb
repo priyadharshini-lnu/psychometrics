@@ -45,7 +45,6 @@ before 'deploy:started',  'devops:prepare_pid_files_dirs'
 
 after 'deploy:published', 'deploy:cleanup'
 after 'deploy:published', 'devops:flush_cache'
-after 'deploy:published', 'devops:restart_passenger'
 
 task :compress_assets_7z do
   on roles(:app) do
