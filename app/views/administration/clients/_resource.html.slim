@@ -1,5 +1,4 @@
 tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resource)
-  td.text-center = resource.id
   td.text-center
     - if policy(resource).toggle_status?
       = link_to [:toggle_status, :administration, resource], remote: true, method: :patch, data: { confirm: resource.decorate.status_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
