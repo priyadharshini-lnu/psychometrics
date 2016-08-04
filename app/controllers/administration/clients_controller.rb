@@ -52,7 +52,6 @@ class Administration::ClientsController < Administration::BaseController
     end
   end
 
-
   # Change resources's status to active/disabled
   #
   def toggle_status

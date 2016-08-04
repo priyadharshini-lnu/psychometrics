@@ -43,7 +43,6 @@ class Administration::FactorsController < Administration::BaseController
     end
   end
 
-
   # DELETE /administration/resources/1
   def destroy
     @resource.destroy
