@@ -1,0 +1,28 @@
+.has-feedback.has-clear {
+  /* Remove Internet Explorer native clear button */
+  input::-ms-clear {
+    display: none;
+  }
+
+  .form-control-clear {
+    z-index: 99;
+    right: 35px;
+    top: -1px;
+    color: #bbb;
+    color: rgba(0, 0, 0, 0.4);
+
+    pointer-events: auto;
+
+    &:hover {
+      color: #777;
+      color: rgba(0, 0, 0, 0.7);
+      cursor: pointer;
+    }
+  }
+
+  &.has-empty-value {
+    .form-control-clear {
+      display: none;
+    }
+  }
+}
