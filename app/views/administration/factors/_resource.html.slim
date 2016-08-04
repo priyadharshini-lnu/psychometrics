@@ -9,7 +9,7 @@ tr data-sidebar=url_for([:sidebar, :administration, @dimension, resource]) id=do
       span.fa.fa-pencil
     = link_to [:copy, :administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
       span.fa.fa-copy
-    = link_to [:administration, @dimension, resource], class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
+    = link_to [:administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
       span.fa.fa-times
   td.text-center = resource.decorate.created_at
   td.text-center = resource.decorate.updated_at

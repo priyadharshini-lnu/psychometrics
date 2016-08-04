@@ -3,21 +3,23 @@ en:
     factors:
       index:
         title: "Factors"
+        tooltips:
+          create: Create
       new:
         header: 'New factor'
       edit:
         header: 'Edit factor'
       destroy:
-        successfully: 'Factor #%{id} was successfully destroyed.'
+        successfully: 'Factor %{name} was successfully destroyed.'
       copy:
         error: 'Factor #%{id} was not copied.'
       toggle_status:
         successfully: 'Factor was successfully updated.'
       sidebar:
-        title: Factor's options (#%{id})
+        title: "Factor's options (#%{id})"
         edit: 'Edit Factor'
-        new: 'Add Factor'
-        remove: 'Remove Factor'
+        copy: 'Copy Factor'
+        destroy: 'Delete Factor'
 
       resource:
         tooltips:

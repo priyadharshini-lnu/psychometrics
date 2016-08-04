@@ -3,6 +3,8 @@ en:
     norms:
       index:
         title: Norms
+        tooltips:
+          create: Create
       new:
         header: 'New norm'
       edit:
