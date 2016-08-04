@@ -53,8 +53,15 @@ class BaseDecorator < Draper::Decorator
   def toggle_status_confirmation
     status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {
-        title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.toggle_status.title", status: status, name: display_name),
-        body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.toggle_status.body", status: status.downcase)
+        title: I18n.t(
+            "administration.#{object.class.model_name.plural}.resource.confirmations.toggle_status.title",
+            status: status,
+            name: display_name
+        ),
+        body: I18n.t(
+            "administration.#{object.class.model_name.plural}.resource.confirmations.toggle_status.body",
+            status: status.downcase
+        )
     }.to_json
   end
 end
