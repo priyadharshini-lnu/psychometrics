@@ -13,6 +13,8 @@
           = f.input :role, as: :select, collection: @current_administrator.decorate.can_manage_options, class: 'form-control', include_blank: false
 
         .panel-footer
+          .btn-group.pull-left
+            = link_to t('administration.back'), :back, class: 'btn btn-info'
           .btn-group.pull-right
             = f.button :submit, t('administration.update'), class: 'btn-info'
             = link_to t('administration.clear'), url_for, class: 'btn btn-default'
