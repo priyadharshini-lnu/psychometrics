@@ -58,11 +58,15 @@ en:
             title: Change password <strong>%{name}</strong> ?
             body: >
               <p>Are you sure you want to send instructions with link to change password?</p>
+          toggle_status:
+            title: <strong>%{status}</strong> %{name}?
+            body: >
+              <p>Are you sure you want to %{status} this User?</p>
           delete:
             title:
               Delete <strong>%{name}</strong> ?
             body: >
-              <p>Are you sure you want to delete this user?</p>
+              <p>Are you sure you want to delete this User?</p>
     clients:
       users:
         <<: *USERS

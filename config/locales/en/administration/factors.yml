@@ -27,6 +27,10 @@ en:
           edit: Edit Factor
           delete: Delete Factor
         confirmations:
+          toggle_status:
+            title: <strong>%{status}</strong> %{name}?
+            body: >
+              <p>Are you sure you want to %{status} this Factor?</p>
           delete:
             title:
               Delete <strong>Factor</strong> ?

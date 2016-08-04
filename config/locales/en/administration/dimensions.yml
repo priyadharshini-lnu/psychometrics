@@ -31,6 +31,10 @@ en:
           edit: Edit Dimension
           delete: Delete Dimension
         confirmations:
+          toggle_status:
+            title: <strong>%{status}</strong> %{name}?
+            body: >
+              <p>Are you sure you want to %{status} this Dimension?</p>
           delete:
             title:
               Delete <strong>Dimension</strong> ?

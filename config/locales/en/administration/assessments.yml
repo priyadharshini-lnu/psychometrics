@@ -43,8 +43,12 @@ en:
           edit: Edit Assessment
           delete: Delete Assessment
         confirmations:
+          toggle_status:
+            title: <strong>%{status}</strong> %{name}?
+            body: >
+              <p>Are you sure you want to %{status} this Assessment?</p>
           delete:
             title:
               Delete <strong>Assessment</strong> ?
             body: >
-              <p>Are you sure you want to delete this assessment?</p>
+              <p>Are you sure you want to delete this Assessment?</p>
