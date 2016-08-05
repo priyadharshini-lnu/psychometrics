@@ -13,7 +13,7 @@ class Administration::Imports::BaseController < Administration::BaseController
     @resource = @resource_class.new(import_params)
     @resource.importer = current_administrator
     respond_to do |format|
-      if @resource.process
+      if @resource.process!
         format.js
       else
         format.js { render :new }

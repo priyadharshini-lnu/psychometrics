@@ -4,8 +4,11 @@ module Imports
                                                   'application/vnd.ms-excel',
                                                   'text/csv'] }
 
-    def process
+    def process!
+      # Return error if obj not valid
       return false unless valid?
+
+      imported_items = load_imported_items
       if imported_items.map(&:valid?).all?
         imported_items.each(&:save!)
         true
@@ -17,10 +20,11 @@ module Imports
         end
         false
       end
-    end
 
-    def imported_items
-      @imported_items ||= load_imported_items.compact
+    rescue Roo::HeaderRowNotFoundError => e
+
+      errors.add(:base, 'Invalid format headers')
+      return false
     end
 
     def load_imported_items
