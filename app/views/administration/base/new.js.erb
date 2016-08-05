@@ -5,7 +5,7 @@
     $(this).remove();
   });
 <% else %>
-  $('#modal-container').find("form").html('<%= j render(partial: 'form') %>');
+  $('#modal-container').find("form").replaceWith('<%= j render(partial: 'form') %>');
 <% end %>
 
 // Reinit all plugins

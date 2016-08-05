@@ -1,18 +1,20 @@
 module Imports
   module Xls
-    class NormImport < Imports::BaseImport
+    class NormImport
+
+      def initialize(file, importer)
+        @importer = importer
+        @file     = file
+        @cursor_x = 0
+        @cursor_y = 0
+      end
+
       # take out to another file, if client must configure this
       XLS_CONFIG = {
           factor_start_row:  4,
           factor_start_ceil: 2,
           pages_count:       2
       }.freeze
-
-      def initialize(file, importer)
-        super(file, importer)
-        @cursor_x = 0
-        @cursor_y = 0
-      end
 
       def process
         ActiveRecord::Base.transaction do
