@@ -1,25 +1,38 @@
 csv << [
-        @resource_class.human_attribute_name('id').capitalize,
         @resource_class.human_attribute_name('active'),
         @resource_class.human_attribute_name('first_name'),
         @resource_class.human_attribute_name('last_name'),
         @resource_class.human_attribute_name('email'),
         @resource_class.human_attribute_name('memberships'),
         @resource_class.human_attribute_name('role'),
-        @resource_class.human_attribute_name('created_at'),
-        @resource_class.human_attribute_name('updated_at')
+        @resource_class.human_attribute_name('evaluator_name'),
+        @resource_class.human_attribute_name('evaluators_email_address'),
+        @resource_class.human_attribute_name('relationship'),
+        @resource_class.human_attribute_name('business_unit'),
+        @resource_class.human_attribute_name('department'),
+        @resource_class.human_attribute_name('job_title'),
+        @resource_class.human_attribute_name('nationality'),
+        @resource_class.human_attribute_name('gender'),
+        @resource_class.human_attribute_name('created_at')
        ]
+
 
 @resources.each do |resource|
   csv << [
-          resource.id,
           resource.decorate.status_text,
           resource.first_name,
           resource.last_name,
           resource.email,
           resource.decorate.clients_name,
           @resource_class.human_enum_name(:role, resource.role),
-          resource.decorate.created_at,
-          resource.decorate.updated_at
+          resource.evaluator_name,
+          resource.evaluators_email_address,
+          resource.relationship,
+          resource.business_unit,
+          resource.department,
+          resource.job_title,
+          resource.nationality,
+          resource.gender,
+          resource.decorate.created_at
          ]
 end

@@ -11,18 +11,6 @@ module Imports
     # }
     #
     CONFIG = {
-      user: {
-        form: Imports::UserForm,
-        formats: {
-          csv: Imports::Csv::UserImport
-        }
-      },
-      hris: {
-        form: Imports::HrisForm,
-        formats: {
-          xls: Imports::Xls::HrisImport
-        }
-      },
       norm: {
         form: Imports::NormForm,
         formats: {

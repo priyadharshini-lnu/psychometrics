@@ -11,6 +11,11 @@ Rails.application.routes.draw do
     root to: 'home#index'
     resource :profiles
 
+    namespace :imports do
+      resource :users, only: [:new, :create]
+      resource :hris, only: [:new, :create], controller: :hris
+    end
+
     resources :imports, only: [:new, :create]
 
     ### CLIENTS

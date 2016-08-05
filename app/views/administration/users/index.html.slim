@@ -3,17 +3,25 @@
     .panel.panel-default
       .panel-heading
         h3.panel-title = t('.title')
-        ul.panel-controls
-          li
-            - if policy(@resource_class).export?
-              = link_to({ action: :export, format: :csv }, data: { toggle: 'tooltip', title: t('.tooltips.export') })
-                span.fa.fa-download
+        .pull-right
+          .btn-group
             - if policy(@resource_class).import?
-              = link_to [:new, :administration, :import, { resource: @resource_class.model_name.singular, type: :csv }], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.import') } do
-                span.fa.fa-upload
+              .btn-group
+                button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  span.fa.fa-upload
+                  => t('.import')
+                  span.caret
+                ul.dropdown-menu
+                  li = link_to(t('.import_users'), new_administration_imports_users_path, remote: true, class: 'btn btn-default')
+                  li = link_to(t('.import_hris'), new_administration_imports_hris_path, remote: true, class: 'btn btn-default')
+            - if policy(@resource_class).export?
+              = link_to({ action: :export, format: :csv }, target: :_blank, class: 'btn btn-default')
+                span.fa.fa-download
+                = t('.export')
             - if policy(@resource_class).create?
-              = link_to({ action: :new }, remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') })
+              = link_to({ action: :new }, remote: true, class: 'btn btn-default')
                 span.fa.fa-plus
+                = t('.add')
       .panel-body
         = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
           = f.hidden_field :sorted_by
