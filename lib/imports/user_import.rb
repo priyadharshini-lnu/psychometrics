@@ -28,7 +28,7 @@ module Imports
 
       datas[1..-1].map do |data|
         data[:role] = User::USER_ROLES_MAPS[data[:role]]
-        data[:client_ids] = Client.where(name: data.delete(:clients).split(',').map(&:strip)).pluck(:id)
+        data[:client_ids] = Client.where(name: (data.delete(:clients) || '').split(',').map(&:strip)).pluck(:id)
 
         user = User.new(user_params(data))
         user.operator = importer

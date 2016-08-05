@@ -33,7 +33,7 @@ module Imports
           next
         end
         # Fetch hris data
-        user.hris = hris_params(data)
+        user.attributes = hris_params(data)
         user
       end
     end
