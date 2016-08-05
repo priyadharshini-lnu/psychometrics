@@ -1,12 +1,25 @@
 en:
   administration:
+    imports_user_imports:
+      new:
+        header: Import Users
+      create:
+        successfully: Users was successfully imported
+    imports_hris_imports:
+      new:
+        header: Import HRIS data
+      create:
+        successfully: HRIS data was successfully imported
     imports:
+      base:
+        form:
+          import: Import
       csv:
         not_valid: '[Row %{row}] %{error}'
+      errors:
+        norm:
+          factor_is_not_described: "[#%{coords}] factor %{factor} is not described above"
       new:
         header: 'Import'
       form:
         import: Import
-      errors:
-        norm:
-          factor_is_not_described: "[#%{coords}] factor %{factor} is not described above"

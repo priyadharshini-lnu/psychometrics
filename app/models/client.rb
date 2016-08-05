@@ -24,8 +24,7 @@ class Client < ApplicationRecord
   has_many :memberships
   has_many :users, through: :memberships
 
-  validates :name, presence: true
-  validates :name, length: { maximum: 150 }, allow_blank: true
+  validates :name, presence: true, length: { maximum: 200 }, uniqueness: true
 
   filterrific(
     default_filter_params: {

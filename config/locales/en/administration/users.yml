@@ -6,6 +6,11 @@ en:
       edit:
         title: 'Edit user'
       index:
+        add: Add new user
+        import: Import
+        import_users: Users
+        import_hris: HRIS Data
+        export: Export
         title: Users
         filterrific:
           with_role:

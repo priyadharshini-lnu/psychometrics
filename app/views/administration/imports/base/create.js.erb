@@ -1,0 +1,4 @@
+$('#modal-container').find(".modal").modal('hide');
+$('#filter').trigger('reloadList');
+// Notify message
+noty({text: '<%= t("administration.#{@resource_class.model_name.plural}.create.successfully") %>', type: 'success'});

@@ -58,6 +58,33 @@ class User < ApplicationRecord
     user: []
   }.freeze
 
+  USER_ROLES_MAPS = {
+    'Super Admin' => :superadmin,
+    'Client Admin' => :admin,
+    'Manager' => :manager,
+    'User' => :user
+  }.freeze
+
+  USER_IMPORT_RULES = {
+    email: /Email Address|Email|E-mail/i,
+    first_name: 'First Name',
+    last_name: 'Last Name',
+    clients: /Company|Memberships|Clients|Client/i,
+    role: 'Role',
+    evaluator_name: /Evaluator name/i,
+    evaluators_email_address: /Evaluators email address/i,
+    relationship: /Relationship/i,
+    business_unit: /Business unit/i,
+    department: /Department/i,
+    job_title: /Job title/i,
+    nationality: /Nationality/i,
+    gender: /Gender/i
+  }.freeze
+
+  USER_HRIS = %i(evaluator_name evaluators_email_address relationship business_unit department job_title nationality gender).freeze
+
+  store :hris, accessors: USER_HRIS
+
   has_many :memberships
   has_many :clients, through: :memberships
 
@@ -91,7 +118,7 @@ class User < ApplicationRecord
 
   # Return true if current user/admin has ability to manage passed user
   def can_manage?(user)
-    can_manage.include?(user.role.to_sym)
+    user.role && can_manage.include?(user.role.try(:to_sym))
   end
 
   # Return list of roles, that can manage
