@@ -23,7 +23,7 @@ Notification.create(
 #
 if Rails.env == 'test'
   Assessment.create(
-      id: 1,
-      name: 'test assessment',
+    id: 1,
+    name: 'test assessment',
   ) if Assessment.all.empty?
 end
