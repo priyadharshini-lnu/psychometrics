@@ -101,3 +101,8 @@ group :development do
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rvm',           '~> 0.1.2'
 end
+
+group :development, :test do
+  gem 'rspec-rails', '~> 3.5'
+  gem 'factory_girl_rails', '~> 4.7.0'
+end

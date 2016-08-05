@@ -21,4 +21,7 @@ class BlockSerializer < ActiveModel::Serializer
     !!object.deleted_at
   end
 
+  def created_at
+    I18n.l object.created_at, format: :short
+  end
 end

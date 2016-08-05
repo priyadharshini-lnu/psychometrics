@@ -17,3 +17,13 @@ User.create(
 Notification.create(
   [{ text: 'first message' }, { text: 'second message' }, { text: 'third message' }]
 ) if Notification.all.empty?
+
+#
+# Use for tests
+#
+if Rails.env == 'test'
+  Assessment.create(
+      id: 1,
+      name: 'test assessment',
+  ) if Assessment.all.empty?
+end
