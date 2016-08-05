@@ -79,9 +79,9 @@ class User < ApplicationRecord
     job_title: /Job title/i,
     nationality: /Nationality/i,
     gender: /Gender/i
-  }
+  }.freeze
 
-  USER_HRIS = %i(evaluator_name evaluators_email_address relationship business_unit department job_title nationality gender)
+  USER_HRIS = %i(evaluator_name evaluators_email_address relationship business_unit department job_title nationality gender).freeze
 
   store :hris, accessors: USER_HRIS
 

@@ -1,5 +1,4 @@
 class Administration::Imports::HrisController < Administration::Imports::BaseController
-
   protected
 
   def init_import_class

@@ -1,6 +1,5 @@
 module Imports
   class UserImport < Imports::BaseImport
-
     validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                   'application/vnd.ms-excel',
                                                   'text/csv'] }
@@ -13,7 +12,7 @@ module Imports
       else
         imported_items.each_with_index do |user, index|
           user.errors.full_messages.each do |message|
-            errors.add :file, "Row #{index+2}: #{message}"
+            errors.add :file, "Row #{index + 2}: #{message}"
           end
         end
         false
@@ -39,8 +38,8 @@ module Imports
 
     def open_spreadsheet
       case File.extname(file.original_filename)
-      when ".csv" then Roo::CSV.new(file.path)
-      when ".xlsx" then ::Roo::Excelx.new(file.path)
+      when '.csv' then Roo::CSV.new(file.path)
+      when '.xlsx' then ::Roo::Excelx.new(file.path)
       else raise "Unknown file type: #{file.original_filename}"
       end
     end
@@ -48,7 +47,10 @@ module Imports
     protected
 
     def user_params(data)
-      ActionController::Parameters.new(data).permit(:first_name, :last_name, :email, :role, :evaluator_name, :evaluators_email_address, :relationship, :business_unit, :department, :job_title, :nationality, :gender, client_ids: [])
+      ActionController::Parameters.new(data).permit(:first_name, :last_name, :email,
+                                                    :role, :evaluator_name, :evaluators_email_address,
+                                                    :relationship, :business_unit, :department,
+                                                    :job_title, :nationality, :gender, client_ids: [])
     end
   end
 end

@@ -1,7 +1,6 @@
 module Imports
   module Xls
     class NormImport
-
       def initialize(file, importer)
         @importer = importer
         @file     = file
