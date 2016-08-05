@@ -2,12 +2,16 @@
 -- PostgreSQL database dump
 --
 
+-- Dumped from database version 9.5.3
+-- Dumped by pg_dump version 9.5.3
+
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
 SET client_min_messages = warning;
+SET row_security = off;
 
 --
 -- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
@@ -63,7 +67,7 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
--- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE ar_internal_metadata (
@@ -75,7 +79,7 @@ CREATE TABLE ar_internal_metadata (
 
 
 --
--- Name: assessments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: assessments; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE assessments (
@@ -109,7 +113,7 @@ ALTER SEQUENCE assessments_id_seq OWNED BY assessments.id;
 
 
 --
--- Name: blocks; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: blocks; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE blocks (
@@ -144,7 +148,7 @@ ALTER SEQUENCE blocks_id_seq OWNED BY blocks.id;
 
 
 --
--- Name: clients; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: clients; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE clients (
@@ -185,7 +189,7 @@ ALTER SEQUENCE clients_id_seq OWNED BY clients.id;
 
 
 --
--- Name: comments; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: comments; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE comments (
@@ -218,7 +222,7 @@ ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
 
 
 --
--- Name: dimensions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: dimensions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE dimensions (
@@ -250,7 +254,7 @@ ALTER SEQUENCE dimensions_id_seq OWNED BY dimensions.id;
 
 
 --
--- Name: factors; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: factors; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE factors (
@@ -286,7 +290,7 @@ ALTER SEQUENCE factors_id_seq OWNED BY factors.id;
 
 
 --
--- Name: factors_norms; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: factors_norms; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE factors_norms (
@@ -320,7 +324,7 @@ ALTER SEQUENCE factors_norms_id_seq OWNED BY factors_norms.id;
 
 
 --
--- Name: memberships; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: memberships; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE memberships (
@@ -350,7 +354,7 @@ ALTER SEQUENCE memberships_id_seq OWNED BY memberships.id;
 
 
 --
--- Name: norms; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: norms; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE norms (
@@ -384,7 +388,7 @@ ALTER SEQUENCE norms_id_seq OWNED BY norms.id;
 
 
 --
--- Name: notifications; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: notifications; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE notifications (
@@ -415,7 +419,7 @@ ALTER SEQUENCE notifications_id_seq OWNED BY notifications.id;
 
 
 --
--- Name: questions; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: questions; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE questions (
@@ -451,7 +455,7 @@ ALTER SEQUENCE questions_id_seq OWNED BY questions.id;
 
 
 --
--- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: schema_migrations; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE schema_migrations (
@@ -460,7 +464,7 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: users; Type: TABLE; Schema: public; Owner: -; Tablespace: 
+-- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
 CREATE TABLE users (
@@ -597,7 +601,7 @@ ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regcl
 
 
 --
--- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY ar_internal_metadata
@@ -605,7 +609,7 @@ ALTER TABLE ONLY ar_internal_metadata
 
 
 --
--- Name: assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assessments
@@ -613,7 +617,7 @@ ALTER TABLE ONLY assessments
 
 
 --
--- Name: blocks_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: blocks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY blocks
@@ -621,7 +625,7 @@ ALTER TABLE ONLY blocks
 
 
 --
--- Name: clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY clients
@@ -629,7 +633,7 @@ ALTER TABLE ONLY clients
 
 
 --
--- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comments
@@ -637,7 +641,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: dimensions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: dimensions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dimensions
@@ -645,7 +649,7 @@ ALTER TABLE ONLY dimensions
 
 
 --
--- Name: factors_norms_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: factors_norms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY factors_norms
@@ -653,7 +657,7 @@ ALTER TABLE ONLY factors_norms
 
 
 --
--- Name: factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY factors
@@ -661,7 +665,7 @@ ALTER TABLE ONLY factors
 
 
 --
--- Name: memberships_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: memberships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY memberships
@@ -669,7 +673,7 @@ ALTER TABLE ONLY memberships
 
 
 --
--- Name: norms_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: norms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY norms
@@ -677,7 +681,7 @@ ALTER TABLE ONLY norms
 
 
 --
--- Name: notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY notifications
@@ -685,7 +689,7 @@ ALTER TABLE ONLY notifications
 
 
 --
--- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY questions
@@ -693,7 +697,7 @@ ALTER TABLE ONLY questions
 
 
 --
--- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY schema_migrations
@@ -701,7 +705,7 @@ ALTER TABLE ONLY schema_migrations
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -; Tablespace: 
+-- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users
@@ -709,140 +713,140 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: index_assessments_on_norm_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_assessments_on_norm_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_assessments_on_norm_id ON assessments USING btree (norm_id);
 
 
 --
--- Name: index_blocks_on_assessment_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_blocks_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_blocks_on_assessment_id ON blocks USING btree (assessment_id);
 
 
 --
--- Name: index_blocks_on_deleted_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_blocks_on_deleted_at; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_blocks_on_deleted_at ON blocks USING btree (deleted_at);
 
 
 --
--- Name: index_clients_on_subdomain; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_clients_on_subdomain; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_clients_on_subdomain ON clients USING btree (subdomain);
 
 
 --
--- Name: index_comments_on_question_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_comments_on_question_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_comments_on_question_id ON comments USING btree (question_id);
 
 
 --
--- Name: index_factors_norms_on_factor_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_factors_norms_on_factor_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_factors_norms_on_factor_id ON factors_norms USING btree (factor_id);
 
 
 --
--- Name: index_factors_norms_on_norm_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_factors_norms_on_norm_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_factors_norms_on_norm_id ON factors_norms USING btree (norm_id);
 
 
 --
--- Name: index_factors_on_dimension_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_factors_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_factors_on_dimension_id ON factors USING btree (dimension_id);
 
 
 --
--- Name: index_factors_on_parent_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_factors_on_parent_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_factors_on_parent_id ON factors USING btree (parent_id);
 
 
 --
--- Name: index_memberships_on_client_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_memberships_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_memberships_on_client_id ON memberships USING btree (client_id);
 
 
 --
--- Name: index_memberships_on_client_id_and_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_memberships_on_client_id_and_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_memberships_on_client_id_and_user_id ON memberships USING btree (client_id, user_id);
 
 
 --
--- Name: index_memberships_on_user_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_memberships_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_memberships_on_user_id ON memberships USING btree (user_id);
 
 
 --
--- Name: index_questions_on_block_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_questions_on_block_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_questions_on_block_id ON questions USING btree (block_id);
 
 
 --
--- Name: index_questions_on_deleted_at; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_questions_on_deleted_at; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_questions_on_deleted_at ON questions USING btree (deleted_at);
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
--- Name: index_users_on_hris; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_hris; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_users_on_hris ON users USING gin (hris);
 
 
 --
--- Name: index_users_on_invitation_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_invitation_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_invitation_token ON users USING btree (invitation_token);
 
 
 --
--- Name: index_users_on_invitations_count; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_invitations_count; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_users_on_invitations_count ON users USING btree (invitations_count);
 
 
 --
--- Name: index_users_on_invited_by_id; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_invited_by_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_users_on_invited_by_id ON users USING btree (invited_by_id);
 
 
 --
--- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -; Tablespace: 
+-- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
@@ -892,7 +896,7 @@ ALTER TABLE ONLY norms
 -- PostgreSQL database dump complete
 --
 
-SET search_path TO "$user",public;
+SET search_path TO "$user", public;
 
 INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947');
 
