@@ -23,7 +23,7 @@
             = f.input :department
             = f.input :job_title
             = f.input :nationality
-            = f.input :gender, as: :radio_buttons, collection: [[t('administration.genders.true'), true], [t('administration.genders.false'), false], [t('administration.not_set'), nil]], wrapper: :horizontal_radio_and_checkboxes
+            = f.input :gender, as: :radio_buttons, collection: [[t('administration.genders.male'), 'Male'], [t('administration.genders.female'), 'Female']], wrapper: :horizontal_radio_and_checkboxes
         .panel-footer
           .btn-group.pull-left
             = link_to(t('administration.back'), { action: :index }, class: 'btn btn-info')

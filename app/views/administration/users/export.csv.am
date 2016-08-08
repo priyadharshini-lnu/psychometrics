@@ -32,7 +32,7 @@ csv << [
           resource.department,
           resource.job_title,
           resource.nationality,
-          resource.gender.nil? ? t("administration.not_set") : t(".genders.#{resource.gender}"),
+          resource.gender.nil? ? t("administration.genders.not_set") : resource.gender,
           resource.decorate.created_at
          ]
 end

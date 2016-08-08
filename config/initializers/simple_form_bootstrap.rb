@@ -133,8 +133,6 @@ SimpleForm.setup do |config|
     end
   end
 
-
-
   config.wrappers :administration_form, tag: 'div', class: 'form-group', error_class: 'has-error' do |b|
     b.use :html5
     b.use :placeholder
