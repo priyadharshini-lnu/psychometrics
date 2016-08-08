@@ -8,23 +8,19 @@ module Imports
       # Return error if obj not valid
       return false unless valid?
 
-      imported_items = load_imported_items
+      imported_items = load_imported_items.compact
+
       if imported_items.map(&:valid?).all?
         imported_items.each(&:save!).each { |i| i.invite!(importer) }
-        true
       else
         imported_items.each_with_index do |user, index|
           user.errors.full_messages.each do |message|
             errors.add :file, "Row #{index + 2}: #{message}"
           end
         end
-        false
       end
 
-    rescue Roo::HeaderRowNotFoundError => e
-
-      errors.add(:base, 'Invalid format headers')
-      return false
+      errors.blank?
     end
 
     def load_imported_items
@@ -38,6 +34,10 @@ module Imports
         user.operator = importer
         user
       end
+
+    rescue Roo::HeaderRowNotFoundError => e
+      errors.add(:file, 'Invalid file format')
+      [nil]
     end
 
     def open_spreadsheet

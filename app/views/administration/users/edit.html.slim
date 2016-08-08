@@ -1,20 +1,32 @@
 .row
   .col-md-12
-    .panel.panel-default
-      .panel-heading
-        h3.panel-title = t('.title')
+    = simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, wrapper: :administration_form, html: { class: 'form-horizontal' }) do |f|
+      = f.error_notification
+      .panel.panel-default.tabs
+        ul.nav.nav-tabs role="tablist"
+          li.active
+            a data-toggle="tab" href="#tab-first" role="tab" = t('.personal_data')
+          li
+            a data-toggle="tab" href="#tab-second" role="tab" = t('.hris_data')
 
-      = simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }) do |f|
-        .panel-body
-          = f.error_notification
-          = f.input :email
-          = f.input :first_name
-          = f.input :last_name
-          = f.input :role, as: :select, collection: @current_administrator.decorate.can_manage_options, class: 'form-control', include_blank: false
-
+        .panel-body.tab-content
+          #tab-first.tab-pane.active
+            = f.input :email
+            = f.input :first_name
+            = f.input :last_name
+            = f.input :role, as: :select, collection: @current_administrator.decorate.can_manage_options, class: 'form-control', include_blank: false
+          #tab-second.tab-pane
+            = f.input :evaluator_name
+            = f.input :evaluators_email_address
+            = f.input :relationship
+            = f.input :business_unit
+            = f.input :department
+            = f.input :job_title
+            = f.input :nationality
+            = f.input :gender, as: :radio_buttons, collection: [[t('administration.genders.true'), true], [t('administration.genders.false'), false], [t('administration.not_set'), nil]], wrapper: :horizontal_radio_and_checkboxes
         .panel-footer
           .btn-group.pull-left
-            = link_to t('administration.back'), :back, class: 'btn btn-info'
+            = link_to(t('administration.back'), { action: :index }, class: 'btn btn-info')
           .btn-group.pull-right
             = f.button :submit, t('administration.update'), class: 'btn-info'
             = link_to t('administration.clear'), url_for, class: 'btn btn-default'

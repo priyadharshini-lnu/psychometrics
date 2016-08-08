@@ -8,38 +8,35 @@ module Imports
       # Return error if obj not valid
       return false unless valid?
 
-      imported_items = load_imported_items
+      imported_items = load_imported_items.compact
+
       if imported_items.map(&:valid?).all?
         imported_items.each(&:save!)
-        true
       else
         imported_items.each_with_index do |user, index|
           user.errors.full_messages.each do |message|
             errors.add :file, "Row #{index + 2}: #{message}"
           end
         end
-        false
       end
 
-    rescue Roo::HeaderRowNotFoundError => e
-
-      errors.add(:base, 'Invalid format headers')
-      return false
+      errors.blank?
     end
 
     def load_imported_items
       datas = open_spreadsheet.parse(User::USER_IMPORT_RULES)
 
-      datas[1..-1].map do |data|
+      datas[1..-1].map.with_index do |data, index|
         user = User.find_by(email: data[:email])
-        unless user
-          errors.add(:file, "Row #{i}: Couldn't find user")
-          next
-        end
+        errors.add(:file, "Row #{index + 2}: Couldn't find user") && next if user.nil?
         # Fetch hris data
         user.attributes = hris_params(data)
         user
       end
+
+    rescue Roo::HeaderRowNotFoundError => e
+      errors.add(:file, 'Invalid file format')
+      [nil]
     end
 
     def open_spreadsheet

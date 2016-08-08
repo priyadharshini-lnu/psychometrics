@@ -5,6 +5,8 @@ en:
         header: 'New user'
       edit:
         title: 'Edit user'
+        personal_data: Personal Data
+        hris_data: HRIS Data
       index:
         add: Add new user
         import: Import
@@ -46,8 +48,6 @@ en:
         view_report: View user report
         login_as_user: Login as User
         destroy: Delete User
-      list:
-
       form:
         choose: ' - Choose - '
       resource:
