@@ -35,7 +35,7 @@ module Imports
         user
       end
 
-    rescue Roo::HeaderRowNotFoundError => e
+    rescue Roo::HeaderRowNotFoundError
       errors.add(:base, I18n.t('administration.imports.errors.invalid_format'))
       [nil]
     end

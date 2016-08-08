@@ -28,7 +28,10 @@ module Imports
 
       datas[1..-1].map.with_index do |data, index|
         user = User.find_by(email: data[:email])
-        errors.add(:base, I18n.t('administration.imports.errors.user.not_found', row: index + 2, email: data[:email])) && next if user.nil?
+        if user.nil?
+          errors.add(:base, I18n.t('administration.imports.errors.user.not_found', row: index + 2, email: data[:email]))
+          next
+        end
         # Fetch hris data
         user.attributes = hris_params(data)
         user
