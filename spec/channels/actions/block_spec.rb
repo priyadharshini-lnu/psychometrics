@@ -3,9 +3,9 @@ require 'channels/mock_action'
 
 RSpec.describe Actions::Block do
 
-   let!(:assessment) { create(:assessment) }
-   let!(:block) { create(:block) }
-   let!(:user) { create(:user) }
+  let!(:assessment) { create(:assessment) }
+  let!(:block) { create(:block) }
+  let!(:user) { create(:user) }
 
   describe '#block_create' do
 
