@@ -104,8 +104,3 @@ group :development do
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rvm',           '~> 0.1.2'
 end
-
-
-group :test do
-  gem 'database_cleaner'
-end
