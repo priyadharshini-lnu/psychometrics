@@ -2,7 +2,6 @@ require 'rails_helper'
 require 'channels/mock_action'
 
 RSpec.describe Actions::Block do
-
   let!(:assessment) { create(:assessment) }
   let!(:block) { create(:block) }
   let!(:user) { create(:user) }
