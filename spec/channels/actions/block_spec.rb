@@ -3,7 +3,7 @@ require 'channels/mock_action'
 
 RSpec.describe Actions::Block do
   before(:all) do
-    @assessment = Assessment.find(1)
+    @assessment = Assessment.first
     @block = create(:block)
   end
 

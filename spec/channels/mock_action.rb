@@ -1,11 +1,11 @@
 class MockAction
   include Actions::Block
   def params
-    { 'assessment_id' => 1 }
+    { 'assessment_id' => Assessment.first.id }
   end
 
   def policy(model)
-    Administration::AssessmentPolicy.new(User.find_by_email('superadmin@example.com'), model)
+    Administration::AssessmentPolicy.new(User.first, model)
   end
 
   def transmit(data)
@@ -13,6 +13,6 @@ class MockAction
   end
 
   def current_administrator
-    User.find_by_email('superadmin@example.com')
+    User.first
   end
 end
