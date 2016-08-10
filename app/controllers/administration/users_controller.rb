@@ -28,6 +28,7 @@ class Administration::UsersController < Administration::BaseController
   def create
     @resource = @resource_class.new(resource_params)
     @resource.operator = current_administrator
+
     respond_to do |format|
       if @resource.save
         @resource.invite!(current_administrator)
@@ -53,7 +54,7 @@ class Administration::UsersController < Administration::BaseController
     respond_to do |format|
       if @resource.update(resource_params)
         format.html do
-          redirect_to({ action: :index }, success: t('.successfully', name: @resource.decorate.display_name))
+          redirect_to({ action: :edit, id: @resource }, success: t('.successfully', name: @resource.decorate.display_name))
         end
       else
         format.html { render :edit }
@@ -121,7 +122,11 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :client_id, :role)
+    params.require(:resource).permit(:first_name, :last_name, :email,
+                                     :disabled, :client_id, :role, :evaluator_name,
+                                     :evaluators_email_address, :relationship,
+                                     :business_unit, :department, :job_title,
+                                     :nationality, :gender)
   end
 
   # Authorisation user

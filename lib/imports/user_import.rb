@@ -8,23 +8,19 @@ module Imports
       # Return error if obj not valid
       return false unless valid?
 
-      imported_items = load_imported_items
+      imported_items = load_imported_items.compact
+
       if imported_items.map(&:valid?).all?
         imported_items.each(&:save!).each { |i| i.invite!(importer) }
-        true
       else
         imported_items.each_with_index do |user, index|
           user.errors.full_messages.each do |message|
-            errors.add :file, "Row #{index + 2}: #{message}"
+            errors.add(:base, I18n.t('administration.imports.errors.error', row: index + 2, error: message))
           end
         end
-        false
       end
 
-    rescue Roo::HeaderRowNotFoundError => e
-
-      errors.add(:base, 'Invalid format headers')
-      return false
+      errors.blank?
     end
 
     def load_imported_items
@@ -38,13 +34,17 @@ module Imports
         user.operator = importer
         user
       end
+
+    rescue Roo::HeaderRowNotFoundError
+      errors.add(:base, I18n.t('administration.imports.errors.invalid_format'))
+      [nil]
     end
 
     def open_spreadsheet
       case File.extname(file.original_filename)
       when '.csv' then Roo::CSV.new(file.path)
       when '.xlsx' then ::Roo::Excelx.new(file.path)
-      else raise "Unknown file type: #{file.original_filename}"
+      else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
       end
     end
 

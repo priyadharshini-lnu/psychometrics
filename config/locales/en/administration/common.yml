@@ -20,6 +20,10 @@ en:
     any: ' - Any - '
     psychometrics: Psychometrics
     no_data_found: No data found
+    genders:
+      male: Male
+      female: Female
+      not_set: Not set
     noty:
       error_500: Something went wrong. Contact your administrator.
     navigation: &NAVIGATION

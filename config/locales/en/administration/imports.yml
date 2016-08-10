@@ -14,9 +14,12 @@ en:
       base:
         form:
           import: Import
-      csv:
-        not_valid: '[Row %{row}] %{error}'
       errors:
+        error: '[Row %{row}] %{error}'
+        invalid_format: Invalid file format
+        unknown_type: 'Unknown file type: %{filename}'
+        user:
+          not_found: "[Row %{row}] Couldn't find User with Email Address %{email}"
         norm:
           factor_is_not_described: "[#%{coords}] factor %{factor} is not described above"
       new:
