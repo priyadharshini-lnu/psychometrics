@@ -201,6 +201,6 @@ class User < ApplicationRecord
   private
 
   def check_operator_can_manage
-    errors.add(:role, :invalid) if operator.nil? || !operator.try(:can_manage?, self)
+    errors.add(:role, :invalid) if operator && !operator.try(:can_manage?, self)
   end
 end
