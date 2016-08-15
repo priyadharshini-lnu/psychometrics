@@ -25,3 +25,6 @@ en:
   confirmation:
     default_title: "Confirmation"
     default_body:  "Are you sure?"
+  time:
+    formats:
+      short: "%d %b %Y / %H:%M"
