@@ -4,11 +4,11 @@ en:
       index:
         title: 'Sub-Factors'
         tooltips:
-          create: Create
+          create: 'Create'
       new:
         header: 'New Sub-Factor'
       edit:
-        header: 'Edit Sub-Factor'
+        header: 'Edit Sub-Factor Name'
       destroy:
         successfully: 'Sub-Factor %{name} was successfully destroyed.'
       copy:
@@ -17,14 +17,14 @@ en:
         successfully: 'Sub-Factor was successfully updated.'
       sidebar:
         title: Sub-Factor's options (#%{id})
-        edit: 'Edit Sub-Factor'
+        edit: 'Edit Sub-Factor Name'
         destroy: 'Delete Sub-Factor'
 
       resource:
         tooltips:
-          copy: Copy Sub-Factor
-          edit: Edit Sub-Factor
-          delete: Delete Sub-Factor
+          copy: 'Copy Sub-Factor'
+          edit: 'Edit Sub-Factor Name'
+          delete: 'Delete Sub-Factor'
         confirmations:
           delete:
             title:

@@ -15,4 +15,7 @@ $(function () {
     }
     init();
     $(document).on('initEditable', init);
+    $(document).on('resource:updated', function() {
+        location.reload();
+    });
 });

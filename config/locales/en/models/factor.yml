@@ -8,8 +8,8 @@ en:
         name: 'Name'
         subfactors_count: 'No. Sub-Factors'
         questions_count: 'No. Questions'
-        created_at: 'Created'
-        updated_at: 'Modified'
+        created_at: 'Created Date'
+        updated_at: 'Modified Date'
         active: 'Active'
         parent_id: 'Parent'
   simple_form:

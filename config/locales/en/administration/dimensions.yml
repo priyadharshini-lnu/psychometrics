@@ -6,9 +6,9 @@ en:
         tooltips:
           create: Create
       new:
-        header: 'New dimension'
+        header: 'New Dimension'
       edit:
-        header: 'Edit dimension'
+        header: 'Edit Dimension Name'
       destroy:
         successfully: 'Dimension %{name} was successfully destroyed.'
       copy:
@@ -19,17 +19,18 @@ en:
         title: "Dimension's options (#%{id})"
         disable: 'Disable Dimension'
         enable: 'Enable Dimension'
-        edit: 'Edit Dimension'
+        edit: 'Edit Dimension Name'
         new: 'New Dimension'
         copy: 'Copy Dimension'
         assign: 'Assign Dimension'
         destroy: 'Delete Dimension'
+        view: 'View Dimension'
 
       resource:
         tooltips:
-          copy: Copy Dimension
-          edit: Edit Dimension
-          delete: Delete Dimension
+          copy: 'Copy Dimension'
+          edit: 'Edit Dimension Name'
+          delete: 'Delete Dimension'
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?

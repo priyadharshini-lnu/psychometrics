@@ -1,3 +1,21 @@
 .body-full-height body {
   height: auto !important;
 }
+.breadcrumb {
+  li {
+    color: #8ea1b7;
+    &:hover {
+      color: #8ea1b7;
+    }
+    &:last-child {
+      color: #8ea1b7;
+    }
+    a {
+      color: #337ab7;
+      &:hover {
+        text-decoration: underline;
+        color: #23527c;
+      }
+    }
+  }
+}
