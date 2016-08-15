@@ -43,8 +43,8 @@ class Dimension < ApplicationRecord
       order("dimensions.disabled #{direction}")
     when /^name_/
       order("dimensions.name #{direction}")
-      when /^factors_count_/
-        order("dimensions.factors_count #{direction}")
+    when /^factors_count_/
+      order("dimensions.factors_count #{direction}")
     when /^created_at_/
       order("dimensions.created_at #{direction}")
     when /^updated_at_/
