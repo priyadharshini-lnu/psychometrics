@@ -6,9 +6,9 @@ en:
         tooltips:
           create: Create
       new:
-        header: 'New factor'
+        header: 'New Factor'
       edit:
-        header: 'Edit factor'
+        header: 'Edit Factor Name'
       destroy:
         successfully: 'Factor %{name} was successfully destroyed.'
       copy:
@@ -17,15 +17,16 @@ en:
         successfully: 'Factor was successfully updated.'
       sidebar:
         title: "Factor's options (#%{id})"
-        edit: 'Edit Factor'
+        view: 'View Factor'
+        edit: 'Edit Factor Name'
         copy: 'Copy Factor'
         destroy: 'Delete Factor'
 
       resource:
         tooltips:
-          copy: Copy Factor
-          edit: Edit Factor
-          delete: Delete Factor
+          copy: 'Copy Factor'
+          edit: 'Edit Factor Name'
+          delete: 'Delete Factor'
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?

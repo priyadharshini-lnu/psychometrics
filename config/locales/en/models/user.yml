@@ -15,8 +15,8 @@ en:
         disabled: Disable
         active: Active
         memberships: Memberships
-        created_at: Created
-        updated_at: Modified
+        created_at: 'Created Date'
+        updated_at: 'Modified Date'
         roles:
           user: User
           manager: Manager

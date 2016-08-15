@@ -5,9 +5,9 @@ en:
     attributes:
       norm: &DEFAULT
         id: 'ID'
-        name: 'Title'
-        created_at: 'Created'
-        updated_at: 'Modified'
+        name: 'Name'
+        created_at: 'Created Date'
+        updated_at: 'Modified Date'
         active: 'Active'
         updated_by: 'Edited by'
   simple_form:

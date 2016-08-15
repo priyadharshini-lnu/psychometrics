@@ -7,8 +7,8 @@ en:
         id: 'ID'
         name: 'Name'
         factors_count: 'No. Factors'
-        created_at: 'Created'
-        updated_at: 'Modified'
+        created_at: 'Created Date'
+        updated_at: 'Modified Date'
         active: 'Active'
   simple_form:
     placeholders:

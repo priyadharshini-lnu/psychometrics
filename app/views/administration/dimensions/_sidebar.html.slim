@@ -2,6 +2,7 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(@resource)}"
   li.xn-title.title = t('.title', id: @resource.id)
   - if policy(@resource).edit?
     li = link_to(@resource.decorate.toggle_status_text, [:toggle_status, :administration, @resource], remote: true, method: :patch, data: { confirm: @resource.decorate.toggle_status_confirmation })
+    li = link_to(t('.view'), [:administration, @resource, :factors])
   - if policy(@resource).edit?
     li = link_to t('.edit'), [:edit, :administration, @resource], remote: true
   - if policy(@resource).copy?
