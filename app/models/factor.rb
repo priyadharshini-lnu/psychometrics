@@ -66,6 +66,7 @@ class Factor < ApplicationRecord
   }
 
   private
+
   def increment_factors
     dimension.increment!(:factors_count) if root?
   end
