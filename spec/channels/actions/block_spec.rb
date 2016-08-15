@@ -7,7 +7,6 @@ RSpec.describe Actions::Block do
   let!(:user) { create(:user) }
 
   describe '#block_create' do
-
     context 'when send correct request' do
       let(:name) { "name_#{Time.now}}" }
       it 'create block' do
