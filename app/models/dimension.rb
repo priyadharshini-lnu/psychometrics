@@ -12,7 +12,8 @@
 class Dimension < ApplicationRecord
   include Copyable
 
-  has_many :factors, -> { order(id: :asc) }
+  has_many :factors, -> { roots.order(id: :asc) }
+  has_many :sub_factors, -> { no_roots.order(id: :asc) }, class_name: 'Factor'
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
@@ -42,6 +43,8 @@ class Dimension < ApplicationRecord
       order("dimensions.disabled #{direction}")
     when /^name_/
       order("dimensions.name #{direction}")
+      when /^factors_count_/
+        order("dimensions.factors_count #{direction}")
     when /^created_at_/
       order("dimensions.created_at #{direction}")
     when /^updated_at_/

@@ -20,7 +20,8 @@ class Factor < ApplicationRecord
   belongs_to :parent, class_name: 'Factor', counter_cache: :subfactors_count
   has_many :sub_factors, foreign_key: :parent_id, class_name: 'Factor'
   has_many :factors_norms
-
+  before_create :increment_factors
+  before_destroy :decrement_factors
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 100 }, allow_blank: true
 
@@ -63,4 +64,13 @@ class Factor < ApplicationRecord
   scope :with_dimension, lambda { |dimension_id|
     where(dimension_id: dimension_id)
   }
+
+  private
+  def increment_factors
+    dimension.increment!(:factors_count) if root?
+  end
+
+  def decrement_factors
+    dimension.decrement!(:factors_count) if root?
+  end
 end

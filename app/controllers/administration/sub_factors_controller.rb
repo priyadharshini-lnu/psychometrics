@@ -24,7 +24,7 @@ class Administration::SubFactorsController < Administration::BaseController
   end
 
   def create
-    @resource = @dimension.factors.new(resource_params)
+    @resource = @dimension.sub_factors.new(resource_params)
     @resource.parent_id = @factor.id
     respond_to do |format|
       if @resource.save
