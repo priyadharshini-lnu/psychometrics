@@ -9,7 +9,7 @@ en:
       new:
         header: 'New norm'
       edit:
-        header: 'Edit norm'
+        header: 'Edit Norm Title'
       destroy:
         successfully: 'Norm %{name} was successfully destroyed.'
       copy:
@@ -21,11 +21,13 @@ en:
         factors: 'Factors'
         sub_factors: 'Sub Factors'
         inplace_title: 'Enter value'
+        tooltips:
+          edit: Edit Title
       sidebar:
         title: Norm's options (#%{id})
         disable: 'Disable'
         enable: 'Enable'
-        edit: 'Edit Norm'
+        edit: 'Edit Norm Title'
         editor: 'Norm Editor'
         new: 'New Norm'
         copy: 'Copy Norm'
@@ -38,7 +40,7 @@ en:
       resource:
         tooltips:
           copy: Copy Norm
-          edit: Edit Norm
+          edit: Edit Norm Title
           delete: Delete Norm
         confirmations:
           toggle_status:

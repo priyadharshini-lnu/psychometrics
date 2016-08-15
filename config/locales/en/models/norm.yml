@@ -5,7 +5,7 @@ en:
     attributes:
       norm: &DEFAULT
         id: 'ID'
-        name: 'Name'
+        name: 'Title'
         created_at: 'Created'
         updated_at: 'Modified'
         active: 'Active'
