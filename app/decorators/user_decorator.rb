@@ -17,9 +17,14 @@ class UserDecorator < BaseDecorator
 
   def clients_name
     if h.current_administrator.is?(:superadmin)
-      object.clients.map { |client| client.decorate.display_name }.join(', ')
+      object.clients.
+        map { |client| client.decorate.display_name }.
+        join(', ')
     else
-      object.clients.select { |client| h.current_administrator.client_ids.include?(client.id) }.map { |client| client.decorate.display_name }.join(', ')
+      object.clients.
+        select { |client| h.current_administrator.client_ids.include?(client.id) }.
+        map { |client| client.decorate.display_name }.
+        join(', ')
     end
   end
 end
