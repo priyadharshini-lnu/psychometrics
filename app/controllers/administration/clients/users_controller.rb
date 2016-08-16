@@ -18,18 +18,9 @@ class Administration::Clients::UsersController < Administration::UsersController
     end
   end
 
-  def create
-    @resource = @resource_class.new(resource_params)
+  def new
+    super
     @resource.client_ids = [@client.id]
-    @resource.operator = current_administrator
-    respond_to do |format|
-      if @resource.save
-        @resource.invite!(current_administrator)
-        format.js
-      else
-        format.js { render :new }
-      end
-    end
   end
 
   def export
@@ -66,7 +57,7 @@ class Administration::Clients::UsersController < Administration::UsersController
   end
 
   def resource_params
-    params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :role)
+    params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :role, manage_client_ids: [])
   end
 
   # Authorisation user

@@ -26,8 +26,8 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def create
-    @resource = @resource_class.new(resource_params)
-    @resource.operator = current_administrator
+    @resource = @resource_class.new({ operator: current_administrator })
+    @resource.assign_attributes(resource_params)
 
     respond_to do |format|
       if @resource.save
