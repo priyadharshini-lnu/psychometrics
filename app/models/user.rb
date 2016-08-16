@@ -58,29 +58,6 @@ class User < ApplicationRecord
     user: []
   }.freeze
 
-  USER_ROLES_MAPS = {
-    'Super Admin' => :superadmin,
-    'Client Admin' => :admin,
-    'Manager' => :manager,
-    'User' => :user
-  }.freeze
-
-  USER_IMPORT_RULES = {
-    email: /Email Address|Email|E-mail/i,
-    first_name: 'First Name',
-    last_name: 'Last Name',
-    clients: /Company|Memberships|Clients|Client/i,
-    role: 'Role',
-    evaluator_name: /Evaluator name/i,
-    evaluators_email_address: /Evaluators email address/i,
-    relationship: /Relationship/i,
-    business_unit: /Business unit/i,
-    department: /Department/i,
-    job_title: /Job title/i,
-    nationality: /Nationality/i,
-    gender: /Gender/i
-  }.freeze
-
   USER_HRIS = %i(evaluator_name evaluators_email_address relationship business_unit department job_title nationality gender).freeze
 
   store :hris, accessors: USER_HRIS
@@ -132,6 +109,20 @@ class User < ApplicationRecord
     USER_ROLES_SCOPES.each do |scope, roles|
       break scope if is?(*roles)
     end
+  end
+
+  def manage_client_ids
+    client_ids
+  end
+
+  # Operator can manage only self client
+  def manage_client_ids=(val)
+    return @client_ids = val if operator.try(:is?, :superadmin)
+
+    val = val.reject!(&:blank?).map(&:to_i)
+    operator_client_ids = [operator.try(:client_ids)].compact.flatten
+
+    @client_ids = (client_ids - operator_client_ids) + (operator_client_ids & val)
   end
 
   filterrific(

@@ -8,6 +8,7 @@ class Administration::BaseController < ActionController::Base
   def pundit_user
     current_administrator
   end
+
   # Ensuring policies and scopes are used
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index

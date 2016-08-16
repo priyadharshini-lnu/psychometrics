@@ -10,8 +10,7 @@ class Administration::ClientPolicy < Administration::BasePolicy
   class Scope < Administration::BasePolicy::Scope
     def resolve
       return scope if @user.superadmin?
-      # TODO: First need release membering
-      scope #.where(id: @user.client.try(:id))
+      scope.where(id: @user.client_ids)
     end
   end
 end
