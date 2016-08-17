@@ -24,7 +24,7 @@ class Block < ApplicationRecord
   before_create :init
 
   def init
-    self.props ||= Settings.block.default_buttons
+    self.props ||= Settings.block.default_props.to_hash
   end
 
   def deep_clone(name:, position:)
