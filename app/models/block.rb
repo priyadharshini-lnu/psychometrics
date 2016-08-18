@@ -21,12 +21,6 @@ class Block < ApplicationRecord
 
   scope :deleted, -> { where.not(deleted_at: nil) }
 
-  before_create :init
-
-  def init
-    self.props ||= Settings.block.default_props.to_hash
-  end
-
   def deep_clone(name:, position:)
     cloned_block = dup
     cloned_block.position = position if position

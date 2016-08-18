@@ -1,8 +1,1 @@
 project_name: Psychometrics
-block:
-  default_props:
-    buttons:
-      prev_button: "Previous"
-      next_button: "Next"
-    randomization:
-      type: "No"
