@@ -14,7 +14,7 @@
             = f.input :email
             = f.input :first_name
             = f.input :last_name
-            = f.input :role, as: :select, collection: @current_administrator.decorate.can_manage_options, class: 'form-control', include_blank: false
+            = f.input :role, as: :select, collection: @current_administrator.decorate.can_manage_roles, class: 'form-control', include_blank: false
           #tab-second.tab-pane
             = f.input :evaluator_name
             = f.input :evaluators_email_address

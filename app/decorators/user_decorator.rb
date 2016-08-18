@@ -4,8 +4,8 @@ class UserDecorator < BaseDecorator
     "#{object.first_name} #{object.last_name}"
   end
 
-  def can_manage_options
-    object.can_manage.map { |role| [User.human_enum_name(:role, role), role] }
+  def can_manage_roles
+    object.can_manage.map { |role| [User.human_role(role), role] }
   end
 
   def change_password_confirmation

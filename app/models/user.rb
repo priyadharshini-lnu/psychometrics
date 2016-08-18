@@ -37,24 +37,26 @@ class User < ApplicationRecord
   # User, who try update or create entity
   attr_accessor :operator
 
+  self.inheritance_column = :role
+
   # Roles constant
   USER_ROLES = {
-      superadmin: 'superadmin',
-      admin: 'admin',
-      manager: 'manager',
-      user: 'user'
+      superadmin: 'Users::SuperAdmin',
+      admin: 'Users::Admin',
+      manager: 'Users::Manager',
+      member: 'Users::Member',
   }.freeze
 
   USER_ROLES_SCOPES = {
-      administrator: USER_ROLES.slice(:superadmin, :admin).keys,
-      user:          USER_ROLES.slice(:manager, :user).keys
+      administrator: USER_ROLES.slice(:superadmin, :admin).values,
+      user:          USER_ROLES.slice(:manager, :user).values
   }.freeze
 
   # Contain information about ability to manage list of roles
   USER_ROLES_HIERARCHY = {
-    superadmin: USER_ROLES.keys,
-    admin: [:manager, :user],
-    manager: [:user],
+    superadmin: USER_ROLES.values,
+    admin: [USER_ROLES[:admin], USER_ROLES[:user]],
+    manager: [USER_ROLES[:user]],
     user: []
   }.freeze
 
@@ -93,9 +95,11 @@ class User < ApplicationRecord
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
   validates :role, inclusion: { in: USER_ROLES.values }, allow_nil: true
 
-  enum role: USER_ROLES
+  # enum role: USER_ROLES
 
   before_validation :check_operator_can_manage, if: :role_changed?
+
+  self.inheritance_column = :role
 
   # We won't set password, we will send inviting
   def password_required?
@@ -104,26 +108,17 @@ class User < ApplicationRecord
   end
 
   def is?(*roles)
-    roles.each do |role|
-      case role
-      when :superadmin then return true if superadmin?
-      when :admin then return true if admin?
-      when :manager then return true if manager?
-      when :user then return true if user?
-      else raise 'Not impl'
-      end
-    end
-    false
+    ([USER_ROLES.key(role)] & roles).any?
   end
 
   # Return true if current user/admin has ability to manage passed user
   def can_manage?(user)
-    user.role && can_manage.include?(user.role.try(:to_sym))
+    user.role && can_manage.include?(user.role)
   end
 
   # Return list of roles, that can manage
   def can_manage
-    (USER_ROLES_HIERARCHY[role.to_sym] || [])
+    (USER_ROLES_HIERARCHY[USER_ROLES.key(role)] || [])
   end
 
   # Return devise scope
@@ -195,6 +190,10 @@ class User < ApplicationRecord
     #
     def options_for_with_role
       %w(all users administrators)
+    end
+
+    def human_role(role)
+      I18n.t("activerecord.attributes.user.roles.#{USER_ROLES.key(role)}")
     end
   end
 

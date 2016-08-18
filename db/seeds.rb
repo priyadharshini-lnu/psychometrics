@@ -9,7 +9,7 @@
 User.create(
   email: 'superadmin@example.com',
   password: 'password',
-  role: :superadmin,
+  role: 'Users::SuperAdmin',
   first_name: 'Jon',
   last_name: 'Snow'
 ) if User.all.empty?
