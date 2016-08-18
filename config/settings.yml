@@ -5,4 +5,4 @@ block:
       prev_button: "Previous"
       next_button: "Next"
     randomization:
-      type: "no"
+      type: "No"
