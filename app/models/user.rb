@@ -61,10 +61,10 @@ class User < ApplicationRecord
   }.freeze
 
   USER_ROLES_MAPS = {
-    'Super Admin' => :superadmin,
-    'Client Admin' => :admin,
-    'Manager' => :manager,
-    'User' => :user
+    'Super Admin' => USER_ROLES[:superadmin],
+    'Client Admin' => USER_ROLES[:admin],
+    'Manager' => USER_ROLES[:manager],
+    'Member' => USER_ROLES[:member]
   }.freeze
 
   USER_IMPORT_RULES = {
