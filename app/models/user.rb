@@ -95,8 +95,6 @@ class User < ApplicationRecord
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
   validates :role, inclusion: { in: USER_ROLES.values }, allow_nil: true
 
-  # enum role: USER_ROLES
-
   before_validation :check_operator_can_manage, if: :role_changed?
 
   self.inheritance_column = :role
