@@ -11,10 +11,10 @@ module Imports
     end
 
     USER_ROLES_MAPS = {
-      'Super Admin' => :superadmin,
-      'Client Admin' => :admin,
-      'Manager' => :manager,
-      'User' => :user
+      'Super Admin' => User::USER_ROLES[:superadmin],
+      'Client Admin' => User::USER_ROLES[:admin],
+      'Manager' => User::USER_ROLES[:manager],
+      'Member' => User::USER_ROLES[:member]
     }.freeze
 
     USER_IMPORT_RULES = {

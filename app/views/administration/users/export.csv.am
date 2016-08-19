@@ -24,7 +24,7 @@ csv << [
           resource.last_name,
           resource.email,
           resource.decorate.clients_name,
-          @resource_class.human_enum_name(:role, resource.role),
+          @resource_class.human_role(resource.role),
           resource.evaluator_name,
           resource.evaluators_email_address,
           resource.relationship,

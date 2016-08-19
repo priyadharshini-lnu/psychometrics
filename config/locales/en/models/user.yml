@@ -18,7 +18,7 @@ en:
         created_at: 'Created Date'
         updated_at: 'Modified Date'
         roles:
-          user: User
+          member: Member
           manager: Manager
           admin: Client Admin
           superadmin: Super Admin

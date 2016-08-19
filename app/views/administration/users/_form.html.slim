@@ -5,7 +5,7 @@
       = f.input :email
       = f.input :first_name
       = f.input :last_name
-      = f.input :role, as: :select, collection: @current_administrator.decorate.can_manage_options, class: 'form-control select mll', include_blank: false
+      = f.input :role, as: :select, collection: @current_administrator.decorate.can_manage_roles, class: 'form-control select mll', include_blank: false
       = f.input :manage_client_ids, as: :select, collection: policy_scope(Client).all, class: 'form-control select mll', include_blank: false, input_html: {  data: { live_search: true }, multiple: true }
 
   .modal-footer

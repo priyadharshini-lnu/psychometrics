@@ -41,7 +41,7 @@ class Administration::UserPolicy < Administration::BasePolicy
 
   class Scope < Administration::BasePolicy::Scope
     def resolve
-      return scope if @user.superadmin?
+      return scope if @user.is?(:superadmin)
       scope.joins(:clients).where(clients: { id: @user.client_ids })
     end
   end
