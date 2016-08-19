@@ -40,7 +40,7 @@ module AdministrationHelper
   #
   # Example:
   # ```
-  #  = sorting 'Name', :name, @filterrific
+  #  = sorting User, :name, @filterrific
   # ```
   #
   def sorting(resource_class, name, filterrific)
