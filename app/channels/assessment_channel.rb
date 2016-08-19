@@ -10,6 +10,7 @@
 #
 
 class AssessmentChannel < ApplicationCable::Channel
+  include Actions::Assessment
   include Actions::Block
   include Actions::Question
   include Actions::Comment

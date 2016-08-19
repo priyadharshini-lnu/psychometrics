@@ -2,6 +2,7 @@ en:
   administration:
     cable:
       notification:
+        assessment_update: "Assessment is updated"
         block_create: "Block %{name} is created"
         block_update: "Block is updated"
         block_destroy: "Block is destroyed"

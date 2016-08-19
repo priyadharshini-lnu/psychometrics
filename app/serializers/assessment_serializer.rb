@@ -12,7 +12,7 @@
 #
 
 class AssessmentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :category, :disabled, :created_at
+  attributes :id, :name, :category, :disabled, :created_at, :flow
 
   has_many :blocks, serializer: BlockSerializer
 end
