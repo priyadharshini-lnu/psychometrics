@@ -26,8 +26,8 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def create
-    @resource = @resource_class.new(resource_params)
-    @resource.operator = current_administrator
+    @resource = @resource_class.new({ operator: current_administrator })
+    @resource.assign_attributes(resource_params)
 
     respond_to do |format|
       if @resource.save
@@ -123,10 +123,10 @@ class Administration::UsersController < Administration::BaseController
 
   def resource_params
     params.require(:resource).permit(:first_name, :last_name, :email,
-                                     :disabled, :client_id, :role, :evaluator_name,
+                                     :disabled, :role, :evaluator_name,
                                      :evaluators_email_address, :relationship,
                                      :business_unit, :department, :job_title,
-                                     :nationality, :gender)
+                                     :nationality, :gender, manage_client_ids: [])
   end
 
   # Authorisation user

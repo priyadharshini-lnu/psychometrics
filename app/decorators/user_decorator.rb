@@ -16,6 +16,37 @@ class UserDecorator < BaseDecorator
   end
 
   def clients_name
-    object.clients.map { |client| client.decorate.display_name }.join(', ')
+    if h.current_administrator.is?(:superadmin)
+      object.clients.
+        map { |client| client.decorate.display_name }.
+        join(', ')
+    else
+      object.clients.
+        select { |client| h.current_administrator.client_ids.include?(client.id) }.
+        map { |client| client.decorate.display_name }.
+        join(', ')
+    end
+  end
+
+  def delete_confirmation
+    {
+        title: I18n.t('administration.users.resource.confirmations.delete.title', name: display_name),
+        body: I18n.t('administration.users.resource.confirmations.delete.body')
+    }.to_json
+  end
+
+  def toggle_status_confirmation
+    status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
+    {
+        title: I18n.t(
+            'administration.users.resource.confirmations.toggle_status.title',
+            status: status,
+            name: display_name
+        ),
+        body: I18n.t(
+            'administration.users.resource.confirmations.toggle_status.body',
+            status: status.downcase
+        )
+    }.to_json
   end
 end

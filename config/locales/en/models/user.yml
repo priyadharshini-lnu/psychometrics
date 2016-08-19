@@ -22,6 +22,7 @@ en:
           manager: Manager
           admin: Client Admin
           superadmin: Super Admin
+        manage_client_ids: Memberships
   simple_form:
     placeholders:
       user:

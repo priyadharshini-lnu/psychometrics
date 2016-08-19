@@ -49,7 +49,7 @@ class User < ApplicationRecord
 
   USER_ROLES_SCOPES = {
       administrator: USER_ROLES.slice(:superadmin, :admin).values,
-      user:          USER_ROLES.slice(:manager, :user).values
+      user:          USER_ROLES.slice(:manager, :member).values
   }.freeze
 
   # Contain information about ability to manage list of roles
@@ -58,29 +58,6 @@ class User < ApplicationRecord
     admin: [USER_ROLES[:admin], USER_ROLES[:user]],
     manager: [USER_ROLES[:user]],
     user: []
-  }.freeze
-
-  USER_ROLES_MAPS = {
-    'Super Admin' => USER_ROLES[:superadmin],
-    'Client Admin' => USER_ROLES[:admin],
-    'Manager' => USER_ROLES[:manager],
-    'Member' => USER_ROLES[:member]
-  }.freeze
-
-  USER_IMPORT_RULES = {
-    email: /Email Address|Email|E-mail/i,
-    first_name: 'First Name',
-    last_name: 'Last Name',
-    clients: /Company|Memberships|Clients|Client/i,
-    role: 'Role',
-    evaluator_name: /Evaluator name/i,
-    evaluators_email_address: /Evaluators email address/i,
-    relationship: /Relationship/i,
-    business_unit: /Business unit/i,
-    department: /Department/i,
-    job_title: /Job title/i,
-    nationality: /Nationality/i,
-    gender: /Gender/i
   }.freeze
 
   USER_HRIS = %i(evaluator_name evaluators_email_address relationship business_unit department job_title nationality gender).freeze
@@ -96,8 +73,6 @@ class User < ApplicationRecord
   validates :role, inclusion: { in: USER_ROLES.values }, allow_nil: true
 
   before_validation :check_operator_can_manage, if: :role_changed?
-
-  self.inheritance_column = :role
 
   # We won't set password, we will send inviting
   def password_required?
@@ -125,6 +100,20 @@ class User < ApplicationRecord
     USER_ROLES_SCOPES.each do |scope, roles|
       break scope if is?(*roles)
     end
+  end
+
+  def manage_client_ids
+    client_ids
+  end
+
+  # Operator can manage only self client
+  def manage_client_ids=(val)
+    val = val.reject!(&:blank?).map(&:to_i)
+    unless operator.try(:is?, :superadmin)
+      operator_client_ids = [operator.try(:client_ids)].compact.flatten
+      val = (client_ids - operator_client_ids) + (operator_client_ids & val)
+    end
+    assign_attributes({ client_ids: val })
   end
 
   filterrific(
