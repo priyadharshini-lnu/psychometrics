@@ -30,8 +30,8 @@ class UserDecorator < BaseDecorator
 
   def delete_confirmation
     {
-        title: I18n.t('administration.users.resource.confirmations.delete.title', name: display_name),
-        body: I18n.t('administration.users.resource.confirmations.delete.body')
+      title: I18n.t('administration.users.resource.confirmations.delete.title', name: display_name),
+      body: I18n.t('administration.users.resource.confirmations.delete.body')
     }.to_json
   end
 
