@@ -3,7 +3,7 @@ module Actions
     extend Actions::Action
 
     action :update do |data, _current_administrator, assessment|
-      ::Assessment.update(assessment.id, data)
+      assessment.update(data)
       nil
     end
   end
