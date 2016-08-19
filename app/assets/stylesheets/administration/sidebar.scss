@@ -15,15 +15,15 @@
     position: absolute;
     z-index: 11;
     top: 0;
-    left: -45px;
-    background: #ccc;
+    left: -35px;
+    background: #fff;
     padding: 10px 10px;
-    font-size: 2em;
+    font-size: 15px;
     display: none;
     opacity: 1;
-    color: #4e4e4e;
+    color: #6c7177;
     &:hover {
-      color: #000;
+      color: #1caf9a;
     }
   }
 

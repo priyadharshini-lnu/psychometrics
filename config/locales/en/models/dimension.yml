@@ -6,7 +6,7 @@ en:
       dimension: &DEFAULT
         id: 'ID'
         name: 'Name'
-        factors_count: 'No. Factors'
+        factors_count: 'No. of Factors'
         created_at: 'Created Date'
         updated_at: 'Modified Date'
         active: 'Active'

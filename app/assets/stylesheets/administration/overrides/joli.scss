@@ -1,6 +1,7 @@
 .body-full-height body {
   height: auto !important;
 }
+
 .breadcrumb {
   li {
     color: #8ea1b7;
@@ -18,4 +19,7 @@
       }
     }
   }
+}
+.x-navigation.x-navigation-horizontal > li > a:hover {
+  background-color: #fff;
 }
