@@ -5,8 +5,6 @@ class Administration::AssessmentsController < Administration::BaseController
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
 
-  layout 'empty', :only => [:preview]
-
   # GET /administration/resources
   def index
     @filterrific = initialize_filterrific(
@@ -39,6 +37,10 @@ class Administration::AssessmentsController < Administration::BaseController
         format.js { render :new }
       end
     end
+  end
+
+  def preview
+    render layout: 'empty'
   end
 
   def show
