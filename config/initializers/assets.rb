@@ -11,6 +11,6 @@ Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( administration.scss administration.js jquery2.js ckeditor.js ckeditor/config.js ckeditor/lang/*.js )
 Rails.application.config.assets.precompile << 'filterrific/filterrific-spinner.gif'
 Rails.application.config.assets.precompile << 'administration/*.mp3'
-Rails.application.config.assets.precompile += %w( psychometrics_vendor.js psychometrics_app.js )
+Rails.application.config.assets.precompile += %w( psychometrics_vendor.js psychometrics_app.js  psychometrics_preview.js )
 
 
