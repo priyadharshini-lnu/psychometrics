@@ -4,6 +4,8 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(@resource)}"
     li = link_to(@resource.decorate.toggle_status_text, [:toggle_status, :administration, @resource], remote: true, method: :patch, data: { confirm: @resource.decorate.toggle_status_confirmation })
   - if policy(@resource).edit?
     li = link_to t('.edit'), [:edit, :administration, @resource], remote: true
+  - if policy(@resource).preview?
+    li = link_to t('.preview'), [:preview, :administration, @resource]
   - if policy(@resource).copy?
     li = link_to t('.copy'), [:copy, :administration, @resource], remote: true
   - if policy(@resource).destroy?

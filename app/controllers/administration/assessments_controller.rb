@@ -1,9 +1,11 @@
 class Administration::AssessmentsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy, :preview]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
+
+  layout 'empty', :only => [:preview]
 
   # GET /administration/resources
   def index
@@ -39,17 +41,14 @@ class Administration::AssessmentsController < Administration::BaseController
     end
   end
 
-  # GET /administration/resources/1
   def show
     add_breadcrumb @resource.decorate.display_name
   end
 
-  # GET /administration/resources/1/edit
   def edit
     add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
   end
 
-  # PATCH/PUT /administration/resources/1
   def update
     respond_to do |format|
       if @resource.update(resource_params)
@@ -60,7 +59,6 @@ class Administration::AssessmentsController < Administration::BaseController
     end
   end
 
-  # DELETE /administration/resources/1
   def destroy
     @resource.destroy
     respond_to do |format|
