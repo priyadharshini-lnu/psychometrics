@@ -6,4 +6,8 @@ class Administration::AssessmentPolicy < Administration::BasePolicy
   def show?
     @user.is?(:superadmin)
   end
+
+  def preview?
+    @user.is?(:superadmin)
+  end
 end

@@ -33,6 +33,7 @@ en:
         disable: Disable
         enable: Enable
         edit: Edit Assessment
+        preview: Preview Assessment
         new: New Assessment
         copy: Copy Assessment
         assign: 'Assign Assessment'
