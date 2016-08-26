@@ -112,6 +112,9 @@ GEM
       tzinfo (~> 1.1)
     acts_as_list (0.7.6)
       activerecord (>= 3.0)
+    airbrake (5.4.5)
+      airbrake-ruby (~> 1.4)
+    airbrake-ruby (1.4.6)
     airbrussh (1.1.0)
       sshkit (>= 1.6.1, != 1.7.0)
     arel (7.1.1)
@@ -401,6 +404,7 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   activemodel-serializers-xml!
   acts_as_list (~> 0.7.6)
+  airbrake (~> 5.0)
   ancestry!
   annotate (~> 2.7.0)!
   axlsx!
