@@ -1,1 +1,0 @@
-//= require ckeditor/ckeditor.js
