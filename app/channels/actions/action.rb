@@ -14,7 +14,11 @@ module Actions
                 request_id:   request['request_id']
             }
             response[:data] = data if data
-            response[:notification] = { level: 'success', message: I18n.t("administration.cable.notification.#{action_name}", data) } if !!!request['data']['without_notification']
+            # Skip notification if was passed params
+            if !!!request['data']['without_notification']
+              response[:notification] = { level: 'success', message: I18n.t("administration.cable.notification.#{action_name}", data) }
+            end
+
             transmit(response)
           rescue Exception => e
             Rails.logger.error("#{e.message}\n")
