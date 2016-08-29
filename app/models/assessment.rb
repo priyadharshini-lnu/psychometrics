@@ -26,6 +26,12 @@ class Assessment < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
+  before_create :init
+
+  def init
+    self.flow ||= {elements: []}
+  end
+
   enum role: CATEGORIES
 
   filterrific(
