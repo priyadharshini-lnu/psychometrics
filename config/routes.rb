@@ -49,6 +49,7 @@ Rails.application.routes.draw do
         get :sidebar
         patch :toggle_status
         get :preview
+        get :reports
       end
     end
     ### END ASSESSMENTS
