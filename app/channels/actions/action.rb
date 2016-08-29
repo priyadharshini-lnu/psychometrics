@@ -15,8 +15,11 @@ module Actions
             }
             response[:data] = data if data
             # Skip notification if was passed params
-            if !!!request['data']['without_notification']
-              response[:notification] = { level: 'success', message: I18n.t("administration.cable.notification.#{action_name}", data) }
+            unless !!request['data']['without_notification']
+              response[:notification] = {
+                level: 'success',
+                message: I18n.t("administration.cable.notification.#{action_name}", data)
+              }
             end
 
             transmit(response)
