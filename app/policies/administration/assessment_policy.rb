@@ -10,4 +10,8 @@ class Administration::AssessmentPolicy < Administration::BasePolicy
   def preview?
     @user.is?(:superadmin)
   end
+
+  def reports?
+    @user.is?(:superadmin)
+  end
 end

@@ -43,6 +43,10 @@ class Administration::AssessmentsController < Administration::BaseController
     render layout: 'empty'
   end
 
+  def reports
+    render layout: 'empty'
+  end
+
   def show
     add_breadcrumb @resource.decorate.display_name
   end
