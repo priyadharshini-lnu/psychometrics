@@ -8,6 +8,10 @@ class UserDecorator < BaseDecorator
     object.can_manage.map { |role| [User.human_role(role), role] }
   end
 
+  def role
+    User.human_role(object.role)
+  end
+
   def change_password_confirmation
     {
       title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),
