@@ -14,6 +14,9 @@ class Dimension < ApplicationRecord
 
   has_many :factors, -> { roots.order(id: :asc) }
   has_many :sub_factors, -> { no_roots.order(id: :asc) }, class_name: 'Factor'
+  has_many :assessments
+  has_many :norms
+
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
