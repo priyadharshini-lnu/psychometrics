@@ -9,6 +9,7 @@
 #  disabled   :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  flow       :json
 #
 
 class Assessment < ApplicationRecord
@@ -16,6 +17,7 @@ class Assessment < ApplicationRecord
 
   has_many :blocks, -> { order(position: :asc) }
   has_many :questions, through: :blocks
+  has_many :factors_scoring
   # CATEGORIES constant
   CATEGORIES = {
     psychometric: 'psychometric',

@@ -18,7 +18,7 @@
 #  first_name             :string
 #  last_name              :string
 #  disabled               :boolean          default(FALSE)
-#  role                   :enum             default("user")
+#  role                   :string           default("Users::Member")
 #  invitation_token       :string
 #  invitation_created_at  :datetime
 #  invitation_sent_at     :datetime
@@ -27,6 +27,7 @@
 #  invited_by_type        :string
 #  invited_by_id          :integer
 #  invitations_count      :integer          default(0)
+#  hris                   :jsonb
 #
 
 class User < ApplicationRecord

@@ -1,3 +1,12 @@
+# == Schema Information
+#
+# Table name: memberships
+#
+#  id        :integer          not null, primary key
+#  client_id :integer
+#  user_id   :integer
+#
+
 class Membership < ApplicationRecord
   belongs_to :client, counter_cache: :licenses_used
   belongs_to :user

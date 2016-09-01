@@ -15,6 +15,7 @@ class AssessmentChannel < ApplicationCable::Channel
   include Actions::Question
   include Actions::Comment
   include Actions::Trash
+  include Actions::Scoring
   include Pundit
   include Administration::Policies
 

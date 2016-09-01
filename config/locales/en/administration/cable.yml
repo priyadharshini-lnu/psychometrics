@@ -3,6 +3,7 @@ en:
     cable:
       notification:
         assessment_update: "Assessment is updated"
+        assessment_factors: "Factors are fetched"
         block_create: "Block %{name} is created"
         block_update: "Block is updated"
         block_destroy: "Block is destroyed"
@@ -27,3 +28,4 @@ en:
         comment_create: "Comment is created"
         comment_destroy: "Comment is destroyed"
         trash_empty: "Trash is empty"
+        scoring_update: "Scoring is updated"

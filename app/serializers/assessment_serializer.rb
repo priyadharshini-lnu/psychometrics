@@ -9,6 +9,7 @@
 #  disabled   :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
+#  flow       :json
 #
 
 class AssessmentSerializer < ActiveModel::Serializer
