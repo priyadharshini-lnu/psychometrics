@@ -14,23 +14,12 @@
 #
 
 class FactorSerializer < ActiveModel::Serializer
-  attributes :id, :name, :scoring
+  attributes :id, :name
   attribute :sub_factors, if: -> { object.root? }
-
-  def initialize(object, assessment_id)
-    super(object)
-    @assessment_id = assessment_id
-  end
-
-  def scoring
-    object.factors_scoring.where(assessment_id: @assessment_id).map do |scoring|
-      FactorsScoringSerializer.new(scoring)
-    end
-  end
 
   def sub_factors
     object.sub_factors.map do |sub_factors|
-      SubFactorSerializer.new(sub_factors, @assessment_id)
+      SubFactorSerializer.new(sub_factors)
     end
   end
 end

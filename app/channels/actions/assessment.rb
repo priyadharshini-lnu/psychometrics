@@ -8,10 +8,9 @@ module Actions
     end
 
     action :factors do |_data, _current_administrator, assessment|
-      result    = assessment.dimension.factors.map do |factor|
-        FactorSerializer.new(factor, assessment).to_hash
+      assessment.dimension.factors.includes(:sub_factors).map do |factor|
+        FactorSerializer.new(factor).to_hash
       end
-      result
     end
   end
 end

@@ -15,7 +15,7 @@ module Actions
             }
             response[:data] = data if data
             # Skip notification if was passed params
-            unless !!request['data']['without_notification']
+            unless !!request.try(:[], 'data').try(:[], 'without_notification')
               response[:notification] = {
                 level: 'success',
                 message: I18n.t("administration.cable.notification.#{action_name}", data)
