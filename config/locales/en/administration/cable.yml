@@ -29,3 +29,4 @@ en:
         comment_destroy: "Comment is destroyed"
         trash_empty: "Trash is empty"
         scoring_update: "Scoring is updated"
+        geo_filter: "Data filtered"

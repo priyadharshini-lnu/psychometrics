@@ -8,9 +8,7 @@ module Actions
     end
 
     action :factors do |_data, _current_administrator, assessment|
-      # TODO: remove it
-      dimension = Dimension.find(2)
-      result    = dimension.factors.map do |factor|
+      result    = assessment.dimension.factors.map do |factor|
         FactorSerializer.new(factor, assessment).to_hash
       end
       result

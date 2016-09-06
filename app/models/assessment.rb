@@ -5,7 +5,7 @@
 #  id         :integer          not null, primary key
 #  name       :string
 #  category   :enum             default("psychometric")
-#  norm_id    :integer
+#  dimension_id    :integer
 #  disabled   :boolean          default(FALSE)
 #  created_at :datetime         not null
 #  updated_at :datetime         not null
@@ -18,6 +18,8 @@ class Assessment < ApplicationRecord
   has_many :blocks, -> { order(position: :asc) }
   has_many :questions, through: :blocks
   has_many :factors_scoring
+  belongs_to :dimension
+
   # CATEGORIES constant
   CATEGORIES = {
     psychometric: 'psychometric',
@@ -25,7 +27,7 @@ class Assessment < ApplicationRecord
     '360': '360'
   }.freeze
 
-  validates :name, presence: true
+  validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
   before_create :init
@@ -64,6 +66,8 @@ class Assessment < ApplicationRecord
       order("assessments.disabled #{direction}")
     when /^name_/
       order("assessments.name #{direction}")
+    when /^dimension_id_/
+      includes(:dimension).order("dimensions.name #{direction}")
     when /^created_at_/
       order("assessments.created_at #{direction}")
     when /^updated_at_/

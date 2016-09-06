@@ -16,8 +16,9 @@ class Norm < ApplicationRecord
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
   has_many :factors_norms
+  belongs_to :dimension
 
-  validates :name, presence: true
+  validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
   filterrific(
@@ -46,6 +47,8 @@ class Norm < ApplicationRecord
       order("norms.disabled #{direction}")
     when /^name_/
       order("norms.name #{direction}")
+    when /^dimension_id_/
+      includes(:dimension).order("dimensions.name #{direction}")
     when /^updated_by_/
       order("norms.updated_by #{direction}")
     when /^created_at_/

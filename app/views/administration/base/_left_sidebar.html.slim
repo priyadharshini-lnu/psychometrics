@@ -59,7 +59,7 @@
               - if policy(:user).new?
                 li = link_to t('administration.navigation.users_add'), [:new, :administration, :user], remote: true
               - if policy(:user).import?
-                li = link_to t('administration.navigation.users_import'), [:new, :administration, :import, { resource: :user, type: :csv }], remote: true
+                li = link_to t('administration.navigation.users_import'), new_administration_imports_users_path, remote: true
         - if policy(:client).new?
           li = link_to(t('administration.navigation.client'), [:new, :administration, :client], remote: true)
         li.xn-openable
