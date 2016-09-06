@@ -86,7 +86,7 @@ CREATE TABLE assessments (
     id integer NOT NULL,
     name character varying,
     category assessment_categories DEFAULT 'psychometric'::assessment_categories,
-    norm_id integer,
+    dimension_id integer,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
@@ -401,7 +401,8 @@ CREATE TABLE norms (
     created_by integer,
     updated_by integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    dimension_id integer
 );
 
 
@@ -767,10 +768,10 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: index_assessments_on_norm_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_assessments_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_assessments_on_norm_id ON assessments USING btree (norm_id);
+CREATE INDEX index_assessments_on_dimension_id ON assessments USING btree (dimension_id);
 
 
 --
@@ -848,6 +849,13 @@ CREATE UNIQUE INDEX index_memberships_on_client_id_and_user_id ON memberships US
 --
 
 CREATE INDEX index_memberships_on_user_id ON memberships USING btree (user_id);
+
+
+--
+-- Name: index_norms_on_dimension_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_norms_on_dimension_id ON norms USING btree (dimension_id);
 
 
 --
@@ -952,6 +960,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160901125651'), ('20160901134715');
 
 
