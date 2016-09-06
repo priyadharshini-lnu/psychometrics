@@ -48,7 +48,7 @@ class Norm < ApplicationRecord
     when /^name_/
       order("norms.name #{direction}")
     when /^dimension_id_/
-      includes(:dimension).order("dimensions.name #{direction}")
+      joins(:dimension).order("dimensions.name #{direction}")
     when /^updated_by_/
       order("norms.updated_by #{direction}")
     when /^created_at_/

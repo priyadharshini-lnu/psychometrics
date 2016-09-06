@@ -67,7 +67,7 @@ class Assessment < ApplicationRecord
     when /^name_/
       order("assessments.name #{direction}")
     when /^dimension_id_/
-      includes(:dimension).order("dimensions.name #{direction}")
+      joins(:dimension).order("dimensions.name #{direction}")
     when /^created_at_/
       order("assessments.created_at #{direction}")
     when /^updated_at_/
