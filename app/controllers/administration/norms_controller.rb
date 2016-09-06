@@ -97,6 +97,7 @@ class Administration::NormsController < Administration::BaseController
     @resources = FactorsNorm.structured_hash(
       @filterrific.find.where(norm_id: @resource.id).joins(:factor)
     )
+    Rails.logger.warn "@resources #{@resources}"
     respond_to do |format|
       format.js
       format.html

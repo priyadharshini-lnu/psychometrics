@@ -31,16 +31,21 @@ module Imports
 
       def import_by_sheet(sheet)
         @current_sheet = sheet
-        import_by_sheet_name(@current_sheet.sheet_name)
+        import_by_sheet_name(@current_sheet.sheet_name, @current_sheet[0].try(:[], 0).try(:value))
         import_factors
         import_sub_factors
       end
 
-      def import_by_sheet_name(sheet_name)
+      def import_by_sheet_name(sheet_name, dimension_name)
+        raise Errors::ImportError, I18n.t('administration.imports.errors.norm.not_set_dimension') if !@dimension && !dimension_name
         sheet_name_arr     = sheet_name.split
         @current_norm_type = sheet_name_arr.pop.downcase
-        @norm              = Norm.create!(name: sheet_name_arr.join(''), updated_by: @importer.id) unless @norm
-        @dimension         = Dimension.create!(name: sheet_name_arr.join('')) unless @dimension
+        unless @dimension
+          @dimension     = Dimension.find_by(name: dimension_name)
+          @new_dimension = true unless @dimension
+          @dimension     = Dimension.create(name: dimension_name)
+        end
+        @norm = Norm.create!(name: sheet_name_arr.join(''), dimension_id: @dimension.id, updated_by: @importer.id) unless @norm
       end
 
       def import_factors
@@ -52,7 +57,14 @@ module Imports
           @cursor_x = factor_start_ceil
           @cursor_y = i
           factor    = Factor.where(dimension_id: @dimension.id, name: factor_name).first
-          factor    = @dimension.factors.create!(name: factor_name) unless factor
+          Rails.logger.warn "factor #{factor} inew_dime #{@new_dimension}"
+          if !factor && !@new_dimension
+            raise Errors::ImportError, I18n.t('administration.imports.errors.norm.factors_mismatch',
+                                              coords:    human_coordinates,
+                                              dimension: @dimension.name,
+                                              factor:    factor_name)
+          end
+          factor = @dimension.factors.create!(name: factor_name) unless factor
           import_factor_norms(factor, i, factor_start_ceil + 1)
         end
       end
@@ -79,7 +91,13 @@ module Imports
                                               factor: factor_name)
           end
           sub_factor = Factor.where(dimension_id: @dimension.id, name: sub_factor_name, parent_id: factor.id).first
-          sub_factor = @dimension.factors.create!(name: sub_factor_name, parent_id: factor.id) unless sub_factor
+          if !sub_factor && !@new_dimension
+            raise Errors::ImportError, I18n.t('administration.imports.errors.norm.sub_factors_mismatch',
+                                              coords:    human_coordinates,
+                                              dimension: @dimension.name,
+                                              factor:    factor_name)
+          end
+          sub_factor = @dimension.sub_factors.create!(name: sub_factor_name, parent_id: factor.id) unless sub_factor
           import_factor_norms(sub_factor, i, factor_start_ceil + 1)
         end
       end

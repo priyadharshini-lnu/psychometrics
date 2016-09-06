@@ -14,7 +14,7 @@ table.table.table-bordered.table-actions.table-hover.selectable.mbn.table-conden
           - current_factor_norm = factors_norms[level].first
           td.text-center
             div class="editable" data-pk="#{current_factor_norm.try(:id)}"  data-name="score_from" data-url="#{url_for(administration_factors_norm_path(current_factor_norm.id)) if current_factor_norm }"
-              = current_factor_norm.try(:score_from)
+              = current_factor_norm.try(:score_from).try(:round, 5)
           td.text-center
             div class="editable" data-pk="#{current_factor_norm.try(:id)}"  data-name="score_to" data-url="#{url_for(administration_factors_norm_path(current_factor_norm.id)) if current_factor_norm }"
-              = current_factor_norm.try(:score_to)
+              = current_factor_norm.try(:score_to).try(:round, 5)

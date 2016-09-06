@@ -15,6 +15,7 @@ class FactorsNorm < ApplicationRecord
   belongs_to :factor
   belongs_to :norm
 
+  before_create :init
   #
   # Disables single column inheritance
   #
@@ -109,5 +110,9 @@ class FactorsNorm < ApplicationRecord
     if score_from && score_to && score_from >= score_to
       errors[:score_to] << I18n.t('activerecord.errors.models.factors_norm.score_to_less_than_score_from')
     end
+  end
+
+  def init
+    self.props ||= []
   end
 end
