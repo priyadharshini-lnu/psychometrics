@@ -10,7 +10,7 @@
 #
 
 class FactorsScoring < ApplicationRecord
-  self.table_name  = :factors_scoring
+  self.table_name = :factors_scoring
 
   belongs_to :assessment
   belongs_to :factor
