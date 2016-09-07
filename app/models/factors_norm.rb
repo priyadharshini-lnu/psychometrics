@@ -99,9 +99,9 @@ class FactorsNorm < ApplicationRecord
 
     def change_cell(params)
       factors_norm = FactorsNorm.find_or_create_by(
-          norm_id:   params[:norm_id],
-          factor_id: params[:factor_id],
-          type:      params[:type]
+        norm_id:   params[:norm_id],
+        factor_id: params[:factor_id],
+        type:      params[:type]
       )
       cell         = factors_norm.props.find { |item| item['level'] == params[:level] }
       value        = params[:field_value]
