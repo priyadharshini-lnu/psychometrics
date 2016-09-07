@@ -95,7 +95,6 @@ class FactorsNorm < ApplicationRecord
       end
     end
 
-
     def change_cell(params)
       factors_norm = FactorsNorm.find_or_create_by(
                       norm_id: params[:norm_id],
