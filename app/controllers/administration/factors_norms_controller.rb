@@ -3,11 +3,11 @@ class Administration::FactorsNormsController < Administration::BaseController
 
   def update
     respond_to do |format|
-      result = FactorsNorm.change_cell(change_cell_params)
-      if result
+      factors_norm = FactorsNorm.change_cell(change_cell_params)
+      if factors_norm.valid?
         format.js { head :ok }
       else
-        format.js { render plain: result.errors.full_messages[0], status: 400 }
+        format.js { render plain: factors_norm.errors[:props][0], status: 400 }
       end
     end
   end

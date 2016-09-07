@@ -11,10 +11,10 @@ table.table.table-bordered.table-actions.table-hover.selectable.mbn.table-conden
         td.text-center = factor[:parent][:name]
         td.text-center = factor[:name]
         - FactorsNorm::LEVELS.each do |level|
-          - cell = factor[:factors_norm].props.find { |cell| cell['level'] == level }
+          - cell = factor[:factors_norms_props].find { |cell| cell['level'] == level }
           td.text-center
-            div class="editable" data-level="#{level}" data-factor="#{factor[:id]}" data-norm="#{@resource.id}" data-norm-type="#{@filterrific.with_norm_type}" data-pk="#{factor[:id]}" data-name="score_from" data-url="#{url_for(administration_factors_norms_update_path()) }"
-              = cell.try(:[], 'score_from').try(:round, 5)
+            div class="editable" data-level="#{level}" data-factor="#{factor[:id]}" data-norm="#{@resource.id}" data-norm-type="#{@filter_data.norm_type}" data-pk="#{factor[:id]}" data-name="score_from" data-url="#{url_for(administration_factors_norms_update_path()) }"
+              = cell.try(:[], 'score_from')
           td.text-center
-            div class="editable" data-level="#{level}" data-factor="#{factor[:id]}" data-norm="#{@resource.id}" data-norm-type="#{@filterrific.with_norm_type}" data-pk="#{factor[:id]}" data-name="score_to" data-url="#{url_for(administration_factors_norms_update_path()) }"
-              = cell.try(:[], 'score_to').try(:round, 5)
+            div class="editable" data-level="#{level}" data-factor="#{factor[:id]}" data-norm="#{@resource.id}" data-norm-type="#{@filter_data.norm_type}" data-pk="#{factor[:id]}" data-name="score_to" data-url="#{url_for(administration_factors_norms_update_path()) }"
+              = cell.try(:[], 'score_to')

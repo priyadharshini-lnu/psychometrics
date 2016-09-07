@@ -1,6 +1,6 @@
 <% resources_list = escape_javascript(
-  render(partial: @filterrific.with_factor_type)
+  render(partial: 'editor-list')
 ) %>
-$('#filterrific_results').html('<%= resources_list %>');
+$('#editor-container').html('<%= resources_list %>');
 
 $(document).trigger('initEditable');

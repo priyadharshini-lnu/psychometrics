@@ -18,7 +18,6 @@ class Norm < ApplicationRecord
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
   has_many :factors_norms
   belongs_to :dimension
-  after_create :fill_factors_norms
 
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true

@@ -33,8 +33,6 @@ class Factor < ApplicationRecord
 
   filterrific(
       default_filter_params: {
-          with_factor_type: FACTOR_TYPES.first,
-          with_norm_type:   NORM_TYPES.first,
           sorted_by: 'created_at_desc'
       },
       available_filters: [
@@ -54,8 +52,10 @@ class Factor < ApplicationRecord
     result
   }
 
-  scope :with_norm_type, lambda { |type|
-    where(factors_norms: {type: type})
+  scope :with_norm_type, lambda { |type, norm_id|
+    joins("LEFT JOIN factors_norms as factors_norms on factors_norms.factor_id = factors.id
+and factors_norms.type = '#{type}'
+and factors_norms.norm_id = #{norm_id}")
   }
 
   scope :no_roots, -> { where.not(parent_id: nil) }
