@@ -56,7 +56,7 @@ module Imports
           break unless factor_name
           @cursor_x = factor_start_ceil
           @cursor_y = i
-          factor = Factor.find_by(dimension_id: @dimension.id, name: factor_name)
+          factor    = Factor.find_by(dimension_id: @dimension.id, name: factor_name)
           if !factor && !@new_dimension
             raise Errors::ImportError, I18n.t('administration.imports.errors.norm.factors_mismatch',
                                               coords:    human_coordinates,
@@ -106,9 +106,11 @@ module Imports
         factors_norm.props = []
         (ceil...ceil + FactorsNorm::LEVELS.size * 2).each_slice(2) do |score_from, score_to|
           @cursor_x = score_from
-          factors_norm.props << { score_from: @current_sheet[row][score_from].value.try(:round, 5),
-                                 score_to:   @current_sheet[row][score_to].value.try(:round, 5),
-                                 level:      @current_sheet[XLS_CONFIG[:factor_start_row] - 2][score_from].value }
+          factors_norm.props << {
+              score_from: @current_sheet[row][score_from].value.try(:round, 5),
+              score_to:   @current_sheet[row][score_to].value.try(:round, 5),
+              level:      @current_sheet[XLS_CONFIG[:factor_start_row] - 2][score_from].value
+          }
         end
         factors_norm.save
       end
