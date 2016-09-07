@@ -88,7 +88,9 @@ class FactorsNorm < ApplicationRecord
       FactorsNorm::NORM_TYPES.inject(Hash.new({})) do |sum, norm_type|
         sum[norm_type] = {}
         FactorsNorm::FACTOR_TYPES.each do |factor_type|
-          sql                         = Factor.where(dimension_id: norm.dimension_id).with_norm_type(norm_type, norm.id).with_factor_type(factor_type)
+          sql = Factor.where(dimension_id: norm.dimension_id).
+                with_norm_type(norm_type, norm.id).
+                with_factor_type(factor_type)
           sum[norm_type][factor_type] = FactorsNorm.structured_hash(sql)
         end
         sum
