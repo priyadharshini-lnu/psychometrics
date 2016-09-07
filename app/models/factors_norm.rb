@@ -55,15 +55,15 @@ class FactorsNorm < ApplicationRecord
     #
     #
     def structured_hash(scope)
-      factors = scope.select('factors.*, factors_norms.props as factors_norms_props').order('id': :asc).all
+      factors     = scope.select('factors.*, factors_norms.props as factors_norms_props').order('id': :asc).all
       parents_ids = factors.pluck(:parent_id).uniq.reject { |e| e.to_s.empty? }
       parents     = []
       unless parents_ids.empty?
         parents = Factor.find(parents_ids).group_by(&:id)
       end
       factors.map do |factor|
-        data                = {id: factor.id, name: factor.name}
-        data[:parent]       = parents[factor.parent_id].try(:[], 0) if factor.parent_id
+        data                       = {id: factor.id, name: factor.name}
+        data[:parent]              = parents[factor.parent_id].try(:[], 0) if factor.parent_id
         data[:factors_norms_props] = factor['factors_norms_props'] || []
         data
       end
@@ -97,19 +97,19 @@ class FactorsNorm < ApplicationRecord
 
     def change_cell(params)
       factors_norm = FactorsNorm.find_or_create_by(
-                      norm_id: params[:norm_id],
-                      factor_id: params[:factor_id],
-                      type: params[:type]
-                  )
-      cell = factors_norm.props.find { |cell| cell['level'] == params[:level] }
-      value = params[:field_value]
+          norm_id:   params[:norm_id],
+          factor_id: params[:factor_id],
+          type:      params[:type]
+      )
+      cell         = factors_norm.props.find { |item| item['level'] == params[:level] }
+      value        = params[:field_value]
       if cell
         cell[params[:field_name]] = value
       else
         factors_norm.props << {
-            level: params[:level],
+            level:      params[:level],
             score_from: params[:field_name] == 'score_from' ? value : '',
-            score_to: params[:field_name] == 'score_to' ? value : '',
+            score_to:   params[:field_name] == 'score_to' ? value : '',
         }
       end
       factors_norm.save
@@ -130,10 +130,14 @@ class FactorsNorm < ApplicationRecord
   def scoring_valid
     props.each do |item|
       if item['score_to'].present?
-        errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_to_must_be_number') unless item['score_to'].to_s.valid_float?
+        unless item['score_to'].to_s.valid_float?
+          errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_to_must_be_number')
+        end
       end
       if item['score_from'].present?
-        errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_from_must_be_number') unless item['score_from'].to_s.valid_float?
+        unless item['score_from'].to_s.valid_float?
+          errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_from_must_be_number')
+        end
       end
     end
   end
