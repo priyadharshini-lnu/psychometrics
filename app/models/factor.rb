@@ -26,15 +26,38 @@ class Factor < ApplicationRecord
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 100 }, allow_blank: true
 
+  # norm types constant
+  NORM_TYPES = %w(eti yti).freeze
+  # factor types constant
+  FACTOR_TYPES = %w(factors sub_factors).freeze
+
   filterrific(
-    default_filter_params: {
-      sorted_by: 'created_at_desc'
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query
-    ]
+      default_filter_params: {
+          with_factor_type: FACTOR_TYPES.first,
+          with_norm_type:   NORM_TYPES.first,
+          sorted_by: 'created_at_desc'
+      },
+      available_filters: [
+                                 :sorted_by,
+                                 :search_query,
+                                 :with_factor_type,
+                                 :with_norm_type
+                             ]
   )
+
+
+  scope :with_factor_type, lambda { |type|
+    type = type.to_s
+    raise "supported types: #{FACTOR_TYPES}" unless FACTOR_TYPES.include? type
+    result = where('parent_id': nil) if type == 'factors'
+    result = where.not('parent_id': nil) if type == 'sub_factors'
+    result
+  }
+
+  scope :with_norm_type, lambda { |type|
+    where(factors_norms: {type: type})
+  }
+
   scope :no_roots, -> { where.not(parent_id: nil) }
   # Search entity by word
   scope :search_query, lambda { |query|
@@ -46,18 +69,18 @@ class Factor < ApplicationRecord
     # extract the sort direction from the param value.
     direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
     case sort_key.to_s
-    when /^id_/
-      order("factors.id #{direction}")
-    when /^name_/
-      order("factors.name #{direction}")
-    when /^subfactors_count_/
-      order("factors.subfactors_count #{direction}")
-    when /^questions_count_/
-      order("factors.questions_count #{direction}")
-    when /^created_at_/
-      order("factors.created_at #{direction}")
-    when /^updated_at_/
-      order("factors.updated_at #{direction}")
+      when /^id_/
+        order("factors.id #{direction}")
+      when /^name_/
+        order("factors.name #{direction}")
+      when /^subfactors_count_/
+        order("factors.subfactors_count #{direction}")
+      when /^questions_count_/
+        order("factors.questions_count #{direction}")
+      when /^created_at_/
+        order("factors.created_at #{direction}")
+      when /^updated_at_/
+        order("factors.updated_at #{direction}")
     end
   }
 

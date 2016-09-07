@@ -23,8 +23,8 @@ module Imports
           end
         end
         true
-      rescue ActiveRecord::RecordInvalid => e
-        raise Errors::ImportError, "[#{e.record.model_name}] [#{human_coordinates}] #{e.record.errors.full_messages[0]}"
+      # rescue ActiveRecord::RecordInvalid => e
+      #   raise Errors::ImportError, "[#{e.record.model_name}] [#{human_coordinates}] #{e.record.errors.full_messages[0]}"
       end
 
       private
@@ -43,7 +43,7 @@ module Imports
         unless @dimension
           @dimension     = Dimension.find_by(name: dimension_name)
           @new_dimension = true unless @dimension
-          @dimension     = Dimension.create(name: dimension_name)
+          @dimension     = Dimension.create(name: dimension_name) unless @dimension
         end
         @norm = Norm.create!(name: sheet_name_arr.join(''), dimension_id: @dimension.id, updated_by: @importer.id) unless @norm
       end
@@ -56,8 +56,9 @@ module Imports
           break unless factor_name
           @cursor_x = factor_start_ceil
           @cursor_y = i
-          factor    = Factor.where(dimension_id: @dimension.id, name: factor_name).first
-          Rails.logger.warn "factor #{factor} inew_dime #{@new_dimension}"
+          Rails.logger.warn "dim #{@dimension.inspect} #{factor_name}"
+          factor    = Factor.find_by(dimension_id: @dimension.id, name: factor_name)
+          Rails.logger.warn "factor #{factor.inspect}"
           if !factor && !@new_dimension
             raise Errors::ImportError, I18n.t('administration.imports.errors.norm.factors_mismatch',
                                               coords:    human_coordinates,
@@ -103,16 +104,16 @@ module Imports
       end
 
       def import_factor_norms(factor, row, ceil)
+        factors_norm = FactorsNorm.new(type: @current_norm_type, norm_id: @norm.id, factor_id: factor.id)
+        factors_norm.props = []
         (ceil...ceil + FactorsNorm::LEVELS.size * 2).each_slice(2) do |score_from, score_to|
           @cursor_x = score_from
-          factor.factors_norms.create!(
-            score_from: @current_sheet[row][score_from].value,
-            score_to:   @current_sheet[row][score_to].value,
-            level:      @current_sheet[XLS_CONFIG[:factor_start_row] - 2][score_from].value,
-            type:       @current_norm_type,
-            norm_id:    @norm.id
-          )
+          factors_norm.props << { score_from: @current_sheet[row][score_from].value.try(:round, 5),
+                     score_to: @current_sheet[row][score_to].value.try(:round, 5),
+                     level:      @current_sheet[XLS_CONFIG[:factor_start_row] - 2][score_from].value
+          }
         end
+        factors_norm.save
       end
 
       def human_coordinates

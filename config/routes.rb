@@ -106,7 +106,7 @@ Rails.application.routes.draw do
     end
     ### END NORMS
 
-    resources :factors_norms
+    put '/factors_norms/update', to: 'factors_norms#update'
   end
 
   root to: 'home#index'

@@ -2,14 +2,14 @@
 #
 # Table name: assessments
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  category   :enum             default("psychometric")
-#  norm_id    :integer
-#  disabled   :boolean          default(FALSE)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  flow       :json
+#  id           :integer          not null, primary key
+#  name         :string
+#  category     :enum             default("psychometric")
+#  dimension_id :integer
+#  disabled     :boolean          default(FALSE)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  flow         :json
 #
 
 FactoryGirl.define do

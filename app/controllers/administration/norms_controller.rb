@@ -88,16 +88,17 @@ class Administration::NormsController < Administration::BaseController
     add_breadcrumb @resource.name
     add_breadcrumb I18n.t('administration.breadcrumbs.norms_editor')
     @filterrific = initialize_filterrific(
-      FactorsNorm,
+      Factor.where(dimension_id: @resource.dimension_id),
       params[:filterrific],
       select_options: {
         with_norm_type: FactorsNorm::NORM_TYPES,
         with_factor_type: FactorsNorm::FACTOR_TYPES
       }) || return
+
     @resources = FactorsNorm.structured_hash(
-      @filterrific.find.where(norm_id: @resource.id).joins(:factor)
+      @filterrific.find, @resource.id
     )
-    Rails.logger.warn "@resources #{@resources}"
+    # Rails.logger.warn "@resources #{@resources}"
     respond_to do |format|
       format.js
       format.html
