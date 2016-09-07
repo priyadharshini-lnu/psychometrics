@@ -103,7 +103,7 @@ class FactorsNorm < ApplicationRecord
         factor_id: params[:factor_id],
         type:      params[:type]
       )
-      cell         = factors_norm.props.find { |item| item['level'] == params[:level] }
+      cell         = factors_norm.props.detect { |item| item['level'] == params[:level] }
       value        = params[:field_value]
       if cell
         cell[params[:field_name]] = value
