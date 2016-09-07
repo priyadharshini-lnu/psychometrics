@@ -32,15 +32,15 @@ class Factor < ApplicationRecord
   FACTOR_TYPES = %w(factors sub_factors).freeze
 
   filterrific(
-      default_filter_params: {
-        sorted_by: 'created_at_desc'
-      },
-      available_filters: [
-        :sorted_by,
-        :search_query,
-        :with_factor_type,
-        :with_norm_type
-      ]
+    default_filter_params: {
+      sorted_by: 'created_at_desc'
+    },
+    available_filters: [
+      :sorted_by,
+      :search_query,
+      :with_factor_type,
+      :with_norm_type
+    ]
   )
 
   scope :with_factor_type, lambda { |type|
