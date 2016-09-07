@@ -33,16 +33,15 @@ class Factor < ApplicationRecord
 
   filterrific(
       default_filter_params: {
-          sorted_by: 'created_at_desc'
+        sorted_by: 'created_at_desc'
       },
       available_filters: [
-                                 :sorted_by,
-                                 :search_query,
-                                 :with_factor_type,
-                                 :with_norm_type
-                             ]
+        :sorted_by,
+        :search_query,
+        :with_factor_type,
+        :with_norm_type
+      ]
   )
-
 
   scope :with_factor_type, lambda { |type|
     type = type.to_s
@@ -54,8 +53,8 @@ class Factor < ApplicationRecord
 
   scope :with_norm_type, lambda { |type, norm_id|
     joins("LEFT JOIN factors_norms as factors_norms on factors_norms.factor_id = factors.id
-and factors_norms.type = '#{type}'
-and factors_norms.norm_id = #{norm_id}")
+            and factors_norms.type = '#{type}'
+            and factors_norms.norm_id = '#{norm_id}'")
   }
 
   scope :no_roots, -> { where.not(parent_id: nil) }
@@ -69,18 +68,18 @@ and factors_norms.norm_id = #{norm_id}")
     # extract the sort direction from the param value.
     direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
     case sort_key.to_s
-      when /^id_/
-        order("factors.id #{direction}")
-      when /^name_/
-        order("factors.name #{direction}")
-      when /^subfactors_count_/
-        order("factors.subfactors_count #{direction}")
-      when /^questions_count_/
-        order("factors.questions_count #{direction}")
-      when /^created_at_/
-        order("factors.created_at #{direction}")
-      when /^updated_at_/
-        order("factors.updated_at #{direction}")
+    when /^id_/
+      order("factors.id #{direction}")
+    when /^name_/
+      order("factors.name #{direction}")
+    when /^subfactors_count_/
+      order("factors.subfactors_count #{direction}")
+    when /^questions_count_/
+      order("factors.questions_count #{direction}")
+    when /^created_at_/
+      order("factors.created_at #{direction}")
+    when /^updated_at_/
+      order("factors.updated_at #{direction}")
     end
   }
 
