@@ -62,7 +62,7 @@ class FactorsNorm < ApplicationRecord
         parents = Factor.find(parents_ids).group_by(&:id)
       end
       factors.map do |factor|
-        data                       = {id: factor.id, name: factor.name}
+        data                       = { id: factor.id, name: factor.name }
         data[:parent]              = parents[factor.parent_id].try(:[], 0) if factor.parent_id
         data[:factors_norms_props] = factor['factors_norms_props'] || []
         data
