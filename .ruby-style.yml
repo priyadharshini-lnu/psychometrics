@@ -134,6 +134,8 @@ Style/TrailingCommaInLiteral:
   - comma
   - consistent_comma
   - no_comma
+Style/FrozenStringLiteralComment:
+  Enabled: false
 Metrics/LineLength:
   Max: 130
 Metrics/AbcSize:
