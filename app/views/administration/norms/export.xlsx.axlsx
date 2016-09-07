@@ -5,7 +5,7 @@ FactorsNorm::NORM_TYPES.each do |type|
     text_center_bold = styles.add_style :alignment => {:horizontal => :center, :vertical => :center }, :b => true
 
     wb.add_worksheet(name: "#{@resource.name} #{type.upcase}") do |sheet|
-      sheet.add_row
+      sheet.add_row [@resource.dimension.name]
       sheet.add_row
       sheet.add_row [nil, nil] + @resource.decorate.xls_levels_row, :style => text_center_bold
       @factors_norms[type]['factors'].each do |factor|

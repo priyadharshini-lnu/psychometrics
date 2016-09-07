@@ -2,14 +2,11 @@
 #
 # Table name: factors_norms
 #
-#  id         :integer          not null, primary key
-#  level      :string
-#  score_from :float
-#  score_to   :float
-#  type       :enum
-#  factor_id  :integer
-#  norm_id    :integer
-#  props      :json
+#  id        :integer          not null, primary key
+#  type      :enum
+#  factor_id :integer
+#  norm_id   :integer
+#  props     :json
 #
 
 class FactorsNorm < ApplicationRecord
@@ -31,7 +28,6 @@ class FactorsNorm < ApplicationRecord
 
   validates :type, :factor, :norm, presence: true
   validates :type, inclusion: { in: NORM_TYPES }, allow_nil: true
-  validates :score_from, :score_to, numericality: true, allow_nil: true
   validate :scoring_valid
   validate :score_from_less_than_score_to
 

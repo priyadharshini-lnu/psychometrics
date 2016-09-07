@@ -12,7 +12,7 @@ Rails.application.configure do
 
   # Use default logging formatter so that PID and timestamp are not suppressed.
   config.log_formatter = ::Logger::Formatter.new
-  config.log_level = :debug
+  config.log_level = :warn
 
   # Full error reports are disabled and caching is turned on.
   config.consider_all_requests_local       = false
