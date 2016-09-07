@@ -9,105 +9,142 @@
 #  type       :enum
 #  factor_id  :integer
 #  norm_id    :integer
+#  props      :json
 #
 
 class FactorsNorm < ApplicationRecord
   belongs_to :factor
   belongs_to :norm
 
+  after_initialize :init
   #
   # Disables single column inheritance
   #
   self.inheritance_column = :_type_disabled
 
   # norm types constant
-  NORM_TYPES = %w(eti yti).freeze
+  NORM_TYPES              = %w(eti yti).freeze
   # factor types constant
-  FACTOR_TYPES = %w(factors sub_factors).freeze
+  FACTOR_TYPES            = %w(factors sub_factors).freeze
 
   LEVELS = ['Very Low', 'Low', 'Average', 'High', 'Very High'].freeze
 
-  validates :level, :type, :factor, :norm, presence: true
+  validates :type, :factor, :norm, presence: true
   validates :type, inclusion: { in: NORM_TYPES }, allow_nil: true
-  validates :level, inclusion: { in: LEVELS }, allow_nil: true
   validates :score_from, :score_to, numericality: true, allow_nil: true
+  validate :scoring_valid
   validate :score_from_less_than_score_to
 
-  filterrific(
-    default_filter_params: {
-      with_factor_type: FACTOR_TYPES.first,
-      with_norm_type:   NORM_TYPES.first
-    },
-    available_filters: [
-      :with_factor_type,
-      :with_norm_type
-    ]
-  )
+  class << self
+    #
+    # Return structured collection
+    # [
+    #   {
+    #     "id": <factor_id>,
+    #     "name": <factor_name>,
+    #     "parent": <Factor>,
+    #     "factors_norms_props": <FactorNorm:props>
+    #   },
+    #   {
+    #     "id": <factor_id>,
+    #     "name": <factor_name>,
+    #     "parent": <Factor>,
+    #     "factors_norms_props": <FactorNorm:props>
+    #   },
+    # ]
+    #
+    #
+    def structured_hash(scope)
+      factors     = scope.select('factors.*, factors_norms.props as factors_norms_props').order('id': :asc).all
+      parents_ids = factors.pluck(:parent_id).uniq.reject { |e| e.to_s.empty? }
+      parents     = []
+      unless parents_ids.empty?
+        parents = Factor.find(parents_ids).group_by(&:id)
+      end
+      factors.map do |factor|
+        data                       = { id: factor.id, name: factor.name }
+        data[:parent]              = parents[factor.parent_id].try(:[], 0) if factor.parent_id
+        data[:factors_norms_props] = factor['factors_norms_props'] || []
+        data
+      end
+    end
 
-  scope :with_factor_type, lambda { |type|
-    type = type.to_s
-    raise "supported types: #{FACTOR_TYPES}" unless FACTOR_TYPES.include? type
-    result = joins(:factor).where('factors.parent_id': nil) if type == 'factors'
-    result = joins(:factor).where.not('factors.parent_id': nil) if type == 'sub_factors'
-    result
-  }
-
-  scope :with_norm_type, lambda { |type|
-    where('type': type)
-  }
-
-  #
-  # Return structured hash
-  # {
-  #   "factor_name": {
-  #     "level_type": [
-  #       FactorsNorm,
-  #       FactorsNorm,
-  #       FactorsNorm,
-  #       FactorsNorm,
-  #       FactorsNorm
-  #     ]
-  #   }
-  # }
-  #
-  #
-  def self.structured_hash(scope)
-    scope.select('factors_norms.*, factors.name as factor_name, pf.name as parent_factor_name').
-      joins('LEFT JOIN factors pf on  pf.id::INTEGER = factors.parent_id::INTEGER').
-      order(id: :asc).group_by(&:factor_name).inject({}) { |sum, i| sum[i.first] = i.last.group_by(&:level); sum }
-  end
-
-  #
-  # Return list of structured hashes
-  #
-  # {
-  #   "eti": {
-  #     "factors": <structured_hash>
-  #     "sub_factors": <structured_hash>
-  #   },
-  #   "yti": {
-  #     "factors": <structured_hash>
-  #     "sub_factors": <structured_hash>
-  #   },
-  # }
-  #
-  #
-  def self.export_structured_hash(norm_id)
-    FactorsNorm::NORM_TYPES.inject(Hash.new({})) do |sum, norm_type|
+    #
+    # Return list of structured hashes
+    #
+    # {
+    #   "eti": {
+    #     "factors": <structured_hash>
+    #     "sub_factors": <structured_hash>
+    #   },
+    #   "yti": {
+    #     "factors": <structured_hash>
+    #     "sub_factors": <structured_hash>
+    #   },
+    # }
+    #
+    #
+    def export_structured_hash(norm)
+      FactorsNorm::NORM_TYPES.inject(Hash.new({})) do |sum, norm_type|
         sum[norm_type] = {}
         FactorsNorm::FACTOR_TYPES.each do |factor_type|
-          sql = FactorsNorm.with_norm_type(norm_type).with_factor_type(factor_type).where(norm_id: norm_id)
+          sql = Factor.where(dimension_id: norm.dimension_id).
+                with_norm_type(norm_type, norm.id).
+                with_factor_type(factor_type)
           sum[norm_type][factor_type] = FactorsNorm.structured_hash(sql)
         end
         sum
+      end
+    end
+
+    def change_cell(params)
+      factors_norm = FactorsNorm.find_or_create_by(
+        norm_id:   params[:norm_id],
+        factor_id: params[:factor_id],
+        type:      params[:type]
+      )
+      cell         = factors_norm.props.detect { |item| item['level'] == params[:level] }
+      value        = params[:field_value]
+      if cell
+        cell[params[:field_name]] = value
+      else
+        factors_norm.props << {
+            level:      params[:level],
+            score_from: params[:field_name] == 'score_from' ? value : '',
+            score_to:   params[:field_name] == 'score_to' ? value : '',
+        }
+      end
+      factors_norm.save
+      factors_norm
     end
   end
 
   private
 
   def score_from_less_than_score_to
-    if score_from && score_to && score_from >= score_to
-      errors[:score_to] << I18n.t('activerecord.errors.models.factors_norm.score_to_less_than_score_from')
+    props.each do |item|
+      if item['score_from'].present? && item['score_to'].present? && item['score_from'].to_f >= item['score_to'].to_f
+        errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_to_less_than_score_from')
+      end
     end
+  end
+
+  def scoring_valid
+    props.each do |item|
+      if item['score_to'].present?
+        unless item['score_to'].to_s.valid_float?
+          errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_to_must_be_number')
+        end
+      end
+      if item['score_from'].present?
+        unless item['score_from'].to_s.valid_float?
+          errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_from_must_be_number')
+        end
+      end
+    end
+  end
+
+  def init
+    self.props ||= []
   end
 end

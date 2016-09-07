@@ -20,10 +20,16 @@ class Factor < ApplicationRecord
   belongs_to :parent, class_name: 'Factor', counter_cache: :subfactors_count
   has_many :sub_factors, foreign_key: :parent_id, class_name: 'Factor'
   has_many :factors_norms
+  has_many :factors_scoring
   before_create :increment_factors
   before_destroy :decrement_factors
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 100 }, allow_blank: true
+
+  # norm types constant
+  NORM_TYPES = %w(eti yti).freeze
+  # factor types constant
+  FACTOR_TYPES = %w(factors sub_factors).freeze
 
   filterrific(
     default_filter_params: {
@@ -31,9 +37,26 @@ class Factor < ApplicationRecord
     },
     available_filters: [
       :sorted_by,
-      :search_query
+      :search_query,
+      :with_factor_type,
+      :with_norm_type
     ]
   )
+
+  scope :with_factor_type, lambda { |type|
+    type = type.to_s
+    raise "supported types: #{FACTOR_TYPES}" unless FACTOR_TYPES.include? type
+    result = where('parent_id': nil) if type == 'factors'
+    result = where.not('parent_id': nil) if type == 'sub_factors'
+    result
+  }
+
+  scope :with_norm_type, lambda { |type, norm_id|
+    joins("LEFT JOIN factors_norms as factors_norms on factors_norms.factor_id = factors.id
+            and factors_norms.type = '#{type}'
+            and factors_norms.norm_id = '#{norm_id}'")
+  }
+
   scope :no_roots, -> { where.not(parent_id: nil) }
   # Search entity by word
   scope :search_query, lambda { |query|

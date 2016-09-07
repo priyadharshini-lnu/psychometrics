@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.3
--- Dumped by pg_dump version 9.5.3
+-- Dumped from database version 9.5.4
+-- Dumped by pg_dump version 9.5.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -337,7 +337,8 @@ CREATE TABLE factors_norms (
     score_to double precision,
     type factors_norms_types,
     factor_id integer,
-    norm_id integer
+    norm_id integer,
+    props json
 );
 
 
@@ -358,6 +359,38 @@ CREATE SEQUENCE factors_norms_id_seq
 --
 
 ALTER SEQUENCE factors_norms_id_seq OWNED BY factors_norms.id;
+
+
+--
+-- Name: factors_scoring; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE factors_scoring (
+    id integer NOT NULL,
+    props json,
+    factor_id integer,
+    assessment_id integer,
+    question_id integer
+);
+
+
+--
+-- Name: factors_scoring_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE factors_scoring_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: factors_scoring_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE factors_scoring_id_seq OWNED BY factors_scoring.id;
 
 
 --
@@ -616,6 +649,13 @@ ALTER TABLE ONLY factors_norms ALTER COLUMN id SET DEFAULT nextval('factors_norm
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY factors_scoring ALTER COLUMN id SET DEFAULT nextval('factors_scoring_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY memberships ALTER COLUMN id SET DEFAULT nextval('memberships_id_seq'::regclass);
 
 
@@ -717,6 +757,14 @@ ALTER TABLE ONLY factors_norms
 
 ALTER TABLE ONLY factors
     ADD CONSTRAINT factors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: factors_scoring_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY factors_scoring
+    ADD CONSTRAINT factors_scoring_pkey PRIMARY KEY (id);
 
 
 --
@@ -828,6 +876,27 @@ CREATE INDEX index_factors_on_dimension_id ON factors USING btree (dimension_id)
 --
 
 CREATE INDEX index_factors_on_parent_id ON factors USING btree (parent_id);
+
+
+--
+-- Name: index_factors_scoring_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_scoring_on_assessment_id ON factors_scoring USING btree (assessment_id);
+
+
+--
+-- Name: index_factors_scoring_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_scoring_on_factor_id ON factors_scoring USING btree (factor_id);
+
+
+--
+-- Name: index_factors_scoring_on_question_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_scoring_on_question_id ON factors_scoring USING btree (question_id);
 
 
 --
@@ -960,6 +1029,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160901125651'), ('20160901134715');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931');
 
 

@@ -8,12 +8,12 @@ FactorsNorm::NORM_TYPES.each do |type|
       sheet.add_row
       sheet.add_row
       sheet.add_row [nil, nil] + @resource.decorate.xls_levels_row, :style => text_center_bold
-      @factors_norms[type]['factors'].each do |factor_name, factors_norms|
-        current_row = [nil, factor_name]
+      @factors_norms[type]['factors'].each do |factor|
+        current_row = [nil, factor[:name]]
             FactorsNorm::LEVELS.each do |level|
-                current_factor_norm = factors_norms[level].first
-                current_row << current_factor_norm.try(:score_from)
-                current_row << current_factor_norm.try(:score_to)
+                cell = factor[:factors_norms_props].find { |cell| cell['level'] == level }
+                current_row << cell.try(:[], 'score_from')
+                current_row << cell.try(:[], 'score_to')
             end
         sheet.add_row current_row
       end
@@ -25,12 +25,12 @@ FactorsNorm::NORM_TYPES.each do |type|
       sheet.merge_cells "G#{sheet.rows.size}:H#{sheet.rows.size}"
       sheet.merge_cells "I#{sheet.rows.size}:J#{sheet.rows.size}"
       sheet.merge_cells "K#{sheet.rows.size}:L#{sheet.rows.size}"
-      @factors_norms[type]['sub_factors'].each do |factor_name, factors_norms|
-        current_row = [factors_norms[FactorsNorm::LEVELS.first].try(:first).try(:parent_factor_name), factor_name]
+      @factors_norms[type]['sub_factors'].each do |factor|
+        current_row = factor[:parent].name, factor[:name]
             FactorsNorm::LEVELS.each do |level|
-                current_factor_norm = factors_norms[level].first
-                current_row << current_factor_norm.try(:score_from)
-                current_row << current_factor_norm.try(:score_to)
+                cell = factor[:factors_norms_props].find { |cell| cell['level'] == level }
+                current_row << cell.try(:[], 'score_from')
+                current_row << cell.try(:[], 'score_to')
             end
         sheet.add_row current_row
       end

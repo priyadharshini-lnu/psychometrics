@@ -11,6 +11,7 @@ module Actions
     action :update do |data|
       id = data.delete('id')
       ::Question.update(id, data)
+      FactorsScoring.where(question_id: id).update_all(props: [])
       nil
     end
 

@@ -11,7 +11,7 @@
       .profile
         .profile-data
           = link_to current_administrator.decorate.display_name, edit_administration_profiles_path, class: 'profile-data-name'
-          .profile-data-title = current_administrator.role
+          .profile-data-title = current_administrator.decorate.role
     li.xn-title Navigation
     = active_link_to(administration_root_path, active: :exclusive, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.home'), placement: 'right' })
       i.fa.fa-home

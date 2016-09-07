@@ -75,7 +75,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def export
-    @factors_norms = FactorsNorm.export_structured_hash(@resource.id)
+    @factors_norms = FactorsNorm.export_structured_hash(@resource)
     respond_to do |format|
       format.xlsx do
         headers['Content-Disposition'] = "attachment; filename=\"#{@resource.name}-#{Date.today}.xlsx\""
@@ -87,16 +87,11 @@ class Administration::NormsController < Administration::BaseController
   def editor
     add_breadcrumb @resource.name
     add_breadcrumb I18n.t('administration.breadcrumbs.norms_editor')
-    @filterrific = initialize_filterrific(
-      FactorsNorm,
-      params[:filterrific],
-      select_options: {
-        with_norm_type: FactorsNorm::NORM_TYPES,
-        with_factor_type: FactorsNorm::FACTOR_TYPES
-      }) || return
-    @resources = FactorsNorm.structured_hash(
-      @filterrific.find.where(norm_id: @resource.id).joins(:factor)
-    )
+    @filter_data = NormEditorForm.new(editor_params)
+    scope = Factor.where(dimension_id: @resource.dimension_id).
+            with_factor_type(@filter_data.factor_type).
+            with_norm_type(@filter_data.norm_type, @resource.id)
+    @resources = FactorsNorm.structured_hash(scope)
     respond_to do |format|
       format.js
       format.html

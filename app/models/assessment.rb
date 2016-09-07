@@ -2,13 +2,14 @@
 #
 # Table name: assessments
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  category   :enum             default("psychometric")
-#  dimension_id    :integer
-#  disabled   :boolean          default(FALSE)
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  name         :string
+#  category     :enum             default("psychometric")
+#  dimension_id :integer
+#  disabled     :boolean          default(FALSE)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  flow         :json
 #
 
 class Assessment < ApplicationRecord
@@ -16,6 +17,7 @@ class Assessment < ApplicationRecord
 
   has_many :blocks, -> { order(position: :asc) }
   has_many :questions, through: :blocks
+  has_many :factors_scoring
   belongs_to :dimension
 
   # CATEGORIES constant
@@ -25,7 +27,7 @@ class Assessment < ApplicationRecord
     '360': '360'
   }.freeze
 
-  validates :name, presence: true
+  validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
   before_create :init

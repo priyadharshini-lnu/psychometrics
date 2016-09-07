@@ -2,13 +2,14 @@
 #
 # Table name: norms
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  disabled   :boolean          default(FALSE)
-#  created_by :integer
-#  updated_by :integer
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
+#  id           :integer          not null, primary key
+#  name         :string
+#  disabled     :boolean          default(FALSE)
+#  created_by   :integer
+#  updated_by   :integer
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  dimension_id :integer
 #
 
 class Norm < ApplicationRecord
@@ -18,7 +19,7 @@ class Norm < ApplicationRecord
   has_many :factors_norms
   belongs_to :dimension
 
-  validates :name, presence: true
+  validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
   filterrific(

@@ -7,6 +7,10 @@ class Administration::NormPolicy < Administration::BasePolicy
     create?
   end
 
+  def change_cell?
+    create?
+  end
+
   def export?
     @user.is?(:superadmin)
   end

@@ -2,15 +2,17 @@
 #
 # Table name: questions
 #
-#  id         :integer          not null, primary key
-#  name       :string
-#  position   :integer
-#  type       :string
-#  props      :json
-#  created_at :datetime         not null
-#  updated_at :datetime         not null
-#  block_id   :integer
-#  deleted_at :datetime
+#  id                  :integer          not null, primary key
+#  name                :string
+#  position            :integer
+#  type                :string
+#  props               :json
+#  created_at          :datetime         not null
+#  updated_at          :datetime         not null
+#  block_id            :integer
+#  deleted_at          :datetime
+#  required_validation :json
+#  validation          :json
 #
 
 class QuestionSerializer < ActiveModel::Serializer

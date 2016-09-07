@@ -6,15 +6,15 @@ table.table.table-bordered.table-actions.table-hover.selectable.mbn.table-conden
       - FactorsNorm::LEVELS.each do |level|
         th.text-center colspan="2" width="150" = level
   tbody
-    - @resources.each do |factor_name, factors_norms|
+    - @resources.each do |factor|
       tr
-        td.text-center = factors_norms[FactorsNorm::LEVELS.first].try(:first).try(:parent_factor_name)
-        td.text-center = factor_name
+        td.text-center = factor[:parent][:name]
+        td.text-center = factor[:name]
         - FactorsNorm::LEVELS.each do |level|
-          - current_factor_norm = factors_norms[level].first
+          - cell = factor[:factors_norms_props].find { |cell| cell['level'] == level }
           td.text-center
-            div class="editable" data-pk="#{current_factor_norm.try(:id)}"  data-name="score_from" data-url="#{url_for(administration_factors_norm_path(current_factor_norm.id)) if current_factor_norm }"
-              = current_factor_norm.try(:score_from)
+            div class="editable" data-level="#{level}" data-factor="#{factor[:id]}" data-norm="#{@resource.id}" data-norm-type="#{@filter_data.norm_type}" data-pk="#{factor[:id]}" data-name="score_from" data-url="#{url_for(administration_factors_norms_update_path()) }"
+              = cell.try(:[], 'score_from')
           td.text-center
-            div class="editable" data-pk="#{current_factor_norm.try(:id)}"  data-name="score_to" data-url="#{url_for(administration_factors_norm_path(current_factor_norm.id)) if current_factor_norm }"
-              = current_factor_norm.try(:score_to)
+            div class="editable" data-level="#{level}" data-factor="#{factor[:id]}" data-norm="#{@resource.id}" data-norm-type="#{@filter_data.norm_type}" data-pk="#{factor[:id]}" data-name="score_to" data-url="#{url_for(administration_factors_norms_update_path()) }"
+              = cell.try(:[], 'score_to')
