@@ -87,4 +87,11 @@ class Assessment < ApplicationRecord
       CATEGORIES.values
     end
   end
+
+  #
+  # Move down all blocks, which have position more than base_position
+  #
+  def shift_down_all_blocks(base_position)
+    blocks.where("position > #{base_position}").update_all('position = position + 1')
+  end
 end

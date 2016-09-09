@@ -33,7 +33,7 @@ class Block < ApplicationRecord
   #
   # Move down all questions, which have position more than base_position
   #
-  def increment_all_questions(base_position)
+  def shift_down_all_questions(base_position)
     questions.where("position > #{base_position}").update_all('position = position + 1')
   end
 end

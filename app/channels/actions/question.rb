@@ -48,14 +48,14 @@ module Actions
 
     action :insert_after do |data|
       parent = ::Question.find(data['parent_id'])
-      parent.block.increment_all_questions(parent.position)
+      parent.block.shift_down_all_questions(parent.position)
       question = ::Question.create!(data['question'])
       QuestionSerializer.new(question).to_hash
     end
 
     action :insert_before do |data|
       parent = ::Question.find(data['parent_id'])
-      parent.block.increment_all_questions(parent.position - 1)
+      parent.block.shift_down_all_questions(parent.position - 1)
       question = ::Question.create!(data['question'])
       QuestionSerializer.new(question).to_hash
     end
@@ -63,7 +63,7 @@ module Actions
     action :clone do |data|
       parent = ::Question.find(data['id'])
       question = parent.clone
-      parent.block.increment_all_questions(parent.position)
+      parent.block.shift_down_all_questions(parent.position)
       question.position = parent.position + 1
       question.save
       QuestionSerializer.new(question).to_hash
