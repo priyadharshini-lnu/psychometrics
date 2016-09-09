@@ -33,7 +33,7 @@
 class User < ApplicationRecord
   # Authentication
   devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable
+         :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   # User, who try update or create entity
   attr_accessor :operator
