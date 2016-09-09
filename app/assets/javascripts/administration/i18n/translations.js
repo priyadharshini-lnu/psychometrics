@@ -116,17 +116,17 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "form": {
         "categories": {
-          "360": "360 Assess",
-          "organisational": "Organisational Assess",
-          "psychometric": "Psychometric Assess"
+          "360": "360 Feedback",
+          "organisational": "Org Surveys",
+          "psychometric": "Psychometrics"
         }
       },
       "index": {
         "filterrific": {
           "with_category": {
-            "360": "360 Assess",
-            "organisational": "Organisational Assess",
-            "psychometric": "Psychometric Assess"
+            "360": "360 Feedback",
+            "organisational": "Org Surveys",
+            "psychometric": "Psychometrics"
           }
         },
         "title": "Assessments",

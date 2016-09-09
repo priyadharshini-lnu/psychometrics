@@ -107,9 +107,9 @@ module Imports
         (ceil...ceil + FactorsNorm::LEVELS.size * 2).each_slice(2) do |score_from, score_to|
           @cursor_x = score_from
           factors_norm.props << {
-              score_from: @current_sheet[row][score_from].value.try(:round, 5),
-              score_to:   @current_sheet[row][score_to].value.try(:round, 5),
-              level:      @current_sheet[XLS_CONFIG[:factor_start_row] - 2][score_from].value
+              score_from: @current_sheet[row][score_from].try(:value).try(:round, 5),
+              score_to:   @current_sheet[row][score_to].try(:value).try(:round, 5),
+              level:      @current_sheet[XLS_CONFIG[:factor_start_row] - 2][score_from].try(:value)
           }
         end
         factors_norm.save

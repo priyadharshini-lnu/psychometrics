@@ -26,13 +26,15 @@ module Actions
     end
 
     action :move_up do |data|
-      ::Block.find(data['id']).update(position: data['position'])
-      nil
+      block = ::Block.find(data['id'])
+      block.update(position: data['position'])
+      BlockSerializer.new(block).to_hash
     end
 
     action :move_down do |data|
-      ::Block.find(data['id']).update(position: data['position'])
-      nil
+      block = ::Block.find(data['id'])
+      block.update(position: data['position'])
+      BlockSerializer.new(block).to_hash
     end
 
     action :restore do |data|

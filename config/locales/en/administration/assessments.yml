@@ -7,9 +7,9 @@ en:
           create: Create
         filterrific:
           with_category: &categories
-            psychometric: 'Psychometric Assess'
-            organisational: 'Organisational Assess'
-            '360': '360 Assess'
+            psychometric: 'Psychometrics'
+            organisational: 'Org Surveys'
+            '360': '360 Feedback'
       form:
         categories:
           <<: *categories
