@@ -45,7 +45,11 @@ module Imports
           @new_dimension = true unless @dimension
           @dimension     = Dimension.create(name: dimension_name) unless @dimension
         end
-        @norm = Norm.create!(name: sheet_name_arr.join(''), dimension_id: @dimension.id, updated_by: @importer.id) unless @norm
+        unless @norm
+          @norm = Norm.new(name: sheet_name_arr.join(''), dimension_id: @dimension.id, updated_by: @importer.id)
+          @norm.gen_uniq_name if Norm.exists?(name: @norm.name)
+          @norm.save!
+        end
       end
 
       def import_factors
