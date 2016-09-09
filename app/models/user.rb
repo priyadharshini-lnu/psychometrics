@@ -99,7 +99,7 @@ class User < ApplicationRecord
   # :administrator, :user
   def role_scope
     USER_ROLES_SCOPES.each do |scope, roles|
-      break scope if is?(*roles)
+      break scope if is?(*roles.map { |role| USER_ROLES.key(role)})
     end
   end
 
