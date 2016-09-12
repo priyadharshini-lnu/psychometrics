@@ -1,0 +1,22 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title = t('.title')
+      .panel-body
+        .row.mbm
+          .col-md-4.col-sm-5
+            .btn-group
+              = active_link_to t(".qcenter.questions"), [:administration, :qcenter, :questions], class: "btn btn-default"
+              = active_link_to t(".qcenter.blocks"), [:administration, :qcenter, :blocks], class: "btn btn-default"
+
+          .col-md-3.col-md-offset-5.col-sm-4.col-sm-offset-3.phn
+            = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
+              = f.hidden_field :sorted_by
+              .form-group.has-feedback.has-clear.pull-right
+                .input-group
+                  = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')
+                span.glyphicon.glyphicon-remove-sign.form-control-feedback.form-control-clear
+              .clearfix
+        #filterrific_results
+          = render partial: 'list'

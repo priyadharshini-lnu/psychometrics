@@ -13,13 +13,20 @@
 #
 
 class Block < ApplicationRecord
+  include Copyable
+
   belongs_to :assessment
+  belongs_to :original, class_name: 'Block'
   has_many :questions, -> { order(position: :asc) }
+  has_many :blocks, class_name: 'Block', foreign_key: :original_id
+
 
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
   scope :deleted, -> { where.not(deleted_at: nil) }
+
+  enum view: [:assessment, :qcenter]
 
   def deep_clone(name:, position:)
     cloned_block = dup

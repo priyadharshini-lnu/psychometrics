@@ -106,6 +106,25 @@ Rails.application.routes.draw do
     end
     ### END NORMS
 
+    ### LIBRARY
+    namespace :qcenter do
+      resources :questions do
+        member do
+          get :copy
+          get :sidebar
+          patch :toggle_status
+        end
+      end
+      resources :blocks do
+        member do
+          get :copy
+          get :sidebar
+          patch :toggle_status
+        end
+      end
+    end
+    ### END LIBRARY
+
     put '/factors_norms/update', to: 'factors_norms#update'
   end
 

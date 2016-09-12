@@ -1,0 +1,2 @@
+class QuestionDecorator < BaseDecorator
+end

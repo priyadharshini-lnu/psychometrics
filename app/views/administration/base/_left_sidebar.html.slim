@@ -91,9 +91,10 @@
     li
       a href='#'
         span.xn-text Client Tenancies
-    li
-      a href='#'
-        span.xn-text Libraries
+    = active_link_to(administration_qcenter_questions_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.libraries.questions'), placement: 'right' })
+      i.fa.fa-question-circle-o
+      span.xn-text = t('administration.navigation.qcenter')
+
     li
       a href='#'
         span.xn-text Retail

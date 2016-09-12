@@ -1,0 +1,44 @@
+en:
+  administration:
+    qcenter:
+      questions:
+        index:
+          title: "Questions"
+          qcenter: &QCENTER
+            questions: 'Questions'
+            blocks: 'Blocks'
+          tooltips:
+            create: Create
+        new:
+          header: 'New Question'
+        edit:
+          header: 'Edit Question'
+        destroy:
+          successfully: 'Question %{name} was successfully destroyed.'
+        copy:
+          error: 'Question #%{name} was not copied.'
+        resource:
+          tooltips:
+            copy: 'Copy Question'
+            edit: 'Edit Question'
+            delete: 'Delete Question'
+      blocks:
+        index:
+          title: "Blocks"
+          qcenter:
+            <<: *QCENTER
+          tooltips:
+            create: Create
+        new:
+          header: 'New Block'
+        edit:
+          header: 'Edit Block'
+        destroy:
+          successfully: 'Block %{name} was successfully destroyed.'
+        copy:
+          error: 'Block #%{name} was not copied.'
+        resource:
+          tooltips:
+            copy: 'Copy Block'
+            edit: 'Edit Block'
+            delete: 'Delete Block'

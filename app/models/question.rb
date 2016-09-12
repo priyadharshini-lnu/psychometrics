@@ -18,7 +18,11 @@
 class Question < ApplicationRecord
   include Copyable
   belongs_to :block
+  belongs_to :original, class_name: 'Question'
   has_many :comments
+  has_many :questions, class_name: 'Question', foreign_key: :original_id
+
+  enum view: [:assessment, :qcenter]
 
   scope :deleted, -> { where.not(deleted_at: nil) }
 
@@ -29,5 +33,31 @@ class Question < ApplicationRecord
 
   validates :name, :type, presence: true
   validates :name, length: { maximum: 255 }, allow_blank: true
+
+
+  filterrific(
+    default_filter_params: {
+      sorted_by: 'id_desc'
+    },
+    available_filters: [
+      :sorted_by,
+      :search_query
+    ]
+  )
+
+  # Search entity by word
+  scope :search_query, lambda { |query|
+    where('name ILIKE ?', "%#{query}%")
+  }
+
+  # Sorting
+  scope :sorted_by, lambda { |sort_key|
+    # extract the sort direction from the param value.
+    direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
+    column = sort_key.gsub("_#{direction}", '')
+    if column.in?(%w(id name created_at updated_at))
+      order("questions.#{column} #{direction}")
+    end
+  }
 
 end
