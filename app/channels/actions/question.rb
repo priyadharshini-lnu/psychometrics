@@ -68,5 +68,10 @@ module Actions
       question.save
       QuestionSerializer.new(question).to_hash
     end
+
+    action :save_as_template do |data|
+
+      Rails.logger.warn "should be implemented #{data}"
+    end
   end
 end

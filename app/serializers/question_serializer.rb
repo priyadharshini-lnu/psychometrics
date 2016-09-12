@@ -17,7 +17,7 @@
 
 class QuestionSerializer < ActiveModel::Serializer
   attributes :id, :name, :type, :position, :props, :deleted, :created_at,
-             :validation, :required_validation, :display_logic, :disabled
+             :validation, :required_validation, :display_logic, :disabled, :original_id
 
   has_many :comments, serializer: CommentSerializer
 
