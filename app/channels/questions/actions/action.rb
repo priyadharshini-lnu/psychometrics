@@ -5,10 +5,10 @@ module Questions
         controller  = name.downcase.split('::').last
         action_name = "#{controller}_#{route}"
         define_method action_name do |request|
-          assessment = ::Question.find_by_id(params['question_id'])
-          if policy(assessment).open_channel?
+          question = ::Question.find_by_id(params['question_id'])
+          if policy(question).open_channel?
             begin
-              data            = yield(request['data'], current_administrator, assessment)
+              data            = yield(request['data'], current_administrator, question)
               response        = {
                   type:         'success',
                   action:       action_name,
