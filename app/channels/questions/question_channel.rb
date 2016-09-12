@@ -1,6 +1,7 @@
 module Questions
   class QuestionChannel < ApplicationCable::Channel
     include Questions::Actions::Question
+    include Questions::Actions::Comment
     include Pundit
     include Administration::Policies
 
