@@ -84,6 +84,14 @@ module Assessments
         QuestionSerializer.new(question).to_hash(include: '**')
       end
 
+      action :create_from_template do |data|
+        template = ::Question.where(view: :qcenter).find(data['template_id'])
+        question = question.dup_for_assessment
+        question.block_id = data['block_id']
+        question.save
+        QuestionSerializer.new(question).to_hash(include: '**')
+      end
+
       action :save_as_template do |data|
         question = ::Question.find(data['id'])
         template = question.dup_for_template

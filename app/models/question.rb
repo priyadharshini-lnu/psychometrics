@@ -62,9 +62,15 @@ class Question < ApplicationRecord
 
   # Create duplicate object for Question Center
   def dup_for_template
-    template = self.class.new(attributes.slice('name', 'props'))
+    template = self.class.new(attributes.slice('name', 'props', 'type'))
     template.view = :qcenter
     template
+  end
+
+  def dup_for_assessment
+    question = self.class.new(attributes.slice('name', 'props', 'type'))
+    question.attributes = {view: nil, template_id: id}
+    question
   end
 
 end
