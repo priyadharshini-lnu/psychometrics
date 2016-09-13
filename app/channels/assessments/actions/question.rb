@@ -4,7 +4,7 @@ module Assessments
       extend Actions::Action
 
       action :filter do |data|
-        questions = Question.where("name ILIKE ?", "%#{data['q']}%").where(view: :qcenter).limit(10)
+        questions = ::Question.where("name ILIKE ?", "%#{data['q']}%").where(view: :qcenter).limit(10)
         questions.map { |question| { value: question.id, label: question.name } }
       end
 
@@ -85,7 +85,7 @@ module Assessments
         nil
       end
 
-      action :create_from_template do |data|
+      action :create_by_template do |data|
         template = ::Question.where(view: :qcenter).find(data['template_id'])
         question = template.dup_for_assessment
         question.block_id = data['block_id']
