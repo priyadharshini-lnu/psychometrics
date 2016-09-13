@@ -12,6 +12,6 @@ Rails.application.config.assets.precompile += %w( administration.scss administra
 Rails.application.config.assets.precompile << 'filterrific/filterrific-spinner.gif'
 Rails.application.config.assets.precompile << 'administration/*.mp3'
 Rails.application.config.assets.precompile += %w( psychometrics_vendor.js psychometrics_app.js psychometrics_preview.js psychometrics_qcenter.js )
-Rails.application.config.assets.precompile += %w( psychometrics_app.scss )
+Rails.application.config.assets.precompile += %w( psychometrics_app.scss psychometrics_qcenter.scss )
 Rails.application.config.assets.precompile += %w( psychometrics_reports_vendor.js psychometrics_reports_app.js )
 Rails.application.config.assets.precompile += %w( psychometrics_reports_app.scss )
