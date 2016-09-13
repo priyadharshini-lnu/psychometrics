@@ -79,14 +79,14 @@ module Assessments
         question = ::Question.includes(:template).find(data['id'])
         question.update_attributes({
           template_id: nil,
-          props: question.props.merge(template.props.except(:randomization))
+          props: question.props.merge(question.template.props.except(:randomization))
         })
-        QuestionSerializer.new(question).to_hash(include: '**')
+        nil
       end
 
       action :create_from_template do |data|
         template = ::Question.where(view: :qcenter).find(data['template_id'])
-        question = question.dup_for_assessment
+        question = template.dup_for_assessment
         question.block_id = data['block_id']
         question.save
         QuestionSerializer.new(question).to_hash(include: '**')
