@@ -17,14 +17,16 @@
 
 class Question < ApplicationRecord
   include Copyable
+
   belongs_to :block
   belongs_to :template, class_name: 'Question'
   has_many :comments
-  has_many :questions, class_name: 'Question', foreign_key: :template_id
+  has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
 
   enum view: [:assessment, :qcenter]
 
   scope :deleted, -> { where.not(deleted_at: nil) }
+  scope :qcenter, -> { where(view: :qcenter) }
 
   #
   # Disables single column inheritance
@@ -60,17 +62,30 @@ class Question < ApplicationRecord
     end
   }
 
+  ### Qcenter
   # Create duplicate object for Question Center
   def dup_for_template
-    template = self.class.new(attributes.slice('name', 'props', 'type'))
+    template = self.class.new(attributes.slice('name', 'props', 'type', 'disabled'))
     template.view = :qcenter
     template
   end
 
   def dup_for_assessment
-    question = self.class.new(attributes.slice('name', 'props', 'type'))
-    question.attributes = {view: nil, template_id: id}
+    question = self.class.new(attributes.slice('name', 'props', 'type', 'disabled'))
+    question.attributes = {view: :assessment, template_id: id}
     question
+  end
+
+  ## Assign template to assessments
+  def assign_to_assessment_ids
+    []
+  end
+
+  def assign_to_assessment_ids=(assessment_ids)
+    ::Assessment.includes(:blocks).where(id: assessment_ids).each do |assessment|
+      assessment.blocks.create!({name: name}) unless assessment.blocks.any?
+      assessment.blocks.last.questions << dup_for_assessment
+    end
   end
 
 end

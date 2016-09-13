@@ -107,7 +107,7 @@ class User < ApplicationRecord
     client_ids
   end
 
-  # Operator can manage only self client
+  # Operator can manage users only from own client (company)
   def manage_client_ids=(val)
     val = val.reject!(&:blank?).map(&:to_i)
     unless operator.try(:is?, :superadmin)

@@ -3,6 +3,7 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
     = link_to({ action: :toggle_status, id: resource }, remote: true, method: :patch, data: { confirm: resource.decorate.toggle_status_confirmation })
       = resource.decorate.status
   td = resource.name
+  td = resource.decorate.assessments_name
   td = resource.decorate.created_at
   td
     - if policy(resource).edit?

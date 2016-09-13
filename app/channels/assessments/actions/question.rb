@@ -17,6 +17,7 @@ module Assessments
       action :update do |data|
         id = data.delete('id')
         ::Question.update(id, data)
+        ::Question.update(data['template_id'], data.slice('name', 'props', 'type')) if data['template_id']
         FactorsScoring.where(question_id: id).update_all(props: [])
         nil
       end

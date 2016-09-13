@@ -113,6 +113,7 @@ Rails.application.routes.draw do
           get :copy
           get :sidebar
           patch :toggle_status
+          get :new_assign
         end
       end
       resources :blocks do

@@ -1,6 +1,6 @@
 class Administration::Qcenter::QuestionsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign, :assign]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -10,7 +10,7 @@ class Administration::Qcenter::QuestionsController < Administration::BaseControl
     @filterrific = initialize_filterrific(
       policy_scope(@resource_class),
       params[:filterrific]) || return
-    @resources = @filterrific.find.where(view: :qcenter).page(params[:page])
+    @resources = @filterrific.find.qcenter.includes(questions: [block: [:assessment]]).page(params[:page])
 
     respond_to do |format|
       format.html
@@ -44,11 +44,9 @@ class Administration::Qcenter::QuestionsController < Administration::BaseControl
   def update
     respond_to do |format|
       if @resource.update(resource_params)
-        format.html do
-          redirect_to({ action: :edit, id: @resource }, success: t('.successfully', name: @resource.decorate.display_name))
-        end
+        format.js
       else
-        format.html { render :edit }
+        format.js { render :edit }
       end
     end
   end
@@ -84,11 +82,6 @@ class Administration::Qcenter::QuestionsController < Administration::BaseControl
   end
 
   def new_assign
-    @assessments = policy_scope(Assessment).all
-  end
-
-  def assign
-
   end
 
   private
@@ -104,11 +97,11 @@ class Administration::Qcenter::QuestionsController < Administration::BaseControl
   end
 
   def set_resource
-    @resource = policy_scope(@resource_class).where(view: :qcenter).find(params[:id])
+    @resource = policy_scope(@resource_class).qcenter.find(params[:id])
   end
 
   def resource_params
-    params.require(:resource).permit(:name)
+    params.require(:resource).permit(:name, assign_to_assessment_ids: [])
   end
 
   # Authorisation user
