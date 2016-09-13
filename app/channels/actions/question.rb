@@ -70,7 +70,10 @@ module Actions
     end
 
     action :save_as_template do |data|
+      Rails.logger.warn "should be implemented #{data}"
+    end
 
+    action :unlink_template do |data|
       Rails.logger.warn "should be implemented #{data}"
     end
   end
