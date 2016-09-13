@@ -28,21 +28,9 @@ module Questions
 
       action :save_as_template do |data|
         question = ::Question.find(data['id'])
-        template = question.clone
-        template.attributes = {
-          name: question.name,
-          block_id: nil,
-          position: nil,
-          required_validation: nil,
-          validation: nil,
-          display_logic: nil,
-          skip_logic: nil,
-          view: :qcenter,
-          template_id: nil
-        }
+        template = question.dup_for_template
         template.save
-        question.template = template
-        question.save
+        question.update_attribute(:template_id, template.id)
         nil
       end
 
