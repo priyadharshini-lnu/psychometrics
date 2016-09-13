@@ -3,6 +3,11 @@ module Questions
     module Question
       extend Actions::Action
 
+      action :filter do |data|
+        questions = Question.where("name ILIKE ?", "%#{data['q']}%").limit(10)
+        questions.map { |question| { value: question.id, label: question.name } }
+      end
+
       action :update do |data|
         id = data.delete('id')
         ::Question.update(id, data)
