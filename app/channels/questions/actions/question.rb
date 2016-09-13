@@ -3,6 +3,11 @@ module Questions
     module Question
       extend Actions::Action
 
+      action :filter do |data|
+        questions = Question.where("name ILIKE ?", "%#{data['q']}%").limit(10)
+        questions.map { |question| { value: question.id, label: question.name } }
+      end
+
       action :update do |data|
         id = data.delete('id')
         ::Question.update(id, data)
@@ -28,21 +33,9 @@ module Questions
 
       action :save_as_template do |data|
         question = ::Question.find(data['id'])
-        template = question.clone
-        template.attributes = {
-          name: question.name,
-          block_id: nil,
-          position: nil,
-          required_validation: nil,
-          validation: nil,
-          display_logic: nil,
-          skip_logic: nil,
-          view: :qcenter,
-          template_id: nil
-        }
+        template = question.dup_for_template
         template.save
-        question.template = template
-        question.save
+        question.update_attribute(:template_id, template.id)
         nil
       end
 

@@ -60,4 +60,11 @@ class Question < ApplicationRecord
     end
   }
 
+  # Create duplicate object for Question Center
+  def dup_for_template
+    template = self.class.new(attributes.slice('name', 'props'))
+    template.view = :qcenter
+    template
+  end
+
 end
