@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.3
--- Dumped by pg_dump version 9.5.3
+-- Dumped from database version 9.5.4
+-- Dumped by pg_dump version 9.5.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -506,10 +506,10 @@ CREATE TABLE questions (
     required_validation json,
     validation json,
     display_logic json,
-    skip_logic json,
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
-    template_id integer
+    template_id integer,
+    skip_logic json
 );
 
 
