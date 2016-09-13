@@ -3,6 +3,11 @@ module Assessments
     module Question
       extend Actions::Action
 
+      action :filter do |data|
+        questions = Question.where("name ILIKE ?", "%#{data['q']}%").where(view: :qcenter).limit(10)
+        questions.map { |question| { value: question.id, label: question.name } }
+      end
+
       action :create do |data|
         block = ::Block.find(data.delete('block_id'))
         question = block.questions.create!(data)
@@ -70,12 +75,21 @@ module Assessments
         QuestionSerializer.new(question).to_hash
       end
 
-      action :save_as_template do |data|
-        Rails.logger.warn "should be implemented #{data}"
+      action :unlink_template do |data|
+        question = ::Question.includes(:template).find(data['id'])
+        question.update_attributes({
+          template_id: nil,
+          props: question.props.merge(template.props.except(:randomization))
+        })
+        QuestionSerializer.new(question).to_hash(include: '**')
       end
 
-      action :unlink_template do |data|
-        Rails.logger.warn "should be implemented #{data}"
+      action :save_as_template do |data|
+        question = ::Question.find(data['id'])
+        template = question.dup_for_template
+        template.save
+        question.update_attribute(:template_id, template.id)
+        QuestionSerializer.new(question).to_hash(include: '**')
       end
     end
   end
