@@ -1,6 +1,7 @@
 class Administration::Qcenter::QuestionsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar]
+  before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
 
@@ -9,7 +10,7 @@ class Administration::Qcenter::QuestionsController < Administration::BaseControl
     @filterrific = initialize_filterrific(
       policy_scope(@resource_class),
       params[:filterrific]) || return
-    @resources = @filterrific.find.page(params[:page]) # .where(view: :library)
+    @resources = @filterrific.find.where(view: :qcenter).page(params[:page])
 
     respond_to do |format|
       format.html
@@ -23,6 +24,7 @@ class Administration::Qcenter::QuestionsController < Administration::BaseControl
 
   def create
     @resource = @resource_class.new(resource_params)
+    @resource.assign_attributes({view: :qcenter, type: 'MultipleChoice'})
 
     respond_to do |format|
       if @resource.save
@@ -81,6 +83,14 @@ class Administration::Qcenter::QuestionsController < Administration::BaseControl
     end
   end
 
+  def new_assign
+    @assessments = policy_scope(Assessment).all
+  end
+
+  def assign
+
+  end
+
   private
 
   def init_breadcrumbs
@@ -94,11 +104,11 @@ class Administration::Qcenter::QuestionsController < Administration::BaseControl
   end
 
   def set_resource
-    @resource = policy_scope(@resource_class).find(params[:id])
+    @resource = policy_scope(@resource_class).where(view: :qcenter).find(params[:id])
   end
 
   def resource_params
-    params.require(:resource).permit(:name, )
+    params.require(:resource).permit(:name)
   end
 
   # Authorisation user

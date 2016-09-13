@@ -18,9 +18,9 @@
 class Question < ApplicationRecord
   include Copyable
   belongs_to :block
-  belongs_to :original, class_name: 'Question'
+  belongs_to :template, class_name: 'Question'
   has_many :comments
-  has_many :questions, class_name: 'Question', foreign_key: :original_id
+  has_many :questions, class_name: 'Question', foreign_key: :template_id
 
   enum view: [:assessment, :qcenter]
 

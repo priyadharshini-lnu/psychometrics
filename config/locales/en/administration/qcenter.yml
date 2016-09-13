@@ -17,6 +17,13 @@ en:
           successfully: 'Question %{name} was successfully destroyed.'
         copy:
           error: 'Question #%{name} was not copied.'
+        sidebar:
+          title: Question's options (#%{id})
+          disable: Disable
+          enable: Enable
+          edit: Edit Question
+          new: New Question
+          destroy: Delete Question
         resource:
           tooltips:
             copy: 'Copy Question'
