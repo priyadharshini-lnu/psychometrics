@@ -6,7 +6,7 @@ module Blocks
         action_name = "#{controller}_#{route}"
         define_method action_name do |request|
           block = ::Block.find_by_id(params['block_id'])
-          if policy(question).open_channel?
+          if policy(block).open_channel?
             begin
               data            = yield(request['data'], current_administrator, block)
               response        = {
