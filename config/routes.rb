@@ -106,8 +106,8 @@ Rails.application.routes.draw do
     end
     ### END NORMS
 
-    ### LIBRARY
-    namespace :qcenter do
+    ### TEMPLATES
+    namespace :templates do
       resources :questions do
         member do
           get :copy
@@ -121,10 +121,11 @@ Rails.application.routes.draw do
           get :copy
           get :sidebar
           patch :toggle_status
+          get :new_assign
         end
       end
     end
-    ### END LIBRARY
+    ### END TEMPLATES
 
     put '/factors_norms/update', to: 'factors_norms#update'
   end

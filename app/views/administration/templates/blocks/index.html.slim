@@ -13,8 +13,8 @@
         .row.mbm
           .col-md-4.col-sm-5
             .btn-group
-              = active_link_to t(".qcenter.questions"), [:administration, :qcenter, :questions], class: "btn btn-default"
-              = active_link_to t(".qcenter.blocks"), [:administration, :qcenter, :blocks], class: "btn btn-default"
+              = active_link_to t(".templates.questions"), [:administration, :templates, :questions], class: "btn btn-default"
+              = active_link_to t(".templates.blocks"), [:administration, :templates, :blocks], class: "btn btn-default"
 
           .col-md-3.col-md-offset-5.col-sm-4.col-sm-offset-3.phn
             = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|

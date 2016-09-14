@@ -11,6 +11,7 @@ module Assessments
       action :update do |data|
         id = data.delete('id')
         ::Block.update(id, data)
+        ::Question.update(data['template_id'], data.slice('name', 'props')) if data['template_id']
         nil
       end
 
@@ -22,25 +23,27 @@ module Assessments
       end
 
       action :rename do |data|
-        ::Block.find(data['id']).update(name: data['name'])
+        block = ::Block.find(data['id'])
+        block.update(name: data['name'])
+        block.template.update(name: data['name']) if block.template
         nil
       end
 
       action :move_up do |data|
         block = ::Block.find(data['id'])
-        block.update(position: data['position'])
+        block.move_higher
         BlockSerializer.new(block).to_hash
       end
 
       action :move_down do |data|
         block = ::Block.find(data['id'])
-        block.update(position: data['position'])
+        block.move_lower
         BlockSerializer.new(block).to_hash
       end
 
       action :restore do |data|
         block = ::Block.find(data['id'])
-        block.update(deleted_at: nil, position: data['position'])
+        block.update(deleted_at: nil)
         BlockSerializer.new(block).to_hash
       end
 

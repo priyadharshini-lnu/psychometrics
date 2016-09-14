@@ -6,8 +6,4 @@ class Administration::QuestionPolicy < Administration::BasePolicy
   def new_assign?
     @user.is?(:superadmin)
   end
-
-  def assign?
-    @user.is?(:superadmin)
-  end
 end

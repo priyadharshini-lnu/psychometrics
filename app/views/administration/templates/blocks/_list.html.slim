@@ -4,7 +4,7 @@
       tr
         th.text-center width="100" = sorting @resource_class, :active, @filterrific
         th = sorting @resource_class, :name, @filterrific
-        th = t('administration.linked_assessments')
+        th = t('.linked_assessments')
         th = sorting @resource_class, :created_at, @filterrific
         th width='300' = t('administration.actions')
     tbody

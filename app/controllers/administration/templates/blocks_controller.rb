@@ -1,6 +1,6 @@
-class Administration::Qcenter::QuestionsController < Administration::BaseController
+class Administration::Templates::BlocksController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign, :assign]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -10,7 +10,7 @@ class Administration::Qcenter::QuestionsController < Administration::BaseControl
     @filterrific = initialize_filterrific(
       policy_scope(@resource_class),
       params[:filterrific]) || return
-    @resources = @filterrific.find.qcenter.includes(questions: [block: [:assessment]]).page(params[:page])
+    @resources = @filterrific.find.templates.includes(blocks: [:assessment]).page(params[:page])
 
     respond_to do |format|
       format.html
@@ -24,7 +24,7 @@ class Administration::Qcenter::QuestionsController < Administration::BaseControl
 
   def create
     @resource = @resource_class.new(resource_params)
-    @resource.assign_attributes({view: :qcenter, type: 'MultipleChoice'})
+    @resource.assign_attributes({view: :templates})
 
     respond_to do |format|
       if @resource.save
@@ -88,16 +88,16 @@ class Administration::Qcenter::QuestionsController < Administration::BaseControl
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.qcenter"), { action: :index }
+    add_breadcrumb I18n.t("administration.breadcrumbs.question_center"), { action: :index }
   end
 
   # Set model
   def set_resource_class
-    @resource_class ||= Question
+    @resource_class ||= Block
   end
 
   def set_resource
-    @resource = policy_scope(@resource_class).qcenter.find(params[:id])
+    @resource = policy_scope(@resource_class).templates.find(params[:id])
   end
 
   def resource_params

@@ -28,23 +28,25 @@ module Assessments
       end
 
       action :rename do |data|
-        ::Question.find(data['id']).update(name: data['name'])
+        question = ::Question.find(data['id'])
+        question.update(name: data['name'])
+        question.template.update(name: data['name']) if question.template
         nil
       end
 
       action :move_up do |data|
-        ::Question.find(data['id']).update(position: data['position'])
+        ::Question.find(data['id']).move_higher
         nil
       end
 
       action :move_down do |data|
-        ::Question.find(data['id']).update(position: data['position'])
+        ::Question.find(data['id']).move_lower
         nil
       end
 
       action :restore do |data|
         question = ::Question.find(data['id'])
-        question.update(deleted_at: nil, position: data['position'])
+        question.update(deleted_at: nil)
         QuestionSerializer.new(question).to_hash
       end
 
@@ -55,40 +57,45 @@ module Assessments
 
       action :insert_after do |data|
         parent = ::Question.find(data['parent_id'])
-        parent.block.shift_down_all_questions(parent.position)
+        #parent.block.shift_down_all_questions(parent.position)
         question = ::Question.create!(data['question'])
+        question.insert_at(parent.position + 1)
         QuestionSerializer.new(question).to_hash
       end
 
       action :insert_before do |data|
         parent = ::Question.find(data['parent_id'])
-        parent.block.shift_down_all_questions(parent.position - 1)
+        #parent.block.shift_down_all_questions(parent.position - 1)
         question = ::Question.create!(data['question'])
+        question.insert_at(parent.position)
         QuestionSerializer.new(question).to_hash
       end
 
       action :clone do |data|
         parent = ::Question.find(data['id'])
         question = parent.clone
-        parent.block.shift_down_all_questions(parent.position)
-        question.position = parent.position + 1
+        #parent.block.shift_down_all_questions(parent.position)
+        question.insert_at(parent.position + 1)
         question.save
         QuestionSerializer.new(question).to_hash
       end
 
       action :unlink_template do |data|
         question = ::Question.includes(:template).find(data['id'])
-        question.update_attributes({
-          template_id: nil,
-          props: question.props.merge(question.template.props.except(:randomization))
-        })
+        question.attributes = question.template.general_attributes
+        question.template_id = nil
+        question.save
         nil
       end
 
       action :create_by_template do |data|
-        template = ::Question.where(view: :qcenter).find(data['template_id'])
+        template = ::Question.templates.find(data['template_id'])
+        block = ::Block.includes(:questions).find(data['block_id'])
         question = template.dup_for_assessment
-        question.block_id = data['block_id']
+        question.attributes = {
+          block_id: data['block_id'],
+          position: block.questions.size
+        }
         question.save
         QuestionSerializer.new(question).to_hash(include: '**')
       end

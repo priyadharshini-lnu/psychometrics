@@ -23,10 +23,10 @@ class Question < ApplicationRecord
   has_many :comments
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
 
-  enum view: [:assessment, :qcenter]
+  enum view: [:assessments, :templates, :blocks]
 
   scope :deleted, -> { where.not(deleted_at: nil) }
-  scope :qcenter, -> { where(view: :qcenter) }
+  scope :templates, -> { where(view: :templates) }
 
   #
   # Disables single column inheritance
@@ -36,6 +36,7 @@ class Question < ApplicationRecord
   validates :name, :type, presence: true
   validates :name, length: { maximum: 255 }, allow_blank: true
 
+  acts_as_list scope: :block_id
 
   filterrific(
     default_filter_params: {
@@ -65,15 +66,28 @@ class Question < ApplicationRecord
   ### Qcenter
   # Create duplicate object for Question Center
   def dup_for_template
-    template = self.class.new(attributes.slice('name', 'props', 'type', 'disabled'))
-    template.view = :qcenter
+    template = self.class.new(general_attributes)
+    template.view = :templates
+    template
+  end
+
+  # Create duplicate object for Block Center
+  def dup_for_block
+    template = dup_for_template
+    template.view = :blocks
     template
   end
 
   def dup_for_assessment
-    question = self.class.new(attributes.slice('name', 'props', 'type', 'disabled'))
-    question.attributes = {view: :assessment, template_id: id}
+    question = self.class.new(general_attributes)
+    question.attributes = {view: :assessments, template_id: id}
     question
+  end
+
+  def general_attributes
+    attrs = attributes.slice('name', 'props', 'type', 'disabled')
+    attrs['props'] = (props || {}).except(:randomization)
+    attrs
   end
 
   ## Assign template to assessments

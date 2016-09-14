@@ -15,7 +15,15 @@
 class BlockSerializer < ActiveModel::Serializer
   attributes :id, :name, :position, :deleted, :props, :created_at
 
-  has_many :questions
+  has_many :questions do
+    object.questions.
+      selecting { [ 'questions.*',
+                    coalesce(template.props, props).as('props'),
+                    coalesce(template.type, type).as('type'),
+                    coalesce(template.name, name).as('name') ] }.
+      joining { template.outer }.
+      where.has { (template.disabled == false) | (template.id == nil) }
+  end
 
   def deleted
     !!object.deleted_at

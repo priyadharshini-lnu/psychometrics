@@ -1,6 +1,7 @@
-class Administration::Qcenter::BlocksController < Administration::BaseController
+class Administration::Templates::QuestionsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign]
+  before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
 
@@ -9,7 +10,7 @@ class Administration::Qcenter::BlocksController < Administration::BaseController
     @filterrific = initialize_filterrific(
       policy_scope(@resource_class),
       params[:filterrific]) || return
-    @resources = @filterrific.find.where(view: :library).page(params[:page])
+    @resources = @filterrific.find.templates.includes(questions: [block: [:assessment]]).page(params[:page])
 
     respond_to do |format|
       format.html
@@ -23,6 +24,7 @@ class Administration::Qcenter::BlocksController < Administration::BaseController
 
   def create
     @resource = @resource_class.new(resource_params)
+    @resource.assign_attributes({view: :templates, type: 'MultipleChoice'})
 
     respond_to do |format|
       if @resource.save
@@ -42,11 +44,9 @@ class Administration::Qcenter::BlocksController < Administration::BaseController
   def update
     respond_to do |format|
       if @resource.update(resource_params)
-        format.html do
-          redirect_to({ action: :edit, id: @resource }, success: t('.successfully', name: @resource.decorate.display_name))
-        end
+        format.js
       else
-        format.html { render :edit }
+        format.js { render :edit }
       end
     end
   end
@@ -81,11 +81,14 @@ class Administration::Qcenter::BlocksController < Administration::BaseController
     end
   end
 
+  def new_assign
+  end
+
   private
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.qcenter"), { action: :index }
+    add_breadcrumb I18n.t("administration.breadcrumbs.question_center"), { action: :index }
   end
 
   # Set model
@@ -94,11 +97,11 @@ class Administration::Qcenter::BlocksController < Administration::BaseController
   end
 
   def set_resource
-    @resource = policy_scope(@resource_class).find(params[:id])
+    @resource = policy_scope(@resource_class).templates.find(params[:id])
   end
 
   def resource_params
-    params.require(:resource).permit(:name, )
+    params.require(:resource).permit(:name, assign_to_assessment_ids: [])
   end
 
   # Authorisation user

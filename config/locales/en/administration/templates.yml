@@ -1,10 +1,11 @@
 en:
   administration:
-    qcenter:
+    templates:
       questions:
         index:
+          add: Add New Question
           title: "Questions"
-          qcenter: &QCENTER
+          templates: &templates
             questions: 'Questions'
             blocks: 'Blocks'
           tooltips:
@@ -29,11 +30,14 @@ en:
             copy: 'Copy Question'
             edit: 'Edit Question'
             delete: 'Delete Question'
+        new_assign:
+          header: 'Assign Question to Assessments'
       blocks:
         index:
+          add: Add New Block
           title: "Blocks"
-          qcenter:
-            <<: *QCENTER
+          templates: &templates
+            <<: *templates
           tooltips:
             create: Create
         new:
@@ -44,8 +48,17 @@ en:
           successfully: 'Block %{name} was successfully destroyed.'
         copy:
           error: 'Block #%{name} was not copied.'
+        sidebar:
+          title: Block's options (#%{id})
+          disable: Disable
+          enable: Enable
+          edit: Edit Block
+          new: New Block
+          destroy: Delete Block
         resource:
           tooltips:
             copy: 'Copy Block'
             edit: 'Edit Block'
             delete: 'Delete Block'
+        new_assign:
+          header: 'Assign Block to Assessments'

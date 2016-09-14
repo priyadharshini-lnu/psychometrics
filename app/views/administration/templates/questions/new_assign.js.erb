@@ -1,0 +1,12 @@
+<% if @resource.errors.empty? %>
+  $('#modal-container').html('<%= j render(partial: 'modal', locals: { form: 'form_assign', header: t("administration.templates.#{@resource_class.model_name.plural}.new_assign.header") }) %>');
+  $('#modal-container').find(".modal").modal('show');
+  $('#modal-container').find(".modal").on('hidden.bs.modal', function (e) {
+    $(this).remove();
+  });
+<% else %>
+  $('#modal-container').find("form").html('<%= j render(partial: 'form_assign') %>');
+<% end %>
+
+// Reinit all plugins
+$(document).trigger('initPlugins');

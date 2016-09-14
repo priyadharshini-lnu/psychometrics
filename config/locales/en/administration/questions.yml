@@ -1,6 +1,12 @@
 en:
   administration:
     questions:
+      new:
+        header: 'New Question'
+      edit:
+        header: 'Edit Question'
+      destroy:
+        successfully: 'Question %{name} was successfully destroyed.'
       resource:
         confirmations:
           delete:

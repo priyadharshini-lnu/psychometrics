@@ -24,5 +24,4 @@ class QuestionSerializer < ActiveModel::Serializer
   def deleted
     !!object.deleted_at
   end
-
 end
