@@ -1,6 +1,6 @@
 class Administration::Templates::BlocksController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign, :preview]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -82,6 +82,11 @@ class Administration::Templates::BlocksController < Administration::BaseControll
   end
 
   def new_assign
+  end
+
+  def preview
+    add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
+    @data = { flow: { elements: [] }, blocks: [BlockSerializer.new(@resource).to_hash(include: '**')] }.to_json
   end
 
   private

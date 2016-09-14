@@ -122,6 +122,7 @@ Rails.application.routes.draw do
           get :sidebar
           patch :toggle_status
           get :new_assign
+          get :preview
         end
       end
     end

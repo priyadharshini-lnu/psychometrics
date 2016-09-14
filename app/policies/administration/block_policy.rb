@@ -6,4 +6,8 @@ class Administration::BlockPolicy < Administration::BasePolicy
   def new_assign?
     @user.is?(:superadmin)
   end
+
+  def preview?
+    @user.is?(:superadmin)
+  end
 end
