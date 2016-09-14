@@ -69,7 +69,7 @@ module Assessments
       end
 
       action :save_as_template do |data, _, assessment|
-        # TODO: need to save questions with block
+        # TODO: need to manage questions (save templates, unlink currents questions)
         block = ::Block.find(data['id'])
         template = block.dup_for_template
         template.save
