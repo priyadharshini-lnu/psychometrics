@@ -13,7 +13,7 @@
 #
 
 class BlockSerializer < ActiveModel::Serializer
-  attributes :id, :name, :position, :deleted, :props, :created_at
+  attributes :id, :name, :position, :deleted, :props, :created_at, :template_id
 
   has_many :questions do
     object.questions.

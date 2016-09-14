@@ -63,6 +63,24 @@ module Assessments
         cloned_block = block.deep_clone(name: data['name'], position: data['position'])
         BlockSerializer.new(cloned_block).to_hash
       end
+
+      action :create_by_template do |data, _, assessment|
+        # TODO: should be implemented
+      end
+
+      action :save_as_template do |data, _, assessment|
+        # TODO: need to save questions with block
+        block = ::Block.find(data['id'])
+        template = block.dup_for_template
+        template.save
+        block.update_attribute(:template_id, template.id)
+        BlockSerializer.new(block).to_hash(include: '**')
+      end
+
+      action :unlink_template do |data|
+        # TODO: should be implemented
+        nil
+      end
     end
   end
 end
