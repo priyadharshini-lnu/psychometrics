@@ -86,7 +86,11 @@ class Administration::Templates::BlocksController < Administration::BaseControll
 
   def preview
     add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
-    @data = { flow: { elements: [] }, blocks: [BlockSerializer.new(@resource).to_hash(include: '**')] }.to_json
+    @data = {
+      restricted: true, # hide header and footer in preview
+      flow: { elements: [] }, # hack
+      blocks: [BlockSerializer.new(@resource).to_hash(include: '**')]
+    }.to_json
   end
 
   private
