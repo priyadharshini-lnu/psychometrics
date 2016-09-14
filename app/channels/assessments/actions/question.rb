@@ -4,7 +4,7 @@ module Assessments
       extend Actions::Action
 
       action :filter do |data|
-        questions = ::Question.where("name ILIKE ?", "%#{data['q']}%").where(view: :qcenter).limit(10)
+        questions = ::Question.where("name ILIKE ?", "%#{data['q']}%").where(view: :templates).limit(10)
         questions.map { |question| { value: question.id, label: question.name } }
       end
 

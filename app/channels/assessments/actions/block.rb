@@ -3,6 +3,11 @@ module Assessments
     module Block
       extend Actions::Action
 
+      action :filter do |data|
+        blocks = ::Block.where("name ILIKE ?", "%#{data['q']}%").where(view: :templates).limit(10)
+        blocks.map { |block| { value: block.id, label: block.name } }
+      end
+
       action :create do |data, _current_administrator, assessment|
         block = assessment.blocks.create!(data)
         BlockSerializer.new(block).to_hash
