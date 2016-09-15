@@ -65,29 +65,26 @@ class Question < ApplicationRecord
 
   ### Qcenter
   # Create duplicate object for Question Center
-  def dup_for_template
-    template = self.class.new(general_attributes)
-    template.view = :templates
-    template
+  def dup_for_template!
+    self.template = self.class.new(general_attributes.merge({view: :templates}))
+    self.save
+    self.template
   end
 
   # Create duplicate object for Block Center
-  def dup_for_block
-    template = dup_for_template
-    template.view = :blocks
-    template
+  def dup_for_block!
+    self.template = self.class.new(general_attributes.merge({view: :blocks, position: position}))
+    self.save
+    self.template
   end
 
-  def dup_for_assessment
-    question = self.class.new(general_attributes)
-    question.attributes = {view: :assessments, template_id: id}
-    question
+  def dup_for_assessment!(block_id)
+    self.questions << self.class.new(general_attributes.merge({view: :assessments, block_id: block_id}))
+    self.save
   end
 
   def general_attributes
-    attrs = attributes.slice('name', 'props', 'type', 'disabled')
-    attrs['props'] = (props || {}).except(:randomization)
-    attrs
+    attributes.slice('name', 'props', 'type', 'disabled')
   end
 
   ## Assign template to assessments
@@ -98,7 +95,25 @@ class Question < ApplicationRecord
   def assign_to_assessment_ids=(assessment_ids)
     ::Assessment.includes(:blocks).where(id: assessment_ids).each do |assessment|
       assessment.blocks.create!({name: name}) unless assessment.blocks.any?
-      assessment.blocks.last.questions << dup_for_assessment
+      dup_for_assessment!(assessment.blocks.last.id)
+    end
+  end
+
+  after_update :sync_with_template, if: :template
+  after_create :sync_with_template_block, if: Proc.new { block && block.template.present? }
+  after_create :sync_with_blocks, if: Proc.new { block && block.blocks.any? }
+
+  def sync_with_template
+    template.update_attributes(general_attributes)
+  end
+
+  def sync_with_template_block
+    block.template.questions << dup_for_block!
+  end
+
+  def sync_with_blocks
+    block.blocks.each do |b|
+     dup_for_assessment!(b.id)
     end
   end
 

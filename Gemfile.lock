@@ -170,11 +170,16 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.10.0)
+    columnize (0.9.0)
     concurrent-ruby (1.0.2)
     config (1.2.1)
       activesupport (>= 3.0)
       deep_merge (~> 1.0, >= 1.0.1)
     debug_inspector (0.0.2)
+    debugger-linecache (1.2.0)
+    debugger2 (1.0.0.beta2)
+      columnize (>= 0.3.1)
+      debugger-linecache (~> 1.2.0)
     deep_merge (1.1.1)
     devise (4.2.0)
       bcrypt (~> 3.0)
@@ -430,6 +435,7 @@ DEPENDENCIES
   ckeditor
   coffee-rails (~> 4.2)
   config (~> 1.2.1)
+  debugger2
   devise (~> 4.2.0)
   devise-i18n (~> 1.1.0)
   devise_invitable (~> 1.6.0)
@@ -473,4 +479,4 @@ DEPENDENCIES
   web-console
 
 BUNDLED WITH
-   1.12.5
+   1.13.1

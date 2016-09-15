@@ -74,29 +74,26 @@ class Block < ApplicationRecord
 
   ### Bcenter
   # Create duplicate Assessment Object for Block Center
-  def dup_for_template
-    template = self.class.new(general_attributes)
-    template.view = :templates
+  def dup_for_template!
+    self.template = self.class.new(general_attributes.merge({view: :templates}))
     questions.each do |question|
-      template.questions << question.dup_for_block
+      self.template.questions << question.dup_for_block!
     end
-    template
+    self.save
+    self.template
   end
 
   # Create duplicate Block Center Object for Assessment
-  def dup_for_assessment
-    block = self.class.new(general_attributes)
-    block.attributes = {view: :assessments, template_id: id}
+  def dup_for_assessment!(assessment_id)
+    block = self.class.create(general_attributes.merge({view: :assessments, assessment_id: assessment_id, template_id: id}))
     questions.each do |question|
-      block.questions << question.dup_for_assessment
+      question.dup_for_assessment!(block.id)
     end
     block
   end
 
   def general_attributes
     attrs = attributes.slice('name', 'props', 'disabled')
-    attrs['props'] = (props || {}).except(:randomization)
-    attrs
   end
 
   ## Assign template to assessments
@@ -108,5 +105,12 @@ class Block < ApplicationRecord
     ::Assessment.where(id: assessment_ids).each do |assessment|
       assessment.blocks << dup_for_assessment
     end
+  end
+
+
+  after_update :sync_with_template, if: :template
+
+  def sync_with_template
+    template.update_attributes(general_attributes)
   end
 end

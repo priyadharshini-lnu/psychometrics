@@ -12,7 +12,6 @@ module Blocks
       action :update do |data|
         id = data.delete('id')
         ::Question.update(id, data)
-        ::Question.update(data['template_id'], data.slice('name', 'props', 'type')) if data['template_id']
         nil
       end
 
@@ -22,9 +21,7 @@ module Blocks
       end
 
       action :rename do |data|
-        question = ::Question.find(data['id'])
-        question.update(name: data['name'])
-        question.template.update(name: data['name']) if question.template
+        ::Question.find(data['id']).update(name: data['name'])
         nil
       end
 

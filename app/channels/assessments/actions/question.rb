@@ -17,7 +17,6 @@ module Assessments
       action :update do |data|
         id = data.delete('id')
         ::Question.update(id, data)
-        ::Question.update(data['template_id'], data.slice('name', 'props', 'type')) if data['template_id']
         FactorsScoring.where(question_id: id).update_all(props: [])
         nil
       end
@@ -30,7 +29,6 @@ module Assessments
       action :rename do |data|
         question = ::Question.find(data['id'])
         question.update(name: data['name'])
-        question.template.update(name: data['name']) if question.template
         nil
       end
 
@@ -57,7 +55,6 @@ module Assessments
 
       action :insert_after do |data|
         parent = ::Question.find(data['parent_id'])
-        #parent.block.shift_down_all_questions(parent.position)
         question = ::Question.create!(data['question'])
         question.insert_at(parent.position + 1)
         QuestionSerializer.new(question).to_hash
@@ -65,7 +62,6 @@ module Assessments
 
       action :insert_before do |data|
         parent = ::Question.find(data['parent_id'])
-        #parent.block.shift_down_all_questions(parent.position - 1)
         question = ::Question.create!(data['question'])
         question.insert_at(parent.position)
         QuestionSerializer.new(question).to_hash
@@ -74,7 +70,6 @@ module Assessments
       action :clone do |data|
         parent = ::Question.find(data['id'])
         question = parent.clone
-        #parent.block.shift_down_all_questions(parent.position)
         question.insert_at(parent.position + 1)
         question.save
         QuestionSerializer.new(question).to_hash
@@ -90,21 +85,13 @@ module Assessments
 
       action :create_by_template do |data|
         template = ::Question.templates.find(data['template_id'])
-        block = ::Block.includes(:questions).find(data['block_id'])
-        question = template.dup_for_assessment
-        question.attributes = {
-          block_id: data['block_id'],
-          position: block.questions.size
-        }
-        question.save
+        template.dup_for_assessment!(data['block_id'])
         QuestionSerializer.new(question).to_hash(include: '**')
       end
 
       action :save_as_template do |data|
         question = ::Question.find(data['id'])
-        template = question.dup_for_template
-        template.save
-        question.update_attribute(:template_id, template.id)
+        question.dup_for_template!
         QuestionSerializer.new(question).to_hash(include: '**')
       end
     end

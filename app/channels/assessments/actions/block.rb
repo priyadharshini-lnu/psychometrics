@@ -16,7 +16,6 @@ module Assessments
       action :update do |data|
         id = data.delete('id')
         ::Block.update(id, data)
-        ::Question.update(data['template_id'], data.slice('name', 'props')) if data['template_id']
         nil
       end
 
@@ -30,7 +29,6 @@ module Assessments
       action :rename do |data|
         block = ::Block.find(data['id'])
         block.update(name: data['name'])
-        block.template.update(name: data['name']) if block.template
         nil
       end
 
@@ -59,26 +57,33 @@ module Assessments
 
       action :clone do |data|
         block = ::Block.find(data['id'])
-        block.assessment.shift_down_all_blocks(data['position'] - 1)
         cloned_block = block.deep_clone(name: data['name'], position: data['position'])
         BlockSerializer.new(cloned_block).to_hash
       end
 
       action :create_by_template do |data, _, assessment|
-        # TODO: should be implemented
+        template = ::Block.templates.find(data['template_id'])
+        block = template.dup_for_assessment!(assessment.id)
+        BlockSerializer.new(block).to_hash(include: '**')
       end
 
       action :save_as_template do |data, _, assessment|
-        # TODO: need to manage questions (save templates, unlink currents questions)
         block = ::Block.find(data['id'])
-        template = block.dup_for_template
-        template.save
-        block.update_attribute(:template_id, template.id)
+        block.dup_for_template!
         BlockSerializer.new(block).to_hash(include: '**')
       end
 
       action :unlink_template do |data|
-        # TODO: should be implemented
+        block = ::Block.includes(:template, questions: :template).find(data['id'])
+        block.attributes = block.template.general_attributes
+        block.questions.each do |question|
+          question.attributes << question.template.general_attributes
+          question.template_id = nil
+          question.save
+        end
+        block.template_id = nil
+        block.save
+        BlockSerializer.new(block).to_hash(include: '**')
         nil
       end
     end
