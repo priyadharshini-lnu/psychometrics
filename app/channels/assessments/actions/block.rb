@@ -75,14 +75,10 @@ module Assessments
 
       action :unlink_template do |data|
         block = ::Block.includes(:template, questions: :template).find(data['id'])
-        block.attributes = block.template.general_attributes
+        block.update_attributes(block.template.general_attributes.merge({template_id: nil}))
         block.questions.each do |question|
-          question.attributes << question.template.general_attributes
-          question.template_id = nil
-          question.save
+          question.update_attributes(question.template.general_attributes.merge({template_id: nil}))
         end
-        block.template_id = nil
-        block.save
         BlockSerializer.new(block).to_hash(include: '**')
         nil
       end

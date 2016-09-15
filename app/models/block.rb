@@ -93,7 +93,7 @@ class Block < ApplicationRecord
   end
 
   def general_attributes
-    attrs = attributes.slice('name', 'props', 'disabled')
+    attrs = attributes.slice('name', 'props', 'disabled', 'deleted_at')
   end
 
   ## Assign template to assessments
@@ -107,10 +107,10 @@ class Block < ApplicationRecord
     end
   end
 
-
   after_update :sync_with_template, if: :template
 
   def sync_with_template
+    p "#{'*' * 20 } sync_with_template BLOCK #{'*' * 20 }"
     template.update_attributes(general_attributes)
   end
 end

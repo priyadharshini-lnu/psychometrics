@@ -19,7 +19,7 @@ class Question < ApplicationRecord
   include Copyable
 
   belongs_to :block
-  belongs_to :template, class_name: 'Question'
+  belongs_to :template, class_name: 'Question', dependent: :destroy
   has_many :comments
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
 
@@ -73,18 +73,20 @@ class Question < ApplicationRecord
 
   # Create duplicate object for Block Center
   def dup_for_block!
-    self.template = self.class.new(general_attributes.merge({view: :blocks, position: position}))
+    self.template = self.class.new(general_attributes.merge({view: :blocks}))
     self.save
     self.template
   end
 
   def dup_for_assessment!(block_id)
-    self.questions << self.class.new(general_attributes.merge({view: :assessments, block_id: block_id}))
+    _question = self.class.new(general_attributes.merge({view: :assessments, block_id: block_id}))
+    self.questions << _question
     self.save
+    _question
   end
 
   def general_attributes
-    attributes.slice('name', 'props', 'type', 'disabled')
+    attributes.slice('name', 'props', 'type', 'disabled', 'deleted_at')
   end
 
   ## Assign template to assessments
@@ -100,21 +102,29 @@ class Question < ApplicationRecord
   end
 
   after_update :sync_with_template, if: :template
-  after_create :sync_with_template_block, if: Proc.new { block && block.template.present? }
-  after_create :sync_with_blocks, if: Proc.new { block && block.blocks.any? }
+  before_create :set_view
+  after_create :create_in_template_block, if: Proc.new { block && block.template.present? }
+  after_create :create_in_assessments_blocks, if: Proc.new { block && block.blocks.any? }
 
   def sync_with_template
+    p "#{'*' * 20 } sync_with_template #{'*' * 20 }"
     template.update_attributes(general_attributes)
   end
 
-  def sync_with_template_block
-    block.template.questions << dup_for_block!
+  def set_view
+    # If this question assigned to Template Block
+    self.view = :blocks if block && block.templates?
   end
 
-  def sync_with_blocks
+  def create_in_template_block
+    p "#{'*' * 20 } create_in_template_block #{'*' * 20 }"
+    block.template.questions << dup_for_block! unless template
+  end
+
+  def create_in_assessments_blocks
+    p "#{'*' * 20 } create_in_assessments_blocks #{'*' * 20 }"
     block.blocks.each do |b|
      dup_for_assessment!(b.id)
     end
   end
-
 end

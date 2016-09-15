@@ -85,7 +85,7 @@ module Assessments
 
       action :create_by_template do |data|
         template = ::Question.templates.find(data['template_id'])
-        template.dup_for_assessment!(data['block_id'])
+        question = template.dup_for_assessment!(data['block_id'])
         QuestionSerializer.new(question).to_hash(include: '**')
       end
 
