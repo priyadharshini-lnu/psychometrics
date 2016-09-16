@@ -80,12 +80,16 @@ gem 'roo', '~> 2.4.0'
 gem 'i18n-tasks', '~> 0.9.5'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
-gem 'acts_as_list', '~> 0.7.6'
+gem 'acts_as_list', '~> 0.8.1'
 
 ### add fake destroying logic for models
 gem 'paranoia', github: 'rubysherpas/paranoia', branch: 'rails5'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'airbrake', '~> 5.0'
+
+gem 'baby_squeel', '~> 1.0.0'
+
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -96,6 +100,7 @@ end
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'pry'
+  gem 'debugger2'
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
   # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring

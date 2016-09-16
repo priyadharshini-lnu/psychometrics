@@ -106,6 +106,28 @@ Rails.application.routes.draw do
     end
     ### END NORMS
 
+    ### TEMPLATES
+    namespace :templates do
+      resources :questions do
+        member do
+          get :copy
+          get :sidebar
+          patch :toggle_status
+          get :new_assign
+        end
+      end
+      resources :blocks do
+        member do
+          get :copy
+          get :sidebar
+          patch :toggle_status
+          get :new_assign
+          get :preview
+        end
+      end
+    end
+    ### END TEMPLATES
+
     put '/factors_norms/update', to: 'factors_norms#update'
   end
 

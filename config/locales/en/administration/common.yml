@@ -46,5 +46,6 @@ en:
       create: Create
       reporting: Reporting
       design: Design
+      question_center: Question Center
     breadcrumbs:
       <<: *NAVIGATION

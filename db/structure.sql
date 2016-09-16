@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.3
--- Dumped by pg_dump version 9.5.3
+-- Dumped from database version 9.5.4
+-- Dumped by pg_dump version 9.5.4
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -125,7 +125,10 @@ CREATE TABLE blocks (
     updated_at timestamp without time zone NOT NULL,
     assessment_id integer,
     deleted_at timestamp without time zone,
-    props json
+    props json,
+    view integer DEFAULT 0,
+    disabled boolean DEFAULT false,
+    template_id integer
 );
 
 
@@ -503,6 +506,9 @@ CREATE TABLE questions (
     required_validation json,
     validation json,
     display_logic json,
+    view integer DEFAULT 0,
+    disabled boolean DEFAULT false,
+    template_id integer,
     skip_logic json
 );
 
@@ -836,6 +842,13 @@ CREATE INDEX index_blocks_on_deleted_at ON blocks USING btree (deleted_at);
 
 
 --
+-- Name: index_blocks_on_template_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_blocks_on_template_id ON blocks USING btree (template_id);
+
+
+--
 -- Name: index_clients_on_subdomain; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -941,6 +954,13 @@ CREATE INDEX index_questions_on_deleted_at ON questions USING btree (deleted_at)
 
 
 --
+-- Name: index_questions_on_template_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_questions_on_template_id ON questions USING btree (template_id);
+
+
+--
 -- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1028,6 +1048,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254');
 
 

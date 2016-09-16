@@ -1,0 +1,64 @@
+en:
+  administration:
+    templates:
+      questions:
+        index:
+          add: Add New Question
+          title: "Questions"
+          templates: &templates
+            questions: 'Questions'
+            blocks: 'Blocks'
+          tooltips:
+            create: Create
+        new:
+          header: 'New Question'
+        edit:
+          header: 'Edit Question'
+        destroy:
+          successfully: 'Question %{name} was successfully destroyed.'
+        copy:
+          error: 'Question #%{name} was not copied.'
+        sidebar:
+          title: Question's options (#%{id})
+          disable: Disable
+          enable: Enable
+          edit: Edit Question
+          new: New Question
+          destroy: Delete Question
+        resource:
+          tooltips:
+            copy: 'Copy Question'
+            edit: 'Edit Question'
+            delete: 'Delete Question'
+        new_assign:
+          header: 'Assign Question to Assessments'
+      blocks:
+        index:
+          add: Add New Block
+          title: "Blocks"
+          templates: &templates
+            <<: *templates
+          tooltips:
+            create: Create
+        new:
+          header: 'New Block'
+        edit:
+          header: 'Edit Block'
+        destroy:
+          successfully: 'Block %{name} was successfully destroyed.'
+        copy:
+          error: 'Block #%{name} was not copied.'
+        sidebar:
+          title: Block's options (#%{id})
+          disable: Disable
+          enable: Enable
+          edit: Edit Block
+          new: New Block
+          destroy: Delete Block
+        resource:
+          tooltips:
+            copy: 'Copy Block'
+            edit: 'Edit Block'
+            delete: 'Delete Block'
+        new_assign:
+          header: 'Assign Block to Assessments'

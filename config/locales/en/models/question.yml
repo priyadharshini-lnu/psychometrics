@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      question: 'Question'
+    attributes:
+      question: &DEFAULT
+        id: 'ID'
+        name: 'Name'
+        created_at: 'Created Date'
+        updated_at: 'Modified Date'
+        active: 'Active'
+        assign_to_assessment_ids: 'Assessments'
+  simple_form:
+    placeholders:
+      question:
+        <<: *DEFAULT
