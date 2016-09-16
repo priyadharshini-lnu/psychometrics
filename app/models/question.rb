@@ -107,7 +107,6 @@ class Question < ApplicationRecord
   after_create :create_in_assessments_blocks, if: Proc.new { block && block.blocks.any? }
 
   def sync_with_template
-    p "#{'*' * 20 } sync_with_template #{'*' * 20 }"
     template.update_attributes(general_attributes)
   end
 
@@ -117,14 +116,10 @@ class Question < ApplicationRecord
   end
 
   def create_in_template_block
-    p "#{'*' * 20 } create_in_template_block #{'*' * 20 }"
     block.template.questions << dup_for_block! unless template
   end
 
   def create_in_assessments_blocks
-    p "#{'*' * 20 } create_in_assessments_blocks #{'*' * 20 }"
-    block.blocks.each do |b|
-     dup_for_assessment!(b.id)
-    end
+    block.blocks.each { |b| dup_for_assessment!(b.id) }
   end
 end

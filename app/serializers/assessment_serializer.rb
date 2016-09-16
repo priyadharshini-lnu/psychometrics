@@ -18,9 +18,9 @@ class AssessmentSerializer < ActiveModel::Serializer
   has_many :blocks, serializer: BlockSerializer do
     object.blocks.where(disabled: false)
     object.blocks.
-      selecting { [ 'blocks.*',
-                    coalesce(template.props, props).as('props'),
-                    coalesce(template.name, name).as('name') ] }.
+      selecting { ['blocks.*',
+                   coalesce(template.props, props).as('props'),
+                   coalesce(template.name, name).as('name')] }.
       joining { template.outer }.
       where.has { (template.disabled == false) | (template.id == nil) }
   end
