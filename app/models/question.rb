@@ -67,22 +67,21 @@ class Question < ApplicationRecord
   # Create duplicate object for Question Center
   def dup_for_template!
     self.template = self.class.new(general_attributes.merge({view: :templates}))
-    self.save
-    self.template
+    save
+    template
   end
 
   # Create duplicate object for Block Center
   def dup_for_block!
     self.template = self.class.new(general_attributes.merge({view: :blocks}))
-    self.save
-    self.template
+    save
+    template
   end
 
   def dup_for_assessment!(block_id)
-    _question = self.class.new(general_attributes.merge({view: :assessments, block_id: block_id}))
-    self.questions << _question
-    self.save
-    _question
+    question = self.class.new(general_attributes.merge({ view: :assessments, block_id: block_id }))
+    self.questions << question
+    save && return question
   end
 
   def general_attributes
@@ -103,8 +102,8 @@ class Question < ApplicationRecord
 
   after_update :sync_with_template, if: :template
   before_create :set_view
-  after_create :create_in_template_block, if: Proc.new { block && block.template.present? }
-  after_create :create_in_assessments_blocks, if: Proc.new { block && block.blocks.any? }
+  after_create :create_in_template_block, if: proc { block && block.template.present? }
+  after_create :create_in_assessments_blocks, if: proc { block && block.blocks.any? }
 
   def sync_with_template
     template.update_attributes(general_attributes)
@@ -112,13 +111,15 @@ class Question < ApplicationRecord
 
   def set_view
     # If this question assigned to Template Block
-    self.view = :blocks if block && block.templates?
+    view = :blocks if block && block.templates?
   end
 
+  # When create new question in Template Block from Assessment Center
   def create_in_template_block
     block.template.questions << dup_for_block! unless template
   end
 
+  # When create new question in Template Block from Block Center
   def create_in_assessments_blocks
     block.blocks.each { |b| dup_for_assessment!(b.id) }
   end

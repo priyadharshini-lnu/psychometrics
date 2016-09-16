@@ -64,28 +64,20 @@ class Block < ApplicationRecord
     cloned_block
   end
 
-  #
-  # Move down all questions, which have position more than base_position
-  #
-  def shift_down_all_questions(base_position)
-    questions.where("position > #{base_position}").update_all('position = position + 1')
-  end
-
-
   ### Bcenter
   # Create duplicate Assessment Object for Block Center
   def dup_for_template!
-    self.template = self.class.new(general_attributes.merge({view: :templates}))
+    self.template = self.class.new(general_attributes.merge({ view: :templates }))
     questions.each do |question|
-      self.template.questions << question.dup_for_block!
+      template.questions << question.dup_for_block!
     end
-    self.save
-    self.template
+    save
+    template
   end
 
   # Create duplicate Block Center Object for Assessment
   def dup_for_assessment!(assessment_id)
-    block = self.class.create(general_attributes.merge({view: :assessments, assessment_id: assessment_id, template_id: id}))
+    block = self.class.create(general_attributes.merge({ view: :assessments, assessment_id: assessment_id, template_id: id }))
     questions.each do |question|
       question.dup_for_assessment!(block.id)
     end
@@ -110,7 +102,6 @@ class Block < ApplicationRecord
   after_update :sync_with_template, if: :template
 
   def sync_with_template
-    p "#{'*' * 20 } sync_with_template BLOCK #{'*' * 20 }"
     template.update_attributes(general_attributes)
   end
 end

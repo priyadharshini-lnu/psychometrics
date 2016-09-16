@@ -137,7 +137,7 @@ Style/TrailingCommaInLiteral:
 Style/FrozenStringLiteralComment:
   Enabled: false
 Metrics/LineLength:
-  Max: 130
+  Max: 180
 Metrics/AbcSize:
   Description: A calculated magnitude based on number of assignments, branches, and
     conditions.
