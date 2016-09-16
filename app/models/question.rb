@@ -66,14 +66,14 @@ class Question < ApplicationRecord
   ### Qcenter
   # Create duplicate object for Question Center
   def dup_for_template!
-    self.template = self.class.new(general_attributes.merge({view: :templates}))
+    self.template = self.class.new(general_attributes.merge({ view: :templates }))
     save
     template
   end
 
   # Create duplicate object for Block Center
   def dup_for_block!
-    self.template = self.class.new(general_attributes.merge({view: :blocks}))
+    self.template = self.class.new(general_attributes.merge({ view: :blocks }))
     save
     template
   end
@@ -96,7 +96,7 @@ class Question < ApplicationRecord
 
   def assign_to_assessment_ids=(assessment_ids)
     ::Assessment.includes(:blocks).where(id: assessment_ids).each do |assessment|
-      assessment.blocks.create!({name: name}) unless assessment.blocks.any?
+      assessment.blocks.create!({ name: name }) unless assessment.blocks.any?
       dup_for_assessment!(assessment.blocks.last.id)
     end
   end
