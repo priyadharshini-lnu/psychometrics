@@ -81,7 +81,8 @@ class Question < ApplicationRecord
   def dup_for_assessment!(block_id)
     question = self.class.new(general_attributes.merge({ view: :assessments, block_id: block_id }))
     self.questions << question
-    save && return question
+    save
+    question
   end
 
   def general_attributes
