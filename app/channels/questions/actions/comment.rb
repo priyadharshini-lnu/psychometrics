@@ -3,9 +3,9 @@ module Questions
     module Comment
       extend Actions::Action
 
-      action :create do |data, _current_administrator|
+      action :create do |data, current_administrator|
         question = ::Question.find(data.delete('question_id'))
-        comment  = question.comments.create!(data.merge(created_by: _current_administrator.id))
+        comment  = question.comments.create!(data.merge(created_by: current_administrator.id))
         CommentSerializer.new(comment).to_hash
       end
 

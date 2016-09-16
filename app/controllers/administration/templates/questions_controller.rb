@@ -11,7 +11,8 @@ module Administration
       def index
         @filterrific = initialize_filterrific(
           policy_scope(@resource_class),
-          params[:filterrific]) || return
+          params[:filterrific]
+        ) || return
         @resources = @filterrific.find.templates.includes(questions: [block: [:assessment]]).page(params[:page])
 
         respond_to do |format|
