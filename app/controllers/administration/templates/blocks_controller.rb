@@ -24,7 +24,7 @@ class Administration::Templates::BlocksController < Administration::BaseControll
 
   def create
     @resource = @resource_class.new(resource_params)
-    @resource.assign_attributes({view: :templates})
+    @resource.assign_attributes({ view: :templates })
 
     respond_to do |format|
       if @resource.save
@@ -96,7 +96,7 @@ class Administration::Templates::BlocksController < Administration::BaseControll
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.question_center"), { action: :index }
+    add_breadcrumb I18n.t('administration.breadcrumbs.question_center'), { action: :index }
   end
 
   # Set model
