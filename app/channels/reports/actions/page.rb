@@ -36,6 +36,7 @@ module Reports
         page.move_lower
         Reports::PageSerializer.new(block).to_hash
       end
+
     end
   end
 end
