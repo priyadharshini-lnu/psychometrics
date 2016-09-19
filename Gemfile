@@ -89,6 +89,8 @@ gem 'airbrake', '~> 5.0'
 
 gem 'baby_squeel', '~> 1.0.0'
 
+# Cloning ActiveRecord object
+gem 'amoeba', '~> 3.0.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

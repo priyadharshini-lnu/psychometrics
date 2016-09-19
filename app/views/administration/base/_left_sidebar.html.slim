@@ -98,17 +98,10 @@
     li
       a href='#'
         span.xn-text Retail
-    li.xn-openable
-      a href='#'
-        span.xn-text Reporting
-      ul
-        li
-          a href="#" Psychometric
-        li
-          a href="#" 360
-        li
-          a href="#" Organisational
-
+    - if policy(:report).index?
+      = active_link_to(administration_reports_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.reports'), placement: 'right' })
+        i.fa.fa-pie-chart
+        span.xn-text = t('administration.navigation.reports')
     li
       a href='#'
         span.xn-text Administrators

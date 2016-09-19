@@ -1,0 +1,44 @@
+en:
+  administration:
+    reports:
+      index:
+        title: "Reports"
+        tooltips:
+          create: Create
+        filterrific:
+          with_assessment_category: &categories
+            all: 'All'
+            psychometric: 'Psychometrics'
+            organisational: 'Org Surveys'
+            '360': '360 Feedback'
+      new:
+        header: 'New Report'
+      edit:
+        header: 'Edit Report Name'
+      destroy:
+        successfully: 'Report %{name} was successfully destroyed.'
+      copy:
+        error: 'Report #%{id} was not copied.'
+      toggle_status:
+        successfully: 'Report was successfully updated.'
+      sidebar:
+        title: "Report's options (#%{id})"
+        view: 'View Report'
+        edit: 'Edit Report'
+        copy: 'Copy Report'
+        destroy: 'Delete Report'
+      resource:
+        tooltips:
+          copy: 'Copy Report'
+          edit: 'Edit Report'
+          delete: 'Delete Report'
+        confirmations:
+          toggle_status:
+            title: <strong>%{status}</strong> %{name}?
+            body: >
+              <p>Are you sure you want to %{status} this Report?</p>
+          delete:
+            title:
+              Delete <strong>Report</strong> ?
+            body: >
+              <p>Are you sure you want to delete this Report?</p>

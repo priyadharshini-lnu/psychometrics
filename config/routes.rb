@@ -128,6 +128,14 @@ Rails.application.routes.draw do
     end
     ### END TEMPLATES
 
+    resources :reports do
+      member do
+        get :copy
+        get :sidebar
+        patch :toggle_status
+      end
+    end
+
     put '/factors_norms/update', to: 'factors_norms#update'
   end
 

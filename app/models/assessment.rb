@@ -20,6 +20,7 @@ class Assessment < ApplicationRecord
   has_many :questions, through: :blocks
   has_many :norms, through: :dimension
   has_many :factors_scoring
+  has_many :reports, dependent: :destroy
   belongs_to :dimension
 
   # CATEGORIES constant
@@ -88,12 +89,9 @@ class Assessment < ApplicationRecord
     def options_for_with_category
       CATEGORIES.values
     end
-  end
 
-  #
-  # Move down all blocks, which have position more than base_position
-  #
-  def shift_down_all_blocks(base_position)
-    blocks.where("position > #{base_position}").update_all('position = position + 1')
+    def options_for_select
+      all.map { |assessment| [assessment.decorate.display_name, assessment.id] }
+    end
   end
 end

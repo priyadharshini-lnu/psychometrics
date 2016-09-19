@@ -21,7 +21,7 @@ class Block < ApplicationRecord
   belongs_to :assessment
   belongs_to :template, class_name: 'Block'
   has_many :questions, -> { order(position: :asc) }
-  has_many :blocks, class_name: 'Block', foreign_key: :template_id
+  has_many :blocks, class_name: 'Block', foreign_key: :template_id, dependent: :destroy
 
 
   validates :name, presence: true
