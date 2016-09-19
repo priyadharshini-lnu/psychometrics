@@ -13,6 +13,12 @@ module Assessments
           FactorSerializer.new(factor).to_hash
         end
       end
+
+      action :norms do |_data, _current_administrator, assessment|
+        assessment.norms.map do |norm|
+          NormSerializer.new(norm).to_hash
+        end
+      end
     end
   end
 end

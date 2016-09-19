@@ -10,6 +10,9 @@
 #  assessment_id :integer
 #  deleted_at    :datetime
 #  props         :json
+#  view          :integer          default("assessments")
+#  disabled      :boolean          default(FALSE)
+#  template_id   :integer
 #
 
 class BlockSerializer < ActiveModel::Serializer

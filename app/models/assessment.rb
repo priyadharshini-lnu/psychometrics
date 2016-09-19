@@ -10,6 +10,7 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  flow         :json
+#  norm_rules   :json
 #
 
 class Assessment < ApplicationRecord
@@ -17,6 +18,7 @@ class Assessment < ApplicationRecord
 
   has_many :blocks, -> { order(position: :asc) }
   has_many :questions, through: :blocks
+  has_many :norms, through: :dimension
   has_many :factors_scoring
   belongs_to :dimension
 

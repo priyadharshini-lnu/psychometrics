@@ -10,10 +10,11 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  flow         :json
+#  norm_rules   :json
 #
 
 class AssessmentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :category, :disabled, :created_at, :flow
+  attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules
 
   has_many :blocks, serializer: BlockSerializer do
     object.blocks.where(disabled: false)

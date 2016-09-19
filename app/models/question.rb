@@ -13,6 +13,11 @@
 #  deleted_at          :datetime
 #  required_validation :json
 #  validation          :json
+#  display_logic       :json
+#  view                :integer          default("assessments")
+#  disabled            :boolean          default(FALSE)
+#  template_id         :integer
+#  skip_logic          :json
 #
 
 class Question < ApplicationRecord
