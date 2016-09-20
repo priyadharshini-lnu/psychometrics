@@ -15,9 +15,7 @@ module Reports
       end
 
       action :destroy do |data|
-        page = ::Reports::Page.find(data['id'])
-        page.update(deleted_at: Time.now)
-        page.modules.update_all(deleted_at: Time.now)
+        ::Reports::Page.destroy(data['id'])
         nil
       end
 
@@ -37,24 +35,6 @@ module Reports
         page = ::Reports::Page.find(data['id'])
         page.move_lower
         Reports::PageSerializer.new(block).to_hash
-      end
-
-      action :restore do |data|
-        page = ::Reports::Page.find(data['id'])
-        page.update(deleted_at: nil)
-        Reports::PageSerializer.new(block).to_hash
-      end
-
-      action :permanent_destroy do |data|
-        ::Reports::Page.destroy(data['id'])
-        nil
-      end
-
-      action :clone do |data|
-        page = ::Reports::Page.find(data['id'])
-        cloned_page = page.amoeba_dup
-        cloned_page.save
-        Reports::PageSerializer.new(cloned_page).to_hash
       end
     end
   end

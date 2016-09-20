@@ -16,7 +16,7 @@ module Reports
       end
 
       action :destroy do |data|
-        ::Reports::Module.update(data['id'], deleted_at: Time.now)
+        ::Reports::Module.destroy(data['id'])
         nil
       end
 
@@ -35,23 +35,6 @@ module Reports
         mod = ::Reports::Module.find(data['id'])
         mod.move_lower
         Reports::ModuleSerializer.new(mod).to_hash
-      end
-
-      action :restore do |data|
-        mod = ::Reports::Module.update(data['id'], deleted_at: nil)
-        Reports::ModuleSerializer.new(mod).to_hash
-      end
-
-      action :permanent_destroy do |data|
-        ::Reports::Module.destroy(data['id'])
-        nil
-      end
-
-      action :clone do |data|
-        mod = ::Reports::Module.find(data['id'])
-        cloned_mod = mod.clone
-        cloned_mod.save
-        Reports::ModuleSerializer.new(cloned_mod).to_hash
       end
     end
   end
