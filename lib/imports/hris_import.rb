@@ -24,16 +24,21 @@ module Imports
     end
 
     def load_imported_items
-      datas = open_spreadsheet.parse(User::USER_IMPORT_RULES)
+      datas = open_spreadsheet.parse
+      header = datas.shift
 
-      datas[1..-1].map.with_index do |data, index|
-        user = User.find_by(email: data[:email])
+      raise Roo::HeaderRowNotFoundError unless header.include?('Email')
+
+      datas.map.with_index do |data, index|
+
+        hris = Hash[header.zip(data)]
+        user = User.find_by(email: hris.delete('Email'))
         if user.nil?
-          errors.add(:base, I18n.t('administration.imports.errors.user.not_found', row: index + 2, email: data[:email]))
+          errors.add(:base, I18n.t('administration.imports.errors.user.not_found', row: index + 2, email: hris[:email]))
           next
         end
-        # Fetch hris data
-        user.attributes = hris_params(data)
+        # Set hris data
+        user.hris = hris
         user
       end
 

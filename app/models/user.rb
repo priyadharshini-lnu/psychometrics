@@ -36,7 +36,7 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   # User, who try update or create entity
-  attr_accessor :operator
+  attr_accessor :operator, :hris_data
 
   self.inheritance_column = :role
 
@@ -61,9 +61,7 @@ class User < ApplicationRecord
     user: []
   }.freeze
 
-  USER_HRIS = %i(evaluator_name evaluators_email_address relationship business_unit department job_title nationality gender).freeze
-
-  store :hris, accessors: USER_HRIS
+  serialize :hris, JSON
 
   has_many :memberships
   has_many :clients, through: :memberships
@@ -172,6 +170,14 @@ class User < ApplicationRecord
       where(role: USER_ROLES_SCOPES[:administrator])
     end
   }
+
+  def hris_data=(data)
+    self.hris = {}
+    data.values.each do |d|
+      next if d['key'].blank?
+      hris[d['key']] = d['value']
+    end
+  end
 
   class << self
     # Available role for the filter form
