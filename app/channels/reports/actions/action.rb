@@ -5,7 +5,7 @@ module Reports
         controller  = name.downcase.split('::').last
         action_name = "#{controller}_#{route}"
         define_method action_name do |request|
-          report = ::Report.find_by_id(params['question_id'])
+          report = ::Report.find_by_id(params['report_id'])
           if policy(report).open_channel?
             begin
               data            = yield(request['data'], current_administrator, report)

@@ -1,6 +1,6 @@
 module Reports
   module Actions
-    module Assessment
+    module Report
       extend Actions::Action
 
       action :update do |data, _current_administrator, report|

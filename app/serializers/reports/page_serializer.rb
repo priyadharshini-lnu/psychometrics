@@ -1,6 +1,6 @@
 module Reports
   class PageSerializer < ActiveModel::Serializer
-    attributes :id, :name, :position, :deleted, :props, :created_at, :template_id
+    attributes :id, :name, :position, :deleted, :props, :created_at
 
     #
     has_many :modules, serializer: Reports::ModuleSerializer

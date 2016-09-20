@@ -17,9 +17,9 @@ module Reports
     include Administration::Policies
 
     def subscribed
-      report = Report.includes(pages: [:modules]).find(params['assessment_id'])
+      report = ::Report.includes(pages: [:modules]).find(params['report_id'])
       transmit({
-        action: 'assessment_data',
+        action: 'report_data',
         data: ReportSerializer.new(report).to_hash(include: '**')
       })
     end
