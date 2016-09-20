@@ -101,7 +101,7 @@ class Question < ApplicationRecord
 
   def assign_to_assessment_ids=(assessment_ids)
     ::Assessment.includes(:blocks).where(id: assessment_ids).each do |assessment|
-      assessment.blocks.create!({ name: name }) unless assessment.blocks.any? || !assessment.blocks.last.try(:template_id).nil?
+      assessment.blocks.create!({ name: name }) if assessment.blocks.empty? || assessment.blocks.last.try(:template_id).present?
       dup_for_assessment!(assessment.blocks.last.id)
     end
   end
