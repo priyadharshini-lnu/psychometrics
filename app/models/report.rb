@@ -4,6 +4,8 @@ class Report < ApplicationRecord
   belongs_to :assessment
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
 
+  validates :assessment, presence: true
+
   filterrific(
     default_filter_params: {
       sorted_by: 'id_desc'

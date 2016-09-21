@@ -3,6 +3,8 @@ module Reports
     belongs_to :report
     has_many :modules, class_name: 'Reports::Module', dependent: :destroy
 
+    validates :report, presence: true
+
     amoeba do
       enable
       append name: 'Copy of '

@@ -3,6 +3,8 @@ module Reports
     belongs_to :page, class_name: 'Reports::Page'
     acts_as_list scope: :page_id
 
+    validates :page, presence: true
+
     #
     # Disables single column inheritance
     #
