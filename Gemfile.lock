@@ -117,6 +117,8 @@ GEM
     airbrake-ruby (1.4.6)
     airbrussh (1.1.0)
       sshkit (>= 1.6.1, != 1.7.0)
+    amoeba (3.0.0)
+      activerecord (>= 3.2.6)
     arel (7.1.1)
     ast (2.3.0)
     autoprefixer-rails (6.4.0.3)
@@ -418,6 +420,7 @@ DEPENDENCIES
   activemodel-serializers-xml!
   acts_as_list (~> 0.8.1)
   airbrake (~> 5.0)
+  amoeba (~> 3.0.0)
   ancestry!
   annotate (~> 2.7.0)!
   axlsx!
