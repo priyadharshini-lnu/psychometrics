@@ -23,6 +23,10 @@ module Administration
       end
     end
 
+    def show
+      render layout: 'layouts/report'
+    end
+
     def new
       @resource = @resource_class.new
     end
