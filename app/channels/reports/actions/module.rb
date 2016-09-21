@@ -4,7 +4,7 @@ module Reports
       extend Actions::Action
 
       action :create do |data, _current_administrator, report|
-        page = ::Reports::Page.find(data.delete('page_id'))
+        page = report.pages.find(data.delete('page_id'))
         mod = page.modules.create!(data)
         Reports::ModuleSerializer.new(mod).to_hash
       end
