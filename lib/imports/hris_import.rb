@@ -30,7 +30,6 @@ module Imports
       raise Roo::HeaderRowNotFoundError unless header.include?('Email')
 
       datas.map.with_index do |data, index|
-
         hris = Hash[header.zip(data)]
         user = User.find_by(email: hris.delete('Email'))
         if user.nil?
