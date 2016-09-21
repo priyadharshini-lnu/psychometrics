@@ -2,7 +2,7 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
   td.text-center
     = link_to({ action: :toggle_status, id: resource }, remote: true, method: :patch, data: { confirm: resource.decorate.toggle_status_confirmation })
       = resource.decorate.status
-  td = resource.name
+  td = link_to resource.name, administration_report_path(resource)
   td = resource.assessment.decorate.display_name
   td = resource.decorate.created_at
   td
