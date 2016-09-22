@@ -4,7 +4,6 @@ class ReportSerializer < ActiveModel::Serializer
   has_many :pages, serializer: Reports::PageSerializer
   has_one :assessment, serializer: AssessmentSerializer
 
-
   has_many :factors, serializer: Factors::WithoutSubFactorsSerializer do
     Factor.where(dimension_id: object.assessment.dimension_id).order(name: :asc)
   end
