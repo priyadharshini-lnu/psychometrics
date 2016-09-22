@@ -12,14 +12,15 @@
 #  parent_id        :string
 #  disabled         :boolean          default(FALSE)
 #
+module Factors
+  class WithSubFactorsSerializer < ActiveModel::Serializer
+    type :factor
+    attributes :id, :name
 
-class FactorSerializer < ActiveModel::Serializer
-  attributes :id, :name
-  attribute :sub_factors, if: -> { object.root? }
-
-  def sub_factors
-    object.sub_factors.map do |sub_factors|
-      SubFactorSerializer.new(sub_factors)
+    def sub_factors
+      object.sub_factors.map do |sub_factors|
+        SubFactorSerializer.new(sub_factors)
+      end
     end
   end
 end

@@ -10,7 +10,7 @@ module Assessments
 
       action :factors do |_data, _current_administrator, assessment|
         assessment.dimension.factors.includes(:sub_factors).map do |factor|
-          FactorSerializer.new(factor).to_hash
+          Factors::WithSubFactorsSerializer.new(factor).to_hash
         end
       end
 
