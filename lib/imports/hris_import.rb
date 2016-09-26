@@ -37,7 +37,7 @@ module Imports
           next
         end
         # Set hris data
-        user.hris = hris
+        user.hris.merge!(hris)
         user
       end
 

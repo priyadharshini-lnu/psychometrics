@@ -59,7 +59,7 @@ javascript:
           rendered = $(Mustache.render(template, { index: index }));
       $('#hris_data').append(rendered);
     });
-    $('#hris_data').find('.remove-hris-data').on('click', function (){
+    $(document).on('click', '#hris_data .remove-hris-data', function (){
       $(this).closest('.hris_data').remove()
     });
   })
