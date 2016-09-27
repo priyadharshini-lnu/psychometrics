@@ -28,8 +28,6 @@
 //= require noty
 //= require administration/plugins/noty/themes/default
 
-
-
 ///// Filter form
 //= require filterrific/filterrific-jquery
 

@@ -1,0 +1,29 @@
+en:
+  administration:
+    libraries:
+      index:
+        title: Media Library
+      list:
+        root: Root
+        upload: Upload new file
+        new_folder: New folder
+      new:
+        header: 'New Report'
+      edit:
+        header: 'Edit'
+      destroy:
+        successfully: 'Item %{name} was successfully destroyed.'
+      create:
+        successfully: 'Item %{name} was successfully created.'
+      update:
+        successfully: 'Item %{name} was successfully updated.'
+      resource:
+        tooltips:
+          edit: 'Edit'
+          delete: 'Delete'
+        confirmations:
+          delete:
+            title:
+              Delete <strong>%{name}</strong> ?
+            body: >
+              <p>Are you sure you want to delete %{name}?</p>
