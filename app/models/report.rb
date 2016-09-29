@@ -6,6 +6,12 @@ class Report < ApplicationRecord
 
   validates :assessment, presence: true
 
+  before_create :init
+
+  def init
+    self.filters ||= []
+  end
+
   filterrific(
     default_filter_params: {
       sorted_by: 'id_desc'

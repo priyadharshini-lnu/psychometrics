@@ -395,6 +395,45 @@ ALTER SEQUENCE factors_scoring_id_seq OWNED BY factors_scoring.id;
 
 
 --
+-- Name: libraries; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE libraries (
+    id integer NOT NULL,
+    name character varying,
+    description text,
+    type integer DEFAULT 0,
+    file character varying,
+    parent_id integer,
+    lft integer NOT NULL,
+    rgt integer NOT NULL,
+    depth integer DEFAULT 0 NOT NULL,
+    children_count integer DEFAULT 0 NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: libraries_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE libraries_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: libraries_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE libraries_id_seq OWNED BY libraries.id;
+
+
+--
 -- Name: memberships; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -543,7 +582,8 @@ CREATE TABLE reports (
     name character varying,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    filters json
 );
 
 
@@ -766,6 +806,13 @@ ALTER TABLE ONLY factors_scoring ALTER COLUMN id SET DEFAULT nextval('factors_sc
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY libraries ALTER COLUMN id SET DEFAULT nextval('libraries_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY memberships ALTER COLUMN id SET DEFAULT nextval('memberships_id_seq'::regclass);
 
 
@@ -896,6 +943,14 @@ ALTER TABLE ONLY factors
 
 ALTER TABLE ONLY factors_scoring
     ADD CONSTRAINT factors_scoring_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: libraries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY libraries
+    ADD CONSTRAINT libraries_pkey PRIMARY KEY (id);
 
 
 --
@@ -1055,6 +1110,27 @@ CREATE INDEX index_factors_scoring_on_question_id ON factors_scoring USING btree
 
 
 --
+-- Name: index_libraries_on_lft; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_libraries_on_lft ON libraries USING btree (lft);
+
+
+--
+-- Name: index_libraries_on_parent_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_libraries_on_parent_id ON libraries USING btree (parent_id);
+
+
+--
+-- Name: index_libraries_on_rgt; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_libraries_on_rgt ON libraries USING btree (rgt);
+
+
+--
 -- Name: index_memberships_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1205,6 +1281,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817');
 
 

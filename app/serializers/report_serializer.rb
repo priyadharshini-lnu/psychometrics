@@ -1,5 +1,5 @@
 class ReportSerializer < ActiveModel::Serializer
-  attributes :id, :name, :disabled, :created_at
+  attributes :id, :name, :disabled, :created_at, :filters
 
   has_many :pages, serializer: Reports::PageSerializer
   has_one :assessment, serializer: AssessmentSerializer
