@@ -1,0 +1,16 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title = t('.title')
+        .pull-right
+          = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
+            = f.hidden_field :sorted_by
+            = f.hidden_field :with_parent
+            .form-group.has-feedback.has-clear.pull-right
+              .input-group
+                = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')
+              span.glyphicon.glyphicon-remove-sign.form-control-feedback.form-control-clear
+      .panel-body
+        #filterrific_results
+          = render partial: 'list'

@@ -92,6 +92,11 @@ gem 'baby_squeel', '~> 1.0.0'
 # Cloning ActiveRecord object
 gem 'amoeba', '~> 3.0.0'
 
+gem 'carrierwave', '~> 0.11.2'
+gem 'mini_magick', '~> 4.5.1'
+
+gem 'awesome_nested_set', '~> 3.1.1'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri

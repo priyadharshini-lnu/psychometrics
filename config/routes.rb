@@ -136,6 +136,8 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :libraries
+
     put '/factors_norms/update', to: 'factors_norms#update'
   end
 

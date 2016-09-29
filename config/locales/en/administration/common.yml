@@ -47,5 +47,6 @@ en:
       reports: Reports
       design: Design
       question_center: Question Center
+      libraries: Media Library
     breadcrumbs:
       <<: *NAVIGATION

@@ -94,7 +94,10 @@
     = active_link_to(administration_templates_questions_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.question_center'), placement: 'right' })
       i.fa.fa-question-circle-o
       span.xn-text = t('administration.navigation.question_center')
-
+    - if policy(:library).index?
+      = active_link_to(administration_libraries_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.libraries'), placement: 'right' })
+        i.fa.fa-file-image-o
+        span.xn-text = t('administration.navigation.libraries')
     li
       a href='#'
         span.xn-text Retail

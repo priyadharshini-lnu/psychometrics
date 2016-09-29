@@ -123,6 +123,8 @@ GEM
     ast (2.3.0)
     autoprefixer-rails (6.4.0.3)
       execjs
+    awesome_nested_set (3.1.1)
+      activerecord (>= 4.0.0, < 5.1)
     axlsx_rails (0.4.0)
       axlsx (>= 2.0.1)
       rails (>= 3.1)
@@ -157,6 +159,12 @@ GEM
     capistrano-rvm (0.1.2)
       capistrano (~> 3.0)
       sshkit (~> 1.2)
+    carrierwave (0.11.2)
+      activemodel (>= 3.2.0)
+      activesupport (>= 3.2.0)
+      json (>= 1.7)
+      mime-types (>= 1.16)
+      mimemagic (>= 0.3.0)
     ckeditor (4.2.0)
       cocaine
       orm_adapter (~> 0.5.0)
@@ -260,6 +268,7 @@ GEM
       mime-types-data (~> 3.2015)
     mime-types-data (3.2016.0521)
     mimemagic (0.3.2)
+    mini_magick (4.5.1)
     mini_portile2 (2.1.0)
     minitest (5.9.0)
     net-scp (1.2.1)
@@ -423,6 +432,7 @@ DEPENDENCIES
   amoeba (~> 3.0.0)
   ancestry!
   annotate (~> 2.7.0)!
+  awesome_nested_set (~> 3.1.1)
   axlsx!
   axlsx_rails (~> 0.4.0)
   baby_squeel (~> 1.0.0)
@@ -435,6 +445,7 @@ DEPENDENCIES
   capistrano-passenger (~> 0.2.0)
   capistrano-rails (~> 1.1.6)
   capistrano-rvm (~> 0.1.2)
+  carrierwave (~> 0.11.2)
   ckeditor
   coffee-rails (~> 4.2)
   config (~> 1.2.1)
@@ -455,6 +466,7 @@ DEPENDENCIES
   jquery-rails-cdn (~> 1.1.2)
   kaminari (~> 0.17.0)
   listen (~> 3.0.5)
+  mini_magick (~> 4.5.1)
   paperclip (~> 5.0.0)
   paranoia!
   pg (~> 0.18.4)
