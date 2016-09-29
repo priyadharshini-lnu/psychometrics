@@ -5,6 +5,7 @@ if Rails.env.development?
   end
 else
   CarrierWave.configure do |config|
+    config.storage = :fog
     config.fog_provider = 'fog/aws'
     config.fog_credentials = {
       provider: 'AWS',
@@ -15,6 +16,5 @@ else
     config.fog_directory = Rails.application.secrets.directory
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" } # optional, defaults to {}
     config.asset_host = ''
-    config.storage = :fog
   end
 end
