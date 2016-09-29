@@ -61,8 +61,6 @@ class User < ApplicationRecord
     user: []
   }.freeze
 
-  serialize :hris, JSON
-
   has_many :memberships
   has_many :clients, through: :memberships
 

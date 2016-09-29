@@ -27,7 +27,7 @@
                 .col-md-2.col-xs-12
                   button#add-new-hris-data.btn.btn-success type='button' = t('.add')
               #hris_data
-                - f.object.hris.keys.each_with_index do |label, index|
+                - (f.object.hris || {}).keys.each_with_index do |label, index|
                   .form-group.hris_data
                     .col-md-2.col-xs-12.col-md-offset-1
                       = f.input_field :hris_data, name: "resource[hris_data][#{index}][key]", value: label, class: 'form-control'
