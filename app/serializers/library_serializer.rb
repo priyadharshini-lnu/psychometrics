@@ -1,8 +1,12 @@
 class LibrarySerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :thumb, :icon, :type, :parent_id, :created_at
+  attributes :id, :name, :description, :thumb, :file, :icon, :type, :parent_id, :created_at
 
   def thumb
     object.file.thumb.url
+  end
+
+  def file
+    object.file.url
   end
 
   def icon

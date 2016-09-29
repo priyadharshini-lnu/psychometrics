@@ -12,7 +12,7 @@ class Library < ApplicationRecord
   # Detect which type of library we saving
   # folder, image, audio, video, other
   before_save :detected_type
-  before_create :set_file_name, unless: proc { folder? }
+  before_create :set_name, unless: proc { folder? }
 
   filterrific(
     default_filter_params: {
@@ -49,7 +49,7 @@ class Library < ApplicationRecord
   }
 
   scope :with_type, lambda { |type|
-    return if type.nil?
+    return if type.blank?
     where.has { |libraries| (libraries.type == type) | (libraries.type == :folder) }
   }
 
@@ -68,7 +68,7 @@ class Library < ApplicationRecord
     self.type = :other
   end
 
-  def set_file_name
+  def set_name
     self.name = file.filename if name.blank?
   end
 end
