@@ -133,6 +133,7 @@ Rails.application.routes.draw do
         get :copy
         get :sidebar
         patch :toggle_status
+        get :preview
       end
     end
 
