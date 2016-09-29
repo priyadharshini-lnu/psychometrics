@@ -95,6 +95,8 @@ gem 'amoeba', '~> 3.0.0'
 
 gem 'carrierwave', '~> 0.11.2'
 gem 'mini_magick', '~> 4.5.1'
+gem 'fog-aws'
+
 
 gem 'awesome_nested_set', '~> 3.1.1'
 
