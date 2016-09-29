@@ -35,7 +35,7 @@ class Library < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
+    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
     column = sort_key.gsub("_#{direction}", '')
     if column.in?(%w(id name type created_at updated_at))
       order("libraries.#{column} #{direction}")

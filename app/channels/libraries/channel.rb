@@ -5,7 +5,6 @@ module Libraries
     include Administration::Policies
 
     def subscribed
-
     end
 
     def pundit_user
