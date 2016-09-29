@@ -87,6 +87,7 @@ gem 'paranoia', github: 'rubysherpas/paranoia', branch: 'rails5'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'airbrake', '~> 5.0'
 
+# DSL for activerecord
 gem 'baby_squeel', '~> 1.0.0'
 
 # Cloning ActiveRecord object

@@ -7,6 +7,10 @@ en:
         title: 'Edit user'
         personal_data: Personal Data
         hris_data: HRIS Data
+        add: Add
+        remove: Remove
+        key: Key
+        value: Value
       index:
         add: Add new user
         import: Import
