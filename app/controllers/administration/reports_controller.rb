@@ -98,12 +98,11 @@ module Administration
       respond_to do |format|
         format.html { render layout: 'empty' }
         format.pdf do
-
           tmp_folder = Rails.root.join('public/reports')
           report_url = url_for({ action: :preview, id: @resource })
 
           # Create dir if not exist
-          Dir.mkdir(tmp_folder) unless Dir.exists?(tmp_folder)
+          Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
 
           # Init fetcher and make screenshot
           fetcher = Screencap::Fetcher.new(report_url)

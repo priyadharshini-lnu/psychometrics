@@ -25,10 +25,11 @@ class ApplicationController < ActionController::Base
   end
 
   private
-    def authenticate
-      return if Rails.env.development?
-      authenticate_or_request_with_http_basic do |username, password|
-        username == 'staging' && password == 'sumatosoft'
-      end
+
+  def authenticate
+    return if Rails.env.development?
+    authenticate_or_request_with_http_basic do |username, password|
+      username == 'staging' && password == 'sumatosoft'
     end
+  end
 end
