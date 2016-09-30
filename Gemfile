@@ -94,7 +94,6 @@ gem 'baby_squeel', '~> 1.0.0'
 gem 'amoeba', '~> 3.0.0'
 
 gem 'carrierwave', '~> 0.11.2'
-gem 'carrierwave-aws', '~>1.0.1'
 gem 'mini_magick', '~> 4.5.1'
 gem 'fog-aws'
 
