@@ -1,10 +1,15 @@
 module Administration
   class ReportsController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar]
+    before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :preview]
     before_action :skip_authorization, only: [:sidebar]
     before_action :init_breadcrumbs
-    append_before_action :pundit_authorize, except: [:sidebar]
+    append_before_action :pundit_authorize, except: [:sidebar, :preview]
+
+    # TODO: Implement token auth for preview
+    skip_before_action :authenticate, only: [:preview]
+    skip_before_action :authenticate_administrator!, only: [:preview]
+    skip_after_action :verify_authorized, only: [:preview]
 
     # GET /administration/resources
     def index
@@ -86,6 +91,25 @@ module Administration
       respond_to do |format|
         format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
         format.js
+      end
+    end
+
+    def preview
+      respond_to do |format|
+        format.html { render layout: 'empty' }
+        format.pdf do
+          tmp_folder = Rails.root.join('public/reports')
+          report_url = url_for({ action: :preview, id: @resource })
+
+          # Create dir if not exist
+          Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
+
+          # Init fetcher and make screenshot
+          fetcher = Screencap::Fetcher.new(report_url)
+          screenshot = fetcher.fetch(output: "public/reports/#{@resource.id}_#{Time.now.to_f}.pdf")
+
+          send_file screenshot.path, type: 'application/pdf'
+        end
       end
     end
 

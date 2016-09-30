@@ -7,5 +7,9 @@ module Administration
     def show?
       @user.is?(:superadmin)
     end
+
+    def preview?
+      @user.is?(:superadmin)
+    end
   end
 end
