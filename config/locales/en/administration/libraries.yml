@@ -4,7 +4,7 @@ en:
       index:
         title: Media Library
       list:
-        root: Root
+        root: Media Library
         upload: Upload new file
         new_folder: New folder
       new:

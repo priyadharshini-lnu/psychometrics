@@ -15,6 +15,10 @@ $(function() {
     window.formElements.init();
   });
 
+  // Disabled button after submit
+  $(document).on('click', '[type="submit"]', function () {
+    $(this).button('loading')
+  })
 
   // Noty plugin settings
   $.noty.defaults.timeout = 4000;
