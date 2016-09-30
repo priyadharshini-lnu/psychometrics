@@ -92,6 +92,7 @@ gem 'baby_squeel', '~> 1.0.0'
 
 # Cloning ActiveRecord object
 gem 'amoeba', '~> 3.0.0'
+gem 'deep_cloneable', '~> 2.2.1'
 
 gem 'carrierwave', '~> 0.11.2'
 gem 'mini_magick', '~> 4.5.1'

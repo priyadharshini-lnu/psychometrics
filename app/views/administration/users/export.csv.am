@@ -1,5 +1,5 @@
 
-hris_keys = @resources.map(&:hris).map(&:keys).flatten
+hris_keys = @resources.map(&:hris).compact.map(&:keys).flatten
 csv << [
         @resource_class.human_attribute_name('active'),
         @resource_class.human_attribute_name('first_name'),

@@ -17,21 +17,15 @@ module Imports
       'Member' => User::USER_ROLES[:member]
     }.freeze
 
-    USER_IMPORT_RULES = {
+    HEADER_IMPORT_RULES = {
       email: /Email Address|Email|E-mail/i,
-      first_name: 'First Name',
-      last_name: 'Last Name',
+      first_name: /First Name/i,
+      last_name: /Last Name/i,
       clients: /Company|Memberships|Clients|Client/i,
-      role: 'Role',
-      evaluator_name: /Evaluator name/i,
-      evaluators_email_address: /Evaluators email address/i,
-      relationship: /Relationship/i,
-      business_unit: /Business unit/i,
-      department: /Department/i,
-      job_title: /Job title/i,
-      nationality: /Nationality/i,
-      gender: /Gender/i
+      role: /Role/i
     }.freeze
+
+    SKIP_HEADER_RULES = /\ACreated Date\z|\AActive\z/i
 
     validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                   'application/vnd.ms-excel',
@@ -62,17 +56,28 @@ module Imports
     #
     def load_imported_items
       # Parse header of xls/csv by strict rules
-      datas = open_spreadsheet.parse(USER_IMPORT_RULES)
+      rows = open_spreadsheet.parse
+      header = rows.shift
 
-      datas[1..-1].map do |data|
-        # Parse name of user role to sym
-        data[:role] = USER_ROLES_MAPS[data[:role]]
-
-        # Parse name of clients
-        # Example: "Client 1, Client 2" return array ["Client 1", "Client 2"]
-        #
-        client_names = (data.delete(:clients) || '').split(',').map(&:strip)
-        data[:client_ids] = policy_scope(Client).where(name: client_names).pluck(:id)
+      rows.map do |row|
+        data = {}
+        header.zip(row).each_with_index do |z, i|
+          next if z.first =~ SKIP_HEADER_RULES
+          (data[:email] = z.last) && next if (z.first =~ HEADER_IMPORT_RULES[:email])
+          (data[:first_name] = z.last) && next if (z.first =~ HEADER_IMPORT_RULES[:first_name])
+          (data[:last_name] = z.last) && next if (z.first =~ HEADER_IMPORT_RULES[:last_name])
+          (data[:role] = USER_ROLES_MAPS[z.last]) && next if (z.first =~ HEADER_IMPORT_RULES[:role])
+          if (z.first =~ HEADER_IMPORT_RULES[:clients])
+            # Parse name of clients
+            # Example: "Client 1, Client 2" return array ["Client 1", "Client 2"]
+            #
+            client_names = (z.last || '').split(',').map(&:strip)
+            data[:client_ids] = policy_scope(Client).where(name: client_names).pluck(:id) if client_names.any?
+            next
+          end
+          data[:hris_data] ||= {}
+          data[:hris_data][i.to_s] = {key: z.first, value: z.last}
+        end
 
         user = User.new(user_params(data))
         user.operator = importer
@@ -96,10 +101,11 @@ module Imports
     protected
 
     def user_params(data)
-      ActionController::Parameters.new(data).permit(:first_name, :last_name, :email,
-                                                    :role, :evaluator_name, :evaluators_email_address,
-                                                    :relationship, :business_unit, :department,
-                                                    :job_title, :nationality, :gender, client_ids: [])
+      ActionController::Parameters.new(data).permit(
+        :first_name, :last_name, :email,
+        :role, client_ids: [],
+        hris_data: [:key, :value]
+      )
     end
   end
 end

@@ -12,9 +12,17 @@ class Report < ApplicationRecord
     self.filters ||= []
   end
 
+  # Copy report with pages => modules
+  def clone
+    @cloned_item = deep_clone include: [ pages: :modules ]
+    @cloned_item.gen_uniq_name
+    @cloned_item
+  end
+
   filterrific(
     default_filter_params: {
-      sorted_by: 'id_desc'
+      sorted_by: 'id_desc',
+      with_assessment_category: 'all'
     },
     available_filters: [
       :sorted_by,
