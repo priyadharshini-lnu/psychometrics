@@ -98,7 +98,7 @@ module Administration
       respond_to do |format|
         format.html { render layout: 'empty' }
         format.pdf do
-          tmp_folder = Rails.root.join('public/reports')
+          tmp_folder = Rails.root.join('tmp/reports')
           report_url = url_for({ action: :preview, id: @resource })
 
           # Create dir if not exist
@@ -106,7 +106,7 @@ module Administration
 
           # Init fetcher and make screenshot
           fetcher = Screencap::Fetcher.new(report_url)
-          screenshot = fetcher.fetch(output: "public/reports/#{@resource.id}_#{Time.now.to_f}.pdf")
+          screenshot = fetcher.fetch(output: "tmp/reports/#{@resource.id}_#{Time.now.to_f}.pdf")
 
           send_file screenshot.path, type: 'application/pdf'
         end
