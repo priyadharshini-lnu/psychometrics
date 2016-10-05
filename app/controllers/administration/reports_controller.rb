@@ -10,7 +10,6 @@ module Administration
     skip_before_action :authenticate, only: [:preview]
     skip_before_action :authenticate_administrator!, only: [:preview]
     skip_after_action :verify_authorized, only: [:preview]
-
     # GET /administration/resources
     def index
       @filterrific = initialize_filterrific(
@@ -98,17 +97,8 @@ module Administration
       respond_to do |format|
         format.html { render layout: 'empty' }
         format.pdf do
-          tmp_folder = Rails.root.join('tmp/reports')
-          report_url = url_for({ action: :preview, id: @resource })
-
-          # Create dir if not exist
-          Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
-
-          # Init fetcher and make screenshot
-          fetcher = Screencap::Fetcher.new(report_url)
-          screenshot = fetcher.fetch(output: "tmp/reports/#{@resource.id}_#{Time.now.to_f}.pdf")
-
-          send_file screenshot.path, type: 'application/pdf'
+          renderer = PdfRenderer.new(@resource, self)
+          send_file renderer.render, type: 'application/pdf'
         end
       end
     end
