@@ -63,11 +63,11 @@ module Imports
         data = {}
         header.zip(row).each_with_index do |z, i|
           next if z.first =~ SKIP_HEADER_RULES
-          (data[:email] = z.last) && next if (z.first =~ HEADER_IMPORT_RULES[:email])
-          (data[:first_name] = z.last) && next if (z.first =~ HEADER_IMPORT_RULES[:first_name])
-          (data[:last_name] = z.last) && next if (z.first =~ HEADER_IMPORT_RULES[:last_name])
-          (data[:role] = USER_ROLES_MAPS[z.last]) && next if (z.first =~ HEADER_IMPORT_RULES[:role])
-          if (z.first =~ HEADER_IMPORT_RULES[:clients])
+          (data[:email] = z.last) && next if z.first =~ HEADER_IMPORT_RULES[:email]
+          (data[:first_name] = z.last) && next if z.first =~ HEADER_IMPORT_RULES[:first_name]
+          (data[:last_name] = z.last) && next if z.first =~ HEADER_IMPORT_RULES[:last_name]
+          (data[:role] = USER_ROLES_MAPS[z.last]) && next if z.first =~ HEADER_IMPORT_RULES[:role]
+          if z.first =~ HEADER_IMPORT_RULES[:clients]
             # Parse name of clients
             # Example: "Client 1, Client 2" return array ["Client 1", "Client 2"]
             #
@@ -76,7 +76,7 @@ module Imports
             next
           end
           data[:hris_data] ||= {}
-          data[:hris_data][i.to_s] = {key: z.first, value: z.last}
+          data[:hris_data][i.to_s] = { key: z.first, value: z.last }
         end
 
         user = User.new(user_params(data))
@@ -101,11 +101,9 @@ module Imports
     protected
 
     def user_params(data)
-      ActionController::Parameters.new(data).permit(
-        :first_name, :last_name, :email,
-        :role, client_ids: [],
-        hris_data: [:key, :value]
-      )
+      ActionController::Parameters.new(data).permit(:first_name, :last_name, :email,
+                                                    :role, client_ids: [],
+                                                    hris_data: [:key, :value])
     end
   end
 end

@@ -14,7 +14,7 @@ class Report < ApplicationRecord
 
   # Copy report with pages => modules
   def clone
-    @cloned_item = deep_clone include: [ pages: :modules ]
+    @cloned_item = deep_clone include: [pages: :modules]
     @cloned_item.gen_uniq_name
     @cloned_item
   end
