@@ -101,9 +101,8 @@ module Imports
     protected
 
     def user_params(data)
-      ActionController::Parameters.new(data).permit(:first_name, :last_name, :email,
-                                                    :role, client_ids: [],
-                                                    hris_data: [:key, :value])
+      ActionController::Parameters.new(data).permit(:first_name, :last_name, :email, :role,
+                                                    client_ids: [], hris_data: [:key, :value])
     end
   end
 end
