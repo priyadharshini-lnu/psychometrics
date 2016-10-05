@@ -206,6 +206,8 @@ GEM
     debugger2 (1.0.0.beta2)
       columnize (>= 0.3.1)
       debugger-linecache (~> 1.2.0)
+    deep_cloneable (2.2.1)
+      activerecord (>= 3.1.0, < 5.2.0)
     deep_merge (1.1.1)
     devise (4.2.0)
       bcrypt (~> 3.0)
@@ -469,6 +471,7 @@ DEPENDENCIES
   coffee-rails (~> 4.2)
   config (~> 1.2.1)
   debugger2
+  deep_cloneable (~> 2.2.1)
   devise (~> 4.2.0)
   devise-i18n (~> 1.1.0)
   devise_invitable (~> 1.6.0)

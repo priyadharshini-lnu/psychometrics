@@ -124,10 +124,7 @@ class Administration::UsersController < Administration::BaseController
   def resource_params
     params.require(:resource).permit(
       :first_name, :last_name, :email,
-      :disabled, :role, :evaluator_name,
-      :evaluators_email_address, :relationship,
-      :business_unit, :department, :job_title,
-      :nationality, :gender, manage_client_ids: [],
+      :disabled, :role, manage_client_ids: [],
       hris_data: [:key, :value]
     )
   end
