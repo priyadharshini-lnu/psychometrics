@@ -95,7 +95,7 @@ module Administration
 
     def preview
       respond_to do |format|
-        format.html { render layout: 'empty' }
+        format.html { render layout: 'pdf' }
         format.pdf do
           renderer = PdfRenderer.new(@resource, self)
           send_file renderer.render, type: 'application/pdf'
