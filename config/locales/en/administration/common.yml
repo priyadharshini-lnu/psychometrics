@@ -27,6 +27,7 @@ en:
     noty:
       error_500: Something went wrong. Contact your administrator.
     navigation: &NAVIGATION
+      psychometrics: Psychometrics
       home: Dashboard
       users: Users
       users_add: Add New

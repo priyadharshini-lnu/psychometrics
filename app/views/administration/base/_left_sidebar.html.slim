@@ -31,7 +31,7 @@
     - if policy(:assessment).index?
       = active_link_to(administration_assessments_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.assessments'), placement: 'right' })
         i.fa.fa-universal-access
-        span.xn-text= t('administration.navigation.assessments')
+        span.xn-text = t('administration.navigation.assessments')
     - if policy(:client).index?
       = active_link_to(administration_clients_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.clients'), placement: 'right' })
         .fa.fa-briefcase
@@ -41,17 +41,11 @@
         .fa.fa-plus
         span.xn-text = t('administration.navigation.create')
       ul
-        li.xn-openable
-          a href="#" Assessment
-          ul
-            li = link_to(t('administration.navigation.psychometrics'), '#')
-        li.xn-openable
-          a href="#" Survey
-          ul
-            li
-              a href="#" 360
-            li
-              a href="#" Organisational
+        - if policy(:assessment).new?
+          li.xn-openable
+            a href="#" = t('administration.navigation.assessments')
+            ul
+              li = link_to(t('administration.navigation.psychometrics'), new_administration_assessment_path, remote: true)
         li.xn-openable
           a href="#" User(s)
           - if policy(:user).new? || policy(:user).import?
@@ -62,7 +56,7 @@
                 li = link_to t('administration.navigation.users_import'), new_administration_imports_users_path, remote: true
         - if policy(:client).new?
           li = link_to(t('administration.navigation.client'), [:new, :administration, :client], remote: true)
-        li.xn-openable
+        /li.xn-openable
           a href="#" Report
           ul
             li
@@ -71,50 +65,51 @@
               a href="#" 360
             li
               a href="#" Organisational
-        li.xn-openable
+        /li.xn-openable
           a href="#" Benchmarks
           ul
             li
               a href="#" Historical
             li
               a href="#" External
-        li
+        /li
           a href="#" Email Template
-        li
+        /li
           a href="#" Theme
-        li
+        /li
           a href="#" Org Structure
-        li
+        /li
           a href="#" Library
-        li
+        /li
           a href="#" Action Plan
-    li
+    /li
       a href='#'
         span.xn-text Client Tenancies
-    = active_link_to(administration_templates_questions_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.question_center'), placement: 'right' })
-      i.fa.fa-question-circle-o
-      span.xn-text = t('administration.navigation.question_center')
+    - if policy(:question).index?
+      = active_link_to(administration_templates_questions_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.question_center'), placement: 'right' })
+        i.fa.fa-question-circle-o
+        span.xn-text = t('administration.navigation.question_center')
     - if policy(:library).index?
       = active_link_to(administration_libraries_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.libraries'), placement: 'right' })
         i.fa.fa-file-image-o
         span.xn-text = t('administration.navigation.libraries')
-    li
+    /li
       a href='#'
         span.xn-text Retail
     - if policy(:report).index?
       = active_link_to(administration_reports_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.reports'), placement: 'right' })
         i.fa.fa-pie-chart
         span.xn-text = t('administration.navigation.reports')
-    li
+    /li
       a href='#'
         span.xn-text Administrators
-    li
+    /li
       a href='#'
         span.xn-text Scoring
-    li
+    /li
       a href='#'
         span.xn-text API Integrations
-    li
+    /li
       a href='#'
         span.xn-text Help
 

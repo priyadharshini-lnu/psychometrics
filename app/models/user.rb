@@ -58,8 +58,8 @@ class User < ApplicationRecord
   # Contain information about ability to manage list of roles
   USER_ROLES_HIERARCHY = {
     superadmin: USER_ROLES.values,
-    admin: [USER_ROLES[:admin], USER_ROLES[:user]],
-    manager: [USER_ROLES[:user]],
+    admin: [USER_ROLES[:admin], USER_ROLES[:manager], USER_ROLES[:member]],
+    manager: [USER_ROLES[:member]],
     user: []
   }.freeze
 
