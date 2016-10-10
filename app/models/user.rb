@@ -107,13 +107,11 @@ class User < ApplicationRecord
   end
 
   # Operator can manage users only from own client (company)
-  def manage_client_ids=(val)
-    val = (val.reject(&:blank?) || []).map(&:to_i)
-    unless operator.try(:is?, [:superadmin])
-      operator_client_ids = [operator.try(:client_ids)].compact.flatten
-      val = (client_ids - operator_client_ids) + (operator_client_ids & val)
-    end
-    assign_attributes({ client_ids: val })
+  def manage_client_ids=(value)
+    ids = (value.reject(&:blank?) || []).map(&:to_i)
+    # Check which clients can be managed by operator
+    manage_ids = operator.try(:manage_clients, ids) || []
+    self.client_ids = (client_ids + manage_ids).uniq
   end
 
   filterrific(
