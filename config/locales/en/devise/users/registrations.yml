@@ -1,0 +1,9 @@
+en:
+  devise:
+    users:
+      registrations:
+        new:
+          tabs:
+            sign_in: 'Sign In'
+            register: 'Register'
+          submit: 'Register'

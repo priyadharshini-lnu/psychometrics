@@ -32,5 +32,8 @@
 
 module Users
   class Member < User
+    def devise_scope
+      :user
+    end
   end
 end

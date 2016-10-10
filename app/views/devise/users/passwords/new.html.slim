@@ -1,0 +1,25 @@
+.container
+  .row
+    .col-xs-12.col-sm-8.col-sm-offet-2.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+      .registrationForm
+        /! Nav tabs
+        ul.nav.nav-tabs role="tablist"
+          li.fullWidth role="presentation"
+            = link_to t('.tabs.sign_in'), new_user_session_path
+          li.fullWidth role="presentation"
+            = link_to t('.tabs.register'), new_user_registration_path
+        /! Tab panes
+        .tab-content
+          #signIn.tab-pane.fade.in.active role="tabpanel"
+            = simple_form_for(resource, as: resource_name, url: user_password_path) do |f|
+              == flash_messages
+              = f.error_notification
+              .usernameFormGroup
+                = f.label :email
+                .input-group
+                  = f.input_field :email, placeholder: 'email@domain.com', class: 'form-control input-lg'
+                = f.error :email
+              .clearfix
+              .signInButton
+                .input-group
+                  button.btn.btn-primary.signIn type="submit" = t('.submit')

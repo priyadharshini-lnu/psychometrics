@@ -1,0 +1,11 @@
+en:
+  devise:
+    users:
+      sessions:
+        new:
+          tabs:
+            sign_in: 'Sign In'
+            register: 'Register'
+          forgot_password: 'Forgot password?'
+          keep_sign_in: 'Yes, Keep me signed in'
+          submit: 'Sign In'
