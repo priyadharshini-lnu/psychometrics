@@ -4,8 +4,12 @@ Rails.application.routes.draw do
              name: :administrator, singular: :administrator, to: 'User',
              class_name: 'User',
              skip: [:registrations]
-  devise_for :users, path: 'users', as: :devise,
-             name: :user, singular: :user, to: 'User',
+  devise_for :users,
+             path: 'users',
+             as: :devise,
+             name: :user,
+             singular: :user,
+             to: 'User',
              class_name: 'User',
              controllers: { registrations: 'users/registrations' }
 
