@@ -1,0 +1,44 @@
+.container
+  .row
+    .col-xs-12.col-sm-8.col-sm-offet-2.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+      .registrationForm
+        /! Nav tabs
+        ul.nav.nav-tabs role="tablist"
+          li.fullWidth role="presentation"
+            = link_to t('.tabs.sign_in'), new_user_session_path
+          li.active.fullWidth role="presentation"
+            = link_to t('.tabs.register'), new_user_registration_path
+        /! Tab panes
+        .tab-content
+          #register.tab-pane.fade.in.active role="tabpanel"
+            = simple_form_for(resource, as: resource_name, url: user_registration_path) do |f|
+              = f.error_notification
+              .firstNameFormGroup
+                = f.label :first_name
+                .input-group
+                  = f.input_field :first_name, placeholder: true, class: 'form-control input-lg'
+                = f.error :first_name
+              .lastNameFormGroup
+                = f.label :last_name
+                .input-group
+                  = f.input_field :last_name, placeholder: true, class: 'form-control input-lg'
+                = f.error :last_name
+              .usernameFormGroup
+                = f.label :email
+                .input-group
+                  = f.input_field :email, placeholder: true, class: 'form-control input-lg'
+                = f.error :email
+              .passwordFormGroup
+                = f.label :password
+                .input-group
+                  = f.input_field :password, placeholder: true, class: 'form-control input-lg'
+                = f.error :password
+              .passwordFormGroup
+                = f.label :password_confirmation
+                .input-group
+                  = f.input_field :password_confirmation, placeholder: true, class: 'form-control input-lg'
+                = f.error :password_confirmation
+              .clearfix
+              .signInButton
+                .input-group
+                  button.btn.btn-primary.signIn type="submit" = t('.submit')

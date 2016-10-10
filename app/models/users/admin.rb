@@ -32,5 +32,8 @@
 
 module Users
   class Admin < User
+    def devise_scope
+      :administrator
+    end
   end
 end

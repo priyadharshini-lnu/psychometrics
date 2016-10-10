@@ -32,5 +32,8 @@
 
 module Users
   class SuperAdmin < User
+    def devise_scope
+      :administrator
+    end
   end
 end

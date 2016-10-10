@@ -2,10 +2,38 @@ doctype html
 html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
     title = Settings.project_name
     = csrf_meta_tags
     = jquery_include_tag :google
     = stylesheet_link_tag    'application', media: 'all'
     = javascript_include_tag 'application'
   body
+    header
+      .container-fluid
+        .row
+          .col-xs-12.col-sm-3
+            = link_to root_path
+              = image_tag 'the-talent-enterprise-logo', class: 'img-responsive center-block headerLogo', alt: 'The Talent Enterprise logo'
+          .col-xs-12.col-sm-6
+            h1.pageTitle Talent Compass
+          .col-sm-2.hidden-xs
+
     = yield
+
+    footer
+      .container-fluid
+        .row
+          .col-xs-12.col-sm-6
+            p.footerLinks
+              => link_to 'Privacy Statement', '#'
+              | |
+              =<> link_to 'Terms & Conditions', '#'
+              | |
+              =< link_to "FAQ's"
+          .col-xs-12.col-sm-6.text-right
+            p.footerLogo
+              span.poweredBy
+                | Powered by
+              = image_tag 'the-talent-enterprise-logo-footer', alt: 'The Talent Enterprise logo'

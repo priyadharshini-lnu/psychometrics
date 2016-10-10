@@ -36,7 +36,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   # User, who try update or create entity
-  attr_accessor :operator, :hris_data
+  attr_accessor :operator
+  # HRIS data
+  attr_accessor :hris_data
 
   self.inheritance_column = :role
 
@@ -73,7 +75,7 @@ class User < ApplicationRecord
 
   # We won't set password, we will send inviting
   def password_required?
-    return false if new_record?
+    return false if new_record? && operator.present?
     super
   end
 
@@ -93,6 +95,7 @@ class User < ApplicationRecord
 
   # Return devise scope
   # :administrator, :user
+  # TODO: Remove, because we can use devise_scope
   def role_scope
     USER_ROLES_SCOPES.each do |scope, roles|
       break scope if is?(*roles.map { |role| USER_ROLES.key(role)})
