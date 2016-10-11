@@ -6,9 +6,9 @@ class AssessmentsController < ApplicationController
   # TODO: add real company
   def pass
     @result = Result.find_or_create_by(
-        assessment_id: @resource.id,
-        user_id: pundit_user.id,
-        client_id: pundit_user.clients[0].id
+      assessment_id: @resource.id,
+      user_id: pundit_user.id,
+      client_id: pundit_user.clients[0].id
     )
     @result.update(status: Result.statuses['in_progress'])
     render layout: 'empty'
