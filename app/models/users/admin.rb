@@ -35,5 +35,10 @@ module Users
     def devise_scope
       :administrator
     end
+
+    # Operator can manage users only from own client (company)
+    def manage_clients(ids)
+      client_ids & ids
+    end
   end
 end
