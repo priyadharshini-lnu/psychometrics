@@ -36,7 +36,9 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable, :timeoutable
 
   # User, who try update or create entity
-  attr_accessor :operator, :hris_data
+  attr_accessor :operator
+  # HRIS data
+  attr_accessor :hris_data
 
   self.inheritance_column = :role
 
@@ -56,8 +58,8 @@ class User < ApplicationRecord
   # Contain information about ability to manage list of roles
   USER_ROLES_HIERARCHY = {
     superadmin: USER_ROLES.values,
-    admin: [USER_ROLES[:admin], USER_ROLES[:user]],
-    manager: [USER_ROLES[:user]],
+    admin: [USER_ROLES[:admin], USER_ROLES[:manager], USER_ROLES[:member]],
+    manager: [USER_ROLES[:member]],
     user: []
   }.freeze
 
@@ -73,7 +75,7 @@ class User < ApplicationRecord
 
   # We won't set password, we will send inviting
   def password_required?
-    return false if new_record?
+    return false if new_record? && operator.present?
     super
   end
 
@@ -93,6 +95,7 @@ class User < ApplicationRecord
 
   # Return devise scope
   # :administrator, :user
+  # TODO: Remove, because we can use devise_scope
   def role_scope
     USER_ROLES_SCOPES.each do |scope, roles|
       break scope if is?(*roles.map { |role| USER_ROLES.key(role)})
@@ -104,13 +107,11 @@ class User < ApplicationRecord
   end
 
   # Operator can manage users only from own client (company)
-  def manage_client_ids=(val)
-    val = (val.reject(&:blank?) || []).map(&:to_i)
-    unless operator.try(:is?, [:superadmin])
-      operator_client_ids = [operator.try(:client_ids)].compact.flatten
-      val = (client_ids - operator_client_ids) + (operator_client_ids & val)
-    end
-    assign_attributes({ client_ids: val })
+  def manage_client_ids=(value)
+    ids = (value.reject(&:blank?) || []).map(&:to_i)
+    # Check which clients can be managed by operator
+    manage_ids = operator.try(:manage_clients, ids) || []
+    self.client_ids = (client_ids + manage_ids).uniq
   end
 
   filterrific(

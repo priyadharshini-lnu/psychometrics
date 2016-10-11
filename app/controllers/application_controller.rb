@@ -9,6 +9,10 @@ class ApplicationController < ActionController::Base
 
   layout :layout_by_resource
   protect_from_forgery with: :exception
+  add_flash_types :notice, :error, :success
+
+  # Authentication user/manager
+  before_action :authenticate_user!
   before_action :authenticate
 
   # Redirect administrator after log out

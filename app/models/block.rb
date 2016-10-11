@@ -99,7 +99,7 @@ class Block < ApplicationRecord
   # TODO: check that assign to block have no double request
   def assign_to_assessment_ids=(assessment_ids)
     ::Assessment.where(id: assessment_ids).each do |assessment|
-      assessment.blocks << dup_for_assessment!
+      assessment.blocks << dup_for_assessment!(assessment.id)
     end
   end
 

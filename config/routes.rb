@@ -1,11 +1,21 @@
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
-  devise_for :administrators, path: 'administration/administrators', as: :devise,
-             name: :administrator, singular: :administrator, to: 'User',
-             class_name: 'User'
-  devise_for :users, path: 'users', as: :devise,
-             name: :user, singular: :user, to: 'User',
-             class_name: 'User'
+  devise_for :administrators,
+             path: 'administration/administrators',
+             as: :devise,
+             name: :administrator,
+             singular: :administrator,
+             to: 'User',
+             class_name: 'User',
+             skip: [:registrations]
+  devise_for :users,
+             path: 'users',
+             as: :devise,
+             name: :user,
+             singular: :user,
+             to: 'User',
+             class_name: 'User',
+             controllers: { registrations: 'users/registrations' }
 
   namespace :administration do
     root to: 'home#index'
