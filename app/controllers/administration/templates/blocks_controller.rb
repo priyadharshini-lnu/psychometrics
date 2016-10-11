@@ -90,7 +90,6 @@ module Administration
       def preview
         add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
         @data = {
-          restricted: true, # hide header and footer in preview
           blocks: [BlockSerializer.new(@resource).to_hash(include: '**')]
         }.to_json
       end

@@ -1,4 +1,12 @@
 class ApplicationController < ActionController::Base
+  # Authorisation flow
+  #
+  include Pundit
+  ## Custom current user helper for Pundit
+  def pundit_user
+    current_administrator || current_user
+  end
+
   layout :layout_by_resource
   protect_from_forgery with: :exception
   before_action :authenticate

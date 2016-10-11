@@ -21,7 +21,7 @@ module Assessments
     include Administration::Policies
 
     def subscribed
-      assessment = Assessment.includes(blocks: { questions: :comments }).find(params['assessment_id'])
+      assessment = Assessment.find(params['assessment_id'])
       transmit({
         action: 'assessment_data',
         data: AssessmentSerializer.new(assessment).to_hash(include: '**')

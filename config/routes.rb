@@ -142,5 +142,15 @@ Rails.application.routes.draw do
     put '/factors_norms/update', to: 'factors_norms#update'
   end
 
+  resources :assessments do
+    member do
+      get :pass
+    end
+  end
+
+  resources :results do
+
+  end
+
   root to: 'home#index'
 end

@@ -29,6 +29,7 @@ class BlockSerializer < ActiveModel::Serializer
                    '(CASE WHEN blocks.template_id IS NOT NULL THEN templates_questions.position ELSE questions.position END) AS reposition'] }.
       joining { template.outer }.
       joining { block }.
+      includes(:comments).
       where.has { (template.disabled == false) | (template.id == nil) }.
       reorder('reposition ASC')
   end
