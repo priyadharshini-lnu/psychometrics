@@ -12,9 +12,7 @@
 #  client_id     :integer
 #  assessment_id :integer
 #
-
 class Result < ApplicationRecord
-
   belongs_to :assessment
   belongs_to :client
   belongs_to :user

@@ -148,9 +148,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :results do
-
-  end
+  resources :results
 
   root to: 'home#index'
 end
