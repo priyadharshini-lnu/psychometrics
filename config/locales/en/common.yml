@@ -28,3 +28,9 @@ en:
   time:
     formats:
       short: "%d %b %Y / %H:%M"
+  layouts:
+    users:
+      logout: 'Log Out'
+      help: 'Help'
+      dashboard: 'Dashboard'
+      menu: 'Menu'

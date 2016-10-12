@@ -2,6 +2,7 @@ class AssessmentsController < ApplicationController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:pass]
   append_before_action :pundit_authorize
+  layout 'users'
 
   # TODO: add real company
   def pass
@@ -12,6 +13,10 @@ class AssessmentsController < ApplicationController
     )
     @result.update(status: Result.statuses['in_progress'])
     render layout: 'empty'
+  end
+
+  def index
+    @resources = Assessment.all
   end
 
   private

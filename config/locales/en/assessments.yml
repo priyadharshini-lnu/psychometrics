@@ -1,0 +1,9 @@
+en:
+  assessments:
+    resource:
+      questions:
+        zero: "No Questions"
+        one: "1 Question"
+        other: "%{count} Questions"
+    decorator:
+      no_description: 'Description is empty'

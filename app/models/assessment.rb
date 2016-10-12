@@ -17,7 +17,7 @@ class Assessment < ApplicationRecord
   include Copyable
 
   has_many :blocks, -> { order(position: :asc) }
-  has_many :questions, through: :blocks
+  has_many :questions
   has_many :norms, through: :dimension
   has_many :factors_scoring
   has_many :reports, dependent: :destroy
@@ -93,5 +93,13 @@ class Assessment < ApplicationRecord
     def options_for_select
       all.map { |assessment| [assessment.decorate.display_name, assessment.id] }
     end
+
+    def human_category(category)
+      I18n.t("activerecord.attributes.assessment.categories.#{CATEGORIES.key(category)}")
+    end
+  end
+
+  def active_questions_count
+    questions.not_deleted.where(disabled: false).count
   end
 end

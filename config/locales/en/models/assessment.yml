@@ -10,6 +10,10 @@ en:
         created_at: 'Created Date'
         updated_at: 'Modified Date'
         active: 'Active'
+        categories:
+          psychometric: 'Psychometrics'
+          organisational: 'Org Surveys'
+          '360': '360 Feedback'
   simple_form:
     placeholders:
       assessment:
