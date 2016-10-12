@@ -2,7 +2,7 @@ en:
   administration:
     clients:
       index:
-        title: Clients
+        title: Client Tenancies
         tooltips:
           create: Create
       new:
@@ -32,6 +32,10 @@ en:
         copy: Copy Client
         design: Edit Design
         licenses: Edit Licenses
+      designs:
+        form:
+          no_logo: 'No Logo yet'
+          no_background: 'No Background yet'
       resource:
         tooltips:
           copy: Copy Client

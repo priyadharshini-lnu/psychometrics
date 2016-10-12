@@ -16,6 +16,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-select'
   gem 'rails-assets-x-editable', '1.5.0'
   gem 'rails-assets-mustache.js'
+  gem 'rails-assets-bootstrap-colorpicker', '2.3.6'
+  gem 'rails-assets-bootstrap-file-input', '1.0.0'
 end
 
 ### Authentication and authorization
@@ -26,7 +28,7 @@ gem 'pundit',                     '~> 1.1.0'
 ### Assets
 gem 'bootstrap-sass',             '~> 3.3.6'
 gem 'font-awesome-rails',         '~> 4.6.3.0'
-#gem 'noty-rails',                 '~> 2.3.8'
+# gem 'noty-rails',                 '~> 2.3.8'
 
 ### TEMPLATES
 gem 'slim-rails',                 '~> 3.1.0'
@@ -50,9 +52,9 @@ gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 ### Fixed gem for decorator (rails 5)
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 ### Generate schema in each model
-gem 'annotate',                   '~> 2.7.0', github: 'ctran/annotate_models'
+gem 'annotate', '~> 2.7.0', github: 'ctran/annotate_models'
 ### Tree
-gem 'ancestry',                  github: 'stefankroes/ancestry', branch: '2-1-stable'
+gem 'ancestry', github: 'stefankroes/ancestry', branch: '2-1-stable'
 ### For organisation ENV variable
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
@@ -67,8 +69,6 @@ gem 'smarter_csv',                '~> 1.1.0'
 # For unpoad file as Ajax
 gem 'jquery-fileupload-rails',    '~> 0.4.6'
 gem 'redis'
-
-gem 'paperclip',                  '~> 5.0.0'
 
 gem 'ckeditor'
 

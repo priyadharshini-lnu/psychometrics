@@ -31,19 +31,10 @@ $(function() {
 
         //Bootstrap colopicker
         var feColorpicker = function(){
-            // Default colorpicker hex
-            if($(".colorpicker").length > 0)
-                $(".colorpicker").colorpicker({format: 'hex'});
-
-            // RGBA mode
-            if($(".colorpicker_rgba").length > 0)
-                $(".colorpicker_rgba").colorpicker({format: 'rgba'});
-
-            // Sample
-            if($("#colorpicker").length > 0)
-                $("#colorpicker").colorpicker();
-
-        }// END Bootstrap colorpicker
+            if($(".colorfield").length > 0)
+                $(".colorfield").colorpicker();
+        }
+        // END Bootstrap colorpicker
 
         //Bootstrap select
         var feSelect = function(){
@@ -90,7 +81,6 @@ $(function() {
                     feTooltips();
                     fePopover();
                     feiCheckbox();
-                    feBsFileInput();
                     feDaterangepicker();
                 }
         }

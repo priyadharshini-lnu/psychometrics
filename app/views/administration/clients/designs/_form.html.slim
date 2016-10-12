@@ -1,0 +1,53 @@
+= simple_form_for(@resource, as: :resource, url: { action: :update }, remote: true) do |f|
+  .modal-body
+    = f.error_notification
+    .form-inputs.clearfix
+      // Subdomain
+      .form-group
+        = f.label :subdomain, class: 'control-label'
+        .input-group
+          = f.input_field :subdomain, class: 'form-control'
+          span.input-group-addon
+            | .
+            = Settings.domain 
+      // File input      
+      = f.input :logo, hint: f.object.logo.present? ? f.input(:remove_logo, as: :boolean) + image_tag(f.object.logo.url(:thumb)) : content_tag(:span, t('.no_logo'))
+      = f.input :background, hint: f.object.background.present? ? f.input(:remove_background, as: :boolean) + image_tag(f.object.background.url(:thumb)) : content_tag(:span, t('.no_background'))
+      .form-group
+        = f.label :background_color, class: 'control-label'
+        .input-group.colorfield
+          = f.input_field :background_color, class: 'form-control'
+          span.input-group-addon
+            i       
+  .modal-footer
+    .btn-group
+      = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+// Upload file by AJAX
+javascript:
+  $(function(){
+    $('#edit_resource').on('submit', function(event) {
+      event.stopPropagation(); // Stop stuff happening
+      event.preventDefault(); // Totally stop stuff happening
+
+      var form = $(this);
+      var formdata = false;
+      if (window.FormData){
+          formdata = new FormData(form[0]);
+      }
+
+      var formAction = form.attr('action');
+      $.ajax({
+        url         : formAction,
+        data        : formdata ? formdata : form.serialize(),
+        dataType    : 'script',
+        cache       : false,
+        contentType : false,
+        processData : false,
+        type        : 'POST',
+        success     : function(data, textStatus, jqXHR){
+
+        }
+      });
+    });
+  });
