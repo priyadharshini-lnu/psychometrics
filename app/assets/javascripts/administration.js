@@ -3,6 +3,8 @@
 ///// START PLUGINS
 //= require bootstrap-sprockets
 //= require bootstrap-select
+//= require bootstrap-colorpicker
+//= require bootstrap-file-input/bootstrap.file-input.js
 
 
 ///// START THIS PAGE PLUGINS
@@ -17,7 +19,6 @@
 
 ///// Sidebar plugins
 //= require administration/plugins/jquery.sidebar
-
 
 ///// START TEMPLATE
 //= require administration/actions.js
@@ -43,5 +44,3 @@
 //= require mustache.js.js
 
 //= require_tree ./administration
-
-

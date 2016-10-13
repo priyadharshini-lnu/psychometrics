@@ -66,6 +66,9 @@ class User < ApplicationRecord
   has_many :memberships
   has_many :clients, through: :memberships
 
+  has_many :assigns, dependent: :destroy
+  has_many :assessments, through: :assigns
+
   validates :first_name, :last_name, :email, :role, presence: true
   validates :first_name, :last_name, :email, length: { maximum: 100 }, allow_blank: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
@@ -98,7 +101,7 @@ class User < ApplicationRecord
   # TODO: Remove, because we can use devise_scope
   def role_scope
     USER_ROLES_SCOPES.each do |scope, roles|
-      break scope if is?(*roles.map { |role| USER_ROLES.key(role)})
+      break scope if is?(*roles.map { |role| USER_ROLES.key(role) })
     end
   end
 
@@ -130,7 +133,7 @@ class User < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
+    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
     case sort_key.to_s
     when /^id_/
       order("users.id #{direction}")

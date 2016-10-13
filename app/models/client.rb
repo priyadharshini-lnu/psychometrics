@@ -23,8 +23,15 @@ class Client < ApplicationRecord
 
   has_many :memberships
   has_many :users, through: :memberships
+  has_and_belongs_to_many :assessments, join_table: :assessments_clients
+  has_and_belongs_to_many :reports, join_table: :clients_reports
 
   validates :name, presence: true, length: { maximum: 200 }, uniqueness: true
+
+  store :design, accessors: [:background_color]
+
+  mount_uploader :logo, ImageUploader
+  mount_uploader :background, ImageUploader
 
   filterrific(
     default_filter_params: {
@@ -44,7 +51,7 @@ class Client < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
+    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
     column = sort_key.gsub("_#{direction}", '')
     if column.in?(%w(id active name created_at updated_at licenses_used licenses_expire))
       order("clients.#{column} #{direction}")

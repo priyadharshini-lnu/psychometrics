@@ -97,6 +97,16 @@ CREATE TABLE assessments (
 
 
 --
+-- Name: assessments_clients; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE assessments_clients (
+    assessment_id integer,
+    client_id integer
+);
+
+
+--
 -- Name: assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -113,6 +123,45 @@ CREATE SEQUENCE assessments_id_seq
 --
 
 ALTER SEQUENCE assessments_id_seq OWNED BY assessments.id;
+
+
+--
+-- Name: assigns; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE assigns (
+    id integer NOT NULL,
+    assessment_id integer,
+    user_id integer,
+    client_id integer,
+    results jsonb,
+    scoring jsonb,
+    embedded_data jsonb,
+    status integer DEFAULT 0,
+    role integer DEFAULT 0,
+    completed_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: assigns_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE assigns_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assigns_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE assigns_id_seq OWNED BY assigns.id;
 
 
 --
@@ -164,14 +213,12 @@ CREATE TABLE clients (
     licenses_used integer DEFAULT 0,
     licenses_expire date,
     subdomain character varying,
-    logo_file_name character varying,
-    logo_content_type character varying,
-    logo_file_size integer,
-    logo_updated_at timestamp without time zone,
+    logo character varying,
     design json,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    background character varying
 );
 
 
@@ -192,6 +239,16 @@ CREATE SEQUENCE clients_id_seq
 --
 
 ALTER SEQUENCE clients_id_seq OWNED BY clients.id;
+
+
+--
+-- Name: clients_reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE clients_reports (
+    client_id integer,
+    report_id integer
+);
 
 
 --
@@ -790,6 +847,13 @@ ALTER TABLE ONLY assessments ALTER COLUMN id SET DEFAULT nextval('assessments_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY assigns ALTER COLUMN id SET DEFAULT nextval('assigns_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY blocks ALTER COLUMN id SET DEFAULT nextval('blocks_id_seq'::regclass);
 
 
@@ -926,6 +990,14 @@ ALTER TABLE ONLY ar_internal_metadata
 
 ALTER TABLE ONLY assessments
     ADD CONSTRAINT assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: assigns_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assigns
+    ADD CONSTRAINT assigns_pkey PRIMARY KEY (id);
 
 
 --
@@ -1081,10 +1153,24 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: index_assessments_clients_on_assessment_id_and_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessments_clients_on_assessment_id_and_client_id ON assessments_clients USING btree (assessment_id, client_id);
+
+
+--
 -- Name: index_assessments_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_assessments_on_dimension_id ON assessments USING btree (dimension_id);
+
+
+--
+-- Name: index_assigns_on_client_id_and_assessment_id_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_assigns_on_client_id_and_assessment_id_and_user_id ON assigns USING btree (client_id, assessment_id, user_id);
 
 
 --
@@ -1106,6 +1192,13 @@ CREATE INDEX index_blocks_on_template_id ON blocks USING btree (template_id);
 --
 
 CREATE UNIQUE INDEX index_clients_on_subdomain ON clients USING btree (subdomain);
+
+
+--
+-- Name: index_clients_reports_on_client_id_and_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_clients_reports_on_client_id_and_report_id ON clients_reports USING btree (client_id, report_id);
 
 
 --
@@ -1350,6 +1443,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011144225'), ('20161012114132'), ('20161013102335');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427');
 
 

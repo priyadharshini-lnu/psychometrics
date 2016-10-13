@@ -1,16 +1,38 @@
-class Administration::ClientPolicy < Administration::BasePolicy
-  def license?
-    update?
-  end
+module Administration
+  class ClientPolicy < Administration::BasePolicy
+    def index?
+      @user.is?(:superadmin, :admin)
+    end
 
-  def scope
-    Pundit.policy_scope!(user, record.class)
-  end
+    def show?
+      scope.where(id: record.id).exists?
+    end
 
-  class Scope < Administration::BasePolicy::Scope
-    def resolve
-      return scope if @user.is?(:superadmin)
-      scope.where(id: @user.client_ids)
+    def update?
+      @user.is?(:superadmin, :admin)
+    end
+
+    def edit?
+      update?
+    end
+
+    def license?
+      @user.is?(:superadmin)
+    end
+
+    def design?
+      @user.is?(:superadmin)
+    end
+
+    def scope
+      Pundit.policy_scope!(user, record.class)
+    end
+
+    class Scope < Administration::BasePolicy::Scope
+      def resolve
+        return scope if @user.is?(:superadmin)
+        scope.where(id: @user.client_ids)
+      end
     end
   end
 end
