@@ -6,17 +6,17 @@ class AssessmentsController < ApplicationController
 
   # TODO: add real company
   def pass
-    @result = Result.find_or_create_by(
+    @assign = Assign.find_by(
       assessment_id: @resource.id,
       user_id: pundit_user.id,
-      client_id: pundit_user.clients[0].id
+      # client_id: pundit_user.clients[0].id
     )
-    @result.update(status: Result.statuses['in_progress'])
+    @assign.update(status: Assign.statuses['in_progress'])
     render layout: 'empty'
   end
 
   def index
-    @resources = Assessment.all
+    @resources = policy_scope(@resource_class).all
   end
 
   private
