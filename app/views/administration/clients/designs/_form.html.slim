@@ -12,13 +12,17 @@
             = Settings.domain 
       // File input      
       = f.input :logo, hint: f.object.logo.present? ? f.input(:remove_logo, as: :boolean) + image_tag(f.object.logo.url(:thumb)) : content_tag(:span, t('.no_logo'))
-      = f.input :background, hint: f.object.background.present? ? f.input(:remove_background, as: :boolean) + image_tag(f.object.background.url(:thumb)) : content_tag(:span, t('.no_background'))
-      .form-group
-        = f.label :background_color, class: 'control-label'
-        .input-group.colorfield
-          = f.input_field :background_color, class: 'form-control'
-          span.input-group-addon
-            i       
+      .row
+        .col-sm-5
+          = f.input :background, hint: f.object.background.present? ? f.input(:remove_background, as: :boolean) + image_tag(f.object.background.url(:thumb)) : content_tag(:span, t('.no_background'))
+        .col-sm-2 OR
+        .col-sm-5
+          .form-group
+            = f.label :background_color, class: 'control-label'
+            .input-group.colorfield
+              = f.input_field :background_color, class: 'form-control'
+              span.input-group-addon
+                i       
   .modal-footer
     .btn-group
       = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
