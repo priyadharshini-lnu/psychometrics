@@ -96,6 +96,16 @@ CREATE TABLE assessments (
 
 
 --
+-- Name: assessments_clients; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE assessments_clients (
+    assessment_id integer,
+    client_id integer
+);
+
+
+--
 -- Name: assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -112,6 +122,55 @@ CREATE SEQUENCE assessments_id_seq
 --
 
 ALTER SEQUENCE assessments_id_seq OWNED BY assessments.id;
+
+
+--
+-- Name: assigns; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE assigns (
+    id integer NOT NULL,
+    assessment_id integer,
+    user_id integer,
+    client_id integer,
+    results jsonb,
+    scoring jsonb,
+    embedded_data jsonb,
+    status integer DEFAULT 0,
+    role integer DEFAULT 0,
+    completed_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: assigns_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE assigns_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assigns_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE assigns_id_seq OWNED BY assigns.id;
+
+
+--
+-- Name: assigns_reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE assigns_reports (
+    assign_id integer,
+    report_id integer
+);
 
 
 --
@@ -544,10 +603,10 @@ CREATE TABLE questions (
     required_validation json,
     validation json,
     display_logic json,
+    skip_logic json,
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
-    template_id integer,
-    skip_logic json
+    template_id integer
 );
 
 
@@ -784,6 +843,13 @@ ALTER TABLE ONLY assessments ALTER COLUMN id SET DEFAULT nextval('assessments_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY assigns ALTER COLUMN id SET DEFAULT nextval('assigns_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY blocks ALTER COLUMN id SET DEFAULT nextval('blocks_id_seq'::regclass);
 
 
@@ -920,6 +986,14 @@ ALTER TABLE ONLY ar_internal_metadata
 
 ALTER TABLE ONLY assessments
     ADD CONSTRAINT assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: assigns_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assigns
+    ADD CONSTRAINT assigns_pkey PRIMARY KEY (id);
 
 
 --
@@ -1075,10 +1149,31 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: index_assessments_clients_on_assessment_id_and_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessments_clients_on_assessment_id_and_client_id ON assessments_clients USING btree (assessment_id, client_id);
+
+
+--
 -- Name: index_assessments_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_assessments_on_dimension_id ON assessments USING btree (dimension_id);
+
+
+--
+-- Name: index_assigns_on_client_id_and_assessment_id_and_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_assigns_on_client_id_and_assessment_id_and_user_id ON assigns USING btree (client_id, assessment_id, user_id);
+
+
+--
+-- Name: index_assigns_reports_on_assign_id_and_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assigns_reports_on_assign_id_and_report_id ON assigns_reports USING btree (assign_id, report_id);
 
 
 --
