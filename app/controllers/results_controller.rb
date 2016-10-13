@@ -9,7 +9,9 @@ class ResultsController < ApplicationController
   def update
     @resource.assign_attributes(resource_params)
     @resource.step += 1
+    @resource.calculate_scoring if @resource.complete?
     @resource.save
+    Rails.logger.warn "errors #{@resource.errors.inspect}"
     head :no_content
   end
 
@@ -25,8 +27,9 @@ class ResultsController < ApplicationController
   end
 
   def resource_params
-    props = params.require(:resource).fetch(:props, nil).try(:permit!)
-    params.require(:resource).permit(:step, :status).merge(props: props)
+    props         = params.require(:resource).fetch(:props, nil).try(:permit!)
+    embedded_data = params.require(:resource).fetch(:embedded_data, nil).try(:permit!)
+    params.require(:resource).permit(:step, :status).merge(props: props, embedded_data: embedded_data)
   end
 
   # Authorisation user

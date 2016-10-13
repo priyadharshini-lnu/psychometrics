@@ -1,6 +1,6 @@
 class AssessmentDecorator < BaseDecorator
   def category
-    Assessment.human_category(object.category)
+    I18n.t("activerecord.attributes.assessment.categories.#{ Assessment::CATEGORIES.key(object.category) }")
   end
 
   def description

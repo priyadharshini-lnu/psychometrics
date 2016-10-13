@@ -93,10 +93,6 @@ class Assessment < ApplicationRecord
     def options_for_select
       all.map { |assessment| [assessment.decorate.display_name, assessment.id] }
     end
-
-    def human_category(category)
-      I18n.t("activerecord.attributes.assessment.categories.#{CATEGORIES.key(category)}")
-    end
   end
 
   def active_questions_count
