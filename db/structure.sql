@@ -164,16 +164,6 @@ ALTER SEQUENCE assigns_id_seq OWNED BY assigns.id;
 
 
 --
--- Name: assigns_reports; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE assigns_reports (
-    assign_id integer,
-    report_id integer
-);
-
-
---
 -- Name: blocks; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -248,6 +238,16 @@ CREATE SEQUENCE clients_id_seq
 --
 
 ALTER SEQUENCE clients_id_seq OWNED BY clients.id;
+
+
+--
+-- Name: clients_reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE clients_reports (
+    client_id integer,
+    report_id integer
+);
 
 
 --
@@ -1170,13 +1170,6 @@ CREATE UNIQUE INDEX index_assigns_on_client_id_and_assessment_id_and_user_id ON 
 
 
 --
--- Name: index_assigns_reports_on_assign_id_and_report_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_assigns_reports_on_assign_id_and_report_id ON assigns_reports USING btree (assign_id, report_id);
-
-
---
 -- Name: index_blocks_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1195,6 +1188,13 @@ CREATE INDEX index_blocks_on_template_id ON blocks USING btree (template_id);
 --
 
 CREATE UNIQUE INDEX index_clients_on_subdomain ON clients USING btree (subdomain);
+
+
+--
+-- Name: index_clients_reports_on_client_id_and_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_clients_reports_on_client_id_and_report_id ON clients_reports USING btree (client_id, report_id);
 
 
 --
@@ -1432,4 +1432,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011144225');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161013084133'), ('20161013125051'), ('20161013134427');
+
+

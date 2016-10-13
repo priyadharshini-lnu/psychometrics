@@ -24,6 +24,7 @@ class Client < ApplicationRecord
   has_many :memberships
   has_many :users, through: :memberships
   has_and_belongs_to_many :assessments, join_table: :assessments_clients
+  has_and_belongs_to_many :reports, join_table: :clients_reports
 
   validates :name, presence: true, length: { maximum: 200 }, uniqueness: true
 
