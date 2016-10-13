@@ -3,6 +3,7 @@ class Report < ApplicationRecord
 
   belongs_to :assessment
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
+  has_and_belongs_to_many :assigns, join_table: :assigns_reports
 
   validates :assessment, presence: true
 
