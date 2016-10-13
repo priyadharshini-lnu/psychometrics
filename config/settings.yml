@@ -1,1 +1,3 @@
 project_name: Psychometrics
+domain: localhost # psychometrics.co.uk
+subdomain: localhost # subdomain

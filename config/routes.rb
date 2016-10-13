@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  default_url_options domain: Settings.domain, subdomain: false
+
   mount ActionCable.server => '/cable'
   devise_for :administrators,
              path: 'administration/administrators',
@@ -48,6 +50,8 @@ Rails.application.routes.draw do
             get :export
           end
         end
+
+        resource :designs, only: [:edit, :update]
       end
     end
     ### END CLIENTS

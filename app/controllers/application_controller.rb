@@ -11,9 +11,11 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   add_flash_types :notice, :error, :success
 
+  prepend_before_action :set_client_by_subdomain
+  prepend_before_action :authenticate
+
   # Authentication user/manager
   before_action :authenticate_user!
-  before_action :authenticate
 
   # Redirect administrator after log out
   #
@@ -37,6 +39,12 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def set_client_by_subdomain
+    subdomain = request.subdomain
+    subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '')
+    @current_client = Client.find_by(subdomain: subdomain) unless subdomain.blank?
+  end
 
   def authenticate
     return if Rails.env.development?

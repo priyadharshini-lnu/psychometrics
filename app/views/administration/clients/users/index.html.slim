@@ -4,7 +4,7 @@
       h2.mrl = @client.decorate.display_name
       = active_link_to(t('administration.navigation.users'), administration_client_users_path(@client), class: 'btn btn-default')
       = active_link_to(t('administration.navigation.reporting'), administration_users_path, class: 'btn btn-default')
-      = active_link_to(t('administration.navigation.design'), administration_users_path, class: 'btn btn-default')
+      = active_link_to(t('administration.navigation.design'), edit_administration_client_designs_path, remote: true, class: 'btn btn-default')
 
     .panel.panel-default
       .panel-heading
