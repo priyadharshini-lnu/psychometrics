@@ -1,4 +1,4 @@
-class ResultsController < ApplicationController
+class AssignsController < ApplicationController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:update]
   append_before_action :pundit_authorize
@@ -9,6 +9,10 @@ class ResultsController < ApplicationController
   def update
     @resource.assign_attributes(resource_params)
     @resource.step += 1
+    if @resource.completed?
+      @resource.calculate_scoring
+      @resource.completed_at = Time.now
+    end
     @resource.save
     head :no_content
   end
@@ -17,7 +21,7 @@ class ResultsController < ApplicationController
 
   # Set model
   def set_resource_class
-    @resource_class ||= Result
+    @resource_class ||= Assign
   end
 
   def set_resource
@@ -25,8 +29,9 @@ class ResultsController < ApplicationController
   end
 
   def resource_params
-    props = params.require(:resource).fetch(:props, nil).try(:permit!)
-    params.require(:resource).permit(:step, :status).merge(props: props)
+    results       = params.require(:resource).fetch(:results, nil).try(:permit!)
+    embedded_data = params.require(:resource).fetch(:embedded_data, nil).try(:permit!)
+    params.require(:resource).permit(:step, :status).merge(results: results, embedded_data: embedded_data)
   end
 
   # Authorisation user

@@ -1,0 +1,50 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    title = Settings.project_name
+    = csrf_meta_tags
+    = jquery_include_tag :google
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+  body
+    #wrapper
+      #sidebar-wrapper
+        ul#sidebar_menu.sidebar-nav
+          li.sidebar-brand
+            a#menu-toggle[href="#"]
+              = t('.menu')
+              span#main_icon.glyphicon.glyphicon-align-justify
+        ul#sidebar.sidebar-nav
+          li
+            = link_to [:assessments]
+              span.linkTitle
+                = t('.dashboard')
+              span.sub_icon
+                = image_tag 'dashboardFlatIcon', class: 'dashboardIcon'
+          li
+            a[href="#"]
+              span.linkTitle
+                = t('.help')
+              span.sub_icon
+                = image_tag 'helpFlatIcon', class: 'helpIcon'
+          li
+            = link_to destroy_session_path(pundit_user.user.try(:devise_scope)), method: :delete
+              span.linkTitle
+                = t('.logout')
+              span.sub_icon
+                = image_tag 'signOutFlatIcon', class: 'signOutIcon'
+      #page-content-wrapper
+        .page-content.inset
+          header
+            .container-fluid
+              .row
+                .col-xs-3.col-md-3
+                .col-xs-6.col-md-6
+                  = image_tag 'the-talent-enterprise-logo', class: 'img-responsive center-block headerLogo', alt: 'The Talent Enterprise logo'
+                .col-xs-3.col-md-3
+          .container
+            = yield
+            = render partial: '//layouts/footer'

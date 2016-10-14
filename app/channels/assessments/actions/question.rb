@@ -8,8 +8,9 @@ module Assessments
         questions.map { |question| { value: question.id, label: question.name } }
       end
 
-      action :create do |data|
+      action :create do |data, _current_administrator, assessment|
         block = ::Block.find(data.delete('block_id'))
+        data['assessment_id'] = assessment.id
         question = block.questions.create!(data)
         QuestionSerializer.new(question).to_hash
       end

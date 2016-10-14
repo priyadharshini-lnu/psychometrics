@@ -1,0 +1,6 @@
+en:
+  assigns:
+    resource:
+    decorator:
+      completed: "Completed %{date}"
+      not_completed: "Not Completed"

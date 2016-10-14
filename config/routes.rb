@@ -162,7 +162,7 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :results
+  resources :assigns, only: [:update]
 
   root to: 'home#index'
 end

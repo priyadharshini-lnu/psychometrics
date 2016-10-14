@@ -1,0 +1,33 @@
+.panel.panel-default
+  .panel-heading
+    .hidden-xs.col-sm-1.togglePanel.text-center
+      a[data-toggle="collapse" data-parent="#accordion" href="##{dom_id(resource)}"]
+        span.glyphicon.glyphicon-chevron-down
+    .hidden-xs.col-sm-2
+      = image_tag 'assessmentThumbnail3', class: 'img-responsive center-block', alt: 'Assessment Thumbnail #1'
+    .col-xs-12.col-sm-9.col-md-5
+      .well.assessmentTitleWell
+        h3.assessmentTitle
+          = resource.decorate.category
+      .well.assessmentDetailsWell
+        h4.detailsTitle
+          = "#{t('.questions', :count => resource.active_questions_count)} - 30 minutes to complete"
+    .clearfix.visible-sm
+    .col-sm-6.col-md-2.tabletPadding
+      button.btn.btn-courseProgress
+        = link_to resource.assigns.first.decorate.status, [:pass, resource]
+      .well.assignedDateWell
+        p
+          = t('.assigned', :date => resource.assigns.first.decorate.created_at)
+    .col-sm-6.col-md-2.tabletPadding
+      button.btn.btn-courseGrade[type="submit"]
+        | Results
+      .well.completedDateWell
+        p
+          = resource.assigns.first.decorate.completed_at
+    .clearfix
+  div.panel-collapse.collapse id=dom_id(resource)
+    .panel-body
+      .well.expandedDetailsWell
+        p.expandedCopy
+          = resource.decorate.description

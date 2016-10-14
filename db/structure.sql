@@ -91,7 +91,8 @@ CREATE TABLE assessments (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     flow json,
-    norm_rules json
+    norm_rules json,
+    description text
 );
 
 
@@ -140,7 +141,8 @@ CREATE TABLE assigns (
     role integer DEFAULT 0,
     completed_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    step integer
 );
 
 
@@ -603,10 +605,11 @@ CREATE TABLE questions (
     required_validation json,
     validation json,
     display_logic json,
-    skip_logic json,
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
-    template_id integer
+    template_id integer,
+    skip_logic json,
+    assessment_id integer
 );
 
 
@@ -732,42 +735,6 @@ CREATE SEQUENCE reports_pages_id_seq
 --
 
 ALTER SEQUENCE reports_pages_id_seq OWNED BY reports_pages.id;
-
-
---
--- Name: results; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE results (
-    id integer NOT NULL,
-    status character varying,
-    step integer,
-    props json,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    user_id integer,
-    client_id integer,
-    assessment_id integer
-);
-
-
---
--- Name: results_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE results_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: results_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE results_id_seq OWNED BY results.id;
 
 
 --
@@ -962,13 +929,6 @@ ALTER TABLE ONLY reports_pages ALTER COLUMN id SET DEFAULT nextval('reports_page
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY results ALTER COLUMN id SET DEFAULT nextval('results_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -1122,14 +1082,6 @@ ALTER TABLE ONLY reports_pages
 
 ALTER TABLE ONLY reports
     ADD CONSTRAINT reports_pkey PRIMARY KEY (id);
-
-
---
--- Name: results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY results
-    ADD CONSTRAINT results_pkey PRIMARY KEY (id);
 
 
 --
@@ -1303,6 +1255,13 @@ CREATE INDEX index_norms_on_dimension_id ON norms USING btree (dimension_id);
 
 
 --
+-- Name: index_questions_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_questions_on_assessment_id ON questions USING btree (assessment_id);
+
+
+--
 -- Name: index_questions_on_block_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1335,13 +1294,6 @@ CREATE INDEX index_reports_on_assessment_id ON reports USING btree (assessment_i
 --
 
 CREATE INDEX index_reports_pages_on_report_id ON reports_pages USING btree (report_id);
-
-
---
--- Name: index_results_on_client_id_and_assessment_id_and_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_results_on_client_id_and_assessment_id_and_user_id ON results USING btree (client_id, assessment_id, user_id);
 
 
 --
@@ -1432,6 +1384,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161013084133'), ('20161013125051'), ('20161013134427');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337');
 
 

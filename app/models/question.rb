@@ -24,13 +24,16 @@ class Question < ApplicationRecord
   include Copyable
 
   belongs_to :block
+  belongs_to :assessment
   belongs_to :template, class_name: 'Question', dependent: :destroy
   has_many :comments
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
+  has_many :factors_scorings, dependent: :destroy
 
   enum view: [:assessments, :templates, :blocks]
 
   scope :deleted, -> { where.not(deleted_at: nil) }
+  scope :not_deleted, -> { where(deleted_at: nil) }
   scope :templates, -> { where(view: :templates) }
 
   #
