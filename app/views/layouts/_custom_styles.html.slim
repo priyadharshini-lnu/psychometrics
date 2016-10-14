@@ -1,0 +1,15 @@
+- if @current_client && @current_client.background.present?
+  css:
+    html, body {
+      background: url(#{@current_client.background.url}) no-repeat center center fixed !important;
+      background-size: cover !important;
+    }
+- elsif @current_client && @current_client.background_color.present?
+  css:
+    html, body {
+      background-image: none
+    }
+
+    body {
+      background-color: #{@current_client.background_color} !important;
+    }
