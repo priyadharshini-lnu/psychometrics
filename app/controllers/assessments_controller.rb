@@ -8,8 +8,8 @@ class AssessmentsController < ApplicationController
   def pass
     @assign = Assign.find_by(
       assessment_id: @resource.id,
-      user_id: pundit_user.id,
-      # client_id: pundit_user.clients[0].id
+      user_id: pundit_user.user.id,
+      client_id: @current_client.id
     )
     @assign.update(status: Assign.statuses['in_progress'])
     render layout: 'empty'
@@ -33,5 +33,10 @@ class AssessmentsController < ApplicationController
   # Authorisation user
   def pundit_authorize
     authorize @resource || @resource_class
+  end
+
+  def pundit_user
+    # TODO: when we remove second scope, fix line below
+    CurrentContext.new(current_administrator || current_user, @current_client)
   end
 end

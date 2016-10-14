@@ -11,8 +11,8 @@ class Assign < ApplicationRecord
   after_initialize :init
 
   def init
-    self.status ||= Assign.statuses['not_started']
-    self.step   ||= 0
+    self.status  ||= Assign.statuses['not_started']
+    self.step    ||= 0
     self.scoring ||= {}
   end
 
@@ -21,22 +21,26 @@ class Assign < ApplicationRecord
     factors_scoring_map = factors_scoring.group_by(&:factor_id)
     questions_ids       = factors_scoring.pluck(:question_id).uniq
     questions_map       = Question.where(id: questions_ids).all.group_by(&:id)
+    self.scoring        = {}
     factors_scoring_map.each do |factor_id, scoring_array|
       self.scoring[factor_id] = []
       scoring_array.each do |question_scoring|
-        question      = questions_map[question_scoring.question_id].try(:[], 0)
+        question      = questions_map[question_scoring.question_id].first
         scoring_class = "Scoring::#{question.type}"
-        unless Object.const_defined?(scoring_class)
-          Rails.logger.error "Should be implemented class #{scoring_class}"
-        end
-        result = results[question.id.to_s]
-
+        result        = results[question.id.to_s]
         if result && question
-          self.scoring[factor_id] << scoring_class.constantize.new.calculate(question, result, question_scoring)
+          begin
+            scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring)
+            self.scoring[factor_id] << scoring_point if scoring_point
+          rescue
+            # TODO uncomment row below
+            # raise "Should be implemented class #{scoring_class}"
+          end
         end
       end
-      scoring_result = self.scoring[factor_id].inject { |sum, el| sum + el }.to_f / self.scoring[factor_id].size
+      scoring_result          = self.scoring[factor_id].sum.to_f / self.scoring[factor_id].size
       self.scoring[factor_id] = scoring_result if scoring_result
     end
+    nil
   end
 end

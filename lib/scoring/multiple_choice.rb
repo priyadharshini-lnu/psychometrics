@@ -4,10 +4,6 @@ module Scoring
     end
 
     def calculate(question, result, scoring_template)
-      puts "question #{question.inspect}"
-      puts "result #{result}"
-      puts "scoring_template #{scoring_template.inspect}"
-      puts "---------------------------------"
       values = []
       result['answers'].each do |answer|
         if answer['value']
@@ -15,13 +11,8 @@ module Scoring
           values << object['value'] if object
         end
       end
-      puts "merge #{result['answers']} with #{scoring_template.props}"
-      puts "values #{values}"
-      if values.size > 0
-        values.inject { |sum, el| sum + el }.to_f / values.size
-      else
-        nil
-      end
+      return values.sum.to_f / values.size if values.size > 0
+      nil
     end
   end
 end

@@ -1,0 +1,14 @@
+en:
+  activerecord:
+    models:
+      assign: 'Assigns'
+    attributes:
+      assign: &DEFAULT
+        statuses:
+          not_started: 'New'
+          in_progress: 'In Progress'
+          'completed': 'Completed'
+  simple_form:
+    placeholders:
+      assessment:
+        <<: *DEFAULT

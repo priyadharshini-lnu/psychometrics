@@ -1,13 +1,19 @@
 class AssessmentPolicy < Administration::BasePolicy
+
+  def initialize(context, record)
+    @user = context.user
+    @client = context.client
+    @record = record
+  end
+
   def pass?
-    # TODO: add client_id
-    Assign.exists?(user_id: @user.id, assessment_id: record.id)
+    @user.assigns.exists?(assessment_id: record.id, client_id: @client.id)
   end
 
   class Scope < Scope
     def resolve
-      # TODO: add client_id
-      scope.joins(:assigns).where(assigns: {user_id: @user.id})
+      scope.joins(:assigns).where(assigns: {user_id: @user.user.id, client_id: @user.client.id})
     end
   end
+
 end

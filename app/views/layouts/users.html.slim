@@ -31,7 +31,7 @@ html
               span.sub_icon
                 = image_tag 'helpFlatIcon', class: 'helpIcon'
           li
-            = link_to destroy_session_path(pundit_user.try(:devise_scope)), method: :delete
+            = link_to destroy_session_path(pundit_user.user.try(:devise_scope)), method: :delete
               span.linkTitle
                 = t('.logout')
               span.sub_icon

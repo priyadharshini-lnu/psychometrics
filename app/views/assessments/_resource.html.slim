@@ -15,16 +15,16 @@
     .clearfix.visible-sm
     .col-sm-6.col-md-2.tabletPadding
       button.btn.btn-courseProgress
-        = link_to 'Start', [:pass, resource]
+        = link_to resource.assigns.first.decorate.status, [:pass, resource]
       .well.assignedDateWell
         p
-          | Assigned 15/06/16
+          = t('.assigned', :date => resource.assigns.first.decorate.created_at)
     .col-sm-6.col-md-2.tabletPadding
       button.btn.btn-courseGrade[type="submit"]
         | Results
       .well.completedDateWell
         p
-          | Completed 15/07/16
+          = resource.assigns.first.decorate.completed_at
     .clearfix
   div.panel-collapse.collapse id=dom_id(resource)
     .panel-body

@@ -1,6 +1,7 @@
 en:
   assessments:
     resource:
+      assigned: "Assigned %{date}"
       questions:
         zero: "No Questions"
         one: "1 Question"
