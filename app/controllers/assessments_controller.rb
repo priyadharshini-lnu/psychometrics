@@ -11,7 +11,7 @@ class AssessmentsController < ApplicationController
       user_id: pundit_user.user.id,
       client_id: @current_client.id
     )
-    @assign.update(status: Assign.statuses['in_progress'])
+    @assign.update(status: Assign.statuses['in_progress'], step: 0)
     render layout: 'empty'
   end
 
