@@ -33,7 +33,7 @@ class Assign < ApplicationRecord
             scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring)
             self.scoring[factor_id] << scoring_point if scoring_point
           rescue
-            # TODO uncomment row below
+            # TODO: uncomment row below
             # raise "Should be implemented class #{scoring_class}"
           end
         end

@@ -61,12 +61,6 @@ class Assessment < ApplicationRecord
     where('name ILIKE ?', "%#{query}%")
   }
 
-  scope :with_related_assign, lambda { |client_id, user_id|
-    joins("LEFT JOIN assigns on assigns.assessment_id = assessments.id
-            and assigns.client_id = '#{client_id}'
-            and assigns.norm_id = '#{user_id}'")
-  }
-
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.

@@ -3,7 +3,7 @@ module Scoring
     def initialize
     end
 
-    def calculate(question, result, scoring_template)
+    def calculate(_question, result, scoring_template)
       values = []
       result['answers'].each do |answer|
         if answer['value']
@@ -11,7 +11,7 @@ module Scoring
           values << object['value'] if object
         end
       end
-      return values.sum.to_f / values.size if values.size > 0
+      return values.sum.to_f / values.size unless values.empty?
       nil
     end
   end
