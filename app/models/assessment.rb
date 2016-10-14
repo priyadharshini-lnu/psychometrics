@@ -21,10 +21,11 @@ class Assessment < ApplicationRecord
   has_many :norms, through: :dimension
   has_many :factors_scoring
   has_many :reports, dependent: :destroy
-  belongs_to :dimension
-  has_and_belongs_to_many :clients, join_table: :assessments_clients
   has_many :assigns, dependent: :destroy
   has_many :users, through: :assigns
+  has_and_belongs_to_many :clients, join_table: :assessments_clients
+  belongs_to :dimension
+
 
   # CATEGORIES constant
   CATEGORIES = {
