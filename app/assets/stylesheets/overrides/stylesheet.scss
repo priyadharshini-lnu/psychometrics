@@ -6,3 +6,7 @@
     text-decoration: none;
   }
 }
+
+label > input[type='radio']{ /* HIDE RADIO */
+  display:inherit;
+}
