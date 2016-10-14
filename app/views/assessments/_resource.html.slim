@@ -12,12 +12,12 @@
           = "#{t('.questions', :count => resource.active_questions_count)} - 30 minutes to complete"
     .clearfix.visible-sm
     .col-sm-6.col-md-2.tabletPadding
-      = link_to resource.assigns.first.decorate.status, [:pass, resource], target: '_blank', class: "btn btn-courseProgress #{resource.assigns.first.completed? ? '1disabled' : ''}"
+      = link_to resource.assigns.first.decorate.status, [:pass, resource], class: "btn btn-courseProgress #{resource.assigns.first.completed? ? '1disabled' : ''}"
       .well.assignedDateWell
         p
           = t('.assigned', :date => resource.assigns.first.decorate.created_at)
     .col-sm-6.col-md-2.tabletPadding
-      = link_to t('.results'), preview_administration_report_path(Report.last), target: '_blank', class: "btn btn-courseGrade #{!resource.assigns.first.completed? ? 'disabled' : ''}"
+      = link_to t('.results'), preview_administration_report_path(Report.last), class: "btn btn-courseGrade #{!resource.assigns.first.completed? ? 'disabled' : ''}"
       .well.completedDateWell
         p
           = resource.assigns.first.decorate.completed_at

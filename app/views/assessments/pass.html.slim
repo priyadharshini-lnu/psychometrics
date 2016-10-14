@@ -1,77 +1,10 @@
-doctype html
-html
-  head
-    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
-    meta content="IE=edge" http-equiv="X-UA-Compatible"
-    meta content="width=device-width, initial-scale=1" name="viewport"
-    title = Settings.project_name
-    = csrf_meta_tags
-    = jquery_include_tag :google
-    = stylesheet_link_tag 'application', media: 'all'
-    = javascript_include_tag 'application'
-    - if @current_client && @current_client.background.present?
-      css:
-        html, body {
-          background: url(#{@current_client.background.url}) no-repeat center center fixed !important;
-          background-size: cover !important;
-        }
-    - elsif @current_client && @current_client.background_color.present?
-      css:
-        html, body {
-          background-image: none
-        }
-
-        body {
-          background-color: #{@current_client.background_color} !important;
-        }
-  body
-    #wrapper
-      #sidebar-wrapper
-        ul#sidebar_menu.sidebar-nav
-          li.sidebar-brand
-            a#menu-toggle[href="#"]
-              = t('.menu')
-              span#main_icon.glyphicon.glyphicon-align-justify
-        ul#sidebar.sidebar-nav
-          li
-            = link_to root_path
-              span.linkTitle
-                = t('.dashboard')
-              span.sub_icon
-                = image_tag 'dashboardFlatIcon', class: 'dashboardIcon'
-          li
-            a[href="#"]
-              span.linkTitle
-                = t('.help')
-              span.sub_icon
-                = image_tag 'helpFlatIcon', class: 'helpIcon'
-          li
-            = link_to(destroy_session_path(pundit_user.user.try(:devise_scope)), method: :delete)
-              span.linkTitle
-                = t('.logout')
-              span.sub_icon
-                = image_tag 'signOutFlatIcon', class: 'signOutIcon'
-      #page-content-wrapper
-        .page-content.inset
-          header
-            .container-fluid
-              .row
-                .col-xs-3.col-md-3
-                .col-xs-6.col-md-
-                  - if @current_client && @current_client.logo.present?
-                    = image_tag @current_client.logo.url, class: 'img-responsive center-block headerLogo', alt: @current_client.decorate.display_name
-                  - else
-                    = image_tag 'the-talent-enterprise-logo', class: 'img-responsive center-block headerLogo', alt: 'The Talent Enterprise logo'
-                .col-xs-3.col-md-3
-          .container
-            .row
-              .col-xs-12
-                .contentBox
-                  .contentTitleHeader
-                    i.glyphicon.glyphicon-question-sign.titleIcon.pull-left
-                    p.contentTitle Questions
-                  .questionContent
-                    #psychometrics_preview data-result="#{AssignSerializer.new(@assign).to_json}" data-type="pass_assessment" data-data="#{AssessmentSerializer.new(@resource).to_json(include: '**')}"
-                    = javascript_include_tag :psychometrics_vendor
-                    = javascript_include_tag :psychometrics_preview
-            = render partial: '//layouts/footer'
+.row
+  .col-xs-12
+    .contentBox
+      .contentTitleHeader
+        i.glyphicon.glyphicon-question-sign.titleIcon.pull-left
+        p.contentTitle Questions
+      .questionContent
+        #psychometrics_preview data-result="#{AssignSerializer.new(@assign).to_json}" data-type="pass_assessment" data-data="#{AssessmentSerializer.new(@resource).to_json(include: '**')}"
+        = javascript_include_tag :psychometrics_vendor
+        = javascript_include_tag :psychometrics_preview
