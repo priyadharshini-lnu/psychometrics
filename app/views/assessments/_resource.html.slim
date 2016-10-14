@@ -3,9 +3,7 @@
     .hidden-xs.col-sm-1.togglePanel.text-center
       a[data-toggle="collapse" data-parent="#accordion" href="##{dom_id(resource)}"]
         span.glyphicon.glyphicon-chevron-down
-    .hidden-xs.col-sm-2
-      = image_tag 'assessmentThumbnail3', class: 'img-responsive center-block', alt: 'Assessment Thumbnail #1'
-    .col-xs-12.col-sm-9.col-md-5
+    .col-xs-12.col-sm-11.col-md-7
       .well.assessmentTitleWell
         h3.assessmentTitle
           = resource.decorate.category
