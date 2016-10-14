@@ -16,6 +16,9 @@ class ApplicationController < ActionController::Base
 
   # Authentication user/manager
   before_action :authenticate_user!
+  skip_before_action :authenticate_user!, if: :current_administrator
+
+  # append_before_action :set_company_by_user, if: :pundit_user
 
   # Redirect administrator after log out
   #
@@ -44,6 +47,15 @@ class ApplicationController < ActionController::Base
     subdomain = request.subdomain
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '')
     @current_client = Client.find_by(subdomain: subdomain) unless subdomain.blank?
+  end
+
+  def set_company_by_user
+    # Set first Client of User:
+    # * IF Domain not provide Client
+    # * IF User has no Client provided by subdomain
+    @current_client = pundit_user.try(:clients).try(:first) unless @current_client || (pundit_user.try(:client_ids) || []).include?(@current_client.try(:id))
+    sign_out current_user if current_user && !@current_client
+    redirect_to administration_root_path if current_administrator && !@current_client
   end
 
   def authenticate

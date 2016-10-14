@@ -1,6 +1,6 @@
 en:
   administration:
-    reports:
+    reports: &REPORTS
       index:
         title: "Reports"
         tooltips:
@@ -42,3 +42,6 @@ en:
               Delete <strong>Report</strong> ?
             body: >
               <p>Are you sure you want to delete this Report?</p>
+    clients:
+      reports:
+        <<: *REPORTS
