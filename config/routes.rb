@@ -156,7 +156,7 @@ Rails.application.routes.draw do
     put '/factors_norms/update', to: 'factors_norms#update'
   end
 
-  resources :assessments do
+  resources :assessments, only: [:index] do
     member do
       get :pass
     end
@@ -164,5 +164,5 @@ Rails.application.routes.draw do
 
   resources :assigns, only: [:update]
 
-  root to: 'home#index'
+  root to: 'assessments#index'
 end

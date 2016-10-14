@@ -5,6 +5,10 @@ class AssessmentPolicy < Administration::BasePolicy
     @record = record
   end
 
+  def index?
+    true
+  end
+
   def pass?
     @user.assigns.exists?(assessment_id: record.id, client_id: @client.id)
   end
