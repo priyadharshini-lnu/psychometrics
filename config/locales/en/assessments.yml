@@ -2,6 +2,7 @@ en:
   assessments:
     resource:
       assigned: "Assigned %{date}"
+      results: "Results"
       questions:
         zero: "No Questions"
         one: "1 Question"
