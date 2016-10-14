@@ -99,9 +99,10 @@ class Administration::UsersController < Administration::BaseController
   end
 
   # Spoof as user
+  # TODO: Fix redirect with subdomain
   def spoof
     bypass_sign_in(@resource, scope: @resource.role_scope)
-    redirect_to (@resource.is?(:superadmin, :admin) ? administration_root_path : root_path),
+    redirect_to (@resource.is?(:superadmin, :admin) ? administration_root_path : root_url(subdomain: @resource.clients.try(:first).try(:subdomain))),
                 success: t('.successfully', name: @resource.decorate.display_name)
   end
 
