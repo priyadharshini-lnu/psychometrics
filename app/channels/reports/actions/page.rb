@@ -3,7 +3,7 @@ module Reports
     module Page
       extend Actions::Action
 
-      action :create do |data, _current_administrator, report|
+      action :create do |data, _current_user, report|
         page = report.pages.create!(data)
         Reports::PageSerializer.new(page).to_hash
       end

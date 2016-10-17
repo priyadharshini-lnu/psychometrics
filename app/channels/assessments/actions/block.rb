@@ -8,7 +8,7 @@ module Assessments
         blocks.map { |block| { value: block.id, label: block.name } }
       end
 
-      action :create do |data, _current_administrator, assessment|
+      action :create do |data, _current_user, assessment|
         block = assessment.blocks.create!(data)
         BlockSerializer.new(block).to_hash
       end

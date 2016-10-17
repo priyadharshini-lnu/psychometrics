@@ -32,7 +32,7 @@
 
 module Users
   class Manager < User
-    def devise_scope
+    def scope
       :user
     end
   end

@@ -51,7 +51,7 @@ class User < ApplicationRecord
   }.freeze
 
   USER_ROLES_SCOPES = {
-      administrator: USER_ROLES.slice(:superadmin, :admin).values,
+      administration: USER_ROLES.slice(:superadmin, :admin).values,
       user:          USER_ROLES.slice(:manager, :member).values
   }.freeze
 
@@ -86,6 +86,15 @@ class User < ApplicationRecord
     ([USER_ROLES.key(role)] & roles).any?
   end
 
+  # Return devise scope
+  # :administration, :user
+  def role_scope
+    USER_ROLES_SCOPES.each do |scope, roles|
+      break scope if is?(*roles.map { |role| USER_ROLES.key(role) })
+    end
+  end
+
+
   # Return true if current user/admin has ability to manage passed user
   def can_manage?(user)
     user.role && can_manage.include?(user.role)
@@ -96,20 +105,12 @@ class User < ApplicationRecord
     (USER_ROLES_HIERARCHY[USER_ROLES.key(role)] || [])
   end
 
-  # Return devise scope
-  # :administrator, :user
-  # TODO: Remove, because we can use devise_scope
-  def role_scope
-    USER_ROLES_SCOPES.each do |scope, roles|
-      break scope if is?(*roles.map { |role| USER_ROLES.key(role) })
-    end
-  end
-
+  # GET Ids of clients which Operator can manage
   def manage_client_ids
     client_ids
   end
 
-  # Operator can manage users only from own client (company)
+  # SET Operator can manage users only from own client (company)
   def manage_client_ids=(value)
     ids = (value.reject(&:blank?) || []).map(&:to_i)
     # Check which clients can be managed by operator
@@ -169,7 +170,7 @@ class User < ApplicationRecord
     if role == 'users'
       where(role: USER_ROLES_SCOPES[:user])
     elsif role == 'administrators'
-      where(role: USER_ROLES_SCOPES[:administrator])
+      where(role: USER_ROLES_SCOPES[:administration])
     end
   }
 
@@ -185,7 +186,7 @@ class User < ApplicationRecord
     # Available role for the filter form
     #
     def options_for_with_role
-      %w(all users administrators)
+      %w(all users administration)
     end
 
     def human_role(role)

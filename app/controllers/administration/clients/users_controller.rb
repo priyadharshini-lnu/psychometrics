@@ -36,7 +36,7 @@ class Administration::Clients::UsersController < Administration::UsersController
 
   # Spoof as user
   def spoof
-    bypass_sign_in(@resource, scope: @resource.role_scope)
+    bypass_sign_in(@resource)
     redirect_to (@resource.is?(:superadmin, :admin) ? administration_root_path : root_url(domain: Settings.domain, subdomain: @client.try(:subdomain))),
                 success: t('.successfully', name: @resource.decorate.display_name)
   end

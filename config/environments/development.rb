@@ -31,7 +31,7 @@ Rails.application.configure do
   end
 
   config.action_controller.asset_host = proc { |_source, request|
-    (request ? request.protocol : 'http://') + 'localhost:' + (request ? request.port.to_s : '3030')
+    (request ? request.protocol : 'http://') + Settings.domain + ':' + (request ? request.port.to_s : '3030')
   }
 
   # Don't care if the mailer can't send.

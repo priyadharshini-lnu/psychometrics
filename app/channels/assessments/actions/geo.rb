@@ -7,7 +7,7 @@ module Assessments
       # data['column'] - column that will be filtering
       # data['q'] - query filter
       ###
-      action :filter do |data, _current_administrator, _assessment|
+      action :filter do |data, _current_user, _assessment|
         geo = ::Data::Geo.
                 select(data['column']).
                 where("#{::Data::Geo.connection.quote_column_name(data['column'])} ILIKE ?", "#{data['q']}%").

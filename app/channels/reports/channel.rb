@@ -3,7 +3,7 @@
 #
 # 1. Client send: { action_name: page_create }
 # 2. Need to implement method `create` in module Actions::Page
-#     action :create do |data, current_administrator, report|
+#     action :create do |data, current_user, report|
 #
 #     end
 # 3. include Actions::Page
@@ -25,7 +25,7 @@ module Reports
     end
 
     def pundit_user
-      current_administrator
+      current_user
     end
   end
 end

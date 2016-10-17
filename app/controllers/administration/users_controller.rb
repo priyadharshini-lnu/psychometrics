@@ -26,12 +26,12 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def create
-    @resource = @resource_class.new({ operator: current_administrator })
+    @resource = @resource_class.new({ operator: current_user })
     @resource.assign_attributes(resource_params)
 
     respond_to do |format|
       if @resource.save
-        @resource.invite!(current_administrator)
+        @resource.invite!(current_user)
         format.js
       else
         format.js { render :new }
@@ -50,7 +50,7 @@ class Administration::UsersController < Administration::BaseController
 
   # PATCH/PUT /administration/resources/1
   def update
-    @resource.operator = current_administrator
+    @resource.operator = current_user
     respond_to do |format|
       if @resource.update(resource_params)
         format.html do
@@ -101,7 +101,7 @@ class Administration::UsersController < Administration::BaseController
   # Spoof as user
   # TODO: Fix redirect with subdomain
   def spoof
-    bypass_sign_in(@resource, scope: @resource.role_scope)
+    bypass_sign_in(@resource)
     redirect_to (@resource.is?(:superadmin, :admin) ? administration_root_path : root_url(domain: Settings.domain, subdomain: @resource.clients.try(:first).try(:subdomain))),
                 success: t('.successfully', name: @resource.decorate.display_name)
   end
