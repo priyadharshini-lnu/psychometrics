@@ -3,7 +3,7 @@
 #
 # 1. Client send: { action_name: block_create }
 # 2. Need to implement method `create` in module Actions::Block
-#     action :create do |data, current_administrator, assessment|
+#     action :create do |data, current_user, assessment|
 #
 #     end
 # 3. include Actions::Block
@@ -29,7 +29,7 @@ module Assessments
     end
 
     def pundit_user
-      current_administrator
+      current_user
     end
   end
 end

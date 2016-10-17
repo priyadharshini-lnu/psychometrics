@@ -23,8 +23,8 @@ class Administration::NormsController < Administration::BaseController
 
   def create
     @resource         = @resource_class.new(resource_params)
-    @resource.creator = current_administrator
-    @resource.updater = current_administrator
+    @resource.creator = current_user
+    @resource.updater = current_user
     respond_to do |format|
       if @resource.save
         format.js
@@ -35,7 +35,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def update
-    @resource.updater = current_administrator
+    @resource.updater = current_user
     respond_to do |format|
       if @resource.update(resource_params)
         format.js
@@ -56,8 +56,8 @@ class Administration::NormsController < Administration::BaseController
 
   def copy
     @cloned_resource         = @resource.clone
-    @cloned_resource.updater = current_administrator
-    @cloned_resource.creator = current_administrator
+    @cloned_resource.updater = current_user
+    @cloned_resource.creator = current_user
     respond_to do |format|
       if @cloned_resource.save
         format.js

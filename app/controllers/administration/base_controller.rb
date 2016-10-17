@@ -6,14 +6,14 @@ class Administration::BaseController < ActionController::Base
   include Administration::Policies
   ## Custom current user helper for Pundit
   def pundit_user
-    current_administrator
+    current_user
   end
 
   # Ensuring policies and scopes are used
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
   # Authentication admin
-  before_action :authenticate_administrator!
+  before_action :authenticate_user!
   before_action :authenticate
 
   # Custom layout for administration panel
@@ -24,6 +24,11 @@ class Administration::BaseController < ActionController::Base
   add_flash_types :notice, :error, :success
 
   private
+
+  def authenticate_user!
+    redirect_to(administration_session_path) && return unless user_signed_in?
+    super
+  end
 
   def authenticate
     return if Rails.env.development?

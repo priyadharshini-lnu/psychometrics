@@ -14,7 +14,7 @@ module Questions
     end
 
     def pundit_user
-      current_administrator
+      current_user
     end
   end
 end

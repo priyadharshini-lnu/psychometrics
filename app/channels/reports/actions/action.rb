@@ -8,7 +8,7 @@ module Reports
           report = ::Report.find_by_id(params['report_id'])
           if policy(report).open_channel?
             begin
-              data            = yield(request['data'], current_administrator, report)
+              data            = yield(request['data'], current_user, report)
               response        = {
                 type:         'success',
                 action:       action_name,

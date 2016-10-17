@@ -8,7 +8,7 @@ module Questions
           question = ::Question.find_by_id(params['question_id'])
           if policy(question).open_channel?
             begin
-              data            = yield(request['data'], current_administrator, question)
+              data            = yield(request['data'], current_user, question)
               response        = {
                   type:         'success',
                   action:       action_name,

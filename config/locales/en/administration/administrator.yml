@@ -1,0 +1,22 @@
+en:
+  administration:
+    administrator:
+      sessions:
+        new:
+          title: '<strong>Welcome</strong>, Please login'
+          forgot_password: 'Forgot your password?'
+          submit: 'Login'
+      passwords:
+        new:
+          title: 'Forgot your password?'
+          back: 'Return back'
+          submit: 'Send me instructions'
+        edit:
+          title: 'Change your password'
+          submit: 'Set new password'
+      shared:
+        links:
+          app_name: '© 2016 AppName'
+          about: 'About'
+          privacy: 'Privacy'
+          contact_us: 'Contact Us'

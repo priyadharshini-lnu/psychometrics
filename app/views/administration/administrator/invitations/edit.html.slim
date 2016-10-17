@@ -3,7 +3,7 @@
     .login-body
       .login-title
         == t 'devise.invitations.edit.header'
-      = simple_form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f|
+      = simple_form_for(resource, as: resource_name, url: administration_invitation_path, html: { method: :put, class: 'form-horizontal' }) do |f|
         = devise_error_messages!
         == flash_messages
         = f.hidden_field :invitation_token
@@ -17,4 +17,4 @@
           .col-md-6
           .col-md-6
             = f.submit t('devise.invitations.edit.submit_button'), class: 'btn btn-info btn-block'
-    = render 'devise/administrators/shared/links'
+    = render 'administration/administrator/shared/links'

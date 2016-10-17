@@ -32,7 +32,7 @@
 
 module Users
   class Member < User
-    def devise_scope
+    def scope
       :user
     end
   end

@@ -23,7 +23,7 @@ class Administration::ProfilesController < Administration::BaseController
   private
 
   def set_profile
-    @user = current_administrator
+    @user = current_user
   end
 
   def profile_params

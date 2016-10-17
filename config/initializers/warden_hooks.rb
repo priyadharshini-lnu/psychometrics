@@ -1,6 +1,6 @@
 Warden::Manager.after_set_user do |user, auth, opts|
   scope = opts[:scope]
-  auth.cookies.signed["#{scope}.id"] = user.id
+  auth.cookies.signed["#{scope}.id"] = { value: user.id, domain: :all }
 end
 
 Warden::Manager.before_logout do |_user, auth, opts|
