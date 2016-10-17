@@ -94,7 +94,6 @@ class User < ApplicationRecord
     end
   end
 
-
   # Return true if current user/admin has ability to manage passed user
   def can_manage?(user)
     user.role && can_manage.include?(user.role)
