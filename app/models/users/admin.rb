@@ -32,8 +32,8 @@
 
 module Users
   class Admin < User
-    def devise_scope
-      :administrator
+    def scope
+      :administration
     end
 
     # Operator can manage users only from own client (company)

@@ -8,7 +8,7 @@ module Assessments
           assessment = ::Assessment.find_by_id(params['assessment_id'])
           if policy(assessment).open_channel?
             begin
-              data            = yield(request['data'], current_administrator, assessment)
+              data            = yield(request['data'], current_user, assessment)
               response        = {
                   type:         'success',
                   action:       action_name,

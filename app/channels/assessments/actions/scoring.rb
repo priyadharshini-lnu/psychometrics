@@ -13,7 +13,7 @@ module Assessments
         FactorsScoringSerializer.new(scoring).to_hash
       end
 
-      action :fetch do |data, _current_administrator, assessment|
+      action :fetch do |data, _current_user, assessment|
         FactorsScoring.where(assessment_id: assessment.id, factor_id: data['factor_id']).map do |scoring|
           FactorsScoringSerializer.new(scoring)
         end

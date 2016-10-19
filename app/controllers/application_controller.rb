@@ -4,7 +4,7 @@ class ApplicationController < ActionController::Base
   include Pundit
   ## Custom current user helper for Pundit
   def pundit_user
-    current_administrator || current_user
+    current_user
   end
 
   layout :layout_by_resource
@@ -16,29 +16,12 @@ class ApplicationController < ActionController::Base
 
   # Authentication user/manager
   before_action :authenticate_user!
-  skip_before_action :authenticate_user!, if: :current_administrator
 
   # append_before_action :set_company_by_user, if: :pundit_user
 
-  # Redirect administrator after log out
-  #
-  def after_sign_out_path_for(resource_or_scope)
-    resource_or_scope == :administrator ? new_administrator_session_path : new_user_session_path
-  end
-
-  # Redirect administrator after log in
-  #
-  def after_sign_in_path_for(resource)
-    return administration_root_path if resource.is?(:superadmin, :admin)
-    super
-  end
-
   def layout_by_resource
-    if devise_controller? && resource_name == :administrator
-      'devise'
-    else
-      'application'
-    end
+    return 'devise' if request.controller_class.to_s.start_with?('Administration')
+    'application'
   end
 
   private
@@ -55,7 +38,7 @@ class ApplicationController < ActionController::Base
     # * IF User has no Client provided by subdomain
     @current_client = pundit_user.try(:clients).try(:first) unless @current_client || (pundit_user.try(:client_ids) || []).include?(@current_client.try(:id))
     sign_out current_user if current_user && !@current_client
-    redirect_to administration_root_path if current_administrator && !@current_client
+    redirect_to administration_root_path if current_user && !@current_client
   end
 
   def authenticate

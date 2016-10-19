@@ -7,7 +7,7 @@ ul.x-navigation.x-navigation-horizontal.x-navigation-panel
   /! END TOGGLE NAVIGATION
   /! SIGN OUT
   li.xn-icon-button.pull-right
-    = link_to destroy_administrator_session_path, method: :delete, data: { confirm: { body: t('.sign_out_message.body'), title: t('.sign_out_message.title') } } do
+    = link_to destroy_administration_session_path, method: :delete, data: { confirm: { body: t('.sign_out_message.body'), title: t('.sign_out_message.title') } } do
       span.fa.fa-sign-out
   /! END SIGN OUT
 /! END X-NAVIGATION VERTICAL

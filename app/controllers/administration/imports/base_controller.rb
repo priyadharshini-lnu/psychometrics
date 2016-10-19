@@ -11,7 +11,7 @@ class Administration::Imports::BaseController < Administration::BaseController
 
   def create
     @resource = @resource_class.new(import_params)
-    @resource.importer = current_administrator
+    @resource.importer = current_user
     respond_to do |format|
       if @resource.process!
         format.js

@@ -40,7 +40,6 @@ class AssessmentsController < ApplicationController
   end
 
   def pundit_user
-    # TODO: when we remove second scope, fix line below
-    CurrentContext.new(current_administrator || current_user, @current_client)
+    CurrentContext.new(current_user, @current_client)
   end
 end

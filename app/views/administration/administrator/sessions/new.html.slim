@@ -3,7 +3,7 @@
     .login-body
       .login-title
         == t('.title')
-      = simple_form_for(resource, as: resource_name, url: session_path(resource_name), html: { class: 'form-horizontal' }) do |f|
+      = simple_form_for(resource, as: resource_name, url: administration_session_path, html: { class: 'form-horizontal' }) do |f|
         == flash_messages
         .form-group
           .col-md-12
@@ -14,7 +14,7 @@
         .clearfix
         .form-group
           .col-md-6
-            = link_to t('.forgot_password'), new_password_path(resource_name), class: 'btn btn-link btn-block'
+            = link_to t('.forgot_password'), new_administration_password_path, class: 'btn btn-link btn-block'
           .col-md-6
             = f.submit t('.submit'), class: 'btn btn-info btn-block'
-    = render 'devise/administrators/shared/links'
+    = render 'administration/administrator/shared/links'

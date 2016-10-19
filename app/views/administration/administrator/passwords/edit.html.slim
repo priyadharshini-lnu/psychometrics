@@ -4,7 +4,7 @@
     .login-body
       .login-title
         = t('.title')
-      = simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f|
+      = simple_form_for(resource, as: resource_name, url: administration_password_path, html: { method: :put, class: 'form-horizontal' }) do |f|
         = f.input :reset_password_token, as: :hidden
         = f.full_error :reset_password_token
         == flash_messages
@@ -18,4 +18,4 @@
         .form-group
           .col-md-6.col-md-offset-6
             = f.submit t('.submit'), class: 'btn btn-info btn-block'
-    = render 'devise/administrators/shared/links'
+    = render 'administration/administrator/shared/links'

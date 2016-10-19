@@ -3,7 +3,7 @@ module Assessments
     module Trash
       extend Actions::Action
 
-      action :empty do |_data, _current_administrator, assessment|
+      action :empty do |_data, _current_user, assessment|
         assessment.blocks.deleted.delete_all
         assessment.questions.deleted.delete_all
         nil

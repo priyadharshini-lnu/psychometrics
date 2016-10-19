@@ -2,14 +2,6 @@ Rails.application.routes.draw do
   # default_url_options domain: Settings.domain, subdomain: false
 
   mount ActionCable.server => '/cable'
-  devise_for :administrators,
-             path: 'administration/administrators',
-             as: :devise,
-             name: :administrator,
-             singular: :administrator,
-             to: 'User',
-             class_name: 'User',
-             skip: [:registrations]
   devise_for :users,
              path: 'users',
              as: :devise,
@@ -22,6 +14,16 @@ Rails.application.routes.draw do
   namespace :administration do
     root to: 'home#index'
     resource :profiles
+
+    scope module: :administrator do
+      resource :sessions, only: [:new, :create], path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
+        delete 'sign_out', to: 'sessions#destroy', as: :destroy
+      end
+      resource :passwords, as: :password
+      resource :invitations, only: [:update], as: :invitation do
+        get 'accept', to: 'invitations#edit'
+      end
+    end
 
     namespace :imports do
       resource :users, only: [:new, :create]

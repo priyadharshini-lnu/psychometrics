@@ -8,7 +8,7 @@ module Blocks
           block = ::Block.find_by_id(params['block_id'])
           if policy(block).open_channel?
             begin
-              data            = yield(request['data'], current_administrator, block)
+              data            = yield(request['data'], current_user, block)
               response        = {
                   type:         'success',
                   action:       action_name,

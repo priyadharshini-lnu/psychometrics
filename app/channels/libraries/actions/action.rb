@@ -7,7 +7,7 @@ module Libraries
         define_method action_name do |request|
           if policy(:library).open_channel?
             begin
-              data            = yield(request['data'], current_administrator)
+              data            = yield(request['data'], current_user)
               response        = {
                   type:         'success',
                   action:       action_name,
