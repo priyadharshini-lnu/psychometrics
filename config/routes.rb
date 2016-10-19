@@ -160,6 +160,12 @@ Rails.application.routes.draw do
     member do
       get :pass
     end
+    collection do
+      get :manager_dashboard
+    end
+  end
+
+  resources :reports, only: [:show] do
   end
 
   resources :assigns, only: [:update]

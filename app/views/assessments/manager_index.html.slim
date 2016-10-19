@@ -11,8 +11,4 @@
             = active_link_to 'User Dashboard', root_path, class: "btn btn-default dashboardButton"
             = active_link_to 'Managers Dashboard', manager_dashboard_assessments_path, class: "btn btn-default dashboardButton"
       #accordion.panel-group
-        - if @resources.present?
-          = render partial: 'resource', collection: @resources
-        - else
-          tr.no_records
-            td align='center' colspan='7' = t('administration.no_data_found')
+        | 11111

@@ -6,7 +6,8 @@
       = f.input :category, collection: @resource_class::CATEGORIES.values.map { |cat| [t(".categories.#{cat}"), cat] }, include_blank: false
       = f.association :dimension, collection: policy_scope(Dimension).all, include_blank: true, input_html: { data: { live_search: true } }
       = f.input :name
-      = f.text_area :description, class: 'form-control'
+      = f.input :timing, as: :text, hint: t('.timing.hint')
+      = f.input :description, as: :text
 
   .modal-footer
     .btn-group

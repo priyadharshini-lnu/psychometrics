@@ -6,4 +6,8 @@ class AssessmentDecorator < BaseDecorator
   def description
     object.description || I18n.t('assessments.decorator.no_description')
   end
+
+  def timing
+    object.timing ? "- #{object.timing}" : ''
+  end
 end

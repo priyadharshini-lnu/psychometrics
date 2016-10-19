@@ -17,13 +17,14 @@ class Assign < ApplicationRecord
   end
 
   def calculate_scoring
-    factors_scoring     = FactorsScoring.where(assessment_id: assessment_id).all
+    factors_scoring     = FactorsScoring.where(assessment_id: assessment_id).joins(:factor).all
     factors_scoring_map = factors_scoring.group_by(&:factor_id)
     questions_ids       = factors_scoring.pluck(:question_id).uniq
     questions_map       = Question.where(id: questions_ids).all.group_by(&:id)
     self.scoring        = {}
+
     factors_scoring_map.each do |factor_id, scoring_array|
-      self.scoring[factor_id] = []
+      self.scoring[factor_id] = { name: scoring_array.first.try(:factor).try(:name), results: [] }
       scoring_array.each do |question_scoring|
         question      = questions_map[question_scoring.question_id].first
         scoring_class = "Scoring::#{question.type}"
@@ -31,15 +32,15 @@ class Assign < ApplicationRecord
         if result && question
           begin
             scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring)
-            self.scoring[factor_id] << scoring_point if scoring_point
+            self.scoring[factor_id][:results] << scoring_point if scoring_point
           rescue
             # TODO: uncomment row below
             # raise "Should be implemented class #{scoring_class}"
           end
         end
       end
-      scoring_result          = self.scoring[factor_id].sum.to_f / self.scoring[factor_id].size
-      self.scoring[factor_id] = scoring_result if scoring_result
+      scoring_result          = self.scoring[factor_id][:results].sum.to_f / self.scoring[factor_id][:results].size
+      self.scoring[factor_id][:results] = scoring_result if scoring_result
     end
     nil
   end

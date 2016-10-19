@@ -11,6 +11,8 @@ en:
             organisational: 'Org Surveys'
             '360': '360 Feedback'
       form:
+        timing:
+          hint: 'For Example: 30 minutes to complete'
         categories:
           <<: *categories
       new:
@@ -53,3 +55,4 @@ en:
               Delete <strong>Assessment</strong> ?
             body: >
               <p>Are you sure you want to delete this Assessment?</p>
+      dashboard: 'Assessment Dashboard'

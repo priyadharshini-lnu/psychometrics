@@ -1,33 +1,19 @@
-class AssessmentsController < ApplicationController
+class ReportsController < ApplicationController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:pass]
+  before_action :set_resource, only: [:show]
   append_before_action :pundit_authorize
   layout 'users'
 
-
-  def pass
-    @assign = Assign.find_by(
-      assessment_id: @resource.id,
-      user_id: pundit_user.user.id,
-      client_id: @current_client.id
-    )
-    @assign.update(status: Assign.statuses['in_progress'], step: 0)
+  def show
+    @results = Assign.completed.where(client_id: @current_client.id, assessment_id: @resource.assessment_id).all
     render layout: 'users_and_administration'
-  end
-
-  def index
-    @reports = @current_client.reports.group_by(&:assessment_id)
-    @resources = policy_scope(@resource_class).order(:id).all
-  end
-
-  def manager_index
   end
 
   private
 
   # Set model
   def set_resource_class
-    @resource_class ||= Assessment
+    @resource_class ||= Report
   end
 
   def set_resource

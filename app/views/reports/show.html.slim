@@ -1,0 +1,7 @@
+= stylesheet_link_tag :psychometrics_reports_vendor
+= stylesheet_link_tag :psychometrics_reports_preview
+
+#report_preview data-results="#{::ActiveModel::Serializer::CollectionSerializer.new(@results, serializer: AssignSerializer).to_json}" data-data="#{ReportSerializer.new(@resource).to_json(include: '**')}"
+
+= javascript_include_tag :psychometrics_reports_vendor
+= javascript_include_tag :psychometrics_reports_preview
