@@ -1,11 +1,5 @@
 module Managers
-  class AssignPolicy < Administration::BasePolicy
-    def initialize(context, record)
-      @user   = context.user
-      @client = context.client
-      @record = record
-    end
-
+  class AssignPolicy < BasePolicy
     def index?
       true
     end

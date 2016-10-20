@@ -11,6 +11,7 @@ html
     = javascript_include_tag 'application'
     = render '//layouts/custom_styles'
   body
+    #modal-container
     #wrapper
       #sidebar-wrapper
         ul#sidebar_menu.sidebar-nav
@@ -39,7 +40,7 @@ html
                 span.sub_icon
                   = image_tag 'notificationFlatIcon', class: 'notificationIcon'
           li
-            = link_to [:destroy, pundit_user.user.try(:scope), :session], method: :delete
+            = link_to edit_profiles_path, remote: :true
               span.linkTitle
                 = t('.profile')
               span.sub_icon

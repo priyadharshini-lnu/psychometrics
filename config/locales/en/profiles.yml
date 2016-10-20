@@ -1,0 +1,6 @@
+en:
+  profiles:
+    edit:
+      header: 'Profile Settings'
+    update:
+      successfully: 'Profile updated'

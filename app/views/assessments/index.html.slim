@@ -5,7 +5,6 @@
         i.glyphicon.glyphicon-dashboard.titleIcon.pull-left
         p.contentTitle
           = t('administration.assessments.dashboard')
-      // TODO: use pundit
       - if policy(:user).manager_dashboard?
         .dashboardToggle
           .btn-group.dashboard aria-label="..." role="group"

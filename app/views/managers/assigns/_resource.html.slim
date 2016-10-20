@@ -11,7 +11,6 @@ tr
     .btn-group.reportTable aria-label="..." role="group"
       button.btn.btn-default type="button"
         = t('.view')
-      button.btn.btn-default type="button"
-        = t('.email')
-      button.btn.btn-default type="button"
+      = mail_to(resource.user.email, t('.email'), class: 'btn btn-default')
+      button.btn.btn-default.disabled type="button"
         = t('.save')

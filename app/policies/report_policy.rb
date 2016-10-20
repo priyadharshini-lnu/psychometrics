@@ -1,13 +1,7 @@
-class ReportPolicy < Administration::BasePolicy
-  def initialize(context, record)
-    @user = context.user
-    @client = context.client
-    @record = record
-  end
-
+class ReportPolicy < BasePolicy
   def show?
-    assign = @user.assigns.where(assessment_id: @record.assessment_id, client_id: @client.id).first
+    assign_exists = @user.assigns.completed.exists?(assessment_id: @record.assessment_id, client_id: @client.id)
     client_report_exists = ClientsReport.exists?(report_id: @record.id, client_id: @client.id)
-    assign && client_report_exists && assign.completed?
+    assign_exists && client_report_exists
   end
 end

@@ -1,18 +1,12 @@
 module Managers
-  class NotificationPolicy < Administration::BasePolicy
-    def initialize(context, record)
-      @user   = context.user
-      @client = context.client
-      @record = record
-    end
-
+  class NotificationPolicy < BasePolicy
     def index?
       @user.is? :manager
     end
 
     class Scope < Scope
       def resolve
-        scope
+        @user.client.notifications
       end
     end
   end

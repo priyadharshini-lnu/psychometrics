@@ -1,6 +1,8 @@
 en:
   assigns:
-    resource:
+    notifications:
+      in_progress: "%{user_name} started to pass assessment \"%{assessment_name}\""
+      completed: "%{user_name} finished assessment \"%{assessment_name}\""
     decorator:
       completed: "Completed %{date}"
       not_completed: "Not Completed"

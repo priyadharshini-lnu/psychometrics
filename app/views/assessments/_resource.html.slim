@@ -31,6 +31,8 @@
                   = link_to report.name, report_path(report)
         - else
           = link_to t('.results'), report_path(reports.first), class: "btn btn-courseGrade #{!first_assign.completed? ? 'disabled' : ''}"
+      - else
+        = link_to t('.results'), '#', class: 'btn btn-courseGrade disabled'
       .well.completedDateWell
         p
           = first_assign.decorate.completed_at_with_desc

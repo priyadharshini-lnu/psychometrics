@@ -5,8 +5,7 @@ module Managers
     after_action :skip_policy_scope
 
     def index
-      # TODO: add scope
-      @notifications = Notification.order(created_at: :desc, id: :desc).all
+      @notifications = policy_scope([:managers, Notification]).order(created_at: :desc, id: :desc).all
     end
 
     private

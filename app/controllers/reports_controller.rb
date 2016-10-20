@@ -6,7 +6,6 @@ class ReportsController < ApplicationController
 
   def show
     @results = Assign.completed.where(client_id: @current_client.id, assessment_id: @resource.assessment_id).all
-    render layout: 'users_and_administration'
   end
 
   private

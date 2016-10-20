@@ -9,6 +9,7 @@ class Assign < ApplicationRecord
   enum role: [:member, :manager, :admin]
 
   after_initialize :init
+  before_save :notification_handler
 
   def init
     self.status  ||= Assign.statuses['not_started']
@@ -24,7 +25,7 @@ class Assign < ApplicationRecord
     self.scoring        = {}
 
     factors_scoring_map.each do |factor_id, scoring_array|
-      self.scoring[factor_id] = { name: scoring_array.first.try(:factor).try(:name), results: [] }
+      self.scoring[factor_id] = {name: scoring_array.first.try(:factor).try(:name), results: []}
       scoring_array.each do |question_scoring|
         question      = questions_map[question_scoring.question_id].first
         scoring_class = "Scoring::#{question.type}"
@@ -39,9 +40,22 @@ class Assign < ApplicationRecord
           end
         end
       end
-      scoring_result          = self.scoring[factor_id][:results].sum.to_f / self.scoring[factor_id][:results].size
+      scoring_result                    = self.scoring[factor_id][:results].sum.to_f / self.scoring[factor_id][:results].size
       self.scoring[factor_id][:results] = scoring_result if scoring_result
     end
     nil
   end
-end
+
+  def notification_handler
+    if self.status_changed?
+        Notification.create(
+            client_id: client_id,
+            text: I18n.t('assigns.notifications.in_progress', user_name: user.decorate.display_name, assessment_name: assessment.name)
+        ) if self.in_progress?
+        Notification.create(
+            client_id: client_id,
+            text: I18n.t('assigns.notifications.completed', user_name: user.decorate.display_name, assessment_name: assessment.name)
+        ) if self.completed?
+      end
+    end
+  end

@@ -1,16 +1,10 @@
-class AssessmentPolicy < Administration::BasePolicy
-  def initialize(context, record)
-    @user = context.user
-    @client = context.client
-    @record = record
-  end
-
+class AssessmentPolicy < BasePolicy
   def index?
     true
   end
 
   def pass?
-    @user.assigns.exists?(assessment_id: record.id, client_id: @client.id)
+    @user.assigns.exists?(assessment_id: @record.id, client_id: @client.id)
   end
 
   class Scope < Scope

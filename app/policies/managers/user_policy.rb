@@ -1,11 +1,5 @@
 module Managers
-  class UserPolicy < Administration::BasePolicy
-    def initialize(context, record)
-      @user   = context.user
-      @client = context.client
-      @record = record
-    end
-
+  class UserPolicy < BasePolicy
     def index?
       @user.is? :manager
     end

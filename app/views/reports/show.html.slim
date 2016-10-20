@@ -1,4 +1,5 @@
 = stylesheet_link_tag :psychometrics_reports_vendor
+= stylesheet_link_tag :administration
 = stylesheet_link_tag :psychometrics_reports_preview
 
 #report_preview data-results="#{::ActiveModel::Serializer::CollectionSerializer.new(@results, serializer: AssignSerializer).to_json}" data-data="#{ReportSerializer.new(@resource).to_json(include: '**')}"

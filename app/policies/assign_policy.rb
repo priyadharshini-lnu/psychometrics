@@ -1,11 +1,4 @@
-class AssignPolicy < Administration::BasePolicy
-  def initialize(context, record)
-    @user = context.user
-    @client = context.client
-    @record = record
-  end
-
-  # TODO: move to another scope
+class AssignPolicy < BasePolicy
   def update?
     @record.user_id = @user.id
   end

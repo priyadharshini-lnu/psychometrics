@@ -12,7 +12,6 @@ class AssessmentsController < ApplicationController
       client_id: @current_client.id
     )
     @assign.update(status: Assign.statuses['in_progress'], step: 0)
-    render layout: 'users_and_administration'
   end
 
   def index

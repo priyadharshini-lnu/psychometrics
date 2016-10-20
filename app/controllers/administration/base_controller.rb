@@ -26,7 +26,7 @@ class Administration::BaseController < ActionController::Base
   private
 
   def authenticate_user!
-    redirect_to(administration_session_path) && return unless user_signed_in?
+    redirect_to(new_administration_session_path) && return unless user_signed_in?
     super
   end
 

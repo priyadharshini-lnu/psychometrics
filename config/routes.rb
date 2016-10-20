@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   namespace :administration do
     root to: 'home#index'
-    resource :profiles
+    resource :profiles, only: [:update, :edit]
 
     scope module: :administrator do
       resource :sessions, only: [:new, :create], path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
@@ -159,14 +159,10 @@ Rails.application.routes.draw do
   end
 
   namespace :managers do
-    resources :dashboard, only: [:index] do
-    end
-    resources :assigns, only: [:index] do
-    end
-    resources :notifications, only: [:index] do
-    end
-    resources :users, only: [:index] do
-    end
+    resources :dashboard, only: [:index]
+    resources :assigns, only: [:index]
+    resources :notifications, only: [:index]
+    resources :users, only: [:index]
   end
 
   resources :assessments, only: [:index] do
@@ -175,8 +171,8 @@ Rails.application.routes.draw do
     end
   end
 
-  resources :reports, only: [:show] do
-  end
+  resources :reports, only: [:show]
+  resource :profiles, only: [:update, :edit]
 
   resources :assigns, only: [:update]
   get 'survey_instructions', to: 'home#survey_instructions'

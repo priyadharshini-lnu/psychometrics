@@ -8,7 +8,11 @@
 }
 label {
   text-transform: inherit;
+  width: 100%;
 }
 label > input {
-  display: inherit;
+  display: inline-block;
+}
+.alert {
+  margin: 0;
 }

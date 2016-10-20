@@ -1,11 +1,5 @@
 module Managers
-  class DashboardControllerPolicy < Administration::BasePolicy
-    def initialize(context, record)
-      @user   = context.user
-      @client = context.client
-      @record = record
-    end
-
+  class DashboardControllerPolicy < BasePolicy
     def index?
       @user.is? :manager
     end
