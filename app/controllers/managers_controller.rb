@@ -1,19 +1,17 @@
-class ReportsController < ApplicationController
+class ManagersController < ApplicationController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show]
   append_before_action :pundit_authorize
   layout 'users'
 
-  def show
-    @results = Assign.completed.where(client_id: @current_client.id, assessment_id: @resource.assessment_id).all
-    render layout: 'users_and_administration'
+  def dashboard
+
   end
 
   private
 
   # Set model
   def set_resource_class
-    @resource_class ||= Report
+    @resource_class ||= Assessment
   end
 
   def set_resource
@@ -23,5 +21,9 @@ class ReportsController < ApplicationController
   # Authorisation user
   def pundit_authorize
     authorize @resource || @resource_class
+  end
+
+  def pundit_user
+    CurrentContext.new(current_user, @current_client)
   end
 end

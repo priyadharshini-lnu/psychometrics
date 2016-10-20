@@ -5,11 +5,12 @@
         i.glyphicon.glyphicon-dashboard.titleIcon.pull-left
         p.contentTitle
           = t('administration.assessments.dashboard')
-      - if policy(@resource_class).manager_dashboard?
+      // TODO: use pundit
+      - if policy(:user).manager_dashboard?
         .dashboardToggle
           .btn-group.dashboard aria-label="..." role="group"
-            = active_link_to 'User Dashboard', root_path, class: "btn btn-default dashboardButton"
-            = active_link_to 'Managers Dashboard', manager_dashboard_assessments_path, class: "btn btn-default dashboardButton"
+            = active_link_to t('.user_dashboard_button'), root_path, active: :exclusive, class: 'btn btn-default dashboardButton'
+            = active_link_to t('.managers_dashboard_button'), managers_dashboard_index_path, class: 'btn btn-default dashboardButton'
       #accordion.panel-group
         - if @resources.present?
           = render partial: 'resource', collection: @resources

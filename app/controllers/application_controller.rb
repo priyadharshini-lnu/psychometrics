@@ -2,10 +2,6 @@ class ApplicationController < ActionController::Base
   # Authorisation flow
   #
   include Pundit
-  ## Custom current user helper for Pundit
-  def pundit_user
-    current_user
-  end
 
   layout :layout_by_resource
   protect_from_forgery with: :exception
@@ -22,6 +18,10 @@ class ApplicationController < ActionController::Base
   def layout_by_resource
     return 'devise' if request.controller_class.to_s.start_with?('Administration')
     'application'
+  end
+
+  def pundit_user
+    CurrentContext.new(current_user, @current_client)
   end
 
   private

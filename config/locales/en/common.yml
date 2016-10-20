@@ -28,10 +28,12 @@ en:
   time:
     formats:
       short: "%d %b %Y / %H:%M"
-      date: "%d/%m/%Y"
+      date: "%d/%m/%y"
   layouts:
     users:
       logout: 'Log Out'
       help: 'Help'
+      notifications: 'Notifications'
+      profile: 'Profile'
       dashboard: 'Dashboard'
       menu: 'Menu'

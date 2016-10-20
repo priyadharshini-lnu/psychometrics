@@ -31,6 +31,19 @@ html
                 = t('.help')
               span.sub_icon
                 = image_tag 'helpFlatIcon', class: 'helpIcon'
+          - if policy([:managers, Notification]).index?
+            li
+              = link_to managers_notifications_path
+                span.linkTitle
+                  = t('.notifications')
+                span.sub_icon
+                  = image_tag 'notificationFlatIcon', class: 'notificationIcon'
+          li
+            = link_to [:destroy, pundit_user.user.try(:scope), :session], method: :delete
+              span.linkTitle
+                = t('.profile')
+              span.sub_icon
+                = image_tag 'avatarFlatIcon', class: 'avatarIcon'
           li
             = link_to [:destroy, pundit_user.user.try(:scope), :session], method: :delete
               span.linkTitle

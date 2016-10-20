@@ -30,9 +30,9 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  config.action_controller.asset_host = proc { |_source, request|
-    (request ? request.protocol : 'http://') + Settings.domain + ':' + (request ? request.port.to_s : '3030')
-  }
+  # config.action_controller.asset_host = proc { |_source, request|
+  #   (request ? request.protocol : 'http://') + 'my.psy.loc:' + (request ? request.port.to_s : '3030')
+  # }
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false

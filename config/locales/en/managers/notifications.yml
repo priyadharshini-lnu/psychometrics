@@ -1,0 +1,6 @@
+en:
+  managers:
+    notifications:
+      index:
+        title: 'Notification Centre'
+        subtitle: 'Notifications'

@@ -20,9 +20,6 @@ class AssessmentsController < ApplicationController
     @resources = policy_scope(@resource_class).order(:id).all
   end
 
-  def manager_index
-  end
-
   private
 
   # Set model
@@ -37,9 +34,5 @@ class AssessmentsController < ApplicationController
   # Authorisation user
   def pundit_authorize
     authorize @resource || @resource_class
-  end
-
-  def pundit_user
-    CurrentContext.new(current_user, @current_client)
   end
 end

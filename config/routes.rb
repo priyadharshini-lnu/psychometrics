@@ -158,12 +158,20 @@ Rails.application.routes.draw do
     put '/factors_norms/update', to: 'factors_norms#update'
   end
 
+  namespace :managers do
+    resources :dashboard, only: [:index] do
+    end
+    resources :assessments, only: [:index] do
+    end
+    resources :notifications, only: [:index] do
+    end
+    resources :users, only: [:index] do
+    end
+  end
+
   resources :assessments, only: [:index] do
     member do
       get :pass
-    end
-    collection do
-      get :manager_dashboard
     end
   end
 
@@ -171,6 +179,6 @@ Rails.application.routes.draw do
   end
 
   resources :assigns, only: [:update]
-
+  get 'survey_instructions', to: 'home#survey_instructions'
   root to: 'assessments#index'
 end

@@ -1,7 +1,7 @@
 @font-face {
   font-family: 'gotham-book';
-  src: url('../fonts/gotham-book.eot');
-  src: url('../fonts/gotham-book.eot?#iefix') format('embedded-opentype'), url('../fonts/gotham-book.woff') format('woff'), url('../fonts/gotham-book.ttf') format('truetype');
+  src: asset-url('gotham-book.eot');
+  src: asset-url('gotham-book.eot?#iefix') format('embedded-opentype'), asset-url('gotham-book.woff') format('woff'), asset-url('gotham-book.ttf') format('truetype');
 }
 
 html {
@@ -10,7 +10,7 @@ html {
 }
 
 html, body {
-  background: url(../images/backgroundImage.png) no-repeat center center fixed;
+  background: asset-url('backgroundImage.png') no-repeat center center fixed;
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;

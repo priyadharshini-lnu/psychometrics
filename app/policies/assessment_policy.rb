@@ -9,10 +9,6 @@ class AssessmentPolicy < Administration::BasePolicy
     true
   end
 
-  def manager_dashboard?
-    @user.is? :manager
-  end
-
   def pass?
     @user.assigns.exists?(assessment_id: record.id, client_id: @client.id)
   end
