@@ -1,0 +1,17 @@
+tr
+  td
+    = resource.user.decorate.display_name
+  td
+    = resource.assessment.decorate.category
+  td
+    = resource.decorate.status
+  td
+    = resource.decorate.completed_at
+  td.text-center
+    .btn-group.reportTable aria-label="..." role="group"
+      button.btn.btn-default type="button"
+        = t('.view')
+      button.btn.btn-default type="button"
+        = t('.email')
+      button.btn.btn-default type="button"
+        = t('.save')

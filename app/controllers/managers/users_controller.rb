@@ -1,11 +1,10 @@
 module Managers
-  class UsersController < ApplicationController
+  class UsersController < BaseController
     prepend_before_action :set_resource_class
     append_before_action :pundit_authorize
-    layout 'users'
 
     def index
-      @resources = User.order(created_at: :asc, id: :asc).all
+      @resources = policy_scope(@resource_class).order(created_at: :asc, id: :asc).all
     end
 
     private

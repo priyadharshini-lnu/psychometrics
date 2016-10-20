@@ -5,10 +5,6 @@ class UserPolicy < Administration::BasePolicy
     @record = record
   end
 
-  def index?
-    @user.is? :manager
-  end
-
   def manager_dashboard?
     @user.is? :manager
   end

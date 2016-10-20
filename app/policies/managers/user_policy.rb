@@ -1,5 +1,5 @@
 module Managers
-  class NotificationPolicy < Administration::BasePolicy
+  class UserPolicy < Administration::BasePolicy
     def initialize(context, record)
       @user   = context.user
       @client = context.client

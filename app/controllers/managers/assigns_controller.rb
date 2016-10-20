@@ -1,21 +1,17 @@
 module Managers
-  class AssessmentsController < ApplicationController
+  class AssignsController < BaseController
     prepend_before_action :set_resource_class
     append_before_action :pundit_authorize
-    layout 'users'
-
 
     def index
-      @reports   = @current_client.reports.group_by(&:assessment_id)
-      # TODO: add scope
-      @resources = @current_client.assessments.order(:id).all
+      # TODO: implement scope
+      @resources = policy_scope(@resource_class).order(:id).all
     end
 
     private
-
     # Set model
     def set_resource_class
-      @resource_class ||= Assessment
+      @resource_class ||= Assign
     end
 
     def set_resource

@@ -161,7 +161,7 @@ Rails.application.routes.draw do
   namespace :managers do
     resources :dashboard, only: [:index] do
     end
-    resources :assessments, only: [:index] do
+    resources :assigns, only: [:index] do
     end
     resources :notifications, only: [:index] do
     end

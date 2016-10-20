@@ -1,0 +1,122 @@
+.row
+  .col-xs-12
+    #assessmentDashboard
+      .contentTitleHeader
+        i.glyphicon.glyphicon-dashboard.titleIcon.pull-left
+        p.contentTitle
+          = t('.title')
+      .col-xs-12.col-sm-6.col-md-3
+        .reportOne
+          h4.text-center
+            | Completion Report
+          = image_tag 'pieChartGraphic', class: 'center-block img-responsive'
+      .col-xs-12.col-sm-6.col-md-3
+        .reportTwo
+          h4.text-center
+            | 360 Survey Report
+          = image_tag 'barChartGraphic', class: 'center-block img-responsive'
+      .clearfix.visible-sm  
+      .col-xs-12.col-sm-6.col-md-3
+        .reportThree
+          h4.text-center
+            | Organisational Surveys
+          = image_tag 'pieChartGraphic', class: 'center-block img-responsive'
+      .col-xs-12.col-sm-6.col-md-3
+        .reportFour
+          h4.text-center
+            | Psychometric Report
+          = image_tag 'barChartGraphic', class: 'center-block img-responsive'
+      .col-xs-12.completionReport
+        h3.text-center
+          | Completion Report
+        .completionReportTable style=("overflow-x:auto !important;")
+          table.table.table-striped
+            thead
+              tr
+                th
+                  = t('.name')
+                th
+                  = t('.assessment_type')
+                th
+                  = t('.status')
+                th
+                  = t('.completion_date')
+                th.text-center
+                  = t('.action')
+            tbody
+              - if @resources.present?
+                = render partial: 'resource', collection: @resources
+              - else
+                tr.no_records
+                  td align='center' colspan='7' = t('administration.no_data_found')
+
+      .col-xs-12.surveyReport
+        h3.text-center
+          | 360 Survey Report
+        .surveyReportTable style=("overflow-x:auto !important;")
+          table.table.table-striped
+            thead
+              tr
+                th
+                  = t('.name')
+                th
+                  = t('.assessment_type')
+                th
+                  = t('.status')
+                th
+                  = t('.completion_date')
+                th.text-center
+                  = t('.action')
+            tbody
+              - if @resources.present?
+                = render partial: 'resource', collection: @resources
+              - else
+                tr.no_records
+                  td align='center' colspan='7' = t('administration.no_data_found')
+      .col-xs-12.organisationalSurvey
+        h3.text-center
+          | Organisational Surveys
+        .organisationalSurveyTable style=("overflow-x:auto !important;")
+          table.table.table-striped
+            thead
+              tr
+                th
+                  = t('.name')
+                th
+                  = t('.assessment_type')
+                th
+                  = t('.status')
+                th
+                  = t('.completion_date')
+                th.text-center
+                  = t('.action')
+            tbody
+              - if @resources.present?
+                = render partial: 'resource', collection: @resources
+              - else
+                tr.no_records
+                  td align='center' colspan='7' = t('administration.no_data_found')
+      .col-xs-12.psychometricReport
+        h3.text-center
+          | Psychometric Report
+        .psychometricReportTable style=("overflow-x:auto !important;")
+          table.table.table-striped
+            thead
+              tr
+                th
+                  = t('.name')
+                th
+                  = t('.assessment_type')
+                th
+                  = t('.status')
+                th
+                  = t('.completion_date')
+                th.text-center
+                  = t('.action')
+            tbody
+              - if @resources.present?
+                = render partial: 'resource', collection: @resources
+              - else
+                tr.no_records
+                  td align='center' colspan='7' = t('administration.no_data_found')
+      .clearfix  

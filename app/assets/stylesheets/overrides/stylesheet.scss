@@ -6,7 +6,9 @@
     text-decoration: none;
   }
 }
-
-label > input[type='radio']{ /* HIDE RADIO */
-  display:inherit;
+label {
+  text-transform: inherit;
+}
+label > input {
+  display: inherit;
 }

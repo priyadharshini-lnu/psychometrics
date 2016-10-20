@@ -1,5 +1,5 @@
 module Managers
-  class NotificationPolicy < Administration::BasePolicy
+  class AssignPolicy < Administration::BasePolicy
     def initialize(context, record)
       @user   = context.user
       @client = context.client
@@ -7,12 +7,12 @@ module Managers
     end
 
     def index?
-      @user.is? :manager
+      true
     end
 
     class Scope < Scope
       def resolve
-        scope
+        @user.client.assigns
       end
     end
   end

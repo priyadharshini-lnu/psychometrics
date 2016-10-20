@@ -28,13 +28,15 @@
         .col-xs-12.col-md-6
           .reportOne
             h4.text-center
-            = image_tag 'pieChartGraphic', class: 'center-block img-responsive'
+            = link_to [:managers, :assigns]
+              = image_tag 'pieChartGraphic', class: 'center-block img-responsive'
         .col-xs-12.col-md-6
           .reportTwo
             h4.text-center
-            = image_tag 'barChartGraphic', class: 'center-block img-responsive'
+            = link_to [:managers, :assigns]
+              = image_tag 'barChartGraphic', class: 'center-block img-responsive'
         .col-xs-12
-          = link_to t('.assessment_center'), [:managers, :assessments], class: 'btn btn-courseReady btn-lg center-block'
+          = link_to t('.assessment_center'), [:managers, :assigns], class: 'btn btn-courseReady btn-lg center-block'
           = link_to t('.notification_center'), [:managers, :notifications], class: 'btn btn-courseReady btn-lg center-block'
           = link_to t('.relationships'), [:managers, :users], class: 'btn btn-courseReady btn-lg center-block'
       .clearfix  
