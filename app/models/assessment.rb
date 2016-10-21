@@ -11,6 +11,7 @@
 #  updated_at   :datetime         not null
 #  flow         :json
 #  norm_rules   :json
+#  description  :text
 #
 
 class Assessment < ApplicationRecord

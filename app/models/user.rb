@@ -160,12 +160,37 @@ class User < ApplicationRecord
   }
 
   # Fileter by client
-  scope :with_client, lambda { |client_id|
-    joins(:clients).where(clients: { id: client_id })
+  scope :with_client, lambda { |client_ids|
+    joins(:memberships).where(memberships: { client_id: client_ids })
   }
 
   # Fileter by role
   scope :with_role, lambda { |role|
+    if role == 'users'
+      where(role: USER_ROLES_SCOPES[:user])
+    elsif role == 'administrators'
+      where(role: USER_ROLES_SCOPES[:administration])
+    end
+  }
+
+  scope :exclude_ids, lambda { |ids|
+    ids = ids.split(',') if ids.is_a?(String)
+    ids = (ids || []).reject(&:blank?).compact
+    where.not(id: ids)
+  }
+  scope :include_ids, lambda { |ids|
+    ids = ids.split(',') if ids.is_a?(String)
+    ids = (ids || []).reject(&:blank?).compact
+    where(id: ids)
+  }
+
+  scope :hris_data_cont, lambda { |data|
+    data = JSON.parse(data) if data.is_a?(String)
+    return if data.blank?
+    where('users.hris @> ?', parsed_data.to_json)
+  }
+
+  scope :role_scope_in, lambda { |role|
     if role == 'users'
       where(role: USER_ROLES_SCOPES[:user])
     elsif role == 'administrators'
@@ -182,6 +207,10 @@ class User < ApplicationRecord
   end
 
   class << self
+    def ransackable_scopes(_auth_object = nil)
+      [:hris_data_cont, :role_scope_in, :exclude_ids, :include_ids]
+    end
+
     # Available role for the filter form
     #
     def options_for_with_role

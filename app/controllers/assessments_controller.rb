@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: assessments
+#
+#  id           :integer          not null, primary key
+#  name         :string
+#  category     :enum             default("psychometric")
+#  dimension_id :integer
+#  disabled     :boolean          default(FALSE)
+#  created_at   :datetime         not null
+#  updated_at   :datetime         not null
+#  flow         :json
+#  norm_rules   :json
+#  description  :text
+#
+
 class AssessmentsController < ApplicationController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:pass]

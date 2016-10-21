@@ -16,9 +16,9 @@ $(function() {
   });
 
   // Disabled button after submit
-  $(document).on('click', '[type="submit"]', function () {
-    $(this).button('loading')
-  })
+  // $(document).on('click', '[type="submit"]', function () {
+  //   $(this).button('loading')
+  // })
 
   // Noty plugin settings
   $.noty.defaults.timeout = 4000;
@@ -39,4 +39,3 @@ $.fn.replaceWithPush = function(a) {
   this.replaceWith($a);
   return $a;
 };
-

@@ -9,12 +9,13 @@ class Administration::BaseController < ActionController::Base
     current_user
   end
 
+  # Authentication admin
+  prepend_before_action :authenticate_user!
+  prepend_before_action :authenticate
+
   # Ensuring policies and scopes are used
   after_action :verify_authorized, except: :index
   after_action :verify_policy_scoped, only: :index
-  # Authentication admin
-  before_action :authenticate_user!
-  before_action :authenticate
 
   # Custom layout for administration panel
   layout 'administration'
@@ -26,7 +27,7 @@ class Administration::BaseController < ActionController::Base
   private
 
   def authenticate_user!
-    redirect_to(administration_session_path) && return unless user_signed_in?
+    redirect_to(new_administration_session_path) && return unless user_signed_in?
     super
   end
 

@@ -1,0 +1,31 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title = t '.title', name: @assessment.decorate.display_name
+      .panel-body
+        /! START WIZARD WITH SUBMIT BUTTON
+        .block
+          = simple_form_for(@assign, as: :assign, url: administration_assessment_step1_path, method: :put, wrapper: :horizontal_form, html: { class: 'form-horizontal' }) do |f|
+            .wizard.show-submit
+              ul.steps_2.anchor
+                li.ms-hover
+                  a.selected href="#step-1" isdone="1" rel="1" 
+                    span.stepNumber 1
+                    span.stepDesc
+                      | Step 1
+                      br
+                      small Client Tenancies and Reports
+                li.ms-hover
+                  a href="#step-2" isdone="0" rel="2" 
+                    span.stepNumber 2
+                    span.stepDesc
+                      | Step 2
+                      br
+                      small Admins, Managers and Users
+              .stepContainer        
+                #step-1
+                  = f.input :client_ids, collection: policy_scope(Client).all, include_blank: false, input_html: {  data: { live_search: true }, multiple: true }
+                  = f.input :report_ids, collection: @assessment.reports, include_blank: false, input_html: {  data: { live_search: true }, multiple: true }
+                  = f.button :submit, t('.next'), class: 'pull-right'                
+        /! END WIZARD WITH SUBMIT BUTTON    

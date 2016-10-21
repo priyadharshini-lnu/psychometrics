@@ -18,6 +18,10 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-mustache.js'
   gem 'rails-assets-bootstrap-colorpicker', '2.3.6'
   gem 'rails-assets-bootstrap-file-input', '1.0.0'
+  gem 'rails-assets-multiselect', '0.9.12'
+  gem 'rails-assets-quicksearch', '2.3.1'
+  gem 'rails-assets-bootstrap-add-clear', '1.0.6'
+  gem 'rails-assets-datatables', '1.10.12'
 end
 
 ### Authentication and authorization
@@ -41,6 +45,7 @@ gem 'bootstrap-kaminari-views',   '~> 0.0.5'
 gem 'breadcrumbs_on_rails',       '~> 2.3.1'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
+gem 'ransack', '~> 1.8.2'
 ### Navigation helper
 gem 'active_link_to',             '~> 1.0.3'
 
