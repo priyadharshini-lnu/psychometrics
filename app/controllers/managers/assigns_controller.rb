@@ -10,6 +10,7 @@ module Managers
     end
 
     private
+
     # Set model
     def set_resource_class
       @resource_class ||= Assign
