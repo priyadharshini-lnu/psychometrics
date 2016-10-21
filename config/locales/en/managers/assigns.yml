@@ -3,6 +3,7 @@ en:
     assigns:
       index:
         title: 'Assessments and Reporting Centre'
+      list:
         name: 'Name'
         assessment_type: 'Assessment Type'
         status: 'Completion Status'

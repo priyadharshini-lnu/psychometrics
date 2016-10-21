@@ -4,9 +4,14 @@ module Managers
     append_before_action :pundit_authorize
 
     def index
+      @filter_form = policy_scope(@resource_class).includes(:assessment, :user).search(params[:q])
       @reports = @current_client.reports.group_by(&:assessment_id)
       # TODO: implement scope
-      @resources = policy_scope(@resource_class).order(:id).all
+      @resources = @filter_form.result
+      respond_to do |format|
+        format.html
+        format.js { render :index, formats: [:js] }
+      end
     end
 
     private

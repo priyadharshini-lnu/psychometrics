@@ -27,7 +27,7 @@ class ApplicationController < ActionController::Base
   def set_client_by_subdomain
     subdomain = request.subdomain
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '')
-    render text: 'Please clarify correct url' if subdomain.blank?
+    # render text: 'Please clarify correct url' if subdomain.blank? && !request.fullpath.match('/administration')
     @current_client = Client.find_by(subdomain: subdomain) unless subdomain.blank?
   end
 

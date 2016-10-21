@@ -5,120 +5,78 @@
         i.glyphicon.glyphicon-dashboard.titleIcon.pull-left
         p.contentTitle
           = t('.title')
+      = search_form_for @filter_form,
+              builder: SimpleForm::FormBuilder,
+              url: {action: :index},
+              remote: true,
+              id: 'search_assigns' do |f|
+        = f.input :status_eq, as: :hidden
+        = f.input :assessment_category_eq, as: :hidden
       .col-xs-12.col-sm-6.col-md-3
         .reportOne
           h4.text-center
-            | Completion Report
+            = t('.completion_reports')
           = image_tag 'pieChartGraphic', class: 'center-block img-responsive'
       .col-xs-12.col-sm-6.col-md-3
         .reportTwo
           h4.text-center
-            | 360 Survey Report
+            = t('.360_survey_reports')
           = image_tag 'barChartGraphic', class: 'center-block img-responsive'
       .clearfix.visible-sm  
       .col-xs-12.col-sm-6.col-md-3
         .reportThree
           h4.text-center
-            | Organisational Surveys
+            = t('.organisational_surveys')
           = image_tag 'pieChartGraphic', class: 'center-block img-responsive'
       .col-xs-12.col-sm-6.col-md-3
         .reportFour
           h4.text-center
-            | Psychometric Report
+            = t('.psychometric_reports')
           = image_tag 'barChartGraphic', class: 'center-block img-responsive'
       .col-xs-12.completionReport
-        h3.text-center
-          | Completion Report
-        .completionReportTable style=("overflow-x:auto !important;")
-          table.table.table-striped
-            thead
-              tr
-                th
-                  = t('.name')
-                th
-                  = t('.assessment_name')
-                th
-                  = t('.assessment_type')
-                th
-                  = t('.status')
-                th
-                  = t('.completion_date')
-                th.text-center
-                  = t('.action')
-            tbody
-              - if @resources.present?
-                = render partial: 'resource', collection: @resources
-              - else
-                tr.no_records
-                  td align='center' colspan='7' = t('administration.no_data_found')
+        h3.text-center#report_title
+          = t('.all_reports')
+        #ransack_results
+          = render partial: 'list'
+      .clearfix
 
-      .col-xs-12.surveyReport
-        h3.text-center
-          | 360 Survey Report
-        .surveyReportTable style=("overflow-x:auto !important;")
-          table.table.table-striped
-            thead
-              tr
-                th
-                  = t('.name')
-                th
-                  = t('.assessment_type')
-                th
-                  = t('.status')
-                th
-                  = t('.completion_date')
-                th.text-center
-                  = t('.action')
-            tbody
-              - if @resources.present?
-                = render partial: 'resource', collection: @resources
-              - else
-                tr.no_records
-                  td align='center' colspan='7' = t('administration.no_data_found')
-      .col-xs-12.organisationalSurvey
-        h3.text-center
-          | Organisational Surveys
-        .organisationalSurveyTable style=("overflow-x:auto !important;")
-          table.table.table-striped
-            thead
-              tr
-                th
-                  = t('.name')
-                th
-                  = t('.assessment_type')
-                th
-                  = t('.status')
-                th
-                  = t('.completion_date')
-                th.text-center
-                  = t('.action')
-            tbody
-              - if @resources.present?
-                = render partial: 'resource', collection: @resources
-              - else
-                tr.no_records
-                  td align='center' colspan='7' = t('administration.no_data_found')
-      .col-xs-12.psychometricReport
-        h3.text-center
-          | Psychometric Report
-        .psychometricReportTable style=("overflow-x:auto !important;")
-          table.table.table-striped
-            thead
-              tr
-                th
-                  = t('.name')
-                th
-                  = t('.assessment_type')
-                th
-                  = t('.status')
-                th
-                  = t('.completion_date')
-                th.text-center
-                  = t('.action')
-            tbody
-              - if @resources.present?
-                = render partial: 'resource', collection: @resources
-              - else
-                tr.no_records
-                  td align='center' colspan='7' = t('administration.no_data_found')
-      .clearfix  
+javascript:
+  $(function() {
+    function clearStatus() {
+      $('#q_status_eq').val('')
+    }
+    function clearCategory() {
+      $('#q_assessment_category_eq').val('')
+    }
+    function changeReportTitle(title) {
+      $('#report_title').text(title)
+    }
+
+    $('.reportOne').click(function() {
+      $('#q_status_eq').val("#{Assign.statuses['completed']}")
+      clearCategory()
+      changeReportTitle($(this).find('h4').text())
+      $('#search_assigns').submit()
+    })
+
+    $('.reportTwo').click(function() {
+      $('#q_assessment_category_eq').val("#{Assessment.roles['360']}")
+      clearStatus()
+      changeReportTitle($(this).find('h4').text())
+      $('#search_assigns').submit()
+    })
+
+    $('.reportThree').click(function() {
+      $('#q_assessment_category_eq').val("#{Assessment.roles['organisational']}")
+      clearStatus()
+      changeReportTitle($(this).find('h4').text())
+      $('#search_assigns').submit()
+    })
+
+    $('.reportFour').click(function() {
+      $('#q_assessment_category_eq').val("#{Assessment.roles['psychometric']}")
+      clearStatus()
+      changeReportTitle($(this).find('h4').text())
+      $('#search_assigns').submit()
+    })
+  })
