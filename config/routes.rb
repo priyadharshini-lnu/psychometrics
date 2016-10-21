@@ -16,7 +16,7 @@ Rails.application.routes.draw do
     resource :profiles, only: [:update, :edit]
 
     scope module: :administrator do
-      resource :sessions, only: [:new, :create], path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
+      resource :sessions, only: [:new, :create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
         delete 'sign_out', to: 'sessions#destroy', as: :destroy
       end
       resource :passwords, as: :password
@@ -66,6 +66,14 @@ Rails.application.routes.draw do
         patch :toggle_status
         get :preview
         get :reports
+      end
+      scope module: 'assessments/assigns' do
+        resource :finish, controller: :finish, only: [:show], path: 'assign/finish'
+        resource :step1, controller: :step1, only: [:show, :update], path: 'assign/step1'
+        resource :step2, controller: :step2, only: [:show, :update], path: 'assign/step2' do
+          get 'selected_users'
+          get 'not_selected_users'
+        end
       end
     end
     ### END ASSESSMENTS

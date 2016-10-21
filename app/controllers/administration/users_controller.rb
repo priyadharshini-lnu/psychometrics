@@ -12,7 +12,8 @@ class Administration::UsersController < Administration::BaseController
       params[:filterrific],
       select_options: {
         with_role: @resource_class.options_for_with_role
-      }) || return
+      }
+    ) || return
     @resources = @filterrific.find.preload(:clients).page(params[:page])
 
     respond_to do |format|

@@ -10,6 +10,7 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(@resource)}"
     li = link_to t('.copy'), [:copy, :administration, @resource], remote: true
   - if policy(@resource).destroy?
     li = link_to(t('.destroy'), { action: :destroy, id: @resource }, remote: true, method: :delete, data: { confirm: @resource.decorate.delete_confirmation })
-  li.xn-title = t('.assign')
+  - if policy(@resource).assign?
+    li = link_to t('.assign'), administration_assessment_step1_path(@resource)
   - if policy(@resource).show?
     li = link_to 'Questions Builder', { action: :show, id: @resource }

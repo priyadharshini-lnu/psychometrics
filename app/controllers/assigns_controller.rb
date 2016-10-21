@@ -1,3 +1,22 @@
+# == Schema Information
+#
+# Table name: assigns
+#
+#  id            :integer          not null, primary key
+#  assessment_id :integer
+#  user_id       :integer
+#  client_id     :integer
+#  results       :jsonb
+#  scoring       :jsonb
+#  embedded_data :jsonb
+#  status        :integer          default("not_started")
+#  role          :integer          default("member")
+#  completed_at  :datetime
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  step          :integer
+#
+
 class AssignsController < ApplicationController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:update]

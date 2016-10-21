@@ -16,6 +16,10 @@ module Administration
       @user.is?(:superadmin)
     end
 
+    def assign?
+      @user.is?(:superadmin)
+    end
+
     class Scope < Administration::BasePolicy::Scope
       def resolve
         return scope if @user.is?(:superadmin)

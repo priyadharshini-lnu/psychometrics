@@ -6,12 +6,15 @@ window.Filterrific.submitFilterForm = function(){
   // Show spinner
   panel_refresh(panel);
 
+  // Type response
+  var dataType = form.hasClass('as_json') ? 'json' : 'script'
+
   // Submit ajax request
   $.ajax({
     url: url,
     data: form.serialize(),
     type: 'GET',
-    dataType: 'script'
+    dataType: dataType
   }).done(function( msg ) {
     panel_refresh(panel);
   });
@@ -35,4 +38,3 @@ window.Filterrific.initListener = function(){
 
 // Initialize event observers on document ready and turbolinks page:load
 jQuery(document).on('ready page:load', window.Filterrific.initListener);
-

@@ -56,3 +56,23 @@ en:
             body: >
               <p>Are you sure you want to delete this Assessment?</p>
       dashboard: 'Assessment Dashboard'
+      assigns:
+        default: &default
+          next: 'Next'
+          previous: 'Previous'
+          title: 'Assign %{name} Assessment'
+          filter_form: 'Filter form'
+          filter: 'Filter'
+        finish:
+          show:
+            <<: *default
+        step1:
+          show:
+            <<: *default
+        step2:
+          show:
+            <<: *default
+            not_selected_users: 'Not Selected Users'
+            selected_users: 'Selected Users'
+          users:
+            <<: *default

@@ -5,11 +5,19 @@
 //= require bootstrap-select
 //= require bootstrap-colorpicker
 //= require bootstrap-file-input/bootstrap.file-input.js
+//= require multiselect
+//= require quicksearch
+//= require bootstrap-add-clear
+//= require datatables
+//= require datatables/dataTables.bootstrap
+//= require administration/plugins/dataTables.checkboxes
 
 
 ///// START THIS PAGE PLUGINS
 //= require administration/plugins/icheck/icheck.min.js
 //= require administration/plugins/mcustomscrollbar/jquery.mCustomScrollbar.min
+//= require administration/plugins/smartwizard/jquery.smartWizard-2.0.min
+//= require administration/plugins/jquery.kv-json-input
 
 // ---- TODO: insert button for scroll to top
 //= require administration/plugins/scrolltotop/scrolltopcontrol.js
