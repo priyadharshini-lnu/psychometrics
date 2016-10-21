@@ -20,7 +20,6 @@ class AssessmentsController < ApplicationController
   append_before_action :pundit_authorize
   layout 'users'
 
-
   def pass
     @assign = Assign.find_by(
       assessment_id: @resource.id,
