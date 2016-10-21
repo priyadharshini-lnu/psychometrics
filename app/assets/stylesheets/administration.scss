@@ -3,13 +3,16 @@
 
 @import 'jquery.fileupload';
 @import 'jquery.fileupload-ui';
-
 @import 'bootstrap-select';
 @import 'bootstrap-colorpicker';
+@import 'multiselect';
+@import 'datatables/dataTables.bootstrap';
+@import 'administration/dataTables.checkboxes';
 
 @import 'common/helper';
 @import 'administration/overrides/editable';
 @import 'administration/overrides/joli';
+@import 'administration/overrides/multi-select';
 
 @import 'x-editable/dist/bootstrap3-editable/css/bootstrap-editable';
 

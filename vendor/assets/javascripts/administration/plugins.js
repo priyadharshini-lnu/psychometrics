@@ -39,7 +39,7 @@ $(function() {
         //Bootstrap select
         var feSelect = function(){
             if($(".select").length > 0){
-                $(".select").selectpicker();
+                $(".select:not(.multiselect-two-sides)").selectpicker();
             }
         }//END Bootstrap select
 
@@ -72,6 +72,53 @@ $(function() {
         }
         //END Bootstrap file input
 
+        var feMultiselectTwoSides = function () {
+
+          if($(".multiselect-two-sides").length > 0)
+              $(".multiselect-two-sides").multiSelect();
+          if($(".multiselect-two-sides-searchabel").length > 0) {
+            $(".multiselect-two-sides-searchabel").multiSelect({
+              selectableHeader: "<input type='text' class='form-control mbs' autocomplete='off' placeholder='Search...'>",
+              selectionHeader: "<input type='text' class='form-control mbs' autocomplete='off' placeholder='Search...'>",
+              afterInit: function(ms){
+                var that = this,
+                    $selectableSearch = that.$selectableUl.prev(),
+                    $selectionSearch = that.$selectionUl.prev(),
+                    selectableSearchString = '#'+that.$container.attr('id')+' .ms-elem-selectable:not(.ms-selected)',
+                    selectionSearchString = '#'+that.$container.attr('id')+' .ms-elem-selection.ms-selected';
+
+                that.qs1 = $selectableSearch.quicksearch(selectableSearchString)
+                .on('keydown', function(e){
+                  if (e.which === 40){
+                    that.$selectableUl.focus();
+                    return false;
+                  }
+                });
+
+                that.qs2 = $selectionSearch.quicksearch(selectionSearchString)
+                .on('keydown', function(e){
+                  if (e.which == 40){
+                    that.$selectionUl.focus();
+                    return false;
+                  }
+                });
+              },
+              afterSelect: function(){
+                this.qs1.cache();
+                this.qs2.cache();
+              },
+              afterDeselect: function(){
+                this.qs1.cache();
+                this.qs2.cache();
+              }
+            })
+          }
+        }
+
+        var feAddClear = function () {
+          if($('.has_clear').length > 0)
+            $('.has_clear').addClear();
+        }
         return {// Init all form element features
 		init: function(){
                     feDatepicker();
@@ -82,6 +129,8 @@ $(function() {
                     fePopover();
                     feiCheckbox();
                     feDaterangepicker();
+                    feMultiselectTwoSides();
+                    feAddClear();
                 }
         }
     }();
@@ -160,7 +209,6 @@ $(function() {
             }//End
 
         }//END RangeSlider
-
 
         // Custom Content Scroller
         var uiScroller = function(){

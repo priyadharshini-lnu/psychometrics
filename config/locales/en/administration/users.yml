@@ -22,7 +22,7 @@ en:
           with_role:
             all: All
             users: Users
-            administrators: Administrators
+            administration: Administrators
         tooltips:
           import: Import
           export: Export

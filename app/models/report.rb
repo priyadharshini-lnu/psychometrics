@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: reports
+#
+#  id            :integer          not null, primary key
+#  assessment_id :integer
+#  name          :string
+#  disabled      :boolean          default(FALSE)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#  filters       :json
+#
+
 class Report < ApplicationRecord
   include Copyable
 

@@ -2,20 +2,18 @@
 #
 # Table name: clients
 #
-#  id                :integer          not null, primary key
-#  name              :string
-#  licenses          :integer          default(0)
-#  licenses_used     :integer          default(0)
-#  licenses_expire   :date
-#  subdomain         :string
-#  logo_file_name    :string
-#  logo_content_type :string
-#  logo_file_size    :integer
-#  logo_updated_at   :datetime
-#  design            :json
-#  disabled          :boolean          default(FALSE)
-#  created_at        :datetime         not null
-#  updated_at        :datetime         not null
+#  id              :integer          not null, primary key
+#  name            :string
+#  licenses        :integer          default(0)
+#  licenses_used   :integer          default(0)
+#  licenses_expire :date
+#  subdomain       :string
+#  logo            :string
+#  design          :json
+#  disabled        :boolean          default(FALSE)
+#  created_at      :datetime         not null
+#  updated_at      :datetime         not null
+#  background      :string
 #
 
 class Client < ApplicationRecord
@@ -23,6 +21,10 @@ class Client < ApplicationRecord
 
   has_many :memberships
   has_many :users, through: :memberships
+  has_many :admins, -> { where(role: ::User::USER_ROLES[:admin]) }, through: :memberships, source: :user, class_name: 'User'
+  has_many :managers, -> { where(role: ::User::USER_ROLES[:manager]) }, through: :memberships, source: :user
+  has_many :members, -> { where(role: ::User::USER_ROLES[:member]) }, through: :memberships, source: :user
+
   has_and_belongs_to_many :assessments, join_table: :assessments_clients
   has_and_belongs_to_many :reports, join_table: :clients_reports
 
