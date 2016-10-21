@@ -1,0 +1,42 @@
+.row
+  .col-xs-12
+    #assessmentDashboard
+      .contentTitleHeader
+        i.glyphicon.glyphicon-dashboard.titleIcon.pull-left
+        p.contentTitle
+          = t('administration.assessments.dashboard')
+      .col-xs-12
+        .dashboardToggle
+        .btn-group.dashboard aria-label="..." role="group"
+          = active_link_to t('assessments.index.user_dashboard_button'), root_path, active: :exclusive, class: 'btn btn-default dashboardButton'
+          = active_link_to t('assessments.index.managers_dashboard_button'), managers_dashboard_index_path, class: 'btn btn-default dashboardButton'
+      .col-xs-12.col-md-6
+        .notificationTable
+          table.table.table-striped
+            thead
+              tr
+                th
+                  = t('.notifications')
+            tbody
+              - @notifications.each do |notification|
+                tr
+                  td
+                    = notification.text
+      .col-xs-12.col-md-6
+        h3.reportingHeader
+          = t('.reporting')
+        .col-xs-12.col-md-6
+          .reportOne
+            h4.text-center
+            = link_to [:managers, :assigns]
+              = image_tag 'pieChartGraphic', class: 'center-block img-responsive'
+        .col-xs-12.col-md-6
+          .reportTwo
+            h4.text-center
+            = link_to [:managers, :assigns]
+              = image_tag 'barChartGraphic', class: 'center-block img-responsive'
+        .col-xs-12
+          = link_to t('.assessment_center'), [:managers, :assigns], class: 'btn btn-courseReady btn-lg center-block'
+          = link_to t('.notification_center'), [:managers, :notifications], class: 'btn btn-courseReady btn-lg center-block'
+          = link_to t('.relationships'), [:managers, :users], class: 'btn btn-courseReady btn-lg center-block'
+      .clearfix  

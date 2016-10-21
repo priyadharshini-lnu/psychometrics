@@ -11,6 +11,7 @@ html
     = javascript_include_tag 'application'
     = render '//layouts/custom_styles'
   body
+    #modal-container
     #wrapper
       #sidebar-wrapper
         ul#sidebar_menu.sidebar-nav
@@ -26,13 +27,26 @@ html
               span.sub_icon
                 = image_tag 'dashboardFlatIcon', class: 'dashboardIcon'
           li
-            a[href="#"]
+            = link_to survey_instructions_path
               span.linkTitle
                 = t('.help')
               span.sub_icon
                 = image_tag 'helpFlatIcon', class: 'helpIcon'
+          - if policy([:managers, Notification]).index?
+            li
+              = link_to managers_notifications_path
+                span.linkTitle
+                  = t('.notifications')
+                span.sub_icon
+                  = image_tag 'notificationFlatIcon', class: 'notificationIcon'
           li
-            = link_to [:destroy, pundit_user.user.try(:scope), :session], method: :delete
+            = link_to edit_profiles_path, remote: :true
+              span.linkTitle
+                = t('.profile')
+              span.sub_icon
+                = image_tag 'avatarFlatIcon', class: 'avatarIcon'
+          li
+            = link_to [:destroy, pundit_user[:current_user].try(:scope), :session], method: :delete
               span.linkTitle
                 = t('.logout')
               span.sub_icon

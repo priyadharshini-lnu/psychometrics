@@ -6,21 +6,36 @@
     .col-xs-12.col-sm-11.col-md-7
       .well.assessmentTitleWell
         h3.assessmentTitle
-          = resource.decorate.category
+          = "#{resource.decorate.category} (#{resource.name})"
       .well.assessmentDetailsWell
         h4.detailsTitle
-          = "#{t('.questions', :count => resource.active_questions_count)} - 30 minutes to complete"
+          = "#{t('.questions', :count => resource.active_questions_count)} #{resource.decorate.timing}"
     .clearfix.visible-sm
     .col-sm-6.col-md-2.tabletPadding
-      = link_to resource.assigns.first.decorate.status, [:pass, resource], class: "btn btn-courseProgress #{resource.assigns.first.completed? ? '1disabled' : ''}"
+      - first_assign = resource.assigns.first
+      = link_to first_assign.decorate.status, [:pass, resource], class: "btn btn-courseProgress #{first_assign.completed? ? '1disabled' : ''}"
       .well.assignedDateWell
         p
-          = t('.assigned', :date => resource.assigns.first.decorate.created_at)
+          = t('.assigned', :date => first_assign.decorate.created_at)
     .col-sm-6.col-md-2.tabletPadding
-      = link_to t('.results'), preview_administration_report_path(Report.last), class: "btn btn-courseGrade #{!resource.assigns.first.completed? ? 'disabled' : ''}"
+      - reports = @reports.try(:[], resource.id)
+      - if reports
+        - if reports.size > 1
+          .dropdown
+            button data-toggle="dropdown" type="button" class=" btn btn-primary dropdown-toggle btn-courseProgress #{!first_assign.completed? ? 'disabled' : ''}"
+              = t('.results')
+              span.caret
+            ul.dropdown-menu
+              - reports.each do |report|
+                li
+                  = link_to report.name, report_path(report)
+        - else
+          = link_to t('.results'), report_path(reports.first), class: "btn btn-courseGrade #{!first_assign.completed? ? 'disabled' : ''}"
+      - else
+        = link_to t('.results'), '#', class: 'btn btn-courseGrade disabled'
       .well.completedDateWell
         p
-          = resource.assigns.first.decorate.completed_at
+          = first_assign.decorate.completed_at_with_desc
     .clearfix
   div.panel-collapse.collapse id=dom_id(resource)
     .panel-body

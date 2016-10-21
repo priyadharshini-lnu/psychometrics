@@ -13,7 +13,7 @@ Rails.application.routes.draw do
 
   namespace :administration do
     root to: 'home#index'
-    resource :profiles
+    resource :profiles, only: [:update, :edit]
 
     scope module: :administrator do
       resource :sessions, only: [:new, :create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
@@ -166,13 +166,25 @@ Rails.application.routes.draw do
     put '/factors_norms/update', to: 'factors_norms#update'
   end
 
+  namespace :managers do
+    resources :dashboard, only: [:index]
+    resources :assigns, only: [:index]
+    resources :notifications, only: [:index]
+    resources :users, only: [:index] do
+      resources :reports, only: [:show]
+    end
+  end
+
   resources :assessments, only: [:index] do
     member do
       get :pass
     end
   end
 
-  resources :assigns, only: [:update]
+  resources :reports, only: [:show]
+  resource :profiles, only: [:update, :edit]
 
+  resources :assigns, only: [:update]
+  get 'survey_instructions', to: 'home#survey_instructions'
   root to: 'assessments#index'
 end

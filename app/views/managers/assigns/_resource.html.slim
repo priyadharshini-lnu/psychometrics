@@ -1,0 +1,31 @@
+tr
+  td
+    = resource.user.decorate.display_name
+  td
+    = resource.assessment.name
+  td
+    = resource.assessment.decorate.category
+  td
+    = resource.decorate.status
+  td
+    = resource.decorate.completed_at
+  td.text-center
+    .btn-group.reportTable aria-label="..." role="group"
+      - reports = @reports.try(:[], resource.assessment_id)
+      - if reports
+        - if reports.size > 1
+          .dropdown.btn-group
+            button data-toggle="dropdown" type="button" class="btn btn-default dropdown-toggle #{!resource.completed? ? 'disabled' : ''}"
+              = t('.view')
+              span.caret
+            ul.dropdown-menu
+              - reports.each do |report|
+                li
+                  = link_to report.name, managers_user_report_path(resource.user, report)
+        - else
+          = link_to t('.view'), managers_user_report_path(resource.user, reports.first), class: "btn btn-default btn-view #{!resource.completed? ? 'disabled' : ''}"
+      - else
+        = link_to t('.view'), '#', class: 'btn btn-default btn-view disabled'
+      = mail_to(resource.user.email, t('.email'), class: 'btn btn-default')
+      button.btn.btn-default.disabled type="button"
+        = t('.save')

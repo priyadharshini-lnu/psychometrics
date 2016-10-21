@@ -1,6 +1,5 @@
-class AssignPolicy < Administration::BasePolicy
-  # TODO: move to another scope
+class AssignPolicy < BasePolicy
   def update?
-    @user.is?(:superadmin)
+    @record.user_id == @current_user.id
   end
 end

@@ -1,0 +1,14 @@
+en:
+  managers:
+    assigns:
+      index:
+        title: 'Assessments and Reporting Centre'
+        name: 'Name'
+        assessment_type: 'Assessment Type'
+        status: 'Completion Status'
+        completion_date: 'Completion Date'
+        action: 'Action'
+      resource:
+        view: 'View'
+        email: 'Email'
+        save: 'Save in PDF'

@@ -1,0 +1,42 @@
+.row
+  .col-xs-12
+    #assessmentDashboard
+      .contentTitleHeader
+        i.glyphicon.glyphicon-dashboard.titleIcon.pull-left
+        p.contentTitle
+          = t('.title')
+      .col-md-3.col-md-push-9.topPadding
+        .dropdown.pull-right
+          button#dropdownMenu1.btn.btn-default.dropdown-toggle aria-expanded="true" aria-haspopup="true" data-toggle="dropdown" type="button"
+            | Select Language
+            span.caret
+          ul.dropdown-menu aria-labelledby="dropdownMenu1"
+            li
+              a href="#"
+                | English
+            li
+              a href="#"
+                | French
+            li
+              a href="#"
+                | Arabic
+        .clearfix  
+      .col-md-6.col-md-offset-3.col-md-pull-3.topPadding
+        .videoWrapper
+          iframe allowfullscreen="" frameborder="0" height="360" mozallowfullscreen="" src="https://player.vimeo.com/video/64233957?byline=0&portrait=0" webkitallowfullscreen="" width="640"
+      .col-xs-12.topPadding
+        p
+          | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec erat sem, sagittis nec imperdiet eget, aliquam id enim. Integer condimentum diam et felis accumsan, in commodo lectus aliquam. Nulla fermentum orci magna, eu volutpat dolor condimentum id. In commodo neque diam, id finibus lacus porttitor at. Donec orci urna, condimentum facilisis felis eu, scelerisque eleifend justo. Vivamus aliquet efficitur eros, vitae ullamcorper nisi ultrices eget. Sed vel interdum libero, quis pulvinar dolor.
+        p
+          | Nullam vel nulla at eros commodo luctus non et neque. Etiam eget libero et ligula euismod euismod vel ac dui:
+        ol
+          li
+            | Morbi orci felis, pulvinar suscipit urna sit amet, aliquet mollis est.
+          li
+            | Interdum et malesuada fames ac ante ipsum primis in faucibus.
+          li
+            | Nulla orci tortor, tincidunt id tempus fringilla, maximus a tellus.
+        .text-right
+          p
+            = link_to 'Next', root_path, class: 'button btn btn-next'
+      .clearfix  

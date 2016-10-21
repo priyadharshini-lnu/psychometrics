@@ -1,0 +1,9 @@
+en:
+  managers:
+    dashboard:
+      index:
+        notifications: 'Notifications'
+        reporting: 'Reporting'
+        assessment_center: 'Assessment / Report Centre'
+        notification_center: 'Notification Centre'
+        relationships: 'Company Relationships'

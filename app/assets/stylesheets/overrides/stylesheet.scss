@@ -7,6 +7,21 @@
   }
 }
 
-label > input[type='radio']{ /* HIDE RADIO */
-  display:inherit;
+label {
+  text-transform: inherit;
+  width: 100%;
+}
+
+label > input {
+  display: inline-block;
+}
+
+.alert {
+  margin: 0;
+}
+
+.assign-container {
+  .btn-view {
+    padding: 6px 17px;
+  }
 }

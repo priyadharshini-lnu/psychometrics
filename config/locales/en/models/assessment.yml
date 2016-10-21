@@ -10,6 +10,8 @@ en:
         created_at: 'Created Date'
         updated_at: 'Modified Date'
         active: 'Active'
+        timing: 'Timing'
+        description: 'Description'
         categories:
           psychometric: 'Psychometrics'
           organisational: 'Org Surveys'

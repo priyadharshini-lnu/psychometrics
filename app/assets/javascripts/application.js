@@ -12,4 +12,5 @@
 //
 //= require jquery_ujs
 //= require common
+//= require managers/assessments
 //= require_tree .

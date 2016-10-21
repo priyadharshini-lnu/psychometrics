@@ -20,19 +20,18 @@ class AssessmentsController < ApplicationController
   append_before_action :pundit_authorize
   layout 'users'
 
-  # TODO: add real company
   def pass
     @assign = Assign.find_by(
       assessment_id: @resource.id,
-      user_id: pundit_user.user.id,
+      user_id: pundit_user[:current_user].id,
       client_id: @current_client.id
     )
     @assign.update(status: Assign.statuses['in_progress'], step: 0)
-    render layout: 'users_and_administration'
   end
 
   def index
-    @resources = policy_scope(@resource_class).all
+    @reports = @current_client.reports.group_by(&:assessment_id)
+    @resources = policy_scope(@resource_class).order(:id).all
   end
 
   private
@@ -49,9 +48,5 @@ class AssessmentsController < ApplicationController
   # Authorisation user
   def pundit_authorize
     authorize @resource || @resource_class
-  end
-
-  def pundit_user
-    CurrentContext.new(current_user, @current_client)
   end
 end

@@ -1,5 +1,8 @@
 en:
   assessments:
+    index:
+      user_dashboard_button: 'User Dashboard'
+      managers_dashboard_button: 'Managers Dashboard'
     resource:
       assigned: "Assigned %{date}"
       results: "Results"
