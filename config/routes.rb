@@ -162,7 +162,9 @@ Rails.application.routes.draw do
     resources :dashboard, only: [:index]
     resources :assigns, only: [:index]
     resources :notifications, only: [:index]
-    resources :users, only: [:index]
+    resources :users, only: [:index] do
+      resources :reports, only: [:show]
+    end
   end
 
   resources :assessments, only: [:index] do

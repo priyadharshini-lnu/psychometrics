@@ -1,12 +1,12 @@
 module Managers
   class AssignPolicy < BasePolicy
     def index?
-      true
+      @current_user.is? :manager
     end
 
     class Scope < Scope
       def resolve
-        @user.client.assigns
+        @user[:current_client].assigns
       end
     end
   end

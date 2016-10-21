@@ -1,12 +1,12 @@
 module Managers
   class NotificationPolicy < BasePolicy
     def index?
-      @user.is? :manager
+      @current_user.is? :manager
     end
 
     class Scope < Scope
       def resolve
-        @user.client.notifications
+        @user[:current_client].notifications
       end
     end
   end

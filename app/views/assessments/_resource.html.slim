@@ -6,7 +6,7 @@
     .col-xs-12.col-sm-11.col-md-7
       .well.assessmentTitleWell
         h3.assessmentTitle
-          = resource.decorate.category
+          = "#{resource.decorate.category} (#{resource.name})"
       .well.assessmentDetailsWell
         h4.detailsTitle
           = "#{t('.questions', :count => resource.active_questions_count)} #{resource.decorate.timing}"

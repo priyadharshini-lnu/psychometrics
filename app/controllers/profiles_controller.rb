@@ -2,10 +2,6 @@ class ProfilesController < ApplicationController
   before_action :set_profile, only: [:edit, :update]
   before_action :skip_policy_scope
 
-  def edit
-    # binding.pry
-  end
-
   def update
     respond_to do |format|
       if @resource.update(profile_params)

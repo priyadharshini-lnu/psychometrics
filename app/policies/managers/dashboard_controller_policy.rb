@@ -1,7 +1,7 @@
 module Managers
   class DashboardControllerPolicy < BasePolicy
     def index?
-      @user.is? :manager
+      @current_user.is? :manager
     end
   end
 end

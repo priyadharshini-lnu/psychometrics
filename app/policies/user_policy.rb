@@ -1,5 +1,5 @@
 class UserPolicy < BasePolicy
   def manager_dashboard?
-    @user.is? :manager
+    @current_user.is? :manager
   end
 end

@@ -1,7 +1,7 @@
 module Managers
   class UserPolicy < BasePolicy
     def index?
-      @user.is? :manager
+      @current_user.is? :manager
     end
 
     class Scope < Scope

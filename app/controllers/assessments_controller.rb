@@ -8,7 +8,7 @@ class AssessmentsController < ApplicationController
   def pass
     @assign = Assign.find_by(
       assessment_id: @resource.id,
-      user_id: pundit_user.user.id,
+      user_id: pundit_user[:current_user].id,
       client_id: @current_client.id
     )
     @assign.update(status: Assign.statuses['in_progress'], step: 0)

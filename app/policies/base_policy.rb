@@ -1,8 +1,8 @@
 class BasePolicy
   def initialize(context, record)
-    @user   = context.user
-    @client = context.client
-    @record = record
+    @current_user   = context[:current_user]
+    @current_client = context[:current_client]
+    @record = [record].flatten.last
   end
 
   class Scope
