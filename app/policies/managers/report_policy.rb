@@ -1,10 +1,10 @@
 module Managers
   class ReportPolicy < BasePolicy
     def initialize(context, record)
-      @current_user   = context[:current_user]
-      @user   = context[:user]
-      @client = context[:current_client]
-      @record = [record].flatten.last
+      @current_user = context[:current_user]
+      @user         = context[:user]
+      @client       = context[:current_client]
+      @record       = [record].flatten.last
     end
 
     def show?
@@ -15,4 +15,3 @@ module Managers
     end
   end
 end
-

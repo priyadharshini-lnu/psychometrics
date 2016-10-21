@@ -10,7 +10,9 @@ class AssessmentPolicy < BasePolicy
   class Scope < Scope
     def resolve
       # TODO: use squeel
-      scope.includes(:assigns).where("assigns.user_id = #{ActiveRecord::Base.sanitize(@user[:current_user].id)} and assigns.client_id = #{ActiveRecord::Base.sanitize(@user[:current_client].id)}").references(:assigns)
+      scope.includes(:assigns).
+          where("assigns.user_id = #{ActiveRecord::Base.sanitize(@user[:current_user].id)} and assigns.client_id = #{ActiveRecord::Base.sanitize(@user[:current_client].id)}").
+          references(:assigns)
     end
   end
 end
