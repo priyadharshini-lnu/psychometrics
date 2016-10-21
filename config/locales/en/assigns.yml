@@ -1,7 +1,7 @@
 en:
   assigns:
     notifications:
-      in_progress: "%{user_name} started to pass assessment \"%{assessment_name}\""
+      in_progress: "%{user_name} started to take assessment \"%{assessment_name}\""
       completed: "%{user_name} finished assessment \"%{assessment_name}\""
     decorator:
       completed: "Completed %{date}"
