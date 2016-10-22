@@ -14,7 +14,8 @@
 #
 
 FactoryGirl.define do
-  factory :assessment do
-    sequence(:name) { |i| "assessment #{i}" }
+  factory :assessment do |f|
+    f.sequence(:name) { |i| "assessment #{i}" }
+    f.association :dimension
   end
 end

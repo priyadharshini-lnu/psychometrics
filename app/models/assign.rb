@@ -36,6 +36,26 @@ class Assign < ApplicationRecord
     self.scoring ||= {}
   end
 
+  #
+  # 1 step:
+  # Generate hash: { factor_id: [FactorsScoring, FactorsScoring, ...], ...} - factors_scoring_map
+  #
+  # 2 step:
+  # Generate hash from questions related with FactorsScoring: {question_id: [Question], question_id: [Question]} - questions_map
+  #
+  # 3 step:
+  # Run through hash #1:
+  #   for every factor calculate scoring by assign->results and FactorScoring->props
+  #
+  # 4 step:
+  # Temporal result save to assign->scoring:
+  # Example: {866=>{:name=>"Rubyable", :results=>[2.0, 2.5, 3.0]}, 867=>{:name=>"Reactable", :results=>[2.0, 2.5, 3.0]}}
+  #
+  #
+  # 5 step:
+  # Calculate average of field scoring[factor_id][:results]
+  # Example: {866=>{:name=>"Rubyable", :results=>3.75}, 867=>{:name=>"Reactable", :results=>2.5}}
+  #
   def calculate_scoring
     factors_scoring     = FactorsScoring.where(assessment_id: assessment_id).joins(:factor).all
     factors_scoring_map = factors_scoring.group_by(&:factor_id)
@@ -44,7 +64,7 @@ class Assign < ApplicationRecord
     self.scoring        = {}
 
     factors_scoring_map.each do |factor_id, scoring_array|
-      self.scoring[factor_id] = { name: scoring_array.first.try(:factor).try(:name), results: [] }
+      self.scoring[factor_id] = {name: scoring_array.first.try(:factor).try(:name), results: []}
       scoring_array.each do |question_scoring|
         question      = questions_map[question_scoring.question_id].first
         scoring_class = "Scoring::#{question.type}"
@@ -59,8 +79,11 @@ class Assign < ApplicationRecord
           end
         end
       end
-      scoring_result                    = self.scoring[factor_id][:results].sum.to_f / self.scoring[factor_id][:results].size
-      self.scoring[factor_id][:results] = scoring_result if scoring_result
+      if !self.scoring[factor_id][:results].empty?
+        self.scoring[factor_id][:results] = self.scoring[factor_id][:results].sum.to_f / self.scoring[factor_id][:results].size
+      else
+        self.scoring[factor_id][:results] = 0
+      end
     end
     nil
   end

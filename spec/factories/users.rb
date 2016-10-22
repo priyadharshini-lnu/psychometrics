@@ -34,7 +34,7 @@ FactoryGirl.define do
   factory :user do
     email 'test@test.com'
     password 'password'
-    role :superadmin
+    role Users::SuperAdmin
     first_name 'test'
     last_name 'test'
   end

@@ -1,12 +1,11 @@
 require 'rails_helper'
-require 'channels/mock_action'
 
-RSpec.describe Assessments::Actions::Block do
+RSpec.describe Scoring::MultipleChoice do
   let!(:assessment) { create(:assessment) }
   let!(:block) { create(:block) }
   let!(:user) { create(:user) }
 
-  describe '#block_create' do
+  describe '#calculate' do
     # context 'when send correct request' do
     #   let(:name) { "name_#{Time.now}}" }
     #   it 'create block' do
