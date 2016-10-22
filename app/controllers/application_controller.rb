@@ -10,6 +10,8 @@ class ApplicationController < ActionController::Base
   prepend_before_action :set_client_by_subdomain
   prepend_before_action :authenticate
 
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+
   # Authentication user/manager
   before_action :authenticate_user!
   append_before_action :set_client_by_user, if: :current_user
@@ -24,6 +26,10 @@ class ApplicationController < ActionController::Base
   end
 
   private
+
+  def user_not_authorized
+    render text: 'You does not have access to this page'
+  end
 
   def set_client_by_subdomain
     subdomain = request.subdomain
