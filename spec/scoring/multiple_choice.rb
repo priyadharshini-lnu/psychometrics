@@ -1,31 +1,35 @@
 require 'rails_helper'
 
 RSpec.describe Scoring::MultipleChoice do
-  let!(:assessment) { create(:assessment) }
-  let!(:block) { create(:block) }
-  let!(:user) { create(:user) }
+  let!(:multiple_choice) { Scoring::MultipleChoice.new }
+  let!(:template_data) { [{'index' => 0, 'value' => 2}, {'index' => 1, 'value' => 3}, {'index' => 2, 'value' => 4}] }
 
   describe '#calculate' do
-    # context 'when send correct request' do
-    #   let(:name) { "name_#{Time.now}}" }
-    #   it 'create block' do
-    #     ::MockAction.new.block_create('data' => { name: name })
-    #     expect(Block.last.name).to eq(name)
-    #   end
-    #   it 'return block serializer' do
-    #     response = ::MockAction.new.block_create('data' => { name: name })
-    #     expect(BlockSerializer.new(Block.last).to_hash).to eq(response[:data])
-    #   end
-    # end
-  end
-
-  describe '#block_update' do
-    # context 'when send correct request' do
-    #   it 'update block' do
-    #     name = 'new_name'
-    #     ::MockAction.new.block_update('data' => { id: block.id, name: name }.stringify_keys)
-    #     expect(block.reload.name).to eq(name)
-    #   end
-    # end
+    context 'when scoring: choice #1 - 2, choice #2 - 3, choice #3 - 4' do
+      context 'when answer: #1' do
+        it 'returns 2' do
+          result = multiple_choice.calculate(Question.new, {'answers' => [{'index' => 0, 'value' => true}]}, template_data)
+          expect(result).to eq(2)
+        end
+      end
+      context 'when answer: #1, #3' do
+        it 'returns 3' do
+          result = multiple_choice.calculate(Question.new, {'answers' => [{'index' => 0, 'value' => true}, {'index' => 2, 'value' => true}]}, template_data)
+          expect(result).to eq(3)
+        end
+      end
+      context 'when no answer' do
+        it 'returns nil' do
+          result = multiple_choice.calculate(Question.new, {'answers' => []}, template_data)
+          expect(result).to be_nil
+        end
+      end
+      context 'when answer: {\'index\' => 0, \'value\' => false}' do
+        it 'returns nil' do
+          result = multiple_choice.calculate(Question.new, {'answers' => [{'index' => 0, 'value' => false}]}, template_data)
+          expect(result).to be_nil
+        end
+      end
+    end
   end
 end

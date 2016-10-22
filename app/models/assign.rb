@@ -71,11 +71,10 @@ class Assign < ApplicationRecord
         result        = results[question.id.to_s]
         if result && question
           begin
-            scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring)
+            scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)
             self.scoring[factor_id][:results] << scoring_point if scoring_point
           rescue
-            # TODO: uncomment row below
-            # raise "Should be implemented class #{scoring_class}"
+            raise "Should be implemented class #{scoring_class}"
           end
         end
       end
