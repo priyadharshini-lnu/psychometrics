@@ -8,7 +8,7 @@ class Administration::BaseController < ActionController::Base
   def pundit_user
     current_user
   end
-
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   # Authentication admin
   prepend_before_action :authenticate_user!
   prepend_before_action :authenticate
@@ -25,6 +25,9 @@ class Administration::BaseController < ActionController::Base
   add_flash_types :notice, :error, :success
 
   private
+  def user_not_authorized
+    render text: 'You does not have access to this page'
+  end
 
   def authenticate_user!
     redirect_to(new_administration_session_path) && return unless user_signed_in?
