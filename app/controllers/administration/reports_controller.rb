@@ -4,12 +4,12 @@ module Administration
     before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :preview]
     before_action :skip_authorization, only: [:sidebar]
     before_action :init_breadcrumbs
-    append_before_action :pundit_authorize, except: [:sidebar, :preview]
+    append_before_action :pundit_authorize, except: [:sidebar]
 
     # TODO: Implement token auth for preview
     # skip_before_action :authenticate, only: [:preview]
     # skip_before_action :authenticate_user!, only: [:preview]
-    skip_after_action :verify_authorized, only: [:preview]
+    # skip_after_action :verify_authorized, only: [:preview]
     # GET /administration/resources
     def index
       @filterrific = initialize_filterrific(
