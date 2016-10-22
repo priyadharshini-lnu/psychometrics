@@ -9,7 +9,7 @@ module Administration
     # TODO: Implement token auth for preview
     # skip_before_action :authenticate, only: [:preview]
     # skip_before_action :authenticate_user!, only: [:preview]
-    # skip_after_action :verify_authorized, only: [:preview]
+    skip_after_action :verify_authorized, only: [:preview]
     # GET /administration/resources
     def index
       @filterrific = initialize_filterrific(
