@@ -57,11 +57,12 @@ html
             .container-fluid
               .row
                 .col-xs-3.col-md-3
-                .col-xs-6.col-md-
-                  - if @current_client && @current_client.logo.present?
-                    = image_tag @current_client.logo.url, class: 'img-responsive center-block headerLogo', alt: @current_client.decorate.display_name
-                  - else
-                    = image_tag 'the-talent-enterprise-logo', class: 'img-responsive center-block headerLogo', alt: 'The Talent Enterprise logo'
+                .col-xs-6.col-md-3
+                  - if (controller_name != 'assessments' && action_name != 'pass')
+                    - if @current_client && @current_client.logo.present?
+                      = image_tag @current_client.logo.url, class: 'img-responsive center-block headerLogo', alt: @current_client.decorate.display_name
+                    - else
+                      = image_tag 'the-talent-enterprise-logo', class: 'img-responsive center-block headerLogo', alt: 'The Talent Enterprise logo'
                 .col-xs-3.col-md-3
           .container
             = yield
