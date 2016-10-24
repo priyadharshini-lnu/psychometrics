@@ -5,7 +5,7 @@ module Managers
 
     def index
       @filter_form = policy_scope(@resource_class).includes(:assessment, :user).search(params[:q])
-      @reports = @current_client.reports.with_assessment_category(['360', 'organisational']).group_by(&:assessment_id)
+      @reports = @current_client.reports.with_assessment_category(%w(360 organisational)).group_by(&:assessment_id)
       # TODO: implement scope
       @resources = @filter_form.result
       respond_to do |format|
