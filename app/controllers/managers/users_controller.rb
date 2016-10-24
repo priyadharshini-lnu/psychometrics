@@ -4,14 +4,20 @@ module Managers
     append_before_action :pundit_authorize
 
     def index
-      @resources = policy_scope(@resource_class).order(created_at: :asc, id: :asc).all
+      @resources = policy_scope(@resource_class).
+                   with_client(@current_client).
+                   where.not(user_id: @current_user).
+                   includes(:user).
+                   order(id: :asc).
+                   all
+      @current_membership = @current_user.memberships.find_by(client_id: @current_client)
     end
 
     private
 
     # Set model
     def set_resource_class
-      @resource_class ||= User
+      @resource_class ||= Membership
     end
 
     # Authorisation user

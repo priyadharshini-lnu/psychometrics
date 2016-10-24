@@ -1,16 +1,10 @@
 class Administration::Clients::UsersController < Administration::UsersController
-  before_action :set_client
+  append_before_action :client
 
   def index
-    @filterrific = initialize_filterrific(
-      policy_scope(@resource_class),
-      params[:filterrific],
-      select_options: {
-        with_role: @resource_class.options_for_with_role
-      },
-      available_filters: [:with_role, :sorted_by, :search_query]
-    ) || return
-    @resources = @filterrific.find.preload(:clients).with_client(@client.id).page(params[:page])
+    @filter_form = policy_scope(@resource_class).search(params[:q])
+    @filter_form.memberships_client_id_in = @client.id
+    @resources = @filter_form.result.preload(:clients).page(params[:page])
 
     respond_to do |format|
       format.html
@@ -19,12 +13,55 @@ class Administration::Clients::UsersController < Administration::UsersController
   end
 
   def new
-    super
-    @resource.client_ids = [@client.id]
+    @resource = @resource_class.new
+    @direct_managers = @client.users
+    @resource.memberships.build
+  end
+
+  def create
+    @resource = @resource_class.new({ operator: current_user })
+    @resource.assign_attributes(resource_params)
+    @resource.memberships.first[:client_id] = @client.id
+    respond_to do |format|
+      if @resource.save
+        @resource.invite!(current_user)
+        format.js
+      else
+        format.js { render :new }
+      end
+    end
+  end
+
+  # GET /administration/resources/1/edit
+  def edit
+    @direct_managers = @client.users.exclude_ids([@resource.id])
+    add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
+  end
+
+  # PATCH/PUT /administration/resources/1
+  def update
+    @resource.operator = current_user
+    respond_to do |format|
+      if @resource.update(resource_params)
+        format.html do
+          redirect_to({ action: :edit, id: @resource }, success: t('.successfully', name: @resource.decorate.display_name))
+        end
+      else
+        format.html { render :edit }
+      end
+    end
+  end
+
+  def destroy
+    @resource.memberships.find_by(client_id: @client.id).destroy
+    respond_to do |format|
+      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.js
+    end
   end
 
   def export
-    @resources = policy_scope(@resource_class).with_client(@client.id).includes(:clients).all
+    @resources = policy_scope(@client.users).includes(:clients).all
 
     respond_to do |format|
       format.csv do
@@ -41,30 +78,27 @@ class Administration::Clients::UsersController < Administration::UsersController
                 success: t('.successfully', name: @resource.decorate.display_name)
   end
 
-  private
+  protected
+
+  def client
+    @client ||= policy_scope(Client).find(params[:client_id])
+  end
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
     add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
-    add_breadcrumb @client.decorate.display_name, '#'
+    add_breadcrumb client.decorate.display_name, '#'
     add_breadcrumb I18n.t('administration.breadcrumbs.users'), { action: :index }
   end
 
-  # Set model
-  def set_resource_class
-    @resource_class ||= User
-  end
-
-  def set_client
-    @client = policy_scope(Client).find(params[:client_id])
-  end
-
-  def set_resource
-    @resource = policy_scope(@resource_class).find(params[:id])
-  end
-
   def resource_params
-    params.require(:resource).permit(:first_name, :last_name, :email, :disabled, :role, manage_client_ids: [])
+    params.require(:resource).permit(:first_name,
+                                     :last_name,
+                                     :email,
+                                     :disabled,
+                                     :role,
+                                     memberships_attributes: [:parent_id, :id],
+                                     hris_data: [:key, :value])
   end
 
   # Authorisation user

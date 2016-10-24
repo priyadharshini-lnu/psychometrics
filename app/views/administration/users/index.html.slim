@@ -3,42 +3,34 @@
     .panel.panel-default
       .panel-heading
         h3.panel-title = t('.title')
-        .pull-right
-          .btn-group
-            - if policy(@resource_class).import?
-              .btn-group
-                button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                  span.fa.fa-upload
-                  => t('.import')
-                  span.caret
-                ul.dropdown-menu
-                  li = link_to(t('.import_users'), new_administration_imports_users_path, remote: true, class: 'btn btn-default')
-                  li = link_to(t('.import_hris'), new_administration_imports_hris_path, remote: true, class: 'btn btn-default')
-            - if policy(@resource_class).export?
-              = link_to({ action: :export, format: :csv }, target: :_blank, class: 'btn btn-default')
-                span.fa.fa-download
-                = t('.export')
-            - if policy(@resource_class).create?
-              = link_to({ action: :new }, remote: true, class: 'btn btn-default')
-                span.fa.fa-plus
-                = t('.add')
       .panel-body
-        = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
-          = f.hidden_field :sorted_by
-          .row.mbm
-            .col-sm-6.phn
-              .btn-group data-toggle="buttons"
-                - @filterrific.select_options[:with_role].each do |value|
-                  label class="btn btn-default #{'active' if f.object.with_role == value}"
-                    = f.radio_button(:with_role, value)
-                    = t(".filterrific.with_role.#{value}")
-              .form-group
-                = f.select(:with_client, policy_scope(Client).options_for_select, { include_blank: t('administration.any') }, class: 'form-control select mll')
-            .col-md-3.col-md-offset-3.col-sm-4.col-sm-offset-2.phn
-              .form-group.has-feedback.has-clear.pull-right
-                .input-group
-                  = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')
-                span.glyphicon.glyphicon-remove-sign.form-control-feedback.form-control-clear
-          .clearfix
-        #filterrific_results
-          = render partial: 'list'
+        .row
+          .col-sm-10
+            #filter_results
+              = render partial: 'list'
+          .col-sm-2
+            h3 
+              i.fa.fa-filter
+              | Filter
+            = search_form_for(@filter_form, 
+                              url: { action: :index }, 
+                              html: { id: 'filter' },
+                              builder: SimpleForm::FormBuilder) do |f|
+
+              = f.input :role_in, 
+                        collection: ::User::USER_ROLES.map { |role, value| [t("activerecord.attributes.user.roles.#{role}"), value] }, 
+                        input_html: { multiple: true },
+                        required: false,
+                        label: 'Roles'
+              = f.input :memberships_client_id_in, 
+                        collection: policy_scope(Client).all,
+                        input_html: { data: { live_search: true }, multiple: true },
+                        required: false,
+                        label: 'Clients'
+              = f.input :first_name_or_last_name_or_email_cont, 
+                        label: 'Search', 
+                        as: :string, 
+                        required: false, 
+                        placeholder: t('administration.search'), 
+                        input_html: { class: 'has_clear periodically-observed' }
+              = link_to "Clear Filter", request.path, class: "btn btn-default"

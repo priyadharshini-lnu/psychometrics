@@ -1,0 +1,12 @@
+en:
+  activerecord:
+    models:
+      memebrship: Memebrship
+    attributes:
+      memebrship: &DEFAULT
+        id: ID
+        parent: Direct Manager
+  simple_form:
+    placeholders:
+      memebrship:
+        <<: *DEFAULT

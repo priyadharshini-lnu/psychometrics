@@ -105,15 +105,11 @@ Rails.application.routes.draw do
     ### END DIMENSIONS
 
     ### USERS
-    resources :users do
+    resources :users, except: [:new, :create] do
       member do
         patch :toggle_status
         get :sidebar
         get :reset_password
-        get :spoof
-      end
-      collection do
-        get :export
       end
     end
     ### END USERS

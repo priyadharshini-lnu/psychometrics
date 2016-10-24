@@ -71,6 +71,12 @@ en:
             title: <strong>%{status}</strong> %{name}?
             body: >
               <p>Are you sure you want to %{status} this User?</p>
+          membership:
+            delete:
+              title:
+                Delete <strong>%{name}</strong> from %{client_name} Client Tenancy?
+              body: >
+                <p>Are you sure you want to delete?</p>
           delete:
             title:
               Delete <strong>%{name}</strong> ?
