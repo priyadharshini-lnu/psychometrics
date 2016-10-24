@@ -187,7 +187,7 @@ class User < ApplicationRecord
   scope :hris_data_cont, lambda { |data|
     data = JSON.parse(data) if data.is_a?(String)
     return if data.blank?
-    where('users.hris @> ?', parsed_data.to_json)
+    where('users.hris @> ?', data.to_json)
   }
 
   scope :role_scope_in, lambda { |role|
