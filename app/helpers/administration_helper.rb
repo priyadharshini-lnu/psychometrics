@@ -52,4 +52,8 @@ module AdministrationHelper
       filterrific_sorting_link(filterrific, name, { ascending_indicator: '', descending_indicator: '', label: label })
     end
   end
+
+  def link_to_sort(resource_class, name, filter_form)
+    sort_link(filter_form, name, resource_class.human_attribute_name(name))
+  end
 end

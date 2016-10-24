@@ -1,5 +1,5 @@
 class Administration::Clients::UsersController < Administration::UsersController
-  before_action :set_client
+  prepend_before_action :set_client
 
   def index
     @filterrific = initialize_filterrific(

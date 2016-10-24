@@ -42,6 +42,9 @@ Rails.application.routes.draw do
       end
       scope module: :clients do
         resources :users do
+          scope module: :users do
+            resources :assigns, only: [:index]
+          end
           member do
             patch :toggle_status
             get :sidebar

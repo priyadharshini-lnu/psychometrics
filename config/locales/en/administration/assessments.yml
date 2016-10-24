@@ -10,6 +10,7 @@ en:
             psychometric: 'Psychometrics'
             organisational: 'Org Surveys'
             '360': '360 Feedback'
+            all: 'All Categories'
       form:
         timing:
           hint: 'For Example: 30 minutes to complete'
