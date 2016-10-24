@@ -2,9 +2,12 @@
   table.table.table-bordered.table-actions.table-hover.selectable.list id="#{@resource_class.model_name.plural}_list"
     thead
       tr
-        th = 1
-        th = @resource_class.human_attribute_name(:assessment)
-        th = link_to_sort @resource_class, :created_at, @filter_form
+        th = User.human_attribute_name(:name)
+        th = t('.assessment_name')
+        th = t('.assessment_type')
+        th = t('.status')
+        th = link_to_sort @resource_class, :completed_at, @filter_form
+        th.text-center width='290' = t '.reports'
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

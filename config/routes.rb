@@ -44,6 +44,7 @@ Rails.application.routes.draw do
         resources :users do
           scope module: :users do
             resources :assigns, only: [:index]
+            resources :reports, only: [:show]
           end
           member do
             patch :toggle_status

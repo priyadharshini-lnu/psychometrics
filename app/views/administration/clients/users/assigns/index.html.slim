@@ -1,32 +1,24 @@
 .row
   .col-md-12
-    .page-title
-      h2.mrl = @client.decorate.display_name
-    
     .panel.panel-default
       .panel-heading
-        h3.panel-title = t('administration.assigns.index.title')
+        h3.panel-title = "#{@user.decorate.display_name}: #{t('.title')}"
       .panel-body
-
-          = search_form_for @filter_form,
-                  builder: SimpleForm::FormBuilder,
-                  url: {action: :index},
-                  remote: true,
-                  id: 'search_assigns' do |f|
-            = f.input :assessment_category_eq, as: :hidden
-            = f.input :assessment_category_in, collection: Assessment::CATEGORIES.keys, as: :switch,
-                    wrapper_html: { data: {toggle: 'buttons'}, onchange: 'this.form.submit();' }
-            .btn-group
-              = f.input :assessment_category_eq,
-                      as: :radio_buttons,
-                      :collection => [[true, 'Private'], [false, 'Public']],
-                      item_wrapper_class: 'btn btn-default'
-
-          .btn.btn-default
-            = t('administration.assessments.index.filterrific.with_category.all')
-          - Assessment::CATEGORIES.each do |value, key|
-            = link_to '#', class: "btn btn-default"
-              = t("administration.assessments.index.filterrific.with_category.#{value}")
-
-          #ransack_results
-            = render partial: 'list'
+        .row
+          .col-sm-10
+            #filter_results
+              = render partial: 'list'
+          .col-sm-2
+            h3
+              i.fa.fa-filter
+              | Filter
+            = search_form_for(@filter_form,
+                    url: { action: :index },
+                    html: { id: 'filter' },
+                    builder: SimpleForm::FormBuilder) do |f|
+              = f.input :assessment_category_in,
+                      collection: ::Assessment::CATEGORIES.map { |role, value| [t("activerecord.attributes.user.roles.#{role}"), value] },
+                      input_html: { multiple: true },
+                      required: false,
+                      label: t('activerecord.attributes.assessment.category')
+              = link_to t('clear_filter'), request.path, class: 'btn btn-default'

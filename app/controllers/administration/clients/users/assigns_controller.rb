@@ -1,21 +1,33 @@
 module Administration
   module Clients
     module Users
-      class AssignsController < Administration::ReportsController
-        prepend_before_action :set_user
-        prepend_before_action :set_client
+      class AssignsController < Administration::BaseController
+        prepend_before_action :set_resource_class
+        before_action :set_user
+        before_action :set_client
+        before_action :init_breadcrumbs
 
         def index
-          @filter_form = Assign.where(user_id: @user.id, client_id: @client.id).includes(:assessment).search(params[:q])
-          @resources = @filter_form.result
+          @filter_form = Assign.where(user_id: @user.id, client_id: @client.id).includes(:assessment, :user).search(params[:q])
+          @resources = @filter_form.result.page(params[:page])
+          @reports = @client.reports.group_by(&:assessment_id)
+          respond_to do |format|
+            format.html
+            format.js { render :index, formats: [:js] }
+          end
         end
 
         private
 
+        def set_resource_class
+          @resource_class ||= Assign
+        end
+
         def init_breadcrumbs
           add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-          add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
+          add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, @client, :users]
           add_breadcrumb @client.decorate.display_name, '#'
+          add_breadcrumb @user.decorate.display_name, '#'
           add_breadcrumb I18n.t('administration.breadcrumbs.reports'), {action: :index}
         end
 

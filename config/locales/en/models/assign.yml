@@ -4,6 +4,7 @@ en:
       assign: 'Assigns'
     attributes:
       assign: &DEFAULT
+        completed_at: 'Completion Date'
         statuses:
           not_started: 'New'
           in_progress: 'In Progress'

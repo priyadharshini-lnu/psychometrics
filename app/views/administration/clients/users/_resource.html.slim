@@ -14,7 +14,7 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
     - if policy(resource).spoof?
       = link_to({ action: :spoof, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.sign_in') })
         i.fa.fa-sign-in
-    = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.chart') }
+    = link_to [:administration, @client, :user, :assigns, user_id: resource.id], class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.chart') }
       i.fa.fa-pie-chart
     = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.mail') }
       i.fa.fa-envelope-o
