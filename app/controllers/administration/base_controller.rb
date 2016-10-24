@@ -4,18 +4,15 @@ class Administration::BaseController < ActionController::Base
   include Pundit
   ## Prepend :administration namespace to policy
   include Administration::Policies
-  ## Custom current user helper for Pundit
-  def pundit_user
-    current_user
-  end
-  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
   # Authentication admin
   prepend_before_action :authenticate_user!
   prepend_before_action :authenticate
 
   # Ensuring policies and scopes are used
-  after_action :verify_authorized, except: :index
-  after_action :verify_policy_scoped, only: :index
+  append_after_action :verify_authorized, except: :index
+  append_after_action :verify_policy_scoped, only: :index
+
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # Custom layout for administration panel
   layout 'administration'
@@ -25,6 +22,7 @@ class Administration::BaseController < ActionController::Base
   add_flash_types :notice, :error, :success
 
   private
+
   def user_not_authorized
     render text: 'You does not have access to this page'
   end

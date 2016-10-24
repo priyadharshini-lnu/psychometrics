@@ -42,7 +42,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   class Scope < Administration::BasePolicy::Scope
     def resolve
       return scope if @user.is?(:superadmin)
-      scope.joins(:clients).where(clients: { id: @user.client_ids })
+      scope.joins(:memberships).where(memberships: { client_id: @user.client_ids })
     end
   end
 end

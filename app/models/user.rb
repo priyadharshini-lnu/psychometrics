@@ -65,6 +65,7 @@ class User < ApplicationRecord
 
   has_many :memberships
   has_many :clients, through: :memberships
+  accepts_nested_attributes_for :memberships
 
   has_many :assigns, dependent: :destroy
   has_many :assessments, through: :assigns
@@ -193,7 +194,7 @@ class User < ApplicationRecord
   scope :role_scope_in, lambda { |role|
     if role == 'users'
       where(role: USER_ROLES_SCOPES[:user])
-    elsif role == 'administrators'
+    elsif role == 'administration'
       where(role: USER_ROLES_SCOPES[:administration])
     end
   }

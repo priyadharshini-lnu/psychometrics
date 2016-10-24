@@ -1,0 +1,39 @@
+= f.input :hris_data, as: :hidden, input_html: { name: "resource[hris_data][0][key]", value: '' }
+.form-group-separated
+  .form-group
+    .col-md-2.col-xs-12.col-md-offset-1
+      h4 = t('.key')
+    .col-md-6.col-xs-12
+      h4 = t('.value')
+    .col-md-2.col-xs-12
+      button#add-new-hris-data.btn.btn-success type='button' = t('.add')
+  #hris_data
+    - (f.object.hris || {}).keys.each_with_index do |label, index|
+      .form-group.hris_data
+        .col-md-2.col-xs-12.col-md-offset-1
+          = f.input_field :hris_data, name: "resource[hris_data][#{index}][key]", value: label, class: 'form-control'
+        .col-md-6.col-xs-12
+          = f.input_field :hris_data, name: "resource[hris_data][#{index}][value]", value: f.object.hris[label], class: 'form-control'
+        .col-md-2.col-xs-12
+          button.remove-hris-data.btn.btn-danger type='button' = t('.remove')
+script id="hris-template" type="x-tmpl-mustache"
+  .form-group.hris_data
+    .col-md-2.col-xs-12.col-md-offset-1
+      input name="resource[hris_data][{{index}}][key]" placeholder='Specify key' class='form-control'
+    .col-md-6.col-xs-12
+      input name="resource[hris_data][{{index}}][value]" placeholder='Specify value' class='form-control'
+    .col-md-2.col-xs-12
+      button.remove-hris-data.btn.btn-danger type='button' = t('.remove')
+
+javascript:
+  $(function() {
+    $('#add-new-hris-data').on('click', function (){
+      var template = $('#hris-template').html(),
+          index    = $('#hris_data').find('.hris_data').size(),
+          rendered = $(Mustache.render(template, { index: index }));
+      $('#hris_data').append(rendered);
+    });
+    $(document).on('click', '#hris_data .remove-hris-data', function (){
+      $(this).closest('.hris_data').remove()
+    });
+  }); 

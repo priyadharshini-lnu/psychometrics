@@ -1,7 +1,7 @@
 tr
   td
-    = resource.decorate.display_name
+    = resource.user.decorate.display_name
   td
-    = resource.decorate.position
+    = resource.user.decorate.position
   td
-    | Relation Type
+    = resource.decorate(context: { current_membership: @current_membership }).position

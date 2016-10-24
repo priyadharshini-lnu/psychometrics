@@ -47,7 +47,7 @@ module AdministrationHelper
     label = resource_class.human_attribute_name(name)
     # extract the sort direction from the param value.
     klass = 'sorting'
-    klass = (filterrific.sorted_by =~ /desc$/) ? 'sorting_desc' : 'sorting_asc' if filterrific.sorted_by =~ /#{name}/
+    klass = filterrific.sorted_by =~ /desc$/ ? 'sorting_desc' : 'sorting_asc' if filterrific.sorted_by =~ /#{name}/
     content_tag :div, class: klass do
       filterrific_sorting_link(filterrific, name, { ascending_indicator: '', descending_indicator: '', label: label })
     end

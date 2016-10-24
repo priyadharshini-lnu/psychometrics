@@ -11,6 +11,12 @@ class Membership < ApplicationRecord
   belongs_to :client, counter_cache: :licenses_used
   belongs_to :user
 
+  acts_as_nested_set
+
   validates :client, :user, presence: true
   validates :client_id, uniqueness: { scope: :user_id }
+
+  scope :with_client, lambda { |client_id|
+    where(client_id: client_id)
+  }
 end
