@@ -6,7 +6,8 @@ module Managers
 
     class Scope < Scope
       def resolve
-        @user[:current_client].notifications
+        membership = Membership.find_by(client_id: @user[:current_client].id, user_id: @user[:current_user].id)
+        @user[:current_client].notifications.where(user_id: membership.children.pluck(:user_id) + [@user[:current_user].id])
       end
     end
   end

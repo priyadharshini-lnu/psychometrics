@@ -91,12 +91,14 @@ class Assign < ApplicationRecord
     if self.status_changed?
       if in_progress?
         Notification.create(
+            user_id: user_id,
             client_id: client_id,
             text:      I18n.t('assigns.notifications.in_progress', user_name: user.decorate.display_name, assessment_name: assessment.name)
         )
       end
       if completed?
         Notification.create(
+            user_id: user_id,
             client_id: client_id,
             text:      I18n.t('assigns.notifications.completed', user_name: user.decorate.display_name, assessment_name: assessment.name)
         )
