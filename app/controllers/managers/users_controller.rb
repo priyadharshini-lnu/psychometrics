@@ -6,9 +6,10 @@ module Managers
     def index
       @current_membership = @current_user.memberships.find_by(client_id: @current_client)
       resource_ids = []
-      resource_ids << @current_membership.parent_id
-      resource_ids << @current_membership.self_and_siblings.where(client_id: @current_client).pluck(:id)
-      resource_ids << @current_membership.children.where(client_id: @current_client).pluck(:id)
+      resource_ids << @current_membership.id unless params[:filter]
+      resource_ids << @current_membership.parent_id if !params[:filter] || params[:filter] == 'manager'
+      resource_ids << @current_membership.siblings.where(client_id: @current_client).pluck(:id) if !params[:filter] || params[:filter] == 'peer'
+      resource_ids << @current_membership.children.where(client_id: @current_client).pluck(:id) if !params[:filter] || params[:filter] == 'report'
       @resources = policy_scope(@resource_class).where(id: resource_ids.flatten.compact).includes(:user).order(:lft)
     end
 
