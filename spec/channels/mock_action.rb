@@ -1,5 +1,5 @@
 class MockAction
-  include Actions::Block
+  include Assessments::Actions::Block
   def params
     { 'assessment_id' => Assessment.first.id }
   end

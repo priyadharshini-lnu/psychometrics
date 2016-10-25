@@ -43,6 +43,13 @@ class UserDecorator < BaseDecorator
     }.to_json
   end
 
+  def delete_membership_confirmation
+    {
+      title: I18n.t('administration.users.resource.confirmations.membership.delete.title', name: display_name, client_name: context[:client_name]),
+      body: I18n.t('administration.users.resource.confirmations.membership.delete.body')
+    }.to_json
+  end
+
   def toggle_status_confirmation
     status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {

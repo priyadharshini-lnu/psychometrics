@@ -2,19 +2,12 @@ class Administration::UsersController < Administration::BaseController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof, :reset_password]
   before_action :skip_authorization, only: [:sidebar]
-  before_action :init_breadcrumbs
+  append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
-
   # GET /administration/resources
   def index
-    @filterrific = initialize_filterrific(
-      policy_scope(@resource_class),
-      params[:filterrific],
-      select_options: {
-        with_role: @resource_class.options_for_with_role
-      }
-    ) || return
-    @resources = @filterrific.find.preload(:clients).page(params[:page])
+    @filter_form = policy_scope(@resource_class).search(params[:q])
+    @resources = @filter_form.result.preload(:clients).page(params[:page])
 
     respond_to do |format|
       format.html
@@ -22,45 +15,8 @@ class Administration::UsersController < Administration::BaseController
     end
   end
 
-  def new
-    @resource = @resource_class.new
-  end
-
-  def create
-    @resource = @resource_class.new({ operator: current_user })
-    @resource.assign_attributes(resource_params)
-
-    respond_to do |format|
-      if @resource.save
-        @resource.invite!(current_user)
-        format.js
-      else
-        format.js { render :new }
-      end
-    end
-  end
-
   # GET /administration/resources/1
   def show
-  end
-
-  # GET /administration/resources/1/edit
-  def edit
-    add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
-  end
-
-  # PATCH/PUT /administration/resources/1
-  def update
-    @resource.operator = current_user
-    respond_to do |format|
-      if @resource.update(resource_params)
-        format.html do
-          redirect_to({ action: :edit, id: @resource }, success: t('.successfully', name: @resource.decorate.display_name))
-        end
-      else
-        format.html { render :edit }
-      end
-    end
   end
 
   # DELETE /administration/resources/1
@@ -89,25 +45,7 @@ class Administration::UsersController < Administration::BaseController
     redirect_to :back, success: t('.successfully', name: @resource.decorate.display_name)
   end
 
-  def export
-    @resources = policy_scope(@resource_class).includes(:clients).all
-    respond_to do |format|
-      format.csv do
-        headers['Content-Disposition'] = "attachment; filename=\"#{@resource_class.model_name.plural}-#{Date.today}.csv\""
-        headers['Content-Type'] ||= 'text/csv'
-      end
-    end
-  end
-
-  # Spoof as user
-  # TODO: Fix redirect with subdomain
-  def spoof
-    bypass_sign_in(@resource)
-    redirect_to (@resource.is?(:superadmin, :admin) ? administration_root_path : root_url(domain: Settings.domain, subdomain: @resource.clients.try(:first).try(:subdomain))),
-                success: t('.successfully', name: @resource.decorate.display_name)
-  end
-
-  private
+  protected
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]

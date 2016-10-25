@@ -44,7 +44,7 @@ class Assessment < ApplicationRecord
     self.flow ||= {elements: []}
   end
 
-  enum role: CATEGORIES
+  enum category: CATEGORIES
 
   filterrific(
     default_filter_params: {

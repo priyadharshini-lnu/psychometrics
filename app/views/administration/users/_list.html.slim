@@ -2,13 +2,13 @@
   table.table.table-bordered.table-actions.table-hover.selectable.list id="#{@resource_class.model_name.plural}_list"
     thead
       tr
-        th.text-center width="100" = sorting @resource_class, :active, @filterrific
-        th = sorting @resource_class, :first_name, @filterrific
-        th = sorting @resource_class, :last_name, @filterrific
-        th = sorting @resource_class, :email, @filterrific
+        th.text-center width="100" = link_to_sort @resource_class, :active, @filter_form
+        th = link_to_sort @resource_class, :first_name, @filter_form
+        th = link_to_sort @resource_class, :last_name, @filter_form
+        th = link_to_sort @resource_class, :email, @filter_form
         th = User.human_attribute_name :memberships
-        th = sorting @resource_class, :role, @filterrific
-        th = sorting @resource_class, :created_at, @filterrific
+        th = link_to_sort @resource_class, :role, @filter_form
+        th = link_to_sort @resource_class, :created_at, @filter_form
         th width='300' = t('administration.actions')
     tbody
       - if @resources.present?

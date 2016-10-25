@@ -46,7 +46,7 @@
             a href="#" = t('administration.navigation.assessments')
             ul
               li = link_to(t('administration.navigation.psychometrics'), new_administration_assessment_path, remote: true)
-        li.xn-openable
+        /li.xn-openable
           a href="#" User(s)
           - if policy(:user).new? || policy(:user).import?
             ul

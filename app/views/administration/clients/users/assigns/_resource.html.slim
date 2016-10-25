@@ -1,0 +1,21 @@
+tr id=dom_id(resource)
+  td = resource.user.decorate.display_name
+  td = resource.assessment.try(:name)
+  td = resource.assessment.try(:decorate).try(:category)
+  td = resource.decorate.status
+  td = resource.decorate.completed_at
+  td.text-center
+    - reports = @reports.try(:[], resource.assessment_id)
+    - if resource.assessment.psychometric?
+      - if resource.completed?
+        - if reports
+          - reports.each do |report|
+            = link_to [:administration, @client, :user, :report, user_id: @user.id, id: report.id], class: 'btn btn-default btn-rounded btn-sm mrm', data: {toggle: 'tooltip', title: report.name}
+              span.fa.fa-pie-chart
+        - else
+          = t('.no_reports')
+      - else
+        = t('.no_completed')
+    - else
+      = t('.no_access_to_reports')
+

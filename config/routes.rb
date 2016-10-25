@@ -42,6 +42,10 @@ Rails.application.routes.draw do
       end
       scope module: :clients do
         resources :users do
+          scope module: :users do
+            resources :assigns, only: [:index]
+            resources :reports, only: [:show]
+          end
           member do
             patch :toggle_status
             get :sidebar
@@ -105,15 +109,11 @@ Rails.application.routes.draw do
     ### END DIMENSIONS
 
     ### USERS
-    resources :users do
+    resources :users, except: [:new, :create] do
       member do
         patch :toggle_status
         get :sidebar
         get :reset_password
-        get :spoof
-      end
-      collection do
-        get :export
       end
     end
     ### END USERS

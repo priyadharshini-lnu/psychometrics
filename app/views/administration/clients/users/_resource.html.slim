@@ -1,0 +1,26 @@
+tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
+  td.text-center
+    = link_to({ action: :toggle_status, id: resource }, remote: true, method: :patch, data: { confirm: resource.decorate.toggle_status_confirmation })
+      = resource.decorate.status
+  td = resource.first_name
+  td = resource.last_name
+  td = resource.email
+  td = resource.decorate.clients_name
+  td = @resource_class.human_role(resource.role)
+  td = resource.decorate.created_at
+  td
+    = link_to({ action: :reset_password, id: resource }, method: :get, class: 'btn btn-default btn-rounded btn-sm mrm', data: { confirm: resource.decorate.change_password_confirmation, toggle: 'tooltip', title: t('.tooltips.change_password') })
+      i.fa.fa-key
+    - if policy(resource).spoof?
+      = link_to({ action: :spoof, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.sign_in') })
+        i.fa.fa-sign-in
+    = link_to [:administration, @client, :user, :assigns, user_id: resource.id], class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.chart') }
+      i.fa.fa-pie-chart
+    = link_to '#', class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.mail') }
+      i.fa.fa-envelope-o
+    - if policy(resource).edit?
+      = link_to({ action: :edit, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
+        i.fa.fa-pencil
+    - if policy(resource).destroy?
+      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: resource.decorate(context: { client_name: @client.decorate.display_name }).delete_membership_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
+        span.fa.fa-times
