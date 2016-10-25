@@ -2,6 +2,6 @@ tr
   td
     = resource.user.decorate.display_name
   td
-    = resource.user.decorate.position
+    = resource.user.hris['Job Title']
   td
-    = resource.decorate(context: { current_membership: @current_membership }).position
+    = resource.decorate(context: { current_membership: @current_membership }).relationship

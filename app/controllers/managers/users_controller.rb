@@ -4,13 +4,11 @@ module Managers
     append_before_action :pundit_authorize
 
     def index
-      @resources = policy_scope(@resource_class).
-                   with_client(@current_client).
-                   where.not(user_id: @current_user).
-                   includes(:user).
-                   order(id: :asc).
-                   all
       @current_membership = @current_user.memberships.find_by(client_id: @current_client)
+      @resources = []
+      @resources << @current_membership.parent.includes(:user) if @current_membership.parent
+      @resources << @current_membership.self_and_siblings.includes(:user)
+      @resources << @current_membership.children.includes(:user)
     end
 
     private
