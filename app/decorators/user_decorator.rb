@@ -12,10 +12,6 @@ class UserDecorator < BaseDecorator
     User.human_role(object.role)
   end
 
-  def position
-    object.hris['position'] || object.hris['job_title']
-  end
-
   def change_password_confirmation
     {
       title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),

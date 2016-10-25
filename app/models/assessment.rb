@@ -107,4 +107,14 @@ class Assessment < ApplicationRecord
   def related_assign(client_id, user_id)
 
   end
+
+  def assign_form_attributes
+    {
+      client_ids: client_ids,
+      report_ids: report_ids,
+      admin_ids: assigns.where(role: :admin).pluck(:user_id),
+      manager_ids: assigns.where(role: :manager).pluck(:user_id),
+      user_ids: assigns.where(role: :member).pluck(:user_id)
+    }
+  end
 end
