@@ -60,21 +60,21 @@ javascript:
     })
 
     $('.reportTwo').click(function() {
-      $('#q_assessment_category_eq').val("#{Assessment.roles['360']}")
+      $('#q_assessment_category_eq').val("#{Assessment.categories['360']}")
       clearStatus()
       changeReportTitle($(this).find('h4').text())
       $('#search_assigns').submit()
     })
 
     $('.reportThree').click(function() {
-      $('#q_assessment_category_eq').val("#{Assessment.roles['organisational']}")
+      $('#q_assessment_category_eq').val("#{Assessment.categories['organisational']}")
       clearStatus()
       changeReportTitle($(this).find('h4').text())
       $('#search_assigns').submit()
     })
 
     $('.reportFour').click(function() {
-      $('#q_assessment_category_eq').val("#{Assessment.roles['psychometric']}")
+      $('#q_assessment_category_eq').val("#{Assessment.categories['psychometric']}")
       clearStatus()
       changeReportTitle($(this).find('h4').text())
       $('#search_assigns').submit()
