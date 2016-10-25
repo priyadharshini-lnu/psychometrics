@@ -11,15 +11,10 @@
             | Select Type
             span.caret
           ul.dropdown-menu aria-labelledby="dropdownMenu1"
-            li
-              a href="#"
-                | Manager
-            li
-              a href="#"
-                | Direct Reports
-            li
-              a href="#"
-                | Peers
+            = active_link_to 'All', { action: :index }, wrap_tag: :li, active: /^(?!.*\bfilter\b)/
+            = active_link_to 'Managers', { action: :index, filter: 'manager' }, wrap_tag: :li, active: /filter=manager/
+            = active_link_to 'Direct Reports', { action: :index, filter: 'report' }, wrap_tag: :li, active: /filter=report/
+            = active_link_to 'Peers', { action: :index, filter: 'peer' }, wrap_tag: :li, active: /filter=peer/
         .clearfix  
       .col-xs-12
         .notificationTable style=("overflow-x:auto !important;")
