@@ -9,9 +9,15 @@ module Assessments
       end
 
       action :factors do |_data, _current_user, assessment|
-        assessment.dimension.factors.includes(:sub_factors).map do |factor|
-          Factors::WithSubFactorsSerializer.new(factor).to_hash
+        factors = assessment.dimension.factors.includes(:sub_factors).map do |factor|
+          result = []
+          result << Factors::WithoutSubFactorsSerializer.new(factor).to_hash
+          factor.sub_factors.map do |sub_factor|
+            result << Factors::WithoutSubFactorsSerializer.new(sub_factor).to_hash
+          end
+          result
         end
+        factors.flatten
       end
 
       action :norms do |_data, _current_user, assessment|
