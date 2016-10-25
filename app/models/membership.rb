@@ -11,7 +11,7 @@ class Membership < ApplicationRecord
   belongs_to :client, counter_cache: :licenses_used
   belongs_to :user, inverse_of: :memberships
 
-  acts_as_nested_set scope: [:client_id]
+  acts_as_nested_set scope: :client_id
 
   validates :client, :user, presence: true
   validates :client_id, uniqueness: { scope: :user_id }
