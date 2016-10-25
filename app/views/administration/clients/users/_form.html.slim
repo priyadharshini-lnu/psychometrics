@@ -9,10 +9,10 @@
                 collection: @current_user.decorate.can_manage_roles, 
                 class: 'form-control select mll', 
                 include_blank: false
-      = f.simple_fields_for :memberships do |p|
+      = f.simple_fields_for :memberships, f.object.memberships.build do |p|
         = p.input :parent_id, 
-                  collection: @client.users, 
-                  label_method: lambda { |u| u.decorate.display_name }, 
+                  collection: @client.memberships.includes(:user), 
+                  label_method: lambda { |u| u.user.decorate.display_name }, 
                   input_html: {  data: { live_search: true } }
   .modal-footer
     .btn-group

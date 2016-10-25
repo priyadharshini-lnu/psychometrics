@@ -63,7 +63,7 @@ class User < ApplicationRecord
     user: []
   }.freeze
 
-  has_many :memberships
+  has_many :memberships, inverse_of: :user
   has_many :clients, through: :memberships
   accepts_nested_attributes_for :memberships
 

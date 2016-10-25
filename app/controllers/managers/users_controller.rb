@@ -5,10 +5,11 @@ module Managers
 
     def index
       @current_membership = @current_user.memberships.find_by(client_id: @current_client)
-      @resources = []
-      @resources << @current_membership.parent.includes(:user) if @current_membership.parent
-      @resources << @current_membership.self_and_siblings.includes(:user)
-      @resources << @current_membership.children.includes(:user)
+      resource_ids = []
+      resource_ids << @current_membership.parent_id
+      resource_ids << @current_membership.self_and_siblings.where(client_id: @current_client).pluck(:id)
+      resource_ids << @current_membership.children.where(client_id: @current_client).pluck(:id)
+      @resources = policy_scope(@resource_class).where(id: resource_ids.flatten.compact).includes(:user).order(:lft)
     end
 
     private

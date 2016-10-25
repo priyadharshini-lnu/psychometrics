@@ -14,14 +14,12 @@ class Administration::Clients::UsersController < Administration::UsersController
 
   def new
     @resource = @resource_class.new
-    @direct_managers = @client.users
-    @resource.memberships.build
   end
 
   def create
     @resource = @resource_class.new({ operator: current_user })
     @resource.assign_attributes(resource_params)
-    @resource.memberships.first[:client_id] = @client.id
+    @resource.memberships.first.client_id = @client.id
     respond_to do |format|
       if @resource.save
         @resource.invite!(current_user)
@@ -34,7 +32,6 @@ class Administration::Clients::UsersController < Administration::UsersController
 
   # GET /administration/resources/1/edit
   def edit
-    @direct_managers = @client.users.exclude_ids([@resource.id])
     add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
   end
 
