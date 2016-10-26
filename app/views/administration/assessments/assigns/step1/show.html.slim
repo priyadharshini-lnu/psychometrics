@@ -6,7 +6,7 @@
       .panel-body
         /! START WIZARD WITH SUBMIT BUTTON
         .block
-          = simple_form_for(@assign, as: :assign, url: administration_assessment_step1_path, method: :put, wrapper: :horizontal_form, html: { class: 'form-horizontal' }) do |f|
+          = simple_form_for(@assign, as: :assign, url: administration_assessment_step1_path, method: :put) do |f|
             .wizard.show-submit
               ul.steps_2.anchor
                 li.ms-hover
@@ -25,7 +25,25 @@
                       small Admins, Managers and Users
               .stepContainer        
                 #step-1
-                  = f.input :client_ids, collection: policy_scope(Client).all, include_blank: false, input_html: {  data: { live_search: true }, multiple: true }
-                  = f.input :report_ids, collection: @assessment.reports, include_blank: false, input_html: {  data: { live_search: true }, multiple: true }
-                  = f.button :submit, t('.next'), class: 'pull-right'                
-        /! END WIZARD WITH SUBMIT BUTTON    
+                  .row
+                    .col-sm-6
+                      = f.input :client_ids, collection: policy_scope(Client).all, include_blank: false, input_html: {  data: { live_search: true }, multiple: true }
+                      = f.input :report_ids, collection: @assessment.reports, include_blank: false, input_html: {  data: { live_search: true }, multiple: true }
+                    .col-sm-6
+                      = f.input :access_reports, as: :radio_buttons, collection: [['Right after completion', :immediately], ['On specific date and time', :specific_datetime]]
+                      #specific_datetime class="#{'hidden' if f.object.access_reports == 'immediately'}"
+                        = f.input :access_reports_at_date, input_html: { class: 'datepicker', value: f.object.access_reports_at_date || Date.today }, label: 'Date'
+                        = f.input :access_reports_at_time, input_html: { class: 'timepicker' }, label: 'Time'
+      .panel-footer
+        = link_to 'Back', administration_assessments_path, class: 'btn btn-default mrh'
+        #assign_submit.btn.btn-primary.pull-right.mrh onclick="document.forms['new_assign'].submit();" Save and Next                                
+javascript:
+  $(function (){
+    $('input[name="assign[access_reports]"]').change(function (e){
+      if ($(this).val() == 'specific_datetime') {
+        $('#specific_datetime').removeClass('hidden')
+      } else {
+        $('#specific_datetime').addClass('hidden')
+      }
+    });
+  });

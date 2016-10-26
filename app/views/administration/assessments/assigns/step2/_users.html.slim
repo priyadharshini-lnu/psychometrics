@@ -1,5 +1,5 @@
 .row
-  .col-sm-6
+  .col-md-6
     .row
       .col-md-4
         h4
@@ -10,7 +10,7 @@
                           url: { action: :not_selected_users }, 
                           remote: true, 
                           id: 'search_not_selected' do |f|
-          = f.input :exclude_ids, as: :hidden
+          = f.input :exclude_ids, as: :hidden, input_html: { value: @assign.user_ids.join(',') }
           = f.input :role_scope_in, 
                     label: 'Role', 
                     required: false, 
@@ -37,7 +37,7 @@
         h4 = t('.not_selected_users')
         table#users_not_selected.table.table-striped.table-bordered
         #addSelected.btn.btn-default.pull-right Add Selected
-  .col-sm-6
+  .col-md-6
     .row
       .col-md-8
         h4 = t('.selected_users')
@@ -52,7 +52,7 @@
                           url: { action: :selected_users }, 
                           remote: true, 
                           id: 'search_selected' do |f|                
-          = f.input :include_ids, as: :hidden                      
+          = f.input :include_ids, as: :hidden, input_html: { value: @assign.user_ids.join(',') }              
           = f.input :role_scope_in, 
                     label: 'Role', 
                     required: false, 

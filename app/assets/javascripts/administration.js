@@ -19,9 +19,9 @@
 //= require administration/plugins/smartwizard/jquery.smartWizard-2.0.min
 //= require administration/plugins/jquery.kv-json-input
 
-// ---- TODO: insert button for scroll to top
-//= require administration/plugins/scrolltotop/scrolltopcontrol.js
-//= require administration/plugins/bootstrap/bootstrap-datepicker.js
+//= require administration/plugins/scrolltotop/scrolltopcontrol
+//= require administration/plugins/bootstrap/bootstrap-datepicker
+//= require administration/plugins/bootstrap/bootstrap-timepicker.min
 //= require administration/plugins/moment.min.js
 //= require administration/plugins/daterangepicker/daterangepicker.js
 
