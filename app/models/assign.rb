@@ -69,7 +69,7 @@ class Assign < ApplicationRecord
         question      = questions_map[question_scoring.question_id].first
         scoring_class = "Scoring::#{question.type}"
         result        = results[question.id.to_s]
-        if result && question
+        if result && question && !question_scoring.props.empty?
           begin
             scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)
             self.scoring[factor_id][:results] << scoring_point if scoring_point
