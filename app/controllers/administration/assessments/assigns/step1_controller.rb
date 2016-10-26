@@ -8,12 +8,34 @@ module Administration
         append_before_action :pundit_authorize
 
         def show
-          @assign = AssignForm.new(session[token_session] || {})
+          @assign = AssignForm.new(@assessment.assign_form_attributes || {})
         end
 
         def update
           @assign = AssignForm.new(resource_params)
-          session[token_session] = @assign.as_json
+          # Destroy all NOT SELECTED assigned Clients to Assessment
+          AssessmentClient.where({
+              client_id: @assessment.client_ids - @assign.client_ids,
+              assessment_id: @assessment.id
+            }).destroy_all
+          # Assign Assessment to all SELECTED Clients
+          @assessment.client_ids = @assign.client_ids
+
+          # Destroy all assigned Reports
+          ClientReport.where({
+              report_id: @assessment.report_ids
+            }).delete_all
+          # Assign Reports to all SELECTED Clients
+          @assign.client_ids.each do |client_id|
+            @assign.report_ids.each do |report_id|
+              ClientReport.create({
+                  client_id: client_id,
+                  report_id: report_id,
+                  access_reports_at: @assign.access_reports == 'immediately' ? nil : @assign.access_reports_at
+                })
+            end
+          end
+
           redirect_to(administration_assessment_step2_path) && return
         end
 
@@ -39,7 +61,7 @@ module Administration
         end
 
         def resource_params
-          params.fetch(:assign, {}).permit(client_ids: [], report_ids: [], admin_ids: [], manager_ids: [], user_ids: [])
+          params.fetch(:assign, {}).permit(:access_reports, :access_reports_at_date, :access_reports_at_time, client_ids: [], report_ids: [])
         end
 
         # Authorisation user

@@ -19,16 +19,18 @@
 class Client < ApplicationRecord
   include Copyable
 
-  has_many :memberships
+  has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
-  has_many :assigns
-  has_many :notifications
+  has_many :assigns, dependent: :destroy
+  has_many :notifications, dependent: :destroy
   has_many :admins, -> { where(role: ::User::USER_ROLES[:admin]) }, through: :memberships, source: :user, class_name: 'User'
   has_many :managers, -> { where(role: ::User::USER_ROLES[:manager]) }, through: :memberships, source: :user
   has_many :members, -> { where(role: ::User::USER_ROLES[:member]) }, through: :memberships, source: :user
 
-  has_and_belongs_to_many :assessments, join_table: :assessments_clients
-  has_and_belongs_to_many :reports, join_table: :clients_reports
+  has_many :assessment_clients, dependent: :destroy
+  has_many :assessments, through: :assessment_clients
+  has_many :client_reports, dependent: :destroy
+  has_many :reports, through: :client_reports
 
   validates :name, presence: true, length: { maximum: 200 }, uniqueness: true
 

@@ -8,3 +8,6 @@
           strong Well done! 
           |  You successfully assign
           =< @assessment.decorate.display_name
+      .panel-footer
+        = link_to 'Back', administration_assessment_step2_path, class: 'btn btn-default mrh'
+        = link_to 'Assessments List', administration_assessments_path, class: 'btn btn-default pull-right mrh'

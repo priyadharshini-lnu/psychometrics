@@ -13,7 +13,7 @@
 
             = f.input :client_ids, as: :hidden, input_html: { value: f.object.client_ids.join(',') }
             = f.input :report_ids, as: :hidden, input_html: { value: f.object.report_ids.join(',') }
-            = f.input :user_ids, as: :hidden
+            = f.input :user_ids, as: :hidden, input_html: { value: f.object.user_ids.join(',') }
             .wizard.show-submit
               ul.steps_2.anchor
                 li.ms-hover
@@ -55,5 +55,5 @@
         #users = render partial: 'users'
           
       .panel-footer
-        = link_to 'Previous Step', administration_assessment_step1_path, class: 'btn btn-default'
-        #assign_submit.btn.btn-primary.pull-right onclick="document.forms['new_assign'].submit();" Submit
+        = link_to 'Previous Step', administration_assessment_step1_path, class: 'btn btn-default mrh'
+        #assign_submit.btn.btn-primary.pull-right.mrh onclick="document.forms['new_assign'].submit();" Submit
