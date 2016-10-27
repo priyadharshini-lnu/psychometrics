@@ -9,6 +9,9 @@ en:
           not_started: 'New'
           in_progress: 'In Progress'
           'completed': 'Completed'
+    errors:
+      messages:
+        not_uniqueness: 'Assign has already been taken'          
   simple_form:
     placeholders:
       assessment:
