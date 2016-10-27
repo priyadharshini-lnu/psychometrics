@@ -43,7 +43,7 @@ Rails.application.routes.draw do
       scope module: :clients do
         resources :users do
           scope module: :users do
-            resources :assigns, only: [:index]
+            resources :assigns, only: [:index, :new, :create, :destroy]
             resources :reports, only: [:show]
           end
           member do

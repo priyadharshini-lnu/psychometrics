@@ -22,7 +22,7 @@ class Assign < ApplicationRecord
   belongs_to :assessment
   belongs_to :client
 
-  validates_uniqueness_of :client_id, scope: [:assessment_id, :user_id]
+  validates_uniqueness_of :client_id, scope: [:assessment_id, :user_id], message: 'Assign has already been taken'
 
   enum status: [:not_started, :in_progress, :completed]
   enum role: [:member, :manager, :admin]

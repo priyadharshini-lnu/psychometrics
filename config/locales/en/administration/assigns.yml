@@ -3,3 +3,14 @@ en:
     assigns:
       index:
         title: 'Reports'
+      create:
+        successfully: New assign to assessment was successfully created
+      destroy:
+        successfully: Assign to assessment was successfully destroy
+      resource:
+        confirmations:
+          delete:
+            title:
+              Delete <strong>%{name}</strong> ?
+            body:
+              <p>Are you sure you want to delete this assign?</p>        
