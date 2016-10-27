@@ -61,12 +61,16 @@ en:
         assigns:
           index:
             title: 'Assessments and Reporting'
+            add: 'Assign New Assessment'
           list:
             assessment_name: 'Assessment Name'
             assessment_type: 'Assessment Type'
             status: 'Completion Status'
             reports: 'Reports'
+            actions: Actions
           resource:
             no_reports: 'No relative reports'
             no_access_to_reports: 'No access to reports'
             no_completed: 'Not completed'
+            tooltips:
+              delete: Delete Assign
