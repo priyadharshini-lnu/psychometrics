@@ -7,6 +7,23 @@ module Managers
 
     def show
       @results = Assign.completed.where(client_id: @current_client.id, assessment_id: @resource.assessment_id).all
+      respond_to do |format|
+        format.html do
+          render('_show', layout: 'pdf') if params[:export]
+        end
+        format.pdf do
+          renderer = PdfRenderer.new(@resource, self, current_user.authentication_token)
+          # Generate specific url for render html to PDF
+          url = url_for({
+            action: :show,
+            id: @resource,
+            export: true,
+            user_token: @user_token,
+            subdomain: @current_client.subdomain
+          })
+          send_file renderer.render({ url: url }), type: 'application/pdf'
+        end
+      end
     end
 
     private

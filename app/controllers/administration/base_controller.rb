@@ -4,9 +4,9 @@ class Administration::BaseController < ActionController::Base
   include Pundit
   ## Prepend :administration namespace to policy
   include Administration::Policies
+  include Authenticate
   # Authentication admin
   prepend_before_action :authenticate_user!
-  prepend_before_action :authenticate
 
   # Ensuring policies and scopes are used
   append_after_action :verify_authorized, except: :index
@@ -24,18 +24,11 @@ class Administration::BaseController < ActionController::Base
   private
 
   def user_not_authorized
-    render text: 'You does not have access to this page'
+    render plain: 'You does not have access to this page'
   end
 
   def authenticate_user!
     redirect_to(new_administration_session_path) && return unless user_signed_in?
     super
-  end
-
-  def authenticate
-    return if Rails.env.development?
-    authenticate_or_request_with_http_basic do |username, password|
-      username == 'staging' && password == 'sumatosoft'
-    end
   end
 end

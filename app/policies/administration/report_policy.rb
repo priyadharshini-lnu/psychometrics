@@ -8,8 +8,14 @@ module Administration
       @user.is?(:superadmin)
     end
 
-    def preview?
+    def show?
       @user.is?(:superadmin)
+    end
+
+    def preview?
+      return true if @user.is?(:superadmin)
+      return true if @user.is?(:admin) && @record.assessment.psychometric?
+      false
     end
 
     def left_menu?
