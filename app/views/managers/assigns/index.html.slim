@@ -10,12 +10,11 @@
               url: {action: :index},
               remote: true,
               id: 'search_assigns' do |f|
-        = f.input :status_eq, as: :hidden
         = f.input :assessment_category_eq, as: :hidden
       .col-xs-12.col-sm-6.col-md-3
         .reportOne
           h4.text-center
-            = t('.completion_reports')
+            = t('.all_reports')
           = image_tag 'pieChartGraphic', class: 'center-block img-responsive'
       .col-xs-12.col-sm-6.col-md-3
         .reportTwo
@@ -42,40 +41,30 @@
 
 javascript:
   $(function() {
-    function clearStatus() {
-      $('#q_status_eq').val('')
-    }
-    function clearCategory() {
-      $('#q_assessment_category_eq').val('')
-    }
     function changeReportTitle(title) {
       $('#report_title').text(title)
     }
 
     $('.reportOne').click(function() {
-      $('#q_status_eq').val("#{Assign.statuses['completed']}")
-      clearCategory()
+      $('#q_assessment_category_eq').val('')
       changeReportTitle($(this).find('h4').text())
       $('#search_assigns').submit()
     })
 
     $('.reportTwo').click(function() {
       $('#q_assessment_category_eq').val("#{Assessment.categories['360']}")
-      clearStatus()
       changeReportTitle($(this).find('h4').text())
       $('#search_assigns').submit()
     })
 
     $('.reportThree').click(function() {
       $('#q_assessment_category_eq').val("#{Assessment.categories['organisational']}")
-      clearStatus()
       changeReportTitle($(this).find('h4').text())
       $('#search_assigns').submit()
     })
 
     $('.reportFour').click(function() {
       $('#q_assessment_category_eq').val("#{Assessment.categories['psychometric']}")
-      clearStatus()
       changeReportTitle($(this).find('h4').text())
       $('#search_assigns').submit()
     })
