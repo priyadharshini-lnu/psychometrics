@@ -159,7 +159,7 @@ Rails.application.routes.draw do
     put '/factors_norms/update', to: 'factors_norms#update'
   end
 
-  constraints(subdomain: /^(?!www$)(.+)$/i) do
+  constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
     devise_for :users,
                path: 'users',
                as: :devise,

@@ -228,7 +228,7 @@ class User < ApplicationRecord
       if warden_conditions[:subdomain].blank?
         super
       else
-        joins(:clients).where(email: warden_conditions[:email], clients: { subdomain: warden_conditions[:subdomain] }).first
+        joins(:clients).where(email: warden_conditions[:email], clients: { subdomain: warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '') }).first
       end
     end
   end
