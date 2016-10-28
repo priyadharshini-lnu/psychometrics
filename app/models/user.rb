@@ -225,10 +225,11 @@ class User < ApplicationRecord
     end
 
     def find_for_authentication(warden_conditions)
-      if warden_conditions[:subdomain].blank?
+      subdomain = warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
+      if subdomain.blank?
         super
       else
-        joins(:clients).where(email: warden_conditions[:email], clients: { subdomain: warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '') }).first
+        joins(:clients).where(email: warden_conditions[:email], clients: { subdomain: subdomain }).first
       end
     end
   end
