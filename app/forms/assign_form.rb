@@ -49,7 +49,7 @@ class AssignForm < BaseForm
 
   def parse_ids(ids)
     ids = ids.split(',') if ids.is_a?(String)
-    ids = ids.reject(&:blank?).uniq.map(&:to_i)
+    ids = (ids || []).reject(&:blank?).uniq.map(&:to_i)
     ids
   end
 end

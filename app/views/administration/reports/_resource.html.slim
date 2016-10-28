@@ -13,6 +13,9 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
   td = resource.decorate.created_at
   - if policy(@resource_class).action?
     td
+      - if policy(resource).preview?
+        = link_to({ action: :preview, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.preview') })
+          i.fa.fa-eye  
       - if policy(resource).edit?
         = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
           i.fa.fa-pencil

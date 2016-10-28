@@ -1,15 +1,16 @@
 module Administration
   class ReportsController < Administration::BaseController
+    skip_before_action :authenticate_user!, only: [:preview]
+    skip_before_action :authenticate, only: [:preview]
+    prepend_before_action :authenticate_user_from_token!, only: [:preview]
+    before_action :authenticate_user!, only: [:preview]
+
     prepend_before_action :set_resource_class
     before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :preview]
     before_action :skip_authorization, only: [:sidebar]
     before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
 
-    # TODO: Implement token auth for preview
-    # skip_before_action :authenticate, only: [:preview]
-    # skip_before_action :authenticate_user!, only: [:preview]
-    # skip_after_action :verify_authorized, only: [:preview]
     # GET /administration/resources
     def index
       @filterrific = initialize_filterrific(
@@ -94,10 +95,13 @@ module Administration
     end
 
     def preview
+      add_breadcrumb @resource.decorate.display_name, { action: :show, id: @resource }
       respond_to do |format|
-        format.html { render layout: 'pdf' }
+        format.html do
+          render('_preview', layout: 'pdf') if params[:export]
+        end
         format.pdf do
-          renderer = PdfRenderer.new(@resource, self)
+          renderer = PdfRenderer.new(@resource, self, current_user.authentication_token)
           send_file renderer.render, type: 'application/pdf'
         end
       end
@@ -126,6 +130,12 @@ module Administration
     # Authorisation user
     def pundit_authorize
       authorize @resource || @resource_class
+    end
+
+    def authenticate_user_from_token!
+      user_token = params[:user_token].presence
+      user       = user_token && User.find_by(authentication_token: user_token.to_s)
+      sign_in(user, store: false) if user
     end
   end
 end

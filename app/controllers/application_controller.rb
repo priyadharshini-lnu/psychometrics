@@ -2,13 +2,13 @@ class ApplicationController < ActionController::Base
   # Authorisation flow
   #
   include Pundit
+  include Authenticate
 
   layout :layout_by_resource
   protect_from_forgery with: :exception
   add_flash_types :notice, :error, :success
 
   prepend_before_action :set_client_by_subdomain
-  prepend_before_action :authenticate
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
@@ -34,18 +34,10 @@ class ApplicationController < ActionController::Base
   def set_client_by_subdomain
     subdomain = request.subdomain
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '')
-    # render text: 'Please clarify correct url' if subdomain.blank? && !request.fullpath.match('/administration')
-    @current_client = Client.find_by(subdomain: subdomain) unless subdomain.blank?
+    @current_client = Client.find_by(subdomain: subdomain)
   end
 
   def set_client_by_user
     @current_client = current_user.try(:clients).try(:first) unless @current_client
-  end
-
-  def authenticate
-    return if Rails.env.development?
-    authenticate_or_request_with_http_basic do |username, password|
-      username == 'staging' && password == 'sumatosoft'
-    end
   end
 end
