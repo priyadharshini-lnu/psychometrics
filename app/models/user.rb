@@ -248,7 +248,7 @@ class User < ApplicationRecord
   def generate_authentication_token
     loop do
       token = Devise.friendly_token
-      break token unless User.where(authentication_token: token).first
+      break token unless User.exists?(authentication_token: token)
     end
   end
 end
