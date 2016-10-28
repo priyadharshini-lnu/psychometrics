@@ -1,16 +1,7 @@
 Rails.application.routes.draw do
-  # default_url_options domain: Settings.domain, subdomain: false
-
   mount ActionCable.server => '/cable'
-  devise_for :users,
-             path: 'users',
-             as: :devise,
-             name: :user,
-             singular: :user,
-             to: 'User',
-             class_name: 'User',
-             controllers: { registrations: 'users/registrations' }
-
+  # Administration panel
+  #
   namespace :administration do
     root to: 'home#index'
     resource :profiles, only: [:update, :edit]
@@ -43,8 +34,10 @@ Rails.application.routes.draw do
       scope module: :clients do
         resources :users do
           scope module: :users do
-            resources :assigns, only: [:index]
-            resources :reports, only: [:show]
+            resources :assigns, only: [:index, :new, :create, :destroy]
+            resources :reports, only: [] do
+              get :preview, on: :member
+            end
           end
           member do
             patch :toggle_status
@@ -166,25 +159,38 @@ Rails.application.routes.draw do
     put '/factors_norms/update', to: 'factors_norms#update'
   end
 
-  namespace :managers do
-    resources :dashboard, only: [:index]
-    resources :assigns, only: [:index]
-    resources :notifications, only: [:index]
-    resources :users, only: [:index] do
-      resources :reports, only: [:show]
+  constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
+    devise_for :users,
+               path: 'users',
+               as: :devise,
+               name: :user,
+               singular: :user,
+               to: 'User',
+               class_name: 'User',
+               controllers: { registrations: 'users/registrations' }
+
+    # Manager's panel
+    #
+    namespace :managers do
+      resources :dashboard, only: [:index]
+      resources :assigns, only: [:index]
+      resources :notifications, only: [:index]
+      resources :users, only: [:index] do
+        resources :reports, only: [:show]
+      end
     end
-  end
 
-  resources :assessments, only: [:index] do
-    member do
-      get :pass
+    resources :assessments, only: [:index] do
+      member do
+        get :pass
+      end
     end
+
+    resources :reports, only: [:show]
+    resource :profiles, only: [:update, :edit]
+
+    resources :assigns, only: [:update]
+    get 'survey_instructions', to: 'home#survey_instructions'
+    root to: 'assessments#index'
   end
-
-  resources :reports, only: [:show]
-  resource :profiles, only: [:update, :edit]
-
-  resources :assigns, only: [:update]
-  get 'survey_instructions', to: 'home#survey_instructions'
-  root to: 'assessments#index'
 end

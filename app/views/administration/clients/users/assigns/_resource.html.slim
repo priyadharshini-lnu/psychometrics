@@ -6,11 +6,11 @@ tr id=dom_id(resource)
   td = resource.decorate.completed_at
   td.text-center
     - reports = @reports.try(:[], resource.assessment_id)
-    - if resource.assessment.psychometric?
+    - if policy(resource.assessment).view_report?
       - if resource.completed?
         - if reports
           - reports.each do |report|
-            = link_to [:administration, @client, :user, :report, user_id: @user.id, id: report.id], class: 'btn btn-default btn-rounded btn-sm mrm', data: {toggle: 'tooltip', title: report.name}
+            = link_to [:preview, :administration, @client, :user, :report, user_id: @user.id, id: report.id], class: 'btn btn-default btn-rounded btn-sm mrm', data: {toggle: 'tooltip', title: report.name}
               span.fa.fa-pie-chart
         - else
           = t('.no_reports')
@@ -18,4 +18,7 @@ tr id=dom_id(resource)
         = t('.no_completed')
     - else
       = t('.no_access_to_reports')
-
+  td
+    - if policy(resource).destroy?
+      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
+        span.fa.fa-times    

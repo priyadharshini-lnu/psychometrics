@@ -3,6 +3,7 @@ $x-space: 3px;
 $s-space: 5px;
 $m-space: 10px;
 $l-space: 20px;
+$h-space: 25px;
 
 
 .ptn,
@@ -130,6 +131,11 @@ $l-space: 20px;
 .mal {
   margin-top: $l-space !important;
 }
+.mth,
+.mvh,
+.mah {
+  margin-top: $h-space !important;
+}
 .mrn,
 .mhn,
 .man {
@@ -154,6 +160,11 @@ $l-space: 20px;
 .mhl,
 .mal {
   margin-right: $l-space !important;
+}
+.mrh,
+.mhh,
+.mah {
+  margin-right: $h-space !important;
 }
 .mbn,
 .mvn,
@@ -180,6 +191,11 @@ $l-space: 20px;
 .mal {
   margin-bottom: $l-space !important;
 }
+.mbh,
+.mvh,
+.mah {
+  margin-bottom: $h-space !important;
+}
 .mln,
 .mhn,
 .man {
@@ -204,4 +220,9 @@ $l-space: 20px;
 .mhl,
 .mal {
   margin-left: $l-space !important;
+}
+.mlh,
+.mhh,
+.mah {
+  margin-left: $h-space !important;
 }

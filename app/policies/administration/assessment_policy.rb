@@ -20,6 +20,13 @@ module Administration
       @user.is?(:superadmin)
     end
 
+    def view_report?
+      return true if @user.is?(:superadmin)
+      return true if @user.is?(:admin) && @record.psychometric?
+      return true if @user.is?(:manager) && !@record.psychometric?
+      false
+    end
+
     class Scope < Administration::BasePolicy::Scope
       def resolve
         return scope if @user.is?(:superadmin)

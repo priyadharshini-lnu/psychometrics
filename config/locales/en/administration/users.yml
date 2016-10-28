@@ -49,7 +49,7 @@ en:
         reset_password: Change Password
         export_users: Export users
         email: Send mail
-        view_report: View user report
+        assessments_and_reports: Assessments and Reporting
         login_as_user: Login as User
         destroy: Delete User
       form:

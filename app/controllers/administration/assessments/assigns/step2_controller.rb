@@ -15,30 +15,21 @@ module Administration
 
         def update
           @assign = AssignForm.new(resource_params)
-          clients = policy_scope(::Client).where(id: @assign.client_ids)
+          users = policy_scope(::User).includes(:clients).where(id: (@assign.user_ids + @assign.manager_ids + @assign.admin_ids))
           Assign.transaction do
-            clients.find_each do |client|
-              # Init assign params
-              assign_params = { assessment_id: @assessment.id, client_id: client.id }
-
-              # Update clients
-              client_params = {
-                assessment_ids: [client.assessment_ids, @assessment.id].flatten.uniq,
-                report_ids: [client.report_ids, @assign.report_ids].flatten.uniq
-              }
-              client.update_attributes(client_params)
-
-              # Assign admins to assessments
-              client.admins.where(id: @assign.admin_ids).find_each do |admin|
-                Assign.create(assign_params.merge({ user_id: admin.id, role: :admin }))
-              end
-              # Assign managers to assessments
-              client.managers.where(id: @assign.manager_ids).find_each do |manager|
-                Assign.create(assign_params.merge({ user_id: manager.id, role: :manager }))
-              end
-              # Assign users to assessments
-              client.users.where(id: @assign.user_ids).find_each do |user|
-                Assign.create(assign_params.merge({ user_id: user.id, role: :member }))
+            # Remove assigns that was removed
+            Assign.where({
+                user_id: @assessment.user_ids - (@assign.user_ids + @assign.manager_ids + @assign.admin_ids),
+                assessment_id: @assessment.id
+              }).delete_all
+            users.find_each do |user|
+              client_ids = user.clients.map(&:id) & @assign.client_ids
+              client_ids.each do |client_id|
+                assign = Assign.find_or_initialize_by(assessment_id: @assessment.id, client_id: client_id, user_id: user.id)
+                assign.role = :member
+                assign.role = :manager if @assign.manager_ids.include?(user.id)
+                assign.role = :admin if @assign.admin_ids.include?(user.id)
+                assign.save
               end
             end
           end
@@ -71,7 +62,7 @@ module Administration
         end
 
         def init_assign
-          @assign = AssignForm.new(session[token_session] || {})
+          @assign = AssignForm.new(@assessment.assign_form_attributes || {})
           redirect_to(administration_assessment_step1_path) && return if @assign.client_ids.blank? || @assign.report_ids.blank?
         end
 

@@ -1,17 +1,28 @@
 module Administration
   module Clients
     module Users
-      class ReportsController < Administration::ReportsController
-        prepend_before_action :set_resource_class
-        prepend_before_action :set_user
-        prepend_before_action :set_client
-        append_before_action :pundit_authorize
+      class ReportsController < Administration::BaseController
+        skip_before_action :authenticate_user!, only: [:preview]
+        skip_before_action :authenticate, only: [:preview]
+        prepend_before_action :authenticate_user_from_token!, only: [:preview]
+        before_action :authenticate_user!, only: [:preview]
 
-        def show
-          # TODO: add to pundit, but this is problem :)
-          raise Pundit::NotAuthorizedError.new unless @resource.assessment.psychometric?
-          @results = Assign.completed.where(client_id: @client.id, assessment_id: @resource.assessment_id).all
-          render layout: 'empty'
+        prepend_before_action :set_resource_class, :set_user, :set_client
+        before_action :set_resource
+        before_action :init_breadcrumbs
+        append_before_action :pundit_authorize, except: [:sidebar]
+
+        def preview
+          @results = ::Assign.completed.where(client_id: @client.id, assessment_id: @resource.assessment_id).all
+          respond_to do |format|
+            format.html do
+              render('_preview', layout: 'pdf') if params[:export]
+            end
+            format.pdf do
+              renderer = PdfRenderer.new(@resource, self, current_user.authentication_token)
+              send_file renderer.render, type: 'application/pdf'
+            end
+          end
         end
 
         private
@@ -19,10 +30,18 @@ module Administration
         def init_breadcrumbs
           add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
           add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, @client, :users]
-          add_breadcrumb @client.decorate.display_name, '#'
+          add_breadcrumb @client.decorate.display_name, [:administration, @client, :users]
           add_breadcrumb @user.decorate.display_name, '#'
-          add_breadcrumb I18n.t('administration.breadcrumbs.reports'), '#'
-          add_breadcrumb @resource.name, {action: :index}
+          add_breadcrumb I18n.t('administration.breadcrumbs.reports'), [:administration, @client, :user, :assigns, { user_id: @user }]
+        end
+
+        # Set model
+        def set_resource_class
+          @resource_class ||= Report
+        end
+
+        def set_resource
+          @resource = policy_scope(@resource_class).find(params[:id])
         end
 
         def set_user
@@ -31,6 +50,17 @@ module Administration
 
         def set_client
           @client = policy_scope(Client).find(params[:client_id])
+        end
+
+        # Authorisation user
+        def pundit_authorize
+          authorize @resource || @resource_class
+        end
+
+        def authenticate_user_from_token!
+          user_token = params[:user_token].presence
+          user       = user_token && User.find_by(authentication_token: user_token.to_s)
+          sign_in(user, store: false) if user
         end
       end
     end

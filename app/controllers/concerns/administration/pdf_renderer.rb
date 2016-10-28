@@ -1,24 +1,27 @@
-class Administration::PdfRenderer
-  def initialize(resource, context)
-    @context = context
-    @resource = resource
-  end
+module Administration
+  class PdfRenderer
+    def initialize(resource, context, user_token = nil)
+      @context = context
+      @resource = resource
+      @user_token = user_token
+    end
 
-  def render opts = {}
-    tmp_folder = Rails.root.join('tmp/reports')
-    output = "tmp/reports/#{@resource.id}_#{Time.now.to_f}.pdf"
-    
-    args = {
-      url: @context.url_for({ action: :preview, id: @resource }),
-      output: output,
-      pageWidth: 850,
-      pageHeight: 1100
-    }.merge(opts).to_a.map{|i| i.join('=')}.join(' ')
+    def render(opts = {})
+      tmp_folder = Rails.root.join('tmp/reports')
+      output = "#{tmp_folder}#{@resource.id}_#{Time.now.to_f}.pdf"
 
-    Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
+      args = {
+        url: @context.url_for({ action: :preview, id: @resource, export: true, user_token: @user_token }),
+        output: output,
+        pageWidth: 850,
+        pageHeight: 1100
+      }.merge(opts).to_a.map { |i| i.join('=') }.join(' ')
 
-    system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
+      Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
 
-    output
+      system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
+
+      output
+    end
   end
 end

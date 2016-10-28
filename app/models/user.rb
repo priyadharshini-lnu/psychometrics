@@ -33,7 +33,7 @@
 class User < ApplicationRecord
   # Authentication
   devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :timeoutable
+         :recoverable, :rememberable, :trackable, :validatable, :timeoutable, request_keys: [:subdomain]
 
   # User, who try update or create entity
   attr_accessor :operator
@@ -76,6 +76,7 @@ class User < ApplicationRecord
   validates :role, inclusion: { in: USER_ROLES.values }, allow_nil: true
 
   before_validation :check_operator_can_manage, if: :role_changed?
+  before_save :ensure_authentication_token
 
   # We won't set password, we will send inviting
   def password_required?
@@ -199,6 +200,7 @@ class User < ApplicationRecord
     end
   }
 
+  # Save HRIS data from form
   def hris_data=(data)
     self.hris = {}
     data.values.each do |d|
@@ -221,11 +223,33 @@ class User < ApplicationRecord
     def human_role(role)
       I18n.t("activerecord.attributes.user.roles.#{USER_ROLES.key(role)}")
     end
+
+    def find_for_authentication(warden_conditions)
+      subdomain = warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
+      if subdomain.blank?
+        super
+      else
+        joins(:clients).where(email: warden_conditions[:email], clients: { subdomain: subdomain }).first
+      end
+    end
+  end
+
+  def ensure_authentication_token
+    if authentication_token.blank?
+      self.authentication_token = generate_authentication_token
+    end
   end
 
   private
 
   def check_operator_can_manage
     errors.add(:role, :invalid) if operator && !operator.try(:can_manage?, self)
+  end
+
+  def generate_authentication_token
+    loop do
+      token = Devise.friendly_token
+      break token unless User.exists?(authentication_token: token)
+    end
   end
 end
