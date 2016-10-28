@@ -4,7 +4,6 @@ module Managers
     append_before_action :pundit_authorize
 
     def index
-      @current_membership = @current_user.memberships.find_by(client_id: @current_client)
       resource_ids = []
       resource_ids << @current_membership.id unless params[:filter]
       resource_ids << @current_membership.parent_id if !params[:filter] || params[:filter] == 'manager'

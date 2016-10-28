@@ -8,13 +8,12 @@ class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
   add_flash_types :notice, :error, :success
 
-  prepend_before_action :set_client_by_subdomain
+  # Authentication user/manager
+  prepend_before_action :authenticate_user!
+  before_action :set_client_by_subdomain
+  append_before_action :set_membership, if: :user_signed_in?
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-
-  # Authentication user/manager
-  before_action :authenticate_user!
-  append_before_action :set_client_by_user, if: :current_user
 
   def layout_by_resource
     return 'devise' if request.controller_class.to_s.start_with?('Administration')
@@ -31,13 +30,15 @@ class ApplicationController < ActionController::Base
     render text: 'You does not have access to this page'
   end
 
+  # Detect Client by subdomain
   def set_client_by_subdomain
     subdomain = request.subdomain
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '')
-    @current_client = Client.find_by(subdomain: subdomain)
+    @current_client = Client.find_by!(subdomain: subdomain)
   end
 
-  def set_client_by_user
-    @current_client = current_user.try(:clients).try(:first) unless @current_client
+  # Fetch membership
+  def set_membership
+    @current_membership = current_user.memberships.find_by!(client_id: @current_client)
   end
 end
