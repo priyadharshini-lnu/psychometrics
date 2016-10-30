@@ -18,7 +18,7 @@ module Administration
       }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
       Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
-      
+
       system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
 
       output

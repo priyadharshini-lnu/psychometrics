@@ -150,13 +150,12 @@ class User < ApplicationRecord
 
     # Try find User in Subdomain scope
     def find_for_authentication(warden_conditions)
-      if warden_conditions[:subdomain].present?
-        # Cut from Subdomain part of expected Subdomain
-        subdomain = warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
+      # Cut from Subdomain part of expected Subdomain
+      subdomain = warden_conditions[:subdomain] && warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
+      if subdomain.present?
         joins(:clients).where(email: warden_conditions[:email], clients: { subdomain: subdomain }).first
       else
-        # If Subdomain not presented going normally
-        super
+        where(email: warden_conditions[:email]).first # If Subdomain not presented going normally
       end
     end
   end
