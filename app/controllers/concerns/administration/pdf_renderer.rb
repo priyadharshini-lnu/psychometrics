@@ -15,10 +15,10 @@ module Administration
         output: output,
         pageWidth: 850,
         pageHeight: 1100
-      }.merge(opts).to_a.map { |i| i.join('=') }.join(' ')
+      }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
       Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
-
+      
       system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
 
       output
