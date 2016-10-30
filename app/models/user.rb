@@ -37,7 +37,7 @@ class User < ApplicationRecord
   # Authentication
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
-         :timeoutable#, request_keys: [:subdomain]
+         :timeoutable, request_keys: { subdomain: false }
 
   # User, who try update or create entity
   attr_accessor :operator
@@ -148,14 +148,17 @@ class User < ApplicationRecord
       I18n.t("activerecord.attributes.user.roles.#{USER_ROLES.key(role)}")
     end
 
-    # def find_for_authentication(warden_conditions)
-    #   subdomain = warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
-    #   if subdomain.blank?
-    #     super
-    #   else
-    #     joins(:clients).where(email: warden_conditions[:email], clients: { subdomain: subdomain }).first
-    #   end
-    # end
+    # Try find User in Subdomain scope
+    def find_for_authentication(warden_conditions)
+      if warden_conditions[:subdomain].present?
+        # Cut from Subdomain part of expected Subdomain
+        subdomain = warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
+        joins(:clients).where(email: warden_conditions[:email], clients: { subdomain: subdomain }).first
+      else
+        # If Subdomain not presented going normally
+        super
+      end
+    end
   end
 
   def ensure_authentication_token
