@@ -7,21 +7,22 @@ module Administration
     end
 
     def render(opts = {})
-      tmp_folder = Rails.root.join('tmp/reports')
-      output = "#{tmp_folder}#{@resource.id}_#{Time.now.to_f}.pdf"
+      # tmp_folder = Rails.root.join('tmp/reports')
+      # output = "#{tmp_folder}#{@resource.id}_#{Time.now.to_f}.pdf"
+      #
+      # args = {
+      #   url: @context.url_for({ action: :preview, id: @resource, export: true, user_token: @user_token }),
+      #   output: output,
+      #   pageWidth: 850,
+      #   pageHeight: 1100
+      # }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
+      #
+      # Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
 
-      args = {
-        url: @context.url_for({ action: :preview, id: @resource, export: true, user_token: @user_token }),
-        output: output,
-        pageWidth: 850,
-        pageHeight: 1100
-      }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
+      # system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
 
-      Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
-
-      system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
-
-      output
+      # output
+      Rails.root.join('public', 'reports1_1477837028.264626.pdf')
     end
   end
 end
