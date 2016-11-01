@@ -15,11 +15,13 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  step          :integer
+#  membership_id :integer
 #
 
 class Assign < ApplicationRecord
   belongs_to :user
   belongs_to :assessment
+  belongs_to :membership
   belongs_to :client
 
   validates_uniqueness_of :client_id, scope: [:assessment_id, :user_id], message: :not_uniqueness
