@@ -31,9 +31,13 @@
 #
 
 class User < ApplicationRecord
+  # Scopes
+  include UserScopes
+
   # Authentication
   devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :timeoutable, request_keys: [:subdomain]
+         :recoverable, :rememberable, :trackable, :validatable,
+         :timeoutable, request_keys: { subdomain: false }
 
   # User, who try update or create entity
   attr_accessor :operator
@@ -119,87 +123,6 @@ class User < ApplicationRecord
     self.client_ids = (client_ids + manage_ids).uniq
   end
 
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'id_desc',
-      with_role: 'all'
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query,
-      :with_client,
-      :with_role
-    ]
-  )
-
-  # Sorting
-  scope :sorted_by, lambda { |sort_key|
-    # extract the sort direction from the param value.
-    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
-    case sort_key.to_s
-    when /^id_/
-      order("users.id #{direction}")
-    when /^active_/
-      order("users.disabled #{direction}")
-    when /^first_name_/
-      order("users.first_name #{direction}")
-    when /^last_name_/
-      order("users.last_name #{direction}")
-    when /^email_/
-      order("users.email #{direction}")
-    when /^role_/
-      order("users.role #{direction}")
-    when /^created_at_/
-      order("users.created_at #{direction}")
-    when /^updated_at_/
-      order("users.updated_at #{direction}")
-    end
-  }
-
-  # Search entity by word
-  scope :search_query, lambda { |query|
-    where('first_name ILIKE ? OR last_name ILIKE ? OR email ILIKE ?', "%#{query}%", "%#{query}%", "%#{query}%")
-  }
-
-  # Fileter by client
-  scope :with_client, lambda { |client_ids|
-    joins(:memberships).where(memberships: { client_id: client_ids })
-  }
-
-  # Fileter by role
-  scope :with_role, lambda { |role|
-    if role == 'users'
-      where(role: USER_ROLES_SCOPES[:user])
-    elsif role == 'administrators'
-      where(role: USER_ROLES_SCOPES[:administration])
-    end
-  }
-
-  scope :exclude_ids, lambda { |ids|
-    ids = ids.split(',') if ids.is_a?(String)
-    ids = (ids || []).reject(&:blank?).compact
-    where.not(id: ids)
-  }
-  scope :include_ids, lambda { |ids|
-    ids = ids.split(',') if ids.is_a?(String)
-    ids = (ids || []).reject(&:blank?).compact
-    where(id: ids)
-  }
-
-  scope :hris_data_cont, lambda { |data|
-    data = JSON.parse(data) if data.is_a?(String)
-    return if data.blank?
-    where('users.hris @> ?', data.to_json)
-  }
-
-  scope :role_scope_in, lambda { |role|
-    if role == 'users'
-      where(role: USER_ROLES_SCOPES[:user])
-    elsif role == 'administration'
-      where(role: USER_ROLES_SCOPES[:administration])
-    end
-  }
-
   # Save HRIS data from form
   def hris_data=(data)
     self.hris = {}
@@ -210,6 +133,7 @@ class User < ApplicationRecord
   end
 
   class << self
+    # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
       [:hris_data_cont, :role_scope_in, :exclude_ids, :include_ids]
     end
@@ -224,12 +148,14 @@ class User < ApplicationRecord
       I18n.t("activerecord.attributes.user.roles.#{USER_ROLES.key(role)}")
     end
 
+    # Try find User in Subdomain scope
     def find_for_authentication(warden_conditions)
-      subdomain = warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
-      if subdomain.blank?
-        super
-      else
+      # Cut from Subdomain part of expected Subdomain
+      subdomain = warden_conditions[:subdomain] && warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
+      if subdomain.present?
         joins(:clients).where(email: warden_conditions[:email], clients: { subdomain: subdomain }).first
+      else
+        where(email: warden_conditions[:email]).first # If Subdomain not presented going normally
       end
     end
   end

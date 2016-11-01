@@ -2,14 +2,6 @@
   .modal-body
     = f.error_notification
     .form-inputs.clearfix
-      // Subdomain
-      .form-group
-        = f.label :subdomain, class: 'control-label'
-        .input-group
-          = f.input_field :subdomain, class: 'form-control'
-          span.input-group-addon
-            | .
-            = Settings.domain 
       // File input      
       = f.input :logo, hint: f.object.logo.present? ? f.input(:remove_logo, as: :boolean) + image_tag(f.object.logo.url(:thumb)) : content_tag(:span, t('.no_logo'))
       .row

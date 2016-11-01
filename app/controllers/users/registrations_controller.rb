@@ -2,6 +2,13 @@ module Users
   class RegistrationsController < Devise::RegistrationsController
     before_action :configure_permitted_parameters
 
+    # Set Client after sign up user
+    def build_resource(user_params)
+      super.tap do |user|
+        user.client_ids = [@current_client.id]
+      end
+    end
+
     protected
 
     def after_sign_up_path_for(_resource)

@@ -32,7 +32,7 @@ class Client < ApplicationRecord
   has_many :client_reports, dependent: :destroy
   has_many :reports, through: :client_reports
 
-  validates :name, presence: true, length: { maximum: 200 }, uniqueness: true
+  validates :name, :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
 
   store :design, accessors: [:background_color]
 

@@ -96,7 +96,7 @@ class Administration::ClientsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :licenses, :licenses_used, :licenses_expire)
+    params.require(:resource).permit(:name, :licenses, :licenses_used, :licenses_expire, :subdomain)
   end
 
   def pundit_authorize

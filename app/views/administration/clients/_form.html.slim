@@ -4,7 +4,11 @@
 
     .form-inputs.clearfix
       = f.input :name
-
+      = f.input :subdomain, wrapper: :vertical_input_group
+        = f.input_field :subdomain, class: "form-control"
+        span.input-group-addon
+          | .
+          = Settings.domain
   .modal-footer
     .btn-group
       = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'

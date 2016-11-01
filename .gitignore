@@ -50,8 +50,8 @@ bower.json
 config/settings.local.yml
 config/settings/*.local.yml
 config/settings.local.yml
+config/settings/development.yml
 
 config/environments/*.local.yml
 config/environments/frontend.rb
 .rubocop.yml
-
