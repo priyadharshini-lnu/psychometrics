@@ -14,7 +14,9 @@ module Administration
 
         def preview
           @membership = @user.memberships.find_by(client_id: @client.id)
-          @results = ::Assign.completed.where(client_id: @client.id, assessment_id: @resource.assessment_id).all
+          @results = Assign.completed.includes(:membership).
+              where(memberships: {client_id: @client.id}, assessment_id: @resource.assessment_id).
+              references(:membership).all
           respond_to do |format|
             format.html do
               render('_preview', layout: 'pdf') if params[:export]

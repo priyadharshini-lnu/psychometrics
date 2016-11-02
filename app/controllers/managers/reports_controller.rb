@@ -7,7 +7,9 @@ module Managers
 
     def show
       @membership = @user.memberships.find_by(client_id: @current_client.id)
-      @results = Assign.completed.where(client_id: @current_client.id, assessment_id: @resource.assessment_id).all
+      @results = Assign.completed.includes(:membership).
+          where(memberships: {client_id: @current_client.id}, assessment_id: @resource.assessment_id).
+          references(:membership).all
       respond_to do |format|
         format.html do
           render('_show', layout: 'pdf') if params[:export]
