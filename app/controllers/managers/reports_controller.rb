@@ -6,6 +6,7 @@ module Managers
     append_before_action :pundit_authorize
 
     def show
+      @membership = @user.memberships.find_by(client_id: @current_client.id)
       @results = Assign.completed.where(client_id: @current_client.id, assessment_id: @resource.assessment_id).all
       respond_to do |format|
         format.html do

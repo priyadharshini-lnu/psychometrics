@@ -13,6 +13,7 @@ module Administration
         append_before_action :pundit_authorize, except: [:sidebar]
 
         def preview
+          @membership = @user.memberships.find_by(client_id: @client.id)
           @results = ::Assign.completed.where(client_id: @client.id, assessment_id: @resource.assessment_id).all
           respond_to do |format|
             format.html do
