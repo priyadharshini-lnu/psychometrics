@@ -4,15 +4,13 @@ class AssessmentPolicy < BasePolicy
   end
 
   def pass?
-    @current_user.assigns.exists?(assessment_id: @record.id, client_id: @current_client.id)
+    @current_membership.assigns.exists?(assessment_id: @record.id)
   end
 
   class Scope < Scope
     def resolve
-      # TODO: use squeel
-      scope.includes(:assigns).
-          where("assigns.user_id = #{ActiveRecord::Base.sanitize(@user[:current_user].id)} and assigns.client_id = #{ActiveRecord::Base.sanitize(@user[:current_client].id)}").
-          references(:assigns)
+      current_membership_id = @user[:current_membership].id
+      scope.joins(:assigns).where.has { assigns.membership_id == current_membership_id }.references(:assigns)
     end
   end
 end
