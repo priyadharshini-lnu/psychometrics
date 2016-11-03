@@ -7,7 +7,7 @@ module Managers
 
     def show
       @membership = @user.memberships.find_by(client_id: @current_client.id)
-      @results = Assign.completed.includes(:membership).
+      @results = Assign.completed.includes(:membership, :user).
           where(memberships: {client_id: @current_client.id}, assessment_id: @resource.assessment_id).
           references(:membership).all
       respond_to do |format|

@@ -11,7 +11,7 @@ module Managers
       def resolve
         # TODO: Better send to context membership
         membership = Membership.find_by(client_id: @user[:current_client].id, user_id: @user[:current_user].id)
-        assessments_ids = Assign.where(client_id: @user[:current_client].id, user_id: @user[:current_user].id, role: 'manager').pluck(:assessment_id)
+        assessments_ids = Assign.where(membership_id: membership.id, role: 'manager').pluck(:assessment_id)
         query_my = @user[:current_client].assigns.where({ user_id: @user[:current_user].id })
         @user[:current_client].assigns.where({
             user_id:       membership.children.pluck(:user_id) + [@user[:current_user].id],

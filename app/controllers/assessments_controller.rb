@@ -21,10 +21,11 @@ class AssessmentsController < ApplicationController
   layout 'users'
 
   def pass
+    # TODO: add current_membership to global logic
+    @membership = pundit_user[:current_user].memberships.find_by(client_id: @current_client.id)
     @assign = Assign.find_by(
       assessment_id: @resource.id,
-      user_id: pundit_user[:current_user].id,
-      client_id: @current_client.id
+      membership_id: @membership.id
     )
     @assign.update(status: Assign.statuses['in_progress'], step: 0)
   end

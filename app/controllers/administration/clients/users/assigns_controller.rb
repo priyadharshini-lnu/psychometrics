@@ -9,7 +9,8 @@ module Administration
         append_before_action :pundit_authorize
 
         def index
-          @filter_form = policy_scope(::Assign).where(user_id: @user.id, client_id: @client.id).includes(:assessment, :user).search(params[:q])
+          @membership = @user.memberships.find_by(client_id: @client.id)
+          @filter_form = policy_scope(::Assign).where(membership_id: @membership.id).includes(:assessment, :user).search(params[:q])
           @resources = @filter_form.result.page(params[:page])
           @reports = @client.reports.group_by(&:assessment_id)
           respond_to do |format|

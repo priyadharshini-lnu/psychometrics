@@ -14,7 +14,7 @@ module Administration
 
         def preview
           @membership = @user.memberships.find_by(client_id: @client.id)
-          @results = Assign.completed.includes(:membership).
+          @results = Assign.completed.includes(:membership, :user).
               where(memberships: {client_id: @client.id}, assessment_id: @resource.assessment_id).
               references(:membership).all
           respond_to do |format|
