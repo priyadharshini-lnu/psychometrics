@@ -19,6 +19,7 @@
 #
 
 class Assign < ApplicationRecord
+  has_one :user, through: :membership
   belongs_to :assessment
   belongs_to :membership
 
@@ -57,6 +58,7 @@ class Assign < ApplicationRecord
   # Example: {866=>{:name=>"Rubyable", :results=>3.75}, 867=>{:name=>"Reactable", :results=>2.5}}
   #
   def calculate_scoring
+    raise 'To calculate you need to pass relative assessment' unless completed?
     factors_scoring     = FactorsScoring.where(assessment_id: assessment_id).joins(:factor).all
     factors_scoring_map = factors_scoring.group_by(&:factor_id)
     questions_ids       = factors_scoring.pluck(:question_id).uniq
@@ -72,17 +74,18 @@ class Assign < ApplicationRecord
         if result && question && !question_scoring.props.empty?
           begin
             scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)
-            self.scoring[factor_id][:results] << scoring_point if scoring_point
+
+            self.scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
           rescue
             raise "Should be implemented class #{scoring_class}"
           end
         end
       end
-      if !self.scoring[factor_id][:results].empty?
-        self.scoring[factor_id][:results] = self.scoring[factor_id][:results].sum.to_f / self.scoring[factor_id][:results].size
-      else
-        self.scoring[factor_id][:results] = 0
-      end
+      # if !self.scoring[factor_id][:results].empty?
+      #   self.scoring[factor_id][:results] = self.scoring[factor_id][:results].sum.to_f / self.scoring[factor_id][:results].size
+      # else
+      #   self.scoring[factor_id][:results] = 0
+      # end
     end
     nil
   end
