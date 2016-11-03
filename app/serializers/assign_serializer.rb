@@ -6,6 +6,10 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   def hris
-    object.user.hris
+    object.membership.hris
+  end
+
+  def user_id
+    object.membership.user_id
   end
 end

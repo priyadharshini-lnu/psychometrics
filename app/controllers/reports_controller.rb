@@ -5,9 +5,7 @@ class ReportsController < ApplicationController
   layout 'users'
 
   def show
-    # TODO: add current_membership to global logic
-    @membership = current_user.memberships.find_by(client_id: @current_client.id)
-    @results = Assign.completed.includes(:membership, :user).
+    @results = Assign.completed.includes(:membership).
                    where(memberships: {client_id: @current_client.id}, assessment_id: @resource.assessment_id).
                    references(:membership).all
 
