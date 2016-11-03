@@ -10,7 +10,6 @@
 
 class Notification < ApplicationRecord
   validates :text, presence: true
-  belongs_to :client
-  belongs_to :user
+  belongs_to :membership
   belongs_to :assessment
 end
