@@ -8,7 +8,6 @@
 #  disabled      :boolean          default(FALSE)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
-#  filters       :json
 #
 
 class Report < ApplicationRecord
@@ -16,17 +15,12 @@ class Report < ApplicationRecord
 
   belongs_to :assessment
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
+  has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
 
   has_many :client_reports, dependent: :destroy
   has_many :clients, through: :client_reports
 
   validates :assessment, presence: true
-
-  before_create :init
-
-  def init
-    self.filters ||= []
-  end
 
   # Copy report with pages => modules
   def clone

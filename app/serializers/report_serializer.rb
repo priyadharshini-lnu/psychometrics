@@ -2,6 +2,7 @@ class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters
 
   has_many :pages, serializer: Reports::PageSerializer
+  has_many :filters, serializer: Reports::FilterSerializer
   has_one :assessment, serializer: AssessmentSerializer
 
   has_many :factors, serializer: Factors::WithoutSubFactorsSerializer do

@@ -332,62 +332,6 @@ ALTER SEQUENCE comments_id_seq OWNED BY comments.id;
 
 
 --
--- Name: communications; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE communications (
-    id integer NOT NULL,
-    subject character varying,
-    body text,
-    assessment_id integer,
-    client_id integer,
-    recipients integer DEFAULT 0,
-    disabled boolean DEFAULT false,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: communications_copy_users; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE communications_copy_users (
-    communication_id integer NOT NULL,
-    user_id integer NOT NULL
-);
-
-
---
--- Name: communications_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE communications_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: communications_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE communications_id_seq OWNED BY communications.id;
-
-
---
--- Name: communications_users; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE communications_users (
-    communication_id integer NOT NULL,
-    user_id integer NOT NULL
-);
-
-
---
 -- Name: data_geos; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -453,40 +397,6 @@ CREATE SEQUENCE dimensions_id_seq
 --
 
 ALTER SEQUENCE dimensions_id_seq OWNED BY dimensions.id;
-
-
---
--- Name: emails; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE emails (
-    id integer NOT NULL,
-    user_id integer,
-    communication_id integer,
-    status integer DEFAULT 0,
-    delivered_at timestamp without time zone,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: emails_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE emails_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: emails_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE emails_id_seq OWNED BY emails.id;
 
 
 --
@@ -752,10 +662,10 @@ CREATE TABLE questions (
     required_validation json,
     validation json,
     display_logic json,
-    skip_logic json,
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
     template_id integer,
+    skip_logic json,
     assessment_id integer
 );
 
@@ -789,9 +699,41 @@ CREATE TABLE reports (
     name character varying,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    filters json
+    updated_at timestamp without time zone NOT NULL
 );
+
+
+--
+-- Name: reports_filters; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE reports_filters (
+    id integer NOT NULL,
+    report_id integer,
+    name character varying,
+    conditions json,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: reports_filters_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE reports_filters_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reports_filters_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE reports_filters_id_seq OWNED BY reports_filters.id;
 
 
 --
@@ -894,38 +836,6 @@ CREATE TABLE schema_migrations (
 
 
 --
--- Name: sessions; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE sessions (
-    id integer NOT NULL,
-    session_id character varying NOT NULL,
-    data text,
-    created_at timestamp without time zone,
-    updated_at timestamp without time zone
-);
-
-
---
--- Name: sessions_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE sessions_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: sessions_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE sessions_id_seq OWNED BY sessions.id;
-
-
---
 -- Name: users; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -945,6 +855,7 @@ CREATE TABLE users (
     updated_at timestamp without time zone NOT NULL,
     first_name character varying,
     last_name character varying,
+    disabled boolean DEFAULT false,
     role character varying DEFAULT 'Users::Member'::character varying,
     invitation_token character varying,
     invitation_created_at timestamp without time zone,
@@ -954,8 +865,7 @@ CREATE TABLE users (
     invited_by_type character varying,
     invited_by_id integer,
     invitations_count integer DEFAULT 0,
-    authentication_token character varying(30),
-    disabled boolean DEFAULT false
+    authentication_token character varying(30)
 );
 
 
@@ -1031,13 +941,6 @@ ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq':
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY communications ALTER COLUMN id SET DEFAULT nextval('communications_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY data_geos ALTER COLUMN id SET DEFAULT nextval('data_geos_id_seq'::regclass);
 
 
@@ -1046,13 +949,6 @@ ALTER TABLE ONLY data_geos ALTER COLUMN id SET DEFAULT nextval('data_geos_id_seq
 --
 
 ALTER TABLE ONLY dimensions ALTER COLUMN id SET DEFAULT nextval('dimensions_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY emails ALTER COLUMN id SET DEFAULT nextval('emails_id_seq'::regclass);
 
 
 --
@@ -1122,6 +1018,13 @@ ALTER TABLE ONLY reports ALTER COLUMN id SET DEFAULT nextval('reports_id_seq'::r
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY reports_filters ALTER COLUMN id SET DEFAULT nextval('reports_filters_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY reports_modules ALTER COLUMN id SET DEFAULT nextval('reports_modules_id_seq'::regclass);
 
 
@@ -1130,13 +1033,6 @@ ALTER TABLE ONLY reports_modules ALTER COLUMN id SET DEFAULT nextval('reports_mo
 --
 
 ALTER TABLE ONLY reports_pages ALTER COLUMN id SET DEFAULT nextval('reports_pages_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sessions ALTER COLUMN id SET DEFAULT nextval('sessions_id_seq'::regclass);
 
 
 --
@@ -1211,14 +1107,6 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: communications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY communications
-    ADD CONSTRAINT communications_pkey PRIMARY KEY (id);
-
-
---
 -- Name: data_geos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1232,14 +1120,6 @@ ALTER TABLE ONLY data_geos
 
 ALTER TABLE ONLY dimensions
     ADD CONSTRAINT dimensions_pkey PRIMARY KEY (id);
-
-
---
--- Name: emails_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY emails
-    ADD CONSTRAINT emails_pkey PRIMARY KEY (id);
 
 
 --
@@ -1307,6 +1187,14 @@ ALTER TABLE ONLY questions
 
 
 --
+-- Name: reports_filters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY reports_filters
+    ADD CONSTRAINT reports_filters_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: reports_modules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1336,14 +1224,6 @@ ALTER TABLE ONLY reports
 
 ALTER TABLE ONLY schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
-
-
---
--- Name: sessions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY sessions
-    ADD CONSTRAINT sessions_pkey PRIMARY KEY (id);
 
 
 --
@@ -1422,48 +1302,6 @@ CREATE UNIQUE INDEX index_clients_on_subdomain ON clients USING btree (subdomain
 --
 
 CREATE INDEX index_comments_on_question_id ON comments USING btree (question_id);
-
-
---
--- Name: index_communications_copy_users_on_communication_id_and_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_communications_copy_users_on_communication_id_and_user_id ON communications_copy_users USING btree (communication_id, user_id);
-
-
---
--- Name: index_communications_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_communications_on_assessment_id ON communications USING btree (assessment_id);
-
-
---
--- Name: index_communications_on_client_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_communications_on_client_id ON communications USING btree (client_id);
-
-
---
--- Name: index_communications_users_on_communication_id_and_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_communications_users_on_communication_id_and_user_id ON communications_users USING btree (communication_id, user_id);
-
-
---
--- Name: index_emails_on_communication_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_emails_on_communication_id ON emails USING btree (communication_id);
-
-
---
--- Name: index_emails_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_emails_on_user_id ON emails USING btree (user_id);
 
 
 --
@@ -1628,6 +1466,13 @@ CREATE INDEX index_questions_on_template_id ON questions USING btree (template_i
 
 
 --
+-- Name: index_reports_filters_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_filters_on_report_id ON reports_filters USING btree (report_id);
+
+
+--
 -- Name: index_reports_modules_on_page_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1646,20 +1491,6 @@ CREATE INDEX index_reports_on_assessment_id ON reports USING btree (assessment_i
 --
 
 CREATE INDEX index_reports_pages_on_report_id ON reports_pages USING btree (report_id);
-
-
---
--- Name: index_sessions_on_session_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_sessions_on_session_id ON sessions USING btree (session_id);
-
-
---
--- Name: index_sessions_on_updated_at; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_sessions_on_updated_at ON sessions USING btree (updated_at);
 
 
 --
@@ -1750,6 +1581,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337'), ('20161019113157'), ('20161020145001'), ('20161021080332'), ('20161025094555'), ('20161025151414'), ('20161025152859'), ('20161025154640'), ('20161026111535'), ('20161026120042'), ('20161027095910'), ('20161031091451'), ('20161031094940'), ('20161031105250'), ('20161031105418'), ('20161101141317'), ('20161102071143'), ('20161102110210'), ('20161102115438'), ('20161103111612');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337'), ('20161019113157'), ('20161020145001'), ('20161021080332'), ('20161025151414'), ('20161025152859'), ('20161025154640'), ('20161026111535'), ('20161026120042'), ('20161027095910'), ('20161101141317'), ('20161102071143'), ('20161102110210'), ('20161102115438'), ('20161103111612'), ('20161103154036');
 
 

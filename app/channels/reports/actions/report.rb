@@ -9,15 +9,28 @@ module Reports
       end
 
       action :change_filters do |data, _current_user, report|
-        report.update(data)
-        filters = report.filters
+        map_filters = report.filters.all.group_by(&:id)
+        new_ids     = data['filters'].map { |f| f['id'] }
+        old_ids     = map_filters.keys
+        removed_ids = old_ids - new_ids
+        # clear unused filters
+        report.filters.where(id: removed_ids).delete_all
+        data['filters'].each do |filter|
+          if filter['id']
+            db_filter = map_filters[filter['id']].first
+            db_filter.update_attributes(conditions: filter['conditions'], name: filter['name'])
+          else
+            report.filters.create(conditions: filter['conditions'], name: filter['name'])
+          end
+        end
+        # clear unused filter from all modules
         Reports::Module.joins(:page).where(reports_pages: {report_id: report.id}).where("reports_modules.props ->> 'filter' is not null").each do |r|
-          unless filters.any? { |filter| filter['id'] == r.props['filter'] }
-            r.props['filter'] = nil
+          if r.props['filter'] && r.props['filter'].is_a?(Array)
+            r.props['filter'] = r.props['filter'] - removed_ids
             r.save
           end
         end
-        nil
+        ::ReportSerializer.new(report.reload).to_hash
       end
     end
   end
