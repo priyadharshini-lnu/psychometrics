@@ -81,11 +81,6 @@ class Assign < ApplicationRecord
           end
         end
       end
-      # if !self.scoring[factor_id][:results].empty?
-      #   self.scoring[factor_id][:results] = self.scoring[factor_id][:results].sum.to_f / self.scoring[factor_id][:results].size
-      # else
-      #   self.scoring[factor_id][:results] = 0
-      # end
     end
     nil
   end

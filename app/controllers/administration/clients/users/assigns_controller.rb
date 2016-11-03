@@ -9,6 +9,7 @@ module Administration
 
         def index
           @filter_form = policy_scope(::Assign).where(id: @membership.assign_ids).includes(:assessment).search(params[:q])
+          @client = @membership.client
           @resources = @filter_form.result.page(params[:page])
           @reports = @membership.client.reports.
                      available_to_view.
