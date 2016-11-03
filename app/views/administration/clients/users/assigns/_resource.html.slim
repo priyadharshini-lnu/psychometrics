@@ -1,5 +1,5 @@
 tr id=dom_id(resource)
-  td = resource.user.decorate.display_name
+  td = @membership.decorate.display_name
   td = resource.assessment.try(:name)
   td = resource.assessment.try(:decorate).try(:category)
   td = resource.decorate.status

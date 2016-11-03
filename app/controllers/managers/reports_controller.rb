@@ -37,7 +37,7 @@ module Managers
     end
 
     def set_resource
-      @resource = @resource_class.find(params[:id])
+      @resource = @resource_class.available_to_view.find(params[:id])
     end
 
     def set_user

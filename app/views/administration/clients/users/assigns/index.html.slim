@@ -2,7 +2,7 @@
   .col-md-12
     .panel.panel-default
       .panel-heading
-        h3.panel-title = "#{@user.decorate.display_name}: #{t('.title')}"
+        h3.panel-title = "#{@membership.decorate.display_name}: #{t('.title')}"
         .pull-right
           .btn-group
             - if policy(:assign).create?

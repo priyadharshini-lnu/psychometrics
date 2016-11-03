@@ -3,16 +3,16 @@ module Administration
     module Users
       class AssignsController < Administration::BaseController
         prepend_before_action :set_resource_class
-        before_action :set_user
-        before_action :set_client
+        before_action :set_membership
         before_action :init_breadcrumbs
         append_before_action :pundit_authorize
 
         def index
-          @membership = @user.memberships.find_by(client_id: @client.id)
-          @filter_form = policy_scope(::Assign).where(membership_id: @membership.id).includes(:assessment, :user).search(params[:q])
+          @filter_form = policy_scope(::Assign).where(id: @membership.assign_ids).includes(:assessment).search(params[:q])
           @resources = @filter_form.result.page(params[:page])
-          @reports = @client.reports.group_by(&:assessment_id)
+          @reports = @membership.client.reports.
+                     available_to_view.
+                     group_by(&:assessment_id)
           respond_to do |format|
             format.html
             format.js { render :index, formats: [:js] }
@@ -55,17 +55,16 @@ module Administration
         def init_breadcrumbs
           add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
           add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, @client, :users]
-          add_breadcrumb @client.decorate.display_name, [:administration, @client, :users]
-          add_breadcrumb @user.decorate.display_name, '#'
+          add_breadcrumb @membership.client.decorate.display_name, [:administration, @client, :users]
+          add_breadcrumb @membership.user.decorate.display_name, '#'
           add_breadcrumb I18n.t('administration.breadcrumbs.reports'), { action: :index }
         end
 
-        def set_user
-          @user = policy_scope(User).find(params[:user_id])
+        def set_membership
+          @membership = policy_scope(::Membership).join_user.includes(:client, :assigns).find(params[:user_id])
         end
 
         def set_client
-          @client = policy_scope(Client).find(params[:client_id])
         end
 
         def assign_params

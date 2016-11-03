@@ -1,5 +1,7 @@
 module Imports
   class HrisImport < Imports::BaseImport
+    attr_accessor :client_id
+    validates :client_id, presence: true
     validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                   'application/vnd.ms-excel',
                                                   'text/csv'] }
@@ -31,14 +33,14 @@ module Imports
 
       datas.map.with_index do |data, index|
         hris = Hash[header.zip(data)]
-        user = User.find_by(email: hris.delete('Email'))
-        if user.nil?
+        membership = ::Membership.joins(:user).find_by(users: { email: hris.delete('Email') })
+        if membership.nil?
           errors.add(:base, I18n.t('administration.imports.errors.user.not_found', row: index + 2, email: hris[:email]))
           next
         end
         # Set hris data
-        user.hris.merge!(hris)
-        user
+        membership.hris.merge!(hris)
+        membership
       end
 
     rescue Roo::HeaderRowNotFoundError
@@ -52,14 +54,6 @@ module Imports
       when '.xlsx' then ::Roo::Excelx.new(file.path)
       else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
       end
-    end
-
-    protected
-
-    def hris_params(data)
-      ActionController::Parameters.new(data).permit(:evaluator_name, :evaluators_email_address,
-                                                    :relationship, :business_unit, :department,
-                                                    :job_title, :nationality, :gender)
     end
   end
 end

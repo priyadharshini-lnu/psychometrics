@@ -10,9 +10,6 @@
                             as: :assign, 
                             url: administration_assessment_step2_path, 
                             method: :put) do |f|
-
-            = f.input :client_ids, as: :hidden, input_html: { value: f.object.client_ids.join(',') }
-            = f.input :report_ids, as: :hidden, input_html: { value: f.object.report_ids.join(',') }
             = f.input :user_ids, as: :hidden, input_html: { value: f.object.user_ids.join(',') }
             .wizard.show-submit
               ul.steps_2.anchor
@@ -36,19 +33,19 @@
                     .col-sm-6
                       = f.input :admin_ids,  
                                 as: :grouped_select,
-                                collection: @clients, 
-                                group_method: :admins,
+                                collection: @admins, 
+                                group_method: :last,
                                 label_method: lambda { |u| u.decorate.display_name }, 
-                                group_label_method: :name, 
+                                group_label_method: :first, 
                                 input_html: {  class: 'multiselect-two-sides-searchabel', multiple: true },
                                 label: 'Admins'
                     .col-sm-6
                       = f.input :manager_ids,  
                                 as: :grouped_select,
-                                collection: @clients, 
-                                group_method: :managers,
+                                collection: @managers, 
+                                group_method: :last,
                                 label_method: lambda { |u| u.decorate.display_name }, 
-                                group_label_method: :name, 
+                                group_label_method: :first, 
                                 input_html: {  class: 'multiselect-two-sides-searchabel', multiple: true },
                                 label: 'Managers'
         

@@ -20,10 +20,11 @@ en:
         created_at: 'Created Date'
         updated_at: 'Modified Date'
         roles:
-          member: Member
+          member: User
           manager: Manager
           admin: Client Admin
           superadmin: Super Admin
+          super_admin: Super Admin
         manage_client_ids: Memberships
         memberships: Memberships
   simple_form:
