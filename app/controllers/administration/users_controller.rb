@@ -31,7 +31,9 @@ class Administration::UsersController < Administration::BaseController
   # Change resources's status to active/disabled
   #
   def toggle_status
-    @resource.toggle!(:disabled)
+    @resource.memberships.find_each do |membership|
+      membership.toggle!(:disabled)
+    end
     respond_to do |format|
       format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
       format.js

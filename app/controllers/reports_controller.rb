@@ -38,7 +38,7 @@ class ReportsController < ApplicationController
   end
 
   def set_resource
-    @resource = @resource_class.find(params[:id])
+    @resource = @resource_class.available_to_view.find(params[:id])
   end
 
   # Authorisation user

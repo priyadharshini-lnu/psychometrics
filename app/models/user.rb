@@ -71,9 +71,6 @@ class User < ApplicationRecord
   has_many :clients, through: :memberships
   accepts_nested_attributes_for :memberships
 
-  has_many :assigns, dependent: :destroy
-  has_many :assessments, through: :assigns
-
   validates :first_name, :last_name, :email, :role, presence: true
   validates :first_name, :last_name, :email, length: { maximum: 100 }, allow_blank: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
@@ -121,15 +118,6 @@ class User < ApplicationRecord
     # Check which clients can be managed by operator
     manage_ids = operator.try(:manage_clients, ids) || []
     self.client_ids = (client_ids + manage_ids).uniq
-  end
-
-  # Save HRIS data from form
-  def hris_data=(data)
-    self.hris = {}
-    data.values.each do |d|
-      next if d['key'].blank?
-      hris[d['key']] = d['value']
-    end
   end
 
   class << self

@@ -72,4 +72,12 @@ class Report < ApplicationRecord
   scope :with_assessment, lambda { |assessment_id|
     where(assessment_id: assessment_id)
   }
+
+  scope :assigned, lambda {
+    joins(:client_reports).where.not(client_reports: { client_id: nil })
+  }
+
+  scope :available_to_view, lambda {
+    joins(:assessment).where.has { (assessment.access_reports_at == nil) | (assessment.access_reports_at >= Time.now) }
+  }
 end

@@ -20,8 +20,8 @@
                   => t('.import')
                   span.caret
                 ul.dropdown-menu
-                  li = link_to(t('.import_users'), new_administration_imports_users_path, remote: true, class: 'btn btn-default')
-                  li = link_to(t('.import_hris'), new_administration_imports_hris_path, remote: true, class: 'btn btn-default')
+                  li = link_to(t('.import_users'), new_administration_imports_users_path(client_id: @client.id), remote: true, class: 'btn btn-default')
+                  li = link_to(t('.import_hris'), new_administration_imports_hris_path(client_id: @client.id), remote: true, class: 'btn btn-default')
             - if policy(@resource_class).export?
               = link_to({ action: :export, format: :csv }, target: :_blank, class: 'btn btn-default')
                 span.fa.fa-download
@@ -44,12 +44,12 @@
                               html: { id: 'filter' },
                               builder: SimpleForm::FormBuilder) do |f|
 
-              = f.input :role_in, 
+              = f.input :user_role_in, 
                         collection: ::User::USER_ROLES.map { |role, value| [t("activerecord.attributes.user.roles.#{role}"), value] }, 
                         input_html: { multiple: true },
                         required: false,
                         label: 'Roles'
-              = f.input :first_name_or_last_name_or_email_cont, 
+              = f.input :user_first_name_or_user_last_name_or_user_email_cont, 
                         label: 'Search', 
                         as: :string, 
                         required: false, 

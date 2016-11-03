@@ -3,7 +3,7 @@
     = f.error_notification
     .form-inputs.clearfix
       = f.input :assessment_id, 
-                collection: @client.assessments,
+                collection: @membership.client.assessments,
                 input_html: {  data: { live_search: true } },
                 include_blank: false
       .form-group.has-error

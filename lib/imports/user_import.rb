@@ -1,5 +1,8 @@
 module Imports
   class UserImport < Imports::BaseImport
+    attr_accessor :client_id
+    validates :client_id, presence: true
+
     # Authorisation flow
     #
     include Pundit
@@ -11,17 +14,15 @@ module Imports
     end
 
     USER_ROLES_MAPS = {
-      'Super Admin' => User::USER_ROLES[:superadmin],
       'Client Admin' => User::USER_ROLES[:admin],
       'Manager' => User::USER_ROLES[:manager],
-      'Member' => User::USER_ROLES[:member]
+      'User' => User::USER_ROLES[:member]
     }.freeze
 
     HEADER_IMPORT_RULES = {
       email: /Email Address|Email|E-mail/i,
       first_name: /First Name/i,
       last_name: /Last Name/i,
-      clients: /Company|Memberships|Clients|Client/i,
       role: /Role/i
     }.freeze
 
@@ -60,27 +61,21 @@ module Imports
       header = rows.shift
 
       rows.map do |row|
-        data = {}
+        users_attributes = { operator: importer }
+        memberships_attributes = {}
         header.zip(row).each_with_index do |z, i|
           next if z.first =~ SKIP_HEADER_RULES
-          (data[:email] = z.last) && next if z.first =~ HEADER_IMPORT_RULES[:email]
-          (data[:first_name] = z.last) && next if z.first =~ HEADER_IMPORT_RULES[:first_name]
-          (data[:last_name] = z.last) && next if z.first =~ HEADER_IMPORT_RULES[:last_name]
-          (data[:role] = USER_ROLES_MAPS[z.last]) && next if z.first =~ HEADER_IMPORT_RULES[:role]
-          if z.first =~ HEADER_IMPORT_RULES[:clients]
-            # Parse name of clients
-            # Example: "Client 1, Client 2" return array ["Client 1", "Client 2"]
-            #
-            client_names = (z.last || '').split(',').map(&:strip)
-            data[:client_ids] = policy_scope(Client).where(name: client_names).pluck(:id) if client_names.any?
-            next
-          end
-          data[:hris_data] ||= {}
-          data[:hris_data][i.to_s] = { key: z.first, value: z.last }
+          (users_attributes[:email] = z.last) && next if z.first =~ HEADER_IMPORT_RULES[:email]
+          (users_attributes[:first_name] = z.last) && next if z.first =~ HEADER_IMPORT_RULES[:first_name]
+          (users_attributes[:last_name] = z.last) && next if z.first =~ HEADER_IMPORT_RULES[:last_name]
+          (users_attributes[:role] = USER_ROLES_MAPS[z.last]) && next if z.first =~ HEADER_IMPORT_RULES[:role]
+          memberships_attributes[:client_id] = policy_scope(::Client).find(client_id).id
+          memberships_attributes[:hris_data] ||= {}
+          memberships_attributes[:hris_data][i.to_s] = { key: z.first, value: z.last }
         end
-
-        user = User.new(user_params(data))
-        user.operator = importer
+        user = User.new(users_attributes)
+        # TODO: Refactoring this place, case we validate object twice
+        user.memberships.build(memberships_attributes) if user.valid?
         user
       end
 
@@ -96,13 +91,6 @@ module Imports
       when '.xlsx' then ::Roo::Excelx.new(file.path)
       else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
       end
-    end
-
-    protected
-
-    def user_params(data)
-      ActionController::Parameters.new(data).permit(:first_name, :last_name, :email, :role,
-                                                    client_ids: [], hris_data: [:key, :value])
     end
   end
 end

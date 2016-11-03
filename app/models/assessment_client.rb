@@ -7,6 +7,6 @@ class AssessmentClient < ApplicationRecord
 
   before_destroy :ensure_delete_assigns
   def ensure_delete_assigns
-    Assign.where(client_id: client_id, assessment_id: assessment_id).delete_all
+    Assign.joins(:membership).where(memberships: { client_id: client_id }, assessment_id: assessment_id).delete_all
   end
 end

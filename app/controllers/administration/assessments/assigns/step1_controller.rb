@@ -15,24 +15,26 @@ module Administration
           @assign = AssignForm.new(resource_params)
           # Destroy all NOT SELECTED assigned Clients to Assessment
           AssessmentClient.where({
-              client_id: @assessment.client_ids - @assign.client_ids,
-              assessment_id: @assessment.id
-            }).destroy_all
+            client_id: @assessment.client_ids - @assign.client_ids,
+            assessment_id: @assessment.id
+          }).destroy_all
           # Assign Assessment to all SELECTED Clients
-          @assessment.client_ids = @assign.client_ids
+          @assessment.update_attributes({
+            client_ids: @assign.client_ids,
+            access_reports_at: @assign.access_reports == 'immediately' ? nil : @assign.access_reports_at
+          })
 
           # Destroy all assigned Reports
           ClientReport.where({
-              report_id: @assessment.report_ids
-            }).delete_all
+            report_id: @assessment.report_ids
+          }).delete_all
           # Assign Reports to all SELECTED Clients
           @assign.client_ids.each do |client_id|
             @assign.report_ids.each do |report_id|
               ClientReport.create({
-                  client_id: client_id,
-                  report_id: report_id,
-                  access_reports_at: @assign.access_reports == 'immediately' ? nil : @assign.access_reports_at
-                })
+                client_id: client_id,
+                report_id: report_id
+              })
             end
           end
 

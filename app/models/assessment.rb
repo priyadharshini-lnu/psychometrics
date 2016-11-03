@@ -22,8 +22,9 @@ class Assessment < ApplicationRecord
   has_many :norms, through: :dimension
   has_many :factors_scoring, dependent: :destroy
   has_many :reports, dependent: :destroy
+
   has_many :assigns, dependent: :destroy
-  has_many :users, through: :assigns
+  has_many :memberships, through: :assigns
 
   has_many :assessment_clients
   has_many :clients, through: :assessment_clients
@@ -115,11 +116,11 @@ class Assessment < ApplicationRecord
   def assign_form_attributes
     {
       client_ids: client_ids,
-      report_ids: clients.first.try(:report_ids),
-      access_reports_at: clients.first.try(:client_reports).try(:first).try(:access_reports_at),
-      admin_ids: assigns.where(role: :admin).pluck(:user_id),
-      manager_ids: assigns.where(role: :manager).pluck(:user_id),
-      user_ids: assigns.where(role: :member).pluck(:user_id)
+      report_ids: reports.assigned.pluck(:id),
+      access_reports_at: access_reports_at,
+      admin_ids: assigns.where(role: :admin).pluck(:membership_id),
+      manager_ids: assigns.where(role: :manager).pluck(:membership_id),
+      user_ids: assigns.where(role: :member).pluck(:membership_id)
     }
   end
 end
