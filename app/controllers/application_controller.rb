@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def pundit_user
-    { current_user: current_user, current_client: @current_client }
+    { current_user: current_user, current_client: @current_client, current_membership: @current_membership }
   end
 
   private

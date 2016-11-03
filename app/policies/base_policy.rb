@@ -2,6 +2,7 @@ class BasePolicy
   def initialize(context, record)
     @current_user   = context[:current_user]
     @current_client = context[:current_client]
+    @current_membership = context[:current_membership]
     @record = [record].flatten.last
   end
 
