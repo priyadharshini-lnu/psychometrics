@@ -1,7 +1,4 @@
 tr
-  td
-    = resource.user.decorate.display_name
-  td
-    = resource.user.hris['Job Title']
-  td
-    = resource.decorate(context: { current_membership: @current_membership }).relationship
+  td = resource.decorate.display_name
+  td = resource.hris['Job Title']
+  td = resource.decorate(context: { current_membership: @current_membership }).relationship

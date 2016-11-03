@@ -6,14 +6,9 @@ module Managers
 
     class Scope < Scope
       def resolve
-        membership      = Membership.find_by(client_id: @user[:current_client].id, user_id: @user[:current_user].id)
-        assessments_ids = Assign.where(client_id: @user[:current_client].id, user_id: @user[:current_user].id, role: 'manager').pluck(:assessment_id)
-        @user[:current_client]
-            .notifications
-            .where({
-                       user_id:       membership.children.pluck(:user_id) + [@user[:current_user].id],
-                       assessment_id: assessments_ids
-                   })
+        assessments_ids = Assign.where(membership_id: @user[:current_membership].id, role: 'manager').pluck(:assessment_id)
+        membership_ids = @user[:current_membership].children.pluck(:id) + [@user[:current_membership].id]
+        scope.where(membership_id: membership_ids, assessment_id: assessments_ids)
       end
     end
   end
