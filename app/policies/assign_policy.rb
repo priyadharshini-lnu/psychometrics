@@ -1,5 +1,5 @@
 class AssignPolicy < BasePolicy
   def update?
-    @record.user_id == @current_user.id
+    @record.membership_id == @current_membership.id
   end
 end
