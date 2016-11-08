@@ -1,15 +1,23 @@
 tr data-sidebar=url_for([:sidebar, :administration, @dimension, resource]) id=dom_id(resource)
-  td.text-center
+  td.text-center.vertical_middle
     = link_to [:toggle_status, :administration, @dimension, resource], method: :patch, remote: true do
       = resource.decorate.status
-  td = link_to resource.name, [:administration, @dimension, resource, :sub_factors]
-  td.text-center = resource.subfactors_count
-  td
+  td.vertical_middle = link_to resource.name, [:administration, @dimension, resource, :sub_factors]
+  - questions_count = resource.questions_count_by_assessment
+  - if questions_count
+    td
+      - questions_count.each do |ass_id, count|
+        div
+          = link_to "#{@map_assessments[ass_id].try(:[], 0).try(:name)} - [#{count}]", administration_assessment_path(ass_id, scoring: 1, factor_id: resource.id)
+  - else
+    td.vertical_middle
+  td.text-center.vertical_middle = resource.subfactors_count
+  td.vertical_middle
     = link_to [:edit, :administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
       span.fa.fa-pencil
     = link_to [:copy, :administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
       span.fa.fa-copy
     = link_to [:administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
       span.fa.fa-times
-  td.text-center = resource.decorate.created_at
-  td.text-center = resource.decorate.updated_at
+  td.text-center.vertical_middle = resource.decorate.created_at
+  td.text-center.vertical_middle = resource.decorate.updated_at

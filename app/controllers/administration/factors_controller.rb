@@ -7,6 +7,7 @@ class Administration::FactorsController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
+    @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
     @filterrific = initialize_filterrific(
       policy_scope(@resource_class).roots.with_dimension(@dimension.id),
       params[:filterrific]) || return

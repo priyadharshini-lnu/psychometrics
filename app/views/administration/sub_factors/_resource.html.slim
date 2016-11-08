@@ -1,10 +1,17 @@
 tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
-  td = resource.name
-  td = resource.questions_count
-  td
+  td.vertical_middle = resource.name
+  - questions_count = resource.questions_count_by_assessment
+  - if questions_count
+    td
+      - questions_count.each do |ass_id, count|
+        div
+          = link_to "#{@map_assessments[ass_id].try(:[], 0).try(:name)} - [#{count}]", administration_assessment_path(ass_id, scoring: 1, factor_id: resource.id)
+  - else
+    td.vertical_middle
+  td.vertical_middle
     = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
       span.fa.fa-pencil
     = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')})
       span.fa.fa-times
-  td = resource.decorate.created_at
-  td = resource.decorate.updated_at
+  td.vertical_middle = resource.decorate.created_at
+  td.vertical_middle = resource.decorate.updated_at

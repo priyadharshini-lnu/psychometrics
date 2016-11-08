@@ -8,6 +8,7 @@ module Assessments
         nil
       end
 
+      # @deprecated
       action :factors do |_data, _current_user, assessment|
         factors = assessment.dimension.factors.includes(:sub_factors).map do |factor|
           result = []

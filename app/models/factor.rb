@@ -5,7 +5,6 @@
 #  id               :integer          not null, primary key
 #  name             :string
 #  subfactors_count :integer          default(0)
-#  questions_count  :integer          default(0)
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  dimension_id     :integer
@@ -74,8 +73,6 @@ class Factor < ApplicationRecord
       order("factors.name #{direction}")
     when /^subfactors_count_/
       order("factors.subfactors_count #{direction}")
-    when /^questions_count_/
-      order("factors.questions_count #{direction}")
     when /^created_at_/
       order("factors.created_at #{direction}")
     when /^updated_at_/
@@ -87,6 +84,13 @@ class Factor < ApplicationRecord
   scope :with_dimension, lambda { |dimension_id|
     where(dimension_id: dimension_id)
   }
+
+  #
+  # Returns hash: ass_name
+  #
+  def questions_count_by_assessment
+    FactorsScoring.where(factor_id: id).where('json_array_length(props) > 0').group(:assessment_id).count
+  end
 
   private
 
