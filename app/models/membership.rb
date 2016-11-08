@@ -12,8 +12,9 @@ class Membership < ApplicationRecord
   belongs_to :user, inverse_of: :memberships
   accepts_nested_attributes_for :user
 
-  has_many :assigns, dependent: :destroy
+  has_many :assigns, dependent: :destroy, inverse_of: :membership
   has_many :assessments, through: :assigns
+  has_many :communication_emails, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'
 
   acts_as_nested_set scope: :client_id
 
@@ -21,11 +22,15 @@ class Membership < ApplicationRecord
   validates :client_id, uniqueness: { scope: :user_id }
 
   scope :enabled, -> { where.not(disabled: true) }
+  scope :with_head_assigns_for_client_and_assessment, lambda { |client_id, assessment_id|
+    joining { assigns.on(assigns.membership_id.eq(id) & assigns.assessment_id.eq(assessment_id) & assigns.role.in([Assign.roles[:admin], Assign.roles[:manager]])) }.
+      where.has { |m| m.client_id.eq(client_id) }
+  }
   scope :with_client, lambda { |client_id|
     where(client_id: client_id)
   }
   scope :join_user, lambda {
-    joins(:user).select('memberships.*', 'first_name, last_name, email, role')
+    joining { user }.selecting { ['memberships.*', user.first_name, user.last_name, user.email, user.role] }
   }
   scope :exclude_ids, lambda { |ids|
     ids = ids.split(',') if ids.is_a?(String)

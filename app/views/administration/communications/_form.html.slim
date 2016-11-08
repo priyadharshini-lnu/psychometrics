@@ -1,0 +1,85 @@
+= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, remote: true) do |f|
+  .modal-body
+    = f.error_notification
+
+    .form-inputs.clearfix
+      h3 Settings
+      = f.association :assessment, 
+                collection: policy_scope(Assessment).all,
+                input_html: { data: { live_search: true } }
+      = f.association :client, 
+                collection: f.object.assessment && f.object.assessment.clients || [],
+                input_html: { data: { live_search: true } }, 
+                wrapper_html: { class: f.object.assessment_id.blank? ? 'hidden' : '' }
+      = f.input :recipients, 
+                as: :select, 
+                collection: Communication.recipients, 
+                value_method: :first,
+                label_method: proc { |rec| t(".#{rec.first}") },
+                include_blank: false
+      - if f.object.client_id && f.object.selected_recipients?
+        = f.association :memberships, 
+                        collection: f.object.client.memberships.join_user || [],
+                        label_method: proc { |u| u.decorate.display_name },
+                        include_blank: false, 
+                        input_html: { data: { live_search: true }, multiple: true },
+                        label: t('.selected_recipients')
+      - if f.object.client_id && f.object.selected_recipients?
+        = f.association :copy_memberships, 
+                        collection: Membership.with_head_assigns_for_client_and_assessment(f.object.client_id, f.object.assessment_id) || [],
+                        label_method: proc { |u| u.decorate.display_name },
+                        include_blank: false, 
+                        wrapper_html: { class: f.object.client_id.blank? ? 'hidden' : '' },
+                        input_html: { data: { live_search: true }, multiple: true },
+                        label: t('.selected_cc_recipients')
+      #delivery_rule.row.mbl
+        .col-md-4
+          = f.input :delivery_rule, 
+                    collection: Communication.delivery_rules,
+                    value_method: :first,
+                    label_method: proc { |rule| t(".delivery_rules.#{rule.first}") },
+                    include_blank: false
+        - if f.object.delivery_on_specific_datetime?
+          .col-md-4
+            = f.input :delivery_at_date, 
+                      input_html: { class: 'datepicker', value: f.object.delivery_at_date || Date.today }, 
+                      label: t('.delivery_at_date')
+          .col-md-4
+            = f.input :delivery_at_time, 
+                      input_html: { class: 'timepicker' }, 
+                      label: t('.delivery_at_time')
+        - if f.object.delivery_if_not_started? || f.object.delivery_if_not_finished?
+          .col-md-4
+            = f.input :delivery_interval_number,
+                      as: :integer
+          .col-md-4
+            = f.input :delivery_interval_period,
+                      as: :select,
+                      collection: [['Hours', 'hours'], ['Days', 'days'], ['Months', 'months']]      
+      h3 Message                  
+      = f.input :subject
+      = f.input :body, input_html: { class: 'summernote_email' }
+
+  .modal-footer
+    .btn-group
+      = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+
+javascript:
+  $(function(){
+    var url = '#{@resource.new_record? ? new_form_administration_communications_path : edit_form_administration_communication_path(@resource)}';
+    $(document).on('change', '#resource_assessment_id, #resource_client_id, #resource_recipients, #resource_delivery_rule', function() {
+      var self = this
+      // Sync WYSIWYG with form
+      $('#resource_body').val($('#resource_body').code());
+      $.ajax({
+        url: url,
+        method: 'POST',
+        data: $('#new_resource, #edit_resource').serialize(),
+        dataType: 'script',
+        beforeSend: function () {
+          panel_refresh($(self).closest('.modal-body'));
+        }
+      });
+    }); 
+  });

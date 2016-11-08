@@ -1,0 +1,115 @@
+module Administration
+  class CommunicationsController < Administration::BaseController
+    prepend_before_action :set_resource_class
+    before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :edit_form]
+    before_action :skip_authorization, only: [:sidebar]
+    append_before_action :pundit_authorize, except: [:sidebar]
+    after_action :init_breadcrumbs
+
+    def index
+      @filter_form = policy_scope(@resource_class).search(params[:q])
+      @resources = @filter_form.result.page(params[:page])
+
+      respond_to do |format|
+        format.html
+        format.js { render :index, formats: [:js] }
+      end
+    end
+
+    def new
+      @resource = @resource_class.new
+    end
+
+    def create
+      @resource = @resource_class.new(resource_params)
+
+      respond_to do |format|
+        if @resource.save
+          format.js
+        else
+          format.js { render :new }
+        end
+      end
+    end
+
+    def toggle_status
+      @resource.toggle(:disabled).save
+      respond_to do |format|
+        format.js
+      end
+    end
+
+    def update
+      respond_to do |format|
+        if @resource.update(resource_params)
+          format.js
+        else
+          format.js { render :edit }
+        end
+      end
+    end
+
+    # DELETE /administration/resources/1
+    def destroy
+      @resource.destroy
+      respond_to do |format|
+        format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+        format.js
+      end
+    end
+
+    def copy
+      @cloned_resource = @resource.clone
+      respond_to do |format|
+        if @cloned_resource.save
+          format.js
+        else
+          format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: @resource.id }) } }
+        end
+      end
+    end
+
+    def new_form
+      @resource = @resource_class.preload(:assessment, :client).new(resource_params)
+      respond_to do |format|
+        format.js { render :new }
+      end
+    end
+
+    def edit_form
+      @resource.assign_attributes(resource_params)
+      respond_to do |format|
+        format.js { render :new }
+      end
+    end
+
+    private
+
+    def set_resource_class
+      @resource_class ||= Communication
+    end
+
+    def init_breadcrumbs
+      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+    end
+
+    def set_resource
+      @resource = @resource_class.find(params[:id])
+    end
+
+    def resource_params
+      params.fetch(:resource, {}).permit(
+        :subject, :body, :assessment_id,
+        :client_id, :recipients,
+        :delivery_rule, :delivery_at_date, :delivery_at_time,
+        :delivery_interval_number, :delivery_interval_period,
+        membership_ids: [], copy_membership_ids: []
+      )
+    end
+
+    def pundit_authorize
+      authorize @resource || @resource_class
+    end
+  end
+end

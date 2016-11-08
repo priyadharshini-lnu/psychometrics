@@ -21,7 +21,7 @@
 class Assign < ApplicationRecord
   has_one :user, through: :membership
   belongs_to :assessment
-  belongs_to :membership
+  belongs_to :membership, inverse_of: :assigns
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
 
@@ -31,10 +31,16 @@ class Assign < ApplicationRecord
   after_initialize :init
   before_save :notification_handler
 
+  before_update :completion_callback, if: proc { status_changed? && completed? }
+
+  def completion_callback
+    ::Communications::AfterCompleteJob.perform_later(id)
+  end
+
   def init
-    self.status  ||= Assign.statuses['not_started']
-    self.step    ||= 0
-    self.scoring ||= {}
+    self.status ||= Assign.statuses['not_started'] if respond_to? :status
+    self.step ||= 0 if respond_to? :step
+    self.scoring ||= {} if respond_to? :scoring
   end
 
   #

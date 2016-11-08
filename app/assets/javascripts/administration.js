@@ -8,6 +8,8 @@
 //= require multiselect
 //= require quicksearch
 //= require bootstrap-add-clear
+//= require summernote
+
 //= require datatables
 //= require datatables/dataTables.bootstrap
 //= require administration/plugins/dataTables.checkboxes
