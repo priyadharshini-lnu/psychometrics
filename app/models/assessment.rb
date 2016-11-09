@@ -35,7 +35,7 @@ class Assessment < ApplicationRecord
   CATEGORIES = {
     psychometric: 'psychometric',
     organisational: 'organisational',
-    '360': '360'
+    '360' => '360'
   }.freeze
 
   validates :name, :dimension, presence: true
@@ -44,7 +44,7 @@ class Assessment < ApplicationRecord
   before_create :init
 
   def init
-    self.flow ||= {elements: []}
+    self.flow ||= { elements: [] }
   end
 
   enum category: CATEGORIES
@@ -69,7 +69,7 @@ class Assessment < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
+    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
     case sort_key.to_s
     when /^id_/
       order("assessments.id #{direction}")
@@ -105,10 +105,8 @@ class Assessment < ApplicationRecord
 
   # Copy assessment with blocks => questions and factors_scorings
   def clone
-    @cloned_item = deep_clone(
-      include: [{ blocks: { questions: :factors_scorings }}],
-      except: [{ blocks: [questions: [:assessment_id, { factors_scorings: [:assessment_id] }]] }]
-      )
+    @cloned_item = deep_clone(include: [{ blocks: { questions: :factors_scorings } }],
+                              except: [{ blocks: [questions: [:assessment_id, { factors_scorings: [:assessment_id] }]] }])
     @cloned_item.gen_uniq_name
     @cloned_item
   end
