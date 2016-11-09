@@ -661,10 +661,10 @@ CREATE TABLE questions (
     required_validation json,
     validation json,
     display_logic json,
+    skip_logic json,
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
     template_id integer,
-    skip_logic json,
     assessment_id integer
 );
 

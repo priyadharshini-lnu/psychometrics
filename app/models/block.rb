@@ -20,9 +20,8 @@ class Block < ApplicationRecord
 
   belongs_to :assessment
   belongs_to :template, class_name: 'Block'
-  has_many :questions, -> { order(position: :asc) }
+  has_many :questions, -> { order(position: :asc) }, dependent: :destroy
   has_many :blocks, class_name: 'Block', foreign_key: :template_id, dependent: :destroy
-
 
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
@@ -58,12 +57,11 @@ class Block < ApplicationRecord
     end
   }
 
-  def deep_clone(name:, position:)
-    cloned_block = dup
-    cloned_block.position = position if position
-    cloned_block.name = name if name
+  def clone(params = {})
+    cloned_block = deep_clone(include: [:questions])
+    cloned_block.position = params[:position] if params[:position]
+    cloned_block.name = params[:name] if params[:name]
     cloned_block.save
-    cloned_block.questions.create(questions.map { |question| question.attributes.except('id', 'created_at', 'updated_at') })
     cloned_block
   end
 
