@@ -29,9 +29,7 @@ class Assessment < ApplicationRecord
   has_many :assessment_clients
   has_many :clients, through: :assessment_clients
 
-  # has_and_belongs_to_many :clients, join_table: :assessments_clients
   belongs_to :dimension
-
 
   # CATEGORIES constant
   CATEGORIES = {
@@ -105,12 +103,18 @@ class Assessment < ApplicationRecord
     end
   end
 
-  def active_questions_count
-    questions.not_deleted.where(disabled: false).count
+  # Copy assessment with blocks => questions and factors_scorings
+  def clone
+    @cloned_item = deep_clone(
+      include: [{ blocks: { questions: :factors_scorings }}],
+      except: [{ blocks: [questions: [:assessment_id, { factors_scorings: [:assessment_id] }]] }]
+      )
+    @cloned_item.gen_uniq_name
+    @cloned_item
   end
 
-  def related_assign(client_id, user_id)
-
+  def active_questions_count
+    questions.not_deleted.where(disabled: false).count
   end
 
   def assign_form_attributes

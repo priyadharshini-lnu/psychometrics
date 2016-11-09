@@ -5,11 +5,11 @@ module Assessments
 
       action :update do |data, _, assessment|
         id = data.delete('id')
-        if id
-          scoring = ::FactorsScoring.update(id, data)
-        else
-          scoring = assessment.factors_scoring.create!(data)
-        end
+        scoring = if id
+                    ::FactorsScoring.update(id, data)
+                  else
+                    assessment.factors_scoring.create!(data)
+                  end
         FactorsScoringSerializer.new(scoring).to_hash
       end
 
