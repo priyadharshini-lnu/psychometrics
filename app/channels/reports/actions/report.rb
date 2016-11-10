@@ -30,7 +30,9 @@ module Reports
             r.save
           end
         end
-        ::ReportSerializer.new(report.reload).to_hash
+        report.filters.reload.map do |filter|
+          ::Reports::FilterSerializer.new(filter).to_hash
+        end
       end
     end
   end
