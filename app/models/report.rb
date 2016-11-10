@@ -42,6 +42,7 @@ class Report < ApplicationRecord
     ]
   )
 
+  scope :enabled, -> { where.not(disabled: true) }
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
@@ -72,6 +73,6 @@ class Report < ApplicationRecord
   }
 
   scope :available_to_view, lambda {
-    joins(:assessment).where.has { (assessment.access_reports_at == nil) | (assessment.access_reports_at >= Time.now) }
+    joins(:assessment).where.has { assessment.access_reports_at.eq(nil) | (assessment.access_reports_at >= Time.now) }
   }
 end

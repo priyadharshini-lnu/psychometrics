@@ -64,6 +64,9 @@ class Administration::DimensionsController < Administration::BaseController
     @cloned_resource = @resource.clone
     respond_to do |format|
       if @cloned_resource.save
+        # SubFactors have link to original dimension.
+        # Replace by the copy dimension
+        Factor.where(parent_id: @cloned_resource.factor_ids).update_all(dimension_id: @cloned_resource.id)
         format.js
       else
         format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: @resource.id }) } }

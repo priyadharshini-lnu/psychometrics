@@ -6,6 +6,7 @@
 @import 'bootstrap-select';
 @import 'bootstrap-colorpicker';
 @import 'multiselect';
+
 @import 'datatables/dataTables.bootstrap';
 @import 'administration/dataTables.checkboxes';
 
@@ -14,6 +15,8 @@
 @import 'administration/overrides/joli';
 @import 'administration/overrides/multi-select';
 @import 'administration/overrides/report-preview';
+@import 'administration/overrides/summernote';
+@import 'administration/overrides/timepicker';
 
 @import 'x-editable/dist/bootstrap3-editable/css/bootstrap-editable';
 

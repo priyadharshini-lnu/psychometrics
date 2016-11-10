@@ -30,7 +30,7 @@ class AssessmentsController < ApplicationController
 
   def index
     @reports = @current_client.reports.available_to_view.group_by(&:assessment_id)
-    @resources = policy_scope(@resource_class).order(:id).all
+    @resources = policy_scope(@resource_class).enabled.order(:id).all
   end
 
   private
@@ -41,7 +41,7 @@ class AssessmentsController < ApplicationController
   end
 
   def set_resource
-    @resource = @resource_class.find(params[:id])
+    @resource = @resource_class.enabled.find(params[:id])
   end
 
   # Authorisation user

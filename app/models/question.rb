@@ -37,6 +37,8 @@ class Question < ApplicationRecord
   scope :not_deleted, -> { where(deleted_at: nil) }
   scope :templates, -> { where(view: :templates) }
 
+  before_create :set_assessment_id, if: proc { assessment_id.nil? }
+
   #
   # Disables single column inheritance
   #
@@ -71,6 +73,11 @@ class Question < ApplicationRecord
       order("questions.#{column} #{direction}")
     end
   }
+
+  # Using for deep clone in Assessment model
+  def set_assessment_id
+    self.assessment_id = block.try(:assessment_id)
+  end
 
   ### Qcenter
   # Create duplicate object for Question Center

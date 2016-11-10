@@ -49,5 +49,6 @@ en:
       design: Design
       question_center: Question Center
       libraries: Media Library
+      communication_center: Communication Center
     breadcrumbs:
       <<: *NAVIGATION

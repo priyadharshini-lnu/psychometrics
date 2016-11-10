@@ -36,13 +36,13 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def spoof?
-    @user.can_manage?(@record)
+    @user.is?(:superadmin, :admin)
   end
 
   class Scope < Administration::BasePolicy::Scope
     def resolve
       return scope if @user.is?(:superadmin)
-      scope.joins(:memberships).where(memberships: { client_id: @user.client_ids })
+      scope.enabled.joins(:memberships).where(memberships: { client_id: @user.client_ids })
     end
   end
 end

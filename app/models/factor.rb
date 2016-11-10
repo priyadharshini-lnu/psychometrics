@@ -14,16 +14,19 @@
 
 class Factor < ApplicationRecord
   include Copyable
-  has_ancestry ancestry_column: :parent_id
+  # has_ancestry ancestry_column: :parent_id
   belongs_to :dimension
   belongs_to :parent, class_name: 'Factor', counter_cache: :subfactors_count
-  has_many :sub_factors, foreign_key: :parent_id, class_name: 'Factor'
+  has_many :sub_factors, foreign_key: :parent_id, class_name: 'Factor', dependent: :destroy
   has_many :factors_norms
   has_many :factors_scoring
   before_create :increment_factors
   before_destroy :decrement_factors
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 100 }, allow_blank: true
+
+  # For deep clone from dimension
+  before_validation :set_dimension_id, if: proc { dimension_id.nil? && parent }
 
   # norm types constant
   NORM_TYPES = %w(eti yti).freeze
@@ -45,8 +48,8 @@ class Factor < ApplicationRecord
   scope :with_factor_type, lambda { |type|
     type = type.to_s
     raise "supported types: #{FACTOR_TYPES}" unless FACTOR_TYPES.include? type
-    result = where('parent_id': nil) if type == 'factors'
-    result = where.not('parent_id': nil) if type == 'sub_factors'
+    result = where(parent_id: nil) if type == 'factors'
+    result = where.not(parent_id: nil) if type == 'sub_factors'
     result
   }
 
@@ -55,7 +58,7 @@ class Factor < ApplicationRecord
             and factors_norms.type = '#{type}'
             and factors_norms.norm_id = '#{norm_id}'")
   }
-
+  scope :roots, -> { where(parent_id: nil) }
   scope :no_roots, -> { where.not(parent_id: nil) }
   # Search entity by word
   scope :search_query, lambda { |query|
@@ -65,7 +68,7 @@ class Factor < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
+    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
     case sort_key.to_s
     when /^id_/
       order("factors.id #{direction}")
@@ -95,10 +98,10 @@ class Factor < ApplicationRecord
   private
 
   def increment_factors
-    dimension.increment!(:factors_count) if root?
+    dimension.increment!(:factors_count) if parent_id.nil?
   end
 
   def decrement_factors
-    dimension.decrement!(:factors_count) if root?
+    dimension.decrement!(:factors_count) if parent_id.nil?
   end
 end

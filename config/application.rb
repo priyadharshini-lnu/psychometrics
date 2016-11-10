@@ -16,12 +16,11 @@ module Psychometrics
     #
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.available_locales = [:en]
-
     config.active_record.schema_format = :sql
-
     config.autoload_paths << Rails.root.join('app/forms')
     config.autoload_paths << Rails.root.join('lib')
-
     config.eager_load_paths << Rails.root.join('lib')
+    # Setup Active Job to use Sidekiq
+    config.active_job.queue_adapter = :sidekiq
   end
 end

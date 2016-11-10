@@ -1,0 +1,50 @@
+en:
+  administration:
+    communications:
+      index:
+        title: Communication Center
+        tooltips:
+          create: Create
+        add_new: Add new
+      new:
+        header: 'New Communication'
+      edit:
+        header: 'Edit Communication'
+      destroy:
+        successfully: 'Communication %{name} was successfully destroyed.'
+      copy:
+        error: 'Communication #%{id} was not copied.'
+      toggle_status:
+        successfully: 'Communication was successfully updated.'
+      sidebar:
+        title: "Communication's options (#%{id})"
+        disable: 'Disable Communication'
+        enable: 'Enable Communication'
+        edit: 'Edit Communication'
+        new: 'New Communication'
+        copy: 'Copy Communication'
+        destroy: 'Delete Communication'
+        view: 'View Communication'
+      form:
+        delivery_rules:
+          on_specific_datetime: 'Specific date and time'
+          after_complete: 'Right after completion'
+          if_not_started: 'If assessment is not started'
+          if_not_finished: 'If assessment was not finished'
+        selected_recipients: 'Selected Recipients'
+        selected_cc_recipients: 'Selected CC Recipients'
+      resource:
+        tooltips:
+          copy: 'Copy Communication'
+          edit: 'Edit Communication'
+          delete: 'Delete Communication'
+        confirmations:
+          toggle_status:
+            title: <strong>%{status}</strong> %{name}?
+            body: >
+              <p>Are you sure you want to %{status} this Communication?</p>
+          delete:
+            title:
+              Delete <strong>Communication</strong> ?
+            body: >
+              <p>Are you sure you want to delete this Communication?</p>

@@ -5,9 +5,11 @@ class ReportsController < ApplicationController
   layout 'users'
 
   def show
-    @results = Assign.completed.includes(:membership).
-                   where(memberships: {client_id: @current_client.id}, assessment_id: @resource.assessment_id).
-                   references(:membership).all
+    @results = Assign.
+               completed.
+               includes(:membership).
+               where(memberships: { client_id: @current_client.id }, assessment_id: @resource.assessment_id).
+               references(:membership).all
 
     respond_to do |format|
       format.html do
@@ -36,7 +38,7 @@ class ReportsController < ApplicationController
   end
 
   def set_resource
-    @resource = @resource_class.available_to_view.find(params[:id])
+    @resource = @resource_class.enabled.available_to_view.find(params[:id])
   end
 
   # Authorisation user

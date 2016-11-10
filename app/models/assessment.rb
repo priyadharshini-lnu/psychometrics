@@ -29,15 +29,15 @@ class Assessment < ApplicationRecord
   has_many :assessment_clients
   has_many :clients, through: :assessment_clients
 
-  # has_and_belongs_to_many :clients, join_table: :assessments_clients
-  belongs_to :dimension
+  has_many :communications
 
+  belongs_to :dimension
 
   # CATEGORIES constant
   CATEGORIES = {
     psychometric: 'psychometric',
     organisational: 'organisational',
-    '360': '360'
+    '360' => '360'
   }.freeze
 
   validates :name, :dimension, presence: true
@@ -46,7 +46,7 @@ class Assessment < ApplicationRecord
   before_create :init
 
   def init
-    self.flow ||= {elements: []}
+    self.flow ||= { elements: [] }
   end
 
   enum category: CATEGORIES
@@ -62,6 +62,7 @@ class Assessment < ApplicationRecord
       :with_category
     ]
   )
+  scope :enabled, -> { where.not(disabled: true) }
 
   # Search entity by word
   scope :search_query, lambda { |query|
@@ -71,7 +72,7 @@ class Assessment < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
+    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
     case sort_key.to_s
     when /^id_/
       order("assessments.id #{direction}")
@@ -105,12 +106,16 @@ class Assessment < ApplicationRecord
     end
   end
 
-  def active_questions_count
-    questions.not_deleted.where(disabled: false).count
+  # Copy assessment with blocks => questions and factors_scorings
+  def clone
+    @cloned_item = deep_clone(include: [{ blocks: { questions: :factors_scorings } }],
+                              except: [{ blocks: [questions: [:assessment_id, { factors_scorings: [:assessment_id] }]] }])
+    @cloned_item.gen_uniq_name
+    @cloned_item
   end
 
-  def related_assign(client_id, user_id)
-
+  def active_questions_count
+    questions.not_deleted.where(disabled: false).count
   end
 
   def assign_form_attributes
