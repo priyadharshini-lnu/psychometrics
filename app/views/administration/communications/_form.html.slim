@@ -45,9 +45,10 @@
                       input_html: { class: 'datepicker', value: f.object.delivery_at_date || Date.today }, 
                       label: t('.delivery_at_date')
           .col-md-4
-            = f.input :delivery_at_time, 
-                      input_html: { class: 'timepicker' }, 
-                      label: t('.delivery_at_time')
+            = f.input :delivery_at_time, wrapper: :vertical_input_group
+              = f.input_field :delivery_at_time, class: "form-control timepicker"
+              span.input-group-addon
+                | UTC         
         - if f.object.delivery_if_not_started? || f.object.delivery_if_not_finished?
           .col-md-4
             = f.input :delivery_interval_number,

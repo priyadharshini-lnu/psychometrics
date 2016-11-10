@@ -9,7 +9,6 @@ module Administration
 
         def index
           @filter_form = policy_scope(::Assign).where(id: @membership.assign_ids).includes(:assessment).search(params[:q])
-          @client = @membership.client
           @resources = @filter_form.result.page(params[:page])
           @reports = @membership.client.reports.
                      available_to_view.
@@ -28,7 +27,7 @@ module Administration
           @assessment = @client.assessments.find(assign_params[:assessment_id])
           @resource = @assessment.assigns.build
           @resource.client_id = @client.id
-          @resource.user_id = @user.id
+          @resource.membership_id = @membership.id
           respond_to do |format|
             if @resource.save
               format.js
@@ -63,6 +62,7 @@ module Administration
 
         def set_membership
           @membership = policy_scope(::Membership).join_user.includes(:client, :assigns).find(params[:user_id])
+          @client = @membership.client
         end
 
         def set_client
