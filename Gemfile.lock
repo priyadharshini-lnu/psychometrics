@@ -47,6 +47,14 @@ GIT
       activerecord (>= 4.0, < 5.1)
 
 GIT
+  remote: git://github.com/seuros/capistrano-sidekiq.git
+  revision: bdb5b74fda19ca2b5623483004b94a06c8bcd331
+  specs:
+    capistrano-sidekiq (0.5.4)
+      capistrano
+      sidekiq (>= 3.4)
+
+GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
   revision: aa13a5f6fe060f40ef84b3d971e35317dc8882aa
   specs:
@@ -477,6 +485,7 @@ DEPENDENCIES
   capistrano-passenger (~> 0.2.0)
   capistrano-rails (~> 1.1.6)
   capistrano-rvm (~> 0.1.2)
+  capistrano-sidekiq!
   carrierwave (~> 0.11.2)
   carrierwave-aws (~> 1.0.1)
   chronic (~> 0.10.2)

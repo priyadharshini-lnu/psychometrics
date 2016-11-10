@@ -8,14 +8,14 @@ module Managers
     end
 
     def show?
-      assign_exists = @user.assigns.completed.exists?(assessment_id: @record.assessment_id, membership_id: @current_membership.id)
+      assign_exists = @current_membership.assigns.completed.exists?(assessment_id: @record.assessment_id)
       client_report_exists = ClientReport.exists?(report_id: @record.id, client_id: @client.id)
       assign_exists && client_report_exists && !@record.assessment.psychometric? && valid_hierarchy?
     end
 
     def valid_hierarchy?
       user_membership = Membership.find_by(client_id: @client.id, user_id: @user.id)
-      user_membership.user_id == @current_user.id || user_membership.parent.try(:user_id) == @current_user.id
+      user_membership.id == @current_membership.id || user_membership.parent_id == @current_membership.id
     end
   end
 end

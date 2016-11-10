@@ -110,6 +110,8 @@ gem 'sidekiq', '~> 4.2.4'
 gem 'chronic', '~> 0.10.2'
 gem 'whenever', '~> 0.9.7', require: false
 
+gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
