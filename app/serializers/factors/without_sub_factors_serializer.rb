@@ -15,6 +15,15 @@
 module Factors
   class WithoutSubFactorsSerializer < ActiveModel::Serializer
     type :factor
-    attributes :id, :name, :parent_id
+    attributes :id, :name, :parent_id, :question_ids
+
+    def question_ids
+      # TODO: remove n+1 query, may be remove active serializer, use jbuilder
+      if @instance_options[:assessment_id]
+        object.factors_scoring.where(assessment_id: @instance_options[:assessment_id]).where('json_array_length(props) > 0').pluck(:question_id)
+      else
+        []
+      end
+    end
   end
 end

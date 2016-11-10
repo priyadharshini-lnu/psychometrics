@@ -2,7 +2,7 @@
 = stylesheet_link_tag :administration
 = stylesheet_link_tag :psychometrics_reports_preview
 
-#report_preview data-user="#{@user.id}" data-results="#{(@results.map { |a| AssignSerializer.new(a, membership: @membership)}).to_json}" data-data="#{ReportSerializer.new(@resource).to_json(include: '**')}"
+#report_preview data-user="#{@user.id}" data-results="#{(@results.map { |a| AssignSerializer.new(a, membership: @membership)}).to_json}" data-data="#{ReportSerializer.new(@resource, membership: @membership).to_json(include: '**')}"
 
 = javascript_include_tag :psychometrics_reports_vendor
 = javascript_include_tag :psychometrics_reports_preview
