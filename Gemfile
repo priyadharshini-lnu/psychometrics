@@ -58,8 +58,7 @@ gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 ### Generate schema in each model
 gem 'annotate', '~> 2.7.0', github: 'ctran/annotate_models'
-### Tree
-gem 'ancestry', github: 'stefankroes/ancestry', branch: '2-1-stable'
+
 ### For organisation ENV variable
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'

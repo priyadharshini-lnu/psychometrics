@@ -49,6 +49,8 @@ class Client < ApplicationRecord
     ]
   )
 
+  scope :enabled, -> { where.not(disabled: true) }
+
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
@@ -65,6 +67,14 @@ class Client < ApplicationRecord
       order("clients.disabled #{direction}")
     end
   }
+
+  def clone
+    @cloned_item = deep_clone do |_original, kopy|
+      kopy.gen_uniq_name
+      kopy.subdomain = kopy.name.gsub(/[^0-9A-Za-z]/, '').parameterize
+    end
+    @cloned_item
+  end
 
   def self.options_for_select
     all.map { |client| [client.decorate.display_name, client.id] }

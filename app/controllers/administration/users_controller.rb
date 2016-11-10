@@ -31,9 +31,8 @@ class Administration::UsersController < Administration::BaseController
   # Change resources's status to active/disabled
   #
   def toggle_status
-    @resource.memberships.find_each do |membership|
-      membership.toggle!(:disabled)
-    end
+    @resource.toggle!(:disabled)
+    @resource.memberships.update_all(disabled: @resource.disabled)
     respond_to do |format|
       format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
       format.js
@@ -65,9 +64,8 @@ class Administration::UsersController < Administration::BaseController
 
   def resource_params
     params.require(:resource).permit(
-      :first_name, :last_name, :email,
-      :disabled, :role, manage_client_ids: [],
-      hris_data: [:key, :value]
+      :first_name, :last_name, :email, :disabled, :role,
+      { manage_client_ids: [] }, { hris_data: [:key, :value] }
     )
   end
 

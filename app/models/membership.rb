@@ -20,6 +20,7 @@ class Membership < ApplicationRecord
   validates :client, :user, presence: true
   validates :client_id, uniqueness: { scope: :user_id }
 
+  scope :enabled, -> { where.not(disabled: true) }
   scope :with_client, lambda { |client_id|
     where(client_id: client_id)
   }

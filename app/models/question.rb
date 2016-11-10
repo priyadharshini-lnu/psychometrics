@@ -76,7 +76,7 @@ class Question < ApplicationRecord
 
   # Using for deep clone in Assessment model
   def set_assessment_id
-    self.assessment_id = block.assessment_id
+    self.assessment_id = block.try(:assessment_id)
   end
 
   ### Qcenter

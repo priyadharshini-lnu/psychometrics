@@ -79,6 +79,8 @@ class User < ApplicationRecord
   before_validation :check_operator_can_manage, if: :role_changed?
   before_save :ensure_authentication_token
 
+  scope :enabled, -> { where.not(disabled: true) }
+
   # We won't set password, we will send inviting
   def password_required?
     return false if new_record? && operator.present?
@@ -141,9 +143,14 @@ class User < ApplicationRecord
       # Cut from Subdomain part of expected Subdomain
       subdomain = warden_conditions[:subdomain] && warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
       if subdomain.present?
-        joins(:clients).where(email: warden_conditions[:email], clients: { subdomain: subdomain }).first
+        enabled.
+          joins(:clients).
+          where.has { email.eq(warden_conditions[:email]) & clients.subdomain.eq(subdomain) & clients.disabled.not_eq(true) }.
+          first
       else
-        where(email: warden_conditions[:email]).first # If Subdomain not presented going normally
+        enabled.
+          where(email: warden_conditions[:email]).
+          first # If Subdomain not presented going normally
       end
     end
   end

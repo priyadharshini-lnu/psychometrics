@@ -26,8 +26,8 @@ class Dimension < ApplicationRecord
       sorted_by: 'id_desc'
     },
     available_filters: [
-       :sorted_by,
-       :search_query
+      :sorted_by,
+      :search_query
     ]
   )
 
@@ -39,7 +39,7 @@ class Dimension < ApplicationRecord
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
-    direction = (sort_key =~ /desc$/) ? 'desc' : 'asc'
+    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
     case sort_key.to_s
     when /^id_/
       order("dimensions.id #{direction}")
@@ -57,9 +57,9 @@ class Dimension < ApplicationRecord
   }
 
   def clone
-    @cloned_dimension = dup
+    @cloned_dimension = deep_clone(include: [{ factors: :sub_factors }],
+                                   except: [:factors_count, { factors: [:subfactors_count] }])
     @cloned_dimension.gen_uniq_name
     @cloned_dimension
   end
-
 end

@@ -60,7 +60,8 @@ class Assessment < ApplicationRecord
       :with_category
     ]
   )
-
+  scope :enabled, -> { where.not(disabled: true) }
+  
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")

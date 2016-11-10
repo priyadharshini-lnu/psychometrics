@@ -89,7 +89,9 @@ module Administration
       # Change resources's status to active/disabled
       #
       def toggle_status
-        @resource.memberships.find_by(client_id: @client.id).toggle!(:disabled)
+        @resource.toggle!(:disabled)
+        # Reload with join_user
+        @resource = policy_scope(@resource_class).join_user.find(params[:id])
         respond_to do |format|
           format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
           format.js

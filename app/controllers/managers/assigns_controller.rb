@@ -4,8 +4,12 @@ module Managers
     append_before_action :pundit_authorize
 
     def index
-      @filter_form = policy_scope(@resource_class).includes(:assessment, :user).search(params[:q])
-      @reports = @current_client.reports.
+      @filter_form = policy_scope(@resource_class).
+                     includes(:assessment, :user).
+                     joining { assessment }.
+                     where.has { assessment.disabled.eq(nil) | assessment.disabled.eq(false) }.
+                     search(params[:q])
+      @reports = @current_client.reports.enabled.
                  with_assessment_category(%w(360 organisational)).
                  available_to_view.
                  group_by(&:assessment_id)
