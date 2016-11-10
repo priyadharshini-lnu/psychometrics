@@ -43,7 +43,6 @@ $(function() {
             }
         }//END Bootstrap select
 
-
         //Bootstrap tooltip
         var feTooltips = function(){
             $("body").tooltip({selector:'[data-toggle="tooltip"]',container:"body"});
@@ -219,12 +218,66 @@ $(function() {
 
         }// END Custom Content Scroller
 
+        // Summernote
+        var uiSummernote = function(){
+            /* Extended summernote editor */
+            if($(".summernote").length > 0){
+                $(".summernote").summernote({height: 250,
+                                             codemirror: {
+                                                mode: 'text/html',
+                                                htmlMode: true,
+                                                lineNumbers: true,
+                                                theme: 'default'
+                                              }
+                });
+            }
+            /* END Extended summernote editor */
+
+            /* Lite summernote editor */
+            if($(".summernote_lite").length > 0){
+
+                $(".summernote_lite").on("focus",function(){
+
+                    $(".summernote_lite").summernote({height: 100, focus: true,
+                                                      toolbar: [
+                                                          ["style", ["bold", "italic", "underline", "clear"]],
+                                                          ["insert",["link","picture","video"]]
+                                                      ]
+                                                     });
+                });
+            }
+            /* END Lite summernote editor */
+
+            /* Email summernote editor */
+            if($(".summernote_email").length > 0){
+
+                $(".summernote_email").summernote({
+                                                  height: 300,
+                                                  focus: false,
+                                                  toolbar: [
+                                                      ['style', ['bold', 'italic', 'underline', 'clear']],
+                                                      ['font', ['strikethrough']],
+                                                      ['fontsize', ['fontsize']],
+                                                      ['color', ['color']],
+                                                      ['para', ['ul', 'ol', 'paragraph']],
+                                                      ['height', ['height']]
+                                                  ]
+
+                                                 });
+
+            }
+            /* END Email summernote editor */
+
+        }// END Summernote
+
+
 
         return {
             init: function(){
                 uiDatatable();
                 uiRangeSlider();
                 uiScroller();
+                uiSummernote();
             }
         }
 

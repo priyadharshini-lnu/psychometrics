@@ -29,6 +29,8 @@ class Assessment < ApplicationRecord
   has_many :assessment_clients
   has_many :clients, through: :assessment_clients
 
+  has_many :communications
+
   belongs_to :dimension
 
   # CATEGORIES constant
@@ -61,7 +63,7 @@ class Assessment < ApplicationRecord
     ]
   )
   scope :enabled, -> { where.not(disabled: true) }
-  
+
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")

@@ -2,10 +2,13 @@ module Administration
   module Clients
     module Users
       class ReportsController < Administration::BaseController
-        skip_before_action :authenticate_user!, only: [:preview]
+        # Turn off normally auth
+        skip_before_action :authenticate_user!
+        # Turn off browser auth
         skip_before_action :authenticate, only: [:preview]
-        prepend_before_action :authenticate_user_from_token!, only: [:preview]
-        before_action :authenticate_user!, only: [:preview]
+        # Turn on auth by token
+        prepend_before_action :authenticate_user_from_token!
+        before_action :authenticate, except: [:preview]
 
         prepend_before_action :set_resource_class, :set_user, :set_client
         before_action :set_resource
@@ -64,6 +67,7 @@ module Administration
           user_token = params[:user_token].presence
           user       = user_token && User.find_by(authentication_token: user_token.to_s)
           sign_in(user, store: false) if user
+          authenticate_user!
         end
       end
     end

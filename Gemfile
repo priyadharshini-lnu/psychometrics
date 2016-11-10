@@ -22,6 +22,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-quicksearch', '2.3.1'
   gem 'rails-assets-bootstrap-add-clear', '1.0.6'
   gem 'rails-assets-datatables', '1.10.12'
+  gem 'rails-assets-summernote', '0.5.10'
 end
 
 ### Authentication and authorization
@@ -92,7 +93,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'airbrake', '~> 5.0'
 
 # DSL for activerecord
-gem 'baby_squeel', '~> 1.0.0'
+gem 'baby_squeel', '~> 1.0.1'
 
 # Cloning ActiveRecord object
 gem 'amoeba', '~> 3.0.0'
@@ -103,6 +104,11 @@ gem 'mini_magick', '~> 4.5.1'
 gem 'carrierwave-aws', '~>1.0.1'
 
 gem 'awesome_nested_set', '~> 3.1.1'
+
+gem 'mustache', '~> 1.0.3'
+gem 'sidekiq', '~> 4.2.4'
+gem 'chronic', '~> 0.10.2'
+gem 'whenever', '~> 0.9.7', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

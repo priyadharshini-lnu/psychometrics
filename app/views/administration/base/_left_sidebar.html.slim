@@ -90,6 +90,10 @@
       = active_link_to(administration_libraries_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.libraries'), placement: 'right' })
         i.fa.fa-file-image-o
         span.xn-text = t('administration.navigation.libraries')
+    - if policy(:communication).index?
+      = active_link_to(administration_communications_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.communication_center'), placement: 'right' })
+        i.fa.fa-envelope-o
+        span.xn-text = t('administration.navigation.communication_center')        
     /li
       a href='#'
         span.xn-text Retail
