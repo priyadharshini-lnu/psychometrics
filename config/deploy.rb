@@ -19,10 +19,10 @@ set :ssh_options, {
   forward_agent: true
 }
 
-set :sidekiq_options_per_process, ['--queue mailers', '--queue communication --queue default']
+set :sidekiq_config, -> { File.join(shared_path, 'config', 'sidekiq.yml') }
 
 # Default value for :pty is false
-set :pty, true
+set :pty, false
 
 # Default value for :linked_files is []
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml')
