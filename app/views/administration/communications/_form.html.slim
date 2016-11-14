@@ -60,6 +60,7 @@
       h3 Message                  
       = f.input :subject
       = f.input :body, input_html: { class: 'summernote_email' }
+      = simple_format(t('.body_mustache'))
 
   .modal-footer
     .btn-group

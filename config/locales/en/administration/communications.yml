@@ -33,6 +33,12 @@ en:
           if_not_finished: 'If assessment was not finished'
         selected_recipients: 'Selected Recipients'
         selected_cc_recipients: 'Selected CC Recipients'
+        body_mustache: >
+          {{first_name}} - Recipient First Name
+
+          {{last_name}} - Recipient Last Name
+          
+          {{email}} - Recipient Email
       resource:
         tooltips:
           copy: 'Copy Communication'

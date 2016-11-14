@@ -43,7 +43,7 @@ class Communication < ApplicationRecord
   end
 
   def set_delivery_at
-    self.delivery_at = Time.parse("#{delivery_at_date} #{delivery_at_time}")
+    self.delivery_at = DateTime.parse("#{delivery_at_date} #{delivery_at_time}")
   end
 
   def set_delivery_interval

@@ -19,7 +19,7 @@ set :ssh_options, {
   forward_agent: true
 }
 
-set :sidekiq_config, -> { File.join(shared_path, 'config', 'sidekiq.yml') }
+set :sidekiq_queue, %w(mailers communication default)
 
 # Default value for :pty is false
 set :pty, false
