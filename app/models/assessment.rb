@@ -94,6 +94,10 @@ class Assessment < ApplicationRecord
     where(category: category)
   }
 
+  scope :with_client, lambda { |client_id|
+    joins(:assessment_clients).where(assessment_clients: { client_id: client_id })
+  }
+
   class << self
     # Available role for the filter form
     #

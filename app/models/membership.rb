@@ -30,7 +30,7 @@ class Membership < ApplicationRecord
     where(client_id: client_id)
   }
   scope :join_user, lambda {
-    joining { user }.selecting { ['memberships.*', user.first_name, user.last_name, user.email, user.role] }
+    joining { user }.selecting { ['memberships.*', user.first_name, user.last_name, user.email, user.role, user.is_anonym] }
   }
   scope :exclude_ids, lambda { |ids|
     ids = ids.split(',') if ids.is_a?(String)
@@ -47,6 +47,14 @@ class Membership < ApplicationRecord
     return if data.blank?
     where('memberships.hris @> ?', data.to_json)
   }
+  scope :user_type_eq, lambda { |type|
+    case type.to_s
+    when 'identified'
+      joins(:user).where.not(users: { is_anonym: true })
+    when 'anonymous'
+      joins(:user).where(users: { is_anonym: true })
+    end
+  }
 
   # Save HRIS data from form
   def hris_data=(data)
@@ -60,7 +68,7 @@ class Membership < ApplicationRecord
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      [:hris_data_cont, :role_scope_in, :exclude_ids, :include_ids]
+      [:hris_data_cont, :role_scope_in, :exclude_ids, :include_ids, :user_type_eq]
     end
   end
 end

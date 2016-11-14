@@ -1,9 +1,11 @@
 class AssessmentPolicy < BasePolicy
   def index?
+    return false if @current_user.is_anonym?
     true
   end
 
   def pass?
+    return false if @current_user.is_anonym?
     @current_membership.assigns.exists?(assessment_id: @record.id)
   end
 

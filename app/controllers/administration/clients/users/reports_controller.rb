@@ -10,16 +10,18 @@ module Administration
         prepend_before_action :authenticate_user_from_token!
         before_action :authenticate, except: [:preview]
 
-        prepend_before_action :set_resource_class, :set_user, :set_client
+        prepend_before_action :set_resource_class, :set_data
         before_action :set_resource
         before_action :init_breadcrumbs
         append_before_action :pundit_authorize, except: [:sidebar]
 
         def preview
-          @membership = @user.memberships.find_by(client_id: @client.id)
-          @results = Assign.completed.includes(:membership, :user).
-              where(memberships: {client_id: @client.id}, assessment_id: @resource.assessment_id).
-              references(:membership).all
+          @results = Assign.
+                     completed.
+                     includes(:membership, :user).
+                     where(memberships: { client_id: @client.id }, assessment_id: @resource.assessment_id).
+                     references(:membership).
+                     all
           respond_to do |format|
             format.html do
               render('_preview', layout: 'pdf') if params[:export]
@@ -38,7 +40,7 @@ module Administration
           add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, @client, :users]
           add_breadcrumb @client.decorate.display_name, [:administration, @client, :users]
           add_breadcrumb @user.decorate.display_name, '#'
-          add_breadcrumb I18n.t('administration.breadcrumbs.reports'), [:administration, @client, :user, :assigns, { user_id: @user }]
+          add_breadcrumb I18n.t('administration.breadcrumbs.reports'), [:administration, @client, :user, :assigns, { user_id: @membership.id }]
         end
 
         # Set model
@@ -50,12 +52,10 @@ module Administration
           @resource = policy_scope(@resource_class).find(params[:id])
         end
 
-        def set_user
-          @user = policy_scope(User).find(params[:user_id])
-        end
-
-        def set_client
+        def set_data
           @client = policy_scope(Client).find(params[:client_id])
+          @user = policy_scope(User).find(params[:user_id])
+          @membership = @user.memberships.find_by(client_id: @client.id)
         end
 
         # Authorisation user

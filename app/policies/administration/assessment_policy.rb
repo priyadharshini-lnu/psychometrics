@@ -27,6 +27,10 @@ module Administration
       false
     end
 
+    def client_index?
+      @user.is?(:superadmin, :admin)
+    end
+
     class Scope < Administration::BasePolicy::Scope
       def resolve
         return scope if @user.is?(:superadmin)

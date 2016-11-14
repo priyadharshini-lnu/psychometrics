@@ -1,6 +1,6 @@
 en:
   administration:
-    assessments:
+    assessments: &ASSESSMENTS
       index:
         title: Assessments
         tooltips:
@@ -77,3 +77,6 @@ en:
             selected_users: 'Selected Users'
           users:
             <<: *default
+    clients:
+      assessments:
+        <<: *ASSESSMENTS
