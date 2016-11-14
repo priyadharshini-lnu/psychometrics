@@ -110,7 +110,6 @@ gem 'sidekiq', '~> 4.2.4'
 gem 'chronic', '~> 0.10.2'
 gem 'whenever', '~> 0.9.7', require: false
 
-gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -133,4 +132,5 @@ group :development do
   gem 'capistrano-rails',         '~> 1.1.6'
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rvm',           '~> 0.1.2'
+  gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
 end

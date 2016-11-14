@@ -19,12 +19,7 @@ set :ssh_options, {
   forward_agent: true
 }
 
-# Default value for :format is :airbrussh.
-# set :format, :airbrussh
-
-# You can configure the Airbrussh format using :format_options.
-# These are the defaults.
-# set :format_options, command_output: true, log_file: 'log/capistrano.log', color: :auto, truncate: :auto
+set :sidekiq_options_per_process, ['--queue mailers', '--queue communication --queue default']
 
 # Default value for :pty is false
 set :pty, true
