@@ -24,7 +24,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def reset_password?
-    update?
+    update? && !@record.is_anonym?
   end
 
   def export?
@@ -36,7 +36,15 @@ class Administration::UserPolicy < Administration::BasePolicy
   end
 
   def spoof?
-    @user.is?(:superadmin, :admin)
+    @user.is?(:superadmin, :admin) && !@record.is_anonym?
+  end
+
+  def send_mail?
+    @user.is?(:superadmin, :admin) && !@record.is_anonym?
+  end
+
+  def change_password?
+    @user.is?(:superadmin, :admin) && !@record.is_anonym?
   end
 
   class Scope < Administration::BasePolicy::Scope

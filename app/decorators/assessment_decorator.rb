@@ -1,6 +1,6 @@
 class AssessmentDecorator < BaseDecorator
   def category
-    I18n.t("activerecord.attributes.assessment.categories.#{ Assessment::CATEGORIES.key(object.category) }")
+    I18n.t("activerecord.attributes.assessment.categories.#{Assessment::CATEGORIES.key(object.category)}")
   end
 
   def description
@@ -9,5 +9,14 @@ class AssessmentDecorator < BaseDecorator
 
   def timing
     object.timing ? "- #{object.timing}" : ''
+  end
+
+  def anonym_link_for(client)
+    hasids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length)
+    url = h.anonym_assessment_pass_url(client_id: hasids.encode(client.id),
+                                       assessment_id: hasids.encode(object.id),
+                                       domain: Settings.domain,
+                                       subdomain: client.subdomain)
+    h.link_to(url, url)
   end
 end

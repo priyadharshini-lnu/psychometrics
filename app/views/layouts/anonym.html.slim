@@ -1,0 +1,31 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    title = Settings.project_name
+    = csrf_meta_tags
+    = jquery_include_tag :google
+    = stylesheet_link_tag    'application', media: 'all'
+    = javascript_include_tag 'application'
+    = render '//layouts/custom_styles'
+  body
+    #modal-container
+    #wrapper
+      #page-content-wrapper
+        .page-content.inset
+          header
+            .container-fluid
+              .row
+                .col-xs-3.col-md-3
+                .col-xs-6
+                  - unless controller_name == 'assessments' && action_name == 'pass'
+                    - if @current_client && @current_client.logo.present?
+                      = image_tag @current_client.logo.url, class: 'img-responsive center-block headerLogo', alt: @current_client.decorate.display_name
+                    - else
+                      = image_tag 'the-talent-enterprise-logo', class: 'img-responsive center-block headerLogo', alt: 'The Talent Enterprise logo'
+                .col-xs-3.col-md-3
+          .container
+            = yield
+            = render partial: '//layouts/footer'

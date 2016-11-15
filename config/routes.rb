@@ -51,6 +51,7 @@ Rails.application.routes.draw do
         end
         resource :designs, only: [:edit, :update]
         resources :reports, only: [:index]
+        resources :assessments, only: [:index]
       end
     end
     ### END CLIENTS
@@ -189,6 +190,10 @@ Rails.application.routes.draw do
       resources :users, only: [:index] do
         resources :reports, only: [:show]
       end
+    end
+
+    namespace :anonym do
+      get 'clients/:client_id/assessments/:assessment_id/pass', to: 'assessments#pass', as: :assessment_pass
     end
 
     resources :assessments, only: [:index] do
