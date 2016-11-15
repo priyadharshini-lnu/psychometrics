@@ -29,7 +29,7 @@ module Administration
     class Scope < Administration::BasePolicy::Scope
       def resolve
         return scope if @user.is?(:superadmin)
-        scope.enabled.joins(:clients).where(clients: { id: @user.client_ids })
+        scope.enabled.available_to_view.joins(:clients).where(clients: { id: @user.client_ids })
       end
     end
   end

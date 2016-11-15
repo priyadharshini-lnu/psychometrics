@@ -25,6 +25,9 @@ en:
           admin: Client Admin
           superadmin: Super Admin
           super_admin: Super Admin
+        types:
+          identified: Identified Users
+          anonymous: Anonymous Users
         manage_client_ids: Memberships
         memberships: Memberships
   simple_form:

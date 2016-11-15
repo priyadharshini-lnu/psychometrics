@@ -35,7 +35,7 @@ class ApplicationController < ActionController::Base
     return if request.controller_class.to_s.start_with?('Administration')
     subdomain = request.subdomain
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '')
-    @current_client = Client.find_by!(subdomain: subdomain)
+    @current_client = Client.enabled.find_by!(subdomain: subdomain)
   end
 
   # Fetch membership

@@ -2,12 +2,7 @@
   .col-md-12
     .page-title
       h2.mrl = @client.decorate.display_name
-      = active_link_to(t('administration.navigation.users'), administration_client_users_path(@client), class: 'btn btn-default')
-      - if policy(:report).index?
-        = active_link_to(t('administration.navigation.reporting'), administration_client_reports_path, class: 'btn btn-default')
-      - if policy(@client).design?
-        = active_link_to(t('administration.navigation.design'), edit_administration_client_designs_path, remote: true, class: 'btn btn-default')
-
+      = render partial: 'administration/clients/client_top_nav'
     .panel.panel-default
       .panel-heading
         h3.panel-title = t('.title')
@@ -49,6 +44,10 @@
                         input_html: { multiple: true },
                         required: false,
                         label: 'Roles'
+              = f.input :user_type_eq, 
+                        collection: %w(identified anonymous).map { |value| [t("activerecord.attributes.user.types.#{value}"), value] }, 
+                        required: false,
+                        label: 'Type'                     
               = f.input :user_first_name_or_user_last_name_or_user_email_cont, 
                         label: 'Search', 
                         as: :string, 

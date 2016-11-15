@@ -80,10 +80,17 @@ class User < ApplicationRecord
   before_save :ensure_authentication_token
 
   scope :enabled, -> { where.not(disabled: true) }
+  scope :identified, -> { where(is_anonym: false) }
 
   # We won't set password, we will send inviting
   def password_required?
     return false if new_record? && operator.present?
+    super
+  end
+
+  # Time to strong sign out
+  def timeout_in
+    return 1.year if is?(:superadmin) || is_anonym?
     super
   end
 
@@ -144,11 +151,13 @@ class User < ApplicationRecord
       subdomain = warden_conditions[:subdomain] && warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
       if subdomain.present?
         enabled.
+          identified.
           joins(:clients).
           where.has { email.eq(warden_conditions[:email]) & clients.subdomain.eq(subdomain) & clients.disabled.not_eq(true) }.
           first
       else
         enabled.
+          identified.
           where(email: warden_conditions[:email]).
           first # If Subdomain not presented going normally
       end

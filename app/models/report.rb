@@ -73,6 +73,6 @@ class Report < ApplicationRecord
   }
 
   scope :available_to_view, lambda {
-    joins(:assessment).where.has { assessment.access_reports_at.eq(nil) | (assessment.access_reports_at >= Time.now) }
+    joins(:assessment).where.has { assessment.access_reports_at.eq(nil) | (assessment.access_reports_at <= Time.now) }
   }
 end

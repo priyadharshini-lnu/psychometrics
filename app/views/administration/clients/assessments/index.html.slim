@@ -12,12 +12,10 @@
           .row.mbm
             .col-sm-6.phn
               .btn-group data-toggle="buttons"
-                - @filterrific.select_options[:with_assessment_category].each do |value|
-                  label class="btn btn-default #{'active' if f.object.with_assessment_category == value}"
-                    = f.radio_button(:with_assessment_category, value)
-                    = t(".filterrific.with_assessment_category.#{value}")
-              .form-group
-                = f.select(:with_assessment, policy_scope(Assessment).all.options_for_select, { include_blank: t('administration.any') }, class: 'form-control select mll')
+                - @filterrific.select_options[:with_category].each do |value|
+                  label class="btn btn-default #{'active' if f.object.with_category == value}"
+                    = f.radio_button(:with_category, value)
+                    = t(".filterrific.with_category.#{value}")
             .col-md-3.col-md-offset-3.col-sm-4.col-sm-offset-2.phn
               .form-group.has-feedback.has-clear.pull-right
                 .input-group
