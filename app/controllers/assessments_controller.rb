@@ -29,7 +29,7 @@ class AssessmentsController < ApplicationController
   end
 
   def index
-    @reports = @current_client.reports.available_to_view.group_by(&:assessment_id)
+    @reports = @current_client.reports.enabled.available_to_view.group_by(&:assessment_id)
     @resources = policy_scope(@resource_class).enabled.order(:id).all
   end
 

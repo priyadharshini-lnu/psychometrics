@@ -29,3 +29,9 @@ en:
         header: 'Import'
       form:
         import: Import
+      users:
+        form:
+          import: Import
+      hris:
+        form:
+          import: Import
