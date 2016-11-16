@@ -75,8 +75,8 @@ class Assign < ApplicationRecord
       self.scoring[factor_id] = { name: scoring_array.try(:first).try(:factor).try(:name), results: [] }
       scoring_array.each do |question_scoring|
         question      = questions_map[question_scoring.question_id].try(:first)
-        scoring_class = "Scoring::#{question.type}"
-        result        = results[question.id.to_s]
+        scoring_class = "Scoring::#{question.try(:type)}"
+        result        = results[question.try(:id).try(:to_s)]
         if result && question && !question_scoring.props.empty?
           begin
             scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)
