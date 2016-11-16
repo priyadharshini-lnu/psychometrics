@@ -63,6 +63,7 @@ en:
             title: 'Assessments and Reporting'
             add: 'Assign New Assessment'
           list:
+            uniq_id: Uniq ID
             assessment_name: 'Assessment Name'
             assessment_type: 'Assessment Type'
             status: 'Completion Status'

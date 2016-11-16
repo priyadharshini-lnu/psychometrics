@@ -8,12 +8,12 @@ en:
     enable: Enable
     disable: Disable
     search: Search
+    uniq_id: Uniq ID
     edit: Edit
     new: New
     show: Show
     actions: Actions
     meta_title: Administration panel
-    search: Search
     active: Active
     copy: Copy
     choose: ' - Choose - '

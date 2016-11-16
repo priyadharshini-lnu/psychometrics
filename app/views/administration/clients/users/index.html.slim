@@ -54,4 +54,10 @@
                         required: false, 
                         placeholder: t('administration.search'), 
                         input_html: { class: 'has_clear periodically-observed' }
+              = f.input :assigns_hash_id_eq, 
+                        label: 'Find by Uniq ID', 
+                        as: :string, 
+                        required: false, 
+                        placeholder: t('administration.uniq_id'), 
+                        input_html: { class: 'has_clear periodically-observed' } 
               = link_to "Clear Filter", request.path, class: "btn btn-default"

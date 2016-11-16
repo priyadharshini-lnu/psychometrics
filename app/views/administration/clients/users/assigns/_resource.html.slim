@@ -1,4 +1,5 @@
 tr id=dom_id(resource)
+  td = resource.encode_id
   td = @membership.decorate.display_name
   td = resource.assessment.try(:name)
   td = resource.assessment.try(:decorate).try(:category)

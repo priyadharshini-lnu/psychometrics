@@ -4,7 +4,7 @@ class AssignSerializer < ActiveModel::Serializer
   has_one :user, serializer: UserSerializer
 
   def relationship
-    object.membership.decorate(context: {current_membership: @instance_options[:membership]}).relationship if @instance_options[:membership]
+    object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship if @instance_options[:membership]
   end
 
   def hris
@@ -16,7 +16,6 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   def hash_id
-    hashids = Hashids.new(ENV['HASHIDS_SALT'], 5)
-    hashids.encode(object.id)
+    object.encode_id
   end
 end

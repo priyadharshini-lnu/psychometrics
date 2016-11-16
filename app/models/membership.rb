@@ -55,6 +55,14 @@ class Membership < ApplicationRecord
       joins(:user).where(users: { is_anonym: true })
     end
   }
+  scope :assigns_hash_id_eq, lambda { |hash_id|
+    begin
+      hashids = Hashids.new(ENV['HASHIDS_SALT'], 5)
+      encode_hash_id = hashids.decode(hash_id.to_s).first
+      joins(:assigns).where(assigns: { id: encode_hash_id })
+    rescue InputError
+    end
+  }
 
   # Save HRIS data from form
   def hris_data=(data)
@@ -68,7 +76,7 @@ class Membership < ApplicationRecord
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      [:hris_data_cont, :role_scope_in, :exclude_ids, :include_ids, :user_type_eq]
+      [:hris_data_cont, :role_scope_in, :exclude_ids, :include_ids, :user_type_eq, :assigns_hash_id_eq]
     end
   end
 end

@@ -109,4 +109,9 @@ class Assign < ApplicationRecord
       end
     end
   end
+
+  def encode_id
+    hashids = Hashids.new(ENV['HASHIDS_SALT'], 5)
+    hashids.encode(id)
+  end
 end
