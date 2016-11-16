@@ -1,5 +1,5 @@
 class AssignSerializer < ActiveModel::Serializer
-  attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id, :relationship, :hris
+  attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id, :relationship, :hris, :hash_id
 
   has_one :user, serializer: UserSerializer
 
@@ -15,4 +15,8 @@ class AssignSerializer < ActiveModel::Serializer
     object.membership.user_id
   end
 
+  def hash_id
+    hashids = Hashids.new(ENV['HASHIDS_SALT'], 5)
+    hashids.encode(object.id)
+  end
 end
