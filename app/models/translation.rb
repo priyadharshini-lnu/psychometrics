@@ -6,6 +6,6 @@ class Translation < ApplicationRecord
 
   scope :to_questions, -> { where(translateable_type: 'Question') }
   scope :for_assessment, lambda { |assessment_id|
-    joining { question.block }.where.has { block.assessment_id = assessment_id }
+    joining { translateable.of(Question).block }.where('blocks.assessment_id = ?', assessment_id)
   }
 end
