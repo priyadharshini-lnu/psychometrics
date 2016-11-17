@@ -1,0 +1,8 @@
+en:
+  administration:
+    translations:
+      assessments:
+        new:
+          header: Import Translations
+      import:
+        successfully: 'Translations was successfully imported'

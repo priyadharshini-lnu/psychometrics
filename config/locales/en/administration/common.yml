@@ -5,6 +5,7 @@ en:
     close: Close
     update: Update
     create: Create
+    import: Import
     enable: Enable
     disable: Disable
     search: Search

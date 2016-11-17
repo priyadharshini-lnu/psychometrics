@@ -2,6 +2,11 @@ module Administration
   module Translations
     class AssessmentsController < Administration::BaseController
       append_before_action :pundit_authorize
+      before_action :set_assessment, only: [:new, :import]
+
+      def new
+        @resource = ::Imports::Translations::AssessmentImport.new(assessment_id: @assessment.id)
+      end
 
       def export
         data = JSON.parse(params[:data])
@@ -10,10 +15,21 @@ module Administration
       end
 
       def import
-        ::Imports::Translations::AssessmentImport.new(import_params)
+        @resource = ::Imports::Translations::AssessmentImport.new(import_params)
+        respond_to do |format|
+          if @resource.process!
+            format.js
+          else
+            format.js { render :new }
+          end
+        end
       end
 
       private
+
+      def set_assessment
+        @assessment = policy_scope(Assessment).find(params[:assessment_id])
+      end
 
       def import_params
         params.require(:import).permit(:file, :assessment_id)
@@ -21,7 +37,7 @@ module Administration
 
       # Authorisation user
       def pundit_authorize
-        authorize @resource || @resource_class
+        authorize :translation
       end
     end
   end

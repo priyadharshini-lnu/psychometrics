@@ -1,7 +1,7 @@
 module Imports
   class UserImport < Imports::BaseImport
-    attr_accessor :client_id
-    validates :client_id, presence: true
+    attr_accessor :client_id, :importer
+    validates :client_id, :importer, presence: true
 
     # Authorisation flow
     #

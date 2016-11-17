@@ -1,0 +1,5 @@
+$('#modal-container').find('.modal').modal('hide');
+$('#modal-container').find('.modal').on('hidden.bs.modal', function(){
+  // Notify message
+  noty({text: '<%= t("administration.translations.import.successfully") %>', type: 'success'});
+});

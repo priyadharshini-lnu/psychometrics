@@ -1,7 +1,7 @@
 module Imports
   class HrisImport < Imports::BaseImport
-    attr_accessor :client_id
-    validates :client_id, presence: true
+    attr_accessor :client_id, :importer
+    validates :client_id, :importer, presence: true
     validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                   'application/vnd.ms-excel',
                                                   'text/csv'] }

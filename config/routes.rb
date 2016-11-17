@@ -175,6 +175,7 @@ Rails.application.routes.draw do
     namespace :translations do
       resources :assessments, only: [] do
         post :export
+        get :new
         post :import
       end
     end
