@@ -752,10 +752,10 @@ CREATE TABLE questions (
     required_validation json,
     validation json,
     display_logic json,
+    skip_logic json,
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
     template_id integer,
-    skip_logic json,
     assessment_id integer
 );
 
@@ -923,6 +923,40 @@ ALTER SEQUENCE reports_pages_id_seq OWNED BY reports_pages.id;
 CREATE TABLE schema_migrations (
     version character varying NOT NULL
 );
+
+
+--
+-- Name: translations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE translations (
+    id integer NOT NULL,
+    translateable_type character varying,
+    translateable_id integer,
+    props json DEFAULT '{}'::json,
+    locale character varying(4),
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: translations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE translations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: translations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE translations_id_seq OWNED BY translations.id;
 
 
 --
@@ -1144,6 +1178,13 @@ ALTER TABLE ONLY reports_pages ALTER COLUMN id SET DEFAULT nextval('reports_page
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY translations ALTER COLUMN id SET DEFAULT nextval('translations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
@@ -1345,6 +1386,14 @@ ALTER TABLE ONLY reports
 
 ALTER TABLE ONLY schema_migrations
     ADD CONSTRAINT schema_migrations_pkey PRIMARY KEY (version);
+
+
+--
+-- Name: translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY translations
+    ADD CONSTRAINT translations_pkey PRIMARY KEY (id);
 
 
 --
@@ -1657,6 +1706,13 @@ CREATE INDEX index_reports_pages_on_report_id ON reports_pages USING btree (repo
 
 
 --
+-- Name: index_translations_on_translateable_type_and_translateable_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_translations_on_translateable_type_and_translateable_id ON translations USING btree (translateable_type, translateable_id);
+
+
+--
 -- Name: index_users_on_authentication_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1744,6 +1800,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337'), ('20161019113157'), ('20161020145001'), ('20161021080332'), ('20161025151414'), ('20161025152859'), ('20161025154640'), ('20161026111535'), ('20161026120042'), ('20161027095910'), ('20161031091451'), ('20161031094940'), ('20161031105250'), ('20161031105418'), ('20161101141317'), ('20161102071143'), ('20161102110210'), ('20161102115438'), ('20161103111612'), ('20161103154036'), ('20161108112600'), ('20161110090142'), ('20161111102005');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337'), ('20161019113157'), ('20161020145001'), ('20161021080332'), ('20161025151414'), ('20161025152859'), ('20161025154640'), ('20161026111535'), ('20161026120042'), ('20161027095910'), ('20161031091451'), ('20161031094940'), ('20161031105250'), ('20161031105418'), ('20161101141317'), ('20161102071143'), ('20161102110210'), ('20161102115438'), ('20161103111612'), ('20161103154036'), ('20161108112600'), ('20161110090142'), ('20161111102005'), ('20161115143900');
 
 

@@ -30,6 +30,7 @@ class Question < ApplicationRecord
   has_many :comments
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
   has_many :factors_scorings, dependent: :destroy
+  has_many :translations, as: :translateable, dependent: :destroy
 
   enum view: [:assessments, :templates, :blocks]
 
