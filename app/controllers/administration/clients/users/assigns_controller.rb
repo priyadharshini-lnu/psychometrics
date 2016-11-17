@@ -25,9 +25,7 @@ module Administration
 
         def create
           @assessment = @client.assessments.find(assign_params[:assessment_id])
-          @resource = @assessment.assigns.build
-          @resource.client_id = @client.id
-          @resource.membership_id = @membership.id
+          @resource = @assessment.assigns.build(membership_id: @membership.id)
           respond_to do |format|
             if @resource.save
               format.js
