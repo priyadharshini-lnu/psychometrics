@@ -25,6 +25,8 @@ en:
           factors_mismatch: "[#%{coords}] dimension %{dimension} does not have factor %{factor}"
           sub_factors_mismatch: "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
           not_set_dimension: "The name of the Dimension should be written in A-1"
+        translation:
+          error: '[Translation %{id}] %{error}'          
       new:
         header: 'Import'
       form:

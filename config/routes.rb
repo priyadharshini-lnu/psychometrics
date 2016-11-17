@@ -65,12 +65,14 @@ Rails.application.routes.draw do
         get :preview
         get :reports
       end
-      scope module: 'assessments/assigns' do
-        resource :finish, controller: :finish, only: [:show], path: 'assign/finish'
-        resource :step1, controller: :step1, only: [:show, :update], path: 'assign/step1'
-        resource :step2, controller: :step2, only: [:show, :update], path: 'assign/step2' do
-          get 'selected_users'
-          get 'not_selected_users'
+      scope module: 'assessments' do
+        scope module: 'assigns' do
+          resource :finish, controller: :finish, only: [:show], path: 'assign/finish'
+          resource :step1, controller: :step1, only: [:show, :update], path: 'assign/step1'
+          resource :step2, controller: :step2, only: [:show, :update], path: 'assign/step2' do
+            get 'selected_users'
+            get 'not_selected_users'
+          end
         end
       end
     end
@@ -168,6 +170,13 @@ Rails.application.routes.draw do
       end
 
       match :new_form, on: :collection, via: [:post, :patch, :put]
+    end
+
+    namespace :translations do
+      resources :assessments, only: [] do
+        post :export
+        post :import
+      end
     end
   end
 
