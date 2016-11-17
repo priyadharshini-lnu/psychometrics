@@ -1,11 +1,19 @@
 .html_preview {
   .fe-page-container {
-    margin: auto;
+
+    margin: 10px auto;
+    border: 1px solid #CCC;
   }
   .fe-module-container {
     border: none;
+    &:hover {
+      border: none;
+    }
   }
   .fe-module-frame-container {
-    border: none;
+    border: 1px solid transparent !important;
+    &:hover {
+      border: 1px solid transparent !important;
+    }
   }
 }
