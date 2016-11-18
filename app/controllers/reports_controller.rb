@@ -11,6 +11,10 @@ class ReportsController < ApplicationController
                where(memberships: { client_id: @current_client.id }, assessment_id: @resource.assessment_id).
                references(:membership).all
 
+    # Translation.for_report(@resource.id).where(locale: user_locale).find_each do |t|
+    #   @translations[t.translateable_type.underscore][t.translateable_id] = t.props
+    # end
+
     respond_to do |format|
       format.html do
         render('_show', layout: 'pdf') if params[:export]
