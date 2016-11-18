@@ -1,0 +1,41 @@
+en:
+  administration:
+    memberships:
+      new:
+        header: 'New user'
+      edit:
+        title: 'Edit user'
+        personal_data: Personal Data
+        hris_data: HRIS Data
+        add: Add
+        remove: Remove
+        key: Key
+        value: Value
+      index:
+        add: Add new user
+        import: Import
+        import_users: Users
+        import_hris: HRIS Data
+        export: Export
+        title: Users
+        filterrific:
+          with_role:
+            all: All
+            users: Users
+            administration: Administrators
+        tooltips:
+          import: Import
+          export: Export
+          create: Create
+      create:
+        successfully: User %{name} was successfully created.
+      update:
+        successfully: User %{name} was successfully updated.
+      destroy:
+        successfully: User %{name} was successfully destroyed.
+      toggle_status:
+        successfully: User %{name} was successfully updated.
+      reset_password:
+        successfully: User  %{name} will receive an email with instructions on how to reset his (her) password in a few minutes.
+      spoof:
+        successfully: You was successfully login as %{name}

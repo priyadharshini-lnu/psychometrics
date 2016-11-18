@@ -1,0 +1,32 @@
+.container
+  .row
+    .col-xs-12.col-sm-8.col-sm-offet-2.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
+      .registrationForm
+        /! Nav tabs
+        ul.nav.nav-tabs role="tablist"
+          li.fullWidth role="presentation"
+            = link_to t('.tabs.sign_in'), new_user_session_path
+          li.fullWidth role="presentation"
+            = link_to t('.tabs.register'), new_user_registration_path
+        /! Tab panes
+        .tab-content
+          #signIn.tab-pane.fade.in.active role="tabpanel"
+            = simple_form_for(resource, as: resource_name, url: invitation_path(resource_name), html: { method: :put, class: 'form-horizontal' }) do |f|
+              == flash_messages
+              = devise_error_messages!
+              = f.input :invitation_token, as: :hidden
+              = f.full_error :invitation_token
+              .passwordFormGroup
+                = f.label :password
+                .input-group
+                  = f.input_field :password, autofocus: true, class: 'form-control input-lg', hint: ("#{@minimum_password_length} characters minimum" if @minimum_password_length)
+                = f.error :password
+              .passwordFormGroup
+                = f.label :password_confirmation
+                .input-group
+                  = f.input_field :password_confirmation, class: 'form-control input-lg'
+                = f.error :password_confirmation
+              .clearfix
+              .signInButton
+                .input-group
+                  button.btn.btn-primary.signIn type="submit" = t('.submit')

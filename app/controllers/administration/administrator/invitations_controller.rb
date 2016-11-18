@@ -10,6 +10,12 @@ module Administration
       def devise_mapping
         @devise_mapping ||= Devise.mappings[:user]
       end
+
+      # Redirect administrator after log in
+      #
+      def after_sign_in_path_for(_resource)
+        administration_root_path
+      end
     end
   end
 end
