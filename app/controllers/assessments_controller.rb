@@ -26,7 +26,7 @@ class AssessmentsController < ApplicationController
       membership_id: @current_membership.id
     )
     @translations = {questions: {}}
-    Translation.for_assessment(@resource.id).where(locale: 'es').find_each do |t|
+    Translation.for_assessment(@resource.id).where(locale: user_locale).find_each do |t|
       @translations[:questions][t.translateable_id] = t.props
     end
 
