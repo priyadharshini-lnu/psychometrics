@@ -36,52 +36,19 @@
       = active_link_to(administration_clients_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.clients'), placement: 'right' })
         .fa.fa-briefcase
         span.xn-text= t('administration.navigation.clients')
-    li.xn-openable
-      a href="#"
-        .fa.fa-plus
-        span.xn-text = t('administration.navigation.create')
-      ul
-        - if policy(:assessment).new?
-          li.xn-openable
-            a href="#" = t('administration.navigation.assessments')
-            ul
-              li = link_to(t('administration.navigation.psychometrics'), new_administration_assessment_path, remote: true)
-        /li.xn-openable
-          a href="#" User(s)
-          - if policy(:user).new? || policy(:user).import?
-            ul
-              - if policy(:user).new?
-                li = link_to t('administration.navigation.users_add'), [:new, :administration, :user], remote: true
-              - if policy(:user).import?
-                li = link_to t('administration.navigation.users_import'), new_administration_imports_users_path, remote: true
-        - if policy(:client).new?
-          li = link_to(t('administration.navigation.client'), [:new, :administration, :client], remote: true)
-        /li.xn-openable
-          a href="#" Report
-          ul
-            li
-              a href="#" Psychometric
-            li
-              a href="#" 360
-            li
-              a href="#" Organisational
-        /li.xn-openable
-          a href="#" Benchmarks
-          ul
-            li
-              a href="#" Historical
-            li
-              a href="#" External
-        /li
-          a href="#" Email Template
-        /li
-          a href="#" Theme
-        /li
-          a href="#" Org Structure
-        /li
-          a href="#" Library
-        /li
-          a href="#" Action Plan
+    - if policy(:assessment).new? || policy(:client).new?
+      li.xn-openable
+        a href="#"
+          .fa.fa-plus
+          span.xn-text = t('administration.navigation.create')
+        ul
+          - if policy(:assessment).new?
+            li.xn-openable
+              a href="#" = t('administration.navigation.assessments')
+              ul
+                li = link_to(t('administration.navigation.psychometrics'), new_administration_assessment_path, remote: true)
+          - if policy(:client).new?
+            li = link_to(t('administration.navigation.client'), [:new, :administration, :client], remote: true)
     - if policy(:question).index?
       = active_link_to(administration_templates_questions_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.question_center'), placement: 'right' })
         i.fa.fa-question-circle-o
@@ -94,25 +61,10 @@
       = active_link_to(administration_communications_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.communication_center'), placement: 'right' })
         i.fa.fa-envelope-o
         span.xn-text = t('administration.navigation.communication_center')        
-    /li
-      a href='#'
-        span.xn-text Retail
     - if policy(:report).left_menu?
       = active_link_to(administration_reports_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.reports'), placement: 'right' })
         i.fa.fa-pie-chart
         span.xn-text = t('administration.navigation.reports')
-    /li
-      a href='#'
-        span.xn-text Administrators
-    /li
-      a href='#'
-        span.xn-text Scoring
-    /li
-      a href='#'
-        span.xn-text API Integrations
-    /li
-      a href='#'
-        span.xn-text Help
 
   /! END X-NAVIGATION
 /! END PAGE SIDEBAR
