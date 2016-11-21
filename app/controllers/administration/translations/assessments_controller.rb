@@ -2,7 +2,7 @@ module Administration
   module Translations
     class AssessmentsController < Administration::BaseController
       append_before_action :pundit_authorize
-      before_action :set_assessment, only: [:new, :import]
+      before_action :set_assessment
 
       def new
         @resource = ::Imports::Translations::AssessmentImport.new(assessment_id: @assessment.id)
@@ -10,8 +10,8 @@ module Administration
 
       def export
         data = JSON.parse(params[:data])
-        xlsx = ::Exports::Translations::AssessmentExport.new(params[:assessment_id], data)
-        send_data xlsx.render.to_stream.read, filename: 'translations.xlsx'
+        xlsx = ::Exports::Translations::AssessmentExport.new(@assessment.id, data)
+        send_data xlsx.render.to_stream.read, filename: 'assessment_ranslations.xlsx'
       end
 
       def import

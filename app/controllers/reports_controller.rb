@@ -11,6 +11,8 @@ class ReportsController < ApplicationController
                where(memberships: { client_id: @current_client.id }, assessment_id: @resource.assessment_id).
                references(:membership).all
 
+    @translations = Translation.to_hash_for_report(@resource.id, @resource.assessment_id, user_locale)
+
     respond_to do |format|
       format.html do
         render('_show', layout: 'pdf') if params[:export]

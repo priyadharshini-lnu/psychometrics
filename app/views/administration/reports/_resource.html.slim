@@ -25,3 +25,4 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
       - if policy(resource).destroy?
         = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
           span.fa.fa-times
+      = link_to 'Import', administration_translations_report_new_path(resource), remote: true

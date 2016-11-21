@@ -4,7 +4,7 @@ module Exports
       def initialize(assessment_id, data = {})
         @package = Axlsx::Package.new
         wb = @package.workbook
-        wb.add_worksheet(name: 'Translations') do |sheet|
+        wb.add_worksheet(name: 'AssessmentTranslations') do |sheet|
           sheet.add_row ['key', 'en', *Settings.languages]
           data['questions'].each do |question_id, props|
             translations = ::Translation.

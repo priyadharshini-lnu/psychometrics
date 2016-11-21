@@ -1,8 +1,8 @@
 module Imports
   module Translations
-    class AssessmentImport < Imports::BaseImport
-      attr_accessor :assessment_id
-      validates :assessment_id, presence: true
+    class ReportImport < Imports::BaseImport
+      attr_accessor :report_id
+      validates :report_id, presence: true
 
       # Authorisation flow
       #
@@ -13,6 +13,8 @@ module Imports
       validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                     'application/vnd.ms-excel',
                                                     'text/csv'] }
+
+      AVAILABLE_TRANSLATEABLE_TYPES = %w(reports/filter factor reports/module).freeze
 
       def process!
         # Return error if form not valid
@@ -42,34 +44,41 @@ module Imports
         rows = open_spreadsheet.parse
         header = rows.shift
 
-        collect_translations = {}
+        collect_translations = Hash.new
 
         rows.each do |row|
           data = Hash[header.zip(row)]
-          question_id, key = data.delete('key').split(':')
-          collect_translations[question_id] ||= {}
+          translateable_type, translateable_id, key = data.delete('key').split(':')
+          # Are there expected translateable_type
+          unless AVAILABLE_TRANSLATEABLE_TYPES.include?(translateable_type)
+            errors.add(:base, I18n.t('administration.imports.errors.translation.invalid_format'))
+            return [nil]
+          end
+
+          collect_translations[translateable_type] = Hash[translateable_id, {}]
+
+          # Initialize collections of translation
+          # Nested hash if not initilized return blank hash insted nil
           data.each do |locale, translation|
-            collect_translations[question_id][locale] ||= {}
-            collect_translations[question_id][locale][key] = translation
+            collect_translations[translateable_type][translateable_id][locale] ||= {}
+            collect_translations[translateable_type][translateable_id][locale][key] = translation
           end
         end
 
         translations = []
-        collect_translations.each do |question_id, locales|
-          # If can't find question for specified assessment, then add error
-          unless Question.ransack(block_assessment_id_eq: assessment_id, id_eq: question_id).result.exists?
-            errors.add(:base, I18n.t('administration.imports.errors.translation.error', id: question_id, error: "Can't find Question")) && next
-          end
-          locales.each do |locale, props|
-            translation = Translation.find_or_initialize_by({
-              translateable_id: question_id,
-              translateable_type: 'Question',
-              resource_id: assessment_id,
-              resource_type: 'Report',
-              locale: locale
-            })
-            translation.props = props
-            translations << translation
+        collect_translations.each do |translateable_type, resources|
+          resources.each do |translateable_id, locales|
+            locales.each do |locale, props|
+              translation = Translation.find_or_initialize_by({
+                translateable_id: translateable_id,
+                translateable_type: translateable_type.classify,
+                resource_id: report_id,
+                resource_type: 'Report',
+                locale: locale
+              })
+              translation.props = props
+              translations << translation
+            end
           end
         end
 

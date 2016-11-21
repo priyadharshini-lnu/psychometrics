@@ -25,11 +25,7 @@ class AssessmentsController < ApplicationController
       assessment_id: @resource.id,
       membership_id: @current_membership.id
     )
-    @translations = {questions: {}}
-    Translation.for_assessment(@resource.id).where(locale: user_locale).find_each do |t|
-      @translations[:questions][t.translateable_id] = t.props
-    end
-
+    @translations = ::Translation.to_hash_for_assessment(@resource.id, user_locale)
     @assign.update(status: Assign.statuses['in_progress'], step: 0)
   end
 

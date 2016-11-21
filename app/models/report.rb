@@ -20,6 +20,8 @@ class Report < ApplicationRecord
   has_many :client_reports, dependent: :destroy
   has_many :clients, through: :client_reports
 
+  has_many :translations, as: :resource
+
   validates :assessment, presence: true
 
   # Copy report with pages => modules

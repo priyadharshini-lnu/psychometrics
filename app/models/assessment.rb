@@ -31,6 +31,8 @@ class Assessment < ApplicationRecord
 
   has_many :communications
 
+  has_many :translations, as: :resource
+
   belongs_to :dimension
 
   # CATEGORIES constant
