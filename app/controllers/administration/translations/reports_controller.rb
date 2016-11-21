@@ -9,7 +9,7 @@ module Administration
       end
 
       def export
-        data = {"reports/filter"=>{"1"=>{"name"=>"translatedFilter"}}, "factor"=>{"2"=>{"name"=>"ДРАЙВ"}}, "reports/module"=>{"27"=>{"text"=>"Text Module"}}} # JSON.parse(params[:data])
+        data = JSON.parse(params[:data])
         xlsx = ::Exports::Translations::ReportExport.new(@report.id, data)
         send_data xlsx.render.to_stream.read, filename: 'report_translations.xlsx'
       end
