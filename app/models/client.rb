@@ -21,7 +21,6 @@ class Client < ApplicationRecord
 
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
-  has_many :assigns, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :admins, -> { where(role: ::User::USER_ROLES[:admin]) }, through: :memberships, source: :user, class_name: 'User'
   has_many :managers, -> { where(role: ::User::USER_ROLES[:manager]) }, through: :memberships, source: :user
