@@ -51,7 +51,9 @@ Rails.application.routes.draw do
         end
         resource :designs, only: [:edit, :update]
         resources :reports, only: [:index]
-        resources :assessments, only: [:index]
+        resources :assessments, only: [:index] do
+          get :export_results
+        end
       end
     end
     ### END CLIENTS
