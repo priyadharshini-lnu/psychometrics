@@ -179,7 +179,7 @@ Rails.application.routes.draw do
         post :import
       end
       resources :reports, only: [] do
-        get :export
+        post :export
         get :new
         post :import
       end
