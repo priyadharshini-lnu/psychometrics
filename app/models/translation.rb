@@ -15,7 +15,8 @@ class Translation < ApplicationRecord
   def self.to_hash_for_assessment(assessment_id, locale)
     results = {}
     for_assessment(assessment_id).where(locale: locale).find_each do |t|
-      results[t.translateable_type.underscore] = Hash[t.translateable_id, t.props]
+      results[t.translateable_type.underscore] ||= {}
+      results[t.translateable_type.underscore][t.translateable_id] ||= t.props
     end
     results
   end
@@ -23,7 +24,8 @@ class Translation < ApplicationRecord
   def self.to_hash_for_report(report_id, assessment_id, locale)
     results = {}
     for_report(report_id).or(for_assessment(assessment_id)).where(locale: locale).find_each do |t|
-      results[t.translateable_type.underscore] = Hash[t.translateable_id, t.props]
+      results[t.translateable_type.underscore] ||= {}
+      results[t.translateable_type.underscore][t.translateable_id] ||= t.props
     end
     results
   end
