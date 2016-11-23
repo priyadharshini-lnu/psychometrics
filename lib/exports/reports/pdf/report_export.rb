@@ -19,6 +19,7 @@ module Exports
                                                                   export: true,
                                                                   user_token: user.authentication_token,
                                                                   host: Settings.domain,
+                                                                  domain: Settings.domain,
                                                                   subdomain: client.subdomain)
                 end
 
@@ -30,9 +31,6 @@ module Exports
           }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
           Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
-
-          Rails.logger.info 'DEBUGGING'
-          Rails.logger.info "phantomjs #{Rails.root.join('lib/raster.js')} #{args}"
 
           system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
 

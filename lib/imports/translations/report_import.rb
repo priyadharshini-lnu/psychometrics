@@ -55,7 +55,8 @@ module Imports
             return [nil]
           end
 
-          collect_translations[translateable_type] = Hash[translateable_id, {}]
+          collect_translations[translateable_type] ||= {}
+          collect_translations[translateable_type][translateable_id] ||= {}
 
           # Initialize collections of translation
           # Nested hash if not initilized return blank hash insted nil
