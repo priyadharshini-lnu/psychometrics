@@ -1,5 +1,5 @@
 class AssignSerializer < ActiveModel::Serializer
-  attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id, :relationship, :hris, :hash_id
+  attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id, :relationship, :hris, :hash_id, :norm_data
 
   has_one :user, serializer: UserSerializer
 

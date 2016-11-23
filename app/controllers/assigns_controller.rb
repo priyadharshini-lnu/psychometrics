@@ -50,7 +50,8 @@ class AssignsController < ApplicationController
   def resource_params
     results       = params.require(:resource).fetch(:results, nil).try(:permit!)
     embedded_data = params.require(:resource).fetch(:embedded_data, nil).try(:permit!)
-    params.require(:resource).permit(:step, :status).merge(results: results, embedded_data: embedded_data)
+    norm_data = params.require(:resource).fetch(:norm, nil).try(:permit!)
+    params.require(:resource).permit(:step, :status).merge(results: results, embedded_data: embedded_data, norm_data: norm_data)
   end
 
   # Authorisation user

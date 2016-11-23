@@ -9,6 +9,7 @@
 #  results       :jsonb
 #  scoring       :jsonb
 #  embedded_data :jsonb
+#  norm_data     :jsonb
 #  status        :integer          default("not_started")
 #  role          :integer          default("member")
 #  completed_at  :datetime
