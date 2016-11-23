@@ -20,16 +20,8 @@ module Managers
           render('_show', layout: 'pdf') if params[:export]
         end
         format.pdf do
-          renderer = PdfRenderer.new(@resource, self, current_user.authentication_token)
-          # Generate specific url for render html to PDF
-          url = url_for({
-            action: :show,
-            id: @resource,
-            export: true,
-            user_token: @user_token,
-            subdomain: @current_client.subdomain
-          })
-          send_file renderer.render({ url: url }), type: 'application/pdf'
+          pdf_file = Exports::Reports::Pdf::ReportExport.export(@resource, @user, @current_client)
+          send_file pdf_file, type: 'application/pdf'
         end
       end
     end

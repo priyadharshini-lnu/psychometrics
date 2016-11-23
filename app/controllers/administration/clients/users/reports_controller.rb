@@ -27,8 +27,8 @@ module Administration
               render('_preview', layout: 'pdf') if params[:export]
             end
             format.pdf do
-              renderer = PdfRenderer.new(@resource, self, current_user.authentication_token)
-              send_file renderer.render, type: 'application/pdf'
+              pdf_file = Exports::Reports::Pdf::ReportExport.export(@resource, @user, @current_client)
+              send_file pdf_file, type: 'application/pdf'
             end
           end
         end
