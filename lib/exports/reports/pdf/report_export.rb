@@ -10,12 +10,13 @@ module Exports
           url = if user.is?(:superadmin, :admin)
                   Rails.application.routes.url_helpers.preview_administration_report_url(report,
                                                                                          export: true,
-                                                                                         user_token: user.authentication_token)
+                                                                                         user_token: user.authentication_token,
+                                                                                         host: Settings.domain)
                 else
                   Rails.application.routes.url_helpers.report_url(report,
                                                                   export: true,
                                                                   user_token: user.authentication_token,
-                                                                  domain: Settings.domain,
+                                                                  host: Settings.domain,
                                                                   subdomain: client.subdomain)
                 end
 
