@@ -6,13 +6,13 @@ module Administration
         # Turn off normally auth
         skip_before_action :authenticate_user!
         # Turn off browser auth
-        skip_before_action :authenticate, only: [:preview]
+        skip_before_action :authenticate
         # Turn on auth by token
         prepend_before_action :authenticate_by_token!
 
         prepend_before_action :set_resource_class
         before_action :set_resource, :set_data
-        before_action :init_breadcrumbs
+        append_before_action :init_breadcrumbs
         append_before_action :pundit_authorize, except: [:sidebar]
 
         def preview

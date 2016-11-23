@@ -31,6 +31,9 @@ module Exports
 
           Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
 
+          p 'DEBUGGING'
+          p "phantomjs #{Rails.root.join('lib/raster.js')} #{args}"
+
           system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
 
           # output
