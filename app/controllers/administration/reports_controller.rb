@@ -100,13 +100,7 @@ module Administration
     def preview
       add_breadcrumb @resource.decorate.display_name, { action: :show, id: @resource }
       respond_to do |format|
-        format.html do
-          render('_preview', layout: 'pdf') if params[:export]
-        end
-        format.pdf do
-          pdf_file = Exports::Reports::Pdf::ReportExport.export(@resource, @current_user)
-          send_file pdf_file, type: 'application/pdf'
-        end
+        format.html
       end
     end
 
