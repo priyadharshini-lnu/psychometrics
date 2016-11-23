@@ -7,7 +7,7 @@ module Administration
     class Scope < Administration::BasePolicy::Scope
       def resolve
         return scope if @user.is?(:superadmin)
-        assessment_ids = @user.assigns.where(role: :admin).pluck(:assessment_id)
+        assessment_ids = Assign.joining { membership }.where.has { |ass| ass.role.eq(:admin) | ass.membership.user_id.eq(@user.id) }.pluck(:assessment_id)
         scope.where(assessment_id: assessment_ids)
       end
     end

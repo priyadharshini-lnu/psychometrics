@@ -1,7 +1,16 @@
 class ReportsController < ApplicationController
+  include AuthenticateByToken
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:show]
   append_before_action :pundit_authorize
+
+  # Turn off normally auth
+  skip_before_action :authenticate_user!
+  # Turn off browser auth
+  skip_before_action :authenticate, only: [:preview]
+  # Turn on auth by token
+  prepend_before_action :authenticate_by_token!
+
   layout 'users'
 
   def show

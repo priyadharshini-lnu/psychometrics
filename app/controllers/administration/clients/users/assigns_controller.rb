@@ -63,9 +63,6 @@ module Administration
           @client = @membership.client
         end
 
-        def set_client
-        end
-
         def assign_params
           params.require(:resource).permit(:assessment_id)
         end

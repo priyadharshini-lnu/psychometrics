@@ -2,16 +2,16 @@ module Administration
   module Clients
     module Users
       class ReportsController < Administration::BaseController
+        include AuthenticateByToken
         # Turn off normally auth
         skip_before_action :authenticate_user!
         # Turn off browser auth
         skip_before_action :authenticate, only: [:preview]
         # Turn on auth by token
-        prepend_before_action :authenticate_user_from_token!
-        before_action :authenticate, except: [:preview]
+        prepend_before_action :authenticate_by_token!
 
-        prepend_before_action :set_resource_class, :set_data
-        before_action :set_resource
+        prepend_before_action :set_resource_class
+        before_action :set_resource, :set_data
         before_action :init_breadcrumbs
         append_before_action :pundit_authorize, except: [:sidebar]
 
@@ -27,7 +27,7 @@ module Administration
               render('_preview', layout: 'pdf') if params[:export]
             end
             format.pdf do
-              pdf_file = Exports::Reports::Pdf::ReportExport.export(@resource, @user, @current_client)
+              pdf_file = Exports::Reports::Pdf::ReportExport.export(@resource, @user, @client)
               send_file pdf_file, type: 'application/pdf'
             end
           end
@@ -61,13 +61,6 @@ module Administration
         # Authorisation user
         def pundit_authorize
           authorize @resource || @resource_class
-        end
-
-        def authenticate_user_from_token!
-          user_token = params[:user_token].presence
-          user       = user_token && User.find_by(authentication_token: user_token.to_s)
-          sign_in(user, store: false) if user
-          authenticate_user!
         end
       end
     end

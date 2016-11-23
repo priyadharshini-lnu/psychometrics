@@ -6,7 +6,7 @@
         .pull-right
           .btn-group
             - if policy(@resource).preview?
-              = link_to(preview_administration_report_path(@resource, format: :pdf), class: 'btn btn-default')
+              = link_to({ action: :preview, format: :pdf }, class: 'btn btn-default')
                 span.fa.fa-file-pdf-o
                 = t('.export_pdf')
       .panel-body
