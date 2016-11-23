@@ -9,11 +9,11 @@ module Exports
           # Generate valid url for parse report to pdf
           url = if user.is?(:superadmin, :admin)
                   Rails.application.routes.url_helpers.preview_administration_client_user_report_url(client_id: client.id,
-                                                                                                      user_id: user.id,
-                                                                                                      id: report.id,
-                                                                                                      export: true,
-                                                                                                      user_token: user.authentication_token,
-                                                                                                      host: Settings.domain)
+                                                                                                     user_id: user.id,
+                                                                                                     id: report.id,
+                                                                                                     export: true,
+                                                                                                     user_token: user.authentication_token,
+                                                                                                     host: Settings.domain)
                 else
                   Rails.application.routes.url_helpers.report_url(report,
                                                                   export: true,
