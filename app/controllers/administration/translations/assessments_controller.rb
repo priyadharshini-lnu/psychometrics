@@ -11,7 +11,7 @@ module Administration
       def export
         data = JSON.parse(params[:data])
         xlsx = ::Exports::Translations::AssessmentExport.new(@assessment.id, data)
-        send_data xlsx.render.to_stream.read, filename: 'assessment_ranslations.xlsx'
+        send_data xlsx.render.to_stream.read, filename: 'assessment_translations.xlsx'
       end
 
       def import

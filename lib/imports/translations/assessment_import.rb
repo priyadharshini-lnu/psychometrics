@@ -65,7 +65,7 @@ module Imports
               translateable_id: question_id,
               translateable_type: 'Question',
               resource_id: assessment_id,
-              resource_type: 'Report',
+              resource_type: 'Assessment',
               locale: locale
             })
             translation.props = props
