@@ -2,3 +2,6 @@ tr id=dom_id(resource)
   td = resource.name
   td = resource.decorate.created_at
   td = resource.decorate.anonym_link_for(@client)
+  td 
+    - if policy(:assessment).export_results?
+      = link_to 'Export Results', administration_client_assessment_export_results_path(@client, resource, format: 'xlsx')

@@ -20,6 +20,14 @@ module Administration
         end
       end
 
+      def export_results
+        @assessment = Assessment.with_client(@client.id).find(params[:assessment_id])
+        results = ::Exports::Assessments::AssessmentResultsExport.new(@assessment.id, @client.id)
+        respond_to do |format|
+          format.xlsx { send_data results.render.to_stream.read, filename: 'assessment_raw_results.xlsx' }
+        end
+      end
+
       private
 
       def init_breadcrumbs
