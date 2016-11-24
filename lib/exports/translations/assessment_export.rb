@@ -6,7 +6,7 @@ module Exports
         wb = @package.workbook
         wb.add_worksheet(name: 'AssessmentTranslations') do |sheet|
           sheet.add_row ['key', 'en', *Settings.languages]
-          data['questions'].each do |question_id, props|
+          data['question'].each do |question_id, props|
             translations = ::Translation.
                            for_assessment(assessment_id).
                            where(translateable_id: question_id).
