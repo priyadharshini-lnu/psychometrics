@@ -1,6 +1,8 @@
 tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
   td.vertical_middle = resource.name
   - questions_count = resource.questions_count_by_assessment
+  td.vertical_middle 
+    = image_tag resource.icon.url(:thumb) if resource.icon.url()
   - if questions_count
     td
       - questions_count.each do |ass_id, count|
