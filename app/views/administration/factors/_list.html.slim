@@ -3,6 +3,7 @@
     thead
       tr
         th.text-center width="100" = sorting @resource_class, :active, @filterrific
+        th width="70" = t 'administration.factors.index.icon'
         th = sorting @resource_class, :name, @filterrific
         th = @resource_class.human_attribute_name(:questions_count)
         th.text-center width="150" = sorting @resource_class, :subfactors_count, @filterrific

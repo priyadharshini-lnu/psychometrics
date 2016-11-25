@@ -15,7 +15,11 @@
 module Factors
   class WithoutSubFactorsSerializer < ActiveModel::Serializer
     type :factor
-    attributes :id, :name, :parent_id, :question_ids
+    attributes :id, :name, :parent_id, :question_ids, :description, :icon
+
+    def icon
+      object.icon.url(:middle)
+    end
 
     def question_ids
       # TODO: remove n+1 query, may be remove active serializer, use jbuilder
