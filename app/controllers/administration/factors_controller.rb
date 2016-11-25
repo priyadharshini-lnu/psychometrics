@@ -93,7 +93,7 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :dimension_id)
+    params.require(:resource).permit(:name, :description, :icon, :remove_icon, :dimension_id)
   end
 
   def pundit_authorize

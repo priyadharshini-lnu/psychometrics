@@ -27,6 +27,7 @@ class Factor < ApplicationRecord
 
   # For deep clone from dimension
   before_validation :set_dimension_id, if: proc { dimension_id.nil? && parent }
+  mount_uploader :icon, ImageUploader
 
   # norm types constant
   NORM_TYPES = %w(eti yti).freeze

@@ -15,8 +15,13 @@
 module Factors
   class WithSubFactorsSerializer < ActiveModel::Serializer
     type :factor
-    attributes :id, :name
+    attributes :id, :name, :description, :icon
 
+    def icon
+      object.icon.url(:middle)
+    end
+
+    # @deprecated
     def sub_factors
       object.sub_factors.map do |sub_factors|
         SubFactorSerializer.new(sub_factors)

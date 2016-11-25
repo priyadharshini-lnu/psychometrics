@@ -3,6 +3,7 @@ en:
     factors:
       index:
         title: "Factors"
+        icon: "Icon"
         tooltips:
           create: Create
       new:
@@ -21,7 +22,8 @@ en:
         edit: 'Edit Factor Name'
         copy: 'Copy Factor'
         destroy: 'Delete Factor'
-
+      form:
+        no_icon: 'No Logo yet'
       resource:
         tooltips:
           copy: 'Copy Factor'

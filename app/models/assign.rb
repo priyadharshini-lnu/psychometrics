@@ -33,9 +33,15 @@ class Assign < ApplicationRecord
   before_save :notification_handler
 
   before_update :completion_callback, if: proc { status_changed? && completed? }
+  before_update :set_started_at, if: proc { status_changed? && in_progress? }
 
   def completion_callback
     ::Communications::AfterCompleteJob.perform_later(id)
+  end
+
+  def set_started_at
+    self.started_at = DateTime.now
+    self.step = 0
   end
 
   def init

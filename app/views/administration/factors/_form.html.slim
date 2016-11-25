@@ -1,11 +1,53 @@
-= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, remote: true) do |f|
+= simple_form_for(@resource, as: :resource, html: {multipart: true}, url: { action: @resource.new_record? ? :create : :update }) do |f|
   .modal-body
     = f.error_notification
 
     .form-inputs.clearfix
       = f.input :name
 
+    .form-inputs.clearfix
+      = f.input :description
+      
+    .form-inputs.clearfix
+      = f.input :icon, hint: f.object.icon.present? ? f.input(:remove_icon, as: :boolean) + image_tag(f.object.icon.url(:thumb)) : content_tag(:span, t('.no_icon'))
+      
   .modal-footer
     .btn-group
       = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
       a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+
+javascript:
+  $(function(){
+    var submit = function (method) {
+    var form = $(this);
+    var formdata = false;
+    if (window.FormData){
+        formdata = new FormData(form[0]);
+    }
+
+    var formAction = form.attr('action');
+    $.ajax({
+      url         : formAction,
+      data        : formdata ? formdata : form.serialize(),
+      dataType    : 'script',
+      cache       : false,
+      contentType : false,
+      processData : false,
+      type        : method,
+      success     : function(data, textStatus, jqXHR){
+
+      }
+    });
+    }
+    
+    $('#new_resource').on('submit', function(event) {
+      event.stopPropagation(); // Stop stuff happening
+      event.preventDefault(); // Totally stop stuff happening
+      submit.call(this, 'POST')
+    });
+    $('#edit_resource').on('submit', function(event) {
+      event.stopPropagation(); // Stop stuff happening
+      event.preventDefault(); // Totally stop stuff happening
+      submit.call(this, 'PUT')
+    });
+  });

@@ -5,6 +5,7 @@
         th = sorting @resource_class, :name, @filterrific
         th = sorting @resource_class, :created_at, @filterrific
         th 
+        th
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

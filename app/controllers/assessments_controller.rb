@@ -26,7 +26,7 @@ class AssessmentsController < ApplicationController
       membership_id: @current_membership.id
     )
     @translations = ::Translation.to_hash_for_assessment(@resource.id, user_locale)
-    @assign.update(status: Assign.statuses['in_progress'], step: 0)
+    @assign.in_progress!
   end
 
   def index

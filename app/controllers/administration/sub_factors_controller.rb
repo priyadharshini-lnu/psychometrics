@@ -38,6 +38,7 @@ class Administration::SubFactorsController < Administration::BaseController
   end
 
   def update
+    @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
     respond_to do |format|
       if @resource.update(resource_params)
         format.js
@@ -84,7 +85,7 @@ class Administration::SubFactorsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :dimension_id, :parent_id)
+    params.require(:resource).permit(:name, :dimension_id, :parent_id, :description, :icon, :remove_icon)
   end
 
   def pundit_authorize
