@@ -1,5 +1,6 @@
 class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id, :relationship, :hris, :hash_id, :norm_data
+  attribute :agile_scoring, if: -> { object.membership_id == @instance_options[:membership].try(:id) }
 
   has_one :user, serializer: UserSerializer
 
