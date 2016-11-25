@@ -4,7 +4,7 @@ module Exports
       class TextEntry
         # Parse RESULT data for XLSX
         def self.result(answers, _question)
-          answers.map { |a| a['value'] }
+          (answers || []).map { |a| a['value'] }
         end
 
         # Parse HEADER data for XLSX
