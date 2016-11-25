@@ -1,6 +1,10 @@
 module Exports
   module Assessments
     class AssessmentResultsExport
+      QUESTIONS = %w(ConstantSum GapAnalysis GraphicSlider HotSpot
+                     MatrixTable MetaInfo MultipleChoice PickGroupRank
+                     RankOrder SideBySide Slider TextEntry Timing).freeze
+
       def initialize(assessment_id, client_id)
         @package = Axlsx::Package.new
         wb = @package.workbook
@@ -15,12 +19,8 @@ module Exports
           ## header
           header = ['Result ID', 'Name', 'Email', 'Started At', 'Completed At']
           questions.each do |question|
-            begin
-              parser = "Exports::Assessments::Questions::#{question.type}".constantize
-            rescue NameError => e
-              p e
-              next
-            end
+            next unless QUESTIONS.include?(question.type)
+            parser = "Exports::Assessments::Questions::#{question.type}".constantize
             header << parser.header(question)
           end
 
@@ -43,12 +43,8 @@ module Exports
             if assign.results
               questions.each do |question|
                 answers = assign.results[question.id.to_s].try(:[], 'answers')
-                begin
-                  parser = "Exports::Assessments::Questions::#{question.type}".constantize
-                rescue NameError => e
-                  p e
-                  next
-                end
+                next unless QUESTIONS.include?(question.type)
+                parser = "Exports::Assessments::Questions::#{question.type}".constantize
                 user_results << parser.result(answers, question)
               end
             end

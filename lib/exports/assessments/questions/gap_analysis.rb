@@ -1,14 +1,11 @@
 module Exports
   module Assessments
     module Questions
-      class RankOrder
-        # Parse RESULT data for XLSX
-        def self.result(answers, question)
-          increase = %w(TextBox).include?(question.props['type']) ? 0 : 1
-          (answers || []).sort_by { |a| a['index'] }.map { |a| a['value'] + increase }
+      class GapAnalysis
+        def self.result(answers, _question)
+          (answers || []).map { |answer| answer['scale'] + 1 }
         end
 
-        # Parse HEADER data for XLSX
         def self.header(question)
           parsed_header = []
           question.props['choices'].to_i.times do |c|

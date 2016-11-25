@@ -7,7 +7,7 @@ module Exports
           parsed_result = []
           question.props['scalePoints'].to_i.times do |s|
             question.props['choices'].to_i.times do |c|
-              values = answers.detect { |a| a['choice'] == c && a['scale'] == s }.try(:[], 'values')
+              values = (answers || []).detect { |a| a['choice'] == c && a['scale'] == s }.try(:[], 'values')
               column_data = question.props['columnsData'][s]
               if column_data['type'] == 'Text'
                 parsed_result << values.map { |value| value['value'] } if values

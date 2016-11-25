@@ -1,9 +1,9 @@
 module Exports
   module Assessments
     module Questions
-      class MultipleChoice
+      class GraphicSlider
         def self.result(answers, _question)
-          (answers || []).map { |answer| answer['index'] + 1 }.join(',')
+          (answers || []).map { |answer| answer['value'] }.join('')
         end
 
         def self.header(question)

@@ -13,12 +13,12 @@ module Exports
           if %w(RankOrder ConstantSum TextEntry).include?(question.props['type'])
             question.props['choices'].to_i.times do |c|
               question.props['scalePoints'].to_i.times do |s|
-                parsed_result << answers.detect { |a| a['choice'] == c && a['scale'] == s }.try(:[], 'value')
+                parsed_result << (answers || []).detect { |a| a['choice'] == c && a['scale'] == s }.try(:[], 'value')
               end
             end
           else
             question.props['choices'].to_i.times do |c|
-              parsed_result << answers.select { |a| a['choice'] == c }.map { |a| a['scale'] + 1 }.join(',')
+              parsed_result << (answers || []).select { |a| a['choice'] == c }.map { |a| a['scale'] + 1 }.join(',')
             end
           end
           parsed_result

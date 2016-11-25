@@ -6,7 +6,7 @@ module Exports
         def self.result(answers, question)
           parsed_result = []
           question.props['scalePoints'].to_i.times do |s|
-            parsed_result << answers.
+            parsed_result << (answers || []).
                              select { |answer| answer['scale'] == s }.
                              sort_by { |answer| answer['value'] }.
                              map { |a| a['choice'] + 1 }.
@@ -14,7 +14,7 @@ module Exports
           end
           question.props['scalePoints'].to_i.times do |s|
             question.props['choices'].to_i.times do |c|
-              parsed_result << answers.
+              parsed_result << (answers || []).
                                select { |answer| answer['scale'] == s && answer['choice'] == c }.
                                map { |a| a['value'] + 1 }.
                                join(', ')

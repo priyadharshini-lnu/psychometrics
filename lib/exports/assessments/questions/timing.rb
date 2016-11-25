@@ -1,18 +1,18 @@
 module Exports
   module Assessments
     module Questions
-      class ConstantSum
+      class Timing
+        FIELDS = %w(firstClick lastClick pageSubmit clickCount).freeze
+
         # Parse RESULT data for XLSX
         def self.result(answers, _question)
-          (answers || []).map { |a| a['value'] }
+          FIELDS.map { |field| answers.try(:[], field) unless answers.blank? }
         end
 
         # Parse HEADER data for XLSX
         def self.header(question)
           parsed_header = []
-          question.props['choices'].to_i.times do |c|
-            parsed_header << "QID#{question.id}_#{c + 1}"
-          end
+          FIELDS.map { |field| parsed_header << "QID#{question.id}_#{field}" }
           parsed_header
         end
       end
