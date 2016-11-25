@@ -35,6 +35,7 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def update
+    @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
     respond_to do |format|
       if @resource.update(resource_params)
         format.js
