@@ -1,0 +1,34 @@
+en:
+  administration:
+    occupations_factors:
+      index:
+        title: Factors
+        tooltips:
+          create: Create
+      new:
+        header: 'Attach Factors'
+      edit:
+        header: 'Edit Factor'
+      destroy:
+        successfully: 'Factor #%{name} was successfully detached.'
+      copy:
+        error: 'Factor #%{id} was not copied.'
+      toggle_status:
+        successfully: 'Factor was successfully updated.'
+      sidebar:
+        title: Factor's options
+        disable: Disable
+        enable: Enable
+        edit: Edit
+        new: Attach Factor
+
+      resource:
+        tooltips:
+          edit: Edit Factor
+          delete: Delete Factor
+        confirmations:
+          delete:
+            title:
+              Delete <strong>Factor</strong> ?
+            body: >
+              <p>Are you sure you want to delete this factor?</p>

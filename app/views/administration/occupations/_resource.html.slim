@@ -1,0 +1,9 @@
+tr data-sidebar=url_for([:sidebar, :administration, @dimension, resource]) id=dom_id(resource)
+  td = link_to resource.name, [:administration, @dimension, resource, :factors]
+  td.text-center
+    = link_to [:edit, :administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
+      span.fa.fa-pencil
+    = link_to [:administration, @dimension, resource], class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
+      span.fa.fa-times
+  td = resource.decorate.created_at
+  td = resource.decorate.updated_at

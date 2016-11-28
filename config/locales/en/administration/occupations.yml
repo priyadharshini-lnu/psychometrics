@@ -1,0 +1,36 @@
+en:
+  administration:
+    occupations:
+      index:
+        title: Occupations
+        tooltips:
+          create: Create
+      new:
+        header: 'New occupation'
+      edit:
+        header: 'Edit occupation'
+      destroy:
+        successfully: 'Occupation #%{name} was successfully destroyed.'
+      copy:
+        error: 'Occupation #%{id} was not copied.'
+      toggle_status:
+        successfully: 'Occupation was successfully updated.'
+      sidebar:
+        title: Occupation's options
+        disable: Disable
+        enable: Enable
+        edit: Edit
+        new: New Occupation
+        copy: Copy Occupation
+
+      resource:
+        tooltips:
+          copy: Copy Occupation
+          edit: Edit Occupation
+          delete: Delete Occupation
+        confirmations:
+          delete:
+            title:
+              Delete <strong>Occupation</strong> ?
+            body: >
+              <p>Are you sure you want to delete this occupation?</p>

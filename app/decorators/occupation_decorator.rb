@@ -1,0 +1,2 @@
+class OccupationDecorator < BaseDecorator
+end

@@ -1,0 +1,23 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title = "#{@occupation.name}: #{t('.title')}"
+        ul.panel-controls
+          li
+            = link_to [:new, :administration, :dimension, :occupation, :factor], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
+              span.fa.fa-plus
+      .panel-body
+        .row
+          .col-sm-12
+            #filter_results
+              = render partial: 'list'
+          .col-sm-2 style="display: none;"
+            h3
+              i.fa.fa-filter
+              | Filter
+            = search_form_for(@filter_form,
+                    url: {action: :index},
+                    html: {id: 'filter'},
+                    builder: SimpleForm::FormBuilder) do |f|
+              = link_to "Clear Filter", request.path, class: "btn btn-default"
