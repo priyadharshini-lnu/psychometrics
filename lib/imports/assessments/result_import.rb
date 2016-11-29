@@ -64,8 +64,8 @@ module Imports
           end
 
           assign.assign_attributes({
-            started_at: DateTime.strptime(data['started_at'], '%D %r'),
-            completed_at: DateTime.strptime(data['completed_at'], '%D %r')
+            started_at: data['started_at'] && DateTime.strptime(data['started_at'].to_s, '%D %r'),
+            completed_at: data['completed_at'] && DateTime.strptime(data['completed_at'].to_s, '%D %r')
             })
 
           questions = {}

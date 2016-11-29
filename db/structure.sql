@@ -167,8 +167,8 @@ CREATE TABLE assigns (
     step integer,
     membership_id integer,
     norm_data jsonb,
-    agile_scoring jsonb,
-    started_at timestamp without time zone
+    started_at timestamp without time zone,
+    agile_scoring jsonb
 );
 
 
