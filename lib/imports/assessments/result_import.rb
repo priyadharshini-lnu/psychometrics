@@ -59,11 +59,15 @@ module Imports
             membership = find_or_create_user(data) unless membership
             assign = membership.assigns.create({
               assessment_id: assessment_id,
-              status: :completed,
-              started_at: DateTime.strptime(data['started_at'], '%D %r'),
-              completed_at: DateTime.strptime(data['completed_at'], '%D %r')
+              status: :completed
               })
           end
+
+          assign.assign_attributes({
+            started_at: DateTime.strptime(data['started_at'], '%D %r'),
+            completed_at: DateTime.strptime(data['completed_at'], '%D %r')
+            })
+
           questions = {}
           new_results = {}
 
