@@ -2,7 +2,7 @@ module Exports
   module Assessments
     module Questions
       class MetaInfo
-        FIELDS = %w(browser version os screen).freeze
+        FIELDS = %w(browser version os screen java flash userAgent).freeze
 
         # Parse RESULT data for XLSX
         def self.result(answers, _question)

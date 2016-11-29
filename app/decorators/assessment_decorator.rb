@@ -12,7 +12,7 @@ class AssessmentDecorator < BaseDecorator
   end
 
   def anonym_link_for(client)
-    hasids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length)
+    hasids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.anonym)
     url = h.anonym_assessment_pass_url(client_id: hasids.encode(client.id),
                                        assessment_id: hasids.encode(object.id),
                                        domain: Settings.domain,

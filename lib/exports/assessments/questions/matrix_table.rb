@@ -11,14 +11,16 @@ module Exports
           # ELSE: we collect results grouped by choiceID and joined ','
           # =>    example: ['1,2', '3,4']
           if %w(RankOrder ConstantSum TextEntry).include?(question.props['type'])
-            question.props['choices'].to_i.times do |c|
-              question.props['scalePoints'].to_i.times do |s|
-                parsed_result << (answers || []).detect { |a| a['choice'] == c && a['scale'] == s }.try(:[], 'value')
+            question.props['choices'].to_i.times do |choice|
+              question.props['scalePoints'].to_i.times do |scale|
+                parsed_result << (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.try(:[], 'value')
               end
             end
           else
-            question.props['choices'].to_i.times do |c|
-              parsed_result << (answers || []).select { |a| a['choice'] == c }.map { |a| a['scale'] + 1 }.join(',')
+            question.props['choices'].to_i.times do |choice|
+              parsed_result << (answers || []).
+                               select { |a| a['choice'] == choice && a['value'] == true }.
+                               map { |a| a['scale'] + 1 }.join(',')
             end
           end
           parsed_result
