@@ -19,6 +19,9 @@ Rails.application.routes.draw do
     namespace :imports do
       resource :users, only: [:new, :create]
       resource :hris, only: [:new, :create], controller: :hris
+      scope module: :assessments do
+        resource :results, only: [:new, :create]
+      end
     end
 
     resources :imports, only: [:new, :create]

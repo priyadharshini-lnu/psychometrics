@@ -2,7 +2,13 @@ module Exports
   module Assessments
     module Questions
       class Slider
-        # Parse RESULT data for XLSX
+        # FROM:
+        #   [{
+        #     "index": 0,
+        #     "value": 12
+        #   }, ...]
+        # TO:
+        #   [12, ...]
         def self.result(answers, _question)
           (answers || []).map { |a| a['value'] }
         end

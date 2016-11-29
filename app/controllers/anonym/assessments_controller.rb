@@ -4,7 +4,7 @@ module Anonym
     layout 'anonym'
     protect_from_forgery with: :exception
 
-    HASHIDS = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length)
+    HASHIDS = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.anonym)
 
     prepend_before_action :set_client
     before_action :set_assessment

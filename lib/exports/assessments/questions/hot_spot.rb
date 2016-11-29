@@ -2,7 +2,13 @@ module Exports
   module Assessments
     module Questions
       class HotSpot
-        # Parse RESULT data for XLSX
+        # FROM:
+        #   [{
+        #     "value": true/false/null,
+        #     "region": 0
+        #   }]
+        # TO
+        #   ['Like or On/Dislike/Neutral or OFF']
         def self.result(answers, question)
           parsed_result = []
           question.props['regions'].size.times do |r|

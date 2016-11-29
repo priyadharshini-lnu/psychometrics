@@ -57,9 +57,8 @@ class Membership < ApplicationRecord
   }
   scope :assigns_hash_id_eq, lambda { |hash_id|
     begin
-      hashids = Hashids.new(ENV['HASHIDS_SALT'], 5)
-      encode_hash_id = hashids.decode(hash_id.to_s).first
-      joins(:assigns).where(assigns: { id: encode_hash_id })
+      decoded_id = Assign.decode_id(hash_id.to_s).first
+      joins(:assigns).where(assigns: { id: decoded_id })
     rescue InputError
     end
   }
