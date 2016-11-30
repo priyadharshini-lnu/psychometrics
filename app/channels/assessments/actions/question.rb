@@ -4,7 +4,7 @@ module Assessments
       extend Actions::Action
 
       action :filter do |data|
-        questions = ::Question.where("name ILIKE ?", "%#{data['q']}%").where(view: :templates).limit(10)
+        questions = ::Question.where('name ILIKE ?', "%#{data['q']}%").where(view: :templates).limit(10)
         questions.map { |question| { value: question.id, label: question.name } }
       end
 
@@ -23,7 +23,9 @@ module Assessments
       end
 
       action :destroy do |data|
-        ::Question.find(data['id']).update(deleted_at: Time.now)
+        question = ::Question.find(data['id'])
+        question.update(deleted_at: Time.now)
+        question.remove_from_list
         nil
       end
 
@@ -46,6 +48,7 @@ module Assessments
       action :restore do |data|
         question = ::Question.find(data['id'])
         question.update(deleted_at: nil)
+        question.move_to_bottom
         QuestionSerializer.new(question).to_hash
       end
 
