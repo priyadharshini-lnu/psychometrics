@@ -1,5 +1,5 @@
 class ReportSerializer < ActiveModel::Serializer
-  attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms
+  attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations
 
   has_many :pages, serializer: Reports::PageSerializer
   has_many :filters, serializer: Reports::FilterSerializer
@@ -8,6 +8,12 @@ class ReportSerializer < ActiveModel::Serializer
   def factors
     Factor.where(dimension_id: object.assessment.dimension_id).order(name: :asc).map do |obj|
       Factors::WithoutSubFactorsSerializer.new(obj, assessment_id: object.assessment_id)
+    end
+  end
+
+  def occupations
+    Occupation.where(dimension_id: object.assessment.dimension_id).order(name: :asc).map do |obj|
+      OccupationSerializer.new(obj)
     end
   end
 

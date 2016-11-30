@@ -13,7 +13,6 @@
 class Occupation < ApplicationRecord
 
   has_many :occupations_factors
-  has_many :assessments
   belongs_to :dimension
 
   validates :name, presence: true
