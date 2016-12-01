@@ -19,6 +19,7 @@ class ReportsController < ApplicationController
                includes(:membership).
                where(memberships: { client_id: @current_client.id }, assessment_id: @resource.assessment_id).
                references(:membership).all
+    @assign = Assign.find_by(assessment_id: @resource.assessment_id, membership_id: @current_membership)
 
     @translations = Translation.to_hash_for_report(@resource.id, @resource.assessment_id, user_locale)
 
