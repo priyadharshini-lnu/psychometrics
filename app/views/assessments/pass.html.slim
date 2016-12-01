@@ -4,7 +4,9 @@
     .contentBox
       .contentTitleHeader
         i.glyphicon.glyphicon-question-sign.titleIcon.pull-left
-        p.contentTitle Questions
+        p.contentTitle.pull-left Questions
+        = render partial: 'lang'
+        .clearfix    
       .questionContent
         #psychometrics_preview[data-result="#{AssignSerializer.new(@assign).to_json}" 
                                data-type="pass_assessment" 

@@ -1,21 +1,20 @@
 module Managers
   class ReportPolicy < BasePolicy
     def initialize(context, record)
-      @current_user = context[:current_user]
-      @user         = context[:user]
-      @client       = context[:current_client]
-      @record       = [record].flatten.last
+      @current_membership = context[:current_membership]
+      @client = context[:current_client]
+      @user_membership = context[:user_membership]
+      @record = [record].flatten.last
     end
 
     def show?
-      assign_exists = @current_membership.assigns.completed.exists?(assessment_id: @record.assessment_id)
+      assign_exists = @user_membership.assigns.completed.exists?(assessment_id: @record.assessment_id)
       client_report_exists = ClientReport.exists?(report_id: @record.id, client_id: @client.id)
       assign_exists && client_report_exists && !@record.assessment.psychometric? && valid_hierarchy?
     end
 
     def valid_hierarchy?
-      user_membership = Membership.find_by(client_id: @client.id, user_id: @user.id)
-      user_membership.id == @current_membership.id || user_membership.parent_id == @current_membership.id
+      @user_membership.id == @current_membership.id || @user_membership.parent_id == @current_membership.id
     end
   end
 end

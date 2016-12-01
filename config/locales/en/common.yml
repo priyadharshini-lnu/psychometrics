@@ -23,6 +23,13 @@ en:
   'yes': 'Yes'
   'no': 'No'
   'clear_filter': 'Clear Filter'
+  languages:
+    en: 'English'
+    es: 'Spanish'
+    fr: 'French'
+    cn: 'Chinese'
+    ar: 'Arabic'
+    de: 'German'
   confirmation:
     default_title: "Confirmation"
     default_body:  "Are you sure?"

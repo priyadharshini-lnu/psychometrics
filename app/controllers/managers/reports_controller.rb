@@ -6,13 +6,12 @@ module Managers
     append_before_action :pundit_authorize
 
     def show
-      @membership = @user.memberships.find_by(client_id: @current_client.id)
       @results = Assign.
                  completed.
                  includes(:membership, :user).
                  where(memberships: { client_id: @current_client.id }, assessment_id: @resource.assessment_id).
                  references(:membership).all
-      @assign = Assign.find_by(assessment_id: @resource.assessment_id, membership_id: @membership)
+      @assign = Assign.find_by(assessment_id: @resource.assessment_id, membership_id: @user_membership.id)
 
       @translations = Translation.to_hash_for_report(@resource.id, @resource.assessment_id, user_locale)
 
@@ -40,10 +39,11 @@ module Managers
 
     def set_user
       @user = User.find(params[:user_id])
+      @user_membership = @user.memberships.join_user.find_by(client_id: @current_client.id)
     end
 
     def pundit_user
-      { current_user: current_user, current_client: @current_client, user: @user }
+      { current_membership: @current_membership, current_user: @current_user, current_client: @current_client, user_membership: @user_membership }
     end
 
     # Authorisation user

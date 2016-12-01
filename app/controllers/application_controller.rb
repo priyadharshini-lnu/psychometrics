@@ -42,6 +42,6 @@ class ApplicationController < ActionController::Base
   # Fetch membership
   def set_membership
     return if request.controller_class.to_s.start_with?('Administration')
-    @current_membership = current_user.memberships.find_by!(client_id: @current_client)
+    @current_membership = current_user.memberships.join_user.find_by!(client_id: @current_client)
   end
 end
