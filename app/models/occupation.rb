@@ -10,7 +10,6 @@
 #  factors_count :integer          default(0)
 #
 class Occupation < ApplicationRecord
-
   has_many :occupations_factors
   belongs_to :dimension
 

@@ -1,3 +1,4 @@
-class Administration::OccupationPolicy < Administration::BasePolicy
-
+module Administration
+  class OccupationPolicy < Administration::BasePolicy
+  end
 end
