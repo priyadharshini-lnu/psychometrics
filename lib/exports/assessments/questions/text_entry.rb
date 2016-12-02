@@ -2,7 +2,13 @@ module Exports
   module Assessments
     module Questions
       class TextEntry
-        # Parse RESULT data for XLSX
+        # FROM:
+        #   [{
+        #     "index": 0,
+        #     "value": 'Value'
+        #   }, ...]
+        # TO:
+        #   ['Value']
         def self.result(answers, _question)
           (answers || []).map { |a| a['value'] }
         end

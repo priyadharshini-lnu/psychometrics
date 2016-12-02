@@ -126,7 +126,23 @@ class Assign < ApplicationRecord
   end
 
   def encode_id
-    hashids = Hashids.new(ENV['HASHIDS_SALT'], 5)
-    hashids.encode(id)
+    self.class.encode_id id
+  end
+
+  class << self
+    def encode_id(id)
+      hashids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.assign_id)
+      hashids.encode(id)
+    end
+
+    def decode_id(id)
+      hashids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.assign_id)
+      hashids.decode(id)
+    end
+
+    def find_by_encoded_id(hash_id)
+      decoded_id = decode_id(hash_id).try(:first)
+      find(decoded_id)
+    end
   end
 end

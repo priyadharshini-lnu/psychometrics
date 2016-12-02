@@ -22,6 +22,7 @@ module Assessments
       action :destroy do |data|
         block = ::Block.find(data['id'])
         block.update(deleted_at: Time.now)
+        block.remove_from_list
         block.questions.update_all(deleted_at: Time.now)
         nil
       end
@@ -47,6 +48,7 @@ module Assessments
       action :restore do |data|
         block = ::Block.find(data['id'])
         block.update(deleted_at: nil)
+        block.move_to_bottom
         BlockSerializer.new(block).to_hash
       end
 

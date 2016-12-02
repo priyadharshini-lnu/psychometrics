@@ -2,18 +2,31 @@ module Exports
   module Assessments
     module Questions
       class SideBySide
-        # Parse RESULT data for XLSX
+        # FROM:
+        #   [{
+        #     "scale": 0,
+        #     "choice": 0,
+        #     "values": [{
+        #         "index": 0,
+        #         "value": true / any value
+        #     }, ...]
+        #   }, ...]
+        # TO:
+        #     Scale
+        #   [1, 2, 3,   4,'2,3',6,  ...]
+        #   WHERE: Choices grouped by scale
         def self.result(answers, question)
           parsed_result = []
           question.props['scalePoints'].to_i.times do |s|
             question.props['choices'].to_i.times do |c|
               values = (answers || []).detect { |a| a['choice'] == c && a['scale'] == s }.try(:[], 'values')
               column_data = question.props['columnsData'][s]
-              if column_data['type'] == 'Text'
-                parsed_result << values.map { |value| value['value'] } if values
-              else
-                parsed_result << values.map { |value| value['index'].to_i + 1 }.join(', ') if values
-              end
+              next unless values
+              parsed_result << if column_data['type'] == 'Text'
+                                 values.map { |value| value['value'] }
+                               else
+                                 values.map { |value| value['index'].to_i + 1 }.join(', ')
+                               end
             end
           end
           parsed_result

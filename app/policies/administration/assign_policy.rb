@@ -4,6 +4,10 @@ module Administration
       @user.is?(:superadmin, :admin)
     end
 
+    def import?
+      @user.is?(:superadmin)
+    end
+
     class Scope < Administration::BasePolicy::Scope
       def resolve
         return scope if @user.is?(:superadmin)

@@ -22,6 +22,7 @@ module Administration
                      where(memberships: { client_id: @client.id }, assessment_id: @resource.assessment_id).
                      references(:membership).
                      all
+          @assign = Assign.find_by(assessment_id: @resource.assessment_id, membership_id: @membership.id)
           @translations = Translation.to_hash_for_report(@resource.id, @resource.assessment_id, user_locale)
           respond_to do |format|
             format.html do
@@ -56,7 +57,7 @@ module Administration
         def set_data
           @client = policy_scope(Client).find(params[:client_id])
           @user = policy_scope(User).find(params[:user_id])
-          @membership = @user.memberships.find_by(client_id: @client.id)
+          @membership = @user.memberships.join_user.find_by(client_id: @client.id)
         end
 
         # Authorisation user

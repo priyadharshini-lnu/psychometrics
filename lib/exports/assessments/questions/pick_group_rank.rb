@@ -2,7 +2,15 @@ module Exports
   module Assessments
     module Questions
       class PickGroupRank
-        # Parse RESULT data for XLSX
+        # FROM:
+        #   [{
+        #     "scale": 0,  - Group ID
+        #     "value": 0,  - Rank in Group
+        #     "choice": 0  - Item ID
+        #   }, ...]
+        # TO:
+        #      G1         G2      Groups items rank
+        #   ['1,2,3',   '4,5',   1, 2, 3,   4,5]
         def self.result(answers, question)
           parsed_result = []
           question.props['scalePoints'].to_i.times do |s|

@@ -1,0 +1,8 @@
+.dropdown.pull-right
+  button#dropdownMenuLang.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+    => t("languages.#{user_locale}")
+    span.caret
+  ul.dropdown-menu aria-labelledby=""
+    = active_link_to t('languages.en'), params.to_h.merge(lang: 'en'), wrap_tag: :li, active: user_locale == 'en'
+    - Settings.languages.each do |lang|
+        = active_link_to t("languages.#{lang}"), params.to_h.merge(lang: lang), wrap_tag: :li, active: user_locale == lang

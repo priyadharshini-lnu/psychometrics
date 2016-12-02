@@ -2,16 +2,29 @@ module Exports
   module Assessments
     module Questions
       class GapAnalysis
+        # FROM:
+        # {
+        #   "scale": 0,
+        #   "choice": 0,
+        #   "values": [0,2]
+        # }
+        # TO:
+        # [1, 1, '1,3']
         def self.result(answers, _question)
-          (answers || []).map { |answer| answer['scale'] + 1 }
+          (answers || []).map do |answer|
+            [
+              (answer['scale'] + 1),
+              answer['values'].map { |v| v + 1 }.join(',')
+            ]
+          end.flatten
         end
 
         def self.header(question)
           parsed_header = []
           question.props['choices'].to_i.times do |c|
-            parsed_header << "QID#{question.id}_#{c + 1}"
+            parsed_header << ["QID#{question.id}_#{c + 1}", "QID#{question.id}_#{c + 1}_WHY"]
           end
-          parsed_header
+          parsed_header.flatten
         end
       end
     end

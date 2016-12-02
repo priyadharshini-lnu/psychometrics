@@ -10,6 +10,11 @@ en:
         header: Import HRIS data
       create:
         successfully: HRIS data was successfully imported
+    imports_assessments_result_imports:
+      new:
+        header: Import Raw Results data
+      create:
+        successfully: Raw Results data was successfully imported
     imports:
       base:
         form:
@@ -17,6 +22,7 @@ en:
       errors:
         error: '[Row %{row}] %{error}'
         invalid_format: There is no Email column
+        invalid_assign: Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty
         unknown_type: 'Unknown file type: %{filename}'
         user:
           not_found: "[Row %{row}] Couldn't find User with Email Address %{email}"
@@ -32,9 +38,12 @@ en:
         header: 'Import'
       form:
         import: Import
-      users:
+      users: &default
+
         form:
           import: Import
       hris:
-        form:
-          import: Import
+        <<: *default
+      assessments:
+        results:
+          <<: *default
