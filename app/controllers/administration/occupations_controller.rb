@@ -61,7 +61,7 @@ module Administration
       add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
       add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
       add_breadcrumb @dimension.name
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{ @resource_class.model_name.plural }"), {action: :index}
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
     end
 
     def set_resource
