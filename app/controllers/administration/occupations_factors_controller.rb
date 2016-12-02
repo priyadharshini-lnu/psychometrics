@@ -65,7 +65,7 @@ module Administration
       add_breadcrumb @dimension.name
       add_breadcrumb I18n.t('administration.breadcrumbs.occupations'), administration_dimension_occupations_path
       add_breadcrumb @occupation.name
-      add_breadcrumb I18n.t('administration.breadcrumbs.occupations_factors'), {action: :index}
+      add_breadcrumb I18n.t('administration.breadcrumbs.occupations_factors'), { action: :index }
     end
 
     def set_resource
