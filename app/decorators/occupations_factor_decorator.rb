@@ -1,5 +1,4 @@
 class OccupationsFactorDecorator < BaseDecorator
-
   def display_name
     object.factor.name
   end

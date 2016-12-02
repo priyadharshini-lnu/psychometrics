@@ -127,9 +127,6 @@ Rails.application.routes.draw do
     end
     ### END DIMENSIONS
 
-
-
-
     ### USERS
     resources :users, except: [:new, :create] do
       member do

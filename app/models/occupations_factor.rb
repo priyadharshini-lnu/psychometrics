@@ -8,13 +8,12 @@
 #  norm_id   :integer
 #  props     :json
 #
-
 class OccupationsFactor < ApplicationRecord
   belongs_to :factor
   belongs_to :occupation
 
   validates :predicate, :value, :factor, presence: true
-  validates :value, numericality: {greater_than_or_equal_to: 0, less_than_or_equal_to: 5}, allow_nil: true
+  validates :value, numericality: { greater_than_or_equal_to: 0, less_than_or_equal_to: 5 }, allow_nil: true
 
   # Roles constant
   CONDITION_MAP = {
