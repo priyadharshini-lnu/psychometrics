@@ -17,14 +17,19 @@ module Exports
                       ordering { [block.position.asc, position.asc] }
 
           ## header
-          header = ['Result ID', 'Name', 'Email', 'Started At', 'Completed At']
+          header = {
+            header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At'],
+            subheader: ['', '', '', '', '']
+          }
           questions.each do |question|
             next unless QUESTIONS.include?(question.type)
             parser = "Exports::Assessments::Questions::#{question.type}".constantize
-            header << parser.header(question)
+            question_header = parser.header(question)
+            header[:header] << parser.header(question)
+            header[:subheader] << Array.new(question_header.size) { |_i| "#{question.name} - #{question.props['questionText']}" }
           end
-
-          sheet.add_row header.flatten
+          sheet.add_row header[:header].flatten
+          sheet.add_row header[:subheader].flatten
 
           ::Assign.
             selecting { [id,
