@@ -15,6 +15,9 @@ en:
         error: 'Occupation #%{id} was not copied.'
       toggle_status:
         successfully: 'Occupation was successfully updated.'
+      form:
+        hint:
+          key_career_tracks: '"+" - list, "*" - bold. Example: + *Biology* - some description...'
       sidebar:
         title: Occupation's options
         disable: Disable

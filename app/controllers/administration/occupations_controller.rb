@@ -73,7 +73,8 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :description)
+      params.require(:resource).permit(:name, :description, :full_description, :potential_areas_of_study, :key_career_tracks,
+                                       :high_school_entry_roles, :diploma_qualification, :bachelors_or_masters_qualification)
     end
 
     def pundit_authorize
