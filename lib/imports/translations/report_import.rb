@@ -14,7 +14,7 @@ module Imports
                                                     'application/vnd.ms-excel',
                                                     'text/csv'] }
 
-      AVAILABLE_TRANSLATEABLE_TYPES = %w(reports/filter factor reports/module).freeze
+      AVAILABLE_TRANSLATEABLE_TYPES = %w(reports/filter factor occupation reports/module).freeze
 
       def process!
         # Return error if form not valid
