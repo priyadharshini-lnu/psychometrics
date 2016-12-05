@@ -11,9 +11,7 @@ module Exports
 
         # Parse HEADER data for XLSX
         def self.header(question)
-          parsed_header = []
-          FIELDS.map { |field| parsed_header << "QID#{question.id}_#{field}" }
-          parsed_header
+          FIELDS.map { |field| "QID#{question.id}_#{field}" }
         end
       end
     end

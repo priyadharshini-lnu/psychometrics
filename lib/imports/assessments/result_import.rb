@@ -40,6 +40,8 @@ module Imports
         # Parse header of xls/csv by strict rules
         rows = open_spreadsheet.parse
         header = rows.shift.map { |h| h.to_s.tr(' ', '').underscore }
+        # Remove support row
+        rows.shift
         question_ids = header.select { |h| h =~ /qid/ }.map { |h| h.split(/\D+/).reject(&:blank?).map(&:to_i) }.flatten
         guestions = Question.selecting { [id, type, props] }.where(id: question_ids).group_by(&:id)
 
