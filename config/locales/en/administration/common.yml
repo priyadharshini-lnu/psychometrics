@@ -43,6 +43,8 @@ en:
       norms: Norms
       norms_editor: Norm Editor
       assessments: Assessments
+      occupations: Occupations
+      occupations_factors: Factors
       clients: Client Tenancies
       client: Client Tenancy
       create: Create

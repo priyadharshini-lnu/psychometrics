@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    models:
+      occupations_factor: 'Occupations'
+    attributes:
+      occupations_factor: &DEFAULT
+        id: 'ID'
+        name: 'Name'
+        created_at: 'Created Date'
+        updated_at: 'Modified Date'
+        active: 'Active'
+  simple_form:
+    placeholders:
+      norm:
+        <<: *DEFAULT

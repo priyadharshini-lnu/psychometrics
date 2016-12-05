@@ -106,6 +106,24 @@ Rails.application.routes.draw do
         ### END SUB-FACTORS
       end
       ### END FACTORS
+      ### OCCUPATIONS
+      resources :occupations do
+        member do
+          get :copy
+          get :sidebar
+          patch :toggle_status
+        end
+        ### FACTORS
+        resources :factors, controller: :occupations_factors do
+          member do
+            get :copy
+            get :sidebar
+            patch :toggle_status
+          end
+        end
+        ### END FACTORS
+      end
+      ### END OCCUPATIONS
     end
     ### END DIMENSIONS
 

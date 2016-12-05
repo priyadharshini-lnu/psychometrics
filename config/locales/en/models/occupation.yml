@@ -1,0 +1,23 @@
+en:
+  activerecord:
+    models:
+      occupation: 'Occupations'
+    attributes:
+      occupation: &DEFAULT
+        id: 'ID'
+        name: 'Name'
+        description: 'Description'
+        full_description: 'Full Description'
+        full_description: 'Full Description'
+        potential_areas_of_study: 'Potential Areas of Study'
+        key_career_tracks: 'Key Career Tracks'
+        high_school_entry_roles: 'High School Entry Roles'
+        diploma_qualification: 'Diploma Qualification'
+        bachelors_or_masters_qualification: 'Bachelors or Masters Qualification'
+        created_at: 'Created Date'
+        updated_at: 'Modified Date'
+        active: 'Active'
+  simple_form:
+    placeholders:
+      norm:
+        <<: *DEFAULT

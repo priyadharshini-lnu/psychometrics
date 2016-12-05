@@ -167,8 +167,8 @@ CREATE TABLE assigns (
     step integer,
     membership_id integer,
     norm_data jsonb,
-    started_at timestamp without time zone,
-    agile_scoring jsonb
+    agile_scoring jsonb,
+    started_at timestamp without time zone
 );
 
 
@@ -741,6 +741,80 @@ ALTER SEQUENCE notifications_id_seq OWNED BY notifications.id;
 
 
 --
+-- Name: occupations; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE occupations (
+    id integer NOT NULL,
+    name character varying,
+    icon character varying,
+    description text,
+    dimension_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    full_description text,
+    potential_areas_of_study text,
+    key_career_tracks text,
+    high_school_entry_roles text,
+    diploma_qualification text,
+    bachelors_or_masters_qualification text
+);
+
+
+--
+-- Name: occupations_factors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE occupations_factors (
+    id integer NOT NULL,
+    occupation_id integer,
+    factor_id integer,
+    predicate character varying,
+    value double precision,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: occupations_factors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE occupations_factors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: occupations_factors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE occupations_factors_id_seq OWNED BY occupations_factors.id;
+
+
+--
+-- Name: occupations_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE occupations_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: occupations_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE occupations_id_seq OWNED BY occupations.id;
+
+
+--
 -- Name: questions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1150,6 +1224,20 @@ ALTER TABLE ONLY notifications ALTER COLUMN id SET DEFAULT nextval('notification
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY occupations ALTER COLUMN id SET DEFAULT nextval('occupations_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY occupations_factors ALTER COLUMN id SET DEFAULT nextval('occupations_factors_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY questions ALTER COLUMN id SET DEFAULT nextval('questions_id_seq'::regclass);
 
 
@@ -1345,6 +1433,22 @@ ALTER TABLE ONLY norms
 
 ALTER TABLE ONLY notifications
     ADD CONSTRAINT notifications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: occupations_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY occupations_factors
+    ADD CONSTRAINT occupations_factors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: occupations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY occupations
+    ADD CONSTRAINT occupations_pkey PRIMARY KEY (id);
 
 
 --
@@ -1664,6 +1768,27 @@ CREATE INDEX index_notifications_on_membership_id ON notifications USING btree (
 
 
 --
+-- Name: index_occupations_factors_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_occupations_factors_on_factor_id ON occupations_factors USING btree (factor_id);
+
+
+--
+-- Name: index_occupations_factors_on_occupation_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_occupations_factors_on_occupation_id ON occupations_factors USING btree (occupation_id);
+
+
+--
+-- Name: index_occupations_on_dimension_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_occupations_on_dimension_id ON occupations USING btree (dimension_id);
+
+
+--
 -- Name: index_questions_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1814,6 +1939,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337'), ('20161019113157'), ('20161020145001'), ('20161021080332'), ('20161025151414'), ('20161025152859'), ('20161025154640'), ('20161026111535'), ('20161026120042'), ('20161027095910'), ('20161031091451'), ('20161031094940'), ('20161031105250'), ('20161031105418'), ('20161101141317'), ('20161102071143'), ('20161102110210'), ('20161102115438'), ('20161103111612'), ('20161103154036'), ('20161108112600'), ('20161110090142'), ('20161111102005'), ('20161115143900'), ('20161118142126'), ('20161121143132'), ('20161123094818'), ('20161125121349'), ('20161125125141');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337'), ('20161019113157'), ('20161020145001'), ('20161021080332'), ('20161025151414'), ('20161025152859'), ('20161025154640'), ('20161026111535'), ('20161026120042'), ('20161027095910'), ('20161031091451'), ('20161031094940'), ('20161031105250'), ('20161031105418'), ('20161101141317'), ('20161102071143'), ('20161102110210'), ('20161102115438'), ('20161103111612'), ('20161103154036'), ('20161108112600'), ('20161110090142'), ('20161111102005'), ('20161115143900'), ('20161118142126'), ('20161121143132'), ('20161123094818'), ('20161125121349'), ('20161125125141'), ('20161128103519'), ('20161128114937'), ('20161202113205');
 
 
