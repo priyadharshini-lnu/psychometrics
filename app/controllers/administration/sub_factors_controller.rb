@@ -9,12 +9,8 @@ class Administration::SubFactorsController < Administration::BaseController
 
   def index
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
-    @filterrific = initialize_filterrific(
-      policy_scope(@resource_class).where(parent_id: @factor.id),
-      params[:filterrific]
-    ) || return
-    @resources = @filterrific.find.page(params[:page])
-
+    @filter_form = policy_scope(@resource_class).where(parent_id: @factor.id).search(params[:q])
+    @resources   = @filter_form.result.page(params[:page])
     respond_to do |format|
       format.html
       format.js { render :index, formats: [:js] }

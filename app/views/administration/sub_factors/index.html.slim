@@ -8,15 +8,22 @@
             = link_to new_administration_dimension_factor_sub_factor_path, remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
               span.fa.fa-plus
       .panel-body
-        = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
-          = f.hidden_field :sorted_by
-          .row.mbm
-            .col-sm-6.phn
-            .col-md-3.col-md-offset-3.col-sm-4.col-sm-offset-2.phn
-              .form-group.has-feedback.has-clear.pull-right
-                .input-group
-                  = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')
-                span.glyphicon.glyphicon-remove-sign.form-control-feedback.form-control-clear
-            .clearfix
-        #filterrific_results
-          = render partial: 'list'
+        .row
+          .col-sm-10
+            #filter_results
+              = render partial: 'list'
+          .col-sm-2
+            h3
+              i.fa.fa-filter
+              | Filter
+            = search_form_for(@filter_form,
+                    url: {action: :index},
+                    html: {id: 'filter'},
+                    builder: SimpleForm::FormBuilder) do |f|
+              = f.input :name_cont,
+                      label: 'Search',
+                      as: :string,
+                      required: false,
+                      placeholder: t('administration.search'),
+                      input_html: {class: 'has_clear periodically-observed'}
+              = link_to "Clear Filter", request.path, class: "btn btn-default"
