@@ -49,6 +49,7 @@ module Imports
           question_id, key = data.delete('key').split(':')
           collect_translations[question_id] ||= {}
           data.each do |locale, translation|
+            next if locale == 'en' # Default locale
             collect_translations[question_id][locale] ||= {}
             collect_translations[question_id][locale][key] = translation
           end
