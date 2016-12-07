@@ -7,20 +7,25 @@ module Exports
           tmp_folder = Rails.root.join('tmp', 'reports')
           output = "#{tmp_folder}/report_#{report.id}_#{Time.now.to_f}.pdf"
           # Generate valid url for parse report to pdf
+          url_params = {
+            host: Settings.domain,
+            user_token: current_user.authentication_token,
+            export: true,
+            lang: I18n.locale
+          }
           url = if current_user.is?(:superadmin, :admin)
-                  Rails.application.routes.url_helpers.preview_administration_client_user_report_url(client_id: client.id,
-                                                                                                     user_id: user.id,
-                                                                                                     id: report.id,
-                                                                                                     export: true,
-                                                                                                     user_token: current_user.authentication_token,
-                                                                                                     host: Settings.domain)
+                  Rails.application.routes.url_helpers.
+                    preview_administration_client_user_report_url(url_params.merge({
+                                                                                     client_id: client.id,
+                                                                                     user_id: user.id,
+                                                                                     id: report.id
+                                                                                    }))
                 else
-                  Rails.application.routes.url_helpers.report_url(report,
-                                                                  export: true,
-                                                                  user_token: current_user.authentication_token,
-                                                                  host: Settings.domain,
-                                                                  domain: Settings.domain,
-                                                                  subdomain: client.subdomain)
+                  Rails.application.routes.url_helpers.
+                    report_url(report, url_params.merge({
+                                                          domain: Settings.domain,
+                                                          subdomain: client.subdomain
+                                                         }))
                 end
 
           args = {
