@@ -15,7 +15,6 @@ module Exports
                       selecting { [id, name, type, props] }.
                       where.has { |q| q.block.assessment_id == assessment_id }.
                       ordering { [block.position.asc, position.asc] }
-
           ## header
           header = {
             header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm Data'],
@@ -25,12 +24,11 @@ module Exports
             next unless QUESTIONS.include?(question.type)
             parser = "Exports::Assessments::Questions::#{question.type}".constantize
             question_header = parser.header(question)
-            header[:header] << parser.header(question)
+            header[:header] << question_header
             header[:subheader] << Array.new(question_header.size) { |_i| "#{question.name} - #{question.props['questionText']}" }
           end
           sheet.add_row header[:header].flatten
           sheet.add_row header[:subheader].flatten
-
           ::Assign.
             selecting { [id,
                          results,

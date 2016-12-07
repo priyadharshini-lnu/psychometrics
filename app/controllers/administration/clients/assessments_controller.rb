@@ -1,8 +1,10 @@
 module Administration
   module Clients
     class AssessmentsController < Administration::BaseController
-      prepend_before_action :set_resource_class, :set_client
-      append_before_action :pundit_authorize, :init_breadcrumbs
+      prepend_before_action :set_resource_class
+      before_action :pundit_authorize
+      append_before_action :set_client
+      after_action :init_breadcrumbs
       skip_after_action :verify_policy_scoped, only: [:index]
 
       def index

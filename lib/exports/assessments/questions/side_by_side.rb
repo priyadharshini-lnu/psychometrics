@@ -17,11 +17,11 @@ module Exports
         #   WHERE: Choices grouped by scale
         def self.result(answers, question)
           parsed_result = []
-          question.props['scalePoints'].to_i.times do |s|
-            question.props['choices'].to_i.times do |c|
-              values = (answers || []).detect { |a| a['choice'] == c && a['scale'] == s }.try(:[], 'values')
-              column_data = question.props['columnsData'][s]
-              next unless values
+          question.props['scalePoints'].to_i.times do |scale|
+            question.props['choices'].to_i.times do |choice|
+              values = (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.try(:[], 'values')
+              column_data = question.props['columnsData'][scale]
+              parsed_result << '' && next unless values
               parsed_result << if column_data['type'] == 'Text'
                                  values.map { |value| value['value'] }
                                else
@@ -35,15 +35,15 @@ module Exports
         # Parse HEADER data for XLSX
         def self.header(question)
           parsed_header = []
-          question.props['scalePoints'].to_i.times do |s|
-            question.props['choices'].to_i.times do |c|
-              column_data = question.props['columnsData'][s]
+          question.props['scalePoints'].to_i.times do |scale|
+            question.props['choices'].to_i.times do |choice|
+              column_data = question.props['columnsData'][scale]
               if column_data['type'] == 'Text'
-                column_data['answers'].to_i.times do |col|
-                  parsed_header << "QID#{question.id}_#{s + 1}_#{c + 1}_#{col + 1}"
+                column_data['answers'].to_i.times do |column|
+                  parsed_header << "QID#{question.id}_#{scale + 1}_#{choice + 1}_#{column + 1}"
                 end
               else
-                parsed_header << "QID#{question.id}_#{s + 1}_#{c + 1}"
+                parsed_header << "QID#{question.id}_#{scale + 1}_#{choice + 1}"
               end
             end
           end

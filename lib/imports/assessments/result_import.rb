@@ -42,9 +42,13 @@ module Imports
         header = rows.shift.map { |h| h.to_s.tr(' ', '').underscore }
         # Remove support row
         rows.shift
-        question_ids = header.select { |h| h =~ /qid/ }.map { |h| h.split(/\D+/).reject(&:blank?).map(&:to_i) }.flatten
-        questions = Question.selecting { [id, type, props] }.where(id: question_ids).group_by(&:id)
-
+        questions = Question.
+                    joining { block }.
+                    not_deleted.
+                    selecting { [id, type, props] }.
+                    where.has { |q| q.block.assessment_id == assessment_id }.
+                    ordering { [block.position.asc, position.asc] }.
+                    group_by(&:id)
 
         rows.map do |row|
           data = Hash[header.zip(row)]
@@ -119,16 +123,19 @@ module Imports
 
       def find_or_create_user(data)
         last_name, first_name = data['name'].split(', ')
+        # TODO: Remove password adn uncommit Invite
         user = User.
                create_with({
                  first_name: first_name,
                  last_name: last_name,
+                 password: 'password',
+                 password_confirmation: 'password',
                  memberships_attributes: [{
                    client_id: client_id
                  }]
                }).
                find_or_create_by({ email: data['email'] })
-
+        user.save
         # user.invite!(importer) unless user.invited_to_sign_up?
         user.memberships.find_by(client_id: client_id)
       end
