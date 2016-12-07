@@ -129,7 +129,7 @@ module Imports
                }).
                find_or_create_by({ email: data['email'] })
 
-        user.invite!(importer) unless user.invited_to_sign_up?
+        # user.invite!(importer) unless user.invited_to_sign_up?
         user.memberships.find_by(client_id: client_id)
       end
 
