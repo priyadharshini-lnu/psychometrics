@@ -18,8 +18,8 @@ module Exports
 
           ## header
           header = {
-            header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At'],
-            subheader: ['', '', '', '', '']
+            header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm Data'],
+            subheader: ['', '', '', '', '', '']
           }
           questions.each do |question|
             next unless QUESTIONS.include?(question.type)
@@ -34,6 +34,7 @@ module Exports
           ::Assign.
             selecting { [id,
                          results,
+                         norm_data,
                          status,
                          completed_at,
                          started_at,
@@ -54,11 +55,14 @@ module Exports
               end
             end
 
+            norm_data = export_norm(assign.norm_data)
+
             sheet.add_row [assign.encode_id,
                            assign.user_name,
                            assign.user_email,
                            assign.started_at.try(:strftime, '%D %r'),
                            assign.completed_at.try(:strftime, '%D %r'),
+                           norm_data,
                            *user_results.flatten]
           end
         end
@@ -66,6 +70,14 @@ module Exports
 
       def render
         @package
+      end
+
+      private
+
+      def export_norm(norm_data)
+        return if norm_data.nil? || norm_data['id'].nil?
+        norm = Norm.find(norm_data['id'])
+        "#{norm.name}:#{norm_data['type']}"
       end
     end
   end
