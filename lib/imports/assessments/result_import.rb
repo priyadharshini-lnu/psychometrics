@@ -42,6 +42,9 @@ module Imports
         header = rows.shift.map { |h| h.to_s.tr(' ', '').underscore }
         # Remove support row
         rows.shift
+        question_ids = header.select { |h| h =~ /qid/ }.map { |h| h.split(/\D+/).reject(&:blank?).map(&:to_i) }.flatten
+        questions = Question.selecting { [id, type, props] }.where(id: question_ids).group_by(&:id)
+
 
         rows.map do |row|
           data = Hash[header.zip(row)]
@@ -69,7 +72,7 @@ module Imports
             norm_data: norm_data
             })
 
-          questions = {}
+          parsed_questions = {}
           new_results = {}
 
           # Parse answers
@@ -77,11 +80,11 @@ module Imports
             next unless key =~ /qid/
             # Parse QID and answer's props
             qid, _props = key.split(/\D+/).reject(&:blank?).map(&:to_i)
-            questions[qid] ||= []
-            questions[qid] << value
+            parsed_questions[qid] ||= []
+            parsed_questions[qid] << value
           end
 
-          questions.each do |qid, values|
+          parsed_questions.each do |qid, values|
             question = questions[qid].try(:first)
             next unless question
             begin
