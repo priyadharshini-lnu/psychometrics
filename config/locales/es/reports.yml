@@ -1,0 +1,47 @@
+es:
+  reports:
+    modules:
+      common:
+        rare: '(es) Rare'
+        less_typical: '(es) Less Typical'
+        moderate: '(es) Moderate'
+        more_typical: '(es) More Typical'
+        almost_always: '(es) Almost Always'
+      potential_career_full:
+        detailed_career_guide: '(es) Detailed Career Guide'
+        education_level: '(es) Education Level'
+        potential_roles: '(es) Potential Roles'
+        potential_areas_of_study: '(es) Potential Areas of Study'
+        high_school_entry_roles: '(es) High School Entry Roles'
+        diploma_qualification: '(es) Diploma Qualification'
+        bachelors_or_masters_qualification: '(es) Bachelors or Masters Qualification'
+        key_career_tracks_within: '(es) Key Career Tracks Within'
+      potential_career_short:
+        key: '(es) key'
+        your_scores: '(es) Your Scores'
+        strengths: '(es) strengths'
+        for_this: '(es) for this'
+        career: '(es) career'
+      cpi_occupations:
+        occupations: '(es) Occupations'
+        your_potential_suitability: '(es) Your Potential Suitability'
+      gap_assessment:
+        positive_gap: '(es) Positive Gap'
+        rank: '(es) Rank'
+        item: '(es) Item'
+        gap: '(es) Gap'
+        negative_gap: '(es) Negative Gap'
+        scoring_category: '(es) Scoring Category'
+      highest_lowest:
+        highest_scores: '(es) Highest Scores'
+        rank: '(es) Rank'
+        item: '(es) Item'
+        first_name: '(es) First Name'
+        last_name: '(es) Last Name'
+        email: '(es) Email'
+        score: '(es) Score'
+        lowest_scores: '(es) Lowest Scores'
+        mean_score: '(es) Mean Score'
+        sub_competenties: '(es) Sub-Competencies'
+        top_5: 'TOP 5'
+        bottom_5: 'BOTTOM 5'

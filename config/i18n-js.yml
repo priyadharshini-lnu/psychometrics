@@ -18,6 +18,7 @@
 translations:
   - file: "app/assets/javascripts/administration/i18n/translations.js"
     pretty_print: true
+fallbacks: true
 
 # If you're running an old version, you can use something
 # like this:
