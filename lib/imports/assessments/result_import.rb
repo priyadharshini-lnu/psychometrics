@@ -22,9 +22,9 @@ module Imports
         if imported_items.map(&:valid?).all?
           imported_items.each(&:save!)
         else
-          imported_items.each do |translation|
-            translation.errors.full_messages.each do |message|
-              errors.add(:base, I18n.t('administration.imports.errors.translation.error', id: translation.question_id, error: message))
+          imported_items.each do |item|
+            item.errors.full_messages.each do |message|
+              errors.add(:base, I18n.t('administration.imports.errors.result.error', id: item.id && item.encode_id, error: message))
             end
           end
         end
@@ -42,12 +42,9 @@ module Imports
         header = rows.shift.map { |h| h.to_s.tr(' ', '').underscore }
         # Remove support row
         rows.shift
-        question_ids = header.select { |h| h =~ /qid/ }.map { |h| h.split(/\D+/).reject(&:blank?).map(&:to_i) }.flatten
-        guestions = Question.selecting { [id, type, props] }.where(id: question_ids).group_by(&:id)
 
         rows.map do |row|
           data = Hash[header.zip(row)]
-
           # Try to find assign by encoded id
           begin
             assign = Assign.includes(:membership).find_by_encoded_id(data['result_id']) if data['result_id'].present?
@@ -65,9 +62,11 @@ module Imports
               })
           end
 
+          norm_data = parse_norm_data(data['norm_data'], assign.assessment_id)
           assign.assign_attributes({
             started_at: data['started_at'] && DateTime.strptime(data['started_at'].to_s, '%D %r'),
-            completed_at: data['completed_at'] && DateTime.strptime(data['completed_at'].to_s, '%D %r')
+            completed_at: data['completed_at'] && DateTime.strptime(data['completed_at'].to_s, '%D %r'),
+            norm_data: norm_data
             })
 
           questions = {}
@@ -83,7 +82,7 @@ module Imports
           end
 
           questions.each do |qid, values|
-            question = guestions[qid].try(:first)
+            question = questions[qid].try(:first)
             next unless question
             begin
               parser = "Imports::Assessments::Questions::#{question.type}".constantize
@@ -95,6 +94,7 @@ module Imports
             new_results[qid] = parsed_value if parsed_value
           end
           assign.results = new_results
+          assign.calculate_scoring if assign.completed?
           assign
         end
 
@@ -128,6 +128,16 @@ module Imports
 
         user.invite!(importer) unless user.invited_to_sign_up?
         user.memberships.find_by(client_id: client_id)
+      end
+
+      def parse_norm_data(norm_data, assessment_id)
+        return nil if norm_data.nil?
+        norm_name, norm_type = norm_data.to_s.split(':')
+        norm = Norm.joining { dimension }.
+                joining { dimension.assessments.alias('assessments').on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id)) }.
+                where(name: norm_name).
+                pluck(:id)
+        { id: norm.try(:first), type: norm_type }
       end
     end
   end
