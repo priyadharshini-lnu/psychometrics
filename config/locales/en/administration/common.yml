@@ -53,5 +53,6 @@ en:
       question_center: Question Center
       libraries: Media Library
       communication_center: Communication Center
+      statistics: Statistics
     breadcrumbs:
       <<: *NAVIGATION

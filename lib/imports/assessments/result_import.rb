@@ -123,7 +123,7 @@ module Imports
 
       def find_or_create_user(data)
         last_name, first_name = data['name'].split(', ')
-        # TODO: Remove password adn uncommit Invite
+        # TODO: Remove password and uncommit Invite
         user = User.
                create_with({
                  first_name: first_name,

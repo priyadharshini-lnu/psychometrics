@@ -27,13 +27,9 @@ module Managers
       @resource_class ||= Assign
     end
 
-    def set_resource
-      @resource = @resource_class.find(params[:id])
-    end
-
     # Authorisation user
     def pundit_authorize
-      authorize @resource || @resource_class
+      authorize @resource_class
     end
   end
 end

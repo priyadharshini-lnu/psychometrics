@@ -1,22 +1,13 @@
-- if @resources.present?
-  .row
-    .col-md-8
-      #summary
-    .col-md-4
-      - @resources.each_slice(2) do |resources|
-        = render partial: 'resource', collection: resources
-- else
-  p = t('administration.no_data_found')
-javascript:
-  $(function() {
-    $(document).ready(function() {
-      // Build the chart
-      Highcharts.chart('summary', {
+.col-md-6
+  div id=dom_id(resource)
+  javascript:
+    $(function() {
+      Highcharts.chart('#{dom_id(resource)}', {
         chart: {
           skipClone: true
         },
         title: {
-          text: 'Total'
+          text: '#{resource.name}'
         },
         tooltip: {
           pointFormat: '<b>{point.percentage:.1f}%</b>'
@@ -39,16 +30,15 @@ javascript:
                     }
                 }
             }
-        }, 
+        },        
         series: [{
           animation: false,
           type: 'pie',
           data: [
-            ['New', #{@resources.inject(0) { | sum, res | sum += res.new_count;sum }}],
-            ['In Progress', #{@resources.inject(0) { | sum, res | sum += res.in_progress_count;sum }}],
-            ['Completed', #{@resources.inject(0) { | sum, res | sum += res.completed_count;sum }}]
+            ['New', #{resource.new_count}],
+            ['In Progress', #{resource.in_progress_count}],
+            ['Completed', #{resource.completed_count}]
           ]
         }]
       });
     });
-  });

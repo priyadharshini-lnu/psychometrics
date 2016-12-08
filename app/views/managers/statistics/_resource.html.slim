@@ -1,75 +1,43 @@
-.col-md-6
-  div id=dom_id(resource)
-  javascript:
-    $(function() {
-      Highcharts.chart('#{dom_id(resource)}', {
-        chart: {
-          plotBackgroundColor: null,
-          plotBorderWidth: 0,
-          plotShadow: false,
-          backgroundColor: null,
-          style: {
-            overflow: 'visible'
-          },
-          skipClone: true
-        },
-        title: {
-          text: '#{resource.name}'
-        },
-        tooltip: {
-          pointFormat: '<b>{point.percentage:.1f}%</b>'
-        },
-        subtitle: false,
-        xAxis: {
-          labels: {
-            enabled: false
-          },
-          title: {
-            text: null
-          },
-          startOnTick: false,
-          endOnTick: false,
-          tickPositions: []
-        },
-        yAxis: {
-          endOnTick: false,
-          startOnTick: false,
-          labels: {
-            enabled: false
-          },
-          title: {
-            text: null
-          },
-          tickPositions: [0]
-        },
-        legend: {
-          enabled: false
-        },
-        credits: {
-          enabled: false
-        },
-        plotOptions: {
+div id=dom_id(resource)
+javascript:
+  $(function() {
+    Highcharts.chart('#{dom_id(resource)}', {
+      chart: {
+        skipClone: true
+      },
+      title: {
+        text: '#{resource.name}'
+      },
+      tooltip: {
+        pointFormat: '<b>{point.percentage:.1f}%</b>'
+      },
+      legend: {
+        enabled: false
+      },
+      credits: {
+        enabled: false
+      },
+      plotOptions: {
           pie: {
-            dataLabels: {
-              enabled: false,
-              distance: -50,
-              style: {
-                fontWeight: 'bold',
-                color: 'white'
+              allowPointSelect: true,
+              cursor: 'pointer',
+              dataLabels: {
+                  enabled: true,
+                  format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                  style: {
+                    color: 'black'
+                  }
               }
-            },
           }
-        },
-        series: [{
-          animation: false,
-          lineWidth: 1,
-          shadow: false,
-          type: 'pie',
-          data: [
-            ['New', #{resource.new_count}],
-            ['In Progress', #{resource.in_progress_count}],
-            ['Completed', #{resource.completed_count}]
-          ]
-        }]
-      });
+      },        
+      series: [{
+        animation: false,
+        type: 'pie',
+        data: [
+          ['New', #{resource.new_count}],
+          ['In Progress', #{resource.in_progress_count}],
+          ['Completed', #{resource.completed_count}]
+        ]
+      }]
     });
+  });
