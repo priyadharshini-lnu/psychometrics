@@ -1,0 +1,27 @@
+.row
+  .col-xs-12
+    #assessmentDashboard.assign-container
+      .contentTitleHeader
+        i.glyphicon.glyphicon-stats.titleIcon.pull-left
+        p.contentTitle.pull-left
+          = t('.title')
+        .dropdown.pull-right
+          button#dropdownMenu1.btn.btn-default.dropdown-toggle aria-expanded="true" aria-haspopup="true" data-toggle="dropdown" type="button" 
+            | Assessment type
+            span.caret
+          ul.dropdown-menu aria-labelledby="dropdownMenu1" 
+            = active_link_to 'All', { }, wrap_tag: :li, active: :exact
+            = active_link_to 'Psychometrics', { q: { assessment_category_eq: Assessment::CATEGORIES[:psychometric] } }, wrap_tag: :li, active: :exact
+            = active_link_to 'Org Surveys', { q: { assessment_category_eq: Assessment::CATEGORIES[:organisational] } }, wrap_tag: :li, active: :exact
+            = active_link_to '360 Feedback', { q: { assessment_category_eq: Assessment::CATEGORIES['360'] } }, wrap_tag: :li, active: :exact 
+        .clearfix
+      .col-xs-12.completionReport
+        h3.text-center#report_title
+          - if @filter_form.assessment_category_eq.nil?
+            | All assessments
+          - else
+            = t("activerecord.attributes.assessment.categories.#{@filter_form.assessment_category_eq}")
+        #ransack_results
+          = render partial: 'list'
+      .clearfix
+= javascript_include_tag 'http://code.highcharts.com/highcharts.js'
