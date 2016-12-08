@@ -71,7 +71,7 @@ class User < ApplicationRecord
   has_many :clients, through: :memberships
   accepts_nested_attributes_for :memberships
 
-  validates :first_name, :last_name, :email, :role, presence: true
+  validates :email, :role, presence: true
   validates :first_name, :last_name, :email, length: { maximum: 100 }, allow_blank: true
   validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
   validates :role, inclusion: { in: USER_ROLES.values }, allow_nil: true

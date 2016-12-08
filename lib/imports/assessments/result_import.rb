@@ -61,8 +61,9 @@ module Imports
           end
 
           unless assign
-            membership = Membership.joins(:user).where(users: { email: data['email'] }, client_id: client_id).first
+            membership = Membership.joins(:user).where(users: { email: data['email'].to_s.downcase }, client_id: client_id).first
             membership = find_or_create_user(data) unless membership
+            next unless membership
             assign = membership.assigns.create({
               assessment_id: assessment_id,
               status: :completed
@@ -71,8 +72,8 @@ module Imports
 
           norm_data = parse_norm_data(data['norm_data'], assign.assessment_id)
           assign.assign_attributes({
-            started_at: data['started_at'] && DateTime.strptime(data['started_at'].to_s, '%D %r'),
-            completed_at: data['completed_at'] && DateTime.strptime(data['completed_at'].to_s, '%D %r'),
+            started_at:  parse_date(data['started_at']),
+            completed_at: parse_date(data['completed_at']),
             norm_data: norm_data
             })
 
@@ -135,7 +136,12 @@ module Imports
                  }]
                }).
                find_or_create_by({ email: data['email'] })
-        user.save
+        if user.errors.any?
+          user.errors.full_messages.each do |message|
+            errors.add(:base, I18n.t('administration.imports.errors.result.error', id: data['result_id'], error: message))
+          end
+          return
+        end
         # user.invite!(importer) unless user.invited_to_sign_up?
         user.memberships.find_by(client_id: client_id)
       end
@@ -148,6 +154,12 @@ module Imports
                 where(name: norm_name).
                 pluck(:id)
         { id: norm.try(:first), type: norm_type }
+      end
+
+      def parse_date(date)
+        return nil unless date
+        return date if date.is_a?(Date) || date.is_a?(Time)
+        DateTime.strptime(date.to_s, '%D %r')
       end
     end
   end
