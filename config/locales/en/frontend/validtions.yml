@@ -1,0 +1,15 @@
+en:
+  validations:
+    title: 'Sorry, you cannot continue until you correct the following:'
+    issue: 'Issue'
+    min_length: 'Your response must be at least %{min} characters.'
+    character_range: 'Your response must be at least %{min} and no more than %{max} characters.'
+    date: 'Your response must be a valid date (dd/mm/yyyy)'
+    text: 'Your response must not contain a numbers'
+    number: 'Your response must be a number'
+    email: 'Your response must be a valid email'
+    least: 'Please answer at least %{min} choice(s).'
+    least_hotspot: 'Please answer at least %{min} choice(s).'
+    max_length: 'Your response must be no more than %{max} characters.'
+    must_rank_between: 'Please assign a value from %{min} to %{max} for each item. Values may not be repeated.'
+    range: 'Please answer at least %{min} and no more than %{max} choice(s).'
