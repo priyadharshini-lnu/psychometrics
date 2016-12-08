@@ -23,7 +23,7 @@ javascript:
           text: 'Total'
         },
         tooltip: {
-          pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+          pointFormat: '<b>{point.percentage:.1f}%</b>'
         },
         credits: {
           enabled: false
@@ -40,7 +40,6 @@ javascript:
         },
         series: [{
           animation: false,
-          name: 'Brands',
           colorByPoint: true,
           data: [
             ['New', #{@resources.inject(0) { | sum, res | sum += res.new_count;sum }}],
