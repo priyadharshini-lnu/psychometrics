@@ -17,7 +17,7 @@ module Exports
             parsed_result << (answers || []).
                              select { |answer| answer['scale'] == s }.
                              sort_by { |answer| answer['value'] }.
-                             map { |a| a['choice'] + 1 }.
+                             map { |answer| answer['choice'] + 1 }.
                              join(', ')
           end
           question.props['scalePoints'].to_i.times do |s|
