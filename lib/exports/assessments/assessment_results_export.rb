@@ -17,8 +17,8 @@ module Exports
                       ordering { [block.position.asc, position.asc] }
           ## header
           header = {
-            header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm Data'],
-            subheader: ['', '', '', '', '', '']
+            header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm Data', 'Status'],
+            subheader: ['', '', '', '', '', '', '']
           }
           questions.each do |question|
             next unless QUESTIONS.include?(question.type)
@@ -61,6 +61,7 @@ module Exports
                            assign.started_at.try(:strftime, '%D %r'),
                            assign.completed_at.try(:strftime, '%D %r'),
                            norm_data,
+                           I18n.t("activerecord.attributes.assign.statuses.#{assign.status}"),
                            *user_results.flatten]
           end
         end

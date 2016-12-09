@@ -64,14 +64,21 @@ module Imports
             membership = Membership.joins(:user).where(users: { email: data['email'].to_s.downcase }, client_id: client_id).first
             membership = find_or_create_user(data, index) unless membership
             next unless membership
-            assign = membership.assigns.create_with({ status: :completed }).find_or_create_by({ assessment_id: assessment_id })
+            assign = membership.assigns.find_or_create_by({ assessment_id: assessment_id })
           end
 
-          norm_data = parse_norm_data(data['norm_data'], assign.assessment_id)
+          status = if data['status'] == 'Completed'
+                     :completed
+                   elsif data['status'] == 'New'
+                     :not_started
+                   else
+                     :in_progress
+                   end
           assign.assign_attributes({
             started_at:  parse_date(data['started_at'], index),
             completed_at: parse_date(data['completed_at'], index),
-            norm_data: norm_data
+            norm_data: parse_norm_data(data['norm_data'], assign.assessment_id),
+            status: status
             })
 
           parsed_questions = {}
