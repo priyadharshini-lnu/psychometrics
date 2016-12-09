@@ -56,7 +56,7 @@ module Imports
           begin
             assign = Assign.includes(:membership).find_by_encoded_id(data['result_id']) if data['result_id'].present?
           rescue ActiveRecord::RecordNotFound
-            errors.add(:base, I18n.t('administration.imports.errors.invalid_assign', row: index + 3))
+            errors.add(:base, I18n.t('administration.imports.errors.result.invalid_assign', row: index + 3))
             return [nil]
           end
 
