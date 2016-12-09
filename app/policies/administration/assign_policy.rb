@@ -8,6 +8,10 @@ module Administration
       @user.is?(:superadmin)
     end
 
+    def statistics?
+      @user.is?(:superadmin, :admin)
+    end
+
     class Scope < Administration::BasePolicy::Scope
       def resolve
         return scope if @user.is?(:superadmin)

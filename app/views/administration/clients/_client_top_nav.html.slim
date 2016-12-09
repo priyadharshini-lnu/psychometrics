@@ -5,3 +5,5 @@
   = active_link_to(t('administration.navigation.assessments'), administration_client_assessments_path(@client), class: 'btn btn-default')
 - if policy(@client).design?
   = active_link_to(t('administration.navigation.design'), edit_administration_client_designs_path(@client), remote: true, class: 'btn btn-default')
+- if policy(:assign).statistics?
+  = active_link_to(t('administration.navigation.statistics'), administration_client_statistics_path(@client), class: 'btn btn-default')

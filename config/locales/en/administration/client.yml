@@ -75,3 +75,8 @@ en:
             no_completed: 'Not completed'
             tooltips:
               delete: Delete Assign
+      statistics:
+        index:
+          title: Statistics
+          all_assessments: All assessments
+          assessment_type: Assessment type

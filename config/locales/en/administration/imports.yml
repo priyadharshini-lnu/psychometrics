@@ -36,7 +36,7 @@ en:
           error: '[Translation %{id}] %{error}'
         result:
           invalid_format: Invalid File format
-          error: '[Result %{id}] %{error}'
+          error: '[Row %{row}] %{error}'
       new:
         header: 'Import'
       form:
