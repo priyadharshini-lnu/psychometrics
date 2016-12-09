@@ -11,7 +11,7 @@ en:
           'completed': 'Completed'
     errors:
       messages:
-        not_uniqueness: 'Assign has already been taken'          
+        not_uniqueness: 'Assign has already been taken'
   simple_form:
     placeholders:
       assessment:
