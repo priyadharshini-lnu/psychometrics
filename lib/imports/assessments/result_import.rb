@@ -22,9 +22,9 @@ module Imports
         if imported_items.map(&:valid?).all?
           imported_items.each(&:save!)
         else
-          imported_items.each do |item|
+          imported_items.each_with_index do |item, index|
             item.errors.full_messages.each do |message|
-              errors.add(:base, I18n.t('administration.imports.errors.result.error', id: item.id && item.encode_id, error: message))
+              errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + 3, error: message))
             end
           end
         end
@@ -50,24 +50,21 @@ module Imports
                     ordering { [block.position.asc, position.asc] }.
                     group_by(&:id)
 
-        rows.map do |row|
+        rows.each_with_index.map do |row, index|
           data = Hash[header.zip(row)]
           # Try to find assign by encoded id
           begin
             assign = Assign.includes(:membership).find_by_encoded_id(data['result_id']) if data['result_id'].present?
           rescue ActiveRecord::RecordNotFound
-            errors.add(:base, I18n.t('administration.imports.errors.invalid_assign', result_id: data['result_id']))
+            errors.add(:base, I18n.t('administration.imports.errors.invalid_assign', row: index + 3))
             return [nil]
           end
 
           unless assign
             membership = Membership.joins(:user).where(users: { email: data['email'].to_s.downcase }, client_id: client_id).first
-            membership = find_or_create_user(data) unless membership
+            membership = find_or_create_user(data, index) unless membership
             next unless membership
-            assign = membership.assigns.create({
-              assessment_id: assessment_id,
-              status: :completed
-              })
+            assign = membership.assigns.create_with({ status: :completed }).find_or_create_by({ assessment_id: assessment_id })
           end
 
           norm_data = parse_norm_data(data['norm_data'], assign.assessment_id)
@@ -122,7 +119,7 @@ module Imports
 
       private
 
-      def find_or_create_user(data)
+      def find_or_create_user(data, index)
         last_name, first_name = data['name'].split(', ')
         # TODO: Remove password and uncommit Invite
         user = User.
@@ -137,9 +134,7 @@ module Imports
                }).
                find_or_create_by({ email: data['email'] })
         if user.errors.any?
-          user.errors.full_messages.each do |message|
-            errors.add(:base, I18n.t('administration.imports.errors.result.error', id: data['result_id'], error: message))
-          end
+          errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + 3, error: user.errors.full_messages.first))
           return
         end
         # user.invite!(importer) unless user.invited_to_sign_up?
