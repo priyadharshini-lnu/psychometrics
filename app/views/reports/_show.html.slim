@@ -1,6 +1,10 @@
-= stylesheet_link_tag :psychometrics_reports_vendor
-= stylesheet_link_tag :administration
-= stylesheet_link_tag :psychometrics_reports_preview
+- if params[:export]
+  = stylesheet_link_tag :administration
+  = stylesheet_link_tag :psychometrics_pdf_app
+- else
+  = stylesheet_link_tag :psychometrics_reports_vendor
+  = stylesheet_link_tag :administration
+  = stylesheet_link_tag :psychometrics_reports_preview
 
 #report_preview.html_preview[data-user="#{Reports::UserSerializer.new(@current_membership, assign: @assign).to_json}"
                              data-results="#{(@results.map { |a| AssignSerializer.new(a, membership: @current_membership)}).to_json}" 
@@ -12,3 +16,4 @@
  - else
   = javascript_include_tag :psychometrics_reports_vendor
   = javascript_include_tag :psychometrics_reports_preview
+

@@ -6,5 +6,6 @@ html.body-full-height
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
     = csrf_meta_tags
     = jquery_include_tag :google
-  body
+    = javascript_include_tag 'application'
+  body data-locale="#{I18n.locale}"
     = yield
