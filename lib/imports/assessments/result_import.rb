@@ -56,7 +56,7 @@ module Imports
           begin
             assign = Assign.includes(:membership).find_by_encoded_id(data['result_id']) if data['result_id'].present?
           rescue ActiveRecord::RecordNotFound
-            errors.add(:base, I18n.t('administration.imports.errors.invalid_assign', row: index + 3))
+            errors.add(:base, I18n.t('administration.imports.errors.result.invalid_assign', row: index + 3))
             return [nil]
           end
 
@@ -69,8 +69,8 @@ module Imports
 
           norm_data = parse_norm_data(data['norm_data'], assign.assessment_id)
           assign.assign_attributes({
-            started_at:  parse_date(data['started_at']),
-            completed_at: parse_date(data['completed_at']),
+            started_at:  parse_date(data['started_at'], index),
+            completed_at: parse_date(data['completed_at'], index),
             norm_data: norm_data
             })
 
@@ -151,10 +151,12 @@ module Imports
         { id: norm.try(:first), type: norm_type }
       end
 
-      def parse_date(date)
+      def parse_date(date, index)
         return nil unless date
         return date if date.is_a?(Date) || date.is_a?(Time)
         DateTime.strptime(date.to_s, '%D %r')
+      rescue
+        errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + 3, error: 'Invalid Date'))
       end
     end
   end

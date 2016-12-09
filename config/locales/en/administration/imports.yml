@@ -22,8 +22,8 @@ en:
       errors:
         error: '[Row %{row}] %{error}'
         invalid_format: There is no Email column
-        invalid_assign: Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty
         unknown_type: 'Unknown file type: %{filename}'
+        invalid_assign: "Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
         user:
           not_found: "[Row %{row}] Couldn't find User with Email Address %{email}"
         norm:
@@ -36,6 +36,7 @@ en:
           error: '[Translation %{id}] %{error}'
         result:
           invalid_format: Invalid File format
+          invalid_assign: "[Row %{row}] Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty"
           error: '[Row %{row}] %{error}'
       new:
         header: 'Import'
