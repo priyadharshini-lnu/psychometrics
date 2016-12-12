@@ -26,12 +26,12 @@ class Assessment < ApplicationRecord
   has_many :assigns, dependent: :destroy
   has_many :memberships, through: :assigns
 
-  has_many :assessment_clients
+  has_many :assessment_clients, dependent: :destroy
   has_many :clients, through: :assessment_clients
 
-  has_many :communications
+  has_many :communications, dependent: :destroy
 
-  has_many :translations, as: :resource
+  has_many :translations, as: :resource, dependent: :destroy
 
   belongs_to :dimension
 
