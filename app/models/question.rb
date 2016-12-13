@@ -36,7 +36,6 @@ class Question < ApplicationRecord
 
   scope :deleted, -> { where.not(deleted_at: nil) }
   scope :not_deleted, -> { where(deleted_at: nil) }
-  scope :templates, -> { where(view: :templates) }
 
   before_create :set_assessment_id, if: proc { assessment_id.nil? }
 
