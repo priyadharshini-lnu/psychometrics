@@ -7,7 +7,8 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(@resource)}"
   - if policy(@resource).spoof?
     li = link_to t('.login_as_user'), { action: :spoof, id: @resource }, target: :_blank
     li = link_to t('.assessments_and_reports'), [:administration, @client, :user, :assigns, user_id: @resource.id], target: :_blank
-  li.xn-title = t('.email')
+  - if policy(@resource).send_mail?
+    li = mail_to(@resource.email, t('.email'))  
   - if policy(@resource).edit?
     li = link_to t('.edit_user'), { action: :edit, id: @resource }
   - if policy(@resource).destroy?

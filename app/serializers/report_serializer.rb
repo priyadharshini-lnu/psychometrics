@@ -6,8 +6,21 @@ class ReportSerializer < ActiveModel::Serializer
   has_one :assessment, serializer: AssessmentSerializer
 
   def factors
-    Factor.where(dimension_id: object.assessment.dimension_id).order(name: :asc).map do |obj|
-      Factors::WithoutSubFactorsSerializer.new(obj, assessment_id: object.assessment_id)
+    object_assessment_id = object.assessment_id
+    Factor.
+      selecting {['factors.*',
+                  array(
+                    _(
+                      FactorsScoring.
+                        select(:question_id).
+                        where.has { |fs| fs.factor_id.eq(id) & fs.assessment_id.eq(object_assessment_id) }.
+                        where('json_array_length(props) > 0')
+                    )
+                  ).as('question_ids')
+                 ]}.
+      where(dimension_id: object.assessment.dimension_id).
+      order(name: :asc).map do |obj|
+      Factors::WithoutSubFactorsSerializer.new(obj, assessment_id: object_assessment_id)
     end
   end
 

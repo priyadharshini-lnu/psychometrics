@@ -6,6 +6,10 @@ en:
     resource:
       assigned: "Assigned %{date}"
       results: "Results"
+      status:
+        not_started: 'Start'
+        in_progress: 'Resume'
+        completed: 'Completed'
       questions:
         zero: "No Questions"
         one: "1 Question"

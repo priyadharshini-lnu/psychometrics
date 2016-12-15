@@ -13,7 +13,7 @@
     .clearfix.visible-sm
     .col-sm-6.col-md-2.tabletPadding
       - first_assign = resource.assigns.first
-      = link_to first_assign.decorate.status, [:pass, resource], class: "btn btn-courseProgress #{first_assign.completed? ? '1disabled' : ''}"
+      = link_to t(".status.#{first_assign.status}"), [:pass, resource], class: "btn btn-courseProgress #{first_assign.completed? ? '1disabled' : ''}"
       .well.assignedDateWell
         p
           = t('.assigned', :date => first_assign.decorate.created_at)
