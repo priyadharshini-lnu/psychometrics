@@ -14,6 +14,14 @@ module Reports
         nil
       end
 
+      action :insert_after do |data, _current_user, report|
+        binding.pry
+        parent = ::Reports::Page.find(data['parent_id'])
+        page = report.pages.create!(data['page'])
+        page.insert_at(parent.position + 1)
+        Reports::PageSerializer.new(page).to_hash
+      end
+
       action :destroy do |data|
         ::Reports::Page.destroy(data['id'])
         nil
