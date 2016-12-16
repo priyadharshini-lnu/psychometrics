@@ -20,6 +20,7 @@ class Factor < ApplicationRecord
   has_many :sub_factors, foreign_key: :parent_id, class_name: 'Factor', dependent: :destroy
   has_many :factors_norms
   has_many :factors_scoring
+  has_many :occupations_factors, dependent: :destroy
   before_create :increment_factors
   before_destroy :decrement_factors
   validates :name, :dimension, presence: true
