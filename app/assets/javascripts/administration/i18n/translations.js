@@ -399,6 +399,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
       "reports": "Reports",
+      "statistics": "Statistics",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -708,6 +709,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "licenses": "Edit Licenses",
         "new": "New Client",
         "title": "Client's options (#%{id})"
+      },
+      "statistics": {
+        "index": {
+          "all_assessments": "All assessments",
+          "assessment_type": "Assessment type",
+          "title": "Statistics"
+        }
       },
       "toggle_status": {
         "successfully": "Client %{name} was successfully updated."
@@ -1102,7 +1110,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "sub_factors_mismatch": "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
         },
         "result": {
-          "error": "[Result %{id}] %{error}",
+          "error": "[Row %{row}] %{error}",
+          "invalid_assign": "[Row %{row}] Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty",
           "invalid_format": "Invalid File format"
         },
         "translation": {
@@ -1265,6 +1274,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
       "reports": "Reports",
+      "statistics": "Statistics",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -1779,7 +1789,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "other": "%{count} Questions",
         "zero": "No Questions"
       },
-      "results": "Results"
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
     }
   },
   "assigns": {
@@ -2396,7 +2411,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "notification_center": "Notification Centre",
         "notifications": "Notifications",
         "relationships": "Company Relationships",
-        "reporting": "Reporting"
+        "reporting": "Reporting",
+        "statistics": "Statistics"
       }
     },
     "notifications": {
@@ -2409,6 +2425,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "show": {
         "export_pdf": "Export to PDF",
         "header": "Report"
+      }
+    },
+    "statistics": {
+      "index": {
+        "title": "Statistics"
       }
     },
     "users": {
@@ -2800,6 +2821,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
@@ -2807,6 +2829,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "max_length": "Your response must be no more than %{max} characters.",
     "min_length": "Your response must be at least %{min} characters.",
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
+    "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
@@ -3223,6 +3246,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
       "reports": "Reports",
+      "statistics": "Statistics",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -3532,6 +3556,13 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "licenses": "Edit Licenses",
         "new": "New Client",
         "title": "Client's options (#%{id})"
+      },
+      "statistics": {
+        "index": {
+          "all_assessments": "All assessments",
+          "assessment_type": "Assessment type",
+          "title": "Statistics"
+        }
       },
       "toggle_status": {
         "successfully": "Client %{name} was successfully updated."
@@ -3926,7 +3957,8 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "sub_factors_mismatch": "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
         },
         "result": {
-          "error": "[Result %{id}] %{error}",
+          "error": "[Row %{row}] %{error}",
+          "invalid_assign": "[Row %{row}] Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty",
           "invalid_format": "Invalid File format"
         },
         "translation": {
@@ -4089,6 +4121,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
       "reports": "Reports",
+      "statistics": "Statistics",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -4603,7 +4636,12 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "other": "%{count} Questions",
         "zero": "No Questions"
       },
-      "results": "Results"
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
     }
   },
   "assigns": {
@@ -5220,7 +5258,8 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "notification_center": "Notification Centre",
         "notifications": "Notifications",
         "relationships": "Company Relationships",
-        "reporting": "Reporting"
+        "reporting": "Reporting",
+        "statistics": "Statistics"
       }
     },
     "notifications": {
@@ -5233,6 +5272,11 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
       "show": {
         "export_pdf": "Export to PDF",
         "header": "Report"
+      }
+    },
+    "statistics": {
+      "index": {
+        "title": "Statistics"
       }
     },
     "users": {
@@ -5624,6 +5668,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
   "validations": {
     "character_range": "(es) Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "(es) Issue",
     "least": "Please answer at least %{min} choice(s).",
@@ -5631,6 +5676,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
     "max_length": "Your response must be no more than %{max} characters.",
     "min_length": "(es) Your response must be at least %{min} characters.",
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
+    "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
@@ -6047,6 +6093,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
       "reports": "Reports",
+      "statistics": "Statistics",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -6356,6 +6403,13 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "licenses": "Edit Licenses",
         "new": "New Client",
         "title": "Client's options (#%{id})"
+      },
+      "statistics": {
+        "index": {
+          "all_assessments": "All assessments",
+          "assessment_type": "Assessment type",
+          "title": "Statistics"
+        }
       },
       "toggle_status": {
         "successfully": "Client %{name} was successfully updated."
@@ -6750,7 +6804,8 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "sub_factors_mismatch": "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
         },
         "result": {
-          "error": "[Result %{id}] %{error}",
+          "error": "[Row %{row}] %{error}",
+          "invalid_assign": "[Row %{row}] Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty",
           "invalid_format": "Invalid File format"
         },
         "translation": {
@@ -6913,6 +6968,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
       "reports": "Reports",
+      "statistics": "Statistics",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -7427,7 +7483,12 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "other": "%{count} Questions",
         "zero": "No Questions"
       },
-      "results": "Results"
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
     }
   },
   "assigns": {
@@ -8044,7 +8105,8 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "notification_center": "Notification Centre",
         "notifications": "Notifications",
         "relationships": "Company Relationships",
-        "reporting": "Reporting"
+        "reporting": "Reporting",
+        "statistics": "Statistics"
       }
     },
     "notifications": {
@@ -8057,6 +8119,11 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
       "show": {
         "export_pdf": "Export to PDF",
         "header": "Report"
+      }
+    },
+    "statistics": {
+      "index": {
+        "title": "Statistics"
       }
     },
     "users": {
@@ -8448,6 +8515,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
@@ -8455,6 +8523,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
     "max_length": "Your response must be no more than %{max} characters.",
     "min_length": "Your response must be at least %{min} characters.",
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
+    "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
@@ -8871,6 +8940,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
       "reports": "Reports",
+      "statistics": "Statistics",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -9180,6 +9250,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "licenses": "Edit Licenses",
         "new": "New Client",
         "title": "Client's options (#%{id})"
+      },
+      "statistics": {
+        "index": {
+          "all_assessments": "All assessments",
+          "assessment_type": "Assessment type",
+          "title": "Statistics"
+        }
       },
       "toggle_status": {
         "successfully": "Client %{name} was successfully updated."
@@ -9574,7 +9651,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "sub_factors_mismatch": "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
         },
         "result": {
-          "error": "[Result %{id}] %{error}",
+          "error": "[Row %{row}] %{error}",
+          "invalid_assign": "[Row %{row}] Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty",
           "invalid_format": "Invalid File format"
         },
         "translation": {
@@ -9737,6 +9815,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
       "reports": "Reports",
+      "statistics": "Statistics",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -10251,7 +10330,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "other": "%{count} Questions",
         "zero": "No Questions"
       },
-      "results": "Results"
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
     }
   },
   "assigns": {
@@ -10872,7 +10956,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "notification_center": "Notification Centre",
         "notifications": "Notifications",
         "relationships": "Company Relationships",
-        "reporting": "Reporting"
+        "reporting": "Reporting",
+        "statistics": "Statistics"
       }
     },
     "notifications": {
@@ -10885,6 +10970,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "show": {
         "export_pdf": "Export to PDF",
         "header": "Report"
+      }
+    },
+    "statistics": {
+      "index": {
+        "title": "Statistics"
       }
     },
     "users": {
@@ -11276,6 +11366,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
@@ -11283,6 +11374,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "max_length": "Your response must be no more than %{max} characters.",
     "min_length": "Your response must be at least %{min} characters.",
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
+    "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
@@ -11699,6 +11791,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
       "reports": "Reports",
+      "statistics": "Statistics",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -12008,6 +12101,13 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "licenses": "Edit Licenses",
         "new": "New Client",
         "title": "Client's options (#%{id})"
+      },
+      "statistics": {
+        "index": {
+          "all_assessments": "All assessments",
+          "assessment_type": "Assessment type",
+          "title": "Statistics"
+        }
       },
       "toggle_status": {
         "successfully": "Client %{name} was successfully updated."
@@ -12402,7 +12502,8 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "sub_factors_mismatch": "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
         },
         "result": {
-          "error": "[Result %{id}] %{error}",
+          "error": "[Row %{row}] %{error}",
+          "invalid_assign": "[Row %{row}] Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty",
           "invalid_format": "Invalid File format"
         },
         "translation": {
@@ -12565,6 +12666,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
       "reports": "Reports",
+      "statistics": "Statistics",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -13079,7 +13181,12 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "other": "%{count} Questions",
         "zero": "No Questions"
       },
-      "results": "Results"
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
     }
   },
   "assigns": {
@@ -13696,7 +13803,8 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "notification_center": "Notification Centre",
         "notifications": "Notifications",
         "relationships": "Company Relationships",
-        "reporting": "Reporting"
+        "reporting": "Reporting",
+        "statistics": "Statistics"
       }
     },
     "notifications": {
@@ -13709,6 +13817,11 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       "show": {
         "export_pdf": "Export to PDF",
         "header": "Report"
+      }
+    },
+    "statistics": {
+      "index": {
+        "title": "Statistics"
       }
     },
     "users": {
@@ -14100,6 +14213,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
@@ -14107,6 +14221,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     "max_length": "Your response must be no more than %{max} characters.",
     "min_length": "Your response must be at least %{min} characters.",
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
+    "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
@@ -14523,6 +14638,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
       "reports": "Reports",
+      "statistics": "Statistics",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -14832,6 +14948,13 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "licenses": "Edit Licenses",
         "new": "New Client",
         "title": "Client's options (#%{id})"
+      },
+      "statistics": {
+        "index": {
+          "all_assessments": "All assessments",
+          "assessment_type": "Assessment type",
+          "title": "Statistics"
+        }
       },
       "toggle_status": {
         "successfully": "Client %{name} was successfully updated."
@@ -15226,7 +15349,8 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "sub_factors_mismatch": "[#%{coords}] dimension %{dimension} does not have sub factor %{factor}"
         },
         "result": {
-          "error": "[Result %{id}] %{error}",
+          "error": "[Row %{row}] %{error}",
+          "invalid_assign": "[Row %{row}] Can't to find record for specified Result ID. If you want to create new result, please, leave Result ID column empty",
           "invalid_format": "Invalid File format"
         },
         "translation": {
@@ -15389,6 +15513,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
       "psychometrics": "Psychometrics",
       "question_center": "Question Center",
       "reports": "Reports",
+      "statistics": "Statistics",
       "sub_factors": "Sub-Factors",
       "survey": "Survey",
       "surveys": "Surveys",
@@ -15903,7 +16028,12 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "other": "%{count} Questions",
         "zero": "No Questions"
       },
-      "results": "Results"
+      "results": "Results",
+      "status": {
+        "completed": "Completed",
+        "in_progress": "Resume",
+        "not_started": "Start"
+      }
     }
   },
   "assigns": {
@@ -16520,7 +16650,8 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "notification_center": "Notification Centre",
         "notifications": "Notifications",
         "relationships": "Company Relationships",
-        "reporting": "Reporting"
+        "reporting": "Reporting",
+        "statistics": "Statistics"
       }
     },
     "notifications": {
@@ -16533,6 +16664,11 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
       "show": {
         "export_pdf": "Export to PDF",
         "header": "Report"
+      }
+    },
+    "statistics": {
+      "index": {
+        "title": "Statistics"
       }
     },
     "users": {
@@ -16924,6 +17060,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
     "date": "Your response must be a valid date (dd/mm/yyyy)",
+    "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
     "email": "Your response must be a valid email",
     "issue": "Issue",
     "least": "Please answer at least %{min} choice(s).",
@@ -16931,6 +17068,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
     "max_length": "Your response must be no more than %{max} characters.",
     "min_length": "Your response must be at least %{min} characters.",
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
+    "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",

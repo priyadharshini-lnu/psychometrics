@@ -15,7 +15,6 @@ module Reports
       end
 
       action :insert_after do |data, _current_user, report|
-        binding.pry
         parent = ::Reports::Page.find(data['parent_id'])
         page = report.pages.create!(data['page'])
         page.insert_at(parent.position + 1)
