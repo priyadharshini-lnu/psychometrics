@@ -303,6 +303,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.4.2)
+      byebug (~> 9.0)
+      pry (~> 0.10)
     puma (3.6.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
@@ -516,7 +519,7 @@ DEPENDENCIES
   mustache (~> 1.0.3)
   paranoia!
   pg (~> 0.18.4)
-  pry
+  pry-byebug
   psychometrics-survey!
   puma (~> 3.0)
   pundit (~> 1.1.0)
