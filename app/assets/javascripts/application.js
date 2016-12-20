@@ -13,4 +13,11 @@
 //= require jquery_ujs
 //= require common
 //= require managers/assessments
-//= require_tree .
+//= require bootstrap-sprockets
+//= require bootstrap-select
+//= require bootstrap-colorpicker
+//= require bootstrap-file-input/bootstrap.file-input.js
+//= require multiselect
+///// Translations
+//= require i18n
+//= require i18n/translations
