@@ -1,2 +1,3 @@
 domain: psy.dev # psychometrics.co.uk
 subdomain: 'test' # subdomain
+port: 3030

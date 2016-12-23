@@ -16,22 +16,11 @@
 #
 
 class BlockSerializer < ActiveModel::Serializer
-  attributes :id, :name, :position, :deleted, :props, :created_at, :template_id
+  attributes :id, :name, :position, :deleted, :props, :created_at, :template_id, :questions
 
   #
-  has_many :questions do
-    object.questions.
-      selecting { ['questions.*',
-                   coalesce(template.props, props).as('props'),
-                   coalesce(template.type, type).as('type'),
-                   coalesce(template.name, name).as('name'),
-                   '(CASE WHEN templates_questions.id IS NOT NULL THEN templates_questions.deleted_at ELSE questions.deleted_at END) AS deleted_at',
-                   '(CASE WHEN blocks.template_id IS NOT NULL THEN templates_questions.position ELSE questions.position END) AS reposition'] }.
-      joining { template.outer }.
-      joining { block }.
-      includes(:comments).
-      where.has { (template.disabled == false) | (template.id == nil) }.
-      reorder('reposition ASC')
+  def questions
+    object.questions_ams
   end
 
   def deleted

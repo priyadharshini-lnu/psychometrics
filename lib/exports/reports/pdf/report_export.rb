@@ -18,13 +18,15 @@ module Exports
                     preview_administration_client_user_report_url(url_params.merge({
                                                                                      client_id: client.id,
                                                                                      user_id: user.id,
-                                                                                     id: report.id
+                                                                                     id: report.id,
+                                                                                     port: Settings.port
                                                                                     }))
                 else
                   Rails.application.routes.url_helpers.
                     report_url(report, url_params.merge({
                                                           domain: Settings.domain,
-                                                          subdomain: client.subdomain
+                                                          subdomain: client.subdomain,
+                                                          port: Settings.port
                                                          }))
                 end
 

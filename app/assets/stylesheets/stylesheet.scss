@@ -1,14 +1,3 @@
-@font-face {
-  font-family: 'gotham-book';
-  src: asset-url('gotham-book.eot');
-  src: asset-url('gotham-book.eot?#iefix') format('embedded-opentype'), asset-url('gotham-book.woff') format('woff'), asset-url('gotham-book.ttf') format('truetype');
-}
-@font-face {
-  font-family: 'century-gothic';
-  src: asset-url('century_gothic__2.eot');
-  src: asset-url('century_gothic__2.eot?#iefix') format('embedded-opentype'), asset-url('century-gothic.woff') format('woff'), asset-url('century-gothic.ttf') format('truetype');
-}
-
 html {
   position: relative;
   min-height: 100%;
@@ -24,7 +13,7 @@ html, body {
 
 body {
   margin: 0 0 80px; /* bottom = footer height */
-  font-family: 'century-gothic', Helvetica, Arial, sans-serif !important;
+  font-family: 'Century Gothic', Helvetica, Arial, sans-serif !important;
 }
 
 @media screen and (max-width:767px) {
