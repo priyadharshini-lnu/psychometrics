@@ -22,7 +22,7 @@ class AssessmentSerializer < ActiveModel::Serializer
                    coalesce(template.props, props).as('props'),
                    coalesce(template.name, name).as('name')] }.
       joining { template.outer }.
-      includes(:questions).
+      includes(questions_ams: :comments).
       where.has { (template.disabled == false) | (template.id == nil) }
   end
 

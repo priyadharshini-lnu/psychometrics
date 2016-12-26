@@ -121,7 +121,8 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'pry'
+  gem 'pry-byebug'
+  gem 'hirb'
   gem 'debugger2'
   gem 'web-console'
   gem 'listen', '~> 3.0.5'

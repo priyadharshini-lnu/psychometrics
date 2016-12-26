@@ -7,3 +7,7 @@ Ruby version: 2.3.0
 Rails version: 5.0.0
 
 Database: PostgresSql
+
+prevent bundle secure warnings with
+ 
+``` bundle config github.https true ``` 

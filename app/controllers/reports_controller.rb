@@ -16,7 +16,7 @@ class ReportsController < ApplicationController
   def show
     @results = Assign.
                completed.
-               includes(:membership).
+               includes(:membership, :user).
                where(memberships: { client_id: @current_client.id }, assessment_id: @resource.assessment_id).
                references(:membership).all
     @assign = Assign.find_by(assessment_id: @resource.assessment_id, membership_id: @current_membership.id)
