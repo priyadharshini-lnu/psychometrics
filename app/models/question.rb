@@ -36,6 +36,17 @@ class Question < ApplicationRecord
 
   scope :deleted, -> { where.not(deleted_at: nil) }
   scope :not_deleted, -> { where(deleted_at: nil) }
+  scope :ams, lambda { selecting { ['questions.*',
+                                    coalesce(template.props, props).as('props'),
+                                    coalesce(template.type, type).as('type'),
+                                    coalesce(template.name, name).as('name'),
+                                    '(CASE WHEN templates_questions.id IS NOT NULL THEN templates_questions.deleted_at ELSE questions.deleted_at END) AS deleted_at',
+                                    '(CASE WHEN blocks.template_id IS NOT NULL THEN templates_questions.position ELSE questions.position END) AS reposition'] }.
+      joining { template.outer }.
+      joining { block }.
+      where.has { (template.disabled == false) | (template.id == nil) }.
+      reorder('reposition ASC')
+  }
 
   before_create :set_assessment_id, if: proc { assessment_id.nil? }
 
