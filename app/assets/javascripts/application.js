@@ -11,6 +11,8 @@
 // about supported directives.
 //
 //= require jquery_ujs
+//= require js-cookie
 //= require common
 //= require managers/assessments
+//= require noty
 //= require_tree .

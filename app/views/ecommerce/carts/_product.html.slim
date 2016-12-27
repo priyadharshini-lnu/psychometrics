@@ -1,0 +1,31 @@
+.col-xs-12.product id=dom_id(product)
+  #accordion.panel-group
+    .panel.panel-default
+      .panel-heading
+        .hidden-xs.col-sm-1.togglePanel.text-center
+          a data-toggle="collapse" href="#collapse_#{dom_id(product)}" 
+            span.glyphicon.glyphicon-chevron-up
+        .hidden-xs.col-sm-2
+          = image_tag(product.image, class: 'img-responsive center-block')
+        .col-xs-12.col-sm-9.col-md-5
+          .well.assessmentTitleWell
+            h3.assessmentTitle = product.name
+        .clearfix.visible-sm
+        .col-xs-12.col-sm-8.col-md-4.col-lg-2.tabletPadding
+          .well.priceWell
+            p = humanized_money_with_symbol product.price
+        .clearfix.visible-md
+        .col-md-8.visible-md
+        .col-xs-6.col-sm-2.col-md-2.col-lg-1.tabletPadding
+          = hidden_field_tag("cart[#{product.id}][id]", product.id)
+          = number_field_tag("cart[#{product.id}][quantity]", @cart.quantity_for(product.id), in: 1..100, step: 1, class: 'quantitySelector center-block')
+        .col-xs-6.col-sm-2.col-md-2.col-lg-1.tabletPadding
+          p
+            = link_to remove_from_cart_ecommerce_product_path(product), remote: true, method: :delete, class: 'removeProduct'
+              i.glyphicon.glyphicon-remove
+        .clearfix
+      .panel-collapse.collapse.in id="collapse_#{dom_id(product)}"
+        .panel-body
+          .well.expandedDetailsWell
+            p.expandedCopy = simple_format(product.description)
+.clearfix  

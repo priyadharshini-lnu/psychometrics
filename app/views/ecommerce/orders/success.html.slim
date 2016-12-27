@@ -1,0 +1,12 @@
+.container
+  .row
+    .col-xs-12
+      #assessmentDashboard
+        .contentTitleHeader
+          i.glyphicon.glyphicon-ok.titleIcon.pull-left
+          p.contentTitle = t('.title')
+        .col-xs-12
+          .succesfulMessage.text-center
+            span.glyphicon.glyphicon-ok-circle.paymentSuccesfulIcon
+            == t('.body')
+        .clearfix 

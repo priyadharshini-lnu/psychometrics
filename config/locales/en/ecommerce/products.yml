@@ -1,0 +1,8 @@
+en:
+  ecommerce:
+    products:
+      index:
+        assessment_catalogue: Assessment Catalogue
+        shopping_basket: Shopping Basket
+      add_to_cart:
+        successfully: Assessment was successfuly added to the basket

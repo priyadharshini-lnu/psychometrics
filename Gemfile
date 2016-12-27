@@ -23,6 +23,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-add-clear', '1.0.6'
   gem 'rails-assets-datatables', '1.10.12'
   gem 'rails-assets-summernote', '0.5.10'
+  gem 'rails-assets-js-cookie', '2.1.3'
 end
 
 ### Authentication and authorization
@@ -39,6 +40,7 @@ gem 'font-awesome-rails',         '~> 4.6.3.0'
 gem 'slim-rails',                 '~> 3.1.0'
 ### FORM BUILDERS
 gem 'simple_form',                '~> 3.2.1'
+gem 'cocoon', '1.2.9'
 ### Pagination helpers
 gem 'kaminari',                   '~> 0.17.0'
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
@@ -111,6 +113,9 @@ gem 'chronic', '~> 0.10.2'
 gem 'whenever', '~> 0.9.7', require: false
 
 gem 'hashids', '~> 1.0.2'
+
+gem 'money-rails', '~> 1.7.0'
+gem 'acts_as_shopping_cart', '~> 0.4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

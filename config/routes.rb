@@ -208,6 +208,36 @@ Rails.application.routes.draw do
         post :import
       end
     end
+
+    resources :products do
+      member do
+        get :copy
+        get :sidebar
+        patch :toggle_status
+      end
+    end
+  end
+  #
+  # END: Administration panel
+
+  namespace :ecommerce do
+    root to: 'products#index'
+    resources :products, only: [] do
+      member do
+        post :add_to_cart
+        delete :remove_from_cart
+      end
+    end
+    resource :carts, only: [:show, :update]
+    resource :orders, only: [:new, :create] do
+      get :success
+    end
+    scope module: :users do
+      resource :sessions, only: [:new, :create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
+        delete 'sign_out', to: 'sessions#destroy', as: :destroy
+      end
+      resource :registrations, only: [:new, :create], as: :registration
+    end
   end
 
   constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
@@ -235,16 +265,15 @@ Rails.application.routes.draw do
     namespace :anonym do
       get 'clients/:client_id/assessments/:assessment_id/pass', to: 'assessments#pass', as: :assessment_pass
     end
-
+    
     resources :assessments, only: [:index] do
       member do
         get :pass
       end
+      resources :invites, only: [:new, :create]
     end
-
     resources :reports, only: [:show]
     resource :profiles, only: [:update, :edit]
-
     resources :assigns, only: [:update]
     get 'survey_instructions', to: 'home#survey_instructions'
     root to: 'assessments#index'

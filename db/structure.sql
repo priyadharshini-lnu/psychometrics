@@ -278,7 +278,8 @@ CREATE TABLE clients (
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    background character varying
+    background character varying,
+    type integer DEFAULT 0
 );
 
 
@@ -494,6 +495,73 @@ ALTER SEQUENCE dimensions_id_seq OWNED BY dimensions.id;
 
 
 --
+-- Name: ecommerce_orders; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE ecommerce_orders (
+    id integer NOT NULL,
+    membership_id integer,
+    status integer DEFAULT 0,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: ecommerce_orders_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE ecommerce_orders_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ecommerce_orders_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE ecommerce_orders_id_seq OWNED BY ecommerce_orders.id;
+
+
+--
+-- Name: ecommerce_purchases; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE ecommerce_purchases (
+    id integer NOT NULL,
+    order_id integer,
+    product_id integer,
+    price_cents integer DEFAULT 0 NOT NULL,
+    price_currency character varying DEFAULT 'USD'::character varying NOT NULL,
+    quantity integer DEFAULT 1,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: ecommerce_purchases_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE ecommerce_purchases_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: ecommerce_purchases_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE ecommerce_purchases_id_seq OWNED BY ecommerce_purchases.id;
+
+
+--
 -- Name: factors; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -649,7 +717,8 @@ CREATE TABLE memberships (
     hris jsonb DEFAULT '{}'::jsonb,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    is_retail boolean DEFAULT false
 );
 
 
@@ -812,6 +881,138 @@ CREATE SEQUENCE occupations_id_seq
 --
 
 ALTER SEQUENCE occupations_id_seq OWNED BY occupations.id;
+
+
+--
+-- Name: product_images; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE product_images (
+    id integer NOT NULL,
+    image character varying,
+    "position" integer,
+    product_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: product_images_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE product_images_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: product_images_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE product_images_id_seq OWNED BY product_images.id;
+
+
+--
+-- Name: product_prices; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE product_prices (
+    id integer NOT NULL,
+    price_cents integer DEFAULT 0 NOT NULL,
+    price_currency character varying DEFAULT 'USD'::character varying NOT NULL,
+    product_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: product_prices_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE product_prices_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: product_prices_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE product_prices_id_seq OWNED BY product_prices.id;
+
+
+--
+-- Name: product_reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE product_reports (
+    id integer NOT NULL,
+    product_id integer,
+    report_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: product_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE product_reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: product_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE product_reports_id_seq OWNED BY product_reports.id;
+
+
+--
+-- Name: products; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE products (
+    id integer NOT NULL,
+    name character varying,
+    description text,
+    image character varying,
+    disabled boolean DEFAULT false,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: products_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE products_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: products_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE products_id_seq OWNED BY products.id;
 
 
 --
@@ -1175,6 +1376,20 @@ ALTER TABLE ONLY dimensions ALTER COLUMN id SET DEFAULT nextval('dimensions_id_s
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY ecommerce_orders ALTER COLUMN id SET DEFAULT nextval('ecommerce_orders_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ecommerce_purchases ALTER COLUMN id SET DEFAULT nextval('ecommerce_purchases_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY factors ALTER COLUMN id SET DEFAULT nextval('factors_id_seq'::regclass);
 
 
@@ -1232,6 +1447,34 @@ ALTER TABLE ONLY occupations ALTER COLUMN id SET DEFAULT nextval('occupations_id
 --
 
 ALTER TABLE ONLY occupations_factors ALTER COLUMN id SET DEFAULT nextval('occupations_factors_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY product_images ALTER COLUMN id SET DEFAULT nextval('product_images_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY product_prices ALTER COLUMN id SET DEFAULT nextval('product_prices_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY product_reports ALTER COLUMN id SET DEFAULT nextval('product_reports_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY products ALTER COLUMN id SET DEFAULT nextval('products_id_seq'::regclass);
 
 
 --
@@ -1380,6 +1623,22 @@ ALTER TABLE ONLY dimensions
 
 
 --
+-- Name: ecommerce_orders_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ecommerce_orders
+    ADD CONSTRAINT ecommerce_orders_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: ecommerce_purchases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ecommerce_purchases
+    ADD CONSTRAINT ecommerce_purchases_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: factors_norms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1449,6 +1708,38 @@ ALTER TABLE ONLY occupations_factors
 
 ALTER TABLE ONLY occupations
     ADD CONSTRAINT occupations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: product_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY product_images
+    ADD CONSTRAINT product_images_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: product_prices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY product_prices
+    ADD CONSTRAINT product_prices_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: product_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY product_reports
+    ADD CONSTRAINT product_reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: products_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY products
+    ADD CONSTRAINT products_pkey PRIMARY KEY (id);
 
 
 --
@@ -1628,6 +1919,27 @@ CREATE INDEX index_communications_on_client_id ON communications USING btree (cl
 
 
 --
+-- Name: index_ecommerce_orders_on_membership_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ecommerce_orders_on_membership_id ON ecommerce_orders USING btree (membership_id);
+
+
+--
+-- Name: index_ecommerce_purchases_on_order_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ecommerce_purchases_on_order_id ON ecommerce_purchases USING btree (order_id);
+
+
+--
+-- Name: index_ecommerce_purchases_on_product_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_ecommerce_purchases_on_product_id ON ecommerce_purchases USING btree (product_id);
+
+
+--
 -- Name: index_factors_norms_on_factor_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1789,6 +2101,34 @@ CREATE INDEX index_occupations_on_dimension_id ON occupations USING btree (dimen
 
 
 --
+-- Name: index_product_images_on_product_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_product_images_on_product_id ON product_images USING btree (product_id);
+
+
+--
+-- Name: index_product_prices_on_product_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_product_prices_on_product_id ON product_prices USING btree (product_id);
+
+
+--
+-- Name: index_product_reports_on_product_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_product_reports_on_product_id ON product_reports USING btree (product_id);
+
+
+--
+-- Name: index_product_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_product_reports_on_report_id ON product_reports USING btree (report_id);
+
+
+--
 -- Name: index_questions_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1939,6 +2279,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337'), ('20161019113157'), ('20161020145001'), ('20161021080332'), ('20161025151414'), ('20161025152859'), ('20161025154640'), ('20161026111535'), ('20161026120042'), ('20161027095910'), ('20161031091451'), ('20161031094940'), ('20161031105250'), ('20161031105418'), ('20161101141317'), ('20161102071143'), ('20161102110210'), ('20161102115438'), ('20161103111612'), ('20161103154036'), ('20161108112600'), ('20161110090142'), ('20161111102005'), ('20161115143900'), ('20161118142126'), ('20161121143132'), ('20161123094818'), ('20161125121349'), ('20161125125141'), ('20161128103519'), ('20161128114937'), ('20161202113205');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337'), ('20161019113157'), ('20161020145001'), ('20161021080332'), ('20161025151414'), ('20161025152859'), ('20161025154640'), ('20161026111535'), ('20161026120042'), ('20161027095910'), ('20161031091451'), ('20161031094940'), ('20161031105250'), ('20161031105418'), ('20161101141317'), ('20161102071143'), ('20161102110210'), ('20161102115438'), ('20161103111612'), ('20161103154036'), ('20161108112600'), ('20161110090142'), ('20161111102005'), ('20161115143900'), ('20161118142126'), ('20161121143132'), ('20161123094818'), ('20161125121349'), ('20161125125141'), ('20161128103519'), ('20161128114937'), ('20161202113205'), ('20161212140458'), ('20161215093728'), ('20161215150055'), ('20161215150257'), ('20161221074135'), ('20161221074304'), ('20161223065642'), ('20161223081235');
 
 

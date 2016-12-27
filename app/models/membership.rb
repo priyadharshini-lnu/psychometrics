@@ -15,6 +15,7 @@ class Membership < ApplicationRecord
   has_many :assigns, dependent: :destroy, inverse_of: :membership
   has_many :assessments, through: :assigns
   has_many :communication_emails, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'
+  has_many :orders, dependent: :destroy, inverse_of: :membership, class_name: 'Ecommerce::Order'
 
   acts_as_nested_set scope: :client_id
 
@@ -55,6 +56,7 @@ class Membership < ApplicationRecord
       joins(:user).where(users: { is_anonym: true })
     end
   }
+  # Search users with specified Assign id (hashed)
   scope :assigns_hash_id_eq, lambda { |hash_id|
     begin
       decoded_id = Assign.decode_id(hash_id.to_s).first

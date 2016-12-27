@@ -1,0 +1,9 @@
+en:
+  invites:
+    new:
+      header: Invite Form
+    form:
+      send_invites: 'Send Invites'
+      emails_hint: Set each email in new line
+    create:
+      successfully: 'Your invitations was successfully sent'

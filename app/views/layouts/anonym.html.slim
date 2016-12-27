@@ -28,4 +28,6 @@ html
                 .col-xs-3.col-md-3
           .container
             = yield
-            = render partial: '//layouts/footer'
+      footer class="#{'loginFooter' if devise_controller?}"
+        .container-fluid
+          = render partial: '/layouts/footer'

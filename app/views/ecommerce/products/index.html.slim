@@ -1,0 +1,22 @@
+.container
+  .row
+    .col-xs-12
+      #assessmentDashboard
+        .contentTitleHeader
+          i.glyphicon.glyphicon.glyphicon-shopping-cart.titleIcon.pull-left
+          p.contentTitle.pull-left = t('.assessment_catalogue')
+          = link_to t('.shopping_basket'), ecommerce_carts_path, class: 'btn btn-default pull-right'
+          .dropdown.pull-right
+            button#dropdownMenu1.btn.btn-default.dropdown-toggle aria-expanded="true" aria-haspopup="true" data-toggle="dropdown" type="button" 
+              => current_currency.iso_code
+              span.caret          
+            ul#currencies.dropdown-menu aria-labelledby="dropdownMenu1"
+              - Settings.currencies.each do |currency|
+                = active_link_to t("currencies.#{currency}"), '#', 
+                  wrap_tag: :li, 
+                  active: current_currency.iso_code == currency,
+                  class: 'currency',
+                  data: { value: currency }
+                  
+          .clearfix
+        = render partial: 'product', collection: @products

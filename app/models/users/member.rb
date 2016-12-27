@@ -32,6 +32,9 @@
 
 module Users
   class Member < User
+    attr_accessor :terms
+    validates_acceptance_of :terms, allow_nil: false, on: :create, unless: proc { operator.present? }
+
     def scope
       :user
     end

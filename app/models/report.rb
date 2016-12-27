@@ -22,6 +22,9 @@ class Report < ApplicationRecord
 
   has_many :translations, as: :resource
 
+  has_many :product_reports, dependent: :destroy
+  has_many :products, through: :product_reports
+
   validates :assessment, presence: true
 
   # Copy report with pages => modules

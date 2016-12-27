@@ -42,6 +42,8 @@
 ///// Filter form
 //= require filterrific/filterrific-jquery
 
+//= require cocoon
+
 ///// Translations
 //= require i18n
 //= require i18n/translations

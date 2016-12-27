@@ -6,6 +6,7 @@ en:
     resource:
       assigned: "Assigned %{date}"
       results: "Results"
+      invite_users: Invite Users
       status:
         not_started: 'Start'
         in_progress: 'Resume'

@@ -36,6 +36,9 @@
       .well.completedDateWell
         p
           = first_assign.decorate.completed_at_with_desc
+    - if policy(:invite).new?
+      .col-sm-12.col-md-4.tabletPadding
+        = link_to t('.invite_users'), new_assessment_invite_path(resource), remote: true, class: "btn btn-courseProgress mtm"
     .clearfix
   div.panel-collapse.collapse id=dom_id(resource)
     .panel-body

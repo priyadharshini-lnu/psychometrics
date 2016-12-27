@@ -54,5 +54,6 @@ en:
       libraries: Media Library
       communication_center: Communication Center
       statistics: Statistics
+      products: Products
     breadcrumbs:
       <<: *NAVIGATION

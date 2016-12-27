@@ -1,0 +1,39 @@
+.container
+  .row
+    .col-xs-12
+      #assessmentDashboard
+        .contentTitleHeader
+          i.glyphicon.glyphicon.glyphicon-shopping-cart.titleIcon.pull-left
+          p.contentTitle = t('.order')  
+        .row
+          .col-xs-12
+            br
+            table.table.table-bordered
+              thead
+                tr
+                  th = t('.product_name')
+                  th = t('.product_price')
+                  th = t('.product_quantity')
+                  th = t('.product_subtotal')
+              tbody
+                - @products.each do |product|
+                  - product_quantity = @cart.quantity_for(product.id)
+                  tr
+                    td = product.decorate.display_name
+                    td = humanized_money_with_symbol product.price
+                    td = product_quantity
+                    td = humanized_money_with_symbol(product.price * product_quantity)
+        .row
+          .col-xs-12
+            .pull-right
+              h3.pull-left.basketTotal = t('.total')
+              .well.priceWell.pull-right
+                p = humanized_money_with_symbol @products.map { |p| p.price * @cart.quantity_for(p.id) }.inject(:+)
+        .row
+          .col-xs-12.col-md-6
+            .text-left
+              = link_to t('.back_to_basket'), ecommerce_carts_path, class: 'btn btn-next btn-next-lg'
+          .col-xs-12.col-md-6
+            .text-right
+              = link_to t('.pay'), ecommerce_orders_path, method: :post, class: 'btn btn-next btn-next-lg'
+        .clearfix

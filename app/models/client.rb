@@ -30,9 +30,23 @@ class Client < ApplicationRecord
   has_many :client_reports, dependent: :destroy
   has_many :reports, through: :client_reports
 
-  validates :name, :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
+  has_one :retail_user, class_name: 'User'
+
+  validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
+  validates :name, :type, presence: true
+
+  before_validation :ensure_subdomain, if: :retail?
 
   store :design, accessors: [:background_color]
+
+  #
+  # Disables single column inheritance
+  #
+  self.inheritance_column = :_type_disabled
+
+  # Type of client.
+  # Retail - is client who bought some product
+  enum type: [:enterprise, :retail]
 
   mount_uploader :logo, ImageUploader
   mount_uploader :background, ImageUploader
@@ -76,5 +90,18 @@ class Client < ApplicationRecord
 
   def self.options_for_select
     all.map { |client| [client.decorate.display_name, client.id] }
+  end
+
+  def ensure_subdomain
+    self.subdomain = generate_subdomain if subdomain.blank?
+  end
+
+  private
+
+  def generate_subdomain
+    loop do
+      subdomain = "retail_#{Random.rand(99_999)}#{Time.now.to_i}"
+      break subdomain unless Client.exists?(subdomain: subdomain)
+    end
   end
 end
