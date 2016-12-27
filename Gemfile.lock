@@ -40,7 +40,7 @@ GIT
 
 GIT
   remote: git://github.com/rubysherpas/paranoia.git
-  revision: 70f6e37b7b32cf4f70c5b852a38597699f476c62
+  revision: d70c4c5a7098d4c8416332489e3f63b0a959ab97
   branch: rails5
   specs:
     paranoia (2.2.0.pre)
@@ -48,15 +48,15 @@ GIT
 
 GIT
   remote: git://github.com/seuros/capistrano-sidekiq.git
-  revision: bdb5b74fda19ca2b5623483004b94a06c8bcd331
+  revision: 339c42e24f42d8d72173daae832b23504930f941
   specs:
-    capistrano-sidekiq (0.5.4)
+    capistrano-sidekiq (0.10.0)
       capistrano
       sidekiq (>= 3.4)
 
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: 5468354b4299bdb4d861e47ab05e54571c1c1bf5
+  revision: f45465a78928837b47bfd9148ba6afc007ae7357
   specs:
     psychometrics-survey (0.0.1)
       railties (>= 4.2.0)
@@ -195,7 +195,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     columnize (0.9.0)
-    concurrent-ruby (1.0.2)
+    concurrent-ruby (1.0.3)
     config (1.2.1)
       activesupport (>= 3.0)
       deep_merge (~> 1.0, >= 1.0.1)
@@ -244,6 +244,7 @@ GEM
       activesupport (>= 4.1.0)
     hashids (1.0.2)
     highline (1.7.8)
+    hirb (0.7.3)
     htmlentities (4.3.4)
     i18n (0.7.0)
     i18n-js (3.0.0.rc13)
@@ -317,6 +318,9 @@ GEM
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
       slop (~> 3.4)
+    pry-byebug (3.4.2)
+      byebug (~> 9.0)
+      pry (~> 0.10)
     puma (3.6.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
@@ -523,6 +527,7 @@ DEPENDENCIES
   filterrific (~> 2.0.5)
   font-awesome-rails (~> 4.6.3.0)
   hashids (~> 1.0.2)
+  hirb
   i18n-js (~> 3.0.0.rc3)
   i18n-tasks (~> 0.9.5)
   jquery-fileupload-rails (~> 0.4.6)
@@ -535,7 +540,7 @@ DEPENDENCIES
   mustache (~> 1.0.3)
   paranoia!
   pg (~> 0.18.4)
-  pry
+  pry-byebug
   psychometrics-survey!
   puma (~> 3.0)
   pundit (~> 1.1.0)

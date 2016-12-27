@@ -6,7 +6,7 @@ class CreateClients < ActiveRecord::Migration[5.0]
       t.integer :licenses_used, default: 0
       t.date :licenses_expire
       t.string :subdomain
-      t.attachment :logo
+      t.string :logo
       t.json :design
       t.boolean :disabled, default: false
       t.timestamps

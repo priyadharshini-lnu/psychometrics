@@ -51,7 +51,7 @@ module Administration
         end
 
         def set_resource
-          @resource = policy_scope(@resource_class).find(params[:id])
+          @resource = policy_scope(@resource_class).includes(pages: :modules).find(params[:id])
         end
 
         def set_data

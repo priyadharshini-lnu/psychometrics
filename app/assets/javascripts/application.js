@@ -14,5 +14,12 @@
 //= require js-cookie
 //= require common
 //= require managers/assessments
+//= require bootstrap-sprockets
+//= require bootstrap-select
+//= require bootstrap-colorpicker
+//= require bootstrap-file-input/bootstrap.file-input.js
+//= require multiselect
 //= require noty
-//= require_tree .
+///// Translations
+//= require i18n
+//= require i18n/translations

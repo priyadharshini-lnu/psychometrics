@@ -13,3 +13,5 @@ en:
     max_length: 'Your response must be no more than %{max} characters.'
     must_rank_between: 'Please assign a value from %{min} to %{max} for each item. Values may not be repeated.'
     range: 'Please answer at least %{min} and no more than %{max} choice(s).'
+    must_select: 'Please select from %{min} to %{max} choices'
+    each_group_contains: 'Each group needs to contain not less than %{min} and not more than %{max} items'
