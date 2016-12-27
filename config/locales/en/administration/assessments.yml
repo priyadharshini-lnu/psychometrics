@@ -77,6 +77,8 @@ en:
             selected_users: 'Selected Users'
           users:
             <<: *default
+          update:
+            successfully: 'You successfully finished assigning %{name}'
     clients:
       assessments:
         <<: *ASSESSMENTS

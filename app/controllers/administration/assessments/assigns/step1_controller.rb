@@ -8,30 +8,20 @@ module Administration
         append_before_action :pundit_authorize
 
         def show
-          @assign = AssignForm.new(@assessment.assign_form_attributes || {})
+          @assign = AssignForm.new({})
         end
 
         def update
           @assign = AssignForm.new(resource_params)
-          # Destroy all NOT SELECTED assigned Clients to Assessment
-          AssessmentClient.where({
-            client_id: @assessment.client_ids - @assign.client_ids,
-            assessment_id: @assessment.id
-          }).destroy_all
           # Assign Assessment to all SELECTED Clients
-          @assessment.update_attributes({
-            client_ids: @assign.client_ids,
-            access_reports_at: @assign.access_reports == 'immediately' ? nil : @assign.access_reports_at
-          })
+          @assessment.client_ids = @assign.client_ids.concat(@assessment.client_ids)
+          @assessment.access_reports_at = @assign.access_reports == 'immediately' ? nil : @assign.access_reports_at
+          @assessment.save
 
-          # Destroy all assigned Reports
-          ClientReport.where({
-            report_id: @assessment.report_ids
-          }).delete_all
           # Assign Reports to all SELECTED Clients
           @assign.client_ids.each do |client_id|
             @assign.report_ids.each do |report_id|
-              ClientReport.create({
+              ClientReport.find_or_create_by({
                 client_id: client_id,
                 report_id: report_id
               })
@@ -42,10 +32,6 @@ module Administration
         end
 
         private
-
-        def token_session
-          @token_session ||= "assign_form_#{@assessment.id}_#{current_user.id}"
-        end
 
         def init_breadcrumbs
           add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]

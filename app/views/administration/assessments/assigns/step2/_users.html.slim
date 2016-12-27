@@ -146,6 +146,7 @@ javascript:
     $('#users_not_selected').DataTable(users_not_selected_config);
     $('#search_not_selected').on('submit', function (e){
       e.preventDefault();
+      e.stopPropagation();
       var url = $('#search_not_selected').attr('action') + '?' + $('#search_not_selected').serialize()
       $('#users_not_selected').DataTable().ajax.url(url).load();
     });
@@ -162,6 +163,7 @@ javascript:
     $('#users_selected').DataTable(users_selected_config);
     $('#search_selected').on('submit', function (e){
       e.preventDefault();
+      e.stopPropagation();
       var url = $('#search_selected').attr('action') + '?' + $('#search_selected').serialize()
       $('#users_selected').DataTable().ajax.url(url).load();
     });            

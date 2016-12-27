@@ -5,9 +5,8 @@ class MembershipSerializer < ActiveModel::Serializer
     object.client.decorate.display_name
   end
 
-  # TODO: optimize to not use user's object
   def role_name
-    object.user.decorate.role
+    object.decorate.role_name
   end
 
   def name

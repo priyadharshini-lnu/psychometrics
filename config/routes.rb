@@ -73,7 +73,6 @@ Rails.application.routes.draw do
       end
       scope module: 'assessments' do
         scope module: 'assigns' do
-          resource :finish, controller: :finish, only: [:show], path: 'assign/finish'
           resource :step1, controller: :step1, only: [:show, :update], path: 'assign/step1'
           resource :step2, controller: :step2, only: [:show, :update], path: 'assign/step2' do
             get 'selected_users'
@@ -265,7 +264,7 @@ Rails.application.routes.draw do
     namespace :anonym do
       get 'clients/:client_id/assessments/:assessment_id/pass', to: 'assessments#pass', as: :assessment_pass
     end
-    
+
     resources :assessments, only: [:index] do
       member do
         get :pass
