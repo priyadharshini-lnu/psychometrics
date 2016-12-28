@@ -19,14 +19,13 @@ module Administration
       end
 
       def new
-        @resource = @resource_class.new
-        @resource.build_user
+        @resource = UserForm.new
       end
 
       def create
-        @resource = @resource_class.new(resource_params)
-        @resource.client_id = @client.id
-        @resource.user.operator = current_user
+        @resource = UserForm.new(create_resource_params)
+        @resource.client = @client
+        @resource.operator = current_user
         respond_to do |format|
           if @resource.save
             @resource.user.invite!(current_user)
@@ -46,7 +45,7 @@ module Administration
       def update
         @resource.user.operator = current_user
         respond_to do |format|
-          if @resource.update(resource_params)
+          if @resource.update(update_resource_params)
             format.html do
               redirect_to({ action: :edit, id: @resource }, success: t('.successfully', name: @resource.decorate.display_name))
             end
@@ -118,7 +117,11 @@ module Administration
         add_breadcrumb I18n.t('administration.breadcrumbs.users'), { action: :index }
       end
 
-      def resource_params
+      def create_resource_params
+        params.require(:resource).permit(:parent_id, :first_name, :last_name, :email, :role)
+      end
+
+      def update_resource_params
         params.require(:resource).permit(
           :parent_id, user_attributes: [
             :id, :first_name, :last_name,
