@@ -18,7 +18,8 @@
         p
           = t('.assigned', :date => first_assign.decorate.created_at)
     .col-sm-6.col-md-2.tabletPadding
-      - reports = @reports.try(:[], resource.id)
+      - # it was refactored in stage2 branch
+      - reports = filter_reports_by_type(@reports.try(:[], resource.id), first_assign.norm_type)
       - if reports
         - if reports.size > 1
           .dropdown

@@ -129,6 +129,14 @@ class Assign < ApplicationRecord
     self.class.encode_id id
   end
 
+  def norm_type
+    if norm_data['id'] && norm_data['type']
+      norm_data['type']
+    else
+      nil
+    end
+  end
+
   class << self
     def encode_id(id)
       hashids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.assign_id)

@@ -11,7 +11,7 @@ tr
     = resource.decorate.completed_at
   td.text-center
     .btn-group.reportTable aria-label="..." role="group"
-      - reports = @reports.try(:[], resource.assessment_id)
+      - reports = filter_reports_by_type(@reports.try(:[], resource.assessment_id), resource.norm_type)
       - if reports
         - if reports.size > 1
           .dropdown.btn-group
