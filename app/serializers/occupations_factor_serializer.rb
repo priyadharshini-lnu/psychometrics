@@ -1,5 +1,5 @@
 class OccupationsFactorSerializer < ActiveModel::Serializer
-  attributes :id, :predicate, :value
+  attributes :id, :predicate, :value, :position
 
   def id
     object.factor_id

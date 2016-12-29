@@ -81,7 +81,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:predicate, :value, :factor_id)
+      params.require(:resource).permit(:predicate, :value, :factor_id, :position)
     end
 
     def pundit_authorize
