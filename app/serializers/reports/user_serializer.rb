@@ -7,7 +7,7 @@ module Reports
     end
 
     def completed_at
-      I18n.l(@instance_options[:assign].completed_at, format: :short) if @instance_options[:assign].completed_at
+      I18n.l(@instance_options[:assign].completed_at&.strftime('%D'), format: :short) if @instance_options[:assign].completed_at
     end
 
     def status
