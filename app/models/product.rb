@@ -2,9 +2,9 @@ class Product < ApplicationRecord
   include Copyable
   has_many :product_reports, dependent: :destroy
   has_many :reports, through: :product_reports
-  has_many :prices, class_name: 'ProductPrice', dependent: :destroy
+  has_many :prices, inverse_of: :product, class_name: 'ProductPrice', dependent: :destroy # , autosave: true
   has_many :images, class_name: 'ProductImage', dependent: :destroy
-  accepts_nested_attributes_for :prices, reject_if: proc { |attributes| attributes['price_cents'].blank? }, allow_destroy: true
+  accepts_nested_attributes_for :prices, reject_if: proc { |attributes| attributes['cost'].blank? }, allow_destroy: true
   accepts_nested_attributes_for :images, reject_if: :all_blank, allow_destroy: true
 
   validates :name, presence: true

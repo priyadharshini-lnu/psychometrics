@@ -14,7 +14,7 @@
       h3 = t('.prices')
       = f.simple_fields_for :prices do |p|
         = p.input :price_currency, as: :hidden
-        = p.input :price_cents, label: "#{p.object.price&.currency&.name} (#{p.object.price&.currency})"
+        = p.input :cost, label: "#{p.object.price&.currency&.name} (#{p.object.price&.currency})"
       h3 = t('.images')
       #images
         = f.simple_fields_for :images do |image|

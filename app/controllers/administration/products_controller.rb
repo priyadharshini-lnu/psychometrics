@@ -81,9 +81,9 @@ module Administration
 
     def resource_params
       params.require(:resource).permit(:name, :description, :image, :image_cache,
-                                        prices_attributes: [:id, :price_cents, :price_currency],
-                                        images_attributes: [:id, :image, :image_cache, :position, :_destroy],
-                                        report_ids: [])
+                                       prices_attributes: [:id, :cost, :price_currency],
+                                       images_attributes: [:id, :image, :image_cache, :position, :_destroy],
+                                       report_ids: [])
     end
 
     def set_resource_class
