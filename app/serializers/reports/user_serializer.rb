@@ -1,13 +1,12 @@
 module Reports
   class UserSerializer < ActiveModel::Serializer
     attributes :id, :first_name, :last_name, :email, :status, :completed_at
-
     def id
       object.user_id
     end
 
     def completed_at
-      I18n.l(@instance_options[:assign].completed_at, format: :short) if @instance_options[:assign].completed_at
+      @instance_options[:assign]&.completed_at&.strftime('%D')
     end
 
     def status

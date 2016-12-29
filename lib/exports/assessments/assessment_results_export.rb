@@ -25,7 +25,7 @@ module Exports
             parser = "Exports::Assessments::Questions::#{question.type}".constantize
             question_header = parser.header(question)
             header[:header] << question_header
-            header[:subheader] << Array.new(question_header.size) { |_i| "#{question.name} - #{question.props['questionText']}" }
+            header[:subheader] << Array.new(question_header.size) { |_i| "#{question.name} - #{ActionView::Base.full_sanitizer.sanitize(question.props['questionText'])}" }
           end
           sheet.add_row header[:header].flatten
           sheet.add_row header[:subheader].flatten

@@ -4,6 +4,7 @@
       tr
         th width='300' = link_to_sort @resource_class, :name, @filter_form
         th.text-center width='100' = link_to_sort @resource_class, :condition, @filter_form
+        th.text-center width='100' = link_to_sort @resource_class, :position, @filter_form
         th.text-center width='200' = t 'administration.actions'
         th.text-center width='150' = link_to_sort @resource_class, :created_at, @filter_form
         th.text-center width='150' = link_to_sort @resource_class, :updated_at, @filter_form

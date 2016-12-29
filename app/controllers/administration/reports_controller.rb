@@ -121,7 +121,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :assessment_id)
+      params.require(:resource).permit(:name, :assessment_id, :type)
     end
 
     # Authorisation user

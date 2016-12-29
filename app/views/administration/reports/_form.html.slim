@@ -3,6 +3,7 @@
     = f.error_notification
     .form-inputs.clearfix
       = f.input :name
+      = f.input :type, collection: @resource_class.types.map { |type, index| [t(".types.#{type}"), type] }, include_blank: false
       = f.association :assessment, collection: policy_scope(Assessment).options_for_select, input_html: { data: { live_search: true } }
 
   .modal-footer

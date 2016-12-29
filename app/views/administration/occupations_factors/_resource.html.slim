@@ -1,6 +1,7 @@
 tr data-sidebar=url_for([:sidebar, :administration, @dimension, @occupation, :factor, {id: resource.id}]) id=dom_id(resource)
   td = resource.decorate.display_name
   td.text-center = resource.decorate.condition
+  td.text-center = resource.position
   td.vertical_middle.text-center
     = link_to [:edit, :administration, @dimension, @occupation, :factor, {id: resource.id}], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
       span.fa.fa-pencil

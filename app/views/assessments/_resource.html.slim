@@ -13,12 +13,13 @@
     .clearfix.visible-sm
     .col-sm-6.col-md-2.tabletPadding
       - first_assign = resource.assigns.first
-      = link_to t(".status.#{first_assign.status}"), [:pass, resource], class: "btn btn-courseProgress #{first_assign.completed? ? '1disabled' : ''}"
+      = link_to t(".status.#{first_assign.status}"), [:pass, resource], class: "btn btn-courseProgress #{first_assign.completed? ? 'disabled' : ''}"
       .well.assignedDateWell
         p
           = t('.assigned', :date => first_assign.decorate.created_at)
     .col-sm-6.col-md-2.tabletPadding
-      - reports = @reports.try(:[], resource.id)
+      - # it was refactored in stage2 branch
+      - reports = filter_reports_by_type(@reports.try(:[], resource.id), first_assign.norm_type)
       - if reports
         - if reports.size > 1
           .dropdown

@@ -1,7 +1,7 @@
 module Administration
   module Clients
     class ReportsController < Administration::ReportsController
-      prepend_before_action :set_client
+      before_action :set_client
       append_before_action :init_breadcrumbs
 
       # GET /administration/resources

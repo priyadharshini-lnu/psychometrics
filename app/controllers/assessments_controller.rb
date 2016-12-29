@@ -21,9 +21,10 @@ class AssessmentsController < ApplicationController
   layout 'users'
 
   def pass
-    @assign = Assign.find_by(
+    @assign = Assign.find_by!(
       assessment_id: @resource.id,
-      membership_id: @current_membership.id
+      membership_id: @current_membership.id,
+      status: [:not_started, :in_progress]
     )
     @translations = ::Translation.to_hash_for_assessment(@resource.id, user_locale)
     @assign.in_progress!
