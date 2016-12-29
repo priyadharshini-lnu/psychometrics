@@ -12,7 +12,7 @@
 
 class Report < ApplicationRecord
   include Copyable
-
+  self.inheritance_column = :_type_disabled
   belongs_to :assessment
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
@@ -23,6 +23,7 @@ class Report < ApplicationRecord
   has_many :translations, as: :resource
 
   validates :assessment, presence: true
+  enum type: [:common, :yti, :eti]
 
   # Copy report with pages => modules
   def clone

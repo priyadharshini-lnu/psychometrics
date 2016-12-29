@@ -1,6 +1,10 @@
 en:
   administration:
     reports: &REPORTS
+      types: &types
+       common: 'Any'
+       eti: 'ETI'
+       yti: 'YTI'
       index:
         title: "Reports"
         tooltips:
@@ -21,6 +25,9 @@ en:
         error: 'Report #%{id} was not copied.'
       toggle_status:
         successfully: 'Report was successfully updated.'
+      form:
+        types:
+          <<: *types
       sidebar:
         title: "Report's options (#%{id})"
         view: 'View Report'
