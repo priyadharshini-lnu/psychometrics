@@ -8,6 +8,6 @@ class ProductPrice < ApplicationRecord
   end
 
   def cost
-    price
+    price.zero? ? nil : price
   end
 end

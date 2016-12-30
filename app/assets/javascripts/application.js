@@ -20,6 +20,7 @@
 //= require bootstrap-file-input/bootstrap.file-input.js
 //= require multiselect
 //= require noty
+//= require ecommerce/base
 ///// Translations
 //= require i18n
 //= require i18n/translations
