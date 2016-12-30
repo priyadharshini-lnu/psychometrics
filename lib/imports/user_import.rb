@@ -39,7 +39,7 @@ module Imports
       imported_items = load_imported_items.compact
 
       if imported_items.map(&:valid?).all?
-        imported_items.each(&:save!).each { |i| i.invite!(importer) }
+        imported_items.each(&:save!).each { |i| i.invite!(importer, client_id) }
       else
         imported_items.each_with_index do |user, index|
           user.errors.full_messages.each do |message|

@@ -29,7 +29,7 @@ module Administration
         @resource.user.operator = current_user
         respond_to do |format|
           if @resource.save
-            @resource.user.invite!(current_user)
+            @resource.user.invite!(current_user, @client.id)
             format.js
           else
             format.js { render :new }

@@ -5,7 +5,7 @@ module Exports
         def self.export(current_user, report, user, client, opts = {})
           # TODO: Create task to periodical remove pdf files
           tmp_folder = Rails.root.join('tmp', 'reports')
-          output = "#{tmp_folder}/#{user.decorate.display_name}_#{report.decorate.display_name}_#{Date.today.strftime('%D')}.pdf"
+          output = "#{tmp_folder}/#{user.decorate.display_name}_#{report.decorate.display_name}_#{Date.today.strftime('%F')}.pdf"
           # Generate valid url for parse report to pdf
           url_params = {
             host: Settings.domain,

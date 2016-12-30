@@ -144,7 +144,7 @@ module Imports
           errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + 3, error: user.errors.full_messages.first))
           return
         end
-        # user.invite!(importer) unless user.invited_to_sign_up?
+        # user.invite!(importer, client_id) unless user.invited_to_sign_up?
         user.memberships.find_by(client_id: client_id)
       end
 
