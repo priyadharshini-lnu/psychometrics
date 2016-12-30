@@ -107,19 +107,19 @@ class Assign < ApplicationRecord
   end
 
   def notification_handler
-    if self.status_changed?
+    if status_changed?
       if in_progress?
         Notification.create(
-            assessment_id: assessment_id,
-            membership_id: membership_id,
-            text:      I18n.t('assigns.notifications.in_progress', user_name: user.decorate.display_name, assessment_name: assessment.name)
+          assessment_id: assessment_id,
+          membership_id: membership_id,
+          text: I18n.t('assigns.notifications.in_progress', user_name: user.decorate.display_name, assessment_name: assessment.name)
         )
       end
       if completed?
         Notification.create(
-            assessment_id: assessment_id,
-            membership_id: membership_id,
-            text:      I18n.t('assigns.notifications.completed', user_name: user.decorate.display_name, assessment_name: assessment.name)
+          assessment_id: assessment_id,
+          membership_id: membership_id,
+          text: I18n.t('assigns.notifications.completed', user_name: user.decorate.display_name, assessment_name: assessment.name)
         )
       end
     end
@@ -130,11 +130,8 @@ class Assign < ApplicationRecord
   end
 
   def norm_type
-    if norm_data['id'] && norm_data['type']
-      norm_data['type']
-    else
-      nil
-    end
+    return norm_data['type'] if norm_data && norm_data['id'] && norm_data['type']
+    nil
   end
 
   class << self
