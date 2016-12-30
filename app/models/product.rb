@@ -27,7 +27,7 @@ class Product < ApplicationRecord
   # We join table prices and select price with currency
   # Therefore we need `price` method for parse it to Money object
   def price
-    Money.new(price_cents, price_currency)
+    self&.price_cents && Money.new(price_cents, price_currency)
   end
 
   # Copy Product with prices, images, and reports
