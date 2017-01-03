@@ -31,26 +31,26 @@ html
               span.linkTitle
                 = t('.help')
               span.sub_icon
-                = image_tag 'helpFlatIcon', class: 'helpIcon'
+                = image_tag 'helpFlatIcon.png', class: 'helpIcon'
           - if policy([:managers, Notification]).index?
             li
               = link_to managers_notifications_path
                 span.linkTitle
                   = t('.notifications')
                 span.sub_icon
-                  = image_tag 'notificationFlatIcon', class: 'notificationIcon'
+                  = image_tag 'notificationFlatIcon.png', class: 'notificationIcon'
           li
             = link_to edit_profiles_path, remote: :true
               span.linkTitle
                 = t('.profile')
               span.sub_icon
-                = image_tag 'avatarFlatIcon', class: 'avatarIcon'
+                = image_tag 'avatarFlatIcon.png', class: 'avatarIcon'
           li
             = link_to [:destroy, pundit_user[:current_user].try(:scope), :session], method: :delete
               span.linkTitle
                 = t('.logout')
               span.sub_icon
-                = image_tag 'signOutFlatIcon', class: 'signOutIcon'
+                = image_tag 'signOutFlatIcon.png', class: 'signOutIcon'
       #page-content-wrapper
         .page-content.inset
           header
@@ -62,7 +62,7 @@ html
                     - if @current_client && @current_client.logo.present?
                       = image_tag @current_client.logo.url, class: 'img-responsive center-block headerLogo', alt: @current_client.decorate.display_name
                     - else
-                      = image_tag 'the-talent-enterprise-logo', class: 'img-responsive center-block headerLogo', alt: 'The Talent Enterprise logo'
+                      = image_tag 'the-talent-enterprise-logo.png', class: 'img-responsive center-block headerLogo', alt: 'The Talent Enterprise logo'
                 .col-xs-3.col-md-3
           .container
             = yield

@@ -19,7 +19,7 @@ html
               - if @current_client && @current_client.logo.present?
                 = image_tag @current_client.logo.url, class: 'img-responsive center-block headerLogo', alt: @current_client.decorate.display_name
               - else
-                = image_tag 'the-talent-enterprise-logo', class: 'img-responsive center-block headerLogo', alt: 'The Talent Enterprise logo'
+                = image_tag 'the-talent-enterprise-logo.png', class: 'img-responsive center-block headerLogo', alt: 'The Talent Enterprise logo'
           .col-xs-12.col-sm-6
             h1.pageTitle
           .col-sm-2.hidden-xs
