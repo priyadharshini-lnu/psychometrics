@@ -36,19 +36,6 @@
       = active_link_to(administration_clients_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.clients'), placement: 'right' })
         .fa.fa-briefcase
         span.xn-text= t('administration.navigation.clients')
-    - if policy(:assessment).new? || policy(:client).new?
-      li.xn-openable
-        a href="#"
-          .fa.fa-plus
-          span.xn-text = t('administration.navigation.create')
-        ul
-          - if policy(:assessment).new?
-            li.xn-openable
-              a href="#" = t('administration.navigation.assessments')
-              ul
-                li = link_to(t('administration.navigation.psychometrics'), new_administration_assessment_path, remote: true)
-          - if policy(:client).new?
-            li = link_to(t('administration.navigation.client'), [:new, :administration, :client], remote: true)
     - if policy(:question).index?
       = active_link_to(administration_templates_questions_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.question_center'), placement: 'right' })
         i.fa.fa-question-circle-o
