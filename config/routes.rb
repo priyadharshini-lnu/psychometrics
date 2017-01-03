@@ -249,4 +249,6 @@ Rails.application.routes.draw do
     get 'survey_instructions', to: 'home#survey_instructions'
     root to: 'assessments#index'
   end
+
+  root to: 'administration/administrator/sessions#new'
 end
