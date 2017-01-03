@@ -1,12 +1,14 @@
-.row
-  .col-xs-12.col-sm-6
-    p.footerLinks
-      => link_to 'Privacy Statement', '#'
-      | |
-      =<> link_to 'Terms & Conditions', '#'
-      | |
-      =< link_to "FAQ's"
-  .col-xs-12.col-sm-6.text-right
-    p.footerLogo
-      span.poweredBy Lighthouse Powered by
-      = image_tag 'the-talent-enterprise-logo-footer', alt: 'The Talent Enterprise logo'
+footer class="#{'loginFooter' if devise_controller?}"
+  .container-fluid
+    .row
+      .col-xs-12.col-sm-6
+        p.footerLinks
+          => link_to 'Privacy Statement', '#'
+          | |
+          =<> link_to 'Terms & Conditions', '#'
+          | |
+          =< link_to "FAQ's"
+      .col-xs-12.col-sm-6.text-right
+        p.footerLogo
+          span.poweredBy Lighthouse Powered by
+          = image_tag 'the-talent-enterprise-logo-footer.png', alt: 'The Talent Enterprise logo'

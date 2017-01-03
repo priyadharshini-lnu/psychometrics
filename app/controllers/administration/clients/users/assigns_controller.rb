@@ -36,7 +36,7 @@ module Administration
         end
 
         def destroy
-          @resource = @client.assigns.find(params[:id])
+          @resource = policy_scope(Assign).find(params[:id])
           @resource.destroy
           respond_to do |format|
             format.html { redirect_to(:back, success: t('.successfully')) }

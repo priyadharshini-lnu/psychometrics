@@ -170,6 +170,12 @@ class User < ApplicationRecord
     end
   end
 
+  def invite!(invited_by = nil, invited_to_id = nil, options = {})
+    self.skip_invitation = true
+    super(invited_by, options)
+    InvitationMailer.invite(id, invited_to_id).deliver_later
+  end
+
   private
 
   def check_operator_can_manage
