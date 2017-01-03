@@ -14,3 +14,4 @@ tr id=dom_id(resource)
       span.blueBg.glyphicon.glyphicon-edit
     = link_to [:managers, @assessment, resource], class: '', remote: true, method: 'delete', data: { confirm: t('.tooltips.delete') }
       span.redBg.glyphicon.glyphicon-trash
+  = render('resource_extension', resource: resource) if  flash[:task_id_collapse] == resource.id
