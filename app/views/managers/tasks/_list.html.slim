@@ -1,0 +1,33 @@
+- resources = @resources.select { |task| task.priority == priority }
+- if resources.present?
+  .box.box-info
+    .box-header.with-border
+      .boxTitle.pull-left
+        h3 = t(".subtitle_#{priority}")
+      .box-tools.text-right
+        button.btn.btn-box-tool data-target="#panel_#{priority}" data-toggle="collapse" type="button"
+          i.glyphicon.glyphicon-chevron-up
+    .clearfix
+    div.collapse.in id="panel_#{priority}"
+      .table.table-responsive.table-striped.table-bordered
+        table.table.no-margin
+          thead
+            tr
+              th width='500' = link_to_sort @resource_class, :name, @filter_form
+              th = t('.competency')
+                i.fa.fa-sort aria-hidden="true"
+              th = sort_link(@filter_form, 'membership_user_last_name', @resource_class.human_attribute_name('membership_id'))
+              th = link_to_sort @resource_class, :planned_completed_at, @filter_form
+              th.text-center = link_to_sort @resource_class, :status, @filter_form
+              th = t('.actions')
+          tbody
+            tr
+              td colspan="6"
+                = render_alert_by_priority(priority)
+              - if resources.present?
+                = render partial: 'resource', collection: resources
+      p
+        = link_to [:new, :managers, @assessment, @resource_class.model_name.singular], class: 'blue', remote: true
+          span.glyphicon.glyphicon-plus-sign
+          span = t('.add_item')
+        .summary = t('.summary', total: resources.size)

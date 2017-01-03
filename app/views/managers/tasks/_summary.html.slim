@@ -1,0 +1,29 @@
+.col-xs-12
+  h3.plx = t('.manager_summary')
+  .col-md-2.col-md-offset-1
+    .well.text-center
+      h4 = @tasks.size
+      span = t('.total')
+        | Total Items
+  .col-md-2
+    .well.text-center
+      h4 = "#{status_percent('not_started')}%"
+      span = t('.not_started')
+        | Not Started
+  .col-md-2
+    .well.text-center
+      h4 = "#{status_percent('in_progress')}%"
+      span = t('.in_progress')
+        | In Progress
+  .col-md-2
+    .well.text-center
+      h4 = "#{status_percent('completed')}%"
+      span = t('.completed')
+        | Completed
+  .col-md-2
+    .well.text-center
+      h4 = "#{status_percent('overdue')}%"
+      span = t('.overdue')
+        | Overdue
+= render('summary_managers')
+.clearfix

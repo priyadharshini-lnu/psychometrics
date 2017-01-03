@@ -1,0 +1,10 @@
+- children = resource.children
+- if children.present?
+  table.table.table-responsive.table-striped.table-bordered
+    tr
+      th width='500' = t('.name')
+      th.text-center width='150' = t('.status')
+      th.text-center width='150' = t('.date')
+      th.text-center  width='100' = t('.actions')
+    tbody
+      = render partial: 'managers/tasks/subtasks/resource', collection: children

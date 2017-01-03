@@ -1,3 +1,21 @@
+# == Schema Information
+#
+# Table name: communications
+#
+#  id                :integer          not null, primary key
+#  subject           :string
+#  body              :text
+#  assessment_id     :integer
+#  client_id         :integer
+#  recipients        :integer          default("all")
+#  disabled          :boolean          default(FALSE)
+#  delivery_rule     :integer          default("on_specific_datetime")
+#  delivery_at       :datetime
+#  delivery_interval :string
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#
+
 class Communication < ApplicationRecord
   attr_accessor :delivery_at_date, :delivery_at_time, :delivery_interval_number, :delivery_interval_period
   has_and_belongs_to_many :memberships, join_table: :communications_memberships

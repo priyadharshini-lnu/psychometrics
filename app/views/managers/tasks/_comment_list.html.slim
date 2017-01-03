@@ -1,0 +1,5 @@
+- comments = resource.comments.order(created_at: :desc).all
+- if comments.present?
+  h4 = t('.notes')
+  div.comments-container
+    = render partial: 'managers/tasks/comment', collection: resource.comments.order(created_at: :desc)

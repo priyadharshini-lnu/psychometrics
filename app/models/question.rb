@@ -27,9 +27,9 @@ class Question < ApplicationRecord
   belongs_to :block
   belongs_to :assessment
   belongs_to :template, class_name: 'Question', dependent: :destroy
-  has_many :comments
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
   has_many :factors_scorings, dependent: :destroy
+  has_many :comments, as: :commentable
   has_many :translations, as: :translateable, dependent: :destroy
 
   enum view: [:assessments, :templates, :blocks]

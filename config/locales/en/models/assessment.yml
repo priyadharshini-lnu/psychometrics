@@ -16,6 +16,8 @@ en:
           psychometric: 'Psychometrics'
           organisational: 'Org Surveys'
           '360': '360 Feedback'
+        statuses:
+          finished: 'finished'
   simple_form:
     placeholders:
       assessment:

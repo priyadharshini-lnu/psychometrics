@@ -1,0 +1,11 @@
+$('#modal-container').find('.modal').modal('hide');
+$('#modal-container').find('.modal').on('hidden.bs.modal', function(){
+  $('#<%= dom_id(@resource) %>').hide("fast", function(){
+    var resource = $('<%= j render(partial: @resource.root? ? 'resource' : 'managers/tasks/subtasks/resource', locals: { resource: @resource }) %>').hide();
+    var element = $(resource)
+    $(this).replaceWith(resource);
+    element.show('slow');
+    $(document).trigger('initPlugins');
+  });
+});
+$(document).trigger('resource:updated');

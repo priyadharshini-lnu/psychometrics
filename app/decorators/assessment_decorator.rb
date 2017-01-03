@@ -7,6 +7,14 @@ class AssessmentDecorator < BaseDecorator
     object.description || I18n.t('assessments.decorator.no_description')
   end
 
+  def name
+    if object.finished?
+      "#{object.name} (#{I18n.t('activerecord.attributes.assessment.statuses.finished')})"
+    else
+      object.name
+    end
+  end
+
   def timing
     object.timing ? "- #{object.timing}" : ''
   end

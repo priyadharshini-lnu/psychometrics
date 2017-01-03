@@ -1,0 +1,27 @@
+tr id=dom_id(resource)
+  td = resource.name
+  td.text-center
+    .sub-task-status-container
+      = render partial: 'managers/tasks/resource_status', locals: { resource: resource }
+    input.slider data-slider-max="2" data-slider-tooltip="hide" data-slider-min="0" data-slider-step="1" data-slider-value="#{Task.statuses[resource.status]}"
+  td.text-center = resource.decorate.planned_completed_at
+  td.text-center
+    a href="#"
+    = link_to [:edit, :managers, @assessment, resource], remote: true, class: ''
+      span.blueBg.glyphicon.glyphicon-edit
+    = link_to [:managers, @assessment, resource], class: '', remote: true, method: 'delete', data: { confirm: t('managers.tasks.resource.tooltips.delete') }
+      span.redBg.glyphicon.glyphicon-trash
+javascript:
+  $(function () {
+    $('##{dom_id(resource)} input.slider').slider()
+    $('##{dom_id(resource)} input.slider').on('change', function (event) {
+      $.ajax({
+        data: {
+          resource: {
+            status: event.value.newValue
+          }
+        },
+        url: '#{change_status_managers_assessment_task_path(@assessment, resource)}'
+      })
+    })
+  })

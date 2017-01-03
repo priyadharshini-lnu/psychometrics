@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: reports
+#
+#  id            :integer          not null, primary key
+#  assessment_id :integer
+#  name          :string
+#  disabled      :boolean          default(FALSE)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations
 

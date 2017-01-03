@@ -8,8 +8,10 @@
 #  created_at       :datetime         not null
 #  updated_at       :datetime         not null
 #  dimension_id     :integer
-#  parent_id        :string
+#  parent_id        :integer
 #  disabled         :boolean          default(FALSE)
+#  icon             :string
+#  description      :text
 #
 
 class Factor < ApplicationRecord

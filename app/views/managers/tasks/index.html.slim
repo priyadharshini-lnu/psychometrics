@@ -1,0 +1,31 @@
+.row
+  .col-xs-12
+    #assessmentDashboard
+      .contentTitleHeader.clearfix
+        i.glyphicon.glyphicon-user.titleIcon.pull-left
+        p.contentTitle.pull-left style="font-size: 16px; line-height: 1"
+          = t('.title')
+        .dropdown.pull-right
+          = link_to [:new, :managers, @assessment, @resource_class.model_name.singular], remote: true, class: 'btn btn-default btn-box-tool', data: { toggle: 'tooltip', title: t('.tooltips.create') }
+            i.glyphicon.glyphicon-plus
+      .clearfix
+      .col-xs-12
+        .box-body.collapse.in
+          = render('filter', filter_form: @filter_form)
+        #filter_results
+          = render partial: 'list_collection'
+        .clearfix
+      .clearfix
+      = render 'summary'
+css:
+  a {
+    color: #333333;
+  }
+
+  a.blue:hover {
+    color: #23527c;
+  }
+
+  a.blue {
+    color: #02B6C8;
+  }

@@ -4,8 +4,6 @@
 #
 #  id            :integer          not null, primary key
 #  assessment_id :integer
-#  user_id       :integer
-#  client_id     :integer
 #  results       :jsonb
 #  scoring       :jsonb
 #  embedded_data :jsonb
@@ -15,6 +13,10 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  step          :integer
+#  membership_id :integer
+#  norm_data     :jsonb
+#  agile_scoring :jsonb
+#  started_at    :datetime
 #
 
 class AssignsController < ApplicationController

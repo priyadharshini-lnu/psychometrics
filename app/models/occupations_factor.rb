@@ -1,13 +1,16 @@
 # == Schema Information
 #
-# Table name: factors_norms
+# Table name: occupations_factors
 #
-#  id        :integer          not null, primary key
-#  type      :enum
-#  factor_id :integer
-#  norm_id   :integer
-#  props     :json
+#  id            :integer          not null, primary key
+#  occupation_id :integer
+#  factor_id     :integer
+#  predicate     :string
+#  value         :float
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
+
 class OccupationsFactor < ApplicationRecord
   belongs_to :factor
   belongs_to :occupation

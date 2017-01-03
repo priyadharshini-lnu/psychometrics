@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: assessment_clients
+#
+#  id            :integer          not null, primary key
+#  assessment_id :integer
+#  client_id     :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class AssessmentClient < ApplicationRecord
   belongs_to :assessment, inverse_of: :assessment_clients
   belongs_to :client, inverse_of: :assessment_clients

@@ -1,0 +1,21 @@
+var existing_extension_block = $('#task_extension_<%= @resource.id%>').length
+$('.task-extension').remove()
+if (!existing_extension_block) {
+  var resource = $('<%= j render(partial: 'resource_extension', locals: { resource: @resource }) %>');
+  $("#<%= dom_id(@resource) %>").after(resource)
+  $(document).trigger('initPlugins')
+  $('#comment_submit').click(function () {
+    var text = $('#comment_input').val()
+    if (text) {
+      $.ajax({
+        data: {
+          resource: {
+            text: text
+          }
+        },
+        method: 'POST',
+        url: '<%= managers_assessment_task_comments_path(@assessment, @resource) %>'
+      })
+    }
+  })
+}
