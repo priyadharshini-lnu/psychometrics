@@ -4,12 +4,9 @@
 #
 #  id            :integer          not null, primary key
 #  assessment_id :integer
-#  user_id       :integer
-#  client_id     :integer
 #  results       :jsonb
 #  scoring       :jsonb
 #  embedded_data :jsonb
-#  norm_data     :jsonb
 #  status        :integer          default("not_started")
 #  role          :integer          default("member")
 #  completed_at  :datetime
@@ -17,6 +14,9 @@
 #  updated_at    :datetime         not null
 #  step          :integer
 #  membership_id :integer
+#  norm_data     :jsonb
+#  agile_scoring :jsonb
+#  started_at    :datetime
 #
 
 class Assign < ApplicationRecord

@@ -1,0 +1,9 @@
+- if resource.overdue? && resource.root?
+  span.label.label-danger = resource.decorate.status
+- else
+  - if resource.in_progress?
+    span.label.label-warning = resource.decorate.status
+  - if resource.completed?
+    span.label.label-success = resource.decorate.status
+  - if resource.not_started?
+    span.label.label-info = resource.decorate.status

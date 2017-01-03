@@ -1,3 +1,18 @@
+# == Schema Information
+#
+# Table name: translations
+#
+#  id                 :integer          not null, primary key
+#  translateable_type :string
+#  translateable_id   :integer
+#  props              :json             default({})
+#  locale             :string(4)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  resource_type      :string
+#  resource_id        :integer
+#
+
 class Translation < ApplicationRecord
   belongs_to :translateable, polymorphic: true
   belongs_to :resource, polymorphic: true

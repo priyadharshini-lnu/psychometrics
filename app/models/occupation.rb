@@ -1,14 +1,22 @@
 # == Schema Information
 #
-# Table name: dimensions
+# Table name: occupations
 #
-#  id            :integer          not null, primary key
-#  name          :string
-#  disabled      :boolean          default(FALSE)
-#  created_at    :datetime         not null
-#  updated_at    :datetime         not null
-#  factors_count :integer          default(0)
+#  id                                 :integer          not null, primary key
+#  name                               :string
+#  icon                               :string
+#  description                        :text
+#  dimension_id                       :integer
+#  created_at                         :datetime         not null
+#  updated_at                         :datetime         not null
+#  full_description                   :text
+#  potential_areas_of_study           :text
+#  key_career_tracks                  :text
+#  high_school_entry_roles            :text
+#  diploma_qualification              :text
+#  bachelors_or_masters_qualification :text
 #
+
 class Occupation < ApplicationRecord
   has_many :occupations_factors
   belongs_to :dimension

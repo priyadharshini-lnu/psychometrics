@@ -1,0 +1,9 @@
+en:
+  managers:
+    assessments:
+      index:
+        name: 'Name'
+        actions: 'Actions'
+      resource:
+        action_planning: 'Action Planning'
+

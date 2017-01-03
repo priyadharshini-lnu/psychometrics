@@ -1,0 +1,12 @@
+.col-sm-6.comment-container
+  .panel.panel-white.post.panel-shadow
+    .post-heading
+      .pull-left.image
+      .pull-left.meta
+        .title.h5
+          a href="#"
+            b = comment.creator.decorate.display_name
+            = " #{t('.made_comment')}"
+        h6.text-muted.time = comment.decorate.created_at
+    .post-description
+      p = comment.text

@@ -14,12 +14,12 @@
 #  required_validation :json
 #  validation          :json
 #  display_logic       :json
+#  skip_logic          :json
 #  view                :integer          default("assessments")
 #  disabled            :boolean          default(FALSE)
 #  template_id         :integer
-#  skip_logic          :json
+#  assessment_id       :integer
 #
-
 
 FactoryGirl.define do
   factory :question do

@@ -1,0 +1,54 @@
+en:
+  managers:
+    tasks:
+      index:
+        title: 'Action Planning Dashboard'
+        subtitle: 'Action Items'
+        tooltips:
+          create: 'Create'
+      list:
+        add_item: 'Add Action Item'
+        summary: 'Showing %{total} of %{total} entries.'
+        competency: 'Competency'
+        actions: 'Actions'
+        high: 'High Priority'
+        medium: 'Medium Priority'
+        low: 'Low Priority'
+        subtitle_high: 'High Priority Items'
+        subtitle_medium: 'Medium Priority Items'
+        subtitle_low: 'Low Priority Items'
+      new:
+        header: 'Create Action Item'
+      edit:
+        header: 'Update Action Item'
+      resource:
+        tooltips:
+          edit: 'Edit Action Item'
+          delete: 'Delete Action Item'
+      summary:
+        total: 'Total Items'
+        manager_summary: 'Manager Summary'
+        not_started: 'Not Started'
+        in_progress: 'In Progress'
+        completed: 'Completed'
+        overdue: 'Overdue'
+      summary_managers:
+        assignee: 'Direct Report'
+        not_started: 'Not Started'
+        in_progress: 'In Progress'
+        completed: 'Completed'
+        overdue: 'Overdue'
+      resource_extension:
+        add: 'Add Sub Action Item'
+        sub_tasks: 'Sub Action Items'
+        notes: 'Notes/Comments:'
+        leave_comment: 'Leave a comment/note:'
+        add_comment: 'Add Comment'
+      subtasks:
+        list:
+          name: 'Action Item'
+          status: 'Status'
+          date: 'Target Completion Date'
+          actions: 'Actions'
+      comment:
+        made_comment: 'made a comment.'

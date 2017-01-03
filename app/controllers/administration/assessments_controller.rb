@@ -113,7 +113,7 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :category, :description, :dimension_id, :timing)
+    params.require(:resource).permit(:name, :category, :description, :dimension_id, :timing, :status)
   end
 
   # Authorisation user

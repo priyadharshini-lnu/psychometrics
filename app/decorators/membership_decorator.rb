@@ -44,4 +44,9 @@ class MembershipDecorator < BaseDecorator
       )
     }.to_json
   end
+
+  def managers_for_select
+    # TODO: need to change!
+    User.where(role: User::USER_ROLES[:manager]).map { |manager| [manager.decorate.display_name, manager.id] }
+  end
 end

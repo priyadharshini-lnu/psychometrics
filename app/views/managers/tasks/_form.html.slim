@@ -1,0 +1,41 @@
+= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, remote: true, wrapper: :horizontal_form) do |f|
+  .modal-body
+    = f.error_notification
+    br
+    = f.input :parent_id, as: :hidden
+    .form-inputs.row.mbm
+      = f.input :name, label: t('activerecord.attributes.task.name_label')
+    - if @resource.root?
+      .form-inputs.row.mbm
+        = f.input :description, label: t('activerecord.attributes.task.description_label')
+      .form-inputs.row.mbm
+        = f.input :factor_id, collection: @factors.map { |f| [f.name, f.id] }, include_blank: true, label: t('activerecord.attributes.task.factor_id_label')
+      .form-inputs.row.mbm
+        = f.input :membership_id, collection: @managers.map { |manager| [manager.user.decorate.display_name, manager.id] }, include_blank: true, label: t('activerecord.attributes.task.membership_id_label')
+    - if @resource.root?
+      .form-inputs.row.mbm
+        = f.input :status, collection: @resource_class.statuses.map { |k, v| [t(".statuses.#{k}"), k] }, include_blank: false, label: t('activerecord.attributes.task.status_label')
+      .form-inputs.row.mbm
+        = f.input :priority, collection: @resource_class.priorities.map { |k, v| [t(".tasks.#{k}"), k] }, include_blank: false, label: t('activerecord.attributes.task.priority_label')
+    .form-inputs.row.mbm
+      = f.input :planned_completed_at, as: :string, input_html: { class: 'managers_datepicker', value: f.object.planned_completed_at.try(:strftime, '%Y-%m-%d') || Date.tomorrow }, label: t('activerecord.attributes.task.planned_completed_at_label')
+
+  .modal-footer
+    .btn-group
+      = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+css:
+  .dropdown-toggle {
+    display: none;
+  }
+  .bootstrap-select {
+    padding: 0px;
+    border: 0px solid transparent;
+  }
+  .datepicker {
+    z-index: 1151 !important;
+  }
+javascript:
+  $(function() {
+    $(".managers_datepicker").datepicker({format: 'yyyy-mm-dd'});
+  })

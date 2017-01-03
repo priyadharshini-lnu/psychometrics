@@ -1,0 +1,16 @@
+tr id=dom_id(resource)
+  td data-target="#task#{resource.id}" data-toggle="collapse"
+    = link_to resource.name, [:managers, @assessment, resource], remote: true, class: 'blue'
+  td = resource.factor.name
+  td = resource.membership.user.decorate.display_name
+  td = resource.decorate.planned_completed_at
+  td.text-center
+    .task-status-container
+      = render partial: 'resource_status', locals: { resource: resource }
+  td
+    = link_to [:managers, @assessment, resource], remote: true, class: ''
+      span.greenBg.glyphicon.glyphicon-zoom-in
+    = link_to [:edit, :managers, @assessment, resource], remote: true, class: ''
+      span.blueBg.glyphicon.glyphicon-edit
+    = link_to [:managers, @assessment, resource], class: '', remote: true, method: 'delete', data: { confirm: t('.tooltips.delete') }
+      span.redBg.glyphicon.glyphicon-trash
