@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   # Administration panel
@@ -269,7 +270,6 @@ Rails.application.routes.draw do
       member do
         get :pass
       end
-      resources :invites, only: [:new, :create]
     end
     resources :reports, only: [:show]
     resource :profiles, only: [:update, :edit]
@@ -277,6 +277,15 @@ Rails.application.routes.draw do
     get 'survey_instructions', to: 'home#survey_instructions'
     root to: 'assessments#index'
   end
+
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    # Protect against timing attacks: (https://codahale.com/a-lesson-in-timing-attacks/)
+    # - Use & (do not use &&) so that it doesn't short circuit.
+    # - Use `secure_compare` to stop length information leaking
+    ActiveSupport::SecurityUtils.secure_compare(username, 'staging') &
+      ActiveSupport::SecurityUtils.secure_compare(password, 'sumatosoft')
+  end if Rails.env.production?
+  mount Sidekiq::Web, at: '/sidekiq'
 
   root to: 'administration/administrator/sessions#new'
 end

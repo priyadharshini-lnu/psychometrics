@@ -115,13 +115,14 @@ gem 'whenever', '~> 0.9.7', require: false
 gem 'hashids', '~> 1.0.2'
 
 gem 'money-rails', '~> 1.7.0'
-gem 'acts_as_shopping_cart', '~> 0.4.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.5.2'
   gem 'factory_girl_rails', '~> 4.7.0'
+  gem 'capybara', '~> 2.11.0'
+  gem 'guard-rspec', '~> 4.7.3'
 end
 
 group :development do

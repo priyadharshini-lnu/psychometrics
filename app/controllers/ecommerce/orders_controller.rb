@@ -78,7 +78,7 @@ module Ecommerce
           }]
         })
         user.save
-        user.invite!(current_user)
+        user.invite!(current_user, @current_membership.client)
       end
       membership = user.memberships.find_or_create_by(client_id: @current_membership.client_id)
       Assign.find_or_create_by!(membership: membership, assessment: assessment)
@@ -89,6 +89,7 @@ module Ecommerce
       if @current_membership.new_record?
         @current_membership.client = Client.create(name: "Retail #{@current_user.decorate.display_name}", type: :retail)
         @current_membership.save
+        current_user.invite!(nil, @current_membership.client)
       end
     end
   end

@@ -2,9 +2,9 @@ module Ecommerce
   class Cart
     attr_accessor :cart, :session
 
-    def initialize(session)
-      @session = session
-      @cart = @session[:cart] || {}
+    def initialize(engine)
+      @engine = engine
+      @cart = @engine[:cart] || {}
     end
 
     # Add Item to cart
@@ -12,7 +12,7 @@ module Ecommerce
       return if quantity <= 0
       @cart[product_id.to_s] ||= { 'id' => product_id, 'quantity' => 0 }
       @cart[product_id.to_s]['quantity'] += quantity
-      @session[:cart] = @cart
+      @engine[:cart] = @cart
     end
 
     # Update quantity of specified item
@@ -20,13 +20,13 @@ module Ecommerce
       return remove(product_id) if quantity <= 0
       @cart[product_id.to_s] ||= { 'id' => product_id, 'quantity' => 0 }
       @cart[product_id.to_s]['quantity'] = quantity
-      @session[:cart] = @cart
+      @engine[:cart] = @cart
     end
 
     # Remove Item from cart
     def remove(product_id)
       @cart.delete(product_id.to_s)
-      @session[:cart] = @cart
+      @engine[:cart] = @cart
     end
 
     # Array of Item Ids
@@ -42,7 +42,7 @@ module Ecommerce
     # Clear cart
     def clear!
       @cart = {}
-      @session[:cart] = {}
+      @engine[:cart] = {}
     end
   end
 end
