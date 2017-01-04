@@ -8,7 +8,7 @@ module Authenticate
   private
 
   def authenticate
-    return if Rails.env.development?
+    return if Rails.env.development? || Rails.env.test?
     authenticate_or_request_with_http_basic do |username, password|
       username == 'staging' && password == 'sumatosoft'
     end

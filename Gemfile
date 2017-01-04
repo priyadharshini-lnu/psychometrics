@@ -116,14 +116,14 @@ gem 'bootstrap-slider-rails'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
+  gem 'pry-byebug'
+  gem 'hirb'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', '~> 4.7.0'
 end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'pry-byebug'
-  gem 'hirb'
   gem 'debugger2'
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
@@ -136,4 +136,10 @@ group :development do
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rvm',           '~> 0.1.2'
   gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
+end
+group :test do
+  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'capybara'
+  gem 'poltergeist'
+  gem "capybara-webkit"
 end
