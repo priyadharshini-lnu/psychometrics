@@ -168,8 +168,8 @@ CREATE TABLE assigns (
     step integer,
     membership_id integer,
     norm_data jsonb,
-    agile_scoring jsonb,
-    started_at timestamp without time zone
+    started_at timestamp without time zone,
+    agile_scoring jsonb
 );
 
 
@@ -313,8 +313,7 @@ CREATE TABLE comments (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     commentable_id integer,
-    commentable_type character varying,
-    question_id integer
+    commentable_type character varying
 );
 
 
