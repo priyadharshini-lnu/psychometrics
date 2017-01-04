@@ -27,7 +27,8 @@
 #  invited_by_type        :string
 #  invited_by_id          :integer
 #  invitations_count      :integer          default(0)
-#  hris                   :jsonb
+#  authentication_token   :string(30)
+#  is_anonym              :boolean          default(FALSE)
 #
 
 class User < ApplicationRecord
@@ -81,6 +82,7 @@ class User < ApplicationRecord
 
   scope :enabled, -> { where.not(disabled: true) }
   scope :identified, -> { where(is_anonym: false) }
+  scope :managers, -> { where(role: User::USER_ROLES[:manager]) }
 
   # We won't set password, we will send inviting
   def password_required?

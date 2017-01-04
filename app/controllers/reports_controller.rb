@@ -1,3 +1,15 @@
+# == Schema Information
+#
+# Table name: reports
+#
+#  id            :integer          not null, primary key
+#  assessment_id :integer
+#  name          :string
+#  disabled      :boolean          default(FALSE)
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 class ReportsController < ApplicationController
   include AuthenticateByToken
   prepend_before_action :set_resource_class

@@ -13,11 +13,15 @@ module Exports
         #   ['1,2,3',   '4,5',   1, 2, 3,   4,5]
         def self.result(answers, question)
           parsed_result = []
+
+          factors_scoring = question.detect_specified_scoring.
+                            inject({}) { |sum, s| sum[s['index']] = s['value']; sum }
+
           question.props['scalePoints'].to_i.times do |s|
             parsed_result << (answers || []).
                              select { |answer| answer['scale'] == s }.
                              sort_by { |answer| answer['value'] }.
-                             map { |answer| answer['choice'] + 1 }.
+                             map { |answer| factors_scoring[answer['choice']] || (answer['choice'] + 1) }.
                              join(', ')
           end
           question.props['scalePoints'].to_i.times do |s|

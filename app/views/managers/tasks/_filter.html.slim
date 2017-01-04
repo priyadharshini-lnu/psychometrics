@@ -1,0 +1,12 @@
+.searchBar.clearfix
+  .input-group.col-md-4.pull-right
+    = search_form_for(filter_form,
+            url: {action: :index},
+            html: {id: 'filter', class: ''},
+            builder: SimpleForm::FormBuilder) do |f|
+      = f.input :name_cont,
+              label: false,
+              as: :string,
+              required: false,
+              placeholder: t('administration.search'),
+              input_html: {class: 'has_clear periodically-observed mbs'}

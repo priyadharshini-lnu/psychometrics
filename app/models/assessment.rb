@@ -2,16 +2,19 @@
 #
 # Table name: assessments
 #
-#  id           :integer          not null, primary key
-#  name         :string
-#  category     :enum             default("psychometric")
-#  dimension_id :integer
-#  disabled     :boolean          default(FALSE)
-#  created_at   :datetime         not null
-#  updated_at   :datetime         not null
-#  flow         :json
-#  norm_rules   :json
-#  description  :text
+#  id                :integer          not null, primary key
+#  name              :string
+#  category          :enum             default("psychometric")
+#  dimension_id      :integer
+#  disabled          :boolean          default(FALSE)
+#  created_at        :datetime         not null
+#  updated_at        :datetime         not null
+#  flow              :json
+#  norm_rules        :json
+#  description       :text
+#  timing            :string
+#  access_reports_at :datetime
+#  status            :integer
 #
 
 class Assessment < ApplicationRecord
@@ -32,6 +35,7 @@ class Assessment < ApplicationRecord
   has_many :communications, dependent: :destroy
 
   has_many :translations, as: :resource, dependent: :destroy
+  has_many :tasks, dependent: :destroy
 
   belongs_to :dimension
 
@@ -42,6 +46,9 @@ class Assessment < ApplicationRecord
     '360' => '360'
   }.freeze
 
+  # STATUSES constant
+  STATUSES = [:in_progress, :finished].freeze
+
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
@@ -49,9 +56,11 @@ class Assessment < ApplicationRecord
 
   def init
     self.flow ||= { elements: [] }
+    self.status = Assessment.statuses[:in_progress] unless self.status
   end
 
   enum category: CATEGORIES
+  enum status: STATUSES
 
   filterrific(
     default_filter_params: {

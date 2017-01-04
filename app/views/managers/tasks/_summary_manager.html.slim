@@ -1,0 +1,7 @@
+- tasks_by_status = @managers_tasks_by_status[summary_manager.id]
+tr
+  td = summary_manager.decorate.display_name
+  td.text-center = tasks_by_status['not_started'].try(:size) || 0
+  td.text-center = tasks_by_status['in_progress'].try(:size) || 0
+  td.text-center = tasks_by_status['completed'].try(:size) || 0
+  td.text-center = tasks_by_status['overdue'].try(:size) || 0

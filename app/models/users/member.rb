@@ -27,7 +27,8 @@
 #  invited_by_type        :string
 #  invited_by_id          :integer
 #  invitations_count      :integer          default(0)
-#  hris                   :jsonb
+#  authentication_token   :string(30)
+#  is_anonym              :boolean          default(FALSE)
 #
 
 module Users

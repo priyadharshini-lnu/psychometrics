@@ -19,13 +19,18 @@ $(document).ready(function () {
   //Display the confirmation dialog
   $.rails.showConfirmDialog = function (link) {
     var data = link.data("confirm"),
-        template = $('#mb-confirm-template').html(),
-        rendered = $(Mustache.render(template, data));
-    $('#confirm-container').html(rendered.toggleClass('open'));
-
-    rendered.find('.mb-confirm-yes').on('click', function(){
-      $.rails.confirmed(link);
-    });
+        template = $('#mb-confirm-template').html();
+    if (template) {
+      var rendered = $(Mustache.render(template, data));
+      $('#confirm-container').html(rendered.toggleClass('open'));
+      rendered.find('.mb-confirm-yes').on('click', function(){
+        $.rails.confirmed(link);
+      });
+    } else {
+      if (window.confirm(link.data("confirm"))) {
+        $.rails.confirmed(link);
+      }
+    }
   }
 });
 

@@ -4,12 +4,9 @@
 #
 #  id            :integer          not null, primary key
 #  assessment_id :integer
-#  user_id       :integer
-#  client_id     :integer
 #  results       :jsonb
 #  scoring       :jsonb
 #  embedded_data :jsonb
-#  norm_data     :jsonb
 #  status        :integer          default("not_started")
 #  role          :integer          default("member")
 #  completed_at  :datetime
@@ -17,6 +14,9 @@
 #  updated_at    :datetime         not null
 #  step          :integer
 #  membership_id :integer
+#  norm_data     :jsonb
+#  agile_scoring :jsonb
+#  started_at    :datetime
 #
 
 class Assign < ApplicationRecord
@@ -88,17 +88,13 @@ class Assign < ApplicationRecord
         scoring_class = "Scoring::#{question.try(:type)}"
         result        = results[question.try(:id).try(:to_s)]
         if result && question && !question_scoring.props.empty?
-          begin
-            scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)
-            # type 'PickGroupRank' is used for agile methodology
-            # for common scoring we need to skip this type
-            if question.try(:type) == 'PickGroupRank'
-              self.agile_scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
-            else
-              self.scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
-            end
-          rescue
-            raise "Should be implemented class #{scoring_class}"
+          scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)
+          # type 'PickGroupRank' is used for agile methodology
+          # for common scoring we need to skip this type
+          if question.try(:type) == 'PickGroupRank'
+            self.agile_scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
+          else
+            self.scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
           end
         end
       end

@@ -1,0 +1,16 @@
+tr.task-extension id="task_extension_#{resource.id}"
+  td colspan="6"
+    h4 = resource.name
+    p = resource.description
+    h4 = t('.sub_tasks')
+    = render('managers/tasks/subtasks/list', resource: resource)
+    p
+      = link_to [:new, :managers, @assessment, @resource_class.model_name.singular, { parent_id: resource.id }], class: 'blue', remote: true do
+        span.glyphicon.glyphicon-plus-sign
+        = t('.add')
+    div#comment-list-container
+      = render('comment_list', resource: resource)
+    h4 = t('.leave_comment')
+    textarea#comment_input cols="120" rows="3" style="width:100%;"
+    .text-right
+      button#comment_submit.btn.btn-primary name="singlebutton" = t('.add_comment')

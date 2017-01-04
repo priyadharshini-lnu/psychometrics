@@ -27,9 +27,9 @@ class Question < ApplicationRecord
   belongs_to :block
   belongs_to :assessment
   belongs_to :template, class_name: 'Question', dependent: :destroy
-  has_many :comments
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
   has_many :factors_scorings, dependent: :destroy
+  has_many :comments, as: :commentable, dependent: :destroy
   has_many :translations, as: :translateable, dependent: :destroy
 
   enum view: [:assessments, :templates, :blocks]
@@ -139,7 +139,7 @@ class Question < ApplicationRecord
 
   def set_view
     # If this question assigned to Template Block
-    view = :blocks if block && block.templates?
+    self.view = :blocks if block&.templates?
   end
 
   # When create new question in Template Block from Assessment Center
@@ -150,5 +150,9 @@ class Question < ApplicationRecord
   # When create new question in Template Block from Block Center
   def create_in_assessments_blocks
     block.blocks.each { |b| dup_for_assessment!(b.id) }
+  end
+
+  def detect_specified_scoring
+    factors_scorings.detect { |fs| !fs.props.blank? }&.props || []
   end
 end

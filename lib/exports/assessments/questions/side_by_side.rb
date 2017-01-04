@@ -17,6 +17,16 @@ module Exports
         #   WHERE: Choices grouped by scale
         def self.result(answers, question)
           parsed_result = []
+          # Create hash for scoring
+          # hash['1-2-3'] = 100
+          # Where 1 - choice, 2 - scale, 3 - value index, 100 - scoring value
+          factors_scoring = {}
+          question.detect_specified_scoring.each do |scoring|
+            key = "#{scoring['choice']}-#{scoring['scale']}"
+            scoring['values'].each do |value|
+              factors_scoring["#{key}-#{value['index']}"] = value['value']
+            end
+          end
           question.props['scalePoints'].to_i.times do |scale|
             question.props['choices'].to_i.times do |choice|
               values = (answers || []).detect { |a| a['choice'] == choice && a['scale'] == scale }.try(:[], 'values')
@@ -25,7 +35,7 @@ module Exports
               parsed_result << if column_data['type'] == 'Text'
                                  values.map { |value| value['value'] }
                                else
-                                 values.map { |value| value['index'].to_i + 1 }.join(', ')
+                                 values.map { |value| factors_scoring["#{choice}-#{scale}-#{value['index'].to_i}"] || value['index'].to_i + 1 }.join(', ')
                                end
             end
           end

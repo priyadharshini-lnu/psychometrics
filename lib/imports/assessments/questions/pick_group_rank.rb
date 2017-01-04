@@ -14,6 +14,10 @@ module Imports
         def self.build_answers(data, question)
           return nil if data.compact.blank?
           answers = []
+
+          factors_scoring = question.detect_specified_scoring.
+                            inject({}) { |sum, s| sum[s['value']] = s['index']; sum }
+
           # Shift only group data column (Example: ['1,2,3', '4,5'])
           groups = data.shift(question.props['scalePoints'].to_i)
           groups.each_with_index do |choices, scale|
@@ -21,7 +25,7 @@ module Imports
               answers << {
                 scale: scale,
                 value: value,
-                choice: choice.to_i - 1
+                choice: factors_scoring[choice.to_i] || (choice.to_i - 1)
               }
             end
           end

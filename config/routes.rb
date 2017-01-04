@@ -257,6 +257,15 @@ Rails.application.routes.draw do
       resources :assigns, only: [:index]
       resources :notifications, only: [:index]
       resources :statistics, only: [:index]
+      resources :assessments, only: [:index] do
+        resources :tasks do
+          member do
+            get :change_status
+          end
+          resources :comments, only: [:create]
+        end
+      end
+
       resources :users, only: [:index] do
         resources :reports, only: [:show]
       end

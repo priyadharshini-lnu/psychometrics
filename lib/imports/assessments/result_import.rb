@@ -60,6 +60,7 @@ module Imports
             return [nil]
           end
 
+          # If Assign not found, going to create user 
           unless assign
             membership = Membership.joins(:user).where(users: { email: data['email'].to_s.downcase }, client_id: client_id).first
             membership = find_or_create_user(data, index) unless membership

@@ -3,6 +3,7 @@ en:
     index:
       user_dashboard_button: 'User Dashboard'
       managers_dashboard_button: 'Managers Dashboard'
+      managers_assessments_button: 'Action Planning'
     resource:
       assigned: "Assigned %{date}"
       results: "Results"

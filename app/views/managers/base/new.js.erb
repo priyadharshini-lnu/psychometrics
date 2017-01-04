@@ -1,0 +1,12 @@
+if ($('#modal-container').find('.modal').length == 0) {
+  $('#modal-container').html('<%= j render(partial: 'modal', locals: { header: t("managers.#{@resource_class.model_name.plural}.new.header") }) %>');
+  $('#modal-container').find(".modal").modal('show');
+  $('#modal-container').find(".modal").on('hidden.bs.modal', function (e) {
+    $(this).remove();
+  });
+} else {
+  $('#modal-container').find("form").replaceWith('<%= j render(partial: 'form') %>');
+}
+
+// Reinit all plugins
+$(document).trigger('initPlugins');

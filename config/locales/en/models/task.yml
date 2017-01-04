@@ -1,0 +1,34 @@
+en:
+  activerecord:
+    models:
+      task: 'Tasks'
+    attributes:
+      task: &DEFAULT
+        id: 'ID'
+        name_label: 'ACTION ITEM'
+        description_label: 'DESCRIPTION'
+        priority_label: 'PRIORITY'
+        membership_id_label: 'SELECT ASSIGNER'
+        status_label: 'SELECT STATUS'
+        planned_completed_at_label: 'SELECT DUE DATE'
+        factor_id_label: 'SELECT COMPETENCY'
+        name: 'Action Item'
+        description: 'Description'
+        priority: 'Priority'
+        factor_id: 'Competency'
+        membership_id: 'Assigner'
+        status: 'Status'
+        planned_completed_at: 'Due Date'
+        created_at: 'Created Date'
+        updated_at: 'Modified Date'
+        active: 'Active'
+        updated_by: 'Edited by'
+        statuses:
+          not_started: 'Not Started'
+          in_progress: 'In Progress'
+          completed: 'Completed'
+          overdue: 'Overdue'
+  simple_form:
+    placeholders:
+      norm:
+        <<: *DEFAULT

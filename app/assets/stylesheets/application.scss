@@ -1,7 +1,9 @@
 // Bootstrap import
 @import "bootstrap-sprockets";
+@import 'common/helper';
 @import 'common/bootstrap/*';
 @import 'common/fonts';
 @import 'stylesheet';
+@import 'bootstrap-slider';
 @import 'overrides/*';
 @import 'common/helper';

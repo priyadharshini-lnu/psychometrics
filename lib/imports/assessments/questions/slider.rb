@@ -11,14 +11,16 @@ module Imports
         #   }, ...]
         def self.build_answers(data, question)
           return nil if data.compact.blank?
+          factors_scoring = question.detect_specified_scoring.
+                            inject({}) { |sum, s| sum[s['index']] = s['value']; sum }
           answers = []
           data.each_with_index do |value, index|
             answers << {
               index: index,
-              value: value
+              value: value / (factors_scoring[index] || 1)
             }
           end
-
+          
           {
             answers: answers,
             question_id: question.id

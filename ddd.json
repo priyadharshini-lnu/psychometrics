@@ -1,0 +1,159 @@
+{
+  "35": {
+    "name": "NO FACTOR REQUIRED",
+    "results": []
+  },
+  "39": {
+    "name": "Ambiguity",
+    "results": []
+  },
+  "48": {
+    "name": "Conviction",
+    "results": []
+  },
+  "49": {
+    "name": "Responsibility",
+    "results": []
+  },
+  "53": {
+    "name": "Autonomy",
+    "results": []
+  },
+  "54": {
+    "name": "Empathy",
+    "results": []
+  },
+  "55": {
+    "name": "Teamwork",
+    "results": []
+  },
+  "56": {
+    "name": "Ethics",
+    "results": []
+  },
+  "57": {
+    "name": "Values",
+    "results": []
+  },
+  "344": {
+    "name": "NO FACTOR REQUIRED",
+    "results": []
+  },
+  "355": {
+    "name": "Social Desirability",
+    "results": []
+  },
+  "356": {
+    "name": "Ambiguity",
+    "results": []
+  },
+  "357": {
+    "name": "Conviction",
+    "results": []
+  },
+  "358": {
+    "name": "Responsibility",
+    "results": []
+  },
+  "359": {
+    "name": "Autonomy",
+    "results": []
+  },
+  "360": {
+    "name": "Empathy",
+    "results": []
+  },
+  "361": {
+    "name": "Teamwork",
+    "results": [
+      {
+        "value": 3.0,
+        "question_id": 341
+      }
+    ]
+  },
+  "362": {
+    "name": "Ethics",
+    "results": []
+  },
+  "363": {
+    "name": "Values",
+    "results": []
+  },
+  "364": {
+    "name": "Absorption",
+    "results": []
+  },
+  "365": {
+    "name": "Ambition",
+    "results": []
+  },
+  "366": {
+    "name": "Mastery",
+    "results": []
+  },
+  "367": {
+    "name": "Extrinsic",
+    "results": []
+  },
+  "368": {
+    "name": "Intrinsic",
+    "results": []
+  },
+  "369": {
+    "name": "Extra-Role",
+    "results": []
+  },
+  "370": {
+    "name": "Control",
+    "results": []
+  },
+  "371": {
+    "name": "Confidence",
+    "results": []
+  },
+  "372": {
+    "name": "Prepardness",
+    "results": []
+  },
+  "373": {
+    "name": "Buoyancy",
+    "results": []
+  },
+  "374": {
+    "name": "Determination",
+    "results": []
+  },
+  "375": {
+    "name": "Analytical",
+    "results": []
+  },
+  "376": {
+    "name": "Creative",
+    "results": []
+  },
+  "377": {
+    "name": "Curiosity",
+    "results": []
+  },
+  "378": {
+    "name": "Flexibility",
+    "results": []
+  },
+  "379": {
+    "name": "Growth",
+    "results": []
+  },
+  "380": {
+    "name": "Zest",
+    "results": []
+  },
+  "381": {
+    "name": "Energy",
+    "results": []
+  },
+  "382": {
+    "name": "Positivity",
+    "results": []
+  }
+}

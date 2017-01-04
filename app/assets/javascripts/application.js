@@ -14,13 +14,18 @@
 //= require js-cookie
 //= require common
 //= require managers/assessments
+//= require bootstrap-slider
 //= require bootstrap-sprockets
 //= require bootstrap-select
 //= require bootstrap-colorpicker
+//= require administration/plugins/bootstrap/bootstrap-datepicker
 //= require bootstrap-file-input/bootstrap.file-input.js
 //= require multiselect
 //= require noty
 //= require ecommerce/base
+//= require administration/actions
+//= require filterrific/filterrific-jquery
+//= require administration/overrides/filterrific
 ///// Translations
 //= require i18n
 //= require i18n/translations

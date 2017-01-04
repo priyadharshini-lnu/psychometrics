@@ -17,10 +17,16 @@ module Exports
               end
             end
           else
+            # Create hash for scoring
+            # hash['1-2'] = 100
+            # Where 1 - choice, 2 - scale, 100 - scoring value
+            factors_scoring = question.detect_specified_scoring.
+                              inject({}) { |sum, s| sum["#{s['choice']}-#{s['scale']}"] = s['value']; sum }
+
             question.props['choices'].to_i.times do |choice|
               parsed_result << (answers || []).
                                select { |a| a['choice'] == choice && a['value'] == true }.
-                               map { |a| a['scale'] + 1 }.join(',')
+                               map { |a| factors_scoring["#{a['choice']}-#{a['scale']}"] || a['scale'] + 1 }.join(',')
             end
           end
           parsed_result

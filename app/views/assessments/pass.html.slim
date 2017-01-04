@@ -5,7 +5,7 @@
       .contentTitleHeader
         i.glyphicon.glyphicon-question-sign.titleIcon.pull-left
         p.contentTitle.pull-left Questions
-        = render partial: 'lang'
+        = render partial: 'lang', locals: { with_confirm: true }
         .clearfix    
       .questionContent
         #psychometrics_preview[data-result="#{AssignSerializer.new(@assign).to_json}" 

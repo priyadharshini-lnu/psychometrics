@@ -113,6 +113,7 @@ gem 'chronic', '~> 0.10.2'
 gem 'whenever', '~> 0.9.7', require: false
 
 gem 'hashids', '~> 1.0.2'
+gem 'bootstrap-slider-rails'
 
 gem 'money-rails', '~> 1.7.0'
 
