@@ -120,7 +120,9 @@ gem 'money-rails', '~> 1.7.0'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
-  gem 'rspec-rails', '~> 3.5.2'
+  gem 'pry-byebug'
+  gem 'hirb'
+  gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', '~> 4.7.0'
   gem 'capybara', '~> 2.11.0'
   gem 'guard-rspec', '~> 4.7.3'
@@ -128,8 +130,6 @@ end
 
 group :development do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'pry-byebug'
-  gem 'hirb'
   gem 'debugger2'
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
@@ -142,4 +142,13 @@ group :development do
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rvm',           '~> 0.1.2'
   gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
+  gem 'guard'
+end
+group :test do
+  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'capybara-webkit'
+  gem 'capybara-screenshot'
+  gem 'selenium-webdriver'
 end
