@@ -5,6 +5,7 @@
     = f.error_notification
     .form-inputs.clearfix
       = f.input :name
+      = f.association :owner, collection: policy_scope(Client).all, include_blank: t('administration.tte'), input_html: { data: { live_search: true } }
       = f.input :description
       - unless f.object.folder?
         = f.input :file

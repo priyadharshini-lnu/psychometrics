@@ -1,4 +1,5 @@
 class Administration::AssessmentsController < Administration::BaseController
+  include Administration::OwnerScope
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy, :preview]
   before_action :skip_authorization, only: [:sidebar]
@@ -113,7 +114,7 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :category, :description, :dimension_id, :timing, :status)
+    params.require(:resource).permit(:name, :category, :description, :dimension_id, :timing, :status, :owner_id)
   end
 
   # Authorisation user

@@ -4,6 +4,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
       = resource.decorate.status
   td = resource.name
   td = resource.dimension.try(:decorate).try(:display_name)
+  td = resource.decorate.client_name
   td
     = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
       span.fa.fa-pencil

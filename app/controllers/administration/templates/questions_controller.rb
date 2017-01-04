@@ -1,8 +1,9 @@
 module Administration
   module Templates
     class QuestionsController < Administration::BaseController
+      include ::Administration::OwnerScope
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign]
+      before_action :set_resource, only: [:show, :edit, :configure, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign]
       before_action :skip_authorization, only: [:sidebar]
       before_action :init_breadcrumbs
       append_before_action :pundit_authorize, except: [:sidebar]
@@ -38,8 +39,7 @@ module Administration
         end
       end
 
-      # GET /administration/resources/1/edit
-      def edit
+      def configure
         add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
       end
 
@@ -104,7 +104,7 @@ module Administration
       end
 
       def resource_params
-        params.require(:resource).permit(:name, assign_to_assessment_ids: [])
+        params.require(:resource).permit(:name, :owner_id, assign_to_assessment_ids: [])
       end
 
       # Authorisation user

@@ -8,6 +8,7 @@
         th = @resource_class.human_attribute_name(:assessment)
         th = sorting @resource_class, :created_at, @filterrific
         th = sorting @resource_class, :type, @filterrific
+        th = t('administration.reports.index.owner')
         - if policy(@resource_class).action?
           th width='300' = t('administration.actions')
     tbody

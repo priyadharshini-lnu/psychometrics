@@ -1,4 +1,5 @@
 class Administration::NormsController < Administration::BaseController
+  include Administration::OwnerScope
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :export, :editor]
   before_action :skip_authorization, only: [:sidebar]
@@ -114,7 +115,7 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :dimension_id)
+    params.require(:resource).permit(:name, :dimension_id, :owner_id)
   end
 
   def editor_params

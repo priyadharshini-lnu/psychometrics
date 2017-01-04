@@ -27,4 +27,8 @@ class AssessmentDecorator < BaseDecorator
                                        subdomain: client.subdomain)
     h.link_to(url, url)
   end
+
+  def client_name
+    object.owner.try(:name) || I18n.t('administration.tte')
+  end
 end

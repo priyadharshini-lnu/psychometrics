@@ -11,6 +11,7 @@ tr id=dom_id(resource)
       = resource.name
   td = resource.description
   td = resource.decorate.created_at
+  td = resource.decorate.client_name
   td
     - if policy(resource).edit?
       = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })

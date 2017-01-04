@@ -27,6 +27,8 @@ class Question < ApplicationRecord
   belongs_to :block
   belongs_to :assessment
   belongs_to :template, class_name: 'Question', dependent: :destroy
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+  has_many :comments
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
   has_many :factors_scorings, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
@@ -60,6 +62,7 @@ class Question < ApplicationRecord
 
   validates :name, :type, presence: true
   validates :name, length: { maximum: 255 }, allow_blank: true
+  validates :owner, presence: true, allow_nil: true
 
   acts_as_list scope: :block_id
 

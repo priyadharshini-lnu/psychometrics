@@ -18,9 +18,11 @@ class Norm < ApplicationRecord
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
   has_many :factors_norms
   belongs_to :dimension
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
 
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
+  validates :owner, presence: true, allow_nil: true
 
   filterrific(
     default_filter_params: {

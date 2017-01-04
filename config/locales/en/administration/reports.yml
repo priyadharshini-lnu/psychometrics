@@ -15,6 +15,7 @@ en:
             psychometric: 'Psychometrics'
             organisational: 'Org Surveys'
             '360': '360 Feedback'
+        owner: Owner
       new:
         header: 'New Report'
       edit:

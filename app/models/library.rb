@@ -17,6 +17,7 @@
 #
 
 class Library < ApplicationRecord
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   acts_as_nested_set
 
   enum type: [:folder, :image, :audio, :video, :other]
@@ -26,6 +27,7 @@ class Library < ApplicationRecord
   validates :name, presence: true, if: proc { folder? }
   validates :file, presence: true, unless: proc { folder? }
   validates_inclusion_of :type, in: Library.types.keys
+  validates :owner, presence: true, allow_nil: true
 
   # Detect which type of library we saving
   # folder, image, audio, video, other

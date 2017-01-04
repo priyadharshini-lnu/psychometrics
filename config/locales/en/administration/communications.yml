@@ -6,6 +6,7 @@ en:
         tooltips:
           create: Create
         add_new: Add new
+        owner: Owner
       new:
         header: 'New Communication'
       edit:

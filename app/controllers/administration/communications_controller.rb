@@ -1,5 +1,6 @@
 module Administration
   class CommunicationsController < Administration::BaseController
+    include Administration::OwnerScope
     prepend_before_action :set_resource_class
     before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :edit_form]
     before_action :skip_authorization, only: [:sidebar]
@@ -95,13 +96,13 @@ module Administration
     end
 
     def set_resource
-      @resource = @resource_class.find(params[:id])
+      @resource = policy_scope(@resource_class).find(params[:id])
     end
 
     def resource_params
       params.fetch(:resource, {}).permit(
         :subject, :body, :assessment_id,
-        :client_id, :recipients,
+        :client_id, :recipients, :owner_id,
         :delivery_rule, :delivery_at_date, :delivery_at_time,
         :delivery_interval_number, :delivery_interval_period,
         membership_ids: [], copy_membership_ids: []

@@ -7,6 +7,7 @@
         th = User.human_attribute_name :assessment
         th = User.human_attribute_name :client
         th = link_to_sort @resource_class, :created_at, @filter_form
+        th = t('administration.communications.index.owner')
         th width='300' = t('administration.actions')
     tbody
       - if @resources.present?

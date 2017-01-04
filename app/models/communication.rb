@@ -23,6 +23,7 @@ class Communication < ApplicationRecord
   has_many :emails, dependent: :destroy, inverse_of: :communication, class_name: 'CommunicationEmail'
   belongs_to :assessment
   belongs_to :client
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
 
   enum recipients: [:all, :selected], _suffix: true
   enum delivery_rule: [:on_specific_datetime, :after_complete, :if_not_started, :if_not_finished], _prefix: :delivery
@@ -34,6 +35,7 @@ class Communication < ApplicationRecord
             :delivery_interval_period,
             presence: true, if: proc { delivery_if_not_started? || delivery_if_not_finished? }
   validates :subject, :assessment, :client, presence: true
+  validates :owner, presence: true, allow_nil: true
 
   # CALLBACKS
   after_validation :set_delivery_at, if: :delivery_on_specific_datetime?

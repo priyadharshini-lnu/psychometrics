@@ -11,6 +11,7 @@ en:
             organisational: 'Org Surveys'
             '360': '360 Feedback'
             all: 'All Categories'
+        owner: Owner
       form:
         timing:
           hint: 'For Example: 30 minutes to complete'

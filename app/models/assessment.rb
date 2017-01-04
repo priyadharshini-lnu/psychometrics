@@ -38,6 +38,7 @@ class Assessment < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
   belongs_to :dimension
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
 
   # CATEGORIES constant
   CATEGORIES = {
@@ -51,6 +52,7 @@ class Assessment < ApplicationRecord
 
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
+  validates :owner, presence: true, allow_nil: true
 
   before_create :init
 

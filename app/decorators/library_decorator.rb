@@ -18,4 +18,8 @@ class LibraryDecorator < BaseDecorator
       body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.body", name: display_name)
     }.to_json
   end
+
+  def client_name
+    object.owner.try(:name) || I18n.t('administration.tte')
+  end
 end

@@ -22,14 +22,14 @@ class Client < ApplicationRecord
 
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
-  has_many :admins, -> { where(role: ::User::USER_ROLES[:admin]) }, through: :memberships, source: :user, class_name: 'User'
-  has_many :managers, -> { where(role: ::User::USER_ROLES[:manager]) }, through: :memberships, source: :user
-  has_many :members, -> { where(role: ::User::USER_ROLES[:member]) }, through: :memberships, source: :user
+  has_many :admins, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, through: :memberships, source: :user, class_name: 'User'
+  has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) }, through: :memberships, source: :user
+  has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
 
-  has_many :assessment_clients, dependent: :destroy
-  has_many :assessments, through: :assessment_clients
-  has_many :client_reports, dependent: :destroy
-  has_many :reports, through: :client_reports
+  has_many :assign_clients, dependent: :destroy
+  has_many :reports, through: :assign_clients
+  has_many :norms
+  has_many :dimensions
 
   has_one :retail_user, class_name: 'User'
 

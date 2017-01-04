@@ -57,3 +57,4 @@ en:
       products: Products
     breadcrumbs:
       <<: *NAVIGATION
+    tte: TTE

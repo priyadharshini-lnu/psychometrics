@@ -1,5 +1,6 @@
 module Administration
   class ReportsController < Administration::BaseController
+    include Administration::OwnerScope
     # Turn off normally auth
     skip_before_action :authenticate_user!
     # Turn off browser auth
@@ -121,7 +122,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :assessment_id, :type)
+      params.require(:resource).permit(:name, :assessment_id, :type, :owner_id)
     end
 
     # Authorisation user

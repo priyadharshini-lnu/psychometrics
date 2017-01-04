@@ -27,6 +27,7 @@
         th = sorting @resource_class, :name, @filterrific
         th = @resource_class.human_attribute_name(:description)
         th = sorting @resource_class, :created_at, @filterrific
+        th = t('administration.libraries.index.owner')
         th width='300' = t('administration.actions')
     tbody
       - if @resources.present?

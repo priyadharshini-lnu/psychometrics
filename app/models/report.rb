@@ -15,18 +15,19 @@ class Report < ApplicationRecord
   include Copyable
   self.inheritance_column = :_type_disabled
   belongs_to :assessment
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
-
   has_many :client_reports, dependent: :destroy
   has_many :clients, through: :client_reports
-
   has_many :translations, as: :resource
 
   has_many :product_reports, dependent: :destroy
   has_many :products, through: :product_reports
 
   validates :assessment, presence: true
+  validates :owner, presence: true, allow_nil: true
+
   enum type: [:common, :yti, :eti]
 
   # Copy report with pages => modules

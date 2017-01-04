@@ -12,6 +12,10 @@ module Administration
       @user.is?(:superadmin)
     end
 
+    def update?
+      @user.is?(:superadmin, :admin)
+    end
+
     def preview?
       return true if @user.is?(:superadmin)
       return true if @user.is?(:admin) && @record.assessment.psychometric?
@@ -19,17 +23,18 @@ module Administration
     end
 
     def left_menu?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin, :admin)
     end
 
     def sidebar?
       @user.is?(:superadmin)
     end
 
-    class Scope < Administration::BasePolicy::Scope
+    class Scope < Scope
       def resolve
-        return scope if @user.is?(:superadmin)
-        scope.enabled.available_to_view.joins(:clients).where(clients: { id: @user.client_ids })
+        collection = [scope].flatten.last
+        return collection if @user.is?(:superadmin)
+        collection.enabled.available_to_view.where(owner_id: [@user.client_ids])
       end
     end
   end

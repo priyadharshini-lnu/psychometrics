@@ -1,5 +1,13 @@
 module Administration
   class AssessmentPolicy < Administration::BasePolicy
+    def index?
+      @user.is?(:superadmin, :admin)
+    end
+
+    def update?
+      @user.is?(:superadmin, :admin)
+    end
+
     def open_channel?
       @user.is?(:superadmin)
     end
@@ -41,8 +49,9 @@ module Administration
 
     class Scope < Administration::BasePolicy::Scope
       def resolve
+        scope = super
         return scope if @user.is?(:superadmin)
-        scope.enabled.joins(:clients).where(clients: { id: @user.client_ids })
+        scope.where(owner_id: [@user.client_ids])
       end
     end
   end

@@ -4,12 +4,14 @@
 
     .form-inputs.clearfix
       h3 Settings
-      = f.association :assessment, 
+      = f.association :owner, collection: policy_scope(Client).all, include_blank: t('administration.tte'), input_html: { data: { live_search: true } }
+      = f.association :assessment,
                 collection: policy_scope(Assessment).all,
                 input_html: { data: { live_search: true } }
-      = f.association :client, 
+      /TODO fix
+      /= f.association :client,
                 collection: f.object.assessment && f.object.assessment.clients || [],
-                input_html: { data: { live_search: true } }, 
+                input_html: { data: { live_search: true } },
                 wrapper_html: { class: f.object.assessment_id.blank? ? 'hidden' : '' }
       = f.input :recipients, 
                 as: :select, 
@@ -18,13 +20,14 @@
                 label_method: proc { |rec| t(".#{rec.first}") },
                 include_blank: false
       - if f.object.client_id && f.object.selected_recipients?
-        = f.association :memberships, 
+        = f.association :memberships,
                         collection: f.object.client.memberships.join_user || [],
                         label_method: proc { |u| u.decorate.display_name },
-                        include_blank: false, 
+                        include_blank: false,
                         input_html: { data: { live_search: true }, multiple: true },
                         label: t('.selected_recipients')
-      - if f.object.client_id && f.object.selected_recipients?
+      /TODO fix
+      /- if f.object.client_id && f.object.selected_recipients?
         = f.association :copy_memberships, 
                         collection: Membership.with_head_assigns_for_client_and_assessment(f.object.client_id, f.object.assessment_id) || [],
                         label_method: proc { |u| u.decorate.display_name },

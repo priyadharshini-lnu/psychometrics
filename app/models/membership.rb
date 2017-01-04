@@ -14,26 +14,43 @@
 #  disabled       :boolean          default(FALSE)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
-#  is_retail      :boolean          default(FALSE)
+#  role           :string           default("member")
 #
 
 class Membership < ApplicationRecord
-  include MembershipValidations
+  # Roles constant
+  MEMBERSHIP_ROLES = [
+      ADMIN_ROLE = 'admin'.freeze,
+      MANAGER_ROLE = 'manager'.freeze,
+      MEMBER_ROLE = 'member'.freeze
+  ].freeze
+
+  SCOPES = {
+      ADMIN_ROLE => :administration,
+      MANAGER_ROLE => :user,
+      MEMBER_ROLE => :user
+  }.freeze
 
   belongs_to :client, counter_cache: :licenses_used
   belongs_to :user, inverse_of: :memberships
   accepts_nested_attributes_for :user
 
   has_many :assigns, dependent: :destroy, inverse_of: :membership
+  has_many :results, dependent: :destroy, inverse_of: :membership
   has_many :assessments, through: :assigns
   has_many :communication_emails, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'
   has_many :orders, dependent: :destroy, inverse_of: :membership, class_name: 'Ecommerce::Order'
 
   validates :client, uniqueness: { scope: :user }
 
+  validates :client, :user, presence: true
+  validates :client_id, uniqueness: { scope: :user_id }
+  validates :role, inclusion: { in: MEMBERSHIP_ROLES },  presence: true
+  
   acts_as_nested_set scope: :client_id
 
   scope :enabled, -> { where.not(disabled: true) }
+  scope :admin_role, -> { where(role: ADMIN_ROLE) }
   scope :with_head_assigns_for_client_and_assessment, lambda { |client_id, assessment_id|
     joining { assigns.on(assigns.membership_id.eq(id) & assigns.assessment_id.eq(assessment_id) & assigns.role.in([Assign.roles[:admin], Assign.roles[:manager]])) }.
       where.has { |m| m.client_id.eq(client_id) }
@@ -42,7 +59,7 @@ class Membership < ApplicationRecord
     where(client_id: client_id)
   }
   scope :join_user, lambda {
-    joining { user }.selecting { ['memberships.*', user.first_name, user.last_name, user.email, user.role, user.is_anonym] }
+    joining { user }.selecting { ['memberships.*', user.first_name, user.last_name, user.email, (user.role).as('user_role') , user.is_anonym] }
   }
   scope :exclude_ids, lambda { |ids|
     ids = ids.split(',') if ids.is_a?(String)
@@ -83,6 +100,10 @@ class Membership < ApplicationRecord
       next if d['key'].blank?
       hris[d['key']] = d['value']
     end
+  end
+
+  def scope
+    SCOPES[role]
   end
 
   class << self

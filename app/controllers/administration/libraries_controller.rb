@@ -1,24 +1,16 @@
 module Administration
   class LibrariesController < Administration::BaseController
+    include Administration::OwnerScope
     prepend_before_action :set_resource_class
     before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
     before_action :skip_authorization, only: [:sidebar]
     before_action :init_breadcrumbs
+    before_action :init_filterrific, only: [:index, :update]
     append_before_action :pundit_authorize, except: [:sidebar]
     skip_before_action :verify_authenticity_token
 
     # GET /administration/resources
     def index
-      @filterrific = initialize_filterrific(
-        policy_scope(@resource_class),
-        params[:filterrific]
-      ) || return
-      @resources = @filterrific.find.page(params[:page])
-
-      unless @filterrific.with_parent.to_i.zero?
-        @parent = Library.find(@filterrific.with_parent)
-      end
-
       respond_to do |format|
         format.html
         format.js { render :index, formats: [:js] }
@@ -73,6 +65,18 @@ module Administration
       add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
     end
 
+    def init_filterrific
+      @filterrific = initialize_filterrific(
+        policy_scope(@resource_class),
+        params[:filterrific]
+      ) || return
+      @resources = @filterrific.find.page(params[:page])
+
+      unless @filterrific.with_parent.to_i.zero?
+        @parent = Library.find(@filterrific.with_parent)
+      end
+    end
+
     # Set model
     def set_resource_class
       @resource_class ||= Library
@@ -83,7 +87,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :description, :file, :type, :parent_id, :file_cache)
+      params.require(:resource).permit(:name, :description, :file, :type, :parent_id, :file_cache, :owner_id)
     end
 
     # Authorisation user
