@@ -19,6 +19,15 @@ module Imports
           return nil if data.compact.blank?
           answers = []
           index = 0
+          # Build factors scoring
+          factors_scoring = {}
+          question.detect_specified_scoring.each do |scoring|
+            key = "#{scoring['choice']}-#{scoring['scale']}"
+            scoring['values'].each do |value|
+              factors_scoring["#{key}-#{value['value']}"] = value['index']
+            end
+          end
+
           question.props['scalePoints'].to_i.times do |scale|
             question.props['choices'].to_i.times do |choice|
               column_data = question.props['columnsData'][scale]
@@ -33,7 +42,7 @@ module Imports
                        else
                          data[index].to_s.split(',').map do |i|
                            {
-                             index: i.to_i - 1,
+                             index: factors_scoring["#{choice}-#{scale}-#{i}"] || (i.to_i - 1),
                              value: true
                            }
                          end

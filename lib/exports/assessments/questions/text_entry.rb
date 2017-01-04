@@ -9,8 +9,10 @@ module Exports
         #   }, ...]
         # TO:
         #   ['Value']
-        def self.result(answers, _question)
-          (answers || []).map { |a| a['value'] }
+        def self.result(answers, question)
+          factors_scoring = question.detect_specified_scoring.
+                            inject({}) { |sum, s| sum[s['index']] = s['value']; sum }
+          (answers || []).map { |a| factors_scoring[a['value']] || a['value'] }
         end
 
         # Parse HEADER data for XLSX
