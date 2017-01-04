@@ -12,6 +12,7 @@ module Exports
           questions = Question.
                       joining { block }.
                       not_deleted.
+                      includes(:factors_scorings).
                       selecting { [id, name, type, props] }.
                       where.has { |q| q.block.assessment_id == assessment_id }.
                       ordering { [block.position.asc, position.asc] }
