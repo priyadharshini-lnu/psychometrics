@@ -7,6 +7,8 @@ require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
 require 'capybara/poltergeist'
+require 'capybara-screenshot/rspec'
+require 'selenium-webdriver'
 # Add additional requires below this line. Rails is not loaded until this point!
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
@@ -58,7 +60,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryGirl::Syntax::Methods
 
-  Capybara.default_driver = :poltergeist
+  Capybara.default_driver = :chrome
   Capybara.register_driver :poltergeist do |app|
     options = {
         :js_errors => true,
@@ -68,6 +70,14 @@ RSpec.configure do |config|
         :inspector => true,
     }
     Capybara::Poltergeist::Driver.new(app, options)
+  end
+
+  Capybara.register_driver :chrome do |app|
+    # optional
+    client = Selenium::WebDriver::Remote::Http::Default.new
+    # optional
+    client.timeout = 120
+    Capybara::Selenium::Driver.new(app, :browser => :chrome, :http_client => client)
   end
 
 end
