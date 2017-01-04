@@ -6,7 +6,7 @@ module Reports
     end
 
     def completed_at
-      @instance_options[:assign]&.completed_at&.strftime('%D')
+      @instance_options[:assign]&.completed_at&.strftime('%d %b %Y')
     end
 
     def status
