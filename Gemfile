@@ -136,6 +136,7 @@ group :development do
   gem 'capistrano-passenger', '~> 0.2.0'
   gem 'capistrano-rvm',           '~> 0.1.2'
   gem 'capistrano-sidekiq', github: 'seuros/capistrano-sidekiq'
+  gem 'guard'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
