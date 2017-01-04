@@ -20,7 +20,9 @@ class BlockSerializer < ActiveModel::Serializer
 
   #
   def questions
-    object.questions_ams
+    object.questions_ams.map do |q|
+      QuestionSerializer.new(q)
+    end
   end
 
   def deleted
