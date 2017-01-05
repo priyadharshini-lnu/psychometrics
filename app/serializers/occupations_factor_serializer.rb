@@ -9,6 +9,7 @@
 #  value         :float
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  position      :integer
 #
 
 class OccupationsFactorSerializer < ActiveModel::Serializer

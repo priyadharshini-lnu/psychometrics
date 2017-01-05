@@ -6,7 +6,7 @@ tr id=dom_id(resource)
       i class="icon #{resource.decorate.icon}" style="font-size: 30px;"
   td
     - if resource.folder?
-      = link_to resource.name, { action: :index, filterrific: @filterrific.to_hash.merge({ 'with_parent' => resource.id }) }, remote: true, method: :get
+      = link_to resource.name, { action: :index, filterrific: (@filterrific || {}).to_hash.merge({ 'with_parent' => resource.id }) }, remote: true, method: :get
     - else
       = resource.name
   td = resource.description

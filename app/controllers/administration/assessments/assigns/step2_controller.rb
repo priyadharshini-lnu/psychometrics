@@ -9,19 +9,19 @@ module Administration
         append_before_action :pundit_authorize
 
         def show
-          @clients = policy_scope(::Client).where(id: @assign.client_ids)
+          @clients = policy_scope(::Client).where(id: @assessment.client_ids)
           @admins = policy_scope(::Membership).
                     select('memberships.*', 'clients.name as client_name').
                     joins(:client).
                     join_user.
-                    where(client_id: @assign.client_ids).
+                    where(client_id: @assessment.client_ids).
                     where(users: { role: User::USER_ROLES[:admin] }).
                     group_by(&:client_name)
           @managers = policy_scope(::Membership).
                       select('memberships.*', 'clients.name as client_name').
                       joins(:client).
                       join_user.
-                      where(client_id: @assign.client_ids).
+                      where(client_id: @assessment.client_ids).
                       where(users: { role: User::USER_ROLES[:manager] }).
                       group_by(&:client_name)
           @filter_form = ::Membership.search
@@ -31,9 +31,6 @@ module Administration
           @assign = AssignForm.new(resource_params)
           new_user_ids = (@assign.user_ids + @assign.manager_ids + @assign.admin_ids)
           Assign.transaction do
-            # Remove assigns that was removed
-            delete_user_ids = @assessment.membership_ids - new_user_ids
-            Assign.where(membership_id: delete_user_ids, assessment_id: @assessment.id).delete_all if delete_user_ids.present?
             # Update or Create assigns
             new_user_ids.each do |user_id|
               assign = Assign.find_or_initialize_by(assessment_id: @assessment.id, membership_id: user_id)
@@ -43,25 +40,25 @@ module Administration
               assign.save
             end
           end
-          redirect_to(administration_assessment_finish_path)
+          redirect_to(administration_assessments_path, success: t('.successfully', name: @assessment.decorate.display_name))
         end
 
         def not_selected_users
-          @search = policy_scope(::Membership).join_user.distinct.search(params[:q])
+          @search = policy_scope(::Membership).join_user.includes(:client).search(params[:q])
           # Limit to use only assigned clients
           @search.client_id_in = @assessment.client_ids if @search.client_id_in.blank?
-          @users = @search.result
+          @users = @search.result(distinct: true)
           respond_to do |format|
             format.json { render json: ::ActiveModel::Serializer::CollectionSerializer.new(@users, serializer: MembershipSerializer).to_json }
           end
         end
 
         def selected_users
-          @search = policy_scope(::Membership).join_user.distinct.search(params[:q])
+          @search = policy_scope(::Membership).join_user.includes(:client).search(params[:q])
           # Limit to use only assigned clients
           @search.client_id_in = @assessment.client_ids if @search.client_id_in.blank?
           @search.include_ids = nil if @search.include_ids.blank?
-          @users = @search.result
+          @users = @search.result(distinct: true)
           respond_to do |format|
             format.json { render json: ::ActiveModel::Serializer::CollectionSerializer.new(@users, serializer: MembershipSerializer).to_json }
           end
@@ -70,8 +67,7 @@ module Administration
         private
 
         def init_assign
-          @assign = AssignForm.new(@assessment.assign_form_attributes || {})
-          redirect_to(administration_assessment_step1_path) && return if @assign.client_ids.blank? || @assign.report_ids.blank?
+          @assign = AssignForm.new({})
         end
 
         def init_breadcrumbs

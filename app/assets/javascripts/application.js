@@ -11,6 +11,7 @@
 // about supported directives.
 //
 //= require jquery_ujs
+//= require js-cookie
 //= require common
 //= require managers/assessments
 //= require bootstrap-slider
@@ -20,6 +21,8 @@
 //= require administration/plugins/bootstrap/bootstrap-datepicker
 //= require bootstrap-file-input/bootstrap.file-input.js
 //= require multiselect
+//= require noty
+//= require ecommerce/base
 //= require administration/actions
 //= require filterrific/filterrific-jquery
 //= require administration/overrides/filterrific

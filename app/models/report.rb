@@ -8,6 +8,7 @@
 #  disabled      :boolean          default(FALSE)
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
+#  type          :integer          default("common")
 #
 
 class Report < ApplicationRecord
@@ -21,6 +22,9 @@ class Report < ApplicationRecord
   has_many :clients, through: :client_reports
 
   has_many :translations, as: :resource
+
+  has_many :product_reports, dependent: :destroy
+  has_many :products, through: :product_reports
 
   validates :assessment, presence: true
   enum type: [:common, :yti, :eti]

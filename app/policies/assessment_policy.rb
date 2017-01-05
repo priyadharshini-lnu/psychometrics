@@ -4,6 +4,7 @@ class AssessmentPolicy < BasePolicy
     true
   end
 
+  # TODO: Refactoring. Move it to controller
   def pass?
     return false if @current_user.is_anonym?
     @current_membership.assigns.exists?(assessment_id: @record.id)

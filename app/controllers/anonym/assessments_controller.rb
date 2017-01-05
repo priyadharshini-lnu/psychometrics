@@ -12,10 +12,7 @@ module Anonym
     append_before_action :authenticate_user!
 
     def pass
-      @translations = {}
-      Translation.for_assessment(@resource.id).where(locale: user_locale).find_each do |t|
-        @translations[t.translateable_id] = t.props
-      end
+      @translations = ::Translation.to_hash_for_assessment(@resource.id, user_locale)
       # Find or create assign
       @assign = Assign.find_or_create_by(assessment_id: @resource.id, membership_id: @current_membership.id)
     end

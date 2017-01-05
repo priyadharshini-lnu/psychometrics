@@ -18,6 +18,7 @@ class ApplicationController < ActionController::Base
 
   def layout_by_resource
     return 'devise' if request.controller_class.to_s.start_with?('Administration')
+    return 'ecommerce' if request.controller_class.to_s.start_with?('Ecommerce')
     'application'
   end
 
@@ -34,6 +35,7 @@ class ApplicationController < ActionController::Base
   # Detect Client by subdomain
   def set_client_by_subdomain
     return if request.controller_class.to_s.start_with?('Administration')
+    return if request.controller_class.to_s.start_with?('Ecommerce')
     subdomain = request.subdomain
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '')
     @current_client = Client.enabled.find_by!(subdomain: subdomain)
@@ -42,6 +44,7 @@ class ApplicationController < ActionController::Base
   # Fetch membership
   def set_membership
     return if request.controller_class.to_s.start_with?('Administration')
+    return if request.controller_class.to_s.start_with?('Ecommerce')
     @current_membership = current_user.memberships.join_user.find_by!(client_id: @current_client)
   end
 end

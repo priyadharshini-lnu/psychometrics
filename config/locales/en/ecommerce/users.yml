@@ -1,0 +1,11 @@
+en:
+  ecommerce:
+    users:
+      sessions:
+        new:
+          sign_in: 'Sign in'
+          register: 'Register'
+      registrations:
+        new:
+          sign_in: 'Sign in'
+          register: 'Register'

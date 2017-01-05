@@ -8,3 +8,15 @@ languages:
   - cn
   - ar
   - de
+currencies:
+  - USD
+  - EUR
+  - GBP
+  - AED
+  - INR
+  - SAR
+  - KWD
+  - BHD
+  - OMR
+  - QAR
+default_currency: 'USD'

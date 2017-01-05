@@ -1,0 +1,18 @@
+en:
+  ecommerce:
+    orders:
+      new:
+        order: 'Order'
+        product_name: 'Product Name'
+        product_price: 'Product Price'
+        product_quantity: 'Quantity'
+        product_subtotal: 'Positions Price'
+        back_to_basket: 'Back to Basket'
+        total: 'Total'
+        pay: 'Pay'
+
+      success:
+        title: 'Payment Successful'
+        body: |
+          <h3>Payment successful</h3>
+          <p>We will email you a receipt confirming your oder shortly.</p>

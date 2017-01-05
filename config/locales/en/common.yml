@@ -30,6 +30,18 @@ en:
     cn: 'Chinese'
     ar: 'Arabic'
     de: 'German'
+  currencies:
+    USD: USD
+    EUR: EUR
+    BYN: BYN
+    GBP: GBP
+    AED: AED
+    INR: INR
+    SAR: SAR
+    KWD: KWD
+    BHD: BHD
+    OMR: OMR
+    QAR: QAR  
   confirmation:
     default_title: "Confirmation"
     default_body:  "Are you sure?"

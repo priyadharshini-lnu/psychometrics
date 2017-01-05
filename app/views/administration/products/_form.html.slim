@@ -1,0 +1,54 @@
+= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, html: { multipart: true }) do |f|
+  .modal-body
+    = f.error_notification
+    .form-inputs.clearfix
+      = f.input :name
+      = f.input :description
+      = f.input :image, hint: f.object.image? ? image_tag(f.object.image_url(:thumb)) : ''
+      = f.input :image_cache, as: :hidden
+      h3 = t('.reports')
+      = f.association :reports, 
+                      as: :grouped_select, group_method: :reports,
+                      collection: policy_scope(Assessment).all, 
+                      input_html: { data: { live_search: true }, multiple: true, class: 'select' }
+      h3 = t('.prices')
+      = f.simple_fields_for :prices do |p|
+        = p.input :price_currency, as: :hidden
+        = p.input :cost, label: "#{p.object.price&.currency&.name} (#{p.object.price&.currency})"
+      h3 = t('.images')
+      #images
+        = f.simple_fields_for :images do |image|
+          = render 'image_fields', f: image
+        .links
+          = link_to_add_association t('.add_image'), f, :images        
+  .modal-footer
+    .btn-group
+      = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+  
+  javascript:
+    $(function(){
+      $('#new_resource, #edit_resource').on('submit', function(event) {
+        event.stopPropagation(); // Stop stuff happening
+        event.preventDefault(); // Totally stop stuff happening
+
+        var form = $(this);
+        var formdata = false;
+        if (window.FormData){
+          formdata = new FormData(form[0]);
+        }
+
+        var formAction = form.attr('action');
+        $.ajax({
+          url: formAction,
+          data: formdata ? formdata : form.serialize(),
+          dataType: 'script',
+          cache: false,
+          contentType: false,
+          processData: false,
+          type: 'POST',
+          success: function(data, textStatus, jqXHR) {
+          }
+        });
+      });
+    });

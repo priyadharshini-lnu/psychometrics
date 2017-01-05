@@ -1,0 +1,9 @@
+en:
+  ecommerce:
+    carts:
+      show:
+        shopping_basket: Shopping Basket
+        back_to_catalogue: Back to Catalogue
+        update_basket: Update Basket
+        next: Next
+        total: 'Total:'

@@ -1,0 +1,40 @@
+.container
+  .row
+    .col-xs-12
+      #assessmentDashboard
+        .contentTitleHeader
+          i.glyphicon.glyphicon.glyphicon-shopping-cart.titleIcon.pull-left
+          p.contentTitle.pull-left = t('.shopping_basket')
+          .dropdown.pull-right
+            button#dropdownMenu1.btn.btn-default.dropdown-toggle aria-expanded="true" aria-haspopup="true" data-toggle="dropdown" type="button" 
+              => current_currency.iso_code
+              span.caret          
+            ul#currencies.dropdown-menu aria-labelledby="dropdownMenu1"
+              - Settings.currencies.each do |currency|
+                = active_link_to t("currencies.#{currency}"), '#', 
+                  wrap_tag: :li, 
+                  active: current_currency.iso_code == currency,
+                  class: 'currency',
+                  data: { value: currency }
+                  
+          .clearfix
+        = form_tag '', method: :put 
+          = render partial: 'product', collection: @products
+          .row
+            .col-xs-12
+              .pull-right
+                h3.pull-left.basketTotal = t('.total')
+                .well.priceWell.pull-right
+                  p = humanized_money_with_symbol @products.map { |p| p.price * @cart.quantity_for(p.id) }.inject(:+)
+          .row
+            .col-xs-12.col-md-6
+              .text-left
+                = link_to t('.back_to_catalogue'), ecommerce_root_path, class: 'btn btn-next btn-next-lg'
+            .col-xs-12.col-md-6
+              .text-right
+                = button_tag class: 'btn btn-next btn-next-lg'
+                  i.glyphicon.glyphicon-refresh
+                  =< t('.update_basket')
+                - if @products.any?
+                  = link_to t('.next'), new_ecommerce_orders_path, class: 'btn btn-next btn-next-lg'
+          .clearfix

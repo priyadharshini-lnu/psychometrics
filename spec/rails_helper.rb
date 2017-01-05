@@ -60,7 +60,7 @@ RSpec.configure do |config|
   # config.filter_gems_from_backtrace("gem name")
   config.include FactoryGirl::Syntax::Methods
 
-  Capybara.default_driver = :chrome
+  Capybara.default_driver = :poltergeist
   Capybara.register_driver :poltergeist do |app|
     options = {
         :js_errors => true,

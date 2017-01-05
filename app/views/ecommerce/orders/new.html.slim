@@ -1,0 +1,52 @@
+.container
+  .row
+    .col-xs-12
+      = simple_form_for @order, url: { action: :create }, html: { class: 'form-horizontal' }, wrapper: :horizontal_form do |f|
+        #assessmentDashboard
+          .contentTitleHeader
+            i.glyphicon.glyphicon.glyphicon-shopping-cart.titleIcon.pull-left
+            p.contentTitle = t('.order')  
+          .row
+            .col-xs-12
+              br
+              table.table.table-bordered
+                thead
+                  tr
+                    th = t('.product_name')
+                    th = t('.product_price')
+                    th = t('.product_quantity')
+                    th = t('.product_subtotal')
+                    th = t('.users')
+                tbody
+                  = f.simple_fields_for :purchases do |p|
+                    tr
+                      td
+                        = p.input :product_id, as: :hidden
+                        = p.input :quantity, as: :hidden
+                        = p.input :price_currency, as: :hidden
+                        = p.object.product.decorate.display_name
+                      td = humanized_money_with_symbol p.object.price
+                      td = p.object.quantity
+                      td = humanized_money_with_symbol(p.object.subtotal)
+                      td
+                        = p.simple_fields_for :invites do |i|
+                          = i.input :email, 
+                                    input_html: { class: 'col-sm-11', 
+                                                  value: i.options[:child_index].zero? ? current_user.email : '' }, 
+                                    label: "#{(i.options[:child_index] + 1)}.", 
+                                    required: false
+          .row
+            .col-xs-12
+              .pull-right
+                h3.pull-left.basketTotal = t('.total')
+                .well.priceWell.pull-right
+                  p = humanized_money_with_symbol @order.purchases.map(&:subtotal).inject(:+)
+          .row
+            .col-xs-12.col-md-6
+              .text-left
+                = link_to t('.back_to_basket'), ecommerce_carts_path, class: 'btn btn-next btn-next-lg'
+            .col-xs-12.col-md-6
+              .text-right
+                = button_tag t('.pay'), class: 'btn btn-next btn-next-lg'
+                / = link_to t('.pay'), ecommerce_orders_path, method: :post, class: 'btn btn-next btn-next-lg'
+          .clearfix

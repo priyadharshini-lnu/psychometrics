@@ -132,15 +132,4 @@ class Assessment < ApplicationRecord
   def active_questions_count
     questions.not_deleted.where(disabled: false).count
   end
-
-  def assign_form_attributes
-    {
-      client_ids: client_ids,
-      report_ids: reports.assigned.pluck(:id),
-      access_reports_at: access_reports_at,
-      admin_ids: assigns.where(role: :admin).pluck(:membership_id),
-      manager_ids: assigns.where(role: :manager).pluck(:membership_id),
-      user_ids: assigns.where(role: :member).pluck(:membership_id)
-    }
-  end
 end

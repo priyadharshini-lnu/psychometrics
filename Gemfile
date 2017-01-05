@@ -23,6 +23,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-add-clear', '1.0.6'
   gem 'rails-assets-datatables', '1.10.12'
   gem 'rails-assets-summernote', '0.5.10'
+  gem 'rails-assets-js-cookie', '2.1.3'
 end
 
 ### Authentication and authorization
@@ -39,6 +40,7 @@ gem 'font-awesome-rails',         '~> 4.6.3.0'
 gem 'slim-rails',                 '~> 3.1.0'
 ### FORM BUILDERS
 gem 'simple_form',                '~> 3.2.1'
+gem 'cocoon', '1.2.9'
 ### Pagination helpers
 gem 'kaminari',                   '~> 0.17.0'
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
@@ -113,6 +115,8 @@ gem 'whenever', '~> 0.9.7', require: false
 gem 'hashids', '~> 1.0.2'
 gem 'bootstrap-slider-rails'
 
+gem 'money-rails', '~> 1.7.0'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
@@ -120,6 +124,8 @@ group :development, :test do
   gem 'hirb'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', '~> 4.7.0'
+  # A fake data generator
+  gem 'forgery', '0.6.0'
 end
 
 group :development do
@@ -140,7 +146,7 @@ group :development do
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'capybara'
+  gem 'capybara', '~> 2.11.0'
   gem 'poltergeist'
   # gem 'capybara-webkit'
   gem 'capybara-screenshot'

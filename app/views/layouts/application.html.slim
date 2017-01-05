@@ -24,4 +24,6 @@ html
             h1.pageTitle
           .col-sm-2.hidden-xs
     = yield
-    = render partial: '//layouts/footer'
+    footer class="#{'loginFooter' if devise_controller?}"
+      .container-fluid
+        = render partial: '/layouts/footer'

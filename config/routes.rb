@@ -1,3 +1,4 @@
+require 'sidekiq/web'
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
   # Administration panel
@@ -73,7 +74,6 @@ Rails.application.routes.draw do
       end
       scope module: 'assessments' do
         scope module: 'assigns' do
-          resource :finish, controller: :finish, only: [:show], path: 'assign/finish'
           resource :step1, controller: :step1, only: [:show, :update], path: 'assign/step1'
           resource :step2, controller: :step2, only: [:show, :update], path: 'assign/step2' do
             get 'selected_users'
@@ -208,6 +208,36 @@ Rails.application.routes.draw do
         post :import
       end
     end
+
+    resources :products do
+      member do
+        get :copy
+        get :sidebar
+        patch :toggle_status
+      end
+    end
+  end
+  #
+  # END: Administration panel
+
+  namespace :ecommerce do
+    root to: 'products#index'
+    resources :products, only: [] do
+      member do
+        post :add_to_cart
+        delete :remove_from_cart
+      end
+    end
+    resource :carts, only: [:show, :update]
+    resource :orders, only: [:new, :create] do
+      get :success
+    end
+    scope module: :users do
+      resource :sessions, only: [:new, :create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
+        delete 'sign_out', to: 'sessions#destroy', as: :destroy
+      end
+      resource :registrations, only: [:new, :create], as: :registration
+    end
   end
 
   constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
@@ -250,14 +280,21 @@ Rails.application.routes.draw do
         get :pass
       end
     end
-
     resources :reports, only: [:show]
     resource :profiles, only: [:update, :edit]
-
     resources :assigns, only: [:update]
     get 'survey_instructions', to: 'home#survey_instructions'
     root to: 'assessments#index'
   end
+
+  Sidekiq::Web.use Rack::Auth::Basic do |username, password|
+    # Protect against timing attacks: (https://codahale.com/a-lesson-in-timing-attacks/)
+    # - Use & (do not use &&) so that it doesn't short circuit.
+    # - Use `secure_compare` to stop length information leaking
+    ActiveSupport::SecurityUtils.secure_compare(username, 'staging') &
+      ActiveSupport::SecurityUtils.secure_compare(password, 'sumatosoft')
+  end if Rails.env.production?
+  mount Sidekiq::Web, at: '/sidekiq'
 
   root to: 'administration/administrator/sessions#new'
 end

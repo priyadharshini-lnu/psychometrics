@@ -1,0 +1,49 @@
+en:
+  administration:
+    products:
+      index:
+        title: 'Products list'
+        add: 'Add new Product'
+      new:
+        header: 'New Product'
+      edit:
+        header: 'Edit Product'
+      destroy:
+        successfully: 'Product %{name} was successfully destroyed.'
+      copy:
+        error: 'Product #%{name} was not copied.'
+        successfully: 'Product %{name} was successfully copied.'
+      create:
+        successfully: 'Product %{name} was successfully created.'
+      update:
+        successfully: 'Product %{name} was successfully updated.'
+      sidebar:
+        title: Product's options
+        disable: Disable
+        enable: Enable
+        edit: Edit Product
+        new: New Product
+        copy: Copy Product
+        destroy: Destroy Product
+      form:
+        reports: 'Reports'
+        prices: 'Prices'
+        images: 'Images'
+        add_image: 'Add Image'
+      image_fields:
+        remove: 'Remove Image'
+      resource:
+        tooltips:
+          copy: Copy Product
+          edit: Edit Product
+          delete: Delete Product
+        confirmations:
+          delete:
+            title:
+              Delete <strong>Product</strong> ?
+            body: >
+              <p>Are you sure you want to delete this Product?</p>
+          toggle_status:
+            title: <strong>%{status}</strong> %{name}?
+            body: >
+              <p>Are you sure you want to %{status} this Product?</p>

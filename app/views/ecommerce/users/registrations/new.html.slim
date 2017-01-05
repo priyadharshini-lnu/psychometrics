@@ -1,0 +1,49 @@
+.container
+  .row
+    .col-xs-12
+      #assessmentDashboard
+        .contentTitleHeader
+          i.glyphicon.glyphicon-log-in.titleIcon.pull-left
+          p.contentTitle = t('.register')
+        .col-xs-12
+          .dashboardToggle
+            .btn-group.dashboard role="group"
+              = active_link_to t('.sign_in'), new_ecommerce_session_path, class: 'btn btn-default'
+              = active_link_to t('.register'), new_ecommerce_registration_path, class: 'btn btn-default dashboardButton'
+        = simple_form_for(resource, as: resource_name, url: ecommerce_registration_path) do |f|
+          .col-xs-12
+            == flash_messages
+            = f.error_notification
+            .col-md-6
+              h3 Registration
+              .form-group.col-lg-12
+                = f.label :email
+                = f.input_field :email, class: 'form-control'
+                = f.error :email, class: 'text-danger'
+              .row
+                .form-group.col-lg-6
+                  = f.label :password
+                  = f.input_field :password, class: 'form-control'
+                  = f.error :password, class: 'text-danger'           
+                .form-group.col-lg-6
+                  = f.label :password_confirmation
+                  = f.input_field :password_confirmation, class: 'form-control'
+                  = f.error :password_confirmation, class: 'text-danger'
+              .row   
+                .form-group.col-lg-6
+                  = f.label :first_name
+                  = f.input_field :first_name, class: 'form-control'     
+                .form-group.col-lg-6
+                  = f.label :last_name
+                  = f.input_field :last_name, class: 'form-control' 
+            .col-md-6
+              h3 Terms and Conditions
+              p
+                | By clicking on "Register" you agree to The Company's' Terms and Conditions
+              p
+                | Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla ornare eros ac sem laoreet dictum. Ut sit amet elementum felis, a pharetra nisi. Aenean imperdiet aliquam leo, sit amet cursus leo efficitur et. Curabitur fermentum elit dolor, condimentum fringilla ante pellentesque id.
+              p
+                | Quisque quis eros a risus pharetra vulputate posuere et lorem. Nam ac velit at metus efficitur euismod non a quam. Aenean vel rutrum ligula, ac volutpat eros. In dapibus venenatis erat ac fringilla. Aenean pellentesque ex a nulla suscipit volutpat.
+              = f.input :terms, as: :boolean, label: 'By checking this box you agree to the terms &amp; conditions.', input_html: { class: 'checkbox' }
+              button.btn.btn-primary.pull-right type="submit"  Register
+        .clearfix  
