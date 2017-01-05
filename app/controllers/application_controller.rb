@@ -3,7 +3,7 @@ class ApplicationController < ActionController::Base
   #
   include Pundit
   include Authenticate
-  include GetLocale
+  include SetLocale
 
   layout :layout_by_resource
   protect_from_forgery with: :exception

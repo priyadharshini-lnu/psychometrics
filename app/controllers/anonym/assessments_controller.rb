@@ -1,6 +1,6 @@
 module Anonym
   class AssessmentsController < ActionController::Base
-    include GetLocale
+    include SetLocale
     layout 'anonym'
     protect_from_forgery with: :exception
 

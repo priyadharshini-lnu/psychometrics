@@ -142,7 +142,7 @@ group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara'
   gem 'poltergeist'
-  gem 'capybara-webkit'
+  # gem 'capybara-webkit'
   gem 'capybara-screenshot'
   gem 'selenium-webdriver'
 end

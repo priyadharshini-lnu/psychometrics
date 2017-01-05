@@ -9,7 +9,7 @@ javascript:
         text: '#{resource.name}'
       },
       tooltip: {
-        pointFormat: '<b>{point.percentage:.1f}%</b>'
+        pointFormat: '<b>{point.y}</b>'
       },
       legend: {
         enabled: false
@@ -23,7 +23,7 @@ javascript:
               cursor: 'pointer',
               dataLabels: {
                   enabled: true,
-                  format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                  format: '<b>{point.name}</b>: {point.y}',
                   style: {
                     color: 'black'
                   }

@@ -5,7 +5,7 @@ class Administration::BaseController < ActionController::Base
   ## Prepend :administration namespace to policy
   include Administration::Policies
   include Authenticate
-  include GetLocale
+  include SetLocale
 
   # Authentication admin
   prepend_before_action :authenticate_user!

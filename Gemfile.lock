@@ -179,9 +179,6 @@ GEM
     capybara-screenshot (1.0.14)
       capybara (>= 1.0, < 3)
       launchy
-    capybara-webkit (1.1.0)
-      capybara (~> 2.0, >= 2.0.2)
-      json
     carrierwave (0.11.2)
       activemodel (>= 3.2.0)
       activesupport (>= 3.2.0)
@@ -544,7 +541,6 @@ DEPENDENCIES
   capistrano-sidekiq!
   capybara
   capybara-screenshot
-  capybara-webkit
   carrierwave (~> 0.11.2)
   carrierwave-aws (~> 1.0.1)
   chronic (~> 0.10.2)
