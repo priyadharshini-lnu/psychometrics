@@ -10,6 +10,8 @@
         .btn-group.dashboard aria-label="..." role="group"
           = active_link_to t('assessments.index.user_dashboard_button'), root_path, active: :exclusive, class: 'btn btn-default dashboardButton'
           = active_link_to t('assessments.index.managers_dashboard_button'), managers_dashboard_index_path, class: 'btn btn-default dashboardButton'
+          - if policy([:managers, Assessment]).index?
+            = active_link_to t('assessments.index.managers_assessments_button'), managers_assessments_path, class: 'btn btn-default dashboardButton'
       .col-xs-12.col-md-6
         .notificationTable
           table.table.table-striped
