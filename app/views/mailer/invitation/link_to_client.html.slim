@@ -1,0 +1,4 @@
+p = t("devise.mailer.invitation_instructions.hello", email: @resource.email)
+p = t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url)
+p = link_to(t("devise.mailer.invitation_instructions.accept"), 
+            url_for([:root, { domain: Settings.domain, subdomain: @client&.subdomain }]))

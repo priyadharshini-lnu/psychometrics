@@ -8,10 +8,13 @@ en:
         product_quantity: 'Quantity'
         product_subtotal: 'Positions Price'
         back_to_basket: 'Back to Basket'
+        users: 'Users'
         total: 'Total'
         pay: 'Pay'
 
       success:
+        back_to_basket: 'Back to Basket'
+        go_to_dashboard: 'Go to Dashboard'
         title: 'Payment Successful'
         body: |
           <h3>Payment successful</h3>

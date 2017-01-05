@@ -41,8 +41,6 @@ module Ecommerce
             client: @current_membership.client,
             report: report
           })
-          Assign.find_or_create_by(assessment: report&.assessment, membership: @current_membership)
-
           # Invites specified users to assessment
           purchase.invites.each { |invite| invite_user(invite.email, report&.assessment) }
         end
@@ -78,7 +76,7 @@ module Ecommerce
           }]
         })
         user.save
-        user.invite!(current_user, @current_membership.client)
+        user.invite!(current_user, @current_membership.client_id)
       end
       membership = user.memberships.find_or_create_by(client_id: @current_membership.client_id)
       Assign.find_or_create_by!(membership: membership, assessment: assessment)
@@ -89,7 +87,7 @@ module Ecommerce
       if @current_membership.new_record?
         @current_membership.client = Client.create(name: "Retail #{@current_user.decorate.display_name}", type: :retail)
         @current_membership.save
-        current_user.invite!(nil, @current_membership.client)
+        current_user.invite!(nil, @current_membership.client_id)
       end
     end
   end

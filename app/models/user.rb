@@ -34,6 +34,7 @@
 class User < ApplicationRecord
   # Scopes
   include UserScopes
+
   # Authentication
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -169,10 +170,21 @@ class User < ApplicationRecord
     end
   end
 
+  # If user was already created and was invited by mail (with link to set password)
+  #   Then we just send him mail with link to new Client
+  # Else we send him mail with link to set password
   def invite!(invited_by = nil, invited_to_id = nil, options = {})
-    self.skip_invitation = true
-    super(invited_by, options)
-    InvitationMailer.invite(id, invited_to_id).deliver_later
+    if accepted_or_not_invited? && !sign_in_count.zero?
+      InvitationMailer.link_to_client(id, invited_to_id).deliver_later
+    else
+      # Customizing default mail of devise_inviteable
+      # Couse it's gem not support to chagen invite link
+      #   Where we need to set subdomain of Client
+      #   Where client was invited
+      self.skip_invitation = true
+      super(invited_by, options)
+      InvitationMailer.invite(id, invited_to_id).deliver_later
+    end
   end
 
   private
