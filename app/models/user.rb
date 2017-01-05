@@ -34,7 +34,6 @@
 class User < ApplicationRecord
   # Scopes
   include UserScopes
-
   # Authentication
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -72,10 +71,8 @@ class User < ApplicationRecord
   has_many :clients, through: :memberships
   accepts_nested_attributes_for :memberships
 
-  validates :email, :role, presence: true
-  validates :first_name, :last_name, :email, length: { maximum: 100 }, allow_blank: true
-  validates :email, format: { with: /\A([^@\s]+)@((?:[-a-z0-9]+\.)+[a-z]{2,})\Z/i }
-  validates :role, inclusion: { in: USER_ROLES.values }, allow_nil: true
+  include UserValidations
+  validates :email, uniqueness: true
 
   before_validation :check_operator_can_manage, if: :role_changed?
   before_save :ensure_authentication_token

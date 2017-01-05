@@ -18,6 +18,8 @@
 #
 
 class Membership < ApplicationRecord
+  include MembershipValidations
+
   belongs_to :client, counter_cache: :licenses_used
   belongs_to :user, inverse_of: :memberships
   accepts_nested_attributes_for :user
@@ -27,10 +29,9 @@ class Membership < ApplicationRecord
   has_many :communication_emails, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'
   has_many :orders, dependent: :destroy, inverse_of: :membership, class_name: 'Ecommerce::Order'
 
-  acts_as_nested_set scope: :client_id
+  validates :client, uniqueness: { scope: :user }
 
-  validates :client, :user, presence: true
-  validates :client_id, uniqueness: { scope: :user_id }
+  acts_as_nested_set scope: :client_id
 
   scope :enabled, -> { where.not(disabled: true) }
   scope :with_head_assigns_for_client_and_assessment, lambda { |client_id, assessment_id|
