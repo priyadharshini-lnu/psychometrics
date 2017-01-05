@@ -1,3 +1,16 @@
+# == Schema Information
+#
+# Table name: products
+#
+#  id          :integer          not null, primary key
+#  name        :string
+#  description :text
+#  image       :string
+#  disabled    :boolean          default(FALSE)
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#
+
 class Product < ApplicationRecord
   include Copyable
   has_many :product_reports, dependent: :destroy

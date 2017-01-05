@@ -17,7 +17,11 @@
 #
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'capybara/rspec'
+require 'support/mailer_macros'
 RSpec.configure do |config|
+  # Support for mailers
+  config.include(MailerMacros)
+  config.before(:each) { reset_email }
   # rspec-expectations config goes here. You can use an alternate
   # assertion/expectation library such as wrong or the stdlib/minitest
   # assertions if you prefer.

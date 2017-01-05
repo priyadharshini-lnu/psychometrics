@@ -124,8 +124,8 @@ group :development, :test do
   gem 'hirb'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', '~> 4.7.0'
-  gem 'capybara', '~> 2.11.0'
-  gem 'guard-rspec', '~> 4.7.3'
+  # A fake data generator
+  gem 'forgery', '0.6.0'
 end
 
 group :development do
@@ -146,9 +146,9 @@ group :development do
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'capybara'
+  gem 'capybara', '~> 2.11.0'
   gem 'poltergeist'
-  gem 'capybara-webkit'
+  # gem 'capybara-webkit'
   gem 'capybara-screenshot'
   gem 'selenium-webdriver'
 end

@@ -14,6 +14,7 @@
 #  disabled       :boolean          default(FALSE)
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
+#  is_retail      :boolean          default(FALSE)
 #
 
 class MembershipSerializer < ActiveModel::Serializer

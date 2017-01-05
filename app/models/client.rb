@@ -14,6 +14,7 @@
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
 #  background      :string
+#  type            :integer          default("enterprise")
 #
 
 class Client < ApplicationRecord

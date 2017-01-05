@@ -1,3 +1,14 @@
+# == Schema Information
+#
+# Table name: ecommerce_orders
+#
+#  id            :integer          not null, primary key
+#  membership_id :integer
+#  status        :integer          default("in_proccess")
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
+#
+
 module Ecommerce
   class Order < ApplicationRecord
     belongs_to :membership, class_name: 'Membership', inverse_of: :orders
