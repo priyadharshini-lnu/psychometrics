@@ -103,9 +103,8 @@ module Managers
 
     def set_managers
       resource_ids = [@current_membership.id]
-      resource_ids << @current_membership.parent_id
-      resource_ids << @current_membership.children.includes(:user).pluck(&:id)
-      @managers   = Membership.includes(:user).where(id: resource_ids).all
+      resource_ids << @current_membership.children.includes(:user).pluck(:id)
+      @managers   = Membership.includes(:user).where(id: resource_ids.flatten).all
     end
   end
 end

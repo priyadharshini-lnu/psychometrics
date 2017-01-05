@@ -31,7 +31,7 @@
             = t('.all_assessments') 
           - else
             = t("activerecord.attributes.assessment.categories.#{@filter_form.assessment_category_eq}")
-        #ransack_results
+        #filter_results
           = render partial: 'list'
       .clearfix
 = javascript_include_tag 'http://code.highcharts.com/highcharts.js'
