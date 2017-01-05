@@ -20,7 +20,7 @@
     .col-sm-6.col-md-2.tabletPadding
       - # it was refactored in stage2 branch
       - reports = filter_reports_by_type(@reports.try(:[], resource.id) || [], first_assign.norm_type)
-      - if reports
+      - if reports.any?
         - if reports.size > 1
           .dropdown
             button data-toggle="dropdown" type="button" class=" btn btn-primary dropdown-toggle btn-courseProgress #{!first_assign.completed? ? 'disabled' : ''}"

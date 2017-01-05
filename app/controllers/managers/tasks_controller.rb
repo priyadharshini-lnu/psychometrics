@@ -29,6 +29,7 @@ module Managers
     def new
       @resource = @assessment.tasks.new
       @resource.parent_id = params[:parent_id]
+      @resource.priority = params[:priority]
     end
 
     def change_status

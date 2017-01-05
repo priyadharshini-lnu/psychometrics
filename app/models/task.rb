@@ -81,7 +81,7 @@ class Task < ApplicationRecord
   private
 
   def init
-    self.status = Task.statuses[:in_progress] unless self.status
+    self.status = Task.statuses[:not_started] unless self.status
   end
 
   def completion_callback

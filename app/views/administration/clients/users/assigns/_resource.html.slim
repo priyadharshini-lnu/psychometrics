@@ -9,7 +9,7 @@ tr id=dom_id(resource)
     - reports = filter_reports_by_type(@reports.try(:[], resource.assessment_id) || [], resource.norm_type)
     - if policy(resource.assessment).view_report?
       - if resource.completed?
-        - if reports
+        - if reports.any?
           - reports.each do |report|
             = link_to [:preview, :administration, @client, :user, :report, user_id: @membership.user_id, id: report.id], class: 'btn btn-default btn-rounded btn-sm mrm', data: {toggle: 'tooltip', title: report.name}
               span.fa.fa-pie-chart

@@ -4,15 +4,10 @@
       thead
         tr
           th = t('.assignee')
-            | Direct Report
           th.text-center = t('.not_started')
-            | Not Started
           th.text-center = t('.in_progress')
-            | Underway
           th.text-center = t('.completed')
-            | Completed
           th.text-center = t('.overdue')
-            | Paste Due
       tbody
         - if @managers.present?
           = render partial: 'summary_manager', collection: @managers

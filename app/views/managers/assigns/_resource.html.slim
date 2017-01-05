@@ -12,7 +12,7 @@ tr
   td.text-center
     .btn-group.reportTable aria-label="..." role="group"
       - reports = filter_reports_by_type(@reports.try(:[], resource.assessment_id) || [], resource.norm_type)
-      - if reports
+      - if reports.any?
         - if reports.size > 1
           .dropdown.btn-group
             button data-toggle="dropdown" type="button" class="btn btn-default dropdown-toggle #{!resource.completed? ? 'disabled' : ''}"

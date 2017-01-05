@@ -33,7 +33,7 @@ en:
         completed: 'Completed'
         overdue: 'Overdue'
       summary_managers:
-        assignee: 'Direct Report'
+        assignee: 'Assigner'
         not_started: 'Not Started'
         in_progress: 'In Progress'
         completed: 'Completed'

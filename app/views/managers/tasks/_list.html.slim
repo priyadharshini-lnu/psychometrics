@@ -27,7 +27,7 @@
               - if resources.present?
                 = render partial: 'resource', collection: resources
       p
-        = link_to [:new, :managers, @assessment, @resource_class.model_name.singular], class: 'blue', remote: true
+        = link_to [:new, :managers, @assessment, @resource_class.model_name.singular, priority: priority], class: 'blue', remote: true
           span.glyphicon.glyphicon-plus-sign
           span = t('.add_item')
         .summary = t('.summary', total: resources.size)
