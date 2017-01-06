@@ -1,0 +1,5 @@
+$('#<%= dom_id(@resource.assessment) %>').hide('slow')
+// Notify message
+noty({text: '<%= t("administration.clients.assessments.destroy.successfully", name: @resource.assessment.decorate.display_name) %>', type: 'success'});
+
+$(document).trigger('close_sidebar');

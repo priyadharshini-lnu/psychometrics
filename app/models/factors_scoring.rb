@@ -10,6 +10,7 @@
 #
 
 class FactorsScoring < ApplicationRecord
+  include Copyable
   self.table_name = :factors_scoring
 
   belongs_to :assessment

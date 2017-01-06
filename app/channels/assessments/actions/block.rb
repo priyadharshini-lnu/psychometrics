@@ -59,7 +59,7 @@ module Assessments
 
       action :clone do |data|
         block = ::Block.find(data['id'])
-        cloned_block = block.clone(name: data['name'], position: data['position'])
+        cloned_block = block.clone_with_params(name: data['name'], position: data['position'])
         BlockSerializer.new(cloned_block).to_hash
       end
 
@@ -69,7 +69,7 @@ module Assessments
         BlockSerializer.new(block).to_hash(include: '**')
       end
 
-      action :save_as_template do |data, _, assessment|
+      action :save_as_template do |data, _, _assessment|
         block = ::Block.find(data['id'])
         block.dup_for_template!
         BlockSerializer.new(block).to_hash(include: '**')
@@ -77,9 +77,9 @@ module Assessments
 
       action :unlink_template do |data|
         block = ::Block.includes(:template, questions: :template).find(data['id'])
-        block.update_attributes(block.template.general_attributes.merge({template_id: nil}))
+        block.update_attributes(block.template.general_attributes.merge({ template_id: nil }))
         block.questions.each do |question|
-          question.update_attributes(question.template.general_attributes.merge({template_id: nil}))
+          question.update_attributes(question.template.general_attributes.merge({ template_id: nil }))
         end
         BlockSerializer.new(block).to_hash(include: '**')
         nil

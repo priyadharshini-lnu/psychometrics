@@ -27,6 +27,8 @@ class Block < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
+  after_update :sync_with_template, if: :template
+
   scope :deleted, -> { where.not(deleted_at: nil) }
 
   acts_as_list scope: :assessment_id
@@ -58,7 +60,7 @@ class Block < ApplicationRecord
     end
   }
 
-  def clone(params = {})
+  def clone_with_params(params = {})
     cloned_block = deep_clone(include: [:questions])
     cloned_block.position = params[:position] if params[:position]
     cloned_block.name = params[:name] if params[:name]
@@ -101,8 +103,6 @@ class Block < ApplicationRecord
       assessment.blocks << dup_for_assessment!(assessment.id)
     end
   end
-
-  after_update :sync_with_template, if: :template
 
   def sync_with_template
     template.update_attributes(general_attributes)

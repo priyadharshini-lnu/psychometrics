@@ -5,6 +5,7 @@
         th = sorting @resource_class, :name, @filterrific
         th = @resource_class.human_attribute_name(:assessment)
         th = sorting @resource_class, :created_at, @filterrific
+        th
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

@@ -21,6 +21,15 @@ module Administration
         end
       end
 
+      def destroy
+        @resource = ClientReport.find_by(client_id: @client.id, report_id: params[:id])
+        @resource.destroy
+        respond_to do |format|
+          format.html { redirect_to(:back, success: t('.successfully', name: @resource.report.decorate.display_name)) }
+          format.js
+        end
+      end
+
       private
 
       def init_breadcrumbs

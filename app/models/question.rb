@@ -49,7 +49,10 @@ class Question < ApplicationRecord
   }
 
   before_create :set_assessment_id, if: proc { assessment_id.nil? }
-
+  after_update :sync_with_template, if: :template
+  before_create :set_view
+  after_create :create_in_template_block, if: proc { block && block.template.present? }
+  after_create :create_in_assessments_blocks, if: proc { block && block.blocks.any? }
   #
   # Disables single column inheritance
   #
@@ -127,11 +130,6 @@ class Question < ApplicationRecord
       dup_for_assessment!(assessment.blocks.last.id)
     end
   end
-
-  after_update :sync_with_template, if: :template
-  before_create :set_view
-  after_create :create_in_template_block, if: proc { block && block.template.present? }
-  after_create :create_in_assessments_blocks, if: proc { block && block.blocks.any? }
 
   def sync_with_template
     template.update_attributes(general_attributes)

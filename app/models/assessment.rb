@@ -56,7 +56,7 @@ class Assessment < ApplicationRecord
 
   def init
     self.flow ||= { elements: [] }
-    self.status = Assessment.statuses[:in_progress] unless self.status
+    self.status = Assessment.statuses[:in_progress] unless status
   end
 
   enum category: CATEGORIES
@@ -119,14 +119,6 @@ class Assessment < ApplicationRecord
     def options_for_select
       all.map { |assessment| [assessment.decorate.display_name, assessment.id] }
     end
-  end
-
-  # Copy assessment with blocks => questions and factors_scorings
-  def clone
-    @cloned_item = deep_clone(include: [{ blocks: { questions: :factors_scorings } }],
-                              except: [{ blocks: [questions: [:assessment_id, { factors_scorings: [:assessment_id] }]] }])
-    @cloned_item.gen_uniq_name
-    @cloned_item
   end
 
   def active_questions_count

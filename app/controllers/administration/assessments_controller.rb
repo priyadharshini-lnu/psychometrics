@@ -84,9 +84,9 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def copy
-    @cloned_resource = @resource.clone
+    @cloned_resource = CopyAssessment.process!(@resource.id)
     respond_to do |format|
-      if @cloned_resource.save
+      if @cloned_resource.persisted?
         format.js
       else
         format.js do

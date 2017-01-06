@@ -30,6 +30,15 @@ module Administration
         end
       end
 
+      def destroy
+        @resource = AssessmentClient.find_by(client_id: @client.id, assessment_id: params[:id])
+        @resource.destroy
+        respond_to do |format|
+          format.html { redirect_to(:back, success: t('.successfully', name: @resource.assessment.decorate.display_name)) }
+          format.js
+        end
+      end
+
       private
 
       def init_breadcrumbs
