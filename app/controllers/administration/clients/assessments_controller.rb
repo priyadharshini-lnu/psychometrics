@@ -59,7 +59,7 @@ module Administration
 
       # Authorisation user
       def pundit_authorize
-        authorize @resource || @resource_class
+        authorize :assessment_client
       end
     end
   end
