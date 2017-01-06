@@ -1,0 +1,36 @@
+- assessment = assign.assignable
+- result = @results[assign.assignable_id].try(:first) || Result.new
+tr id=dom_id(assign)
+  td = assign.encode_id
+  td
+    span = @membership.decorate.display_name
+    span.mlm
+      - if policy(assign).destroy?
+        = link_to({ action: :destroy, id: assign }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: assign.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
+          span.fa.fa-times
+  td = assessment.try(:name)
+  td = assessment.try(:decorate).try(:category)
+  td = result.decorate.status
+  td = result.decorate.completed_at
+  td.text-center
+    - assign.reports.enabled.all.each do |report|
+      div id="client-tenancy-assign-#{assign.id}-report-#{report.id}"
+        span = report.name
+        span.mlm
+          - if policy(assign).destroy?
+            = link_to({ action: :destroy_report, id: assign, params: { report_id: report.id } }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { confirm: report.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete_report') })
+              span.fa.fa-times
+  td.text-center
+    - if policy(assessment).view_report?
+      - reports = filter_reports_by_type(assign.reports.enabled, result.norm_type)
+      - if result.completed?
+        - if reports.any?
+          - reports.each do |report|
+            = link_to [:preview, :administration, client, :user, :report, user_id: @membership.user_id, id: report.id], class: 'btn btn-default btn-rounded btn-sm mrm', data: {toggle: 'tooltip', title: report.name}
+              span.fa.fa-pie-chart
+        - else
+          = t('.no_reports')
+      - else
+        = t('.no_completed')
+    - else
+      = t('.no_access_to_reports')

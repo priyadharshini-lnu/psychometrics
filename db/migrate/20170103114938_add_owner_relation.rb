@@ -1,5 +1,5 @@
 class AddOwnerRelation < ActiveRecord::Migration[5.0]
-  TABLES_ARR = %i(norms dimensions assessments reports questions communications libraries)
+  TABLES_ARR = %i(norms dimensions assessments reports questions communications libraries).freeze
 
   def up
     TABLES_ARR.each do |table|

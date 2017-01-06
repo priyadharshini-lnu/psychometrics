@@ -3,10 +3,11 @@ class UserForm < BaseForm
   include MembershipValidations
 
   attr_accessor :email, :first_name, :last_name,
-                :parent_id, :role, :client, :user,
+                :parent_id, :membership_role, :client, :user,
                 :operator
 
   validate :uniqueness_membership, if: proc { user.id }
+  validates :membership_role, inclusion: { in: ::Membership::MEMBERSHIP_ROLES },  presence: true
 
   def uniqueness_membership
     errors.add(:email, :taken) if Membership.exists?(client_id: client.id, user_id: user.id)
@@ -35,13 +36,14 @@ class UserForm < BaseForm
 
   def persist!
     save_user! if @user.new_record?
-    @user.memberships.create!(client_id: client.id, parent_id: parent_id)
+    membership_attributes = { parent_id: parent_id, role: membership_role }
+    @user.memberships.create!(membership_attributes.merge({ client_id: client.id }))
+    @user.memberships.create_with(membership_attributes).find_or_create_by(client_id: client.parent_id) if client.subtenancy?
     self
   end
 
   def save_user!
-    @user.assign_attributes({ first_name: first_name, last_name: last_name,
-                              role: role, operator: operator })
+    @user.assign_attributes({ first_name: first_name, last_name: last_name, operator: operator })
     @user.save!
   end
 end

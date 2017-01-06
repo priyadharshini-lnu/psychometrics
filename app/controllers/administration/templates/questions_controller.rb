@@ -1,7 +1,6 @@
 module Administration
   module Templates
     class QuestionsController < Administration::BaseController
-      include ::Administration::OwnerScope
       prepend_before_action :set_resource_class
       before_action :set_resource, only: [:show, :edit, :configure, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign]
       before_action :skip_authorization, only: [:sidebar]

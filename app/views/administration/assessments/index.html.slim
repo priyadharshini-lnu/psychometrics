@@ -4,9 +4,10 @@
       .panel-heading
         h3.panel-title = t '.title'
         ul.panel-controls
-          li
-            = link_to [:new, :administration, @resource_class.model_name.singular, with_category: @filterrific.with_category ], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
-              span.fa.fa-plus
+          - if policy(@resource_class).create?
+            li
+              = link_to [:new, :administration, @resource_class.model_name.singular, with_category: @filterrific.with_category ], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
+                span.fa.fa-plus
       .panel-body
         .row.mbm
           .col-sm-6.phn

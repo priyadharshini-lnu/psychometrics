@@ -4,7 +4,7 @@ class AssessmentDecorator < BaseDecorator
   end
 
   def description
-    object.description || I18n.t('assessments.decorator.no_description')
+    object.description || I18n.t('assigns.decorator.no_description')
   end
 
   def name
@@ -28,7 +28,9 @@ class AssessmentDecorator < BaseDecorator
     h.link_to(url, url)
   end
 
-  def client_name
-    object.owner.try(:name) || I18n.t('administration.tte')
+  def clients_names
+    object.clients.
+      map { |client| client.decorate.display_name }.
+      join(', ')
   end
 end

@@ -3,7 +3,9 @@ class ReportDecorator < BaseDecorator
     I18n.t("administration.reports.types.#{object.type}")
   end
 
-  def client_name
-    object.owner.try(:name) || I18n.t('administration.tte')
+  def clients_names
+    object.clients.
+      map { |client| client.decorate.display_name }.
+      join(', ')
   end
 end

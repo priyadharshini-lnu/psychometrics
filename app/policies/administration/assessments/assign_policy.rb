@@ -12,6 +12,10 @@ module Administration
       def selected_users?
         show?
       end
+
+      def show?
+        super || @user.has_grant?(:assessments, :assign)
+      end
     end
   end
 end

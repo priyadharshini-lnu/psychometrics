@@ -11,8 +11,4 @@ class NormDecorator < BaseDecorator
     end
     levels
   end
-
-  def client_name
-    object.owner.try(:name) || I18n.t('administration.tte')
-  end
 end

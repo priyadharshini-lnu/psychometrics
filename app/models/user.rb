@@ -18,7 +18,7 @@
 #  first_name             :string
 #  last_name              :string
 #  disabled               :boolean          default(FALSE)
-#  role                   :string           default("Users::Member")
+#  role                   :string           default("Users::Regular")
 #  invitation_token       :string
 #  invitation_created_at  :datetime
 #  invitation_sent_at     :datetime
@@ -29,9 +29,30 @@
 #  invitations_count      :integer          default(0)
 #  authentication_token   :string(30)
 #  is_anonym              :boolean          default(FALSE)
+#  grants                 :jsonb
 #
 
 class User < ApplicationRecord
+  # Roles constant
+  SUPER_ADMIN_ROLE = 'Users::SuperAdmin'.freeze
+  REGULAR_ROLE = 'Users::Regular'.freeze
+
+  USER_ROLES = {
+      superadmin: SUPER_ADMIN_ROLE,
+      regular: REGULAR_ROLE
+  }.freeze
+
+  USER_ROLES_SCOPES = {
+      administration: [USER_ROLES.key(SUPER_ADMIN_ROLE), Membership::ADMIN_ROLE],
+      user:           [USER_ROLES.key(REGULAR_ROLE), Membership::MANAGER_ROLE, Membership::MEMBER_ROLE]
+  }.freeze
+
+  # Contain information about ability to manage list of roles
+  USER_ROLES_HIERARCHY = {
+      superadmin: USER_ROLES.values,
+      regular: Membership::MEMBERSHIP_ROLES
+  }.freeze
+
   # Scopes
   include UserScopes
 
@@ -40,43 +61,25 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :trackable, :validatable,
          :timeoutable, request_keys: { subdomain: false }
 
-  # User, who try update or create entity
-  attr_accessor :operator
+  attr_accessor :create_by_invite
+  attr_accessor :terms
   # HRIS data
   attr_accessor :hris_data
+  attr_accessor :current_membership
 
   self.inheritance_column = :role
 
-  # Roles constant
-  USER_ROLES = {
-      superadmin: 'Users::SuperAdmin',
-      admin: 'Users::Admin',
-      manager: 'Users::Manager',
-      member: 'Users::Member',
-  }.freeze
-
-  USER_ROLES_SCOPES = {
-      administration: USER_ROLES.slice(:superadmin, :admin).values,
-      user:          USER_ROLES.slice(:manager, :member).values
-  }.freeze
-
-  # Contain information about ability to manage list of roles
-  USER_ROLES_HIERARCHY = {
-    superadmin: USER_ROLES.values,
-    admin: [USER_ROLES[:admin], USER_ROLES[:manager], USER_ROLES[:member]],
-    manager: [USER_ROLES[:member]],
-    user: []
-  }.freeze
-
   has_many :memberships, inverse_of: :user
   has_many :clients, through: :memberships
+  has_many :admin_clients, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, through: :memberships, source: 'client'
   accepts_nested_attributes_for :memberships
 
   include UserValidations
-  validates :email, uniqueness: true
 
-  before_validation :check_operator_can_manage, if: :role_changed?
   before_save :ensure_authentication_token
+  validates :email, uniqueness: true
+  validates :role, inclusion: { in: ::User::USER_ROLES.values }, presence: true, allow_nil: true
+  validate :validate_grants
 
   scope :enabled, -> { where.not(disabled: true) }
   scope :identified, -> { where(is_anonym: false) }
@@ -84,7 +87,7 @@ class User < ApplicationRecord
 
   # We won't set password, we will send inviting
   def password_required?
-    return false if new_record? && operator.present?
+    return false if new_record? && create_by_invite
     super
   end
 
@@ -95,14 +98,20 @@ class User < ApplicationRecord
   end
 
   def is?(*roles)
-    ([USER_ROLES.key(role)] & roles).any?
+    roles.map!(&:to_sym)
+    arr = if current_membership
+            [current_membership.role.to_sym]
+          else
+            [USER_ROLES.key(role)] + memberships.map { |m| m.role.to_sym }
+          end
+    (arr & roles).any?
   end
 
   # Return devise scope
   # :administration, :user
   def role_scope
     USER_ROLES_SCOPES.each do |scope, roles|
-      break scope if is?(*roles.map { |role| USER_ROLES.key(role) })
+      break scope if is?(*roles)
     end
   end
 
@@ -116,23 +125,10 @@ class User < ApplicationRecord
     (USER_ROLES_HIERARCHY[USER_ROLES.key(role)] || [])
   end
 
-  # GET Ids of clients which Operator can manage
-  def manage_client_ids
-    client_ids
-  end
-
-  # SET Operator can manage users only from own client (company)
-  def manage_client_ids=(value)
-    ids = (value.reject(&:blank?) || []).map(&:to_i)
-    # Check which clients can be managed by operator
-    manage_ids = operator.try(:manage_clients, ids) || []
-    self.client_ids = (client_ids + manage_ids).uniq
-  end
-
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      [:hris_data_cont, :role_scope_in, :exclude_ids, :include_ids]
+      [:hris_data_cont, :role_scope_in]
     end
 
     # Available role for the filter form
@@ -187,16 +183,23 @@ class User < ApplicationRecord
     end
   end
 
-  private
-
-  def check_operator_can_manage
-    errors.add(:role, :invalid) if operator && !operator.try(:can_manage?, self)
+  def has_grant?(*args)
+    return false if grants.nil?
+    args.map!(&:to_s)
+    grants.dig(*args).present?
   end
+
+  private
 
   def generate_authentication_token
     loop do
       token = Devise.friendly_token
       break token unless User.exists?(authentication_token: token)
     end
+  end
+
+  def validate_grants
+    return if grants.nil? || grants.is_a?(Hash)
+    errors.add(:grants, :invalid)
   end
 end

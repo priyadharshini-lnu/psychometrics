@@ -50,7 +50,7 @@ class Administration::UserPolicy < Administration::BasePolicy
   class Scope < Administration::BasePolicy::Scope
     def resolve
       return scope if @user.is?(:superadmin)
-      scope.enabled.joins(:memberships).where(memberships: { client_id: @user.client_ids })
+      scope.enabled.joins(:memberships).where(memberships: { client_id: @user.admin_client_ids })
     end
   end
 end

@@ -1,19 +1,19 @@
 module Administration
   class ClientPolicy < Administration::BasePolicy
     def index?
-      @user.is?(:superadmin, :admin)
+      super || @user.has_grant?(:clients, :view)
+    end
+
+    def create?
+      super || @user.has_grant?(:clients, :manage)
+    end
+
+    def sub_clients?
+      @user.is?(:superadmin) || @user.has_grant?(:clients, :manage)
     end
 
     def show?
-      scope.where(id: record.id).exists?
-    end
-
-    def update?
-      @user.is?(:superadmin, :admin)
-    end
-
-    def edit?
-      update?
+      true
     end
 
     def license?
@@ -21,17 +21,15 @@ module Administration
     end
 
     def design?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_grant?(:clients, :design)
     end
 
-    def scope
-      Pundit.policy_scope!(user, record.class)
-    end
-
-    class Scope < Administration::BasePolicy::Scope
+    class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)
-        scope.enterprise.enabled.where(id: @user.client_ids)
+        # scope.enterprise.enabled.where(id: @user.admin_client_ids)
+        parent_ids = @user.admin_clients.enterprise.enabled.pluck(:id)
+        scope.where.has { (id.in parent_ids) | (parent_id.in parent_ids) }
       end
     end
   end

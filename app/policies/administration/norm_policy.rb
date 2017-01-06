@@ -1,33 +1,29 @@
 class Administration::NormPolicy < Administration::BasePolicy
   def index?
-    @user.is?(:superadmin, :admin)
+    super || @user.has_grant?(:norms, :view)
   end
 
-  def update?
-    @user.is?(:superadmin, :admin)
-  end
-
-  def import?
-    create?
+  def create?
+    super || @user.has_grant?(:norms, :manage)
   end
 
   def editor?
-    create?
+    @user.is?(:superadmin)
   end
 
   def change_cell?
-    create?
-  end
-
-  def export?
     @user.is?(:superadmin)
   end
 
   class Scope < Scope
     def resolve
-      collection = [scope].flatten.last
-      return collection if @user.is?(:superadmin)
-      collection.where(owner_id: [@user.client_ids])
+      scope = super
+      return scope if @user.is?(:superadmin)
+      if @user.has_grant?(:norms, :view)
+        scope.where(owner_id: [@user.admin_client_ids])
+      else
+        scope.none
+      end
     end
   end
 end

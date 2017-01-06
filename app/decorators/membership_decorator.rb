@@ -5,7 +5,10 @@ class MembershipDecorator < BaseDecorator
   end
 
   def role_name
-    h.t("activerecord.attributes.user.roles.#{object.role.demodulize.underscore}")
+    role = h.t("activerecord.attributes.membership.roles.#{object.role.demodulize.underscore}")
+    # On membership user can't has Superadmin role
+    # role = h.t("activerecord.attributes.user.roles.#{object.user.role.demodulize.underscore}") if object.user.is?(:superadmin)
+    role
   end
 
   def relationship
@@ -30,6 +33,13 @@ class MembershipDecorator < BaseDecorator
     }.to_json
   end
 
+  def detach_from_project_confirmation
+    {
+        title: I18n.t('administration.projects.users.confirmations.detach_from_project.title', name: display_name, project_name: context[:project_name]),
+        body: I18n.t('administration.projects.users.confirmations.detach_from_project.body')
+    }.to_json
+  end
+
   def toggle_status_confirmation
     status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {
@@ -48,5 +58,9 @@ class MembershipDecorator < BaseDecorator
   def managers_for_select
     # TODO: need to change!
     User.where(role: User::USER_ROLES[:manager]).map { |manager| [manager.decorate.display_name, manager.id] }
+  end
+
+  def clients_names
+    object.user.clients.map { |c| c.decorate.display_name }.join('<br>').html_safe
   end
 end

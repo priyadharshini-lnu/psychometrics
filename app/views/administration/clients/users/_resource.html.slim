@@ -14,8 +14,9 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
     - if policy(resource).spoof?
       = link_to({ action: :spoof, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.sign_in') })
         i.fa.fa-sign-in
-    = link_to [:administration, @client, :user, :assigns, user_id: resource.id], class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.chart') }
-      i.fa.fa-pie-chart
+    - if policy(resource).overview_assigns?
+      = link_to [:administration, client, :user, :assigns, user_id: resource.id], class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.chart') }
+        i.fa.fa-pie-chart
     - if policy(resource).send_mail?
       = mail_to(resource.email, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.mail') })
         i.fa.fa-envelope-o
@@ -23,5 +24,5 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
       = link_to({ action: :edit, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
         i.fa.fa-pencil
     - if policy(resource).destroy?
-      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: resource.decorate(context: { client_name: @client.decorate.display_name }).delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
+      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: resource.decorate(context: { client_name: client.decorate.display_name }).delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
         span.fa.fa-times

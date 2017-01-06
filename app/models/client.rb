@@ -30,13 +30,17 @@ class Client < ApplicationRecord
   has_many :reports, through: :assign_clients
   has_many :norms
   has_many :dimensions
+  has_many :sub_clients, class_name: 'Client', foreign_key: :parent_id
 
   has_one :retail_user, class_name: 'User'
+  belongs_to :parent, class_name: 'Client'
 
   validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
+  validate :subdomain_format
   validates :name, :type, presence: true
 
   before_validation :ensure_subdomain, if: :retail?
+  before_validation :check_parent_subdomain, if: :subdomain_changed?
 
   store :design, accessors: [:background_color]
 
@@ -97,6 +101,14 @@ class Client < ApplicationRecord
     self.subdomain = generate_subdomain if subdomain.blank?
   end
 
+  def tenancy?
+    parent_id.nil?
+  end
+
+  def subtenancy?
+    !tenancy?
+  end
+
   private
 
   def generate_subdomain
@@ -104,5 +116,15 @@ class Client < ApplicationRecord
       subdomain = "retail_#{Random.rand(99_999)}#{Time.now.to_i}"
       break subdomain unless Client.exists?(subdomain: subdomain)
     end
+  end
+
+  def subdomain_format
+    return if tenancy? && subdomain =~ /^[a-z]+$/
+    return if subdomain =~ /^[a-z]+\.[a-z]+$/
+    errors.add(:subdomain, 'Wrong subdomain format')
+  end
+
+  def check_parent_subdomain
+    self.subdomain += ".#{parent.subdomain}" if subtenancy?
   end
 end

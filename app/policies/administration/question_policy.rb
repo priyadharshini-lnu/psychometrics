@@ -1,11 +1,11 @@
 module Administration
   class QuestionPolicy < Administration::BasePolicy
     def index?
-      @user.is?(:superadmin, :admin)
+      super || @user.has_grant?(:questions, :view)
     end
 
-    def update?
-      @user.is?(:superadmin, :admin)
+    def create?
+      super || @user.has_grant?(:questions, :manage)
     end
 
     def configure?
@@ -22,9 +22,13 @@ module Administration
 
     class Scope < Scope
       def resolve
-        collection = [scope].flatten.last
-        return collection if @user.is?(:superadmin)
-        collection.where(owner_id: [@user.client_ids])
+        scope = super
+        return scope if @user.is?(:superadmin)
+        if @user.has_grant?(:questions, :view)
+          scope.where(owner_id: @user.admin_client_ids)
+        else
+          scope.none
+        end
       end
     end
   end

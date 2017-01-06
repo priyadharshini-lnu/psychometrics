@@ -8,8 +8,8 @@ module Administration
       append_before_action :pundit_authorize, except: [:sidebar]
 
       def index
-        @filter_form = policy_scope(@resource_class).join_user.search(params[:q])
-        @filter_form.client_id_in = @client.id
+        @filter_form = policy_scope(@resource_class).includes(user: [:clients, :memberships]).join_user.search(params[:q])
+        @filter_form.client_id_in = client.id
         @resources = @filter_form.result.page(params[:page])
 
         respond_to do |format|
@@ -19,16 +19,15 @@ module Administration
       end
 
       def new
-        @resource = UserForm.new
+        @resource = @resource_class.new
       end
 
       def create
-        @resource = UserForm.new(create_resource_params)
-        @resource.client = @client
-        @resource.operator = current_user
+        @resource = @resource_class.new(create_resource_params)
+        @resource.client = sub_client || client
         respond_to do |format|
           if @resource.save
-            @resource.user.invite!(current_user, @client.id)
+            @resource.user.invite!(current_user, client.id)
             format.js
           else
             format.js { render :new }
@@ -43,11 +42,10 @@ module Administration
 
       # PATCH/PUT /administration/resources/1
       def update
-        @resource.user.operator = current_user
         respond_to do |format|
           if @resource.update(update_resource_params)
             format.html do
-              redirect_to({ action: :edit, id: @resource }, success: t('.successfully', name: @resource.decorate.display_name))
+              redirect_to({ action: :edit, id: @resource }, success: t('administration.memberships.update.successfully', name: @resource.user.decorate.display_name))
             end
           else
             format.html { render :edit }
@@ -64,7 +62,7 @@ module Administration
       end
 
       def export
-        @resources = policy_scope(::Membership).join_user.where(client_id: @client.id)
+        @resources = policy_scope(::Membership).join_user.where(client_id: client.id)
 
         respond_to do |format|
           format.csv do
@@ -80,7 +78,7 @@ module Administration
         redirect_url = if @resource.user.is?(:superadmin, :admin)
                          administration_root_path
                        else
-                         root_url(domain: Settings.domain, subdomain: @client.try(:subdomain))
+                         root_url(domain: Settings.domain, subdomain: client.try(:subdomain))
                        end
         redirect_to(redirect_url, success: t('.successfully', name: @resource.decorate.display_name))
       end
@@ -106,28 +104,20 @@ module Administration
 
       protected
 
-      def client
-        @client ||= policy_scope(Client).find(params[:client_id])
-      end
-
       def init_breadcrumbs
         add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
         add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
+        add_breadcrumb client.parent.decorate.display_name, [:administration, client.parent] if client.parent.present?
         add_breadcrumb client.decorate.display_name, '#'
         add_breadcrumb I18n.t('administration.breadcrumbs.users'), { action: :index }
       end
 
       def create_resource_params
-        params.require(:resource).permit(:parent_id, :first_name, :last_name, :email, :role)
+        params.require(:resource).permit(:parent_id, :first_name, :last_name, :email, :role, :sub_client_id)
       end
 
       def update_resource_params
-        params.require(:resource).permit(
-          :parent_id, user_attributes: [
-            :id, :first_name, :last_name,
-            :email, :disabled, :role
-          ], hris_data: [:key, :value]
-        )
+        params.require(:resource).permit(policy(@resource).permitted_attributes_for_update)
       end
 
       # Set model
@@ -137,6 +127,10 @@ module Administration
 
       def set_resource
         @resource = policy_scope(@resource_class).join_user.find(params[:id])
+      end
+
+      def sub_client
+        policy_scope(Client).find(params[:sub_client_id]) if params[:sub_client_id].present? && client.tenancy?
       end
 
       # Authorisation user

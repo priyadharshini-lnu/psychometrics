@@ -1,21 +1,23 @@
 tr id=dom_id(resource)
   td = resource.name
   td = resource.decorate.created_at
-  td = resource.decorate.anonym_link_for(@client)
+  - if client.tenancy?
+    td = resource.decorate.clients_names
+    td = resource.decorate.anonym_link_for(client)
   td 
     - if policy(:assessment).export_results?
-      = link_to administration_client_assessment_export_results_path(@client, resource, format: 'xlsx'),
+      = link_to administration_client_assessment_export_results_path(client, resource, format: 'xlsx'),
                 class: 'btn btn-default btn-rounded btn-sm mrm'
         i.fa.fa-download
         |  Export Results
     - if policy(:assessment).import_results?
-      = link_to new_administration_imports_results_path(client_id: @client.id, assessment_id: resource.id), 
+      = link_to new_administration_imports_results_path(client_id: client.id, assessment_id: resource.id),
                 remote: true,
                 class: 'btn btn-default btn-rounded btn-sm mrm'  
         i.fa.fa-upload
         |  Import Results        
     - if policy(:assessment_client).destroy?
-      = link_to administration_client_assessment_path(@client, resource), 
+      = link_to administration_client_assessment_path(client, resource),
                 remote: true, 
                 class: 'btn btn-default btn-rounded btn-sm mrm', 
                 method: 'delete',

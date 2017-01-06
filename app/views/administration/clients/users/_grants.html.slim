@@ -1,0 +1,132 @@
+.col-md-5
+  = hidden_field_tag 'resource[user_attributes][grants]{}'
+  table.table.grants-table
+    thead
+      th Entity
+      th.actions Privileges
+    tbody
+      tr
+        td Norms
+        td.text-nowrap
+          label
+            = check_box_tag 'resource[user_attributes][grants][norms][view]',
+                    true, u.object.has_grant?(:norms, :view)
+            i.fa.fa-eye title='View'
+          label
+            = check_box_tag 'resource[user_attributes][grants][norms][manage]',
+                    true, u.object.has_grant?(:norms, :manage)
+            i.fa.fa-pencil title='Manage'
+      tr
+        td Dimensions
+        td.text-nowrap
+          label
+            = check_box_tag 'resource[user_attributes][grants][dimensions][view]',
+                    true, u.object.has_grant?(:dimensions, :view)
+            i.fa.fa-eye title='View'
+          label
+            = check_box_tag 'resource[user_attributes][grants][dimensions][manage]',
+                    true, u.object.has_grant?(:dimensions, :manage)
+            i.fa.fa-pencil title='Manage'
+      tr
+        td Assessments
+        td.text-nowrap
+          label
+            = check_box_tag 'resource[user_attributes][grants][assessments][view]',
+                    true, u.object.has_grant?(:assessments, :view)
+            i.fa.fa-eye title='View'
+          label
+            = check_box_tag 'resource[user_attributes][grants][assessments][manage]',
+                    true, u.object.has_grant?(:assessments, :manage)
+            i.fa.fa-pencil title='Manage'
+          label
+            = check_box_tag 'resource[user_attributes][grants][assessments][assign]',
+                    true, u.object.has_grant?(:assessments, :assign)
+            i.fa.fa-user-plus title='Assign'
+      tr
+        td Raw Assessment Results
+        td.text-nowrap
+          label
+            = check_box_tag 'resource[user_attributes][grants][assessments][export]',
+                    true, u.object.has_grant?(:assessments, :export)
+            i.fa.fa-upload
+          label
+            = check_box_tag 'resource[user_attributes][grants][assessments][import]',
+                    true, u.object.has_grant?(:assessments, :import)
+            i.fa.fa-download
+      tr
+        td Translations
+        td.text-nowrap
+          label
+            = check_box_tag 'resource[user_attributes][grants][translations][export]',
+                    true, u.object.has_grant?(:translations, :export)
+            i.fa.fa-upload
+          label
+            = check_box_tag 'resource[user_attributes][grants][translations][import]',
+                    true, u.object.has_grant?(:translations, :import)
+            i.fa.fa-download
+      tr
+        td Client Tenancies
+        td.text-nowrap
+          label
+            = check_box_tag 'resource[user_attributes][grants][clients][view]',
+                    true, u.object.has_grant?(:clients, :view)
+            i.fa.fa-eye title='View'
+          label
+            = check_box_tag 'resource[user_attributes][grants][clients][manage]',
+                    true, u.object.has_grant?(:clients, :manage)
+            i.fa.fa-pencil title='Manage'
+          label
+            = check_box_tag 'resource[user_attributes][grants][clients][design]',
+                    true, u.object.has_grant?(:clients, :design)
+            i.fa.fa-paint-brush title='Design'
+      tr
+        td Question Centre
+        td.text-nowrap
+          label
+            = check_box_tag 'resource[user_attributes][grants][questions][view]',
+                    true, u.object.has_grant?(:questions, :view)
+            i.fa.fa-eye title='View'
+          label
+            = check_box_tag 'resource[user_attributes][grants][questions][manage]',
+                    true, u.object.has_grant?(:questions, :manage)
+            i.fa.fa-pencil title='Manage'
+      tr
+        td Media Libraries
+        td.text-nowrap
+          label
+            = check_box_tag 'resource[user_attributes][grants][libraries][view]',
+                    true, u.object.has_grant?(:libraries, :view)
+            i.fa.fa-eye title='View'
+          label
+            = check_box_tag 'resource[user_attributes][grants][libraries][manage]',
+                    true, u.object.has_grant?(:libraries, :manage)
+            i.fa.fa-pencil title='Manage'
+      tr
+        td Communication Centre
+        td.text-nowrap
+          label
+            = check_box_tag 'resource[user_attributes][grants][communications][view]',
+                    true, u.object.has_grant?(:communications, :view)
+            i.fa.fa-eye title='View'
+          label
+            = check_box_tag 'resource[user_attributes][grants][communications][manage]',
+                    true, u.object.has_grant?(:communications, :manage)
+            i.fa.fa-pencil title='Manage'
+      tr
+        td Reports
+        td.text-nowrap
+          label
+            = check_box_tag 'resource[user_attributes][grants][reports][view]',
+                    true, u.object.has_grant?(:reports, :view)
+            i.fa.fa-eye title='View'
+          label
+            = check_box_tag 'resource[user_attributes][grants][reports][manage]',
+                    true, u.object.has_grant?(:reports, :manage)
+            i.fa.fa-pencil title='Manage'
+      tr
+        td Overview Reports
+        td.text-nowrap
+          label
+            = check_box_tag 'resource[user_attributes][grants][assigns][view]',
+                    true, u.object.has_grant?(:assigns, :view)
+            i.fa.fa-eye title='View'

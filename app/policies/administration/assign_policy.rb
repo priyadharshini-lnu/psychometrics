@@ -1,11 +1,25 @@
 module Administration
   class AssignPolicy < Administration::BasePolicy
     def index?
-      @user.is?(:superadmin, :admin)
+      super || @user.has_grant?(:assigns, :view)
     end
 
     def import?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :import)
+    end
+
+    def create?
+      super || @user.has_grant?(:assessments, :assign)
+    end
+
+    def destroy?
+      return true if @user.is?(:superadmin)
+      @user.admin_client_ids.include?(@record.membership.client_id) && @user.has_grant?(:assessments, :assign)
+    end
+
+    def destroy_report?
+      return true if @user.is?(:superadmin)
+      @user.admin_client_ids.include?(@record.membership.client_id) && @user.has_grant?(:assessments, :assign)
     end
 
     def statistics?
@@ -15,8 +29,8 @@ module Administration
     class Scope < Administration::BasePolicy::Scope
       def resolve
         return scope if @user.is?(:superadmin)
-        assessment_ids = Assign.joining { membership }.where.has { |ass| ass.role.eq(:admin) | ass.membership.user_id.eq(@user.id) }.pluck(:assessment_id)
-        scope.where(assessment_id: assessment_ids)
+        assessment_ids = Assign.joining { membership }.where.has { |ass| ass.assignable_type.eq(Assessment) & ass.membership.user_id.eq(@user.id) }.pluck(:assignable_id)
+        scope.where(assgnable_id: assessment_ids, assignable_type: Assessment)
       end
     end
   end

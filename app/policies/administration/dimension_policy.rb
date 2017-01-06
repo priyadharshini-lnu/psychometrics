@@ -1,17 +1,21 @@
 class Administration::DimensionPolicy < Administration::BasePolicy
   def index?
-    @user.is?(:superadmin, :admin)
+    super || @user.has_grant?(:dimensions, :view)
   end
 
-  def update?
-    @user.is?(:superadmin, :admin)
+  def create?
+    super || @user.has_grant?(:dimensions, :manage)
   end
 
   class Scope < Scope
     def resolve
       scope = super
       return scope if @user.is?(:superadmin)
-      scope.where(owner_id: [@user.client_ids])
+      if @user.has_grant?(:dimensions, :view)
+        scope.where(owner_id: [@user.admin_client_ids])
+      else
+        scope.none
+      end
     end
   end
 end

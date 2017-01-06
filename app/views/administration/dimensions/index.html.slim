@@ -4,9 +4,10 @@
       .panel-heading
         h3.panel-title = t '.title'
         ul.panel-controls
-          li
-            = link_to [:new, :administration, @resource_class.model_name.singular], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
-              span.fa.fa-plus
+          - if policy(@resource_class).create?
+            li
+              = link_to [:new, :administration, @resource_class.model_name.singular], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
+                span.fa.fa-plus
       .panel-body
         = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
           = f.hidden_field :sorted_by

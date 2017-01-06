@@ -18,7 +18,7 @@
 #  first_name             :string
 #  last_name              :string
 #  disabled               :boolean          default(FALSE)
-#  role                   :string           default("Users::Member")
+#  role                   :string           default("Users::Regular")
 #  invitation_token       :string
 #  invitation_created_at  :datetime
 #  invitation_sent_at     :datetime
@@ -29,13 +29,11 @@
 #  invitations_count      :integer          default(0)
 #  authentication_token   :string(30)
 #  is_anonym              :boolean          default(FALSE)
+#  grants                 :jsonb
 #
 
 module Users
-  class Member < User
-    attr_accessor :terms
-    validates_acceptance_of :terms, allow_nil: false, on: :create, unless: proc { operator.present? }
-
+  class Regular < User
     def scope
       :user
     end

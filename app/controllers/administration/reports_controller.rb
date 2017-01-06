@@ -1,6 +1,5 @@
 module Administration
   class ReportsController < Administration::BaseController
-    include Administration::OwnerScope
     # Turn off normally auth
     skip_before_action :authenticate_user!
     # Turn off browser auth
@@ -115,10 +114,6 @@ module Administration
     # Set model
     def set_resource_class
       @resource_class ||= Report
-    end
-
-    def set_resource
-      @resource = policy_scope(@resource_class).find(params[:id])
     end
 
     def resource_params

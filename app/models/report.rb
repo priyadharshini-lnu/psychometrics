@@ -18,8 +18,9 @@ class Report < ApplicationRecord
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
-  has_many :client_reports, dependent: :destroy
-  has_many :clients, through: :client_reports
+  has_many :assign_clients_reports, dependent: :destroy
+  has_many :assign_clients, through: :assign_clients_reports
+  has_many :clients, through: :assign_clients
   has_many :translations, as: :resource
 
   has_many :product_reports, dependent: :destroy

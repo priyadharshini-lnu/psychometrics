@@ -1,20 +1,4 @@
-tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resource)
-  td.text-center
-    - if policy(resource).toggle_status?
-      = link_to [:toggle_status, :administration, resource], remote: true, method: :patch, data: { confirm: resource.decorate.status_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
-        = resource.decorate.status
-  td = link_to resource.name, administration_client_users_path(resource)
-  td.text-center = resource.decorate.licenses_used
-  td.text-center = resource.decorate.licenses_expire
-  td
-    - if policy(resource).edit?
-      = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
-        span.fa.fa-pencil
-    - if policy(resource).copy?
-      = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
-        span.fa.fa-copy
-    - if policy(resource).destroy?
-      = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
-        span.fa.fa-times
-  td = resource.decorate.created_at
-  td = resource.decorate.updated_at
+- if resource.subtenancy?
+  = render'administration/clients/sub_clients/resource', resource: resource
+- else
+  = render 'client_resource', resource: resource

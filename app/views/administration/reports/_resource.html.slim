@@ -13,7 +13,7 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
   td = resource.decorate.created_at
   td = resource.decorate.type
   td = resource.decorate.client_name
-  - if policy(@resource_class).action?
+  - if policy(@resource_class).actions?
     td
       - if policy(resource).preview?
         = link_to({ action: :preview, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.preview') })

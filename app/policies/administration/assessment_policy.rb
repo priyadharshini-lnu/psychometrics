@@ -1,23 +1,23 @@
 module Administration
   class AssessmentPolicy < Administration::BasePolicy
     def index?
-      @user.is?(:superadmin, :admin)
+      super || @user.has_grant?(:assessments, :view)
     end
 
-    def update?
-      @user.is?(:superadmin, :admin)
+    def show?
+      super || @user.has_grant?(:assessments, :manage)
+    end
+
+    def create?
+      super || @user.has_grant?(:assessments, :manage)
     end
 
     def open_channel?
       @user.is?(:superadmin)
     end
 
-    def show?
-      @user.is?(:superadmin)
-    end
-
     def preview?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
     end
 
     def reports?
@@ -25,7 +25,7 @@ module Administration
     end
 
     def assign?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
     end
 
     def view_report?
@@ -40,18 +40,24 @@ module Administration
     end
 
     def export_results?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :export)
     end
 
     def import_results?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_grant?(:assessments, :import)
     end
 
-    class Scope < Administration::BasePolicy::Scope
+    class Scope < Scope
       def resolve
         scope = super
         return scope if @user.is?(:superadmin)
-        scope.where(owner_id: [@user.client_ids])
+        if @user.has_grant?(:assessments, :view)
+          admin_client_ids = @user.admin_client_ids
+          arr_id = AssignClient.where(assignable_type: Assessment, client_id: admin_client_ids).distinct.pluck(:assignable_id)
+          Assessment.where.has { (owner_id.in admin_client_ids) | (id.in arr_id) }
+        else
+          scope.none
+        end
       end
     end
   end

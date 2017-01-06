@@ -1,6 +1,5 @@
 module Administration
   class LibrariesController < Administration::BaseController
-    include Administration::OwnerScope
     prepend_before_action :set_resource_class
     before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
     before_action :skip_authorization, only: [:sidebar]
@@ -80,10 +79,6 @@ module Administration
     # Set model
     def set_resource_class
       @resource_class ||= Library
-    end
-
-    def set_resource
-      @resource = policy_scope(@resource_class).find(params[:id])
     end
 
     def resource_params

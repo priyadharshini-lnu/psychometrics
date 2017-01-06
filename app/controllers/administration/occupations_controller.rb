@@ -64,10 +64,6 @@ module Administration
       add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
     end
 
-    def set_resource
-      @resource = @resource_class.find(params[:id])
-    end
-
     def set_dimension
       @dimension = Dimension.find(params[:dimension_id])
     end

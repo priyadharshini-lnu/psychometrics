@@ -15,6 +15,7 @@
 #  timing            :string
 #  access_reports_at :datetime
 #  status            :integer
+#  owner_id          :integer
 #
 
 class Assessment < ApplicationRecord
@@ -26,11 +27,13 @@ class Assessment < ApplicationRecord
   has_many :factors_scoring, dependent: :destroy
   has_many :reports, dependent: :destroy
 
-  has_many :assigns, dependent: :destroy
+  has_many :assign_clients, as: :assignable, dependent: :destroy
+  has_many :clients, through: :assign_clients
+  has_many :assigns, as: :assignable, dependent: :destroy
+  has_many :results, dependent: :destroy
   has_many :memberships, through: :assigns
-
-  has_many :assessment_clients, dependent: :destroy
-  has_many :clients, through: :assessment_clients
+  has_many :assessments_projects, inverse_of: :project
+  has_many :projects, through: :assessments_projects
 
   has_many :communications, dependent: :destroy
 
@@ -108,7 +111,7 @@ class Assessment < ApplicationRecord
   }
 
   scope :with_client, lambda { |client_id|
-    joins(:assessment_clients).where(assessment_clients: { client_id: client_id })
+    joins(:assign_clients).where(assign_clients: { client_id: client_id, assignable_type: Assessment })
   }
 
   class << self

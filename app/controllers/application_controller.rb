@@ -37,7 +37,7 @@ class ApplicationController < ActionController::Base
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
     subdomain = request.subdomain
-    subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '')
+    subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
     @current_client = Client.enabled.find_by!(subdomain: subdomain)
   end
 

@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resource :profiles, only: [:update, :edit]
 
     scope module: :administrator do
-      resource :sessions, only: [:new, :create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
+      resource :sessions, only: [:new, :create], path: '', path_names: {new: 'sign_in', destroy: 'sign_out'}, as: :session do
         delete 'sign_out', to: 'sessions#destroy', as: :destroy
       end
       resource :passwords, as: :password
@@ -38,8 +38,10 @@ Rails.application.routes.draw do
       scope module: :clients do
         resources :users do
           scope module: :users do
-            resources :assigns, only: [:index, :new, :create, :destroy]
-            resources :reports, only: [] do
+            resources :assigns, only: [:index, :new, :create, :destroy] do
+              get :destroy_report, on: :member
+            end
+            resources :reports, only: [:destroy] do
               get :preview, on: :member
             end
           end
@@ -56,6 +58,8 @@ Rails.application.routes.draw do
         resource :designs, only: [:edit, :update]
         resources :reports, only: [:index, :destroy]
         resources :statistics, only: [:index]
+        resources :sub_clients, only: [:index, :new, :create, :update, :edit]
+        resource :licenses, only: [:show, :edit, :update]
         resources :assessments, only: [:index, :destroy] do
           get :export_results
         end
@@ -73,11 +77,14 @@ Rails.application.routes.draw do
         get :reports
       end
       scope module: 'assessments' do
-        scope module: 'assigns' do
-          resource :step1, controller: :step1, only: [:show, :update], path: 'assign/step1'
-          resource :step2, controller: :step2, only: [:show, :update], path: 'assign/step2' do
-            get 'selected_users'
-            get 'not_selected_users'
+        resources :assigns, only: [:new, :create] do
+          collection do
+            get :step1
+            get :step2
+            post :finish
+            post :form
+            post :selected_users
+            post :not_selected_users
           end
         end
       end
@@ -221,6 +228,11 @@ Rails.application.routes.draw do
   #
   # END: Administration panel
 
+  namespace :system do
+    resources :reports, only: [:index]
+    resources :memberships, only: [:index]
+  end
+
   namespace :ecommerce do
     root to: 'products#index'
     resources :products, only: [] do
@@ -243,13 +255,13 @@ Rails.application.routes.draw do
 
   constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
     devise_for :users,
-               path: 'users',
-               as: :devise,
-               name: :user,
-               singular: :user,
-               to: 'User',
-               class_name: 'User',
-               controllers: { registrations: 'users/registrations' }
+               path:        'users',
+               as:          :devise,
+               name:        :user,
+               singular:    :user,
+               to:          'User',
+               class_name:  'User',
+               controllers: {registrations: 'users/registrations'}
 
     # Manager's panel
     #
@@ -276,7 +288,7 @@ Rails.application.routes.draw do
       get 'clients/:client_id/assessments/:assessment_id/pass', to: 'assessments#pass', as: :assessment_pass
     end
 
-    resources :assessments, only: [:index] do
+    resources :assessments, only: [] do
       member do
         get :pass
       end
@@ -285,7 +297,7 @@ Rails.application.routes.draw do
     resource :profiles, only: [:update, :edit]
     resources :assigns, only: [:update]
     get 'survey_instructions', to: 'home#survey_instructions'
-    root to: 'assessments#index'
+    root to: 'assigns#index'
   end
 
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|

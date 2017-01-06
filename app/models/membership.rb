@@ -15,38 +15,48 @@
 #  created_at     :datetime         not null
 #  updated_at     :datetime         not null
 #  role           :string           default("member")
+#  is_retail      :boolean          default(FALSE)
 #
 
 class Membership < ApplicationRecord
+  include Userable
+
   # Roles constant
   MEMBERSHIP_ROLES = [
-      ADMIN_ROLE = 'admin'.freeze,
-      MANAGER_ROLE = 'manager'.freeze,
-      MEMBER_ROLE = 'member'.freeze
+    ADMIN_ROLE = 'admin'.freeze,
+    MANAGER_ROLE = 'manager'.freeze,
+    MEMBER_ROLE = 'member'.freeze
   ].freeze
 
   SCOPES = {
-      ADMIN_ROLE => :administration,
-      MANAGER_ROLE => :user,
-      MEMBER_ROLE => :user
+    ADMIN_ROLE => :administration,
+    MANAGER_ROLE => :user,
+    MEMBER_ROLE => :user
   }.freeze
 
-  belongs_to :client, counter_cache: :licenses_used
+  belongs_to :client
   belongs_to :user, inverse_of: :memberships
   accepts_nested_attributes_for :user
 
   has_many :assigns, dependent: :destroy, inverse_of: :membership
+  has_many :reports, through: :assigns
   has_many :results, dependent: :destroy, inverse_of: :membership
-  has_many :assessments, through: :assigns
+  has_many :assessments, through: :assigns, source: :assignable, source_type: 'Assessment'
   has_many :communication_emails, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'
   has_many :orders, dependent: :destroy, inverse_of: :membership, class_name: 'Ecommerce::Order'
+  has_many :license_usages, as: :licenseable
 
   validates :client, uniqueness: { scope: :user }
 
   validates :client, :user, presence: true
   validates :client_id, uniqueness: { scope: :user_id }
-  validates :role, inclusion: { in: MEMBERSHIP_ROLES },  presence: true
-  
+  validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
+
+  before_validation :ensure_user, on: :create, if: proc { user_id.nil? }
+  # before_create :use_license
+  # before_create :add_tenancy_membership, if: -> { client.subtenancy? }
+  after_destroy :remove_subtenancy_memberships, if: -> { client.tenancy? }
+
   acts_as_nested_set scope: :client_id
 
   scope :enabled, -> { where.not(disabled: true) }
@@ -59,17 +69,7 @@ class Membership < ApplicationRecord
     where(client_id: client_id)
   }
   scope :join_user, lambda {
-    joining { user }.selecting { ['memberships.*', user.first_name, user.last_name, user.email, (user.role).as('user_role') , user.is_anonym] }
-  }
-  scope :exclude_ids, lambda { |ids|
-    ids = ids.split(',') if ids.is_a?(String)
-    ids = (ids || []).reject(&:blank?).compact
-    where.not(id: ids)
-  }
-  scope :include_ids, lambda { |ids|
-    ids = ids.split(',') if ids.is_a?(String)
-    ids = (ids || []).reject(&:blank?).compact
-    where(id: ids)
+    joining { user }.selecting { ['memberships.*', user.first_name, user.last_name, user.email, user.role.as('user_role'), user.is_anonym] }
   }
   scope :hris_data_cont, lambda { |data|
     data = JSON.parse(data) if data.is_a?(String)
@@ -92,6 +92,7 @@ class Membership < ApplicationRecord
     rescue InputError
     end
   }
+  scope :client_reports, ->(client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
 
   # Save HRIS data from form
   def hris_data=(data)
@@ -106,10 +107,56 @@ class Membership < ApplicationRecord
     SCOPES[role]
   end
 
+  def use_license
+    Licenses::UsersLicense.use(self)
+  end
+
+  # Ensure that Membership has User record
+  #   Else initialize new User with specified first and last names
+  def ensure_user
+    self.user = User.find_or_initialize_by(email: email)
+    user.assign_attributes(first_name: first_name, last_name: last_name, create_by_invite: true) if user.new_record?
+  end
+
+  # only (:yti(:eti)) combinations are allowed
+  def allows_yti_eti?(report)
+    # TODO: refactor
+    return false if !report.yti_eti? || reports.empty?
+    hash = reports.yti_eti.group(:type).count.transform_keys { |k| Report.types.key(k) }
+    hash.slice!(Report::ETI_TYPE, Report::YTI_TYPE)
+    count = hash[report.type]
+    return true if hash.empty? || (hash.size == 1 && count.nil?)
+    count_arr = hash.values
+    count_arr.delete count
+    return true if count_arr.max&.> count
+    false
+  end
+
+  private
+
+  def add_tenancy_membership
+    # check for membership in tenancy client
+    return if user.memberships.where(client_id: client.parent_id).any?
+    tenancy_membership = self.class.new(attributes.slice(*%w(user_id parent_id role)))
+    tenancy_membership.client_id = client.parent_id
+    tenancy_membership.parent_id = parent.user.memberships.where(client_id: client.parent_id) if tenancy_membership.parent_id
+    begin
+      tenancy_membership.save!
+    # catch and add error in current transaction
+    rescue ActiveRecord::RecordInvalid
+      errors.add(:base, :has_no_enough_licenses)
+      raise ActiveRecord::Rollback
+    end
+  end
+
+  def remove_subtenancy_memberships
+    user.memberships.where(client_id: client.sub_client_ids).destroy_all
+  end
+
   class << self
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
-      [:hris_data_cont, :role_scope_in, :exclude_ids, :include_ids, :user_type_eq, :assigns_hash_id_eq]
+      [:hris_data_cont, :role_scope_in, :user_type_eq, :assigns_hash_id_eq]
     end
   end
 end

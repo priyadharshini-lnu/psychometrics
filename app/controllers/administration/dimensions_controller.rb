@@ -1,5 +1,4 @@
 class Administration::DimensionsController < Administration::BaseController
-  include Administration::OwnerScope
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar]
   before_action :skip_authorization, only: [:sidebar]
@@ -84,10 +83,6 @@ class Administration::DimensionsController < Administration::BaseController
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
     add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
-  end
-
-  def set_resource
-    @resource = @resource_class.find(params[:id])
   end
 
   def resource_params

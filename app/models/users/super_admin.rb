@@ -18,7 +18,7 @@
 #  first_name             :string
 #  last_name              :string
 #  disabled               :boolean          default(FALSE)
-#  role                   :string           default("Users::Member")
+#  role                   :string           default("Users::Regular")
 #  invitation_token       :string
 #  invitation_created_at  :datetime
 #  invitation_sent_at     :datetime
@@ -29,17 +29,13 @@
 #  invitations_count      :integer          default(0)
 #  authentication_token   :string(30)
 #  is_anonym              :boolean          default(FALSE)
+#  grants                 :jsonb
 #
 
 module Users
   class SuperAdmin < User
     def scope
       :administration
-    end
-
-    # Operator can manage users only from own client (company)
-    def manage_clients(ids)
-      ids
     end
   end
 end

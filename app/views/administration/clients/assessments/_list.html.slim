@@ -2,9 +2,11 @@
   table.table.table-bordered.table-actions.table-hover.selectable.list id="#{@resource_class.model_name.plural}_list"
     thead
       tr
-        th = sorting @resource_class, :name, @filterrific
-        th = sorting @resource_class, :created_at, @filterrific
-        th 
+        th = link_to_sort @resource_class, :name, @filter_form
+        th = link_to_sort @resource_class, :created_at, @filter_form
+        - if client.tenancy?
+          th = t('administration.tenancies')
+          th
         th
     tbody
       - if @resources.present?

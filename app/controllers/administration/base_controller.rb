@@ -6,6 +6,7 @@ class Administration::BaseController < ActionController::Base
   include Administration::Policies
   include Authenticate
   include SetLocale
+  include Administration::Clients::Helpers
 
   # Authentication admin
   prepend_before_action :authenticate_user!
@@ -32,5 +33,9 @@ class Administration::BaseController < ActionController::Base
   def authenticate_user!
     redirect_to(new_administration_session_path) && return unless user_signed_in?
     super
+  end
+
+  def set_resource
+    @resource = policy_scope(@resource_class).find(params[:id])
   end
 end

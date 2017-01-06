@@ -1,0 +1,14 @@
+h3
+  i.fa.fa-filter
+  | Filter
+= search_form_for(@filter_form,
+        url: { action: :index },
+        html: {id: 'filter'},
+        builder: SimpleForm::FormBuilder) do |f|
+  = f.input :name_cont,
+          label: 'Search',
+          as: :string,
+          required: false,
+          placeholder: t('administration.search'),
+          input_html: {class: 'has_clear periodically-observed'}
+  = link_to 'Clear Filter', request.path, class: 'btn btn-default'

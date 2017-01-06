@@ -1,4 +1,4 @@
-= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, remote: true) do |f|
+= simple_form_for(@resource.decorate, as: :resource, url: { action: @resource.new_record? ? :create : :update }, remote: true) do |f|
   .modal-body
     = f.error_notification
 
@@ -8,6 +8,9 @@
         = f.input_field :subdomain, class: "form-control"
         span.input-group-addon
           | .
+          - if @resource.subtenancy?
+            =  @resource.parent.subdomain
+            | .
           = Settings.domain
   .modal-footer
     .btn-group
