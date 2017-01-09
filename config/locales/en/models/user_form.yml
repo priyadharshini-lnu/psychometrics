@@ -1,0 +1,24 @@
+en:
+  activerecord:
+    models:
+      user_form: User
+    attributes:
+      user_form: &DEFAULT
+        id: ID
+        first_name: First Name
+        last_name: Last Name
+        email: Email Address
+        current_password: Current password
+        password: Password
+        password_confirmation: Password confirmation
+        role: Role
+        disabled: Disable
+        active: Active
+        created_at: 'Created Date'
+        updated_at: 'Modified Date'
+        parent: Direct Manager
+        parent_id: Direct Manager
+  simple_form:
+    placeholders:
+      user_form:
+        <<: *DEFAULT

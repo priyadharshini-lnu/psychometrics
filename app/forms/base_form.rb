@@ -16,4 +16,11 @@ class BaseForm
   include ActiveModel::Conversion
   include ActiveModel::Model
   extend ActiveModel::Naming
+  extend ActiveModel::Translation
+
+  class << self
+    def i18n_scope
+      :activerecord
+    end
+  end
 end

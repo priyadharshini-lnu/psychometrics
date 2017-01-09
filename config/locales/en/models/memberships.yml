@@ -6,6 +6,7 @@ en:
       memebrship: &DEFAULT
         id: ID
         parent: Direct Manager
+        parent_id: Direct Manager
   simple_form:
     placeholders:
       memebrship:
