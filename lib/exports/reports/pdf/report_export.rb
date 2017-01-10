@@ -34,7 +34,8 @@ module Exports
             url: url,
             output: output,
             pageWidth: 850,
-            pageHeight: 1100
+            pageHeight: 1100,
+            auth: 'staging:sumatosoft'
           }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
           Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
