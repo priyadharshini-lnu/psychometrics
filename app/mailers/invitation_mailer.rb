@@ -1,7 +1,8 @@
 class InvitationMailer < ApplicationMailer
-  def invite(user_id, invited_to_id)
+  def invite(user_id, invited_to_id, token)
     @resource = User.find(user_id)
     @client = Client.find(invited_to_id)
+    @token = token
     mail(
       to: @resource.email,
       subject: I18n.t('devise.mailer.invitation_instructions.subject'),

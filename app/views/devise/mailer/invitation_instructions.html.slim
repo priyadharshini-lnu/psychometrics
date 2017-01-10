@@ -2,7 +2,7 @@ p = t("devise.mailer.invitation_instructions.hello", email: @resource.email)
 p = t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url)
 p = link_to(t("devise.mailer.invitation_instructions.accept"), 
             url_for([:accept, @resource.role_scope, :invitation, { id: @resource, 
-                                                                   invitation_token: @resource.invitation_token, 
+                                                                   invitation_token: @token, 
                                                                    domain: Settings.domain, 
                                                                    subdomain: @client&.subdomain }]))
 - if @resource.invitation_due_at

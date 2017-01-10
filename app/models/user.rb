@@ -183,7 +183,7 @@ class User < ApplicationRecord
       #   Where client was invited
       self.skip_invitation = true
       super(invited_by, options)
-      InvitationMailer.invite(id, invited_to_id).deliver_later
+      InvitationMailer.invite(id, invited_to_id, @raw_invitation_token).deliver_later
     end
   end
 
