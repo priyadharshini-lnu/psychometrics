@@ -1,6 +1,5 @@
 class CopyAssessment
-
-  # Copy assessment with map flow and norm_rules
+  # Copy assessment with flow and norm_rules
   # To new block and question ids
   def self.process!(assessment_id)
     assessment = Assessment.includes(blocks: { questions: :factors_scorings }).find(assessment_id)
