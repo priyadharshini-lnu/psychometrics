@@ -10,6 +10,8 @@
             span.glyphicon.glyphicon-ok-circle.paymentSuccesfulIcon
             == t('.body')
             = link_to t('.back_to_basket'), ecommerce_carts_path, class: 'btn btn-next btn-next-lg'
-            = link_to t('.go_to_dashboard'), root_url(subdomain: @current_membership.client&.subdomain), class: 'btn btn-next btn-next-lg'
+            = link_to t('.go_to_dashboard'), 
+                      root_url(subdomain: @current_membership.client&.subdomain, domain: Settings.domain), 
+                      class: 'btn btn-next btn-next-lg'
             
         .clearfix 
