@@ -15,7 +15,7 @@ module Exports
         #     Scale
         #   [1, 2, 3,   4,'2,3',6,  ...]
         #   WHERE: Choices grouped by scale
-        def self.result(answers, question)
+        def self.result(answers, question, scoring = false)
           parsed_result = []
           # Create hash for scoring
           # hash['1-2-3'] = 100
@@ -35,7 +35,7 @@ module Exports
               parsed_result << if column_data['type'] == 'Text'
                                  values.map { |value| value['value'] }
                                else
-                                 values.map { |value| factors_scoring["#{choice}-#{scale}-#{value['index'].to_i}"] || value['index'].to_i + 1 }.join(', ')
+                                 values.map { |value| scoring && factors_scoring["#{choice}-#{scale}-#{value['index'].to_i}"] || value['index'].to_i + 1 }.join(', ')
                                end
             end
           end

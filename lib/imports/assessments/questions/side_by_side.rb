@@ -15,7 +15,7 @@ module Imports
         #         "value": true / any value
         #     }, ...]
         #   }, ...]
-        def self.build_answers(data, question)
+        def self.build_answers(data, question, use_scoring = false)
           return nil if data.compact.blank?
           answers = []
           index = 0
@@ -42,7 +42,7 @@ module Imports
                        else
                          data[index].to_s.split(',').map do |i|
                            {
-                             index: factors_scoring["#{choice}-#{scale}-#{i}"] || (i.to_i - 1),
+                             index: use_scoring && factors_scoring["#{choice}-#{scale}-#{i}"] || (i.to_i - 1),
                              value: true
                            }
                          end

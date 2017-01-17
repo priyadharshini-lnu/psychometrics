@@ -4,16 +4,31 @@ tr id=dom_id(resource)
   td = resource.decorate.anonym_link_for(@client)
   td 
     - if policy(:assessment).export_results?
-      = link_to administration_client_assessment_export_results_path(@client, resource, format: 'xlsx'),
-                class: 'btn btn-default btn-rounded btn-sm mrm'
-        i.fa.fa-download
-        |  Export Results
+      .btn-group
+        button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'
+          i.fa.fa-download
+          =<> t('.export_results')
+          span.caret
+        ul.dropdown-menu
+          li
+            = link_to t('.scoring_results'), administration_client_assessment_export_results_path(@client, resource, format: 'xlsx', scoring: true)       
+          li
+            = link_to t('.raw_results'), administration_client_assessment_export_results_path(@client, resource, format: 'xlsx') 
     - if policy(:assessment).import_results?
-      = link_to new_administration_imports_results_path(client_id: @client.id, assessment_id: resource.id), 
-                remote: true,
-                class: 'btn btn-default btn-rounded btn-sm mrm'  
-        i.fa.fa-upload
-        |  Import Results        
+      .btn-group
+        button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'
+          i.fa.fa-upload
+          =<> t('.import_results')
+          span.caret
+        ul.dropdown-menu
+          li
+            = link_to t('.scoring_results'), 
+                      new_administration_imports_results_path(client_id: @client.id, assessment_id: resource.id, scoring: true),
+                      remote: true 
+          li
+            = link_to t('.raw_results'), 
+                      new_administration_imports_results_path(client_id: @client.id, assessment_id: resource.id),
+                      remote: true          
     - if policy(:assessment_client).destroy?
       = link_to administration_client_assessment_path(@client, resource), 
                 remote: true, 

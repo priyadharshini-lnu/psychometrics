@@ -1,13 +1,21 @@
 module Imports
   module Assessments
     class ResultImport < Imports::BaseImport
+      SUPPORT_ROWS = 2
+      SKIP_ROWS = SUPPORT_ROWS + 2 # for calculate right index of row in Excel
       # Authorisation flow
       #
       include Pundit
       ## Prepend :administration namespace to policy
       include Administration::Policies
+      include Virtus.model
 
-      attr_accessor :assessment_id, :client_id, :importer
+      attr_accessor :importer
+
+      attribute :scoring, Boolean, default: false
+      attribute :assessment_id, Integer
+      attribute :client_id, Integer
+
       validates :assessment_id, :client_id, :importer, presence: true
       validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                     'application/vnd.ms-excel',
@@ -24,7 +32,7 @@ module Imports
         else
           imported_items.each_with_index do |item, index|
             item.errors.full_messages.each do |message|
-              errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + 3, error: message))
+              errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + SKIP_ROWS, error: message))
             end
           end
         end
@@ -40,8 +48,9 @@ module Imports
         # Parse header of xls/csv by strict rules
         rows = open_spreadsheet.parse
         header = rows.shift.map { |h| h.to_s.tr(' ', '').underscore }
+
         # Remove support row
-        rows.shift
+        SUPPORT_ROWS.times { rows.shift }
         questions = Question.
                     joining { block }.
                     not_deleted.
@@ -56,11 +65,11 @@ module Imports
           begin
             assign = Assign.includes(:membership).find_by_encoded_id(data['result_id']) if data['result_id'].present?
           rescue ActiveRecord::RecordNotFound
-            errors.add(:base, I18n.t('administration.imports.errors.result.invalid_assign', row: index + 3))
+            errors.add(:base, I18n.t('administration.imports.errors.result.invalid_assign', row: index + SKIP_ROWS))
             return [nil]
           end
 
-          # If Assign not found, going to create user 
+          # If Assign not found, going to create user
           unless assign
             membership = Membership.joins(:user).where(users: { email: data['email'].to_s.downcase }, client_id: client_id).first
             membership = find_or_create_user(data, index) unless membership
@@ -103,7 +112,7 @@ module Imports
               p "#{question.type} - #{e}"
               next
             end
-            parsed_value = parser.build_answers(values, question)
+            parsed_value = parser.build_answers(values, question, scoring)
             new_results[qid] = parsed_value if parsed_value
           end
           assign.results = new_results
@@ -142,7 +151,7 @@ module Imports
                }).
                find_or_create_by({ email: data['email'] })
         if user.errors.any?
-          errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + 3, error: user.errors.full_messages.first))
+          errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + SKIP_ROWS, error: user.errors.full_messages.first))
           return
         end
         # user.invite!(importer, client_id) unless user.invited_to_sign_up?
@@ -152,10 +161,11 @@ module Imports
       def parse_norm_data(norm_data, assessment_id)
         return nil if norm_data.nil?
         norm_name, norm_type = norm_data.to_s.split(':')
-        norm = Norm.joining { dimension }.
-                joining { dimension.assessments.alias('assessments').on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id)) }.
-                where(name: norm_name).
-                pluck(:id)
+        norm = Norm.
+               joining { dimension }.
+               joining { dimension.assessments.alias('assessments').on((dimension.assessments.dimension_id == dimension.id) & (dimension.assessments.id == assessment_id)) }.
+               where(name: norm_name).
+               pluck(:id)
         { id: norm.try(:first), type: norm_type }
       end
 
@@ -164,7 +174,7 @@ module Imports
         return date if date.is_a?(Date) || date.is_a?(Time)
         DateTime.strptime(date.to_s, '%D %r')
       rescue
-        errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + 3, error: 'Invalid Date'))
+        errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + SKIP_ROWS, error: 'Invalid Date'))
       end
     end
   end

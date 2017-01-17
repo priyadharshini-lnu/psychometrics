@@ -6,7 +6,7 @@ module Exports
         #   [{"value": 5}]
         # TO:
         #   [5]
-        def self.result(answers, _question)
+        def self.result(answers, _question, _scoring = false)
           (answers || []).map { |answer| answer['value'] }
         end
 

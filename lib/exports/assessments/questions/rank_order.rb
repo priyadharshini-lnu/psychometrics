@@ -9,7 +9,7 @@ module Exports
         #   }, ...]
         # TO:
         #   [1, ...]
-        def self.result(answers, question)
+        def self.result(answers, question, _scoring = false)
           increase = %w(TextBox).include?(question.props['type']) ? 0 : 1
           (answers || []).sort_by { |a| a['index'] }.map { |a| a['value'] + increase }
         end

@@ -3,7 +3,7 @@ module Exports
     module Questions
       class MatrixTable
         # Parse RESULT data for XLSX
-        def self.result(answers, question)
+        def self.result(answers, question, scoring = false)
           parsed_result = []
           # IF: answer can contain any data (string, number and etc.)
           # THEN: we collect results for each choiceID and scaleID
@@ -26,7 +26,7 @@ module Exports
             question.props['choices'].to_i.times do |choice|
               parsed_result << (answers || []).
                                select { |a| a['choice'] == choice && a['value'] == true }.
-                               map { |a| factors_scoring["#{a['choice']}-#{a['scale']}"] || a['scale'] + 1 }.join(',')
+                               map { |a| scoring && factors_scoring["#{a['choice']}-#{a['scale']}"] || a['scale'] + 1 }.join(',')
             end
           end
           parsed_result

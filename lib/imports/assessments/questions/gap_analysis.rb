@@ -10,7 +10,7 @@ module Imports
         #   choice: 0,
         #   values: [0,1]
         # }
-        def self.build_answers(data, question)
+        def self.build_answers(data, question, _use_scoring = false)
           answers = []
           data.each_slice(2).each_with_index do |batch, choice|
             scale, values = batch # contain scale and values

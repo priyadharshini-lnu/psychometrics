@@ -11,7 +11,7 @@ module Imports
         #     "value": 0,  - Rank in Group
         #     "choice": 0  - Item ID
         #   }, ...]
-        def self.build_answers(data, question)
+        def self.build_answers(data, question, use_scoring = false)
           return nil if data.compact.blank?
           answers = []
 
@@ -25,7 +25,7 @@ module Imports
               answers << {
                 scale: scale,
                 value: value,
-                choice: factors_scoring[choice.to_i] || (choice.to_i - 1)
+                choice: use_scoring && factors_scoring[choice.to_i] || (choice.to_i - 1)
               }
             end
           end

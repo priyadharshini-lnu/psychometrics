@@ -18,7 +18,7 @@ module Imports
         #     "value": true/false/null,
         #     "region": 0
         #   }]
-        def self.build_answers(data, question)
+        def self.build_answers(data, question, _use_scoring = false)
           return nil if data.compact.blank?
           answers = []
           data.each_with_index do |value, region|

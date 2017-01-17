@@ -9,7 +9,7 @@ module Imports
         #     "index": 0,
         #     "value": 0
         #   }, ...]
-        def self.build_answers(data, question)
+        def self.build_answers(data, question, _use_scoring = false)
           return nil if data.compact.blank?
           answers = []
           decrease = %w(TextBox).include?(question.props['type']) ? 0 : 1

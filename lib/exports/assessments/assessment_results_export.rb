@@ -5,7 +5,9 @@ module Exports
                      MatrixTable MetaInfo MultipleChoice PickGroupRank
                      RankOrder SideBySide Slider TextEntry Timing).freeze
 
-      def initialize(assessment_id, client_id)
+      def initialize(assessment_id, client_id, options = {})
+        # Try convert raw reslults to scoring
+        @scoring = !!options[:scoring]
         @package = Axlsx::Package.new
         wb = @package.workbook
         wb.add_worksheet(name: 'AssessmentRawResults') do |sheet|
@@ -19,17 +21,20 @@ module Exports
           ## header
           header = {
             header: ['Result ID', 'Name', 'Email', 'Started At', 'Completed At', 'Norm Data', 'Status'],
-            subheader: ['', '', '', '', '', '', '']
+            header2: ['', '', '', '', '', '', ''],
+            header3: ['', '', '', '', '', '', '']
           }
           questions.each do |question|
             next unless QUESTIONS.include?(question.type)
             parser = "Exports::Assessments::Questions::#{question.type}".constantize
             question_header = parser.header(question)
             header[:header] << question_header
-            header[:subheader] << Array.new(question_header.size) { |_i| "#{question.name} - #{ActionView::Base.full_sanitizer.sanitize(question.props['questionText'])}" }
+            header[:header2] << Array.new(question_header.size) { |_i| question.name }
+            header[:header3] << Array.new(question_header.size) { |_i| ActionView::Base.full_sanitizer.sanitize(question.props['questionText']) }
           end
           sheet.add_row header[:header].flatten
-          sheet.add_row header[:subheader].flatten
+          sheet.add_row header[:header2].flatten
+          sheet.add_row header[:header3].flatten
           ::Assign.
             selecting { [id,
                          results,
@@ -50,7 +55,7 @@ module Exports
                 answers = assign.results[question.id.to_s].try(:[], 'answers')
                 next unless QUESTIONS.include?(question.type)
                 parser = "Exports::Assessments::Questions::#{question.type}".constantize
-                user_results << parser.result(answers, question)
+                user_results << parser.result(answers, question, @scoring)
               end
             end
 

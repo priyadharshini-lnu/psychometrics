@@ -3,7 +3,7 @@ module Imports
     module Questions
       class MatrixTable
         # Parse RESULT data for XLSX
-        def self.build_answers(data, question)
+        def self.build_answers(data, question, use_scoring = false)
           return nil if data.compact.blank?
           answers = []
           if %w(RankOrder ConstantSum TextEntry).include?(question.props['type'])
@@ -28,7 +28,7 @@ module Imports
             data.each_with_index do |scales, choice|
               scales.to_s.split(',').each do |scale|
                 answers << {
-                  scale: factors_scoring["#{choice}-#{scale}"] || scale.to_i - 1,
+                  scale: use_scoring && factors_scoring["#{choice}-#{scale}"] || scale.to_i - 1,
                   value: true,
                   choice: choice
                 }

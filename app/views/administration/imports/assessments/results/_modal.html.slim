@@ -1,0 +1,11 @@
+.modal.fade role='dialog' tabindex='-1' data-backdrop='static'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden='true' data-dismiss='modal' type='button'  &times;
+        h4.modal-title 
+          - if params[:scoring]
+            = t('administration.imports_assessments_result_imports.modal.header.scoring')
+          - else
+            = t('administration.imports_assessments_result_imports.modal.header.raw')
+      = render partial: (local_assigns[:form] || 'form')

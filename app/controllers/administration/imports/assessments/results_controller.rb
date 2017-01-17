@@ -4,8 +4,9 @@ module Administration
       class ResultsController < Administration::Imports::BaseController
         def new
           @resource = @resource_class.new
-          @resource.client_id = params[:client_id]
-          @resource.assessment_id = params[:assessment_id]
+          @resource.client_id = policy_scope(Client).find(params[:client_id])&.id
+          @resource.assessment_id = policy_scope(Assessment).find(params[:assessment_id])&.id
+          @resource.scoring = params[:scoring]
           respond_to do |format|
             format.js
           end
@@ -14,7 +15,7 @@ module Administration
         protected
 
         def import_params
-          params.require(:import).permit(:file, :client_id, :assessment_id)
+          params.require(:import).permit(:file, :client_id, :assessment_id, :scoring)
         end
 
         def init_import_class

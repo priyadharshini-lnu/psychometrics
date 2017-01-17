@@ -116,6 +116,7 @@ gem 'hashids', '~> 1.0.2'
 gem 'bootstrap-slider-rails'
 
 gem 'money-rails', '~> 1.7.0'
+gem 'virtus', '~> 1.0.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

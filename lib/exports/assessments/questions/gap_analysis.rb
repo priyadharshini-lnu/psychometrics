@@ -10,7 +10,7 @@ module Exports
         # }
         # TO:
         # [1, 1, '1,3']
-        def self.result(answers, _question)
+        def self.result(answers, _question, _scoring = false)
           (answers || []).map do |answer|
             [
               (answer['scale'] + 1),

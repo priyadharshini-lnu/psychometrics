@@ -9,10 +9,10 @@ module Exports
         #   }, ...]
         # TO:
         #   [1]
-        def self.result(answers, question)
+        def self.result(answers, question, scoring = false)
           factors_scoring = question.detect_specified_scoring.
                             inject({}) { |sum, s| sum[s['index']] = s['value']; sum }
-          (answers || []).map { |answer| factors_scoring[answer['index']] || (answer['index'] + 1) }.join(',')
+          (answers || []).map { |answer| scoring && factors_scoring[answer['index']] || (answer['index'] + 1) }.join(',')
         end
 
         def self.header(question)

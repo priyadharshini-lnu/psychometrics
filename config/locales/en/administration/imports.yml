@@ -11,8 +11,10 @@ en:
       create:
         successfully: HRIS data was successfully imported
     imports_assessments_result_imports:
-      new:
-        header: Import Raw Results data
+      modal:
+        header:
+          raw: Import Raw Results data
+          scoring: Import Scoring Results data
       create:
         successfully: Raw Results data was successfully imported
     imports:

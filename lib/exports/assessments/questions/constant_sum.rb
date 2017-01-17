@@ -9,7 +9,7 @@ module Exports
         #   }, ...]
         # TO:
         #   [12, ...]
-        def self.result(answers, _question)
+        def self.result(answers, _question, _scoring = false)
           (answers || []).map { |a| a['value'] }
         end
 

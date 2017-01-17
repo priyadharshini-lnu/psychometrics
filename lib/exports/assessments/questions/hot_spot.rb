@@ -9,7 +9,7 @@ module Exports
         #   }]
         # TO
         #   ['Like or On/Dislike/Neutral or OFF']
-        def self.result(answers, question)
+        def self.result(answers, question, _scoring = false)
           parsed_result = []
           question.props['regions'].size.times do |r|
             answer = (answers || []).detect { |a| a['region'] == r }

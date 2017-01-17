@@ -3,6 +3,7 @@
     .form-inputs.clearfix
       = f.input :client_id, as: :hidden
       = f.input :assessment_id, as: :hidden
+      .hidden = f.input :scoring, as: :boolean
       = f.input :file, as: :file, error: false
       - if f.object.errors.any?
         - f.object.errors.to_a.each do |error|
