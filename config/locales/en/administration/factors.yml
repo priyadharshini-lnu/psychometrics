@@ -17,7 +17,7 @@ en:
       toggle_status:
         successfully: 'Factor was successfully updated.'
       sidebar:
-        title: "Factor's options (#%{id})"
+        title: "Factor's options"
         view: 'View Factor'
         edit: 'Edit Factor Name'
         copy: 'Copy Factor'

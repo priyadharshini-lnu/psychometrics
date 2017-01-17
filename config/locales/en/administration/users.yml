@@ -40,7 +40,7 @@ en:
       spoof:
         successfully: You was successfully login as %{name}
       sidebar:
-        title: User's options (#%{id})
+        title: User's options
         disable: Disable
         enable: Enable
         edit_user: Edit User
