@@ -61,7 +61,7 @@ module Imports
           # Initialize collections of translation
           # Nested hash if not initilized return blank hash insted nil
           data.each do |locale, translation|
-            next if locale == 'en' # Default locale
+            next if locale == 'en' || translation.blank? # Default locale or not translated
             collect_translations[translateable_type][translateable_id][locale] ||= {}
             collect_translations[translateable_type][translateable_id][locale][key] = translation
           end

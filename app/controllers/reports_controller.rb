@@ -22,6 +22,8 @@ class ReportsController < ApplicationController
     @assign = Assign.find_by(assessment_id: @resource.assessment_id, membership_id: @current_membership.id)
 
     @translations = Translation.to_hash_for_report(@resource.id, @resource.assessment_id, user_locale)
+    @available_translations = Translation.available_translation_for_report(@resource.id, @resource.assessment_id)
+
     respond_to do |format|
       format.html do
         render('_show', layout: 'pdf') if params[:export]
