@@ -30,6 +30,7 @@ class AssessmentsController < ApplicationController
       status: [:not_started, :in_progress]
     )
     @translations = ::Translation.to_hash_for_assessment(@resource.id, user_locale)
+    @available_translations = ::Translation.available_translation_for_assessment(@resource.id)
     @assign.in_progress!
   end
 

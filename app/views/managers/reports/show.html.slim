@@ -2,7 +2,7 @@
   .contentTitleHeader
     i.glyphicon.glyphicon-eye-open.titleIcon.pull-left
     p.contentTitle.pull-left = t('.header')
-    = render partial: 'lang'
+    = render partial: 'lang', locals: { locales: @available_translations }
     = link_to t('.export_pdf'), { action: :show, export: true, format: :pdf, lang: I18n.locale }, class: 'btn btn-default pull-right mrl'
     .clearfix
   = render partial: 'show'
