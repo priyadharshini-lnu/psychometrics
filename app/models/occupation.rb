@@ -23,4 +23,6 @@ class Occupation < ApplicationRecord
 
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
+
+  mount_uploader :icon, ImageUploader
 end
