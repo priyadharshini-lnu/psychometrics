@@ -1,0 +1,11 @@
+dependencies:
+  override:
+    - mv config/secrets.ci.yml config/secrets.yml
+  pre:
+    - bundle config github.https true
+    - bundle install
+machine:
+  services:
+    - redis
+
+
