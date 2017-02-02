@@ -18,7 +18,7 @@ module Administration
 
     def preview?
       return true if @user.is?(:superadmin)
-      return true if @user.is?(:admin) && @record.assessment.psychometric?
+      return true if @user.is?(:admin) && @record.assessment.psychometric? && @user.has_grant?(:assigns, :view)
       false
     end
 

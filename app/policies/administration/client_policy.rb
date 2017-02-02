@@ -16,10 +16,6 @@ module Administration
       true
     end
 
-    def license?
-      @user.is?(:superadmin)
-    end
-
     def design?
       @user.is?(:superadmin) || @user.has_grant?(:clients, :design)
     end

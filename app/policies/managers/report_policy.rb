@@ -8,9 +8,12 @@ module Managers
     end
 
     def show?
-      assign_exists = @user_membership.assigns.completed.exists?(assessment_id: @record.assessment_id)
-      client_report_exists = ClientReport.exists?(report_id: @record.id, client_id: @client.id)
-      assign_exists && client_report_exists && !@record.assessment.psychometric? && valid_hierarchy?
+      assessment_ids = Assessment.enabled.
+          joins('LEFT JOIN assigns on assigns.assignable_id = assessments.id and assigns.assignable_type = \'Assessment\'').
+          where(assigns: { role: 'manager', membership_id: @current_membership.id }).pluck(:id)
+      assign = @user_membership.assigns.find_by(assignable: @record.assessment)
+      report_existing = assign.reports.enabled.include? @record
+      assessment_ids && report_existing && !@record.assessment.psychometric? && valid_hierarchy?
     end
 
     def valid_hierarchy?

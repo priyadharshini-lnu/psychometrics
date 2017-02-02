@@ -12,6 +12,7 @@ module Administration
       questions: [:view, :manage],
       libraries: [:view, :manage],
       communications: [:view, :manage],
+      projects: [:view, :manage],
       assigns: [:view]
     ]].freeze
 
@@ -25,13 +26,16 @@ module Administration
     end
 
     def overview_assigns?
+      return true if @user.is? :superadmin
       @user.has_grant?(:assigns, :view)
     end
 
     class Scope < Administration::BasePolicy::Scope
       def resolve
         return scope if @user.is?(:superadmin)
-        scope.where(client_id: @user.admin_client_ids)
+        # find memberships for clients with 'admin' role and it's subclients
+        sub_client_ids = Client.where(parent_id: @user.admin_client_ids).pluck(:id)
+        scope.where(client_id: @user.admin_client_ids + sub_client_ids)
       end
     end
   end
