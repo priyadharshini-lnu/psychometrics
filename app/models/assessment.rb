@@ -27,10 +27,9 @@ class Assessment < ApplicationRecord
   has_many :factors_scoring, dependent: :destroy
   has_many :reports, dependent: :destroy
 
-  has_many :assign_clients, as: :assignable, dependent: :destroy
+  has_many :assign_clients, dependent: :destroy
   has_many :clients, through: :assign_clients
-  has_many :assigns, as: :assignable, dependent: :destroy
-  has_many :results, dependent: :destroy
+  has_many :assigns, dependent: :destroy
   has_many :memberships, through: :assigns
   has_many :assessments_projects, inverse_of: :project
   has_many :projects, through: :assessments_projects
@@ -43,11 +42,17 @@ class Assessment < ApplicationRecord
   belongs_to :dimension
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
 
+  CATEGORIES_TYPES = [
+    PSYCHOMETRIC = 'psychometric'.freeze,
+    ORGANISATIONAL = 'organisational'.freeze,
+    NUM_360 = '360'.freeze
+  ].freeze
+
   # CATEGORIES constant
   CATEGORIES = {
-    psychometric: 'psychometric',
-    organisational: 'organisational',
-    '360' => '360'
+    psychometric: PSYCHOMETRIC,
+    organisational: ORGANISATIONAL,
+    '360' => NUM_360
   }.freeze
 
   # STATUSES constant
@@ -56,12 +61,14 @@ class Assessment < ApplicationRecord
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
   validates :owner, presence: true, allow_nil: true
+  validate :check_owner
 
   before_create :init
 
   def init
     self.flow ||= { elements: [] }
     self.status = Assessment.statuses[:in_progress] unless status
+    self.norm_rules ||= {}
   end
 
   enum category: CATEGORIES
@@ -114,6 +121,16 @@ class Assessment < ApplicationRecord
     joins(:assign_clients).where(assign_clients: { client_id: client_id, assignable_type: Assessment })
   }
 
+  def active_questions_count
+    questions.not_deleted.where(disabled: false).count
+  end
+
+  private
+
+  def check_owner
+    errors.add(:owner, :invalid) if owner&.subtenancy?
+  end
+
   class << self
     # Available role for the filter form
     #
@@ -124,9 +141,5 @@ class Assessment < ApplicationRecord
     def options_for_select
       all.map { |assessment| [assessment.decorate.display_name, assessment.id] }
     end
-  end
-
-  def active_questions_count
-    questions.not_deleted.where(disabled: false).count
   end
 end

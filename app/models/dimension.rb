@@ -8,6 +8,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  factors_count :integer          default(0)
+#  owner_id      :integer
 #
 
 class Dimension < ApplicationRecord
@@ -59,10 +60,16 @@ class Dimension < ApplicationRecord
     end
   }
 
-  def clone
-    @cloned_dimension = deep_clone(include: [{ factors: :sub_factors }],
+  def clone_and_save
+    @cloned_dimension = deep_clone(include: [:occupations, { factors: :sub_factors }],
                                    except: [:factors_count, { factors: [:subfactors_count] }])
     @cloned_dimension.gen_uniq_name
-    @cloned_dimension
+    if @cloned_dimension.save
+      # SubFactors have link to original dimension.
+      Factor.where(parent_id: @cloned_dimension.factor_ids).update_all(dimension_id: @cloned_dimension.id)
+      @cloned_dimension
+    else
+      nil
+    end
   end
 end

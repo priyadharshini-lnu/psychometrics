@@ -5,7 +5,7 @@
         h3.panel-title = "#{@dimension.name}: #{t('.title')}"
         ul.panel-controls
           li
-            = link_to [:new, :administration, :dimension, @resource_class.model_name.singular], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
+            = link_to [:new, :administration, :dimension, @resource_class.model_name.singular], remote: true, class: 'create', data: { toggle: 'tooltip', title: t('.tooltips.create') }
               span.fa.fa-plus
       .panel-body
         .row

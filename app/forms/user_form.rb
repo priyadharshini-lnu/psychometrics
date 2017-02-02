@@ -1,13 +1,16 @@
+# TODO: do we need it?
 class UserForm < BaseForm
   include UserValidations
   include MembershipValidations
+  include ActiveModel::Validations::Callbacks
 
   attr_accessor :email, :first_name, :last_name,
                 :parent_id, :membership_role, :client, :user,
                 :operator
 
   validate :uniqueness_membership, if: proc { user.id }
-  validates :membership_role, inclusion: { in: ::Membership::MEMBERSHIP_ROLES },  presence: true
+  validates :membership_role, inclusion: { in: ::Membership::MEMBERSHIP_ROLES }, presence: true
+  before_validation :use_license
 
   def uniqueness_membership
     errors.add(:email, :taken) if Membership.exists?(client_id: client.id, user_id: user.id)
@@ -24,12 +27,12 @@ class UserForm < BaseForm
   end
 
   def save
-    if valid?
-      persist!
-      true
-    else
-      false
-    end
+    (persist! && return) if valid?
+    false
+  end
+
+  def use_license
+    Licenses::UsersLicense.use(self)
   end
 
   private

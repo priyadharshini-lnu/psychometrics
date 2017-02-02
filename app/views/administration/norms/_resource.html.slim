@@ -1,17 +1,17 @@
 tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resource)
   td.text-center
-    = link_to([:toggle_status, :administration, resource], method: :patch, remote: true, data: { confirm: resource.decorate.toggle_status_confirmation })
+    = link_to([:toggle_status, :administration, resource], method: :patch, remote: true, class: 'toggle-status', data: { confirm: resource.decorate.toggle_status_confirmation })
       = resource.decorate.status
   td = resource.name
   td = resource.dimension.try(:decorate).try(:display_name)
   td = resource.decorate.client_name
   td
     - if policy(@resource_class).actions?
-      = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
+      = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
         span.fa.fa-pencil
-      = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
+      = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
         span.fa.fa-copy
-      = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
+      = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm delete', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
         span.fa.fa-times
   td = resource.decorate.created_at
   td = resource.decorate.updated_at

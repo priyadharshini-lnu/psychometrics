@@ -1,9 +1,8 @@
 tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource).sidebar?) id=dom_id(resource)
   - if policy(resource).toggle_status?
     td.text-center
-        = link_to({ action: :toggle_status, id: resource }, remote: true, method: :patch, data: { confirm: resource.decorate.toggle_status_confirmation })
-          = resource.decorate.status
-
+      = link_to({ action: :toggle_status, id: resource }, remote: true, method: :patch, class: 'toggle-status', data: { confirm: resource.decorate.toggle_status_confirmation })
+        = resource.decorate.status
   td
     - if policy(resource).show? 
       = link_to resource.name, administration_report_path(resource)
@@ -16,14 +15,14 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
   - if policy(@resource_class).actions?
     td
       - if policy(resource).preview?
-        = link_to({ action: :preview, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.preview') })
+        = link_to({ action: :preview, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm preview', data: { toggle: 'tooltip', title: t('.tooltips.preview') })
           i.fa.fa-eye  
       - if policy(resource).edit?
-        = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
+        = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
           i.fa.fa-pencil
       - if policy(resource).copy?
-        = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.copy') })
+        = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy') })
           span.fa.fa-copy
       - if policy(resource).destroy?
-        = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
+        = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm delete', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
           span.fa.fa-times

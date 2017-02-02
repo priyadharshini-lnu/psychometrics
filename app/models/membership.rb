@@ -54,7 +54,7 @@ class Membership < ApplicationRecord
 
   before_validation :ensure_user, on: :create, if: proc { user_id.nil? }
   # before_create :use_license
-  # before_create :add_tenancy_membership, if: -> { client.subtenancy? }
+  before_create :add_tenancy_membership, if: -> { client.subtenancy? }
   after_destroy :remove_subtenancy_memberships, if: -> { client.tenancy? }
 
   acts_as_nested_set scope: :client_id

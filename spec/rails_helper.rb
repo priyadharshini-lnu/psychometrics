@@ -9,7 +9,7 @@ require 'capybara/rspec'
 require 'capybara/poltergeist'
 require 'capybara-screenshot/rspec'
 require 'selenium-webdriver'
-# require 'features/helpers'
+require 'features/helpers'
 
 ActiveRecord::Migration.maintain_test_schema!
 

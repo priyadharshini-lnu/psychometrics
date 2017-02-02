@@ -33,7 +33,7 @@ class CopyAssessment
           end
         end
       end
-      new_assessment.update_attributes(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules))
+      new_assessment.update_attributes(flow: JSON.parse(flow), norm_rules: JSON.parse(norm_rules, quirks_mode: true))
       new_assessment
     end
     new_assessment

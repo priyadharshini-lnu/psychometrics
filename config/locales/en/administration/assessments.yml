@@ -33,15 +33,16 @@ en:
       toggle_status:
         successfully: 'Assessment %{name} was successfully updated.'
       sidebar:
-        title: Assessment's options (#%{id})
+        title: Assessment's options
         disable: Disable
         enable: Enable
         edit: Edit Assessment
         preview: Preview Assessment
         new: New Assessment
         copy: Copy Assessment
-        assign: 'Assign Assessment'
-        destroy: 'Delete Assessment'
+        assign: Assign Assessment
+        destroy: Delete Assessment
+        builder: Questions Builder
       resource:
         tooltips:
           copy: Copy Assessment

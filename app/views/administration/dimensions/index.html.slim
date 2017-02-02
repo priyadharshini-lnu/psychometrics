@@ -6,7 +6,7 @@
         ul.panel-controls
           - if policy(@resource_class).create?
             li
-              = link_to [:new, :administration, @resource_class.model_name.singular], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
+              = link_to [:new, :administration, @resource_class.model_name.singular], remote: true, class: 'create', data: { toggle: 'tooltip', title: t('.tooltips.create') }
                 span.fa.fa-plus
       .panel-body
         = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|

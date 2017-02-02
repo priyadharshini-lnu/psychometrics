@@ -7,6 +7,7 @@ en:
        yti: 'YTI'
       index:
         title: "Reports"
+        add: Add
         tooltips:
           create: Create
         filterrific:
@@ -22,6 +23,10 @@ en:
         header: 'Edit Report Name'
       destroy:
         successfully: 'Report %{name} was successfully destroyed.'
+      create:
+        successfully: 'Report %{name} was successfully created.'
+      update:
+        successfully: 'Report %{name} was successfully updated.'
       copy:
         error: 'Report #%{id} was not copied.'
       toggle_status:
@@ -30,7 +35,7 @@ en:
         types:
           <<: *types
       sidebar:
-        title: "Report's options (#%{id})"
+        title: "Report's options"
         view: 'View Report'
         edit: 'Edit Report'
         copy: 'Copy Report'

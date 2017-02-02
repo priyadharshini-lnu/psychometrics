@@ -1,0 +1,49 @@
+require 'rails_helper'
+
+RSpec.describe Licenses::ClientReport do
+  let(:call) { Licenses::ClientReport.use(report) }
+  let!(:client) { create(:client) }
+  let!(:license) { client.licenses.client_report.first }
+  let(:subtenancy) { create(:client, parent: client) }
+  let(:report) { build(:report, owner: client) }
+
+  describe 'self.use' do
+    context 'When owner is Client' do
+      context 'and HAS enough licenses then' do
+        before { call }
+
+        it { expect(report.errors.added?(:base, :has_no_enough_licenses)).to be_falsey }
+        it 'builds a license_usage' do
+          expect(report.license_usages.size).to eq(1)
+          expect(report.license_usages.first.license).to eq(license)
+        end
+        it { expect(call).to be(report.license_usages.first) }
+      end
+
+      context 'and HAS NO enough licenses then' do
+        before { license.update(number: 0) }
+
+        it 'does NOT build a license_usage' do
+          expect { call }.to raise_error(ActiveRecord::RecordInvalid)
+          expect(report.errors.added?(:base, :has_no_enough_licenses)).to be_truthy
+          expect(report.license_usages).to be_empty
+        end
+      end
+
+      context 'When owner is Subtenancy' do
+        let(:report) { build(:report, owner: subtenancy) }
+        before { call }
+
+        it 'builds a license_usage of Tenancy license' do
+          expect(report.license_usages.first.license_id).to eq(license.id)
+        end
+      end
+    end
+
+    context 'When owner is TTE' do
+      let(:report) { build(:report) }
+
+      it { expect(call).to be_nil }
+    end
+  end
+end

@@ -3,5 +3,22 @@ FactoryGirl.define do
     sequence(:name) { |n| "Norm #{n}" }
     dimension
     association :owner, factory: :client
+
+    transient do
+      with_factors_norm true
+      factors_norm_count 5
+    end
+
+    after(:create) do |norm, evaluator|
+      if evaluator.with_factors_norm
+        evaluator.factors_norm_count.times do
+          factor = create(:factor, :with_subfactor, dimension: norm.dimension)
+          FactorsNorm::NORM_TYPES.each do |type|
+            create(:factors_norm, type: type, norm: norm, factor: factor)
+            create(:factors_norm, type: type, norm: norm, factor: factor.sub_factors.first)
+          end
+        end
+      end
+    end
   end
 end

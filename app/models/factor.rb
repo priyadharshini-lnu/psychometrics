@@ -99,6 +99,12 @@ class Factor < ApplicationRecord
     FactorsScoring.where(factor_id: id).where('json_array_length(props) > 0').group(:assessment_id).count
   end
 
+  def clone_and_save
+    @cloned_factor = deep_clone(include: [:sub_factors], except: [:subfactors_count])
+    @cloned_factor.gen_uniq_name
+    @cloned_factor.save ? @cloned_factor : nil
+  end
+
   private
 
   def increment_factors

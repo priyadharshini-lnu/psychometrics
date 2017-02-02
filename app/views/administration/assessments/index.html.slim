@@ -6,7 +6,7 @@
         ul.panel-controls
           - if policy(@resource_class).create?
             li
-              = link_to [:new, :administration, @resource_class.model_name.singular, with_category: @filterrific.with_category ], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
+              = link_to [:new, :administration, @resource_class.model_name.singular, with_category: @filterrific.with_category ], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }, class: 'create'
                 span.fa.fa-plus
       .panel-body
         .row.mbm

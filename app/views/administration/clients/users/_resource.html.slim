@@ -6,6 +6,8 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
   td = resource.last_name
   td = resource.email
   td = resource.decorate.role_name
+  - if client.tenancy?
+    td = resource.decorate.clients_names
   td = resource.decorate.created_at
   td
     - if policy(resource).change_password?

@@ -52,9 +52,9 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def copy
-    @cloned_resource = @resource.clone
     respond_to do |format|
-      if @cloned_resource.save
+      @cloned_resource = @resource.clone_and_save
+      if @cloned_resource
         format.js
       else
         format.js { render :error, locals: { message: t('administration.factors.copy.error', { id: @resource.id }) } }

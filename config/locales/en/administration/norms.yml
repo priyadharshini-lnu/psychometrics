@@ -13,6 +13,10 @@ en:
         header: 'Rename Norm'
       destroy:
         successfully: 'Norm %{name} was successfully destroyed.'
+      create:
+        successfully: 'Norm %{name} was successfully created.'
+      update:
+        successfully: 'Norm %{name} was successfully updated.'
       copy:
         error: 'Norm #%{id} was not copied.'
       toggle_status:
@@ -25,7 +29,7 @@ en:
         tooltips:
           edit: Edit Title
       sidebar:
-        title: Norm's options (#%{id})
+        title: Norm's options
         disable: 'Disable'
         enable: 'Enable'
         edit: 'Rename Norm'
