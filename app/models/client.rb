@@ -31,13 +31,19 @@ class Client < ApplicationRecord
   has_many :client_reports, dependent: :destroy
   has_many :reports, through: :client_reports
 
+  has_many :licenses, inverse_of: :client, dependent: :destroy
+  accepts_nested_attributes_for :licenses, allow_destroy: true
+  has_many :license_usages, as: :licenseable
+
   has_one :retail_user, class_name: 'User'
 
   validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
   validates :name, :type, presence: true
 
-  before_validation :ensure_subdomain, if: :retail?
+  validate :license_expire_validation
 
+  before_validation :ensure_subdomain, if: :retail?
+  before_update :use_license_design, if: :design_changed?
   store :design, accessors: [:background_color]
 
   #
@@ -104,5 +110,13 @@ class Client < ApplicationRecord
       subdomain = "retail_#{Random.rand(99_999)}#{Time.now.to_i}"
       break subdomain unless Client.exists?(subdomain: subdomain)
     end
+  end
+
+  def use_license_design
+    Licenses::TenancyBranding.use(self)
+  end
+
+  def license_expire_validation
+    errors.add(:licenses_final_expire, :invalid) if licenses_final_expire&.<= licenses_expire
   end
 end

@@ -56,6 +56,7 @@ Rails.application.routes.draw do
         resource :designs, only: [:edit, :update]
         resources :reports, only: [:index, :destroy]
         resources :statistics, only: [:index]
+        resource :licenses, only: [:show, :edit, :update]
         resources :assessments, only: [:index, :destroy] do
           get :export_results
         end

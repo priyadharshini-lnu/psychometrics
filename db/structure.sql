@@ -270,8 +270,6 @@ ALTER SEQUENCE client_reports_id_seq OWNED BY client_reports.id;
 CREATE TABLE clients (
     id integer NOT NULL,
     name character varying,
-    licenses integer DEFAULT 0,
-    licenses_used integer DEFAULT 0,
     licenses_expire date,
     subdomain character varying,
     logo character varying,
@@ -280,7 +278,9 @@ CREATE TABLE clients (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     background character varying,
-    type integer DEFAULT 0
+    type integer DEFAULT 0,
+    licenses_final_expire date,
+    licenses_count integer DEFAULT 0
 );
 
 
@@ -733,6 +733,75 @@ CREATE SEQUENCE libraries_id_seq
 --
 
 ALTER SEQUENCE libraries_id_seq OWNED BY libraries.id;
+
+
+--
+-- Name: license_usages; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE license_usages (
+    id integer NOT NULL,
+    license_id integer,
+    licenseable_type character varying,
+    licenseable_id integer
+);
+
+
+--
+-- Name: license_usages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE license_usages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: license_usages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE license_usages_id_seq OWNED BY license_usages.id;
+
+
+--
+-- Name: licenses; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE licenses (
+    id integer NOT NULL,
+    type integer DEFAULT 0,
+    number integer DEFAULT 0,
+    overuse_number integer DEFAULT 0,
+    used_number integer DEFAULT 0,
+    unlimited boolean DEFAULT false,
+    client_id integer,
+    assessment_id integer,
+    report_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: licenses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE licenses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: licenses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE licenses_id_seq OWNED BY licenses.id;
 
 
 --
@@ -1502,6 +1571,20 @@ ALTER TABLE ONLY libraries ALTER COLUMN id SET DEFAULT nextval('libraries_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY license_usages ALTER COLUMN id SET DEFAULT nextval('license_usages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY licenses ALTER COLUMN id SET DEFAULT nextval('licenses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY memberships ALTER COLUMN id SET DEFAULT nextval('memberships_id_seq'::regclass);
 
 
@@ -1767,6 +1850,22 @@ ALTER TABLE ONLY factors_scoring
 
 ALTER TABLE ONLY libraries
     ADD CONSTRAINT libraries_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: license_usages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY license_usages
+    ADD CONSTRAINT license_usages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: licenses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY licenses
+    ADD CONSTRAINT licenses_pkey PRIMARY KEY (id);
 
 
 --
@@ -2117,6 +2216,48 @@ CREATE INDEX index_libraries_on_rgt ON libraries USING btree (rgt);
 
 
 --
+-- Name: index_license_usages_on_license_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_license_id ON license_usages USING btree (license_id);
+
+
+--
+-- Name: index_license_usages_on_licenseable_type_and_licenseable_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_licenseable_type_and_licenseable_id ON license_usages USING btree (licenseable_type, licenseable_id);
+
+
+--
+-- Name: index_licenses_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_licenses_on_assessment_id ON licenses USING btree (assessment_id);
+
+
+--
+-- Name: index_licenses_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_licenses_on_client_id ON licenses USING btree (client_id);
+
+
+--
+-- Name: index_licenses_on_client_id_and_type; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_licenses_on_client_id_and_type ON licenses USING btree (client_id, type);
+
+
+--
+-- Name: index_licenses_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_licenses_on_report_id ON licenses USING btree (report_id);
+
+
+--
 -- Name: index_memberships_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2422,6 +2563,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337'), ('20161019113157'), ('20161020145001'), ('20161021080332'), ('20161025151414'), ('20161025152859'), ('20161025154640'), ('20161026111535'), ('20161026120042'), ('20161027095910'), ('20161031091451'), ('20161031094940'), ('20161031105250'), ('20161031105418'), ('20161101141317'), ('20161102071143'), ('20161102110210'), ('20161102115438'), ('20161103111612'), ('20161103154036'), ('20161108112600'), ('20161110090142'), ('20161111102005'), ('20161115143900'), ('20161118142126'), ('20161121143132'), ('20161123094818'), ('20161125121349'), ('20161125125141'), ('20161128103519'), ('20161128114937'), ('20161202113205'), ('20161212094131'), ('20161212140458'), ('20161214081142'), ('20161214140548'), ('20161215061834'), ('20161215093728'), ('20161215150055'), ('20161215150257'), ('20161221074135'), ('20161221074304'), ('20161223065642'), ('20161223081235'), ('20161229122752'), ('20161229135459'), ('20161230083037'), ('20170103143542');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337'), ('20161019113157'), ('20161020145001'), ('20161021080332'), ('20161025151414'), ('20161025152859'), ('20161025154640'), ('20161026111535'), ('20161026120042'), ('20161027095910'), ('20161031091451'), ('20161031094940'), ('20161031105250'), ('20161031105418'), ('20161101141317'), ('20161102071143'), ('20161102110210'), ('20161102115438'), ('20161103111612'), ('20161103154036'), ('20161108112600'), ('20161110090142'), ('20161111102005'), ('20161115143900'), ('20161118142126'), ('20161121143132'), ('20161123094818'), ('20161125121349'), ('20161125125141'), ('20161128103519'), ('20161128114937'), ('20161202113205'), ('20161212094131'), ('20161212140458'), ('20161214081142'), ('20161214140548'), ('20161215061834'), ('20161215093728'), ('20161215150055'), ('20161215150257'), ('20161221074135'), ('20161221074304'), ('20161223065642'), ('20161223081235'), ('20161229122752'), ('20161229135459'), ('20161230083037'), ('20170103143542'), ('20170112100616'), ('20170112124314'), ('20170117071238');
 
 

@@ -8,6 +8,7 @@ en:
     import: Import
     enable: Enable
     disable: Disable
+    save: Save
     search: Search
     uniq_id: Uniq ID
     edit: Edit
