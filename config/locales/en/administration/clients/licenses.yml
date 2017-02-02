@@ -1,0 +1,34 @@
+en:
+  administration:
+    clients:
+      licenses:
+        edit:
+          header: '%{client_name} - Manage Licenses'
+        form:
+          subscription_length: Subscription Length
+          licenses: Licenses
+          add_license: Add Another License
+          license_type: License Type
+          unlimited: Unlimited?
+          license_number: License Number
+          license_overuse_number: Over Use Allowance
+        license_fields:
+          remove: Remove
+          unlimited: Unlimited
+        show:
+          header: '%{client_name} - Licenses Usage'
+          license_type: License Type
+          used_license_number: Used Licenses
+          used_license_overuse_number: 'Over Use Allowance'
+          used_out_of: '%{used_number} out of %{number}'
+          unlimited: Unlimited
+          date_expire: 'Date Of Expiry: %{date}'
+          final_date_expire: 'Final Date: %{date}'
+          license_has_expired: License package has expired
+        mailer:
+          license_expire:
+            subject: License expired
+          license_final_expire:
+            subject: License final expired
+          license_overuse:
+            subject: License overuse

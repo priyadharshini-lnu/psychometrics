@@ -55,6 +55,10 @@ module Administration
       edit? & copy? & destroy?
     end
 
+    def actions?
+      edit? & copy? & destroy?
+    end
+
     def scope
       Pundit.policy_scope!(user, record.class)
     end

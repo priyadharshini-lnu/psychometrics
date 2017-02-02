@@ -32,15 +32,22 @@ class Client < ApplicationRecord
   has_many :dimensions
   has_many :sub_clients, class_name: 'Client', foreign_key: :parent_id
 
+  has_many :licenses, inverse_of: :client, dependent: :destroy
+  accepts_nested_attributes_for :licenses, allow_destroy: true
+  has_many :license_usages, as: :licenseable
+
   has_one :retail_user, class_name: 'User'
   belongs_to :parent, class_name: 'Client'
 
   validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
-  validate :subdomain_format
   validates :name, :type, presence: true
+  validate :subdomain_format_validation
+  # validate :license_expire_validation
 
   before_validation :ensure_subdomain, if: :retail?
   before_validation :check_parent_subdomain, if: :subdomain_changed?
+  # before_create :use_license
+  # before_update :use_license_design, if: :design_changed?
 
   store :design, accessors: [:background_color]
 
@@ -78,12 +85,14 @@ class Client < ApplicationRecord
     # extract the sort direction from the param value.
     direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
     column = sort_key.gsub("_#{direction}", '')
-    if column.in?(%w(id active name created_at updated_at licenses_used licenses_expire))
+    if column.in?(%w(id active name created_at updated_at licenses_expire))
       order("clients.#{column} #{direction}")
     elsif column == 'active'
       order("clients.disabled #{direction}")
     end
   }
+
+  scope :tenancies, -> { where(parent_id: nil) }
 
   def clone
     @cloned_item = deep_clone do |_original, kopy|
@@ -118,13 +127,25 @@ class Client < ApplicationRecord
     end
   end
 
-  def subdomain_format
-    return if tenancy? && subdomain =~ /^[a-z]+$/
-    return if subdomain =~ /^[a-z]+\.[a-z]+$/
+  def subdomain_format_validation
+    return if tenancy? && subdomain =~ /^[a-zA-Z0-9\-_]+$/
+    return if subdomain =~ /^[a-zA-Z0-9\-_]+\.[a-zA-Z0-9\-_]+$/
     errors.add(:subdomain, 'Wrong subdomain format')
   end
 
+  def license_expire_validation
+    errors.add(:licenses_final_expire, :invalid) if licenses_final_expire&.<= licenses_expire
+  end
+
   def check_parent_subdomain
-    self.subdomain += ".#{parent.subdomain}" if subtenancy?
+    self.subdomain += ".#{parent.subdomain}" if subtenancy? && !subdomain.include?('.')
+  end
+
+  def use_license
+    Licenses::SubTenancies.use(self)
+  end
+
+  def use_license_design
+    Licenses::TenancyBranding.use(self)
   end
 end

@@ -1,0 +1,5 @@
+$('#modal-container').html('<%= j render(partial: "modal", locals: { form: "show", header: t("administration.clients.licenses.show.header", client_name: @resource.decorate.display_name) }) %>');
+$('#modal-container').find(".modal").modal('show');
+$('#modal-container').find(".modal").on('hidden.bs.modal', function (e) {
+  $(this).remove();
+});
