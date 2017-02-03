@@ -1,17 +1,31 @@
+- assessment = resource.assessment
 tr id=dom_id(resource)
   td = resource.encode_id
-  td = @membership.decorate.display_name
-  td = resource.assessment.try(:name)
-  td = resource.assessment.try(:decorate).try(:category)
+  td
+    span = @membership.decorate.display_name
+    span.mlm
+      - if policy(resource).destroy?
+        = link_to({action: :destroy, id: resource}, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: {confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')})
+          span.fa.fa-times
+  td = assessment.try(:name)
+  td = assessment.try(:decorate).try(:category)
   td = resource.decorate.status
   td = resource.decorate.completed_at
   td.text-center
-    - reports = filter_reports_by_type(@reports.try(:[], resource.assessment_id) || [], resource.norm_type)
-    - if policy(resource.assessment).view_report?
+    - resource.reports.enabled.all.each do |report|
+      div id="client-tenancy-assign-#{resource.id}-report-#{report.id}"
+        span = report.name
+        span.mlm
+          - if policy(resource).destroy?
+            = link_to({action: :destroy_report, id: resource, params: {report_id: report.id}}, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: {confirm: report.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete_report')})
+              span.fa.fa-times
+  td.text-center
+    - if policy(assessment).view_report?
+      - reports = filter_reports_by_type(resource.reports.enabled, resource.norm_type)
       - if resource.completed?
         - if reports.any?
           - reports.each do |report|
-            = link_to [:preview, :administration, @client, :user, :report, user_id: @membership.user_id, id: report.id], class: 'btn btn-default btn-rounded btn-sm mrm', data: {toggle: 'tooltip', title: report.name}
+            = link_to [:preview, :administration, client, :user, :report, user_id: @membership.user_id, id: report.id], class: 'btn btn-default btn-rounded btn-sm mrm', data: {toggle: 'tooltip', title: report.name}
               span.fa.fa-pie-chart
         - else
           = t('.no_reports')
@@ -19,7 +33,3 @@ tr id=dom_id(resource)
         = t('.no_completed')
     - else
       = t('.no_access_to_reports')
-  td
-    - if policy(resource).destroy?
-      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
-        span.fa.fa-times    

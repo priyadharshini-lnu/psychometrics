@@ -1,0 +1,5 @@
+$('#client-tenancy-assign-<%= @resource.id %>-report-<%= @report.id %>').hide('slow')
+// Notify message
+noty({text: '<%= t('administration.clients.users.assigns.common.detach_report', name: @resource.decorate.display_name) %>', type: 'success'});
+
+$(document).trigger('close_sidebar');

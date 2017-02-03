@@ -41,7 +41,7 @@ class Membership < ApplicationRecord
   has_many :assigns, dependent: :destroy, inverse_of: :membership
   has_many :reports, through: :assigns
   has_many :results, dependent: :destroy, inverse_of: :membership
-  has_many :assessments, through: :assigns, source: :assignable, source_type: 'Assessment'
+  has_many :assessments, through: :assigns
   has_many :communication_emails, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'
   has_many :orders, dependent: :destroy, inverse_of: :membership, class_name: 'Ecommerce::Order'
   has_many :license_usages, as: :licenseable

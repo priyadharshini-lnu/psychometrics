@@ -1,0 +1,56 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title = t('.title', name: @assessment.decorate.display_name)
+      .panel-body
+        /! START WIZARD WITH SUBMIT BUTTON
+        .block
+          = simple_form_for(@assign, 
+                            as: :assign, 
+                            url: step2_administration_assessment_assigns_path, 
+                            method: :get, 
+                            wrapper: :horizontal_form, 
+                            html: { class: 'form-horizontal' }) do |f|
+            .wizard.show-submit
+              ul.steps_2.anchor
+                li.ms-hover
+                  a.selected href="#step-1" isdone="1" rel="1" 
+                    span.stepDesc
+                      == t('.step1')
+                li.ms-hover
+                  a href="#step-2" isdone="0" rel="2" 
+                    span.stepDesc
+                      == t('.step2')
+
+              .stepContainer        
+                #step-1
+                  = f.input :client_ids, 
+                            collection: policy_scope([:assessments, Client]).all,
+                            include_blank: false, 
+                            input_html: {  data: { live_search: true }, multiple: true }
+                  = f.input :report_ids, 
+                            collection: @assessment.reports, 
+                            include_blank: false, 
+                            input_html: {  data: { live_search: true }, multiple: true }
+                  = f.input :access_reports, 
+                            as: :radio_buttons,
+                            wrapper: :horizontal_radio_and_checkboxes,
+                            collection: [[t('.access_reports.immediately'), :immediately], 
+                                         [t('.access_reports.specific_datetime'), :specific_datetime]]
+                  #specific_datetime class="#{'hidden' if f.object.access_reports == 'immediately'}"
+                    = f.input :access_reports_at_date, input_html: { class: 'datepicker' }
+                    = f.input :access_reports_at_time, input_html: { class: 'timepicker' }
+      .panel-footer
+        = link_to t('administration.back'), administration_assessments_path, class: 'btn btn-default mrh'
+        #assign_submit.btn.btn-primary.pull-right.mrh onclick="document.forms['new_assign'].submit();" = t('.next')                               
+javascript:
+  $(function (){
+    $('input[name="assign[access_reports]"]').change(function (e){
+      if ($(this).val() == 'specific_datetime') {
+        $('#specific_datetime').removeClass('hidden')
+      } else {
+        $('#specific_datetime').addClass('hidden')
+      }
+    });
+  });

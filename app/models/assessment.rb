@@ -30,6 +30,7 @@ class Assessment < ApplicationRecord
   has_many :assign_clients, dependent: :destroy
   has_many :clients, through: :assign_clients
   has_many :assigns, dependent: :destroy
+
   has_many :memberships, through: :assigns
   has_many :assessments_projects, inverse_of: :project
   has_many :projects, through: :assessments_projects
@@ -49,10 +50,18 @@ class Assessment < ApplicationRecord
   ].freeze
 
   # CATEGORIES constant
+
+  CATEGORIES_TYPES = [
+      PSYCHOMETRIC = 'psychometric'.freeze,
+      ORGANISATIONAL = 'organisational'.freeze,
+      NUM_360 = '360'.freeze
+  ].freeze
+
+  # CATEGORIES constant
   CATEGORIES = {
-    psychometric: PSYCHOMETRIC,
-    organisational: ORGANISATIONAL,
-    '360' => NUM_360
+      psychometric: PSYCHOMETRIC,
+      organisational: ORGANISATIONAL,
+      '360' => NUM_360
   }.freeze
 
   # STATUSES constant

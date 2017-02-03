@@ -5,7 +5,7 @@ module Licenses
       client = licenseable.membership.client
       client = client.parent if client.subtenancy?
       return if client.retail?
-      return if client.id == licenseable.assignable.owner_id
+      return if client.id == licenseable.assessment.owner_id
 
       # Get License with 'assign_individual_assessment' type
       license = client.licenses.assign_individual_assessment.where(assessment_id: licenseable.assignable_id).first

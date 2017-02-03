@@ -18,6 +18,8 @@ class AssignsReport < ApplicationRecord
   }.freeze
   belongs_to :assign
   belongs_to :report
+
+  # TODO: get feedback and open
   # has_many :license_usages, as: :licenseable
 
   # before_create :use_license
@@ -25,6 +27,6 @@ class AssignsReport < ApplicationRecord
   private
 
   def use_license
-    LICENSES[assign.assignable.category].use(self)
+    LICENSES[assign.assessment.category].use(self)
   end
 end

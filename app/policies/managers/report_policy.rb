@@ -11,7 +11,7 @@ module Managers
       assessment_ids = Assessment.enabled.
           joins('LEFT JOIN assigns on assigns.assignable_id = assessments.id and assigns.assignable_type = \'Assessment\'').
           where(assigns: { role: 'manager', membership_id: @current_membership.id }).pluck(:id)
-      assign = @user_membership.assigns.find_by(assignable: @record.assessment)
+      assign = @user_membership.assigns.find_by(assessment: @record.assessment)
       report_existing = assign.reports.enabled.include? @record
       assessment_ids && report_existing && !@record.assessment.psychometric? && valid_hierarchy?
     end

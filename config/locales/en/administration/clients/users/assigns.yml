@@ -21,6 +21,7 @@ en:
             no_reports: 'No relative reports'
             no_access_to_reports: 'No access to reports'
             no_completed: 'Not completed'
+          resource:
             tooltips:
               delete: Detach Assessment
               delete_report: Detach Report
