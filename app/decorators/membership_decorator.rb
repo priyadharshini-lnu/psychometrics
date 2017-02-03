@@ -6,8 +6,7 @@ class MembershipDecorator < BaseDecorator
 
   def role_name
     role = h.t("activerecord.attributes.membership.roles.#{object.role.demodulize.underscore}")
-    # On membership user can't has Superadmin role
-    # role = h.t("activerecord.attributes.user.roles.#{object.user.role.demodulize.underscore}") if object.user.is?(:superadmin)
+    role = h.t("activerecord.attributes.user.roles.#{object.user.role.demodulize.underscore}") if object.user.is?(:superadmin)
     role
   end
 

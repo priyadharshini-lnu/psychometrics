@@ -1,8 +1,26 @@
 en:
   assigns:
+    index:
+      user_dashboard_button: 'User Dashboard'
+      managers_dashboard_button: 'Managers Dashboard'
+    assessment: &assessment
+      questions:
+        zero: "No Questions"
+        one: "1 Question"
+        other: "%{count} Questions"
+      assigned: "Assigned %{date}"
+      results: "Results"
+      status:
+        not_started: 'Start'
+        in_progress: 'Resume'
+        completed: 'Completed'
+        overdue: 'Overdue'
+    project_assessment:
+      <<: *assessment
+    decorator:
+      no_description: 'Description is empty'
+      completed: "Completed %{date}"
+      not_completed: "Not Completed"
     notifications:
       in_progress: "%{user_name} started to take assessment \"%{assessment_name}\""
       completed: "%{user_name} finished assessment \"%{assessment_name}\""
-    decorator:
-      completed: "Completed %{date}"
-      not_completed: "Not Completed"

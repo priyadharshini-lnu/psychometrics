@@ -8,7 +8,7 @@ Rails.application.routes.draw do
     resource :profiles, only: [:update, :edit]
 
     scope module: :administrator do
-      resource :sessions, only: [:new, :create], path: '', path_names: {new: 'sign_in', destroy: 'sign_out'}, as: :session do
+      resource :sessions, only: [:new, :create], path: '', path_names: { new: 'sign_in', destroy: 'sign_out' }, as: :session do
         delete 'sign_out', to: 'sessions#destroy', as: :destroy
       end
       resource :passwords, as: :password
@@ -255,13 +255,13 @@ Rails.application.routes.draw do
 
   constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
     devise_for :users,
-               path:        'users',
-               as:          :devise,
-               name:        :user,
-               singular:    :user,
-               to:          'User',
-               class_name:  'User',
-               controllers: {registrations: 'users/registrations'}
+               path: 'users',
+               as: :devise,
+               name: :user,
+               singular: :user,
+               to: 'User',
+               class_name: 'User',
+               controllers: { registrations: 'users/registrations' }
 
     # Manager's panel
     #
@@ -288,7 +288,7 @@ Rails.application.routes.draw do
       get 'clients/:client_id/assessments/:assessment_id/pass', to: 'assessments#pass', as: :assessment_pass
     end
 
-    resources :assessments, only: [] do
+    resources :assessments, only: [:index] do
       member do
         get :pass
       end
@@ -297,7 +297,7 @@ Rails.application.routes.draw do
     resource :profiles, only: [:update, :edit]
     resources :assigns, only: [:update]
     get 'survey_instructions', to: 'home#survey_instructions'
-    root to: 'assigns#index'
+    root to: 'assessments#index'
   end
 
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|

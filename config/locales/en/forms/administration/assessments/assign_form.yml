@@ -1,0 +1,18 @@
+en:
+  activerecord:
+    models:
+      administration/assessments/assign_form: 'Assigns Form'
+    attributes:
+      administration/assessments/assign_form: &DEFAULT
+        client_ids: 'Client Tenancies'
+        report_ids: 'Reports'
+        access_reports: 'Access Report Rules'
+        access_reports_at: 'Access Report at'
+        access_reports_at_date: 'Date'
+        access_reports_at_time: 'Time'
+        manager_ids: 'Managers'
+        user_ids: Users
+  simple_form:
+    placeholders:
+      administration/assessments/assign_form:
+        <<: *DEFAULT
