@@ -5,10 +5,10 @@ en:
     close: Close
     update: Update
     create: Create
+    save: Save
     import: Import
     enable: Enable
     disable: Disable
-    save: Save
     search: Search
     uniq_id: Uniq ID
     edit: Edit
@@ -20,6 +20,7 @@ en:
     copy: Copy
     choose: ' - Choose - '
     any: ' - Any - '
+    all: ' - All - '
     psychometrics: Psychometrics
     no_data_found: No data found
     genders:
@@ -44,6 +45,7 @@ en:
       norms: Norms
       norms_editor: Norm Editor
       assessments: Assessments
+      projects: Projects
       occupations: Occupations
       occupations_factors: Factors
       clients: Client Tenancies

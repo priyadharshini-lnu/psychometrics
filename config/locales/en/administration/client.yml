@@ -23,7 +23,7 @@ en:
       toggle_status:
         successfully: 'Client %{name} was successfully updated.'
       sidebar:
-        title: Client's options (#%{id})
+        title: Client's options
         disable: Disable
         enable: Enable
         edit: Edit Client
@@ -31,7 +31,7 @@ en:
         new: New Client
         copy: Copy Client
         design: Edit Design
-        licenses: Edit Licenses
+        licenses: Manage Licenses
       designs:
         form:
           no_logo: 'No Logo yet'
@@ -41,40 +41,24 @@ en:
           copy: Copy Client
           edit: Edit Client
           delete: Delete Client
+          disable: Disable Client
+          enable: Enable Client
         confirmations:
           disable:
             title:
               Disable <strong>%{name}</strong> ?
             body:
-              <p>Are you sure you want to disable this client?</p>
+              <p>Are you sure you want to disable this Client Tenancy?</p>
           enable:
             title:
               Enable <strong>%{name}</strong> ?
             body:
-              <p>Are you sure you want to enable this client?</p>
+              <p>Are you sure you want to enable this Client Tenancy?</p>
           delete:
             title:
               Delete <strong>%{name}</strong> ?
             body:
-              <p>Are you sure you want to delete this client?</p>
-      users:
-        assigns:
-          index:
-            title: 'Assessments and Reporting'
-            add: 'Assign New Assessment'
-          list:
-            uniq_id: Uniq ID
-            assessment_name: 'Assessment Name'
-            assessment_type: 'Assessment Type'
-            status: 'Completion Status'
-            reports: 'Reports'
-            actions: Actions
-          resource:
-            no_reports: 'No relative reports'
-            no_access_to_reports: 'No access to reports'
-            no_completed: 'Not completed'
-            tooltips:
-              delete: Delete Assign
+              <p>Are you sure you want to delete this Client Tenancy?</p>
       statistics:
         index:
           title: Statistics

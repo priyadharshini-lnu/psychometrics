@@ -3,11 +3,21 @@ en:
     models:
       memebrship: Memebrship
     attributes:
-      memebrship: &DEFAULT
+      membership: &DEFAULT
         id: ID
         parent: Direct Manager
         parent_id: Direct Manager
+        roles:
+          member: User
+          manager: Manager
+          admin: Client Admin
+    errors:
+      messages:
+        has_no_enough_licenses: Client has no enough licenses
   simple_form:
     placeholders:
       memebrship:
         <<: *DEFAULT
+    labels:
+      membership:
+        role: Membership role
