@@ -127,7 +127,7 @@ class Assessment < ApplicationRecord
   }
 
   scope :with_client, lambda { |client_id|
-    joins(:assign_clients).where(assign_clients: { client_id: client_id, assignable_type: Assessment })
+    joins(:assign_clients).where(assign_clients: { client_id: client_id })
   }
 
   def active_questions_count

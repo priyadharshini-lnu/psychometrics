@@ -27,6 +27,7 @@ class Client < ApplicationRecord
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
 
   has_many :assign_clients, dependent: :destroy
+  has_many :assessments, through: :assign_clients
   has_many :reports, through: :assign_clients
   has_many :norms
   has_many :dimensions

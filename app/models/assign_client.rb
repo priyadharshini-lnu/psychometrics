@@ -6,8 +6,7 @@
 #  client_id       :integer
 #  created_at      :datetime         not null
 #  updated_at      :datetime         not null
-#  assignable_id   :integer
-#  assignable_type :string
+#  assessment_id   :integer
 #
 
 class AssignClient < ApplicationRecord

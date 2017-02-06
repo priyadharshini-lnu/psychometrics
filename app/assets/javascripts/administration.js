@@ -9,6 +9,7 @@
 //= require quicksearch
 //= require bootstrap-add-clear
 //= require summernote
+//= require jquery-serialize-object
 
 //= require datatables
 //= require datatables/dataTables.bootstrap
@@ -26,6 +27,7 @@
 //= require administration/plugins/bootstrap/bootstrap-timepicker.min
 //= require administration/plugins/moment.min.js
 //= require administration/plugins/daterangepicker/daterangepicker.js
+//= require administration/plugins/dynamic_selectable
 
 ///// Sidebar plugins
 //= require administration/plugins/jquery.sidebar

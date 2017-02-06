@@ -1,112 +1,112 @@
 .row
   .col-md-6
     h4 = t('.not_selected_users')
-    button.btn.btn-primary[aria-controls="collapse_not_selected_users" 
-                           aria-expanded="false" 
-                           data-target="#collapse_not_selected_users" 
-                           data-toggle="collapse" 
+    button.btn.btn-primary[aria-controls="collapse_not_selected_users"
+                           aria-expanded="false"
+                           data-target="#collapse_not_selected_users"
+                           data-toggle="collapse"
                            type="button"]
       i.fa.fa-filter
       =< t('.filter_form')
     #collapse_not_selected_users.collapse
-      .well     
-        = search_form_for @filter_form, 
-                          builder: SimpleForm::FormBuilder, 
-                          url: { action: :not_selected_users, client_ids: @assign_form.client_ids }, 
-                          remote: true, 
+      .well
+        = search_form_for @filter_form,
+                          builder: SimpleForm::FormBuilder,
+                          url: { action: :not_selected_users, client_ids: @assign_form.client_ids },
+                          remote: true,
                           id: 'search_not_selected' do |f|
-          .hidden                
-            = f.input :id_not_in, 
-                      as: :select, 
-                      collection: @users.map { |m| [m.id, m.id] }, 
+          .hidden
+            = f.input :id_not_in,
+                      as: :select,
+                      collection: @users.map { |m| [m.id, m.id] },
                       input_html: { multiple: true }
           .row
-            .col-md-6      
-              = f.input :role_in, 
-                        collection: Membership::MEMBERSHIP_ROLES, 
+            .col-md-6
+              = f.input :role_in,
+                        collection: Membership::MEMBERSHIP_ROLES,
                         input_html: { multiple: true },
                         include_blank: 'All',
                         required: false,
                         label: 'Roles'
-              = f.input :client_id_in, 
-                        label: 'Client', 
-                        required: false, 
-                        collection: @clients, 
-                        include_blank: false, 
+              = f.input :client_id_in,
+                        label: 'Client',
+                        required: false,
+                        collection: @clients,
+                        include_blank: false,
                         input_html: { data: { live_search: true }, multiple: true }
-              = f.input :user_first_name_or_user_last_name_or_user_email_cont, 
-                        label: 'Search', 
-                        as: :string, 
-                        required: false, 
-                        placeholder: t('administration.search'), 
+              = f.input :user_first_name_or_user_last_name_or_user_email_cont,
+                        label: 'Search',
+                        as: :string,
+                        required: false,
+                        placeholder: t('administration.search'),
                         input_html: { class: 'has_clear' }
             .col-md-6
-              = f.input :hris_data_cont, 
-                        label: 'HRIS data', 
-                        required: false, 
+              = f.input :hris_data_cont,
+                        label: 'HRIS data',
+                        required: false,
                         input_html: { id: 'users_not_selected_hris-data-cont' }
           .row.mtl
             .col-md-6
               = f.button :submit, t('.filter'), class: 'btn-info'
-            .col-md-6         
+            .col-md-6
               /= f.button :button, 'Reset', type: 'reset', class: 'btn pull-right'
     table#users_not_selected.table.table-striped.table-bordered
-    #addSelected.btn.btn-default.pull-right 
+    #addSelected.btn.btn-default.pull-right
       => t('.add_selected')
-      i.fa.fa-angle-right 
+      i.fa.fa-angle-right
   .col-md-6
     h4 = t('.selected_users')
-    button.btn.btn-primary[aria-controls="collapse_users_selected" 
-                           aria-expanded="false" 
-                           data-target="#collapse_users_selected" 
-                           data-toggle="collapse" 
+    button.btn.btn-primary[aria-controls="collapse_users_selected"
+                           aria-expanded="false"
+                           data-target="#collapse_users_selected"
+                           data-toggle="collapse"
                            type="button"]
       i.fa.fa-filter
       =< t('.filter_form')
     #collapse_users_selected.collapse
       .well
-        = search_form_for @filter_form, 
-                          builder: SimpleForm::FormBuilder, 
-                          url: { action: :selected_users, client_ids: @assign_form.client_ids }, 
-                          remote: true, 
-                          id: 'search_selected' do |f|     
+        = search_form_for @filter_form,
+                          builder: SimpleForm::FormBuilder,
+                          url: { action: :selected_users, client_ids: @assign_form.client_ids },
+                          remote: true,
+                          id: 'search_selected' do |f|
           .row
-            .col-md-6 
+            .col-md-6
               .hidden
-                = f.input :id_in, 
-                          as: :select, 
-                          collection: @users.map { |m| [m.id, m.id] }, 
-                          input_html: { multiple: true }         
-              = f.input :role_in, 
-                        collection: Membership::MEMBERSHIP_ROLES, 
+                = f.input :id_in,
+                          as: :select,
+                          collection: @users.map { |m| [m.id, m.id] },
+                          input_html: { multiple: true }
+              = f.input :role_in,
+                        collection: Membership::MEMBERSHIP_ROLES,
                         input_html: { multiple: true },
                         required: false,
                         label: 'Roles'
-              = f.input :client_id_in, 
-                        label: 'Client', 
-                        required: false, 
-                        collection: @clients, 
-                        include_blank: false, 
+              = f.input :client_id_in,
+                        label: 'Client',
+                        required: false,
+                        collection: @clients,
+                        include_blank: false,
                         input_html: { data: { live_search: true }, multiple: true }
-              = f.input :user_first_name_or_user_last_name_or_user_email_cont, 
-                        label: 'Search', 
-                        as: :string, 
-                        required: false, 
-                        placeholder: t('administration.search'), 
+              = f.input :user_first_name_or_user_last_name_or_user_email_cont,
+                        label: 'Search',
+                        as: :string,
+                        required: false,
+                        placeholder: t('administration.search'),
                         input_html: { class: 'has_clear' }
-            .col-md-6 
-              = f.input :hris_data_cont, 
-                        label: 'HRIS data', 
-                        required: false, 
+            .col-md-6
+              = f.input :hris_data_cont,
+                        label: 'HRIS data',
+                        required: false,
                         input_html: { id: 'users_selected_hris-data-cont' }
           .row.mtl
             .col-md-6
               = f.button :submit, t('.filter'), class: 'btn-info'
-    table#users_selected.table.table-striped.table-bordered              
-    #removeSelected.btn.btn-default.pull-left 
+    table#users_selected.table.table-striped.table-bordered
+    #removeSelected.btn.btn-default.pull-left
       i.fa.fa-angle-left
       => t('.remove_selected')
-                                 
+
 javascript:
   $(function() {
     // Add to Selected Side
@@ -116,16 +116,16 @@ javascript:
           selected_rows = table_users_not_selected.rows('.selected'),
           data = selected_rows.data(),
           user_ids = $('#assign_user_ids').val() || [];
-          
+
       $.each(data, function (index, obj) {
         user_ids.push(obj.id);
       });
-            
+
       $('#q_id_not_in, #q_id_in, #assign_user_ids').val(user_ids);
       table_users_selected.rows.add(data).draw();
       selected_rows.remove().draw(false);
     });
-    
+
     // Add to Selected Side
     $('#removeSelected').on('click', function (e){
       var table_users_not_selected = $('#users_not_selected').DataTable(),
@@ -133,24 +133,24 @@ javascript:
           selected_rows = table_users_selected.rows('.selected'),
           data = selected_rows.data(),
           user_ids = $('#assign_user_ids').val() || [];
-          
+
       $.each(data, function (index, obj) {
         var index = user_ids.indexOf(obj.id.toString());
         user_ids.splice(index, 1);
       });
-            
+
       $('#q_id_not_in, #q_id_in, #assign_user_ids').val(user_ids);
       table_users_not_selected.rows.add(data).draw();
       selected_rows.remove().draw(false);
-    });    
-  
+    });
+
     // HRIS data table
     $('#users_not_selected_hris-data-cont').kvJsonInput();
     $('#users_selected_hris-data-cont').kvJsonInput();
-    
+
     // Common DataTable config
     var dataTableCommonConfig = {
-      sDom: 'rtip',          
+      sDom: 'rtip',
       columns: [
         { data: "id" },
         { data: "name", title: 'Name' },
@@ -166,7 +166,7 @@ javascript:
       select: {
         style: 'multi'
       },
-      order: [[1, 'asc']]                
+      order: [[1, 'asc']]
     }
     // Not Selected side
     var users_not_selected_config = $.extend({
@@ -176,16 +176,19 @@ javascript:
         dataSrc: '',
         type: 'POST'
       }
-    }, dataTableCommonConfig);          
+    }, dataTableCommonConfig);
     $('#users_not_selected').DataTable(users_not_selected_config);
+    //$('#users_not_selected').DataTable(( {
+    //    "ajax": '../ajax/data/arrays.txt'
+    //} );
     $('#search_not_selected').on('submit', function (e){
       e.preventDefault();
       e.stopPropagation();
       var url = $('#search_not_selected').attr('action') + '&' + $('#search_not_selected').serialize()
       $('#users_not_selected').DataTable().ajax.url(url).load();
     });
-    
-    
+
+
     // Selected side
     var users_selected_config = $.extend({
       ajax: {
@@ -195,12 +198,12 @@ javascript:
         type: 'POST'
       }
     }, dataTableCommonConfig)
-    
+
     $('#users_selected').DataTable(users_selected_config);
     $('#search_selected').on('submit', function (e){
       e.preventDefault();
       e.stopPropagation();
       var url = $('#search_selected').attr('action') + '?' + $('#search_selected').serialize()
       $('#users_selected').DataTable().ajax.url(url).load();
-    });     
+    });
   });

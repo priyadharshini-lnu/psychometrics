@@ -53,7 +53,7 @@ module Administration
         return scope if @user.is?(:superadmin)
         if @user.has_grant?(:assessments, :view)
           admin_client_ids = @user.admin_client_ids
-          arr_id = AssignClient.where(assignable_type: 'Assessment', client_id: admin_client_ids).distinct.pluck(:assignable_id)
+          arr_id = AssignClient.where(client_id: admin_client_ids).distinct.pluck(:assessment_id)
           Assessment.where.has { (owner_id.in admin_client_ids) | (id.in arr_id) }
         else
           scope.none

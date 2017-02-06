@@ -25,10 +25,10 @@ module Administration
         end
 
         def create
-          @assessment = policy_scope(Assessment).find(resource_params[:assignable_id])
+          @assessment = policy_scope(Assessment).find(resource_params[:assessment_id])
           # Ensure that client tenancy has assigned assessment
           #   Or create assign
-          @client.assign_clients.find_or_create_by(assignable: @assessment)
+          @client.assign_clients.find_or_create_by(assessment: @assessment)
           if @membership.assessments.include? @assessment
             @resource = @assessment.assigns.where(membership_id: @membership.id).first
             @resource.report_ids += resource_params[:report_ids]
@@ -82,7 +82,7 @@ module Administration
         end
 
         def resource_params
-          params.require(:resource).permit(:assignable_id, :assignable_type, report_ids: [])
+          params.require(:resource).permit(:assessment_id, report_ids: [])
         end
 
         # Authorisation user

@@ -16,8 +16,7 @@ module Administration
 
         ActiveRecord::Base.transaction do
           @clients.each do |client|
-            assign_client = client.assign_clients.find_or_initialize_by(assignable_id: @assessment.id,
-                                                                        assignable_type: @assessment.class.name)
+            assign_client = client.assign_clients.find_or_initialize_by(assessment_id: @assessment.id)
             @reports.each do |report|
               assign_client.assign_clients_reports.find_or_initialize_by(report_id: report.id)
             end
@@ -26,8 +25,7 @@ module Administration
 
           # Update or Create assigns
           policy_scope(Membership).where(id: @assign_form.membership_ids).find_each do |membership|
-            assign = membership.assigns.find_or_initialize_by(assignable_id: @assessment.id,
-                                                              assignable_type: @assessment.class.name)
+            assign = membership.assigns.find_or_initialize_by(assessment_id: @assessment.id)
             assign.role = :member
             assign.role = :manager if @assign_form.manager_ids.include?(membership.id.to_s)
             @reports.each do |report|

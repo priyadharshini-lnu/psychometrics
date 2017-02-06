@@ -1,5 +1,5 @@
 - assessment = assign.assignable
-- result = @results[assign.assignable_id].try(:first) || Result.new
+- result = @results[assign.assessment_id].try(:first) || Result.new
 tr id=dom_id(assign)
   td = assign.encode_id
   td
