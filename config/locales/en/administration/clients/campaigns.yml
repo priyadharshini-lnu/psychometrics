@@ -1,0 +1,16 @@
+en:
+  administration:
+    clients:
+      projects:
+        campaigns:
+          index:
+            title: Campaigns
+            tooltips:
+              create: Create
+          header:
+            actions: Actions
+          resource:
+            tooltips:
+              copy: Copy Campaign
+              edit: Edit Campaign
+              delete: Delete Campaign

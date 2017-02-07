@@ -1,15 +1,15 @@
 en:
   administration:
     clients:
-      sub_clients:
+      projects:
         index:
-          title: 'Sub Tenancies'
+          title: 'Projects'
           tooltips:
             create: Create
         header:
           actions: Actions
         resource:
           tooltips:
-            copy: Copy Client
-            edit: Edit Client
-            delete: Delete Client
+            copy: Copy Project
+            edit: Edit Project
+            delete: Delete Project

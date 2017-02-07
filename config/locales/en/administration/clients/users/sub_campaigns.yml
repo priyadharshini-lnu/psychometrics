@@ -1,0 +1,17 @@
+en:
+  administration:
+    clients:
+      projects:
+        campaigns:
+          sub_campaigns:
+            index:
+              title: Sub Campaigns
+              tooltips:
+                create: Create
+            header:
+              actions: Actions
+            resource:
+              tooltips:
+                copy: Copy Sub Campaign
+                edit: Edit Sub Campaign
+                delete: Delete Sub Campaign

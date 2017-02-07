@@ -1,0 +1,4 @@
+- if policy(client).design?
+  = active_link_to(t('administration.navigation.design'), edit_administration_client_designs_path(client), remote: true, class: 'btn btn-default')
+- if policy(:client).sub_clients? && client.tenancy?
+  = active_link_to(t('administration.navigation.campaigns'), administration_client_projects_path(client), class: 'btn btn-default')

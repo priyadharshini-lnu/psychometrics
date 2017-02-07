@@ -1,0 +1,14 @@
+tr id=dom_id(resource)
+  td = resource.name    
+  td = resource.assessment.try(:decorate).try(:display_name)
+  - if client.tenancy?
+    td = resource.decorate.clients_names
+  td = resource.decorate.created_at
+  td
+    - if policy(:client_report).destroy?
+      = link_to administration_client_report_path(client, resource),
+                remote: true, 
+                class: 'btn btn-default btn-rounded btn-sm mrm', 
+                method: 'delete',
+                data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
+        span.fa.fa-times   

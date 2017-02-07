@@ -58,7 +58,9 @@ en:
       communication_center: Communication Center
       statistics: Statistics
       products: Products
-      sub_clients: 'Sub Tenancy'
+      projects: Projects
+      campaigns: Campaigns
+      sub_campaigns: Sub Campaigns
     breadcrumbs:
       <<: *NAVIGATION
     tte: TTE
