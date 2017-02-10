@@ -24,7 +24,7 @@ en:
         tooltips:
           edit: Edit Title
       sidebar:
-        title: Norm's options (#%{id})
+        title: Norm's options
         disable: 'Disable'
         enable: 'Enable'
         edit: 'Rename Norm'

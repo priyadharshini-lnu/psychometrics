@@ -23,7 +23,7 @@ en:
       toggle_status:
         successfully: 'Client %{name} was successfully updated.'
       sidebar:
-        title: Client's options (#%{id})
+        title: Client's options
         disable: Disable
         enable: Enable
         edit: Edit Client

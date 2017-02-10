@@ -32,7 +32,7 @@ en:
       toggle_status:
         successfully: 'Assessment %{name} was successfully updated.'
       sidebar:
-        title: Assessment's options (#%{id})
+        title: Assessment's options
         disable: Disable
         enable: Enable
         edit: Edit Assessment

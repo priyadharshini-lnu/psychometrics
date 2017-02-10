@@ -17,7 +17,7 @@ en:
       toggle_status:
         successfully: 'Communication was successfully updated.'
       sidebar:
-        title: "Communication's options (#%{id})"
+        title: Communication's options
         disable: 'Disable Communication'
         enable: 'Enable Communication'
         edit: 'Edit Communication'

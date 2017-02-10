@@ -19,7 +19,7 @@ en:
         copy:
           error: 'Question #%{name} was not copied.'
         sidebar:
-          title: Question's options (#%{id})
+          title: Question's options
           disable: Disable
           enable: Enable
           edit: Edit Question
@@ -49,7 +49,7 @@ en:
         copy:
           error: 'Block #%{name} was not copied.'
         sidebar:
-          title: Block's options (#%{id})
+          title: Block's options
           disable: Disable
           enable: Enable
           edit: Edit Block
