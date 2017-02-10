@@ -52,16 +52,6 @@ class Client < ApplicationRecord
   mount_uploader :logo, ImageUploader
   mount_uploader :background, ImageUploader
 
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'id_desc'
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query
-    ]
-  )
-
   scope :enabled, -> { where.not(disabled: true) }
 
   # Search entity by word

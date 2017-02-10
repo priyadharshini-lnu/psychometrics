@@ -7,17 +7,16 @@
           li
             = link_to [:new, :administration, @resource_class.model_name.singular], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
               span.fa.fa-plus
+        = search_form_for(@filter_form,
+                          url: { action: :index },
+                          html: { id: 'filter', class: 'list-filter' },
+                          builder: SimpleForm::FormBuilder) do |f|
+          = f.input :name_cont,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    label: false,
+                    input_html: { class: 'has_clear periodically-observed' }
       .panel-body
-        = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
-          = f.hidden_field :sorted_by
-          .row.mbm
-            .col-sm-6.phn
-
-            .col-md-3.col-md-offset-3.col-sm-4.col-sm-offset-2.phn
-              .form-group.has-feedback.has-clear.pull-right
-                .input-group
-                  = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')
-                span.glyphicon.glyphicon-remove-sign.form-control-feedback.form-control-clear
-            .clearfix
         #filterrific_results
           = render partial: 'list'

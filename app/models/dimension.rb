@@ -22,16 +22,6 @@ class Dimension < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'id_desc'
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query
-    ]
-  )
-
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")

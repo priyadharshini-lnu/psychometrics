@@ -17,7 +17,7 @@
 class Factor < ApplicationRecord
   include Copyable
   # has_ancestry ancestry_column: :parent_id
-  belongs_to :dimension
+  belongs_to :dimension, touch: true
   belongs_to :parent, class_name: 'Factor', counter_cache: :subfactors_count
   has_many :sub_factors, foreign_key: :parent_id, class_name: 'Factor', dependent: :destroy
   has_many :factors_norms
@@ -36,18 +36,6 @@ class Factor < ApplicationRecord
   NORM_TYPES = %w(eti yti).freeze
   # factor types constant
   FACTOR_TYPES = %w(factors sub_factors).freeze
-
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'created_at_desc'
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query,
-      :with_factor_type,
-      :with_norm_type
-    ]
-  )
 
   scope :with_factor_type, lambda { |type|
     type = type.to_s

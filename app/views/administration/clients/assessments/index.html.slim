@@ -3,24 +3,26 @@
     .page-title
       h2.mrl = @client.decorate.display_name
       = render partial: 'administration/clients/client_top_nav'
+
     .panel.panel-default
       .panel-heading
         h3.panel-title = t('.title')
+        = search_form_for(@filter_form,
+                        url: { action: :index },
+                        html: { id: 'filter', class: 'list-filter' },
+                        builder: SimpleForm::FormBuilder) do |f|
+          = f.input :category_in,
+                  collection: Assessment::CATEGORIES,
+                  input_html: { title: 'Category'},
+                  required: false,
+                  include_blank: t('administration.any'),
+                  label: false
+          = f.input :name_cont,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    label: false,
+                    input_html: { class: 'has_clear periodically-observed' }
       .panel-body
-        = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
-          = f.hidden_field :sorted_by
-          .row.mbm
-            .col-sm-6.phn
-              .btn-group data-toggle="buttons"
-                - @filterrific.select_options[:with_category].each do |value|
-                  label class="btn btn-default #{'active' if f.object.with_category == value}"
-                    = f.radio_button(:with_category, value)
-                    = t(".filterrific.with_category.#{value}")
-            .col-md-3.col-md-offset-3.col-sm-4.col-sm-offset-2.phn
-              .form-group.has-feedback.has-clear.pull-right
-                .input-group
-                  = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')
-                span.glyphicon.glyphicon-remove-sign.form-control-feedback.form-control-clear
-          .clearfix
         #filterrific_results
           = render partial: 'list'

@@ -2,10 +2,7 @@ en:
   activerecord:
     models:
       user: Users
-      membership: Memebrship
     attributes:
-      membership:
-        parent_id: Direct Manager
       user: &DEFAULT
         id: ID
         first_name: First Name
@@ -17,8 +14,8 @@ en:
         role: Role
         disabled: Disable
         active: Active
-        created_at: 'Created Date'
-        updated_at: 'Modified Date'
+        created_at: Created Date
+        updated_at: Modified Date
         roles:
           member: User
           manager: Manager

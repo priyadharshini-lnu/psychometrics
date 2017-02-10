@@ -9,11 +9,8 @@ module Administration
 
       # GET /administration/resources
       def index
-        @filterrific = initialize_filterrific(
-          policy_scope(@resource_class),
-          params[:filterrific]
-        ) || return
-        @resources = @filterrific.find.templates.includes(questions: [block: [:assessment]]).page(params[:page])
+        @filter_form = policy_scope(@resource_class).includes(questions: [block: [:assessment]]).search(params[:q])
+        @resources = @filter_form.result.page(params[:page])
 
         respond_to do |format|
           format.html

@@ -15,7 +15,7 @@
 
 module Reports
   class Module < ApplicationRecord
-    belongs_to :page, class_name: 'Reports::Page'
+    belongs_to :page, class_name: 'Reports::Page', touch: true
     acts_as_list scope: :page_id
 
     validates :page, presence: true

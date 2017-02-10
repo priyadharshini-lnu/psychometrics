@@ -7,23 +7,18 @@
           li
             = link_to [:new, :administration, :dimension, @resource_class.model_name.singular], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
               span.fa.fa-plus
+        = search_form_for(@filter_form,
+                url: {action: :index},
+                html: {id: 'filter', class: 'list-filter'},
+                builder: SimpleForm::FormBuilder) do |f|
+          = f.input :name_cont,
+                  label: false,
+                  as: :string,
+                  required: false,
+                  placeholder: t('administration.search'),
+                  input_html: {class: 'has_clear periodically-observed'}
       .panel-body
         .row
-          .col-sm-10
+          .col-sm-12
             #filter_results
               = render partial: 'list'
-          .col-sm-2
-            h3
-              i.fa.fa-filter
-              | Filter
-            = search_form_for(@filter_form,
-                    url: {action: :index},
-                    html: {id: 'filter'},
-                    builder: SimpleForm::FormBuilder) do |f|
-              = f.input :name_cont,
-                      label: 'Search',
-                      as: :string,
-                      required: false,
-                      placeholder: t('administration.search'),
-                      input_html: {class: 'has_clear periodically-observed'}
-              = link_to "Clear Filter", request.path, class: "btn btn-default"

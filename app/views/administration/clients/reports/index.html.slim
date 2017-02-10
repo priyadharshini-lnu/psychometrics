@@ -6,23 +6,28 @@
     .panel.panel-default
       .panel-heading
         h3.panel-title = t('.title')
+        = search_form_for(@filter_form,
+                          url: { action: :index },
+                          html: { id: 'filter', class: 'list-filter' },
+                          builder: SimpleForm::FormBuilder) do |f|
+
+          = f.input :assessment_category_in,
+                    collection: ::Assessment::CATEGORIES,
+                    input_html: { title: 'Category '},
+                    include_blank: t('administration.any'),
+                    label: false
+          = f.input :assessment_id_in,
+                    collection: policy_scope(Assessment).all.options_for_select,
+                    input_html: { data: { live_search: true }, multiple: true, title: 'Assessment' },
+                    required: false,
+                    label: false
+          = f.input :name_cont,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    label: false,
+                    input_html: { class: 'has_clear periodically-observed' }
+          = link_to "Clear Filter", request.path, class: "btn btn-default"
       .panel-body
-        = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
-          = f.hidden_field :sorted_by
-          .row.mbm
-            .col-sm-6.phn
-              .btn-group data-toggle="buttons"
-                - @filterrific.select_options[:with_assessment_category].each do |value|
-                  label class="btn btn-default #{'active' if f.object.with_assessment_category == value}"
-                    = f.radio_button(:with_assessment_category, value)
-                    = t(".filterrific.with_assessment_category.#{value}")
-              .form-group
-                = f.select(:with_assessment, policy_scope(Assessment).all.options_for_select, { include_blank: t('administration.any') }, class: 'form-control select mll')
-            .col-md-3.col-md-offset-3.col-sm-4.col-sm-offset-2.phn
-              .form-group.has-feedback.has-clear.pull-right
-                .input-group
-                  = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')
-                span.glyphicon.glyphicon-remove-sign.form-control-feedback.form-control-clear
-          .clearfix
         #filterrific_results
           = render partial: 'list'

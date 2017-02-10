@@ -62,17 +62,6 @@ class Assessment < ApplicationRecord
   enum category: CATEGORIES
   enum status: STATUSES
 
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'id_desc',
-      with_category: CATEGORIES.values.first
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query,
-      :with_category
-    ]
-  )
   scope :enabled, -> { where.not(disabled: true) }
 
   # Search entity by word
