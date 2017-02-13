@@ -5,7 +5,7 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
   td = resource.name
   td = resource.decorate.assessments_name
   td = resource.decorate.created_at
-  td
+  td.actions-cell
     - if policy(resource).edit?
       = link_to({ action: :edit, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
         i.fa.fa-pencil

@@ -1,5 +1,5 @@
 ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(@resource)}"
-  li.xn-title.title = t('.title', id: @resource.id)
+  li.xn-title.title = t('.title')
   - if policy(@resource).toggle_status?
     li = link_to(@resource.decorate.toggle_status_text, 
                  { action: :toggle_status, id: @resource }, 

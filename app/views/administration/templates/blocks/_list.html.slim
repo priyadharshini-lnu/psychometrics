@@ -2,11 +2,11 @@
   table.table.table-bordered.table-actions.table-hover.selectable.list id="#{@resource_class.model_name.plural}_list"
     thead
       tr
-        th.text-center width="100" = sorting @resource_class, :active, @filterrific
-        th = sorting @resource_class, :name, @filterrific
+        th.text-center width='1%' = link_to_sort @resource_class, :active, @filter_form
+        th = link_to_sort @resource_class, :name, @filter_form
         th = t('.linked_assessments')
-        th = sorting @resource_class, :created_at, @filterrific
-        th width='300' = t('administration.actions')
+        th = link_to_sort @resource_class, :created_at, @filter_form
+        th width='1%' = t('administration.actions')
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

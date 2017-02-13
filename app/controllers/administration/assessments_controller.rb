@@ -7,15 +7,8 @@ class Administration::AssessmentsController < Administration::BaseController
 
   # GET /administration/resources
   def index
-    @filterrific = initialize_filterrific(
-      policy_scope(@resource_class),
-      params[:filterrific],
-      select_options: {
-        with_category: @resource_class.options_for_with_category
-      }
-    ) || return
-
-    @resources = @filterrific.find.page(params[:page])
+    @filter_form = policy_scope(@resource_class).includes(:dimension).search(params[:q])
+    @resources = @filter_form.result.page(params[:page])
 
     respond_to do |format|
       format.html
@@ -25,7 +18,6 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def new
     @resource = @resource_class.new
-    @resource.category = params[:with_category] if params[:with_category]
   end
 
   def create

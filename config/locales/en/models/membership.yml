@@ -1,12 +1,14 @@
 en:
   activerecord:
     models:
-      memebrship: Memebrship
+      membership: Membership
     attributes:
-      memebrship: &DEFAULT
+      membership: &DEFAULT
         id: ID
         parent: Direct Manager
         parent_id: Direct Manager
+        created_at: Created Date
+        updated_at: Modified Date
   simple_form:
     placeholders:
       memebrship:

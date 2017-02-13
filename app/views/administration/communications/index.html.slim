@@ -6,29 +6,25 @@
         .pull-right
           = link_to [:new, :administration, @resource_class.model_name.singular], remote: true, class: 'btn btn-default', data: { toggle: 'tooltip', title: t('.tooltips.create') }
             span.fa.fa-plus
-            = t('.add_new')        
+            = t('.add_new')
+        = search_form_for(@filter_form,
+                          url: { action: :index },
+                          html: { id: 'filter', class: 'list-filter' },
+                          builder: SimpleForm::FormBuilder) do |f|
+          = f.input :subject_or_body_cont,
+                    label: false,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    input_html: { class: 'has_clear periodically-observed' }
+          = f.input :client_id_in,
+                    collection: policy_scope(Client).all,
+                    input_html: { data: { live_search: true }, multiple: true, title: 'Clients' },
+                    required: false,
+                    label: false
+          = link_to "Clear Filter", request.path, class: "btn btn-default"
       .panel-body
         .row
-          .col-sm-10
+          .col-sm-12
             #filter_results
               = render partial: 'list'
-          .col-sm-2
-            h3 
-              i.fa.fa-filter
-              | Filter
-            = search_form_for(@filter_form, 
-                              url: { action: :index }, 
-                              html: { id: 'filter' },
-                              builder: SimpleForm::FormBuilder) do |f|
-              = f.input :subject_or_body_cont, 
-                        label: 'Search', 
-                        as: :string, 
-                        required: false, 
-                        placeholder: t('administration.search'), 
-                        input_html: { class: 'has_clear periodically-observed' }
-              = f.input :client_id_in, 
-                        collection: policy_scope(Client).all,
-                        input_html: { data: { live_search: true }, multiple: true },
-                        required: false,
-                        label: 'Clients'
-              = link_to "Clear Filter", request.path, class: "btn btn-default"

@@ -25,7 +25,7 @@ class Question < ApplicationRecord
   include Copyable
 
   belongs_to :block
-  belongs_to :assessment
+  belongs_to :assessment, touch: true
   belongs_to :template, class_name: 'Question', dependent: :destroy
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
   has_many :factors_scorings, dependent: :destroy
@@ -62,16 +62,6 @@ class Question < ApplicationRecord
   validates :name, length: { maximum: 255 }, allow_blank: true
 
   acts_as_list scope: :block_id
-
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'id_desc'
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query
-    ]
-  )
 
   # Search entity by word
   scope :search_query, lambda { |query|

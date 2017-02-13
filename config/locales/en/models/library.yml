@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    models:
+      library: Library
+    attributes:
+      library: &DEFAULT
+        id: ID
+        created_at: Created Date
+        updated_at: Modified Date
+  simple_form:
+    placeholders:
+      library:
+        <<: *DEFAULT

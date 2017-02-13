@@ -8,14 +8,9 @@ module Administration
       skip_after_action :verify_policy_scoped, only: [:index]
 
       def index
-        @filterrific = initialize_filterrific(
-          Assessment,
-          params[:filterrific],
-          select_options: {
-            with_category: Assessment.options_for_with_category
-          }
-        ) || return
-        @resources = @filterrific.find.with_client(@client.id).page(params[:page])
+        @filter_form = policy_scope(@resource_class).includes(:dimension).search(params[:q])
+        @resources = @filter_form.result.with_client(@client.id).page(params[:page])
+
         respond_to do |format|
           format.html
           format.js { render :index, formats: [:js] }

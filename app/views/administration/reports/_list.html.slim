@@ -3,13 +3,14 @@
     thead
       tr
         - if policy(@resource_class).toggle_status?
-          th.text-center width="100" = sorting @resource_class, :active, @filterrific
-        th = sorting @resource_class, :name, @filterrific
+          th.text-center width='1%' = link_to_sort @resource_class, :active, @filter_form
+        th = link_to_sort @resource_class, :name, @filter_form
         th = @resource_class.human_attribute_name(:assessment)
-        th = sorting @resource_class, :created_at, @filterrific
-        th = sorting @resource_class, :type, @filterrific
+        th = link_to_sort @resource_class, :created_at, @filter_form
+        th = link_to_sort @resource_class, :updated_at, @filter_form
+        th = link_to_sort @resource_class, :type, @filter_form
         - if policy(@resource_class).action?
-          th width='300' = t('administration.actions')
+          th width='1%' = t('administration.actions')
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

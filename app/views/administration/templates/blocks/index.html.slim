@@ -9,20 +9,20 @@
               = link_to({ action: :new }, remote: true, class: 'btn btn-default')
                 span.fa.fa-plus
                 = t('.add')
-      .panel-body
-        .row.mbm
-          .col-md-4.col-sm-5
+        = search_form_for(@filter_form,
+                          url: { action: :index },
+                          html: { id: 'filter', class: 'list-filter' },
+                          builder: SimpleForm::FormBuilder) do |f|
+          = f.input :name_cont,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    label: false,
+                    input_html: { class: 'has_clear periodically-observed' }
+          .form-group
             .btn-group
-              = active_link_to t(".templates.questions"), [:administration, :templates, :questions], class: "btn btn-default"
-              = active_link_to t(".templates.blocks"), [:administration, :templates, :blocks], class: "btn btn-default"
-
-          .col-md-3.col-md-offset-5.col-sm-4.col-sm-offset-3.phn
-            = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
-              = f.hidden_field :sorted_by
-              .form-group.has-feedback.has-clear.pull-right
-                .input-group
-                  = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')
-                span.glyphicon.glyphicon-remove-sign.form-control-feedback.form-control-clear
-              .clearfix
+              = active_link_to t('.templates.questions'), [:administration, :templates, :questions], class: 'btn btn-default'
+              = active_link_to t('.templates.blocks'), [:administration, :templates, :blocks], class: 'btn btn-default'
+      .panel-body
         #filterrific_results
           = render partial: 'list'

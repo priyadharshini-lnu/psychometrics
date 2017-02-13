@@ -11,7 +11,7 @@
 
 class FactorsNorm < ApplicationRecord
   belongs_to :factor
-  belongs_to :norm
+  belongs_to :norm, touch: true
 
   after_initialize :init
   #

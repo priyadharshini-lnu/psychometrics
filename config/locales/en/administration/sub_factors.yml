@@ -16,7 +16,7 @@ en:
       toggle_status:
         successfully: 'Sub-Factor was successfully updated.'
       sidebar:
-        title: Sub-Factor's options (#%{id})
+        title: Sub-Factor's options
         edit: 'Edit Sub-Factor Name'
         destroy: 'Delete Sub-Factor'
 
