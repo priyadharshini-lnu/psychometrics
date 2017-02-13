@@ -1,17 +1,10 @@
+= render 'administration/libraries/breadcrumbs'
+
 .row
   .col-md-12
     .panel.panel-default
       .panel-heading
         h3.panel-title = t('.title')
-        .pull-left
-          ui.breadcrumb.library
-            li = link_to t('.root'), { action: :index, filterrific: @filterrific.to_hash.merge({ 'with_parent' => 0 })}, remote: true
-            - if @parent
-              - @parent.self_and_ancestors.each do |library|
-                - if @parent.id == library.id
-                  li = library.decorate.display_name
-                - else
-                  li = link_to library.decorate.display_name, { action: :index, filterrific: @filterrific.to_hash.merge({ 'with_parent' => library.id }) }, remote: true
         .pull-right
           .btn-group
             - if policy(@resource_class).create?
@@ -21,13 +14,17 @@
               = link_to({ action: :new, type: :other, parent_id: @parent.try(:id) }, remote: true, class: 'btn btn-default')
                 span.fa.fa-upload
                 = t('.upload')
-        = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'list-filter', id: 'filter' } do |f|
-          = f.hidden_field :sorted_by
-          = f.hidden_field :with_parent
-          .form-group.has-feedback.has-clear.pull-right
-            .input-group
-              = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')
-            span.glyphicon.glyphicon-remove-sign.form-control-feedback.form-control-clear
+        = search_form_for(@filter_form,
+                          url: { action: :index },
+                          html: { id: 'filter', class: 'list-filter' },
+                          builder: SimpleForm::FormBuilder) do |f|
+          = f.input :parent_id_in, as: :hidden, input_html: { value: @folder&.id }
+          = f.input :name_cont,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    label: false,
+                    input_html: { class: 'has_clear periodically-observed' }
       .panel-body
         #filterrific_results
           = render partial: 'list'

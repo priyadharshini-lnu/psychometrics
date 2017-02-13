@@ -1,6 +1,25 @@
 .row
+  .col-md-4
+    = link_to administration_assessments_path(q: { category_in: Assessment::CATEGORIES[:psychometric] })  do
+      .widget.widget-success.widget-no-subtitle
+        .widget-big-int
+          span.num-count Psychometric
+        .widget-subtitle Assessments
+  .col-md-4
+    = link_to administration_assessments_path(q: { category_in: Assessment::CATEGORIES[:organisational] }) do
+      .widget.widget-success.widget-no-subtitle
+        .widget-big-int
+          span.num-count Organisational
+        .widget-subtitle Assessments
+  .col-md-4
+    = link_to administration_assessments_path(q: { category_in: Assessment::CATEGORIES['360'] }) do
+      .widget.widget-success.widget-no-subtitle
+        .widget-big-int
+          span.num-count 360
+        .widget-subtitle Assessments
+.row
   .col-md-6
     .panel.panel-default
-      div.panel-heading
+      .panel-heading
         h3.panel-title = t('.notifications')
       = render partial: 'notification', collection: @notifications
