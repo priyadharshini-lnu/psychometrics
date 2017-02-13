@@ -48,7 +48,7 @@ module Imports
 
         rows.each do |row|
           data = Hash[header.zip(row)]
-          translateable_type, translateable_id, key = data.delete('key').split(':')
+          translateable_type, translateable_id, key = data.delete('Key').split(':')
           # Are there expected translateable_type
           unless AVAILABLE_TRANSLATEABLE_TYPES.include?(translateable_type)
             errors.add(:base, I18n.t('administration.imports.errors.translation.invalid_format'))
@@ -61,6 +61,7 @@ module Imports
           # Initialize collections of translation
           # Nested hash if not initilized return blank hash insted nil
           data.each do |locale, translation|
+            locale = locale.split(' / ').last
             next if locale == 'en' || translation.blank? # Default locale or not translated
             collect_translations[translateable_type][translateable_id][locale] ||= {}
             collect_translations[translateable_type][translateable_id][locale][key] = translation

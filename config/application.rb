@@ -16,7 +16,8 @@ module Psychometrics
     #
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
     config.i18n.default_locale = :en
-    config.i18n.available_locales = [:en, :es, :fr, :cn, :ar, :de]
+    config.i18n.available_locales = %i(en ar bg cn cs cy da de el en-gb eo es es-es et fa fr gu he hi hr hu id it ja km ko lt
+                                       lv mk mn ms my nl no pl pt-br pt-pt ro ru sk sl sr sv sw ta th tr uk ur vi zh-cn zh-tw)
     config.i18n.fallbacks = true
     config.active_record.schema_format = :sql
     config.autoload_paths << Rails.root.join('app/forms')

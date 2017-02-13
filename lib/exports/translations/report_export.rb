@@ -5,7 +5,7 @@ module Exports
         @package = Axlsx::Package.new
         wb = @package.workbook
         wb.add_worksheet(name: 'ReportTranslations') do |sheet|
-          sheet.add_row ['key', 'en', *Settings.languages]
+          sheet.add_row ['Key', 'Default Locale / en', *(I18n.available_locales - [I18n.default_locale]).map { |locale| [I18n.t("languages.#{locale}"), locale].join(' / ') }]
           data.each do |translateable_type, translateables|
             translateables.each do |translateable_id, props|
               translations = ::Translation.
@@ -15,8 +15,8 @@ module Exports
               props.each do |key, translation|
                 new_row = ["#{translateable_type}:#{translateable_id}:#{key}", translation]
                 # Insert translation from Database
-                Settings.languages.each do |l|
-                  new_row << translations[l].try(:first).try(:props).try(:[], key)
+                (I18n.available_locales - [I18n.default_locale]).each do |l|
+                  new_row << translations[l.to_s].try(:first).try(:props).try(:[], key)
                 end
                 sheet.add_row(new_row)
               end
