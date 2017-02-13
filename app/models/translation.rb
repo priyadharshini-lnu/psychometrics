@@ -27,21 +27,31 @@ class Translation < ApplicationRecord
     where(resource_type: 'Report', resource_id: report_id)
   }
 
-  def self.to_hash_for_assessment(assessment_id, locale)
-    results = {}
-    for_assessment(assessment_id).where(locale: locale).find_each do |t|
-      results[t.translateable_type.underscore] ||= {}
-      results[t.translateable_type.underscore][t.translateable_id] ||= t.props
+  class << self
+    def to_hash_for_assessment(assessment_id, locale)
+      results = {}
+      for_assessment(assessment_id).where(locale: locale).find_each do |t|
+        results[t.translateable_type.underscore] ||= {}
+        results[t.translateable_type.underscore][t.translateable_id] ||= t.props
+      end
+      results
     end
-    results
-  end
 
-  def self.to_hash_for_report(report_id, assessment_id, locale)
-    results = {}
-    for_report(report_id).or(for_assessment(assessment_id)).where(locale: locale).find_each do |t|
-      results[t.translateable_type.underscore] ||= {}
-      results[t.translateable_type.underscore][t.translateable_id] ||= t.props
+    def available_translation_for_assessment(assessment_id)
+      for_assessment(assessment_id).group(:locale).pluck(:locale)
     end
-    results
+
+    def to_hash_for_report(report_id, assessment_id, locale)
+      results = {}
+      for_report(report_id).or(for_assessment(assessment_id)).where(locale: locale).find_each do |t|
+        results[t.translateable_type.underscore] ||= {}
+        results[t.translateable_type.underscore][t.translateable_id] ||= t.props
+      end
+      results
+    end
+
+    def available_translation_for_report(report_id, _assessment_id)
+      for_report(report_id).group(:locale).pluck(:locale)
+    end
   end
 end
