@@ -2,11 +2,12 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.4
--- Dumped by pg_dump version 9.5.4
+-- Dumped from database version 9.6.1
+-- Dumped by pg_dump version 9.6.1
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
+SET idle_in_transaction_session_timeout = 0;
 SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SET check_function_bodies = false;
@@ -1373,252 +1374,252 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: assessment_clients id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assessment_clients ALTER COLUMN id SET DEFAULT nextval('assessment_clients_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: assessments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assessments ALTER COLUMN id SET DEFAULT nextval('assessments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: assigns id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assigns ALTER COLUMN id SET DEFAULT nextval('assigns_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: blocks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY blocks ALTER COLUMN id SET DEFAULT nextval('blocks_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: client_reports id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY client_reports ALTER COLUMN id SET DEFAULT nextval('client_reports_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: clients id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY clients ALTER COLUMN id SET DEFAULT nextval('clients_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: comments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comments ALTER COLUMN id SET DEFAULT nextval('comments_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: communication_emails id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY communication_emails ALTER COLUMN id SET DEFAULT nextval('communication_emails_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: communications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY communications ALTER COLUMN id SET DEFAULT nextval('communications_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: data_geos id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY data_geos ALTER COLUMN id SET DEFAULT nextval('data_geos_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: dimensions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dimensions ALTER COLUMN id SET DEFAULT nextval('dimensions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: ecommerce_orders id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY ecommerce_orders ALTER COLUMN id SET DEFAULT nextval('ecommerce_orders_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: ecommerce_purchase_invites id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY ecommerce_purchase_invites ALTER COLUMN id SET DEFAULT nextval('ecommerce_purchase_invites_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: ecommerce_purchases id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY ecommerce_purchases ALTER COLUMN id SET DEFAULT nextval('ecommerce_purchases_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: factors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY factors ALTER COLUMN id SET DEFAULT nextval('factors_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: factors_norms id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY factors_norms ALTER COLUMN id SET DEFAULT nextval('factors_norms_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: factors_scoring id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY factors_scoring ALTER COLUMN id SET DEFAULT nextval('factors_scoring_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: libraries id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY libraries ALTER COLUMN id SET DEFAULT nextval('libraries_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: memberships id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY memberships ALTER COLUMN id SET DEFAULT nextval('memberships_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: norms id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY norms ALTER COLUMN id SET DEFAULT nextval('norms_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: notifications id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY notifications ALTER COLUMN id SET DEFAULT nextval('notifications_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: occupations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY occupations ALTER COLUMN id SET DEFAULT nextval('occupations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: occupations_factors id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY occupations_factors ALTER COLUMN id SET DEFAULT nextval('occupations_factors_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: product_images id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY product_images ALTER COLUMN id SET DEFAULT nextval('product_images_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: product_prices id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY product_prices ALTER COLUMN id SET DEFAULT nextval('product_prices_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: product_reports id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY product_reports ALTER COLUMN id SET DEFAULT nextval('product_reports_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: products id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY products ALTER COLUMN id SET DEFAULT nextval('products_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: questions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY questions ALTER COLUMN id SET DEFAULT nextval('questions_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: reports id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reports ALTER COLUMN id SET DEFAULT nextval('reports_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: reports_filters id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reports_filters ALTER COLUMN id SET DEFAULT nextval('reports_filters_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: reports_modules id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reports_modules ALTER COLUMN id SET DEFAULT nextval('reports_modules_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: reports_pages id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reports_pages ALTER COLUMN id SET DEFAULT nextval('reports_pages_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: tasks id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tasks ALTER COLUMN id SET DEFAULT nextval('tasks_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY translations ALTER COLUMN id SET DEFAULT nextval('translations_id_seq'::regclass);
 
 
 --
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
+-- Name: users id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users ALTER COLUMN id SET DEFAULT nextval('users_id_seq'::regclass);
 
 
 --
--- Name: ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY ar_internal_metadata
@@ -1626,7 +1627,7 @@ ALTER TABLE ONLY ar_internal_metadata
 
 
 --
--- Name: assessment_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: assessment_clients assessment_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assessment_clients
@@ -1634,7 +1635,7 @@ ALTER TABLE ONLY assessment_clients
 
 
 --
--- Name: assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: assessments assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assessments
@@ -1642,7 +1643,7 @@ ALTER TABLE ONLY assessments
 
 
 --
--- Name: assigns_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: assigns assigns_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assigns
@@ -1650,7 +1651,7 @@ ALTER TABLE ONLY assigns
 
 
 --
--- Name: blocks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: blocks blocks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY blocks
@@ -1658,7 +1659,7 @@ ALTER TABLE ONLY blocks
 
 
 --
--- Name: client_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: client_reports client_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY client_reports
@@ -1666,7 +1667,7 @@ ALTER TABLE ONLY client_reports
 
 
 --
--- Name: clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: clients clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY clients
@@ -1674,7 +1675,7 @@ ALTER TABLE ONLY clients
 
 
 --
--- Name: comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: comments comments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comments
@@ -1682,7 +1683,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: communication_emails_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: communication_emails communication_emails_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY communication_emails
@@ -1690,7 +1691,7 @@ ALTER TABLE ONLY communication_emails
 
 
 --
--- Name: communications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: communications communications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY communications
@@ -1698,7 +1699,7 @@ ALTER TABLE ONLY communications
 
 
 --
--- Name: data_geos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: data_geos data_geos_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY data_geos
@@ -1706,7 +1707,7 @@ ALTER TABLE ONLY data_geos
 
 
 --
--- Name: dimensions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: dimensions dimensions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY dimensions
@@ -1714,7 +1715,7 @@ ALTER TABLE ONLY dimensions
 
 
 --
--- Name: ecommerce_orders_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: ecommerce_orders ecommerce_orders_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY ecommerce_orders
@@ -1722,7 +1723,7 @@ ALTER TABLE ONLY ecommerce_orders
 
 
 --
--- Name: ecommerce_purchase_invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: ecommerce_purchase_invites ecommerce_purchase_invites_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY ecommerce_purchase_invites
@@ -1730,7 +1731,7 @@ ALTER TABLE ONLY ecommerce_purchase_invites
 
 
 --
--- Name: ecommerce_purchases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: ecommerce_purchases ecommerce_purchases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY ecommerce_purchases
@@ -1738,7 +1739,7 @@ ALTER TABLE ONLY ecommerce_purchases
 
 
 --
--- Name: factors_norms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: factors_norms factors_norms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY factors_norms
@@ -1746,7 +1747,7 @@ ALTER TABLE ONLY factors_norms
 
 
 --
--- Name: factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: factors factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY factors
@@ -1754,7 +1755,7 @@ ALTER TABLE ONLY factors
 
 
 --
--- Name: factors_scoring_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: factors_scoring factors_scoring_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY factors_scoring
@@ -1762,7 +1763,7 @@ ALTER TABLE ONLY factors_scoring
 
 
 --
--- Name: libraries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: libraries libraries_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY libraries
@@ -1770,7 +1771,7 @@ ALTER TABLE ONLY libraries
 
 
 --
--- Name: memberships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: memberships memberships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY memberships
@@ -1778,7 +1779,7 @@ ALTER TABLE ONLY memberships
 
 
 --
--- Name: norms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: norms norms_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY norms
@@ -1786,7 +1787,7 @@ ALTER TABLE ONLY norms
 
 
 --
--- Name: notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: notifications notifications_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY notifications
@@ -1794,7 +1795,7 @@ ALTER TABLE ONLY notifications
 
 
 --
--- Name: occupations_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: occupations_factors occupations_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY occupations_factors
@@ -1802,7 +1803,7 @@ ALTER TABLE ONLY occupations_factors
 
 
 --
--- Name: occupations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: occupations occupations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY occupations
@@ -1810,7 +1811,7 @@ ALTER TABLE ONLY occupations
 
 
 --
--- Name: product_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: product_images product_images_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY product_images
@@ -1818,7 +1819,7 @@ ALTER TABLE ONLY product_images
 
 
 --
--- Name: product_prices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: product_prices product_prices_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY product_prices
@@ -1826,7 +1827,7 @@ ALTER TABLE ONLY product_prices
 
 
 --
--- Name: product_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: product_reports product_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY product_reports
@@ -1834,7 +1835,7 @@ ALTER TABLE ONLY product_reports
 
 
 --
--- Name: products_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: products products_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY products
@@ -1842,7 +1843,7 @@ ALTER TABLE ONLY products
 
 
 --
--- Name: questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: questions questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY questions
@@ -1850,7 +1851,7 @@ ALTER TABLE ONLY questions
 
 
 --
--- Name: reports_filters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: reports_filters reports_filters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reports_filters
@@ -1858,7 +1859,7 @@ ALTER TABLE ONLY reports_filters
 
 
 --
--- Name: reports_modules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: reports_modules reports_modules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reports_modules
@@ -1866,7 +1867,7 @@ ALTER TABLE ONLY reports_modules
 
 
 --
--- Name: reports_pages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: reports_pages reports_pages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reports_pages
@@ -1874,7 +1875,7 @@ ALTER TABLE ONLY reports_pages
 
 
 --
--- Name: reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: reports reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reports
@@ -1882,7 +1883,7 @@ ALTER TABLE ONLY reports
 
 
 --
--- Name: schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: schema_migrations schema_migrations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY schema_migrations
@@ -1890,7 +1891,7 @@ ALTER TABLE ONLY schema_migrations
 
 
 --
--- Name: tasks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: tasks tasks_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tasks
@@ -1898,7 +1899,7 @@ ALTER TABLE ONLY tasks
 
 
 --
--- Name: translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: translations translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY translations
@@ -1906,7 +1907,7 @@ ALTER TABLE ONLY translations
 
 
 --
--- Name: users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+-- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY users
@@ -2369,7 +2370,7 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 
 
 --
--- Name: fk_rails_385eeb68ea; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: memberships fk_rails_385eeb68ea; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY memberships
@@ -2377,7 +2378,7 @@ ALTER TABLE ONLY memberships
 
 
 --
--- Name: fk_rails_7f3b1733e2; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: comments fk_rails_7f3b1733e2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY comments
@@ -2385,7 +2386,7 @@ ALTER TABLE ONLY comments
 
 
 --
--- Name: fk_rails_877a66d795; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: tasks fk_rails_877a66d795; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY tasks
@@ -2393,7 +2394,7 @@ ALTER TABLE ONLY tasks
 
 
 --
--- Name: fk_rails_922fac4f2e; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: norms fk_rails_922fac4f2e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY norms
@@ -2401,7 +2402,7 @@ ALTER TABLE ONLY norms
 
 
 --
--- Name: fk_rails_99326fb65d; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: memberships fk_rails_99326fb65d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY memberships
@@ -2409,7 +2410,7 @@ ALTER TABLE ONLY memberships
 
 
 --
--- Name: fk_rails_b7d8a0337d; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: norms fk_rails_b7d8a0337d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY norms

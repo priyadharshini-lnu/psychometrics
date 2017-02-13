@@ -1,6 +1,7 @@
 = simple_form_for(@resource, as: :import, url: administration_translations_report_import_path(@report), remote: true, html: { multipart: true }) do |f|
   .modal-body
     = f.error_notification
+    p Refer to the Export functionality to extract a template that can be used to Import here.
     = f.input :report_id, as: :hidden
     = f.input :file, as: :file, error: false
     - if f.object.errors.any?
