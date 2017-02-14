@@ -8,7 +8,6 @@ module Administration
         append_before_action :pundit_authorize, :init_breadcrumbs
 
         def index
-          binding.pry
           @filter_form = policy_scope(::Assign).where(id: membership.assign_ids).includes(:assessment).search(params[:q])
           @resources = @filter_form.result.page(params[:page])
           @reports = policy_scope(Report).
