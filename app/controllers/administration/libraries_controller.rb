@@ -9,7 +9,8 @@ module Administration
 
     # GET /administration/resources
     def index
-      @folder = policy_scope(@resource_class).find_by_id(params[:folder_id])
+      folder_id = params[:q].try(:[], :parent_id_in) || params[:folder_id]
+      @folder = policy_scope(@resource_class).find_by_id(folder_id)
 
       @filter_form = policy_scope(@resource_class).where(parent_id: @folder&.id).search(params[:q])
       @filter_form.sorts = ['type asc', 'name asc'] if @filter_form.sorts.empty?
