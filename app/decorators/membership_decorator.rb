@@ -49,4 +49,12 @@ class MembershipDecorator < BaseDecorator
     # TODO: need to change!
     User.where(role: User::USER_ROLES[:manager]).map { |manager| [manager.decorate.display_name, manager.id] }
   end
+
+  def created_at
+    object.user.decorate.created_at
+  end
+
+  def updated_at
+    object.user.decorate.updated_at
+  end
 end

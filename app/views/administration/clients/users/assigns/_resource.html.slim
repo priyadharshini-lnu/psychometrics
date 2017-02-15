@@ -11,7 +11,7 @@ tr id=dom_id(resource)
       - if resource.completed?
         - if reports.any?
           - reports.each do |report|
-            = link_to [:preview, :administration, @client, :user, :report, user_id: @membership.user_id, id: report.id], class: 'btn btn-default btn-rounded btn-sm mrm', data: {toggle: 'tooltip', title: report.name}
+            = link_to [:preview, :administration, @client, :user, :report, user_id: @membership.user_id, id: report.id], class: 'btn btn-default btn-rounded btn-sm', data: {toggle: 'tooltip', title: report.name}
               span.fa.fa-pie-chart
         - else
           = t('.no_reports')
@@ -19,7 +19,7 @@ tr id=dom_id(resource)
         = t('.no_completed')
     - else
       = t('.no_access_to_reports')
-  td
+  td.actions-cell
     - if policy(resource).destroy?
-      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
+      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
         span.fa.fa-times    

@@ -57,7 +57,7 @@ module AdministrationHelper
     unless tail
       case name
       when :created_at, :updated_at
-        tail = ' (Abu Dhabi/ Moscow time zone)'
+        tail = Settings.timezone_tip
       else
         tail = ''
       end
