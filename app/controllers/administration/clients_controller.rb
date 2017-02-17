@@ -51,7 +51,7 @@ class Administration::ClientsController < Administration::BaseController
   def destroy
     @resource.destroy
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name, type: @resource.get_type)) }
       format.js
     end
   end
@@ -67,6 +67,7 @@ class Administration::ClientsController < Administration::BaseController
   end
 
   def copy
+    # TODO: need to finalize
     @cloned_resource = @resource.clone
     respond_to do |format|
       if @cloned_resource.save

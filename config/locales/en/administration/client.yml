@@ -12,16 +12,35 @@ en:
       license:
         header: '%{name} - Edit license'
       destroy:
-        successfully: 'Client %{name} was successfully destroyed.'
+        successfully: '%{type} %{name} was successfully destroyed.'
       copy:
-        successfully: 'Client %{name} was successfully copied.'
-        error: 'Client #%{name} was not copied.'
+        successfully: '%{type} %{name} was successfully copied.'
+        error: '%{type} %{name} was not copied.'
       create:
-        successfully: 'Client %{name} was successfully created.'
+        successfully: '%{type} %{name} was successfully created.'
       update:
-        successfully: 'Client %{name} was successfully updated.'
+        successfully: '%{type} %{name} was successfully updated.'
       toggle_status:
-        successfully: 'Client %{name} was successfully updated.'
+        successfully: '%{type} %{name} was successfully updated.'
+      projects:
+        campaigns:
+          sidebar:
+            title: Campaign's options
+            disable: Disable
+            enable: Enable
+            edit: Edit Campaign
+            destroy: Destroy Campaign
+            new: New Campaign
+            copy: Copy Campaign
+        sidebar:
+          title: Project's options
+          disable: Disable
+          enable: Enable
+          edit: Edit Project
+          destroy: Destroy Project
+          new: New Project
+          copy: Copy Project
+          design: Edit Design
       sidebar:
         title: Client's options
         disable: Disable
@@ -48,17 +67,17 @@ en:
             title:
               Disable <strong>%{name}</strong> ?
             body:
-              <p>Are you sure you want to disable this Client Tenancy?</p>
+              <p>Are you sure you want to disable?</p>
           enable:
             title:
               Enable <strong>%{name}</strong> ?
             body:
-              <p>Are you sure you want to enable this Client Tenancy?</p>
+              <p>Are you sure you want to enable?</p>
           delete:
             title:
               Delete <strong>%{name}</strong> ?
             body:
-              <p>Are you sure you want to delete this Client Tenancy?</p>
+              <p>Are you sure you want to delete?</p>
       statistics:
         index:
           title: Statistics

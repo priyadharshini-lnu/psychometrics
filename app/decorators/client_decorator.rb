@@ -12,6 +12,13 @@ class ClientDecorator < BaseDecorator
     '-'
   end
 
+  def resource_partial
+    return 'administration/clients/resource' if tenancy?
+    return 'administration/clients/projects/resource' if project?
+    return 'administration/clients/projects/campaigns/resource' if campaign?
+    return 'administration/clients/projects/campaigns/sub_campaigns/resource' if sub_campaign?
+  end
+
   def subdomain_field
     if object.subdomain.present? && object.subtenancy?
       object.subdomain.split('.').first

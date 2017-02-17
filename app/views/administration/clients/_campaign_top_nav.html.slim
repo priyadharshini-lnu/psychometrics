@@ -3,9 +3,7 @@
   = active_link_to(t('administration.navigation.reports'), administration_client_reports_path(client), class: 'btn btn-default')
 - if policy(:assessment).client_index?
   = active_link_to(t('administration.navigation.assessments'), administration_client_assessments_path(client), class: 'btn btn-default')
-- if policy(client).design?
-  = active_link_to(t('administration.navigation.design'), edit_administration_client_designs_path(client), remote: true, class: 'btn btn-default')
 - if policy(:assign).statistics?
   = active_link_to(t('administration.navigation.statistics'), administration_client_statistics_path(client), class: 'btn btn-default')
-- if policy(:client).sub_clients? && client.tenancy?
-  = active_link_to(t('administration.navigation.sub_clients'), administration_client_sub_clients_path(client), class: 'btn btn-default')
+- if policy(:client).sub_campaigns? && client.campaign?
+  = active_link_to(t('administration.navigation.sub_campaigns'), administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.campaign), class: 'btn btn-default')

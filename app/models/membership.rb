@@ -40,7 +40,7 @@ class Membership < ApplicationRecord
 
   has_many :assigns, dependent: :destroy, inverse_of: :membership
   has_many :reports, through: :assigns
-  has_many :results, dependent: :destroy, inverse_of: :membership
+
   has_many :assessments, through: :assigns
   has_many :communication_emails, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'
   has_many :orders, dependent: :destroy, inverse_of: :membership, class_name: 'Ecommerce::Order'
@@ -54,7 +54,7 @@ class Membership < ApplicationRecord
 
   before_validation :ensure_user, on: :create, if: proc { user_id.nil? }
   # before_create :use_license
-  before_create :add_tenancy_membership, if: -> { client.subtenancy? }
+
   after_destroy :remove_subtenancy_memberships, if: -> { client.tenancy? }
 
   acts_as_nested_set scope: :client_id
@@ -134,23 +134,9 @@ class Membership < ApplicationRecord
 
   private
 
-  def add_tenancy_membership
-    # check for membership in tenancy client
-    return if user.memberships.where(client_id: client.parent_id).any?
-    tenancy_membership = self.class.new(attributes.slice(*%w(user_id parent_id role)))
-    tenancy_membership.client_id = client.parent_id
-    tenancy_membership.parent_id = parent.user.memberships.where(client_id: client.parent_id) if tenancy_membership.parent_id
-    begin
-      tenancy_membership.save!
-    # catch and add error in current transaction
-    rescue ActiveRecord::RecordInvalid
-      errors.add(:base, :has_no_enough_licenses)
-      raise ActiveRecord::Rollback
-    end
-  end
-
   def remove_subtenancy_memberships
-    user.memberships.where(client_id: client.sub_client_ids).destroy_all
+    # TODO: remove sub campaigns
+    # user.memberships.where(client_id: client.sub_client_ids).destroy_all
   end
 
   class << self

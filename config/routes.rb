@@ -55,10 +55,29 @@ Rails.application.routes.draw do
             get :export
           end
         end
-        resource :designs, only: [:edit, :update]
         resources :reports, only: [:index, :destroy]
         resources :statistics, only: [:index]
-        resources :sub_clients, only: [:index, :new, :create, :update, :edit]
+        resources :projects do
+          member do
+            get :sidebar
+          end
+          resource :designs, only: [:edit, :update]
+          scope module: :projects do
+            resources :campaigns do
+              member do
+                get :sidebar
+              end
+              scope module: :campaigns do
+                resources :sub_campaigns do
+                  member do
+                    get :sidebar
+                  end
+                end
+              end
+            end
+          end
+        end
+
         resource :licenses, only: [:show, :edit, :update]
         resources :assessments, only: [:index, :destroy] do
           get :export_results

@@ -8,7 +8,11 @@ module Administration
       super || @user.has_grant?(:clients, :manage)
     end
 
-    def sub_clients?
+    def projects?
+      @user.is?(:superadmin) || @user.has_grant?(:clients, :manage)
+    end
+
+    def sub_campaigns?
       @user.is?(:superadmin) || @user.has_grant?(:clients, :manage)
     end
 

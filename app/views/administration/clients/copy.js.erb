@@ -1,0 +1,9 @@
+$cloned_resource = $('<%= j render(partial: @resource.decorate.resource_partial, locals: { resource: @cloned_resource }) %>').hide();
+$('#<%= dom_id(@resource) %>').before($cloned_resource);
+$cloned_resource.show('slow');
+
+// Reinit plugins
+$(document).trigger('initPlugins');
+
+// Notify message
+noty({text: '<%= t("administration.#{@resource_class.model_name.plural}.copy.successfully", name: @resource.decorate.display_name, type: @resource.get_type) %>', type: 'success'});
