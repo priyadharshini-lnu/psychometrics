@@ -62,4 +62,12 @@ class MembershipDecorator < BaseDecorator
   def clients_names
     object.user.clients.map { |c| c.decorate.display_name }.join('<br>').html_safe
   end
+
+  def created_at
+    object.user.decorate.created_at
+  end
+
+  def updated_at
+    object.user.decorate.updated_at
+  end
 end

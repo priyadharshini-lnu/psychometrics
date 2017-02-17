@@ -44,14 +44,6 @@ class Assessment < ApplicationRecord
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
 
   CATEGORIES_TYPES = [
-    PSYCHOMETRIC = 'psychometric'.freeze,
-    ORGANISATIONAL = 'organisational'.freeze,
-    NUM_360 = '360'.freeze
-  ].freeze
-
-  # CATEGORIES constant
-
-  CATEGORIES_TYPES = [
       PSYCHOMETRIC = 'psychometric'.freeze,
       ORGANISATIONAL = 'organisational'.freeze,
       NUM_360 = '360'.freeze
@@ -83,17 +75,6 @@ class Assessment < ApplicationRecord
   enum category: CATEGORIES
   enum status: STATUSES
 
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'id_desc',
-      with_category: CATEGORIES.values.first
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query,
-      :with_category
-    ]
-  )
   scope :enabled, -> { where.not(disabled: true) }
 
   # Search entity by word

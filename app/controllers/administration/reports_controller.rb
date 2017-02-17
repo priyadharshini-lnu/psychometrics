@@ -16,14 +16,8 @@ module Administration
 
     # GET /administration/resources
     def index
-      @filterrific = initialize_filterrific(
-        policy_scope(@resource_class),
-        params[:filterrific],
-        select_options: {
-          with_assessment_category: ['all', *Assessment.options_for_with_category]
-        }
-      ) || return
-      @resources = @filterrific.find.preload(:assessment).page(params[:page])
+      @filter_form = policy_scope(@resource_class).includes(:assessment).search(params[:q])
+      @resources = @filter_form.result.page(params[:page])
 
       respond_to do |format|
         format.html

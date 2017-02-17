@@ -14,9 +14,12 @@ en:
         role: Role
         disabled: Disable
         active: Active
-        created_at: 'Created Date'
-        updated_at: 'Modified Date'
+        created_at: Created Date
+        updated_at: Modified Date
         roles:
+          member: User
+          manager: Manager
+          admin: Client Admin
           superadmin: Super Admin
           super_admin: Super Admin
           regular: Regular

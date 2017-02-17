@@ -34,19 +34,6 @@ class Library < ApplicationRecord
   before_save :detected_type
   before_create :set_name, unless: proc { folder? }
 
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'type_asc',
-      with_parent: 0
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query,
-      :with_parent,
-      :with_type
-    ]
-  )
-
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")

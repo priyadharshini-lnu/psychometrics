@@ -4,7 +4,7 @@ module Administration
       append_before_action :init_breadcrumbs
 
       def index
-        @filter_form = client.reports.includes(:clients, :assessment).search(params[:q])
+        @filter_form = policy_scope(@resource_class).includes(:assessment).search(params[:q])
         @resources = @filter_form.result.page(params[:page])
 
         respond_to do |format|

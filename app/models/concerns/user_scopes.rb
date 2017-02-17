@@ -2,19 +2,6 @@ module UserScopes
   extend ActiveSupport::Concern
 
   included do
-    filterrific(
-      default_filter_params: {
-        sorted_by: 'id_desc',
-        with_role: 'all'
-      },
-      available_filters: [
-        :sorted_by,
-        :search_query,
-        :with_client,
-        :with_role
-      ]
-    )
-
     # Sorting
     scope :sorted_by, lambda { |sort_key|
       # extract the sort direction from the param value.

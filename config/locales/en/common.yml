@@ -25,11 +25,61 @@ en:
   'clear_filter': 'Clear Filter'
   languages:
     en: 'English'
-    es: 'Spanish'
+    en-GB: 'English - UK'
+    es: 'Spanish (Latin America)'
+    es-ES: 'Spanish (Spain)'
     fr: 'French'
     cn: 'Chinese'
     ar: 'Arabic'
     de: 'German'
+    id: 'Bahasa Indonesia'
+    ms: 'Bahasa Malaysia'
+    bs: 'Bosnian'
+    pt-BR: 'Brazilian Portuguese'
+    bg: 'Bulgarian'
+    ca: 'Catalan'
+    zh: 'Chinese Simplified'
+    zh-TW: 'Chinese Traditional'
+    hr: 'Croatian'
+    cs: 'Czech'
+    da: 'Danish'
+    nl: 'Dutch'
+    eo: 'Esperanto'
+    et: 'Estonian'
+    fi: 'Finnish'
+    el: 'Greek'
+    gu: 'Gujarati'
+    he: 'Hebrew'
+    hi: 'Hindi'
+    hu: 'Hungarian'
+    it: 'Italian'
+    ja: 'Japanese'
+    km: 'Khmer'
+    ko: 'Korean'
+    lv: 'Latvian'
+    lt: 'Lithuanian'
+    mk: 'Macedonian'
+    mn: 'Mongolian'
+    my: 'Myanmar'
+    'no': 'Norwegian'
+    fa: 'Persian'
+    pl: 'Polish'
+    pt: 'Portuguese'
+    ro: 'Romanian'
+    ru: 'Russian'
+    sr: 'Serbian'
+    sk: 'Slovak'
+    sl: 'Slovenian'
+    sw: 'Swahili'
+    sv: 'Swedish'
+    ta: 'Tamil'
+    th: 'Thai'
+    tr: 'Turkish'
+    uk: 'Ukrainian'
+    ur: 'Urdu'
+    vi: 'Vietnamese'
+    cy: 'Welsh'
+
   currencies:
     USD: USD
     EUR: EUR
@@ -41,7 +91,7 @@ en:
     KWD: KWD
     BHD: BHD
     OMR: OMR
-    QAR: QAR  
+    QAR: QAR
   confirmation:
     default_title: "Confirmation"
     default_body:  "Are you sure?"

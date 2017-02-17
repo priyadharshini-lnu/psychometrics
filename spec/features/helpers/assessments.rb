@@ -12,6 +12,7 @@ module Assessments
   def copy_assessment(assessment)
     visit '/administration/assessments'
     find("#assessment_#{assessment.id} .copy").click
+    wait_for_ajax
   end
 
   def preview_assessment(assessment)

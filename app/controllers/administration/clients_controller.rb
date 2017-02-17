@@ -6,10 +6,8 @@ class Administration::ClientsController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
-    @filterrific = initialize_filterrific(
-      policy_scope(@resource_class).where(parent_id: nil),
-      params[:filterrific]) || return
-    @resources   = @filterrific.find.page(params[:page])
+    @filter_form = policy_scope(@resource_class).search(params[:q])
+    @resources = @filter_form.result.page(params[:page])
 
     respond_to do |format|
       format.html

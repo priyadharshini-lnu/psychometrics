@@ -14,7 +14,7 @@
 
 module Reports
   class Page < ApplicationRecord
-    belongs_to :report
+    belongs_to :report, touch: true
     has_many :modules, class_name: 'Reports::Module', dependent: :destroy
     default_scope { order(:position) }
     validates :report, presence: true

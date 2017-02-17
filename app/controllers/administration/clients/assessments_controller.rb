@@ -7,8 +7,9 @@ module Administration
       skip_after_action :verify_policy_scoped, only: [:index]
 
       def index
-        @filter_form = policy_scope(@resource_class).with_client(client.id).search(params[:q])
-        @resources = @filter_form.result.page(params[:page])
+        @filter_form = policy_scope(@resource_class).includes(:dimension).search(params[:q])
+        @resources = @filter_form.result.with_client(client.id).page(params[:page])
+
         respond_to do |format|
           format.html
           format.js { render :index, formats: [:js] }

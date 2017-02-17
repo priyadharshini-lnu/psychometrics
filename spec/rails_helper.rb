@@ -24,6 +24,7 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # config.filter_gems_from_backtrace("gem name")
 
+  Capybara.default_max_wait_time = 4
   Capybara.register_driver :poltergeist do |app|
     options = {
         js_errors: false,

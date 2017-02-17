@@ -38,19 +38,6 @@ class Report < ApplicationRecord
     @cloned_item
   end
 
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'id_desc',
-      with_assessment_category: 'all'
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query,
-      :with_assessment_category,
-      :with_assessment
-    ]
-  )
-
   scope :enabled, -> { where.not(disabled: true) }
   # Search entity by word
   scope :search_query, lambda { |query|

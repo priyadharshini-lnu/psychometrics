@@ -9,7 +9,7 @@
         th = t('.status')
         th = link_to_sort @resource_class, :completed_at, @filter_form
         th.text-center width='290' = t '.reports'
-        th = t('.actions')
+        th width='1%' = t('.actions')
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

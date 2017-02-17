@@ -13,5 +13,8 @@ ul.x-navigation.x-navigation-horizontal.x-navigation-panel
 /! END X-NAVIGATION VERTICAL
 /! START BREADCRUMB
 ul.breadcrumb
-  = render_breadcrumbs tag: :li, separator: ''
+  - if content_for? :breadcrumbs
+    = yield :breadcrumbs
+  - else
+    = render_breadcrumbs tag: :li, separator: ''
 /! END BREADCRUMB

@@ -6,26 +6,22 @@
     .panel.panel-default
       .panel-heading
         h3.panel-title = t('.title')
+        = search_form_for(@filter_form,
+                        url: { action: :index },
+                        html: { id: 'filter', class: 'list-filter' },
+                        builder: SimpleForm::FormBuilder) do |f|
+          = f.input :category_in,
+                  collection: Assessment::CATEGORIES,
+                  input_html: { title: 'Category'},
+                  required: false,
+                  include_blank: t('administration.any'),
+                  label: false
+          = f.input :name_cont,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    label: false,
+                    input_html: { class: 'has_clear periodically-observed' }
       .panel-body
-        .row
-          .col-sm-10
-            #filter_results
-              = render partial: 'list'
-          .col-sm-2
-            h3
-              i.fa.fa-filter
-              | Filter
-            = search_form_for(@filter_form,
-                              url: { action: :index },
-                              html: { id: 'filter' },
-                              builder: SimpleForm::FormBuilder) do |f|
-              = f.input :category_in,
-                        collection: ::Assessment.options_for_with_category,
-                        required: false,
-                        label: 'Category'
-              = f.input :name_cont,
-                        label: 'Name',
-                        as: :string,
-                        required: false,
-                        input_html: { class: 'has_clear periodically-observed' }
-              = link_to "Clear Filter", request.path, class: "btn btn-default"
+        #filterrific_results
+          = render partial: 'list'

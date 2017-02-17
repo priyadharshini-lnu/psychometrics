@@ -7,7 +7,7 @@
         - if client.tenancy?
           th = t('administration.tenancies')
         th = link_to_sort @resource_class, :created_at, @filter_form
-        th
+        th width='1%'
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

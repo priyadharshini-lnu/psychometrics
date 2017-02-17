@@ -4,11 +4,11 @@ tr id=dom_id(resource)
   - if client.tenancy?
     td = resource.decorate.clients_names
   td = resource.decorate.created_at
-  td
+  td.actions-cell
     - if policy(:client_report).destroy?
       = link_to administration_client_report_path(client, resource),
                 remote: true, 
-                class: 'btn btn-default btn-rounded btn-sm mrm', 
+                class: 'btn btn-default btn-rounded btn-sm',
                 method: 'delete',
                 data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
         span.fa.fa-times   

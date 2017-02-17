@@ -4,15 +4,15 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
       = resource.decorate.status
   td = resource.name
   td = resource.dimension.try(:decorate).try(:display_name)
+  td = resource.decorate.updater
   td = resource.decorate.client_name
-  td
-    - if policy(@resource_class).actions?
-      = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
-        span.fa.fa-pencil
-      = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
-        span.fa.fa-copy
-      = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm delete', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
-        span.fa.fa-times
   td = resource.decorate.created_at
   td = resource.decorate.updated_at
-  td = resource.decorate.updater
+  - if policy(@resource_class).actions?
+    td.actions-cell
+      = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
+        span.fa.fa-pencil
+      = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
+        span.fa.fa-copy
+      = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm delete', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
+        span.fa.fa-times

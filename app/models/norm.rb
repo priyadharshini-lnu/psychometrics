@@ -26,16 +26,6 @@ class Norm < ApplicationRecord
   validates :name, length: { maximum: 150 }, allow_blank: true
   validates :owner, presence: true, allow_nil: true
 
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'created_at_desc'
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query
-    ]
-  )
-
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")

@@ -5,7 +5,7 @@
       .contentTitleHeader
         i.glyphicon.glyphicon-question-sign.titleIcon.pull-left
         p.contentTitle.pull-left Questions
-        = render partial: 'lang', locals: { with_confirm: true }
+        = render partial: 'lang', locals: { with_confirm: true, locales: @available_translations }
         .clearfix    
       .questionContent
         #psychometrics_preview data-result="#{AssignSerializer.new(@assign).to_json}" data-type="pass_assessment" data-data="#{AssessmentSerializer.new(@resource).to_json(include: '**')}"  data-locales="#{@translations.to_json}"
