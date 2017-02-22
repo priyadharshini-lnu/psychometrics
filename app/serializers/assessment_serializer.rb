@@ -31,7 +31,7 @@ class AssessmentSerializer < ActiveModel::Serializer
   end
 
   def factors
-    factors = object.dimension.factors.includes(:sub_factors).map do |factor|
+    factors = (object.dimension&.factors&.includes(:sub_factors) || []).map do |factor|
       result = []
       result << Factors::WithoutSubFactorsSerializer.new(factor).to_hash
       factor.sub_factors.map do |sub_factor|

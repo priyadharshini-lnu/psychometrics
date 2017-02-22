@@ -24,6 +24,9 @@
 class Question < ApplicationRecord
   include Copyable
 
+  # For assessment builder
+  attr_accessor :save_as_template, :permanent_remove
+
   belongs_to :block
   belongs_to :assessment, touch: true
   belongs_to :template, class_name: 'Question', dependent: :destroy
@@ -53,6 +56,8 @@ class Question < ApplicationRecord
   before_create :set_view
   after_create :create_in_template_block, if: proc { block && block.template.present? }
   after_create :create_in_assessments_blocks, if: proc { block && block.blocks.any? }
+  before_save :dup_for_template, if: :save_as_template
+
   #
   # Disables single column inheritance
   #
@@ -85,17 +90,13 @@ class Question < ApplicationRecord
 
   ### Qcenter
   # Create duplicate object for Question Center
-  def dup_for_template!
-    self.template = self.class.new(general_attributes.merge({ view: :templates }))
-    save
-    template
+  def dup_for_template
+    self.template = self.class.create(general_attributes.merge({ view: :templates }))
   end
 
   # Create duplicate object for Block Center
-  def dup_for_block!
-    self.template = self.class.new(general_attributes.merge({ view: :blocks }))
-    save
-    template
+  def dup_for_block
+    self.class.new(general_attributes.merge({ view: :blocks }))
   end
 
   def dup_for_assessment!(block_id)

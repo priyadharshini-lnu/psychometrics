@@ -69,8 +69,10 @@ Rails.application.routes.draw do
         get :copy
         get :sidebar
         patch :toggle_status
+        post :preview
         get :preview
         get :reports
+        put :save
       end
       scope module: 'assessments' do
         scope module: 'assigns' do
@@ -80,6 +82,8 @@ Rails.application.routes.draw do
             get 'not_selected_users'
           end
         end
+        resource :builders, only: [:update]
+        resource :scoring, only: [:update], controller: :scoring
       end
     end
     ### END ASSESSMENTS
@@ -178,6 +182,9 @@ Rails.application.routes.draw do
         get :sidebar
         patch :toggle_status
         get :preview
+      end
+      scope module: 'reports' do
+        resource :builders, only: [:update]
       end
     end
 
