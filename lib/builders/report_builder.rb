@@ -1,5 +1,5 @@
-module Reports
-  class Builder
+module Builders
+  class ReportBuilder
     # Authorisation flow
     include Pundit
     include Administration::Policies

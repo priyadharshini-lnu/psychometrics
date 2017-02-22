@@ -1,5 +1,5 @@
-module Assessments
-  class Builder
+module Builders
+  class AssessmentBuilder
     # Authorisation flow
     include Pundit
     include Administration::Policies

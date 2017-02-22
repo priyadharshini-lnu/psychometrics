@@ -1,5 +1,5 @@
-module Assessments
-  class Scoring
+module Builders
+  class ScoringBuilder
     # Authorisation flow
     include Pundit
     include Administration::Policies

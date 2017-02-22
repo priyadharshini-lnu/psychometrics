@@ -5,11 +5,11 @@ module Administration
       append_before_action :pundit_authorize
 
       def update
-        builder = ::Reports::Builder.new(@report, params.require(:builder), current_user)
+        builder = ::Builders::ReportBuilder.new(@report, params.require(:builder), current_user)
         if builder.save
           render json: { data: ReportSerializer.new(@report).to_hash(include: '**') }
         else
-          render json: { error: true }
+          render json: { error: true }, status: 400
         end
       end
 
