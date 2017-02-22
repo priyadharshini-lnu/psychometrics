@@ -1,21 +1,20 @@
 .modal-body
-  .mbl
-    em.mrl => t('.date_expire', date: @resource.licenses_expire&.strftime('%d %b %Y'))
-    em.mrl =< t('.final_date_expire', date: @resource.licenses_final_expire&.strftime('%d %b %Y'))
-    - if @resource.licenses_final_expire && Date.today > @resource.licenses_final_expire
-      span.text-danger = t('.license_has_expired')
   table.table
     thead
       tr
         th style='text-align: right;' = t('.license_type')
         th = t('.used_license_number')
         th = t('.used_license_overuse_number')
+        th = t('.start_date')
+        th = t('.end_date')
     tbody
       - @resource.licenses.each do |license|
         tr
           td align='right' = license.decorate.display_name
           td = license.decorate.used_number
           td = license.decorate.used_overuse_number
+          td = license.decorate.start_date
+          td = license.decorate.end_date
 .modal-footer
   .btn-group
     a.btn.btn-default data-dismiss='modal' = t 'administration.close'

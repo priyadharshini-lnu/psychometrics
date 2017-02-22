@@ -24,7 +24,5 @@
                     label: false
           = link_to "Clear Filter", request.path, class: "btn btn-default"
       .panel-body
-        .row
-          .col-sm-12
-            #filter_results
-              = render partial: 'list'
+        #filter_results
+          = render partial: 'list'

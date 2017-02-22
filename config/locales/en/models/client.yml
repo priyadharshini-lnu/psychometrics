@@ -11,8 +11,6 @@ en:
         updated_at: 'Modified Date'
         licenses: License number
         licenses_count: Licenses
-        licenses_expire: Date Of Expiry
-        licenses_final_expire: Final Date
         subdomain: Subdomain
         logo: Client logo
   simple_form:

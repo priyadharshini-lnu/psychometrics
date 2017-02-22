@@ -9,31 +9,16 @@
               = link_to({ action: :new }, remote: true, class: 'btn btn-default create')
                 span.fa.fa-plus
                 = t('.add')
-              = link_to(administration_report_families_path,  class: 'btn btn-default')
-                = t('.families')
-
         = search_form_for(@filter_form,
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },
                           builder: SimpleForm::FormBuilder) do |f|
-
-          = f.input :assessment_category_in,
-                    collection: ::Assessment::CATEGORIES,
-                    input_html: { title: 'Category '},
-                    include_blank: t('administration.any'),
-                    label: false
-          = f.input :assessment_id_in,
-                    collection: policy_scope(Assessment).all.options_for_select,
-                    input_html: { data: { live_search: true }, multiple: true, title: 'Assessment' },
-                    required: false,
-                    label: false
           = f.input :name_cont,
                     as: :string,
                     required: false,
                     placeholder: t('administration.search'),
                     label: false,
                     input_html: { class: 'has_clear periodically-observed' }
-          = link_to "Clear Filter", request.path, class: "btn btn-default"
       .panel-body
         #filterrific_results
           = render partial: 'list'

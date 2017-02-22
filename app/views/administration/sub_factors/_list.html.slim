@@ -3,11 +3,11 @@
     thead
       tr
         th = link_to_sort @resource_class, :name, @filter_form
-        th width="70" = t 'administration.factors.index.icon'
+        th = t 'administration.factors.index.icon'
         th = @resource_class.human_attribute_name(:questions_count)
-        th.text-center width='120' = t 'administration.actions'
-        th.text-center width='150' = link_to_sort @resource_class, :created_at, @filter_form
-        th.text-center width='150' = link_to_sort @resource_class, :updated_at, @filter_form
+        th.text-center = link_to_sort @resource_class, :created_at, @filter_form
+        th.text-center = link_to_sort @resource_class, :updated_at, @filter_form
+        th.text-center width='1%' = t 'administration.actions'
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

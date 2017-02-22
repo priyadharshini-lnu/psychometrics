@@ -32,10 +32,8 @@ module Administration
       end
 
       def resource_params
-        params.require(:resource).permit(:id, :licenses_expire, :licenses_final_expire,
-                                         licenses_attributes: [:id, :number, :overuse_number,
-                                                               :assessment_id, :report_id,
-                                                               :type, :unlimited, :_destroy])
+        params.require(:resource).permit(:id, licenses_attributes: [:id, :number, :overuse_number, :report_family_id,
+                                                                    :start_date, :end_date, :_destroy])
       end
 
       def pundit_authorize

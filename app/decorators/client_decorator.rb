@@ -7,11 +7,6 @@ class ClientDecorator < BaseDecorator
     }.to_json
   end
 
-  def licenses_expire
-    return I18n.l(object.licenses_expire, format: :long) unless object.licenses_expire.nil?
-    '-'
-  end
-
   def resource_partial
     return 'administration/clients/resource' if tenancy?
     return 'administration/clients/projects/resource' if project?

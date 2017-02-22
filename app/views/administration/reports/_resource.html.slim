@@ -11,19 +11,16 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
   td = resource.assessment.try(:decorate).try(:display_name)
   td = resource.decorate.type
   td = resource.decorate.client_name
+  td = resource.decorate.report_family
   td = resource.decorate.created_at
   td = resource.decorate.updated_at
   - if policy(@resource_class).actions?
     td.actions-cell
-      - if policy(resource).preview?
-        = link_to({ action: :preview, id: resource }, class: 'btn btn-default btn-rounded btn-sm  preview', data: { toggle: 'tooltip', title: t('.tooltips.preview') })
-          i.fa.fa-eye  
-      - if policy(resource).edit?
-        = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
-          i.fa.fa-pencil
-      - if policy(resource).copy?
-        = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy') })
-          span.fa.fa-copy
-      - if policy(resource).destroy?
-        = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm delete', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
-          span.fa.fa-times
+      = link_to({ action: :preview, id: resource }, class: 'btn btn-default btn-rounded btn-sm  preview', data: { toggle: 'tooltip', title: t('.tooltips.preview') })
+        i.fa.fa-eye
+      = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
+        i.fa.fa-pencil
+      = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy') })
+        span.fa.fa-copy
+      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm delete', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
+        span.fa.fa-times

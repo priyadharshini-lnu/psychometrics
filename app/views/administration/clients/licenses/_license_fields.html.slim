@@ -1,27 +1,18 @@
 
 tr.nested-fields
   td
-    = f.input :type, 
-              as: :select, 
-              collection: License.types.map { |key, value| [key.humanize.titleize, key] },
-              include_blank: false,
-              label: false
-    div class="assessment_select #{'hidden' unless f.object.assign_individual_assessment?}"
-      = f.association :assessment, 
-                      collection: policy_scope(Assessment).all, 
-                      input_html: { data: { live_search: true } }, 
-                      label: false
-    div class="report_select #{'hidden' unless f.object.assign_individual_report?}"
-      = f.association :report, 
-                      collection: policy_scope(Report).all, 
-                      input_html: { data: { live_search: true } }, 
-                      label: false                      
+    = f.association :report_family,
+            input_html: { data: { live_search: true } },
+            include_blank: false,
+            label: false
   td
-    = f.input_field :unlimited, as: :boolean, label: false
-  td 
     = f.input :number, label: false
   td 
     = f.input :overuse_number, label: false
+  td
+    = f.input :start_date, label: false
+  td
+    = f.input :end_date, label: false, end_year: Date.today.year + 30
   td 
     = link_to_remove_association f
       i.fa.fa-times 

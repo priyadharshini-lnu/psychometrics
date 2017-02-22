@@ -8,4 +8,8 @@ class ReportDecorator < BaseDecorator
       map { |client| client.decorate.display_name }.
       join(', ')
   end
+
+  def report_family
+    object.report_family.present? ? object.report_family.decorate.display_name : ''
+  end
 end
