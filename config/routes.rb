@@ -208,6 +208,12 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :report_families, except: [:show] do
+      member do
+        get :sidebar
+      end
+    end
+
     resources :libraries
 
     put '/factors_norms/update', to: 'factors_norms#update'

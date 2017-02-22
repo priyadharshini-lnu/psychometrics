@@ -20,7 +20,5 @@
                   label: false,
                   include_blank: t('administration.any')
       .panel-body
-        .row
-          .col-sm-12
-            #filter_results
-              = render partial: 'list'
+        #filter_results
+          = render partial: 'list'

@@ -34,6 +34,7 @@ class Client < ApplicationRecord
   has_many :projects, class_name: 'Client', foreign_key: :parent_id
 
   has_many :licenses, inverse_of: :client, dependent: :destroy
+  has_many :report_families, through: :licenses
   accepts_nested_attributes_for :licenses, allow_destroy: true
   has_many :license_usages, as: :licenseable
 
@@ -43,12 +44,9 @@ class Client < ApplicationRecord
   validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true, if: :project?
   validates :name, :type, presence: true
   validate :subdomain_format_validation, if: :project?
-  # validate :license_expire_validation
 
   before_validation :ensure_subdomain, if: :retail?
 
-  # before_create :use_license
-  # before_update :use_license_design, if: :design_changed?
   acts_as_nested_set
 
   store :design, accessors: [:background_color]
@@ -77,7 +75,7 @@ class Client < ApplicationRecord
     # extract the sort direction from the param value.
     direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
     column = sort_key.gsub("_#{direction}", '')
-    if column.in?(%w(id active name created_at updated_at licenses_expire))
+    if column.in?(%w(id active name created_at updated_at))
       order("clients.#{column} #{direction}")
     elsif column == 'active'
       order("clients.disabled #{direction}")
@@ -154,17 +152,5 @@ class Client < ApplicationRecord
   def subdomain_format_validation
     return if subdomain =~ /^[a-zA-Z0-9\-_]+$/
     errors.add(:subdomain, 'Wrong subdomain format')
-  end
-
-  def license_expire_validation
-    errors.add(:licenses_final_expire, :invalid) if licenses_final_expire&.<= licenses_expire
-  end
-
-  def use_license
-    Licenses::SubTenancies.use(self)
-  end
-
-  def use_license_design
-    Licenses::TenancyBranding.use(self)
   end
 end

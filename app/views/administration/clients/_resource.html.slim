@@ -5,7 +5,6 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
         = resource.decorate.status
   td = link_to resource.name, administration_client_projects_path(resource)
   td.text-center = link_to resource.licenses_count, administration_client_licenses_path(resource), remote: true
-  td.text-center = resource.decorate.licenses_expire
   td = resource.decorate.created_at
   td = resource.decorate.updated_at
   td.actions-cell

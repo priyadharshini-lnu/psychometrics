@@ -1,0 +1,2 @@
+class ReportFamilyDecorator < BaseDecorator
+end

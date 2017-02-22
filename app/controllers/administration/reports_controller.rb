@@ -11,12 +11,12 @@ module Administration
     prepend_before_action :set_resource_class
     before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :preview]
     before_action :skip_authorization, only: [:sidebar]
+    append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
-    after_action :init_breadcrumbs
 
     # GET /administration/resources
     def index
-      @filter_form = policy_scope(@resource_class).includes(:assessment).search(params[:q])
+      @filter_form = policy_scope(@resource_class).includes(:assessment, :report_family).search(params[:q])
       @resources = @filter_form.result.page(params[:page])
 
       respond_to do |format|
@@ -111,7 +111,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :assessment_id, :type, :owner_id)
+      params.require(:resource).permit(:name, :assessment_id, :type, :owner_id, :report_family_id)
     end
 
     # Authorisation user

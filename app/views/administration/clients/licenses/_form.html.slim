@@ -3,29 +3,23 @@
     = render_error_notification(@resource)
 
     .form-inputs.clearfix
-      h3 = t('.subscription_length')
-      .row.mbl
-        .col-md-6
-          = f.input :licenses_expire, end_year: Date.today.year + 30
-        .col-md-6
-          = f.input :licenses_final_expire, end_year: Date.today.year + 30
       h3 = t('.licenses')
-      
       table#licenses.table
         thead
           tr
-            th width="200" = t('.license_type')
-            th = t('.unlimited')
+            th = t('.license_type')
             th = t('.license_number')
             th = t('.license_overuse_number')
+            th = t('.start_date')
+            th = t('.end_date')
             th
         tbody
           = f.simple_fields_for :licenses do |license|
             = render 'license_fields', f: license
       .links
-        = link_to_add_association t('.add_license'), 
-                                  f, :licenses, 
-                                  class: 'btn btn-default', 
+        = link_to_add_association t('.add_license'),
+                                  f, :licenses,
+                                  class: 'btn btn-default',
                                   data: { association_insertion_node: 'table#licenses tbody',
                                           association_insertion_method: 'append'}
 

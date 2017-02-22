@@ -1,12 +1,12 @@
 class Administration::ClientsController < Administration::BaseController
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :sidebar, :toggle_status, :copy, :license]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :sidebar, :toggle_status, :copy]
   before_action :skip_authorization, only: [:sidebar]
   append_before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
-    @filter_form = policy_scope(@resource_class).search(params[:q])
+    @filter_form = policy_scope(@resource_class).tenancies.search(params[:q])
     @resources = @filter_form.result.page(params[:page])
 
     respond_to do |format|
@@ -90,7 +90,7 @@ class Administration::ClientsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :licenses, :licenses_used, :licenses_expire, :subdomain)
+    params.require(:resource).permit(:name, :subdomain)
   end
 
   def pundit_authorize

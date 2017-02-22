@@ -5,11 +5,8 @@ en:
         edit:
           header: '%{client_name} - Manage Licenses'
         form:
-          subscription_length: Subscription Length
-          licenses: Licenses
           add_license: Add Another License
-          license_type: License Type
-          unlimited: Unlimited?
+          report_family: Report Family
           license_number: License Number
           license_overuse_number: Over Use Allowance
         license_fields:
@@ -20,6 +17,8 @@ en:
           license_type: License Type
           used_license_number: Used Licenses
           used_license_overuse_number: 'Over Use Allowance'
+          start_date: Start Date
+          end_date: End Date
           used_out_of: '%{used_number} out of %{number}'
           unlimited: Unlimited
           date_expire: 'Date Of Expiry: %{date}'

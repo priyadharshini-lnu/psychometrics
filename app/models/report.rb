@@ -16,6 +16,7 @@ class Report < ApplicationRecord
   self.inheritance_column = :_type_disabled
   belongs_to :assessment
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+  belongs_to :report_family
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
   has_many :assign_clients_reports, dependent: :destroy
@@ -28,6 +29,7 @@ class Report < ApplicationRecord
 
   validates :assessment, presence: true
   validates :owner, presence: true, allow_nil: true
+  validates :report_family, presence: true, allow_nil: false
 
   enum type: [:common, :yti, :eti]
 
