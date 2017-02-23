@@ -17,6 +17,8 @@ en:
         location: Location
         year: Client Year
         applicable_level: Applicable Level
+        account_manager: Account Manager
+        project_manager: Project Manager
         applicable_levels:
           campaign: 'Campaign'
           sub_campaign: 'Sub-Campaign'

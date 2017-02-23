@@ -83,6 +83,7 @@ class User < ApplicationRecord
 
   scope :enabled, -> { where.not(disabled: true) }
   scope :identified, -> { where(is_anonym: false) }
+  scope :superadmins, -> { where(role: User::USER_ROLES[:superadmin]) }
   scope :managers, -> { where(role: User::USER_ROLES[:manager]) }
 
   # We won't set password, we will send inviting

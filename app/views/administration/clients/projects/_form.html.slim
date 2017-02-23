@@ -9,9 +9,11 @@
           | .
           = Settings.domain
       = f.input :number
-      = f.input :applicable_level, as: :select, 
-                                   collection: Client.applicable_levels.map { |name, value| [t(".applicable_levels.#{name}"), name] },
-                                   include_blank: t('.applicable_levels.project')
+      - if f.object.new_record?
+        = f.input :applicable_level, as: :select, 
+                                     collection: Client.applicable_levels.map { |name, value| [t(".applicable_levels.#{name}"), name] },
+                                     include_blank: t('.applicable_levels.project')
+                                    
       .clearfix
       .well
         h3 Design

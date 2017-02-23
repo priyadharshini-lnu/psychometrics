@@ -34,12 +34,16 @@ class Client < ApplicationRecord
   has_many :projects, class_name: 'Client', foreign_key: :parent_id
 
   has_many :licenses, inverse_of: :client, dependent: :destroy
-  has_many :report_families, through: :licenses
   accepts_nested_attributes_for :licenses, allow_destroy: true
   has_many :license_usages, as: :licenseable
 
   has_one :retail_user, class_name: 'User'
   belongs_to :parent, class_name: 'Client'
+
+  has_and_belongs_to_many :report_families, join_table: :clients_report_families, class_name: 'ReportFamily'
+
+  belongs_to :account_manager, class_name: 'User'
+  belongs_to :project_manager, class_name: 'User'
 
   validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true, if: :project?
   validates :name, :type, presence: true

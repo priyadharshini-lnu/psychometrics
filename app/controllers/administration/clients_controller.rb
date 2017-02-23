@@ -91,7 +91,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :subdomain, :year, :number, :country)
+      params.require(:resource).permit(:name, :subdomain, :year, :number, :country, :account_manager_id, :project_manager_id, :report_family_ids)
     end
 
     def pundit_authorize
