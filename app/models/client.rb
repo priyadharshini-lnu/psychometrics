@@ -58,31 +58,15 @@ class Client < ApplicationRecord
 
   # Type of client.
   # Retail - is client who bought some product
-  enum type: [:enterprise, :retail]
+  enum type: [:partner, :corporate, :distributer, :associate, :tte, :retail, :other]
+  enum applicable_level: [:campaign, :sub_campaign]
 
   mount_uploader :logo, ImageUploader
   mount_uploader :background, ImageUploader
 
   scope :enabled, -> { where.not(disabled: true) }
-
-  # Search entity by word
-  scope :search_query, lambda { |query|
-    where('name ILIKE ?', "%#{query}%")
-  }
-
-  # Sorting
-  scope :sorted_by, lambda { |sort_key|
-    # extract the sort direction from the param value.
-    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
-    column = sort_key.gsub("_#{direction}", '')
-    if column.in?(%w(id active name created_at updated_at))
-      order("clients.#{column} #{direction}")
-    elsif column == 'active'
-      order("clients.disabled #{direction}")
-    end
-  }
-
   scope :tenancies, -> { where(parent_id: nil) }
+  scope :not_retails, -> { where.has { type.not_eq(:reatail) } }
 
   def clone
     @cloned_item = deep_clone do |_original, kopy|

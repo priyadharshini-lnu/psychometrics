@@ -3,9 +3,9 @@ module Administration
     module Projects
       class CampaignsController < Administration::ClientsController
         def index
-          @filter_form              = policy_scope(@resource_class).search(params[:q])
+          @filter_form = policy_scope(@resource_class).search(params[:q])
           @filter_form.parent_id_in = project.id
-          @resources                = @filter_form.result.page(params[:page])
+          @resources = @filter_form.result.page(params[:page])
 
           respond_to do |format|
             format.html
@@ -14,12 +14,12 @@ module Administration
         end
 
         def new
-          @resource        = @resource_class.new
+          @resource = @resource_class.new
           @resource.parent = project
         end
 
         def create
-          @resource        = @resource_class.new(resource_params)
+          @resource = @resource_class.new(resource_params)
           @resource.parent = project
           super
         end
@@ -29,10 +29,8 @@ module Administration
         def init_breadcrumbs
           add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
           add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
-          add_breadcrumb client.decorate.display_name
-          add_breadcrumb I18n.t('administration.breadcrumbs.projects'), [:administration, client, :projects]
-          add_breadcrumb project.decorate.display_name
-          add_breadcrumb I18n.t('administration.breadcrumbs.campaigns'), administration_client_project_campaigns_path(client, project)
+          add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
+          add_breadcrumb project.decorate.display_name, administration_client_project_campaigns_path(client, project)
         end
       end
     end

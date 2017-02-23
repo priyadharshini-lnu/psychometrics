@@ -1,0 +1,57 @@
+= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, remote: true) do |f|
+  .modal-body
+    = f.error_notification
+    .form-inputs.clearfix
+      = f.input :name
+      = f.input :subdomain, wrapper: :vertical_input_group
+        = f.input_field :subdomain, class: 'form-control'
+        span.input-group-addon
+          | .
+          = Settings.domain
+      = f.input :number
+      = f.input :applicable_level, as: :select, 
+                                   collection: Client.applicable_levels.map { |name, value| [t(".applicable_levels.#{name}"), name] },
+                                   include_blank: t('.applicable_levels.project')
+      .clearfix
+      .well
+        h3 Design
+        // File input      
+        = f.input :logo, hint: f.object.logo.present? ? f.input(:remove_logo, as: :boolean) + image_tag(f.object.logo.url(:thumb)) : content_tag(:span, t('.no_logo'))
+        .row.mhn
+          .col-sm-5.pln
+            = f.input :background, hint: f.object.background.present? ? f.input(:remove_background, as: :boolean) + image_tag(f.object.background.url(:thumb)) : content_tag(:span, t('.no_background'))
+          .col-sm-2 OR
+          .col-sm-5.prn
+            .form-group
+              = f.label :background_color, class: 'control-label'
+              .input-group.colorfield
+                = f.input_field :background_color, class: 'form-control'
+                span.input-group-addon
+                  i       
+  .modal-footer
+    .btn-group
+      = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+// Upload file by AJAX
+javascript:
+  $(function(){
+    $('#edit_resource').on('submit', function(event) {
+      event.stopPropagation(); // Stop stuff happening
+      event.preventDefault(); // Totally stop stuff happening
+
+      var form = $(this);
+      var formdata = false;
+      if (window.FormData){
+          formdata = new FormData(form[0]);
+      }
+      $.ajax({
+        url         : form.attr('action'),
+        data        : formdata ? formdata : form.serialize(),
+        dataType    : 'script',
+        cache       : false,
+        contentType : false,
+        processData : false,
+        type        : 'POST'
+      });
+    });
+  });

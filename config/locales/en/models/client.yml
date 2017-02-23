@@ -13,6 +13,13 @@ en:
         licenses_count: Licenses
         subdomain: Subdomain
         logo: Client logo
+        number: Number
+        location: Location
+        year: Client Year
+        applicable_level: Applicable Level
+        applicable_levels:
+          campaign: 'Campaign'
+          sub_campaign: 'Sub-Campaign'
   simple_form:
     placeholders:
       client:

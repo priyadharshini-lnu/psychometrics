@@ -28,8 +28,16 @@ module Administration
       def init_breadcrumbs
         add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
         add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
-        add_breadcrumb client.decorate.display_name, '#'
-        add_breadcrumb I18n.t('administration.breadcrumbs.projects'), { action: :index }
+        add_breadcrumb client.decorate.display_name, { action: :index }
+      end
+
+      def set_resource
+        @resource = policy_scope(@resource_class).find(params[:id])
+      end
+
+      def resource_params
+        params.require(:resource).permit(:name, :subdomain, :logo, :background, :background_color,
+                                         :remove_background, :remove_logo, :applicable_level, :number)
       end
     end
   end

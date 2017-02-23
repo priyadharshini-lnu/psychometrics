@@ -107,12 +107,9 @@ module Administration
       def init_breadcrumbs
         add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
         add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
-        add_breadcrumb client.client.decorate.display_name, '#'
-        add_breadcrumb I18n.t('administration.breadcrumbs.projects'), [:administration, client.client, :projects]
-        add_breadcrumb client.parent.decorate.display_name, '#'
-        add_breadcrumb I18n.t('administration.breadcrumbs.campaigns'), administration_client_project_campaigns_path(client.client, client.project)
-        add_breadcrumb client.decorate.display_name, '#'
-        add_breadcrumb I18n.t('administration.breadcrumbs.users'), { action: :index }
+        add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
+        add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project)
+        add_breadcrumb client.decorate.display_name, { action: :index }
       end
 
       def create_resource_params

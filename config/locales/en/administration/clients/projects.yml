@@ -2,6 +2,11 @@ en:
   administration:
     clients:
       projects:
+        form:
+          applicable_levels:
+            project: 'Project End Level'
+            campaign: 'Campaign End Level'
+            sub_campaign: 'Sub-Campaign End Level'
         index:
           title: 'Projects'
           tooltips:

@@ -4,12 +4,10 @@
 
     .form-inputs.clearfix
       = f.input :name
+      - if @resource.tenancy?
+        = render partial: 'tenancy_form', locals: { f: f }
       - if @resource.project?
-        = f.input :subdomain, wrapper: :vertical_input_group
-          = f.input_field :subdomain, class: 'form-control'
-          span.input-group-addon
-            | .
-            = Settings.domain
+        = render partial: 'project_form', locals: { f: f }
   .modal-footer
     .btn-group
       = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'

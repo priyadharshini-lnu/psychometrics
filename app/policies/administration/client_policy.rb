@@ -27,8 +27,7 @@ module Administration
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)
-        # scope.enterprise.enabled.where(id: @user.admin_client_ids)
-        parent_ids = @user.admin_clients.enterprise.enabled.pluck(:id)
+        parent_ids = @user.admin_clients.not_retails.enabled.pluck(:id)
         scope.where.has { (id.in parent_ids) | (parent_id.in parent_ids) }
       end
     end
