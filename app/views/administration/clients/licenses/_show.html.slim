@@ -2,9 +2,11 @@
   table.table
     thead
       tr
-        th style='text-align: right;' = t('.license_type')
+        th style='text-align: right;' = t('.report_family')
         th = t('.used_license_number')
-        th = t('.used_license_overuse_number')
+        - if current_user.is?(:superadmin)
+          th = t('.used_license_overuse_number')
+        th = t('.usage_percent')
         th = t('.start_date')
         th = t('.end_date')
     tbody
@@ -12,7 +14,9 @@
         tr
           td align='right' = license.decorate.display_name
           td = license.decorate.used_number
-          td = license.decorate.used_overuse_number
+          - if current_user.is?(:superadmin)
+            td = license.decorate.used_overuse_number
+          td = license.decorate.usage_percent
           td = license.decorate.start_date
           td = license.decorate.end_date
 .modal-footer

@@ -2,10 +2,11 @@ require 'rails_helper'
 
 feature 'CRUD Report' do
   given!(:dimension) { create :assessment, name: 'Some Assessment' }
+  given!(:report_family) { create :report_family, name: 'Some Report Family' }
   before { logged_in_as :superadmin }
 
   scenario 'Create Report' do
-    create_report(name: 'My report', assessment_name: 'Some Assessment')
+    create_report(name: 'My report', assessment_name: 'Some Assessment', report_family_name: 'Some Report Family')
     expect(page).to have_content t('administration.reports.create.successfully', name: 'My report')
     expect(page).to have_css('#reports_list td', text: 'My report')
   end

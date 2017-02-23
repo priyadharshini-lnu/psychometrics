@@ -2,11 +2,15 @@ class License < ApplicationRecord
   belongs_to :client, counter_cache: true
   belongs_to :report_family
 
-  validates :client, :start_date, :end_date, presence: true
+  validates :client, :start_date, :end_date, presence: true, allow_nil: false
   validates :number, :overuse_number, :used_number,
             numericality: { greater_than_or_equal_to: 0 }
   validates :report_family_id, presence: true
   validate :license_expire_validation
+
+  scope :with_report_family, lambda { |report_family_id|
+    where(report_family_id: report_family_id)
+  }
 
   def used_overuse_number
     number >= used_number ? 0 : used_number - number
@@ -28,6 +32,8 @@ class License < ApplicationRecord
   private
 
   def license_expire_validation
-    errors.add(:end_date, :invalid) if end_date&.<= start_date
+    if end_date && start_date
+      errors.add(:end_date, :invalid) if end_date <= start_date
+    end
   end
 end

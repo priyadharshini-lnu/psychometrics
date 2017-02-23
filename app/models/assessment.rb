@@ -118,7 +118,7 @@ class Assessment < ApplicationRecord
   private
 
   def check_owner
-    errors.add(:owner, :invalid) if owner&.subtenancy?
+    errors.add(:owner, :invalid) if owner&.child?
   end
 
   class << self

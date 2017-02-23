@@ -37,23 +37,10 @@ FactoryGirl.define do
     sequence(:subdomain) { |i| "test-#{i}" }
     parent nil
 
+    # TODO: remove
     transient do
       no_license false
       sub_clients_count false
-    end
-
-    after(:create) do |record, evaluator|
-      if record.tenancy? && !evaluator.no_license
-        (License.types.keys - %w(assign_individual_assessment assign_individual_report)).each do |name|
-          create :license, name.to_sym, client: record
-        end
-      end
-
-      if record.tenancy? && evaluator.sub_clients_count
-        evaluator.sub_clients_count.times do
-          create :client, parent_id: record.id
-        end
-      end
     end
   end
 end
