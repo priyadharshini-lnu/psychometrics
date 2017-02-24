@@ -34,7 +34,7 @@ class Membership < ApplicationRecord
     MEMBER_ROLE => :user
   }.freeze
 
-  belongs_to :client
+  belongs_to :client, counter_cache: true
   belongs_to :user, inverse_of: :memberships, touch: true
   accepts_nested_attributes_for :user
 

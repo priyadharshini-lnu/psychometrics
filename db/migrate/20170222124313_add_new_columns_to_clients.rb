@@ -4,7 +4,7 @@ class AddNewColumnsToClients < ActiveRecord::Migration[5.0]
       t.string :number
       t.string :country
       t.integer :year
-      t.integer :applicable_level
+      t.integer :applicable_level, default: 0
       t.references :account_manager
       t.references :project_manager
     end

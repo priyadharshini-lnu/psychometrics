@@ -24,9 +24,14 @@ class Report < ApplicationRecord
   belongs_to :report_family
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
-  has_many :assign_clients_reports, dependent: :destroy
-  has_many :assign_clients, through: :assign_clients_reports
-  has_many :clients, through: :assign_clients
+
+  # has_many :assign_clients_reports, dependent: :destroy
+  # has_many :assign_clients, through: :assign_clients_reports
+  # has_many :clients, through: :assign_clients
+
+  has_many :clients_reports, dependent: :destroy
+  has_many :clients, through: :clients_reports
+
   has_many :translations, as: :resource
 
   has_many :product_reports, dependent: :destroy
@@ -46,19 +51,8 @@ class Report < ApplicationRecord
   end
 
   scope :enabled, -> { where.not(disabled: true) }
-  # Search entity by word
-  scope :search_query, lambda { |query|
-    where('name ILIKE ?', "%#{query}%")
-  }
-
-  # Sorting
-  scope :sorted_by, lambda { |sort_key|
-    # extract the sort direction from the param value.
-    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
-    column = sort_key.gsub("_#{direction}", '')
-    if column.in?(%w(id name created_at updated_at))
-      order("reports.#{column} #{direction}")
-    end
+  scope :with_report_families, lambda { |report_family_ids|
+    report_family_ids.blank? ? none : where(report_family_id: report_family_ids)
   }
 
   # Search entity by assessment category

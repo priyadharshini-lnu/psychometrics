@@ -1,4 +1,4 @@
-= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, remote: true) do |f|
+= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, remote: true, html: { id: 'project_form' }) do |f|
   .modal-body
     = f.error_notification
     .form-inputs.clearfix
@@ -12,8 +12,9 @@
       - if f.object.new_record?
         = f.input :applicable_level, as: :select, 
                                      collection: Client.applicable_levels.map { |name, value| [t(".applicable_levels.#{name}"), name] },
-                                     include_blank: t('.applicable_levels.project')
-                                    
+                                     include_blank: false                                  
+      - if f.object.project_level?
+        = f.association :reports, collection: Report.with_report_families(client.report_family_ids)        
       .clearfix
       .well
         h3 Design
@@ -29,7 +30,7 @@
               .input-group.colorfield
                 = f.input_field :background_color, class: 'form-control'
                 span.input-group-addon
-                  i       
+                  i
   .modal-footer
     .btn-group
       = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
@@ -37,7 +38,7 @@
 // Upload file by AJAX
 javascript:
   $(function(){
-    $('#edit_resource').on('submit', function(event) {
+    $('#project_form').on('submit', function(event) {
       event.stopPropagation(); // Stop stuff happening
       event.preventDefault(); // Totally stop stuff happening
 

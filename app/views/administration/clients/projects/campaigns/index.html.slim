@@ -9,10 +9,16 @@
           li
             = link_to new_administration_client_project_campaign_path(client, project), remote: true,  data: { toggle: 'tooltip', title: t('.tooltips.create') }
               span.fa.fa-plus
+        = search_form_for(@filter_form,
+                          url: { action: :index },
+                          html: { id: 'filter', class: 'list-filter' },
+                          builder: SimpleForm::FormBuilder) do |f|
+          = f.input :name_cont,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    label: false,
+                    input_html: { class: 'has_clear periodically-observed' }                      
       .panel-body
-        .row
-          .col-sm-10
-            #filter_results
-              = render partial: 'list'
-          .col-sm-2
-              = render partial: 'filter'
+        #filter_results
+          = render partial: 'list'

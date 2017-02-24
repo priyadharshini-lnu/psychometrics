@@ -27,8 +27,12 @@ class Client < ApplicationRecord
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
 
   has_many :assign_clients, dependent: :destroy
-  has_many :assessments, through: :assign_clients
-  has_many :reports, through: :assign_clients
+  # has_many :assessments, through: :assign_clients
+  # has_many :reports, through: :assign_clients
+  has_many :clients_reports, dependent: :destroy
+  has_many :reports, through: :clients_reports
+  has_many :assessments, through: :reports
+
   has_many :norms
   has_many :dimensions
   has_many :projects, class_name: 'Client', foreign_key: :parent_id
@@ -63,13 +67,13 @@ class Client < ApplicationRecord
   # Type of client.
   # Retail - is client who bought some product
   enum type: [:partner, :corporate, :distributer, :associate, :tte, :retail, :other]
-  enum applicable_level: [:campaign, :sub_campaign]
+  enum applicable_level: [:project, :campaign, :sub_campaign], _suffix: :level
 
   mount_uploader :logo, ImageUploader
   mount_uploader :background, ImageUploader
 
   scope :enabled, -> { where.not(disabled: true) }
-  scope :tenancies, -> { where(parent_id: nil) }
+  scope :tenancies, -> { roots }
   scope :not_retails, -> { where.has { type.not_eq(:reatail) } }
 
   def clone
