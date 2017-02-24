@@ -1,4 +1,3 @@
-
 tr.nested-fields
   td
     = f.association :report_family,
@@ -10,9 +9,9 @@ tr.nested-fields
   td 
     = f.input :overuse_number, label: false
   td
-    = f.input :start_date, label: false
+    = f.input_field :start_date, as: :string, label: false,  class: 'datepicker'
   td
-    = f.input :end_date, label: false, end_year: Date.today.year + 30
-  td 
+    = f.input_field :end_date, as: :string, label: false,  class: 'datepicker'
+  td
     = link_to_remove_association f
       i.fa.fa-times 

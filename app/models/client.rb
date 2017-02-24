@@ -35,7 +35,7 @@ class Client < ApplicationRecord
 
   has_many :licenses, inverse_of: :client, dependent: :destroy
   accepts_nested_attributes_for :licenses, allow_destroy: true
-  has_many :license_usages, as: :licenseable
+  has_many :license_usages
 
   has_one :retail_user, class_name: 'User'
   belongs_to :parent, class_name: 'Client'
@@ -102,6 +102,10 @@ class Client < ApplicationRecord
 
   def sub_campaign?
     level == 3
+  end
+
+  def subtenancy?
+    campaign? || sub_campaign?
   end
 
   def client

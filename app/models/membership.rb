@@ -44,7 +44,6 @@ class Membership < ApplicationRecord
   has_many :assessments, through: :assigns
   has_many :communication_emails, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'
   has_many :orders, dependent: :destroy, inverse_of: :membership, class_name: 'Ecommerce::Order'
-  has_many :license_usages, as: :licenseable
 
   validates :client, uniqueness: { scope: :user }
 
@@ -118,17 +117,17 @@ class Membership < ApplicationRecord
     user.assign_attributes(first_name: first_name, last_name: last_name, create_by_invite: true) if user.new_record?
   end
 
-  # only (:yti(:eti)) combinations are allowed
-  def allows_yti_eti?(report)
-    # TODO: refactor
-    return false if !report.yti_eti? || reports.empty?
+  # return true for new or overuse (:yti(:eti)) combinations
+  def excess_yti_eti?(report)
+    return true if !report.yti_eti? || reports.empty?
     hash = reports.yti_eti.group(:type).count.transform_keys { |k| Report.types.key(k) }
     hash.slice!(Report::ETI_TYPE, Report::YTI_TYPE)
-    count = hash[report.type]
-    return true if hash.empty? || (hash.size == 1 && count.nil?)
+    report_type_count = hash[report.type]
+    return true if hash.empty?
+    return false if report_type_count.nil?
     count_arr = hash.values
     count_arr.delete count
-    return true if count_arr.max&.> count
+    return true if count_arr.empty? || count_arr.max < report_type_count
     false
   end
 

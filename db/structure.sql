@@ -830,8 +830,8 @@ ALTER SEQUENCE libraries_id_seq OWNED BY libraries.id;
 CREATE TABLE license_usages (
     id integer NOT NULL,
     license_id integer,
-    licenseable_type character varying,
-    licenseable_id integer
+    assigns_report_id integer NOT NULL,
+    client_id integer NOT NULL
 );
 
 
@@ -2434,17 +2434,24 @@ CREATE INDEX index_libraries_on_rgt ON libraries USING btree (rgt);
 
 
 --
+-- Name: index_license_usages_on_assigns_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_assigns_report_id ON license_usages USING btree (assigns_report_id);
+
+
+--
+-- Name: index_license_usages_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_client_id ON license_usages USING btree (client_id);
+
+
+--
 -- Name: index_license_usages_on_license_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_license_usages_on_license_id ON license_usages USING btree (license_id);
-
-
---
--- Name: index_license_usages_on_licenseable_type_and_licenseable_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_license_usages_on_licenseable_type_and_licenseable_id ON license_usages USING btree (licenseable_type, licenseable_id);
 
 
 --

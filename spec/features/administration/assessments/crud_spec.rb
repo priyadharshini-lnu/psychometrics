@@ -5,11 +5,7 @@ feature 'CRUD Assessment' do
   before { logged_in_as :superadmin }
 
   scenario 'Create Assessment' do
-    visit '/administration/assessments'
-    find('.panel-heading .create').click
-    fill_in 'resource_name', with: 'My assessment'
-    select 'Agile', from: 'resource_dimension_id', visible: false
-    click_on 'Create'
+    create_assessment(name: 'My assessment', dimension_name: 'Agile')
     expect(page).to have_content t('administration.assessments.create.successfully', name: 'My assessment')
     expect(page).to have_css('#assessments_list td a', text: 'My assessment')
   end

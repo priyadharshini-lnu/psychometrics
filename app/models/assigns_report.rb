@@ -10,7 +10,6 @@
 #
 
 class AssignsReport < ApplicationRecord
-  # TODO: wait for license requirements
   LICENSES = {
       Assessment::PSYCHOMETRIC => Licenses::AssignReportPsychometrics,
       Assessment::ORGANISATIONAL => Licenses::AssignReportOrgSurvey,
@@ -18,11 +17,9 @@ class AssignsReport < ApplicationRecord
   }.freeze
   belongs_to :assign
   belongs_to :report
+  has_many :license_usages
 
-  # TODO: get feedback and open
-  # has_many :license_usages, as: :licenseable
-
-  # before_create :use_license
+  before_create :use_license
 
   private
 

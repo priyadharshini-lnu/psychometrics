@@ -12,6 +12,11 @@
 #
 
 class Report < ApplicationRecord
+  TYPES = [
+    COMMON_TYPE = 'common'.freeze,
+    YTI_TYPE = 'yti'.freeze,
+    ETI_TYPE = 'eti'.freeze
+  ].freeze
   include Copyable
   self.inheritance_column = :_type_disabled
   belongs_to :assessment
@@ -31,7 +36,7 @@ class Report < ApplicationRecord
   validates :owner, presence: true, allow_nil: true
   validates :report_family, presence: true, allow_nil: false
 
-  enum type: [:common, :yti, :eti]
+  enum type: TYPES
 
   # Copy report with pages => modules
   def clone
@@ -73,4 +78,10 @@ class Report < ApplicationRecord
   scope :available_to_view, lambda {
     joins(:assessment).where.has { assessment.access_reports_at.eq(nil) | (assessment.access_reports_at <= Time.now) }
   }
+
+  scope :yti_eti, -> { where(type: [YTI_TYPE, ETI_TYPE]) }
+
+  def yti_eti?
+    [Report::YTI_TYPE, Report::ETI_TYPE].include? type
+  end
 end

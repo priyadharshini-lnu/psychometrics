@@ -1,4 +1,12 @@
 module Assessments
+  def create_assessment(opts = {})
+    visit '/administration/assessments'
+    find('.panel-heading .create').click
+    fill_in 'resource_name', with: opts[:name]
+    select opts[:dimension_name], from: 'resource_dimension_id', visible: false
+    click_on 'Create'
+  end
+
   def toggle_assessment(assessment, enable = true)
     visit '/administration/assessments'
     find("#assessment_#{assessment.id} .toggle-status").click

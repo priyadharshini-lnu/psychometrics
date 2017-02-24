@@ -19,10 +19,10 @@ en:
           used_license_overuse_number: 'Over Use Allowance'
           start_date: Start Date
           end_date: End Date
+          usage_percent: '% of Usage'
           used_out_of: '%{used_number} out of %{number}'
-          unlimited: Unlimited
+          report_family: Report Family
           date_expire: 'Date Of Expiry: %{date}'
-          final_date_expire: 'Final Date: %{date}'
           license_has_expired: License package has expired
         mailer:
           license_expire:

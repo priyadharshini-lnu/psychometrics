@@ -23,6 +23,10 @@ $(function() {
     window.formElements.init();
   });
 
+  $(document).on('cocoon:after-insert', function (e, insertedItem) {
+    window.formElements.init();
+  });
+
   // Disabled button after submit
   // $(document).on('click', '[type="submit"]', function () {
   //   $(this).button('loading');

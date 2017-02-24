@@ -18,4 +18,12 @@ class LicenseDecorator < BaseDecorator
   def end_date
     object.end_date.strftime('%d %b %Y')
   end
+
+  def usage_percent
+    result = 0
+    if object.used_number != result
+      result = (object.used_number * 100 / object.number).round(1)
+    end
+    result.to_s + ' %'
+  end
 end
