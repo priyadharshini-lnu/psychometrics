@@ -9,14 +9,14 @@
       = f.input :last_name
       - unless client.tenancy?
         = f.input :role, as: :select, label: t('simple_form.labels.membership.role'),
-                  collection: Membership::MEMBERSHIP_ROLES,
-                  class: 'form-control select mll',
-                  include_blank: false
+                collection: client.tenancy? ? Membership::MEMBERSHIP_ROLES : [Membership::MANAGER_ROLE, Membership::MEMBER_ROLE],
+                class: 'form-control select mll',
+                include_blank: false
       = f.input :parent_id,
                 collection: client.memberships.join_user,
                 label_method: lambda { |u| u.decorate.display_name },
                 input_html: {  data: { live_search: true } }
-      - if current_user.is?(:superadmin)
+      - if current_user.is?(:superadmin) && client.tenancy?
         = f.simple_fields_for :user, User.new do |u|
           = render partial: 'grants', locals: { u: u }
   .modal-footer

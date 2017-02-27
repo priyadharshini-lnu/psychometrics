@@ -29,8 +29,9 @@
             = render partial: 'edit_hris_data', locals: { f: f }
           - if current_user.is?(:superadmin) && @resource.user.is?(:admin)
             #tab-grants.tab-pane
-              = f.simple_fields_for :user do |u|
-                = render partial: 'grants', locals: { u: u }
+              .col-md-5
+                = f.simple_fields_for :user do |u|
+                  = render partial: 'grants', locals: { u: u }
         .panel-footer
           .btn-group.pull-left
             = link_to(t('administration.back'), { action: :index }, class: 'btn btn-info')

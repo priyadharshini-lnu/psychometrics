@@ -8,8 +8,8 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
   td = resource.decorate.role_name
   - if client.tenancy?
     td = resource.decorate.clients_names
-  td = resource.decorate.created_at
-  td = resource.decorate.updated_at
+  td.text-center = resource.decorate.created_at
+  td.text-center = resource.decorate.updated_at
   td.actions-cell
     - if policy(resource).change_password?
       = link_to({ action: :reset_password, id: resource }, method: :get, class: 'btn btn-default btn-rounded btn-sm', data: { confirm: resource.decorate.change_password_confirmation, toggle: 'tooltip', title: t('.tooltips.change_password') })
