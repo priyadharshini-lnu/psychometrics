@@ -1,5 +1,0 @@
-$('#<%= dom_id(@resource.report) %>').hide('slow')
-// Notify message
-noty({text: '<%= t("administration.clients.reports.destroy.successfully", name: @resource.report.decorate.display_name) %>', type: 'success'});
-
-$(document).trigger('close_sidebar');

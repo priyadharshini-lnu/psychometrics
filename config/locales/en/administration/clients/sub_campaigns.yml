@@ -1,0 +1,36 @@
+en:
+  administration:
+    clients:
+      projects:
+        campaigns:
+          sub_campaigns:
+            index:
+              title: Sub Campaigns
+              tooltips:
+                create: Create
+            header:
+              actions: Actions
+            resource:
+              tooltips:
+                copy: Copy Sub Campaign
+                edit: Edit Sub Campaign
+                delete: Delete Sub Campaign
+            sidebar:
+              title: Sub-Campaign's options
+              disable: Disable
+              enable: Enable
+              edit: Edit Sub-Campaign
+              destroy: Destroy Sub-Campaign
+              new: New Sub-Campaign
+              copy: Copy Sub-Campaign
+            destroy:
+              successfully: 'Sub-Campaign %{name} was successfully destroyed.'
+            copy:
+              successfully: 'Sub-Campaign %{name} was successfully copied.'
+              error: 'Sub-Campaign %{name} was not copied.'
+            create:
+              successfully: 'Sub-Campaign %{name} was successfully created.'
+            update:
+              successfully: 'Sub-Campaign %{name} was successfully updated.'
+            toggle_status:
+              successfully: 'Sub-Campaign %{name} was successfully updated.'

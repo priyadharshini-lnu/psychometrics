@@ -25,7 +25,15 @@ module Administration
             super
           end
 
+          def i18n
+            'clients.projects.campaigns.sub_campaigns'
+          end
+
           private
+
+          def resource_params
+            params.require(:resource).permit(:name)
+          end
 
           def init_breadcrumbs
             add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]

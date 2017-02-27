@@ -50,7 +50,7 @@ module Administration
     def destroy
       @resource.destroy
       respond_to do |format|
-        format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name, type: @resource.get_type)) }
+        format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
         format.js
       end
     end

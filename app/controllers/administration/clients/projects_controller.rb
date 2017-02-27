@@ -23,6 +23,10 @@ module Administration
         super
       end
 
+      def i18n
+        'clients.projects'
+      end
+
       private
 
       def init_breadcrumbs

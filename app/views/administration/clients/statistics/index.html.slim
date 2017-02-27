@@ -2,13 +2,13 @@
   .col-md-12
     .page-title
       h2.mrl = client.decorate.display_name
-      = render partial: 'administration/clients/campaign_top_nav'
+      = render partial: 'administration/clients/top_nav'
     .panel.panel-default
       .panel-heading
         h3.panel-title = t('.title')
         .dropdown.pull-right
           button#dropdownMenu1.btn.btn-default.dropdown-toggle aria-expanded="true" aria-haspopup="true" data-toggle="dropdown" type="button" 
-            = t('.assessment_type')
+            => t('.assessment_type')
             span.caret
           ul.dropdown-menu aria-labelledby="dropdownMenu1" 
             = active_link_to t('.all_assessments') , { }, wrap_tag: :li, active: :exact

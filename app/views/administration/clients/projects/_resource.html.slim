@@ -1,17 +1,20 @@
 tr data-sidebar=url_for(sidebar_administration_client_project_path(client, resource)) id=dom_id(resource)
-  td.text-center
-    = link_to([:toggle_status, :administration, resource], remote: true, method: :patch, data: { confirm: resource.decorate.status_confirmation })
-      = resource.decorate.status
-  td = link_to resource.name, administration_client_project_campaigns_path(client, resource)
+  td 
+    - if resource.project_level?
+      = link_to resource.decorate.display_name, administration_client_users_path(resource)  
+    - else
+      = link_to resource.decorate.display_name, administration_client_project_campaigns_path(client, resource)   
   td
     = resource.decorate.project_admins
     - if policy(User).create?
       br
       = link_to new_administration_client_user_path(project_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
         span.fa.fa-plus
-  td.text-center = link_to resource.licenses_count, administration_client_licenses_path(resource), remote: true
-  td.text-center = resource.decorate.created_at
-  td.text-center = resource.decorate.updated_at
+  td = resource.number
+  td 
+  td
+    - if resource.project_level?
+      = resource.users_count
   td.actions-cell
     - if policy(resource).actions?
       = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })

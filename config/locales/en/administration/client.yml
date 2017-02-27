@@ -5,6 +5,9 @@ en:
         title: Client Tenancies
         tooltips:
           create: Create
+      list:
+        client_admin: Client Admin
+        project_manager: Project Manager
       new:
         header: 'New client'
       edit:
@@ -12,35 +15,16 @@ en:
       license:
         header: '%{name} - Edit license'
       destroy:
-        successfully: '%{type} %{name} was successfully destroyed.'
+        successfully: 'Client Tenancy %{name} was successfully destroyed.'
       copy:
-        successfully: '%{type} %{name} was successfully copied.'
-        error: '%{type} %{name} was not copied.'
+        successfully: 'Client Tenancy %{name} was successfully copied.'
+        error: 'Client Tenancy %{name} was not copied.'
       create:
-        successfully: '%{type} %{name} was successfully created.'
+        successfully: 'Client Tenancy %{name} was successfully created.'
       update:
-        successfully: '%{type} %{name} was successfully updated.'
+        successfully: 'Client Tenancy %{name} was successfully updated.'
       toggle_status:
-        successfully: '%{type} %{name} was successfully updated.'
-      projects:
-        campaigns:
-          sidebar:
-            title: Campaign's options
-            disable: Disable
-            enable: Enable
-            edit: Edit Campaign
-            destroy: Destroy Campaign
-            new: New Campaign
-            copy: Copy Campaign
-        sidebar:
-          title: Project's options
-          disable: Disable
-          enable: Enable
-          edit: Edit Project
-          destroy: Destroy Project
-          new: New Project
-          copy: Copy Project
-          design: Edit Design
+        successfully: 'Client Tenancy %{name} was successfully updated.'
       sidebar:
         title: Client's options
         disable: Disable

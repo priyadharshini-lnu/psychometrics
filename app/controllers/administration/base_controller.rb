@@ -1,4 +1,6 @@
 class Administration::BaseController < ActionController::Base
+  helper_method :i18n
+
   # Authorisation flow
   #
   include Pundit
@@ -16,13 +18,15 @@ class Administration::BaseController < ActionController::Base
   append_after_action :verify_policy_scoped, only: :index
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
+  protect_from_forgery with: :exception
+  add_flash_types :notice, :error, :success
 
   # Custom layout for administration panel
   layout 'administration'
 
-  protect_from_forgery with: :exception
-
-  add_flash_types :notice, :error, :success
+  def i18n
+    nil
+  end
 
   private
 

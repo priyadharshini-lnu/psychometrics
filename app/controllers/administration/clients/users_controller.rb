@@ -112,7 +112,7 @@ module Administration
         add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
         add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
         add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-        add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project)
+        add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
         add_breadcrumb client.decorate.display_name, { action: :index }
       end
 

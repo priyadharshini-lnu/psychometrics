@@ -9,10 +9,11 @@
           | .
           = Settings.domain
       = f.input :number
-      - if f.object.new_record?
-        = f.input :applicable_level, as: :select, 
-                                     collection: Client.applicable_levels.map { |name, value| [t(".applicable_levels.#{name}"), name] },
-                                     include_blank: false                                  
+      = f.input :applicable_level, 
+                as: :select, 
+                collection: Client.applicable_levels.map { |name, value| [t("activerecord.attributes.client.applicable_levels.#{name}"), name] },
+                include_blank: false,
+                disabled: !f.object.new_record?                                
       - if f.object.project_level?
         = f.association :reports, collection: Report.with_report_families(client.report_family_ids)        
       .clearfix

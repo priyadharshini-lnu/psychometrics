@@ -7,8 +7,8 @@ module Administration
       skip_after_action :verify_policy_scoped, only: [:index]
 
       def index
-        @filter_form = policy_scope(@resource_class).includes(:dimension).search(params[:q])
-        @resources = @filter_form.result.with_client(client.id).page(params[:page])
+        @filter_form = client.assessments.includes(:dimension).search(params[:q])
+        @resources = @filter_form.result.page(params[:page])
 
         respond_to do |format|
           format.html
@@ -17,7 +17,7 @@ module Administration
       end
 
       def export_results
-        @assessment = Assessment.with_client(client.id).find(params[:assessment_id])
+        @assessment = client.assessments.find(params[:assessment_id])
         results = ::Exports::Assessments::AssessmentResultsExport.new(@assessment.id, client.id)
         respond_to do |format|
           format.xlsx { send_data results.render.to_stream.read, filename: 'assessment_raw_results.xlsx' }
@@ -25,12 +25,16 @@ module Administration
       end
 
       def destroy
-        @resource = AssessmentClient.find_by(client_id: client.id, assessment_id: params[:id])
-        @resource.destroy
+        @resource = client.assessments.find(params[:id])
+        client.clients_reports.where(report_id: @resource.report_ids).destroy_all
         respond_to do |format|
-          format.html { redirect_to(:back, success: t('.successfully', name: @resource.assessment.decorate.display_name)) }
+          format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
           format.js
         end
+      end
+
+      def i18n
+        'clients.assessments'
       end
 
       private
@@ -38,8 +42,9 @@ module Administration
       def init_breadcrumbs
         add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
         add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
-        add_breadcrumb client.parent.decorate.display_name, [:administration, client.parent] if client.parent.present?
-        add_breadcrumb client.decorate.display_name, '#'
+        add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
+        add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
+        add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
         add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), { action: :index }
       end
 

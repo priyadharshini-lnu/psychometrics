@@ -1,13 +1,13 @@
 tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resource)
-  td.text-center
-    - if policy(resource).toggle_status?
-      = link_to [:toggle_status, :administration, resource], remote: true, method: :patch, data: { confirm: resource.decorate.status_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
-        = resource.decorate.status
   td = link_to resource.name, administration_client_projects_path(resource)
+  td = resource.decorate.type
+  td = resource.number
+  td = resource.country
   td = resource.decorate.project_admins
-  td.text-center = link_to resource.licenses_count, administration_client_licenses_path(resource), remote: true
-  td.text-center = resource.decorate.created_at
-  td.text-center = resource.decorate.updated_at
+  td = resource.year
+  td = resource.decorate.project_admins
+  td = resource.account_manager&.decorate&.display_name
+  td = resource.project_manager&.decorate&.display_name
   td.actions-cell
     - if policy(resource).actions?
       = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }

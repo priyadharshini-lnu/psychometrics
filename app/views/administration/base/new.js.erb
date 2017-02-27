@@ -1,6 +1,6 @@
 $(function () {
   if ($('#modal-container').find('.modal').length == 0) {
-    $('#modal-container').html('<%= j render(partial: 'modal', locals: { header: local_assigns[:header] || t("administration.#{@resource_class.model_name.plural}.new.header") }) %>');
+    $('#modal-container').html('<%= j render(partial: 'modal', locals: { header: local_assigns[:header] || t("administration.#{i18n || @resource_class.model_name.plural}.new.header") }) %>');
     $('#modal-container').find(".modal").modal('show');
     $('#modal-container').find(".modal").on('hidden.bs.modal', function (e) {
       $(this).remove();

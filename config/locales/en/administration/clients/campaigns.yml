@@ -6,11 +6,40 @@ en:
           index:
             title: Campaigns
             tooltips:
-              create: Create
-          header:
-            actions: Actions
+              create: Create New Campaign
+            create: Create New Campaign
+          list:
+            header:
+              campaigns: Campaigns
+              sub_campaign: Sub-Campaigns
+              actions: Actions
+              name: Name
+              tests_allocated: Tests Allocated
+              users: Users
+              actual_usage: Actual Usage
           resource:
+            sub_campaign:
+              create: Create New Sub-Campaign
             tooltips:
               copy: Copy Campaign
               edit: Edit Campaign
               delete: Delete Campaign
+          sidebar:
+            title: Campaign's options
+            disable: Disable
+            enable: Enable
+            edit: Edit Campaign
+            destroy: Destroy Campaign
+            new: New Campaign
+            copy: Copy Campaign
+          destroy:
+            successfully: 'Campaign %{name} was successfully destroyed.'
+          copy:
+            successfully: 'Campaign %{name} was successfully copied.'
+            error: 'Campaign %{name} was not copied.'
+          create:
+            successfully: 'Campaign %{name} was successfully created.'
+          update:
+            successfully: 'Campaign %{name} was successfully updated.'
+          toggle_status:
+            successfully: 'Campaign %{name} was successfully updated.'
