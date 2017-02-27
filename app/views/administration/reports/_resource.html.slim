@@ -3,8 +3,9 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
     td.text-center
       = link_to({ action: :toggle_status, id: resource }, remote: true, method: :patch, class: 'toggle-status', data: { confirm: resource.decorate.toggle_status_confirmation })
         = resource.decorate.status
+  td = resource.id
   td
-    - if policy(resource).show? 
+    - if policy(resource).show?
       = link_to resource.name, administration_report_path(resource)
     - else
       = resource.name      

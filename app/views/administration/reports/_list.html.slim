@@ -4,6 +4,7 @@
       tr
         - if policy(@resource_class).toggle_status?
           th.text-center width='1%' = link_to_sort @resource_class, :active, @filter_form
+        th.text-center width='1%' = link_to_sort @resource_class, :id, @filter_form
         th = link_to_sort @resource_class, :name, @filter_form
         th = @resource_class.human_attribute_name(:assessment)
         th = link_to_sort @resource_class, :type, @filter_form

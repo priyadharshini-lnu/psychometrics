@@ -4,8 +4,9 @@
       tr
         th.text-center width="100" = link_to_sort @resource_class, :active, @filter_form
         th = link_to_sort @resource_class, :name, @filter_form
-        th = link_to_sort @resource_class, :created_at, @filter_form
-        th width='300' = t('administration.actions')
+        th.date = link_to_sort @resource_class, :created_at, @filter_form
+        th.date = link_to_sort @resource_class, :updated_at, @filter_form
+        th width='1%' = t('administration.actions')
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

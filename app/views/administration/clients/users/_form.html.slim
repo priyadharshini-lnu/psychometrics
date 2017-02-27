@@ -9,7 +9,7 @@
       = f.input :last_name
       - unless client.tenancy?
         = f.input :role, as: :select, label: t('simple_form.labels.membership.role'),
-                collection: client.tenancy? ? Membership::MEMBERSHIP_ROLES : [Membership::MANAGER_ROLE, Membership::MEMBER_ROLE],
+                collection: [Membership::MANAGER_ROLE, Membership::MEMBER_ROLE],
                 class: 'form-control select mll',
                 include_blank: false
       = f.input :parent_id,
