@@ -1,6 +1,6 @@
 class ClientDecorator < BaseDecorator
   def type
-     I18n.t("activerecord.attributes.client.types.#{object.type}")
+    I18n.t("activerecord.attributes.client.types.#{object.type}")
   end
 
   def status_confirmation
