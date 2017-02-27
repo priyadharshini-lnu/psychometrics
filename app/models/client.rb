@@ -56,7 +56,7 @@ class Client < ApplicationRecord
 
   before_validation :ensure_subdomain, if: :retail?
 
-  acts_as_nested_set
+  acts_as_nested_set counter_cache: :children_count
 
   store :design, accessors: [:background_color]
 

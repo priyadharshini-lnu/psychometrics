@@ -1,4 +1,8 @@
 class ClientDecorator < BaseDecorator
+  def type
+     I18n.t("activerecord.attributes.client.types.#{object.type}")
+  end
+
   def status_confirmation
     status = object.disabled? ? 'enable' : 'disable'
     {
@@ -30,7 +34,7 @@ class ClientDecorator < BaseDecorator
   end
 
   def display_name_with_parent
-    parent_id ? "#{object.parent.decorate.display_name} / #{display_name}" : display_name
+    object.child? ? object.self_and_ancestors.map { |anc| anc.decorate.display_name } : display_name
   end
 
   def project_admins

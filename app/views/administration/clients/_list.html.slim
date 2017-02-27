@@ -2,12 +2,15 @@
   table.table.table-bordered.table-actions.table-hover.selectable.list id="#{@resource_class.model_name.plural}_list"
     thead
       tr
-        th.text-center width='1%' = link_to_sort @resource_class, :active, @filter_form
         th = link_to_sort @resource_class, :name, @filter_form
-        th.text-center = t '.admin'
-        th.text-center = link_to_sort @resource_class, :licenses_used, @filter_form
-        th.date = link_to_sort @resource_class, :created_at, @filter_form
-        th.date = link_to_sort @resource_class, :updated_at, @filter_form
+        th = link_to_sort @resource_class, :type, @filter_form
+        th = link_to_sort @resource_class, :number, @filter_form
+        th = link_to_sort @resource_class, :location, @filter_form
+        th = t('.client_admin')
+        th = link_to_sort @resource_class, :year, @filter_form
+        th = t('.project_manager')
+        th = link_to_sort @resource_class, :account_manager_id, @filter_form
+        th = link_to_sort @resource_class, :project_manager_id, @filter_form
         th.text-center width='1%' = t 'administration.actions'
     tbody
       - if @resources.present?

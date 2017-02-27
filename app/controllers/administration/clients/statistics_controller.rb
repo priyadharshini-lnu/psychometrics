@@ -1,9 +1,8 @@
 module Administration
   module Clients
     class StatisticsController < Administration::BaseController
-      before_action :set_client, :set_resource_class
-      append_before_action :pundit_authorize
-      after_action :init_breadcrumbs
+      before_action :set_resource_class
+      append_before_action :pundit_authorize, :init_breadcrumbs
 
       # GET /administration/resources
       def index
@@ -29,8 +28,10 @@ module Administration
       def init_breadcrumbs
         add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
         add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
-        add_breadcrumb client.decorate.display_name, '#'
-        add_breadcrumb I18n.t('administration.breadcrumbs.reports'), { action: :index }
+        add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
+        add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
+        add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
+        add_breadcrumb I18n.t('administration.breadcrumbs.statistics'), { action: :index }
       end
 
       # Set model

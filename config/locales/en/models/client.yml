@@ -18,11 +18,23 @@ en:
         location: Location
         year: Client Year
         applicable_level: Applicable Level
-        account_manager: Account Manager
-        project_manager: Project Manager
+        account_manager: TTE Account Manager
+        project_manager: TTE Project Manager
+        account_manager_id: TTE Account Manager
+        project_manager_id: TTE Project Manager
+        memberships_count: Users
         applicable_levels:
+          project: 'Project'
           campaign: 'Campaign'
           sub_campaign: 'Sub-Campaign'
+        types:
+          partner: Partner
+          corporate: Corporate
+          distributer: Distributer
+          associate: Associate
+          tte: TTE
+          retail: Retail
+          other: Other
   simple_form:
     placeholders:
       client:

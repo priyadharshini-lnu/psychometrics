@@ -5,15 +5,14 @@ module Administration
         prepend_before_action :set_resource_class
         before_action :set_membership
         before_action :set_resource, only: [:destroy, :destroy_report]
-        before_action :init_breadcrumbs
-        append_before_action :pundit_authorize
+        append_before_action :pundit_authorize, :init_breadcrumbs
 
         def index
           @filter_form = policy_scope(::Assign).where(id: @membership.assign_ids).includes(:assessment).search(params[:q])
           @resources = @filter_form.result.page(params[:page])
           @reports = policy_scope(Report).
-              ransack(client_reports_client_id_eq: @client.id).result.
-              group_by(&:assessment_id)
+                     ransack(client_reports_client_id_eq: @client.id).result.
+                     group_by(&:assessment_id)
           respond_to do |format|
             format.html
             format.js { render :index, formats: [:js] }
@@ -66,10 +65,11 @@ module Administration
 
         def init_breadcrumbs
           add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-          add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, @client, :users]
-          add_breadcrumb @membership.client.decorate.display_name, [:administration, @client, :users]
-          add_breadcrumb @membership.user.decorate.display_name, '#'
-          add_breadcrumb I18n.t('administration.breadcrumbs.reports'), { action: :index }
+          add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
+          add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
+          add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
+          add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
+          add_breadcrumb I18n.t('administration.clients.users.assigns.index.title', name: @membership.decorate.display_name), { action: :index }
         end
 
         def set_membership

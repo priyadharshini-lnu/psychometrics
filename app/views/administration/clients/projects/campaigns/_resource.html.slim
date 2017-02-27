@@ -1,14 +1,21 @@
 tr data-sidebar=url_for(sidebar_administration_client_project_campaign_path(client, project, resource)) id=dom_id(resource)
-  td.text-center
-    = link_to([:toggle_status, :administration, resource], remote: true, method: :patch, data: { confirm: resource.decorate.status_confirmation })
-      = resource.decorate.status
-  td = link_to resource.name, administration_client_users_path(resource)
-  td = resource.decorate.created_at
-  td
-    - if policy(resource).actions?
-      = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
-        span.fa.fa-pencil
-      = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
-        span.fa.fa-copy
-      = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
-        span.fa.fa-times
+  - if resource.campaign_level?
+    td = link_to resource.name, administration_client_users_path(resource)
+    td = resource.reports.map(&:name).join(', ')
+    td = resource.users_count
+    td
+    td colspan='4'
+  - else
+    td colspan='4' rowspan=(resource.children_count + 2) = resource.name  
+- if resource.sub_campaign_level?
+  - resource.children.each do |sub_campaign|
+    tr data-sidebar=url_for(sidebar_administration_client_project_campaign_sub_campaign_path(client, project, resource, sub_campaign)) 
+      td = link_to sub_campaign.name, administration_client_users_path(sub_campaign)
+      td = sub_campaign.reports.map(&:name).join(', ')
+      td = sub_campaign.users_count
+      td
+  tr
+    td.text-center colspan='4' 
+      = link_to t('.sub_campaign.create'), 
+                new_administration_client_project_campaign_sub_campaign_path(client, project, resource),
+                remote: true        

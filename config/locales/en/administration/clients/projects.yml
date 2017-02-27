@@ -21,3 +21,23 @@ en:
             edit: Edit Project
             delete: Delete Project
             create_admin: Create Admin
+        sidebar:
+          title: Project's options
+          disable: Disable
+          enable: Enable
+          edit: Edit Project
+          destroy: Destroy Project
+          new: New Project
+          copy: Copy Project
+          design: Edit Design
+        destroy:
+          successfully: 'Project %{name} was successfully destroyed.'
+        copy:
+          successfully: 'Project %{name} was successfully copied.'
+          error: 'Project %{name} was not copied.'
+        create:
+          successfully: 'Project %{name} was successfully created.'
+        update:
+          successfully: 'Project %{name} was successfully updated.'
+        toggle_status:
+          successfully: 'Project %{name} was successfully updated.'

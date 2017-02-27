@@ -8,7 +8,7 @@ en:
           new:
             header: Assign Assessment and Reports
           index:
-            title: 'Assessments and Reporting'
+            title: '%{name} - Assessments and Reporting'
             add: 'Assign New Assessment and Reports'
           header:
             uniq_id: Uniq ID

@@ -4,7 +4,7 @@ module Administration
       append_before_action :init_breadcrumbs
 
       def index
-        @filter_form = policy_scope(@resource_class).includes(:assessment).search(params[:q])
+        @filter_form = client.reports.includes(:assessment).search(params[:q])
         @resources = @filter_form.result.page(params[:page])
 
         respond_to do |format|
@@ -22,13 +22,18 @@ module Administration
         end
       end
 
+      def i18n
+        'clients.reports'
+      end
+
       private
 
       def init_breadcrumbs
         add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
         add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
-        add_breadcrumb client.parent.decorate.display_name, [:administration, client.parent] if client.parent.present?
-        add_breadcrumb client.decorate.display_name, '#'
+        add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
+        add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
+        add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
         add_breadcrumb I18n.t('administration.breadcrumbs.reports'), { action: :index }
       end
     end

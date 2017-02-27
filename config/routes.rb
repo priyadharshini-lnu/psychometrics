@@ -57,14 +57,14 @@ Rails.application.routes.draw do
         end
         resources :reports, only: [:index, :destroy]
         resources :statistics, only: [:index]
-        
+
         resources :projects do
           member do
             get :copy
             get :sidebar
             patch :toggle_status
           end
-          resource :designs, only: [:edit, :update]
+          # resource :designs, only: [:edit, :update]
           scope module: :projects do
             resources :campaigns do
               member do
