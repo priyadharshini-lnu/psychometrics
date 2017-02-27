@@ -2,7 +2,7 @@ module Administration
   module Clients
     class ProjectsController < Administration::ClientsController
       def index
-        @filter_form = policy_scope(@resource_class).search(params[:q])
+        @filter_form = policy_scope(@resource_class).includes(:admins).search(params[:q])
         @filter_form.parent_id_in = client.id
         @resources = @filter_form.result.page(params[:page])
 

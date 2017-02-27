@@ -6,8 +6,8 @@
         th = link_to_sort @resource_class, :name, @filter_form
         th = link_to_sort @resource_class, :dimension_id, @filter_form
         th= t('administration.assessments.index.owner')
-        th.text-center= link_to_sort @resource_class, :created_at, @filter_form
-        th.text-center= link_to_sort @resource_class, :updated_at, @filter_form
+        th.date= link_to_sort @resource_class, :created_at, @filter_form
+        th.date= link_to_sort @resource_class, :updated_at, @filter_form
         th.text-center width='1%' = t 'administration.actions'
     tbody
       - if @resources.present?

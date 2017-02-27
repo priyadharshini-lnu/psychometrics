@@ -2,8 +2,8 @@ class ClientDecorator < BaseDecorator
   def status_confirmation
     status = object.disabled? ? 'enable' : 'disable'
     {
-      title: I18n.t("administration.clients.resource.confirmations.#{status}.title", name: display_name),
-      body: I18n.t("administration.clients.resource.confirmations.#{status}.body")
+        title: I18n.t("administration.clients.resource.confirmations.#{status}.title", name: display_name),
+        body: I18n.t("administration.clients.resource.confirmations.#{status}.body")
     }.to_json
   end
 
@@ -31,5 +31,19 @@ class ClientDecorator < BaseDecorator
 
   def display_name_with_parent
     parent_id ? "#{object.parent.decorate.display_name} / #{display_name}" : display_name
+  end
+
+  def project_admins
+    if object.tenancy?
+      object.projects.map do |project|
+        project.admin_memberships.map do |membership|
+          h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(client, membership)
+        end
+      end.join('<br>').html_safe
+    else
+      object.admin_memberships.map do |membership|
+        h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(client, membership)
+      end.join('<br>').html_safe
+    end
   end
 end

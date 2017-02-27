@@ -1,5 +1,6 @@
 module Administration
   class MembershipPolicy < Administration::UserPolicy
+    CREATE_PARAMETERS = [:first_name, :last_name, :email, :role, :parent_id].freeze
     RECORD_PARAMETERS = [:parent_id, :role, hris_data: [:key, :value]].freeze
     USER_PARAMETERS = [:id, :first_name, :last_name, :email, :disabled, :role].freeze
     GRANT_PARAMETERS = [grants: [
@@ -16,8 +17,15 @@ module Administration
       assigns: [:view]
     ]].freeze
 
+    def permitted_attributes_for_create
+      if @user.is?(:superadmin)
+        CREATE_PARAMETERS + [user_attributes: [GRANT_PARAMETERS]]
+      else
+        CREATE_PARAMETERS
+      end
+    end
+
     def permitted_attributes_for_update
-      # SuperAdmin can assign grants only to Admin user
       if @user.is?(:superadmin) && @record.user.is?(:admin)
         RECORD_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
       else

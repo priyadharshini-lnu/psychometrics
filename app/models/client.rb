@@ -22,7 +22,8 @@ class Client < ApplicationRecord
 
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
-  has_many :admins, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, through: :memberships, source: :user, class_name: 'User'
+  has_many :admins, through: :admin_memberships, source: :user, class_name: 'User'
+  has_many :admin_memberships, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
   has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) }, through: :memberships, source: :user
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
 
@@ -74,7 +75,7 @@ class Client < ApplicationRecord
 
   scope :enabled, -> { where.not(disabled: true) }
   scope :tenancies, -> { roots }
-  scope :not_retails, -> { where.has { type.not_eq(:reatail) } }
+  scope :not_retails, -> { where.has { type.not_eq(:retail) } }
 
   def clone
     @cloned_item = deep_clone do |_original, kopy|

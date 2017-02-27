@@ -9,8 +9,8 @@
         th = link_to_sort @resource_class, :type, @filter_form
         th = t('administration.reports.index.owner')
         th = t('administration.reports.index.report_family')
-        th = link_to_sort @resource_class, :created_at, @filter_form
-        th = link_to_sort @resource_class, :updated_at, @filter_form
+        th.date = link_to_sort @resource_class, :created_at, @filter_form
+        th.date = link_to_sort @resource_class, :updated_at, @filter_form
         - if policy(@resource_class).actions?
           th width='1%' = t('administration.actions')
     tbody

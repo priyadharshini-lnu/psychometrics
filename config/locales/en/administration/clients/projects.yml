@@ -7,6 +7,8 @@ en:
             project: 'Project End Level'
             campaign: 'Campaign End Level'
             sub_campaign: 'Sub-Campaign End Level'
+        list:
+          admin: Client Admin
         index:
           title: 'Projects'
           tooltips:
@@ -18,3 +20,4 @@ en:
             copy: Copy Project
             edit: Edit Project
             delete: Delete Project
+            create_admin: Create Admin

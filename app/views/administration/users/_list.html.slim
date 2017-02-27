@@ -8,8 +8,8 @@
         th = link_to_sort @resource_class, :email, @filter_form
         th = User.human_attribute_name :memberships
         th = link_to_sort @resource_class, :role, @filter_form
-        th = link_to_sort @resource_class, :created_at, @filter_form
-        th = link_to_sort @resource_class, :updated_at, @filter_form
+        th.date = link_to_sort @resource_class, :created_at, @filter_form
+        th.date = link_to_sort @resource_class, :updated_at, @filter_form
         th width='1%' = t('administration.actions')
     tbody
       - if @resources.present?
