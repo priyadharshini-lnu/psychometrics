@@ -4,7 +4,7 @@ module Administration
       prepend_before_action :set_resource_class
       before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof, :reset_password]
       before_action :skip_authorization, only: [:sidebar]
-      append_before_action :init_breadcrumbs, :client
+      append_before_action :init_breadcrumbs, except: [:new, :create]
       append_before_action :pundit_authorize, except: [:sidebar]
 
       def index
@@ -24,7 +24,11 @@ module Administration
 
       def create
         @resource = @resource_class.new(create_resource_params)
-        @resource.client = sub_client || client
+        @resource.client = client
+        if client.tenancy?
+          @resource.client = project
+          @resource.role = Membership::ADMIN_ROLE
+        end
         respond_to do |format|
           if @resource.save
             @resource.user.invite!(current_user, client.id)
@@ -113,7 +117,7 @@ module Administration
       end
 
       def create_resource_params
-        params.require(:resource).permit(:parent_id, :first_name, :last_name, :email, :role, :sub_client_id)
+        params.require(:resource).permit(policy(@resource_class).permitted_attributes_for_create)
       end
 
       def update_resource_params
@@ -127,10 +131,6 @@ module Administration
 
       def set_resource
         @resource = policy_scope(@resource_class).join_user.find(params[:id])
-      end
-
-      def sub_client
-        policy_scope(Client).find(params[:sub_client_id]) if params[:sub_client_id].present? && client.tenancy?
       end
 
       # Authorisation user

@@ -52,7 +52,6 @@ class Membership < ApplicationRecord
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
 
   before_validation :ensure_user, on: :create, if: proc { user_id.nil? }
-  # before_create :use_license
 
   after_destroy :remove_subtenancy_memberships, if: -> { client.tenancy? }
 
@@ -106,15 +105,12 @@ class Membership < ApplicationRecord
     SCOPES[role]
   end
 
-  def use_license
-    Licenses::UsersLicense.use(self)
-  end
-
   # Ensure that Membership has User record
   #   Else initialize new User with specified first and last names
   def ensure_user
+    user_grants = user&.grants
     self.user = User.find_or_initialize_by(email: email)
-    user.assign_attributes(first_name: first_name, last_name: last_name, create_by_invite: true) if user.new_record?
+    user.assign_attributes(first_name: first_name, last_name: last_name, grants: user_grants, create_by_invite: true) if user.new_record?
   end
 
   # return true for new or overuse (:yti(:eti)) combinations

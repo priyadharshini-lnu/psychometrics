@@ -55,6 +55,8 @@ en:
         form:
           no_logo: 'No Logo yet'
           no_background: 'No Background yet'
+      list:
+        admin: Client Admin
       resource:
         tooltips:
           copy: Copy Client

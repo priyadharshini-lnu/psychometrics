@@ -7,8 +7,8 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
     - resource.prices.each do |price|
       = humanized_money_with_symbol price.price
       br
-  td = resource.decorate.created_at
-  td = resource.decorate.updated_at
+  td.text-center = resource.decorate.created_at
+  td.text-center = resource.decorate.updated_at
   td.actions-cell
     - if policy(resource).edit?
       = link_to({ action: :edit, id: resource }, 
