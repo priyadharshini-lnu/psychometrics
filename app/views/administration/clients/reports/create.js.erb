@@ -1,0 +1,10 @@
+$('#modal-container').find('.modal').modal('hide');
+$('#modal-container').find('.modal').on('hidden.bs.modal', function(){
+  $('#filter').trigger('reloadList');
+
+  // Reinit all plugins
+  $(document).trigger('initPlugins');
+
+  // Notify message
+  noty({text: '<%= t("administration.#{i18n || @resource_class.model_name.plural}.create.successfully", name: @resource.report.decorate.display_name) %>', type: 'success'});
+});

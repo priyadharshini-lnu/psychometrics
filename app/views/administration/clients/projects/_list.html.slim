@@ -6,7 +6,7 @@
         th = t('.project_admin')
         th = link_to_sort @resource_class, :number, @filter_form
         th = t('.tests_allocated')
-        th = link_to_sort @resource_class, :memberships_count, @filter_form
+        th = link_to_sort @resource_class, :users_count, @filter_form
         th width='1%' = t('administration.actions')
     tbody
       - if @resources.present?

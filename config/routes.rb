@@ -56,7 +56,7 @@ Rails.application.routes.draw do
             get :export
           end
         end
-        resources :reports, only: [:index, :destroy]
+        resources :reports, only: [:index, :destroy, :new, :create]
         resources :statistics, only: [:index]
 
         resources :projects do
