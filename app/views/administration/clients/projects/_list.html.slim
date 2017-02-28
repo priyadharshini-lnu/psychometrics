@@ -7,7 +7,7 @@
         th = link_to_sort @resource_class, :number, @filter_form
         th = t('.tests_allocated')
         th = link_to_sort @resource_class, :memberships_count, @filter_form
-        th width='300' = t('administration.actions')
+        th width='1%' = t('administration.actions')
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources
