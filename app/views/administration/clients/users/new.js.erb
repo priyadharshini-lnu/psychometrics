@@ -1,3 +1,0 @@
-<% header = 'header' %>
-<% header = 'admin_header' if client.tenancy? %>
-<%= render file: 'administration/base/new', locals: { header: t("administration.#{@resource_class.model_name.plural}.new.#{header}") } %>

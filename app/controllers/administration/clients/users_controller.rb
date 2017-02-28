@@ -106,6 +106,10 @@ module Administration
         redirect_to :back, success: t('.successfully', name: @resource.decorate.display_name)
       end
 
+      def i18n
+        'memberships.admin' if client.tenancy?
+      end
+
       protected
 
       def init_breadcrumbs
