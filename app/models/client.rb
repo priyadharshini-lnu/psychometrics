@@ -46,6 +46,7 @@ class Client < ApplicationRecord
   belongs_to :parent, class_name: 'Client'
 
   has_and_belongs_to_many :report_families, join_table: :clients_report_families, class_name: 'ReportFamily'
+  has_many :available_reports, through: :report_families, source: :reports
 
   belongs_to :account_manager, class_name: 'User'
   belongs_to :project_manager, class_name: 'User'

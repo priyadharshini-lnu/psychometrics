@@ -24,6 +24,8 @@ en:
               copy: Copy Campaign
               edit: Edit Campaign
               delete: Delete Campaign
+              create_report: Add New Report
+              create_user: Add New User
           sidebar:
             title: Campaign's options
             disable: Disable

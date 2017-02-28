@@ -50,4 +50,10 @@ class ClientDecorator < BaseDecorator
       end.join('<br>').html_safe
     end
   end
+
+  def reports
+    object.reports.map do |report|
+      h.link_to report.decorate.display_name, h.administration_report_path(report)
+    end.join(', ').html_safe
+  end
 end
