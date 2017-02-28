@@ -22,7 +22,13 @@ module Administration
       @user.admin_client_ids.include?(@record.membership.client_id) && @user.has_grant?(:assessments, :assign)
     end
 
+    # Permission to view statistics link
     def statistics?
+      @user.is?(:superadmin, :admin)
+    end
+
+    # Permission to clients/users/assigns#reports
+    def reports?
       @user.is?(:superadmin, :admin)
     end
 

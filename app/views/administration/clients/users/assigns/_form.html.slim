@@ -3,9 +3,9 @@
     = render_error_notification @resource
     .form-inputs.clearfix
       = f.association :assessment,
-                      collection: policy_scope(Assessment).all,
+                      collection: client.assessments,
                       input_html: { data: { live_search: true,
-                                            dynamic_selectable_url: system_reports_path(q: { assessment_id_eq: '__id__' }),
+                                            dynamic_selectable_url: url_for(action: :reports, q: { assessment_id_eq: '__id__' }),
                                             dynamic_selectable_target: '#resource_report_ids' } },
                       include_blank: true,
                       label: t('.assessment')

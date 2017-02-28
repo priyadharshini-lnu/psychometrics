@@ -57,6 +57,15 @@ module Administration
           end
         end
 
+        def reports
+          form = client.reports.search(params[:q])
+          @resources = form.result
+
+          respond_to do |format|
+            format.json
+          end
+        end
+
         private
 
         def set_resource_class

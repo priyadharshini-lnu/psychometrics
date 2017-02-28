@@ -40,6 +40,7 @@ Rails.application.routes.draw do
           scope module: :users do
             resources :assigns, only: [:index, :new, :create, :destroy] do
               get :destroy_report, on: :member
+              get :reports, on: :collection
             end
             resources :reports, only: [:destroy] do
               get :preview, on: :member
