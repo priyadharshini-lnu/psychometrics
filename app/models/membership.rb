@@ -51,7 +51,7 @@ class Membership < ApplicationRecord
   validates :client_id, uniqueness: { scope: :user_id }
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
 
-  before_validation :ensure_user, on: :create, if: proc { user_id.nil? }
+  before_validation :ensure_user, on: :create, if: proc { user.nil? }
 
   after_destroy :remove_subtenancy_memberships, if: -> { client.tenancy? }
 

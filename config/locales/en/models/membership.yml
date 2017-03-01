@@ -9,6 +9,12 @@ en:
         parent_id: Direct Manager
         created_at: Created Date
         updated_at: Modified Date
+        first_name: First Name
+        last_name: Last Name
+        email: Email Address
+        disabled: Disable
+        active: Active
+        report_ids: Report IDs
         roles:
           member: User
           manager: Manager
