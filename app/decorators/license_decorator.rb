@@ -3,8 +3,12 @@ class LicenseDecorator < BaseDecorator
     object.report_family.decorate.display_name
   end
 
-  def used_number
-    I18n.t('administration.clients.licenses.show.used_out_of', used_number: object.used_number - object.used_overuse_number, number: object.number)
+  def used_number(client_ids = nil)
+    if client_ids
+      object.license_usages.where(client_id: client_ids).size
+    else
+      I18n.t('administration.clients.licenses.show.used_out_of', used_number: object.used_number - object.used_overuse_number, number: object.number)
+    end
   end
 
   def used_overuse_number

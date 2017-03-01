@@ -4,21 +4,23 @@
       tr
         th style='text-align: right;' = t('.report_family')
         th = t('.used_license_number')
-        - if current_user.is?(:superadmin)
+        - if current_user.is?(:superadmin) && client.root?
           th = t('.used_license_overuse_number')
         th = t('.usage_percent')
         th = t('.start_date')
-        th = t('.end_date')
+        - if current_user.is?(:superadmin)
+          th = t('.end_date')
     tbody
       - @resource.licenses.each do |license|
         tr
           td align='right' = license.decorate.display_name
-          td = license.decorate.used_number
-          - if current_user.is?(:superadmin)
+          td = license.decorate.used_number(client.self_and_descendants.ids)
+          - if current_user.is?(:superadmin) && client.root?
             td = license.decorate.used_overuse_number
           td = license.decorate.usage_percent
           td = license.decorate.start_date
-          td = license.decorate.end_date
+          - if current_user.is?(:superadmin)
+            td = license.decorate.end_date
 .modal-footer
   .btn-group
     a.btn.btn-default data-dismiss='modal' = t 'administration.close'
