@@ -7,6 +7,7 @@ csv << [
         @resource_class.human_attribute_name('email'),
         @resource_class.human_attribute_name('role'),
         @resource_class.human_attribute_name('created_at'),
+        @resource_class.human_attribute_name('report_ids'),
         *hris_keys
        ]
 
@@ -17,7 +18,8 @@ csv << [
           resource.last_name,
           resource.email,
           resource.decorate.role_name,
-          resource.decorate.created_at
+          resource.decorate.created_at,
+          resource.report_ids.join(',')
          ]
   hris_keys.each do |key|
     row << resource.hris[key]
