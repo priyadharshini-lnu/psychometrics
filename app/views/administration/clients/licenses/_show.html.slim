@@ -14,7 +14,7 @@
       - @resource.licenses.each do |license|
         tr
           td align='right' = license.decorate.display_name
-          td = license.decorate.used_number(client.self_and_descendants.ids)
+          td = license.decorate.used_number(client)
           - if current_user.is?(:superadmin) && client.root?
             td = license.decorate.used_overuse_number
           td = license.decorate.usage_percent
