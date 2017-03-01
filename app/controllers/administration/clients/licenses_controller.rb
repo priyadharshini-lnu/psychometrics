@@ -28,7 +28,8 @@ module Administration
       end
 
       def set_resource
-        @resource = policy_scope(@resource_class).includes(:licenses).find(params[:client_id])
+        resource_id = client.root? ? client.id : client.root.id
+        @resource = policy_scope(@resource_class).includes(licenses: [:report_family, :license_usages]).find(resource_id)
       end
 
       def resource_params
