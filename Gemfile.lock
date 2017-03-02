@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: 5ac084de23999019012aed897315b123648ce6c0
+  revision: cc59d6b67ab428090536ec01c5c22e848347c46a
   specs:
     psychometrics-survey (0.0.1)
       railties (>= 4.2.0)
@@ -209,7 +209,7 @@ GEM
       execjs
     coffee-script-source (1.10.0)
     columnize (0.9.0)
-    concurrent-ruby (1.0.4)
+    concurrent-ruby (1.0.5)
     config (1.2.1)
       activesupport (>= 3.0)
       deep_merge (~> 1.0, >= 1.0.1)
