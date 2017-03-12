@@ -11,7 +11,7 @@
               = t('.clients')
             .col-sm-7
               = select_tag 'assign[client_ids]', 
-                           options_from_collection_for_select(policy_scope([:assessments, Client]).all, 'id', 'name', @assign_form.client_ids), 
+                           options_from_collection_for_select(policy_scope(Client).leaves.map { |c| [c.id, c.decorate.display_name_with_parent] }, :first, :last, @assign_form.client_ids), 
                            id: 'client_ids', 
                            class: 'select form-control',
                            data: { live_search: true }, 

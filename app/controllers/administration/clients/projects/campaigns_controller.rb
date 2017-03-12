@@ -3,8 +3,8 @@ module Administration
     module Projects
       class CampaignsController < Administration::ClientsController
         def index
-          @filter_form = policy_scope(@resource_class).search(params[:q])
-          @filter_form.parent_id_in = project.id
+          @filter_form = policy_scope(project).children.search(params[:q])
+          @filter_form.archived_true ||= false
           @resources = @filter_form.result.page(params[:page])
 
           respond_to do |format|

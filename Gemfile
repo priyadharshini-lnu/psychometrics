@@ -92,7 +92,7 @@ gem 'i18n-tasks', '~> 0.9.5'
 gem 'acts_as_list', '~> 0.8.1'
 
 ### add fake destroying logic for models
-gem 'paranoia', github: 'rubysherpas/paranoia', branch: 'rails5'
+gem 'paranoia', '~> 2.2'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'airbrake', '~> 5.0'
 

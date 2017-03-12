@@ -5,10 +5,13 @@
     .panel.panel-default
       .panel-heading
         h3.panel-title = t '.title'
-        ul.panel-controls
-          li
-            = link_to [:new, :administration, client, :project], remote: true,  data: { toggle: 'tooltip', title: t('.tooltips.create') }
-              span.fa.fa-plus
+        .pull-right
+          = link_to [:new, :administration, client, :project], 
+                    remote: true,  
+                    data: { toggle: 'tooltip', title: t('.tooltips.create') },
+                    class: 'btn btn-default'
+            span.fa.fa-plus
+            = t('.create')        
         = search_form_for(@filter_form,
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },
@@ -18,7 +21,13 @@
                     required: false,
                     placeholder: t('administration.search'),
                     label: false,
-                    input_html: { class: 'has_clear periodically-observed' }              
+                    input_html: { class: 'has_clear periodically-observed' }
+          .form-group.form-group-long
+            .btn-group data-toggle="buttons"
+              - [['Active', false], ['Archived', true]].each do |item|
+                label class="btn btn-default #{'active' if f.object.archived_true == item.last}"
+                  = f.input_field :archived_true, type: :radio, checked: f.object.archived_true == item.last, value: item.last
+                  = item.first                                
       .panel-body
         #filter_results
           = render partial: 'list'

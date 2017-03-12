@@ -11,13 +11,6 @@ class ClientDecorator < BaseDecorator
     }.to_json
   end
 
-  def resource_partial
-    return 'administration/clients/resource' if tenancy?
-    return 'administration/clients/projects/resource' if project?
-    return 'administration/clients/projects/campaigns/resource' if campaign?
-    return 'administration/clients/projects/campaigns/sub_campaigns/resource' if sub_campaign?
-  end
-
   def subdomain_field
     if object.subdomain.present? && object.subtenancy?
       object.subdomain.split('.').first
@@ -28,13 +21,13 @@ class ClientDecorator < BaseDecorator
 
   def detach_from_project_confirmation
     {
-        title: I18n.t('administration.projects.clients.confirmations.detach_from_project.title', name: display_name, project_name: context[:project_name]),
-        body: I18n.t('administration.projects.clients.confirmations.detach_from_project.body')
+      title: I18n.t('administration.projects.clients.confirmations.detach_from_project.title', name: display_name, project_name: context[:project_name]),
+      body: I18n.t('administration.projects.clients.confirmations.detach_from_project.body')
     }.to_json
   end
 
   def display_name_with_parent
-    object.child? ? object.self_and_ancestors.map { |anc| anc.decorate.display_name } : display_name
+    object.child? ? object.self_and_ancestors.map { |anc| anc.decorate.display_name }.join(' > ') : display_name
   end
 
   def project_admins

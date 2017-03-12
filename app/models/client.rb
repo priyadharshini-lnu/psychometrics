@@ -32,7 +32,7 @@ class Client < ApplicationRecord
   # has_many :reports, through: :assign_clients
   has_many :clients_reports, dependent: :destroy
   has_many :reports, through: :clients_reports
-  has_many :assessments, through: :reports
+  has_many :assessments, -> { group(:id) }, through: :reports
 
   has_many :norms
   has_many :dimensions
@@ -56,6 +56,7 @@ class Client < ApplicationRecord
   validate :subdomain_format_validation, if: :project?
 
   before_validation :ensure_subdomain, if: :retail?
+  before_update :sync_archived_with_descendants, if: :archived_changed?
 
   acts_as_nested_set counter_cache: :children_count
 
@@ -74,8 +75,10 @@ class Client < ApplicationRecord
   mount_uploader :logo, ImageUploader
   mount_uploader :background, ImageUploader
 
-  scope :enabled, -> { where.not(disabled: true) }
+  scope :enabled, -> { where.not(disabled: true, archived: true) }
+  scope :not_archived, -> { where.not(archived: true) }
   scope :tenancies, -> { roots }
+  scope :projects, -> { roots }
   scope :not_retails, -> { where.has { type.not_eq(:retail) } }
 
   def clone
@@ -95,7 +98,7 @@ class Client < ApplicationRecord
   end
 
   def tenancy?
-    parent_id.nil?
+    root?
   end
 
   def project?
@@ -139,6 +142,12 @@ class Client < ApplicationRecord
   end
 
   private
+
+  # If we arvhive client
+  #   Then we archive all descendants
+  def sync_archived_with_descendants
+    descendants.update_all(archived: archived)
+  end
 
   def generate_subdomain
     loop do

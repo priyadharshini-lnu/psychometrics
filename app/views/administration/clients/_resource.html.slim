@@ -1,5 +1,9 @@
 tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resource)
-  td = link_to resource.name, administration_client_projects_path(resource)
+  td
+    - if resource.retail?
+      = link_to resource.name, administration_client_users_path(resource)
+    - else
+      = link_to resource.name, administration_client_projects_path(resource)
   td = resource.decorate.type
   td = resource.number
   td = resource.country

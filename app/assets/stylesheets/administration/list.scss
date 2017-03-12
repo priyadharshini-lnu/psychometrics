@@ -24,4 +24,5 @@ table.list { margin-bottom: 0;
 }
 .panel-heading .list-filter { clear: left; float: left; margin: 10px 0 -10px 0; }
 .list-filter .form-group { display: inline-block; vertical-align: bottom; margin: 0 10px 10px 0; max-width: 180px; }
+.list-filter .form-group.form-group-long { max-width: inherit; }
 .list-filter .form-group + a { display: inline-block; vertical-align: bottom; margin: 0 10px 10px 0; }

@@ -8,6 +8,7 @@ en:
               title: Sub Campaigns
               tooltips:
                 create: Create
+              create: Create new Sub-Campaign
             header:
               actions: Actions
             resource:
@@ -23,6 +24,10 @@ en:
               destroy: Destroy Sub-Campaign
               new: New Sub-Campaign
               copy: Copy Sub-Campaign
+            new:
+              header: 'New Sub-Campaign'
+            edit:
+              header: 'Edit Sub-Campaign'
             destroy:
               successfully: 'Sub-Campaign %{name} was successfully destroyed.'
             copy:

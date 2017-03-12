@@ -4,7 +4,8 @@ module Administration
       before_action :set_assessment, :set_resource_class
       # Setup search object on Membership
       append_before_action :init_search_users, only: [:not_selected_users, :selected_users]
-      after_action :init_breadcrumbs, :pundit_authorize
+      append_before_action :init_breadcrumbs
+      after_action :pundit_authorize
 
       def new
         @assign_form = Administration::Assessments::AssignForm.new(assign_params)
@@ -12,17 +13,9 @@ module Administration
 
       def create
         init_assign_form
-        @reports = policy_scope(Report).where(id: @assign_form.report_ids)
+        @reports = policy_scope(Report).for_clients(@clients.map(&:id)).where(id: @assign_form.report_ids)
 
         ActiveRecord::Base.transaction do
-          @clients.each do |client|
-            assign_client = client.assign_clients.find_or_initialize_by(assessment_id: @assessment.id)
-            @reports.each do |report|
-              assign_client.assign_clients_reports.find_or_initialize_by(report_id: report.id)
-            end
-            assign_client.save
-          end
-
           # Update or Create assigns
           policy_scope(Membership).where(id: @assign_form.membership_ids).find_each do |membership|
             assign = membership.assigns.find_or_initialize_by(assessment_id: @assessment.id)
@@ -89,7 +82,7 @@ module Administration
 
       def init_assign_form
         @assign_form = Administration::Assessments::AssignForm.new(assign_params)
-        @clients = policy_scope(::Client).where(id: @assign_form.client_ids)
+        @clients = policy_scope(::Client).leaves.where(id: @assign_form.client_ids)
         @managers = policy_scope(::Membership).
                     select('memberships.*', 'clients.name as client_name').
                     joins(:client).

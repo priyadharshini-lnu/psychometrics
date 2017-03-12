@@ -10,6 +10,7 @@ en:
         list:
           admin: Client Admin
         index:
+          create: 'Create new Project'
           title: 'Projects'
           tooltips:
             create: Create
@@ -32,6 +33,10 @@ en:
           new: New Project
           copy: Copy Project
           design: Edit Design
+        new:
+          header: 'New Project'
+        edit:
+          header: 'Edit Project'
         destroy:
           successfully: 'Project %{name} was successfully destroyed.'
         copy:

@@ -4,9 +4,9 @@ module Administration
       module Campaigns
         class SubCampaignsController < Administration::ClientsController
           def index
-            @filter_form              = policy_scope(@resource_class).search(params[:q])
-            @filter_form.parent_id_in = campaign.id
-            @resources                = @filter_form.result.page(params[:page])
+            @filter_form = policy_scope(campaign).children.search(params[:q])
+            @filter_form.archived_true ||= false
+            @resources = @filter_form.result.page(params[:page])
 
             respond_to do |format|
               format.html

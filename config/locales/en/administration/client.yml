@@ -9,9 +9,9 @@ en:
         client_admin: Client Admin
         project_manager: Project Manager
       new:
-        header: 'New client'
+        header: 'New Client'
       edit:
-        header: 'Edit client'
+        header: 'Edit Client'
       license:
         header: '%{name} - Edit license'
       destroy:

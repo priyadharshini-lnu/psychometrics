@@ -19,12 +19,16 @@ module Administration
         @_project ||= if params[:project_id]
                         policy_scope(Client).find(params[:project_id])
                       else
-                        @resource.project
+                        client.project
                       end
       end
 
       def campaign
-        @_campaign ||= policy_scope(Client).find(params[:campaign_id])
+        @_campaign ||= if params[:campaign_id]
+                         policy_scope(Client).find(params[:campaign_id])
+                       else
+                         client.campaign
+                       end
       end
     end
   end

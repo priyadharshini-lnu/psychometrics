@@ -29,7 +29,7 @@ module Administration
       end
 
       def destroy
-        @resource = ClientReport.find_by(client_id: client.id, report_id: params[:id])
+        @resource = client.clients_reports.find_by(report_id: params[:id])
         @resource.destroy
         respond_to do |format|
           format.html { redirect_to(:back, success: t('.successfully', name: @resource.report.decorate.display_name)) }

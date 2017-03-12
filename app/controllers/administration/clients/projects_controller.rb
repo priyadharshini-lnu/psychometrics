@@ -2,8 +2,8 @@ module Administration
   module Clients
     class ProjectsController < Administration::ClientsController
       def index
-        @filter_form = policy_scope(@resource_class).includes(:admins).search(params[:q])
-        @filter_form.parent_id_in = client.id
+        @filter_form = policy_scope(client).children.includes(:admins).search(params[:q])
+        @filter_form.archived_true ||= false
         @resources = @filter_form.result.page(params[:page])
 
         respond_to do |format|

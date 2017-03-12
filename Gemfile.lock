@@ -37,14 +37,6 @@ GIT
       rubyzip (~> 1.1.7)
 
 GIT
-  remote: https://github.com/rubysherpas/paranoia.git
-  revision: d70c4c5a7098d4c8416332489e3f63b0a959ab97
-  branch: rails5
-  specs:
-    paranoia (2.2.0.pre)
-      activerecord (>= 4.0, < 5.1)
-
-GIT
   remote: https://github.com/seuros/capistrano-sidekiq.git
   revision: 339c42e24f42d8d72173daae832b23504930f941
   specs:
@@ -356,6 +348,8 @@ GEM
       nenv (~> 0.1)
       shellany (~> 0.0)
     orm_adapter (0.5.0)
+    paranoia (2.2.1)
+      activerecord (>= 4.0, < 5.1)
     parser (2.3.3.1)
       ast (~> 2.2)
     pg (0.18.4)
@@ -628,7 +622,7 @@ DEPENDENCIES
   mini_magick (~> 4.5.1)
   money-rails (~> 1.7.0)
   mustache (~> 1.0.3)
-  paranoia!
+  paranoia (~> 2.2)
   pg (~> 0.18.4)
   poltergeist
   pry-byebug
@@ -673,4 +667,4 @@ DEPENDENCIES
   whenever (~> 0.9.7)
 
 BUNDLED WITH
-   1.14.3
+   1.14.4

@@ -1,5 +1,5 @@
 tr data-sidebar=url_for(sidebar_administration_client_project_campaign_path(client, project, resource)) id=dom_id(resource)
-  - if resource.campaign_level?
+  - unless resource.sub_campaign_level?
     td = link_to resource.name, administration_client_users_path(resource)
     td 
       = resource.decorate.reports
@@ -16,9 +16,11 @@ tr data-sidebar=url_for(sidebar_administration_client_project_campaign_path(clie
     td
     td colspan='4'
   - else
-    td colspan='4' rowspan=(resource.children_count + 2) = resource.name  
+    td colspan='4' rowspan=(resource.children_count + 2)
+      = link_to administration_client_project_campaign_sub_campaigns_path(client, project, resource)
+        = resource.decorate.display_name  
 - if resource.sub_campaign_level?
-  - resource.children.each do |sub_campaign|
+  - resource.children.enabled.each do |sub_campaign|
     tr data-sidebar=url_for(sidebar_administration_client_project_campaign_sub_campaign_path(client, project, resource, sub_campaign)) 
       td = link_to sub_campaign.name, administration_client_users_path(sub_campaign)
       td 

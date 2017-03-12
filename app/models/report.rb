@@ -73,6 +73,10 @@ class Report < ApplicationRecord
     joins(:assessment).where.has { assessment.access_reports_at.eq(nil) | (assessment.access_reports_at <= Time.now) }
   }
 
+  scope :for_clients, lambda { |client_ids|
+    joins(:clients_reports).where.has { clients_reports.client_id.in(client_ids) }
+  }
+
   scope :yti_eti, -> { where(type: [YTI_TYPE, ETI_TYPE]) }
 
   def yti_eti?

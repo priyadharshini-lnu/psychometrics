@@ -8,6 +8,7 @@ module Administration
 
     def index
       @filter_form = policy_scope(@resource_class).tenancies.includes(projects: :admins).search(params[:q])
+      @filter_form.archived_true ||= false
       @resources = @filter_form.result.page(params[:page])
 
       respond_to do |format|
@@ -48,7 +49,7 @@ module Administration
 
     # DELETE /administration/resources/1
     def destroy
-      @resource.destroy
+      @resource.update_attribute(:archived, true)
       respond_to do |format|
         format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
         format.js
@@ -91,7 +92,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :subdomain, :year, :number, :country,
+      params.require(:resource).permit(:name, :subdomain, :year, :number, :country, :type,
                                        :account_manager_id, :project_manager_id, report_family_ids: [])
     end
 

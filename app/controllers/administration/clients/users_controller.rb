@@ -82,7 +82,7 @@ module Administration
         redirect_url = if @resource.user.is?(:superadmin, :admin)
                          administration_root_path
                        else
-                         root_url(domain: Settings.domain, subdomain: client.try(:subdomain))
+                         root_url(domain: Settings.domain, subdomain: project.try(:subdomain))
                        end
         redirect_to(redirect_url, success: t('.successfully', name: @resource.decorate.display_name))
       end
@@ -115,8 +115,10 @@ module Administration
       def init_breadcrumbs
         add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
         add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
-        add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-        add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
+        unless client.retail?
+          add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
+          add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
+        end
         add_breadcrumb client.decorate.display_name, { action: :index }
       end
 

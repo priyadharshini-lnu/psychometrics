@@ -40,20 +40,16 @@ class Membership < ApplicationRecord
 
   has_many :assigns, dependent: :destroy, inverse_of: :membership
   has_many :reports, through: :assigns
-
   has_many :assessments, through: :assigns
-  has_many :communication_emails, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'
+  has_many :communication_emails, dependent: :destroy, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'
   has_many :orders, dependent: :destroy, inverse_of: :membership, class_name: 'Ecommerce::Order'
 
   validates :client, uniqueness: { scope: :user }
-
   validates :client, :user, presence: true
   validates :client_id, uniqueness: { scope: :user_id }
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
 
   before_validation :ensure_user, on: :create, if: proc { user.nil? }
-
-  after_destroy :remove_subtenancy_memberships, if: -> { client.tenancy? }
 
   acts_as_nested_set scope: :client_id
 
@@ -125,13 +121,6 @@ class Membership < ApplicationRecord
     count_arr.delete count
     return true if count_arr.empty? || count_arr.max < report_type_count
     false
-  end
-
-  private
-
-  def remove_subtenancy_memberships
-    # TODO: remove sub campaigns
-    # user.memberships.where(client_id: client.sub_client_ids).destroy_all
   end
 
   class << self
