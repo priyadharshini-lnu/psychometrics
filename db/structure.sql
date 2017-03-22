@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.4
--- Dumped by pg_dump version 9.5.4
+-- Dumped from database version 9.5.5
+-- Dumped by pg_dump version 9.5.5
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -353,7 +353,7 @@ CREATE TABLE clients (
     number character varying,
     country character varying,
     year integer,
-    applicable_level integer,
+    applicable_level integer DEFAULT 0,
     account_manager_id integer,
     project_manager_id integer,
     users_count integer DEFAULT 0,

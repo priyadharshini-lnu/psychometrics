@@ -9,7 +9,6 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td = resource.country
   td = resource.decorate.project_admins
   td = resource.year
-  td = resource.decorate.project_admins
   td = resource.account_manager&.decorate&.display_name
   td = resource.project_manager&.decorate&.display_name
   td.actions-cell

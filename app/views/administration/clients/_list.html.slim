@@ -6,9 +6,8 @@
         th = link_to_sort @resource_class, :type, @filter_form
         th = link_to_sort @resource_class, :number, @filter_form
         th = link_to_sort @resource_class, :location, @filter_form
-        th = t('.client_admin')
+        th = t('.project_admin')
         th = link_to_sort @resource_class, :year, @filter_form
-        th = t('.project_manager')
         th = link_to_sort @resource_class, :account_manager_id, @filter_form
         th = link_to_sort @resource_class, :project_manager_id, @filter_form
         th.text-center width='1%' = t 'administration.actions'

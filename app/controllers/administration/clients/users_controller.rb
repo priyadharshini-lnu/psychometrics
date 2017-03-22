@@ -30,6 +30,10 @@ module Administration
           @resource.role = Membership::ADMIN_ROLE
         end
         respond_to do |format|
+          if @resource.user
+            @resource.user.create_by_invite = true
+            @resource.user.email = @resource.email
+          end
           if @resource.save
             @resource.user.invite!(current_user, client.id)
             format.js
