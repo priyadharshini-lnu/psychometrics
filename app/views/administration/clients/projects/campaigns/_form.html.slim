@@ -3,11 +3,6 @@
     = f.error_notification
     .form-inputs.clearfix
       = f.input :name
-      = f.input :applicable_level, 
-                as: :select, 
-                collection: Client.applicable_levels.except(:project).map { |name, value| [t("activerecord.attributes.client.applicable_levels.#{name}"), name] },
-                include_blank: false,
-                disabled: !f.object.new_record?
       - if f.object.campaign_level?
         = f.association :reports, collection: Report.with_report_families(client.report_family_ids)        
   .modal-footer
