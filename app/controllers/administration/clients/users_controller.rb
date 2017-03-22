@@ -33,6 +33,8 @@ module Administration
           if @resource.user
             @resource.user.create_by_invite = true
             @resource.user.email = @resource.email
+            @resource.user.first_name = @resource.first_name
+            @resource.user.last_name = @resource.last_name
           end
           if @resource.save
             @resource.user.invite!(current_user, client.id)
