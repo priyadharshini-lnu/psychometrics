@@ -6,11 +6,11 @@
         ul.panel-controls
           - if policy(:client).new?
             li
-              = link_to [:new, :administration, @resource_class.model_name.singular], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
-                span.fa.fa-plus
               - if policy(@resource_class).export?
                 = link_to({ action: :export, format: :csv }, target: :_blank, data: { toggle: 'tooltip', title: t('.tooltips.export') })
                   span.fa.fa-upload
+              = link_to [:new, :administration, @resource_class.model_name.singular], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
+                span.fa.fa-plus
         = search_form_for(@filter_form,
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },

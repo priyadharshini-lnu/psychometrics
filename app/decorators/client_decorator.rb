@@ -30,6 +30,10 @@ class ClientDecorator < BaseDecorator
     object.child? ? object.self_and_ancestors.map { |anc| anc.decorate.display_name }.join(' > ') : display_name
   end
 
+  def status
+    object.archived? ? I18n.t('administration.clients.base.archived') : I18n.t('administration.clients.base.active')
+  end
+
   def project_admins
     if object.tenancy?
       object.projects.map do |project|
@@ -47,10 +51,10 @@ class ClientDecorator < BaseDecorator
   def array_project_admins
     if object.tenancy?
       object.projects.map do |project|
-        project.admin_memberships.map { |membership| membership.user.decorate.display_name }
+        project.admin_memberships.map { |membership| membership.user.decorate.display_name }.flatten
       end
     else
-      object.admin_memberships.map { |membership| membership.user.decorate.display_name }
+      object.admin_memberships.map { |membership| membership.user.decorate.display_name }.flatten
     end
   end
 
@@ -58,5 +62,9 @@ class ClientDecorator < BaseDecorator
     object.reports.map do |report|
       h.link_to report.decorate.display_name, h.administration_report_path(report)
     end.join(', ').html_safe
+  end
+
+  def array_reports
+    object.reports.map { |report| report.decorate.display_name }
   end
 end

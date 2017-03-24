@@ -16,7 +16,7 @@ csv << [
           resource.decorate.type,
           resource.number,
           resource.country,
-          resource.decorate.array_project_admins.flatten.join(', '),
+          resource.decorate.array_project_admins.join(', '),
           resource.year,
           resource.account_manager&.decorate&.display_name,
           resource.project_manager&.decorate&.display_name

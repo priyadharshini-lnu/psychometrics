@@ -11,7 +11,11 @@
                     data: { toggle: 'tooltip', title: t('.tooltips.create') },
                     class: 'btn btn-default'
             span.fa.fa-plus
-            = t('.create')        
+            = t('.create')
+          - if policy(@resource_class).export?
+              = link_to({ action: :export, format: :csv }, target: :_blank, data: { toggle: 'tooltip', title: t('.tooltips.export') }, class: 'btn btn-default')
+                span.fa.fa-upload
+                = t('.export')
         = search_form_for(@filter_form,
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },

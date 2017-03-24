@@ -69,6 +69,10 @@ Rails.application.routes.draw do
             get :sidebar
             patch :toggle_status
           end
+
+          collection do
+            get :export
+          end
           # resource :designs, only: [:edit, :update]
           scope module: :projects do
             resources :campaigns do

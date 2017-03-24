@@ -1,6 +1,9 @@
 en:
   administration:
     clients:
+      base:
+        archived: Archived
+        active: Active
       index:
         title: Client Tenancies
         tooltips:

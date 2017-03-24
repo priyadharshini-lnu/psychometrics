@@ -7,13 +7,20 @@ en:
             project: 'Project End Level'
             campaign: 'Campaign End Level'
             sub_campaign: 'Sub-Campaign End Level'
-        list:
+        list: &list
           admin: Client Admin
+          project_admin: Project Admin
+          tests_allocated: Tests Allocated
+          archive_status: Status
+        export:
+          <<: *list
         index:
           create: 'Create new Project'
+          export: 'Export Projects'
           title: 'Projects'
           tooltips:
             create: Create
+            export: Export
         header:
           actions: Actions
         resource:
