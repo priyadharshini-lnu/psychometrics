@@ -241,7 +241,6 @@ Rails.application.routes.draw do
   end
 
 
-  constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
     devise_for :users,
                path: 'users',
                as: :devise,
@@ -252,6 +251,7 @@ Rails.application.routes.draw do
                controllers: { registrations: 'users/registrations', invitations: 'users/invitations' }
     # Manager's panel
     #
+  constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
     namespace :managers do
       resources :dashboard, only: [:index]
       resources :assigns, only: [:index]
