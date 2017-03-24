@@ -5,8 +5,11 @@ en:
         title: Client Tenancies
         tooltips:
           create: Create
-      list:
+          export: Export
+      list: &list
         project_admin: Project Admin
+      export:
+        <<: *list
       new:
         header: 'New Client'
       edit:

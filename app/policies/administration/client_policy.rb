@@ -24,6 +24,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:clients, :design)
     end
 
+    def export?
+      @user.is?(:superadmin)
+    end
+
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)

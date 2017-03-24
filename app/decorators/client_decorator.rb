@@ -44,6 +44,16 @@ class ClientDecorator < BaseDecorator
     end
   end
 
+  def array_project_admins
+    if object.tenancy?
+      object.projects.map do |project|
+        project.admin_memberships.map { |membership| membership.user.decorate.display_name }
+      end
+    else
+      object.admin_memberships.map { |membership| membership.user.decorate.display_name }
+    end
+  end
+
   def reports
     object.reports.map do |report|
       h.link_to report.decorate.display_name, h.administration_report_path(report)

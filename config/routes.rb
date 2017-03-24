@@ -35,6 +35,10 @@ Rails.application.routes.draw do
         patch :toggle_status
         get :license
       end
+
+      collection do
+        get :export
+      end
       scope module: :clients do
         resources :users do
           scope module: :users do

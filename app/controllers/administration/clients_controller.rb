@@ -80,6 +80,17 @@ module Administration
       end
     end
 
+    def export
+      @resources = policy_scope(@resource_class).tenancies.includes(projects: :admins)
+
+      respond_to do |format|
+        format.csv do
+          headers['Content-Disposition'] = "attachment; filename=\"#{@resource_class.model_name.plural}-#{Date.today}.csv\""
+          headers['Content-Type'] ||= 'text/csv'
+        end
+      end
+    end
+
     private
 
     def set_resource_class

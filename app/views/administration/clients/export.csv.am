@@ -1,0 +1,25 @@
+
+csv << [
+        @resource_class.human_attribute_name('name'),
+        @resource_class.human_attribute_name('type'),
+        @resource_class.human_attribute_name('number'),
+        @resource_class.human_attribute_name('location'),
+        t('.project_admin'),
+        @resource_class.human_attribute_name('year'),
+        @resource_class.human_attribute_name('account_manager_id'),
+        @resource_class.human_attribute_name('project_manager_id')
+       ]
+
+@resources.each do |resource|
+  row = [
+          resource.name,
+          resource.decorate.type,
+          resource.number,
+          resource.country,
+          resource.decorate.array_project_admins.flatten.join(', '),
+          resource.year,
+          resource.account_manager&.decorate&.display_name,
+          resource.project_manager&.decorate&.display_name
+         ]
+  csv << row
+end
