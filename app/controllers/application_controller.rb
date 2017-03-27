@@ -49,6 +49,5 @@ class ApplicationController < ActionController::Base
     if !@current_membership && current_user
       redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}")
     end
-    current_user.current_membership = @current_membership
   end
 end
