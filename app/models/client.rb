@@ -146,7 +146,7 @@ class Client < ApplicationRecord
   # If we arvhive client
   #   Then we archive all descendants
   def sync_archived_with_descendants
-    descendants.update_all(archived: archived) if defined?(:archived)
+    descendants.update_all(archived: archived) if defined?(archived)
   end
 
   def generate_subdomain
