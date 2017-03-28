@@ -81,6 +81,9 @@ Rails.application.routes.draw do
                 get :sidebar
                 patch :toggle_status
               end
+              collection do
+                get :export
+              end
               scope module: :campaigns do
                 resources :sub_campaigns do
                   member do

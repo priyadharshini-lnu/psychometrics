@@ -18,6 +18,17 @@ module Administration
           @resource.parent = project
         end
 
+        def export
+          @resources = policy_scope(project).children
+
+          respond_to do |format|
+            format.csv do
+              headers['Content-Disposition'] = "attachment; filename=\"projects-#{Date.today}.csv\""
+              headers['Content-Type'] ||= 'text/csv'
+            end
+          end
+        end
+
         def create
           @resource = @resource_class.new(resource_params)
           @resource.parent = project
