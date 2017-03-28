@@ -56,7 +56,7 @@ class Client < ApplicationRecord
   validate :subdomain_format_validation, if: :project?
 
   before_validation :ensure_subdomain, if: :retail?
-  before_update :sync_archived_with_descendants, if: :archived_changed?
+  before_update :sync_archived_with_descendants, if: -> { defined?(:archived_changed?) && :archived_changed? }
 
   acts_as_nested_set counter_cache: :children_count
 
