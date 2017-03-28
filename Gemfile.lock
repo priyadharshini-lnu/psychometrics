@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: cc59d6b67ab428090536ec01c5c22e848347c46a
+  revision: 5315edcd34a90f5a9414dab45b0f09542834a20a
   specs:
     psychometrics-survey (0.0.1)
       railties (>= 4.2.0)
@@ -342,7 +342,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (3.2.0)
     nio4r (1.2.1)
-    nokogiri (1.7.0.1)
+    nokogiri (1.7.1)
       mini_portile2 (~> 2.1.0)
     notiffany (0.1.1)
       nenv (~> 0.1)
@@ -533,7 +533,7 @@ GEM
     tilt (2.0.5)
     timeliness (0.3.8)
     tins (1.12.0)
-    tzinfo (1.2.2)
+    tzinfo (1.2.3)
       thread_safe (~> 0.1)
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
@@ -667,4 +667,4 @@ DEPENDENCIES
   whenever (~> 0.9.7)
 
 BUNDLED WITH
-   1.14.4
+   1.14.6
