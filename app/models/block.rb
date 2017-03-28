@@ -17,6 +17,9 @@
 
 class Block < ApplicationRecord
   include Copyable
+  
+  # For assessment builder
+  attr_accessor :save_as_template, :permanent_remove
 
   belongs_to :assessment
   belongs_to :template, class_name: 'Block'
@@ -28,18 +31,16 @@ class Block < ApplicationRecord
   validates :name, length: { maximum: 150 }, allow_blank: true
 
   after_update :sync_with_template, if: :template
-
-  scope :deleted, -> { where.not(deleted_at: nil) }
+  before_save :dup_for_template, if: :save_as_template
 
   acts_as_list scope: :assessment_id
-
   enum view: [:assessments, :templates]
 
+  scope :deleted, -> { where.not(deleted_at: nil) }
   # Search entity by word
   scope :search_query, lambda { |query|
     where('name ILIKE ?', "%#{query}%")
   }
-
   # Sorting
   scope :sorted_by, lambda { |sort_key|
     # extract the sort direction from the param value.
@@ -60,13 +61,11 @@ class Block < ApplicationRecord
 
   ### Bcenter
   # Create duplicate Assessment Object for Block Center
-  def dup_for_template!
-    self.template = self.class.new(general_attributes.merge({ view: :templates }))
+  def dup_for_template
+    self.template = self.class.create(general_attributes.merge({ view: :templates }))
     questions.each do |question|
-      template.questions << question.dup_for_block!
+      template.questions << question.dup_for_block
     end
-    save
-    template
   end
 
   # Create duplicate Block Center Object for Assessment

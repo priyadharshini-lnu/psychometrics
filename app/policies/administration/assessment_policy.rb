@@ -47,7 +47,11 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :import)
     end
 
-    class Scope < Scope
+    def save?
+      @user.is?(:superadmin)
+    end
+
+    class Scope < Administration::BasePolicy::Scope
       def resolve
         scope = super
         return scope if @user.is?(:superadmin)

@@ -42,12 +42,11 @@ module Administration
 
       # PATCH/PUT /administration/resources/1
       def update
-        respond_to do |format|
-          if @resource.update(resource_params)
-            format.js
-          else
-            format.js { render :edit }
-          end
+        block = ::Builders::Templates::BlockBuilder.new(@resource, params.require(:block))
+        if block.save
+          render json: { data: BlockSerializer.new(@resource).to_hash(include: '**') }
+        else
+          render json: { error: true }, status: 400
         end
       end
 

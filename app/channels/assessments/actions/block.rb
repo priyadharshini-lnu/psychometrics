@@ -4,7 +4,7 @@ module Assessments
       extend Actions::Action
 
       action :filter do |data|
-        blocks = ::Block.where("name ILIKE ?", "%#{data['q']}%").where(view: :templates).limit(10)
+        blocks = ::Block.where('name ILIKE ?', "%#{data['q']}%").where(view: :templates).limit(10)
         blocks.map { |block| { value: block.id, label: block.name } }
       end
 
@@ -63,10 +63,9 @@ module Assessments
         BlockSerializer.new(cloned_block).to_hash
       end
 
-      action :create_by_template do |data, _, assessment|
+      action :create_by_template do |data, _, _assessment|
         template = ::Block.templates.find(data['template_id'])
-        block = template.dup_for_assessment!(assessment.id)
-        BlockSerializer.new(block).to_hash(include: '**')
+        Assessments::Actions::Block::CreateByTemplate::BlockSerializer.new(template).to_hash(include: '**')
       end
 
       action :save_as_template do |data, _, _assessment|
