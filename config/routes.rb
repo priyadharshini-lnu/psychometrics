@@ -91,6 +91,9 @@ Rails.application.routes.draw do
                     get :sidebar
                     patch :toggle_status
                   end
+                  collection do
+                    get :export
+                  end
                 end
               end
             end

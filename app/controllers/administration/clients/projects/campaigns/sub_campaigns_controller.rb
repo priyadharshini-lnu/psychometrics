@@ -19,6 +19,17 @@ module Administration
             @resource.parent = campaign
           end
 
+          def export
+            @resources = policy_scope(campaign).children
+
+            respond_to do |format|
+              format.csv do
+                headers['Content-Disposition'] = "attachment; filename=\"sub_campaigns-#{Date.today}.csv\""
+                headers['Content-Type'] ||= 'text/csv'
+              end
+            end
+          end
+
           def create
             @resource = @resource_class.new(resource_params)
             @resource.parent = campaign
