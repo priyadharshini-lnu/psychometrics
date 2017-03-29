@@ -11,8 +11,9 @@ en:
         remove: Remove
         key: Key
         value: Value
+        grants: Privileges
       index:
-        add: Add new user
+        add: Add new User
         import: Import
         import_users: Users
         import_hris: HRIS Data
@@ -58,7 +59,7 @@ en:
         tooltips:
           change_password: Change password
           sign_in: Login as user
-          chart: View user report
+          chart: View Assessments and Reports
           mail: Send mail
           edit: Edit user
           delete: Delete user

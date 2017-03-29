@@ -52,9 +52,9 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def copy
-    @cloned_resource = @resource.clone
     respond_to do |format|
-      if @cloned_resource.save
+      @cloned_resource = @resource.clone_and_save
+      if @cloned_resource
         format.js
       else
         format.js { render :error, locals: { message: t('administration.factors.copy.error', { id: @resource.id }) } }
@@ -80,10 +80,6 @@ class Administration::FactorsController < Administration::BaseController
     add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
     add_breadcrumb @dimension.name
     add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
-  end
-
-  def set_resource
-    @resource = @resource_class.find(params[:id])
   end
 
   def set_dimension

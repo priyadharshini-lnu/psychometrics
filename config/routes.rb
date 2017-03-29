@@ -35,11 +35,18 @@ Rails.application.routes.draw do
         patch :toggle_status
         get :license
       end
+
+      collection do
+        get :export
+      end
       scope module: :clients do
         resources :users do
           scope module: :users do
-            resources :assigns, only: [:index, :new, :create, :destroy]
-            resources :reports, only: [] do
+            resources :assigns, only: [:index, :new, :create, :destroy] do
+              get :destroy_report, on: :member
+              get :reports, on: :collection
+            end
+            resources :reports, only: [:destroy] do
               get :preview, on: :member
             end
           end
@@ -53,9 +60,47 @@ Rails.application.routes.draw do
             get :export
           end
         end
-        resource :designs, only: [:edit, :update]
-        resources :reports, only: [:index, :destroy]
+        resources :reports, only: [:index, :destroy, :new, :create]
         resources :statistics, only: [:index]
+
+        resources :projects do
+          member do
+            get :copy
+            get :sidebar
+            patch :toggle_status
+          end
+
+          collection do
+            get :export
+          end
+          # resource :designs, only: [:edit, :update]
+          scope module: :projects do
+            resources :campaigns do
+              member do
+                get :copy
+                get :sidebar
+                patch :toggle_status
+              end
+              collection do
+                get :export
+              end
+              scope module: :campaigns do
+                resources :sub_campaigns do
+                  member do
+                    get :copy
+                    get :sidebar
+                    patch :toggle_status
+                  end
+                  collection do
+                    get :export
+                  end
+                end
+              end
+            end
+          end
+        end
+
+        resource :licenses, only: [:show, :edit, :update]
         resources :assessments, only: [:index, :destroy] do
           get :export_results
         end
@@ -69,17 +114,24 @@ Rails.application.routes.draw do
         get :copy
         get :sidebar
         patch :toggle_status
+        post :preview
         get :preview
         get :reports
+        put :save
       end
       scope module: 'assessments' do
-        scope module: 'assigns' do
-          resource :step1, controller: :step1, only: [:show, :update], path: 'assign/step1'
-          resource :step2, controller: :step2, only: [:show, :update], path: 'assign/step2' do
-            get 'selected_users'
-            get 'not_selected_users'
+        resources :assigns, only: [:new, :create] do
+          collection do
+            get :step1
+            get :step2
+            post :finish
+            post :form
+            post :selected_users
+            post :not_selected_users
           end
         end
+        resource :builders, only: [:update]
+        resource :scoring, only: [:update], controller: :scoring
       end
     end
     ### END ASSESSMENTS
@@ -158,6 +210,7 @@ Rails.application.routes.draw do
           get :sidebar
           patch :toggle_status
           get :new_assign
+          get :configure
         end
       end
       resources :blocks do
@@ -178,6 +231,15 @@ Rails.application.routes.draw do
         get :sidebar
         patch :toggle_status
         get :preview
+      end
+      scope module: 'reports' do
+        resource :builders, only: [:update]
+      end
+    end
+
+    resources :report_families, except: [:show] do
+      member do
+        get :sidebar
       end
     end
 
@@ -220,6 +282,11 @@ Rails.application.routes.draw do
   #
   # END: Administration panel
 
+  namespace :system do
+    resources :reports, only: [:index]
+    resources :memberships, only: [:index]
+  end
+
   namespace :ecommerce do
     root to: 'products#index'
     resources :products, only: [] do
@@ -240,6 +307,7 @@ Rails.application.routes.draw do
     end
   end
 
+
   constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
     devise_for :users,
                path: 'users',
@@ -248,8 +316,7 @@ Rails.application.routes.draw do
                singular: :user,
                to: 'User',
                class_name: 'User',
-               controllers: { registrations: 'users/registrations' }
-
+               controllers: { registrations: 'users/registrations', invitations: 'users/invitations' }
     # Manager's panel
     #
     namespace :managers do

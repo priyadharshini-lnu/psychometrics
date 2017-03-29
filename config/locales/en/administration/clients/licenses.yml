@@ -1,0 +1,33 @@
+en:
+  administration:
+    clients:
+      licenses:
+        edit:
+          header: '%{client_name} - Manage Licenses'
+        form:
+          add_license: Add Another License
+          report_family: Report Family
+          license_number: License Number
+          license_overuse_number: Over Use Allowance
+        license_fields:
+          remove: Remove
+          unlimited: Unlimited
+        show:
+          header: '%{client_name} - Licenses Usage'
+          license_type: License Type
+          used_license_number: Used Licenses
+          used_license_overuse_number: 'Over Use Allowance'
+          start_date: Start Date
+          end_date: End Date
+          usage_percent: '% of Usage'
+          used_out_of: '%{used_number} out of %{number}'
+          report_family: Report Family
+          date_expire: 'Date Of Expiry: %{date}'
+          license_has_expired: License package has expired
+        mailer:
+          license_expire:
+            subject: License expired
+          license_final_expire:
+            subject: License final expired
+          license_overuse:
+            subject: License overuse

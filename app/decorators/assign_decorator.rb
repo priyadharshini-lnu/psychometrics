@@ -1,6 +1,6 @@
 class AssignDecorator < BaseDecorator
   def status
-    I18n.t("activerecord.attributes.assign.statuses.#{ object.status }")
+    I18n.t("activerecord.attributes.assign.statuses.#{object.status}")
   end
 
   def created_at
@@ -18,5 +18,9 @@ class AssignDecorator < BaseDecorator
 
   def display_name
     'Assign'
+  end
+
+  def status
+    I18n.t("activerecord.attributes.assign.statuses.#{ object.status }")
   end
 end

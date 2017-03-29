@@ -24,7 +24,7 @@ module Administration
     end
 
     def update?
-      @user.is?(:superadmin)
+      create?
     end
 
     def edit?
@@ -32,19 +32,27 @@ module Administration
     end
 
     def destroy?
-      @user.is?(:superadmin)
+      create?
     end
 
     def copy?
+      create?
+    end
+
+    def import?
+      @user.is?(:superadmin)
+    end
+
+    def export?
       @user.is?(:superadmin)
     end
 
     def toggle_status?
-      @user.is?(:superadmin)
+      create?
     end
 
-    def action?
-      edit? || copy? || destroy?
+    def actions?
+      edit? & copy? & destroy?
     end
 
     def scope
@@ -59,9 +67,7 @@ module Administration
         @scope = [scope].flatten.last
       end
 
-      # scope - could be array
-      # [:administration, Model]
-      #
+      # scope - could be array [:administration, Model]
       def resolve
         [scope].flatten.last
       end

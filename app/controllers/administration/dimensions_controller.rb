@@ -7,10 +7,8 @@ class Administration::DimensionsController < Administration::BaseController
 
 
   def index
-    @filterrific = initialize_filterrific(
-      policy_scope(@resource_class),
-      params[:filterrific]) || return
-    @resources = @filterrific.find.page(params[:page])
+    @filter_form = policy_scope(@resource_class).search(params[:q])
+    @resources = @filter_form.result.page(params[:page])
 
     respond_to do |format|
       format.html
@@ -61,12 +59,9 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def copy
-    @cloned_resource = @resource.clone
     respond_to do |format|
-      if @cloned_resource.save
-        # SubFactors have link to original dimension.
-        # Replace by the copy dimension
-        Factor.where(parent_id: @cloned_resource.factor_ids).update_all(dimension_id: @cloned_resource.id)
+      @cloned_resource = @resource.clone_and_save
+      if @cloned_resource
         format.js
       else
         format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: @resource.id }) } }
@@ -85,12 +80,8 @@ class Administration::DimensionsController < Administration::BaseController
     add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
   end
 
-  def set_resource
-    @resource = @resource_class.find(params[:id])
-  end
-
   def resource_params
-    params.require(:resource).permit(:name)
+    params.require(:resource).permit(:name, :owner_id)
   end
 
   def pundit_authorize

@@ -1,0 +1,16 @@
+.table-responsive
+  table.table.table-bordered.table-actions.table-hover.selectable.list id="#{@resource_class.model_name.plural}_list"
+    thead
+      tr
+        th = t('.header.name')
+        th = t('.header.tests_allocated')
+        th = t('.header.users')
+        th = t('.header.actual_usage')
+        th width='300' = t('administration.actions')
+    tbody
+      - if @resources.present?
+        = render partial: 'resource', collection: @resources
+      - else
+        tr.no_records
+          td align='center' colspan='9' = t('administration.no_data_found')
+  = paginate @resources, theme: 'twitter-bootstrap-3'

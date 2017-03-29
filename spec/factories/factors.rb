@@ -18,5 +18,11 @@ FactoryGirl.define do
   factory :factor do
     sequence(:name) { |i| "factor #{i}" }
     dimension
+
+    trait :with_subfactor do
+      after(:create) do |factor, _evaluator|
+        create :factor, dimension: factor.dimension, parent_id: factor.id
+      end
+    end
   end
 end

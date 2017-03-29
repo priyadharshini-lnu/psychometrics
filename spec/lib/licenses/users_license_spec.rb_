@@ -1,0 +1,41 @@
+require 'rails_helper'
+
+RSpec.describe Licenses::UsersLicense do
+  let!(:client) { create(:client) }
+  let!(:user) { create(:user) }
+  let(:subclient) { create(:client, parent: client) }
+  let(:membership) { build(:membership, user: user, client: client) }
+  let(:call) { Licenses::UsersLicense.use(membership) }
+
+  context '.use' do
+    context 'if Client is Sub Tenancy' do
+      before { call }
+      let(:membership) { build(:membership, user: user, client: subclient) }
+
+      it { expect(membership.errors.added?(:base, :has_no_enough_licenses)).to be_falsey }
+    end
+
+    context 'if Client HAS NO enough licenses then:' do
+      let!(:client) { create(:client, no_license: true) }
+
+      it 'not build license_usages' do
+        expect { call }.to raise_error(ActiveRecord::RecordInvalid)
+        expect(membership.license_usages).to be_empty
+        expect(membership.errors.added?(:base, :has_no_enough_licenses)).to be_truthy
+      end
+    end
+
+    context 'if Client HAS enough licenses then:' do
+      before { call }
+
+      it 'no errors add' do
+        expect(membership.errors.added?(:base, :has_no_enough_licenses)).to be_falsey
+      end
+
+      it 'build license_usages' do
+        expect(membership.license_usages.size).to eq(1)
+        expect(membership.license_usages.first.license).to eq(client.licenses.first)
+      end
+    end
+  end
+end

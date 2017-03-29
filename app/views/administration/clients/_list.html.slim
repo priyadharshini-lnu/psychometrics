@@ -2,13 +2,15 @@
   table.table.table-bordered.table-actions.table-hover.selectable.list id="#{@resource_class.model_name.plural}_list"
     thead
       tr
-        th.text-center width="100" = sorting @resource_class, :active, @filterrific
-        th = sorting @resource_class, :name, @filterrific
-        th.text-center width='190' = sorting @resource_class, :licenses_used, @filterrific
-        th.text-center width='190' = sorting @resource_class, :licenses_expire, @filterrific
-        th.text-center width='190' = t 'administration.actions'
-        th.text-center width='150' = sorting @resource_class, :created_at, @filterrific
-        th.text-center width='150' = sorting @resource_class, :updated_at, @filterrific
+        th = link_to_sort @resource_class, :name, @filter_form
+        th = link_to_sort @resource_class, :type, @filter_form
+        th = link_to_sort @resource_class, :number, @filter_form
+        th = link_to_sort @resource_class, :location, @filter_form
+        th = t('.project_admin')
+        th = link_to_sort @resource_class, :year, @filter_form
+        th = link_to_sort @resource_class, :account_manager_id, @filter_form
+        th = link_to_sort @resource_class, :project_manager_id, @filter_form
+        th.text-center width='1%' = t 'administration.actions'
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

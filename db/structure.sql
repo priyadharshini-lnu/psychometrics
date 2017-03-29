@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.5.4
--- Dumped by pg_dump version 9.5.4
+-- Dumped from database version 9.5.5
+-- Dumped by pg_dump version 9.5.5
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -79,38 +79,6 @@ CREATE TABLE ar_internal_metadata (
 
 
 --
--- Name: assessment_clients; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE assessment_clients (
-    id integer NOT NULL,
-    assessment_id integer,
-    client_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: assessment_clients_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE assessment_clients_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: assessment_clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE assessment_clients_id_seq OWNED BY assessment_clients.id;
-
-
---
 -- Name: assessments; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -127,7 +95,8 @@ CREATE TABLE assessments (
     description text,
     timing character varying,
     access_reports_at timestamp without time zone,
-    status integer
+    status integer,
+    owner_id integer
 );
 
 
@@ -148,6 +117,70 @@ CREATE SEQUENCE assessments_id_seq
 --
 
 ALTER SEQUENCE assessments_id_seq OWNED BY assessments.id;
+
+
+--
+-- Name: assign_clients; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE assign_clients (
+    id integer NOT NULL,
+    assessment_id integer,
+    client_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: assign_clients_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE assign_clients_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assign_clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE assign_clients_id_seq OWNED BY assign_clients.id;
+
+
+--
+-- Name: assign_clients_reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE assign_clients_reports (
+    id integer NOT NULL,
+    report_id integer,
+    assign_client_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: assign_clients_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE assign_clients_reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assign_clients_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE assign_clients_reports_id_seq OWNED BY assign_clients_reports.id;
 
 
 --
@@ -190,6 +223,39 @@ CREATE SEQUENCE assigns_id_seq
 --
 
 ALTER SEQUENCE assigns_id_seq OWNED BY assigns.id;
+
+
+--
+-- Name: assigns_reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE assigns_reports (
+    id integer NOT NULL,
+    report_id integer,
+    assign_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    access_reports_at timestamp without time zone
+);
+
+
+--
+-- Name: assigns_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE assigns_reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assigns_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE assigns_reports_id_seq OWNED BY assigns_reports.id;
 
 
 --
@@ -270,9 +336,6 @@ ALTER SEQUENCE client_reports_id_seq OWNED BY client_reports.id;
 CREATE TABLE clients (
     id integer NOT NULL,
     name character varying,
-    licenses integer DEFAULT 0,
-    licenses_used integer DEFAULT 0,
-    licenses_expire date,
     subdomain character varying,
     logo character varying,
     design json,
@@ -280,7 +343,21 @@ CREATE TABLE clients (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     background character varying,
-    type integer DEFAULT 0
+    type integer DEFAULT 0,
+    licenses_count integer DEFAULT 0,
+    parent_id integer,
+    lft integer,
+    rgt integer,
+    depth integer,
+    children_count integer DEFAULT 0,
+    number character varying,
+    country character varying,
+    year integer,
+    applicable_level integer DEFAULT 0,
+    account_manager_id integer,
+    project_manager_id integer,
+    users_count integer DEFAULT 0,
+    archived boolean DEFAULT false
 );
 
 
@@ -301,6 +378,48 @@ CREATE SEQUENCE clients_id_seq
 --
 
 ALTER SEQUENCE clients_id_seq OWNED BY clients.id;
+
+
+--
+-- Name: clients_report_families; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE clients_report_families (
+    client_id integer NOT NULL,
+    report_family_id integer NOT NULL
+);
+
+
+--
+-- Name: clients_reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE clients_reports (
+    id integer NOT NULL,
+    client_id integer,
+    report_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: clients_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE clients_reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: clients_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE clients_reports_id_seq OWNED BY clients_reports.id;
 
 
 --
@@ -385,7 +504,8 @@ CREATE TABLE communications (
     delivery_at timestamp without time zone,
     delivery_interval character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    owner_id integer
 );
 
 
@@ -473,7 +593,8 @@ CREATE TABLE dimensions (
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    factors_count integer DEFAULT 0
+    factors_count integer DEFAULT 0,
+    owner_id integer
 );
 
 
@@ -712,7 +833,8 @@ CREATE TABLE libraries (
     depth integer DEFAULT 0 NOT NULL,
     children_count integer DEFAULT 0 NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    owner_id integer
 );
 
 
@@ -736,6 +858,74 @@ ALTER SEQUENCE libraries_id_seq OWNED BY libraries.id;
 
 
 --
+-- Name: license_usages; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE license_usages (
+    id integer NOT NULL,
+    license_id integer,
+    assigns_report_id integer NOT NULL,
+    client_id integer NOT NULL
+);
+
+
+--
+-- Name: license_usages_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE license_usages_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: license_usages_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE license_usages_id_seq OWNED BY license_usages.id;
+
+
+--
+-- Name: licenses; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE licenses (
+    id integer NOT NULL,
+    number integer DEFAULT 0,
+    overuse_number integer DEFAULT 0,
+    used_number integer DEFAULT 0,
+    client_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    end_date date NOT NULL,
+    start_date date NOT NULL,
+    report_family_id integer NOT NULL
+);
+
+
+--
+-- Name: licenses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE licenses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: licenses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE licenses_id_seq OWNED BY licenses.id;
+
+
+--
 -- Name: memberships; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -752,7 +942,8 @@ CREATE TABLE memberships (
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    is_retail boolean DEFAULT false
+    is_retail boolean DEFAULT false,
+    role character varying DEFAULT 'member'::character varying
 );
 
 
@@ -787,7 +978,8 @@ CREATE TABLE norms (
     updated_by integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    dimension_id integer
+    dimension_id integer,
+    owner_id integer
 );
 
 
@@ -1071,7 +1263,8 @@ CREATE TABLE questions (
     view integer DEFAULT 0,
     disabled boolean DEFAULT false,
     template_id integer,
-    assessment_id integer
+    assessment_id integer,
+    owner_id integer
 );
 
 
@@ -1095,6 +1288,37 @@ ALTER SEQUENCE questions_id_seq OWNED BY questions.id;
 
 
 --
+-- Name: report_families; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE report_families (
+    id integer NOT NULL,
+    name character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: report_families_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE report_families_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: report_families_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE report_families_id_seq OWNED BY report_families.id;
+
+
+--
 -- Name: reports; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1105,7 +1329,9 @@ CREATE TABLE reports (
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    type integer DEFAULT 0
+    type integer DEFAULT 0,
+    owner_id integer,
+    report_family_id integer
 );
 
 
@@ -1291,7 +1517,7 @@ CREATE TABLE translations (
     translateable_type character varying,
     translateable_id integer,
     props json DEFAULT '{}'::json,
-    locale character varying(4),
+    locale character varying(10),
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     resource_type character varying,
@@ -1339,7 +1565,7 @@ CREATE TABLE users (
     first_name character varying,
     last_name character varying,
     disabled boolean DEFAULT false,
-    role character varying DEFAULT 'Users::Member'::character varying,
+    role character varying DEFAULT 'Users::Regular'::character varying,
     invitation_token character varying,
     invitation_created_at timestamp without time zone,
     invitation_sent_at timestamp without time zone,
@@ -1349,7 +1575,8 @@ CREATE TABLE users (
     invited_by_id integer,
     invitations_count integer DEFAULT 0,
     authentication_token character varying(30),
-    is_anonym boolean DEFAULT false
+    is_anonym boolean DEFAULT false,
+    grants jsonb
 );
 
 
@@ -1376,13 +1603,6 @@ ALTER SEQUENCE users_id_seq OWNED BY users.id;
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY assessment_clients ALTER COLUMN id SET DEFAULT nextval('assessment_clients_id_seq'::regclass);
-
-
---
--- Name: id; Type: DEFAULT; Schema: public; Owner: -
---
-
 ALTER TABLE ONLY assessments ALTER COLUMN id SET DEFAULT nextval('assessments_id_seq'::regclass);
 
 
@@ -1390,7 +1610,28 @@ ALTER TABLE ONLY assessments ALTER COLUMN id SET DEFAULT nextval('assessments_id
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY assign_clients ALTER COLUMN id SET DEFAULT nextval('assign_clients_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assign_clients_reports ALTER COLUMN id SET DEFAULT nextval('assign_clients_reports_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY assigns ALTER COLUMN id SET DEFAULT nextval('assigns_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assigns_reports ALTER COLUMN id SET DEFAULT nextval('assigns_reports_id_seq'::regclass);
 
 
 --
@@ -1412,6 +1653,13 @@ ALTER TABLE ONLY client_reports ALTER COLUMN id SET DEFAULT nextval('client_repo
 --
 
 ALTER TABLE ONLY clients ALTER COLUMN id SET DEFAULT nextval('clients_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY clients_reports ALTER COLUMN id SET DEFAULT nextval('clients_reports_id_seq'::regclass);
 
 
 --
@@ -1502,6 +1750,20 @@ ALTER TABLE ONLY libraries ALTER COLUMN id SET DEFAULT nextval('libraries_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY license_usages ALTER COLUMN id SET DEFAULT nextval('license_usages_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY licenses ALTER COLUMN id SET DEFAULT nextval('licenses_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY memberships ALTER COLUMN id SET DEFAULT nextval('memberships_id_seq'::regclass);
 
 
@@ -1572,6 +1834,13 @@ ALTER TABLE ONLY questions ALTER COLUMN id SET DEFAULT nextval('questions_id_seq
 -- Name: id; Type: DEFAULT; Schema: public; Owner: -
 --
 
+ALTER TABLE ONLY report_families ALTER COLUMN id SET DEFAULT nextval('report_families_id_seq'::regclass);
+
+
+--
+-- Name: id; Type: DEFAULT; Schema: public; Owner: -
+--
+
 ALTER TABLE ONLY reports ALTER COLUMN id SET DEFAULT nextval('reports_id_seq'::regclass);
 
 
@@ -1626,14 +1895,6 @@ ALTER TABLE ONLY ar_internal_metadata
 
 
 --
--- Name: assessment_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY assessment_clients
-    ADD CONSTRAINT assessment_clients_pkey PRIMARY KEY (id);
-
-
---
 -- Name: assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1642,11 +1903,35 @@ ALTER TABLE ONLY assessments
 
 
 --
+-- Name: assign_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assign_clients
+    ADD CONSTRAINT assign_clients_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: assign_clients_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assign_clients_reports
+    ADD CONSTRAINT assign_clients_reports_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: assigns_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assigns
     ADD CONSTRAINT assigns_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: assigns_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assigns_reports
+    ADD CONSTRAINT assigns_reports_pkey PRIMARY KEY (id);
 
 
 --
@@ -1671,6 +1956,14 @@ ALTER TABLE ONLY client_reports
 
 ALTER TABLE ONLY clients
     ADD CONSTRAINT clients_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: clients_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY clients_reports
+    ADD CONSTRAINT clients_reports_pkey PRIMARY KEY (id);
 
 
 --
@@ -1770,6 +2063,22 @@ ALTER TABLE ONLY libraries
 
 
 --
+-- Name: license_usages_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY license_usages
+    ADD CONSTRAINT license_usages_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: licenses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY licenses
+    ADD CONSTRAINT licenses_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: memberships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1850,6 +2159,14 @@ ALTER TABLE ONLY questions
 
 
 --
+-- Name: report_families_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY report_families
+    ADD CONSTRAINT report_families_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: reports_filters_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -1914,20 +2231,6 @@ ALTER TABLE ONLY users
 
 
 --
--- Name: index_assessment_clients_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_assessment_clients_on_assessment_id ON assessment_clients USING btree (assessment_id);
-
-
---
--- Name: index_assessment_clients_on_client_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_assessment_clients_on_client_id ON assessment_clients USING btree (client_id);
-
-
---
 -- Name: index_assessments_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -1935,10 +2238,52 @@ CREATE INDEX index_assessments_on_dimension_id ON assessments USING btree (dimen
 
 
 --
+-- Name: index_assign_clients_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assign_clients_on_assessment_id ON assign_clients USING btree (assessment_id);
+
+
+--
+-- Name: index_assign_clients_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assign_clients_on_client_id ON assign_clients USING btree (client_id);
+
+
+--
+-- Name: index_assign_clients_reports_on_assign_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assign_clients_reports_on_assign_client_id ON assign_clients_reports USING btree (assign_client_id);
+
+
+--
+-- Name: index_assign_clients_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assign_clients_reports_on_report_id ON assign_clients_reports USING btree (report_id);
+
+
+--
 -- Name: index_assigns_on_membership_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_assigns_on_membership_id ON assigns USING btree (membership_id);
+
+
+--
+-- Name: index_assigns_reports_on_assign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assigns_reports_on_assign_id ON assigns_reports USING btree (assign_id);
+
+
+--
+-- Name: index_assigns_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assigns_reports_on_report_id ON assigns_reports USING btree (report_id);
 
 
 --
@@ -1970,10 +2315,45 @@ CREATE INDEX index_client_reports_on_report_id ON client_reports USING btree (re
 
 
 --
+-- Name: index_clients_on_account_manager_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_clients_on_account_manager_id ON clients USING btree (account_manager_id);
+
+
+--
+-- Name: index_clients_on_project_manager_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_clients_on_project_manager_id ON clients USING btree (project_manager_id);
+
+
+--
 -- Name: index_clients_on_subdomain; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_clients_on_subdomain ON clients USING btree (subdomain);
+
+
+--
+-- Name: index_clients_report_families_on_client_id_and_report_family_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_clients_report_families_on_client_id_and_report_family_id ON clients_report_families USING btree (client_id, report_family_id);
+
+
+--
+-- Name: index_clients_reports_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_clients_reports_on_client_id ON clients_reports USING btree (client_id);
+
+
+--
+-- Name: index_clients_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_clients_reports_on_report_id ON clients_reports USING btree (report_id);
 
 
 --
@@ -2114,6 +2494,41 @@ CREATE INDEX index_libraries_on_parent_id ON libraries USING btree (parent_id);
 --
 
 CREATE INDEX index_libraries_on_rgt ON libraries USING btree (rgt);
+
+
+--
+-- Name: index_license_usages_on_assigns_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_assigns_report_id ON license_usages USING btree (assigns_report_id);
+
+
+--
+-- Name: index_license_usages_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_client_id ON license_usages USING btree (client_id);
+
+
+--
+-- Name: index_license_usages_on_license_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_license_id ON license_usages USING btree (license_id);
+
+
+--
+-- Name: index_licenses_on_client_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_licenses_on_client_id ON licenses USING btree (client_id);
+
+
+--
+-- Name: index_licenses_on_report_family_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_licenses_on_report_family_id ON licenses USING btree (report_family_id);
 
 
 --
@@ -2278,6 +2693,13 @@ CREATE INDEX index_reports_on_assessment_id ON reports USING btree (assessment_i
 
 
 --
+-- Name: index_reports_on_report_family_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_on_report_family_id ON reports USING btree (report_family_id);
+
+
+--
 -- Name: index_reports_pages_on_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2341,6 +2763,13 @@ CREATE UNIQUE INDEX index_users_on_email ON users USING btree (email);
 
 
 --
+-- Name: index_users_on_grants; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_on_grants ON users USING gin (grants);
+
+
+--
 -- Name: index_users_on_invitation_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2366,6 +2795,14 @@ CREATE INDEX index_users_on_invited_by_id ON users USING btree (invited_by_id);
 --
 
 CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (reset_password_token);
+
+
+--
+-- Name: fk_rails_139c7e09c4; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY licenses
+    ADD CONSTRAINT fk_rails_139c7e09c4 FOREIGN KEY (report_family_id) REFERENCES report_families(id);
 
 
 --
@@ -2401,6 +2838,14 @@ ALTER TABLE ONLY norms
 
 
 --
+-- Name: fk_rails_9583519a99; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY reports
+    ADD CONSTRAINT fk_rails_9583519a99 FOREIGN KEY (report_family_id) REFERENCES report_families(id);
+
+
+--
 -- Name: fk_rails_99326fb65d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2422,6 +2867,6 @@ ALTER TABLE ONLY norms
 
 SET search_path TO "$user", public;
 
-INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337'), ('20161019113157'), ('20161020145001'), ('20161021080332'), ('20161025151414'), ('20161025152859'), ('20161025154640'), ('20161026111535'), ('20161026120042'), ('20161027095910'), ('20161031091451'), ('20161031094940'), ('20161031105250'), ('20161031105418'), ('20161101141317'), ('20161102071143'), ('20161102110210'), ('20161102115438'), ('20161103111612'), ('20161103154036'), ('20161108112600'), ('20161110090142'), ('20161111102005'), ('20161115143900'), ('20161118142126'), ('20161121143132'), ('20161123094818'), ('20161125121349'), ('20161125125141'), ('20161128103519'), ('20161128114937'), ('20161202113205'), ('20161212094131'), ('20161212140458'), ('20161214081142'), ('20161214140548'), ('20161215061834'), ('20161215093728'), ('20161215150055'), ('20161215150257'), ('20161221074135'), ('20161221074304'), ('20161223065642'), ('20161223081235'), ('20161229122752'), ('20161229135459'), ('20161230083037'), ('20170103143542');
+INSERT INTO schema_migrations (version) VALUES ('20160704140756'), ('20160707123619'), ('20160712152012'), ('20160715101548'), ('20160715135817'), ('20160715170819'), ('20160719101711'), ('20160719133948'), ('20160720135509'), ('20160727114043'), ('20160728132804'), ('20160729125547'), ('20160729131418'), ('20160729132345'), ('20160729151936'), ('20160729153128'), ('20160801114116'), ('20160801134001'), ('20160802125448'), ('20160802155248'), ('20160803141451'), ('20160804075858'), ('20160804080947'), ('20160815094812'), ('20160815153553'), ('20160818140150'), ('20160819162030'), ('20160826113309'), ('20160830144749'), ('20160901125651'), ('20160901134715'), ('20160906140931'), ('20160907153406'), ('20160907162030'), ('20160909134047'), ('20160912064637'), ('20160913102254'), ('20160916111821'), ('20160916124428'), ('20160919070648'), ('20160919071110'), ('20160919082421'), ('20160920142609'), ('20160922072552'), ('20160923160817'), ('20160930140037'), ('20161010082144'), ('20161011105808'), ('20161011141925'), ('20161011144225'), ('20161012114132'), ('20161013084133'), ('20161013102335'), ('20161013125051'), ('20161013134427'), ('20161013161101'), ('20161014065337'), ('20161019113157'), ('20161020145001'), ('20161021080332'), ('20161025151414'), ('20161025152859'), ('20161025154640'), ('20161026111535'), ('20161026120042'), ('20161027095910'), ('20161031091451'), ('20161031094940'), ('20161031105250'), ('20161031105418'), ('20161101141317'), ('20161102071143'), ('20161102110210'), ('20161102115438'), ('20161103111612'), ('20161103154036'), ('20161108112600'), ('20161110090142'), ('20161111102005'), ('20161115143900'), ('20161118142126'), ('20161121143132'), ('20161123094818'), ('20161125121349'), ('20161125125141'), ('20161128103519'), ('20161128114937'), ('20161202113205'), ('20161212094131'), ('20161212140458'), ('20161214081142'), ('20161214140548'), ('20161215061834'), ('20161215093728'), ('20161215150055'), ('20161215150257'), ('20161221074135'), ('20161221074304'), ('20161223065642'), ('20161223081235'), ('20161227132227'), ('20161228153020'), ('20161228155944'), ('20161229122752'), ('20161229135459'), ('20161230083037'), ('20170103114938'), ('20170103143542'), ('20170104152307'), ('20170110140747'), ('20170111162217'), ('20170112100616'), ('20170112124314'), ('20170117071238'), ('20170202144948'), ('20170206123137'), ('20170213114450'), ('20170221103830'), ('20170221140404'), ('20170222124313'), ('20170222125039'), ('20170222151629'), ('20170224073543'), ('20170224110918'), ('20170227091003'), ('20170301091546');
 
 

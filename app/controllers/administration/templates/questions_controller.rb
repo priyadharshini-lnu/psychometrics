@@ -2,18 +2,15 @@ module Administration
   module Templates
     class QuestionsController < Administration::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign]
+      before_action :set_resource, only: [:show, :edit, :configure, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign]
       before_action :skip_authorization, only: [:sidebar]
       before_action :init_breadcrumbs
       append_before_action :pundit_authorize, except: [:sidebar]
 
       # GET /administration/resources
       def index
-        @filterrific = initialize_filterrific(
-          policy_scope(@resource_class),
-          params[:filterrific]
-        ) || return
-        @resources = @filterrific.find.templates.includes(questions: [block: [:assessment]]).page(params[:page])
+        @filter_form = policy_scope(@resource_class).templates.includes(questions: [block: [:assessment]]).search(params[:q])
+        @resources = @filter_form.result.page(params[:page])
 
         respond_to do |format|
           format.html
@@ -38,19 +35,17 @@ module Administration
         end
       end
 
-      # GET /administration/resources/1/edit
-      def edit
+      def configure
         add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
       end
 
       # PATCH/PUT /administration/resources/1
       def update
-        respond_to do |format|
-          if @resource.update(resource_params)
-            format.js
-          else
-            format.js { render :edit }
-          end
+        question = ::Builders::Templates::QuestionBuilder.new(@resource, params.require(:question))
+        if question.save
+          render json: { data: QuestionSerializer.new(@resource).to_hash(include: '**') }
+        else
+          render json: { error: true }, status: 400
         end
       end
 
@@ -104,7 +99,7 @@ module Administration
       end
 
       def resource_params
-        params.require(:resource).permit(:name, assign_to_assessment_ids: [])
+        params.require(:resource).permit(:name, :owner_id, assign_to_assessment_ids: [])
       end
 
       # Authorisation user

@@ -4,13 +4,15 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
       = resource.decorate.status
   td = resource.name
   td = resource.decorate.assessments_name
-  td = resource.decorate.created_at
-  td
+  td = resource.decorate.client_name
+  td.text-center = resource.decorate.created_at
+  td.text-center = resource.decorate.updated_at
+  td.actions-cell
     - if policy(resource).edit?
-      = link_to({ action: :edit, id: resource }, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
+      = link_to({ action: :edit, id: resource }, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
         i.fa.fa-pencil
-    = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', data: { toggle: 'tooltip', title: t('.tooltips.copy') })
+    = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') })
       span.fa.fa-copy
     - if policy(resource).destroy?
-      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
+      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', method: :delete, data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete') })
         span.fa.fa-times

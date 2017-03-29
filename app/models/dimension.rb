@@ -8,6 +8,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  factors_count :integer          default(0)
+#  owner_id      :integer
 #
 
 class Dimension < ApplicationRecord
@@ -18,19 +19,11 @@ class Dimension < ApplicationRecord
   has_many :sub_factors, -> { no_roots.order(id: :asc) }, class_name: 'Factor'
   has_many :assessments
   has_many :norms
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
 
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
-
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'id_desc'
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query
-    ]
-  )
+  validates :owner, presence: true, allow_nil: true
 
   # Search entity by word
   scope :search_query, lambda { |query|
@@ -57,10 +50,16 @@ class Dimension < ApplicationRecord
     end
   }
 
-  def clone
-    @cloned_dimension = deep_clone(include: [{ factors: :sub_factors }],
+  def clone_and_save
+    @cloned_dimension = deep_clone(include: [:occupations, { factors: :sub_factors }],
                                    except: [:factors_count, { factors: [:subfactors_count] }])
     @cloned_dimension.gen_uniq_name
-    @cloned_dimension
+    if @cloned_dimension.save
+      # SubFactors have link to original dimension.
+      Factor.where(parent_id: @cloned_dimension.factor_ids).update_all(dimension_id: @cloned_dimension.id)
+      @cloned_dimension
+    else
+      nil
+    end
   end
 end

@@ -1,0 +1,11 @@
+default: &default
+  adapter: postgresql
+  pool: 5
+  timeout: 5000
+  user: ubuntu
+  password:
+
+test:
+  <<: *default
+  database: circle_test
+

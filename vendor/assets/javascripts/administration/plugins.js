@@ -118,6 +118,10 @@ $(function() {
           if($('.has_clear').length > 0)
             $('.has_clear').addClear();
         }
+
+        var feDynamicSelectable = function () {
+          $('select[data-dynamic-selectable-url][data-dynamic-selectable-target]').dynamicSelectable();
+        }
         return {// Init all form element features
 		init: function(){
                     feDatepicker();
@@ -130,6 +134,7 @@ $(function() {
                     feDaterangepicker();
                     feMultiselectTwoSides();
                     feAddClear();
+                    feDynamicSelectable();
                 }
         }
     }();

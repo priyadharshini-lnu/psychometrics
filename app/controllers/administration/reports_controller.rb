@@ -11,19 +11,13 @@ module Administration
     prepend_before_action :set_resource_class
     before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :preview]
     before_action :skip_authorization, only: [:sidebar]
+    append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
-    after_action :init_breadcrumbs
 
     # GET /administration/resources
     def index
-      @filterrific = initialize_filterrific(
-        policy_scope(@resource_class),
-        params[:filterrific],
-        select_options: {
-          with_assessment_category: ['all', *Assessment.options_for_with_category]
-        }
-      ) || return
-      @resources = @filterrific.find.preload(:assessment).page(params[:page])
+      @filter_form = policy_scope(@resource_class).includes(:assessment, :report_family).search(params[:q])
+      @resources = @filter_form.result.page(params[:page])
 
       respond_to do |format|
         format.html
@@ -116,12 +110,8 @@ module Administration
       @resource_class ||= Report
     end
 
-    def set_resource
-      @resource = policy_scope(@resource_class).find(params[:id])
-    end
-
     def resource_params
-      params.require(:resource).permit(:name, :assessment_id, :type)
+      params.require(:resource).permit(:name, :assessment_id, :type, :owner_id, :report_family_id)
     end
 
     # Authorisation user

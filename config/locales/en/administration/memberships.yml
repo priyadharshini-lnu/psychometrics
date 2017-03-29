@@ -1,8 +1,11 @@
 en:
   administration:
     memberships:
+      admin:
+        new:
+          header: New admin
       new:
-        header: 'New user'
+        header: New user
       edit:
         title: 'Edit user'
         personal_data: Personal Data

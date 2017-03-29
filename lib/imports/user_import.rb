@@ -1,7 +1,22 @@
 module Imports
   class UserImport < Imports::BaseImport
-    attr_accessor :client_id, :importer
-    validates :client_id, :importer, presence: true
+    USER_ROLES_MAPS = {
+      'Client Admin' => Membership::ADMIN_ROLE,
+      'Manager' => Membership::MANAGER_ROLE,
+      'User' => Membership::MEMBER_ROLE
+    }.freeze
+
+    HEADER_IMPORT_DATA = {
+      active: Membership.human_attribute_name('active'),
+      first_name: Membership.human_attribute_name('first_name'),
+      last_name: Membership.human_attribute_name('last_name'),
+      email: Membership.human_attribute_name('email'),
+      role: Membership.human_attribute_name('role'),
+      created_at: Membership.human_attribute_name('created_at'),
+      report_ids: Membership.human_attribute_name('report_ids')
+    }.freeze
+
+    HEADER_IMPORT_KEYS = %i(first_name last_name email role report_ids).freeze
 
     # Authorisation flow
     #
@@ -9,28 +24,16 @@ module Imports
     ## Prepend :administration namespace to policy
     include Administration::Policies
     ## Custom current user helper for Pundit
-    def pundit_user
-      importer
-    end
 
-    USER_ROLES_MAPS = {
-      'Client Admin' => User::USER_ROLES[:admin],
-      'Manager' => User::USER_ROLES[:manager],
-      'User' => User::USER_ROLES[:member]
-    }.freeze
-
-    HEADER_IMPORT_RULES = {
-      email: /Email Address|Email|E-mail/i,
-      first_name: /First Name/i,
-      last_name: /Last Name/i,
-      role: /Role/i
-    }.freeze
-
-    SKIP_HEADER_RULES = /\ACreated Date\z|\AActive\z/i
-
+    attr_accessor :client_id, :importer
+    validates :client_id, :importer, presence: true
     validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                   'application/vnd.ms-excel',
                                                   'text/csv'] }
+
+    def pundit_user
+      importer
+    end
 
     def process!
       # Return error if form not valid
@@ -39,10 +42,10 @@ module Imports
       imported_items = load_imported_items.compact
 
       if imported_items.map(&:valid?).all?
-        imported_items.each(&:save!).each { |i| i.invite!(importer, client_id) }
+        imported_items.each(&:save!).each { |i| i.user.invite!(importer, client_id) }
       else
-        imported_items.each_with_index do |user, index|
-          user.errors.full_messages.each do |message|
+        imported_items.each_with_index do |membership, index|
+          membership.user.errors.full_messages.each do |message|
             errors.add(:base, I18n.t('administration.imports.errors.error', row: index + 2, error: message))
           end
         end
@@ -56,32 +59,50 @@ module Imports
     # Return array of new Users
     #
     def load_imported_items
+      client = policy_scope(::Client).find(client_id)
+      raise 'Invalid client' unless client
+
       # Parse header of xls/csv by strict rules
       rows = open_spreadsheet.parse
       header = rows.shift
 
       rows.map do |row|
-        users_attributes = { operator: importer }
-        memberships_attributes = {}
-        header.zip(row).each_with_index do |z, i|
-          next if z.first =~ SKIP_HEADER_RULES
-          (users_attributes[:email] = z.last) && next if z.first =~ HEADER_IMPORT_RULES[:email]
-          (users_attributes[:first_name] = z.last) && next if z.first =~ HEADER_IMPORT_RULES[:first_name]
-          (users_attributes[:last_name] = z.last) && next if z.first =~ HEADER_IMPORT_RULES[:last_name]
-          (users_attributes[:role] = USER_ROLES_MAPS[z.last]) && next if z.first =~ HEADER_IMPORT_RULES[:role]
-          memberships_attributes[:client_id] = policy_scope(::Client).find(client_id).id
-          memberships_attributes[:hris_data] ||= {}
+        attributes = HEADER_IMPORT_KEYS.inject({}) { |h, k| h.merge(k => row[header.index(HEADER_IMPORT_DATA[k])]) }
+        report_ids = attributes.delete(:report_ids).split(',').map(&:to_i)
+        report_ids = client.report_ids & report_ids
+
+        memberships_attributes = {
+          role: USER_ROLES_MAPS[attributes.delete(:role)],
+          hris_data: {}
+        }
+
+        user = User.find_or_initialize_by(email: attributes[:email])
+        next if user.is?(:superadmin)
+
+        header.zip(row)[HEADER_IMPORT_DATA.size..-1]&.each_with_index do |z, i|
           memberships_attributes[:hris_data][i.to_s] = { key: z.first, value: z.last }
         end
-        user = User.new(users_attributes)
-        # TODO: Refactoring this place, case we validate object twice
-        user.memberships.build(memberships_attributes) if user.valid?
-        user
+
+        user.assign_attributes(attributes.merge(role: User::REGULAR_ROLE, create_by_invite: true))
+        membership = user.memberships.find_or_initialize_by(client_id: client.id)
+        membership.assign_attributes(memberships_attributes)
+
+        reports_hash = Report.where(id: report_ids).includes(:assessment).group_by(&:assessment_id)
+        reports_hash.each do |assessment_id, report_arr|
+          assign = membership.assigns.find_or_initialize_by(assessment_id: assessment_id)
+          assign.report_ids = report_arr.map(&:id)
+        end
+        membership
       end
 
-    # Pick up error when header has invalid format
-    rescue Roo::HeaderRowNotFoundError
-      errors.add(:base, I18n.t('administration.imports.errors.invalid_format'))
+    rescue => e
+      case e.exception
+      when Roo::HeaderRowNotFoundError
+        # Pick up error when header has invalid format
+        errors.add(:base, I18n.t('administration.imports.errors.invalid_format'))
+      else
+        errors.add(:base, e.message)
+      end
       [nil]
     end
 

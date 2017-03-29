@@ -1,16 +1,29 @@
+= render 'administration/libraries/breadcrumbs'
 .row
   .col-md-12
     .panel.panel-default
       .panel-heading
-        h3.panel-title = t('.title')
+        h3.panel-title = @folder.present? ? @folder.name : t('.title')
         .pull-right
-          = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
-            = f.hidden_field :sorted_by
-            = f.hidden_field :with_parent
-            .form-group.has-feedback.has-clear.pull-right
-              .input-group
-                = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')
-              span.glyphicon.glyphicon-remove-sign.form-control-feedback.form-control-clear
+          .btn-group
+            - if policy(@resource_class).create?
+              = link_to({ action: :new, type: :folder, parent_id: @folder&.id }, remote: true, class: 'btn btn-default')
+                span.fa.fa-folder-o
+                = t('.new_folder')
+              = link_to({ action: :new, type: :other, parent_id: @folder&.id }, remote: true, class: 'btn btn-default')
+                span.fa.fa-upload
+                = t('.upload')
+        = search_form_for(@filter_form,
+                          url: { action: :index },
+                          html: { id: 'filter', class: 'list-filter' },
+                          builder: SimpleForm::FormBuilder) do |f|
+          = f.input :parent_id_in, as: :hidden, input_html: { value: @folder&.id }
+          = f.input :name_cont,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    label: false,
+                    input_html: { class: 'has_clear periodically-observed' }
       .panel-body
         #filterrific_results
           = render partial: 'list'

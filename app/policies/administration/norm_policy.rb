@@ -1,17 +1,29 @@
 class Administration::NormPolicy < Administration::BasePolicy
-  def import?
-    create?
+  def index?
+    super || @user.has_grant?(:norms, :view)
+  end
+
+  def create?
+    super || @user.has_grant?(:norms, :manage)
   end
 
   def editor?
-    create?
+    @user.is?(:superadmin)
   end
 
   def change_cell?
-    create?
+    @user.is?(:superadmin)
   end
 
-  def export?
-    @user.is?(:superadmin)
+  class Scope < Scope
+    def resolve
+      scope = super
+      return scope if @user.is?(:superadmin)
+      if @user.has_grant?(:norms, :view)
+        scope.where(owner_id: [@user.admin_client_ids])
+      else
+        scope.none
+      end
+    end
   end
 end

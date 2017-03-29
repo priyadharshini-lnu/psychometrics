@@ -1,0 +1,37 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title = t '.title', name: @assessment.decorate.display_name
+      .panel-body
+        /! START WIZARD WITH SUBMIT BUTTON
+        .block
+          = simple_form_for(@assign, 
+                            as: :assign, 
+                            url: finish_administration_assessment_assigns_path, 
+                            method: :post) do |f|               
+            .hidden
+              = f.input :user_ids, as: :select, collection: @users, input_html: { multiple: true }
+            .wizard.show-submit
+              ul.steps_2.anchor
+                li.ms-hover
+                  a.done href="#step-1" isdone="1" rel="1" 
+                    span.stepDesc
+                      == t('.step1')
+                li.ms-hover
+                  a.selected href="#step-2" isdone="0" rel="2" 
+                    span.stepDesc
+                      == t('.step2')            
+              .stepContainer        
+                #step-2
+                  = f.input :manager_ids,
+                            as: :grouped_select,
+                            collection: @managers, 
+                            group_method: :last,
+                            label_method: lambda { |u| u.decorate.display_name }, 
+                            group_label_method: :first, 
+                            input_html: {  class: 'multiselect-two-sides-searchabel', multiple: true }
+        #users = render partial: 'users'
+      .panel-footer
+        = link_to 'Previous Step', { action: :step1 }, class: 'btn btn-default mrh'
+        #assign_submit.btn.btn-primary.pull-right.mrh onclick="document.forms['new_assign'].submit();" Submit

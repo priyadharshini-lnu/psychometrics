@@ -1,0 +1,57 @@
+en:
+  administration:
+    clients:
+      projects:
+        form:
+          applicable_levels:
+            project: 'Project End Level'
+            campaign: 'Campaign End Level'
+            sub_campaign: 'Sub-Campaign End Level'
+        list: &list
+          admin: Client Admin
+          project_admin: Project Admin
+          tests_allocated: Tests Allocated
+          archive_status: Status
+        export:
+          <<: *list
+        index:
+          create: 'Create new Project'
+          export: 'Export Projects'
+          title: 'Projects'
+          tooltips:
+            create: Create
+            export: Export
+        header:
+          actions: Actions
+        resource:
+          tooltips:
+            copy: Copy Project
+            edit: Edit Project
+            delete: Delete Project
+            create_admin: Create Admin
+            create_report: Add New Report
+            create_user: Add New User
+        sidebar:
+          title: Project's options
+          disable: Disable
+          enable: Enable
+          edit: Edit Project
+          destroy: Destroy Project
+          new: New Project
+          copy: Copy Project
+          design: Edit Design
+        new:
+          header: 'New Project'
+        edit:
+          header: 'Edit Project'
+        destroy:
+          successfully: 'Project %{name} was successfully destroyed.'
+        copy:
+          successfully: 'Project %{name} was successfully copied.'
+          error: 'Project %{name} was not copied.'
+        create:
+          successfully: 'Project %{name} was successfully created.'
+        update:
+          successfully: 'Project %{name} was successfully updated.'
+        toggle_status:
+          successfully: 'Project %{name} was successfully updated.'

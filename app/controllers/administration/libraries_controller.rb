@@ -3,21 +3,18 @@ module Administration
     prepend_before_action :set_resource_class
     before_action :set_resource, only: [:edit, :update, :destroy, :sidebar]
     before_action :skip_authorization, only: [:sidebar]
-    before_action :init_breadcrumbs
+    before_action :init_breadcrumbs, except: :index
     append_before_action :pundit_authorize, except: [:sidebar]
     skip_before_action :verify_authenticity_token
 
     # GET /administration/resources
     def index
-      @filterrific = initialize_filterrific(
-        policy_scope(@resource_class),
-        params[:filterrific]
-      ) || return
-      @resources = @filterrific.find.page(params[:page])
+      folder_id = params[:q].try(:[], :parent_id_in) || params[:folder_id]
+      @folder = policy_scope(@resource_class).find_by_id(folder_id)
 
-      unless @filterrific.with_parent.to_i.zero?
-        @parent = Library.find(@filterrific.with_parent)
-      end
+      @filter_form = policy_scope(@resource_class).where(parent_id: @folder&.id).search(params[:q])
+      @filter_form.sorts = ['type asc', 'name asc'] if @filter_form.sorts.empty?
+      @resources = @filter_form.result.page(params[:page])
 
       respond_to do |format|
         format.html
@@ -83,7 +80,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :description, :file, :type, :parent_id, :file_cache)
+      params.require(:resource).permit(:name, :description, :file, :type, :parent_id, :file_cache, :owner_id)
     end
 
     # Authorisation user

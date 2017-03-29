@@ -1,4 +1,5 @@
 class Administration::AssessmentsController < Administration::BaseController
+  prepend OwnerCheck
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy, :preview]
   before_action :skip_authorization, only: [:sidebar]
@@ -7,15 +8,8 @@ class Administration::AssessmentsController < Administration::BaseController
 
   # GET /administration/resources
   def index
-    @filterrific = initialize_filterrific(
-      policy_scope(@resource_class),
-      params[:filterrific],
-      select_options: {
-        with_category: @resource_class.options_for_with_category
-      }
-    ) || return
-
-    @resources = @filterrific.find.page(params[:page])
+    @filter_form = policy_scope(@resource_class).includes(:dimension).search(params[:q])
+    @resources = @filter_form.result.page(params[:page])
 
     respond_to do |format|
       format.html
@@ -25,7 +19,6 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def new
     @resource = @resource_class.new
-    @resource.category = params[:with_category] if params[:with_category]
   end
 
   def create
@@ -108,12 +101,8 @@ class Administration::AssessmentsController < Administration::BaseController
     @resource_class ||= Assessment
   end
 
-  def set_resource
-    @resource = @resource_class.find(params[:id])
-  end
-
   def resource_params
-    params.require(:resource).permit(:name, :category, :description, :dimension_id, :timing, :status)
+    params.require(:resource).permit(:name, :category, :description, :dimension_id, :timing, :status, :owner_id)
   end
 
   # Authorisation user

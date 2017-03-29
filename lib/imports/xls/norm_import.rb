@@ -46,7 +46,7 @@ module Imports
           @dimension     = Dimension.create(name: dimension_name) unless @dimension
         end
         unless @norm
-          @norm = Norm.new(name: sheet_name_arr.join(''), dimension_id: @dimension.id, updated_by: @importer.id)
+          @norm = Norm.new(name: sheet_name_arr.join(' '), dimension_id: @dimension.id, updated_by: @importer.id)
           @norm.gen_uniq_name if Norm.exists?(name: @norm.name)
           @norm.save!
         end
@@ -106,9 +106,11 @@ module Imports
       end
 
       def import_factor_norms(factor, row, ceil)
+        raw_range = (ceil...ceil + FactorsNorm::LEVELS.size * 2)
+        return if @current_sheet[row][raw_range].map(&:value).compact.empty?
         factors_norm       = FactorsNorm.new(type: @current_norm_type, norm_id: @norm.id, factor_id: factor.id)
         factors_norm.props = []
-        (ceil...ceil + FactorsNorm::LEVELS.size * 2).each_slice(2) do |score_from, score_to|
+        raw_range.each_slice(2) do |score_from, score_to|
           @cursor_x = score_from
           factors_norm.props << {
               score_from: @current_sheet[row][score_from].try(:value).try(:round, 5),

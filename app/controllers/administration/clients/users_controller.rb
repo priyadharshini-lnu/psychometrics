@@ -4,12 +4,12 @@ module Administration
       prepend_before_action :set_resource_class
       before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof, :reset_password]
       before_action :skip_authorization, only: [:sidebar]
-      append_before_action :init_breadcrumbs, :client
+      append_before_action :init_breadcrumbs, except: [:new, :create]
       append_before_action :pundit_authorize, except: [:sidebar]
 
       def index
-        @filter_form = policy_scope(@resource_class).join_user.search(params[:q])
-        @filter_form.client_id_in = @client.id
+        @filter_form = policy_scope(@resource_class).includes(user: [:clients, :memberships]).join_user.search(params[:q])
+        @filter_form.client_id_in = client.id
         @resources = @filter_form.result.page(params[:page])
 
         respond_to do |format|
@@ -19,16 +19,25 @@ module Administration
       end
 
       def new
-        @resource = UserForm.new
+        @resource = @resource_class.new
       end
 
       def create
-        @resource = UserForm.new(create_resource_params)
-        @resource.client = @client
-        @resource.operator = current_user
+        @resource = @resource_class.new(create_resource_params)
+        @resource.client = client
+        if client.tenancy?
+          @resource.client = project
+          @resource.role = Membership::ADMIN_ROLE
+        end
         respond_to do |format|
+          if @resource.user
+            @resource.user.create_by_invite = true
+            @resource.user.email = @resource.email
+            @resource.user.first_name = @resource.first_name
+            @resource.user.last_name = @resource.last_name
+          end
           if @resource.save
-            @resource.user.invite!(current_user, @client.id)
+            @resource.user.invite!(current_user, client.id)
             format.js
           else
             format.js { render :new }
@@ -43,11 +52,10 @@ module Administration
 
       # PATCH/PUT /administration/resources/1
       def update
-        @resource.user.operator = current_user
         respond_to do |format|
           if @resource.update(update_resource_params)
             format.html do
-              redirect_to({ action: :edit, id: @resource }, success: t('.successfully', name: @resource.decorate.display_name))
+              redirect_to({ action: :edit, id: @resource }, success: t('administration.memberships.update.successfully', name: @resource.user.decorate.display_name))
             end
           else
             format.html { render :edit }
@@ -64,7 +72,7 @@ module Administration
       end
 
       def export
-        @resources = policy_scope(::Membership).join_user.where(client_id: @client.id)
+        @resources = policy_scope(::Membership).join_user.where(client_id: client.id)
 
         respond_to do |format|
           format.csv do
@@ -80,7 +88,7 @@ module Administration
         redirect_url = if @resource.user.is?(:superadmin, :admin)
                          administration_root_path
                        else
-                         root_url(domain: Settings.domain, subdomain: @client.try(:subdomain))
+                         root_url(domain: Settings.domain, subdomain: project.try(:subdomain))
                        end
         redirect_to(redirect_url, success: t('.successfully', name: @resource.decorate.display_name))
       end
@@ -104,30 +112,28 @@ module Administration
         redirect_to :back, success: t('.successfully', name: @resource.decorate.display_name)
       end
 
-      protected
-
-      def client
-        @client ||= policy_scope(Client).find(params[:client_id])
+      def i18n
+        'memberships.admin' if client.tenancy?
       end
+
+      protected
 
       def init_breadcrumbs
         add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
         add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
-        add_breadcrumb client.decorate.display_name, '#'
-        add_breadcrumb I18n.t('administration.breadcrumbs.users'), { action: :index }
+        unless client.retail?
+          add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
+          add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
+        end
+        add_breadcrumb client.decorate.display_name, { action: :index }
       end
 
       def create_resource_params
-        params.require(:resource).permit(:parent_id, :first_name, :last_name, :email, :role)
+        params.require(:resource).permit(policy(@resource_class).permitted_attributes_for_create)
       end
 
       def update_resource_params
-        params.require(:resource).permit(
-          :parent_id, user_attributes: [
-            :id, :first_name, :last_name,
-            :email, :disabled, :role
-          ], hris_data: [:key, :value]
-        )
+        params.require(:resource).permit(policy(@resource).permitted_attributes_for_update)
       end
 
       # Set model

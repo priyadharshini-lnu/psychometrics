@@ -37,8 +37,9 @@ class ApplicationController < ActionController::Base
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
     subdomain = request.subdomain
-    subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '')
-    @current_client = Client.enabled.find_by!(subdomain: subdomain)
+    subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
+    @current_project = Client.enabled.find_by!(subdomain: subdomain)
+    @current_client = @current_project.client
   end
 
   # Fetch membership
@@ -46,5 +47,6 @@ class ApplicationController < ActionController::Base
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
     @current_membership = current_user.memberships.join_user.find_by!(client_id: @current_client)
+    current_user.current_membership = @current_membership
   end
 end

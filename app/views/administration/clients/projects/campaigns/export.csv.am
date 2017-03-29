@@ -1,0 +1,43 @@
+csv << [
+        t('.header.campaigns'), nil, nil, nil,
+        t('.header.sub_campaign'), nil, nil, nil
+       ]
+csv << [
+        t('.header.name'),
+        t('.header.tests_allocated'),
+        t('.header.users'),
+        t('.header.actual_usage'),
+        t('.header.name'),
+        t('.header.tests_allocated'),
+        t('.header.users'),
+        t('.header.actual_usage')
+       ]
+
+@resources.each do |resource|
+  if resource.project.sub_campaign_level?
+    row = [
+            resource.name,
+            nil,
+            nil,
+            nil
+          ]
+  else
+    row = [
+            resource.name,
+            resource.decorate.array_reports.join(', '),
+            resource.users_count
+          ]
+  end
+  if resource.project.sub_campaign_level?
+    resource.children.enabled.each do |sub_campaign|
+        row_with_sub_campaign = row + [
+                sub_campaign.name,
+                sub_campaign.decorate.array_reports.join(', '),
+                sub_campaign.users_count
+              ]
+        csv << row_with_sub_campaign
+    end
+  else
+    csv << row
+  end
+end

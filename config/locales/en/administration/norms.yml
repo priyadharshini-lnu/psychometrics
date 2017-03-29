@@ -6,12 +6,17 @@ en:
         tooltips:
           import: Import
           create: Create
+        owner: Owner
       new:
         header: 'New norm'
       edit:
         header: 'Rename Norm'
       destroy:
         successfully: 'Norm %{name} was successfully destroyed.'
+      create:
+        successfully: 'Norm %{name} was successfully created.'
+      update:
+        successfully: 'Norm %{name} was successfully updated.'
       copy:
         error: 'Norm #%{id} was not copied.'
       toggle_status:

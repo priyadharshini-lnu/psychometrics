@@ -68,10 +68,6 @@ module Administration
       add_breadcrumb I18n.t('administration.breadcrumbs.occupations_factors'), { action: :index }
     end
 
-    def set_resource
-      @resource = @resource_class.find(params[:id])
-    end
-
     def set_occupation
       @occupation = Occupation.find(params[:occupation_id])
     end

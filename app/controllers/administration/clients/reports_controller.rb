@@ -1,19 +1,11 @@
 module Administration
   module Clients
     class ReportsController < Administration::ReportsController
-      before_action :set_client
       append_before_action :init_breadcrumbs
 
-      # GET /administration/resources
       def index
-        @filterrific = initialize_filterrific(
-          @client.reports,
-          params[:filterrific],
-          select_options: {
-            with_assessment_category: ['all', *Assessment.options_for_with_category]
-          }
-        ) || return
-        @resources = @filterrific.find.preload(:assessment).page(params[:page])
+        @filter_form = client.reports.includes(:assessment).search(params[:q])
+        @resources = @filter_form.result.page(params[:page])
 
         respond_to do |format|
           format.html
@@ -21,8 +13,23 @@ module Administration
         end
       end
 
+      def new
+        @resource = client.clients_reports.build
+      end
+
+      def create
+        @resource = client.clients_reports.build(clients_report_params)
+        respond_to do |format|
+          if @resource.save
+            format.js
+          else
+            format.js { render :new }
+          end
+        end
+      end
+
       def destroy
-        @resource = ClientReport.find_by(client_id: @client.id, report_id: params[:id])
+        @resource = client.clients_reports.find_by(report_id: params[:id])
         @resource.destroy
         respond_to do |format|
           format.html { redirect_to(:back, success: t('.successfully', name: @resource.report.decorate.display_name)) }
@@ -30,17 +37,23 @@ module Administration
         end
       end
 
+      def i18n
+        'clients.reports'
+      end
+
       private
+
+      def clients_report_params
+        params.require(:resource).permit(:report_id)
+      end
 
       def init_breadcrumbs
         add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
         add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
-        add_breadcrumb @client.decorate.display_name, '#'
+        add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
+        add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
+        add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
         add_breadcrumb I18n.t('administration.breadcrumbs.reports'), { action: :index }
-      end
-
-      def set_client
-        @client = policy_scope(Client).enabled.find(params[:client_id])
       end
     end
   end

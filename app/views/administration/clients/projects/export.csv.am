@@ -1,0 +1,20 @@
+csv << [
+        @resource_class.human_attribute_name('name'),
+        t('.project_admin'),
+        @resource_class.human_attribute_name('number'),
+        t('.tests_allocated'),
+        @resource_class.human_attribute_name('users_count'),
+        t('.archive_status')
+       ]
+
+@resources.each do |resource|
+  row = [
+          resource.decorate.display_name,
+          resource.decorate.array_project_admins.join(', '),
+          resource.number,
+          resource.decorate.array_reports.join(', '),
+          resource.users_count,
+          resource.decorate.status
+         ]
+  csv << row
+end

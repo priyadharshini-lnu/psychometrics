@@ -3,12 +3,23 @@
     = f.error_notification
 
     .form-inputs.clearfix
+      = f.input :type, 
+                as: :select, 
+                collection: Client.types.keys.map { |type| [t("activerecord.attributes.client.types.#{type}"), type] },
+                include_blank: false
       = f.input :name
-      = f.input :subdomain, wrapper: :vertical_input_group
-        = f.input_field :subdomain, class: "form-control"
-        span.input-group-addon
-          | .
-          = Settings.domain
+      = f.input :number
+      = f.input :country, as: :select, 
+                          collection: Data::Geo.select(:country_name).distinct, 
+                          label_method: :country_name, 
+                          value_method: :country_name,
+                          input_html: { data: { live_search: true } },
+                          include_blank: false
+      = f.input :year, as: :select, collection: 2.years.ago.year..10.years.since.year
+      = f.association :account_manager, collection: User.superadmins.map { |user| [user.decorate.display_name, user.id] }
+      = f.association :project_manager, collection: User.superadmins.map { |user| [user.decorate.display_name, user.id] }
+      = f.association :report_families, data: { live_search: true }, multiple: true
+
   .modal-footer
     .btn-group
       = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'

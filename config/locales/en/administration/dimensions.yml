@@ -5,6 +5,7 @@ en:
         title: Dimensions
         tooltips:
           create: Create
+        owner: Owner
       new:
         header: 'New Dimension'
       edit:

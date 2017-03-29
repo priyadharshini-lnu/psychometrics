@@ -1,14 +1,18 @@
-= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, remote: true) do |f|
+= simple_form_for(@resource, as: :resource, url: { action: :create }, remote: true) do |f|
   .modal-body
-    = f.error_notification
+    = render_error_notification @resource
     .form-inputs.clearfix
-      = f.input :assessment_id, 
-                collection: @membership.client.assessments,
-                input_html: {  data: { live_search: true } },
-                include_blank: false
+      = f.association :assessment,
+                      collection: client.assessments,
+                      input_html: { data: { live_search: true,
+                                            dynamic_selectable_url: url_for(action: :reports, q: { assessment_id_eq: '__id__' }),
+                                            dynamic_selectable_target: '#resource_report_ids' } },
+                      include_blank: true,
+                      label: t('.assessment')
+      = f.association :reports, collection: f.object.assessment&.reports || []
       .form-group.has-error
         = f.error :client_id
   .modal-footer
     .btn-group
-      = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      = f.button :submit, t('administration.create'), class: 'btn-info'
       a.btn.btn-default data-dismiss='modal' = t 'administration.close'

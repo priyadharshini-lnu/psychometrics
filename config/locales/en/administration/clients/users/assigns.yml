@@ -1,0 +1,30 @@
+en:
+  administration:
+    clients:
+      users:
+        assigns:
+          form:
+            assessment: 'Assessment'
+          new:
+            header: Assign Assessment and Reports
+          index:
+            title: '%{name} - Assessments and Reporting'
+            add: 'Assign New Assessment and Reports'
+          header:
+            uniq_id: Uniq ID
+            assessment_name: 'Assessment Name'
+            assessment_type: 'Assessment Type'
+            status: 'Completion Status'
+            reports: 'Reports'
+            actions: Actions
+          assessment:
+            no_reports: 'No relative reports'
+            no_access_to_reports: 'No access to reports'
+            no_completed: 'Not completed'
+          resource:
+            tooltips:
+              delete: Detach Assessment
+              delete_report: Detach Report
+          common:
+            detach_assessment: 'Assessment %{name} was successfully detached.'
+            detach_report: 'Report %{name} was successfully detached.'

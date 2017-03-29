@@ -94,14 +94,10 @@ module Administration
       add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
     end
 
-    def set_resource
-      @resource = @resource_class.find(params[:id])
-    end
-
     def resource_params
       params.fetch(:resource, {}).permit(
         :subject, :body, :assessment_id,
-        :client_id, :recipients,
+        :client_id, :recipients, :owner_id,
         :delivery_rule, :delivery_at_date, :delivery_at_time,
         :delivery_interval_number, :delivery_interval_period,
         membership_ids: [], copy_membership_ids: []

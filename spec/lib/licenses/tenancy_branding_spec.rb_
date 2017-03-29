@@ -1,0 +1,62 @@
+require 'rails_helper'
+
+RSpec.describe Licenses::TenancyBranding do
+  let(:call) { Licenses::TenancyBranding.use(client) }
+  let!(:client) { create(:client) }
+  let!(:license) { client.licenses.tenancy_branding.first }
+  let(:sub_client) { build(:client, parent: client) }
+
+  describe 'self.use' do
+    context 'When client is Tenancy' do
+      context 'and license does NOT exist' do
+        before { license.destroy }
+
+        it { fails_build_license_usage }
+      end
+
+      context 'and HAS NO enough licenses then' do
+        before { license.update!(number: 0) }
+
+        it { fails_build_license_usage }
+      end
+
+      context 'and HAS enough licenses then' do
+        let(:license_usage) { client.license_usages.first }
+        before { call }
+
+        it { expect(client.errors.added?(:base, :has_no_enough_licenses)).to be_falsey }
+        it 'builds a license_usage' do
+          expect(client.license_usages.size).to eq(1)
+          expect(license_usage.license).to eq(license)
+          expect(call).to be(license_usage)
+        end
+      end
+
+      context 'and HAS already used licenses then' do
+        let!(:license_usage) { create(:license_usage, license: license, licenseable: client) }
+        before { call }
+
+        it { expect(client.errors.added?(:base, :has_no_enough_licenses)).to be_falsey }
+        it 'does NOT builds a license_usage' do
+          expect(client.license_usages.size).to eq(1)
+          expect(client.license_usages.first.license).to eq(license)
+        end
+        it { expect(call).to be_nil }
+      end
+    end
+
+    context 'When client is Subtenancy' do
+      let(:call) { Licenses::TenancyBranding.use(sub_client) }
+      before { call }
+
+      it { expect(sub_client.license_usages.size).to eq(1) }
+      it { expect(client.license_usages.size).to eq(0) }
+    end
+  end
+
+  def fails_build_license_usage
+    expect { call }.to raise_error(ActiveRecord::RecordInvalid)
+    expect(client.errors.added?(:base, :has_no_enough_licenses)).to be_truthy
+    expect(client.license_usages).to be_empty
+  end
+end

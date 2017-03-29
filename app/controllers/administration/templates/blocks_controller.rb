@@ -9,11 +9,8 @@ module Administration
 
       # GET /administration/resources
       def index
-        @filterrific = initialize_filterrific(
-          policy_scope(@resource_class),
-          params[:filterrific]
-          ) || return
-        @resources = @filterrific.find.templates.includes(blocks: [:assessment]).page(params[:page])
+        @filter_form = policy_scope(@resource_class).templates.includes(blocks: [:assessment]).search(params[:q])
+        @resources = @filter_form.result.page(params[:page])
 
         respond_to do |format|
           format.html
@@ -45,12 +42,11 @@ module Administration
 
       # PATCH/PUT /administration/resources/1
       def update
-        respond_to do |format|
-          if @resource.update(resource_params)
-            format.js
-          else
-            format.js { render :edit }
-          end
+        block = ::Builders::Templates::BlockBuilder.new(@resource, params.require(:block))
+        if block.save
+          render json: { data: BlockSerializer.new(@resource).to_hash(include: '**') }
+        else
+          render json: { error: true }, status: 400
         end
       end
 

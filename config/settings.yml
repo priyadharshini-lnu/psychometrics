@@ -1,4 +1,6 @@
 project_name: Psychometrics
+timezone: Abu Dhabi
+timezone_tip: ' (Abu Dhabi time zone)'
 hashids_length:
   anonym: 8
   assign_id: 6

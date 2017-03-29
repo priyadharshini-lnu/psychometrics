@@ -23,6 +23,8 @@ class Assign < ApplicationRecord
   has_one :user, through: :membership
   belongs_to :assessment
   belongs_to :membership, inverse_of: :assigns
+  has_many :assigns_reports, dependent: :destroy
+  has_many :reports, through: :assigns_reports
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
 

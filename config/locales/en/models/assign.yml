@@ -7,7 +7,8 @@ en:
         completed_at: 'Completion Date'
         statuses:
           not_started: 'New'
-          in_progress: 'In Progress'
+          in_progress: 'Resume'
+          overdue: 'Overdue'
           'completed': 'Completed'
     errors:
       messages:

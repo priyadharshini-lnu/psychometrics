@@ -1,0 +1,43 @@
+en:
+  administration:
+    report_families: &REPORT_FAMILIES
+      index:
+        title: Reports Families
+        add: Add
+        families: Families
+        tooltips:
+          create: Create
+      new:
+        header: 'New Report Family'
+      edit:
+        header: 'Edit Report Family Name'
+      destroy:
+        successfully: 'Report Family %{name} was successfully destroyed.'
+      create:
+        successfully: 'Report Family %{name} was successfully created.'
+      update:
+        successfully: 'Report Family %{name} was successfully updated.'
+      copy:
+        error: 'Report Family #%{id} was not copied.'
+      sidebar:
+        title: Report Family's options
+        view: View Report Family
+        edit: Edit Report Family
+        copy: Copy Report Family
+        destroy: Delete Report Family
+      resource:
+        tooltips:
+          preview: Preview Report Family
+          copy: Copy Report Family
+          edit: Edit Report Family
+          delete: Delete Report Family
+        confirmations:
+          toggle_status:
+            title: <strong>%{status}</strong> %{name}?
+            body: >
+              <p>Are you sure you want to %{status} this Report Family?</p>
+          delete:
+            title:
+              Delete <strong>Report</strong> ?
+            body: >
+              <p>Are you sure you want to delete this Report Family?</p>

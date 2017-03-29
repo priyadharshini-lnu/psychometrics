@@ -17,6 +17,7 @@
 #
 
 class Library < ApplicationRecord
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   acts_as_nested_set
 
   enum type: [:folder, :image, :audio, :video, :other]
@@ -26,24 +27,12 @@ class Library < ApplicationRecord
   validates :name, presence: true, if: proc { folder? }
   validates :file, presence: true, unless: proc { folder? }
   validates_inclusion_of :type, in: Library.types.keys
+  validates :owner, presence: true, allow_nil: true
 
   # Detect which type of library we saving
   # folder, image, audio, video, other
   before_save :detected_type
   before_create :set_name, unless: proc { folder? }
-
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'type_asc',
-      with_parent: 0
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query,
-      :with_parent,
-      :with_type
-    ]
-  )
 
   # Search entity by word
   scope :search_query, lambda { |query|

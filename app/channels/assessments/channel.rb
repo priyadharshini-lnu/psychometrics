@@ -24,7 +24,7 @@ module Assessments
       assessment = Assessment.find(params['assessment_id'])
       transmit({
         action: 'assessment_data',
-        data: AssessmentSerializer.new(assessment).to_hash(include: '**')
+        data: Assessments::AssessmentSerializer.new(assessment).to_hash(include: '**')
       })
     end
 

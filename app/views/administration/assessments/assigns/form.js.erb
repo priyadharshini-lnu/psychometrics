@@ -1,0 +1,8 @@
+$(function () {
+  $('#form').html('<%= j render(partial: "form") %>');
+  <% if @assign_form.client_ids %>
+    $('#assign_submit').removeClass('hidden');
+  <% end %>
+  // Reinit all plugins
+  $(document).trigger('initPlugins');
+});

@@ -4,24 +4,26 @@
       .panel-heading
         h3.panel-title = t '.title'
         ul.panel-controls
-          li
-            = link_to [:new, :administration, @resource_class.model_name.singular, with_category: @filterrific.with_category ], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
-              span.fa.fa-plus
+          - if policy(@resource_class).create?
+            li
+              = link_to [:new, :administration, @resource_class.model_name.singular ], remote: true, class: 'create', data: { toggle: 'tooltip', title: t('.tooltips.create') }
+                span.fa.fa-plus
+        = search_form_for(@filter_form,
+                          url: { action: :index },
+                          html: { id: 'filter', class: 'list-filter' },
+                          builder: SimpleForm::FormBuilder) do |f|
+          = f.input :category_in,
+                  collection: Assessment::CATEGORIES,
+                  input_html: { title: 'Category'},
+                  required: false,
+                  include_blank: t('administration.any'),
+                  label: false
+          = f.input :name_cont,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    label: false,
+                    input_html: { class: 'has_clear periodically-observed' }
       .panel-body
-        .row.mbm
-          .col-sm-6.phn
-            .btn-group
-              - @filterrific.select_options[:with_category].each do |value|
-                = link_to [:administration, @resource_class.model_name.plural, filterrific: { with_category: value } ], class: "btn btn-default #{'active' if @filterrific.with_category.to_s == value.to_s}"
-                  = t(".filterrific.with_category.#{value}")
-          .col-md-3.col-md-offset-3.col-sm-4.col-sm-offset-2.phn
-            = form_for_filterrific @filterrific, as: :filterrific, html: { class: 'form-inline', id: 'filter' } do |f|
-              = f.hidden_field :sorted_by
-              = f.hidden_field :with_category
-              .form-group.has-feedback.has-clear.pull-right
-                .input-group
-                  = f.text_field(:search_query, placeholder: t('administration.search'), class: 'periodically-observed form-control')
-                span.glyphicon.glyphicon-remove-sign.form-control-feedback.form-control-clear
-          .clearfix
         #filterrific_results
           = render partial: 'list'

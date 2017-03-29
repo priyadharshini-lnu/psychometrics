@@ -1,0 +1,39 @@
+require 'rails_helper'
+
+RSpec.describe Licenses::SubTenancies do
+  let(:call) { Licenses::SubTenancies.use(sub_client) }
+  let!(:client) { create(:client) }
+  let!(:license) { client.licenses.sub_tenancies.first }
+  let(:sub_client) { build(:client, parent: client) }
+
+  describe 'self.use' do
+    context 'When client is Subtenancy' do
+      context 'and HAS enough licenses then' do
+        before { call }
+
+        it { expect(sub_client.errors.added?(:base, :has_no_enough_licenses)).to be_falsey }
+        it 'builds a license_usage' do
+          expect(sub_client.license_usages.size).to eq(1)
+          expect(sub_client.license_usages.first.license).to eq(license)
+        end
+        it { expect(call).to be(sub_client.license_usages.first) }
+      end
+
+      context 'and HAS NO enough licenses then' do
+        before { license.update!(number: 0) }
+
+        it 'does NOT build a license_usage' do
+          expect { call }.to raise_error(ActiveRecord::RecordInvalid)
+          expect(sub_client.errors.added?(:base, :has_no_enough_licenses)).to be_truthy
+          expect(sub_client.license_usages).to be_empty
+        end
+      end
+    end
+
+    context 'When client is Tenancy' do
+      let(:call) { Licenses::SubTenancies.use(client) }
+
+      it { expect(call).to be_nil }
+    end
+  end
+end

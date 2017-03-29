@@ -10,27 +10,21 @@
 #  created_at   :datetime         not null
 #  updated_at   :datetime         not null
 #  dimension_id :integer
+#  owner_id     :integer
 #
 
 class Norm < ApplicationRecord
   include Copyable
   belongs_to :creator, class_name: 'User', foreign_key: :created_by
   belongs_to :updater, class_name: 'User', foreign_key: :updated_by
-  has_many :factors_norms
+  has_many :factors_norms, dependent: :destroy
+  has_many :factors, through: :factors_norms
   belongs_to :dimension
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
 
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
-
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'created_at_desc'
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query
-    ]
-  )
+  validates :owner, presence: true, allow_nil: true
 
   # Search entity by word
   scope :search_query, lambda { |query|

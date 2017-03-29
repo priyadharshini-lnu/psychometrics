@@ -68,10 +68,6 @@ class Administration::SubFactorsController < Administration::BaseController
     add_breadcrumb I18n.t('administration.breadcrumbs.sub_factors'), { action: :index }
   end
 
-  def set_resource
-    @resource = @resource_class.find(params[:id])
-  end
-
   def set_dimension
     @dimension = Dimension.find(params[:dimension_id])
   end

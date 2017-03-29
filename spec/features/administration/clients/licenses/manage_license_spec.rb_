@@ -1,0 +1,97 @@
+require 'rails_helper'
+
+feature 'Manage Licenses for Client Tenancy', js: true do
+  feature 'Super Admin' do
+    before(:each) do
+      logged_in_as :superadmin
+    end
+    given!(:client) { create(:client, no_license: true) }
+    scenario 'SA should be able to manage license' do
+      open_manage_licenses_popup
+
+      within '#modal-container' do
+        expect(page).to have_content "#{client.name} - Manage Licenses"
+
+        find('#resource_licenses_expire_1i').find('option', text: '2030').select_option
+        find('#resource_licenses_final_expire_1i').find('option', text: '2033').select_option
+
+        # Add Another License
+        #   And then fill all needed fields
+        #   And save
+        find_link('Add Another License').click
+        expect(page).to have_css('#licenses tr.nested-fields', visible: true)
+        within '#licenses tr.nested-fields' do
+          find('.resource_licenses_type select option', visible: false, text: 'Assign Project').select_option
+          find('.resource_licenses_number input[type=number]').set('10')
+          find('.resource_licenses_overuse_number input[type=number]').set('5')
+        end
+        click_on 'Save'
+        wait_for_ajax
+      end
+
+      # Check that data is valid
+      expect(page).to have_link('1', visible: true, href: %r(.+\/licenses))
+      expect(page).to have_css('#clients_list tr td', visible: true, text: /.+\, 2030/)
+
+      open_manage_licenses_popup
+
+      within '#modal-container' do
+        expect(page).to have_content "#{client.name} - Manage Licenses"
+        expect(page).to have_css('#licenses tr.nested-fields', visible: true)
+        expect(page).to have_select('resource_licenses_expire_1i', selected: '2030')
+        expect(page).to have_css('#resource_licenses_attributes_0_type option[selected]', text: 'Assign Project')
+        expect(page).to have_field('resource_licenses_attributes_0_number', with: '10')
+        expect(page).to have_field('resource_licenses_attributes_0_overuse_number', with: '5')
+      end
+    end
+    scenario 'Should see addition dropdown
+              When select License For individual assign (Assessment or Report)' do
+
+      open_manage_licenses_popup
+
+      within '#modal-container' do
+        # Add Another License
+        #   And then fill all needed fields
+        #   And save
+        find_link('Add Another License').click
+        within '#licenses tr.nested-fields' do
+          expect(page).to have_css('.assessment_select', visible: false)
+          expect(page).to have_css('.report_select', visible: false)
+
+          find('.resource_licenses_type select option', text: 'Assign Individual Assessment', visible: false).select_option
+          expect(page).to have_css('.assessment_select', visible: true)
+
+          find('.resource_licenses_type select option', text: 'Assign Individual Report', visible: false).select_option
+          expect(page).to have_css('.report_select', visible: true)
+          # Assign Individual Report
+        end
+        click_on 'Save'
+        wait_for_ajax
+      end
+    end
+  end
+
+  feature 'Client Admin' do
+    before(:each) do
+      logged_in_as :admin, grants: { clients: { view: true, manage: true, design: true } }
+    end
+    scenario 'can\'t manage licenses' do
+      # Open sidebar
+      #   And then open Manage Licenses popup
+      visit '/administration/clients'
+      find('#clients_list').find('tr[data-sidebar]').click
+      wait_for_ajax
+      expect(page).to have_no_link('Manage Licenses')
+    end
+  end
+
+  def open_manage_licenses_popup
+    # Open sidebar
+    #   And then open Manage Licenses popup
+    visit '/administration/clients'
+    find('#clients_list').find('tr[data-sidebar]').click
+    wait_for_ajax
+    find_link('Manage Licenses').click
+    wait_for_ajax
+  end
+end

@@ -1,0 +1,45 @@
+require 'rails_helper'
+
+feature 'Client Statistics' do
+  feature 'Super Admin' do
+    before(:each) do
+      logged_in_as :superadmin
+    end
+    given!(:client) { create(:client) }
+    scenario 'Should see No Data Found message if there no any results and assigns' do
+      visit "/administration/clients/#{client.id}/statistics"
+      expect(page).to have_content(I18n.t('administration.no_data_found'))
+    end
+
+    feature 'Client with results' do
+      let!(:assessment) { create(:assessment) }
+      let!(:results) { 3.times { create(:result, assessment: assessment, membership: create(:membership, client: client)) } }
+      scenario 'Should see statistics if client has results' do
+        visit "/administration/clients/#{client.id}/statistics"
+        expect(page).to have_content('Total')
+        expect(page).to have_content(assessment.name)
+      end
+    end
+  end
+
+  feature 'Client Admin' do
+    before(:each) do
+      logged_in_as :admin, grants: { clients: { view: true }, assigns: { view: true } }
+    end
+    let(:client) { current_membership.client }
+
+    scenario 'Should see No Data Found message if there no any results and assigns' do
+      visit "/administration/clients/#{client.id}/statistics"
+      expect(page).to have_content(I18n.t('administration.no_data_found'))
+    end
+    feature 'Client with results' do
+      let!(:assessment) { create(:assessment) }
+      let!(:results) { 3.times { create(:result, assessment: assessment, membership: create(:membership, client: client)) } }
+      scenario 'Should see statistics if client has results' do
+        visit "/administration/clients/#{client.id}/statistics"
+        expect(page).to have_content('Total')
+        expect(page).to have_content(assessment.name)
+      end
+    end
+  end
+end

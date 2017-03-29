@@ -58,10 +58,6 @@ class Administration::UsersController < Administration::BaseController
     @resource_class ||= User
   end
 
-  def set_resource
-    @resource = policy_scope(@resource_class).find(params[:id])
-  end
-
   def resource_params
     params.require(:resource).permit(
       :first_name, :last_name, :email, :disabled, :role,

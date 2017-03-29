@@ -92,8 +92,7 @@ module Assessments
 
       action :create_by_template do |data|
         template = ::Question.templates.find(data['template_id'])
-        question = template.dup_for_assessment!(data['block_id'])
-        QuestionSerializer.new(question).to_hash(include: '**')
+        Assessments::Actions::Question::CreateByTemplate::QuestionSerializer.new(template).to_hash(include: '**')
       end
 
       action :save_as_template do |data|

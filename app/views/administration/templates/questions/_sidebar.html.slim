@@ -2,9 +2,11 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(@resource)}"
   li.xn-title.title = t('.title')
   - if policy(@resource).edit?
     li = link_to(@resource.decorate.toggle_status_text, { action: :toggle_status, id: @resource }, remote: true, method: :patch, data: { confirm: @resource.decorate.toggle_status_confirmation })
-  li
-    = link_to(t('.new_assign'), { action: :new_assign, id: @resource }, remote: true)
+  - if policy(@resource).create?
+    li
+      = link_to(t('.new_assign'), { action: :new_assign, id: @resource }, remote: true)
   - if policy(@resource).edit?
     li = link_to t('.edit'), { action: :edit, id: @resource }
+    li = link_to t('.configure'), { action: :configure, id: @resource }
   - if policy(@resource).destroy?
     li = link_to(t('.destroy'), { action: :destroy, id: @resource }, remote: true, method: :delete, data: { confirm: @resource.decorate.delete_confirmation })

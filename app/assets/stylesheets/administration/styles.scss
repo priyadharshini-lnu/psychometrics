@@ -1,0 +1,23 @@
+// filterrific-clear-field
+.has-feedback.has-clear input::-ms-clear { display: none; }
+.has-feedback.has-clear .form-control-clear { z-index: 99; right: 0; top: -1px; color: #bbb; color: rgba(0, 0, 0, 0.4); pointer-events: auto; }
+.has-feedback.has-clear .form-control-clear:hover { color: #777; color: rgba(0, 0, 0, 0.7); cursor: pointer; }
+.has-feedback.has-clear.has-empty-value .form-control-clear { display: none; }
+
+.vertical-align-center { vertical-align: middle !important; }
+
+// Sidebar
+.sidebar { width: 220px; position: fixed; height: 100%; z-index: 3; }
+.sidebar.right { top: 50px; right: 0; bottom: 0; background: #fff; }
+.sidebar .close { position: absolute; z-index: 11; top: 0; left: -35px; background: #fff; padding: 10px 10px; font-size: 15px; display: none; opacity: 1; color: #6c7177; }
+.sidebar .close:hover { color: #1caf9a; }
+.sidebar.opened .close { display: inherit; }
+.sidebar .title { font-size: 1.4em; text-transform: uppercase; text-align: center; }
+.sidebar .content { height: 100%; border-top: 0; overflow-y: auto; }
+
+// User grants table
+.grants-table .actions { width: 1%; }
+.grants-table label { font-size: 17px; margin: 0 4px;}
+.grants-table label input { display: none; }
+.grants-table label i { cursor: pointer; margin: 0 4px 0 0; }
+.grants-table label input:checked + i { color: #1caf9a; }

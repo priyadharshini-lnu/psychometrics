@@ -1,8 +1,8 @@
 .row
   .col-md-12
     .page-title
-      h2.mrl = @client.decorate.display_name
-      = render partial: 'administration/clients/client_top_nav'
+      h2.mrl = client.decorate.display_name
+      = render partial: 'administration/clients/top_nav'
     .panel.panel-default
       .panel-heading
         h3.panel-title = t('.title')
@@ -11,53 +11,49 @@
             - if policy(@resource_class).import?
               .btn-group
                 button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
-                  span.fa.fa-upload
+                  span.fa.fa-download
                   => t('.import')
                   span.caret
                 ul.dropdown-menu
-                  li = link_to(t('.import_users'), new_administration_imports_users_path(client_id: @client.id), remote: true, class: 'btn btn-default')
-                  li = link_to(t('.import_hris'), new_administration_imports_hris_path(client_id: @client.id), remote: true, class: 'btn btn-default')
+                  li = link_to(t('.import_users'), new_administration_imports_users_path(client_id: client.id), remote: true, class: 'btn btn-default')
+                  li = link_to(t('.import_hris'), new_administration_imports_hris_path(client_id: client.id), remote: true, class: 'btn btn-default')
             - if policy(@resource_class).export?
               = link_to({ action: :export, format: :csv }, target: :_blank, class: 'btn btn-default')
-                span.fa.fa-download
+                span.fa.fa-upload
                 = t('.export')
             - if policy(@resource_class).create?
               = link_to({ action: :new }, remote: true, class: 'btn btn-default')
                 span.fa.fa-plus
                 = t('.add')
-      .panel-body
-        .row
-          .col-sm-10
-            #filter_results
-              = render partial: 'list'
-          .col-sm-2
-            h3 
-              i.fa.fa-filter
-              | Filter
-            = search_form_for(@filter_form, 
-                              url: { action: :index }, 
-                              html: { id: 'filter' },
-                              builder: SimpleForm::FormBuilder) do |f|
+        = search_form_for(@filter_form,
+                          url: { action: :index },
+                          html: { id: 'filter', class: 'list-filter' },
+                          builder: SimpleForm::FormBuilder) do |f|
 
-              = f.input :user_role_in, 
-                        collection: ::User::USER_ROLES.map { |role, value| [t("activerecord.attributes.user.roles.#{role}"), value] }, 
-                        input_html: { multiple: true },
-                        required: false,
-                        label: 'Roles'
-              = f.input :user_type_eq, 
-                        collection: %w(identified anonymous).map { |value| [t("activerecord.attributes.user.types.#{value}"), value] }, 
-                        required: false,
-                        label: 'Type'                     
-              = f.input :user_first_name_or_user_last_name_or_user_email_cont, 
-                        label: 'Search', 
-                        as: :string, 
-                        required: false, 
-                        placeholder: t('administration.search'), 
-                        input_html: { class: 'has_clear periodically-observed' }
-              = f.input :assigns_hash_id_eq, 
-                        label: 'Find by Uniq ID', 
-                        as: :string, 
-                        required: false, 
-                        placeholder: t('administration.uniq_id'), 
-                        input_html: { class: 'has_clear periodically-observed' } 
-              = link_to "Clear Filter", request.path, class: "btn btn-default"
+          = f.input :user_role_in,
+                    collection: ::User::USER_ROLES.map { |role, value| [t("activerecord.attributes.user.roles.#{role}"), value] },
+                    input_html: { multiple: true, title: 'Roles' },
+                    required: false,
+                    label: false
+          = f.input :user_type_eq,
+                    collection: %w(identified anonymous).map { |value| [t("activerecord.attributes.user.types.#{value}"), value] },
+                    input_html: { title: 'Type' },
+                    include_blank: t('administration.any'),
+                    required: false,
+                    label: false
+          = f.input :user_first_name_or_user_last_name_or_user_email_cont,
+                    label: false,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    input_html: { class: 'has_clear periodically-observed' }
+          = f.input :assigns_hash_id_eq,
+                    label: false,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.uniq_id'),
+                    input_html: { class: 'has_clear periodically-observed' }
+          = link_to "Clear Filter", request.path, class: "btn btn-default"
+      .panel-body
+        #filter_results
+          = render partial: 'list'

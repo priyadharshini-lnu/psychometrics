@@ -1,0 +1,101 @@
+                                                                            require 'rails_helper'
+feature 'Assign Assessment' do
+  feature 'by SuperAdmin' do
+    before(:each) do
+      logged_in_as :superadmin
+    end
+
+    given!(:assessment) { create(:assessment, :with_report) }
+    given!(:client) { create(:client, sub_clients_count: 3) }
+    given!(:users) { create_list(:membership, 3, client: client) }
+
+    scenario 'should be able to assign', js: true do
+      visit "/administration/assessments/#{assessment.id}/assigns/new"
+      find('#client_ids option', text: client.name, visible: false).select_option
+      find_button(I18n.t('administration.assessments.assigns.new.load_form')).click
+      wait_for_ajax
+      first('#users_not_selected tbody tr input[type="checkbox"]').set(true)
+      find('#addSelected').click
+      find('#assign_submit').click
+      expect(Assign.count).to eq(1)
+    end
+
+    scenario 'should see only Client Tenancie (exclude Sub Clients)' do
+      visit "/administration/assessments/#{assessment.id}/assigns/new"
+      expect(page).not_to have_css('#client_ids option', text: client.sub_clients.first.name, visible: false)
+    end
+
+    feature 'Client has no enough license' do
+      before(:each) do
+        client.licenses.destroy_all
+      end
+
+      scenario 'should see error message' do
+        visit "/administration/assessments/#{assessment.id}/assigns/new"
+        find('#client_ids option', text: client.name, visible: false).select_option
+        expect(page).not_to have_css('#client_ids option', text: client.sub_clients.first.name, visible: false)
+        find_button(I18n.t('administration.assessments.assigns.new.load_form')).click
+        wait_for_ajax
+        first('#users_not_selected tbody tr input[type="checkbox"]').set(true)
+        find('#addSelected').click
+        find('#assign_submit').click
+        expect(Assign.count).to eq(0)
+        expect(page).to have_content(I18n.t('activerecord.errors.messages.has_no_enough_licenses'))
+      end
+    end
+  end
+
+  feature 'by ClientAdmin' do
+    before(:each) do
+      logged_in_as :admin, grants: { assessments: { view: true, assign: true } }
+    end
+
+    given!(:assessment) { create(:assessment, :with_report) }
+    given!(:client) { current_membership.client }
+    given!(:assign_client) { create(:assign_client, client: client, assignable: assessment, report_ids: assessment.report_ids) }
+    given!(:sub_client) { create :client, parent_id: client.id }
+    given!(:other_client) { create(:client, sub_clients_count: 1) }
+    given!(:other_sub_client) { other_client.sub_clients.first }
+    given!(:users) { create_list(:membership, 3, client: client) }
+
+    scenario 'should be able to assign' do
+      visit "/administration/assessments/#{assessment.id}/assigns/new"
+      find('#client_ids option', text: client.name, visible: false).select_option
+      find_button(I18n.t('administration.assessments.assigns.new.load_form')).click
+      wait_for_ajax
+      first('#users_not_selected tbody tr input[type="checkbox"]').set(true)
+      find('#addSelected').click
+      find('#assign_submit').click
+      expect(Assign.count).to eq(1)
+    end
+
+    scenario 'should see Client Tenancie And Sub Tenancie', js: true do
+      visit "/administration/assessments/#{assessment.id}/assigns/new"
+      expect(page).to have_css('#client_ids option', text: sub_client.name, visible: false)
+    end
+
+    scenario 'should not to see Other Client Tenancie And Sub Tenancie' do
+      visit "/administration/assessments/#{assessment.id}/assigns/new"
+      expect(page).not_to have_css('#client_ids option', text: other_client.name, visible: false)
+      expect(page).not_to have_css('#client_ids option', text: other_sub_client.name, visible: false)
+    end
+
+    feature 'Client has no enough license' do
+      before(:each) do
+        client.licenses.destroy_all
+      end
+
+      scenario 'should see error message' do
+        visit "/administration/assessments/#{assessment.id}/assigns/new"
+        find('#client_ids option', text: client.name, visible: false).select_option
+        find_button(I18n.t('administration.assessments.assigns.new.load_form')).click
+        wait_for_ajax
+        first('#users_not_selected tbody tr input[type="checkbox"]').set(true)
+        find('#addSelected').click
+        find('#assign_submit').click
+        expect(Assign.count).to eq(0)
+        expect(page).to have_content(I18n.t('activerecord.errors.messages.has_no_enough_licenses'))
+      end
+    end
+  end
+end

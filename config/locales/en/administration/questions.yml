@@ -1,6 +1,8 @@
 en:
   administration:
     questions:
+      index:
+        owner: Owner
       new:
         header: 'New Question'
       edit:

@@ -1,9 +1,17 @@
 $(function() {
   // Show error message, when server retuen 500 erorr
   $(document).ajaxError(function(_, data){
-     if (data.status == 500) {
-        noty({text: I18n.t('administration.noty.error_500'), layout: 'topCenter', type: 'error'});
-     }
+    if (data.status == 500) {
+       noty({text: I18n.t('administration.noty.error_500'), layout: 'topCenter', type: 'error'});
+    }
+  });
+
+  $(document).on('ajax:beforeSend', function (e) {
+    var panel = $(e.target).parents('.panel');
+    panel_refresh(panel);
+  }).on('ajax:complete', function (e) {
+    var panel = $(e.target).parents('.panel');
+    panel_refresh(panel);
   });
 
   $('.x-navigation .xn-openable .active').each(function() {
@@ -15,9 +23,13 @@ $(function() {
     window.formElements.init();
   });
 
+  $(document).on('cocoon:after-insert', function (e, insertedItem) {
+    window.formElements.init();
+  });
+
   // Disabled button after submit
   // $(document).on('click', '[type="submit"]', function () {
-  //   $(this).button('loading')
+  //   $(this).button('loading');
   // })
 
   // Noty plugin settings

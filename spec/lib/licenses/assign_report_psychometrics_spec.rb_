@@ -1,0 +1,81 @@
+require 'rails_helper'
+
+RSpec.describe Licenses::AssignReportPsychometrics do
+  let(:call) { Licenses::AssignReportPsychometrics.use(assigns_report) }
+  let!(:client) { create(:client) }
+  let!(:license) { client.licenses.assign_report_psychometrics.first }
+  let!(:membership) { create(:membership, client: client) }
+  let(:report) { create(:report) }
+  let(:assign) { create(:assign, membership: membership, assignable: report.assessment) }
+  let!(:assigns_report) { build(:assigns_report, assign: assign, report: report) }
+
+  describe 'self.use' do
+    context 'When client is Tenancy' do
+      context 'and is owner of report without licenses' do
+        let(:report) { create(:report, owner: client) }
+        before { license.destroy }
+        before { call }
+
+        it { expect(call).to be_nil }
+        it { expect(assigns_report.license_usages.size).to eq(0) }
+        it { expect(assign.errors.added?(:base, :has_no_enough_licenses)).to be_falsey }
+      end
+
+      context 'and license does NOT exist' do
+        before { license.destroy }
+
+        it { fails_build_license_usage }
+      end
+
+      context 'and HAS NO enough licenses then' do
+        before { license.update!(number: 0) }
+
+        it { fails_build_license_usage }
+      end
+
+      context 'and HAS enough licenses then' do
+        let(:license_usage) { assigns_report.license_usages.first }
+        before { call }
+
+        it { expect(assign.errors.added?(:base, :has_no_enough_licenses)).to be_falsey }
+        it 'builds a license_usage' do
+          expect(assigns_report.license_usages.size).to eq(1)
+          expect(license_usage.license).to eq(license)
+          expect(call).to be(license_usage)
+        end
+      end
+
+      context 'and membership allows YTI/ETI' do
+        before { allow(membership).to receive(:allows_yti_eti?).and_return(true) }
+        before { call }
+
+        it { skips_license_usage_build }
+      end
+
+      context 'and HAS INDIVIDUAL license' do
+        let!(:individual_license) { create(:license, client: client, report: report, type: :assign_individual_report) }
+        let(:license_usage) { assigns_report.license_usages.first }
+        before { call }
+
+        it { expect(assign.errors.added?(:base, :has_no_enough_licenses)).to be_falsey }
+        it 'builds an individual license_usage' do
+          expect(assigns_report.license_usages.size).to eq(1)
+          expect(license_usage.license).to eq(individual_license)
+          expect(call).to be(license_usage)
+        end
+      end
+    end
+  end
+
+  def fails_build_license_usage
+    expect { call }.to raise_error(ActiveRecord::RecordInvalid)
+    expect(assign.errors.added?(:base, :has_no_enough_licenses)).to be_truthy
+    expect(assigns_report.license_usages).to be_empty
+  end
+
+  def skips_license_usage_build
+    expect(assign.errors.added?(:base, :has_no_enough_licenses)).to be_falsey
+    expect(assigns_report.license_usages).to be_empty
+    expect(call).to be_nil
+  end
+end

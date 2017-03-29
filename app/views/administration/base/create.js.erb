@@ -6,5 +6,5 @@ $('#modal-container').find('.modal').on('hidden.bs.modal', function(){
   $(document).trigger('initPlugins');
 
   // Notify message
-  noty({text: '<%= t("administration.#{@resource_class.model_name.plural}.create.successfully", name: @resource.decorate.display_name) %>', type: 'success'});
+  noty({text: '<%= t("administration.#{i18n || @resource_class.model_name.plural}.create.successfully", name: @resource.decorate.display_name) %>', type: 'success'});
 });

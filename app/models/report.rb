@@ -12,14 +12,25 @@
 #
 
 class Report < ApplicationRecord
+  TYPES = [
+    COMMON_TYPE = 'common'.freeze,
+    YTI_TYPE = 'yti'.freeze,
+    ETI_TYPE = 'eti'.freeze
+  ].freeze
   include Copyable
   self.inheritance_column = :_type_disabled
   belongs_to :assessment
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+  belongs_to :report_family
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
 
-  has_many :client_reports, dependent: :destroy
-  has_many :clients, through: :client_reports
+  # has_many :assign_clients_reports, dependent: :destroy
+  # has_many :assign_clients, through: :assign_clients_reports
+  # has_many :clients, through: :assign_clients
+
+  has_many :clients_reports, dependent: :destroy
+  has_many :clients, through: :clients_reports
 
   has_many :translations, as: :resource
 
@@ -27,7 +38,10 @@ class Report < ApplicationRecord
   has_many :products, through: :product_reports
 
   validates :assessment, presence: true
-  enum type: [:common, :yti, :eti]
+  validates :owner, presence: true, allow_nil: true
+  validates :report_family, presence: true, allow_nil: false
+
+  enum type: TYPES
 
   # Copy report with pages => modules
   def clone
@@ -36,33 +50,9 @@ class Report < ApplicationRecord
     @cloned_item
   end
 
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'id_desc',
-      with_assessment_category: 'all'
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query,
-      :with_assessment_category,
-      :with_assessment
-    ]
-  )
-
   scope :enabled, -> { where.not(disabled: true) }
-  # Search entity by word
-  scope :search_query, lambda { |query|
-    where('name ILIKE ?', "%#{query}%")
-  }
-
-  # Sorting
-  scope :sorted_by, lambda { |sort_key|
-    # extract the sort direction from the param value.
-    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
-    column = sort_key.gsub("_#{direction}", '')
-    if column.in?(%w(id name created_at updated_at))
-      order("reports.#{column} #{direction}")
-    end
+  scope :with_report_families, lambda { |report_family_ids|
+    report_family_ids.blank? ? none : where(report_family_id: report_family_ids)
   }
 
   # Search entity by assessment category
@@ -82,4 +72,14 @@ class Report < ApplicationRecord
   scope :available_to_view, lambda {
     joins(:assessment).where.has { assessment.access_reports_at.eq(nil) | (assessment.access_reports_at <= Time.now) }
   }
+
+  scope :for_clients, lambda { |client_ids|
+    joins(:clients_reports).where.has { clients_reports.client_id.in(client_ids) }
+  }
+
+  scope :yti_eti, -> { where(type: [YTI_TYPE, ETI_TYPE]) }
+
+  def yti_eti?
+    [Report::YTI_TYPE, Report::ETI_TYPE].include? type
+  end
 end

@@ -1,0 +1,31 @@
+en:
+  activerecord:
+    models:
+      membership: Membership
+    attributes:
+      membership: &DEFAULT
+        id: ID
+        parent: Direct Manager
+        parent_id: Direct Manager
+        created_at: Created Date
+        updated_at: Modified Date
+        first_name: First Name
+        last_name: Last Name
+        email: Email Address
+        disabled: Disable
+        active: Active
+        report_ids: Report IDs
+        roles:
+          member: User
+          manager: Manager
+          admin: Client Admin
+    errors:
+      messages:
+        has_no_enough_licenses: Client has no enough licenses
+  simple_form:
+    placeholders:
+      memebrship:
+        <<: *DEFAULT
+    labels:
+      membership:
+        role: Membership role

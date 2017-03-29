@@ -2,11 +2,13 @@ en:
   administration:
     reports: &REPORTS
       types: &types
-       common: 'Any'
-       eti: 'ETI'
-       yti: 'YTI'
+        common: 'Any'
+        eti: 'ETI'
+        yti: 'YTI'
       index:
         title: "Reports"
+        add: Add
+        families: Families
         tooltips:
           create: Create
         filterrific:
@@ -15,12 +17,18 @@ en:
             psychometric: 'Psychometrics'
             organisational: 'Org Surveys'
             '360': '360 Feedback'
+        owner: Owner
+        report_family: Report Family
       new:
         header: 'New Report'
       edit:
         header: 'Edit Report Name'
       destroy:
         successfully: 'Report %{name} was successfully destroyed.'
+      create:
+        successfully: 'Report %{name} was successfully created.'
+      update:
+        successfully: 'Report %{name} was successfully updated.'
       copy:
         error: 'Report #%{id} was not copied.'
       toggle_status:
@@ -28,6 +36,7 @@ en:
       form:
         types:
           <<: *types
+        select_family: Select Report Family
       sidebar:
         title: "Report's options"
         view: 'View Report'
@@ -59,3 +68,7 @@ en:
           <<: *REPORTS
       reports:
         <<: *REPORTS
+        destroy:
+          successfully: 'Report %{name} was successfully destroyed from Client.'
+        create:
+          successfully: 'Report %{name} was successfully created for Client.'

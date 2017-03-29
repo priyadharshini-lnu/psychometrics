@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      license: 'License'
+    attributes:
+      license: &DEFAULT
+        id: ID
+        type: License for
+        number: License Number
+        overuse_number: Over Use Allowance
+        used_number: Used License Number
+        unlimited: Unlimited
+  simple_form:
+    placeholders:
+      license:
+        <<: *DEFAULT

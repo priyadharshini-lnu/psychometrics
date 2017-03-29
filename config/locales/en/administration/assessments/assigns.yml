@@ -1,0 +1,16 @@
+en:
+  administration:
+    assessments:
+      assigns:
+        new:
+          title: 'Assign %{name} Assessment'
+          load_form: 'Load Form'
+          help_block: 'Select Clients and then click to the button "Load Form"'
+        users:
+          filter_form: 'Filter form'
+          filter: 'Filter'
+
+          not_selected_users: 'Not Selected Users'
+          selected_users: 'Selected Users'
+        create:
+          successfully: 'You successfully finished assigning %{name}'

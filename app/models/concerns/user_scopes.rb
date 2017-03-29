@@ -2,19 +2,6 @@ module UserScopes
   extend ActiveSupport::Concern
 
   included do
-    filterrific(
-      default_filter_params: {
-        sorted_by: 'id_desc',
-        with_role: 'all'
-      },
-      available_filters: [
-        :sorted_by,
-        :search_query,
-        :with_client,
-        :with_role
-      ]
-    )
-
     # Sorting
     scope :sorted_by, lambda { |sort_key|
       # extract the sort direction from the param value.
@@ -52,21 +39,12 @@ module UserScopes
     # Fileter by role
     scope :with_role, lambda { |role|
       if role == 'users'
-        where(role: USER_ROLES_SCOPES[:user])
+        joins(:memberships).
+          where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
       elsif role == 'administrators'
-        where(role: USER_ROLES_SCOPES[:administration])
+        joining { memberships.outer }.
+          where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::ADMIN_ROLE) }
       end
-    }
-
-    scope :exclude_ids, lambda { |ids|
-      ids = ids.split(',') if ids.is_a?(String)
-      ids = (ids || []).reject(&:blank?).compact
-      where.not(id: ids)
-    }
-    scope :include_ids, lambda { |ids|
-      ids = ids.split(',') if ids.is_a?(String)
-      ids = (ids || []).reject(&:blank?).compact
-      where(id: ids)
     }
 
     scope :hris_data_cont, lambda { |data|
@@ -75,11 +53,13 @@ module UserScopes
       where('users.hris @> ?', data.to_json)
     }
 
-    scope :role_scope_in, lambda { |role|
-      if role == 'users'
-        where(role: USER_ROLES_SCOPES[:user])
-      elsif role == 'administration'
-        where(role: USER_ROLES_SCOPES[:administration])
+    scope :role_scope_in, lambda { |role_scope|
+      if role_scope == 'users'
+        joins(:memberships).
+          where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
+      elsif role_scope == 'administration'
+        joining { memberships.outer }.
+          where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::ADMIN_ROLE) }
       end
     }
   end

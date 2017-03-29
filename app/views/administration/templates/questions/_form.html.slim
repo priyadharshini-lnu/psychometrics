@@ -3,6 +3,7 @@
     = f.error_notification
     .form-inputs.clearfix
       = f.input :name
+      = f.association :owner, collection: policy_scope(Client).all, include_blank: (t('administration.tte') if current_user.is?(:superadmin)), input_html: { data: { live_search: true } }
 
   .modal-footer
     .btn-group

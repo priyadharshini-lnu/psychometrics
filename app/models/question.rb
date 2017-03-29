@@ -24,9 +24,13 @@
 class Question < ApplicationRecord
   include Copyable
 
+  # For assessment builder
+  attr_accessor :save_as_template, :permanent_remove
+
   belongs_to :block
-  belongs_to :assessment
+  belongs_to :assessment, touch: true
   belongs_to :template, class_name: 'Question', dependent: :destroy
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
   has_many :factors_scorings, dependent: :destroy
   has_many :comments, as: :commentable, dependent: :destroy
@@ -53,6 +57,8 @@ class Question < ApplicationRecord
   before_create :set_view
   after_create :create_in_template_block, if: proc { block && block.template.present? }
   after_create :create_in_assessments_blocks, if: proc { block && block.blocks.any? }
+  before_save :dup_for_template, if: :save_as_template
+
   #
   # Disables single column inheritance
   #
@@ -60,18 +66,9 @@ class Question < ApplicationRecord
 
   validates :name, :type, presence: true
   validates :name, length: { maximum: 255 }, allow_blank: true
+  validates :owner, presence: true, allow_nil: true
 
   acts_as_list scope: :block_id
-
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'id_desc'
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query
-    ]
-  )
 
   # Search entity by word
   scope :search_query, lambda { |query|
@@ -95,17 +92,13 @@ class Question < ApplicationRecord
 
   ### Qcenter
   # Create duplicate object for Question Center
-  def dup_for_template!
-    self.template = self.class.new(general_attributes.merge({ view: :templates }))
-    save
-    template
+  def dup_for_template
+    self.template = self.class.create(general_attributes.merge({ view: :templates }))
   end
 
   # Create duplicate object for Block Center
-  def dup_for_block!
-    self.template = self.class.new(general_attributes.merge({ view: :blocks }))
-    save
-    template
+  def dup_for_block
+    self.class.new(general_attributes.merge({ view: :blocks }))
   end
 
   def dup_for_assessment!(block_id)

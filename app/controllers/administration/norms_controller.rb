@@ -6,10 +6,8 @@ class Administration::NormsController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
-    @filterrific = initialize_filterrific(
-      policy_scope(@resource_class).includes(:updater),
-      params[:filterrific]) || return
-    @resources = @filterrific.find.page(params[:page])
+    @filter_form = policy_scope(@resource_class).includes(:updater, :dimension).search(params[:q])
+    @resources = @filter_form.result.page(params[:page])
 
     respond_to do |format|
       format.html
@@ -109,12 +107,8 @@ class Administration::NormsController < Administration::BaseController
     add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
   end
 
-  def set_resource
-    @resource = @resource_class.find(params[:id])
-  end
-
   def resource_params
-    params.require(:resource).permit(:name, :dimension_id)
+    params.require(:resource).permit(:name, :dimension_id, :owner_id)
   end
 
   def editor_params

@@ -15,11 +15,18 @@
 #  timing            :string
 #  access_reports_at :datetime
 #  status            :integer
+#  owner_id          :integer
 #
 
 FactoryGirl.define do
-  factory :assessment do |f|
-    f.sequence(:name) { |i| "assessment #{i}" }
-    f.association :dimension
+  factory :assessment do
+    sequence(:name) { |i| "assessment #{i}" }
+    dimension
+
+    trait :with_report do
+      after(:create) do |assessment, _evaluator|
+        create :report, assessment: assessment
+      end
+    end
   end
 end

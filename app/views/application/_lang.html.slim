@@ -1,6 +1,9 @@
 .dropdown.pull-right
   button#dropdownMenuLang.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
-    => t("languages.#{user_locale}")
+    - if (locales || []).include?(user_locale)
+      => t("languages.#{user_locale}")
+    - else
+      => t("languages.en")
     span.caret
   ul.dropdown-menu aria-labelledby=""
     = active_link_to t('languages.en'), 

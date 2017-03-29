@@ -9,6 +9,7 @@ gem 'uglifier',                   '>= 1.3.0'
 gem 'coffee-rails',               '~> 4.2'
 gem 'jquery-rails',               '~> 4.1.1'
 gem 'jquery-rails-cdn',           '~> 1.1.2'
+gem 'jbuilder',                   '~> 2.6.1'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '1.12'
@@ -24,6 +25,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-datatables', '1.10.12'
   gem 'rails-assets-summernote', '0.5.10'
   gem 'rails-assets-js-cookie', '2.1.3'
+  gem 'rails-assets-jquery-serialize-object', '2.5.0'
 end
 
 ### Authentication and authorization
@@ -56,7 +58,7 @@ gem 'active_link_to',             '~> 1.0.3'
 gem 'i18n-js',                    '~> 3.0.0.rc3'
 
 ### Decorator
-gem 'activemodel-serializers-xml', github: 'rails/activemodel-serializers-xml'
+gem 'activemodel-serializers-xml'
 ### Fixed gem for decorator (rails 5)
 gem 'draper', github: 'audionerd/draper', branch: 'rails5'
 ### Generate schema in each model
@@ -90,7 +92,7 @@ gem 'i18n-tasks', '~> 0.9.5'
 gem 'acts_as_list', '~> 0.8.1'
 
 ### add fake destroying logic for models
-gem 'paranoia', github: 'rubysherpas/paranoia', branch: 'rails5'
+gem 'paranoia', '~> 2.2'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'airbrake', '~> 5.0'
 
@@ -113,15 +115,18 @@ gem 'chronic', '~> 0.10.2'
 gem 'whenever', '~> 0.9.7', require: false
 
 gem 'hashids', '~> 1.0.2'
+gem 'react-rails', '~> 1.10.0'
 gem 'bootstrap-slider-rails'
 
 gem 'money-rails', '~> 1.7.0'
+gem 'validates_timeliness', '~> 4.0.2'
 gem 'virtus', '~> 1.0.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
   gem 'pry-byebug'
+  gem 'pry-rails'
   gem 'hirb'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', '~> 4.7.0'
@@ -149,7 +154,8 @@ group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 2.11.0'
   gem 'poltergeist'
-  # gem 'capybara-webkit'
   gem 'capybara-screenshot'
   gem 'selenium-webdriver'
+  gem 'database_cleaner'
+  gem 'simplecov', require: false
 end

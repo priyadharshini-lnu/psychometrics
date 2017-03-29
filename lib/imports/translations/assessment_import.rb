@@ -46,9 +46,10 @@ module Imports
 
         rows.each do |row|
           data = Hash[header.zip(row)]
-          question_id, key = data.delete('key').split(':')
+          question_id, key = data.delete('Key').split(':')
           collect_translations[question_id] ||= {}
           data.each do |locale, translation|
+            locale = locale.split(' / ').last
             next if locale == 'en' || translation.blank? # Default locale or not translated
             collect_translations[question_id][locale] ||= {}
             collect_translations[question_id][locale][key] = translation

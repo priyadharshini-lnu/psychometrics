@@ -15,6 +15,7 @@
 #  timing            :string
 #  access_reports_at :datetime
 #  status            :integer
+#  owner_id          :integer
 #
 
 class Assessment < ApplicationRecord
@@ -26,11 +27,13 @@ class Assessment < ApplicationRecord
   has_many :factors_scoring, dependent: :destroy
   has_many :reports, dependent: :destroy
 
+  has_many :assign_clients, dependent: :destroy
+  has_many :clients, through: :assign_clients
   has_many :assigns, dependent: :destroy
-  has_many :memberships, through: :assigns
 
-  has_many :assessment_clients, dependent: :destroy
-  has_many :clients, through: :assessment_clients
+  has_many :memberships, through: :assigns
+  has_many :assessments_projects, inverse_of: :project
+  has_many :projects, through: :assessments_projects
 
   has_many :communications, dependent: :destroy
 
@@ -38,12 +41,19 @@ class Assessment < ApplicationRecord
   has_many :tasks, dependent: :destroy
 
   belongs_to :dimension
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+
+  CATEGORIES_TYPES = [
+      PSYCHOMETRIC = 'psychometric'.freeze,
+      ORGANISATIONAL = 'organisational'.freeze,
+      NUM_360 = '360'.freeze
+  ].freeze
 
   # CATEGORIES constant
   CATEGORIES = {
-    psychometric: 'psychometric',
-    organisational: 'organisational',
-    '360' => '360'
+      psychometric: PSYCHOMETRIC,
+      organisational: ORGANISATIONAL,
+      '360' => NUM_360
   }.freeze
 
   # STATUSES constant
@@ -51,28 +61,20 @@ class Assessment < ApplicationRecord
 
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
+  validates :owner, presence: true, allow_nil: true
+  validate :check_owner
 
   before_create :init
 
   def init
     self.flow ||= { elements: [] }
     self.status = Assessment.statuses[:in_progress] unless status
+    self.norm_rules ||= {}
   end
 
   enum category: CATEGORIES
   enum status: STATUSES
 
-  filterrific(
-    default_filter_params: {
-      sorted_by: 'id_desc',
-      with_category: CATEGORIES.values.first
-    },
-    available_filters: [
-      :sorted_by,
-      :search_query,
-      :with_category
-    ]
-  )
   scope :enabled, -> { where.not(disabled: true) }
 
   # Search entity by word
@@ -106,8 +108,18 @@ class Assessment < ApplicationRecord
   }
 
   scope :with_client, lambda { |client_id|
-    joins(:assessment_clients).where(assessment_clients: { client_id: client_id })
+    joins(:assign_clients).where(assign_clients: { client_id: client_id })
   }
+
+  def active_questions_count
+    questions.not_deleted.where(disabled: false).count
+  end
+
+  private
+
+  def check_owner
+    errors.add(:owner, :invalid) if owner&.child?
+  end
 
   class << self
     # Available role for the filter form
@@ -119,9 +131,5 @@ class Assessment < ApplicationRecord
     def options_for_select
       all.map { |assessment| [assessment.decorate.display_name, assessment.id] }
     end
-  end
-
-  def active_questions_count
-    questions.not_deleted.where(disabled: false).count
   end
 end

@@ -53,7 +53,23 @@ module AdministrationHelper
     end
   end
 
-  def link_to_sort(resource_class, name, filter_form)
-    sort_link(filter_form, name, resource_class.human_attribute_name(name))
+  def link_to_sort(resource_class, name, filter_form, tail = nil)
+    unless tail
+      case name
+      when :created_at, :updated_at
+        tail = Settings.timezone_tip
+      else
+        tail = ''
+      end
+    end
+    sort_link(filter_form, name, resource_class.human_attribute_name(name) + tail)
+  end
+
+  def render_error_notification(resource)
+    return unless resource.errors.any?
+    content_tag :div, class: 'alert alert-danger' do
+      concat content_tag 'strong', 'There are some problems:'
+      concat content_tag 'ul', resource.errors.full_messages.map { |msg| content_tag('li', msg) }.join.html_safe, class: 'list-unstyled'
+    end
   end
 end

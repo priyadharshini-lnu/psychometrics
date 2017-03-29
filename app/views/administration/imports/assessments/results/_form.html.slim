@@ -1,6 +1,7 @@
 = simple_form_for(@resource, as: :import, url: { action: :create }, remote: true, html: { multipart: true }) do |f|
   .modal-body
     .form-inputs.clearfix
+      p Refer to the Export functionality to extract a template that can be used to Import here.
       = f.input :client_id, as: :hidden
       = f.input :assessment_id, as: :hidden
       .hidden = f.input :scoring, as: :boolean

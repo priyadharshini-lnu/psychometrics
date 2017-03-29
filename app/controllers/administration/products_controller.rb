@@ -93,10 +93,6 @@ module Administration
       @resource_class = ::Product
     end
 
-    def set_resource
-      @resource = policy_scope(@resource_class).find(params[:id])
-    end
-
     def pundit_authorize
       authorize @resource || @resource_class
     end

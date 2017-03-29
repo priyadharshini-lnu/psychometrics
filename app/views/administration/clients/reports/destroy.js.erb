@@ -1,5 +1,8 @@
-$('#<%= dom_id(@resource.report) %>').hide('slow')
-// Notify message
-noty({text: '<%= t("administration.clients.reports.destroy.successfully", name: @resource.report.decorate.display_name) %>', type: 'success'});
+$('#filter').trigger('reloadList');
+// Reinit all plugins
+$(document).trigger('initPlugins');
 
 $(document).trigger('close_sidebar');
+
+// Notify message
+noty({text: '<%= t("administration.#{i18n || @resource_class.model_name.plural}.destroy.successfully", name: @resource.report.decorate.display_name) %>', type: 'success'});
