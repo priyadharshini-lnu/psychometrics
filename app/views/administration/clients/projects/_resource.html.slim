@@ -1,35 +1,36 @@
-tr data-sidebar=url_for(sidebar_administration_client_project_path(client, resource)) id=dom_id(resource)
-  td 
-    - if resource.project_level?
-      = link_to resource.decorate.display_name, administration_client_users_path(resource)  
-    - else
-      = link_to resource.decorate.display_name, administration_client_project_campaigns_path(client, resource)   
-  td
-    = resource.decorate.project_admins
-    - if policy(User).create?
-      br
-      = link_to new_administration_client_user_path(project_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
-        span.fa.fa-plus
-    td = resource.number
-  td 
-    - if resource.project_level?
-      = resource.decorate.reports
-      - if policy(:clients_report).create?
+- if current_user.is?(:superadmin) || resource.admin_ids.include?(current_user.id)
+  tr data-sidebar=url_for(sidebar_administration_client_project_path(client, resource)) id=dom_id(resource)
+    td
+      - if resource.project_level?
+        = link_to resource.decorate.display_name, administration_client_users_path(resource)
+      - else
+        = link_to resource.decorate.display_name, administration_client_project_campaigns_path(client, resource)
+    td
+      = resource.decorate.project_admins
+      - if policy(User).create? && current_user.is?(:superadmin)
         br
-        = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
-          span.fa.fa-plus  
-  td
-    - if resource.project_level?
-      = link_to resource.users_count, administration_client_users_path(resource)  
-      - if policy(User).create?
-        br
-        = link_to new_administration_client_user_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
-          span.fa.fa-plus      
-  td.actions-cell
-    - if policy(resource).actions?
-      = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
-        span.fa.fa-pencil
-      = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') })
-        span.fa.fa-copy
-      = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')})
-        span.fa.fa-times
+        = link_to new_administration_client_user_path(project_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
+          span.fa.fa-plus
+      td = resource.number
+    td
+      - if resource.project_level?
+        = resource.decorate.reports
+        - if policy(:clients_report).create?
+          br
+          = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
+            span.fa.fa-plus
+    td
+      - if resource.project_level?
+        = link_to resource.users_count, administration_client_users_path(resource)
+        - if policy(User).create?
+          br
+          = link_to new_administration_client_user_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
+            span.fa.fa-plus
+    td.actions-cell
+      - if policy(resource).actions?
+        = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
+          span.fa.fa-pencil
+        = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') })
+          span.fa.fa-copy
+        = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')})
+          span.fa.fa-times

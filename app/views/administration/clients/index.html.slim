@@ -4,7 +4,7 @@
       .panel-heading
         h3.panel-title = t '.title'
         ul.panel-controls
-          - if policy(:client).new?
+          - if policy(:client).manage_first_level?
             li
               - if policy(@resource_class).export?
                 = link_to({ action: :export, format: :csv }, target: :_blank, data: { toggle: 'tooltip', title: t('.tooltips.export') })

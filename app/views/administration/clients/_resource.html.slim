@@ -4,9 +4,10 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
       = link_to resource.name, administration_client_users_path(resource)
     - else
       = link_to resource.name, administration_client_projects_path(resource)
-  td = resource.decorate.type
-  td = resource.number
-  td = resource.country
+  - if policy(:client).view_additional_fields?
+    td = resource.decorate.type
+    td = resource.number
+    td = resource.country
   td = resource.decorate.project_admins
   td = resource.year
   td = resource.account_manager&.decorate&.display_name
@@ -15,7 +16,8 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
     - if policy(resource).actions?
       = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
         span.fa.fa-pencil
-      = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
-        span.fa.fa-copy
+      - if policy(resource).manage_first_level?
+        = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
+          span.fa.fa-copy
       = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
         span.fa.fa-times
