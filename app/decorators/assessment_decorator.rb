@@ -15,8 +15,10 @@ class AssessmentDecorator < BaseDecorator
     end
   end
 
+  # TODO: Paul quick fix
   def timing
-    object.timing ? "- #{object.timing}" : ''
+    object.timing
+    # object.timing ? "- #{object.timing}" : ''
   end
 
   def anonym_link_for(client)

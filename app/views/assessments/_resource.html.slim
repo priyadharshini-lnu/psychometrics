@@ -9,7 +9,9 @@
           = "#{resource.decorate.category} (#{resource.name})"
       .well.assessmentDetailsWell
         h4.detailsTitle
-          = "#{t('.questions', :count => resource.active_questions_count)} #{resource.decorate.timing}"
+          // TODO: Paul quick fix
+          = resource.decorate.timing
+          / = "#{t('.questions', :count => resource.active_questions_count)} #{resource.decorate.timing}"
     .clearfix.visible-sm
     .col-sm-6.col-md-2.tabletPadding
       - first_assign = resource.assigns.first
