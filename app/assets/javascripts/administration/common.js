@@ -9,10 +9,12 @@ $(function() {
   $(document).on('ajax:beforeSend', function (e) {
     var panel = $(e.target).parents('.panel');
     panel_refresh(panel);
-  }).on('ajax:complete', function (e) {
-    var panel = $(e.target).parents('.panel');
-    panel_refresh(panel);
   });
+
+    $(document).ajaxSuccess(function(e) {
+        var panel = $('.panel.panel-default.panel-refreshing')
+        panel_refresh(panel);
+    })
 
   $('.x-navigation .xn-openable .active').each(function() {
     $(this).parents('.xn-openable').addClass('active');
