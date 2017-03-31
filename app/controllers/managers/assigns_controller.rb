@@ -9,7 +9,7 @@ module Managers
                      joining { assessment }.
                      where.has { assessment.disabled.eq(nil) | assessment.disabled.eq(false) }.
                      search(params[:q])
-      @reports = @current_client.reports.enabled.
+      @reports = @current_project.reports.enabled.
                  with_assessment_category(%w(360 organisational)).
                  available_to_view.
                  group_by(&:assessment_id)

@@ -10,7 +10,7 @@ module Managers
       #
       def resolve
         assessment_ids = Assign.where(membership_id: @user[:current_membership].id, role: 'manager').pluck(:assessment_id)
-        membership_ids = @user[:current_membership].children.pluck(:user_id) + [@user[:current_membership].id]
+        membership_ids = @user[:current_membership].children.pluck(:id) + [@user[:current_membership].id]
         scope.where(membership_id: membership_ids, assessment_id: assessment_ids)
       end
     end

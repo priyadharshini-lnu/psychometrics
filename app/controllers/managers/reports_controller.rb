@@ -9,7 +9,7 @@ module Managers
       @results = Assign.
                  completed.
                  includes(:membership, :user).
-                 where(memberships: { client_id: @current_client.id }, assessment_id: @resource.assessment_id).
+                 where(memberships: { client_id: @current_project.id }, assessment_id: @resource.assessment_id).
                  references(:membership).all
       @assign = Assign.find_by(assessment_id: @resource.assessment_id, membership_id: @user_membership.id)
 
@@ -21,7 +21,7 @@ module Managers
           render('_show', layout: 'pdf') if params[:export]
         end
         format.pdf do
-          pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @user, @current_client)
+          pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @user, @current_project)
           send_file pdf_file, type: 'application/pdf'
         end
       end
@@ -40,7 +40,7 @@ module Managers
 
     def set_user
       @user = User.find(params[:user_id])
-      @user_membership = @user.memberships.join_user.find_by(client_id: @current_client.id)
+      @user_membership = @user.memberships.join_user.find_by(client_id: @current_project.id)
     end
 
     def pundit_user

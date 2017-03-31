@@ -1,0 +1,458 @@
+[
+  {
+    "id": 2284,
+    "status": "completed",
+    "step": 3,
+    "results": {
+      "2738": {
+        "answers": [
+          {
+            "index": 0,
+            "value": true
+          }
+        ],
+        "question_id": 2738
+      },
+      "2739": {
+        "answers": [
+          {
+            "index": 0,
+            "value": true
+          }
+        ],
+        "question_id": 2739
+      },
+      "2744": {
+        "answers": [
+          {
+            "index": 0,
+            "value": true
+          }
+        ],
+        "question_id": 2744
+      },
+      "2745": {
+        "answers": [
+          {
+            "index": 0,
+            "value": true
+          }
+        ],
+        "question_id": 2745
+      },
+      "2746": {
+        "answers": [
+          {
+            "index": 0,
+            "value": true
+          }
+        ],
+        "question_id": 2746
+      },
+      "2747": {
+        "answers": [
+          {
+            "index": 0,
+            "value": true
+          },
+          {
+            "index": 1,
+            "value": true
+          }
+        ],
+        "question_id": 2747
+      }
+    },
+    "embedded_data": {},
+    "scoring": {
+      "699": {
+        "name": "Backend",
+        "results": []
+      },
+      "700": {
+        "name": "Front end",
+        "results": []
+      },
+      "702": {
+        "name": "Docker",
+        "results": [
+          {
+            "value": 5.0,
+            "question_id": 2746
+          },
+          {
+            "value": 4.0,
+            "question_id": 2747
+          }
+        ]
+      },
+      "703": {
+        "name": "ansible",
+        "results": [
+          {
+            "value": 5.0,
+            "question_id": 2746
+          },
+          {
+            "value": 4.0,
+            "question_id": 2747
+          }
+        ]
+      },
+      "704": {
+        "name": "chef",
+        "results": [
+          {
+            "value": 3.0,
+            "question_id": 2747
+          },
+          {
+            "value": 5.0,
+            "question_id": 2746
+          }
+        ]
+      },
+      "705": {
+        "name": "React",
+        "results": [
+          {
+            "value": 5.0,
+            "question_id": 2745
+          },
+          {
+            "value": 5.0,
+            "question_id": 2744
+          }
+        ]
+      },
+      "706": {
+        "name": "Angular",
+        "results": [
+          {
+            "value": 5.0,
+            "question_id": 2744
+          },
+          {
+            "value": 3.0,
+            "question_id": 2745
+          }
+        ]
+      },
+      "707": {
+        "name": "Backbone",
+        "results": [
+          {
+            "value": 5.0,
+            "question_id": 2744
+          },
+          {
+            "value": 3.0,
+            "question_id": 2745
+          }
+        ]
+      },
+      "708": {
+        "name": "Ruby",
+        "results": [
+          {
+            "value": 5.0,
+            "question_id": 2739
+          },
+          {
+            "value": 5.0,
+            "question_id": 2738
+          }
+        ]
+      },
+      "709": {
+        "name": "Elixir",
+        "results": [
+          {
+            "value": 3.0,
+            "question_id": 2739
+          },
+          {
+            "value": 4.0,
+            "question_id": 2738
+          }
+        ]
+      },
+      "710": {
+        "name": "PHP",
+        "results": [
+          {
+            "value": 3.0,
+            "question_id": 2738
+          },
+          {
+            "value": 4.0,
+            "question_id": 2739
+          }
+        ]
+      }
+    },
+    "user_id": 565,
+    "relationship": "Self",
+    "hris": {},
+    "hash_id": "bwlzQD",
+    "norm_data": {
+      "id": "77",
+      "type": "YTI"
+    },
+    "agile_scoring": {
+      "699": {
+        "name": "Backend",
+        "results": []
+      },
+      "700": {
+        "name": "Front end",
+        "results": []
+      },
+      "702": {
+        "name": "Docker",
+        "results": []
+      },
+      "703": {
+        "name": "ansible",
+        "results": []
+      },
+      "704": {
+        "name": "chef",
+        "results": []
+      },
+      "705": {
+        "name": "React",
+        "results": []
+      },
+      "706": {
+        "name": "Angular",
+        "results": []
+      },
+      "707": {
+        "name": "Backbone",
+        "results": []
+      },
+      "708": {
+        "name": "Ruby",
+        "results": []
+      },
+      "709": {
+        "name": "Elixir",
+        "results": []
+      },
+      "710": {
+        "name": "PHP",
+        "results": []
+      }
+    },
+    "user": {
+      "id": 565,
+      "first_name": "A",
+      "last_name": "B",
+      "email": "atanych@it.com"
+    }
+  },
+  {
+    "id": 2285,
+    "status": "completed",
+    "step": 3,
+    "results": {
+      "2738": {
+        "answers": [
+          {
+            "index": 2,
+            "value": true
+          }
+        ],
+        "question_id": 2738
+      },
+      "2739": {
+        "answers": [
+          {
+            "index": 1,
+            "value": true
+          }
+        ],
+        "question_id": 2739
+      },
+      "2744": {
+        "answers": [
+          {
+            "index": 0,
+            "value": true
+          }
+        ],
+        "question_id": 2744
+      },
+      "2745": {
+        "answers": [
+          {
+            "index": 1,
+            "value": true
+          }
+        ],
+        "question_id": 2745
+      },
+      "2746": {
+        "answers": [
+          {
+            "index": 0,
+            "value": true
+          }
+        ],
+        "question_id": 2746
+      },
+      "2747": {
+        "answers": [
+          {
+            "index": 2,
+            "value": true
+          }
+        ],
+        "question_id": 2747
+      }
+    },
+    "embedded_data": {},
+    "scoring": {
+      "699": {
+        "name": "Backend",
+        "results": []
+      },
+      "700": {
+        "name": "Front end",
+        "results": []
+      },
+      "702": {
+        "name": "Docker",
+        "results": [
+          {
+            "value": 5.0,
+            "question_id": 2746
+          },
+          {
+            "value": 3.0,
+            "question_id": 2747
+          }
+        ]
+      },
+      "703": {
+        "name": "ansible",
+        "results": [
+          {
+            "value": 5.0,
+            "question_id": 2746
+          },
+          {
+            "value": 1.0,
+            "question_id": 2747
+          }
+        ]
+      },
+      "704": {
+        "name": "chef",
+        "results": [
+          {
+            "value": 5.0,
+            "question_id": 2747
+          },
+          {
+            "value": 5.0,
+            "question_id": 2746
+          }
+        ]
+      },
+      "705": {
+        "name": "React",
+        "results": [
+          {
+            "value": 3.0,
+            "question_id": 2745
+          },
+          {
+            "value": 5.0,
+            "question_id": 2744
+          }
+        ]
+      },
+      "706": {
+        "name": "Angular",
+        "results": [
+          {
+            "value": 5.0,
+            "question_id": 2744
+          },
+          {
+            "value": 5.0,
+            "question_id": 2745
+          }
+        ]
+      },
+      "707": {
+        "name": "Backbone",
+        "results": [
+          {
+            "value": 5.0,
+            "question_id": 2744
+          },
+          {
+            "value": 3.0,
+            "question_id": 2745
+          }
+        ]
+      },
+      "708": {
+        "name": "Ruby",
+        "results": [
+          {
+            "value": 4.0,
+            "question_id": 2739
+          },
+          {
+            "value": 5.0,
+            "question_id": 2738
+          }
+        ]
+      },
+      "709": {
+        "name": "Elixir",
+        "results": [
+          {
+            "value": 5.0,
+            "question_id": 2739
+          },
+          {
+            "value": 4.0,
+            "question_id": 2738
+          }
+        ]
+      },
+      "710": {
+        "name": "PHP",
+        "results": [
+          {
+            "value": 2.0,
+            "question_id": 2738
+          },
+          {
+            "value": 2.0,
+            "question_id": 2739
+          }
+        ]
+      }
+    },
+    "user_id": 566,
+    "relationship": "Direct Report",
+    "hris": {},
+    "hash_id": "PdGE8D",
+    "norm_data": {
+      "id": "77",
+      "type": null
+    },
+    "user": {
+      "id": 566,
+      "first_name": "A2",
+      "last_name": "B2",
+      "email": "ata2@it.com"
+    }
+  }
+]
