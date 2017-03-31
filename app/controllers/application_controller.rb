@@ -46,7 +46,7 @@ class ApplicationController < ActionController::Base
   def set_membership
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
-    @current_membership = current_user.memberships.join_user.find_by!(client_id: @current_client)
+    @current_membership = current_user.memberships.join_user.find_by!(client_id: @current_project)
     current_user.current_membership = @current_membership
   end
 end
