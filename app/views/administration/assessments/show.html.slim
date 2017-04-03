@@ -1,10 +1,14 @@
-= stylesheet_link_tag :psychometrics_app
+= stylesheet_link_tag :psychometrics_app unless Rails.env === 'development'
 
 #psychometrics_survey_root
 
 = javascript_include_tag Ckeditor.cdn_url
-= javascript_include_tag :psychometrics_vendor
-= javascript_include_tag :psychometrics_app
+- if Rails.env === 'development'
+  = javascript_include_tag 'http://localhost:3000/psychometrics_vendor.js'
+  = javascript_include_tag 'http://localhost:3000/psychometrics_app.js'
+- else
+  = javascript_include_tag :psychometrics_vendor
+  = javascript_include_tag :psychometrics_app
 
 javascript:
   x_navigation_minimize('close');
