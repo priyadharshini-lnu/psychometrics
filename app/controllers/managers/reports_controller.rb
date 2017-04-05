@@ -21,7 +21,7 @@ module Managers
           render('_show', layout: 'pdf') if params[:export]
         end
         format.pdf do
-          pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @user, @current_client)
+          pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @user, @current_client, request.protocol.split(':').first)
           send_file pdf_file, type: 'application/pdf'
         end
       end
