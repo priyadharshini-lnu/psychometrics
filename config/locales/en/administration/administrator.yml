@@ -6,6 +6,7 @@ en:
           title: '<strong>Welcome</strong>, Please login'
           forgot_password: 'Forgot your password?'
           submit: 'Login'
+          password_placeholder: 'Enter your password'
       passwords:
         new:
           title: 'Forgot your password?'
@@ -19,4 +20,6 @@ en:
           app_name: '© 2016 AppName'
           about: 'About'
           privacy: 'Privacy'
-          contact_us: 'Contact Us'
+          contact_us: ' Contact Us'
+          terms_conditions: ' Terms & Conditions'
+          faqs: ' FAQs'

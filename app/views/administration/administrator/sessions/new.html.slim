@@ -1,20 +1,54 @@
-.login-container
-  .login-box.animated.fadeInDown
-    .login-body
-      .login-title
-        == t('.title')
-      = simple_form_for(resource, as: resource_name, url: administration_session_path, html: { class: 'form-horizontal' }) do |f|
-        == flash_messages
-        .form-group
-          .col-md-12
-            = f.input_field :email, placeholder: true, class: 'form-control'
-        .form-group
-          .col-md-12
-            = f.input_field :password, placeholder: true, class: 'form-control'
+header
+  .container-fluid
+    .row
+      .col-xs-12.col-sm-4
+        a href="index.html"
+      .col-xs-12.col-sm-6.hidden-xs
+        h1.pageTitle
+      .col-sm-1.hidden-xs
+.vertical-center
+  .container
+    .row
+      .col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
+        .registrationForm
+          /! Nav tabs
+          ul.nav.nav-tabs.formTabs
+            li.active
+              a aria-controls="signIn" data-toggle="tab" href="#login" role="tab"  Admin Login
+          /! Tab panes
+          .tab-content
+            #login.tab-pane.fade.in.active role="tabpanel"
+              = simple_form_for(resource, as: resource_name, url: administration_session_path, html: {class: 'form-horizontal'}) do |f|
+                div.clearfix
+                  == flash_messages
+                .loginFormContent
+                  .usernameFormGroup
+                    label for="username"
+                      | Email Address
+                    .input-group
+                      = f.input_field :email, placeholder: 'you@youremail.com', class: 'form-control input-lg'
+                  .passwordFormGroup
+                    label for="password"
+                      | Password
+                    .input-group
+                      = f.input_field :password, placeholder: t('.password_placeholder'), class: 'form-control input-lg'
+                  span.clear &nbsp;
+                  .signInButton
+                    .input-group.pull-left
+                      button.btn.btn-primary.signIn type="submit" value="Submit"
+                        | Login
+                    .forgotPassword.pull-right
+                      p
+                        = link_to t('.forgot_password'), new_administration_password_path
+                  .clearfix
+        .loginLinks
+          = render 'administration/administrator/shared/links'
         .clearfix
-        .form-group
-          .col-md-6
-            = link_to t('.forgot_password'), new_administration_password_path, class: 'btn btn-link btn-block'
-          .col-md-6
-            = f.submit t('.submit'), class: 'btn btn-info btn-block'
-    = render 'administration/administrator/shared/links'
+footer.loginFooter
+  .container-fluid
+    .row
+      .col-xs-6.col-sm-3.text-left
+        = image_tag('lighthouseLogo.png', class: 'img-responsive center-block')
+      .col-sm-6
+      .col-xs-6.col-sm-3
+        = image_tag('tteLogo.png', class: 'img-responsive center-block')
