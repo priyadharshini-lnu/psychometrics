@@ -16,7 +16,10 @@ en:
           email_label: 'Email Address'
         edit:
           title: 'Change your password'
-          submit: 'Set new password'
+          description: 'To create a new password, please enter your new password in the boxes below.'
+          submit: 'Set New Password'
+          password_label: 'Password'
+          confirm_password_label: 'Confirm Password'
       shared:
         links:
           app_name: '© 2016 AppName'
