@@ -70,6 +70,7 @@ Rails.application.routes.draw do
         get :sidebar
         patch :toggle_status
         get :preview
+        post :preview
         get :reports
       end
       scope module: 'assessments' do
