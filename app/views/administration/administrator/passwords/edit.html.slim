@@ -10,15 +10,20 @@
         = simple_form_for(resource, as: resource_name, url: administration_password_path, html: {method: :put, class: 'form-horizontal'}) do |f|
           div.clearfix
             == flash_messages
+            = devise_error_messages!
+            = f.input :reset_password_token, as: :hidden
+            = f.full_error :reset_password_token
           .loginFormContent
             .passwordFormGroup
               label for="password2" = t('.password_label')
               .input-group
                 = f.input_field :password, placeholder: t('.password_label'), class: 'form-control'
+              = f.error :password
             .passwordFormGroup
               label for="passwordConfirm" = t('.confirm_password_label')
               .input-group
                 = f.input_field :password_confirmation, placeholder: t('.confirm_password_label'), class: 'form-control'
+                = f.error :password_confirmation
             span.clear &nbsp;
             .resetPasswordButton
               .input-group.pull-left
