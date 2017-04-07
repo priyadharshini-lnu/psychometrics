@@ -6,6 +6,7 @@ module Users
     def build_resource(user_params)
       super.tap do |user|
         user.client_ids = [@current_client.id]
+        user.terms = true
       end
     end
 
