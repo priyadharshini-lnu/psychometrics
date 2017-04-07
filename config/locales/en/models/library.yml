@@ -6,6 +6,7 @@ en:
       library: &DEFAULT
         id: ID
         created_at: Created Date
+        type: Thumbnail
         updated_at: Modified Date
   simple_form:
     placeholders:

@@ -25,6 +25,7 @@ en:
           edit: Edit Question
           new: New Question
           destroy: Delete Question
+          new_assign: Assign Question
         resource:
           tooltips:
             copy: 'Copy Question'
@@ -55,6 +56,7 @@ en:
           edit: Edit Block
           new: New Block
           destroy: Delete Block
+          new_assign: Assign Block
         resource:
           tooltips:
             copy: 'Copy Block'

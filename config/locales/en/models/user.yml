@@ -25,8 +25,8 @@ en:
         types:
           identified: Identified Users
           anonymous: Anonymous Users
-        manage_client_ids: Memberships
-        memberships: Memberships
+        manage_client_ids: Client Tenancy
+        memberships: Client Tenancy
   simple_form:
     placeholders:
       user:
