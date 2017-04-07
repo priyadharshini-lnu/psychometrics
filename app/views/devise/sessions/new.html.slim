@@ -17,7 +17,7 @@
               .usernameFormGroup
                 label for="username" = t('.email_label')
                 .input-group
-                  input#username.form-control.input-lg aria-labelledby="username" placeholder="you@youremail.com" type="email" /
+                  = f.input_field :email, placeholder: 'email@domain.com', class: 'form-control input-lg'
               .passwordFormGroup
                 = f.label :password
                 .input-group
