@@ -1,22 +1,25 @@
 .row
   .col-md-4
-    = link_to administration_assessments_path(q: { category_in: Assessment::CATEGORIES[:psychometric] })  do
-      .widget.widget-success.widget-no-subtitle
+    = link_to administration_assessments_path(q: {category_in: Assessment::CATEGORIES[:psychometric]})  do
+      .widget.widget-no-subtitle
+        = image_tag 'Psychometric-Assessments-Icon.png', class: 'center-block img-responsive courseTypeIcon'
         .widget-big-int
-          span.num-count Psychometric
-        .widget-subtitle Assessments
+          span.num-count
+            | Psychometric Assessments
   .col-md-4
-    = link_to administration_assessments_path(q: { category_in: Assessment::CATEGORIES[:organisational] }) do
-      .widget.widget-success.widget-no-subtitle
+    = link_to administration_assessments_path(q: {category_in: Assessment::CATEGORIES[:organisational]}) do
+      .widget.widget-no-subtitle
+        = image_tag '360-Surveys-Icon.png', class: 'center-block img-responsive courseTypeIcon'
         .widget-big-int
-          span.num-count Organisational
-        .widget-subtitle Assessments
+          span.num-count
+            | 360 Surveys
   .col-md-4
-    = link_to administration_assessments_path(q: { category_in: Assessment::CATEGORIES['360'] }) do
-      .widget.widget-success.widget-no-subtitle
+    = link_to administration_assessments_path(q: {category_in: Assessment::CATEGORIES['360']}) do
+      .widget.widget-no-subtitle
+        = image_tag 'Organisational-Surveys-Icon.png', class: 'center-block img-responsive courseTypeIcon'
         .widget-big-int
-          span.num-count 360
-        .widget-subtitle Assessments
+          span.num-count
+            | Organisationals Surveys
 .row
   .col-md-6
     .panel.panel-default
