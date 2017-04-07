@@ -19,23 +19,23 @@ en:
       new:
         header: 'New assessment'
       edit:
-        header: 'Assessment settings'
+        header: 'Assessment Settings'
       destroy:
-        successfully: 'Assessment %{name} was successfully destroyed.'
+        successfully: 'Assessment %{name} was Destroyed Successfully.'
       copy:
-        successfully: 'Assessment %{name} was successfully copied.'
+        successfully: 'Assessment %{name} was Copied Successfully.'
         error: 'Assessment #%{name} was not copied.'
       create:
-        successfully: 'Assessment %{name} was successfully created.'
+        successfully: 'Assessment %{name} was Created Successfully.'
       update:
-        successfully: 'Assessment %{name} was successfully updated.'
+        successfully: 'Assessment %{name} was Updated Successfully.'
       toggle_status:
-        successfully: 'Assessment %{name} was successfully updated.'
+        successfully: 'Assessment %{name} was Updated successfully.'
       sidebar:
         title: Assessment's options
         disable: Disable
         enable: Enable
-        edit: Assessment settings
+        edit: Assessment Settings
         preview: Preview Assessment
         new: New Assessment
         copy: Copy Assessment
