@@ -30,7 +30,7 @@ en:
       update:
         successfully: 'Assessment %{name} was Updated Successfully.'
       toggle_status:
-        successfully: 'Assessment %{name} was Updated successfully.'
+        successfully: 'Assessment %{name} was Updated Successfully.'
       sidebar:
         title: Assessment's options
         disable: Disable
