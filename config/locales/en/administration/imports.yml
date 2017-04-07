@@ -42,10 +42,12 @@ en:
         header: 'Import'
       form:
         import: Import
+        description: Refer to the Export functionality to extract a template that can be used to Import here.
       users: &default
 
         form:
           import: Import
+          description: Refer to the Export functionality to extract a template that can be used to Import here.
       hris:
         <<: *default
       assessments:

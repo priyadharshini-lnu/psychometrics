@@ -1,5 +1,7 @@
 = simple_form_for(@form, as: :import, url: { action: :create, resource: @import.resource, type: @import.format }, remote: true, html: { multipart: true }) do |f|
   .modal-body
+    div = t('.description')
+    br
     .form-inputs.clearfix
       = f.input :file, as: :file
   .modal-footer
