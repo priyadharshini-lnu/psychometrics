@@ -17,7 +17,7 @@ en:
         successfully: 'Sub-Factor was successfully updated.'
       sidebar:
         title: Sub-Factor's options
-        edit: 'Edit Sub-Factor Name'
+        edit: 'Edit Sub-Factor'
         destroy: 'Delete Sub-Factor'
 
       resource:

@@ -27,7 +27,7 @@ en:
         disable: Disable
         enable: Enable
         edit: Edit Client
-        destroy: Destroy Client
+        destroy: Delete Client
         new: New Client
         copy: Copy Client
         design: Edit Design

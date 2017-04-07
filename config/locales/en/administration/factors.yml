@@ -19,7 +19,7 @@ en:
       sidebar:
         title: Factor's options
         view: 'View Factor'
-        edit: 'Edit Factor Name'
+        edit: 'Edit Factor'
         copy: 'Copy Factor'
         destroy: 'Delete Factor'
       form:
@@ -27,7 +27,7 @@ en:
       resource:
         tooltips:
           copy: 'Copy Factor'
-          edit: 'Edit Factor Name'
+          edit: 'Edit Factor'
           delete: 'Delete Factor'
         confirmations:
           toggle_status:

@@ -10,8 +10,8 @@ en:
         created_at: 'Created Date'
         updated_at: 'Modified Date'
         licenses: License number
-        licenses_used: Used license number
-        licenses_expire: License expire
+        licenses_used: License Usage
+        licenses_expire: License Expiry Date
         subdomain: Subdomain
         logo: Client logo
   simple_form:

@@ -6,7 +6,7 @@ en:
       create:
         successfully: New assign to assessment was successfully created
       destroy:
-        successfully: Assign to assessment was successfully destroy
+        successfully: Assign to assessment was successfully destroyed
       resource:
         confirmations:
           delete:

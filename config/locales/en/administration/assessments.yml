@@ -19,7 +19,7 @@ en:
       new:
         header: 'New assessment'
       edit:
-        header: 'Edit assessment'
+        header: 'Assessment settings'
       destroy:
         successfully: 'Assessment %{name} was successfully destroyed.'
       copy:
@@ -35,7 +35,7 @@ en:
         title: Assessment's options
         disable: Disable
         enable: Enable
-        edit: Edit Assessment
+        edit: Assessment settings
         preview: Preview Assessment
         new: New Assessment
         copy: Copy Assessment
