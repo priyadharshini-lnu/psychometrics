@@ -1,36 +1,36 @@
-.container
-  .row
-    .col-xs-12.col-sm-8.col-sm-offet-2.col-md-6.col-md-offset-3.col-lg-4.col-lg-offset-4
-      .registrationForm
-        /! Nav tabs
-        ul.nav.nav-tabs role="tablist"
-          li.active.fullWidth role="presentation"
-            = link_to t('.tabs.sign_in'), new_user_session_path
-          li.fullWidth role="presentation"
-            = link_to t('.tabs.register'), new_user_registration_path
-        /! Tab panes
-        .tab-content
-          #signIn.tab-pane.fade.in.active role="tabpanel"
-            = simple_form_for(resource, as: resource_name, url: user_session_path) do |f|
+.row
+  .col-xs-12.col-sm-6.col-sm-offset-3.col-md-6.col-md-offset-3.col-lg-6.col-lg-offset-3
+    .registrationForm
+      /! Nav tabs
+      ul.nav.nav-tabs.formTabs
+        li.active
+          = link_to t('.tabs.sign_in'), new_user_session_path
+        li
+          = link_to t('.tabs.register'), new_user_registration_path
+      /! Tab panes
+      .tab-content
+        #login.tab-pane.fade.in.active role="tabpanel"
+          = simple_form_for(resource, as: resource_name, url: user_session_path) do |f|
+            div.clearfix
               == flash_messages
+            .loginFormContent
               .usernameFormGroup
-                = f.label :email
+                label for="username" = t('.email_label')
                 .input-group
-                  = f.input_field :email, placeholder: 'email@domain.com', class: 'form-control input-lg'
+                  input#username.form-control.input-lg aria-labelledby="username" placeholder="you@youremail.com" type="email" /
               .passwordFormGroup
                 = f.label :password
-                - if devise_mapping.recoverable?
-                  span.pull-right.forgotPassword
-                    = link_to t('.forgot_password'), new_password_path(resource_name)
                 .input-group
-                  = f.input_field :password, aria_describedby: "basic-addon2", class: 'form-control input-lg'
-              .clearfix
-              .stayLoggedIn
-                .input-group
-                  span.input-group-addon
-                    label
-                      input class="rememberLogin" type="checkbox" value="1" name="user[remember_me]"
-                      span.rememberLogin = t('.keep_sign_in')
+                  = f.input_field :password, aria_describedby: "basic-addon2", class: 'form-control input-lg', placeholder: t('.password_placeholder')
+              span.clear &nbsp;
               .signInButton
-                .input-group
-                  button.btn.btn-primary.signIn type="submit" = t('.submit')
+                .input-group.pull-left
+                  button.btn.btn-primary.signIn type="submit" value="Submit" = t('.submit')
+                - if devise_mapping.recoverable?
+                  .forgotPassword.pull-right
+                    p
+                      = link_to t('.forgot_password'), new_password_path(resource_name)
+              .clearfix
+    .loginLinks
+      = render 'administration/administrator/shared/links'
+    .clearfix

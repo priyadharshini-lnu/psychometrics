@@ -19,6 +19,8 @@ class ApplicationController < ActionController::Base
   def layout_by_resource
     return 'devise' if request.controller_class.to_s.start_with?('Administration')
     return 'ecommerce' if request.controller_class.to_s.start_with?('Ecommerce')
+    return 'user_side_devise' if request.controller_class.to_s.start_with?('Devise')
+    return 'user_side_devise' if request.controller_class.to_s.start_with?('Users::Registrations')
     'application'
   end
 

@@ -1,11 +1,12 @@
 en:
   devise:
-    users:
       sessions:
         new:
           tabs:
-            sign_in: 'Sign In'
+            sign_in: 'Login'
             register: 'Register'
           forgot_password: 'Forgot password?'
           keep_sign_in: 'Yes, Keep me signed in'
-          submit: 'Sign In'
+          submit: 'Login'
+          email_label: 'Email Address'
+          password_placeholder: 'Enter your password'
