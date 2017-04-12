@@ -49,7 +49,7 @@ en:
         import_users: Import users
         reset_password: Change Password
         export_users: Export users
-        email: Send mail
+        email: Send Mail
         assessments_and_reports: Assessments and Reporting
         login_as_user: Login as User
         destroy: Delete User
@@ -57,12 +57,12 @@ en:
         choose: ' - Choose - '
       resource:
         tooltips:
-          change_password: Change password
+          change_password: Change Password
           sign_in: Login as user
-          chart: View Assessments and Reports
-          mail: Send mail
-          edit: Edit user
-          delete: Delete user
+          chart: View user report
+          mail: Send Mail
+          edit: Edit User
+          delete: Delete User
         confirmations:
           change_password:
             title: Change password <strong>%{name}</strong> ?

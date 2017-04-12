@@ -1344,60 +1344,60 @@ p.modalCopy {
 
 /* eCommerce pages */
 .priceWell {
-	margin:0;
-	padding:0;
-	background:#787f87;
-	font-size:14px;
-	text-align:center;
+  margin:0;
+  padding:0;
+  background:#787f87;
+  font-size:14px;
+  text-align:center;
 }
 
 .priceWell p {
-	color:#fff;
-	padding:10px;
-	margin:0;
+  color:#fff;
+  padding:10px;
+  margin:0;
 }
 
 .courseThumbnail {
-	-webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
-	-moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
-	box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+  -webkit-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+  -moz-box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
+  box-shadow: 0px 0px 15px 0px rgba(0,0,0,0.75);
 }
 
 @media (max-width:1024px) {
-	.courseThumbnail {
-		margin:10px auto;
-	}
+  .courseThumbnail {
+    margin:10px auto;
+  }
 }
 
 .quantitySelector {
-	background: #C7CACE;
-	border: 1px solid #AAAEAF;
-	border-radius: 3px;
-	padding:10px;
+  background: #C7CACE;
+  border: 1px solid #AAAEAF;
+  border-radius: 3px;
+  padding:10px;
 }
 
 @media (min-width:769px) and (max-width:1024px) {
-	.priceWell p {
-		font-size:14px;
-	}
+  .priceWell p {
+    font-size:14px;
+  }
 }
 
 h3.basketTotal {
-	margin:10px 15px;
+  margin:10px 15px;
 }
 
 /* Payment succesful styles */
 .paymentSuccesfulIcon {
-	font-size:120px;
-	color:#6dca00;
+  font-size:120px;
+  color:#6dca00;
 }
 
 .succesfulMessage {
-	margin:25px 0;
+  margin:25px 0;
 }
 
 .coursePreview {
-	padding-bottom:20px;
+  padding-bottom:20px;
 }
 
 /* Action Planning Styles */

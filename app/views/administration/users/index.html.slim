@@ -14,7 +14,7 @@
                     label: false
           = f.input :memberships_client_id_in,
                     collection: policy_scope(Client).all,
-                    input_html: { data: { live_search: true }, multiple: true, title: 'Clients' },
+                    input_html: { data: { live_search: true }, multiple: true, title: 'Client Tenancy' },
                     required: false,
                     label: false
           = f.input :first_name_or_last_name_or_email_cont,

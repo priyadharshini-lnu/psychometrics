@@ -29,7 +29,7 @@ class ReportsController < ApplicationController
         render('_show', layout: 'pdf') if params[:export]
       end
       format.pdf do
-        pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @current_user, @current_project)
+        pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @current_user, @current_project, request.protocol.split(':').first)
         send_file pdf_file, type: 'application/pdf'
       end
     end

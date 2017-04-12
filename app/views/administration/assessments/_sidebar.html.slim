@@ -13,4 +13,4 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(@resource)}"
   - if policy(@resource).assign?
     li = link_to t('.assign'), new_administration_assessment_assign_path(@resource)
   - if policy(@resource).show?
-    li = link_to t('.builder'), { action: :show, id: @resource }
+    li = link_to 'Edit Assessment', { action: :show, id: @resource }

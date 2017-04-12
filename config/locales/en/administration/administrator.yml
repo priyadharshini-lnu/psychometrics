@@ -6,17 +6,32 @@ en:
           title: '<strong>Welcome</strong>, Please login'
           forgot_password: 'Forgot your password?'
           submit: 'Login'
+          password_placeholder: 'Enter your password'
       passwords:
         new:
-          title: 'Forgot your password?'
+          title: 'Forgotten Password'
           back: 'Return back'
-          submit: 'Send me instructions'
+          description: "Please enter your email address in the box below and click 'Reset Password'."
+          submit: 'Reset Password'
+          email_label: 'Email Address'
         edit:
           title: 'Change your password'
-          submit: 'Set new password'
+          description: 'To create a new password, please enter your new password in the boxes below.'
+          submit: 'Set New Password'
+          password_label: 'Password'
+          confirm_password_label: 'Confirm Password'
+      invitations:
+        edit:
+          title: 'Create password'
+          description: 'To create a new password, please enter your new password in the boxes below.'
+          submit: 'Set New Password'
+          password_label: 'Password'
+          confirm_password_label: 'Confirm Password'
       shared:
         links:
           app_name: '© 2016 AppName'
           about: 'About'
-          privacy: 'Privacy'
-          contact_us: 'Contact Us'
+          privacy: 'Privacy Statement'
+          contact_us: ' Contact Us'
+          terms_conditions: ' Terms & Conditions'
+          faqs: ' FAQs'

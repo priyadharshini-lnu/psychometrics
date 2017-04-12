@@ -1,5 +1,7 @@
 = simple_form_for(@resource, as: :import, url: { action: :create }, remote: true, html: { multipart: true }) do |f|
   .modal-body
+    div = t('.description')
+    br
     .form-inputs.clearfix
       = f.input :client_id, as: :hidden
       = f.input :file, as: :file, error: false
