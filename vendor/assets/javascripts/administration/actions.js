@@ -337,6 +337,8 @@ function panel_collapse(panel,action,callback){
     }
 }
 function panel_refresh(panel,action,callback){
+    // TODO: figure out issue with sidebar (1. open sidebar; 2. disable entity; 3. will see loading within sidebar
+    return
     if(!panel.hasClass("panel-refreshing")){
         panel.append('<div class="panel-refresh-layer"><img src="/loaders/default.gif"/></div>');
         panel.find(".panel-refresh-layer").width(panel.width()).height(panel.height());
