@@ -40,7 +40,7 @@ class ClientDecorator < BaseDecorator
         project.admin_memberships.map do |membership|
           h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(project, membership)
         end
-      end.join('<br>').html_safe
+      end.reject(&:empty?).join('<br>').html_safe
     else
       object.admin_memberships.map do |membership|
         h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(client, membership)
