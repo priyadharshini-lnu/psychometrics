@@ -9,11 +9,11 @@ $(function(){
   });
 
   // Stop propagation, when clicked to action dom
-  $(document).on('click', 'table.selectable tbody tr[data-sidebar] a', function(event){
+  $(document).on('click', 'table.selectable tbody [data-sidebar] a', function(event){
     event.stopPropagation();
   });
 
-  $(document).on('click', 'table.selectable tbody tr[data-sidebar]', function(event){
+  $(document).on('click', 'table.selectable tbody [data-sidebar]', function(event){
     event.stopPropagation();
     $(document).trigger('load_sidebar', [this]);
   });
@@ -29,12 +29,12 @@ $(function(){
         url = $resource.data('sidebar'),
         $panel = $('#sidebar .panel');
 
-    // Remove active class from other active tr
+    // Remove active class from other active cell
     $resource.closest('tbody').
               find('.active').
               removeClass('active');
 
-    // Add active class to clicked tr
+    // Add active class to clicked cell
     $resource.addClass('active');
 
     // Open sidebar
@@ -59,6 +59,6 @@ $(function(){
     $('#sidebar').trigger("sidebar:close").
                   removeClass('opened').
                   find('.content').html('');
-    $('table.selectable tbody tr.active').removeClass('active');
+    $('table.selectable tbody .active').removeClass('active');
   });
 });
