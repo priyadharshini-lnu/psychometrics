@@ -117,6 +117,10 @@ class Client < ApplicationRecord
     campaign? || sub_campaign?
   end
 
+  def active?
+    !archived?
+  end
+
   def client
     root
   end

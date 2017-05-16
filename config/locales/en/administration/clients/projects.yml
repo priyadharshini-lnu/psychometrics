@@ -36,7 +36,8 @@ en:
           disable: Disable
           enable: Enable
           edit: Edit Project
-          destroy: Destroy Project
+          destroy: Delete Project
+          archive: Archive Project
           new: New Project
           copy: Copy Project
           design: Edit Design
@@ -55,3 +56,5 @@ en:
           successfully: 'Project %{name} was successfully updated.'
         toggle_status:
           successfully: 'Project %{name} was successfully updated.'
+        archive:
+          successfully: Project %{name} was successfully archived.

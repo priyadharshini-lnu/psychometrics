@@ -13,4 +13,6 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(@resource)}"
     li = link_to(t('.copy'), { action: :copy, id: @resource }, remote: true)
   - if policy(@resource).destroy?
     li = link_to(t('.destroy'), { action: :destroy, id: @resource }, remote: true, method: :delete, data: { confirm: @resource.decorate.delete_confirmation })
+  - if policy(@resource).archive?
+    li = link_to(t('.archive'), { action: :archive, id: @resource }, method: :patch)
   li = link_to t('.view_licenses'), administration_client_licenses_path(@resource), remote: true

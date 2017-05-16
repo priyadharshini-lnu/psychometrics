@@ -12,7 +12,7 @@
         th = t('.header.name')
         th = t('.header.tests_allocated')
         th = t('.header.users')
-        th = t('.header.actual_usage')    
+        th = t('.header.actual_usage')
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

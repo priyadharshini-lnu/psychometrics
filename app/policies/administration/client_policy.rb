@@ -24,6 +24,18 @@ module Administration
       true
     end
 
+    def edit?
+      record.active? && super
+    end
+
+    def copy?
+      record.active? && super
+    end
+
+    def archive?
+      edit?
+    end
+
     def design?
       @user.is?(:superadmin) || @user.has_grant?(:clients, :design)
     end

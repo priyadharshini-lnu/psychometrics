@@ -27,6 +27,19 @@ Rails.application.routes.draw do
 
     resources :imports, only: [:new, :create]
 
+
+concern :commentable do
+  resources :comments
+end
+
+concern :client_editable do
+  member do
+    get :copy
+    get :sidebar
+    patch :archive
+    patch :toggle_status
+  end
+end
     ### CLIENTS
     resources :clients do
       member do
@@ -63,34 +76,18 @@ Rails.application.routes.draw do
         resources :reports, only: [:index, :destroy, :new, :create]
         resources :statistics, only: [:index]
 
-        resources :projects do
-          member do
-            get :copy
-            get :sidebar
-            patch :toggle_status
-          end
-
+        resources :projects, concerns: :client_editable  do
           collection do
             get :export
           end
           # resource :designs, only: [:edit, :update]
           scope module: :projects do
-            resources :campaigns do
-              member do
-                get :copy
-                get :sidebar
-                patch :toggle_status
-              end
+            resources :campaigns, concerns: :client_editable do
               collection do
                 get :export
               end
               scope module: :campaigns do
-                resources :sub_campaigns do
-                  member do
-                    get :copy
-                    get :sidebar
-                    patch :toggle_status
-                  end
+                resources :sub_campaigns, concerns: :client_editable do
                   collection do
                     get :export
                   end

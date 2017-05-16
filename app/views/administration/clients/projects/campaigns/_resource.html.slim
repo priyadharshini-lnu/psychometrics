@@ -19,25 +19,26 @@ tr data-sidebar=url_for(sidebar_administration_client_project_campaign_path(clie
     td colspan='4' rowspan=(resource.children.enabled.count + 2)
       = link_to administration_client_project_campaign_sub_campaigns_path(client, project, resource)
         = resource.decorate.display_name
-  - if resource.project.sub_campaign_level?
-    - resource.children.enabled.each do |sub_campaign|
-      tr data-sidebar=url_for(sidebar_administration_client_project_campaign_sub_campaign_path(client, project, resource, sub_campaign))
-        td = link_to sub_campaign.name, administration_client_users_path(sub_campaign)
-        td
-          = sub_campaign.decorate.reports
-          - if policy(:clients_report).create?
-            br
-            = link_to new_administration_client_report_path(client_id: sub_campaign.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
-              span.fa.fa-plus
-        td
-          = link_to sub_campaign.users_count, administration_client_users_path(sub_campaign)
-          - if policy(User).create?
-            br
-            = link_to new_administration_client_user_path(sub_campaign), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
-              span.fa.fa-plus
-        td
-    tr
-      td.text-center colspan='4'
+- if resource.project.sub_campaign_level?
+  - resource.children.enabled.each do |sub_campaign|
+    tr data-sidebar=url_for(sidebar_administration_client_project_campaign_sub_campaign_path(client, project, resource, sub_campaign))
+      td = link_to sub_campaign.name, administration_client_users_path(sub_campaign)
+      td
+        = sub_campaign.decorate.reports
+        - if policy(:clients_report).create?
+          br
+          = link_to new_administration_client_report_path(client_id: sub_campaign.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
+            span.fa.fa-plus
+      td
+        = link_to sub_campaign.users_count, administration_client_users_path(sub_campaign)
+        - if policy(User).create?
+          br
+          = link_to new_administration_client_user_path(sub_campaign), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
+            span.fa.fa-plus
+      td
+  tr
+    td.text-center colspan='4'
+      - unless resource.archived?
         = link_to t('.sub_campaign.create'),
                   new_administration_client_project_campaign_sub_campaign_path(client, project, resource),
                   remote: true
