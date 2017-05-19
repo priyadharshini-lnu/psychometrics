@@ -1,7 +1,7 @@
 module Administration
   class ClientsController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:show, :edit, :update, :destroy, :sidebar, :toggle_status, :copy]
+    before_action :set_resource, only: [:show, :edit, :update, :destroy, :sidebar, :toggle_status, :copy, :archive]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
@@ -49,6 +49,14 @@ module Administration
 
     # DELETE /administration/resources/1
     def destroy
+      @resource.destroy
+      respond_to do |format|
+        format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+        format.js
+      end
+    end
+
+    def archive
       @resource.update_attribute(:archived, true)
       respond_to do |format|
         format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }

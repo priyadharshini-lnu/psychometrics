@@ -37,6 +37,7 @@ en:
               destroy: Destroy Sub-Campaign
               new: New Sub-Campaign
               copy: Copy Sub-Campaign
+              archive: Archive Sub-Campaign
             new:
               header: 'New Sub-Campaign'
             edit:
@@ -52,3 +53,5 @@ en:
               successfully: 'Sub-Campaign %{name} was successfully updated.'
             toggle_status:
               successfully: 'Sub-Campaign %{name} was successfully updated.'
+            archive:
+              successfully: Sub-Campaign %{name} was successfully archived.

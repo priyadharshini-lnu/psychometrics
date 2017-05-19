@@ -1,10 +1,22 @@
-$('#modal-container').find('.modal').modal('hide');
-$('#modal-container').find('.modal').on('hidden.bs.modal', function(){
-  $('#filter').trigger('reloadList');
+$(function () {
+  var $modalContainer = $('#modal-container');
 
-  // Reinit all plugins
-  $(document).trigger('initPlugins');
+  $modalContainer.find('.modal').modal('hide');
+  $modalContainer.find('.modal').on('hidden.bs.modal', function () {
+    $('#filter').trigger('reloadList');
 
-  // Notify message
-  noty({text: '<%= t("administration.#{@resource_class.model_name.plural}.create.successfully", name: @resource.user.decorate.display_name) %>', type: 'success'});
+    // Reinit all plugins
+    $(document).trigger('initPlugins');
+
+    // Notify message
+    var message = 'Successfully updated';
+    <% if @resource.present? %>
+      message = '<%= t("administration.#{@resource_class.model_name.plural}.create.successfully", name: @resource.user.decorate.display_name) %>'
+    <% end %>
+
+    noty({
+      text: message,
+      type: 'success'
+    });
+  });
 });

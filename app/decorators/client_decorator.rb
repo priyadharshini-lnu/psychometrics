@@ -35,27 +35,21 @@ class ClientDecorator < BaseDecorator
   end
 
   def project_admins
+    project_admins_collection.map do |membership|
+      h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(membership.client, membership)
+    end.join('<br>').html_safe
+  end
+
+  def project_admins_collection
     if object.tenancy?
-      object.projects.map do |project|
-        project.admin_memberships.map do |membership|
-          h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(project, membership)
-        end
-      end.join('<br>').html_safe
+      object.projects.map { |project| project.admin_memberships }.reject(&:empty?).flatten
     else
-      object.admin_memberships.map do |membership|
-        h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(client, membership)
-      end.join('<br>').html_safe
+      object.admin_memberships
     end
   end
 
   def array_project_admins
-    if object.tenancy?
-      object.projects.map do |project|
-        project.admin_memberships.map { |membership| membership.user.decorate.display_name }.flatten
-      end
-    else
-      object.admin_memberships.map { |membership| membership.user.decorate.display_name }.flatten
-    end
+    project_admins_collection.map { |membership| membership.user.decorate.display_name }
   end
 
   def reports

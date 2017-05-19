@@ -4,7 +4,7 @@ module Administration
       prepend_before_action :set_resource_class
       before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof, :reset_password]
       before_action :skip_authorization, only: [:sidebar]
-      append_before_action :init_breadcrumbs, except: [:new, :create]
+      append_before_action :init_breadcrumbs, except: [:new, :create, :assign_multiple]
       append_before_action :pundit_authorize, except: [:sidebar]
 
       def index
@@ -20,6 +20,7 @@ module Administration
 
       def new
         @resource = @resource_class.new
+        render 'new', locals: { is_new: false }
       end
 
       def create
@@ -40,9 +41,21 @@ module Administration
             @resource.user.invite!(current_user, client.id)
             format.js
           else
-            format.js { render :new }
+            format.js { render :new, locals: { is_new: true } }
           end
         end
+      end
+
+      def assign_multiple
+        if client.tenancy?
+          begin
+            project.admin_ids = client.projects_admins.where(id: params[:admin_ids]).ids
+          rescue => e
+            @resource = @resource_class.new
+            render :new, locals: { is_new: false } and return
+          end
+        end
+        render :create
       end
 
       # GET /administration/resources/1/edit

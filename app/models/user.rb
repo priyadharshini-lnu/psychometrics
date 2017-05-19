@@ -53,6 +53,13 @@ class User < ApplicationRecord
       regular: Membership::MEMBERSHIP_ROLES
   }.freeze
 
+  DEFAULT_ADMIN_GRANTS = {
+      assessments: { view: true },
+      reports: { view: true },
+      clients: { view: true },
+      communications: { view: true, manage: true }
+  }.freeze
+
   # Scopes
   include UserScopes
 

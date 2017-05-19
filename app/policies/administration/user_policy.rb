@@ -39,6 +39,10 @@ class Administration::UserPolicy < Administration::BasePolicy
     @user.is?(:superadmin, :admin) && !@record.is_anonym?
   end
 
+  def assign_multiple?
+    @user.is?(:superadmin, :admin)
+  end
+
   def send_mail?
     @user.is?(:superadmin, :admin) && !@record.is_anonym?
   end

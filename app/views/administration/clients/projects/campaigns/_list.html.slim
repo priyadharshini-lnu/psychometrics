@@ -1,18 +1,27 @@
 .table-responsive
   table.table.table-bordered.table-actions.selectable.list id="#{@resource_class.model_name.plural}_list"
     thead
-      tr
-        th.text-center colspan='4' = t('.header.campaigns')
-        th.text-center colspan='4' = t('.header.sub_campaigns')
-      tr
-        th = t('.header.name')
-        th = t('.header.tests_allocated')
-        th = t('.header.users')
-        th = t('.header.actual_usage')
-        th = t('.header.name')
-        th = t('.header.tests_allocated')
-        th = t('.header.users')
-        th = t('.header.actual_usage')    
+      /sub campaign applicable level header
+      - if project.sub_campaign_level?
+        tr
+          th.text-center colspan='2' = t('.header.campaigns')
+          th.text-center colspan='4' = t('.header.sub_campaigns')
+        tr
+          th = t('.header.name')
+          th = t('.header.actual_usage')
+          th = t('.header.name')
+          th = t('.header.tests_allocated')
+          th = t('.header.users')
+          th = t('.header.actual_usage')
+      / campaign applicable level header
+      - else
+        tr
+          th.text-center colspan='4' = t('.header.campaigns')
+        tr
+          th = t('.header.name')
+          th = t('.header.tests_allocated')
+          th = t('.header.users')
+          th = t('.header.actual_usage')
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources

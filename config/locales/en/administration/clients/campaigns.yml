@@ -35,7 +35,8 @@ en:
             disable: Disable
             enable: Enable
             edit: Edit Campaign
-            destroy: Destroy Campaign
+            destroy: Delete Campaign
+            archive: Archive Campaign
             new: New Campaign
             copy: Copy Campaign
           new:
@@ -53,3 +54,5 @@ en:
             successfully: 'Campaign %{name} was successfully updated.'
           toggle_status:
             successfully: 'Campaign %{name} was successfully updated.'
+          archive:
+            successfully: Campaign %{name} was successfully archived.

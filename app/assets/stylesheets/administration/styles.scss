@@ -21,3 +21,9 @@
 .grants-table label input { display: none; }
 .grants-table label i { cursor: pointer; margin: 0 4px 0 0; }
 .grants-table label input:checked + i { color: #1caf9a; }
+
+// radio tabs
+.radio-tabs {}
+.radio-tabs .modal-body { padding-top: 0; }
+.radio-tabs .tab { display: none; }
+.radio-tabs .tab.active { display: block; }
