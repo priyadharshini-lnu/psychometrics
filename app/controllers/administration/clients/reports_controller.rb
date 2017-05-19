@@ -14,18 +14,15 @@ module Administration
       end
 
       def new
-        @resource = client.clients_reports.build
       end
 
       def create
-        @resource = client.clients_reports.build(clients_report_params)
-        respond_to do |format|
-          if @resource.save
-            format.js
-          else
-            format.js { render :new }
-          end
+        begin
+          client.report_ids = client.root.available_reports.where(id: params[:report_ids]).ids
+        rescue => e
+          render :new and return
         end
+        render :create
       end
 
       def destroy
@@ -42,10 +39,6 @@ module Administration
       end
 
       private
-
-      def clients_report_params
-        params.require(:resource).permit(:report_id)
-      end
 
       def init_breadcrumbs
         add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]

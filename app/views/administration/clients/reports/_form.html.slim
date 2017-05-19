@@ -1,11 +1,12 @@
-= simple_form_for(@resource, as: :resource, url: { action: :create }, remote: true) do |f|
+= form_tag(administration_client_reports_path, remote: true) do |f|
   .modal-body
-    = render_error_notification @resource
     .form-inputs.clearfix
-      = f.association :report, collection: client.client.available_reports.where.not(id: client.report_ids), include_blank: false
-      .form-group.has-error
-        = f.error :client_id
+      = select_tag :report_ids,
+              options_from_collection_for_select(client.client.available_reports, :id, :name, client.report_ids),
+              multiple: true,
+              include_blank: false,
+              class: 'form-control select'
   .modal-footer
     .btn-group
-      = f.button :submit, t('administration.create'), class: 'btn-info'
+      = button_tag t('administration.save'), type: 'submit', class: 'btn btn-default btn-info'
       a.btn.btn-default data-dismiss='modal' = t 'administration.close'

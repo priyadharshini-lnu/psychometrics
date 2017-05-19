@@ -20,7 +20,7 @@ en:
         owner: Owner
         report_family: Report Family
       new:
-        header: 'New Report'
+        header: 'Select Report'
       edit:
         header: 'Edit Report Name'
       destroy:
