@@ -55,8 +55,8 @@ class MembershipDecorator < BaseDecorator
   end
 
   def managers_for_select
-    # TODO: need to change!
-    User.where(role: User::USER_ROLES[:manager]).map { |manager| [manager.decorate.display_name, manager.id] }
+    # skip self and users that are managed by the current user
+    client.memberships.includes(:user).where("id != ? and parent_id is distinct from ?", object.id, object.id)
   end
 
   def clients_names
