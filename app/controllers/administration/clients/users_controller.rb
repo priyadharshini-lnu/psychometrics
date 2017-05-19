@@ -19,7 +19,6 @@ module Administration
       end
 
       def new
-        @resource = @resource_class.new
         render 'new', locals: { is_new: false }
       end
 
@@ -51,7 +50,6 @@ module Administration
           begin
             project.admin_ids = client.projects_admins.where(id: params[:admin_ids]).ids
           rescue => e
-            @resource = @resource_class.new
             render :new, locals: { is_new: false } and return
           end
         end
