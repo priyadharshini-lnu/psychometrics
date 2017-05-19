@@ -4,4 +4,4 @@
       .modal-header
         button.close aria-hidden='true' data-dismiss='modal' type='button'  &times;
         h4.modal-title = header
-      = render partial: (local_assigns[:form] || 'form')
+      = render (local_assigns[:form] || 'form'), local_assigns

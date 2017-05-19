@@ -37,6 +37,7 @@ class Client < ApplicationRecord
   has_many :norms
   has_many :dimensions
   has_many :projects, class_name: 'Client', foreign_key: :parent_id
+  has_many :projects_admins, -> { where(memberships: { role: Membership::ADMIN_ROLE }).distinct }, through: :projects, source: :users
 
   has_many :licenses, inverse_of: :client, dependent: :destroy
   accepts_nested_attributes_for :licenses, allow_destroy: true
@@ -78,7 +79,6 @@ class Client < ApplicationRecord
   scope :enabled, -> { where.not(disabled: true, archived: true) }
   scope :not_archived, -> { where.not(archived: true) }
   scope :tenancies, -> { roots }
-  scope :projects, -> { roots }
   scope :not_retails, -> { where.has { type.not_eq(:retail) } }
 
   def clone

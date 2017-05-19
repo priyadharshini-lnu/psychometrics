@@ -44,6 +44,13 @@ $(function() {
   // Reload filter form
   $(document).on('reloadList', '#filter', window.Filterrific.submitFilterForm);
 
+  // radio-switch
+  $(function () {
+    $(document).on('change', '.radio-switch input', function (e) {
+      var id = $(this).attr('data-target');
+      $(id).addClass('active').siblings('.tab').removeClass('active')
+    })
+  });
 });
 
 // Replace with return new DOM

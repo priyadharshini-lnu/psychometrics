@@ -1,12 +1,17 @@
 $(function () {
-  if ($('#modal-container').find('.modal').length == 0) {
-    $('#modal-container').html('<%= j render(partial: 'modal', locals: { header: t("administration.#{i18n || @resource_class.model_name.plural}.new.header") }) %>');
-    $('#modal-container').find(".modal").modal('show');
-    $('#modal-container').find(".modal").on('hidden.bs.modal', function (e) {
+  var $modalPartial = $("<%= j render 'modal', local_assigns.merge( header: t("administration.#{i18n || @resource_class.model_name.plural}.new.header") ) %>"),
+      $modalPartialForm = $modalPartial.find('.modal-content'),
+      $modalContainer = $('#modal-container');
+
+  if ($modalContainer.html().length) {
+    $modalContainer.find('.modal-content').replaceWith($modalPartialForm)
+  } else {
+    $modalContainer.html($modalPartial);
+    $modalBox = $modalContainer.find('.modal');
+    $modalBox.modal('show');
+    $modalBox.on('hidden.bs.modal', function (e) {
       $(this).remove();
     });
-  } else {
-    $('#modal-container').find("form").replaceWith('<%= j render(partial: 'form') %>');
   }
 
   // Reinit all plugins

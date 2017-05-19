@@ -28,18 +28,18 @@ Rails.application.routes.draw do
     resources :imports, only: [:new, :create]
 
 
-concern :commentable do
-  resources :comments
-end
+    concern :commentable do
+      resources :comments
+    end
 
-concern :client_editable do
-  member do
-    get :copy
-    get :sidebar
-    patch :archive
-    patch :toggle_status
-  end
-end
+    concern :client_editable do
+      member do
+        get :copy
+        get :sidebar
+        patch :archive
+        patch :toggle_status
+      end
+    end
     ### CLIENTS
     resources :clients do
       member do
@@ -71,12 +71,13 @@ end
           end
           collection do
             get :export
+            post :assign_multiple
           end
         end
         resources :reports, only: [:index, :destroy, :new, :create]
         resources :statistics, only: [:index]
 
-        resources :projects, concerns: :client_editable  do
+        resources :projects, concerns: :client_editable do
           collection do
             get :export
           end
@@ -306,16 +307,16 @@ end
   end
 
 
-    devise_for :users,
-               path: 'users',
-               as: :devise,
-               name: :user,
-               singular: :user,
-               to: 'User',
-               class_name: 'User',
-               controllers: { registrations: 'users/registrations', invitations: 'users/invitations' }
-    # Manager's panel
-    #
+  devise_for :users,
+             path: 'users',
+             as: :devise,
+             name: :user,
+             singular: :user,
+             to: 'User',
+             class_name: 'User',
+             controllers: { registrations: 'users/registrations', invitations: 'users/invitations' }
+  # Manager's panel
+  #
   constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
     namespace :managers do
       resources :dashboard, only: [:index]
@@ -357,7 +358,7 @@ end
     # - Use & (do not use &&) so that it doesn't short circuit.
     # - Use `secure_compare` to stop length information leaking
     ActiveSupport::SecurityUtils.secure_compare(username, 'staging') &
-      ActiveSupport::SecurityUtils.secure_compare(password, 'sumatosoft')
+        ActiveSupport::SecurityUtils.secure_compare(password, 'sumatosoft')
   end if Rails.env.production?
   mount Sidekiq::Web, at: '/sidekiq'
 
