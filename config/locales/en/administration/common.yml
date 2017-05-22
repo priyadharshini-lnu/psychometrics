@@ -15,6 +15,9 @@ en:
     new: New
     show: Show
     actions: Actions
+    created_by: Created By
+    modified_by: Modified By
+    clients_hierarchy: Project > Campaign > Sub Campaign
     meta_title: Administration panel
     active: Active
     copy: Copy

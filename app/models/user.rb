@@ -76,6 +76,8 @@ class User < ApplicationRecord
 
   self.inheritance_column = :role
 
+  belongs_to :creator, foreign_key: :created_by, class_name: 'User'
+  belongs_to :modifier, foreign_key: :modified_by, class_name: 'User'
   has_many :memberships, inverse_of: :user
   has_many :clients, through: :memberships
   has_many :admin_clients, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, through: :memberships, source: 'client'

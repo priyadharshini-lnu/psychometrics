@@ -14,50 +14,58 @@ class UserDecorator < BaseDecorator
 
   def change_password_confirmation
     {
-      title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),
-      body: I18n.t('administration.users.resource.confirmations.change_password.body')
+        title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),
+        body: I18n.t('administration.users.resource.confirmations.change_password.body')
     }.to_json
   end
 
   def clients_name
     if h.current_user.is?(:superadmin)
       object.clients.
-        map { |client| client.decorate.display_name }.
-        join(', ')
+          map { |client| client.decorate.display_name }.
+          join(', ')
     else
       object.clients.
-        select { |client| h.current_user.client_ids.include?(client.id) }.
-        map { |client| client.decorate.display_name }.
-        join(', ')
+          select { |client| h.current_user.client_ids.include?(client.id) }.
+          map { |client| client.decorate.display_name }.
+          join(', ')
     end
+  end
+
+  def clients_hierarchy
+    object.clients.map do |client|
+      client.self_and_ancestors.map do |c|
+        c.name
+      end.join(' > ')
+    end.join('<br/>').html_safe
   end
 
   def delete_confirmation
     {
-      title: I18n.t('administration.users.resource.confirmations.delete.title', name: display_name),
-      body: I18n.t('administration.users.resource.confirmations.delete.body')
+        title: I18n.t('administration.users.resource.confirmations.delete.title', name: display_name),
+        body: I18n.t('administration.users.resource.confirmations.delete.body')
     }.to_json
   end
 
   def delete_membership_confirmation
     {
-      title: I18n.t('administration.users.resource.confirmations.membership.delete.title', name: display_name, client_name: context[:client_name]),
-      body: I18n.t('administration.users.resource.confirmations.membership.delete.body')
+        title: I18n.t('administration.users.resource.confirmations.membership.delete.title', name: display_name, client_name: context[:client_name]),
+        body: I18n.t('administration.users.resource.confirmations.membership.delete.body')
     }.to_json
   end
 
   def toggle_status_confirmation
     status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {
-      title: I18n.t(
-        'administration.users.resource.confirmations.toggle_status.title',
-        status: status,
-        name: display_name
-      ),
-      body: I18n.t(
-        'administration.users.resource.confirmations.toggle_status.body',
-        status: status.downcase
-      )
+        title: I18n.t(
+            'administration.users.resource.confirmations.toggle_status.title',
+            status: status,
+            name: display_name
+        ),
+        body: I18n.t(
+            'administration.users.resource.confirmations.toggle_status.body',
+            status: status.downcase
+        )
     }.to_json
   end
 end

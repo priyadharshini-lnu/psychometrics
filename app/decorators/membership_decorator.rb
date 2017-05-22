@@ -20,15 +20,15 @@ class MembershipDecorator < BaseDecorator
 
   def change_password_confirmation
     {
-      title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),
-      body: I18n.t('administration.users.resource.confirmations.change_password.body')
+        title: I18n.t('administration.users.resource.confirmations.change_password.title', name: display_name),
+        body: I18n.t('administration.users.resource.confirmations.change_password.body')
     }.to_json
   end
 
   def delete_confirmation
     {
-      title: I18n.t('administration.users.resource.confirmations.membership.delete.title', name: display_name, client_name: context[:client_name]),
-      body: I18n.t('administration.users.resource.confirmations.membership.delete.body')
+        title: I18n.t('administration.users.resource.confirmations.membership.delete.title', name: display_name, client_name: context[:client_name]),
+        body: I18n.t('administration.users.resource.confirmations.membership.delete.body')
     }.to_json
   end
 
@@ -42,15 +42,15 @@ class MembershipDecorator < BaseDecorator
   def toggle_status_confirmation
     status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {
-      title: I18n.t(
-        'administration.users.resource.confirmations.toggle_status.title',
-        status: status,
-        name: display_name
-      ),
-      body: I18n.t(
-        'administration.users.resource.confirmations.toggle_status.body',
-        status: status.downcase
-      )
+        title: I18n.t(
+            'administration.users.resource.confirmations.toggle_status.title',
+            status: status,
+            name: display_name
+        ),
+        body: I18n.t(
+            'administration.users.resource.confirmations.toggle_status.body',
+            status: status.downcase
+        )
     }.to_json
   end
 
@@ -67,7 +67,15 @@ class MembershipDecorator < BaseDecorator
     object.user.decorate.created_at
   end
 
+  def creator_name
+    object.user.creator&.decorate&.display_name
+  end
+
   def updated_at
     object.user.decorate.updated_at
+  end
+
+  def modifier_name
+    object.user.modifier&.decorate&.display_name
   end
 end

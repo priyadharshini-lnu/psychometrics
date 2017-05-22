@@ -24,7 +24,7 @@ body {
 }
 
 *, :after, :before {
-  box-sizing: border-box;
+    box-sizing: border-box;
 }
 
 h1 {
@@ -80,16 +80,16 @@ footer.solid {
 }
 
 .poweredBy {
-  display: inline-block;
-  vertical-align: bottom;
-  padding: 0;
-  margin: 0;
-  color: #5D5D5D;
+    display: inline-block;
+    vertical-align: bottom;
+    padding: 0;
+    margin: 0;
+    color: #5D5D5D;
 }
 
 .footerLogo {
-  padding: 5px 0;
-  margin: 0;
+    padding: 5px 0;
+    margin: 0;
 }
 
 footer img {
@@ -124,6 +124,41 @@ a {
   min-height: 80vh;
   display: flex;
   align-items: center;
+}
+
+@media screen and (max-height:1025px) {
+  .vertical-center {
+    min-height:75%;
+    min-height:75vh;
+  }
+}
+
+@media screen and (max-height:901px) {
+  .vertical-center {
+    min-height:75%;
+    min-height:75vh;
+  }
+}
+
+@media screen and (max-height:865px) {
+  .vertical-center {
+    min-height:72%;
+    min-height:72vh;
+  }
+}
+
+@media screen and (max-height:769px) {
+  .vertical-center {
+    min-height:70%;
+    min-height:70vh;
+  }
+}
+
+@media screen and (max-width:1281px) and (max-height:721px) {
+  .vertical-center {
+    min-height:66%;
+    min-height:66vh;
+  }
 }
 
 @media screen and (max-width:767px) {
@@ -192,7 +227,7 @@ a {
 }
 
 .tab-content {
-  background:rgba(255,255,255,0.9);
+    background:rgba(255,255,255,0.9);
 }
 
 .content {
@@ -201,6 +236,12 @@ a {
 
 .loginFormContent {
   padding:15px;
+}
+
+@media screen and (max-height:769px) {
+  .loginFormContent {
+    padding:10px 15px;
+  }
 }
 
 .signInButton button {
@@ -216,6 +257,12 @@ a {
   background:#338882;
 }
 
+@media screen and (max-height:769px) {
+  .signInButton button {
+    margin-bottom:10px;
+  }
+}
+
 label {
   text-transform: uppercase;
   color:rgba(53,53,53,0.4);
@@ -229,7 +276,7 @@ div.loginLinks {
   border-radius:0 0 3px 3px;
 }
 
-.linksC {
+.links {
   list-style: none;
   padding:17px 5px;
   color:#8c9fb3;
@@ -238,12 +285,12 @@ div.loginLinks {
 }
 
 @media screen and (max-width:767px) {
-  ul.linksC {
+  ul.links {
     margin:0 10px;
     font-size:10px;
   }
 
-  ul.linksC li {
+  ul.links li {
     padding:17px 3px;
   }
 }
@@ -258,6 +305,12 @@ div.loginLinks {
 
 .input-group .form-control {
   margin-bottom:25px;
+}
+
+@media screen and (max-width:1281px) and (max-height:721px) {
+  .input-group .form-control {
+    margin-bottom:10px;
+  }
 }
 
 .passwordFormGroup {
@@ -317,8 +370,8 @@ p.instructionalText {
   background-color:#888;
 }
 div.dashboardContent {
-  background-color:#ebebeb;
-  padding-bottom:50px;
+    background-color:#ebebeb;
+    padding-bottom:50px;
 }
 
 div.banner {
@@ -355,8 +408,8 @@ img.notificationIcon {
 }
 
 .navbar-nav>li>a {
-  padding-top: 5px;
-  padding-bottom: 5px;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
 .navbar-right {
@@ -371,38 +424,38 @@ img.notificationIcon {
 }
 
 .navbar-nav .open .dropdown-menu.notificationList {
-  width: 300px;
+    width: 300px;
 }
 
 .navbar-nav .open .dropdown-menu {
-  position: absolute;
-  background: #fff;
-  margin-top: 0;
-  border: 1px solid #D9DEE4;
-  -webkit-box-shadow: none;
-  right: 0;
-  left: auto;
-  width: 220px;
+    position: absolute;
+    background: #fff;
+    margin-top: 0;
+    border: 1px solid #D9DEE4;
+    -webkit-box-shadow: none;
+    right: 0;
+    left: auto;
+    width: 220px;
 }
 
 .dropdown-menu.msg_list span {
-  white-space: normal;
+    white-space: normal;
 }
 
 ul.notificationList li a .time {
-  font-size: 11px;
-  font-style: italic;
-  font-weight: 700;
-  position: absolute;
-  right: 35px;
+    font-size: 11px;
+    font-style: italic;
+    font-weight: 700;
+    position: absolute;
+    right: 35px;
 }
 
 ul.notificationList li a .image img {
-  border-radius: 2px;
-  -webkit-border-radius: 2px;
-  float: left;
-  margin-right: 10px;
-  width: 11%;
+    border-radius: 2px;
+    -webkit-border-radius: 2px;
+    float: left;
+    margin-right: 10px;
+    width: 11%;
 }
 
 ul.notificationList li {
@@ -415,26 +468,26 @@ ul.notificationList li {
 }
 
 ul.notificationList li a .message {
-  display: block!important;
-  font-size: 11px;
+    display: block!important;
+    font-size: 11px;
 }
 
 .dropdown-menu.notificationList span {
-  white-space: normal;
+    white-space: normal;
 }
 
 .dropdown-menu li a {
-  width: 100%;
-  padding: 12px 20px;
+    width: 100%;
+    padding: 12px 20px;
 }
 
 ul.notificationList li a {
-  padding: 3px 5px!important;
+    padding: 3px 5px!important;
 }
 
 ul.notificationList li:last-child {
-  margin-bottom: 6px;
-  padding: 10px;
+    margin-bottom: 6px;
+    padding: 10px;
 }
 
 .userNav .navbar-right li {
@@ -449,13 +502,13 @@ ul.notificationList li:last-child {
 }
 
 @media screen and (min-width: 480px) {
-  .userNav .navbar-right li {
+.userNav .navbar-right li {
     position: relative;
-  }
+}
 }
 
 .dropdown-menu li {
-  width: 100%;
+    width: 100%;
 }
 
 .badge {
@@ -489,7 +542,7 @@ hr.divider {
 }
 
 .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th, .table-borderless thead tr td, .table-borderless tfoot tr th, .table-borderless tfoot tr td {
-  border: none;
+    border: none;
 }
 
 th {

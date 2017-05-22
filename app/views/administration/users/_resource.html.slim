@@ -6,9 +6,12 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
   td = resource.last_name
   td = resource.email
   td = resource.decorate.clients_name
+  td = resource.decorate.clients_hierarchy
   td = @resource_class.human_role(resource.role)
   td.text-center = resource.decorate.created_at
+  td = resource.creator&.decorate&.display_name
   td.text-center = resource.decorate.updated_at
+  td = resource.modifier&.decorate&.display_name
   td.actions-cell
     - if policy(resource).change_password?
       = link_to({ action: :reset_password, id: resource }, method: :get, class: 'btn btn-default btn-rounded btn-sm', data: { confirm: resource.decorate.change_password_confirmation, toggle: 'tooltip', title: t('.tooltips.change_password') })
