@@ -34,7 +34,7 @@ en:
               disable: Disable
               enable: Enable
               edit: Edit Sub-Campaign
-              destroy: Destroy Sub-Campaign
+              destroy: Delete Sub-Campaign
               new: New Sub-Campaign
               copy: Copy Sub-Campaign
               archive: Archive Sub-Campaign
