@@ -7,7 +7,7 @@ module Administration
     append_before_action :pundit_authorize, except: [:sidebar]
 
     def index
-      @filter_form = policy_scope(@resource_class).tenancies.includes(projects: :admins).search(params[:q])
+      @filter_form = policy_scope(@resource_class).tenancies.includes(:projects_admins).search(params[:q])
       @filter_form.archived_true ||= false
       @resources = @filter_form.result.page(params[:page])
 

@@ -21,8 +21,8 @@ class ClientDecorator < BaseDecorator
 
   def detach_from_project_confirmation
     {
-      title: I18n.t('administration.projects.clients.confirmations.detach_from_project.title', name: display_name, project_name: context[:project_name]),
-      body: I18n.t('administration.projects.clients.confirmations.detach_from_project.body')
+        title: I18n.t('administration.projects.clients.confirmations.detach_from_project.title', name: display_name, project_name: context[:project_name]),
+        body: I18n.t('administration.projects.clients.confirmations.detach_from_project.body')
     }.to_json
   end
 
@@ -34,13 +34,17 @@ class ClientDecorator < BaseDecorator
     object.archived? ? I18n.t('administration.clients.base.archived') : I18n.t('administration.clients.base.active')
   end
 
-  def project_admins
-    project_admins_collection.map do |membership|
+  def client_admins
+    client_admins_memberships.map do |membership|
       h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(membership.client, membership)
     end.join('<br>').html_safe
   end
 
-  def project_admins_collection
+  def projects_admins
+    object.projects_admins.map { |user| user.decorate.display_name }.join('<br>').html_safe
+  end
+
+  def client_admins_memberships
     if object.tenancy?
       object.projects.map { |project| project.admin_memberships }.reject(&:empty?).flatten
     else
@@ -49,7 +53,7 @@ class ClientDecorator < BaseDecorator
   end
 
   def array_project_admins
-    project_admins_collection.map { |membership| membership.user.decorate.display_name }
+    client_admins_memberships.map { |membership| membership.user.decorate.display_name }
   end
 
   def reports

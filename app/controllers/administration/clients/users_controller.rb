@@ -31,6 +31,7 @@ module Administration
         end
         respond_to do |format|
           if @resource.user
+            @resource.user.created_by_id = current_user.id
             @resource.user.create_by_invite = true
             @resource.user.email = @resource.email
             @resource.user.first_name = @resource.first_name
@@ -63,6 +64,7 @@ module Administration
 
       # PATCH/PUT /administration/resources/1
       def update
+        @resource.user.modified_by_id = current_user.id
         respond_to do |format|
           if @resource.update(update_resource_params)
             format.html do

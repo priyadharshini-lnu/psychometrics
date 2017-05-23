@@ -6,7 +6,7 @@
       - else
         = link_to resource.decorate.display_name, administration_client_project_campaigns_path(client, resource)
     td
-      = resource.decorate.project_admins
+      = resource.decorate.client_admins
       - if policy(User).create? && current_user.is?(:superadmin)
         br
         = link_to new_administration_client_user_path(project_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }

@@ -8,7 +8,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
     td = resource.decorate.type
     td = resource.number
     td = resource.country
-  td = resource.decorate.project_admins
+  td = resource.decorate.projects_admins
   td = resource.year
   td = resource.account_manager&.decorate&.display_name
   td = resource.project_manager&.decorate&.display_name

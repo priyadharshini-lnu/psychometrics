@@ -32,6 +32,7 @@ class Administration::UsersController < Administration::BaseController
   #
   def toggle_status
     @resource.toggle!(:disabled)
+    @resource.update!(modified_by_id: current_user.id)
     @resource.memberships.update_all(disabled: @resource.disabled)
     respond_to do |format|
       format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
