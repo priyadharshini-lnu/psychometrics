@@ -7,7 +7,7 @@ class Administration::UsersController < Administration::BaseController
   # GET /administration/resources
   def index
     @filter_form = policy_scope(@resource_class).search(params[:q])
-    @resources = @filter_form.result.preload(:clients).page(params[:page])
+    @resources = @filter_form.result.preload(:clients, :ttes).page(params[:page])
 
     respond_to do |format|
       format.html

@@ -5,7 +5,7 @@ tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
   td = resource.first_name
   td = resource.last_name
   td = resource.email
-  td = resource.decorate.clients_name
+  td = resource.decorate.tenancies_list
   td = resource.decorate.clients_hierarchy
   td = @resource_class.human_role(resource.role)
   td.text-center = resource.decorate.created_at

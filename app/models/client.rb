@@ -45,6 +45,7 @@ class Client < ApplicationRecord
 
   has_one :retail_user, class_name: 'User'
   belongs_to :parent, class_name: 'Client'
+  belongs_to :tte, class_name: 'Client'
 
   has_and_belongs_to_many :report_families, join_table: :clients_report_families, class_name: 'ReportFamily'
   has_many :available_reports, through: :report_families, source: :reports
@@ -58,6 +59,7 @@ class Client < ApplicationRecord
 
   before_validation :ensure_subdomain, if: :retail?
   before_update :sync_archived_with_descendants, if: -> { defined?(:archived_changed?) && :archived_changed? }
+  after_commit :set_tte, if: 'parent_id.present?', on: [:create, :update]
 
   acts_as_nested_set counter_cache: :children_count
 
@@ -163,5 +165,9 @@ class Client < ApplicationRecord
   def subdomain_format_validation
     return if subdomain =~ /^[a-zA-Z0-9\-_]+$/
     errors.add(:subdomain, 'Wrong subdomain format')
+  end
+
+  def set_tte
+    update_column(:tte_id, root.id) if root.id != id
   end
 end

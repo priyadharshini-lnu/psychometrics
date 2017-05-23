@@ -80,6 +80,7 @@ class User < ApplicationRecord
   belongs_to :modifier, foreign_key: :modified_by, class_name: 'User'
   has_many :memberships, inverse_of: :user
   has_many :clients, through: :memberships
+  has_many :ttes, through: :clients
   has_many :admin_clients, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, through: :memberships, source: 'client'
   accepts_nested_attributes_for :memberships
 

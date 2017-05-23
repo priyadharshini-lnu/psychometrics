@@ -32,11 +32,29 @@ class UserDecorator < BaseDecorator
     end
   end
 
+  def tenancies_list
+    object.ttes.distinct.map do |tte|
+      if tte.retail?
+        h.link_to tte.decorate.display_name, h.administration_client_users_path(tte)
+      else
+        h.link_to tte.decorate.display_name, h.administration_client_projects_path(tte)
+      end
+    end.join(', ').html_safe
+  end
+
   def clients_hierarchy
     object.clients.map do |client|
-      client.self_and_ancestors.map do |c|
-        c.name
-      end.join(' > ')
+      clients_array = client.self_and_ancestors.order(:id)
+      clients_array.map do |c|
+        next if c.tenancy?
+        path = if c.campaign_level? || c.sub_campaign_level?
+          h.administration_client_project_campaigns_path(clients_array[0], c)
+        elsif c.depth == 2 && clients_array[1].sub_campaign_level?
+          h.administration_client_project_campaign_sub_campaigns_path(clients_array[0], clients_array[1], c)
+        end
+        path ||= h.administration_client_users_path(c)
+        h.link_to c.decorate.display_name, path
+      end.compact.join(' > ')
     end.join('<br/>').html_safe
   end
 
