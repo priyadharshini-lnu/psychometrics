@@ -32,6 +32,7 @@ module Administration
         respond_to do |format|
           if @resource.user
             @resource.user.created_by_id = current_user.id
+            @resource.user.modified_by_id = current_user.id
             @resource.user.create_by_invite = true
             @resource.user.email = @resource.email
             @resource.user.first_name = @resource.first_name
