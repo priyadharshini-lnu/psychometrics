@@ -1,47 +1,40 @@
 .panel.panel-default
   .panel-heading
-    .hidden-xs.col-sm-1.togglePanel.text-center
-      a[data-toggle="collapse" data-parent="#accordion" href="##{dom_id(resource)}"]
-        span.glyphicon.glyphicon-chevron-down
-    .col-xs-12.col-sm-11.col-md-7
-      .well.assessmentTitleWell
-        h3.assessmentTitle
-          = "#{resource.decorate.category} (#{resource.name})"
-      .well.assessmentDetailsWell
-        h4.detailsTitle
-          // TODO: Paul quick fix
-          = resource.decorate.timing
-          / = "#{t('.questions', :count => resource.active_questions_count)} #{resource.decorate.timing}"
-    .clearfix.visible-sm
-    .col-sm-6.col-md-2.tabletPadding
-      - first_assign = resource.assigns.first
-      = link_to t(".status.#{first_assign.status}"), [:pass, resource], class: "btn btn-courseProgress #{first_assign.completed? ? 'disabled' : ''}"
-      .well.assignedDateWell
-        p
-          = t('.assigned', :date => first_assign.decorate.created_at)
-    .col-sm-6.col-md-2.tabletPadding
-      - # it was refactored in stage2 branch
-      - reports = filter_reports_by_type(@reports.try(:[], resource.id) || [], first_assign.norm_type)
-      - if reports.any?
-        - if reports.size > 1
-          .dropdown
-            button data-toggle="dropdown" type="button" class=" btn btn-primary dropdown-toggle btn-courseProgress #{!first_assign.completed? ? 'disabled' : ''}"
-              = t('.results')
-              span.caret
-            ul.dropdown-menu
-              - reports.each do |report|
-                li
-                  = link_to report.name, report_path(report)
-        - else
-          = link_to t('.results'), report_path(reports.first), class: "btn btn-courseGrade #{!first_assign.completed? ? 'disabled' : ''}"
-      - else
-        = link_to t('.results'), '#', class: 'btn btn-courseGrade disabled'
-      .well.completedDateWell
-        p
-          = first_assign.decorate.completed_at_with_desc
-    .clearfix
-  div.panel-collapse.collapse id=dom_id(resource)
+    table.table.table-responsive.table-borderless
+      thead
+        tr
+          th
+            | Assessment
+          th
+            | Duration
+          th
+            | Deadline
+          th
+            | Progress
+          th.text-center
+            | Download
+      tbody
+        tr
+          td.col-md-3
+            a.collapsed> data-parent="#assessments-#{resource.category}" data-toggle="collapse" href="##{dom_id(resource)}"
+              span.toggle-icon.glyphicon.glyphicon-chevron-right
+              span.toggle-icon.glyphicon.glyphicon-chevron-down
+            /todo, remove Paul Monkey patch
+            - if resource.id == 48
+              = link_to resource.name, 'http://www.mindmill.co.uk/MyMindMill/SSO/?id=08SgxojOF7O9iTj8qzzAAw', target: :blank
+            - else
+              = link_to resource.name, [:pass, resource]
+          td.col-md-2 = resource.decorate.timing
+          td.col-md-2
+            | Dec. 30, 2016
+          td.col-md-3
+            .progress
+              .progress-bar.progress-bar-warning aria-valuemax="100" aria-valuemin="0" aria-valuenow="70" role="progressbar" style="width:70%"
+                | 70% Complete
+          td.text-center.col-md-3
+            a.downloadLink href="#"
+              i.fa.fa-arrow-circle-o-down.downloadIcon aria-hidden="true"
+  .panel-collapse.collapse id=dom_id(resource)
+    hr.divider
     .panel-body
-      .well.expandedDetailsWell
-        p.expandedCopy
-          = resource.decorate.description
+      .well = resource.decorate.description

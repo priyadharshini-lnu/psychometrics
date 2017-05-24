@@ -1,39 +1,21 @@
-.btn-courseGrade, .btn-courseProgress {
-  color: #fff;
-  text-decoration: none;
-  &:hover {
-    color: #fff;
-    text-decoration: none;
-  }
+.btn-courseGrade,
+.btn-courseProgress { color: #fff; text-decoration: none;
+  &:hover { color: #fff; text-decoration: none; }
 }
-
-label {
-  width: 100%;
-}
-
-label > input {
-  display: inline-block;
-}
-
-.alert {
-  margin: 0;
-}
-
-.assign-container {
-  .btn-view {
-    padding: 6px 17px;
-  }
-}
-
-.btn-next-lg {
-  width: 40%;
-}
-
-.removeProduct {
-  font-size: 43px
-}
-
+label { width: 100%; }
+label > input { display: inline-block; }
+.alert { margin: 0; }
+.assign-container .btn-view { padding: 6px 17px; }
+.btn-next-lg { width: 40%; }
+.removeProduct { font-size: 43px }
 // Cause report overrides dropdown
-.dropdown-menu {
-  z-index: 1000000 !important;
+.dropdown-menu { z-index: 1000000 !important; }
+
+// User Dashboard, Assessments
+.assessments-holder {
+  a .glyphicon-chevron-right { display: none; }
+  a .glyphicon-chevron-down { display: inline-block; }
+  a.collapsed .glyphicon-chevron-right { display: inline-block; }
+  a.collapsed .glyphicon.glyphicon-chevron-down { display: none; }
 }
+

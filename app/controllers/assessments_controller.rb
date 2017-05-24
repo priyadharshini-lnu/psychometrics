@@ -22,6 +22,7 @@ class AssessmentsController < ApplicationController
   before_action :set_resource, only: [:pass]
   append_before_action :pundit_authorize
   layout 'users'
+  layout "users_new", only: [:index]
 
   def pass
     @assign = Assign.find_by!(
