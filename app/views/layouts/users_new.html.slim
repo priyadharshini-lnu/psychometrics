@@ -37,6 +37,61 @@ html
                       = link_to [:destroy, pundit_user[:current_user].try(:scope), :session], method: :delete do
                         i.fa.fa-sign-out.pull-right
                         = t('.logout')
+                li.dropdown role="presentation"
+                  a.dropdown-toggle.info-number aria-expanded="false" data-toggle="dropdown" href=""
+                    = image_tag 'notificationIcon.png'
+                    span.badge.bg-green 6
+                  ul#menu1.dropdown-menu.list-unstyled.notificationList role="menu"
+                    li
+                      a
+                        span.image
+                          = image_tag 'userIcon.png'
+                        span
+                          span
+                            | John Smith
+                          span.time
+                            | 3 mins ago
+                        span.message
+                          | Integer eget turpis magna. Morbi accumsan ut dui sed maximus. Nulla mollis elit...
+                    li
+                      a
+                        span.image
+                          = image_tag 'userIcon.png'
+                        span
+                          span
+                            | John Smith
+                          span.time
+                            | 3 mins ago
+                        span.message
+                          | Integer eget turpis magna. Morbi accumsan ut dui sed maximus. Nulla mollis elit...
+                    li
+                      a
+                        span.image
+                          = image_tag 'userIcon.png'
+                        span
+                          span
+                            | John Smith
+                          span.time
+                            | 3 mins ago
+                        span.message
+                          | Integer eget turpis magna. Morbi accumsan ut dui sed maximus. Nulla mollis elit...
+                    li
+                      a
+                        span.image
+                          = image_tag 'userIcon.png'
+                        span
+                          span
+                            | John Smith
+                          span.time
+                            | 3 mins ago
+                        span.message
+                          | Integer eget turpis magna. Morbi accumsan ut dui sed maximus. Nulla mollis elit...
+                    li
+                      .text-center
+                        a
+                          strong
+                            | See All Alerts
+                          i.fa.fa-angle-right
     .banner
     .container-fluid
       = yield

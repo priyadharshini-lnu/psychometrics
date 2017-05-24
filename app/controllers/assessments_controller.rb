@@ -22,7 +22,6 @@ class AssessmentsController < ApplicationController
   before_action :set_resource, only: [:pass]
   append_before_action :pundit_authorize
   layout 'users'
-  layout "users_new", only: [:index]
 
   def pass
     @assign = Assign.find_by!(
@@ -38,6 +37,7 @@ class AssessmentsController < ApplicationController
   def index
     @reports = @current_project.reports.enabled.available_to_view.group_by(&:assessment_id)
     @resources = policy_scope(@resource_class).enabled.order(:id).all
+    render layout: 'users_new'
   end
 
   private
