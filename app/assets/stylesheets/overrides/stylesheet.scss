@@ -13,7 +13,7 @@ label > input { display: inline-block; }
 
 // User Dashboard, Assessments
 .assessments-holder {
-  .panel-heading { overflow: initial !important; }
+  .panel-heading { overflow: visible !important; }
   a .glyphicon-chevron-right { display: none; }
   a .glyphicon-chevron-down { display: inline-block; }
   a.collapsed .glyphicon-chevron-right { display: inline-block; }

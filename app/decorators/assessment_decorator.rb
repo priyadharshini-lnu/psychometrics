@@ -35,4 +35,14 @@ class AssessmentDecorator < BaseDecorator
       map { |client| client.decorate.display_name }.
       join(', ')
   end
+
+  # todo refactor db, add completion
+  def completion_percent
+    assing = object.assigns.where(membership_id: h.pundit_user[:current_membership].id).take
+    return 100 if assing.completed?
+    answered = assing.results&.size || 0
+    total = object.questions&.size
+    return 0 if total.nil? || total == 0
+    (100 * answered) / total
+  end
 end
