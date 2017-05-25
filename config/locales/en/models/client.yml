@@ -14,7 +14,7 @@ en:
         licenses_expire: License Expiry Date
         subdomain: Subdomain
         logo: Client logo
-        number: Number
+        number: Project Number
         location: Location
         year: Client Year
         applicable_level: Applicable Level

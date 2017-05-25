@@ -36,7 +36,7 @@ class ClientDecorator < BaseDecorator
 
   def client_admins
     client_admins_memberships.map do |membership|
-      h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(membership.client, membership)
+      h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(membership.client_id, membership)
     end.join('<br>').html_safe
   end
 
@@ -64,5 +64,9 @@ class ClientDecorator < BaseDecorator
 
   def array_reports
     object.reports.map { |report| report.decorate.display_name }
+  end
+
+  def url
+    h.link_to "#{object.subdomain}.#{Settings.domain}", h.root_url(domain: Settings.domain, subdomain: object.subdomain), target: :blank
   end
 end

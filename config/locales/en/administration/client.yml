@@ -9,6 +9,12 @@ en:
         tooltips:
           create: Create
           export: Export
+      applicable_level: Applicable sfasfa
+      applicable_levels:
+        project: Project
+        campaign: Campaign
+        sub_campaign: Sub campaign
+      url: Url
       list: &list
         project_admin: Project Admin
       export:

@@ -27,7 +27,8 @@ module Administration
 
     def create
       @resource ||= @resource_class.new(resource_params)
-
+      @resource.creator = current_user
+      @resource.modifier = current_user
       respond_to do |format|
         if @resource.save
           format.js
@@ -38,6 +39,7 @@ module Administration
     end
 
     def update
+      @resource.modifier = current_user
       respond_to do |format|
         if @resource.update(resource_params)
           format.js

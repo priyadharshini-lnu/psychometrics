@@ -52,6 +52,8 @@ class Client < ApplicationRecord
 
   belongs_to :account_manager, class_name: 'User'
   belongs_to :project_manager, class_name: 'User'
+  belongs_to :creator, foreign_key: :created_by_id, class_name: 'User'
+  belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'
 
   validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true, if: :project?
   validates :name, :type, presence: true

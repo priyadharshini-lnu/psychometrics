@@ -45,8 +45,8 @@ class BaseDecorator < Draper::Decorator
 
   def delete_confirmation
     {
-      title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.title", name: display_name),
-      body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.body")
+        title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.title", name: display_name),
+        body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.body")
     }.to_json
   end
 
@@ -54,13 +54,13 @@ class BaseDecorator < Draper::Decorator
     status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {
         title: I18n.t(
-          "administration.#{object.class.model_name.plural}.resource.confirmations.toggle_status.title",
-          status: status,
-          name: display_name
+            "administration.#{object.class.model_name.plural}.resource.confirmations.toggle_status.title",
+            status: status,
+            name: display_name
         ),
         body: I18n.t(
-          "administration.#{object.class.model_name.plural}.resource.confirmations.toggle_status.body",
-          status: status.downcase
+            "administration.#{object.class.model_name.plural}.resource.confirmations.toggle_status.body",
+            status: status.downcase
         )
     }.to_json
   end
@@ -71,5 +71,13 @@ class BaseDecorator < Draper::Decorator
     else
       I18n.t('administration.tte')
     end
+  end
+
+  def creator_name
+    object.creator&.decorate&.display_name
+  end
+
+  def modifier_name
+    object.modifier&.decorate&.display_name
   end
 end
