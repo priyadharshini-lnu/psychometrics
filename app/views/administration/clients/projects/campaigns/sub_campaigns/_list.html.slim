@@ -6,7 +6,7 @@
         th = t('.header.tests_allocated')
         th = t('.header.users')
         th = t('.header.actual_usage')
-        th width='300' = t('administration.actions')
+        th width='1%' = t('administration.actions')
     tbody
       - if @resources.present?
         = render partial: 'resource', collection: @resources
