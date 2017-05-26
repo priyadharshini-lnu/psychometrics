@@ -1,0 +1,3 @@
+.btn-group role="group"
+  = link_to 'Projects', administration_client_projects_path(client), class: "btn btn-default #{'active' if current_page?(controller: 'projects',action: :index)}"
+  = link_to 'Campaigns', administration_client_campaigns_path(client), class: "btn btn-default #{'active' if current_page?(controller: 'campaigns',action: :index)}"

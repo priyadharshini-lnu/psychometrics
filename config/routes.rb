@@ -97,6 +97,7 @@ Rails.application.routes.draw do
             end
           end
         end
+        resources :campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
 
         resource :licenses, only: [:show, :edit, :update]
         resources :assessments, only: [:index, :destroy] do

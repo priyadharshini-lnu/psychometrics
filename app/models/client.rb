@@ -20,6 +20,10 @@
 class Client < ApplicationRecord
   include Copyable
 
+  HIERARCHY_LEVEL = {
+      campaign: 2
+  }.freeze
+
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
   has_many :admins, through: :admin_memberships, source: :user, class_name: 'User'
@@ -38,6 +42,7 @@ class Client < ApplicationRecord
   has_many :dimensions
   has_many :projects, class_name: 'Client', foreign_key: :parent_id
   has_many :projects_admins, -> { where(memberships: { role: Membership::ADMIN_ROLE }).distinct }, through: :projects, source: :users
+  has_many :campaigns, -> { where(depth: HIERARCHY_LEVEL[:campaign]) }, foreign_key: :tte_id, class_name: 'Client'
 
   has_many :licenses, inverse_of: :client, dependent: :destroy
   accepts_nested_attributes_for :licenses, allow_destroy: true

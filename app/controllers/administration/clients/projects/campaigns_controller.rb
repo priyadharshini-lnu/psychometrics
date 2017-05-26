@@ -1,7 +1,7 @@
 module Administration
   module Clients
     module Projects
-      class CampaignsController < Administration::ClientsController
+      class CampaignsController <  Administration::Clients::CampaignsController
         def index
           @filter_form = policy_scope(project).children.search(params[:q])
           @filter_form.archived_true ||= false
@@ -33,10 +33,6 @@ module Administration
           @resource = @resource_class.new(resource_params)
           @resource.parent = project
           super
-        end
-
-        def i18n
-          'clients.projects.campaigns'
         end
 
         private
