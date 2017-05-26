@@ -1,0 +1,13 @@
+tr data-sidebar=url_for(sidebar_administration_client_sub_campaign_path(client, resource)) id=dom_id(resource)
+  td
+    = link_to resource.name, administration_client_users_path(resource)
+  td
+    = resource.decorate.reports
+    - if policy(:clients_report).create?
+      .add-icon-box
+        = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
+          span.fa.fa-plus
+  td.text-center = resource.decorate.created_at
+  td = resource.decorate.creator_name
+  td.text-center = resource.decorate.updated_at
+  td = resource.decorate.modifier_name

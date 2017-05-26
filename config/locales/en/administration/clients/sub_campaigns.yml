@@ -1,57 +1,55 @@
 en:
   administration:
     clients:
-      projects:
-        campaigns:
-          sub_campaigns:
-            index:
-              title: Sub Campaigns
-              tooltips:
-                create: Create
-                export: Export
-              create: Create new Sub-Campaign
-              export: Export Sub-Campaign
-            list: &list
-              header:
-                sub_campaign: Sub-Campaigns
-                actions: Actions
-                name: Name
-                tests_allocated: Tests Allocated
-                users: Users
-                actual_usage: Actual Usage
-                archive_status: Archive Status
-            export:
-              <<: *list
-            header:
-              actions: Actions
-            resource:
-              tooltips:
-                copy: Copy Sub Campaign
-                edit: Edit Sub Campaign
-                delete: Delete Sub Campaign
-            sidebar:
-              title: Sub-Campaign's options
-              disable: Disable
-              enable: Enable
-              edit: Edit Sub-Campaign
-              destroy: Delete Sub-Campaign
-              new: New Sub-Campaign
-              copy: Copy Sub-Campaign
-              archive: Archive Sub-Campaign
-            new:
-              header: 'New Sub-Campaign'
-            edit:
-              header: 'Edit Sub-Campaign'
-            destroy:
-              successfully: 'Sub-Campaign %{name} was successfully destroyed.'
-            copy:
-              successfully: 'Sub-Campaign %{name} was successfully copied.'
-              error: 'Sub-Campaign %{name} was not copied.'
-            create:
-              successfully: 'Sub-Campaign %{name} was successfully created.'
-            update:
-              successfully: 'Sub-Campaign %{name} was successfully updated.'
-            toggle_status:
-              successfully: 'Sub-Campaign %{name} was successfully updated.'
-            archive:
-              successfully: Sub-Campaign %{name} was successfully archived.
+      sub_campaigns:
+        index:
+          title: Sub Campaigns
+          tooltips:
+            create: Create
+            export: Export
+          create: Create new Sub-Campaign
+          export: Export Sub-Campaign
+        list: &list
+          header:
+            sub_campaign: Sub-Campaigns
+            actions: Actions
+            name: Name
+            tests_allocated: Tests Allocated
+            users: Users
+            actual_usage: Actual Usage
+            archive_status: Archive Status
+        export:
+          <<: *list
+        header:
+          actions: Actions
+        resource:
+          tooltips:
+            copy: Copy Sub Campaign
+            edit: Edit Sub Campaign
+            delete: Delete Sub Campaign
+        sidebar:
+          title: Sub-Campaign's options
+          disable: Disable
+          enable: Enable
+          edit: Edit Sub-Campaign
+          destroy: Delete Sub-Campaign
+          new: New Sub-Campaign
+          copy: Copy Sub-Campaign
+          archive: Archive Sub-Campaign
+        new:
+          header: 'New Sub-Campaign'
+        edit:
+          header: 'Edit Sub-Campaign'
+        destroy:
+          successfully: 'Sub-Campaign %{name} was successfully destroyed.'
+        copy:
+          successfully: 'Sub-Campaign %{name} was successfully copied.'
+          error: 'Sub-Campaign %{name} was not copied.'
+        create:
+          successfully: 'Sub-Campaign %{name} was successfully created.'
+        update:
+          successfully: 'Sub-Campaign %{name} was successfully updated.'
+        toggle_status:
+          successfully: 'Sub-Campaign %{name} was successfully updated.'
+        archive:
+          successfully: Sub-Campaign %{name} was successfully archived.

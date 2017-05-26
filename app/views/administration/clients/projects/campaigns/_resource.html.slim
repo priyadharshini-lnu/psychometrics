@@ -10,15 +10,15 @@
       td
         = sub_campaign.decorate.reports
         - if policy(:clients_report).create?
-          br
-          = link_to new_administration_client_report_path(client_id: sub_campaign.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
-            span.fa.fa-plus
+          .add-icon-box
+            = link_to new_administration_client_report_path(client_id: sub_campaign.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
+              span.fa.fa-plus
       td
         = link_to sub_campaign.users_count, administration_client_users_path(sub_campaign)
         - if policy(User).create?
-          br
-          = link_to new_administration_client_user_path(sub_campaign), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
-            span.fa.fa-plus
+          .add-icon-box
+            = link_to new_administration_client_user_path(sub_campaign), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
+              span.fa.fa-plus
       td
   tr
     td.text-center colspan='4'
@@ -33,13 +33,13 @@
     td
       = resource.decorate.reports
       - if policy(:clients_report).create?
-        br
-        = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
-          span.fa.fa-plus
+        .add-icon-box
+          = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
+            span.fa.fa-plus
     td
       = link_to resource.users_count, administration_client_users_path(resource)
       - if policy(User).create?
-        br
-        = link_to new_administration_client_user_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
-          span.fa.fa-plus
+        .add-icon-box
+          = link_to new_administration_client_user_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
+            span.fa.fa-plus
     td
