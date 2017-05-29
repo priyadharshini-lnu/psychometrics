@@ -15,7 +15,7 @@
                 include_blank: false,
                 disabled: !f.object.new_record?                                
       - if f.object.project_level?
-        = f.association :reports, collection: Report.with_report_families(client.report_family_ids)
+        = f.association :reports, collection: Report.with_report_families(client.report_family_ids).distinct
       .clearfix
       -if policy(:client).design?
         .well
