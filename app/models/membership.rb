@@ -89,7 +89,7 @@ class Membership < ApplicationRecord
     end
   }
   scope :client_reports, ->(client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
-
+  scope :assigned, -> { joins(:assigns).distinct }
   # Save HRIS data from form
   def hris_data=(data)
     self.hris = {}

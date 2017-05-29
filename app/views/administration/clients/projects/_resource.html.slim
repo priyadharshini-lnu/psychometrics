@@ -5,7 +5,7 @@
         = link_to resource.decorate.display_name, administration_client_users_path(resource)
       - else
         = link_to resource.decorate.display_name, administration_client_project_campaigns_path(client, resource)
-    td = t(".applicable_levels.#{resource.applicable_level}")
+    td = t("activerecord.attributes.client.applicable_levels.#{resource.applicable_level}")
     td = resource.number
     td
       - if resource.project_level?
@@ -14,6 +14,8 @@
           .add-icon-box
             = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
               span.fa.fa-plus
+    td = resource.assigned_memberships.size
+    td 0
     td
       - if resource.project_level?
         = link_to resource.users_count, administration_client_users_path(resource)

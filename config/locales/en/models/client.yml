@@ -25,9 +25,9 @@ en:
         memberships_count: Users
         users_count: Users
         applicable_levels:
-          project: 'Project'
-          campaign: 'Campaign'
-          sub_campaign: 'Sub-Campaign'
+          project: Project
+          campaign: Campaign
+          sub_campaign: Sub-Campaign
         types:
           partner: Partner
           corporate: Corporate

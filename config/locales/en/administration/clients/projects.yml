@@ -12,6 +12,9 @@ en:
           project_admin: Project Admin
           tests_allocated: Tests Allocated
           archive_status: Status
+          assigned_user: Assigned User
+          completed_user: Completed user
+          applicable_level: Applicable Level
         export:
           <<: *list
         index:
