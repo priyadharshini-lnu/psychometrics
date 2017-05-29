@@ -30,6 +30,7 @@ class Client < ApplicationRecord
   has_many :admins, through: :admin_memberships, source: :user, class_name: 'User'
   has_many :admin_memberships, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
   has_many :assigned_memberships, -> { assigned }, source: :membership, class_name: 'Membership'
+  has_many :completed_memberships, -> { completed }, source: :membership, class_name: 'Membership'
   has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) }, through: :memberships, source: :user
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
 

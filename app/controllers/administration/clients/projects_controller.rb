@@ -2,7 +2,7 @@ module Administration
   module Clients
     class ProjectsController < Administration::ClientsController
       def index
-        @filter_form = policy_scope(client).children.includes(:admins).search(params[:q])
+        @filter_form = policy_scope(client).children.includes(:admins, :assigned_memberships).search(params[:q])
         @filter_form.archived_true ||= false
         @resources = @filter_form.result.page(params[:page])
 

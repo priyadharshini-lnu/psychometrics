@@ -15,7 +15,7 @@
             = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
               span.fa.fa-plus
     td = resource.assigned_memberships.size
-    td 0
+    td = resource.completed_memberships.size
     td
       - if resource.project_level?
         = link_to resource.users_count, administration_client_users_path(resource)

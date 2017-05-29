@@ -37,6 +37,8 @@ class Assign < ApplicationRecord
   before_update :completion_callback, if: proc { status_changed? && completed? }
   before_update :set_started_at, if: proc { status_changed? && in_progress? }
 
+  after_commit :update_membership_completed
+
   def completion_callback
     ::Communications::AfterCompleteJob.perform_later(id)
   end
@@ -75,20 +77,20 @@ class Assign < ApplicationRecord
   #
   def calculate_scoring
     raise 'To calculate you need to pass relative assessment' unless completed?
-    factors_scoring     = FactorsScoring.where(assessment_id: assessment_id).joins(:factor).all
+    factors_scoring = FactorsScoring.where(assessment_id: assessment_id).joins(:factor).all
     factors_scoring_map = factors_scoring.group_by(&:factor_id)
-    questions_ids       = factors_scoring.pluck(:question_id).uniq
-    questions_map       = Question.where(id: questions_ids).all.group_by(&:id)
-    self.scoring        = {}
-    self.agile_scoring  = {}
+    questions_ids = factors_scoring.pluck(:question_id).uniq
+    questions_map = Question.where(id: questions_ids).all.group_by(&:id)
+    self.scoring = {}
+    self.agile_scoring = {}
 
     factors_scoring_map.each do |factor_id, scoring_array|
       self.scoring[factor_id] = { name: scoring_array.try(:first).try(:factor).try(:name), results: [] }
       self.agile_scoring[factor_id] = { name: scoring_array.try(:first).try(:factor).try(:name), results: [] }
       scoring_array.each do |question_scoring|
-        question      = questions_map[question_scoring.question_id].try(:first)
+        question = questions_map[question_scoring.question_id].try(:first)
         scoring_class = "Scoring::#{question.try(:type)}"
-        result        = results[question.try(:id).try(:to_s)]
+        result = results[question.try(:id).try(:to_s)]
         if result && question && !question_scoring.props.empty?
           scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)
           # type 'PickGroupRank' is used for agile methodology
@@ -108,16 +110,16 @@ class Assign < ApplicationRecord
     if status_changed?
       if in_progress?
         Notification.create(
-          assessment_id: assessment_id,
-          membership_id: membership_id,
-          text: I18n.t('assigns.notifications.in_progress', user_name: user.decorate.display_name, assessment_name: assessment.name)
+            assessment_id: assessment_id,
+            membership_id: membership_id,
+            text: I18n.t('assigns.notifications.in_progress', user_name: user.decorate.display_name, assessment_name: assessment.name)
         )
       end
       if completed?
         Notification.create(
-          assessment_id: assessment_id,
-          membership_id: membership_id,
-          text: I18n.t('assigns.notifications.completed', user_name: user.decorate.display_name, assessment_name: assessment.name)
+            assessment_id: assessment_id,
+            membership_id: membership_id,
+            text: I18n.t('assigns.notifications.completed', user_name: user.decorate.display_name, assessment_name: assessment.name)
         )
       end
     end
@@ -130,6 +132,14 @@ class Assign < ApplicationRecord
   def norm_type
     return norm_data['type'] if norm_data && norm_data['id'] && norm_data['type']
     nil
+  end
+
+  private
+
+  def update_membership_completed
+    assigns = membership.reload.assigns
+    completed = assigns.size == assigns.completed.size
+    membership.update_column(:assigns_completed, completed)
   end
 
   class << self
