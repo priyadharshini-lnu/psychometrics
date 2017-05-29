@@ -12,7 +12,7 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
   td = resource.assessment.try(:decorate).try(:display_name)
   td = resource.decorate.type
   td = resource.decorate.client_name
-  td = resource.decorate.report_family
+  td = resource.decorate.report_families
   td.text-center = resource.decorate.created_at
   td.text-center = resource.decorate.updated_at
   - if policy(@resource_class).actions?

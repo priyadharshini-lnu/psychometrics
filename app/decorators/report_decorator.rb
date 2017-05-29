@@ -9,7 +9,7 @@ class ReportDecorator < BaseDecorator
       join(', ')
   end
 
-  def report_family
-    object.report_family.present? ? object.report_family.decorate.display_name : ''
+  def report_families
+    object.report_families.present? ? object.report_families.map{|rf| rf.decorate.display_name}.join('<br>').html_safe : ''
   end
 end

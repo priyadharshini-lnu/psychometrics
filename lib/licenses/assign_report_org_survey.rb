@@ -10,7 +10,7 @@ module Licenses
       return if client.id == report.owner_id
 
       # Get License by report family type
-      license = client.licenses.with_report_family(report.report_family_id).take
+      license = client.licenses.with_report_family(report.report_family_ids).take
 
       # Return if report has already assigned
       report_ids = Membership.client_reports(client.descendants.ids).map(&:id)

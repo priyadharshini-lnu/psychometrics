@@ -16,7 +16,7 @@ module Administration
 
     # GET /administration/resources
     def index
-      @filter_form = policy_scope(@resource_class).includes(:assessment, :report_family).search(params[:q])
+      @filter_form = policy_scope(@resource_class).includes(:assessment, :report_families).search(params[:q])
       @resources = @filter_form.result.page(params[:page])
 
       respond_to do |format|
@@ -111,7 +111,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :assessment_id, :type, :owner_id, :report_family_id)
+      params.require(:resource).permit(:name, :assessment_id, :type, :owner_id, report_family_ids: [])
     end
 
     # Authorisation user

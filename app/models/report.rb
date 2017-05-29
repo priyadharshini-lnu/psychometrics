@@ -21,7 +21,8 @@ class Report < ApplicationRecord
   self.inheritance_column = :_type_disabled
   belongs_to :assessment
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
-  belongs_to :report_family
+  has_and_belongs_to_many :report_families
+
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
 
@@ -39,20 +40,20 @@ class Report < ApplicationRecord
 
   validates :assessment, presence: true
   validates :owner, presence: true, allow_nil: true
-  validates :report_family, presence: true, allow_nil: false
+  validates :report_families, presence: true, allow_nil: false
 
   enum type: TYPES
 
   # Copy report with pages => modules
   def clone
-    @cloned_item = deep_clone include: [pages: :modules]
+    @cloned_item = deep_clone include: [:report_families, { pages: :modules }]
     @cloned_item.gen_uniq_name
     @cloned_item
   end
 
   scope :enabled, -> { where.not(disabled: true) }
   scope :with_report_families, lambda { |report_family_ids|
-    report_family_ids.blank? ? none : where(report_family_id: report_family_ids)
+    report_family_ids.blank? ? none : joins(:report_families).where(report_families: {id:  report_family_ids})
   }
 
   # Search entity by assessment category

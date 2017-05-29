@@ -4,7 +4,7 @@ module Reports
     find('.panel-heading .create').click
     fill_in 'resource_name', with: opts[:name]
     select opts[:assessment_name], from: 'resource_assessment_id', visible: false
-    select opts[:report_family_name], from: 'resource_report_family_id', visible: false
+    select opts[:report_family_name], from: 'resource_report_family_ids', visible: false
     click_on 'Create'
   end
 
