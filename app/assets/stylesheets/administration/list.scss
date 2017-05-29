@@ -13,7 +13,7 @@ table.list { margin-bottom: 0;
   .sorting_asc:before { content: "\f0d8"; }
   .sorting_asc_disabled:before,
   .sorting_desc_disabled:before { opacity: 0.1; filter: alpha(opacity=10); }
-  th.date { width: 150px; text-align: center;}
+  th.date { width: 150px; text-align: center; }
   tbody .fa { margin-right: 0; }
   .actions-cell { white-space: nowrap; }
   .btn.btn-rounded { border-width: 1px; border-radius: 40px; }
@@ -21,6 +21,19 @@ table.list { margin-bottom: 0;
   .btn + .btn { margin: 0 0 0 6px; }
   .btn i { font-size: 12px; }
   .add-icon-box { display: block; }
+  .fake { padding: 0; }
+  .data-row + tr td { border-top: none !important; }
+}
+.list.tenancies {
+  .report_family { width: 120px; }
+  .used_number { width: 120px; }
+  .overuse { width: 120px; }
+  .usage_percent { width: 120px; }
+  .start_date { width: 120px; }
+  .end_date { width: 120px; }
+  td.licenses { padding: 0; height: 100%; }
+  td.licenses table { height: 100%; width: 100%; }
+  td.licenses td { padding: 8px;}
 }
 .panel-heading .list-filter { clear: left; float: left; margin: 10px 0 -10px 0; }
 .list-filter .form-group { display: inline-block; vertical-align: bottom; margin: 0 10px 10px 0; max-width: 180px; }

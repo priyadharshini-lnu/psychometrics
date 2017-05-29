@@ -8,8 +8,21 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
     td = resource.decorate.type
     td = resource.number
     td = resource.country
-  td = resource.decorate.projects_admins
   td = resource.year
+  - colspan = current_user.is?(:superadmin) ? 6 : 4
+  td.licenses colspan=colspan
+    table
+      - resource.licenses.each do |license|
+        tr
+          td.report_family = license.decorate.display_name
+          td.used_number = license.decorate.used_number(resource)
+          - if current_user.is?(:superadmin)
+            td.overuse = license.decorate.used_overuse_number
+          td.usage_percent = license.decorate.usage_percent
+          td.start_date = license.decorate.start_date
+          - if current_user.is?(:superadmin)
+            td.end_date = license.decorate.end_date
+  td = resource.decorate.projects_admins
   td = resource.account_manager&.decorate&.display_name
   td = resource.project_manager&.decorate&.display_name
   td.actions-cell
