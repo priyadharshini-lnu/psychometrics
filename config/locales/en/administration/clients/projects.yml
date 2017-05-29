@@ -9,7 +9,8 @@ en:
             sub_campaign: 'Sub-Campaign End Level'
         list: &list
           admin: Client Admin
-          project_admin: Project Admin
+          project_admin: Client Project Manager
+          tte_admin: TTE Project Manager
           tests_allocated: Tests Allocated
           archive_status: Status
           assigned_user: Assigned User
