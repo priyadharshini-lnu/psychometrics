@@ -11,6 +11,20 @@ class ClientDecorator < BaseDecorator
     }.to_json
   end
 
+  def delete_confirmation
+    {
+        title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.title", name: display_name),
+        body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.body")[object.level]
+    }.to_json
+  end
+
+  def archive_confirmation
+    {
+        title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.title", name: display_name),
+        body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.body")[object.level]
+    }.to_json
+  end
+
   def subdomain_field
     if object.subdomain.present? && object.subtenancy?
       object.subdomain.split('.').first

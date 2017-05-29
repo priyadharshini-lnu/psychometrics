@@ -50,6 +50,13 @@ class BaseDecorator < Draper::Decorator
     }.to_json
   end
 
+  def archive_confirmation
+    {
+        title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.title", name: display_name),
+        body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.body")
+    }.to_json
+  end
+
   def toggle_status_confirmation
     status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {
