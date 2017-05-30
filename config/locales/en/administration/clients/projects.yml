@@ -16,6 +16,8 @@ en:
           assigned_user: Assigned User
           completed_user: Completed user
           applicable_level: Applicable Level
+          url: Url
+          actual_usage: Actual Usage
         export:
           <<: *list
         index:

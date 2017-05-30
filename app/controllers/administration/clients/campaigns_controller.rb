@@ -2,7 +2,8 @@ module Administration
   module Clients
     class CampaignsController < Administration::ClientsController
       def index
-        @filter_form = policy_scope(client).campaigns.includes(:parent).search(params[:q])
+        @filter_form = policy_scope(client).campaigns.includes(:parent, :license_usages).search(params[:q])
+        @filter_form.archived
         @filter_form.archived_true ||= false
         @resources = @filter_form.result.page(params[:page])
 

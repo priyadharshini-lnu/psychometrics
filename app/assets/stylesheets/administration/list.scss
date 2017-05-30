@@ -23,14 +23,11 @@ table.list { margin-bottom: 0;
   .add-icon-box { display: block; }
   .fake { padding: 0; }
   .data-row + tr td { border-top: none !important; }
+  tbody + tbody {  border-top: none;}
 }
 .list.tenancies {
-  .report_family { min-width: 120px; }
-  .used_number { min-width: 120px; }
-  .overuse { min-width: 120px; }
-  .usage_percent { min-width: 120px; }
-  .start_date { min-width: 120px; }
-  .end_date { min-width: 120px; }
+  .report_family, .used_number, .overuse, .usage_percent, .start_date,
+  .end_date { min-width: 120px; width: 120px; }
   td.licenses { padding: 0; height: 100%; }
   td.licenses table { height: 100%; width: 100%; }
   td.licenses td { padding: 8px;}

@@ -7,6 +7,7 @@ class LicenseDecorator < BaseDecorator
     if client.root?
       I18n.t('administration.clients.licenses.show.used_out_of', used_number: object.used_number - object.used_overuse_number, number: object.number)
     else
+      # todo migrate to ancestry
       object.license_usages.where(client_id: client.self_and_descendants.ids).size
     end
   end

@@ -83,4 +83,9 @@ class ClientDecorator < BaseDecorator
   def url
     h.link_to "#{object.subdomain}.#{Settings.domain}", h.root_url(domain: Settings.domain, subdomain: object.subdomain), target: :blank
   end
+
+  def actual_usage
+    # todo investigate to ancestry
+    object.license_usages.size + descendants.reduce(0){|sum,child| sum + child.license_usages.size}
+  end
 end

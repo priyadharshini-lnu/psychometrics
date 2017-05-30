@@ -1,45 +1,31 @@
-- if resource.project.sub_campaign_level?
-  tr id=dom_id(resource) data-sidebar=url_for(sidebar_administration_client_project_campaign_path(client, project, resource))
-    td colspan='2' rowspan=(resource.children.enabled.count + 2)
-      = link_to administration_client_project_campaign_sub_campaigns_path(client, project, resource)
-        = resource.decorate.display_name
-  - resource.children.enabled.each do |sub_campaign|
-    tr data-sidebar=url_for(sidebar_administration_client_project_campaign_sub_campaign_path(client, project, resource, sub_campaign))
+tbody id=dom_id(resource)
+  - if resource.project.sub_campaign_level?
+    tr data-sidebar=url_for(sidebar_administration_client_project_campaign_path(client, project, resource))
+      - rowspan = resource.children.enabled.count + 2
+      td rowspan=rowspan
+        = link_to resource.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client, project, resource)
+      td rowspan=rowspan = resource.decorate.actual_usage
+    = render partial: 'administration/clients/projects/campaigns/sub_campaigns/resource', collection: resource.children.enabled, as: :resource, locals: {campaign: resource}
+    tr
+      td.text-center colspan='5'
+        - unless resource.archived?
+          = link_to t('.sub_campaign.create'),
+                    new_administration_client_project_campaign_sub_campaign_path(client, project, resource),
+                    remote: true
+  - else
+    tr data-sidebar=url_for(sidebar_administration_client_project_campaign_path(client, project, resource))
       td
-        = link_to sub_campaign.name, administration_client_users_path(sub_campaign)
+        = link_to resource.name, administration_client_users_path(resource)
       td
-        = sub_campaign.decorate.reports
+        = resource.decorate.reports
         - if policy(:clients_report).create?
           .add-icon-box
-            = link_to new_administration_client_report_path(client_id: sub_campaign.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
+            = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
               span.fa.fa-plus
       td
-        = link_to sub_campaign.users_count, administration_client_users_path(sub_campaign)
+        = link_to resource.users_count, administration_client_users_path(resource)
         - if policy(User).create?
           .add-icon-box
-            = link_to new_administration_client_user_path(sub_campaign), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
+            = link_to new_administration_client_user_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
               span.fa.fa-plus
-      td
-  tr
-    td.text-center colspan='4'
-      - unless resource.archived?
-        = link_to t('.sub_campaign.create'),
-                  new_administration_client_project_campaign_sub_campaign_path(client, project, resource),
-                  remote: true
-- else
-  tr data-sidebar=url_for(sidebar_administration_client_project_campaign_path(client, project, resource))
-    td
-      = link_to resource.name, administration_client_users_path(resource)
-    td
-      = resource.decorate.reports
-      - if policy(:clients_report).create?
-        .add-icon-box
-          = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
-            span.fa.fa-plus
-    td
-      = link_to resource.users_count, administration_client_users_path(resource)
-      - if policy(User).create?
-        .add-icon-box
-          = link_to new_administration_client_user_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
-            span.fa.fa-plus
-    td
+      td = resource.decorate.actual_usage
