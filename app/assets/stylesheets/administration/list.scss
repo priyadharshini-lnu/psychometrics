@@ -25,12 +25,12 @@ table.list { margin-bottom: 0;
   .data-row + tr td { border-top: none !important; }
 }
 .list.tenancies {
-  .report_family { width: 120px; }
-  .used_number { width: 120px; }
-  .overuse { width: 120px; }
-  .usage_percent { width: 120px; }
-  .start_date { width: 120px; }
-  .end_date { width: 120px; }
+  .report_family { min-width: 120px; }
+  .used_number { min-width: 120px; }
+  .overuse { min-width: 120px; }
+  .usage_percent { min-width: 120px; }
+  .start_date { min-width: 120px; }
+  .end_date { min-width: 120px; }
   td.licenses { padding: 0; height: 100%; }
   td.licenses table { height: 100%; width: 100%; }
   td.licenses td { padding: 8px;}

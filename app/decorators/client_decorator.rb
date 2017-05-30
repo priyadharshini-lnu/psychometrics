@@ -55,7 +55,7 @@ class ClientDecorator < BaseDecorator
   end
 
   def projects_admins
-    object.projects_admins.map { |user| user.decorate.display_name }.join('<br>').html_safe
+    object.projects_admins.map { |user| h.content_tag(:span, user.decorate.display_name, class: 'text-nowrap') }.join('<br>').html_safe
   end
 
   def client_admins_memberships
