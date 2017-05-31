@@ -52,6 +52,7 @@ class ApplicationController < ActionController::Base
     @current_membership = current_user.memberships.join_user.find_by(client_id: @current_project)
     current_user.current_membership = @current_membership
     if !@current_membership && current_user
+      sign_out current_user
       redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}")
     end
   end

@@ -2,27 +2,31 @@ module UserScopes
   extend ActiveSupport::Concern
 
   included do
+    scope :enabled, -> { where.not(disabled: true) }
+    scope :identified, -> { where(is_anonym: false) }
+    scope :superadmins, -> { where(role: User::USER_ROLES[:superadmin]) }
+    scope :managers, -> { where(role: User::USER_ROLES[:manager]) }
     # Sorting
     scope :sorted_by, lambda { |sort_key|
       # extract the sort direction from the param value.
       direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
       case sort_key.to_s
-      when /^id_/
-        order("users.id #{direction}")
-      when /^active_/
-        order("users.disabled #{direction}")
-      when /^first_name_/
-        order("users.first_name #{direction}")
-      when /^last_name_/
-        order("users.last_name #{direction}")
-      when /^email_/
-        order("users.email #{direction}")
-      when /^role_/
-        order("users.role #{direction}")
-      when /^created_at_/
-        order("users.created_at #{direction}")
-      when /^updated_at_/
-        order("users.updated_at #{direction}")
+        when /^id_/
+          order("users.id #{direction}")
+        when /^active_/
+          order("users.disabled #{direction}")
+        when /^first_name_/
+          order("users.first_name #{direction}")
+        when /^last_name_/
+          order("users.last_name #{direction}")
+        when /^email_/
+          order("users.email #{direction}")
+        when /^role_/
+          order("users.role #{direction}")
+        when /^created_at_/
+          order("users.created_at #{direction}")
+        when /^updated_at_/
+          order("users.updated_at #{direction}")
       end
     }
 
@@ -40,10 +44,10 @@ module UserScopes
     scope :with_role, lambda { |role|
       if role == 'users'
         joins(:memberships).
-          where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
+            where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
       elsif role == 'administrators'
         joining { memberships.outer }.
-          where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::ADMIN_ROLE) }
+            where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::ADMIN_ROLE) }
       end
     }
 
@@ -56,10 +60,10 @@ module UserScopes
     scope :role_scope_in, lambda { |role_scope|
       if role_scope == 'users'
         joins(:memberships).
-          where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
+            where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
       elsif role_scope == 'administration'
         joining { memberships.outer }.
-          where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::ADMIN_ROLE) }
+            where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::ADMIN_ROLE) }
       end
     }
   end

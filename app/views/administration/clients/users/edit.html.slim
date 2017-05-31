@@ -17,10 +17,10 @@
               = u.input :email
               = u.input :first_name
               = u.input :last_name
-              = u.input :role, as: :select, 
-                        collection: @current_user.decorate.can_manage_roles, 
-                        class: 'form-control select mll', 
-                        include_blank: false
+            = f.input :role, as: :select, label: t('simple_form.labels.membership.role'),
+              collection: Membership::MEMBERSHIP_ROLES,
+              class: 'form-control select mll',
+              include_blank: false
             = f.input :parent_id,
                       collection: f.object.decorate.managers_for_select,
                       label_method: lambda { |u| u.user.decorate.display_name },

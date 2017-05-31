@@ -31,11 +31,12 @@ class Administration::BaseController < ActionController::Base
   private
 
   def user_not_authorized
-    render plain: 'You does not have access to this page'
+    raise ActionController::RoutingError.new('Not Found')
   end
 
   def authenticate_user!
     redirect_to(new_administration_session_path) && return unless user_signed_in?
+    raise Pundit::NotAuthorizedError unless current_user.is?(:superadmin, :admin)
     super
   end
 

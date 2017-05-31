@@ -33,6 +33,9 @@
 #
 
 class User < ApplicationRecord
+  include UserScopes
+  include UserValidations
+
   # Roles constant
   SUPER_ADMIN_ROLE = 'Users::SuperAdmin'.freeze
   REGULAR_ROLE = 'Users::Regular'.freeze
@@ -60,9 +63,6 @@ class User < ApplicationRecord
       communications: { view: true, manage: true }
   }.freeze
 
-  # Scopes
-  include UserScopes
-
   # Authentication
   devise :invitable, :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable,
@@ -84,17 +84,10 @@ class User < ApplicationRecord
   has_many :admin_clients, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, through: :memberships, source: 'client'
   accepts_nested_attributes_for :memberships
 
-  include UserValidations
-
   before_save :ensure_authentication_token
   validates :email, uniqueness: true
   validates :role, inclusion: { in: ::User::USER_ROLES.values }, presence: true, allow_nil: true
   validate :validate_grants
-
-  scope :enabled, -> { where.not(disabled: true) }
-  scope :identified, -> { where(is_anonym: false) }
-  scope :superadmins, -> { where(role: User::USER_ROLES[:superadmin]) }
-  scope :managers, -> { where(role: User::USER_ROLES[:manager]) }
 
   # We won't set password, we will send inviting
   def password_required?

@@ -5,6 +5,6 @@ class Administration::HomePolicy < Struct.new(:administrator, :home)
   end
 
   def index?
-    @user.is?(:superadmin, :admin, :ss)
+    @user.is?(:superadmin, :admin)
   end
 end
