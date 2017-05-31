@@ -1,10 +1,17 @@
 module Administration
   class ReportFamilyPolicy < ReportPolicy
+    def create?
+      @user.is?(:superadmin)
+    end
+
     class Scope < Scope
       def resolve
-        scope = super
-        return scope if @user.is?(:superadmin) || @user.has_grant?(:reports, :view)
-        scope.none
+        return scope if @user.is?(:superadmin)
+        if @user.has_grant?(:reports, :view)
+          scope.where(id: @user.ttes.joins(:available_reports).pluck('report_families.id'))
+        else
+          scope.none
+        end
       end
     end
   end

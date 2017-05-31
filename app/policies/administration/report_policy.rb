@@ -8,8 +8,10 @@ module Administration
       super || @user.has_grant?(:reports, :manage)
     end
 
-    def create?
-      super || @user.has_grant?(:reports, :manage)
+    def edit?
+      result = super
+      result ||= @user.has_grant?(:reports, :manage) && @user.tte_own_reports_ids.include?(record.id) unless record.is_a? Class
+      result
     end
 
     def open_channel?
@@ -18,7 +20,7 @@ module Administration
 
     def preview?
       return true if @user.is?(:superadmin)
-      return true if @user.is?(:admin) && @record.assessment.psychometric? && @user.has_grant?(:assigns, :view)
+      return true if @user.is?(:admin) && @record.assessment.psychometric? && @user.has_grant?(:reports, :view)
       false
     end
 
@@ -30,12 +32,21 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
     end
 
+    def toggle_status?
+      edit?
+    end
+
     class Scope < Scope
       def resolve
         scope = super
         return scope if @user.is?(:superadmin)
         if @user.has_grant?(:reports, :view)
-          scope.enabled.available_to_view.where(owner_id: @user.admin_client_ids)
+          scope
+              .enabled
+              .available_to_view
+              .where('reports.owner_id in (?) or reports.id in (?)',
+                     @user.tte_ids,
+                     @user.tte_own_reports_ids)
         else
           scope.none
         end

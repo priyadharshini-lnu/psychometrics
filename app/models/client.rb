@@ -39,6 +39,7 @@ class Client < ApplicationRecord
   # has_many :reports, through: :assign_clients
   has_many :clients_reports, dependent: :destroy
   has_many :reports, through: :clients_reports
+  has_many :own_reports, class_name: 'Report', foreign_key: :owner_id
   has_many :assessments, -> { group(:id) }, through: :reports
 
   has_many :norms

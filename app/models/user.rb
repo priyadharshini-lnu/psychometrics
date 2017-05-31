@@ -47,7 +47,7 @@ class User < ApplicationRecord
 
   USER_ROLES_SCOPES = {
       administration: [USER_ROLES.key(SUPER_ADMIN_ROLE), Membership::ADMIN_ROLE],
-      user:           [USER_ROLES.key(REGULAR_ROLE), Membership::MANAGER_ROLE, Membership::MEMBER_ROLE]
+      user: [USER_ROLES.key(REGULAR_ROLE), Membership::MANAGER_ROLE, Membership::MEMBER_ROLE]
   }.freeze
 
   # Contain information about ability to manage list of roles
@@ -104,10 +104,10 @@ class User < ApplicationRecord
   def is?(*roles)
     roles.map!(&:to_sym)
     arr = if current_membership
-            [current_membership.role.to_sym]
-          else
-            [USER_ROLES.key(role)] + memberships.map { |m| m.role.to_sym }
-          end
+      [current_membership.role.to_sym]
+    else
+      [USER_ROLES.key(role)] + memberships.map { |m| m.role.to_sym }
+    end
     (arr & roles).any?
   end
 
@@ -127,41 +127,6 @@ class User < ApplicationRecord
   # Return list of roles, that can manage
   def can_manage
     (USER_ROLES_HIERARCHY[USER_ROLES.key(role)] || [])
-  end
-
-  class << self
-    # White list scopes for Ransack
-    def ransackable_scopes(_auth_object = nil)
-      [:hris_data_cont, :role_scope_in]
-    end
-
-    # Available role for the filter form
-    #
-    def options_for_with_role
-      %w(all users administration)
-    end
-
-    def human_role(role)
-      I18n.t("activerecord.attributes.user.roles.#{USER_ROLES.key(role)}")
-    end
-
-    # Try find User in Subdomain scope
-    def find_for_authentication(warden_conditions)
-      # Cut from Subdomain part of expected Subdomain
-      subdomain = warden_conditions[:subdomain] && warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
-      if subdomain.present?
-        enabled.
-          identified.
-          joins(:clients).
-          where.has { email.eq(warden_conditions[:email]) & clients.subdomain.eq(subdomain) & clients.disabled.not_eq(true) }.
-          first
-      else
-        enabled.
-          identified.
-          where(email: warden_conditions[:email]).
-          first # If Subdomain not presented going normally
-      end
-    end
   end
 
   def ensure_authentication_token
@@ -193,6 +158,10 @@ class User < ApplicationRecord
     grants.dig(*args).present?
   end
 
+  def tte_own_reports_ids
+    @_tte_own_reports_ids ||= ttes.joins(:own_reports).pluck('reports.id')
+  end
+
   private
 
   def generate_authentication_token
@@ -205,5 +174,40 @@ class User < ApplicationRecord
   def validate_grants
     return if grants.nil? || grants.is_a?(Hash)
     errors.add(:grants, :invalid)
+  end
+
+  class << self
+    # White list scopes for Ransack
+    def ransackable_scopes(_auth_object = nil)
+      [:hris_data_cont, :role_scope_in]
+    end
+
+    # Available role for the filter form
+    #
+    def options_for_with_role
+      %w(all users administration)
+    end
+
+    def human_role(role)
+      I18n.t("activerecord.attributes.user.roles.#{USER_ROLES.key(role)}")
+    end
+
+    # Try find User in Subdomain scope
+    def find_for_authentication(warden_conditions)
+      # Cut from Subdomain part of expected Subdomain
+      subdomain = warden_conditions[:subdomain] && warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
+      if subdomain.present?
+        enabled.
+            identified.
+            joins(:clients).
+            where.has { email.eq(warden_conditions[:email]) & clients.subdomain.eq(subdomain) & clients.disabled.not_eq(true) }.
+            first
+      else
+        enabled.
+            identified.
+            where(email: warden_conditions[:email]).
+            first # If Subdomain not presented going normally
+      end
+    end
   end
 end
