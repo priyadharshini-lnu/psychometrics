@@ -1,6 +1,6 @@
-= simple_form_for(@resource ||=  @resource_class.new, as: :resource, url: { action: :create }, remote: true) do |f|
+= simple_form_for(resource, as: :resource, url: { action: :create }, remote: true) do |f|
   .modal-body
-    = render_error_notification(@resource)
+    = render_error_notification(resource)
     .form-inputs.clearfix
       = f.input :email
       = f.input :first_name

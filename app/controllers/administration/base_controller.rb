@@ -8,7 +8,7 @@ class Administration::BaseController < ActionController::Base
   include Administration::Policies
   include Authenticate
   include SetLocale
-  include Administration::Clients::Helpers
+  include Administration::Helpers
 
   # Authentication admin
   prepend_before_action :authenticate_user!

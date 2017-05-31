@@ -95,11 +95,11 @@ class Client < ApplicationRecord
   scope :not_retails, -> { where.has { type.not_eq(:retail) } }
 
   def clone
-    @cloned_item = deep_clone do |_original, kopy|
-      kopy.gen_uniq_name
-      kopy.subdomain = kopy.name.gsub(/[^0-9A-Za-z]/, '').parameterize
+    @cloned_item = deep_clone do |_original, copy|
+      copy.gen_uniq_name
+      copy.subdomain = copy.name.gsub(/[^0-9A-Za-z]/, '').parameterize
+      copy.users_count = 0
     end
-    @cloned_item
   end
 
   def self.options_for_select
