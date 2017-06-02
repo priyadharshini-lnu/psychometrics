@@ -9,11 +9,11 @@ $(function(){
   });
 
   // Stop propagation, when clicked to action dom
-  $(document).on('click', 'table.selectable tbody [data-sidebar] a', function(event){
+  $(document).on('click', 'table.selectable [data-sidebar] a', function(event){
     event.stopPropagation();
   });
 
-  $(document).on('click', 'table.selectable tbody [data-sidebar]', function(event){
+  $(document).on('click', 'table.selectable [data-sidebar]', function(event){
     event.stopPropagation();
     $(document).trigger('load_sidebar', [this]);
   });
@@ -30,7 +30,7 @@ $(function(){
         $panel = $('#sidebar .panel');
 
     // Remove active class from other active cell
-    $resource.closest('tbody').
+    $resource.closest('table').
               find('.active').
               removeClass('active');
 
@@ -59,6 +59,6 @@ $(function(){
     $('#sidebar').trigger("sidebar:close").
                   removeClass('opened').
                   find('.content').html('');
-    $('table.selectable tbody .active').removeClass('active');
+    $('table.selectable .active').removeClass('active');
   });
 });

@@ -23,14 +23,20 @@ table.list { margin-bottom: 0;
   .add-icon-box { display: block; }
   .fake { padding: 0; }
   .data-row + tr td { border-top: none !important; }
-  tbody + tbody {  border-top: none;}
+  tbody + tbody { border-top: none; }
+  tbody.active { background: #f5f5f5; }
 }
 .list.tenancies {
-  .report_family, .used_number, .overuse, .usage_percent, .start_date,
-  .end_date { min-width: 120px; width: 120px; }
-  td.licenses { padding: 0; height: 100%; }
-  td.licenses table { height: 100%; width: 100%; }
-  td.licenses td { padding: 8px;}
+  tbody:hover { background: #f5f5f5; }
+  .report_family,
+  .used_number,
+  .overuse,
+  .usage_percent,
+  .start_date,
+  .end_date { min-width: 120px; }
+  td.fake { padding: 0; height: 0; }
+  .core.full td.fake { border-bottom: none !important; }
+  .core.full + tr td { border-top: none !important; }
 }
 .panel-heading .list-filter { clear: left; float: left; margin: 10px 0 -10px 0; }
 .list-filter .form-group { display: inline-block; vertical-align: bottom; margin: 0 10px 10px 0; max-width: 180px; }
