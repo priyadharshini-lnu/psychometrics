@@ -1,6 +1,6 @@
 module Administration
   class MembershipPolicy < Administration::UserPolicy
-    CREATE_PARAMETERS = [:first_name, :last_name, :email, :role, :parent_id].freeze
+    CREATE_PARAMETERS = [:first_name, :last_name, :email, :parent_id].freeze
     RECORD_PARAMETERS = [:parent_id, :role, hris_data: [:key, :value]].freeze
     USER_PARAMETERS = [:id, :first_name, :last_name, :email, :disabled, :role].freeze
     GRANT_PARAMETERS = [grants: [
