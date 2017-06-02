@@ -2,7 +2,7 @@
   .modal-body
     .form-inputs.clearfix
       = select_tag :report_ids,
-              options_from_collection_for_select(client.client.available_reports, :id, :name, client.report_ids),
+              options_from_collection_for_select(client.client.available_reports.distinct, :id, :name, client.report_ids),
               multiple: true,
               include_blank: false,
               class: 'form-control select'

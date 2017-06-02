@@ -45,4 +45,9 @@ class AssessmentDecorator < BaseDecorator
     return 0 if total.nil? || total == 0
     (100 * answered) / total
   end
+
+  def clients_by_report_families
+    client_ids = Client.by_report_family_assessment(object).enabled.roots.ids
+    h.policy_scope(Client).end_level_of(client_ids).map {|c| [c.id, c.decorate.display_name_with_parent]}
+  end
 end

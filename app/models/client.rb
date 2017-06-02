@@ -94,6 +94,8 @@ class Client < ApplicationRecord
   scope :not_archived, -> { where.not(archived: true) }
   scope :tenancies, -> { roots }
   scope :not_retails, -> { where.has { type.not_eq(:retail) } }
+  scope :by_report_family_assessment, -> (assessment) {joins(:report_families).where(report_families: { id: assessment.report_family_ids })}
+  scope :end_level_of, -> (ids) {where(applicable_level: 0, tte_id: ids)}
 
   def clone
     @cloned_item = deep_clone do |_original, copy|
