@@ -15,9 +15,9 @@ tr data-sidebar=url_for(sidebar_administration_client_project_campaign_sub_campa
   td = resource.decorate.actual_usage
   td.actions-cell
     - if policy(resource).actions?
-      = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
+      = link_to edit_administration_client_project_campaign_sub_campaign_path(client, project, campaign, resource), remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
         span.fa.fa-pencil
-      = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
+      = link_to copy_administration_client_project_campaign_sub_campaign_path(client, project, campaign, resource), remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
         span.fa.fa-copy
-      = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
+      = link_to administration_client_project_campaign_sub_campaign_path(client, project, campaign, resource), remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
         span.fa.fa-times
