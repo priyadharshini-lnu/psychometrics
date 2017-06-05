@@ -41,7 +41,7 @@ gem 'font-awesome-rails',         '~> 4.6.3.0'
 ### TEMPLATES
 gem 'slim-rails',                 '~> 3.1.0'
 ### FORM BUILDERS
-gem 'simple_form',                '~> 3.2.1'
+gem 'simple_form',                '3.4.0'
 gem 'cocoon', '1.2.9'
 ### Pagination helpers
 gem 'kaminari',                   '~> 0.17.0'
@@ -59,8 +59,7 @@ gem 'i18n-js',                    '~> 3.0.0.rc3'
 
 ### Decorator
 gem 'activemodel-serializers-xml'
-### Fixed gem for decorator (rails 5)
-gem 'draper', github: 'audionerd/draper', branch: 'rails5'
+gem 'draper',                     '~> 3.0.0'
 ### Generate schema in each model
 gem 'annotate', '~> 2.7.0', github: 'ctran/annotate_models'
 
