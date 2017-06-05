@@ -1,7 +1,7 @@
 - rowspan = resource.licenses.size + 1
 tbody data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resource)
   tr.core class=('full' if rowspan > 1)
-    td rowspan=rowspan
+    td.nowrap rowspan=rowspan
       - if resource.retail?
         = link_to resource.name, administration_client_users_path(resource)
       - else
@@ -9,7 +9,7 @@ tbody data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(reso
     - if policy(:client).view_additional_fields?
       td rowspan=rowspan = resource.decorate.type
       td rowspan=rowspan = resource.number
-      td rowspan=rowspan = resource.country
+      td.nowrap rowspan=rowspan = resource.country
     td rowspan=rowspan = resource.year
     - (current_user.is?(:superadmin) ? 6 : 4).times do
       td.fake
@@ -27,7 +27,7 @@ tbody data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(reso
           span.fa.fa-times
   - resource.licenses.each do |license|
     tr
-      td = license.decorate.display_name
+      td.nowrap = license.decorate.display_name
       td = license.decorate.used_number(resource)
       - if current_user.is?(:superadmin)
         td = license.decorate.used_overuse_number

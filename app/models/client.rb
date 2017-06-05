@@ -72,6 +72,7 @@ class Client < ApplicationRecord
   before_validation :ensure_subdomain, if: :retail?
   before_update :sync_archived_with_descendants, if: -> { defined?(:archived_changed?) && :archived_changed? }
   after_commit :set_tte, if: 'parent_id.present?', on: [:create, :update]
+  after_commit :clear_own_reports, on: [:destroy]
 
   acts_as_nested_set counter_cache: :children_count
 
@@ -94,8 +95,8 @@ class Client < ApplicationRecord
   scope :not_archived, -> { where.not(archived: true) }
   scope :tenancies, -> { roots }
   scope :not_retails, -> { where.has { type.not_eq(:retail) } }
-  scope :by_report_family_assessment, -> (assessment) {joins(:report_families).where(report_families: { id: assessment.report_family_ids })}
-  scope :end_level_of, -> (ids) {where(applicable_level: 0, tte_id: ids)}
+  scope :by_report_family_assessment, -> (assessment) { joins(:report_families).where(report_families: { id: assessment.report_family_ids }) }
+  scope :end_level_of, -> (ids) { where(applicable_level: 0, tte_id: ids) }
 
   def clone
     @cloned_item = deep_clone do |_original, copy|
@@ -183,5 +184,9 @@ class Client < ApplicationRecord
 
   def set_tte
     update_column(:tte_id, root.id) if root.id != id
+  end
+
+  def clear_own_reports
+    own_reports.each { |report| report.update_column(:owner_id, nil) }
   end
 end

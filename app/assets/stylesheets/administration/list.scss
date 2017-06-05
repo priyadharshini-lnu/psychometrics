@@ -1,4 +1,5 @@
 table.list { margin-bottom: 0;
+  .nowrap { white-space: nowrap; }
   .sorting a,
   .sorting_asc a,
   .sorting_desc a { color: inherit; display: block; }
@@ -33,7 +34,7 @@ table.list { margin-bottom: 0;
   .overuse,
   .usage_percent,
   .start_date,
-  .end_date { min-width: 120px; }
+  .end_date { min-width: 100px; }
   td.fake { padding: 0; height: 0; }
   .core.full td.fake { border-bottom: none !important; }
   .core.full + tr td { border-top: none !important; }
