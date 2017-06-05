@@ -34,7 +34,7 @@
                   = render partial: 'grants', locals: { u: u }
         .panel-footer
           .btn-group.pull-left
-            = link_to(t('administration.back'), { action: :index }, class: 'btn btn-info')
+            = link_to(t('administration.back'), url_for(:back), class: 'btn btn-info')
           .btn-group.pull-right
             = f.button :submit, t('administration.update'), class: 'btn-info'
             = link_to t('administration.clear'), url_for, class: 'btn btn-default'
