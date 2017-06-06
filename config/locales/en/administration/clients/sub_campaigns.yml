@@ -27,6 +27,7 @@ en:
             copy: Copy Sub Campaign
             edit: Edit Sub Campaign
             delete: Delete Sub Campaign
+            create_report: Add new Report
         sidebar:
           title: Sub-Campaign's options
           disable: Disable
