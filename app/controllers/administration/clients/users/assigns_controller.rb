@@ -8,10 +8,10 @@ module Administration
         append_before_action :pundit_authorize, :init_breadcrumbs
 
         def index
-          @filter_form = policy_scope(::Assign).where(id: @membership.assign_ids).includes(:assessment).search(params[:q])
+          @filter_form = policy_scope(::Assign).where(id: membership.assign_ids).includes(:assessment).search(params[:q])
           @resources = @filter_form.result.page(params[:page])
           @reports = policy_scope(Report).
-                     ransack(client_reports_client_id_eq: @client.id).result.
+                     ransack(client_reports_client_id_eq: client.id).result.
                      group_by(&:assessment_id)
           respond_to do |format|
             format.html
@@ -27,16 +27,18 @@ module Administration
           @assessment = policy_scope(Assessment).find(resource_params[:assessment_id])
           # Ensure that client tenancy has assigned assessment
           #   Or create assign
-          @client.assign_clients.find_or_create_by(assessment: @assessment)
-          if @membership.assessments.include? @assessment
-            @resource = @assessment.assigns.where(membership_id: @membership.id).first
-            @resource.report_ids += resource_params[:report_ids]
+          # TODO: do we need it?
+          client.assign_clients.find_or_create_by(assessment: @assessment)
+
+          assigns_scope = membership.assigns
+          @resource = assigns_scope.where(assessment_id: @assessment.id).take || assigns_scope.build(resource_params)
+          if resource.new_record?
+            resource.save
           else
-            @resource = @membership.assigns.build(resource_params)
-            @resource.save
+            resource.report_ids = resource_params[:report_ids]
           end
           respond_to do |format|
-            format.js { render :new if @resource.errors.any? }
+            format.js { render :new if resource.errors.any? }
           end
         end
 
@@ -78,12 +80,12 @@ module Administration
           add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
           add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
           add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
-          add_breadcrumb I18n.t('administration.clients.users.assigns.index.title', name: @membership.decorate.display_name), { action: :index }
+          add_breadcrumb I18n.t('administration.clients.users.assigns.index.title', name: membership.decorate.display_name), { action: :index }
         end
 
         def set_membership
-          @membership = policy_scope(::Membership).join_user.includes(:client, :assigns).find(params[:user_id])
-          @client = @membership.client
+          @_membership = policy_scope(::Membership).join_user.includes(:client, :assigns).find(params[:user_id])
+          @_client = membership.client
         end
 
         def set_resource

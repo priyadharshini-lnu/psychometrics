@@ -24,22 +24,22 @@ module Administration
 
       def create
         @resource = @resource_class.new(create_resource_params)
-        @resource.client = client
+        resource.client = client
         if client.tenancy?
-          @resource.client = project
-          @resource.role = Membership::ADMIN_ROLE
+          resource.client = project
+          resource.role = Membership::ADMIN_ROLE
         end
         respond_to do |format|
-          if @resource.user
-            @resource.user.created_by_id = current_user.id
-            @resource.user.modified_by_id = current_user.id
-            @resource.user.create_by_invite = true
-            @resource.user.email = @resource.email
-            @resource.user.first_name = @resource.first_name
-            @resource.user.last_name = @resource.last_name
+          if resource.user
+            resource.user.created_by_id = current_user.id
+            resource.user.modified_by_id = current_user.id
+            resource.user.create_by_invite = true
+            resource.user.email = resource.email
+            resource.user.first_name = resource.first_name
+            resource.user.last_name = resource.last_name
           end
-          if @resource.save
-            @resource.user.invite!(current_user, client.id)
+          if resource.save
+            resource.user.invite!(current_user, client.id)
             format.js
           else
             format.js { render :new, locals: { is_new: true } }
@@ -137,7 +137,8 @@ module Administration
         add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
         unless client.retail?
           add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-          add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
+          add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.prime_project?
+          add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent) if client.sub_campaign?
         end
         add_breadcrumb client.decorate.display_name, { action: :index }
       end

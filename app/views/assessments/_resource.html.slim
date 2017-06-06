@@ -19,15 +19,11 @@
             a.collapsed> data-parent="#assessments-#{resource.category}" data-toggle="collapse" href="##{dom_id(resource)}"
               span.toggle-icon.glyphicon.glyphicon-chevron-right
               span.toggle-icon.glyphicon.glyphicon-chevron-down
-            /todo, remove Paul Monkey patch
             - first_assign = resource.assigns.first
-            - if resource.id == 48
-              = link_to resource.name, 'http://www.mindmill.co.uk/MyMindMill/SSO/?id=08SgxojOF7O9iTj8qzzAAw', target: :blank
+            - if first_assign.completed?
+              span = resource.name
             - else
-              - if first_assign.completed?
-                span = resource.name
-              - else
-                = link_to resource.name, [:pass, resource]
+              = link_to resource.name, [:pass, resource]
           td.col-md-2 = resource.decorate.timing
           td.col-md-2
             | June. 30, 2017
@@ -46,10 +42,14 @@
                     span.caret
                   ul.dropdown-menu
                     - reports.each do |report|
-                      li
-                        = link_to report.name, report_path(report)
-              - else
-                = link_to t('.results'), report_path(reports.first), class: "btn btn-info #{!first_assign.completed? ? 'disabled' : ''}"
+                      - if policy(report).show?
+                        li
+                          = link_to report.name, report_path(report)
+                      - else
+                        li.disabled
+                          = link_to report.name, "#"
+              - elsif policy(reports.sample).show?
+                = link_to t('.results'), report_path(reports.sample), class: "btn btn-info #{!first_assign.completed? ? 'disabled' : ''}"
             - else
               = link_to t('.results'), '#', class: 'btn btn-info disabled'
   .panel-collapse.collapse id=dom_id(resource)

@@ -26,12 +26,12 @@ class ApplicationController < ActionController::Base
   end
 
   def pundit_user
-    { current_user: current_user, current_client: @current_client, current_membership: @current_membership }
+    { current_user: current_user, current_client: @current_client, current_project: @current_project, current_membership: @current_membership }
   end
 
   private
 
-  def user_not_authorized
+  def user_not_authorized(e)
     render text: 'You does not have access to this page'
   end
 

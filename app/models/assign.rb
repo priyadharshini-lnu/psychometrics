@@ -23,19 +23,22 @@ class Assign < ApplicationRecord
   has_one :user, through: :membership
   belongs_to :assessment
   belongs_to :membership, inverse_of: :assigns
+  belongs_to :project, foreign_key: :project_assign_id, class_name: 'Assign'
   has_many :assigns_reports, dependent: :destroy
   has_many :reports, through: :assigns_reports
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
+  validates :membership_id, :assessment_id, presence: true
 
   enum status: [:not_started, :in_progress, :completed]
   enum role: [:member, :manager, :admin]
 
   after_initialize :init
+  before_create :set_project_assign
   before_save :notification_handler
-
   before_update :completion_callback, if: proc { status_changed? && completed? }
   before_update :set_started_at, if: proc { status_changed? && in_progress? }
+  after_destroy :clear_project_assign
 
   after_commit :update_membership_completed
 
@@ -137,10 +140,26 @@ class Assign < ApplicationRecord
   private
 
   def update_membership_completed
-    return if membership.nil? || membership.destroyed?
+    return if membership.project? || membership.destroyed?
     assigns = membership.reload.assigns
     completed = assigns.size == assigns.completed.size
     membership.update_column(:assigns_completed, completed)
+  end
+
+  def set_project_assign
+    return if membership.project?
+    project_assign = membership.project.assigns.where(assessment_id: assessment_id).take
+    unless project_assign
+      project_assign = dup
+      project_assign.membership_id = membership.project.id
+      project_assign.save!
+    end
+    self.project_assign_id = project_assign.id
+  end
+
+  def clear_project_assign
+    return if membership.project? || membership.project.clients_assigns.pluck('assigns.assessment_id').include?(assessment_id)
+    project.destroy!
   end
 
   class << self

@@ -3,7 +3,7 @@ module Administration
     extend ActiveSupport::Concern
 
     included do
-      helper_method :client, :project, :campaign, :resource
+      helper_method :client, :project, :campaign, :resource, :project_membership, :membership
     end
 
     def client
@@ -32,6 +32,14 @@ module Administration
 
     def resource
       @resource ||= @resource_class.new
+    end
+
+    def project_membership
+      @_project_membership ||= membership.project? ? membership : membership.project
+    end
+
+    def membership
+      @_membership
     end
   end
 end

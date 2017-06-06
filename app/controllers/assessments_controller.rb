@@ -25,9 +25,9 @@ class AssessmentsController < ApplicationController
 
   def pass
     @assign = Assign.find_by!(
-      assessment_id: @resource.id,
-      membership_id: @current_membership.id,
-      status: [:not_started, :in_progress]
+        assessment_id: @resource.id,
+        membership_id: @current_membership.id,
+        status: [:not_started, :in_progress]
     )
     @translations = ::Translation.to_hash_for_assessment(@resource.id, user_locale)
     @available_translations = ::Translation.available_translation_for_assessment(@resource.id)
@@ -35,7 +35,10 @@ class AssessmentsController < ApplicationController
   end
 
   def index
-    @reports = @current_project.reports.enabled.available_to_view.group_by(&:assessment_id)
+    # in case of showing only assigned reports use:
+    # reports_scope = @current_membership.reports if @current_project.end_level?
+    # reports_scope ||= @current_membership.clients_reports
+    @reports = Report.for_clients(@current_project.descendants.ids).enabled.available_to_view.distinct.group_by(&:assessment_id)
     @resources = policy_scope(@resource_class).enabled.order(:id).all
     render layout: 'users_new'
   end

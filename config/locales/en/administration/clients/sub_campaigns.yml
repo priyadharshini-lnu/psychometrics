@@ -1,7 +1,7 @@
 en:
   administration:
     clients:
-      sub_campaigns:
+      sub_campaigns: &default_sub_campaigns
         index:
           title: Sub Campaigns
           tooltips:
@@ -53,3 +53,7 @@ en:
           successfully: 'Sub-Campaign %{name} was successfully updated.'
         archive:
           successfully: Sub-Campaign %{name} was successfully archived.
+      projects:
+        campaigns:
+          sub_campaigns:
+            <<: *default_sub_campaigns

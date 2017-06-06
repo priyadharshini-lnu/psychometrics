@@ -19,10 +19,10 @@ module Administration
           @results = Assign.
                      completed.
                      includes(:membership, :user).
-                     where(memberships: { client_id: @client.id }, assessment_id: @resource.assessment_id).
+                     where(memberships: { client_id: client.id }, assessment_id: @resource.assessment_id).
                      references(:membership).
                      all
-          @assign = Assign.find_by(assessment_id: @resource.assessment_id, membership_id: @membership.id)
+          @assign = Assign.find_by(assessment_id: @resource.assessment_id, membership_id: membership.id)
           @translations = Translation.to_hash_for_report(@resource.id, @resource.assessment_id, user_locale)
           @available_translations = Translation.available_translation_for_report(@resource.id, @resource.assessment_id)
           respond_to do |format|
@@ -30,7 +30,7 @@ module Administration
               render('_preview', layout: 'pdf') if params[:export]
             end
             format.pdf do
-              pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @user, @client, request.protocol.split(':').first)
+              pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @user, client, request.protocol.split(':').first)
               send_file pdf_file, type: 'application/pdf'
             end
           end
@@ -40,10 +40,10 @@ module Administration
 
         def init_breadcrumbs
           add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-          add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, @client, :users]
-          add_breadcrumb @client.decorate.display_name, [:administration, @client, :users]
+          add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, client, :users]
+          add_breadcrumb client.decorate.display_name, [:administration, @client, :users]
           add_breadcrumb @user.decorate.display_name, '#'
-          add_breadcrumb I18n.t('administration.breadcrumbs.reports'), [:administration, @client, :user, :assigns, { user_id: @membership.id }]
+          add_breadcrumb I18n.t('administration.breadcrumbs.reports'), [:administration, client, :user, :assigns, { user_id: membership.id }]
         end
 
         # Set model
@@ -56,9 +56,9 @@ module Administration
         end
 
         def set_data
-          @client = policy_scope(Client).find(params[:client_id])
+          @_client = policy_scope(Client).find(params[:client_id])
           @user = policy_scope(User).find(params[:user_id])
-          @membership = @user.memberships.join_user.find_by(client_id: @client.id)
+          @_membership = @user.memberships.join_user.find_by(client_id: client.id)
         end
 
         # Authorisation user

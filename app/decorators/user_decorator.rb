@@ -43,6 +43,7 @@ class UserDecorator < BaseDecorator
   end
 
   def clients_hierarchy
+    # todo refactor
     object.clients.map do |client|
       clients_array = client.self_and_ancestors.order(:id)
       clients_array.map do |c|

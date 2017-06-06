@@ -23,21 +23,22 @@ class Membership < ApplicationRecord
 
   # Roles constant
   MEMBERSHIP_ROLES = [
-    ADMIN_ROLE = 'admin'.freeze,
-    MANAGER_ROLE = 'manager'.freeze,
-    MEMBER_ROLE = 'member'.freeze
+      ADMIN_ROLE = 'admin'.freeze,
+      MANAGER_ROLE = 'manager'.freeze,
+      MEMBER_ROLE = 'member'.freeze
   ].freeze
 
   SCOPES = {
-    ADMIN_ROLE => :administration,
-    MANAGER_ROLE => :user,
-    MEMBER_ROLE => :user
+      ADMIN_ROLE => :administration,
+      MANAGER_ROLE => :user,
+      MEMBER_ROLE => :user
   }.freeze
 
   delegate :is_anonym?, to: :user
 
   belongs_to :client, counter_cache: :users_count
   belongs_to :user, inverse_of: :memberships, touch: true
+  belongs_to :project, foreign_key: :project_membership_id, class_name: 'Membership'
   accepts_nested_attributes_for :user
 
   has_many :assigns, dependent: :destroy, inverse_of: :membership
@@ -45,6 +46,9 @@ class Membership < ApplicationRecord
   has_many :assessments, through: :assigns
   has_many :communication_emails, dependent: :destroy, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'
   has_many :orders, dependent: :destroy, inverse_of: :membership, class_name: 'Ecommerce::Order'
+  has_many :clients_memberships, foreign_key: :project_membership_id, class_name: 'Membership'
+  has_many :clients_assigns, through: :clients_memberships, source: :assigns, class_name: 'Assign'
+  has_many :clients_reports, through: :clients_assigns, source: :reports
 
   validates :client, uniqueness: { scope: :user }
   validates :client, :user, presence: true
@@ -53,13 +57,16 @@ class Membership < ApplicationRecord
 
   before_validation :ensure_user, on: :create, if: proc { user.nil? }
 
+  before_save :set_project_membership, if: 'client.end_level?'
+  after_destroy :clear_project_membership, if: 'client.end_level?'
+
   acts_as_nested_set scope: :client_id
 
   scope :enabled, -> { where.not(disabled: true) }
   scope :admin_role, -> { where(role: ADMIN_ROLE) }
   scope :with_head_assigns_for_client_and_assessment, lambda { |client_id, assessment_id|
     joining { assigns.on(assigns.membership_id.eq(id) & assigns.assessment_id.eq(assessment_id) & assigns.role.in([Assign.roles[:admin], Assign.roles[:manager]])) }.
-      where.has { |m| m.client_id.eq(client_id) }
+        where.has { |m| m.client_id.eq(client_id) }
   }
   scope :with_client, lambda { |client_id|
     where(client_id: client_id)
@@ -74,10 +81,10 @@ class Membership < ApplicationRecord
   }
   scope :user_type_eq, lambda { |type|
     case type.to_s
-    when 'identified'
-      joins(:user).where.not(users: { is_anonym: true })
-    when 'anonymous'
-      joins(:user).where(users: { is_anonym: true })
+      when 'identified'
+        joins(:user).where.not(users: { is_anonym: true })
+      when 'anonymous'
+        joins(:user).where(users: { is_anonym: true })
     end
   }
   # Search users with specified Assign id (hashed)
@@ -124,6 +131,27 @@ class Membership < ApplicationRecord
     count_arr.delete count
     return true if count_arr.empty? || count_arr.max < report_type_count
     false
+  end
+
+  def project?
+    project_membership_id.nil?
+  end
+
+  private
+
+  def set_project_membership
+    return if client.project? || project.present?
+    project_membership = client.project.memberships.where(user_id: user_id).take
+    project_membership ||= Membership.create!(user_id: user_id, client_id: client.project.id)
+    self.project_membership_id = project_membership.id
+  rescue => e
+    errors.add(:base, e.message)
+    raise ActiveRecord::RecordInvalid
+  end
+
+  def clear_project_membership
+    return if project? || project.clients_memberships.any?
+    project.destroy!
   end
 
   class << self

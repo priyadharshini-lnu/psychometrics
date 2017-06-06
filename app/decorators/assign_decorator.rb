@@ -1,6 +1,7 @@
 class AssignDecorator < BaseDecorator
-  def status
-    I18n.t("activerecord.attributes.assign.statuses.#{object.status}")
+  def initialize(object, options = {})
+    object = object.project if object.project
+    super
   end
 
   def created_at

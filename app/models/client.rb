@@ -134,6 +134,18 @@ class Client < ApplicationRecord
     campaign? || sub_campaign?
   end
 
+  def prime_project?
+    project_level? && project?
+  end
+
+  def deep_project?
+    project_level? && (campaign? || sub_campaign?)
+  end
+
+  def end_level?
+    prime_project? || deep_project?
+  end
+
   def active?
     !archived?
   end

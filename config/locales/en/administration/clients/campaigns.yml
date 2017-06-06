@@ -8,16 +8,7 @@ en:
         create_report: Add New Report
         create_user: Add New User
         export: Export
-      projects:
-        campaigns:
-          resource:
-            tooltips:
-              <<: *default_tooltips
-          sub_campaigns:
-            resource:
-              tooltips:
-                <<: *default_tooltips
-      campaigns:
+      campaigns: &default_campaigns
         index:
           title: Campaigns
           tooltips:
@@ -66,3 +57,6 @@ en:
           successfully: 'Campaign %{name} was successfully updated.'
         archive:
           successfully: Campaign %{name} was successfully archived.
+      projects:
+        campaigns:
+          <<: *default_campaigns
