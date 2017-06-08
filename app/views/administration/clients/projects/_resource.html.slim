@@ -9,7 +9,7 @@
     td = resource.number
     td
       - if resource.project_level?
-        = resource.decorate.reports
+        = resource.decorate.reports_names
         - if policy(:clients_report).create?
           .add-icon-box
             = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }

@@ -76,6 +76,10 @@ class ClientDecorator < BaseDecorator
     end.join(', ').html_safe
   end
 
+  def reports_names
+    object.reports.map { |report| report.decorate.display_name }.join(', ').html_safe
+  end
+
   def array_reports
     object.reports.map { |report| report.decorate.display_name }
   end
@@ -86,6 +90,6 @@ class ClientDecorator < BaseDecorator
 
   def actual_usage
     # todo investigate to ancestry
-    object.license_usages.size + descendants.reduce(0){|sum,child| sum + child.license_usages.size}
+    object.license_usages.size + descendants.reduce(0) { |sum, child| sum + child.license_usages.size }
   end
 end

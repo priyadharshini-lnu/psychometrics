@@ -91,7 +91,7 @@ module Administration
     end
 
     def export
-      @resources = policy_scope(@resource_class).tenancies.includes(projects: :admins)
+      @resources = policy_scope(@resource_class).tenancies.enabled.includes(projects: :admins)
 
       respond_to do |format|
         format.csv do
