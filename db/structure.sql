@@ -201,8 +201,8 @@ CREATE TABLE assigns (
     updated_at timestamp without time zone NOT NULL,
     step integer,
     membership_id integer NOT NULL,
-    started_at timestamp without time zone,
     norm_data jsonb,
+    started_at timestamp without time zone,
     agile_scoring jsonb,
     project_assign_id integer
 );
@@ -2913,6 +2913,14 @@ ALTER TABLE ONLY assigns
 
 
 --
+-- Name: assessments fk_rails_f076a5c10f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assessments
+    ADD CONSTRAINT fk_rails_f076a5c10f FOREIGN KEY (owner_id) REFERENCES clients(id) ON DELETE SET NULL;
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -2966,6 +2974,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160923160817'),
 ('20160930140037'),
 ('20161010082144'),
+('20161011105808'),
 ('20161011141925'),
 ('20161011144225'),
 ('20161012114132'),
@@ -3055,6 +3064,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170606124638'),
 ('20170607143545'),
 ('20170607153346'),
-('20170607160409');
+('20170607160409'),
+('20170608150347');
 
 
