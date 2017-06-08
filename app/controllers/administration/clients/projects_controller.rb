@@ -1,8 +1,10 @@
 module Administration
   module Clients
     class ProjectsController < Administration::ClientsController
+      before_action :ensure_client
+
       def index
-        @filter_form = policy_scope(client).children.includes(:admins, :assigned_memberships, :license_usages, :completed_memberships).search(params[:q])
+        @filter_form = policy_scope(@resource_class).projects_of(client.id).includes(:admins, :assigned_memberships, :license_usages, :completed_memberships).search(params[:q])
         @filter_form.archived_true ||= false
         @resources = @filter_form.result.page(params[:page])
 
@@ -18,8 +20,7 @@ module Administration
       end
 
       def export
-        @resources = policy_scope(client).children.includes(:admins)
-
+        @resources = policy_scope(@resource_class).projects_of(client.id).includes(:admins)
         respond_to do |format|
           format.csv do
             headers['Content-Disposition'] = "attachment; filename=\"projects-#{Date.today}.csv\""
@@ -46,14 +47,14 @@ module Administration
         add_breadcrumb client.decorate.display_name, { action: :index }
       end
 
-      def set_resource
-        @resource = policy_scope(@resource_class).find(params[:id])
-      end
-
       def resource_params
         params.require(:resource).permit(:name, :subdomain, :logo, :background, :background_color,
                                          :remove_background, :remove_logo, :applicable_level, :number,
                                          report_ids: [])
+      end
+
+      def ensure_client
+        client || raise(Pundit::NotAuthorizedError)
       end
     end
   end

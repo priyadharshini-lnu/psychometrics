@@ -106,7 +106,7 @@ gem 'carrierwave', '~> 0.11.2'
 gem 'mini_magick', '~> 4.5.1'
 gem 'carrierwave-aws', '~>1.0.1'
 
-gem 'awesome_nested_set', '~> 3.1.1'
+gem 'ancestry'
 
 gem 'mustache', '~> 1.0.3'
 gem 'sidekiq', '~> 4.2.4'

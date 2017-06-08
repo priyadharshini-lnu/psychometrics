@@ -45,7 +45,7 @@ class UserDecorator < BaseDecorator
   def clients_hierarchy
     # todo refactor
     object.clients.map do |client|
-      clients_array = client.self_and_ancestors.order(:id)
+      clients_array = client.path.order(:id)
       clients_array.map do |c|
         next if c.tenancy?
         path = if c.campaign_level? || c.sub_campaign_level?

@@ -12,6 +12,6 @@ class AddAwesomeToClients < ActiveRecord::Migration[5.0]
     add_column :clients, :children_count, :integer
 
     # This is necessary to update :lft and :rgt columns
-    Client.rebuild!
+    # Client.rebuild!
   end
 end

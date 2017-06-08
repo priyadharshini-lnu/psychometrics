@@ -56,7 +56,7 @@ class MembershipDecorator < BaseDecorator
 
   def managers_for_select
     # skip self and users that are managed by the current user
-    client.memberships.includes(:user).where("id != ? and parent_id is distinct from ?", object.id, object.id)
+    client.memberships.includes(:user).where.not(id: object.subtree_ids )
   end
 
   def clients_names

@@ -13,7 +13,7 @@ class AddHiearchyToMemberships < ActiveRecord::Migration[5.0]
     add_index :memberships, :rgt
 
     # This is necessary to update :lft and :rgt columns
-    Membership.rebuild!
+    # Membership.rebuild!
   end
 
   def self.down

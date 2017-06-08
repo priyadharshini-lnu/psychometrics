@@ -1,9 +1,11 @@
 module Administration
   module Clients
     module Projects
-      class CampaignsController <  Administration::Clients::CampaignsController
+      class CampaignsController < Administration::Clients::CampaignsController
+        before_action :ensure_project
+
         def index
-          @filter_form = policy_scope(project).children.search(params[:q])
+          @filter_form = policy_scope(@resource_class).campaigns_of(project.id).includes(:license_usages).search(params[:q])
           @filter_form.archived_true ||= false
           @resources = @filter_form.result.page(params[:page])
 
@@ -19,7 +21,7 @@ module Administration
         end
 
         def export
-          @resources = policy_scope(project).children
+          @resources = policy_scope(@resource_class).campaigns_of(project.id)
 
           respond_to do |format|
             format.csv do
@@ -46,6 +48,10 @@ module Administration
           add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
           add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
           add_breadcrumb project.decorate.display_name, administration_client_project_campaigns_path(client, project)
+        end
+
+        def ensure_project
+          project || raise(Pundit::NotAuthorizedError)
         end
       end
     end

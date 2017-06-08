@@ -1,8 +1,10 @@
 module Administration
   module Clients
     class CampaignsController < Administration::ClientsController
+      before_action :ensure_client
+
       def index
-        @filter_form = policy_scope(client).campaigns.includes(:parent, :license_usages).search(params[:q])
+        @filter_form = policy_scope(@resource_class).campaigns_of(client.id).includes(:license_usages).search(params[:q])
         @filter_form.archived
         @filter_form.archived_true ||= false
         @resources = @filter_form.result.page(params[:page])
@@ -23,6 +25,10 @@ module Administration
         add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
         add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
         add_breadcrumb client.decorate.display_name, { action: :index }
+      end
+
+      def ensure_client
+        client || raise(Pundit::NotAuthorizedError)
       end
     end
   end

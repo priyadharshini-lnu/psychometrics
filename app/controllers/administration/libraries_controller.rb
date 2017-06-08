@@ -12,7 +12,10 @@ module Administration
       folder_id = params[:q].try(:[], :parent_id_in) || params[:folder_id]
       @folder = policy_scope(@resource_class).find_by_id(folder_id)
 
-      @filter_form = policy_scope(@resource_class).where(parent_id: @folder&.id).search(params[:q])
+      scope = policy_scope(@resource_class).children_of(@folder) if @folder
+      scope ||= policy_scope(@resource_class)
+
+      @filter_form = scope.search(params[:q])
       @filter_form.sorts = ['type asc', 'name asc'] if @filter_form.sorts.empty?
       @resources = @filter_form.result.page(params[:page])
 

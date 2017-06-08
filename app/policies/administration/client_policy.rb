@@ -55,13 +55,7 @@ module Administration
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)
-        clients = @user.admin_clients.not_retails.enabled
-        parent_ids = clients.map { |c| c.client.id }
-        if scope.is_a? Client
-          return parent_ids.include?(scope.id) ? scope : nil
-        else
-          scope.where.has { (id.in parent_ids) | (parent_id.in parent_ids) }
-        end
+        scope.full_tree_of(@user.admin_clients.not_retails.enabled.select(:id, :ancestry))
       end
     end
   end

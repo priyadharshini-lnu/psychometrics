@@ -18,7 +18,7 @@
 
 class Library < ApplicationRecord
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
-  acts_as_nested_set
+  has_ancestry
 
   enum type: [:folder, :image, :audio, :video, :other]
 

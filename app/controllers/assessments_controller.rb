@@ -38,7 +38,7 @@ class AssessmentsController < ApplicationController
     # in case of showing only assigned reports use:
     # reports_scope = @current_membership.reports if @current_project.end_level?
     # reports_scope ||= @current_membership.clients_reports
-    @reports = Report.for_clients(@current_project.self_and_descendants.ids).enabled.available_to_view.distinct.group_by(&:assessment_id)
+    @reports = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.group_by(&:assessment_id)
     @resources = policy_scope(@resource_class).enabled.order(:id).all
     render layout: 'users_new'
   end

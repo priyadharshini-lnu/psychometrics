@@ -17,7 +17,7 @@ module Libraries
         end
 
         # Build breadcrumb
-        breadcrumbs = (folder.try(:self_and_ancestors) || []).each do |f|
+        breadcrumbs = (folder.try(:path) || []).each do |f|
           LibrarySerializer.new(f).to_hash
         end
 

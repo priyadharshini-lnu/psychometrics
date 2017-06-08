@@ -60,7 +60,7 @@ class Membership < ApplicationRecord
   before_save :set_project_membership, if: 'client.end_level?'
   after_destroy :clear_project_membership, if: 'client.end_level?'
 
-  acts_as_nested_set scope: :client_id
+  has_ancestry
 
   scope :enabled, -> { where.not(disabled: true) }
   scope :admin_role, -> { where(role: ADMIN_ROLE) }

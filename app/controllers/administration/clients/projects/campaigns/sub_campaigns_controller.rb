@@ -3,8 +3,10 @@ module Administration
     module Projects
       module Campaigns
         class SubCampaignsController < Administration::Clients::SubCampaignsController
+          before_action :ensure_campaign
+
           def index
-            @filter_form = policy_scope(campaign).children.search(params[:q])
+            @filter_form = policy_scope(@resource_class).sub_campaigns_of(campaign.id).search(params[:q])
             @filter_form.archived_true ||= false
             @resources = @filter_form.result.page(params[:page])
 
@@ -20,7 +22,7 @@ module Administration
           end
 
           def export
-            @resources = policy_scope(campaign).children
+            @resources = policy_scope(@resource_class).sub_campaigns_of(campaign.id)
 
             respond_to do |format|
               format.csv do
@@ -48,6 +50,10 @@ module Administration
             add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
             add_breadcrumb project.decorate.display_name, administration_client_project_campaigns_path(client, project)
             add_breadcrumb campaign.decorate.display_name, { action: :index }
+          end
+
+          def ensure_campaign
+            campaign || raise(Pundit::NotAuthorizedError)
           end
         end
       end

@@ -47,6 +47,7 @@ class AssessmentDecorator < BaseDecorator
   end
 
   def clients_by_report_families
+    # todo add end_level column
     client_ids = Client.by_report_family_assessment(object).enabled.roots.ids
     h.policy_scope(Client).end_level_of(client_ids).map {|c| [c.id, c.decorate.display_name_with_parent]}
   end

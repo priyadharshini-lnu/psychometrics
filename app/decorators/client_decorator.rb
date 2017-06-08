@@ -14,14 +14,14 @@ class ClientDecorator < BaseDecorator
   def delete_confirmation
     {
         title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.title", name: display_name),
-        body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.body")[object.level]
+        body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.body")[object.depth]
     }.to_json
   end
 
   def archive_confirmation
     {
         title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.title", name: display_name),
-        body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.body")[object.level]
+        body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.body")[object.depth]
     }.to_json
   end
 
@@ -41,7 +41,7 @@ class ClientDecorator < BaseDecorator
   end
 
   def display_name_with_parent
-    object.child? ? object.self_and_ancestors.map { |anc| anc.decorate.display_name }.join(' > ') : display_name
+    object.child? ? object.path.map { |anc| anc.decorate.display_name }.join(' > ') : display_name
   end
 
   def status

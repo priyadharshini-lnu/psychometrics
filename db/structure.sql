@@ -201,8 +201,8 @@ CREATE TABLE assigns (
     updated_at timestamp without time zone NOT NULL,
     step integer,
     membership_id integer NOT NULL,
-    norm_data jsonb,
     started_at timestamp without time zone,
+    norm_data jsonb,
     agile_scoring jsonb,
     project_assign_id integer
 );
@@ -347,11 +347,6 @@ CREATE TABLE clients (
     background character varying,
     type integer DEFAULT 0,
     licenses_count integer DEFAULT 0,
-    parent_id integer,
-    lft integer,
-    rgt integer,
-    depth integer,
-    children_count integer DEFAULT 0,
     number character varying,
     country character varying,
     year integer,
@@ -362,7 +357,9 @@ CREATE TABLE clients (
     archived boolean DEFAULT false,
     tte_id integer,
     created_by_id integer,
-    modified_by_id integer
+    modified_by_id integer,
+    ancestry character varying,
+    ancestry_depth integer DEFAULT 0
 );
 
 
@@ -832,14 +829,10 @@ CREATE TABLE libraries (
     description text,
     type integer DEFAULT 0,
     file character varying,
-    parent_id integer,
-    lft integer NOT NULL,
-    rgt integer NOT NULL,
-    depth integer DEFAULT 0 NOT NULL,
-    children_count integer DEFAULT 0 NOT NULL,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    owner_id integer
+    owner_id integer,
+    ancestry character varying
 );
 
 
@@ -938,11 +931,6 @@ CREATE TABLE memberships (
     id integer NOT NULL,
     client_id integer,
     user_id integer,
-    parent_id integer,
-    lft integer,
-    rgt integer,
-    depth integer,
-    children_count integer,
     hris jsonb DEFAULT '{}'::jsonb,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
@@ -951,7 +939,8 @@ CREATE TABLE memberships (
     role character varying DEFAULT 'member'::character varying,
     assigns_count integer DEFAULT 0,
     assigns_completed boolean DEFAULT false,
-    project_membership_id integer
+    project_membership_id integer,
+    ancestry character varying
 );
 
 
@@ -2341,6 +2330,13 @@ CREATE INDEX index_clients_on_account_manager_id ON clients USING btree (account
 
 
 --
+-- Name: index_clients_on_ancestry; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_clients_on_ancestry ON clients USING btree (ancestry);
+
+
+--
 -- Name: index_clients_on_created_by_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2516,24 +2512,10 @@ CREATE INDEX index_factors_scoring_on_question_id ON factors_scoring USING btree
 
 
 --
--- Name: index_libraries_on_lft; Type: INDEX; Schema: public; Owner: -
+-- Name: index_libraries_on_ancestry; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_libraries_on_lft ON libraries USING btree (lft);
-
-
---
--- Name: index_libraries_on_parent_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_libraries_on_parent_id ON libraries USING btree (parent_id);
-
-
---
--- Name: index_libraries_on_rgt; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_libraries_on_rgt ON libraries USING btree (rgt);
+CREATE INDEX index_libraries_on_ancestry ON libraries USING btree (ancestry);
 
 
 --
@@ -2572,6 +2554,13 @@ CREATE UNIQUE INDEX index_licenses_on_client_id_and_report_family_id ON licenses
 
 
 --
+-- Name: index_memberships_on_ancestry; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_memberships_on_ancestry ON memberships USING btree (ancestry);
+
+
+--
 -- Name: index_memberships_on_assigns_completed; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2604,27 +2593,6 @@ CREATE UNIQUE INDEX index_memberships_on_client_id_and_user_id ON memberships US
 --
 
 CREATE INDEX index_memberships_on_hris ON memberships USING gin (hris);
-
-
---
--- Name: index_memberships_on_lft; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_memberships_on_lft ON memberships USING btree (lft);
-
-
---
--- Name: index_memberships_on_parent_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_memberships_on_parent_id ON memberships USING btree (parent_id);
-
-
---
--- Name: index_memberships_on_rgt; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_memberships_on_rgt ON memberships USING btree (rgt);
 
 
 --
@@ -2998,7 +2966,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160923160817'),
 ('20160930140037'),
 ('20161010082144'),
-('20161011105808'),
 ('20161011141925'),
 ('20161011144225'),
 ('20161012114132'),
@@ -3085,6 +3052,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170529093632'),
 ('20170605123103'),
 ('20170605192137'),
-('20170606124638');
+('20170606124638'),
+('20170607143545'),
+('20170607153346'),
+('20170607160409');
 
 

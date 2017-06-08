@@ -82,7 +82,7 @@ module Administration
 
       def init_assign_form
         @assign_form = Administration::Assessments::AssignForm.new(assign_params)
-        @clients = policy_scope(::Client).leaves.where(id: @assign_form.client_ids)
+        @clients = policy_scope(::Client).where(id: @assign_form.client_ids)
         @managers = policy_scope(::Membership).
                     select('memberships.*', 'clients.name as client_name').
                     joins(:client).

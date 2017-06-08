@@ -89,12 +89,12 @@ GEM
       sshkit (>= 1.6.1, != 1.7.0)
     amoeba (3.0.0)
       activerecord (>= 3.2.6)
+    ancestry (3.0.0)
+      activerecord (>= 3.2.0)
     arel (7.1.4)
     ast (2.3.0)
     autoprefixer-rails (6.4.0.3)
       execjs
-    awesome_nested_set (3.1.1)
-      activerecord (>= 4.0.0, < 5.1)
     aws-sdk (2.6.4)
       aws-sdk-resources (= 2.6.4)
     aws-sdk-core (2.6.4)
@@ -561,8 +561,8 @@ DEPENDENCIES
   acts_as_list (~> 0.8.1)
   airbrake (~> 5.0)
   amoeba (~> 3.0.0)
+  ancestry
   annotate (~> 2.7.0)!
-  awesome_nested_set (~> 3.1.1)
   axlsx!
   axlsx_rails (~> 0.4.0)
   baby_squeel (~> 1.0.1)

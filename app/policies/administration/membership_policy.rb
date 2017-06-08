@@ -42,8 +42,9 @@ module Administration
       def resolve
         return scope if @user.is?(:superadmin)
         # find memberships for clients with 'admin' role and it's subclients
-        sub_client_ids = Client.where(parent_id: @user.admin_client_ids).pluck(:id)
-        scope.where(client_id: @user.admin_client_ids + sub_client_ids)
+        client_ids = @user.admin_clients.not_retails.enabled.pluck(:id)
+        descedant_ids = Client.where('clients.ancestry ~ ?', "/(#{client_ids.join('|')})(/|$)").pluck(:id)
+        scope.where(client_id: client_ids + descedant_ids)
       end
     end
   end

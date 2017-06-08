@@ -2,7 +2,7 @@
   li = link_to I18n.t('administration.breadcrumbs.home'), [:administration, :root]
   - if @folder.present?
     li = link_to I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
-    - @folder.self_and_ancestors.each do |library|
+    - @folder.path.each do |library|
       - if @folder.id == library.id
         li = library.decorate.display_name
       - else

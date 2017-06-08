@@ -21,6 +21,7 @@ class Client < ApplicationRecord
   include Copyable
 
   HIERARCHY_LEVEL = {
+      project: 1,
       campaign: 2,
       sub_campaign: 3
   }.freeze
@@ -44,17 +45,17 @@ class Client < ApplicationRecord
 
   has_many :norms
   has_many :dimensions
-  has_many :projects, class_name: 'Client', foreign_key: :parent_id
+  # todo remove tte_id column
+  has_many :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }, foreign_key: :tte_id, class_name: 'Client'
+  has_many :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }, foreign_key: :tte_id, class_name: 'Client'
+  has_many :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }, foreign_key: :tte_id, class_name: 'Client'
   has_many :projects_admins, -> { where(memberships: { role: Membership::ADMIN_ROLE }).distinct }, through: :projects, source: :users
-  has_many :campaigns, -> { where(depth: HIERARCHY_LEVEL[:campaign]) }, foreign_key: :tte_id, class_name: 'Client'
-  has_many :sub_campaigns, -> { where(depth: HIERARCHY_LEVEL[:sub_campaign]) }, foreign_key: :tte_id, class_name: 'Client'
 
   has_many :licenses, inverse_of: :client, dependent: :destroy
   accepts_nested_attributes_for :licenses, allow_destroy: true
   has_many :license_usages
 
   has_one :retail_user, class_name: 'User'
-  belongs_to :parent, class_name: 'Client'
   belongs_to :tte, class_name: 'Client'
 
   has_and_belongs_to_many :report_families, join_table: :clients_report_families, class_name: 'ReportFamily'
@@ -74,7 +75,7 @@ class Client < ApplicationRecord
   after_commit :set_tte, if: 'parent_id.present?', on: [:create, :update]
   after_commit :clear_own_reports, on: [:destroy]
 
-  acts_as_nested_set counter_cache: :children_count
+  has_ancestry cache_depth: true
 
   store :design, accessors: [:background_color]
 
@@ -97,6 +98,14 @@ class Client < ApplicationRecord
   scope :not_retails, -> { where.has { type.not_eq(:retail) } }
   scope :by_report_family_assessment, -> (assessment) { joins(:report_families).where(report_families: { id: assessment.report_family_ids }) }
   scope :end_level_of, -> (ids) { where(applicable_level: 0, tte_id: ids) }
+  scope :projects_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:project]) }
+  scope :campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign]) }
+  scope :sub_campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign]) }
+  scope :full_tree_of, -> (clients) { # collect ancestors + self + descendants matching (id | id/* | */id | */id/*) pattern
+    client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose
+    ancestor_ids = ancestors.compact.map { |path| path.split('/').map(&:to_i) }.flatten.uniq
+    where("id in (?) or ancestry ~ ?", ancestor_ids + client_ids, "(^|[^0-9])(#{client_ids.join('|')})(/|$)")
+  }
 
   def clone
     @cloned_item = deep_clone do |_original, copy|
@@ -114,20 +123,24 @@ class Client < ApplicationRecord
     self.subdomain = generate_subdomain if subdomain.blank?
   end
 
+  def child?
+    self.ancestry.present?
+  end
+
   def tenancy?
     root?
   end
 
   def project?
-    level == 1
+    depth == HIERARCHY_LEVEL[:project]
   end
 
   def campaign?
-    level == 2
+    depth == HIERARCHY_LEVEL[:campaign]
   end
 
   def sub_campaign?
-    level == 3
+    depth == HIERARCHY_LEVEL[:sub_campaign]
   end
 
   def subtenancy?
