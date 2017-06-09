@@ -2913,6 +2913,14 @@ ALTER TABLE ONLY memberships
 
 
 --
+-- Name: reports fk_rails_9c1b8d7e35; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY reports
+    ADD CONSTRAINT fk_rails_9c1b8d7e35 FOREIGN KEY (owner_id) REFERENCES clients(id) ON DELETE SET NULL;
+
+
+--
 -- Name: dimensions fk_rails_ae68a3a37d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2942,6 +2950,14 @@ ALTER TABLE ONLY norms
 
 ALTER TABLE ONLY assigns
     ADD CONSTRAINT fk_rails_d2e6622e0f FOREIGN KEY (membership_id) REFERENCES memberships(id);
+
+
+--
+-- Name: communications fk_rails_efeba527b3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications
+    ADD CONSTRAINT fk_rails_efeba527b3 FOREIGN KEY (owner_id) REFERENCES clients(id) ON DELETE SET NULL;
 
 
 --
@@ -3101,6 +3117,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170609065248'),
 ('20170609101430'),
 ('20170609102237'),
-('20170609103215');
+('20170609103215'),
+('20170609105118'),
+('20170609105354');
 
 
