@@ -2921,6 +2921,14 @@ ALTER TABLE ONLY dimensions
 
 
 --
+-- Name: norms fk_rails_b3f9f037c2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY norms
+    ADD CONSTRAINT fk_rails_b3f9f037c2 FOREIGN KEY (owner_id) REFERENCES clients(id) ON DELETE SET NULL;
+
+
+--
 -- Name: norms fk_rails_b7d8a0337d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3092,6 +3100,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170608150347'),
 ('20170609065248'),
 ('20170609101430'),
-('20170609102237');
+('20170609102237'),
+('20170609103215');
 
 
