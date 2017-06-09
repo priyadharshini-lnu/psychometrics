@@ -13,8 +13,7 @@ en:
           title: Campaigns
           tooltips:
             create: Create new Campaign
-          create: Create new Campaign
-          export: Export Campaigns
+            export: Export Campaigns
         list: &list
           header:
             campaigns: Campaigns

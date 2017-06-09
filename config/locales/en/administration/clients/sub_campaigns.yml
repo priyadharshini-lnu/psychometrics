@@ -23,11 +23,12 @@ en:
         header:
           actions: Actions
         resource:
-          tooltips:
+          tooltips: &tooltips
             copy: Copy Sub Campaign
             edit: Edit Sub Campaign
             delete: Delete Sub Campaign
             create_report: Add new Report
+            create_user: Add New User
         sidebar:
           title: Sub-Campaign's options
           disable: Disable
@@ -58,3 +59,6 @@ en:
         campaigns:
           sub_campaigns:
             <<: *default_sub_campaigns
+            resource:
+              tooltips:
+                <<: *tooltips
