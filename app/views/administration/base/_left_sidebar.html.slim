@@ -22,7 +22,8 @@
         span.xn-text = t('administration.navigation.users')
     - if policy(:norm).index?
       = active_link_to(administration_norms_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.norms'), placement: 'right' })
-        i.fa.fa-file-text-o
+        i.svg-icon
+          = render file: '/public/images/analysis01.svg'
         span.xn-text = t('administration.navigation.norms')
     - if policy(:dimension).index?
       = active_link_to(administration_dimensions_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.dimensions'), placement: 'right' })
