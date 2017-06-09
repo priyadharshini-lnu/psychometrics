@@ -1,0 +1,13 @@
+en:
+  activerecord:
+    models:
+      report_family: ReportFamily
+    attributes:
+      report_family: &DEFAULT
+        id: ID
+        created_at: Created Date
+        updated_at: Modified Date
+  simple_form:
+    placeholders:
+      report:
+        <<: *DEFAULT

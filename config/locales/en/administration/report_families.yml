@@ -2,7 +2,7 @@ en:
   administration:
     report_families: &REPORT_FAMILIES
       index:
-        title: Reports Families
+        title: Report Families
         add: Add
         families: Families
         tooltips:
