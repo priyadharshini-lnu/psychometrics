@@ -2873,6 +2873,14 @@ ALTER TABLE ONLY libraries
 
 
 --
+-- Name: questions fk_rails_6ec04ddf91; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY questions
+    ADD CONSTRAINT fk_rails_6ec04ddf91 FOREIGN KEY (owner_id) REFERENCES clients(id) ON DELETE SET NULL;
+
+
+--
 -- Name: comments fk_rails_7f3b1733e2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3074,6 +3082,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170607153346'),
 ('20170607160409'),
 ('20170608150347'),
-('20170609065248');
+('20170609065248'),
+('20170609101430');
 
 
