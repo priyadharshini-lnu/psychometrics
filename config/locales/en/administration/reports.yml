@@ -8,7 +8,7 @@ en:
       index:
         title: "Reports"
         add: Add
-        families: Families
+        families: Report Families
         tooltips:
           create: Create
         filterrific:
