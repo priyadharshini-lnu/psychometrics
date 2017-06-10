@@ -12,6 +12,7 @@ en:
             '360': '360 Feedback'
             all: 'All Categories'
         owner: Owner
+        new: Add
       form:
         timing:
           hint: 'For Example: 30 minutes to complete'

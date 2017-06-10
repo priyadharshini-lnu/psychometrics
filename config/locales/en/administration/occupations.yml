@@ -5,6 +5,7 @@ en:
         title: Occupations
         tooltips:
           create: Create
+        new: Add
       new:
         header: 'New occupation'
       edit:

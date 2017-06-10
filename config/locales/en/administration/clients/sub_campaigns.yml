@@ -4,11 +4,8 @@ en:
       sub_campaigns: &default_sub_campaigns
         index:
           title: Sub Campaigns
-          tooltips:
-            create: Create
-            export: Export
-          create: Create new Sub-Campaign
-          export: Export Sub-Campaign
+          new: Add
+          export: Export
         list: &list
           header:
             sub_campaign: Sub-Campaigns

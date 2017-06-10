@@ -15,8 +15,7 @@
                             collection: Data::Geo.order(:country_name).select(:country_name).distinct,
                             label_method: :country_name,
                             value_method: :country_name,
-                            input_html: { data: { live_search: true } },
-                            include_blank: false
+                            input_html: { data: { live_search: true } }
         = f.input :year, as: :select, collection: 2.years.ago.year..10.years.since.year
         = f.association :account_manager, collection: User.superadmins.map { |user| [user.decorate.display_name, user.id] }
         = f.association :project_manager, collection: User.superadmins.map { |user| [user.decorate.display_name, user.id] }

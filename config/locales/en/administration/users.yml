@@ -13,7 +13,7 @@ en:
         value: Value
         grants: Privileges
       index:
-        add: Add new User
+        new: Add
         import: Import
         import_users: Users
         import_hris: HRIS Data

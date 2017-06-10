@@ -5,6 +5,7 @@ en:
         title: 'Sub-Factors'
         tooltips:
           create: 'Create'
+        new: Add
       new:
         header: 'New Sub-Factor'
       edit:

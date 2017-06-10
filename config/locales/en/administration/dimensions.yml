@@ -6,6 +6,7 @@ en:
         tooltips:
           create: Create
         owner: Owner
+        new: Add
       new:
         header: 'New Dimension'
       edit:

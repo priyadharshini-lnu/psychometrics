@@ -5,6 +5,7 @@ en:
         title: Factors
         tooltips:
           create: Create
+        new: Add
       new:
         header: 'Attach Factors'
       edit:

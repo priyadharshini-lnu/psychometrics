@@ -11,9 +11,8 @@ en:
       campaigns: &default_campaigns
         index:
           title: Campaigns
-          tooltips:
-            create: Create new Campaign
-            export: Export Campaigns
+          new: Add
+          export: Export
         list: &list
           header:
             campaigns: Campaigns

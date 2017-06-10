@@ -3,21 +3,21 @@ en:
     templates:
       questions:
         index:
-          add: Add New Question
-          title: "Questions"
+          new: Add
+          title: Questions
           templates: &templates
-            questions: 'Questions'
-            blocks: 'Blocks'
+            questions: Questions
+            blocks: Blocks
           tooltips:
             create: Create
         new:
-          header: 'New Question'
+          header: New Question
         edit:
-          header: 'Edit Question'
+          header: Edit Question
         destroy:
-          successfully: 'Question %{name} was successfully destroyed.'
+          successfully: Question %{name} was successfully destroyed.
         copy:
-          error: 'Question #%{name} was not copied.'
+          error: Question #%{name} was not copied.
         sidebar:
           title: Question's options
           disable: Disable
@@ -28,27 +28,27 @@ en:
           new_assign: Assign Question
         resource:
           tooltips:
-            copy: 'Copy Question'
-            edit: 'Edit Question'
-            delete: 'Delete Question'
+            copy: Copy Question
+            edit: Edit Question
+            delete: Delete Question
         new_assign:
-          header: 'Assign Question to Assessments'
+          header: Assign Question to Assessments
       blocks:
         index:
-          add: Add New Block
-          title: "Blocks"
+          new: Add
+          title: Blocks
           templates: &templates
             <<: *templates
           tooltips:
             create: Create
         new:
-          header: 'New Block'
+          header: New Block
         edit:
-          header: 'Edit Block'
+          header: Edit Block
         destroy:
-          successfully: 'Block %{name} was successfully destroyed.'
+          successfully: Block %{name} was successfully destroyed.
         copy:
-          error: 'Block #%{name} was not copied.'
+          error: Block #%{name} was not copied.
         sidebar:
           title: Block's options
           disable: Disable
@@ -59,8 +59,8 @@ en:
           new_assign: Assign Block
         resource:
           tooltips:
-            copy: 'Copy Block'
-            edit: 'Edit Block'
-            delete: 'Delete Block'
+            copy: Copy Block
+            edit: Edit Block
+            delete: Delete Block
         new_assign:
-          header: 'Assign Block to Assessments'
+          header: Assign Block to Assessments

@@ -6,6 +6,7 @@ en:
         icon: "Icon"
         tooltips:
           create: Create
+        new: Add
       new:
         header: 'New Factor'
       edit:

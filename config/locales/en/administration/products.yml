@@ -2,21 +2,21 @@ en:
   administration:
     products:
       index:
-        title: 'Products list'
-        add: 'Add new Product'
+        title: Products list
+        new: Add
       new:
-        header: 'New Product'
+        header: New Product
       edit:
-        header: 'Edit Product'
+        header: Edit Product
       destroy:
-        successfully: 'Product %{name} was successfully destroyed.'
+        successfully: Product %{name} was successfully destroyed.
       copy:
-        error: 'Product #%{name} was not copied.'
-        successfully: 'Product %{name} was successfully copied.'
+        error: Product #%{name} was not copied.
+        successfully: Product %{name} was successfully copied.
       create:
-        successfully: 'Product %{name} was successfully created.'
+        successfully: Product %{name} was successfully created.
       update:
-        successfully: 'Product %{name} was successfully updated.'
+        successfully: Product %{name} was successfully updated.
       sidebar:
         title: Product's options
         disable: Disable
@@ -26,12 +26,12 @@ en:
         copy: Copy Product
         destroy: Destroy Product
       form:
-        reports: 'Reports'
-        prices: 'Prices'
-        images: 'Images'
-        add_image: 'Add Image'
+        reports: Reports
+        prices: Prices
+        images: Images
+        add_image: Add Image
       image_fields:
-        remove: 'Remove Image'
+        remove: Remove Image
       resource:
         tooltips:
           copy: Copy Product

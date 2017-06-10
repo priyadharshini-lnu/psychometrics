@@ -21,9 +21,9 @@ en:
         export:
           <<: *list
         index:
-          create: 'Create new Project'
-          export: 'Export Projects'
-          title: 'Projects'
+          new: Add
+          export: Export
+          title: Projects
           tooltips:
             create: Create
             export: Export

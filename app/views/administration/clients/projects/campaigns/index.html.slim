@@ -7,15 +7,14 @@
         h3.panel-title = t '.title'
         .pull-right
           - if policy(@resource_class).export?
-            = link_to({ action: :export, format: :csv }, target: :_blank, data: { toggle: 'tooltip', title: t('.tooltips.export') }, class: 'btn btn-default')
+            = link_to({ action: :export, format: :csv }, target: :_blank, class: 'btn btn-default')
               span.fa.fa-upload
               = t('.export')
           = link_to new_administration_client_project_campaign_path(client, project),
                   remote: true,
-                  data: { toggle: 'tooltip', title: t('.tooltips.create') },
                   class: 'btn btn-default'
             span.fa.fa-plus
-            = t('.create')
+            = t('.new')
         = search_form_for(@filter_form,
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },

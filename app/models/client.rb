@@ -26,6 +26,8 @@ class Client < ApplicationRecord
       sub_campaign: 3
   }.freeze
 
+  default_scope {order(:name)}
+
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
   has_many :admins, through: :admin_memberships, source: :user, class_name: 'User'

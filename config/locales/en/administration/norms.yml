@@ -6,6 +6,8 @@ en:
         tooltips:
           import: Import
           create: Create
+        export: Export
+        new: Add
         owner: Owner
       new:
         header: 'New norm'

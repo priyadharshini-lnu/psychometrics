@@ -15,7 +15,7 @@ en:
         key: Key
         value: Value
       index:
-        add: Add new user
+        new: Add
         import: Import
         import_users: Users
         import_hris: HRIS Data

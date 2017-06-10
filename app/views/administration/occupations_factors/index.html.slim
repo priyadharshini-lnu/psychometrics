@@ -3,10 +3,11 @@
     .panel.panel-default
       .panel-heading
         h3.panel-title = "#{@occupation.name}: #{t('.title')}"
-        ul.panel-controls
-          li
-            = link_to [:new, :administration, :dimension, :occupation, :factor], remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create') }
+        .pull-right
+          - if policy(@resource_class).create?
+            = link_to [:new, :administration, :dimension, :occupation, :factor], remote: true, class: 'btn btn-default'
               span.fa.fa-plus
+              = t('.new')
         = search_form_for(@filter_form,
                 url: {action: :index},
                 html: { id: 'filter', class: 'list-filter' },

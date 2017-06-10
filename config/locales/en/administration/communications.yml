@@ -5,7 +5,7 @@ en:
         title: Communication Center
         tooltips:
           create: Create
-        add_new: Add new
+        new: Add
         owner: Owner
       new:
         header: 'New Communication'

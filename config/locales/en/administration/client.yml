@@ -6,9 +6,8 @@ en:
         active: Active
       index:
         title: Client Tenancies
-        tooltips:
-          create: Add Client Tenancy
-          export: Export Client Tenancies
+        new: Add
+        export: Export
       url: Url
       list: &list
         project_admin: Project Admin

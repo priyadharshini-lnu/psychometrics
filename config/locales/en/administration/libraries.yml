@@ -4,6 +4,8 @@ en:
       index:
         title: Media Library
         owner: Owner
+        new_folder: New Folder
+        upload: Upload
       list:
         root: Media Library
         upload: Upload new file
