@@ -51,8 +51,11 @@ class Library < ApplicationRecord
 
   # Search folders and files which have parent
   scope :with_parent, lambda { |parent_id|
-    parent_id = nil if parent_id.to_i.zero?
-    where.has { |libraries| libraries.parent_id == parent_id }
+    if parent_id.to_i.zero?
+      roots
+    else
+      children_of(parent_id)
+    end
   }
 
   scope :with_type, lambda { |type|

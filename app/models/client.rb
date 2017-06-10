@@ -104,7 +104,7 @@ class Client < ApplicationRecord
   scope :full_tree_of, -> (clients) { # collect ancestors + self + descendants matching (id | id/* | */id | */id/*) pattern
     client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose
     ancestor_ids = ancestors.compact.map { |path| path.split('/').map(&:to_i) }.flatten.uniq
-    where("id in (?) or ancestry ~ ?", ancestor_ids + client_ids, "(^|[^0-9])(#{client_ids.join('|')})(/|$)")
+    where("id in (?) or ancestry ~ ?", ancestor_ids + client_ids, "(^|\\D)(#{client_ids.join('|')})(/|$)")
   }
 
   def clone

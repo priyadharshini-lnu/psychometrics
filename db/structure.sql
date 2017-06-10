@@ -201,8 +201,8 @@ CREATE TABLE assigns (
     updated_at timestamp without time zone NOT NULL,
     step integer,
     membership_id integer NOT NULL,
-    norm_data jsonb,
     started_at timestamp without time zone,
+    norm_data jsonb,
     agile_scoring jsonb,
     project_assign_id integer
 );
@@ -3022,7 +3022,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160923160817'),
 ('20160930140037'),
 ('20161010082144'),
-('20161011105808'),
 ('20161011141925'),
 ('20161011144225'),
 ('20161012114132'),
