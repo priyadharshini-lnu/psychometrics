@@ -10,10 +10,12 @@
         th = link_to_sort @resource_class, :year, @filter_form
         th.report_family = t('.report_family')
         th.used_number = t('.used_license_number')
-        th.overuse = t('.used_license_overuse_number') if current_user.is?(:superadmin)
+        - if current_user.is?(:superadmin)
+          th.overuse = t('.used_license_overuse_number')
         th.usage_percent = t('.usage_percent')
         th.start_date = t('.start_date')
-        th.end_date = t('.end_date') if current_user.is?(:superadmin)
+        - if current_user.is?(:superadmin)
+          th.end_date = t('.end_date')
         th = t('.project_admin')
         th = link_to_sort @resource_class, :account_manager_id, @filter_form
         th = link_to_sort @resource_class, :project_manager_id, @filter_form
