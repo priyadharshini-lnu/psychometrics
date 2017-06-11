@@ -31,6 +31,9 @@ module Administration
       @resource.modifier = current_user
       respond_to do |format|
         if @resource.save
+          if @resource.project? && current_user.is?(:admin)
+            current_user.memberships.create!(client: @resource, role: Membership::ADMIN_ROLE)
+          end
           format.js
         else
           format.js { render :new }
