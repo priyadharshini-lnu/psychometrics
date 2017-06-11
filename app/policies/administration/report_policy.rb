@@ -8,6 +8,10 @@ module Administration
       super || @user.has_grant?(:reports, :manage)
     end
 
+    def create?
+      @user.has_grant?(:reports, :manage)
+    end
+
     def edit?
       result = super
       result ||= @user.has_grant?(:reports, :manage) && @user.tte_own_reports_ids.include?(record.id) unless record.is_a? Class

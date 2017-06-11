@@ -1,7 +1,7 @@
 module Administration
   class ReportFamilyPolicy < ReportPolicy
     def create?
-      @user.is?(:superadmin)
+      @user.is?(:superadmin) || @user.has_grant?(:reports, :manage)
     end
 
     class Scope < Scope
