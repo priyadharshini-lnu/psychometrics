@@ -9,7 +9,7 @@ module Administration
     end
 
     def create?
-      @user.has_grant?(:reports, :manage)
+      super || @user.has_grant?(:reports, :manage)
     end
 
     def edit?

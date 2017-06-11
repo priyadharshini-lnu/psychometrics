@@ -21,7 +21,7 @@ module Administration
 
       # Authorisation user
       def pundit_authorize
-        authorize [:assessments, :builder]
+        authorize [:reports, :builder]
       end
     end
   end
