@@ -12,7 +12,8 @@ class Administration::DimensionPolicy < Administration::BasePolicy
       scope = super
       return scope if @user.is?(:superadmin)
       if @user.has_grant?(:dimensions, :view)
-        scope.where(owner_id: [@user.admin_client_ids])
+        owner_ids = @user.admin_clients.joins(:tte).pluck('clients.tte_id')
+        scope.where(owner_id: owner_ids)
       else
         scope.none
       end
