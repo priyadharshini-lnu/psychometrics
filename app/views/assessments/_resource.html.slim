@@ -19,11 +19,15 @@
             a.collapsed> data-parent="#assessments-#{resource.category}" data-toggle="collapse" href="##{dom_id(resource)}"
               span.toggle-icon.glyphicon.glyphicon-chevron-right
               span.toggle-icon.glyphicon.glyphicon-chevron-down
+            /todo, remove Paul Monkey patch
             - first_assign = resource.assigns.first
-            - if first_assign.completed?
-              span = resource.name
+            - if resource.id == 48
+              = link_to resource.name, 'http://www.mindmill.co.uk/MyMindMill/SSO/?id=08SgxojOF7O9iTj8qzzAAw', target: :blank
             - else
-              = link_to resource.name, [:pass, resource]
+              - if first_assign.completed?
+                span = resource.name
+              - else
+                = link_to resource.name, [:pass, resource]
           td.col-md-2 = resource.decorate.timing
           td.col-md-2
             | June. 30, 2017
