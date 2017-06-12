@@ -66,13 +66,13 @@ feature 'User Privileges', clean: false do
 
       scenario 'I can manage norms' do
         visit administration_norms_path
-        find(".panel-controls a[data-title='Create']").click
+        find('.panel-heading a', text: t('administration.norms.index.new')).click
         expect(page).to have_css('h4.modal-title', text: t('administration.norms.new.header'))
       end
 
       scenario "I can't manage dimensions" do
         visit administration_dimensions_path
-        expect(page).to have_no_css(".panel-controls a[data-title='Create']")
+        expect(page).to have_no_css('.panel-heading a', text: t('administration.dimensions.index.new'))
       end
     end
   end

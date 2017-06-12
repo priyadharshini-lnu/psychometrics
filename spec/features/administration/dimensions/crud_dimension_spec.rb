@@ -6,9 +6,7 @@ feature 'CRUD Dimension' do
 
   scenario 'Create Dimension' do
     visit '/administration/dimensions'
-    within '.panel-heading ' do
-      find('.create').click
-    end
+    find('.panel-heading a', text: t('administration.dimensions.index.new')).click
     wait_for_ajax
     fill_in 'resource_name', with: 'Employment Thriving Index'
     click_on 'Create'
@@ -20,10 +18,7 @@ feature 'CRUD Dimension' do
     given!(:dimension) { create(:dimension, name: 'New Dim') }
     scenario 'Edit Dimension' do
       visit '/administration/dimensions'
-
-      within "#dimension_#{dimension.id}" do
-        find('.edit').click
-      end
+      find("#dimension_#{dimension.id} .edit").click
       wait_for_ajax
       fill_in 'resource_name', with: 'Employment Thriving No Index'
       click_on 'Update'
@@ -33,10 +28,7 @@ feature 'CRUD Dimension' do
 
     scenario 'Destroy Dimension' do
       visit '/administration/dimensions'
-
-      within "#dimension_#{dimension.id}" do
-        find('.delete').click
-      end
+      find("#dimension_#{dimension.id} .delete").click
       find(:button, text: 'Yes').click
       wait_for_ajax
       sleep 1

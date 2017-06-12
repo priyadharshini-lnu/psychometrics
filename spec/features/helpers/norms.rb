@@ -1,7 +1,7 @@
 module Norms
   def create_norm(opts = {})
     visit '/administration/norms'
-    find('.panel-heading .create').click
+    find('.panel-heading a', text: t('administration.norms.index.new')).click
     fill_in 'resource_name', with: opts[:name]
     select opts[:dimension_name], from: 'resource_dimension_id', visible: false
     click_on 'Create'
@@ -32,7 +32,7 @@ module Norms
 
   def import_norm(file)
     visit '/administration/norms'
-    find('.panel-heading .import').click
+    find('.panel-heading a', text: t('administration.norms.index.import')).click
     within '#new_import' do
       attach_file('import_file', file)
       click_on t('administration.imports.form.import')

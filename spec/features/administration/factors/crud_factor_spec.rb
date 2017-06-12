@@ -7,9 +7,7 @@ feature 'CRUD Factor' do
 
   scenario 'Create Factor' do
     visit "/administration/dimensions/#{dimension.id}/factors"
-    within '.panel-heading ' do
-      find('.create').click
-    end
+    find('.panel-heading a', text:t('administration.factors.index.new')).click
     wait_for_ajax
     fill_in 'resource_name', with: 'Employment Thriving Index'
     click_on 'Create'
@@ -22,9 +20,7 @@ feature 'CRUD Factor' do
     scenario 'Edit Factor' do
       visit "/administration/dimensions/#{dimension.id}/factors"
 
-      within "#factor_#{factor.id}" do
-        find('.edit').click
-      end
+      find("#factor_#{factor.id} .edit").click
       wait_for_ajax
       fill_in 'resource_name', with: 'Employment Thriving No Index'
       click_on 'Update'
@@ -35,9 +31,7 @@ feature 'CRUD Factor' do
     scenario 'Destroy Factor' do
       visit "/administration/dimensions/#{dimension.id}/factors"
 
-      within "#factor_#{factor.id}" do
-        find('.delete').click
-      end
+      find("#factor_#{factor.id} .delete").click
       find(:button, text: 'Yes').click
       within '#factors-list' do
         expect(page).to_not have_content 'Drive'

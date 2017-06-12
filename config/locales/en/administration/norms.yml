@@ -3,9 +3,7 @@ en:
     norms:
       index:
         title: Norms
-        tooltips:
-          import: Import
-          create: Create
+        import: Import
         export: Export
         new: Add
         owner: Owner
