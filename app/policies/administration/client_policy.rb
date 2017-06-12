@@ -55,7 +55,11 @@ module Administration
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)
-        scope.full_tree_of(@user.admin_clients.not_retails.enabled.select(:id, :ancestry))
+         # collect ancestors + self + descendants matching (id | id/* | */id | */id/*) pattern
+        clients = @user.admin_clients.not_retails.enabled.select(:id, :ancestry)
+        client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose
+        ancestor_ids = ancestors.compact.map { |path| path.split('/').map(&:to_i) }.flatten.uniq
+        scope.where("id in (?) or ancestry ~ ?", ancestor_ids + client_ids, "(^|\\D)(#{client_ids.join('|')})(/|$)")
       end
     end
   end

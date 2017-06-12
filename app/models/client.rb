@@ -37,8 +37,20 @@ class Client < ApplicationRecord
       sub_campaign: 3
   }.freeze
 
-  default_scope {order(:name)}
+  has_ancestry cache_depth: true
+  store :design, accessors: [:background_color]
 
+  # Disables single column inheritance
+  self.inheritance_column = :_type_disabled
+
+  belongs_to :tte, class_name: 'Client'
+  belongs_to :account_manager, class_name: 'User'
+  belongs_to :project_manager, class_name: 'User'
+  belongs_to :creator, foreign_key: :created_by_id, class_name: 'User'
+  belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'
+
+  # Users and Memberships
+  has_one :retail_user, class_name: 'User'
   has_many :memberships, dependent: :destroy
   has_many :users, through: :memberships
   has_many :admins, through: :admin_memberships, source: :user, class_name: 'User'
@@ -47,37 +59,27 @@ class Client < ApplicationRecord
   has_many :completed_memberships, -> { completed }, source: :membership, class_name: 'Membership'
   has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) }, through: :memberships, source: :user
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
+  has_many :projects_admins, -> { where(memberships: { role: Membership::ADMIN_ROLE }).distinct }, through: :projects, source: :users
 
-  has_many :assign_clients, dependent: :destroy
-  # has_many :assessments, through: :assign_clients
-  # has_many :reports, through: :assign_clients
+  # Reports
   has_many :clients_reports, dependent: :destroy
   has_many :reports, through: :clients_reports
   has_many :own_reports, class_name: 'Report', foreign_key: :owner_id
-  has_many :assessments, -> { group(:id) }, through: :reports
+  has_many :available_reports, through: :report_families, source: :reports
+  has_and_belongs_to_many :report_families, join_table: :clients_report_families, class_name: 'ReportFamily'
 
-  has_many :norms
-  has_many :dimensions
-  # todo remove tte_id column
+  # Self association
   has_many :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }, foreign_key: :tte_id, class_name: 'Client'
   has_many :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }, foreign_key: :tte_id, class_name: 'Client'
   has_many :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }, foreign_key: :tte_id, class_name: 'Client'
-  has_many :projects_admins, -> { where(memberships: { role: Membership::ADMIN_ROLE }).distinct }, through: :projects, source: :users
 
+  has_many :norms
+  has_many :dimensions
+  has_many :assign_clients, dependent: :destroy
+  has_many :assessments, -> { group(:id) }, through: :reports
+  has_many :license_usages
   has_many :licenses, inverse_of: :client, dependent: :destroy
   accepts_nested_attributes_for :licenses, allow_destroy: true
-  has_many :license_usages
-
-  has_one :retail_user, class_name: 'User'
-  belongs_to :tte, class_name: 'Client'
-
-  has_and_belongs_to_many :report_families, join_table: :clients_report_families, class_name: 'ReportFamily'
-  has_many :available_reports, through: :report_families, source: :reports
-
-  belongs_to :account_manager, class_name: 'User'
-  belongs_to :project_manager, class_name: 'User'
-  belongs_to :creator, foreign_key: :created_by_id, class_name: 'User'
-  belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'
 
   validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true, if: :project?
   validates :name, :type, presence: true
@@ -86,16 +88,6 @@ class Client < ApplicationRecord
   before_validation :ensure_subdomain, if: :retail?
   before_update :sync_archived_with_descendants, if: -> { defined?(:archived_changed?) && :archived_changed? }
   after_commit :set_tte, if: 'parent_id.present?', on: [:create, :update]
-  after_commit :clear_own_reports, on: [:destroy]
-
-  has_ancestry cache_depth: true
-
-  store :design, accessors: [:background_color]
-
-  #
-  # Disables single column inheritance
-  #
-  self.inheritance_column = :_type_disabled
 
   # Type of client.
   # Retail - is client who bought some product
@@ -104,6 +96,8 @@ class Client < ApplicationRecord
 
   mount_uploader :logo, ImageUploader
   mount_uploader :background, ImageUploader
+
+  default_scope { order(:name) }
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
   scope :not_archived, -> { where.not(archived: true) }
@@ -114,11 +108,6 @@ class Client < ApplicationRecord
   scope :projects_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:project]) }
   scope :campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign]) }
-  scope :full_tree_of, -> (clients) { # collect ancestors + self + descendants matching (id | id/* | */id | */id/*) pattern
-    client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose
-    ancestor_ids = ancestors.compact.map { |path| path.split('/').map(&:to_i) }.flatten.uniq
-    where("id in (?) or ancestry ~ ?", ancestor_ids + client_ids, "(^|\\D)(#{client_ids.join('|')})(/|$)")
-  }
 
   def clone
     @cloned_item = deep_clone do |_original, copy|
@@ -221,10 +210,6 @@ class Client < ApplicationRecord
   end
 
   def set_tte
-    update_column(:tte_id, root.id) if root.id != id
-  end
-
-  def clear_own_reports
-    own_reports.each { |report| report.update_column(:owner_id, nil) }
+    update_column(:tte_id, root.id)
   end
 end

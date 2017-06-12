@@ -13,29 +13,25 @@
 #
 
 class Report < ApplicationRecord
-  TYPES = [
-    COMMON_TYPE = 'common'.freeze,
-    YTI_TYPE = 'yti'.freeze,
-    ETI_TYPE = 'eti'.freeze
-  ].freeze
   include Copyable
+
+  TYPES = [
+      COMMON_TYPE = 'common'.freeze,
+      YTI_TYPE = 'yti'.freeze,
+      ETI_TYPE = 'eti'.freeze
+  ].freeze
+
   self.inheritance_column = :_type_disabled
+
   belongs_to :assessment
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_and_belongs_to_many :report_families
 
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
-
-  # has_many :assign_clients_reports, dependent: :destroy
-  # has_many :assign_clients, through: :assign_clients_reports
-  # has_many :clients, through: :assign_clients
-
   has_many :clients_reports, dependent: :destroy
   has_many :clients, through: :clients_reports
-
   has_many :translations, as: :resource
-
   has_many :product_reports, dependent: :destroy
   has_many :products, through: :product_reports
 
@@ -44,6 +40,8 @@ class Report < ApplicationRecord
   validates :report_families, presence: true, allow_nil: false
 
   enum type: TYPES
+
+  default_scope { order(:name) }
 
   # Copy report with pages => modules
   def clone
@@ -54,7 +52,7 @@ class Report < ApplicationRecord
 
   scope :enabled, -> { where.not(disabled: true) }
   scope :with_report_families, lambda { |report_family_ids|
-    report_family_ids.blank? ? none : joins(:report_families).where(report_families: {id:  report_family_ids})
+    report_family_ids.blank? ? none : joins(:report_families).where(report_families: { id: report_family_ids })
   }
 
   # Search entity by assessment category
