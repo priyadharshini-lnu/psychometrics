@@ -18,7 +18,7 @@ module Administration
 
       def create
         begin
-          client.report_ids = client.root.available_reports.where(id: params[:report_ids]).ids
+          client.report_ids = client.root.available_reports.where(id: params[:report_ids]).distinct.ids
         rescue => e
           render :new and return
         end
