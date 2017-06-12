@@ -14,6 +14,7 @@
 #  delivery_interval :string
 #  created_at        :datetime         not null
 #  updated_at        :datetime         not null
+#  owner_id          :integer
 #
 
 class Communication < ApplicationRecord

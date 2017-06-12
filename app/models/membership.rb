@@ -2,20 +2,19 @@
 #
 # Table name: memberships
 #
-#  id             :integer          not null, primary key
-#  client_id      :integer
-#  user_id        :integer
-#  parent_id      :integer
-#  lft            :integer
-#  rgt            :integer
-#  depth          :integer
-#  children_count :integer
-#  hris           :jsonb
-#  disabled       :boolean          default(FALSE)
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
-#  role           :string           default("member")
-#  is_retail      :boolean          default(FALSE)
+#  id                    :integer          not null, primary key
+#  client_id             :integer
+#  user_id               :integer
+#  hris                  :jsonb
+#  disabled              :boolean          default(FALSE)
+#  created_at            :datetime         not null
+#  updated_at            :datetime         not null
+#  is_retail             :boolean          default(FALSE)
+#  role                  :string           default("member")
+#  assigns_count         :integer          default(0)
+#  assigns_completed     :boolean          default(FALSE)
+#  project_membership_id :integer
+#  ancestry              :string
 #
 
 class Membership < ApplicationRecord

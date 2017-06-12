@@ -30,6 +30,8 @@
 #  authentication_token   :string(30)
 #  is_anonym              :boolean          default(FALSE)
 #  grants                 :jsonb
+#  created_by_id          :integer
+#  modified_by_id         :integer
 #
 
 class User < ApplicationRecord

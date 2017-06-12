@@ -9,6 +9,7 @@
 #  created_at    :datetime         not null
 #  updated_at    :datetime         not null
 #  type          :integer          default("common")
+#  owner_id      :integer
 #
 
 class Report < ApplicationRecord

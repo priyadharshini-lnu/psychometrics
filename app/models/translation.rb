@@ -5,8 +5,8 @@
 #  id                 :integer          not null, primary key
 #  translateable_type :string
 #  translateable_id   :integer
-#  props              :json             default({})
-#  locale             :string(4)
+#  props              :json
+#  locale             :string(10)
 #  created_at         :datetime         not null
 #  updated_at         :datetime         not null
 #  resource_type      :string

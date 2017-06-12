@@ -2,18 +2,15 @@
 #
 # Table name: libraries
 #
-#  id             :integer          not null, primary key
-#  name           :string
-#  description    :text
-#  type           :integer          default("folder")
-#  file           :string
-#  parent_id      :integer
-#  lft            :integer          not null
-#  rgt            :integer          not null
-#  depth          :integer          default(0), not null
-#  children_count :integer          default(0), not null
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  id          :integer          not null, primary key
+#  name        :string
+#  description :text
+#  type        :integer          default("folder")
+#  file        :string
+#  created_at  :datetime         not null
+#  updated_at  :datetime         not null
+#  owner_id    :integer
+#  ancestry    :string
 #
 
 class Library < ApplicationRecord

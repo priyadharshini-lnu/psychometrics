@@ -19,6 +19,7 @@
 #  disabled            :boolean          default(FALSE)
 #  template_id         :integer
 #  assessment_id       :integer
+#  owner_id            :integer
 #
 
 class Question < ApplicationRecord

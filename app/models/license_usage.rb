@@ -1,3 +1,13 @@
+# == Schema Information
+#
+# Table name: license_usages
+#
+#  id                :integer          not null, primary key
+#  license_id        :integer
+#  assigns_report_id :integer          not null
+#  client_id         :integer          not null
+#
+
 class LicenseUsage < ApplicationRecord
   belongs_to :license
   belongs_to :assigns_report

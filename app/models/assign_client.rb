@@ -2,11 +2,11 @@
 #
 # Table name: assign_clients
 #
-#  id              :integer          not null, primary key
-#  client_id       :integer
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  assessment_id   :integer
+#  id            :integer          not null, primary key
+#  assessment_id :integer
+#  client_id     :integer
+#  created_at    :datetime         not null
+#  updated_at    :datetime         not null
 #
 
 class AssignClient < ApplicationRecord

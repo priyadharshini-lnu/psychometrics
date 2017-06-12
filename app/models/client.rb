@@ -2,19 +2,30 @@
 #
 # Table name: clients
 #
-#  id              :integer          not null, primary key
-#  name            :string
-#  licenses        :integer          default(0)
-#  licenses_used   :integer          default(0)
-#  licenses_expire :date
-#  subdomain       :string
-#  logo            :string
-#  design          :json
-#  disabled        :boolean          default(FALSE)
-#  created_at      :datetime         not null
-#  updated_at      :datetime         not null
-#  background      :string
-#  type            :integer          default("enterprise")
+#  id                 :integer          not null, primary key
+#  name               :string
+#  subdomain          :string
+#  logo               :string
+#  design             :json
+#  disabled           :boolean          default(FALSE)
+#  created_at         :datetime         not null
+#  updated_at         :datetime         not null
+#  background         :string
+#  type               :integer          default("partner")
+#  licenses_count     :integer          default(0)
+#  number             :string
+#  country            :string
+#  year               :integer
+#  applicable_level   :integer          default("project")
+#  account_manager_id :integer
+#  project_manager_id :integer
+#  users_count        :integer          default(0)
+#  archived           :boolean          default(FALSE)
+#  tte_id             :integer
+#  created_by_id      :integer
+#  modified_by_id     :integer
+#  ancestry           :string
+#  ancestry_depth     :integer          default(0)
 #
 
 class Client < ApplicationRecord

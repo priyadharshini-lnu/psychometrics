@@ -1,3 +1,19 @@
+# == Schema Information
+#
+# Table name: licenses
+#
+#  id               :integer          not null, primary key
+#  number           :integer          default(0)
+#  overuse_number   :integer          default(0)
+#  used_number      :integer          default(0)
+#  client_id        :integer
+#  created_at       :datetime         not null
+#  updated_at       :datetime         not null
+#  end_date         :date             not null
+#  start_date       :date             not null
+#  report_family_id :integer          not null
+#
+
 class License < ApplicationRecord
   belongs_to :client, counter_cache: true
   belongs_to :report_family
