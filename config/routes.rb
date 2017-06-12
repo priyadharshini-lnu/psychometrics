@@ -182,7 +182,7 @@ Rails.application.routes.draw do
     ### END DIMENSIONS
 
     ### USERS
-    resources :users, except: [:new, :create] do
+    resources :users do
       member do
         patch :toggle_status
         get :sidebar

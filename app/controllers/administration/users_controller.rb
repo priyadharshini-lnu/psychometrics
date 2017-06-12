@@ -11,7 +11,7 @@ class Administration::UsersController < Administration::BaseController
 
     respond_to do |format|
       format.html
-      format.js { render :index, formats: [:js] }
+      format.js {render :index, formats: [:js]}
     end
   end
 
@@ -19,11 +19,31 @@ class Administration::UsersController < Administration::BaseController
   def show
   end
 
+  def new
+    render 'new'
+  end
+
+  def create
+    @resource = @resource_class.new(create_resource_params)
+    resource.role = User::SUPER_ADMIN_ROLE
+    resource.created_by_id = current_user.id
+    resource.modified_by_id = current_user.id
+    resource.create_by_invite = true
+    respond_to do |format|
+      if resource.save
+        resource.invite!(current_user)
+        format.js
+      else
+        format.js {render :new}
+      end
+    end
+  end
+
   # DELETE /administration/resources/1
   def destroy
     @resource.destroy
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.html {redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name))}
       format.js
     end
   end
@@ -35,7 +55,7 @@ class Administration::UsersController < Administration::BaseController
     @resource.update!(modified_by_id: current_user.id)
     @resource.memberships.update_all(disabled: @resource.disabled)
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.html {redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name))}
       format.js
     end
   end
@@ -51,7 +71,7 @@ class Administration::UsersController < Administration::BaseController
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), {action: :index}
   end
 
   # Set model
@@ -59,11 +79,8 @@ class Administration::UsersController < Administration::BaseController
     @resource_class ||= User
   end
 
-  def resource_params
-    params.require(:resource).permit(
-      :first_name, :last_name, :email, :disabled, :role,
-      { manage_client_ids: [] }, { hris_data: [:key, :value] }
-    )
+  def create_resource_params
+    params.require(:resource).permit(:first_name, :last_name, :email)
   end
 
   # Authorisation user

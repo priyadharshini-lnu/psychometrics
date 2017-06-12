@@ -14,6 +14,7 @@ en:
         grants: Privileges
       index:
         new: Add
+        new_superadmin: Add SuperAdmin
         import: Import
         import_users: Users
         import_hris: HRIS Data

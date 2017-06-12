@@ -17,6 +17,10 @@ module Administration
       assigns: [:view]
     ]].freeze
 
+    def create?
+      @user.is?(:superadmin, :admin)
+    end
+
     def permitted_attributes_for_create
       if @user.is?(:superadmin)
         CREATE_PARAMETERS + [user_attributes: [GRANT_PARAMETERS]]
