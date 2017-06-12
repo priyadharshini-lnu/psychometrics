@@ -149,7 +149,7 @@ class Membership < ApplicationRecord
   end
 
   def clear_project_membership
-    return if project? || project.clients_memberships.any?
+    return if project.nil? || project.clients_memberships.any?
     project.destroy!
   end
 

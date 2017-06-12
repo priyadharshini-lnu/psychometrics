@@ -158,8 +158,12 @@ class Assign < ApplicationRecord
     self.project_assign_id = project_assign.id
   end
 
+  def project?
+    project_assign_id.nil?
+  end
+
   def clear_project_assign
-    return if membership.project? || membership.project.clients_assigns.pluck('assigns.assessment_id').include?(assessment_id)
+    return if project.nil? || project.clients_assigns.pluck('assigns.assessment_id').include?(assessment_id)
     project.destroy!
   end
 

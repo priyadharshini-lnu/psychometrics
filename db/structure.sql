@@ -201,8 +201,8 @@ CREATE TABLE assigns (
     updated_at timestamp without time zone NOT NULL,
     step integer,
     membership_id integer NOT NULL,
-    started_at timestamp without time zone,
     norm_data jsonb,
+    started_at timestamp without time zone,
     agile_scoring jsonb,
     project_assign_id integer
 );
@@ -2841,6 +2841,14 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 
 
 --
+-- Name: assigns fk_rails_05e55ff955; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assigns
+    ADD CONSTRAINT fk_rails_05e55ff955 FOREIGN KEY (project_assign_id) REFERENCES assigns(id);
+
+
+--
 -- Name: licenses fk_rails_139c7e09c4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2854,6 +2862,14 @@ ALTER TABLE ONLY licenses
 
 ALTER TABLE ONLY assigns
     ADD CONSTRAINT fk_rails_1b51e2cce0 FOREIGN KEY (assessment_id) REFERENCES assessments(id);
+
+
+--
+-- Name: memberships fk_rails_1e06b93eb5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY memberships
+    ADD CONSTRAINT fk_rails_1e06b93eb5 FOREIGN KEY (project_membership_id) REFERENCES memberships(id);
 
 
 --
@@ -3022,6 +3038,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160923160817'),
 ('20160930140037'),
 ('20161010082144'),
+('20161011105808'),
 ('20161011141925'),
 ('20161011144225'),
 ('20161012114132'),
@@ -3118,6 +3135,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170609102237'),
 ('20170609103215'),
 ('20170609105118'),
-('20170609105354');
+('20170609105354'),
+('20170612130647'),
+('20170612130720');
 
 
