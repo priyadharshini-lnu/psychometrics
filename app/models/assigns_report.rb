@@ -18,7 +18,7 @@ class AssignsReport < ApplicationRecord
   }.freeze
   belongs_to :assign
   belongs_to :report
-  has_many :license_usages
+  has_many :license_usages # on delete nullify
 
   before_create :use_license
 

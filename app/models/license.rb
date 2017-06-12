@@ -17,7 +17,7 @@
 class License < ApplicationRecord
   belongs_to :client, counter_cache: true
   belongs_to :report_family
-  has_many :license_usages
+  has_many :license_usages # on delete cascade
 
   validates :client, :start_date, :end_date, presence: true, allow_nil: false
   validates :number, :overuse_number, :used_number,

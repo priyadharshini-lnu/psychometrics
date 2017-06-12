@@ -50,7 +50,7 @@ module Administration
       def assign_multiple
         if client.tenancy?
           begin
-            project.admin_ids = client.projects_admins.where(id: params[:admin_ids]).ids
+            project.admin_ids = client.projects_admins.distinct.where(id: params[:admin_ids]).ids
           rescue => e
             render :new, locals: { is_new: false } and return
           end

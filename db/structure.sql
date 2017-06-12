@@ -201,8 +201,8 @@ CREATE TABLE assigns (
     updated_at timestamp without time zone NOT NULL,
     step integer,
     membership_id integer NOT NULL,
-    started_at timestamp without time zone,
     norm_data jsonb,
+    started_at timestamp without time zone,
     agile_scoring jsonb,
     project_assign_id integer
 );
@@ -862,7 +862,7 @@ ALTER SEQUENCE libraries_id_seq OWNED BY libraries.id;
 CREATE TABLE license_usages (
     id integer NOT NULL,
     license_id integer,
-    assigns_report_id integer NOT NULL,
+    assigns_report_id integer,
     client_id integer NOT NULL
 );
 
@@ -2849,19 +2849,19 @@ ALTER TABLE ONLY assigns
 
 
 --
+-- Name: users fk_rails_09d354f20c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT fk_rails_09d354f20c FOREIGN KEY (modified_by_id) REFERENCES users(id) ON DELETE SET NULL;
+
+
+--
 -- Name: licenses fk_rails_139c7e09c4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY licenses
-    ADD CONSTRAINT fk_rails_139c7e09c4 FOREIGN KEY (report_family_id) REFERENCES report_families(id);
-
-
---
--- Name: assigns fk_rails_1b51e2cce0; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY assigns
-    ADD CONSTRAINT fk_rails_1b51e2cce0 FOREIGN KEY (assessment_id) REFERENCES assessments(id);
+    ADD CONSTRAINT fk_rails_139c7e09c4 FOREIGN KEY (report_family_id) REFERENCES report_families(id) ON DELETE RESTRICT;
 
 
 --
@@ -2873,19 +2873,27 @@ ALTER TABLE ONLY memberships
 
 
 --
--- Name: memberships fk_rails_385eeb68ea; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY memberships
-    ADD CONSTRAINT fk_rails_385eeb68ea FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE;
-
-
---
 -- Name: libraries fk_rails_3c26848d46; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY libraries
     ADD CONSTRAINT fk_rails_3c26848d46 FOREIGN KEY (owner_id) REFERENCES clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: users fk_rails_45307c95a3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY users
+    ADD CONSTRAINT fk_rails_45307c95a3 FOREIGN KEY (created_by_id) REFERENCES users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: clients fk_rails_47b47683a3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY clients
+    ADD CONSTRAINT fk_rails_47b47683a3 FOREIGN KEY (created_by_id) REFERENCES users(id) ON DELETE SET NULL;
 
 
 --
@@ -2897,35 +2905,11 @@ ALTER TABLE ONLY questions
 
 
 --
--- Name: comments fk_rails_7f3b1733e2; Type: FK CONSTRAINT; Schema: public; Owner: -
+-- Name: assigns_reports fk_rails_9418a5a870; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
-ALTER TABLE ONLY comments
-    ADD CONSTRAINT fk_rails_7f3b1733e2 FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL;
-
-
---
--- Name: tasks fk_rails_877a66d795; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY tasks
-    ADD CONSTRAINT fk_rails_877a66d795 FOREIGN KEY (owner_id) REFERENCES memberships(id);
-
-
---
--- Name: norms fk_rails_922fac4f2e; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY norms
-    ADD CONSTRAINT fk_rails_922fac4f2e FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL;
-
-
---
--- Name: memberships fk_rails_99326fb65d; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY memberships
-    ADD CONSTRAINT fk_rails_99326fb65d FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+ALTER TABLE ONLY assigns_reports
+    ADD CONSTRAINT fk_rails_9418a5a870 FOREIGN KEY (assign_id) REFERENCES assigns(id) ON DELETE CASCADE;
 
 
 --
@@ -2953,19 +2937,51 @@ ALTER TABLE ONLY norms
 
 
 --
--- Name: norms fk_rails_b7d8a0337d; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY norms
-    ADD CONSTRAINT fk_rails_b7d8a0337d FOREIGN KEY (updated_by) REFERENCES users(id) ON DELETE SET NULL;
-
-
---
 -- Name: assigns fk_rails_d2e6622e0f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY assigns
-    ADD CONSTRAINT fk_rails_d2e6622e0f FOREIGN KEY (membership_id) REFERENCES memberships(id);
+    ADD CONSTRAINT fk_rails_d2e6622e0f FOREIGN KEY (membership_id) REFERENCES memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: license_usages fk_rails_d35fd7791e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY license_usages
+    ADD CONSTRAINT fk_rails_d35fd7791e FOREIGN KEY (license_id) REFERENCES licenses(id) ON DELETE CASCADE;
+
+
+--
+-- Name: license_usages fk_rails_d511a75463; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY license_usages
+    ADD CONSTRAINT fk_rails_d511a75463 FOREIGN KEY (assigns_report_id) REFERENCES assigns_reports(id) ON DELETE SET NULL;
+
+
+--
+-- Name: assigns_reports fk_rails_eb27834cf2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assigns_reports
+    ADD CONSTRAINT fk_rails_eb27834cf2 FOREIGN KEY (report_id) REFERENCES reports(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: norms fk_rails_ecfeaf1ba0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY norms
+    ADD CONSTRAINT fk_rails_ecfeaf1ba0 FOREIGN KEY (dimension_id) REFERENCES dimensions(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: assessments fk_rails_ef32d4a334; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assessments
+    ADD CONSTRAINT fk_rails_ef32d4a334 FOREIGN KEY (dimension_id) REFERENCES dimensions(id) ON DELETE RESTRICT;
 
 
 --
@@ -2982,6 +2998,14 @@ ALTER TABLE ONLY communications
 
 ALTER TABLE ONLY assessments
     ADD CONSTRAINT fk_rails_f076a5c10f FOREIGN KEY (owner_id) REFERENCES clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: clients fk_rails_f28b175e74; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY clients
+    ADD CONSTRAINT fk_rails_f28b175e74 FOREIGN KEY (modified_by_id) REFERENCES users(id) ON DELETE SET NULL;
 
 
 --
@@ -3038,6 +3062,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160923160817'),
 ('20160930140037'),
 ('20161010082144'),
+('20161011105808'),
 ('20161011141925'),
 ('20161011144225'),
 ('20161012114132'),
@@ -3136,6 +3161,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170609105118'),
 ('20170609105354'),
 ('20170612130647'),
-('20170612130720');
+('20170612130720'),
+('20170613075933'),
+('20170613095544');
 
 

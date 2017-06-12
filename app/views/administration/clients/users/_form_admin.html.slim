@@ -14,7 +14,7 @@
       = hidden_field_tag :project_id, params[:project_id]
       .modal-body
         = select_tag :admin_ids,
-                options_for_select(client.projects_admins.map{ |u| [u.decorate.display_name, u.id] }, selected: project.admin_ids, disabled: project.admin_ids),
+                options_for_select(client.projects_admins.distinct.map{ |u| [u.decorate.display_name, u.id] }, selected: project.admin_ids, disabled: project.admin_ids),
                 class: 'form-control select',
                 multiple: true,
                 include_blank: false

@@ -16,7 +16,7 @@ module Administration
 
     # GET /administration/resources
     def index
-      @filter_form = policy_scope(@resource_class).includes(:assessment, :report_families).search(params[:q])
+      @filter_form = policy_scope(@resource_class).includes(:assessment, :report_families).order(:name).search(params[:q])
       @resources = @filter_form.result.page(params[:page])
 
       respond_to do |format|
@@ -65,8 +65,12 @@ module Administration
     def destroy
       @resource.destroy
       respond_to do |format|
-        format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
-        format.js
+        if @resource.errors.any?
+          format.js { render :error, locals: { message: @resource.errors.full_messages.join('<br>') } }
+        else
+          format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+          format.js
+        end
       end
     end
 

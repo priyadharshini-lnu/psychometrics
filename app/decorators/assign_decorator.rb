@@ -1,6 +1,6 @@
 class AssignDecorator < BaseDecorator
   def initialize(object, options = {})
-    object = object.project if object.project
+    object = object.project_assign || object
     super
   end
 

@@ -59,7 +59,7 @@ class Client < ApplicationRecord
   has_many :completed_memberships, -> { completed }, source: :membership, class_name: 'Membership'
   has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) }, through: :memberships, source: :user
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
-  has_many :projects_admins, -> { where(memberships: { role: Membership::ADMIN_ROLE }).distinct }, through: :projects, source: :users
+  has_many :projects_admins, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, through: :projects, source: :users
 
   # Reports
   has_many :clients_reports, dependent: :destroy
@@ -96,8 +96,6 @@ class Client < ApplicationRecord
 
   mount_uploader :logo, ImageUploader
   mount_uploader :background, ImageUploader
-
-  default_scope { order(:name) }
 
   scope :enabled, -> { where.not(disabled: true, archived: true) }
   scope :not_archived, -> { where.not(archived: true) }
@@ -189,6 +187,11 @@ class Client < ApplicationRecord
     return 'Sub Campaign' if sub_campaign?
   end
 
+  def allowed_data?(operator)
+    return admin_allowed_data? if operator.is?(:admin)
+    true
+  end
+
   private
 
   # If we arvhive client
@@ -211,5 +214,10 @@ class Client < ApplicationRecord
 
   def set_tte
     update_column(:tte_id, root.id)
+  end
+
+  def admin_allowed_data?
+    return false if root?
+    true
   end
 end

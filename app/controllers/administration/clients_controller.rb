@@ -7,7 +7,7 @@ module Administration
     append_before_action :pundit_authorize, except: [:sidebar]
 
     def index
-      @filter_form = policy_scope(@resource_class).tenancies.includes(:projects_admins).search(params[:q])
+      @filter_form = policy_scope(@resource_class).tenancies.includes(:projects_admins).order(:name).search(params[:q])
       @filter_form.archived_true ||= false
       @resources = @filter_form.result.page(params[:page])
 
@@ -27,11 +27,12 @@ module Administration
 
     def create
       @resource ||= @resource_class.new(resource_params)
-      @resource.creator = current_user
-      @resource.modifier = current_user
+      resource.creator = current_user
+      resource.modifier = current_user
+      authorize resource
       respond_to do |format|
-        if @resource.save
-          if @resource.project? && current_user.is?(:admin)
+        if resource.save
+          if resource.project? && current_user.is?(:admin)
             current_user.memberships.create!(client: @resource, role: Membership::ADMIN_ROLE)
           end
           format.js
@@ -43,6 +44,7 @@ module Administration
 
     def update
       @resource.modifier = current_user
+      authorize resource
       respond_to do |format|
         if @resource.update(resource_params)
           format.js

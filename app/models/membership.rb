@@ -37,10 +37,10 @@ class Membership < ApplicationRecord
 
   belongs_to :client, counter_cache: :users_count
   belongs_to :user, inverse_of: :memberships, touch: true
-  belongs_to :project, foreign_key: :project_membership_id, class_name: 'Membership'
+  belongs_to :project_membership, foreign_key: :project_membership_id, class_name: 'Membership'
   accepts_nested_attributes_for :user
 
-  has_many :assigns, dependent: :destroy, inverse_of: :membership
+  has_many :assigns, inverse_of: :membership # on delete cascade
   has_many :reports, through: :assigns
   has_many :assessments, through: :assigns
   has_many :communication_emails, dependent: :destroy, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'
@@ -139,7 +139,7 @@ class Membership < ApplicationRecord
   private
 
   def set_project_membership
-    return if client.project? || project.present?
+    return if client.project? || project_membership.present?
     project_membership = client.project.memberships.where(user_id: user_id).take
     project_membership ||= Membership.create!(user_id: user_id, client_id: client.project.id)
     self.project_membership_id = project_membership.id
@@ -149,8 +149,8 @@ class Membership < ApplicationRecord
   end
 
   def clear_project_membership
-    return if project.nil? || project.clients_memberships.any?
-    project.destroy!
+    return if project_membership.nil? || project_membership.clients_memberships.any?
+    project_membership.destroy!
   end
 
   class << self

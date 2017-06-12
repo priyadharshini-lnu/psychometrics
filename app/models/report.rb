@@ -34,14 +34,13 @@ class Report < ApplicationRecord
   has_many :translations, as: :resource
   has_many :product_reports, dependent: :destroy
   has_many :products, through: :product_reports
+  has_many :assigns_reports # on delete restrict
 
   validates :assessment, presence: true
   validates :owner, presence: true, allow_nil: true
   validates :report_families, presence: true, allow_nil: false
 
   enum type: TYPES
-
-  default_scope { order(:name) }
 
   # Copy report with pages => modules
   def clone

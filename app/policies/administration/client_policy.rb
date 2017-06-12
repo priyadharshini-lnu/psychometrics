@@ -9,7 +9,11 @@ module Administration
     end
 
     def create?
-      super || @user.has_grant?(:clients, :manage)
+      super || if record.is_a? Client
+        record.allowed_data?(@user)
+      else
+        @user.has_grant?(:clients, :manage)
+      end
     end
 
     def projects?
@@ -36,6 +40,11 @@ module Administration
       edit?
     end
 
+    def actions?
+      return @user.is?(:superadmin) if record.root?
+      super
+    end
+
     def design?
       @user.is?(:superadmin) || @user.has_grant?(:clients, :design)
     end
@@ -55,7 +64,7 @@ module Administration
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)
-         # collect ancestors + self + descendants matching (id | id/* | */id | */id/*) pattern
+        # collect ancestors + self + descendants matching (id | id/* | */id | */id/*) pattern
         clients = @user.admin_clients.not_retails.enabled.select(:id, :ancestry)
         client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose
         ancestor_ids = ancestors.compact.map { |path| path.split('/').map(&:to_i) }.flatten.uniq

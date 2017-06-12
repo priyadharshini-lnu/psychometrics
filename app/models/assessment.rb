@@ -21,6 +21,9 @@
 class Assessment < ApplicationRecord
   include Copyable
 
+  belongs_to :dimension
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+
   has_many :blocks, -> { order(position: :asc) }, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :norms, through: :dimension
@@ -37,12 +40,8 @@ class Assessment < ApplicationRecord
   has_many :projects, through: :assessments_projects
 
   has_many :communications, dependent: :destroy
-
   has_many :translations, as: :resource, dependent: :destroy
   has_many :tasks, dependent: :destroy
-
-  belongs_to :dimension
-  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
 
   CATEGORIES_TYPES = [
       PSYCHOMETRIC = 'psychometric'.freeze,

@@ -14,12 +14,12 @@
 class Dimension < ApplicationRecord
   include Copyable
 
+  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_many :factors, -> { roots.order(id: :asc) }
   has_many :occupations
   has_many :sub_factors, -> { no_roots.order(id: :asc) }, class_name: 'Factor'
   has_many :assessments
   has_many :norms
-  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
 
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true

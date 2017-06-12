@@ -2,6 +2,8 @@ en:
   administration:
     clients:
       base:
+        disable: Archive
+        enable: Unarchive
         archived: Archived
         active: Active
       index:

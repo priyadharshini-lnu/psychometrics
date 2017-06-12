@@ -35,7 +35,7 @@ module Administration
     end
 
     def project_membership
-      @_project_membership ||= membership.project? ? membership : membership.project
+      @_project_membership ||= membership.project_membership || membership
     end
 
     def membership

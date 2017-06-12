@@ -3,6 +3,14 @@ class ClientDecorator < BaseDecorator
     I18n.t("activerecord.attributes.client.types.#{object.type}")
   end
 
+  def toggle_status_text
+    if object.disabled
+      I18n.t('administration.clients.base.enable')
+    else
+      I18n.t('administration.clients.base.disable')
+    end
+  end
+
   def status_confirmation
     status = object.disabled? ? 'enable' : 'disable'
     {
@@ -41,7 +49,7 @@ class ClientDecorator < BaseDecorator
   end
 
   def display_name_with_parent
-    object.child? ? object.path.map { |anc| anc.decorate.display_name }.join(' > ') : display_name
+    object.child? ? object.path.map {|anc| anc.decorate.display_name}.join(' > ') : display_name
   end
 
   def status
@@ -55,19 +63,19 @@ class ClientDecorator < BaseDecorator
   end
 
   def projects_admins
-    object.projects_admins.map { |user| h.content_tag(:span, user.decorate.display_name, class: 'text-nowrap') }.join('<br>').html_safe
+    object.projects_admins.distinct.map {|user| h.content_tag(:span, user.decorate.display_name, class: 'text-nowrap')}.join('<br>').html_safe
   end
 
   def client_admins_memberships
     if object.tenancy?
-      object.projects.map { |project| project.admin_memberships }.reject(&:empty?).flatten
+      object.projects.map {|project| project.admin_memberships}.reject(&:empty?).flatten
     else
       object.admin_memberships
     end
   end
 
   def array_project_admins
-    client_admins_memberships.map { |membership| membership.user.decorate.display_name }
+    client_admins_memberships.map {|membership| membership.user.decorate.display_name}
   end
 
   def reports
@@ -77,11 +85,11 @@ class ClientDecorator < BaseDecorator
   end
 
   def reports_names
-    object.reports.map { |report| report.decorate.display_name }.join(', ').html_safe
+    object.reports.map {|report| report.decorate.display_name}.join(', ').html_safe
   end
 
   def array_reports
-    object.reports.map { |report| report.decorate.display_name }
+    object.reports.map {|report| report.decorate.display_name}
   end
 
   def url
@@ -90,6 +98,6 @@ class ClientDecorator < BaseDecorator
 
   def actual_usage
     # todo investigate to ancestry
-    object.license_usages.size + descendants.reduce(0) { |sum, child| sum + child.license_usages.size }
+    object.license_usages.size + descendants.reduce(0) {|sum, child| sum + child.license_usages.size}
   end
 end

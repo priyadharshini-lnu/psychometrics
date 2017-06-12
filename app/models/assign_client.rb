@@ -13,7 +13,7 @@ class AssignClient < ApplicationRecord
   belongs_to :client, inverse_of: :assign_clients
   belongs_to :assessment
   has_many :assign_clients_reports, dependent: :destroy
-  has_many :reports, through: :assign_clients_reports, dependent: :destroy
+  has_many :reports, through: :assign_clients_reports
 
   validates_uniqueness_of :assessment_id, scope: [:client_id], message: :not_uniqueness
 
