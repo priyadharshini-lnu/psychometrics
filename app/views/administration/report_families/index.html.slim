@@ -22,3 +22,5 @@
       .panel-body
         #filterrific_results
           = render partial: 'list'
+      .panel-footer
+        = link_to t('administration.back'), administration_reports_path, class: 'btn btn-default'
