@@ -201,8 +201,8 @@ CREATE TABLE assigns (
     updated_at timestamp without time zone NOT NULL,
     step integer,
     membership_id integer NOT NULL,
-    norm_data jsonb,
     started_at timestamp without time zone,
+    norm_data jsonb,
     agile_scoring jsonb,
     project_assign_id integer
 );
@@ -2845,7 +2845,7 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 --
 
 ALTER TABLE ONLY assigns
-    ADD CONSTRAINT fk_rails_05e55ff955 FOREIGN KEY (project_assign_id) REFERENCES assigns(id);
+    ADD CONSTRAINT fk_rails_05e55ff955 FOREIGN KEY (project_assign_id) REFERENCES assigns(id) ON DELETE CASCADE;
 
 
 --
@@ -2865,11 +2865,43 @@ ALTER TABLE ONLY licenses
 
 
 --
+-- Name: assigns fk_rails_1b51e2cce0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assigns
+    ADD CONSTRAINT fk_rails_1b51e2cce0 FOREIGN KEY (assessment_id) REFERENCES assessments(id);
+
+
+--
 -- Name: memberships fk_rails_1e06b93eb5; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY memberships
-    ADD CONSTRAINT fk_rails_1e06b93eb5 FOREIGN KEY (project_membership_id) REFERENCES memberships(id);
+    ADD CONSTRAINT fk_rails_1e06b93eb5 FOREIGN KEY (project_membership_id) REFERENCES memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: communication_emails fk_rails_2a329ed34d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communication_emails
+    ADD CONSTRAINT fk_rails_2a329ed34d FOREIGN KEY (membership_id) REFERENCES memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: ecommerce_purchases fk_rails_3546ed727a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ecommerce_purchases
+    ADD CONSTRAINT fk_rails_3546ed727a FOREIGN KEY (order_id) REFERENCES ecommerce_orders(id) ON DELETE CASCADE;
+
+
+--
+-- Name: memberships fk_rails_385eeb68ea; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY memberships
+    ADD CONSTRAINT fk_rails_385eeb68ea FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE;
 
 
 --
@@ -2897,11 +2929,43 @@ ALTER TABLE ONLY clients
 
 
 --
+-- Name: ecommerce_orders fk_rails_4e7fc0242c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ecommerce_orders
+    ADD CONSTRAINT fk_rails_4e7fc0242c FOREIGN KEY (membership_id) REFERENCES memberships(id) ON DELETE CASCADE;
+
+
+--
 -- Name: questions fk_rails_6ec04ddf91; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY questions
     ADD CONSTRAINT fk_rails_6ec04ddf91 FOREIGN KEY (owner_id) REFERENCES clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: comments fk_rails_7f3b1733e2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY comments
+    ADD CONSTRAINT fk_rails_7f3b1733e2 FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: tasks fk_rails_877a66d795; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY tasks
+    ADD CONSTRAINT fk_rails_877a66d795 FOREIGN KEY (owner_id) REFERENCES memberships(id);
+
+
+--
+-- Name: norms fk_rails_922fac4f2e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY norms
+    ADD CONSTRAINT fk_rails_922fac4f2e FOREIGN KEY (created_by) REFERENCES users(id) ON DELETE SET NULL;
 
 
 --
@@ -2913,11 +2977,27 @@ ALTER TABLE ONLY assigns_reports
 
 
 --
+-- Name: memberships fk_rails_99326fb65d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY memberships
+    ADD CONSTRAINT fk_rails_99326fb65d FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: reports fk_rails_9c1b8d7e35; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY reports
     ADD CONSTRAINT fk_rails_9c1b8d7e35 FOREIGN KEY (owner_id) REFERENCES clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: ecommerce_purchase_invites fk_rails_acede09d2c; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY ecommerce_purchase_invites
+    ADD CONSTRAINT fk_rails_acede09d2c FOREIGN KEY (purchase_id) REFERENCES ecommerce_purchases(id) ON DELETE CASCADE;
 
 
 --
@@ -2934,6 +3014,14 @@ ALTER TABLE ONLY dimensions
 
 ALTER TABLE ONLY norms
     ADD CONSTRAINT fk_rails_b3f9f037c2 FOREIGN KEY (owner_id) REFERENCES clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: norms fk_rails_b7d8a0337d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY norms
+    ADD CONSTRAINT fk_rails_b7d8a0337d FOREIGN KEY (updated_by) REFERENCES users(id) ON DELETE SET NULL;
 
 
 --
@@ -3062,7 +3150,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20160923160817'),
 ('20160930140037'),
 ('20161010082144'),
-('20161011105808'),
 ('20161011141925'),
 ('20161011144225'),
 ('20161012114132'),
@@ -3153,16 +3240,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170607143545'),
 ('20170607153346'),
 ('20170607160409'),
-('20170608150347'),
-('20170609065248'),
-('20170609101430'),
-('20170609102237'),
-('20170609103215'),
-('20170609105118'),
-('20170609105354'),
-('20170612130647'),
-('20170612130720'),
 ('20170613075933'),
-('20170613095544');
+('20170613095544'),
+('20170613120241'),
+('20170613125409');
 
 
