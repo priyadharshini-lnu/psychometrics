@@ -19,8 +19,8 @@
           .form-group.form-group-long
             .btn-group data-toggle="buttons"
               - [['Active', false], ['Archived', true]].each do |item|
-                label class="btn btn-default #{'active' if f.object.archived_true == item.last}"
-                  = f.input_field :archived_true, type: :radio, checked: f.object.archived_true == item.last, value: item.last
+                label class="btn btn-default #{'active' if f.object.disabled_true == item.last}"
+                  = f.input_field :disabled_true, type: :radio, checked: f.object.disabled_true == item.last, value: item.last
                   = item.first                                
       .panel-body
         #filter_results

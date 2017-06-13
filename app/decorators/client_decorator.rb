@@ -15,7 +15,7 @@ class ClientDecorator < BaseDecorator
     status = object.disabled? ? 'enable' : 'disable'
     {
         title: I18n.t("administration.clients.resource.confirmations.#{status}.title", name: display_name),
-        body: I18n.t("administration.clients.resource.confirmations.#{status}.body")
+        body: I18n.t("administration.clients.resource.confirmations.#{status}.body")[object.depth]
     }.to_json
   end
 

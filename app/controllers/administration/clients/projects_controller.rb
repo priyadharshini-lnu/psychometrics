@@ -5,7 +5,7 @@ module Administration
 
       def index
         @filter_form = policy_scope(@resource_class).projects_of(client.id).includes(:admins, :assigned_memberships, :license_usages, :completed_memberships).search(params[:q])
-        @filter_form.archived_true ||= false
+        @filter_form.disabled_true ||= false
         @resources = @filter_form.result.page(params[:page])
 
         respond_to do |format|

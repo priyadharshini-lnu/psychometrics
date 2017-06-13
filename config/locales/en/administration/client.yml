@@ -58,14 +58,32 @@ en:
         confirmations:
           disable:
             title:
-              Disable <strong>%{name}</strong> ?
+              Archive <strong>%{name}</strong> ?
             body:
-              <p>Are you sure you want to disable?</p>
+              0:
+                <p>Are you sure you want to archive?</p>
+                <p>All Campaigns, Sub-campaigns and users will also be archived</p>
+              1:
+                <p>Are you sure you want to archive?</p>
+                <p>All Sub-campaigns and users will also be archived</p>
+              2:
+                <p>Are you sure you want to archive?</p>
+                <p>All users will also be archived</p>
+              3:
+                <p>Are you sure you want to archive?</p>
+                <p>All users will also be archived</p>
           enable:
             title:
-              Enable <strong>%{name}</strong> ?
+              Unarchive <strong>%{name}</strong> ?
             body:
-              <p>Are you sure you want to enable?</p>
+              0:
+                <p>Are you sure you want to unarchive?</p>
+              1:
+                <p>Are you sure you want to unarchive?</p>
+              2:
+                <p>Are you sure you want to unarchive?</p>
+              3:
+                <p>Are you sure you want to unarchive?</p>
           delete:
             title:
               Delete <strong>%{name}</strong> ?
@@ -79,19 +97,6 @@ en:
               2:
                 <p>Are you sure you want to delete?</p>
                 <p>All users will also be deleted</p>
-          archive:
-            title:
-              Archive <strong>%{name}</strong> ?
-            body:
-              0:
-                <p>Are you sure you want to archive?</p>
-                <p>All Campaigns, Sub-campaigns and users will also be archived</p>
-              1:
-                <p>Are you sure you want to archive?</p>
-                <p>All Sub-campaigns and users will also be archived</p>
-              2:
-                <p>Are you sure you want to archive?</p>
-                <p>All users will also be archived</p>
       statistics:
         index:
           title: Statistics

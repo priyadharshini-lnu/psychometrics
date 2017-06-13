@@ -6,7 +6,7 @@ module Administration
           before_action :ensure_campaign
 
           def index
-            @filter_form = policy_scope(@resource_class).sub_campaigns_of(campaign.id).search(params[:q])
+            @filter_form = policy_scope(@resource_class).sub_campaigns_of(campaign.id).enabled.search(params[:q])
             @filter_form.archived_true ||= false
             @resources = @filter_form.result.page(params[:page])
 
