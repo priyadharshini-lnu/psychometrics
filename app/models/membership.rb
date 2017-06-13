@@ -45,7 +45,7 @@ class Membership < ApplicationRecord
   has_many :assessments, through: :assigns
   has_many :communication_emails, dependent: :destroy, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'  # on delete cascade
   has_many :orders, inverse_of: :membership, class_name: 'Ecommerce::Order' # on delete cascade
-  has_many :clients_memberships, foreign_key: :project_membership_id, class_name: 'Membership'
+  has_many :clients_memberships, foreign_key: :project_membership_id, class_name: 'Membership' # on delete cascade
   has_many :clients_assigns, through: :clients_memberships, source: :assigns, class_name: 'Assign'
   has_many :clients_reports, through: :clients_assigns, source: :reports
 
