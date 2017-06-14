@@ -44,6 +44,7 @@ en:
         assign: Assign Assessment
         destroy: Delete Assessment
         builder: Questions Builder
+        export: Export Scoring
       resource:
         tooltips:
           copy: Copy Assessment

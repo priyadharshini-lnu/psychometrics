@@ -1,7 +1,7 @@
 class Administration::AssessmentsController < Administration::BaseController
   prepend OwnerCheck
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy, :preview]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy, :preview, :export]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -85,6 +85,15 @@ class Administration::AssessmentsController < Administration::BaseController
         format.js do
           render(:error, locals: { message: t("administration.#{@resource_class.model_name.plural}.copy.error", id: @resource.id) })
         end
+      end
+    end
+  end
+
+  def export
+    respond_to do |format|
+      format.xlsx do
+        headers['Content-Disposition'] = "attachment; filename=\"#{resource.name}-#{Date.today}.xlsx\""
+        headers['Content-Type'] = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet'
       end
     end
   end

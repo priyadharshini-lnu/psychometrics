@@ -34,6 +34,7 @@ class Question < ApplicationRecord
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_many :questions, class_name: 'Question', foreign_key: :template_id, dependent: :destroy
   has_many :factors_scorings, dependent: :destroy
+  has_many :factors_scorings_with_props, -> { with_props }, class_name: 'FactorsScoring', foreign_key: :question_id
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :translations, as: :translateable, dependent: :destroy
 

@@ -118,6 +118,7 @@ Rails.application.routes.draw do
         get :preview
         post :preview
         get :reports
+        get :export
         put :save
       end
       scope module: 'assessments' do

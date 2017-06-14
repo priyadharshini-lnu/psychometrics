@@ -28,6 +28,7 @@ class Assessment < ApplicationRecord
   has_many :questions, dependent: :destroy
   has_many :norms, through: :dimension
   has_many :factors_scoring, dependent: :destroy
+  has_many :factors, through: :factors_scoring
   has_many :reports, dependent: :destroy
   has_many :report_families, through: :reports
 
