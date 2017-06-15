@@ -4,7 +4,7 @@
 
     .form-inputs.clearfix
       = f.input :name
-      = f.association :owner, collection: policy_scope(Client).all, include_blank: (t('administration.tte') if current_user.is?(:superadmin)), input_html: { data: { live_search: true } }
+      = f.association :owner, collection: policy_scope(Client).roots.all, include_blank: (t('administration.tte') if current_user.is?(:superadmin)), input_html: { data: { live_search: true } }
       = f.input :category, collection: @resource_class::CATEGORIES.values.map { |cat| [t(".categories.#{cat}"), cat] }, include_blank: false
       = f.input :status, collection: @resource_class.statuses.map { |k, v| [t(".statuses.#{k}"), k] }, include_blank: false
       = f.association :dimension, collection: policy_scope(Dimension).all, include_blank: true, input_html: { data: { live_search: true } }
