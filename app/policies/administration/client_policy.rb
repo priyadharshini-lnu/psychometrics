@@ -9,11 +9,12 @@ module Administration
     end
 
     def create?
-      super || if record.is_a? Client
-        record.allowed_data?(@user)
-      else
-        @user.has_grant?(:clients, :manage)
-      end
+      super ||
+          if record.is_a? Client
+            record.allowed_data?(@user)
+          else
+            @user.has_grant?(:clients, :manage)
+          end
     end
 
     def projects?

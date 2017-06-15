@@ -187,8 +187,8 @@ class Client < ApplicationRecord
     return 'Sub Campaign' if sub_campaign?
   end
 
-  def allowed_data?(operator)
-    return admin_allowed_data? if operator.is?(:admin)
+  def allowed_data?(user)
+    return admin_allowed_data? if user.is?(:admin)
     true
   end
 
@@ -217,7 +217,6 @@ class Client < ApplicationRecord
   end
 
   def admin_allowed_data?
-    return false if root?
-    true
+    !root?
   end
 end
