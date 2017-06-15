@@ -51,7 +51,7 @@ class Client < ApplicationRecord
 
   # Users and Memberships
   has_one :retail_user, class_name: 'User'
-  has_many :memberships, dependent: :destroy
+  has_many :memberships # on delete cascade
   has_many :users, through: :memberships
   has_many :admins, through: :admin_memberships, source: :user, class_name: 'User'
   has_many :admin_memberships, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
