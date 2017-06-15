@@ -30,10 +30,18 @@ class AssessmentDecorator < BaseDecorator
     h.link_to(url, url)
   end
 
+  def client_name
+    if object.owner_id
+      helpers.link_to(object.owner.name, h.administration_client_projects_path(object.owner_id))
+    else
+      I18n.t('administration.tte')
+    end
+  end
+
   def clients_names
     object.clients.
-      map { |client| client.decorate.display_name }.
-      join(', ')
+        map { |client| client.decorate.display_name }.
+        join(', ')
   end
 
   # todo refactor db, add completion
@@ -49,6 +57,6 @@ class AssessmentDecorator < BaseDecorator
   def clients_by_report_families
     # todo add end_level column
     client_ids = Client.by_report_family_assessment(object).enabled.roots.ids
-    h.policy_scope(Client).end_level_of(client_ids).map {|c| [c.id, c.decorate.display_name_with_parent]}
+    h.policy_scope(Client).end_level_of(client_ids).map { |c| [c.id, c.decorate.display_name_with_parent] }
   end
 end
