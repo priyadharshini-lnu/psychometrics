@@ -25,7 +25,7 @@ module Administration
 
       def create
         @resource = @resource_class.new(create_resource_params)
-        resource.client = client
+        resource.client = policy_scope(Client).where(id: client.id).take
         resource.role = Membership::ADMIN_ROLE if params[:admin]
 
         user = User.find_by(email: resource.user&.email)
