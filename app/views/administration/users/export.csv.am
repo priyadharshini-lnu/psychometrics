@@ -18,7 +18,7 @@ csv << [
           resource.last_name,
           resource.email,
           resource.decorate.clients_name,
-          @resource_class.human_role(resource.role),
+          resource.decorate.role,
           resource.decorate.created_at
          ]
   hris_keys.each do |key|

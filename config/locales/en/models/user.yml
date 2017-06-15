@@ -23,6 +23,9 @@ en:
           superadmin: Super Admin
           super_admin: Super Admin
           regular: Regular
+          admins:
+            superadmin: Super Admin
+            regular: Client Admin
         types:
           identified: Identified Users
           anonymous: Anonymous Users

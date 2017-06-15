@@ -190,10 +190,6 @@ class User < ApplicationRecord
       %w(all users administration)
     end
 
-    def human_role(role)
-      I18n.t("activerecord.attributes.user.roles.#{USER_ROLES.key(role)}")
-    end
-
     # Try find User in Subdomain scope
     def find_for_authentication(warden_conditions)
       # Cut from Subdomain part of expected Subdomain

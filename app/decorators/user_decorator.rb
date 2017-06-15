@@ -9,7 +9,11 @@ class UserDecorator < BaseDecorator
   end
 
   def role
-    User.human_role(object.role)
+    I18n.t("activerecord.attributes.user.roles.#{User::USER_ROLES.key(object.role)}")
+  end
+
+  def admin_role
+    I18n.t("activerecord.attributes.user.roles.admins.#{User::USER_ROLES.key(object.role)}")
   end
 
   def change_password_confirmation
