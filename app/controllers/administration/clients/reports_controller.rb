@@ -1,6 +1,7 @@
 module Administration
   module Clients
     class ReportsController < Administration::ReportsController
+      include Administration::Clients
       append_before_action :init_breadcrumbs
 
       def index

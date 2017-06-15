@@ -1,6 +1,7 @@
 module Administration
   module Clients
     class StatisticsController < Administration::BaseController
+      include Administration::Clients
       before_action :set_resource_class
       append_before_action :pundit_authorize, :init_breadcrumbs
 

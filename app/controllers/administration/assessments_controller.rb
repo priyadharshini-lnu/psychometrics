@@ -1,5 +1,4 @@
 class Administration::AssessmentsController < Administration::BaseController
-  prepend OwnerCheck
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy, :preview, :export]
   before_action :skip_authorization, only: [:sidebar]

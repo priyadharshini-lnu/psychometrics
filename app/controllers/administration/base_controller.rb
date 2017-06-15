@@ -1,13 +1,8 @@
 class Administration::BaseController < ActionController::Base
-  helper_method :i18n
-
-  # Authorisation flow
-  #
   include Pundit
-  ## Prepend :administration namespace to policy
-  include Administration::Policies
   include Authenticate
   include SetLocale
+  include Administration::Policies
   include Administration::Helpers
 
   # Authentication admin
@@ -21,12 +16,7 @@ class Administration::BaseController < ActionController::Base
   protect_from_forgery with: :exception
   add_flash_types :notice, :error, :success
 
-  # Custom layout for administration panel
   layout 'administration'
-
-  def i18n
-    nil
-  end
 
   private
 

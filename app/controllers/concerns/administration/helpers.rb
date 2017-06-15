@@ -3,7 +3,12 @@ module Administration
     extend ActiveSupport::Concern
 
     included do
+      helper_method :i18n
       helper_method :client, :project, :campaign, :resource, :project_membership, :membership
+    end
+
+    def i18n
+      nil
     end
 
     def client

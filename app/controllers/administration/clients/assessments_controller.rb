@@ -1,6 +1,7 @@
 module Administration
   module Clients
     class AssessmentsController < Administration::BaseController
+      include Administration::Clients
       prepend_before_action :set_resource_class
       before_action :pundit_authorize
       before_action :init_breadcrumbs

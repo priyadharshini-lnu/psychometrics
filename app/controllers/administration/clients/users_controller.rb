@@ -1,6 +1,7 @@
 module Administration
   module Clients
     class UsersController < Administration::BaseController
+      include Administration::Clients
       prepend_before_action :set_resource_class
       before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof, :reset_password]
       before_action :skip_authorization, only: [:sidebar]
