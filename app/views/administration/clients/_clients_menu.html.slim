@@ -1,4 +1,6 @@
 .btn-group role="group"
   = link_to 'Projects', administration_client_projects_path(client), class: "btn btn-default #{'active' if current_page?(controller: 'projects',action: :index)}"
-  = link_to 'Campaigns', administration_client_campaigns_path(client), class: "btn btn-default #{'active' if current_page?(controller: 'campaigns',action: :index)}"
-  = link_to 'Sub Campaigns', administration_client_sub_campaigns_path(client), class: "btn btn-default #{'active' if current_page?(controller: 'sub_campaigns',action: :index)}"
+  - if client.campaigns.any?
+    = link_to 'Campaigns', administration_client_campaigns_path(client), class: "btn btn-default #{'active' if current_page?(controller: 'campaigns',action: :index)}"
+  - if client.sub_campaigns.any?
+    = link_to 'Sub Campaigns', administration_client_sub_campaigns_path(client), class: "btn btn-default #{'active' if current_page?(controller: 'sub_campaigns',action: :index)}"
