@@ -1,20 +1,20 @@
 module Administration
   class MembershipPolicy < Administration::UserPolicy
-    CREATE_PARAMETERS = [:first_name, :last_name, :email, :parent_id].freeze
-    RECORD_PARAMETERS = [:parent_id, :role, hris_data: [:key, :value]].freeze
-    USER_PARAMETERS = [:id, :first_name, :last_name, :email, :disabled, :role].freeze
+    CREATE_PARAMETERS = [:parent_id, :role].freeze
+    UPDATE_PARAMETERS = [:parent_id, :role, hris_data: [:key, :value]].freeze
+    USER_PARAMETERS = [:id, :first_name, :last_name, :email].freeze
     GRANT_PARAMETERS = [grants: [
-      norms: [:view, :manage],
-      dimensions: [:view, :manage],
-      clients: [:view, :manage, :design],
-      assessments: [:view, :manage, :assign, :export, :import],
-      translations: [:export, :import],
-      reports: [:view, :manage],
-      questions: [:view, :manage],
-      libraries: [:view, :manage],
-      communications: [:view, :manage],
-      projects: [:view, :manage],
-      assigns: [:view]
+        norms: [:view, :manage],
+        dimensions: [:view, :manage],
+        clients: [:view, :manage, :design],
+        assessments: [:view, :manage, :assign, :export, :import],
+        translations: [:export, :import],
+        reports: [:view, :manage],
+        questions: [:view, :manage],
+        libraries: [:view, :manage],
+        communications: [:view, :manage],
+        projects: [:view, :manage],
+        assigns: [:view]
     ]].freeze
 
     def create?
@@ -23,7 +23,7 @@ module Administration
 
     def permitted_attributes_for_create
       if @user.is?(:superadmin)
-        CREATE_PARAMETERS + [user_attributes: [GRANT_PARAMETERS]]
+        CREATE_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
       else
         CREATE_PARAMETERS
       end
@@ -31,9 +31,9 @@ module Administration
 
     def permitted_attributes_for_update
       if @user.is?(:superadmin) && @record.user.is?(:admin)
-        RECORD_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
+        UPDATE_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
       else
-        RECORD_PARAMETERS + [user_attributes: [USER_PARAMETERS]]
+        UPDATE_PARAMETERS + [user_attributes: [USER_PARAMETERS]]
       end
     end
 

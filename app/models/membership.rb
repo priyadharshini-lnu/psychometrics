@@ -18,8 +18,6 @@
 #
 
 class Membership < ApplicationRecord
-  include Userable
-
   # Roles constant
   MEMBERSHIP_ROLES = [
       ADMIN_ROLE = 'admin'.freeze,
@@ -43,7 +41,7 @@ class Membership < ApplicationRecord
   has_many :assigns, inverse_of: :membership # on delete cascade
   has_many :reports, through: :assigns
   has_many :assessments, through: :assigns
-  has_many :communication_emails, dependent: :destroy, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail'  # on delete cascade
+  has_many :communication_emails, dependent: :destroy, inverse_of: :membership, foreign_key: :membership_id, class_name: 'CommunicationEmail' # on delete cascade
   has_many :orders, inverse_of: :membership, class_name: 'Ecommerce::Order' # on delete cascade
   has_many :clients_memberships, foreign_key: :project_membership_id, class_name: 'Membership' # on delete cascade
   has_many :clients_assigns, through: :clients_memberships, source: :assigns, class_name: 'Assign'
@@ -53,8 +51,6 @@ class Membership < ApplicationRecord
   validates :client, :user, presence: true
   validates :client_id, uniqueness: { scope: :user_id }
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
-
-  before_validation :ensure_user, on: :create, if: proc { user.nil? }
 
   before_save :set_project_membership, if: 'client.end_level?'
   after_destroy :clear_project_membership, if: 'client.end_level?'
@@ -108,14 +104,6 @@ class Membership < ApplicationRecord
 
   def scope
     SCOPES[role]
-  end
-
-  # Ensure that Membership has User record
-  #   Else initialize new User with specified first and last names
-  def ensure_user
-    user_grants = user&.grants
-    self.user = User.find_or_initialize_by(email: email)
-    user.assign_attributes(first_name: first_name, last_name: last_name, grants: user_grants, create_by_invite: true) if user.new_record?
   end
 
   # return true for new or overuse (:yti(:eti)) combinations

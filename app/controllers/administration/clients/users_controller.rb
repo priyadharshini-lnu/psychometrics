@@ -26,19 +26,21 @@ module Administration
       def create
         @resource = @resource_class.new(create_resource_params)
         resource.client = client
-        if client.tenancy?
-          resource.client = project
-          resource.role = Membership::ADMIN_ROLE
+        resource.role = Membership::ADMIN_ROLE if params[:admin]
+
+        user = User.find_by(email: resource.user&.email)
+        if user
+          resource.user = user
+          resource.user.assign_attributes(create_resource_params[:user_attributes])
         end
+
+        resource.user.tap do |u|
+          u.create_by_invite = true
+          u.created_by_id = current_user.id
+          u.modified_by_id = current_user.id
+        end
+
         respond_to do |format|
-          if resource.user
-            resource.user.created_by_id = current_user.id
-            resource.user.modified_by_id = current_user.id
-            resource.user.create_by_invite = true
-            resource.user.email = resource.email
-            resource.user.first_name = resource.first_name
-            resource.user.last_name = resource.last_name
-          end
           if resource.save
             resource.user.invite!(current_user, client.id)
             format.js
@@ -49,9 +51,9 @@ module Administration
       end
 
       def assign_multiple
-        if client.tenancy?
+        if client.project?
           begin
-            project.admin_ids = client.projects_admins.distinct.where(id: params[:admin_ids]).ids
+            client.admin_ids = client.root.projects_admins.where(id: params[:admin_ids]).distinct.ids
           rescue => e
             render :new, locals: { is_new: false } and return
           end
@@ -101,10 +103,10 @@ module Administration
       def spoof
         bypass_sign_in(@resource.user)
         redirect_url = if @resource.user.is?(:superadmin, :admin)
-                         administration_root_path
-                       else
-                         root_url(domain: Settings.domain, subdomain: project.try(:subdomain))
-                       end
+          administration_root_path
+        else
+          root_url(domain: Settings.domain, subdomain: project.try(:subdomain))
+        end
         redirect_to(redirect_url, success: t('.successfully', name: @resource.decorate.display_name))
       end
 

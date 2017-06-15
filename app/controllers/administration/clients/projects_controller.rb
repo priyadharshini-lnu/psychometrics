@@ -4,7 +4,11 @@ module Administration
       before_action :ensure_client
 
       def index
-        @filter_form = policy_scope(@resource_class).projects_of(client.id).includes(:admins, :assigned_memberships, :license_usages, :completed_memberships).search(params[:q])
+        @filter_form = policy_scope(@resource_class)
+            .projects_of(client.id)
+            .includes(:admins, :assigned_memberships, :license_usages, :completed_memberships)
+            .order(:name)
+            .search(params[:q])
         @filter_form.disabled_true ||= false
         @resources = @filter_form.result.page(params[:page])
 

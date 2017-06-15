@@ -25,8 +25,11 @@ class Administration::BaseController < ActionController::Base
   end
 
   def authenticate_user!
-    redirect_to(new_administration_session_path) && return unless user_signed_in?
-    raise Pundit::NotAuthorizedError unless current_user.is?(:superadmin, :admin)
+    if user_signed_in?
+      sign_out(current_user) unless current_user.is?(:superadmin, :admin)
+    else
+      return redirect_to(new_administration_session_path)
+    end
     super
   end
 

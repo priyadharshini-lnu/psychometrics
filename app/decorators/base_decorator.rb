@@ -81,10 +81,10 @@ class BaseDecorator < Draper::Decorator
   end
 
   def creator_name
-    object.creator&.decorate&.display_name
+    h.content_tag(:span, object.creator&.decorate&.display_name, class: 'text-nowrap')
   end
 
   def modifier_name
-    object.modifier&.decorate&.display_name
+    h.content_tag(:span, object.modifier&.decorate&.display_name, class: 'text-nowrap')
   end
 end

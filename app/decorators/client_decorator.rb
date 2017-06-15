@@ -58,7 +58,7 @@ class ClientDecorator < BaseDecorator
 
   def client_admins
     client_admins_memberships.map do |membership|
-      h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(membership.client_id, membership)
+      h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(membership.client_id, membership), class: 'text-nowrap'
     end.join('<br>').html_safe
   end
 
@@ -85,7 +85,7 @@ class ClientDecorator < BaseDecorator
   end
 
   def reports_names
-    object.reports.map {|report| report.decorate.display_name}.join(', ').html_safe
+    object.reports.map {|report|  h.content_tag(:span, report.decorate.display_name, class: 'text-nowrap')}.join(', ').html_safe
   end
 
   def array_reports

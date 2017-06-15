@@ -11,10 +11,9 @@
 .radio-tabs
   #existing-inputs.tab class=('active' if !is_new)
     = form_tag(assign_multiple_administration_client_users_path, remote: true) do |f|
-      = hidden_field_tag :project_id, params[:project_id]
       .modal-body
         = select_tag :admin_ids,
-                options_for_select(client.projects_admins.distinct.map{ |u| [u.decorate.display_name, u.id] }, selected: project.admin_ids, disabled: project.admin_ids),
+                options_for_select(client.root.projects_admins.distinct.map{ |u| [u.decorate.display_name, u.id] }, selected: client.admin_ids),
                 class: 'form-control select',
                 multiple: true,
                 include_blank: false
@@ -27,10 +26,11 @@
       .modal-body
         = render_error_notification(resource)
         .form-inputs.clearfix
-          = hidden_field_tag :project_id, params[:project_id]
-          = f.input :email
-          = f.input :first_name
-          = f.input :last_name
+          = hidden_field_tag :admin, params[:admin]
+          = f.simple_fields_for :user, f.object.user || User.new  do |u|
+            = u.input :email
+            = u.input :first_name
+            = u.input :last_name
           = f.input :parent_id,
                   collection: client.memberships.join_user,
                   label_method: lambda { |u| u.decorate.display_name },

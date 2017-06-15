@@ -1,4 +1,4 @@
-- if client.tenancy?
+- if params[:admin]
   = render 'form_admin', local_assigns
 - else
   = render 'form_user'
