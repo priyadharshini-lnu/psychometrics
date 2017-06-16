@@ -1,7 +1,3 @@
-= stylesheet_link_tag :psychometrics_reports_vendor
-= stylesheet_link_tag :administration
-= stylesheet_link_tag :psychometrics_reports_preview
-
 #report_preview.html_preview[data-user="#{Reports::UserSerializer.new(@current_membership, assign: @assign).to_json}"
   data-results="#{(@results.map { |a| AssignSerializer.new(a, membership: @current_membership) }).to_json}"
   data-data="#{ReportSerializer.new(@resource, membership: @current_membership).to_json(include: '**')}"

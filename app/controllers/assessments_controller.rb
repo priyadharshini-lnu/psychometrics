@@ -21,7 +21,7 @@ class AssessmentsController < ApplicationController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:pass]
   append_before_action :pundit_authorize
-  layout 'users'
+  layout 'users_new'
 
   def pass
     @assign = Assign.find_by!(
@@ -40,7 +40,6 @@ class AssessmentsController < ApplicationController
     # reports_scope ||= @current_membership.clients_reports
     @reports = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.group_by(&:assessment_id)
     @resources = policy_scope(@resource_class).enabled.order(:id).all
-    render layout: 'users_new'
   end
 
   private

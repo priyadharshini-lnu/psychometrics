@@ -11,7 +11,7 @@ class ReportsController < ApplicationController
   # Turn on auth by token
   prepend_before_action :authenticate_by_token!
 
-  layout 'users'
+  layout 'users_new'
 
   def show
     @results = Assign.
