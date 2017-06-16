@@ -43,6 +43,7 @@ class ApplicationController < ActionController::Base
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
     @current_project = Client.enabled.find_by(subdomain: subdomain)
     return redirect_to :root unless @current_project
+    session[:subdomain] = subdomain
     @current_client = @current_project.client
   end
 
@@ -53,8 +54,12 @@ class ApplicationController < ActionController::Base
     @current_membership = current_user.memberships.join_user.find_by(client_id: @current_project)
     current_user.current_membership = @current_membership
     if !@current_membership && current_user
-      sign_out current_user
-      redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}")
+      if current_user.is?(:superadmin)
+        redirect_to ("#{request.protocol}#{Settings.domain}:#{request.port}")
+      else
+        sign_out current_user
+        redirect_to root_url
+      end
     end
   end
 end
