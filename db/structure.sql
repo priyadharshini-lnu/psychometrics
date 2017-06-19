@@ -299,39 +299,6 @@ ALTER SEQUENCE blocks_id_seq OWNED BY blocks.id;
 
 
 --
--- Name: client_reports; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE client_reports (
-    id integer NOT NULL,
-    client_id integer,
-    report_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    access_reports_at timestamp without time zone
-);
-
-
---
--- Name: client_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE client_reports_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: client_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE client_reports_id_seq OWNED BY client_reports.id;
-
-
---
 -- Name: clients; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1650,13 +1617,6 @@ ALTER TABLE ONLY blocks ALTER COLUMN id SET DEFAULT nextval('blocks_id_seq'::reg
 
 
 --
--- Name: client_reports id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY client_reports ALTER COLUMN id SET DEFAULT nextval('client_reports_id_seq'::regclass);
-
-
---
 -- Name: clients id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1948,14 +1908,6 @@ ALTER TABLE ONLY assigns_reports
 
 ALTER TABLE ONLY blocks
     ADD CONSTRAINT blocks_pkey PRIMARY KEY (id);
-
-
---
--- Name: client_reports client_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY client_reports
-    ADD CONSTRAINT client_reports_pkey PRIMARY KEY (id);
 
 
 --
@@ -2306,20 +2258,6 @@ CREATE INDEX index_blocks_on_assessment_id ON blocks USING btree (assessment_id)
 --
 
 CREATE INDEX index_blocks_on_template_id ON blocks USING btree (template_id);
-
-
---
--- Name: index_client_reports_on_client_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_client_reports_on_client_id ON client_reports USING btree (client_id);
-
-
---
--- Name: index_client_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_client_reports_on_report_id ON client_reports USING btree (report_id);
 
 
 --
@@ -2937,6 +2875,14 @@ ALTER TABLE ONLY ecommerce_orders
 
 
 --
+-- Name: clients fk_rails_5b49237ec1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY clients
+    ADD CONSTRAINT fk_rails_5b49237ec1 FOREIGN KEY (account_manager_id) REFERENCES users(id) ON DELETE SET NULL;
+
+
+--
 -- Name: questions fk_rails_6ec04ddf91; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3033,6 +2979,14 @@ ALTER TABLE ONLY assigns
 
 
 --
+-- Name: clients_reports fk_rails_d336b71b0b; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY clients_reports
+    ADD CONSTRAINT fk_rails_d336b71b0b FOREIGN KEY (report_id) REFERENCES reports(id) ON DELETE CASCADE;
+
+
+--
 -- Name: license_usages fk_rails_d35fd7791e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3046,6 +3000,14 @@ ALTER TABLE ONLY license_usages
 
 ALTER TABLE ONLY license_usages
     ADD CONSTRAINT fk_rails_d511a75463 FOREIGN KEY (assigns_report_id) REFERENCES assigns_reports(id) ON DELETE SET NULL;
+
+
+--
+-- Name: clients_reports fk_rails_d62c12c5d3; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY clients_reports
+    ADD CONSTRAINT fk_rails_d62c12c5d3 FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE;
 
 
 --
@@ -3094,6 +3056,14 @@ ALTER TABLE ONLY assessments
 
 ALTER TABLE ONLY clients
     ADD CONSTRAINT fk_rails_f28b175e74 FOREIGN KEY (modified_by_id) REFERENCES users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: clients fk_rails_f99d964d82; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY clients
+    ADD CONSTRAINT fk_rails_f99d964d82 FOREIGN KEY (project_manager_id) REFERENCES users(id) ON DELETE SET NULL;
 
 
 --
@@ -3243,6 +3213,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170613075933'),
 ('20170613095544'),
 ('20170613120241'),
-('20170613125409');
+('20170613125409'),
+('20170619080808'),
+('20170619091417'),
+('20170619095847');
 
 

@@ -29,7 +29,7 @@ class Report < ApplicationRecord
 
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
-  has_many :clients_reports, dependent: :destroy
+  has_many :clients_reports # on delete cascade
   has_many :clients, through: :clients_reports
   has_many :translations, as: :resource
   has_many :product_reports, dependent: :destroy
@@ -62,10 +62,6 @@ class Report < ApplicationRecord
   # Search entity by assessment
   scope :with_assessment, lambda { |assessment_id|
     where(assessment_id: assessment_id)
-  }
-
-  scope :assigned, lambda {
-    joins(:client_reports).where.not(client_reports: { client_id: nil })
   }
 
   scope :available_to_view, lambda {

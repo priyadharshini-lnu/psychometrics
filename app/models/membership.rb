@@ -90,7 +90,7 @@ class Membership < ApplicationRecord
     rescue InputError
     end
   }
-  scope :client_reports, ->(client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
+  scope :user_reports, -> (client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
   scope :assigned, -> { joins(:assigns).distinct }
   scope :completed, -> { where(assigns_completed: true).distinct }
   # Save HRIS data from form

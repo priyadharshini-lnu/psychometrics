@@ -62,7 +62,7 @@ class Client < ApplicationRecord
   has_many :projects_admins, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, through: :projects, source: :users
 
   # Reports
-  has_many :clients_reports, dependent: :destroy
+  has_many :clients_reports # on delete cascade
   has_many :reports, through: :clients_reports
   has_many :own_reports, class_name: 'Report', foreign_key: :owner_id
   has_many :available_reports, through: :report_families, source: :reports
@@ -81,10 +81,17 @@ class Client < ApplicationRecord
   has_many :licenses, inverse_of: :client, dependent: :destroy
   accepts_nested_attributes_for :licenses, allow_destroy: true
 
-  validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true, if: :project?
   validates :name, :type, presence: true
-  validate :subdomain_format_validation, if: :project?
-
+  with_options if: :root? do |root|
+    root.validates :number, :country, :year, presence: true
+    root.validates :account_manager, :project_manager, :report_families, presence: true, on: :create
+  end
+  with_options if: :project? do |project|
+    project.validates :number, presence: true
+    project.validates :reports, presence: true, on: :create
+    project.validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
+    project.validate :subdomain_format_validation
+  end
   before_validation :ensure_subdomain, if: :retail?
   before_update :sync_archived_with_descendants, if: -> { defined?(:archived_changed?) && :archived_changed? }
   after_commit :set_tte, if: 'parent_id.present?', on: [:create, :update]

@@ -13,7 +13,7 @@ module Licenses
       license = client.licenses.with_report_family(report.report_family_ids).take
 
       # Return if report has already assigned
-      report_ids = Membership.client_reports(client.descendants.ids).map(&:id)
+      report_ids = Membership.user_reports(client.descendants.ids).map(&:id)
       return if license && report_ids.include?(report.id)
 
       # Add error to Assign if tenancy has no enough licenses
