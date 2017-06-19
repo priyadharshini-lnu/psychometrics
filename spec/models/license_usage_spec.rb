@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe LicenseUsage, type: :model do
-  let!(:client) { create(:client) }
-  let!(:license) { create(:license, client: client, used_number: 0) }
+  let!(:tenancy) { create(:tenancy) }
+  let!(:license) { create(:license, client: tenancy, used_number: 0) }
 
   context 'After commit' do
     subject { build(:license_usage, license: license) }

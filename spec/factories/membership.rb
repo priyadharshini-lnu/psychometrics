@@ -34,10 +34,11 @@
 FactoryGirl.define do
   factory :membership do
     user
-    client
+    association :client, factory: :end_level
     role Membership::MEMBER_ROLE
 
     factory :admin_membership do
+      association :client, factory: :project
       role Membership::ADMIN_ROLE
     end
 

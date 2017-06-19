@@ -2,7 +2,7 @@ def logged_in_as(role_name, options = {})
   grants = options[:grants] || {}
   @current_user = case role_name
                   when :superadmin
-                    create(:user, role: User::SUPER_ADMIN_ROLE, grants: grants)
+                    create(:superadmin)
                   when :admin
                     create(:user, :with_membership_admin, grants: grants)
                   when :manager

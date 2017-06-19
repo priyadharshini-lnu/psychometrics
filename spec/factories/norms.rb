@@ -2,7 +2,7 @@ FactoryGirl.define do
   factory :norm do
     sequence(:name) { |n| "Norm #{n}" }
     dimension
-    association :owner, factory: :client
+    association :owner, factory: :tenancy
 
     transient do
       with_factors_norm true

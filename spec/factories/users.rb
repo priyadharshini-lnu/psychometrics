@@ -43,6 +43,12 @@ FactoryGirl.define do
       grants false
     end
 
+    factory :superadmin do
+      role User::SUPER_ADMIN_ROLE
+      first_name 'super'
+      last_name 'admin'
+    end
+
     trait :with_membership_admin do
       after(:create) do |user, _evaluator|
         create :membership, user: user, role: Membership::ADMIN_ROLE

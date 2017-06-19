@@ -33,9 +33,30 @@
 
 FactoryGirl.define do
   factory :client do
-    sequence(:name) { |i| "Client Tenancy #{i}" }
-    sequence(:subdomain) { |i| "test-#{i}" }
-    parent nil
+    sequence(:name) { |i| "Client #{i}" }
+
+    factory :tenancy do
+      parent nil
+      sequence(:name) { |i| "Client Tenancy #{i}" }
+      sequence(:number) { |i| "Number #{i}" }
+      year { Time.now.year }
+      country 'Barbados'
+      association :project_manager, factory: :superadmin
+      association :account_manager, factory: :superadmin
+      report_families { |tenancy| [tenancy.association(:report_family)] }
+    end
+
+    factory :project do
+      association :parent, factory: :tenancy
+      sequence(:name) { |i| "Project #{i}" }
+      sequence(:subdomain) { |i| "test-#{i}" }
+      sequence(:number) { |i| "Number #{i}" }
+      reports { |project| [project.association(:report, report_families: [project.root.report_families.take] )] }
+    end
+
+    factory :end_level do
+      association :parent, factory: :project
+    end
 
     # TODO: remove
     transient do

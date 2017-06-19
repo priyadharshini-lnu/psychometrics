@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 RSpec.describe License, type: :model do
-  let!(:client) { create(:client, no_license: true) }
-  let!(:license) { create(:license, client: client) }
+  let!(:tenancy) { create(:tenancy, no_license: true) }
+  let!(:license) { create(:license, client: tenancy) }
 
   context '#used_overuse_number' do
     it 'returns zero' do
