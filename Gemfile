@@ -81,7 +81,7 @@ gem 'redis'
 gem 'ckeditor'
 
 ### dependencies for XLS export (via templates)
-gem 'axlsx', github: 'randym/axlsx', ref: '7026a84'
+gem 'axlsx', github: 'randym/axlsx', ref: 'c8ac844'
 gem 'axlsx_rails', '~> 0.4.0'
 gem 'roo', '~> 2.4.0'
 

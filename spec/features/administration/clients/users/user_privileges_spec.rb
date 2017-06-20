@@ -44,7 +44,7 @@ feature 'User Privileges', clean: false do
 
     context 'without privileges' do
       scenario 'I can not see entities' do
-        visit administration_root_path
+        visit administration_root_url
         expect(page).to have_no_css('span.xn-text', text: t('administration.navigation.norms'))
         expect(page).to have_no_css('span.xn-text', text: t('administration.navigation.dimensions'))
       end

@@ -74,9 +74,7 @@ RSpec.configure do |config|
     if self.class.metadata[:clean] == false
       example.run
     else
-      DatabaseCleaner.cleaning do
-        example.run
-      end
+      DatabaseCleaner.cleaning { example.run }
     end
   end
 
@@ -87,6 +85,7 @@ RSpec.configure do |config|
     if ENV['CIRCLECI'] && example.example_group.include?(Capybara::DSL) && Capybara.page.current_url != '' && example.exception
       save_timestamped_screenshot(Capybara.page, example.metadata)
     end
+    page.driver.quit if example.metadata[:js]
   end
 
   def save_timestamped_screenshot(page, meta)
