@@ -101,13 +101,16 @@ module Administration
 
       # Spoof as user
       def spoof
-        bypass_sign_in(@resource.user)
-        redirect_url = if @resource.user.is?(:superadmin, :admin)
-          administration_root_path
+        if @resource.user.is?(:superadmin, :admin)
+          sign_in(@resource.user)
         else
-          root_url(domain: Settings.domain, subdomain: project.try(:subdomain))
+          spoof_token = SecureRandom.urlsafe_base64(64)
+          @resource.user.update_column(:spoof_token, spoof_token)
+          redirect_url = root_url(domain: Settings.domain, subdomain: project.try(:subdomain), spoof_token: spoof_token)
         end
-        redirect_to(redirect_url, success: t('.successfully', name: @resource.decorate.display_name))
+        redirect_url ||= administration_root_path
+        flash.now[:success] = t('.successfully', name: @resource.decorate.display_name)
+        redirect_to redirect_url
       end
 
       # Change resources's status to active/disabled

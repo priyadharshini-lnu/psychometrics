@@ -31,6 +31,14 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def authenticate_user!
+    if params[:spoof_token]
+      user = User.by_spoof_token(params[:spoof_token])
+      sign_in(user) if user
+    end
+    super
+  end
+
   def user_not_authorized(e)
     render text: 'You does not have access to this page'
   end
@@ -42,8 +50,7 @@ class ApplicationController < ActionController::Base
     subdomain = request.subdomain
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
     @current_project = Client.enabled.find_by(subdomain: subdomain)
-    return redirect_to :root unless @current_project
-    session[:subdomain] = subdomain
+    return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}") unless @current_project
     @current_client = @current_project.client
   end
 

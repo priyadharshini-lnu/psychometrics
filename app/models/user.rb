@@ -179,6 +179,12 @@ class User < ApplicationRecord
   end
 
   class << self
+    def by_spoof_token(token)
+      return nil if token.blank?
+      user = User.where(spoof_token: token).take
+      user.update_column(:spoof_token, nil) if user
+      user
+    end
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
       [:hris_data_cont, :role_scope_in]

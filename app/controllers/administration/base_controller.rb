@@ -26,9 +26,7 @@ class Administration::BaseController < ActionController::Base
 
   def authenticate_user!
     if user_signed_in?
-      redirect_to root_url(subdomain: session[:subdomain]) unless current_user.is?(:superadmin, :admin)
-    else
-      return redirect_to(new_administration_session_path)
+      sign_out current_user unless current_user.is?(:superadmin, :admin)
     end
     super
   end

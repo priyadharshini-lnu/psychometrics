@@ -1551,7 +1551,8 @@ CREATE TABLE users (
     is_anonym boolean DEFAULT false,
     grants jsonb,
     created_by_id integer,
-    modified_by_id integer
+    modified_by_id integer,
+    spoof_token character varying
 );
 
 
@@ -3216,6 +3217,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170613125409'),
 ('20170619080808'),
 ('20170619091417'),
-('20170619095847');
+('20170619095847'),
+('20170626093642');
 
 
