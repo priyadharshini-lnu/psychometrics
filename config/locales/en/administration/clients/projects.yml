@@ -8,6 +8,7 @@ en:
             campaign: 'Campaign End Level'
             sub_campaign: 'Sub-Campaign End Level'
         list: &list
+          name: Project name
           admin: Client Admin
           project_admin: Client Project Manager
           tte_admin: TTE Project Manager

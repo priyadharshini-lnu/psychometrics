@@ -62,7 +62,7 @@ module AdministrationHelper
         tail = ''
       end
     end
-    sort_link(filter_form, name, resource_class.human_attribute_name(name) + tail)
+    sort_link(filter_form, name, t(".#{name}") + tail)
   end
 
   def render_error_notification(resource)

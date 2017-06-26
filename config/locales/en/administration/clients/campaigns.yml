@@ -14,6 +14,7 @@ en:
           new: Add
           export: Export
         list: &list
+          name: Campaign Name
           header:
             campaigns: Campaigns
             sub_campaign: Sub-Campaigns
