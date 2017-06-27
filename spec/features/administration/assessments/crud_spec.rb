@@ -17,7 +17,8 @@ feature 'CRUD Assessment' do
       visit '/administration/assessments'
       find("#assessment_#{assessment.id} .edit").click
       fill_in 'resource_name', with: 'My updated assessment'
-      click_on 'Update'
+      click_button 'Update'
+      wait_for_ajax
       expect(page).to have_content t('administration.assessments.update.successfully', name: 'My updated assessment')
       expect(page).to have_css('#assessments_list td a', text: 'My updated assessment')
     end
