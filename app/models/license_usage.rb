@@ -16,9 +16,9 @@ class LicenseUsage < ApplicationRecord
 
   after_commit :increase_license_used_number, on: :create
 
-  # fix in cbd6a0e
   def increase_license_used_number
     license.increment!(:used_number)
-    Licenses::OveruseJob.perform_later(license.id) if license.used_overuse_number == 1
+    # fix in cbd6a0e
+    # Licenses::OveruseJob.perform_later(license.id) if license.used_overuse_number == 1
   end
 end

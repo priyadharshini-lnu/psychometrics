@@ -13,25 +13,21 @@ module Administration
 
       def create
         init_assign_form
-        @reports = policy_scope(Report).for_clients(@clients.map(&:id)).where(id: @assign_form.report_ids)
+        @reports = policy_scope(Report).for_clients(@clients.map(&:id)).where(id: @assign_form.report_ids).distinct
 
-        ActiveRecord::Base.transaction do
-          # Update or Create assigns
-          policy_scope(Membership).where(id: @assign_form.membership_ids).find_each do |membership|
-            assign = membership.assigns.find_or_initialize_by(assessment_id: @assessment.id)
-            assign.role = :member
-            assign.role = :manager if @assign_form.manager_ids.include?(membership.id.to_s)
-            @reports.each do |report|
-              assigns_report = assign.assigns_reports.find_or_initialize_by(report_id: report.id)
-              assigns_report.access_reports_at = @assign_form.access_reports_at
-            end
+        # Update or Create assigns
+        policy_scope(Membership).where(id: @assign_form.membership_ids).find_each do |membership|
+          assign = membership.assigns.find_or_initialize_by(assessment_id: @assessment.id)
+          assign.role = :member
+          assign.role = :manager if @assign_form.manager_ids.include?(membership.id.to_s)
+          @reports.each do |report|
+            assigns_report = assign.assigns_reports.find_or_initialize_by(report_id: report.id)
+            assigns_report.access_reports_at = @assign_form.access_reports_at
+          end
+          next if assign.save
 
-            next if assign.save
-
-            assign.errors.details.values.flatten.each do |message|
-              @assign_form.errors.add(:base, message[:error])
-            end
-            raise ActiveRecord::Rollback
+          assign.errors.details.values.flatten.each do |message|
+            @assign_form.errors.add(:base, message[:error])
           end
         end
 
@@ -84,11 +80,11 @@ module Administration
         @assign_form = Administration::Assessments::AssignForm.new(assign_params)
         @clients = policy_scope(::Client).where(id: @assign_form.client_ids)
         @managers = policy_scope(::Membership).
-                    select('memberships.*', 'clients.name as client_name').
-                    joins(:client).
-                    join_user.
-                    where(client_id: @assign_form.client_ids, role: Membership::MANAGER_ROLE).
-                    group_by(&:client_name)
+            select('memberships.*', 'clients.name as client_name').
+            joins(:client).
+            join_user.
+            where(client_id: @assign_form.client_ids, role: Membership::MANAGER_ROLE).
+            group_by(&:client_name)
         @filter_form = Membership.search(client_id_in: @clients.map(&:id))
         @filter_form.id_not_in = @assign_form.user_ids
         @filter_form.id_in = @assign_form.user_ids

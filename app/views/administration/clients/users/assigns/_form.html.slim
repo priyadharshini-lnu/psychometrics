@@ -1,4 +1,4 @@
-= simple_form_for(@resource, as: :resource, url: { action: :create }, remote: true) do |f|
+= simple_form_for(@resource, as: :resource, url: { action: :create }, remote: true, method: :post) do |f|
   .modal-body
     = render_error_notification @resource
     .form-inputs.clearfix

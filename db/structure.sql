@@ -2249,6 +2249,13 @@ CREATE INDEX index_assigns_reports_on_report_id ON assigns_reports USING btree (
 
 
 --
+-- Name: index_assigns_reports_on_report_id_and_assign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_assigns_reports_on_report_id_and_assign_id ON assigns_reports USING btree (report_id, assign_id);
+
+
+--
 -- Name: index_blocks_on_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3227,6 +3234,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170619091417'),
 ('20170619095847'),
 ('20170626093642'),
-('20170627080609');
+('20170627080609'),
+('20170627115325');
 
 

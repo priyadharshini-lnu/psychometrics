@@ -11,8 +11,8 @@ module Administration
           @filter_form = policy_scope(::Assign).where(id: membership.assign_ids).includes(:assessment).search(params[:q])
           @resources = @filter_form.result.page(params[:page])
           @reports = policy_scope(Report).
-                     ransack(clients_reports_client_id_eq: client.id).result.
-                     group_by(&:assessment_id)
+              ransack(clients_reports_client_id_eq: client.id).result.
+              group_by(&:assessment_id)
           respond_to do |format|
             format.html
             format.js { render :index, formats: [:js] }
@@ -25,9 +25,6 @@ module Administration
 
         def create
           @assessment = policy_scope(Assessment).find(resource_params[:assessment_id])
-          # Ensure that client tenancy has assigned assessment
-          #   Or create assign
-          # TODO: do we need it?
           client.assign_clients.find_or_create_by(assessment: @assessment)
 
           assigns_scope = membership.assigns
@@ -37,6 +34,9 @@ module Administration
           else
             resource.report_ids = resource_params[:report_ids]
           end
+        rescue ActiveRecord::RecordInvalid
+          resource.errors.add(:base, :has_no_enough_licenses) if resource.errors[:base].empty?
+        ensure
           respond_to do |format|
             format.js { render :new if resource.errors.any? }
           end
