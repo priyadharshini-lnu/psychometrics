@@ -31,11 +31,12 @@ module Anonym
     def create_anonym_user
       # Generate uniq anonym user email
       uniq_anonym_email = loop do
-        email = "anonym_#{Time.now.to_i}#{rand(10_000)}@example.com"
+        email = "anonym#{Time.now.to_i}#{rand(10_000)}@example.com"
         break email unless User.exists?(email: email)
       end
       # Create anonym user with membership
-      user = Users::Member.new({
+      user = User.new({
+        role: User::REGULAR_ROLE,
         first_name: 'Anonymous',
         last_name: 'User',
         email: uniq_anonym_email,

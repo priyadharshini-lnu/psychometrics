@@ -3,7 +3,7 @@ tr id=dom_id(resource)
   td = resource.decorate.created_at
   - if client.tenancy?
     td = resource.decorate.clients_names
-    td = resource.decorate.anonym_link_for(client)
+  td = resource.decorate.anonym_link_for(client)
   td.actions-cell
     - if policy(:assessment).export_results?
       .btn-group
