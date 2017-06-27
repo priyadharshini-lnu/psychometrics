@@ -17,7 +17,7 @@ module Administration
 
         def new
           @resource = @resource_class.new
-          @resource.parent = project
+          resource.parent = project
         end
 
         def export
@@ -33,7 +33,7 @@ module Administration
 
         def create
           @resource = @resource_class.new(resource_params)
-          @resource.parent = project
+          resource.parent = project
           super
         end
 

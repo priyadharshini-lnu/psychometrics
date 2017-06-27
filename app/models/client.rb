@@ -95,6 +95,7 @@ class Client < ApplicationRecord
   before_validation :ensure_subdomain, if: :retail?
   before_update :sync_archived_with_descendants, if: -> { defined?(:archived_changed?) && :archived_changed? }
   after_commit :set_tte, if: 'parent_id.present?', on: [:create, :update]
+  after_commit :set_end_level, if: 'parent_id.present?', on: [:create, :update]
 
   # Type of client.
   # Retail - is client who bought some product
@@ -109,7 +110,7 @@ class Client < ApplicationRecord
   scope :tenancies, -> { roots }
   scope :not_retails, -> { where.has { type.not_eq(:retail) } }
   scope :by_report_family_assessment, -> (assessment) { joins(:report_families).where(report_families: { id: assessment.report_family_ids }) }
-  scope :end_level_of, -> (ids) { where(applicable_level: 0, tte_id: ids) }
+  scope :end_level, -> { where(end_level: true) }
   scope :projects_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:project]) }
   scope :campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign]) }
@@ -159,11 +160,7 @@ class Client < ApplicationRecord
   end
 
   def deep_project?
-    project_level? && (campaign? || sub_campaign?)
-  end
-
-  def end_level?
-    prime_project? || deep_project?
+    (campaign? && project.campaign_level?) || (sub_campaign? && project.sub_campaign?)
   end
 
   def active?
@@ -221,6 +218,10 @@ class Client < ApplicationRecord
 
   def set_tte
     update_column(:tte_id, root.id)
+  end
+
+  def set_end_level
+    update_column(:end_level, true) if prime_project? || deep_project?
   end
 
   def admin_allowed_data?

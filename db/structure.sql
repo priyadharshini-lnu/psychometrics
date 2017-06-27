@@ -326,7 +326,8 @@ CREATE TABLE clients (
     created_by_id integer,
     modified_by_id integer,
     ancestry character varying,
-    ancestry_depth integer DEFAULT 0
+    ancestry_depth integer DEFAULT 0,
+    end_level boolean DEFAULT false
 );
 
 
@@ -2283,6 +2284,13 @@ CREATE INDEX index_clients_on_created_by_id ON clients USING btree (created_by_i
 
 
 --
+-- Name: index_clients_on_end_level; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_clients_on_end_level ON clients USING btree (end_level);
+
+
+--
 -- Name: index_clients_on_modified_by_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3218,6 +3226,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170619080808'),
 ('20170619091417'),
 ('20170619095847'),
-('20170626093642');
+('20170626093642'),
+('20170627080609');
 
 
