@@ -10,6 +10,10 @@ html.body-full-height
   body data-locale="#{I18n.locale}"
     = yield
 css:
+  body[data-locale="ar"] #psychometrics_preview,
+  body[data-locale="ar"] #report_preview {
+    direction: rtl;
+  }
   * {
     box-sizing: border-box;
   }
