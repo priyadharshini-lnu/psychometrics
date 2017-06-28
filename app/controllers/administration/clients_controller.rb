@@ -43,10 +43,11 @@ module Administration
     end
 
     def update
-      @resource.modifier = current_user
+      resource.modifier = current_user
+      resource.assign_attributes(resource_params)
       authorize resource
       respond_to do |format|
-        if @resource.update(resource_params)
+        if resource.save
           format.js
         else
           format.js { render :edit }

@@ -17,10 +17,11 @@
               = u.input :email
               = u.input :first_name
               = u.input :last_name
-            = f.input :role, as: :select, label: t('simple_form.labels.membership.role'),
-              collection: Membership::MEMBERSHIP_ROLES,
-              class: 'form-control select mll',
-              include_blank: false
+            - if f.object.scope == :user
+              = f.input :role, as: :select, label: t('simple_form.labels.membership.role'),
+                collection: [Membership::MANAGER_ROLE, Membership::MEMBER_ROLE],
+                class: 'form-control select mll',
+                include_blank: false
             = f.input :parent_id,
                       collection: f.object.decorate.managers_for_select,
                       label_method: lambda { |u| u.user.decorate.display_name },
@@ -34,7 +35,9 @@
                   = render partial: 'grants', locals: { u: u }
         .panel-footer
           .btn-group.pull-left
-            = link_to(t('administration.back'), url_for(:back), class: 'btn btn-info')
+            - back_path = admins_administration_client_users_path(client) if f.object.scope == :administration
+            - back_path ||= administration_client_users_path(client)
+            = link_to(t('administration.back'), back_path, class: 'btn btn-info')
           .btn-group.pull-right
             = f.button :submit, t('administration.update'), class: 'btn-info'
             = link_to t('administration.clear'), url_for, class: 'btn btn-default'

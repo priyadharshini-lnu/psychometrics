@@ -2,7 +2,8 @@ module Administration
   class MembershipPolicy < Administration::UserPolicy
     CREATE_PARAMETERS = [:parent_id, :role].freeze
     UPDATE_PARAMETERS = [:parent_id, :role, hris_data: [:key, :value]].freeze
-    USER_PARAMETERS = [:id, :first_name, :last_name, :email].freeze
+    USER_PARAMETERS = [:first_name, :last_name, :email].freeze
+    UPDATE_USER_PARAMETERS = [:id, USER_PARAMETERS].flatten.freeze
     GRANT_PARAMETERS = [grants: [
         norms: [:view, :manage],
         dimensions: [:view, :manage],
@@ -21,6 +22,10 @@ module Administration
       @user.is?(:superadmin, :admin)
     end
 
+    def admins?
+      @user.is?(:superadmin, :admin)
+    end
+
     def permitted_attributes_for_create
       if @user.is?(:superadmin)
         CREATE_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
@@ -31,15 +36,15 @@ module Administration
 
     def permitted_attributes_for_update
       if @user.is?(:superadmin) && @record.user.is?(:admin)
-        UPDATE_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
+        UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS, GRANT_PARAMETERS].flatten]
       else
-        UPDATE_PARAMETERS + [user_attributes: [USER_PARAMETERS]]
+        UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS]]
       end
     end
 
     def overview_assigns?
-      return true if @user.is? :superadmin
-      @user.has_grant?(:assigns, :view)
+      return false if record.scope == :administration
+      @user.is?(:superadmin) || @user.has_grant?(:assigns, :view)
     end
 
     class Scope < Administration::BasePolicy::Scope

@@ -9,7 +9,10 @@ module Administration
       append_before_action :pundit_authorize, except: [:sidebar]
 
       def index
-        @filter_form = policy_scope(@resource_class).includes(user: [:clients, :memberships]).join_user.search(params[:q])
+        @filter_form ||= policy_scope(@resource_class)
+                           .includes(user: [:clients, :memberships])
+                           .where.not(role: Membership::ADMIN_ROLE)
+                           .join_user.search(params[:q])
         @filter_form.client_id_in = client.id
         @resources = @filter_form.result.page(params[:page])
 
@@ -17,6 +20,15 @@ module Administration
           format.html
           format.js { render :index, formats: [:js] }
         end
+        add_breadcrumb t('.breadcrumb')
+      end
+
+      def admins
+        @filter_form = policy_scope(@resource_class)
+                           .includes(user: [:clients, :memberships])
+                           .where(role: Membership::ADMIN_ROLE)
+                           .join_user.search(params[:q])
+        index
       end
 
       def new
@@ -55,7 +67,7 @@ module Administration
           begin
             client.admin_ids = client.root.projects_admins.where(id: params[:admin_ids]).distinct.ids
           rescue => e
-            render :new, locals: { is_new: false } and return
+            render :error, locals: { message: e.message } and return
           end
         end
         render :create
@@ -63,7 +75,12 @@ module Administration
 
       # GET /administration/resources/1/edit
       def edit
-        add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
+        if resource.scope == :administration
+          add_breadcrumb t('administration.breadcrumbs.admins'), { action: :admins }
+        else
+          add_breadcrumb t('administration.breadcrumbs.users'), { action: :index }
+        end
+        add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
       end
 
       # PATCH/PUT /administration/resources/1
@@ -139,14 +156,14 @@ module Administration
       protected
 
       def init_breadcrumbs
-        add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-        add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
+        add_breadcrumb t('administration.breadcrumbs.home'), [:administration, :root]
+        add_breadcrumb t('administration.breadcrumbs.clients'), [:administration, :clients]
         unless client.retail?
           add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-          add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.prime_project?
+          add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) if client.has_children? || client.subtenancy?
           add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent) if client.sub_campaign?
         end
-        add_breadcrumb client.decorate.display_name, { action: :index }
+        add_breadcrumb client.decorate.display_name, { action: :index } if client.end_level?
       end
 
       def create_resource_params

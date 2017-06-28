@@ -2529,20 +2529,6 @@ CREATE INDEX index_memberships_on_assigns_count ON memberships USING btree (assi
 
 
 --
--- Name: index_memberships_on_client_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_memberships_on_client_id ON memberships USING btree (client_id);
-
-
---
--- Name: index_memberships_on_client_id_and_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_memberships_on_client_id_and_user_id ON memberships USING btree (client_id, user_id);
-
-
---
 -- Name: index_memberships_on_hris; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2550,10 +2536,10 @@ CREATE INDEX index_memberships_on_hris ON memberships USING gin (hris);
 
 
 --
--- Name: index_memberships_on_user_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_memberships_uniq; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_memberships_on_user_id ON memberships USING btree (user_id);
+CREATE UNIQUE INDEX index_memberships_uniq ON memberships USING btree (client_id, user_id, role);
 
 
 --
@@ -3235,6 +3221,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170619095847'),
 ('20170626093642'),
 ('20170627080609'),
-('20170627115325');
+('20170627115325'),
+('20170627145630');
 
 

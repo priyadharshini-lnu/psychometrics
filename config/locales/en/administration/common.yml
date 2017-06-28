@@ -36,6 +36,7 @@ en:
       psychometrics: Psychometrics
       home: Dashboard
       users: Users
+      admins: Admins
       users_add: Add New
       users_import: Import
       dimensions: Dimensions

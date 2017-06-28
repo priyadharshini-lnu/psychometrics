@@ -48,6 +48,8 @@ en:
           new: New Project
           copy: Copy Project
           design: Edit Design
+          view_licenses: View Licenses
+          admins: Admin Users
         new:
           header: 'New Project'
         edit:

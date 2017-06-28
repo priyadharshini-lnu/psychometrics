@@ -31,6 +31,7 @@ class Assign < ApplicationRecord
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
   validates :membership_id, :assessment_id, presence: true
+  validate :relevant_membership
 
   enum status: [:not_started, :in_progress, :completed]
   enum role: [:member, :manager, :admin]
@@ -164,6 +165,10 @@ class Assign < ApplicationRecord
   def clear_project_assign
     return if project_assign.nil? || project_membership.clients_assigns.pluck('assigns.assessment_id').include?(assessment_id)
     project_assign.destroy!
+  end
+
+  def relevant_membership
+    errors.add(:membership, 'Invalid') if membership.scope == :administration
   end
 
   class << self

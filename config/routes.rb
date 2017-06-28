@@ -70,6 +70,7 @@ Rails.application.routes.draw do
             get :spoof
           end
           collection do
+            get :admins
             get :export
             post :assign_multiple
           end

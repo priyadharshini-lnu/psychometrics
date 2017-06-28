@@ -1,4 +1,6 @@
 $(function(){
+  $(document).trigger('resize');
+
   //// Init Sidebars
   $('#sidebar').sidebar({side: 'right'});
 

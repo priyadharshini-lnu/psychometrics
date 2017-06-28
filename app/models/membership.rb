@@ -47,10 +47,10 @@ class Membership < ApplicationRecord
   has_many :clients_assigns, through: :clients_memberships, source: :assigns, class_name: 'Assign'
   has_many :clients_reports, through: :clients_assigns, source: :reports
 
-  validates :client, uniqueness: { scope: :user }
   validates :client, :user, presence: true
-  validates :client_id, uniqueness: { scope: :user_id }
+  validates :client_id, uniqueness: { scope: [:user_id, :role] }
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
+  validate :relevant_role
 
   before_save :set_project_membership, if: 'client.end_level?'
   after_destroy :clear_project_membership, if: 'client.end_level?'
@@ -139,6 +139,18 @@ class Membership < ApplicationRecord
   def clear_project_membership
     return if project_membership.nil? || project_membership.clients_memberships.any?
     project_membership.destroy!
+  end
+
+  def relevant_role
+    valid = case role
+              when ADMIN_ROLE
+                client.project?
+              when MANAGER_ROLE, MEMBER_ROLE
+                client.end_level? || project?
+              else
+                false
+            end
+    errors.add(:role, 'Invalid') unless valid
   end
 
   class << self
