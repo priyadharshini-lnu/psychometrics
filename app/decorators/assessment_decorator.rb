@@ -26,7 +26,7 @@ class AssessmentDecorator < BaseDecorator
     url = h.anonym_assessment_pass_url(client_id: hasids.encode(client.id),
                                        assessment_id: hasids.encode(object.id),
                                        domain: Settings.domain,
-                                       subdomain: client.subdomain)
+                                       subdomain: client.project.subdomain)
     h.link_to(url, url)
   end
 
