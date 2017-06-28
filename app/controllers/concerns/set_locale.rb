@@ -3,6 +3,12 @@ module SetLocale
 
   included do
     helper_method :user_locale
+    helper_method :user_locale_rtl?
+    append_before_action :set_locale
+  end
+
+  def set_locale
+    I18n.locale = user_locale
   end
 
   def user_locale
@@ -12,5 +18,9 @@ module SetLocale
       probably_locale = I18n.default_locale unless I18n.available_locales.include?(probably_locale&.to_sym)
       probably_locale&.to_s
     end
+  end
+
+  def user_locale_rtl?
+    user_locale == 'ar'
   end
 end
