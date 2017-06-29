@@ -904,11 +904,11 @@ CREATE TABLE memberships (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     is_retail boolean DEFAULT false,
-    role character varying DEFAULT 'member'::character varying,
     assigns_count integer DEFAULT 0,
     assigns_completed boolean DEFAULT false,
     project_membership_id integer,
-    ancestry character varying
+    ancestry character varying,
+    role integer DEFAULT 0 NOT NULL
 );
 
 
@@ -2536,13 +2536,6 @@ CREATE INDEX index_memberships_on_hris ON memberships USING gin (hris);
 
 
 --
--- Name: index_memberships_uniq; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_memberships_uniq ON memberships USING btree (client_id, user_id, role);
-
-
---
 -- Name: index_norms_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3222,6 +3215,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170626093642'),
 ('20170627080609'),
 ('20170627115325'),
-('20170627145630');
+('20170627145630'),
+('20170629130155');
 
 

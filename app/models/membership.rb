@@ -20,9 +20,9 @@
 class Membership < ApplicationRecord
   # Roles constant
   MEMBERSHIP_ROLES = [
-      ADMIN_ROLE = 'admin'.freeze,
+      MEMBER_ROLE = 'member'.freeze,
       MANAGER_ROLE = 'manager'.freeze,
-      MEMBER_ROLE = 'member'.freeze
+      ADMIN_ROLE = 'admin'.freeze,
   ].freeze
 
   SCOPES = {
@@ -31,6 +31,7 @@ class Membership < ApplicationRecord
       MEMBER_ROLE => :user
   }.freeze
 
+  enum role: MEMBERSHIP_ROLES
   delegate :is_anonym?, to: :user
 
   belongs_to :client, counter_cache: :users_count
