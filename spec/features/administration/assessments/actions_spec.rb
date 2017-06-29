@@ -1,8 +1,9 @@
 require 'rails_helper'
+include Features::Helpers::Assessments
 
 feature 'Actions Assessment' do
   given!(:assessment) { create(:assessment, name: 'Some Assessment') }
-  before { logged_in_as :superadmin }
+  before { enter_as :superadmin }
 
   context 'Resource List' do
     scenario 'Toggle Status' do

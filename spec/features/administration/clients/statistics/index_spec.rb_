@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Client Statistics' do
   feature 'Super Admin' do
     before(:each) do
-      logged_in_as :superadmin
+      enter_as :superadmin
     end
     given!(:client) { create(:client) }
     scenario 'Should see No Data Found message if there no any results and assigns' do
@@ -24,7 +24,7 @@ feature 'Client Statistics' do
 
   feature 'Client Admin' do
     before(:each) do
-      logged_in_as :admin, grants: { clients: { view: true }, assigns: { view: true } }
+      enter_as :admin, grants: { clients: { view: true }, assigns: { view: true } }
     end
     let(:client) { current_membership.client }
 

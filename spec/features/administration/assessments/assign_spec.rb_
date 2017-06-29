@@ -2,7 +2,7 @@
 feature 'Assign Assessment' do
   feature 'by SuperAdmin' do
     before(:each) do
-      logged_in_as :superadmin
+      enter_as :superadmin
     end
 
     given!(:assessment) { create(:assessment, :with_report) }
@@ -47,7 +47,7 @@ feature 'Assign Assessment' do
 
   feature 'by ClientAdmin' do
     before(:each) do
-      logged_in_as :admin, grants: { assessments: { view: true, assign: true } }
+      enter_as :admin, grants: { assessments: { view: true, assign: true } }
     end
 
     given!(:assessment) { create(:assessment, :with_report) }

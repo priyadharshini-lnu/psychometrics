@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Toggle Status in Factor' do
 
-  before(:each) { logged_in_as :superadmin }
+  before(:each) { enter_as :superadmin }
 
   given!(:dimension) { create(:dimension) }
   given!(:factor) { create(:factor, name: 'Drive', dimension: dimension) }

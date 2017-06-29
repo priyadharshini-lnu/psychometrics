@@ -1,8 +1,7 @@
-# This file is copied to spec/ when you run 'rails generate rspec:install'
 ENV['RAILS_ENV'] ||= 'test'
 require File.expand_path('../../config/environment', __FILE__)
-# Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
+
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
@@ -12,6 +11,7 @@ require 'selenium-webdriver'
 require 'features/helpers'
 
 ActiveRecord::Migration.maintain_test_schema!
+Psychometrics::Application.load_tasks
 
 RSpec.configure do |config|
   Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
@@ -81,11 +81,9 @@ RSpec.configure do |config|
   Capybara::Screenshot.autosave_on_failure = ENV['CIRCLECI'].nil? # skip for circleci artifacts
 
   config.after(:each) do |example|
-    # For CircleCI
     if ENV['CIRCLECI'] && example.example_group.include?(Capybara::DSL) && Capybara.page.current_url != '' && example.exception
       save_timestamped_screenshot(Capybara.page, example.metadata)
     end
-    page.driver.quit if example.metadata[:js]
   end
 
   def save_timestamped_screenshot(page, meta)

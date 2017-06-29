@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'CRUD Dimension' do
 
-  before(:each) { logged_in_as :superadmin }
+  before(:each) { enter_as :superadmin }
 
   scenario 'Create Dimension' do
     visit '/administration/dimensions'

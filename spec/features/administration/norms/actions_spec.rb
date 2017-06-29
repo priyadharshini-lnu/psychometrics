@@ -1,8 +1,9 @@
 require 'rails_helper'
+include Features::Helpers::Norms
 
 feature 'Actions Norm' do
   given!(:norm) { create(:norm, name: 'Some Norm') }
-  before { logged_in_as :superadmin }
+  before { enter_as :superadmin }
 
   context 'Resource List' do
     scenario 'Toggle Status' do

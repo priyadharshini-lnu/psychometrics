@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Norm Editor' do
   given!(:norm) { create(:norm, name: 'Some Norm') }
-  before { logged_in_as :superadmin }
+  before { enter_as :superadmin }
 
   scenario 'Edit factors' do
     visit '/administration/norms'

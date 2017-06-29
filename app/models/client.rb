@@ -160,7 +160,7 @@ class Client < ApplicationRecord
   end
 
   def deep_project?
-    (campaign? && project.campaign_level?) || (sub_campaign? && project.sub_campaign?)
+    (campaign? && project.campaign_level?) || (sub_campaign? && project.sub_campaign_level?)
   end
 
   def active?

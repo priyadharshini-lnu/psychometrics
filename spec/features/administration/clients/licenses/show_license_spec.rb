@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Show Usage Licenses for Client Tenancy' do
   before(:each) do
-    logged_in_as :superadmin
+    enter_as :superadmin
   end
 
   given!(:client) { create(:tenancy, no_license: true) }

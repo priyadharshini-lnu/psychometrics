@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'CRUD Factor' do
 
-  before(:each) { logged_in_as :superadmin }
+  before(:each) { enter_as :superadmin }
   given!(:dimension) { create :dimension }
 
   scenario 'Create Factor' do

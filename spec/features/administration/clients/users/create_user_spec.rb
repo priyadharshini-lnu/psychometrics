@@ -4,7 +4,7 @@ feature 'Create User' do
   given(:client) { create(:client) }
   given(:subclient) { create(:client, parent: client) }
 
-  before { logged_in_as :superadmin }
+  before { enter_as :superadmin }
 
   # TODO: fix
   scenario 'Memberships for client/subclient' do

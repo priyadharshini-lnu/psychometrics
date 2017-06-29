@@ -3,7 +3,7 @@ require 'rails_helper'
 feature 'Manage Licenses for Client Tenancy', js: true do
   feature 'Super Admin' do
     before(:each) do
-      logged_in_as :superadmin
+      enter_as :superadmin
     end
     given!(:client) { create(:client, no_license: true) }
     scenario 'SA should be able to manage license' do
@@ -73,7 +73,7 @@ feature 'Manage Licenses for Client Tenancy', js: true do
 
   feature 'Client Admin' do
     before(:each) do
-      logged_in_as :admin, grants: { clients: { view: true, manage: true, design: true } }
+      enter_as :admin, grants: { clients: { view: true, manage: true, design: true } }
     end
     scenario 'can\'t manage licenses' do
       # Open sidebar

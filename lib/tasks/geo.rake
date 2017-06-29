@@ -3,7 +3,8 @@ namespace :geo do
   task :import => :environment do
     Data::Geo.transaction do
       Data::Geo.delete_all
-      source_path = Rails.root.join('public', 'source', 'GeoLite2-City-Locations-en.csv')
+      source_path = Rails.root.join('public', 'source', 'GeoLite2-City-Locations-en_test.csv') if Rails.env == 'test'
+      source_path ||= Rails.root.join('public', 'source', 'GeoLite2-City-Locations-en.csv')
       source = Roo::CSV.new(source_path)
       datas = source.parse({
         country_code: /country_iso_code/,

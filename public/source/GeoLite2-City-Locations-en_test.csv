@@ -1,0 +1,15 @@
+geoname_id,locale_code,continent_code,continent_name,country_iso_code,country_name,subdivision_1_iso_code,subdivision_1_name,subdivision_2_iso_code,subdivision_2_name,city_name,metro_code,time_zone
+49518,en,AF,Africa,RW,Rwanda,,,,,,,Africa/Kigali
+57289,en,AF,Africa,SO,Somalia,WO,"Woqooyi Galbeed",,,Hargeysa,,Africa/Mogadishu
+71136,en,AS,Asia,YE,Yemen,HD,"Muhafazat Hadramawt",,,Sana',,Asia/Aden
+88319,en,AF,Africa,LY,Libya,BA,"Sha'biyat Banghazi",,,Benghazi,,Africa/Tripoli
+841395,en,EU,Europe,RU,Russia,STA,"Stavropol'skiy Kray",,,Solnechnodol'sk,,Europe/Moscow
+847579,en,EU,Europe,FI,Finland,18,Uusimaa,,,Vaesterskog,,Europe/Helsinki
+847634,en,EU,Europe,NO,Norway,20,"Finnmark Fylke",,,Rypefjord,,Europe/Oslo
+858785,en,EU,Europe,PL,Poland,LU,"Lublin Voivodeship",,,,,Europe/Warsaw
+858889,en,EU,Europe,MD,"Republic of Moldova",SN,"Unitatea Teritoriala din Stinga Nistrului",,,,,Europe/Chisinau
+864201,en,EU,Europe,LV,Latvia,026,"Dobeles Rajons",,,Gardene,,Europe/Riga
+864477,en,EU,Europe,LT,"Republic of Lithuania",KU,"Kaunas County",,,,,Europe/Vilnius
+864563,en,EU,Europe,BG,Bulgaria,28,"Oblast Yambol",,,,,Europe/Sofia
+879431,en,AF,Africa,ZW,Zimbabwe,MN,"Matabeleland North",,,"Victoria Falls",,Africa/Harare
+898905,en,AF,Africa,ZM,Zambia,01,"Western Province",,,Sesheke,,Africa/Lusaka

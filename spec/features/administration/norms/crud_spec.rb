@@ -1,8 +1,9 @@
 require 'rails_helper'
+include Features::Helpers::Norms
 
 feature 'CRUD Norm' do
   given!(:dimension) { create :dimension, name: 'Agile' }
-  before { logged_in_as :superadmin }
+  before { enter_as :superadmin }
 
   scenario 'Create Norm' do
     create_norm(name: 'My norm', dimension_name: 'Agile')

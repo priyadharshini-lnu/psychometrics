@@ -1,8 +1,9 @@
 require 'rails_helper'
+include Features::Helpers::Assessments
 
 feature 'CRUD Assessment' do
   given!(:dimension) { create :dimension, name: 'Agile' }
-  before { logged_in_as :superadmin }
+  before { enter_as :superadmin }
 
   scenario 'Create Assessment' do
     create_assessment(name: 'My assessment', dimension_name: 'Agile')

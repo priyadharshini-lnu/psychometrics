@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Copy Dimension' do
 
-  before(:each) { logged_in_as :superadmin }
+  before(:each) { enter_as :superadmin }
 
   given!(:dimension) { create(:dimension, name: 'New Dim') }
   scenario 'Copy Dimension' do

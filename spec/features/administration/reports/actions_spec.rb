@@ -1,8 +1,9 @@
 require 'rails_helper'
+include Features::Helpers::Reports
 
 feature 'Actions Report' do
   given!(:report) { create(:report, name: 'Some Report') }
-  before { logged_in_as :superadmin }
+  before { enter_as :superadmin }
 
   context 'Resource List' do
     scenario 'Toggle Status' do

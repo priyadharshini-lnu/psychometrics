@@ -18,7 +18,7 @@ feature 'User Privileges', clean: false do
 =begin
   context 'As SuperAdmin user' do
     before(:context) { reload_context }
-    before { logged_in_as :superadmin }
+    before { enter_as :superadmin }
 
     scenario 'I can see privileges tab for Admin user' do
       visit edit_administration_client_user_path(client, admin_membership)

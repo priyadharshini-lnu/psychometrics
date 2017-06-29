@@ -2,7 +2,7 @@ require 'rails_helper'
 
 feature 'Toggle Status in Dimension' do
 
-  before(:each) { logged_in_as :superadmin }
+  before(:each) { enter_as :superadmin }
 
   given!(:dimension) { create(:dimension, name: 'New Dim') }
   scenario 'Toggle Status in Dimension' do
