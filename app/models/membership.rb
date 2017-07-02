@@ -144,13 +144,13 @@ class Membership < ApplicationRecord
 
   def relevant_role
     valid = case role
-              when ADMIN_ROLE
-                client.project?
-              when MANAGER_ROLE, MEMBER_ROLE
-                client.end_level? || project?
-              else
-                false
-            end
+      when ADMIN_ROLE
+        client.project?
+      when MANAGER_ROLE, MEMBER_ROLE
+        client.end_level? || (project? && client.has_children?)
+      else
+        false
+    end
     errors.add(:role, 'Invalid') unless valid
   end
 

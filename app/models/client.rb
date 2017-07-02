@@ -131,10 +131,6 @@ class Client < ApplicationRecord
     self.subdomain = generate_subdomain if subdomain.blank?
   end
 
-  def child?
-    self.ancestry.present?
-  end
-
   def tenancy?
     root?
   end
