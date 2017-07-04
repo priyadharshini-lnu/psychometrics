@@ -32,6 +32,8 @@ en:
           create: Create
       create:
         successfully: User %{name} was successfully created.
+      admin_chosen:
+        successfully: Admin users was successfully updated.
       update:
         successfully: User %{name} was successfully updated.
       destroy:

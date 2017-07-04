@@ -147,7 +147,7 @@ class Membership < ApplicationRecord
       when ADMIN_ROLE
         client.project?
       when MANAGER_ROLE, MEMBER_ROLE
-        client.end_level? || (project? && client.has_children?)
+        client.end_level? || (project? && client.project?)
       else
         false
     end

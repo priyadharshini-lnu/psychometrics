@@ -46,34 +46,47 @@ FactoryGirl.define do
       report_families { |tenancy| [tenancy.association(:report_family)] }
     end
 
-    factory :project do
+    # applicable_levels
+    trait :project_level do
+      applicable_level :project
+    end
+
+    trait :campaign_level do
+      applicable_level :campaign
+    end
+
+    trait :sub_campaign_level do
+      applicable_level :sub_campaign
+    end
+
+    trait :_end_level do
+      end_level true
+    end
+
+    factory :project_base do
       association :parent, factory: :tenancy
       sequence(:name) { |i| "Project #{i}" }
       sequence(:subdomain) { |i| "test-#{i}" }
       sequence(:number) { |i| "Number #{i}" }
       reports { |project| [project.association(:report, report_families: [project.root.report_families.take])] }
+
+      factory :project, traits: [:project_level, :_end_level]
     end
 
-    factory :campaign do
-      association :parent, factory: :project
+
+    factory :campaign_base do
+      association :parent, factory: [:project_base, :sub_campaign_level]
       sequence(:name) { |i| "Campaign #{i}" }
     end
 
+    factory :campaign, parent: :campaign do
+      association :parent, factory: [:project_base, :campaign_level]
+      _end_level
+    end
+
     factory :sub_campaign do
-      association :parent, factory: :campaign
+      association :parent, factory: :campaign_base
       sequence(:name) { |i| "SubCampaign #{i}" }
-      end_level true
-    end
-
-    factory :project_end_level, parent: :project do
-      _end_level
-    end
-
-    factory :campaign_end_level, parent: :campaign do
-      _end_level
-    end
-
-    trait :_end_level do
       end_level true
     end
   end
