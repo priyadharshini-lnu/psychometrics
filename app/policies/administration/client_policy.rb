@@ -1,7 +1,7 @@
 module Administration
   class ClientPolicy < Administration::BasePolicy
     def index?
-      super || @user.has_grant?(:clients, :view)
+      @user.is?(:superadmin, :admin)
     end
 
     def manage_first_level?

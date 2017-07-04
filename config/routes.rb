@@ -4,7 +4,8 @@ Rails.application.routes.draw do
   # Administration panel
   #
   namespace :administration do
-    root to: 'home#index'
+    get 'dashboard', to: 'home#index'
+
     resource :profiles, only: [:update, :edit]
 
     scope module: :administrator do
@@ -281,6 +282,8 @@ Rails.application.routes.draw do
         patch :toggle_status
       end
     end
+
+    root to: 'clients#index'
   end
   #
   # END: Administration panel

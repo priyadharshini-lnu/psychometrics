@@ -69,10 +69,6 @@ table.table.grants-table
       td.text-nowrap
         label
           = check_box_tag 'resource[user_attributes][grants][clients][]',
-                  'view', u.object.has_grant?(:clients, :view)
-          i.fa.fa-eye title='View'
-        label
-          = check_box_tag 'resource[user_attributes][grants][clients][]',
                   'manage', u.object.has_grant?(:clients, :manage)
           i.fa.fa-pencil title='Manage'
         label
