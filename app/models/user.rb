@@ -61,14 +61,13 @@ class User < ApplicationRecord
   DEFAULT_ADMIN_GRANTS = {
       assessments: %w(view),
       reports: %w(view),
-      clients: %w(view),
       communications: %w(view manage)
   }.with_indifferent_access.freeze
 
   ADMIN_GRANTS = {
       norms: %w(view manage),
       dimensions: %w(view manage),
-      clients: %w(view manage design),
+      clients: %w(manage design),
       assessments: %w(view manage assign export import),
       translations: %w(export import),
       reports: %w(view manage),
