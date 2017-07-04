@@ -1,7 +1,6 @@
 .row.dashboard-holder
   .col-xs-12.col-md-8.col-md-offset-2
     h1.welcomeText Welcome to your dashboard, #{current_user.decorate.first_name}!
-    p.assessmentInstruction You currently have some unfinished assessments.
     - if @resources.present?
       - @resources.group_by(&:category).each do |category, resources|
         h3.assessmentTitles = t("activerecord.attributes.assessment.categories.#{category}")
