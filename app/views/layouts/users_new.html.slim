@@ -15,11 +15,9 @@ html style=("background-image: url('#{@current_project.background.url}');" if @c
       .container-fluid
         .row
           .col-xs-4.col-sm-4
-          /a href="index.html"
-              img src="images/clientLogo.png" class="img-responsive center-block clientLogo"
+            - if @current_project&.logo&.url
+              = link_to image_tag(@current_project.logo.url), root_path, class: 'clientLogo'
           .col-xs-8.col-sm-4.hidden-xs
-            h1.pageTitle
-              | \&nbsp;
           .col-sm-4
             .userNav
               ul.nav.navbar-nav.navbar-right
@@ -94,7 +92,7 @@ html style=("background-image: url('#{@current_project.background.url}');" if @c
                           i.fa.fa-angle-right
                 li
                   = link_to image_tag('homeIcon.png'), assessments_path
-    .banner
+    .banner style=("background-color: #{@current_project.background_color};" if @current_project&.background_color)
     .container-fluid.mainContent
       = yield
     footer.loginFooter.solid

@@ -103,8 +103,8 @@ footer img {
 a {
   color: #43ada5;
 }
-.clientLogo {
-}
+.clientLogo { height: 60px; display: inline-block; }
+.clientLogo img { max-height: 100%; max-width: 100%; }
 @media screen and (min-width: 481px) and (max-width: 767px) {
   .clientLogo {
     margin-top: 6px;
@@ -334,8 +334,8 @@ div.dashboardContent {
   background-color: #ebebeb;
   padding-bottom: 50px;
 }
-div.banner {
-  background: rgba(67, 173, 165, 0.7);
+.banner {
+  background-color: rgba(67, 173, 165, 0.7);
   height: 150px;
 }
 h1.welcomeText {

@@ -1,4 +1,5 @@
 //= require jquery_ujs
+//= require jquery.remotipart
 
 ///// START PLUGINS
 //= require bootstrap-sprockets
