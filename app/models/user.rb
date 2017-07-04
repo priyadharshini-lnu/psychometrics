@@ -59,11 +59,25 @@ class User < ApplicationRecord
   }.freeze
 
   DEFAULT_ADMIN_GRANTS = {
-      assessments: { view: true },
-      reports: { view: true },
-      clients: { view: true },
-      communications: { view: true, manage: true }
-  }.freeze
+      assessments: %w(view),
+      reports: %w(view),
+      clients: %w(view),
+      communications: %w(view manage)
+  }.with_indifferent_access.freeze
+
+  ADMIN_GRANTS = {
+      norms: %w(view manage),
+      dimensions: %w(view manage),
+      clients: %w(view manage design),
+      assessments: %w(view manage assign export import),
+      translations: %w(export import),
+      reports: %w(view manage),
+      questions: %w(view manage),
+      libraries: %w(view manage),
+      communications: %w(view manage),
+      projects: %w(view manage),
+      assigns: %w(view)
+  }.with_indifferent_access.freeze
 
   # Authentication
   devise :invitable, :database_authenticatable, :registerable,
@@ -154,10 +168,9 @@ class User < ApplicationRecord
     end
   end
 
-  def has_grant?(*args)
+  def has_grant?(scope, grant)
     return false if grants.nil?
-    args.map!(&:to_s)
-    grants.dig(*args).present?
+    !!grants[scope.to_s]&.index(grant.to_s)
   end
 
   def tte_own_reports_ids
@@ -174,8 +187,15 @@ class User < ApplicationRecord
   end
 
   def validate_grants
-    return if grants.nil? || grants.is_a?(Hash)
-    errors.add(:grants, :invalid)
+    return if grants.nil?
+    valid = grants.is_a?(Hash) && (grants.keys - ADMIN_GRANTS.keys).empty?
+    if valid
+      grants.each do |k, v|
+        valid = (v - ADMIN_GRANTS[k]).empty?
+        break unless valid
+      end
+    end
+    errors.add(:grants, :invalid) unless valid
   end
 
   class << self
@@ -185,6 +205,7 @@ class User < ApplicationRecord
       user.update_column(:spoof_token, nil) if user
       user
     end
+
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
       [:hris_data_cont, :role_scope_in]

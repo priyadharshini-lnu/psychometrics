@@ -1,7 +1,7 @@
 require 'rails_helper'
 include Features::Helpers::Clients
 
-feature 'Create Client' do
+feature 'CRUD Client' do
   given(:superadmin) { create(:superadmin) }
   given(:report_family) { create(:report_family) }
   given(:report) { create(:report, report_families: [report_family]) }

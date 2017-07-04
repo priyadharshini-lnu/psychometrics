@@ -51,17 +51,30 @@ FactoryGirl.define do
       sequence(:name) { |i| "Project #{i}" }
       sequence(:subdomain) { |i| "test-#{i}" }
       sequence(:number) { |i| "Number #{i}" }
-      reports { |project| [project.association(:report, report_families: [project.root.report_families.take] )] }
+      reports { |project| [project.association(:report, report_families: [project.root.report_families.take])] }
     end
 
-    factory :end_level do
+    factory :campaign do
       association :parent, factory: :project
+      sequence(:name) { |i| "Campaign #{i}" }
     end
 
-    # TODO: remove
-    transient do
-      no_license false
-      sub_clients_count false
+    factory :sub_campaign do
+      association :parent, factory: :campaign
+      sequence(:name) { |i| "SubCampaign #{i}" }
+      end_level true
+    end
+
+    factory :project_end_level, parent: :project do
+      _end_level
+    end
+
+    factory :campaign_end_level, parent: :campaign do
+      _end_level
+    end
+
+    trait :_end_level do
+      end_level true
     end
   end
 end

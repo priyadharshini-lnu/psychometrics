@@ -87,9 +87,12 @@ en:
     clients:
       users:
         <<: *USERS
-        admins:
-          breadcrumb: Admin Users
-          title: Admins
         index:
           breadcrumb: Users
           title: Users
+        admins:
+          breadcrumb: Admin Users
+          title: Admins
+        form_admin:
+          create_admin: Create Admin
+          choose_admin: Choose Admin

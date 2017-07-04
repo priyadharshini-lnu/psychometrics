@@ -93,7 +93,6 @@ class Client < ApplicationRecord
     project.validate :subdomain_format_validation
   end
   before_validation :ensure_subdomain, if: :retail?
-  before_update :sync_archived_with_descendants, if: -> { defined?(:archived_changed?) && :archived_changed? }
   after_commit :set_tte, if: 'parent_id.present?', on: [:create, :update]
   after_commit :set_end_level, if: 'parent_id.present?', on: [:create, :update]
 
@@ -180,25 +179,12 @@ class Client < ApplicationRecord
     nil
   end
 
-  def get_type
-    return 'Client' if tenancy?
-    return 'Project' if project?
-    return 'Campaign' if campaign?
-    return 'Sub Campaign' if sub_campaign?
-  end
-
   def allowed_data?(user)
     return admin_allowed_data? if user.is?(:admin)
     true
   end
 
   private
-
-  # If we arvhive client
-  #   Then we archive all descendants
-  def sync_archived_with_descendants
-    descendants.update_all(archived: archived) if defined?(archived)
-  end
 
   def generate_subdomain
     loop do

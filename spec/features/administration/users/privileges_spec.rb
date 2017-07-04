@@ -52,7 +52,7 @@ feature 'User Privileges', clean: false do
 
     context 'with privileges' do
       before(:all) do
-        @admin_user.grants = { norms: { view: true, manage: true }, dimensions: { view: true } }
+        @admin_user.grants = { norms: %w(view manage), dimensions: %w(view) }
         @admin_user.save!
       end
       before { login_as admin_user }

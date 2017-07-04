@@ -5,7 +5,7 @@ feature 'Show Usage Licenses for Client Tenancy' do
     enter_as :superadmin
   end
 
-  given!(:client) { create(:tenancy, no_license: true) }
+  given!(:client) { create(:tenancy) }
 
   scenario 'SA should be able to see usage licenses statistics' do
   end

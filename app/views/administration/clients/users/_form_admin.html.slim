@@ -3,11 +3,11 @@
     span.radio
       label[for="existing-user"]
         input#existing-user.radio_buttons.optional[type="radio" value="false" checked=!is_new name="new_admin" data-target="#existing-inputs"]
-        span Choose User
+        span= t('.choose_admin')
     span.radio
       label[for="new-user"]
         input#new-user.radio_buttons.optional[type="radio" value="true" checked=is_new name="new_admin" data-target="#new-user-inputs"]
-        span Create User
+        span= t('.create_admin')
 .radio-tabs
   #existing-inputs.tab class=('active' if !is_new)
     = form_tag(assign_multiple_administration_client_users_path, remote: true) do |f|

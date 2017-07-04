@@ -5,17 +5,17 @@ module Administration
     USER_PARAMETERS = [:first_name, :last_name, :email].freeze
     UPDATE_USER_PARAMETERS = [:id, USER_PARAMETERS].flatten.freeze
     GRANT_PARAMETERS = [grants: [
-        norms: [:view, :manage],
-        dimensions: [:view, :manage],
-        clients: [:view, :manage, :design],
-        assessments: [:view, :manage, :assign, :export, :import],
-        translations: [:export, :import],
-        reports: [:view, :manage],
-        questions: [:view, :manage],
-        libraries: [:view, :manage],
-        communications: [:view, :manage],
-        projects: [:view, :manage],
-        assigns: [:view]
+        norms: [],
+        dimensions: [],
+        clients: [],
+        assessments: [],
+        translations: [],
+        reports: [],
+        questions: [],
+        libraries: [],
+        communications: [],
+        projects: [],
+        assigns: []
     ]].freeze
 
     def create?
