@@ -11,7 +11,7 @@ module Exports
             host: Settings.domain,
             user_token: current_user.authentication_token,
             export: true,
-            lang: I18n.locale
+            lang: opts[:lang] || I18n.locale
           }
           url = if current_user.is?(:superadmin, :admin)
                   Rails.application.routes.url_helpers.

@@ -4,11 +4,6 @@ module SetLocale
   included do
     helper_method :user_locale
     helper_method :user_locale_rtl?
-    append_before_action :set_locale
-  end
-
-  def set_locale
-    I18n.locale = user_locale
   end
 
   def user_locale

@@ -61,7 +61,7 @@ module Administration
 
         def reports
           form = client.reports.search(params[:q])
-          @resources = form.result
+          @resources = form.result.distinct
 
           respond_to do |format|
             format.json

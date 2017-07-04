@@ -30,7 +30,7 @@ module Administration
               render('_preview', layout: 'pdf') if params[:export]
             end
             format.pdf do
-              pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @user, client, request.protocol.split(':').first)
+              pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @user, client, request.protocol.split(':').first, lang: user_locale)
               send_file pdf_file, type: 'application/pdf'
             end
           end
