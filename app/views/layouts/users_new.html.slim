@@ -1,5 +1,5 @@
 doctype html
-html style=("background-image: url('#{@current_project.background.url}');" if @current_project&.background&.url)
+html
   head
     meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
     meta content="IE=edge" http-equiv="X-UA-Compatible"
@@ -15,8 +15,6 @@ html style=("background-image: url('#{@current_project.background.url}');" if @c
       .container-fluid
         .row
           .col-xs-4.col-sm-4
-            - if @current_project&.logo&.url
-              = link_to image_tag(@current_project.logo.url), root_path, class: 'clientLogo'
           .col-xs-8.col-sm-4.hidden-xs
           .col-sm-4
             .userNav
@@ -92,7 +90,7 @@ html style=("background-image: url('#{@current_project.background.url}');" if @c
                           i.fa.fa-angle-right
                 li
                   = link_to image_tag('homeIcon.png'), assessments_path
-    .banner style=("background-color: #{@current_project.background_color};" if @current_project&.background_color)
+    .banner
     .container-fluid.mainContent
       = yield
     footer.loginFooter.solid

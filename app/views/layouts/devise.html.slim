@@ -1,5 +1,5 @@
 doctype html
-html.body-full-height
+html.body-full-height style=device_html_style
   head
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
@@ -14,7 +14,8 @@ html.body-full-height
       .container-fluid
         .row
           .col-xs-12.col-sm-4
-            a href="#"
+            - if @current_project&.logo&.url
+              = link_to image_tag(@current_project.logo.url), root_path, class: 'clientLogo'
           .col-xs-12.col-sm-6.hidden-xs
             h1.pageTitle
           .col-sm-1.hidden-xs
