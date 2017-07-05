@@ -15,6 +15,7 @@ en:
           export: Export
         list: &list
           name: Campaign Name
+          assigned_user: Assigned User
           header:
             campaigns: Campaigns
             sub_campaign: Sub-Campaigns

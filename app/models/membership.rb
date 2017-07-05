@@ -60,12 +60,13 @@ class Membership < ApplicationRecord
 
   scope :enabled, -> { where.not(disabled: true) }
   scope :admin_role, -> { where(role: ADMIN_ROLE) }
+  scope :with_client, -> (client_id) { where(client_id: client_id) }
+  scope :user_reports, -> (client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
+  scope :assigned, -> { joins(:assigns).distinct }
+  scope :completed, -> { where(assigns_completed: true).distinct }
   scope :with_head_assigns_for_client_and_assessment, lambda { |client_id, assessment_id|
     joining { assigns.on(assigns.membership_id.eq(id) & assigns.assessment_id.eq(assessment_id) & assigns.role.in([Assign.roles[:admin], Assign.roles[:manager]])) }.
         where.has { |m| m.client_id.eq(client_id) }
-  }
-  scope :with_client, lambda { |client_id|
-    where(client_id: client_id)
   }
   scope :join_user, lambda {
     joining { user }.selecting { ['memberships.*', user.first_name, user.last_name, user.email, user.role.as('user_role'), user.is_anonym] }
@@ -91,9 +92,7 @@ class Membership < ApplicationRecord
     rescue InputError
     end
   }
-  scope :user_reports, -> (client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
-  scope :assigned, -> { joins(:assigns).distinct }
-  scope :completed, -> { where(assigns_completed: true).distinct }
+
   # Save HRIS data from form
   def hris_data=(data)
     self.hris = {}
