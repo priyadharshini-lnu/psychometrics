@@ -49,7 +49,7 @@ class ClientDecorator < BaseDecorator
   end
 
   def display_name_with_parent
-    object.has_parent? ? object.path.map {|anc| anc.decorate.display_name}.join(' > ') : display_name
+    object.ancestors? ? object.path.map {|anc| anc.decorate.display_name}.join(' > ') : display_name
   end
 
   def status

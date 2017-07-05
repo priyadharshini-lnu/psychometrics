@@ -119,7 +119,7 @@ class Assessment < ApplicationRecord
   private
 
   def check_owner
-    errors.add(:owner, :invalid) if owner&.has_parent?
+    errors.add(:owner, :invalid) if owner&.ancestors?
   end
 
   class << self
