@@ -1,4 +1,4 @@
-= simple_form_for(@resource, as: :import, url: { action: :create }, remote: true, html: { multipart: true }) do |f|
+= simple_form_for(resource, as: :import, url: { action: :create }, remote: true, html: { multipart: true }) do |f|
   .modal-body
     .form-inputs.clearfix
       = f.input :client_id, as: :hidden

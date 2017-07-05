@@ -1,6 +1,6 @@
 .row
   .col-md-12
-    = simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, wrapper: :administration_form, html: { class: 'form-horizontal' }) do |f|
+    = simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, wrapper: :administration_form, html: { class: 'form-horizontal' }) do |f|
       = f.error_notification
       .panel.panel-default.tabs
         ul.nav.nav-tabs role="tablist"

@@ -1,9 +1,9 @@
 csv << [
-        @resource_class.human_attribute_name('name'),
+        resource_class.human_attribute_name('name'),
         t('.project_admin'),
-        @resource_class.human_attribute_name('number'),
+        resource_class.human_attribute_name('number'),
         t('.tests_allocated'),
-        @resource_class.human_attribute_name('users_count'),
+        resource_class.human_attribute_name('users_count'),
         t('.archive_status')
        ]
 

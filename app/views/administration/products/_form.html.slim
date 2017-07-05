@@ -1,4 +1,4 @@
-= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, html: { multipart: true }) do |f|
+= simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, html: { multipart: true }) do |f|
   .modal-body
     = f.error_notification
     .form-inputs.clearfix
@@ -23,7 +23,7 @@
           = link_to_add_association t('.add_image'), f, :images        
   .modal-footer
     .btn-group
-      = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
       a.btn.btn-default data-dismiss='modal' = t 'administration.close'
   
   javascript:

@@ -3,17 +3,17 @@ class Administration::Imports::BaseController < Administration::BaseController
   append_before_action :pundit_authorize
 
   def new
-    @resource = @resource_class.new
+    @_resource = resource_class.new
     respond_to do |format|
       format.js
     end
   end
 
   def create
-    @resource = @resource_class.new(import_params)
-    @resource.importer = current_user
+    @_resource = resource_class.new(import_params)
+    resource.importer = current_user
     respond_to do |format|
-      if @resource.process!
+      if resource.process!
         format.js
       else
         format.js { render :new }

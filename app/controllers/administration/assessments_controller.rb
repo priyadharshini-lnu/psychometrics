@@ -7,7 +7,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   # GET /administration/resources
   def index
-    @filter_form = policy_scope(@resource_class).includes(:dimension).search(params[:q])
+    @filter_form = policy_scope(resource_class).includes(:dimension).search(params[:q])
     @resources = @filter_form.result.page(params[:page])
 
     respond_to do |format|
@@ -17,13 +17,13 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def new
-    @resource = @resource_class.new
+    @_resource = resource_class.new
   end
 
   def create
-    @resource = @resource_class.new(resource_params)
+    @_resource = resource_class.new(resource_params)
     respond_to do |format|
-      if @resource.save
+      if resource.save
         format.js
       else
         format.js { render :new }
@@ -40,16 +40,16 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def show
-    add_breadcrumb @resource.decorate.display_name
+    add_breadcrumb resource.decorate.display_name
   end
 
   def edit
-    add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
+    add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
   end
 
   def update
     respond_to do |format|
-      if @resource.update(resource_params)
+      if resource.update(resource_params)
         format.js
       else
         format.js { render :edit }
@@ -58,9 +58,9 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def destroy
-    @resource.destroy
+    resource.destroy
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
       format.js
     end
   end
@@ -68,7 +68,7 @@ class Administration::AssessmentsController < Administration::BaseController
   # Change resources's status to active/disabled
   #
   def toggle_status
-    @resource.toggle!(:disabled)
+    resource.toggle!(:disabled)
     respond_to do |format|
       format.html { redirect_to(:back, success: t('.successfully')) }
       format.js
@@ -76,13 +76,13 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def copy
-    @cloned_resource = CopyAssessment.process!(@resource.id)
+    @cloned_resource = CopyAssessment.process!(resource.id)
     respond_to do |format|
       if @cloned_resource.persisted?
         format.js
       else
         format.js do
-          render(:error, locals: { message: t("administration.#{@resource_class.model_name.plural}.copy.error", id: @resource.id) })
+          render(:error, locals: { message: t("administration.#{resource_class.model_name.plural}.copy.error", id: resource.id) })
         end
       end
     end
@@ -101,20 +101,15 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
   end
 
   # Set model
   def set_resource_class
-    @resource_class ||= Assessment
+    @_resource_class ||= Assessment
   end
 
   def resource_params
     params.require(:resource).permit(:name, :category, :description, :dimension_id, :timing, :status, :owner_id)
-  end
-
-  # Authorisation user
-  def pundit_authorize
-    authorize @resource || @resource_class
   end
 end

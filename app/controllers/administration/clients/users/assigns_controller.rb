@@ -20,7 +20,7 @@ module Administration
         end
 
         def new
-          @resource = Assign.new
+          @_resource = Assign.new
         end
 
         def create
@@ -28,7 +28,7 @@ module Administration
           client.assign_clients.find_or_create_by(assessment: @assessment)
 
           assigns_scope = membership.assigns
-          @resource = assigns_scope.where(assessment_id: @assessment.id).take || assigns_scope.build(resource_params)
+          @_resource = assigns_scope.where(assessment_id: @assessment.id).take || assigns_scope.build(resource_params)
           if resource.new_record?
             resource.save
           else
@@ -43,7 +43,7 @@ module Administration
         end
 
         def destroy
-          @resource.destroy
+          resource.destroy
           respond_to do |format|
             format.html { redirect_to(:back, success: t('.successfully')) }
             format.js
@@ -52,7 +52,7 @@ module Administration
 
         def destroy_report
           @report = Report.find(params[:report_id])
-          @resource.reports.delete(@report)
+          resource.reports.delete(@report)
           respond_to do |format|
             format.html { redirect_to(:back, success: t('.successfully')) }
             format.js
@@ -71,7 +71,7 @@ module Administration
         private
 
         def set_resource_class
-          @resource_class ||= Assign
+          @_resource_class ||= Assign
         end
 
         def init_breadcrumbs
@@ -88,17 +88,15 @@ module Administration
           @_client = membership.client
         end
 
-        def set_resource
-          @resource = @resource_class.find(params[:id])
-        end
-
         def resource_params
           params.require(:resource).permit(:assessment_id, report_ids: [])
         end
 
-        # Authorisation user
-        def pundit_authorize
-          authorize @resource || @resource_class
+        def define_policy(record)
+          policy_class = PolicyFinder.new(record).policy!
+          user = { user: current_user, membership: membership } if policy_class == Administration::AssignPolicy
+          user ||= pundit_user
+          policy_class.new(user, record)
         end
       end
     end

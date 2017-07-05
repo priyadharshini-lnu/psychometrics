@@ -1,11 +1,11 @@
 - content_for :breadcrumbs do
   li = link_to I18n.t('administration.breadcrumbs.home'), [:administration, :root]
   - if @folder.present?
-    li = link_to I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+    li = link_to I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
     - @folder.path.each do |library|
       - if @folder.id == library.id
         li = library.decorate.display_name
       - else
         li = link_to library.decorate.display_name, { action: :index, folder_id: library.id }
   - else
-    li = I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}")
+    li = I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}")

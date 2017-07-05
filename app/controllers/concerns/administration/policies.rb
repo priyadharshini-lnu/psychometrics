@@ -4,27 +4,35 @@ module Administration
     extend ActiveSupport::Concern
 
     def authorize(record, query = nil)
-      new_record = [:administration, record].flatten
-      record = new_record unless [record].flatten.include? :administration
+      record = define_scope(record)
       super
     end
 
     def policy_scope(scope)
-      new_scope = [:administration, scope].flatten
-      scope = new_scope unless [scope].flatten.include? :administration
+      scope = define_scope(scope)
       super
     end
 
     def pundit_policy_scope(scope)
-      new_scope = [:administration, scope].flatten
-      scope = new_scope unless [scope].flatten.include? :administration
+      scope = define_scope(scope)
       super
     end
 
     def policy(record)
-      new_record = [:administration, record].flatten
-      record = new_record unless [record].flatten.include? :administration
-      super
+      record = define_scope(record)
+      define_policy(record) || super
+    end
+
+    private
+
+    # overwrite in controller
+    def define_policy(record)
+      nil
+    end
+
+    def define_scope(object)
+      object = [:administration, object].flatten if [object].flatten.index(:administration).nil?
+      object
     end
   end
 end

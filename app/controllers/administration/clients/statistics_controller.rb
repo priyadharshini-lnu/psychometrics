@@ -7,7 +7,7 @@ module Administration
 
       # GET /administration/resources
       def index
-        @filter_form = policy_scope(@resource_class).search(params[:q])
+        @filter_form = policy_scope(resource_class).search(params[:q])
         @resources = @filter_form.
                      result.
                      joining { |a| a.membership.on(a.membership.id.eq(a.membership_id) & (a.membership.client_id == client.id)) }.
@@ -37,12 +37,12 @@ module Administration
 
       # Set model
       def set_resource_class
-        @resource_class ||= Assign
+        @_resource_class ||= Assign
       end
 
       # Authorisation user
       def pundit_authorize
-        authorize @resource_class
+        authorize resource_class
       end
     end
   end

@@ -1,4 +1,4 @@
-= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, remote: true) do |f|
+= simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true) do |f|
   .modal-body
     = f.error_notification
 
@@ -67,12 +67,12 @@
 
   .modal-footer
     .btn-group
-      = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
       a.btn.btn-default data-dismiss='modal' = t 'administration.close'
 
 javascript:
   $(function(){
-    var url = '#{@resource.new_record? ? new_form_administration_communications_path : edit_form_administration_communication_path(@resource)}';
+    var url = '#{resource.new_record? ? new_form_administration_communications_path : edit_form_administration_communication_path(resource)}';
     $(document).on('change', '#resource_assessment_id, #resource_client_id, #resource_recipients, #resource_delivery_rule', function() {
       var self = this
       // Sync WYSIWYG with form

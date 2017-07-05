@@ -1,6 +1,6 @@
-= simple_form_for(@resource, as: :resource, url: { action: :update }, remote: true, html: { id: 'manage_licenses' }) do |f|
+= simple_form_for(resource, as: :resource, url: { action: :update }, remote: true, html: { id: 'manage_licenses' }) do |f|
   .modal-body
-    = render_error_notification(@resource)
+    = render_error_notification(resource)
 
     .form-inputs.clearfix
       table#licenses.table

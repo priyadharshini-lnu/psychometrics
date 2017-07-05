@@ -7,7 +7,7 @@ module Administration
     after_action :init_breadcrumbs
 
     def index
-      @filter_form = policy_scope(@resource_class).search(params[:q])
+      @filter_form = policy_scope(resource_class).search(params[:q])
       @resources = @filter_form.result.page(params[:page])
 
       respond_to do |format|
@@ -17,14 +17,14 @@ module Administration
     end
 
     def new
-      @resource = @resource_class.new
+      @_resource = resource_class.new
     end
 
     def create
-      @resource = @resource_class.new(resource_params)
+      @_resource = resource_class.new(resource_params)
 
       respond_to do |format|
-        if @resource.save
+        if resource.save
           format.js
         else
           format.js { render :new }
@@ -33,7 +33,7 @@ module Administration
     end
 
     def toggle_status
-      @resource.toggle(:disabled).save
+      resource.toggle(:disabled).save
       respond_to do |format|
         format.js
       end
@@ -41,7 +41,7 @@ module Administration
 
     def update
       respond_to do |format|
-        if @resource.update(resource_params)
+        if resource.update(resource_params)
           format.js
         else
           format.js { render :edit }
@@ -51,33 +51,33 @@ module Administration
 
     # DELETE /administration/resources/1
     def destroy
-      @resource.destroy
+      resource.destroy
       respond_to do |format|
-        format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+        format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
         format.js
       end
     end
 
     def copy
-      @cloned_resource = @resource.clone
+      @cloned_resource = resource.clone
       respond_to do |format|
         if @cloned_resource.save
           format.js
         else
-          format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: @resource.id }) } }
+          format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: resource.id }) } }
         end
       end
     end
 
     def new_form
-      @resource = @resource_class.preload(:assessment, :client).new(resource_params)
+      @_resource = resource_class.preload(:assessment, :client).new(resource_params)
       respond_to do |format|
         format.js { render :new }
       end
     end
 
     def edit_form
-      @resource.assign_attributes(resource_params)
+      resource.assign_attributes(resource_params)
       respond_to do |format|
         format.js { render :new }
       end
@@ -86,12 +86,12 @@ module Administration
     private
 
     def set_resource_class
-      @resource_class ||= Communication
+      @_resource_class ||= Communication
     end
 
     def init_breadcrumbs
       add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
     end
 
     def resource_params
@@ -102,10 +102,6 @@ module Administration
         :delivery_interval_number, :delivery_interval_period,
         membership_ids: [], copy_membership_ids: []
       )
-    end
-
-    def pundit_authorize
-      authorize @resource || @resource_class
     end
   end
 end

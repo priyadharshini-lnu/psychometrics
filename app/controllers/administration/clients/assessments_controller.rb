@@ -27,10 +27,10 @@ module Administration
       end
 
       def destroy
-        @resource = client.assessments.find(params[:id])
-        client.clients_reports.where(report_id: @resource.report_ids).destroy_all
+        @_resource = client.assessments.find(params[:id])
+        client.clients_reports.where(report_id: resource.report_ids).destroy_all
         respond_to do |format|
-          format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+          format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
           format.js
         end
       end
@@ -53,7 +53,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @resource_class ||= Assessment
+        @_resource_class ||= Assessment
       end
 
       # Authorisation user

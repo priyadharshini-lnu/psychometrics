@@ -1,4 +1,5 @@
 class Administration::FactorsNormsController < Administration::BaseController
+  prepend_before_action :set_resource_class
   append_before_action :pundit_authorize
 
   def update
@@ -14,8 +15,8 @@ class Administration::FactorsNormsController < Administration::BaseController
 
   private
 
-  def pundit_authorize
-    authorize @resource || FactorsNorm
+  def set_resource_class
+    @_resource_class = FactorsNorm
   end
 
   def change_cell_params

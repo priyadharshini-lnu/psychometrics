@@ -19,18 +19,18 @@ module Administration
           @results = Assign.
                      completed.
                      includes(:membership, :user).
-                     where(memberships: { client_id: client.id }, assessment_id: @resource.assessment_id).
+                     where(memberships: { client_id: client.id }, assessment_id: resource.assessment_id).
                      references(:membership).
                      all
-          @assign = Assign.find_by(assessment_id: @resource.assessment_id, membership_id: membership.id)
-          @translations = Translation.to_hash_for_report(@resource.id, @resource.assessment_id, user_locale)
-          @available_translations = Translation.available_translation_for_report(@resource.id, @resource.assessment_id)
+          @assign = Assign.find_by(assessment_id: resource.assessment_id, membership_id: membership.id)
+          @translations = Translation.to_hash_for_report(resource.id, resource.assessment_id, user_locale)
+          @available_translations = Translation.available_translation_for_report(resource.id, resource.assessment_id)
           respond_to do |format|
             format.html do
               render('_preview', layout: 'pdf') if params[:export]
             end
             format.pdf do
-              pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @user, client, request.protocol.split(':').first, lang: user_locale)
+              pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, resource, @user, client, request.protocol.split(':').first, lang: user_locale)
               send_file pdf_file, type: 'application/pdf'
             end
           end
@@ -48,22 +48,17 @@ module Administration
 
         # Set model
         def set_resource_class
-          @resource_class ||= Report
+          @_resource_class ||= Report
         end
 
         def set_resource
-          @resource = policy_scope(@resource_class).includes(pages: :modules).find(params[:id])
+          @_resource = policy_scope(resource_class).includes(pages: :modules).find(params[:id])
         end
 
         def set_data
           @_client = policy_scope(Client).find(params[:client_id])
           @user = policy_scope(User).find(params[:user_id])
           @_membership = @user.memberships.join_user.find_by(client_id: client.id)
-        end
-
-        # Authorisation user
-        def pundit_authorize
-          authorize @resource || @resource_class
         end
       end
     end

@@ -4,7 +4,7 @@ module Administration
       private
 
       def set_resource
-        @resource = @resource_class.find(params[:client_id])
+        @_resource = resource_class.find(params[:client_id])
       end
 
       def resource_params

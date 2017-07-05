@@ -4,7 +4,7 @@ module Administration
       before_action :ensure_client
 
       def index
-        @filter_form = policy_scope(@resource_class)
+        @filter_form = policy_scope(resource_class)
             .projects_of(client.id)
             .includes(:admins, :assigned_memberships, :license_usages, :completed_memberships)
             .order(:name)
@@ -19,12 +19,12 @@ module Administration
       end
 
       def new
-        @resource = @resource_class.new
-        @resource.parent = client
+        @_resource = resource_class.new
+        resource.parent = client
       end
 
       def export
-        @resources = policy_scope(@resource_class).projects_of(client.id).includes(:admins)
+        @resources = policy_scope(resource_class).projects_of(client.id).includes(:admins)
         respond_to do |format|
           format.csv do
             headers['Content-Disposition'] = "attachment; filename=\"projects-#{Date.today}.csv\""
@@ -34,8 +34,8 @@ module Administration
       end
 
       def create
-        @resource = @resource_class.new(resource_params)
-        @resource.parent = client
+        @_resource = resource_class.new(resource_params)
+        resource.parent = client
         super
       end
 

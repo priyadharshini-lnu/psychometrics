@@ -1,5 +1,12 @@
 module Administration
   class AssignPolicy < Administration::BasePolicy
+    def initialize(context, record)
+      @user = context[:user]
+      @membership = context[:membership]
+      @record = [record].flatten.last
+      check_membership
+    end
+
     def index?
       super || @user.has_grant?(:assigns, :view)
     end
@@ -30,6 +37,12 @@ module Administration
     # Permission to clients/users/assigns#reports
     def reports?
       @user.is?(:superadmin, :admin)
+    end
+
+    private
+
+    def check_membership
+      raise Pundit::NotAuthorizedError, 'wrong membership' if @membership.admin?
     end
 
     class Scope < Administration::BasePolicy::Scope

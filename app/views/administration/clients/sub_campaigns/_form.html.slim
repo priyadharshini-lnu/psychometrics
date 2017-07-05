@@ -1,9 +1,9 @@
-= simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, remote: true, html: { id: 'project_form' }) do |f|
+= simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true, html: { id: 'project_form' }) do |f|
   .modal-body
     = f.error_notification
     .form-inputs.clearfix
       = f.input :name     
   .modal-footer
     .btn-group
-      = f.button :submit, @resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
       a.btn.btn-default data-dismiss='modal' = t 'administration.close'

@@ -8,7 +8,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td = resource.decorate.client_name
   td.text-center = resource.decorate.created_at
   td.text-center = resource.decorate.updated_at
-  - if policy(@resource_class).actions?
+  - if policy(resource_class).actions?
     td.actions-cell
       = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
         span.fa.fa-pencil

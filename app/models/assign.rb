@@ -147,7 +147,7 @@ class Assign < ApplicationRecord
   def update_membership_completed
     return if project_membership.nil? || membership.destroyed?
     assigns = membership.reload.assigns
-    completed = assigns.size == assigns.completed.size
+    completed = assigns.size > 0 && assigns.size == assigns.completed.size
     membership.update_column(:assigns_completed, completed)
   end
 

@@ -1,6 +1,6 @@
 .row
   .col-md-12
-    = simple_form_for(@resource, as: :resource, url: { action: @resource.new_record? ? :create : :update }, wrapper: :administration_form, html: { class: 'form-horizontal' }) do |f|
+    = simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, wrapper: :administration_form, html: { class: 'form-horizontal' }) do |f|
       = f.error_notification
       .panel.panel-default.tabs
         ul.nav.nav-tabs role="tablist"
@@ -8,7 +8,7 @@
             a data-toggle="tab" href="#tab-first" role="tab" = t('.personal_data')
           li
             a data-toggle="tab" href="#tab-second" role="tab" = t('.hris_data')
-          - if current_user.is?(:superadmin) && @resource.user.is?(:admin)
+          - if current_user.is?(:superadmin) && resource.user.is?(:admin)
             li
               a data-toggle="tab" href="#tab-grants" role="tab" = t('.grants')
         .panel-body.tab-content
@@ -28,7 +28,7 @@
                       input_html: {  data: { live_search: true } }
           #tab-second.tab-pane
             = render partial: 'edit_hris_data', locals: { f: f }
-          - if current_user.is?(:superadmin) && @resource.user.is?(:admin)
+          - if current_user.is?(:superadmin) && resource.user.is?(:admin)
             #tab-grants.tab-pane
               .col-md-5
                 = f.simple_fields_for :user do |u|

@@ -9,7 +9,7 @@ class Administration::SubFactorsController < Administration::BaseController
 
   def index
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
-    @filter_form = policy_scope(@resource_class).where(parent_id: @factor.id).search(params[:q])
+    @filter_form = policy_scope(resource_class).where(parent_id: @factor.id).search(params[:q])
     @resources   = @filter_form.result.page(params[:page])
     respond_to do |format|
       format.html
@@ -18,14 +18,14 @@ class Administration::SubFactorsController < Administration::BaseController
   end
 
   def new
-    @resource = @resource_class.new
+    @_resource = resource_class.new
   end
 
   def create
-    @resource = @dimension.sub_factors.new(resource_params)
-    @resource.parent_id = @factor.id
+    @_resource = @dimension.sub_factors.new(resource_params)
+    resource.parent_id = @factor.id
     respond_to do |format|
-      if @resource.save
+      if resource.save
         format.js
       else
         format.js { render :new }
@@ -36,7 +36,7 @@ class Administration::SubFactorsController < Administration::BaseController
   def update
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
     respond_to do |format|
-      if @resource.update(resource_params)
+      if resource.update(resource_params)
         format.js
       else
         format.js { render :edit }
@@ -46,9 +46,9 @@ class Administration::SubFactorsController < Administration::BaseController
 
   # DELETE /administration/resources/1
   def destroy
-    @resource.destroy
+    resource.destroy
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
       format.js
     end
   end
@@ -56,7 +56,7 @@ class Administration::SubFactorsController < Administration::BaseController
   private
 
   def set_resource_class
-    @resource_class ||= Factor
+    @_resource_class ||= Factor
   end
 
   def init_breadcrumbs
@@ -78,9 +78,5 @@ class Administration::SubFactorsController < Administration::BaseController
 
   def resource_params
     params.require(:resource).permit(:name, :dimension_id, :parent_id, :description, :icon, :remove_icon)
-  end
-
-  def pundit_authorize
-    authorize @resource || @resource_class
   end
 end

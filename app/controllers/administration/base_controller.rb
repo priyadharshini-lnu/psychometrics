@@ -30,8 +30,4 @@ class Administration::BaseController < ActionController::Base
     end
     super
   end
-
-  def set_resource
-    @resource = policy_scope(@resource_class).find(params[:id])
-  end
 end

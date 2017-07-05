@@ -9,7 +9,7 @@ module Administration
       append_before_action :pundit_authorize, except: [:sidebar]
 
       def index
-        @filter_form ||= policy_scope(@resource_class)
+        @filter_form ||= policy_scope(resource_class)
                            .includes(user: [:clients, :memberships])
                            .where.not(role: Membership::ADMIN_ROLE)
                            .join_user.search(params[:q])
@@ -24,7 +24,7 @@ module Administration
       end
 
       def admins
-        @filter_form = policy_scope(@resource_class)
+        @filter_form = policy_scope(resource_class)
                            .includes(user: [:clients, :memberships])
                            .where(role: Membership::ADMIN_ROLE)
                            .join_user.search(params[:q])
@@ -32,11 +32,12 @@ module Administration
       end
 
       def new
+        @_resource = resource_class.new
         render 'new', locals: { is_new: false }
       end
 
       def create
-        @resource = @resource_class.new(create_resource_params)
+        @_resource = resource_class.new(create_resource_params)
         resource.client = policy_scope(Client).where(id: client.id).take
         resource.role = Membership::ADMIN_ROLE if params[:admin]
 
@@ -85,11 +86,11 @@ module Administration
 
       # PATCH/PUT /administration/resources/1
       def update
-        @resource.user.modified_by_id = current_user.id
+        resource.user.modified_by_id = current_user.id
         respond_to do |format|
-          if @resource.update(update_resource_params)
+          if resource.update(update_resource_params)
             format.html do
-              redirect_to({ action: :edit, id: @resource }, success: t('administration.memberships.update.successfully', name: @resource.user.decorate.display_name))
+              redirect_to({ action: :edit, id: resource }, success: t('administration.memberships.update.successfully', name: resource.user.decorate.display_name))
             end
           else
             format.html { render :edit }
@@ -98,9 +99,9 @@ module Administration
       end
 
       def destroy
-        @resource.destroy
+        resource.destroy
         respond_to do |format|
-          format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+          format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
           format.js
         end
       end
@@ -110,7 +111,7 @@ module Administration
 
         respond_to do |format|
           format.csv do
-            headers['Content-Disposition'] = "attachment; filename=\"#{@resource_class.model_name.plural}-#{Date.today}.csv\""
+            headers['Content-Disposition'] = "attachment; filename=\"#{resource_class.model_name.plural}-#{Date.today}.csv\""
             headers['Content-Type'] ||= 'text/csv'
           end
         end
@@ -118,26 +119,26 @@ module Administration
 
       # Spoof as user
       def spoof
-        if @resource.user.is?(:superadmin, :admin)
-          sign_in(@resource.user)
+        if resource.user.is?(:superadmin, :admin)
+          sign_in(resource.user)
         else
           spoof_token = SecureRandom.urlsafe_base64(64)
-          @resource.user.update_column(:spoof_token, spoof_token)
+          resource.user.update_column(:spoof_token, spoof_token)
           redirect_url = root_url(domain: Settings.domain, subdomain: project.try(:subdomain), spoof_token: spoof_token)
         end
         redirect_url ||= administration_root_path
-        flash.now[:success] = t('.successfully', name: @resource.decorate.display_name)
+        flash.now[:success] = t('.successfully', name: resource.decorate.display_name)
         redirect_to redirect_url
       end
 
       # Change resources's status to active/disabled
       #
       def toggle_status
-        @resource.toggle!(:disabled)
+        resource.toggle!(:disabled)
         # Reload with join_user
-        @resource = policy_scope(@resource_class).join_user.find(params[:id])
+        @_resource = policy_scope(resource_class).join_user.find(params[:id])
         respond_to do |format|
-          format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+          format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
           format.js
         end
       end
@@ -145,8 +146,8 @@ module Administration
       # Send user instruction with reset password
       #
       def reset_password
-        @resource.user.send_reset_password_instructions
-        redirect_to :back, success: t('.successfully', name: @resource.decorate.display_name)
+        resource.user.send_reset_password_instructions
+        redirect_to :back, success: t('.successfully', name: resource.decorate.display_name)
       end
 
       def i18n
@@ -167,25 +168,20 @@ module Administration
       end
 
       def create_resource_params
-        params.require(:resource).permit(policy(@resource_class).permitted_attributes_for_create)
+        params.require(:resource).permit(policy(resource_class).permitted_attributes_for_create)
       end
 
       def update_resource_params
-        params.require(:resource).permit(policy(@resource).permitted_attributes_for_update)
+        params.require(:resource).permit(policy(resource).permitted_attributes_for_update)
       end
 
       # Set model
       def set_resource_class
-        @resource_class ||= ::Membership
+        @_resource_class ||= ::Membership
       end
 
       def set_resource
-        @resource = policy_scope(@resource_class).join_user.find(params[:id])
-      end
-
-      # Authorisation user
-      def pundit_authorize
-        authorize @resource || @resource_class
+        @_resource = policy_scope(resource_class).join_user.find(params[:id])
       end
     end
   end

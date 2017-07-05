@@ -6,7 +6,7 @@
       .panel-heading
         h3.panel-title = t '.title'
         .pull-right
-          - if policy(@resource_class).export?
+          - if policy(resource_class).export?
             = link_to({ action: :export, format: :csv }, target: :_blank, class: 'btn btn-default')
               span.fa.fa-upload
               = t('.export')

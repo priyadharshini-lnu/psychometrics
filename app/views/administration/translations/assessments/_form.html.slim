@@ -1,4 +1,4 @@
-= simple_form_for(@resource, as: :import, url: administration_translations_assessment_import_path(@assessment), remote: true, html: { multipart: true }) do |f|
+= simple_form_for(resource, as: :import, url: administration_translations_assessment_import_path(@assessment), remote: true, html: { multipart: true }) do |f|
   .modal-body
     = f.error_notification
     p Refer to the Export functionality to extract a template that can be used to Import here.

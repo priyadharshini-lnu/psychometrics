@@ -7,7 +7,7 @@ module Administration
     append_before_action :pundit_authorize, except: [:sidebar]
 
     def index
-      @filter_form = policy_scope(@resource_class).tenancies.includes(:projects_admins).order(:name).search(params[:q])
+      @filter_form = policy_scope(resource_class).tenancies.includes(:projects_admins).order(:name).search(params[:q])
       @filter_form.archived_true ||= false
       @resources = @filter_form.result.page(params[:page])
 
@@ -18,22 +18,22 @@ module Administration
     end
 
     def new
-      @resource = @resource_class.new
+      @_resource = resource_class.new
     end
 
     def show
-      redirect_to administration_client_users_path(@resource.id)
+      redirect_to administration_client_users_path(resource.id)
     end
 
     def create
-      @resource ||= @resource_class.new(resource_params)
+      @_resource ||= resource_class.new(resource_params)
       resource.creator = current_user
       resource.modifier = current_user
       authorize resource
       respond_to do |format|
         if resource.save
           if resource.project? && current_user.is?(:admin)
-            current_user.memberships.create!(client: @resource, role: Membership::ADMIN_ROLE)
+            current_user.memberships.create!(client: resource, role: Membership::ADMIN_ROLE)
           end
           format.js
         else
@@ -57,17 +57,17 @@ module Administration
 
     # DELETE /administration/resources/1
     def destroy
-      @resource.destroy
+      resource.destroy
       respond_to do |format|
-        format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+        format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
         format.js
       end
     end
 
     def archive
-      @resource.update_attribute(:archived, true)
+      resource.update_attribute(:archived, true)
       respond_to do |format|
-        format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+        format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
         format.js
       end
     end
@@ -75,33 +75,33 @@ module Administration
     # Change resources's status to active/disabled
     #
     def toggle_status
-      @resource.toggle!(:disabled)
+      resource.toggle!(:disabled)
       respond_to do |format|
-        format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+        format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
         format.js
       end
     end
 
     def copy
       # TODO: need to finalize
-      @cloned_resource = @resource.clone
+      @cloned_resource = resource.clone
       respond_to do |format|
         if @cloned_resource.save
           format.js
         else
           format.js do
-            render(:error, locals: { message: t('.error', name: @resource.decorate.display_name) })
+            render(:error, locals: { message: t('.error', name: resource.decorate.display_name) })
           end
         end
       end
     end
 
     def export
-      @resources = policy_scope(@resource_class).tenancies.enabled.includes(projects: :admins)
+      @resources = policy_scope(resource_class).tenancies.enabled.includes(projects: :admins)
 
       respond_to do |format|
         format.csv do
-          headers['Content-Disposition'] = "attachment; filename=\"#{@resource_class.model_name.plural}-#{Date.today}.csv\""
+          headers['Content-Disposition'] = "attachment; filename=\"#{resource_class.model_name.plural}-#{Date.today}.csv\""
           headers['Content-Type'] ||= 'text/csv'
         end
       end
@@ -110,21 +110,17 @@ module Administration
     private
 
     def set_resource_class
-      @resource_class ||= Client
+      @_resource_class ||= Client
     end
 
     def init_breadcrumbs
       add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
     end
 
     def resource_params
       params.require(:resource).permit(:name, :subdomain, :year, :number, :country, :type,
                                        :account_manager_id, :project_manager_id, report_family_ids: [])
-    end
-
-    def pundit_authorize
-      authorize @resource || @resource_class
     end
   end
 end

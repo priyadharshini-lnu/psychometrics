@@ -8,7 +8,7 @@ class Administration::FactorsController < Administration::BaseController
 
   def index
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
-    @filter_form = policy_scope(@resource_class).roots.with_dimension(@dimension.id).search(params[:q])
+    @filter_form = policy_scope(resource_class).roots.with_dimension(@dimension.id).search(params[:q])
     @resources   = @filter_form.result.page(params[:page])
     respond_to do |format|
       format.html
@@ -17,13 +17,13 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def new
-    @resource = @resource_class.new
+    @_resource = resource_class.new
   end
 
   def create
-    @resource = @dimension.factors.new(resource_params)
+    @_resource = @dimension.factors.new(resource_params)
     respond_to do |format|
-      if @resource.save
+      if resource.save
         format.js
       else
         format.js { render :new }
@@ -34,7 +34,7 @@ class Administration::FactorsController < Administration::BaseController
   def update
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
     respond_to do |format|
-      if @resource.update(resource_params)
+      if resource.update(resource_params)
         format.js
       else
         format.js { render :edit }
@@ -44,26 +44,26 @@ class Administration::FactorsController < Administration::BaseController
 
   # DELETE /administration/resources/1
   def destroy
-    @resource.destroy
+    resource.destroy
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
       format.js
     end
   end
 
   def copy
     respond_to do |format|
-      @cloned_resource = @resource.clone_and_save
+      @cloned_resource = resource.clone_and_save
       if @cloned_resource
         format.js
       else
-        format.js { render :error, locals: { message: t('administration.factors.copy.error', { id: @resource.id }) } }
+        format.js { render :error, locals: { message: t('administration.factors.copy.error', { id: resource.id }) } }
       end
     end
   end
 
   def toggle_status
-    @resource.toggle(:disabled).save
+    resource.toggle(:disabled).save
     respond_to do |format|
       format.js
     end
@@ -72,14 +72,14 @@ class Administration::FactorsController < Administration::BaseController
   private
 
   def set_resource_class
-    @resource_class ||= Factor
+    @_resource_class ||= Factor
   end
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
     add_breadcrumb I18n.t('administration.breadcrumbs.dimensions'), administration_dimensions_path
     add_breadcrumb @dimension.name
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
   end
 
   def set_dimension
@@ -88,9 +88,5 @@ class Administration::FactorsController < Administration::BaseController
 
   def resource_params
     params.require(:resource).permit(:name, :description, :icon, :remove_icon, :dimension_id)
-  end
-
-  def pundit_authorize
-    authorize @resource || @resource_class
   end
 end

@@ -5,7 +5,7 @@ module Administration
       before_action :set_assessment
 
       def new
-        @resource = ::Imports::Translations::AssessmentImport.new(assessment_id: @assessment.id)
+        @_resource = ::Imports::Translations::AssessmentImport.new(assessment_id: @assessment.id)
       end
 
       def export
@@ -15,9 +15,9 @@ module Administration
       end
 
       def import
-        @resource = ::Imports::Translations::AssessmentImport.new(import_params)
+        @_resource = ::Imports::Translations::AssessmentImport.new(import_params)
         respond_to do |format|
-          if @resource.process!
+          if resource.process!
             format.js
           else
             format.js { render :new }

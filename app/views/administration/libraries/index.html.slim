@@ -6,7 +6,7 @@
         h3.panel-title = @folder.present? ? @folder.name : t('.title')
         .pull-right
           .btn-group
-            - if policy(@resource_class).create?
+            - if policy(resource_class).create?
               = link_to({ action: :new, type: :folder, parent_id: @folder&.id }, remote: true, class: 'btn btn-default')
                 span.fa.fa-folder-o
                 = t('.new_folder')

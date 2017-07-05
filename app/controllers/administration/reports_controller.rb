@@ -16,7 +16,7 @@ module Administration
 
     # GET /administration/resources
     def index
-      @filter_form = policy_scope(@resource_class).includes(:assessment, :report_families).order(:name).search(params[:q])
+      @filter_form = policy_scope(resource_class).includes(:assessment, :report_families).order(:name).search(params[:q])
       @resources = @filter_form.result.page(params[:page])
 
       respond_to do |format|
@@ -30,14 +30,14 @@ module Administration
     end
 
     def new
-      @resource = @resource_class.new
+      @_resource = resource_class.new
     end
 
     def create
-      @resource = @resource_class.new(resource_params)
+      @_resource = resource_class.new(resource_params)
 
       respond_to do |format|
-        if @resource.save
+        if resource.save
           format.js
         else
           format.js { render :new }
@@ -47,13 +47,13 @@ module Administration
 
     # GET /administration/resources/1/edit
     def edit
-      add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
+      add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
     end
 
     # PATCH/PUT /administration/resources/1
     def update
       respond_to do |format|
-        if @resource.update(resource_params)
+        if resource.update(resource_params)
           format.js
         else
           format.js { render :edit }
@@ -63,24 +63,24 @@ module Administration
 
     # DELETE /administration/resources/1
     def destroy
-      @resource.destroy
+      resource.destroy
       respond_to do |format|
-        if @resource.errors.any?
-          format.js { render :error, locals: { message: @resource.errors.full_messages.join('<br>') } }
+        if resource.errors.any?
+          format.js { render :error, locals: { message: resource.errors.full_messages.join('<br>') } }
         else
-          format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+          format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
           format.js
         end
       end
     end
 
     def copy
-      @cloned_resource = @resource.clone
+      @cloned_resource = resource.clone
       respond_to do |format|
         if @cloned_resource.save
           format.js
         else
-          format.js { render :error, locals: { message: t('.error', { name: @resource.decorate.display_name }) } }
+          format.js { render :error, locals: { message: t('.error', { name: resource.decorate.display_name }) } }
         end
       end
     end
@@ -88,15 +88,15 @@ module Administration
     # Change resources's status to active/disabled
     #
     def toggle_status
-      @resource.toggle!(:disabled)
+      resource.toggle!(:disabled)
       respond_to do |format|
-        format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+        format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
         format.js
       end
     end
 
     def preview
-      add_breadcrumb @resource.decorate.display_name, { action: :show, id: @resource }
+      add_breadcrumb resource.decorate.display_name, { action: :show, id: resource }
       respond_to do |format|
         format.html
       end
@@ -106,21 +106,16 @@ module Administration
 
     def init_breadcrumbs
       add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
     end
 
     # Set model
     def set_resource_class
-      @resource_class ||= Report
+      @_resource_class ||= Report
     end
 
     def resource_params
       params.require(:resource).permit(:name, :assessment_id, :type, :owner_id, report_family_ids: [])
-    end
-
-    # Authorisation user
-    def pundit_authorize
-      authorize @resource || @resource_class
     end
 
     def authenticate_user_from_token!

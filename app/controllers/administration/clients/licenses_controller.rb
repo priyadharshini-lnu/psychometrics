@@ -13,7 +13,7 @@ module Administration
 
       def update
         respond_to do |format|
-          if @resource.update(resource_params)
+          if resource.update(resource_params)
             format.js
           else
             format.js { render :edit }
@@ -24,12 +24,12 @@ module Administration
       private
 
       def set_resource_class
-        @resource_class ||= Client
+        @_resource_class ||= Client
       end
 
       def set_resource
         resource_id = client.root? ? client.id : client.root.id
-        @resource = policy_scope(@resource_class).includes(licenses: [:report_family, :license_usages]).find(resource_id)
+        @_resource = policy_scope(resource_class).includes(licenses: [:report_family, :license_usages]).find(resource_id)
       end
 
       def resource_params

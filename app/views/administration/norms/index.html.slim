@@ -4,12 +4,12 @@
       .panel-heading
         h3.panel-title = t '.title'
         .pull-right
-          - if policy(@resource_class).import?
-            = link_to [:new, :administration, :import, { resource: @resource_class.model_name.singular, type: :xls }], remote: true, class: 'btn btn-default'
+          - if policy(resource_class).import?
+            = link_to [:new, :administration, :import, { resource: resource_class.model_name.singular, type: :xls }], remote: true, class: 'btn btn-default'
               span.fa.fa-upload
               = t('.import')
-          - if policy(@resource_class).create?
-            = link_to [:new, :administration, @resource_class.model_name.singular], remote: true, class: 'btn btn-default'
+          - if policy(resource_class).create?
+            = link_to [:new, :administration, resource_class.model_name.singular], remote: true, class: 'btn btn-default'
               span.fa.fa-plus
               = t('.new')
         = search_form_for(@filter_form,

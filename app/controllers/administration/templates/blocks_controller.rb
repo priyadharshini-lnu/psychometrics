@@ -9,7 +9,7 @@ module Administration
 
       # GET /administration/resources
       def index
-        @filter_form = policy_scope(@resource_class).templates.includes(blocks: [:assessment]).search(params[:q])
+        @filter_form = policy_scope(resource_class).templates.includes(blocks: [:assessment]).search(params[:q])
         @resources = @filter_form.result.page(params[:page])
 
         respond_to do |format|
@@ -19,15 +19,15 @@ module Administration
       end
 
       def new
-        @resource = @resource_class.new
+        @_resource = resource_class.new
       end
 
       def create
-        @resource = @resource_class.new(resource_params)
-        @resource.assign_attributes({ view: :templates })
+        @_resource = resource_class.new(resource_params)
+        resource.assign_attributes({ view: :templates })
 
         respond_to do |format|
-          if @resource.save
+          if resource.save
             format.js
           else
             format.js { render :new }
@@ -37,14 +37,14 @@ module Administration
 
       # GET /administration/resources/1/edit
       def edit
-        add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
+        add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
       end
 
       # PATCH/PUT /administration/resources/1
       def update
-        block = ::Builders::Templates::BlockBuilder.new(@resource, params.require(:block))
+        block = ::Builders::Templates::BlockBuilder.new(resource, params.require(:block))
         if block.save
-          render json: { data: BlockSerializer.new(@resource).to_hash(include: '**') }
+          render json: { data: BlockSerializer.new(resource).to_hash(include: '**') }
         else
           render json: { error: true }, status: 400
         end
@@ -52,20 +52,20 @@ module Administration
 
       # DELETE /administration/resources/1
       def destroy
-        @resource.destroy
+        resource.destroy
         respond_to do |format|
-          format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+          format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
           format.js
         end
       end
 
       def copy
-        @cloned_resource = @resource.clone
+        @cloned_resource = resource.clone
         respond_to do |format|
           if @cloned_resource.save
             format.js
           else
-            format.js { render :error, locals: { message: t('.error', { name: @resource.decorate.display_name }) } }
+            format.js { render :error, locals: { message: t('.error', { name: resource.decorate.display_name }) } }
           end
         end
       end
@@ -73,9 +73,9 @@ module Administration
       # Change resources's status to active/disabled
       #
       def toggle_status
-        @resource.toggle!(:disabled)
+        resource.toggle!(:disabled)
         respond_to do |format|
-          format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+          format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
           format.js
         end
       end
@@ -84,9 +84,9 @@ module Administration
       end
 
       def preview
-        add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
+        add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
         @data = {
-          blocks: [BlockSerializer.new(@resource).to_hash(include: '**')]
+          blocks: [BlockSerializer.new(resource).to_hash(include: '**')]
         }.to_json
       end
 
@@ -99,20 +99,15 @@ module Administration
 
       # Set model
       def set_resource_class
-        @resource_class ||= Block
+        @_resource_class ||= Block
       end
 
       def set_resource
-        @resource = policy_scope(@resource_class).templates.find(params[:id])
+        @_resource = policy_scope(resource_class).templates.find(params[:id])
       end
 
       def resource_params
         params.require(:resource).permit(:name, assign_to_assessment_ids: [])
-      end
-
-      # Authorisation user
-      def pundit_authorize
-        authorize @resource || @resource_class
       end
     end
   end

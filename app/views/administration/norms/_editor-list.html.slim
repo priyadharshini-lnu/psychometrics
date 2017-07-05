@@ -3,12 +3,12 @@
     .btn-group
       - FactorsNorm::NORM_TYPES.each do |value|
         = link_to value.upcase,
-                [:editor, :administration, @resource, factor_type: @filter_data.factor_type, norm_type: value],
+                [:editor, :administration, resource, factor_type: @filter_data.factor_type, norm_type: value],
                 class: "btn btn-default #{'active' if @filter_data.norm_type == value}", remote: true
     .btn-group.mll
       - FactorsNorm::FACTOR_TYPES.each do |value|
         = link_to t("administration.norms.editor.#{value}"),
-                [:editor, :administration, @resource, factor_type: value, norm_type: @filter_data.norm_type],
+                [:editor, :administration, resource, factor_type: value, norm_type: @filter_data.norm_type],
                 class: "btn btn-default #{'active' if @filter_data.factor_type == value}", remote: true
 
     .mvm

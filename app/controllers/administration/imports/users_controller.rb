@@ -2,8 +2,8 @@ module Administration
   module Imports
     class UsersController < Administration::Imports::BaseController
       def new
-        @resource = @resource_class.new
-        @resource.client_id = params[:client_id]
+        @_resource = resource_class.new
+        resource.client_id = params[:client_id]
         respond_to do |format|
           format.js
         end
@@ -16,7 +16,7 @@ module Administration
       end
 
       def init_import_class
-        @resource_class ||= ::Imports::UserImport
+        @_resource_class ||= ::Imports::UserImport
       end
 
       def pundit_authorize

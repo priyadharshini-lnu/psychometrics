@@ -6,7 +6,7 @@ module Administration
           before_action :ensure_campaign
 
           def index
-            @filter_form = policy_scope(@resource_class).sub_campaigns_of(campaign.id).enabled.search(params[:q])
+            @filter_form = policy_scope(resource_class).sub_campaigns_of(campaign.id).enabled.search(params[:q])
             @filter_form.archived_true ||= false
             @resources = @filter_form.result.page(params[:page])
 
@@ -17,12 +17,12 @@ module Administration
           end
 
           def new
-            @resource = @resource_class.new
-            @resource.parent = campaign
+            @_resource = resource_class.new
+            resource.parent = campaign
           end
 
           def export
-            @resources = policy_scope(@resource_class).sub_campaigns_of(campaign.id)
+            @resources = policy_scope(resource_class).sub_campaigns_of(campaign.id)
 
             respond_to do |format|
               format.csv do
@@ -33,8 +33,8 @@ module Administration
           end
 
           def create
-            @resource = @resource_class.new(resource_params)
-            @resource.parent = campaign
+            @_resource = resource_class.new(resource_params)
+            resource.parent = campaign
             super
           end
 

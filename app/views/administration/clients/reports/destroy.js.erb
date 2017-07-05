@@ -5,4 +5,4 @@ $(document).trigger('initPlugins');
 $(document).trigger('close_sidebar');
 
 // Notify message
-noty({text: '<%= t("administration.#{i18n || @resource_class.model_name.plural}.destroy.successfully", name: @resource.report.decorate.display_name) %>', type: 'success'});
+noty({text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.destroy.successfully", name: resource.report.decorate.display_name) %>', type: 'success'});

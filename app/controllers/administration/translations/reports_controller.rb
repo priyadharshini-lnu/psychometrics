@@ -5,7 +5,7 @@ module Administration
       before_action :set_report
 
       def new
-        @resource = ::Imports::Translations::ReportImport.new(report_id: @report.id)
+        @_resource = ::Imports::Translations::ReportImport.new(report_id: @report.id)
       end
 
       def export
@@ -15,9 +15,9 @@ module Administration
       end
 
       def import
-        @resource = ::Imports::Translations::ReportImport.new(import_params)
+        @_resource = ::Imports::Translations::ReportImport.new(import_params)
         respond_to do |format|
-          if @resource.process!
+          if resource.process!
             format.js
           else
             format.js { render :new }

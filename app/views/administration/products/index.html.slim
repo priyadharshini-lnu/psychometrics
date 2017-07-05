@@ -4,7 +4,7 @@
       .panel-heading
         h3.panel-title = t('.title')
         .pull-right
-          - if policy(@resource_class).new?
+          - if policy(resource_class).new?
             = link_to new_administration_product_path, remote: true, class: 'btn btn-default'
               span.fa.fa-plus
               = t('.new')

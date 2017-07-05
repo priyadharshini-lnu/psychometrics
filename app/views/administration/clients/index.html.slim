@@ -6,11 +6,11 @@
         .pull-right
           .btn-group
             - if policy(:client).manage_first_level?
-              - if policy(@resource_class).export?
+              - if policy(resource_class).export?
                 = link_to({action: :export, format: :csv}, target: :_blank, class: 'btn btn-default')
                   span.fa.fa-upload
                   = t('.export')
-              = link_to [:new, :administration, @resource_class.model_name.singular], remote: true, class: 'btn btn-default'
+              = link_to [:new, :administration, resource_class.model_name.singular], remote: true, class: 'btn btn-default'
                 span.fa.fa-plus
                 = t('.new')
         = search_form_for(@filter_form,

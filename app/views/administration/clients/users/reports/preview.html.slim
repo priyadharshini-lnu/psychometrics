@@ -6,7 +6,7 @@
         = render partial: 'application/lang', locals: { with_confirm: false, locales: @available_translations }
         .pull-right
           .btn-group
-            - if policy(@resource).preview?
+            - if policy(resource).preview?
               = link_to({ action: :preview, format: :pdf, lang: I18n.locale, export: true }, class: 'btn btn-default')
                 span.fa.fa-file-pdf-o
                 = t('.export_pdf')

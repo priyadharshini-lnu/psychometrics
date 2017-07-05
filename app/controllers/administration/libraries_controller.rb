@@ -10,10 +10,10 @@ module Administration
     # GET /administration/resources
     def index
       folder_id = params[:q].try(:[], :parent_id_in) || params[:folder_id]
-      @folder = policy_scope(@resource_class).find_by_id(folder_id)
+      @folder = policy_scope(resource_class).find_by_id(folder_id)
 
-      scope = policy_scope(@resource_class).children_of(@folder) if @folder
-      scope ||= policy_scope(@resource_class).roots
+      scope = policy_scope(resource_class).children_of(@folder) if @folder
+      scope ||= policy_scope(resource_class).roots
 
       @filter_form = scope.search(params[:q])
       @filter_form.sorts = ['type asc', 'name asc'] if @filter_form.sorts.empty?
@@ -26,14 +26,14 @@ module Administration
     end
 
     def new
-      @resource = @resource_class.new(type: params[:type], parent_id: params[:parent_id])
+      @_resource = resource_class.new(type: params[:type], parent_id: params[:parent_id])
     end
 
     def create
-      @resource = @resource_class.new(resource_params)
+      @_resource = resource_class.new(resource_params)
 
       respond_to do |format|
-        if @resource.save
+        if resource.save
           format.js
         else
           format.js { render :new }
@@ -43,13 +43,13 @@ module Administration
 
     # GET /administration/resources/1/edit
     def edit
-      add_breadcrumb @resource.decorate.display_name, { action: :edit, id: @resource.id }
+      add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
     end
 
     # PATCH/PUT /administration/resources/1
     def update
       respond_to do |format|
-        if @resource.update(resource_params)
+        if resource.update(resource_params)
           format.js
         else
           format.js { render :edit }
@@ -59,9 +59,9 @@ module Administration
 
     # DELETE /administration/resources/1
     def destroy
-      @resource.destroy
+      resource.destroy
       respond_to do |format|
-        format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+        format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
         format.js
       end
     end
@@ -70,25 +70,20 @@ module Administration
 
     def init_breadcrumbs
       add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
     end
 
     # Set model
     def set_resource_class
-      @resource_class ||= Library
+      @_resource_class ||= Library
     end
 
     def set_resource
-      @resource = policy_scope(@resource_class).find(params[:id])
+      @_resource = policy_scope(resource_class).find(params[:id])
     end
 
     def resource_params
       params.require(:resource).permit(:name, :description, :file, :type, :parent_id, :file_cache, :owner_id)
-    end
-
-    # Authorisation user
-    def pundit_authorize
-      authorize @resource || @resource_class
     end
   end
 end

@@ -2,7 +2,7 @@ module Administration
   class ReportFamiliesController < Administration::ReportsController
     # GET /administration/resources
     def index
-      @filter_form = policy_scope(@resource_class).search(params[:q])
+      @filter_form = policy_scope(resource_class).search(params[:q])
       @resources = @filter_form.result.page(params[:page])
       respond_to do |format|
         format.html
@@ -25,12 +25,12 @@ module Administration
     def init_breadcrumbs
       add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
       add_breadcrumb I18n.t("administration.breadcrumbs.reports"), [:administration, :reports]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
     end
 
     # Set model
     def set_resource_class
-      @resource_class ||= ReportFamily
+      @_resource_class ||= ReportFamily
     end
 
     def resource_params

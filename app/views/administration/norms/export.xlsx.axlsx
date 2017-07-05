@@ -4,10 +4,10 @@ FactorsNorm::NORM_TYPES.each do |type|
     styles = wb.styles
     text_center_bold = styles.add_style :alignment => {:horizontal => :center, :vertical => :center }, :b => true
 
-    wb.add_worksheet(name: "#{@resource.name} #{type.upcase}") do |sheet|
-      sheet.add_row [@resource.dimension.name]
+    wb.add_worksheet(name: "#{resource.name} #{type.upcase}") do |sheet|
+      sheet.add_row [resource.dimension.name]
       sheet.add_row
-      sheet.add_row [nil, nil] + @resource.decorate.xls_levels_row, :style => text_center_bold
+      sheet.add_row [nil, nil] + resource.decorate.xls_levels_row, :style => text_center_bold
       @factors_norms[type]['factors'].each do |factor|
         current_row = [nil, factor[:name]]
             FactorsNorm::LEVELS.each do |level|
@@ -19,7 +19,7 @@ FactorsNorm::NORM_TYPES.each do |type|
       end
       sheet.add_row
       sheet.add_row
-      a = sheet.add_row ['factor', 'sub-factor'] + @resource.decorate.xls_levels_row, :style => text_center_bold
+      a = sheet.add_row ['factor', 'sub-factor'] + resource.decorate.xls_levels_row, :style => text_center_bold
       sheet.merge_cells "C#{sheet.rows.size}:D#{sheet.rows.size}"
       sheet.merge_cells "E#{sheet.rows.size}:F#{sheet.rows.size}"
       sheet.merge_cells "G#{sheet.rows.size}:H#{sheet.rows.size}"

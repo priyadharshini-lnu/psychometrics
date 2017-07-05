@@ -7,7 +7,7 @@ class Administration::DimensionsController < Administration::BaseController
 
 
   def index
-    @filter_form = policy_scope(@resource_class).search(params[:q])
+    @filter_form = policy_scope(resource_class).search(params[:q])
     @resources = @filter_form.result.page(params[:page])
 
     respond_to do |format|
@@ -17,14 +17,14 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def new
-    @resource = @resource_class.new
+    @_resource = resource_class.new
   end
 
   def create
-    @resource = @resource_class.new(resource_params)
+    @_resource = resource_class.new(resource_params)
 
     respond_to do |format|
-      if @resource.save
+      if resource.save
         format.js
       else
         format.js { render :new }
@@ -33,7 +33,7 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def toggle_status
-    @resource.toggle(:disabled).save
+    resource.toggle(:disabled).save
     respond_to do |format|
       format.js
     end
@@ -41,7 +41,7 @@ class Administration::DimensionsController < Administration::BaseController
 
   def update
     respond_to do |format|
-      if @resource.update(resource_params)
+      if resource.update(resource_params)
         format.js
       else
         format.js { render :edit }
@@ -51,20 +51,20 @@ class Administration::DimensionsController < Administration::BaseController
 
   # DELETE /administration/resources/1
   def destroy
-    @resource.destroy
+    resource.destroy
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name)) }
+      format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
       format.js
     end
   end
 
   def copy
     respond_to do |format|
-      @cloned_resource = @resource.clone_and_save
+      @cloned_resource = resource.clone_and_save
       if @cloned_resource
         format.js
       else
-        format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: @resource.id }) } }
+        format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: resource.id }) } }
       end
     end
   end
@@ -72,19 +72,15 @@ class Administration::DimensionsController < Administration::BaseController
   private
 
   def set_resource_class
-    @resource_class ||= Dimension
+    @_resource_class ||= Dimension
   end
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), { action: :index }
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
   end
 
   def resource_params
     params.require(:resource).permit(:name, :owner_id)
-  end
-
-  def pundit_authorize
-    authorize @resource || @resource_class
   end
 end

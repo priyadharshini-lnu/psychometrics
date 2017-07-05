@@ -11,7 +11,7 @@
         - if current_user.is?(:superadmin)
           th = t('.end_date')
     tbody
-      - @resource.licenses.each do |license|
+      - resource.licenses.each do |license|
         tr
           td align='right' = license.decorate.display_name
           td = license.decorate.used_number(client)

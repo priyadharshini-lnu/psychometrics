@@ -1,6 +1,6 @@
-= simple_form_for(@resource, as: :resource, url: { action: :create }, remote: true, method: :post) do |f|
+= simple_form_for(resource, as: :resource, url: { action: :create }, remote: true, method: :post) do |f|
   .modal-body
-    = render_error_notification @resource
+    = render_error_notification resource
     .form-inputs.clearfix
       = f.association :assessment,
                       collection: client.assessments,

@@ -6,7 +6,7 @@ class Administration::UsersController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
   # GET /administration/resources
   def index
-    @filter_form = policy_scope(@resource_class).search(params[:q])
+    @filter_form = policy_scope(resource_class).search(params[:q])
     @resources = @filter_form.result.preload(:clients, :ttes).page(params[:page])
 
     respond_to do |format|
@@ -24,7 +24,7 @@ class Administration::UsersController < Administration::BaseController
   end
 
   def create
-    @resource = @resource_class.new(create_resource_params)
+    @_resource = resource_class.new(create_resource_params)
     resource.role = User::SUPER_ADMIN_ROLE
     resource.created_by_id = current_user.id
     resource.modified_by_id = current_user.id
@@ -41,9 +41,9 @@ class Administration::UsersController < Administration::BaseController
 
   # DELETE /administration/resources/1
   def destroy
-    @resource.destroy
+    resource.destroy
     respond_to do |format|
-      format.html {redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name))}
+      format.html {redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name))}
       format.js
     end
   end
@@ -51,11 +51,11 @@ class Administration::UsersController < Administration::BaseController
   # Change resources's status to active/disabled
   #
   def toggle_status
-    @resource.toggle!(:disabled)
-    @resource.update!(modified_by_id: current_user.id)
-    @resource.memberships.update_all(disabled: @resource.disabled)
+    resource.toggle!(:disabled)
+    resource.update!(modified_by_id: current_user.id)
+    resource.memberships.update_all(disabled: resource.disabled)
     respond_to do |format|
-      format.html {redirect_to(:back, success: t('.successfully', name: @resource.decorate.display_name))}
+      format.html {redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name))}
       format.js
     end
   end
@@ -63,28 +63,23 @@ class Administration::UsersController < Administration::BaseController
   # Send user instruction with reset password
   #
   def reset_password
-    @resource.send_reset_password_instructions
-    redirect_to :back, success: t('.successfully', name: @resource.decorate.display_name)
+    resource.send_reset_password_instructions
+    redirect_to :back, success: t('.successfully', name: resource.decorate.display_name)
   end
 
   protected
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{@resource_class.model_name.plural}"), {action: :index}
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), {action: :index}
   end
 
   # Set model
   def set_resource_class
-    @resource_class ||= User
+    @_resource_class ||= User
   end
 
   def create_resource_params
     params.require(:resource).permit(:first_name, :last_name, :email)
-  end
-
-  # Authorisation user
-  def pundit_authorize
-    authorize @resource || @resource_class
   end
 end

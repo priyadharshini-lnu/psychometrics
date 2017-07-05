@@ -5,11 +5,11 @@
         h3.panel-title = t('.title')
         .pull-right
           .btn-group
-            - if policy(@resource_class).create?
+            - if policy(resource_class).create?
               = link_to({ action: :new }, remote: true, class: 'btn btn-default create')
                 span.fa.fa-plus
                 = t('.add')
-            - if policy(@resource_class).index?
+            - if policy(resource_class).index?
               = link_to(administration_report_families_path,  class: 'btn btn-default')
                 = t('.families')
 

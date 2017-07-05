@@ -4,7 +4,7 @@
       .panel-heading
         h3.panel-title = "#{@dimension.name}: #{@factor.name}: #{t('.title')}"
         .pull-right
-          - if policy(@resource_class).create?
+          - if policy(resource_class).create?
             = link_to new_administration_dimension_factor_sub_factor_path, remote: true, class: 'btn btn-default'
               span.fa.fa-plus
               = t('.new')

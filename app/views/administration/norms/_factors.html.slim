@@ -11,8 +11,8 @@ table.table.table-bordered.table-actions.table-hover.selectable.mbn.table-conden
         - FactorsNorm::LEVELS.each do |level|
           - cell = factor[:factors_norms_props].find { |cell| cell['level'] == level }
           td.text-center
-            div class="editable" data-level="#{level}" data-factor="#{factor[:id]}" data-norm="#{@resource.id}" data-norm-type="#{@filter_data.norm_type}" data-pk="#{factor[:id]}" data-name="score_from" data-url="#{url_for(administration_factors_norms_update_path()) }"
+            div class="editable" data-level="#{level}" data-factor="#{factor[:id]}" data-norm="#{resource.id}" data-norm-type="#{@filter_data.norm_type}" data-pk="#{factor[:id]}" data-name="score_from" data-url="#{url_for(administration_factors_norms_update_path()) }"
               = cell.try(:[], 'score_from')
           td.text-center
-            div class="editable" data-level="#{level}" data-factor="#{factor[:id]}" data-norm="#{@resource.id}" data-norm-type="#{@filter_data.norm_type}" data-pk="#{factor[:id]}" data-name="score_to" data-url="#{url_for(administration_factors_norms_update_path()) }"
+            div class="editable" data-level="#{level}" data-factor="#{factor[:id]}" data-norm="#{resource.id}" data-norm-type="#{@filter_data.norm_type}" data-pk="#{factor[:id]}" data-name="score_to" data-url="#{url_for(administration_factors_norms_update_path()) }"
               = cell.try(:[], 'score_to')

@@ -102,7 +102,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @resource_class ||= ::Assign
+        @_resource_class ||= ::Assign
       end
 
       def set_assessment
