@@ -6,8 +6,8 @@ class Administration::NormsController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
 
   def index
-    @filter_form = policy_scope(resource_class).includes(:updater, :dimension).search(params[:q])
-    @resources = @filter_form.result.page(params[:page])
+    @_filter_form = policy_scope(resource_class).includes(:updater, :dimension).search(params[:q])
+    @_resources = filter_form.result.page(params[:page])
 
     respond_to do |format|
       format.html
@@ -89,7 +89,7 @@ class Administration::NormsController < Administration::BaseController
     scope = Factor.where(dimension_id: resource.dimension_id).
             with_factor_type(@filter_data.factor_type).
             with_norm_type(@filter_data.norm_type, resource.id)
-    @resources = FactorsNorm.structured_hash(scope)
+    @_resources = FactorsNorm.structured_hash(scope)
     respond_to do |format|
       format.js
       format.html

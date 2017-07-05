@@ -7,8 +7,8 @@ module Administration
 
       # GET /administration/resources
       def index
-        @filter_form = policy_scope(resource_class).search(params[:q])
-        @resources = @filter_form.
+        @_filter_form = policy_scope(resource_class).search(params[:q])
+        @_resources = filter_form.
                      result.
                      joining { |a| a.membership.on(a.membership.id.eq(a.membership_id) & (a.membership.client_id == client.id)) }.
                      joining { assessment }.

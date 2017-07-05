@@ -85,9 +85,9 @@ module Administration
             join_user.
             where(client_id: @assign_form.client_ids, role: Membership::MANAGER_ROLE).
             group_by(&:client_name)
-        @filter_form = Membership.search(client_id_in: @clients.map(&:id))
-        @filter_form.id_not_in = @assign_form.user_ids
-        @filter_form.id_in = @assign_form.user_ids
+        @_filter_form = Membership.search(client_id_in: @clients.map(&:id))
+        filter_form.id_not_in = @assign_form.user_ids
+        filter_form.id_in = @assign_form.user_ids
         @users = policy_scope(Membership).search(client_id_in: @clients.map(&:id)).result
       end
 

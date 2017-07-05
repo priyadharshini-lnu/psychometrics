@@ -24,9 +24,9 @@
           th = t('.header.users')
           th = t('.header.actual_usage')
     tbody
-      - if @resources.present?
-        = render partial: 'resource', collection: @resources
+      - if resources.present?
+        = render partial: 'resource', collection: resources
       - else
         tr.no_records
           td align='center' colspan='9' = t('administration.no_data_found')
-  = paginate @resources, theme: 'twitter-bootstrap-3'
+  = paginate resources, theme: 'twitter-bootstrap-3'

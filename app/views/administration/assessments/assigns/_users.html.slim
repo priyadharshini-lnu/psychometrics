@@ -10,7 +10,7 @@
       =< t('.filter_form')
     #collapse_not_selected_users.collapse
       .well
-        = search_form_for @filter_form,
+        = search_form_for filter_form,
                           builder: SimpleForm::FormBuilder,
                           url: { action: :not_selected_users, client_ids: @assign_form.client_ids },
                           remote: true,
@@ -65,7 +65,7 @@
       =< t('.filter_form')
     #collapse_users_selected.collapse
       .well
-        = search_form_for @filter_form,
+        = search_form_for filter_form,
                           builder: SimpleForm::FormBuilder,
                           url: { action: :selected_users, client_ids: @assign_form.client_ids },
                           remote: true,

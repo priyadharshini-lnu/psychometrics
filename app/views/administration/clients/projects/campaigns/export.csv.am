@@ -13,7 +13,7 @@ csv << [
         t('.header.actual_usage')
        ]
 
-@resources.each do |resource|
+resources.each do |resource|
   if resource.project.sub_campaign_level?
     row = [
             resource.name,

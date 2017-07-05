@@ -7,8 +7,8 @@ class Administration::AssessmentsController < Administration::BaseController
 
   # GET /administration/resources
   def index
-    @filter_form = policy_scope(resource_class).includes(:dimension).search(params[:q])
-    @resources = @filter_form.result.page(params[:page])
+    @_filter_form = policy_scope(resource_class).includes(:dimension).search(params[:q])
+    @_resources = filter_form.result.page(params[:page])
 
     respond_to do |format|
       format.html

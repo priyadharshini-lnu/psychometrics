@@ -5,9 +5,9 @@ module Administration
         before_action :ensure_project
 
         def index
-          @filter_form = policy_scope(resource_class).campaigns_of(project.id).enabled.includes(:license_usages).search(params[:q])
-          @filter_form.archived_true ||= false
-          @resources = @filter_form.result.page(params[:page])
+          @_filter_form = policy_scope(resource_class).campaigns_of(project.id).enabled.includes(:license_usages).search(params[:q])
+          filter_form.archived_true ||= false
+          @_resources = filter_form.result.page(params[:page])
 
           respond_to do |format|
             format.html
@@ -21,7 +21,7 @@ module Administration
         end
 
         def export
-          @resources = policy_scope(resource_class).campaigns_of(project.id)
+          @_resources = policy_scope(resource_class).campaigns_of(project.id)
 
           respond_to do |format|
             format.csv do

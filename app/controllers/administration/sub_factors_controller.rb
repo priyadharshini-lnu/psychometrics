@@ -9,8 +9,8 @@ class Administration::SubFactorsController < Administration::BaseController
 
   def index
     @map_assessments = Assessment.select(:id, :name).where(dimension_id: @dimension.id).all.group_by(&:id)
-    @filter_form = policy_scope(resource_class).where(parent_id: @factor.id).search(params[:q])
-    @resources   = @filter_form.result.page(params[:page])
+    @_filter_form = policy_scope(resource_class).where(parent_id: @factor.id).search(params[:q])
+    @_resources   = filter_form.result.page(params[:page])
     respond_to do |format|
       format.html
       format.js { render :index, formats: [:js] }

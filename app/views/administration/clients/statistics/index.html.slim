@@ -27,10 +27,10 @@
         .clearfix        
       .panel-body
         h3.text-center#report_title
-          - if @filter_form.assessment_category_eq.nil?
+          - if filter_form.assessment_category_eq.nil?
             = t('.all_assessments') 
           - else
-            = t("activerecord.attributes.assessment.categories.#{@filter_form.assessment_category_eq}")
+            = t("activerecord.attributes.assessment.categories.#{filter_form.assessment_category_eq}")
         #filter_results
           = render partial: 'list'
       .clearfix

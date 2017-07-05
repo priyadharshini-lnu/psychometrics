@@ -9,12 +9,12 @@ module Administration
       append_before_action :pundit_authorize, except: [:sidebar]
 
       def index
-        @filter_form ||= policy_scope(resource_class)
+        @_filter_form ||= policy_scope(resource_class)
                            .includes(user: [:clients, :memberships])
                            .where.not(role: Membership::ADMIN_ROLE)
                            .join_user.search(params[:q])
-        @filter_form.client_id_in = client.id
-        @resources = @filter_form.result.page(params[:page])
+        filter_form.client_id_in = client.id
+        @_resources = filter_form.result.page(params[:page])
 
         respond_to do |format|
           format.html
@@ -24,7 +24,7 @@ module Administration
       end
 
       def admins
-        @filter_form = policy_scope(resource_class)
+        @_filter_form = policy_scope(resource_class)
                            .includes(user: [:clients, :memberships])
                            .where(role: Membership::ADMIN_ROLE)
                            .join_user.search(params[:q])
@@ -107,7 +107,7 @@ module Administration
       end
 
       def export
-        @resources = policy_scope(::Membership).join_user.where(client_id: client.id)
+        @_resources = policy_scope(::Membership).join_user.where(client_id: client.id)
 
         respond_to do |format|
           format.csv do

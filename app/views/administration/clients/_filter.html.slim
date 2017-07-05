@@ -1,7 +1,7 @@
 h3
   i.fa.fa-filter
   | Filter
-= search_form_for(@filter_form,
+= search_form_for(filter_form,
         url: { action: :index },
         html: {id: 'filter'},
         builder: SimpleForm::FormBuilder) do |f|

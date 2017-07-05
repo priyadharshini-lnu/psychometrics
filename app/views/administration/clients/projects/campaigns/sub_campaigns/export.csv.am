@@ -6,7 +6,7 @@ csv << [
         t('.header.archive_status')
        ]
 
-@resources.each do |resource|
+resources.each do |resource|
   row = [
           resource.decorate.display_name,
           resource.decorate.array_reports.join(', '),

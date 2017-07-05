@@ -2,16 +2,16 @@
   table.table.table-bordered.table-actions.table-hover.selectable.list id="#{resource_class.model_name.plural}_list"
     thead
       tr
-        th.text-center width='1%' = link_to_sort resource_class, :type, @filter_form
-        th = link_to_sort resource_class, :name, @filter_form
+        th.text-center width='1%' = link_to_sort resource_class, :type, filter_form
+        th = link_to_sort resource_class, :name, filter_form
         th = resource_class.human_attribute_name(:description)
         th = t('administration.libraries.index.owner')
-        th.date = link_to_sort resource_class, :created_at, @filter_form
+        th.date = link_to_sort resource_class, :created_at, filter_form
         th width='1%' = t('administration.actions')
     tbody
-      - if @resources.present?
-        = render partial: 'resource', collection: @resources
+      - if resources.present?
+        = render partial: 'resource', collection: resources
       - else
         tr.no_records
           td align='center' colspan='9' = t('administration.no_data_found')
-  = paginate @resources, theme: 'twitter-bootstrap-3'
+  = paginate resources, theme: 'twitter-bootstrap-3'

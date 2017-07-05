@@ -8,8 +8,8 @@ module Administration
         append_before_action :pundit_authorize, :init_breadcrumbs
 
         def index
-          @filter_form = policy_scope(::Assign).where(id: membership.assign_ids).includes(:assessment).search(params[:q])
-          @resources = @filter_form.result.page(params[:page])
+          @_filter_form = policy_scope(::Assign).where(id: membership.assign_ids).includes(:assessment).search(params[:q])
+          @_resources = filter_form.result.page(params[:page])
           @reports = policy_scope(Report).
               ransack(clients_reports_client_id_eq: client.id).result.
               group_by(&:assessment_id)
@@ -61,7 +61,7 @@ module Administration
 
         def reports
           form = client.reports.search(params[:q])
-          @resources = form.result.distinct
+          @_resources = form.result.distinct
 
           respond_to do |format|
             format.json

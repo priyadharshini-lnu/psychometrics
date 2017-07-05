@@ -13,7 +13,7 @@
               = link_to({ action: :new, type: :other, parent_id: @folder&.id }, remote: true, class: 'btn btn-default')
                 span.fa.fa-upload
                 = t('.upload')
-        = search_form_for(@filter_form,
+        = search_form_for(filter_form,
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },
                           builder: SimpleForm::FormBuilder) do |f|

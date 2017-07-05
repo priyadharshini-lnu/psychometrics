@@ -1,9 +1,9 @@
-- if @resources.present?
+- if resources.present?
   .row
     .col-md-6
       #summary
     .col-md-6
-      - @resources.each_slice(2) do |resources|
+      - resources.each_slice(2) do |resources|
         .row
           = render partial: 'resource', collection: resources
 - else
@@ -45,9 +45,9 @@ javascript:
           animation: false,
           type: 'pie',
           data: [
-            ['New', #{@resources.inject(0) { | sum, res | sum += res.new_count;sum }}],
-            ['New', #{@resources.inject(0) { | sum, res | sum += res.in_progress_count;sum }}],
-            ['Completed', #{@resources.inject(0) { | sum, res | sum += res.completed_count;sum }}]
+            ['New', #{resources.inject(0) { | sum, res | sum += res.new_count;sum }}],
+            ['New', #{resources.inject(0) { | sum, res | sum += res.in_progress_count;sum }}],
+            ['Completed', #{resources.inject(0) { | sum, res | sum += res.completed_count;sum }}]
           ]
         }]
       });

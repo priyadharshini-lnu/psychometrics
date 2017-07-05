@@ -17,7 +17,7 @@
                       class: 'btn btn-default'
               span.fa.fa-plus
               = t('.new')
-        = search_form_for(@filter_form,
+        = search_form_for(filter_form,
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },
                           builder: SimpleForm::FormBuilder) do |f|

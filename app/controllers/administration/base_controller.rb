@@ -30,4 +30,8 @@ class Administration::BaseController < ActionController::Base
     end
     super
   end
+
+  def pundit_authorize
+    authorize resource || resource_class
+  end
 end

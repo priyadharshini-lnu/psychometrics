@@ -2,12 +2,12 @@
   table.table.table-bordered.table-actions.selectable.list.tenancies id="#{resource_class.model_name.plural}_list"
     thead
       tr
-        th = link_to_sort resource_class, :name, @filter_form
+        th = link_to_sort resource_class, :name, filter_form
         - if policy(:client).view_additional_fields?
-          th = link_to_sort resource_class, :type, @filter_form
-          th = link_to_sort resource_class, :number, @filter_form
-          th = link_to_sort resource_class, :location, @filter_form
-        th = link_to_sort resource_class, :year, @filter_form
+          th = link_to_sort resource_class, :type, filter_form
+          th = link_to_sort resource_class, :number, filter_form
+          th = link_to_sort resource_class, :location, filter_form
+        th = link_to_sort resource_class, :year, filter_form
         th.report_family = t('.report_family')
         th.used_number = t('.used_license_number')
         - if current_user.is?(:superadmin)
@@ -17,12 +17,12 @@
         - if current_user.is?(:superadmin)
           th.end_date = t('.end_date')
         th = t('.project_admin')
-        th = link_to_sort resource_class, :account_manager_id, @filter_form
-        th = link_to_sort resource_class, :project_manager_id, @filter_form
+        th = link_to_sort resource_class, :account_manager_id, filter_form
+        th = link_to_sort resource_class, :project_manager_id, filter_form
         th.text-center width='1%' = t 'administration.actions'
-    - if @resources.present?
-      = render partial: 'resource', collection: @resources
+    - if resources.present?
+      = render partial: 'resource', collection: resources
     - else
       tr.no_records
         td align='center' colspan='8' = t('administration.no_data_found')
-  = paginate @resources, theme: 'twitter-bootstrap-3'
+  = paginate resources, theme: 'twitter-bootstrap-3'

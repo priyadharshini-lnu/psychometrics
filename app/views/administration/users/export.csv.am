@@ -1,5 +1,5 @@
 
-hris_keys = @resources.map(&:hris).compact.map(&:keys).flatten.uniq
+hris_keys = resources.map(&:hris).compact.map(&:keys).flatten.uniq
 csv << [
         resource_class.human_attribute_name('active'),
         resource_class.human_attribute_name('first_name'),
@@ -11,7 +11,7 @@ csv << [
         *hris_keys
        ]
 
-@resources.each do |resource|
+resources.each do |resource|
   row = [
           resource.decorate.status_text,
           resource.first_name,

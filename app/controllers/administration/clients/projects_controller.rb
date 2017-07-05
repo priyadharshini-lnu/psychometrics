@@ -4,13 +4,13 @@ module Administration
       before_action :ensure_client
 
       def index
-        @filter_form = policy_scope(resource_class)
+        @_filter_form = policy_scope(resource_class)
             .projects_of(client.id)
             .includes(:admins, :assigned_memberships, :license_usages, :completed_memberships)
             .order(:name)
             .search(params[:q])
-        @filter_form.disabled_true ||= false
-        @resources = @filter_form.result.page(params[:page])
+        filter_form.disabled_true ||= false
+        @_resources = filter_form.result.page(params[:page])
 
         respond_to do |format|
           format.html
@@ -24,7 +24,7 @@ module Administration
       end
 
       def export
-        @resources = policy_scope(resource_class).projects_of(client.id).includes(:admins)
+        @_resources = policy_scope(resource_class).projects_of(client.id).includes(:admins)
         respond_to do |format|
           format.csv do
             headers['Content-Disposition'] = "attachment; filename=\"projects-#{Date.today}.csv\""

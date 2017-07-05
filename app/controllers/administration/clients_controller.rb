@@ -7,9 +7,9 @@ module Administration
     append_before_action :pundit_authorize, except: [:sidebar]
 
     def index
-      @filter_form = policy_scope(resource_class).tenancies.includes(:projects_admins).order(:name).search(params[:q])
-      @filter_form.archived_true ||= false
-      @resources = @filter_form.result.page(params[:page])
+      @_filter_form = policy_scope(resource_class).tenancies.includes(:projects_admins).order(:name).search(params[:q])
+      filter_form.archived_true ||= false
+      @_resources = filter_form.result.page(params[:page])
 
       respond_to do |format|
         format.html
@@ -97,7 +97,7 @@ module Administration
     end
 
     def export
-      @resources = policy_scope(resource_class).tenancies.enabled.includes(projects: :admins)
+      @_resources = policy_scope(resource_class).tenancies.enabled.includes(projects: :admins)
 
       respond_to do |format|
         format.csv do

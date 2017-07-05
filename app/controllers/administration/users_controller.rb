@@ -6,8 +6,8 @@ class Administration::UsersController < Administration::BaseController
   append_before_action :pundit_authorize, except: [:sidebar]
   # GET /administration/resources
   def index
-    @filter_form = policy_scope(resource_class).search(params[:q])
-    @resources = @filter_form.result.preload(:clients, :ttes).page(params[:page])
+    @_filter_form = policy_scope(resource_class).search(params[:q])
+    @_resources = filter_form.result.preload(:clients, :ttes).page(params[:page])
 
     respond_to do |format|
       format.html

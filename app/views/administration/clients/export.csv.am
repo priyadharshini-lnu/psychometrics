@@ -10,7 +10,7 @@ csv << [
         resource_class.human_attribute_name('project_manager_id')
        ]
 
-@resources.each do |resource|
+resources.each do |resource|
   row = [
           resource.name,
           resource.decorate.type,
