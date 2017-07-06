@@ -14,8 +14,8 @@ en:
           tte_admin: TTE Project Manager
           tests_allocated: Tests Allocated
           archive_status: Status
-          assigned_user: Assigned User
-          completed_user: Completed user
+          assigned_user: Assigned Users
+          completed_user: Completed users
           applicable_level: Applicable Level
           url: URL
           actual_usage: Actual Usage
