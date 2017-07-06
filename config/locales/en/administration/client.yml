@@ -19,6 +19,9 @@ en:
         header: 'New Client'
       edit:
         header: 'Edit Client'
+      licenses:
+        update:
+          successfully: Licenses successfully updated
       license:
         header: '%{name} - Edit license'
       destroy:

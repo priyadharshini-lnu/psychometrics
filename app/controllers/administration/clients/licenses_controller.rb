@@ -12,13 +12,8 @@ module Administration
       end
 
       def update
-        respond_to do |format|
-          if resource.update(resource_params)
-            format.js
-          else
-            format.js { render :edit }
-          end
-        end
+        return unless params[:resource]
+        render :edit unless resource.update(resource_params)
       end
 
       private

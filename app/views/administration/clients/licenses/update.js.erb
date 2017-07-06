@@ -1,1 +1,10 @@
-location.reload()
+$(function () {
+  $('#modal-container').find('.modal').modal('hide');
+  $(document).trigger('close_sidebar');
+// Notify message
+  noty({
+    text: '<%= t(".successfully") %>',
+    type: 'success'
+  });
+});
+
