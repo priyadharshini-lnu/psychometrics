@@ -1,10 +1,15 @@
-$('#modal-container').find('.modal').modal('hide');
-$('#modal-container').find('.modal').on('hidden.bs.modal', function(){
-  $('#filter').trigger('reloadList');
+$(function () {
+  var $modalBox = $('#modal-container').find('.modal');
 
-  // Reinit all plugins
-  $(document).trigger('initPlugins');
+  $modalBox.modal('hide');
+  $modalBox.on('hidden.bs.modal', function () {
+    $('#filter').trigger('reloadList');
+    $(document).trigger('initPlugins');
 
-  // Notify message
-  noty({text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.create.successfully", name: resource.decorate.display_name) %>', type: 'success'});
+    // Notify message
+    noty({
+      text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.create.successfully", name: resource.decorate.display_name) %>',
+      type: 'success'
+    });
+  });
 });

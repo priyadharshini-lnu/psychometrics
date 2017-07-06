@@ -22,6 +22,7 @@ en:
       licenses:
         update:
           successfully: Licenses successfully updated
+          duplicate_licenses: You have duplicate licenses
       license:
         header: '%{name} - Edit license'
       destroy:

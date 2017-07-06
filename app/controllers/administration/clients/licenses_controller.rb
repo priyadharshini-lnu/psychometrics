@@ -14,6 +14,8 @@ module Administration
       def update
         return unless params[:resource]
         render :edit unless resource.update(resource_params)
+      rescue ActiveRecord::RecordNotUnique
+        render :error, locals: { message: t('.duplicate_licenses') }
       end
 
       private

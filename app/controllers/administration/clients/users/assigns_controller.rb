@@ -24,22 +24,22 @@ module Administration
         end
 
         def create
-          @assessment = policy_scope(Assessment).find(resource_params[:assessment_id])
+          @assessment = policy_scope(Assessment).find_by_id(resource_params[:assessment_id])
+          return unless @assessment
           client.assign_clients.find_or_create_by(assessment: @assessment)
 
           assigns_scope = membership.assigns
           @_resource = assigns_scope.where(assessment_id: @assessment.id).take || assigns_scope.build(resource_params)
-          if resource.new_record?
-            resource.save
-          else
-            resource.report_ids = resource_params[:report_ids]
+          begin
+            if resource.new_record?
+              resource.save
+            else
+              resource.report_ids = resource_params[:report_ids]
+            end
+          rescue ActiveRecord::RecordInvalid
+            resource.errors.add(:base, :has_no_enough_licenses) if resource.errors[:base].empty?
           end
-        rescue ActiveRecord::RecordInvalid
-          resource.errors.add(:base, :has_no_enough_licenses) if resource.errors[:base].empty?
-        ensure
-          respond_to do |format|
-            format.js { render :new if resource.errors.any? }
-          end
+          render :new if resource.errors.any?
         end
 
         def destroy

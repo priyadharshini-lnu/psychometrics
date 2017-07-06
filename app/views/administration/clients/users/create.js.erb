@@ -1,8 +1,8 @@
 $(function () {
-  var $modalContainer = $('#modal-container');
+  var $modalBox = $('#modal-container').find('.modal');
 
-  $modalContainer.find('.modal').modal('hide');
-  $modalContainer.find('.modal').on('hidden.bs.modal', function () {
+  $modalBox.modal('hide');
+  $modalBox.on('hidden.bs.modal', function () {
     $('#filter').trigger('reloadList');
 
     // Reinit all plugins

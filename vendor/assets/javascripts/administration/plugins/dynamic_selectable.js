@@ -16,6 +16,7 @@ DynamicSelectable = (function() {
   DynamicSelectable.prototype.init = function($select) {
     this.urlTemplate = $select.data('dynamicSelectableUrl');
     this.$targetSelect = $($select.data('dynamicSelectableTarget'));
+    this.include_blank = $select.data('includeBlank');
     return $select.on('change', (function(_this) {
       return function() {
         var url;
@@ -36,11 +37,16 @@ DynamicSelectable = (function() {
   };
 
   DynamicSelectable.prototype.reinitializeTarget = function() {
+    this.$targetSelect.selectpicker('refresh');
     return this.$targetSelect.trigger("change");
   };
 
   DynamicSelectable.prototype.clearTarget = function() {
-    return this.$targetSelect.html('<option></option>');
+    if (this.include_blank) {
+      return this.$targetSelect.html('<option></option>');
+    } else {
+      return this.$targetSelect.html('');
+    }
   };
 
   DynamicSelectable.prototype.constructUrl = function(id) {

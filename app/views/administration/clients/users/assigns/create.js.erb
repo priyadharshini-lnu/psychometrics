@@ -1,0 +1,13 @@
+$(function () {
+  var $modalBox = $('#modal-container').find('.modal');
+  $modalBox.modal('hide');
+  $modalBox.on('hidden.bs.modal', function () {
+    $('#filter').trigger('reloadList');
+
+    noty({
+      text: '<%= t(".successfully") %>',
+      type: 'success',
+      timeout: 9000
+    });
+  });
+});

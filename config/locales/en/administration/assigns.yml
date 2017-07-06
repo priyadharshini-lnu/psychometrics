@@ -3,6 +3,8 @@ en:
     assigns:
       index:
         title: 'Reports'
+      new:
+        header: Assign Assessment and Reports
       create:
         successfully: New assign to assessment was successfully created
       destroy:

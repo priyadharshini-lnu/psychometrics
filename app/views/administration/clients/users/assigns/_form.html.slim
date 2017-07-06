@@ -6,7 +6,8 @@
                       collection: client.assessments,
                       input_html: { data: { live_search: true,
                                             dynamic_selectable_url: url_for(action: :reports, q: { assessment_id_eq: '__id__' }),
-                                            dynamic_selectable_target: '#resource_report_ids' } },
+                                            dynamic_selectable_target: '#resource_report_ids',
+                                            include_blank: false } },
                       include_blank: true,
                       label: t('.assessment')
       = f.association :reports, collection: f.object.assessment&.reports || []

@@ -1,10 +1,14 @@
 $(function () {
-  $('#modal-container').find('.modal').modal('hide');
-  $(document).trigger('close_sidebar');
-// Notify message
-  noty({
-    text: '<%= t(".successfully") %>',
-    type: 'success'
+  var $modalContainer = $('#modal-container'),
+      $modalBox = $modalContainer.find('.modal');
+
+  $modalBox.modal('hide');
+  $modalBox.on('hidden.bs.modal', function () {
+    $(document).trigger('close_sidebar');
+    noty({
+      text: '<%= t(".successfully") %>',
+      type: 'success'
+    });
   });
 });
 
