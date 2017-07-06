@@ -26,9 +26,9 @@ class AssessmentsController < ApplicationController
   def pass
     @assign = Assign.find_by!(
         assessment_id: @resource.id,
-        membership_id: @current_membership.id,
-        status: [:not_started, :in_progress]
+        membership_id: @current_membership.id
     )
+    return redirect_to action: :index if @assign.completed?
     @translations = ::Translation.to_hash_for_assessment(@resource.id, user_locale)
     @available_translations = ::Translation.available_translation_for_assessment(@resource.id)
     @assign.in_progress!
