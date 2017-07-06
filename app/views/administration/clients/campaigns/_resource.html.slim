@@ -3,7 +3,7 @@ tr data-sidebar=url_for(sidebar_administration_client_campaign_path(client, reso
     - if resource.parent.campaign_level?
       = link_to resource.name, administration_client_users_path(resource)
     - else
-      = link_to resource.name, administration_client_project_campaigns_path(client, resource)
+      = link_to resource.name, administration_client_project_campaign_sub_campaigns_path(client, resource.parent_id, resource)
   td
     = resource.decorate.reports
     - if policy(:clients_report).create?

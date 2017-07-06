@@ -4,6 +4,8 @@
       tr
         th = link_to_sort resource_class, :name, filter_form
         th = t('.tests_allocated')
+        th = t('.assigned_user')
+        th = t('.completed_user')
         th.date = link_to_sort resource_class, :created_at, filter_form
         th = t('administration.created_by')
         th.date = link_to_sort resource_class, :updated_at, filter_form

@@ -7,6 +7,9 @@ en:
           new: Add
           export: Export
         list: &list
+          name: Sub-Campaign Name
+          assigned_user: Assigned Users
+          completed_user: Completed Users
           header:
             sub_campaign: Sub-Campaigns
             actions: Actions
