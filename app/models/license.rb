@@ -20,8 +20,9 @@ class License < ApplicationRecord
   has_many :license_usages # on delete cascade
 
   validates :client, :start_date, :end_date, presence: true, allow_nil: false
-  validates :number, :overuse_number, :used_number,
+  validates :overuse_number, :used_number,
             numericality: { greater_than_or_equal_to: 0 }
+  validates :number, numericality: { greater_than_or_equal_to: 1 }
   validates :report_family_id, presence: true
   validate :license_expire_validation
 
