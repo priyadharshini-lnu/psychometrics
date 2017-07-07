@@ -42,11 +42,11 @@ DynamicSelectable = (function() {
   };
 
   DynamicSelectable.prototype.clearTarget = function() {
+    var content = '';
     if (this.include_blank) {
-      return this.$targetSelect.html('<option></option>');
-    } else {
-      return this.$targetSelect.html('');
+      content = '<option></option>';
     }
+    return this.$targetSelect.html(content);
   };
 
   DynamicSelectable.prototype.constructUrl = function(id) {

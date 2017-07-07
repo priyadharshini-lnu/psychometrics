@@ -19,7 +19,8 @@
         th = t('.project_admin')
         th = link_to_sort resource_class, :account_manager_id, filter_form
         th = link_to_sort resource_class, :project_manager_id, filter_form
-        th.text-center width='1%' = t 'administration.actions'
+        - if policy(:client).edit_tte?
+          th.text-center width='1%' = t 'administration.actions'
     - if resources.present?
       = render partial: 'resource', collection: resources
     - else

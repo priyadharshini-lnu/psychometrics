@@ -16,8 +16,8 @@ tbody data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(reso
     td rowspan=rowspan = resource.decorate.projects_admins
     td rowspan=rowspan = resource.account_manager&.decorate&.display_name
     td rowspan=rowspan = resource.project_manager&.decorate&.display_name
-    td.actions-cell rowspan=rowspan
-      - if policy(resource).actions?
+    - if policy(:client).edit_tte?
+      td.actions-cell rowspan=rowspan
         = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
           span.fa.fa-pencil
         - if policy(resource).manage_first_level?

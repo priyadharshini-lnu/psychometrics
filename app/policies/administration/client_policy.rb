@@ -46,6 +46,10 @@ module Administration
       super
     end
 
+    def edit_tte?
+      @user.is?(:superadmin)
+    end
+
     def design?
       @user.is?(:superadmin) || @user.has_grant?(:clients, :design)
     end
