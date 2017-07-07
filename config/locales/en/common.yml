@@ -79,7 +79,6 @@ en:
     ur: 'Urdu'
     vi: 'Vietnamese'
     cy: 'Welsh'
-
   currencies:
     USD: USD
     EUR: EUR
@@ -107,3 +106,5 @@ en:
       profile: 'Profile'
       dashboard: 'Dashboard'
       menu: 'Menu'
+  errors:
+    error_500: Something went wrong. Contact your administrator.

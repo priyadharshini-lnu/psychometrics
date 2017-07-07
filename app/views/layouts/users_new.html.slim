@@ -89,9 +89,12 @@ html
                             | See All Alerts
                           i.fa.fa-angle-right
                 li
-                  = link_to image_tag('homeIcon.png'), assessments_path
+                  = link_to image_tag('homeIcon.png'), root_path
     .banner
     .container-fluid.mainContent
+      .row
+        .col-xs-12.col-md-8.col-md-offset-2
+          == flash_messages
       = yield
     footer.loginFooter.solid
       .container-fluid

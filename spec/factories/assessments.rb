@@ -19,7 +19,7 @@
 #
 
 FactoryGirl.define do
-  factory :assessment do
+  factory :assessment, class: ::Assessments::Common  do
     sequence(:name) { |i| "assessment #{i}" }
     dimension
 

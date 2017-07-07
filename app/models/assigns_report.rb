@@ -14,7 +14,8 @@ class AssignsReport < ApplicationRecord
   LICENSES = {
       Assessment::PSYCHOMETRIC => Licenses::AssignReportPsychometrics,
       Assessment::ORGANISATIONAL => Licenses::AssignReportOrgSurvey,
-      Assessment::NUM_360 => Licenses::AssignReport_360_Feedback
+      Assessment::NUM_360 => Licenses::AssignReport_360_Feedback,
+      Assessment::MINDMILL => Licenses::AssignReportMindmill
   }.freeze
   belongs_to :assign
   belongs_to :report

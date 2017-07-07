@@ -9,12 +9,45 @@ require 'capybara/poltergeist'
 require 'capybara-screenshot/rspec'
 require 'selenium-webdriver'
 require 'features/helpers'
+Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 Psychometrics::Application.load_tasks
 
+Capybara.default_max_wait_time = 5
+Capybara.register_driver :poltergeist do |app|
+  options = {
+      js_errors: false,
+      timeout: 80,
+      phantomjs_options: ['--load-images=no', '--disk-cache=false', '--web-security=false'],
+      inspector: true,
+      window_size: [1366, 768]
+  }
+  Capybara::Poltergeist::Driver.new(app, options)
+end
+
+Capybara.register_driver :chrome do |app|
+  # optional
+  client = Selenium::WebDriver::Remote::Http::Default.new
+  client.read_timeout = 120
+  profile = Selenium::WebDriver::Chrome::Profile.new
+  profile['download.default_directory'] = DownloadHelpers::PATH.to_s
+  Capybara::Selenium::Driver.new(app, browser: :chrome, http_client: client, profile: profile)
+end
+
+Capybara::Screenshot.register_driver(:chrome) do |driver, path|
+  driver.browser.save_screenshot(path)
+end
+
+Capybara.configure do |c|
+  c.app_host = 'http://lvh.me:31338'
+  c.server_port = 31_338
+end
+
+Capybara.default_driver = :poltergeist
+Capybara.javascript_driver = :chrome
+
 RSpec.configure do |config|
-  Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
   config.include Features::Helpers, type: :feature
   config.include AbstractController::Translation
   config.include FactoryGirl::Syntax::Methods
@@ -23,39 +56,6 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
   # config.filter_gems_from_backtrace("gem name")
-
-  Capybara.default_max_wait_time = 5
-  Capybara.register_driver :poltergeist do |app|
-    options = {
-        js_errors: false,
-        timeout: 80,
-        phantomjs_options: ['--load-images=no', '--disk-cache=false', '--web-security=false'],
-        inspector: true,
-        window_size: [1366, 768]
-    }
-    Capybara::Poltergeist::Driver.new(app, options)
-  end
-
-  Capybara.register_driver :chrome do |app|
-    # optional
-    client = Selenium::WebDriver::Remote::Http::Default.new
-    client.read_timeout = 120
-    profile = Selenium::WebDriver::Chrome::Profile.new
-    profile['download.default_directory'] = DownloadHelpers::PATH.to_s
-    Capybara::Selenium::Driver.new(app, browser: :chrome, http_client: client, profile: profile)
-  end
-
-  Capybara::Screenshot.register_driver(:chrome) do |driver, path|
-    driver.browser.save_screenshot(path)
-  end
-
-  Capybara.configure do |c|
-    c.app_host = 'http://lvh.me:31338'
-    c.server_port = 31_338
-  end
-
-  Capybara.default_driver = :poltergeist
-  Capybara.javascript_driver = :chrome
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :deletion

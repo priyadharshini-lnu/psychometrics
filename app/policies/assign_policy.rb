@@ -1,4 +1,13 @@
 class AssignPolicy < BasePolicy
+  def pass?
+    return false if @current_user.is_anonym?
+    @record.membership_id == @current_membership.id
+  end
+
+  def results?
+    pass?
+  end
+
   def index?
     return false if @current_user.is_anonym?
     true
@@ -10,10 +19,10 @@ class AssignPolicy < BasePolicy
 
   class Scope < Scope
     def resolve
-      @user[:current_membership].
-          assigns.
-          joins('LEFT JOIN assessments a on a.id = assigns.assessment_id and a.disabled = false').
-          where('a.id is not null or p.id is not null')
+      scope.
+        where(membership_id: @user[:current_membership].id).
+        joins(:assessment).
+        where.has { |assign| assign.assessment.disabled.not_eq(true) }
     end
   end
 end

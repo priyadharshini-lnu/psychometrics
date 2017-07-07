@@ -3,20 +3,23 @@ en:
     index:
       user_dashboard_button: 'User Dashboard'
       managers_dashboard_button: 'Managers Dashboard'
-    assessment: &assessment
+    assign: &assign
       questions:
         zero: "No Questions"
         one: "1 Question"
         other: "%{count} Questions"
       assigned: "Assigned %{date}"
-      results: "Results"
       status:
         not_started: 'Start'
         in_progress: 'Resume'
         completed: 'Completed'
         overdue: 'Overdue'
+      mindmill_confirmation: "Starting this assessment you will lost results \"%{assessment}\".
+                              Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue"
+    reports:
+      results: "Results"
     project_assessment:
-      <<: *assessment
+      <<: *assign
     decorator:
       no_description: 'Description is empty'
       completed: "Completed %{date}"

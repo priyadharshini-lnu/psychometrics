@@ -22,3 +22,28 @@ currencies:
   - OMR
   - QAR
 default_currency: 'USD'
+mindmill:
+  - name: Administration Entry Level
+    id: 369
+  - name: Administration Mid-Level
+    id: 370
+  - name: Administration Senior Level
+    id: 371
+  - name: Finance Entry Level
+    id: 372
+  - name: Finance Mid-Level
+    id: 373
+  - name: Finance Senior Level
+    id: 374
+  - name: Sales Entry Level
+    id: 375
+  - name: Sales Mid-Level
+    id: 376
+  - name: Sales Senior Level
+    id: 377
+  - name: Technical Entry Level
+    id: 378
+  - name: Technical Mid-Level
+    id: 379
+  - name: Technical Senior Level 
+    id: 380

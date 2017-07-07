@@ -21,116 +21,106 @@
 class Assessment < ApplicationRecord
   include Copyable
 
+  # CATEGORIES constant
+  CATEGORIES_TYPES = [
+    PSYCHOMETRIC = 'psychometric'.freeze,
+    ORGANISATIONAL = 'organisational'.freeze,
+    NUM_360 = '360'.freeze,
+    MINDMILL = 'mindmill'.freeze
+  ].freeze
+  CATEGORIES = {
+    psychometric: PSYCHOMETRIC,
+    organisational: ORGANISATIONAL,
+    '360' => NUM_360,
+    mindmill: MINDMILL
+  }.freeze
+
+  # Assessments constant
+  TYPES = {
+    common: 'Assessments::Common',
+    mindmill: 'Assessments::Mindmill'
+  }.freeze
+
+  # STATUSES constant
+  STATUSES = %i(in_progress finished).freeze
+
+  ### ASSOCIATIONS
+  ##
   belongs_to :dimension
-  belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+  belongs_to :owner, class_name: 'Client'
 
   has_many :blocks, -> { order(position: :asc) }, dependent: :destroy
   has_many :questions, dependent: :destroy
   has_many :norms, through: :dimension
-  has_many :factors_scoring, dependent: :destroy
-  has_many :factors, through: :factors_scoring
-  has_many :reports, dependent: :destroy
-  has_many :report_families, through: :reports
-
-  has_many :assign_clients, dependent: :destroy
-  has_many :clients, through: :assign_clients
-  has_many :assigns, dependent: :destroy
-
-  has_many :memberships, through: :assigns
-  has_many :assessments_projects, inverse_of: :project
-  has_many :projects, through: :assessments_projects
-
   has_many :communications, dependent: :destroy
   has_many :translations, as: :resource, dependent: :destroy
   has_many :tasks, dependent: :destroy
 
-  CATEGORIES_TYPES = [
-      PSYCHOMETRIC = 'psychometric'.freeze,
-      ORGANISATIONAL = 'organisational'.freeze,
-      NUM_360 = '360'.freeze
-  ].freeze
+  # HABTM Factors
+  has_many :factors_scoring, dependent: :destroy
+  has_many :factors, through: :factors_scoring
 
-  # CATEGORIES constant
-  CATEGORIES = {
-      psychometric: PSYCHOMETRIC,
-      organisational: ORGANISATIONAL,
-      '360' => NUM_360
-  }.freeze
+  # HABTM Report Families
+  has_many :reports, dependent: :destroy
+  has_many :report_families, through: :reports
 
-  # STATUSES constant
-  STATUSES = [:in_progress, :finished].freeze
+  # HABTM Clients
+  has_many :assign_clients, dependent: :destroy
+  has_many :clients, through: :assign_clients
 
-  validates :name, :dimension, presence: true
-  validates :name, length: { maximum: 150 }, allow_blank: true
-  validates :owner, presence: true, allow_nil: true
-  validate :check_owner
+  # HABTM Memberships
+  has_many :assigns, dependent: :destroy
+  has_many :memberships, through: :assigns
+  ##
+  ### END ASSOCIATIONS
 
-  before_create :init
-
-  def init
-    self.flow ||= { elements: [] }
-    self.status = Assessment.statuses[:in_progress] unless status
-    self.norm_rules ||= {}
-  end
+  validates :type, presence: true, inclusion: { in: TYPES.values }
 
   enum category: CATEGORIES
   enum status: STATUSES
 
+  scope :common, -> { where(type: TYPES[:common]) }
+  scope :mindmill, -> { where(type: TYPES[:mindmill]) }
   scope :enabled, -> { where.not(disabled: true) }
-
-  # Search entity by word
-  scope :search_query, lambda { |query|
-    where('name ILIKE ?', "%#{query}%")
-  }
-
-  # Sorting
-  scope :sorted_by, lambda { |sort_key|
-    # extract the sort direction from the param value.
-    direction = sort_key =~ /desc$/ ? 'desc' : 'asc'
-    case sort_key.to_s
-    when /^id_/
-      order("assessments.id #{direction}")
-    when /^active_/
-      order("assessments.disabled #{direction}")
-    when /^name_/
-      order("assessments.name #{direction}")
-    when /^dimension_id_/
-      joins(:dimension).order("dimensions.name #{direction}")
-    when /^created_at_/
-      order("assessments.created_at #{direction}")
-    when /^updated_at_/
-      order("assessments.updated_at #{direction}")
-    end
-  }
-
-  # Find by category
+  scope :disabled, -> { where(disabled: true) }
   scope :with_category, lambda { |category|
     where(category: category)
   }
-
   scope :with_client, lambda { |client_id|
     joins(:assign_clients).where(assign_clients: { client_id: client_id })
   }
 
+  # TODO: Remove, cause does not used
   def active_questions_count
     questions.not_deleted.where(disabled: false).count
+  end
+
+  # Return true if assessmnent is Common
+  def common?
+    type == TYPES[:common]
+  end
+
+  # Return true if assessmnent is Mindmill
+  def mindmill?
+    type == TYPES[:mindmill]
+  end
+
+  class << self
+    # Available role for the filter form
+    #
+    # TODO: Remove, cause does not used
+    def options_for_with_category
+      CATEGORIES.values
+    end
+
+    def options_for_select
+      all.map { |assessment| [assessment.decorate.display_name, assessment.id, { data: { mindmill: assessment.mindmill? } }] }
+    end
   end
 
   private
 
   def check_owner
     errors.add(:owner, :invalid) if owner&.ancestors?
-  end
-
-  class << self
-    # Available role for the filter form
-    #
-    def options_for_with_category
-      CATEGORIES.values
-    end
-
-    def options_for_select
-      all.map { |assessment| [assessment.decorate.display_name, assessment.id] }
-    end
   end
 end

@@ -35,6 +35,7 @@ gem 'devise-i18n',                '~> 1.1.0'
 gem 'pundit',                     '~> 1.1.0'
 ### Assets
 gem 'bootstrap-sass',             '~> 3.3.6'
+gem 'bh',                         '~> 1.3'
 gem 'font-awesome-rails',         '~> 4.6.3.0'
 # gem 'noty-rails',                 '~> 2.3.8'
 
@@ -103,6 +104,7 @@ gem 'amoeba', '~> 3.0.0'
 gem 'deep_cloneable', '~> 2.2.1'
 
 gem 'carrierwave', '~> 0.11.2'
+gem 'carrierwave-base64', '~> 2.5.3'
 gem 'remotipart', '~> 1.2'
 gem 'mini_magick', '~> 4.5.1'
 gem 'carrierwave-aws', '~>1.0.1'
@@ -121,6 +123,9 @@ gem 'bootstrap-slider-rails'
 gem 'money-rails', '~> 1.7.0'
 gem 'validates_timeliness', '~> 4.0.2'
 gem 'virtus', '~> 1.0.5'
+
+# SOAP client
+gem 'savon', '~> 2.11.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -152,10 +157,11 @@ group :development do
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'capybara', '~> 2.11.0'
-  gem 'poltergeist'
-  gem 'capybara-screenshot'
+  gem 'capybara', '~> 2.13'
+  gem 'poltergeist', '~> 1.14.0'
+  gem 'capybara-screenshot', '~> 1.0.14'
   gem 'selenium-webdriver'
-  gem 'database_cleaner'
+  gem 'shoulda', '~> 3.5.0'
+  gem 'database_cleaner', '~> 1.5.3'
   gem 'simplecov', require: false
 end

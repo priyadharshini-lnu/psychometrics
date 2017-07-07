@@ -4,20 +4,30 @@ module Administration
       super || @user.has_grant?(:assessments, :view)
     end
 
+    # Can open builder of Assessment (Blocks, Questions and etc.)
+    # true if it's Common Assessment
+    #   and user is Superadmin or user has grants
     def show?
-      super || @user.has_grant?(:assessments, :manage)
+      @record.common? &&
+        (super || @user.has_grant?(:assessments, :manage))
     end
 
     def create?
       super || @user.has_grant?(:assessments, :manage)
     end
 
+    # Can open Websocket Channel for build Assessment (Blocks, Questions and etc.)
+    # true if it's Common Assessment and user is Superadmin
     def open_channel?
-      @user.is?(:superadmin)
+      @record.common? && @user.is?(:superadmin)
     end
 
+    # Can preview Assessment (Blocks, Questions and etc.)
+    # true if it's Common Assessment
+    #   and user is Superadmin or user has grants
     def preview?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :view)
+      @record.common? &&
+        (@user.is?(:superadmin) || @user.has_grant?(:assessments, :view))
     end
 
     def reports?
@@ -47,8 +57,25 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :import)
     end
 
+    # Can save Assessment (Blocks, Questions and etc.)
+    # true if it's Common Assessment and user is Superadmin
     def save?
-      @user.is?(:superadmin)
+      @record.common? &&
+        @user.is?(:superadmin)
+    end
+
+    # Can copy Assessment (Blocks, Questions and etc.)
+    # true if it's Common Assessment
+    def copy?
+      @record.common? &&
+        super
+    end
+
+    # Can export Assessment's questions and scoring
+    # true if it's Common Assessment
+    def export?
+      @record.common? &&
+        super
     end
 
     class Scope < Administration::BasePolicy::Scope

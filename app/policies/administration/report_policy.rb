@@ -4,8 +4,12 @@ module Administration
       super || @user.has_grant?(:reports, :view)
     end
 
+    # Can open builder of Report (Reports, Modules and etc.)
+    # true if it's not Mindmill report
+    #   and user is Superadmin or user has grants
     def show?
-      super || @user.has_grant?(:reports, :manage)
+      !@record.mindmill? &&
+        (super || @user.has_grant?(:reports, :manage))
     end
 
     def create?
@@ -18,11 +22,16 @@ module Administration
       result
     end
 
+    # Can open Websocket Channel for build Report (Reports, Modules and etc.)
+    # true if it's not Mindmill report and user is Superadmin
     def open_channel?
-      @user.is?(:superadmin)
+      !@record.mindmill? && @user.is?(:superadmin)
     end
 
+    # Can preview Report
+    # true if it's not Mindmill report and user is Superadmin
     def preview?
+      return false if @record.mindmill?
       return true if @user.is?(:superadmin)
       return true if @user.is?(:admin) && @record.assessment.psychometric? && @user.has_grant?(:reports, :view)
       false
@@ -44,16 +53,11 @@ module Administration
       def resolve
         scope = super
         return scope if @user.is?(:superadmin)
-        if @user.has_grant?(:reports, :view)
-          scope
-              .enabled
-              .available_to_view
-              .where('reports.owner_id in (?) or reports.id in (?)',
-                     @user.tte_ids,
-                     @user.tte_own_reports_ids)
-        else
-          scope.none
-        end
+        return scope.none unless @user.has_grant?(:reports, :view)
+        scope.
+          enabled.
+          available_to_view.
+          where('reports.owner_id in (?) or reports.id in (?)', @user.tte_ids, @user.tte_own_reports_ids)
       end
     end
   end

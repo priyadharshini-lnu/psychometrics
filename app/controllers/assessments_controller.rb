@@ -24,14 +24,12 @@ class AssessmentsController < ApplicationController
   layout 'users_new'
 
   def pass
-    @assign = Assign.find_by!(
-        assessment_id: @resource.id,
-        membership_id: @current_membership.id
-    )
+    @assign = Assign.find_by!(assessment_id: @resource.id,
+                              membership_id: @current_membership.id)
     return redirect_to action: :index if @assign.completed?
+    @assign.in_progress!
     @translations = ::Translation.to_hash_for_assessment(@resource.id, user_locale)
     @available_translations = ::Translation.available_translation_for_assessment(@resource.id)
-    @assign.in_progress!
   end
 
   def index
@@ -39,7 +37,7 @@ class AssessmentsController < ApplicationController
     # reports_scope = @current_membership.reports if @current_project.end_level?
     # reports_scope ||= @current_membership.clients_reports
     @reports = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.group_by(&:assessment_id)
-    @resources = policy_scope(@resource_class).enabled.order(:id).all
+    @assigns = policy_scope(Assign).preload(:assessment).order(:id)
   end
 
   private
