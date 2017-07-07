@@ -26,6 +26,7 @@
 #  modified_by_id     :integer
 #  ancestry           :string
 #  ancestry_depth     :integer          default(0)
+#  end_level          :boolean          default(FALSE)
 #
 
 class Client < ApplicationRecord

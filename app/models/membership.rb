@@ -10,11 +10,11 @@
 #  created_at            :datetime         not null
 #  updated_at            :datetime         not null
 #  is_retail             :boolean          default(FALSE)
-#  role                  :string           default("member")
 #  assigns_count         :integer          default(0)
 #  assigns_completed     :boolean          default(FALSE)
 #  project_membership_id :integer
 #  ancestry              :string
+#  role                  :integer          default("member"), not null
 #
 
 class Membership < ApplicationRecord

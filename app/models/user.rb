@@ -32,6 +32,7 @@
 #  grants                 :jsonb
 #  created_by_id          :integer
 #  modified_by_id         :integer
+#  spoof_token            :string
 #
 
 class User < ApplicationRecord

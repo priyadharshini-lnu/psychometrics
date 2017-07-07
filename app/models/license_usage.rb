@@ -4,7 +4,7 @@
 #
 #  id                :integer          not null, primary key
 #  license_id        :integer
-#  assigns_report_id :integer          not null
+#  assigns_report_id :integer
 #  client_id         :integer          not null
 #
 
