@@ -68,7 +68,7 @@ class Assign < ApplicationRecord
     self.agile_scoring ||= {} if respond_to? :agile_scoring
   end
 
-  mount_base64_uploader :mindmill_report, FileUploader, file_name: 'mindmill_report'
+  mount_base64_uploader :mindmill_report, FileUploader, file_name: proc { 'mindmill_report' }
 
   #
   # 1 step:
