@@ -82,7 +82,7 @@ class Client < ApplicationRecord
   has_many :licenses, inverse_of: :client, dependent: :destroy
   accepts_nested_attributes_for :licenses, allow_destroy: true
 
-  validates :name, :type, presence: true
+  validates :name, :type, presence: true, length: { maximum: 50 }
   with_options if: :root? do |root|
     root.validates :number, :country, :year, presence: true
     root.validates :account_manager, :project_manager, :report_families, presence: true, on: :create

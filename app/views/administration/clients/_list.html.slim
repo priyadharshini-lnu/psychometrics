@@ -7,7 +7,7 @@
           th = link_to_sort resource_class, :type, filter_form
           th = link_to_sort resource_class, :number, filter_form
           th = link_to_sort resource_class, :location, filter_form
-        th = link_to_sort resource_class, :year, filter_form
+        th width='1%' = link_to_sort resource_class, :year, filter_form
         th.report_family = t('.report_family')
         th.used_number = t('.used_license_number')
         - if current_user.is?(:superadmin)
