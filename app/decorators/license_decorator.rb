@@ -7,7 +7,7 @@ class LicenseDecorator < BaseDecorator
     if client.root?
       I18n.t('administration.clients.licenses.show.used_out_of', used_number: object.used_number - object.used_overuse_number, number: object.number)
     else
-      object.license_usages.where(client_id: client.subtree_ids).size
+      object.used_by(client)
     end
   end
 
@@ -23,11 +23,10 @@ class LicenseDecorator < BaseDecorator
     object.end_date.strftime('%d %b %Y')
   end
 
-  def usage_percent
-    result = 0
-    if object.used_number != result
-      result = (object.used_number * 100 / object.number).round(1)
-    end
-    result.to_s + ' %'
+  def usage_percent(client = nil)
+    used_number = object.used_by(client) if client
+    used_number ||= object.used_number
+    used_number = (used_number * 100 / object.number).round(0) if used_number > 0
+    used_number.to_s + ' %'
   end
 end

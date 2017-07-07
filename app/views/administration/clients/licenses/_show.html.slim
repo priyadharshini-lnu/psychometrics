@@ -17,7 +17,7 @@
           td = license.decorate.used_number(client)
           - if current_user.is?(:superadmin) && client.root?
             td = license.decorate.used_overuse_number
-          td = license.decorate.usage_percent
+          td = license.decorate.usage_percent(client)
           td = license.decorate.start_date
           - if current_user.is?(:superadmin)
             td = license.decorate.end_date

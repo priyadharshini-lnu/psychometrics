@@ -47,6 +47,10 @@ class License < ApplicationRecord
     self.used_number = 0
   end
 
+  def used_by(client)
+    license_usages.where(client_id: client.subtree_ids).size
+  end
+
   private
 
   def license_expire_validation
