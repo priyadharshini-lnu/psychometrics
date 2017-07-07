@@ -10,7 +10,7 @@ feature 'CRUD Assessment' do
     visit '/administration/assessments'
     click_link(t('administration.assessments.index.new'), href: '/administration/assessments/new')
     within '#assessments_form' do
-      expect(page).to have_select('resource_type', visible: false )
+      expect(page).to have_select('resource_type', visible: false)
     end
   end
 
@@ -21,7 +21,7 @@ feature 'CRUD Assessment' do
     click_link(t('administration.assessments.index.new'), href: '/administration/assessments/new')
     within '#assessments_form' do
       expect(page).not_to have_select('resource_mindmill_id', visible: false)
-      find('#resource_type', visible: false).find('option', visible: false, text: t('activerecord.attributes.assessment.types.mindmill')).select_option
+      select t('activerecord.attributes.assessment.types.mindmill'), from: 'resource_type', visible: false
 
       expect(page).not_to have_select('resource_category', visible: false)
       expect(page).not_to have_select('resource_owner_id', visible: false)
@@ -35,7 +35,7 @@ feature 'CRUD Assessment' do
     visit '/administration/assessments'
     click_link(t('administration.assessments.index.new'), href: '/administration/assessments/new')
     within '#assessments_form' do
-      find('#resource_type', visible: false).find('option', visible: false, text: t('activerecord.attributes.assessment.types.mindmill')).select_option
+      select t('activerecord.attributes.assessment.types.mindmill'), from: 'resource_type', visible: false
       fill_in t('activerecord.attributes.assessment.name'), with: 'New Mindmill Assessment'
       click_button t('administration.create')
       wait_for_ajax
