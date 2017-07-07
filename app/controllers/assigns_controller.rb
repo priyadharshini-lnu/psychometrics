@@ -20,37 +20,45 @@
 #
 
 class AssignsController < ApplicationController
-  prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:update]
-  append_before_action :pundit_authorize
-  skip_before_action :verify_authenticity_token
+  layout 'users_new'
 
-  layout false
+  before_action :set_assign, only: %i(pass update)
+  append_before_action :pundit_authorize
+
+  # Skip CSRF
+  skip_before_action :verify_authenticity_token, only: %i(update)
+
+  def pass
+    @assign.in_progress!
+
+    @translations = ::Translation.to_hash_for_assessment(@assign.assessment_id, user_locale)
+    @available_translations = ::Translation.available_translation_for_assessment(@assign.assessment_id)
+  end
+
+  def index
+    @reports = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.group_by(&:assessment_id)
+    @assigns = policy_scope(Assign).preload(:assessment).order(:id)
+  end
 
   def update
-    @resource.assign_attributes(resource_params)
-    @resource.step += 1
-    if @resource.completed?
-      @resource.calculate_scoring
-      @resource.completed_at = Time.now
+    @assign.assign_attributes(resource_params)
+    @assign.step += 1
+    if @assign.completed?
+      @assign.calculate_scoring
+      @assign.completed_at = Time.now
     end
-    @resource.save
+    @assign.save
     head :no_content
   end
 
   private
 
-  # Set model
-  def set_resource_class
-    @resource_class ||= Assign
-  end
-
-  def set_resource
-    @resource = @resource_class.find(params[:id])
+  def set_assign
+    @assign = policy_scope(Assign).where.not(status: :completed).find(params[:id])
   end
 
   def resource_params
-    results       = params.require(:resource).fetch(:results, nil).try(:permit!)
+    results = params.require(:resource).fetch(:results, nil).try(:permit!)
     embedded_data = params.require(:resource).fetch(:embedded_data, nil).try(:permit!)
     norm_data = params.require(:resource).fetch(:norm, nil).try(:permit!)
     params.require(:resource).permit(:step, :status).merge(results: results, embedded_data: embedded_data, norm_data: norm_data)
@@ -58,6 +66,6 @@ class AssignsController < ApplicationController
 
   # Authorisation user
   def pundit_authorize
-    authorize @resource || @resource_class
+    authorize @assign || Assign
   end
 end

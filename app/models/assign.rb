@@ -33,8 +33,13 @@ class Assign < ApplicationRecord
   validates :membership_id, :assessment_id, presence: true
   validate :relevant_membership
 
-  enum status: [:not_started, :in_progress, :completed]
-  enum role: [:member, :manager, :admin]
+  enum status: %i(not_started in_progress completed)
+  enum role: %i(member manager admin)
+
+  scope :mindmill, lambda {
+    joins(:assessment).
+      where.has { |assigns| assigns.assessment.type.eq(Assessment::TYPES[:mindmill]) }
+  }
 
   after_initialize :init
   after_create :set_project_assign
@@ -62,6 +67,8 @@ class Assign < ApplicationRecord
     self.scoring ||= {} if respond_to? :scoring
     self.agile_scoring ||= {} if respond_to? :agile_scoring
   end
+
+  mount_base64_uploader :mindmill_report, FileUploader, file_name: proc { 'mindmill_report' }
 
   #
   # 1 step:
@@ -118,16 +125,16 @@ class Assign < ApplicationRecord
     if status_changed?
       if in_progress?
         Notification.create(
-            assessment_id: assessment_id,
-            membership_id: membership_id,
-            text: I18n.t('assigns.notifications.in_progress', user_name: user.decorate.display_name, assessment_name: assessment.name)
+          assessment_id: assessment_id,
+          membership_id: membership_id,
+          text: I18n.t('assigns.notifications.in_progress', user_name: user.decorate.display_name, assessment_name: assessment.name)
         )
       end
       if completed?
         Notification.create(
-            assessment_id: assessment_id,
-            membership_id: membership_id,
-            text: I18n.t('assigns.notifications.completed', user_name: user.decorate.display_name, assessment_name: assessment.name)
+          assessment_id: assessment_id,
+          membership_id: membership_id,
+          text: I18n.t('assigns.notifications.completed', user_name: user.decorate.display_name, assessment_name: assessment.name)
         )
       end
     end
@@ -147,7 +154,7 @@ class Assign < ApplicationRecord
   def update_membership_completed
     return if project_membership.nil? || membership.destroyed?
     assigns = membership.reload.assigns
-    completed = assigns.size > 0 && assigns.size == assigns.completed.size
+    completed = assigns.size.positive? && assigns.size == assigns.completed.size
     membership.update_column(:assigns_completed, completed)
   end
 

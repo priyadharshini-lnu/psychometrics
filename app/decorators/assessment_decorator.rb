@@ -58,4 +58,8 @@ class AssessmentDecorator < BaseDecorator
     tte_ids = Client.by_report_family_assessment(object).enabled.roots.ids
     h.policy_scope(Client).where(tte_id: tte_ids).end_level.map { |c| [c.id, c.decorate.display_name_with_parent] }
   end
+
+  def type
+    I18n.t("activerecord.attributes.assessment.types.#{Assessment::TYPES.key(object.type)}")
+  end
 end

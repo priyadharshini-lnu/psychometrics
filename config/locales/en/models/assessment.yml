@@ -16,6 +16,9 @@ en:
           psychometric: 'Psychometrics'
           organisational: 'Org Surveys'
           '360': '360 Feedback'
+        types:
+          common: 'Common Assessment'
+          mindmill: 'Mindmill Assessment'
         statuses:
           finished: 'finished'
   simple_form:

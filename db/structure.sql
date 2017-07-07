@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.3
--- Dumped by pg_dump version 9.6.3
+-- Dumped from database version 9.6.2
+-- Dumped by pg_dump version 9.6.2
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -29,17 +29,6 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 SET search_path = public, pg_catalog;
-
---
--- Name: assessment_categories; Type: TYPE; Schema: public; Owner: -
---
-
-CREATE TYPE assessment_categories AS ENUM (
-    'psychometric',
-    'organisational',
-    '360'
-);
-
 
 --
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
@@ -86,7 +75,7 @@ CREATE TABLE ar_internal_metadata (
 CREATE TABLE assessments (
     id integer NOT NULL,
     name character varying,
-    category assessment_categories DEFAULT 'psychometric'::assessment_categories,
+    category character varying,
     dimension_id integer,
     disabled boolean DEFAULT false,
     created_at timestamp without time zone NOT NULL,
@@ -97,7 +86,9 @@ CREATE TABLE assessments (
     timing character varying,
     access_reports_at timestamp without time zone,
     status integer,
-    owner_id integer
+    owner_id integer,
+    type character varying,
+    mindmill_id integer
 );
 
 
@@ -204,7 +195,8 @@ CREATE TABLE assigns (
     started_at timestamp without time zone,
     norm_data jsonb,
     agile_scoring jsonb,
-    project_assign_id integer
+    project_assign_id integer,
+    mindmill_report character varying
 );
 
 
@@ -1305,7 +1297,8 @@ CREATE TABLE reports (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     type integer DEFAULT 0,
-    owner_id integer
+    owner_id integer,
+    mindmill boolean DEFAULT false
 );
 
 
@@ -3216,8 +3209,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170627080609'),
 ('20170627115325'),
 ('20170627145630'),
+('20170628110310'),
+('20170628110320'),
 ('20170629130155'),
 ('20170704060854'),
 ('20170707120152');
-
-
+('20170706095454');

@@ -16,9 +16,9 @@ class Report < ApplicationRecord
   include Copyable
 
   TYPES = [
-      COMMON_TYPE = 'common'.freeze,
-      YTI_TYPE = 'yti'.freeze,
-      ETI_TYPE = 'eti'.freeze
+    COMMON_TYPE = 'common'.freeze,
+    YTI_TYPE = 'yti'.freeze,
+    ETI_TYPE = 'eti'.freeze
   ].freeze
 
   self.inheritance_column = :_type_disabled

@@ -115,7 +115,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :assessment_id, :type, :owner_id, report_family_ids: [])
+      params.require(:resource).permit(:name, :assessment_id, :type, :owner_id, :mindmill, report_family_ids: [])
     end
 
     def authenticate_user_from_token!

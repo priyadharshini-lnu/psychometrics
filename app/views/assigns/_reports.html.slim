@@ -1,0 +1,16 @@
+- reports = filter_reports_by_type(@reports.try(:[], assign.assessment_id) || [], assign.norm_type)
+- if reports.size == 1
+  - report = reports.first
+  = link_to t('.results'), 
+            report.mindmill? ? assign.mindmill_report.url : report_path(report), 
+            class: "btn btn-info #{'disabled' unless assign.completed? || !policy(report).show?}"
+- elsif reports.size > 1
+  = dropdown t('.results'), context: :info, button: { class: "#{'disabled' unless assign.completed?}" }
+    - reports.each do |report|
+      = content_tag :li, class: "#{'disabled' unless policy(report).show?}"
+        - if policy(report).show?
+          = content_tag :a, report.name, href: (report.mindmill? ? assign.mindmill_report.url : report_path(report))
+        - else
+          = content_tag :a, report.name, href: '#'
+- else
+  = link_to t('.results'), '#', class: 'btn btn-info disabled'

@@ -348,16 +348,22 @@ Rails.application.routes.draw do
       get 'clients/:client_id/assessments/:assessment_id/pass', to: 'assessments#pass', as: :assessment_pass
     end
 
-    resources :assessments, only: [:index] do
-      member do
-        get :pass
+    resources :assigns, only: %i(index update) do
+      get :pass, on: :member
+    end
+    namespace :mindmill do
+      resources :assigns, only: [] do
+        member do
+          get :pass
+          get :results
+        end
       end
     end
-    resources :reports, only: [:show]
-    resource :profiles, only: [:update, :edit]
-    resources :assigns, only: [:update]
+
+    resources :reports, only: %i(show)
+    resource :profiles, only: %i(update edit)
     get 'survey_instructions', to: 'home#survey_instructions'
-    root to: 'assessments#index'
+    root to: 'assigns#index'
   end
 
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|

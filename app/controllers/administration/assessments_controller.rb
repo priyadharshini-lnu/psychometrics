@@ -110,6 +110,6 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :category, :description, :dimension_id, :timing, :status, :owner_id)
+    params.require(:resource).permit(:type, :mindmill_id, :name, :category, :description, :dimension_id, :timing, :status, :owner_id)
   end
 end

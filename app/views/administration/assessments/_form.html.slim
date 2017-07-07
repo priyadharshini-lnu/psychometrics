@@ -1,17 +1,36 @@
-= simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true) do |f|
-  .modal-body
-    = f.error_notification
+#assessments_form
+  = simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true) do |f|
+    .modal-body
+      = f.error_notification
 
-    .form-inputs.clearfix
-      = f.input :name
-      = f.association :owner, collection: policy_scope(Client).roots.all, include_blank: (t('administration.tte') if current_user.is?(:superadmin)), input_html: { data: { live_search: true } }
-      = f.input :category, collection: resource_class::CATEGORIES.values.map { |cat| [t(".categories.#{cat}"), cat] }, include_blank: false
-      = f.input :status, collection: resource_class.statuses.map { |k, v| [t(".statuses.#{k}"), k] }, include_blank: false
-      = f.association :dimension, collection: policy_scope(Dimension).all, include_blank: true, input_html: { data: { live_search: true } }
-      = f.input :timing, as: :text, hint: t('.timing.hint')
-      = f.input :description, as: :text
+      .form-inputs.clearfix
+        = f.input :type, collection: Assessment::TYPES.map { |key, value| [t("activerecord.attributes.assessment.types.#{key}"), value] }, 
+                         include_blank: false,
+                         wrapper_html: { class: 'common mindmill' }
+        = f.input :mindmill_id, collection: Settings.mindmill.map { |m| [m[:name], m[:id]] },
+                                include_blank: false,
+                                wrapper_html: { class: 'mindmill' }
+        = f.input :name, wrapper_html: { class: 'common mindmill' }
+        = f.association :owner, collection: policy_scope(Client).roots.all, 
+                                include_blank: (t('administration.tte') if current_user.is?(:superadmin)), 
+                                input_html: { data: { live_search: true } },
+                                wrapper_html: { class: 'common' }
+        = f.input :category, collection: resource_class::CATEGORIES.values.map { |cat| [t(".categories.#{cat}"), cat] }, 
+                             include_blank: false,
+                             wrapper_html: { class: 'common' }
+        = f.input :status, collection: resource_class.statuses.map { |k, v| [t(".statuses.#{k}"), k] }, 
+                           include_blank: false,
+                           wrapper_html: { class: 'common mindmill' }
+        = f.association :dimension, collection: policy_scope(Dimension).all, 
+                                    include_blank: true, 
+                                    input_html: { data: { live_search: true } },
+                                    wrapper_html: { class: 'common' }
+        = f.input :timing, as: :text, 
+                           hint: t('.timing.hint'),
+                           wrapper_html: { class: 'common mindmill' }
+        = f.input :description, as: :text, wrapper_html: { class: 'common mindmill' }
 
-  .modal-footer
-    .btn-group
-      = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
-      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+    .modal-footer
+      .btn-group
+        = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+        a.btn.btn-default data-dismiss='modal' = t 'administration.close'

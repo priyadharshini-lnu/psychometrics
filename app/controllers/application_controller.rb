@@ -39,7 +39,7 @@ class ApplicationController < ActionController::Base
     super
   end
 
-  def user_not_authorized(e)
+  def user_not_authorized(_e)
     render text: 'You does not have access to this page'
   end
 
@@ -62,7 +62,7 @@ class ApplicationController < ActionController::Base
     current_user.current_membership = @current_membership
     if !@current_membership && current_user
       if current_user.is?(:superadmin)
-        redirect_to ("#{request.protocol}#{Settings.domain}:#{request.port}")
+        redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}")
       else
         sign_out current_user
         redirect_to root_url

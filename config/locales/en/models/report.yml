@@ -5,6 +5,8 @@ en:
     attributes:
       report: &DEFAULT
         id: ID
+        mindmill: Load report from Mindmill
+        mindmill_report: Mindmill report
         created_at: Created Date
         updated_at: Modified Date
   simple_form:

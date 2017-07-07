@@ -1,0 +1,13 @@
+.row.dashboard-holder
+  .col-xs-12.col-md-8.col-md-offset-2
+    h1.welcomeText Welcome to your dashboard, #{current_user.decorate.first_name}!
+    - if @assigns.present?
+      p.assessmentInstruction You currently have some unfinished assessments.
+      - @assigns.group_by { |assign| assign.assessment.category }.each do |category, assigns|
+        h3.assessmentTitles = t("activerecord.attributes.assessment.categories.#{category}")
+        .panel-group.assessments-holder id="assessments-#{category}" role="tablist" aria-multiselectable="true"
+          = render partial: 'assign', 
+                   collection: assigns, 
+                   locals: { in_progress_assign: category == 'mindmill' && assigns.detect(&:in_progress?) }
+    - else
+      p = t('administration.no_data_found')
