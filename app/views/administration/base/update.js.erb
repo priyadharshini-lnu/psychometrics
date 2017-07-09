@@ -1,10 +1,18 @@
-$('#modal-container').find('.modal').modal('hide');
-$('#modal-container').find('.modal').on('hidden.bs.modal', function(){
-  $('#<%= dom_id(resource) %>').hide("fast", function(){
-    var resource = $('<%= j render(partial: 'resource', locals: { resource: resource }) %>').hide();
-    $(this).replaceWithPush(resource).addClass('active').show('slow');
-    $(document).trigger('initPlugins');
+$(function () {
+  var $modalBox = $('#modal-container').find('.modal');
+
+  $modalBox.modal('hide');
+  $modalBox.on('hidden.bs.modal', function () {
+    $('#<%= dom_id(resource) %>').hide("fast", function () {
+      var resource = $('<%= j render(partial: 'resource', locals: { resource: resource }) %>').hide();
+      $(this).replaceWithPush(resource).addClass('active').show('slow');
+      $(document).trigger('initPlugins');
+    });
+  });
+// Notify message
+  noty({
+    text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.update.successfully", name: resource.decorate.display_name) %>',
+    type: 'success'
   });
 });
-// Notify message
-noty({text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.update.successfully", name: resource.decorate.display_name) %>', type: 'success'});
+

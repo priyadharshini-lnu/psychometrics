@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.2
--- Dumped by pg_dump version 9.6.2
+-- Dumped from database version 9.6.3
+-- Dumped by pg_dump version 9.6.3
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -109,70 +109,6 @@ CREATE SEQUENCE assessments_id_seq
 --
 
 ALTER SEQUENCE assessments_id_seq OWNED BY assessments.id;
-
-
---
--- Name: assign_clients; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE assign_clients (
-    id integer NOT NULL,
-    assessment_id integer,
-    client_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: assign_clients_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE assign_clients_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: assign_clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE assign_clients_id_seq OWNED BY assign_clients.id;
-
-
---
--- Name: assign_clients_reports; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE assign_clients_reports (
-    id integer NOT NULL,
-    report_id integer,
-    assign_client_id integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: assign_clients_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE assign_clients_reports_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: assign_clients_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE assign_clients_reports_id_seq OWNED BY assign_clients_reports.id;
 
 
 --
@@ -1577,20 +1513,6 @@ ALTER TABLE ONLY assessments ALTER COLUMN id SET DEFAULT nextval('assessments_id
 
 
 --
--- Name: assign_clients id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY assign_clients ALTER COLUMN id SET DEFAULT nextval('assign_clients_id_seq'::regclass);
-
-
---
--- Name: assign_clients_reports id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY assign_clients_reports ALTER COLUMN id SET DEFAULT nextval('assign_clients_reports_id_seq'::regclass);
-
-
---
 -- Name: assigns id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1863,22 +1785,6 @@ ALTER TABLE ONLY ar_internal_metadata
 
 ALTER TABLE ONLY assessments
     ADD CONSTRAINT assessments_pkey PRIMARY KEY (id);
-
-
---
--- Name: assign_clients assign_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY assign_clients
-    ADD CONSTRAINT assign_clients_pkey PRIMARY KEY (id);
-
-
---
--- Name: assign_clients_reports assign_clients_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY assign_clients_reports
-    ADD CONSTRAINT assign_clients_reports_pkey PRIMARY KEY (id);
 
 
 --
@@ -2190,34 +2096,6 @@ ALTER TABLE ONLY users
 --
 
 CREATE INDEX index_assessments_on_dimension_id ON assessments USING btree (dimension_id);
-
-
---
--- Name: index_assign_clients_on_assessment_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_assign_clients_on_assessment_id ON assign_clients USING btree (assessment_id);
-
-
---
--- Name: index_assign_clients_on_client_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_assign_clients_on_client_id ON assign_clients USING btree (client_id);
-
-
---
--- Name: index_assign_clients_reports_on_assign_client_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_assign_clients_reports_on_assign_client_id ON assign_clients_reports USING btree (assign_client_id);
-
-
---
--- Name: index_assign_clients_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_assign_clients_reports_on_report_id ON assign_clients_reports USING btree (report_id);
 
 
 --
@@ -3213,5 +3091,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170628110320'),
 ('20170629130155'),
 ('20170704060854'),
-('20170707120152');
-('20170706095454');
+('20170706095454'),
+('20170708231022');
+
+

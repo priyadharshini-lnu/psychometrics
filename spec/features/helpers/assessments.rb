@@ -4,6 +4,7 @@ module Features
       def create_assessment(opts = {})
         visit '/administration/assessments'
         find('.panel-heading a', text: t('administration.assessments.index.new')).click
+        find('.modal-header').click
         within '#new_resource' do
           fill_in 'resource_name', with: opts[:name]
           select opts[:dimension_name], from: 'resource_dimension_id', visible: false

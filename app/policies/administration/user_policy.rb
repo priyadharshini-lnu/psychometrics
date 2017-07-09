@@ -11,10 +11,6 @@ class Administration::UserPolicy < Administration::BasePolicy
     update?
   end
 
-  def update?
-    @user.is?(:superadmin, :admin)
-  end
-
   def toggle_status?
     update?
   end

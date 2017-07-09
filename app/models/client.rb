@@ -76,7 +76,6 @@ class Client < ApplicationRecord
 
   has_many :norms
   has_many :dimensions
-  has_many :assign_clients, dependent: :destroy
   has_many :assessments, -> { group(:id) }, through: :reports
   has_many :license_usages
   has_many :licenses, inverse_of: :client, dependent: :destroy
@@ -114,6 +113,7 @@ class Client < ApplicationRecord
   scope :projects_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:project]) }
   scope :campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign]) }
+  scope :descendants_of_arr, -> (client_ids) { where('clients.ancestry ~ ?', "/(#{client_ids.join('|')})(/|$)") }
 
   def clone
     @cloned_item = deep_clone do |_original, copy|
@@ -180,11 +180,6 @@ class Client < ApplicationRecord
     nil
   end
 
-  def allowed_data?(user)
-    return admin_allowed_data? if user.is?(:admin)
-    true
-  end
-
   private
 
   def generate_subdomain
@@ -205,9 +200,5 @@ class Client < ApplicationRecord
 
   def set_end_level
     update_column(:end_level, true) if prime_project? || deep_project?
-  end
-
-  def admin_allowed_data?
-    !root?
   end
 end

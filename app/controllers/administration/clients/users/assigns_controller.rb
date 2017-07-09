@@ -20,21 +20,20 @@ module Administration
         end
 
         def new
-          @_resource = Assign.new
+          @_resource = resource_class.new
         end
 
         def create
-          @assessment = policy_scope(Assessment).find_by_id(resource_params[:assessment_id])
-          return unless @assessment
-          client.assign_clients.find_or_create_by(assessment: @assessment)
-
+          # TODO: extract to ActiveModel Form Objects
+          return unless resource_params[:assessment_id]
+          @assessment = client.assessments.find(resource_params[:assessment_id])
           assigns_scope = membership.assigns
           @_resource = assigns_scope.where(assessment_id: @assessment.id).take || assigns_scope.build(resource_params)
           begin
             if resource.new_record?
               resource.save
             else
-              resource.report_ids = resource_params[:report_ids]
+              resource.update(report_ids: resource_params[:report_ids])
             end
           rescue ActiveRecord::RecordInvalid
             resource.errors.add(:base, :has_no_enough_licenses) if resource.errors[:base].empty?
@@ -71,7 +70,7 @@ module Administration
         private
 
         def set_resource_class
-          @_resource_class ||= Assign
+          @_resource_class = Assign
         end
 
         def init_breadcrumbs
@@ -92,11 +91,9 @@ module Administration
           params.require(:resource).permit(:assessment_id, report_ids: [])
         end
 
-        def define_policy(record)
-          policy_class = PolicyFinder.new(record).policy!
-          user = { user: current_user, membership: membership } if policy_class == Administration::AssignPolicy
-          user ||= pundit_user
-          policy_class.new(user, record)
+        def pundit_authorize
+          raise Pundit::NotAuthorizedError, 'Wrong Membership' unless policy(membership).overview_assigns?
+          super
         end
       end
     end

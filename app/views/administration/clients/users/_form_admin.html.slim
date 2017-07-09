@@ -35,9 +35,8 @@
                   collection: client.memberships.join_user,
                   label_method: lambda { |u| u.decorate.display_name },
                   input_html: { data: { live_search: true } }
-          - if current_user.is?(:superadmin)
-            = f.simple_fields_for :user, User.new({ grants: User::DEFAULT_ADMIN_GRANTS }) do |u|
-              = render partial: 'grants', locals: { u: u }
+          = f.simple_fields_for :user, User.new({ grants: User::DEFAULT_ADMIN_GRANTS }) do |u|
+            = render partial: 'grants', locals: { u: u }
       .modal-footer
         .btn-group
           = f.button :submit, t('administration.create'), class: 'btn-info'

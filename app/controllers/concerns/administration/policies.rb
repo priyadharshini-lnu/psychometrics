@@ -20,15 +20,10 @@ module Administration
 
     def policy(record)
       record = define_scope(record)
-      define_policy(record) || super
+      super
     end
 
     private
-
-    # overwrite in controller
-    def define_policy(record)
-      nil
-    end
 
     def define_scope(object)
       object = [:administration, object].flatten if [object].flatten.index(:administration).nil?

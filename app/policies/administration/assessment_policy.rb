@@ -83,9 +83,10 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
         if @user.has_grant?(:assessments, :view)
+          # get scope based on clients_reports
           admin_client_ids = @user.admin_client_ids
-          arr_id = AssignClient.where(client_id: admin_client_ids).distinct.pluck(:assessment_id)
-          Assessment.where.has { (owner_id.in admin_client_ids) | (id.in arr_id) }
+          client_ids = Client.descendants_of_arr(admin_client_ids) + admin_client_ids
+          scope.joins(:clients).where(clients: { id: client_ids }).group(:id)
         else
           scope.none
         end

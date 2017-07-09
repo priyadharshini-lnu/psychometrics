@@ -9,12 +9,11 @@ module Administration
     end
 
     def create?
-      super ||
-          if record.is_a? Client
-            record.allowed_data?(@user)
-          else
-            @user.has_grant?(:clients, :manage)
-          end
+      super || begin
+        return false unless @user.has_grant?(:clients, :manage)
+        return false if record.is_a?(Client) && record.root?
+        true
+      end
     end
 
     def projects?
@@ -39,11 +38,6 @@ module Administration
 
     def archive?
       edit?
-    end
-
-    def actions?
-      return @user.is?(:superadmin) if record.root?
-      super
     end
 
     def edit_tte?

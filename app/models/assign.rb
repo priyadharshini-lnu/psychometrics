@@ -31,7 +31,11 @@ class Assign < ApplicationRecord
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
   validates :membership_id, :assessment_id, presence: true
+
+  # TODO: extract validations to ActiveModel Form Objects
   validate :relevant_membership
+  validate :relevant_assessment
+  validate :relevant_reports, if: 'report_ids.any?'
 
   enum status: %i(not_started in_progress completed)
   enum role: %i(member manager admin)
@@ -175,7 +179,15 @@ class Assign < ApplicationRecord
   end
 
   def relevant_membership
-    errors.add(:membership, 'Invalid') if membership.scope == :administration
+    errors.add(:membership) if membership.scope == :administration
+  end
+
+  def relevant_assessment
+    errors.add(:assessment) if membership.client.assessment_ids.exclude? assessment_id
+  end
+
+  def relevant_reports
+    errors.add(:reports) if membership.client.report_ids & assessment.report_ids & report_ids != report_ids
   end
 
   class << self

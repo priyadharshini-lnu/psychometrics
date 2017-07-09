@@ -58,13 +58,13 @@ feature 'CRUD Assessment' do
     scenario 'Edit Assessment' do
       visit '/administration/assessments'
       find("#assessment_#{assessment.id} .edit").click
+      find('.modal-header').click
       within '#edit_resource' do
-        fill_in 'resource_name', with: 'My updated assessment'
+        fill_in 'resource_name', with: 'My changed assessment'
         click_on t('administration.update')
       end
-      wait_for_ajax
-      expect(page).to have_content t('administration.assessments.update.successfully', name: 'My updated assessment')
-      expect(page).to have_css('#assessments_list td a', text: 'My updated assessment')
+      expect(page).to have_content t('administration.assessments.update.successfully', name: 'My changed assessment')
+      expect(page).to have_css('#assessments_list td a', text: 'My changed assessment')
     end
 
     scenario 'Destroy Assessment' do

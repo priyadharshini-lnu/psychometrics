@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe AssignsReport, type: :model do
-  let!(:membership) { create(:membership, client: create(:project)) }
+  let!(:membership) { create(:membership) }
   let!(:report) { create(:report) }
   let!(:assign) { create(:assign, membership: membership) }
   let!(:license) { create(:license, client: membership.client.root, used_number: 0, report_family: report.report_families.take) }

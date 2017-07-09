@@ -27,11 +27,7 @@ module Administration
     end
 
     def permitted_attributes_for_create
-      if @user.is?(:superadmin)
-        CREATE_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
-      else
-        CREATE_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
-      end
+      CREATE_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
     end
 
     def permitted_attributes_for_update
@@ -52,8 +48,8 @@ module Administration
         return scope if @user.is?(:superadmin)
         # find memberships for clients with 'admin' role and it's subclients
         client_ids = @user.admin_clients.not_retails.enabled.pluck(:id)
-        descedant_ids = Client.where('clients.ancestry ~ ?', "/(#{client_ids.join('|')})(/|$)").pluck(:id)
-        scope.where(client_id: client_ids + descedant_ids)
+        descendant_ids = Client.descendants_of_arr(client_ids).pluck(:id)
+        scope.where(client_id: client_ids + descendant_ids)
       end
     end
   end

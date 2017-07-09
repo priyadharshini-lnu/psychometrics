@@ -64,13 +64,12 @@ class Assessment < ApplicationRecord
   has_many :reports, dependent: :destroy
   has_many :report_families, through: :reports
 
-  # HABTM Clients
-  has_many :assign_clients, dependent: :destroy
-  has_many :clients, through: :assign_clients
-
   # HABTM Memberships
   has_many :assigns, dependent: :destroy
   has_many :memberships, through: :assigns
+
+  # HABTM Clients
+  has_many :clients, through: :reports
   ##
   ### END ASSOCIATIONS
 
@@ -85,9 +84,6 @@ class Assessment < ApplicationRecord
   scope :disabled, -> { where(disabled: true) }
   scope :with_category, lambda { |category|
     where(category: category)
-  }
-  scope :with_client, lambda { |client_id|
-    joins(:assign_clients).where(assign_clients: { client_id: client_id })
   }
 
   # TODO: Remove, cause does not used
