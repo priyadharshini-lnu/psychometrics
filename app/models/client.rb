@@ -180,6 +180,13 @@ class Client < ApplicationRecord
     nil
   end
 
+  def clone
+    deep_clone include: [:reports] do |original, kopy|
+      kopy.name += ' (copy)'
+      kopy.subdomain = original.subdomain + SecureRandom.random_number(Time.now.to_i).to_s
+    end
+  end
+
   private
 
   def generate_subdomain

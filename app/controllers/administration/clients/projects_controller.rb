@@ -7,7 +7,7 @@ module Administration
         @_filter_form = policy_scope(resource_class)
             .projects_of(client.id)
             .includes(:admins, :assigned_memberships, :license_usages, :completed_memberships)
-            .order(:name)
+            .order('name asc')
             .search(params[:q])
         filter_form.disabled_true ||= false
         @_resources = filter_form.result.page(params[:page])

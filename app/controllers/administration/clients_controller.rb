@@ -83,7 +83,6 @@ module Administration
     end
 
     def copy
-      # TODO: need to finalize
       @cloned_resource = resource.clone
       respond_to do |format|
         if @cloned_resource.save
