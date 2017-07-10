@@ -2,11 +2,11 @@ require 'rails_helper'
 include Features::Helpers::Clients
 
 feature 'CRUD Client' do
-  given(:superadmin) { create(:superadmin) }
   given(:report_family) { create(:report_family) }
   given(:report) { create(:report, report_families: [report_family]) }
 
-  context 'As Super user' do
+  context 'As Superadmin' do
+    given(:superadmin) { create(:superadmin) }
     before { login_as superadmin }
 
     scenario 'I can create any client' do
@@ -28,6 +28,41 @@ feature 'CRUD Client' do
 
       campaign = create_campaign(tenancy, project, name: 'Campaign')
       create_sub_campaign(tenancy, project, campaign, name: 'SubCampaign')
+    end
+  end
+
+  context 'As Client Admin' do
+    given!(:tenancy) { create(:tenancy, report_families: [report_family]) }
+    given!(:project) { create(:project, :sub_campaign_level, parent: tenancy) }
+    given!(:admin) { create(:admin, memberships_options: { client: project }) }
+    before { login_as admin }
+
+    context 'without manage privileges' do
+      scenario 'I cant create any client' do
+        visit administration_client_projects_path(tenancy)
+        expect(page).not_to have_css('.panel-heading a', text: t('administration.clients.projects.index.new'))
+      end
+    end
+
+    context 'with manage privileges' do
+      before { admin.update!(grants: { clients: ['manage'] }) }
+
+      scenario 'I can create any client within tte' do
+        new_project = create_project(tenancy,
+                                     name: 'New Project',
+                                     subdomain: 'new_project',
+                                     number: 2,
+                                     applicable_level: 'Sub-Campaign',
+                                     reports: [report.name])
+
+        campaign = create_campaign(tenancy, new_project, name: 'Campaign')
+        create_sub_campaign(tenancy, new_project, campaign, name: 'SubCampaign')
+      end
+
+      scenario 'I cant create root' do
+        visit administration_clients_path
+        expect(page).not_to have_css('#manage_first_level')
+      end
     end
   end
 end

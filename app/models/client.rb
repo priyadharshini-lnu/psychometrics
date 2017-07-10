@@ -43,6 +43,7 @@ class Client < ApplicationRecord
 
   # Disables single column inheritance
   self.inheritance_column = :_type_disabled
+  attr_accessor :operator
 
   belongs_to :tte, class_name: 'Client'
   belongs_to :account_manager, class_name: 'User'
@@ -92,6 +93,7 @@ class Client < ApplicationRecord
     project.validate :subdomain_format_validation
   end
   validate :relevant_reports, if: 'report_ids.any? && end_level?'
+  validate :allowed_data, if: 'operator'
   before_validation :ensure_subdomain, if: :retail?
   after_commit :set_tte, if: 'parent_id.present?', on: [:create, :update]
   after_commit :set_end_level, if: 'parent_id.present?', on: [:create, :update]
@@ -206,5 +208,11 @@ class Client < ApplicationRecord
     valid_ids = root.available_report_ids if prime_project?
     valid_ids ||= project.report_ids
     errors.add(:report_ids) if valid_ids & report_ids != report_ids
+  end
+
+  def allowed_data
+    if operator.is?(:admin)
+      errors.add(:base) if root?
+    end
   end
 end

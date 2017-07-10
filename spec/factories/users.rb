@@ -40,7 +40,8 @@ FactoryGirl.define do
     first_name 'test'
     last_name 'test'
     transient do
-      grants false
+      grants nil
+      memberships_options {}
     end
 
     factory :superadmin do
@@ -49,27 +50,24 @@ FactoryGirl.define do
       last_name 'admin'
     end
 
+    factory :admin, traits: [:with_membership_admin]
+    factory :manager, traits: [:with_membership_manager]
+
     trait :with_membership_admin do
-      after(:create) do |user, _evaluator|
-        create :membership, user: user, role: Membership::ADMIN_ROLE
-      end
+      memberships { [association(:admin_membership, memberships_options)] }
     end
 
     trait :with_membership_manager do
-      after(:create) do |user, _evaluator|
-        create :membership, user: user, role: Membership::MANAGER_ROLE
-      end
+      memberships { [association(:manager_membership, memberships_options)] }
     end
 
     trait :with_membership_member do
-      after(:create) do |user, _evaluator|
-        create :membership, user: user, role: Membership::MEMBER_ROLE
-      end
+      memberships { [association(:membership, memberships_options)] }
     end
 
     after(:create) do |user, evaluator|
-      if evaluator.grants.present?
-        user.grants = evaluator.grants.deep_stringify_keys
+      if evaluator.grants
+        user.grants = evaluator.grants
         user.save!
       end
     end

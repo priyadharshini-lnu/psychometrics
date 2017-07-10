@@ -9,11 +9,7 @@ module Administration
     end
 
     def create?
-      super || begin
-        return false unless @user.has_grant?(:clients, :manage)
-        return false if record.is_a?(Client) && record.root?
-        true
-      end
+      super || @user.has_grant?(:clients, :manage)
     end
 
     def projects?
