@@ -65,7 +65,6 @@ class Client < ApplicationRecord
   # Reports
   has_many :clients_reports # on delete cascade
   has_many :reports, through: :clients_reports
-  has_many :own_reports, class_name: 'Report', foreign_key: :owner_id
   has_many :available_reports, through: :report_families, source: :reports
   has_and_belongs_to_many :report_families, join_table: :clients_report_families, class_name: 'ReportFamily'
 
@@ -92,6 +91,7 @@ class Client < ApplicationRecord
     project.validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
     project.validate :subdomain_format_validation
   end
+  validate :relevant_reports, if: 'report_ids.any? && end_level?'
   before_validation :ensure_subdomain, if: :retail?
   after_commit :set_tte, if: 'parent_id.present?', on: [:create, :update]
   after_commit :set_end_level, if: 'parent_id.present?', on: [:create, :update]
@@ -114,14 +114,6 @@ class Client < ApplicationRecord
   scope :campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign]) }
   scope :descendants_of_arr, -> (client_ids) { where('clients.ancestry ~ ?', "/(#{client_ids.join('|')})(/|$)") }
-
-  def clone
-    @cloned_item = deep_clone do |_original, copy|
-      copy.gen_uniq_name
-      copy.subdomain = copy.name.gsub(/[^0-9A-Za-z]/, '').parameterize
-      copy.users_count = 0
-    end
-  end
 
   def self.options_for_select
     all.map { |client| [client.decorate.display_name, client.id] }
@@ -181,9 +173,10 @@ class Client < ApplicationRecord
   end
 
   def clone
-    deep_clone include: [:reports] do |original, kopy|
-      kopy.name += ' (copy)'
-      kopy.subdomain = original.subdomain + SecureRandom.random_number(Time.now.to_i).to_s
+    deep_clone include: [:reports] do |original, copy|
+      copy.name += ' (copy)'
+      copy.subdomain = original.subdomain + "_#{SecureRandom.random_number(Time.now.to_i)}"
+      copy.users_count = 0
     end
   end
 
@@ -207,5 +200,11 @@ class Client < ApplicationRecord
 
   def set_end_level
     update_column(:end_level, true) if prime_project? || deep_project?
+  end
+
+  def relevant_reports
+    valid_ids = root.available_report_ids if prime_project?
+    valid_ids ||= project.report_ids
+    errors.add(:report_ids) if valid_ids & report_ids != report_ids
   end
 end

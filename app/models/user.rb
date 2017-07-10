@@ -173,10 +173,6 @@ class User < ApplicationRecord
     !!grants[scope.to_s]&.index(grant.to_s)
   end
 
-  def tte_own_reports_ids
-    @_tte_own_reports_ids ||= ttes.joins(:own_reports).pluck('reports.id')
-  end
-
   private
 
   def generate_authentication_token

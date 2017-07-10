@@ -18,12 +18,7 @@ module Administration
       end
 
       def create
-        begin
-          client.report_ids = client.root.available_reports.where(id: params[:report_ids]).distinct.ids
-        rescue => e
-          render :new and return
-        end
-        render :create
+        render :new unless client.update(client_params)
       end
 
       def destroy
@@ -40,6 +35,10 @@ module Administration
       end
 
       private
+
+      def client_params
+        params.require(:client).permit(report_ids: [])
+      end
 
       def init_breadcrumbs
         add_breadcrumb t('administration.breadcrumbs.home'), [:administration, :root]

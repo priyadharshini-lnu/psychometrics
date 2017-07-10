@@ -4,7 +4,7 @@ module Administration
 
     included do
       helper_method :i18n
-      helper_method :client, :project, :campaign, :resource, :set_resource, :resources, :resource_class, :membership, :project_membership, :filter_form
+      helper_method :client, :project, :campaign, :resource, :resources, :resource_class, :membership, :project_membership, :filter_form
     end
 
     def i18n
@@ -37,10 +37,6 @@ module Administration
 
     def resource
       @_resource || resource_class.new
-    end
-
-    def set_resource
-      @_resource = policy_scope(resource_class).find(params[:id])
     end
 
     def resources

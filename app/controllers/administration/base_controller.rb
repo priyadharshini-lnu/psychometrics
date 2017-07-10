@@ -34,4 +34,8 @@ class Administration::BaseController < ActionController::Base
   def pundit_authorize
     authorize resource || resource_class
   end
+
+  def set_resource
+    @_resource = policy_scope(resource_class).find(params[:id])
+  end
 end

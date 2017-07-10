@@ -24,6 +24,7 @@ en:
         project_manager_id: TTE Project Manager
         memberships_count: Users
         users_count: Users
+        report_ids: Reports
         applicable_levels:
           project: Project
           campaign: Campaign
@@ -37,6 +38,9 @@ en:
           retail: Retail
           other: Other
   simple_form:
+    labels:
+      client:
+        <<: *DEFAULT
     placeholders:
       client:
         <<: *DEFAULT

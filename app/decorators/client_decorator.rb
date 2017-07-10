@@ -41,6 +41,14 @@ class ClientDecorator < BaseDecorator
     end
   end
 
+  def reports_for_select
+    if object.prime_project?
+      object.root.available_reports.distinct
+    else
+      object.project.reports.distinct
+    end
+  end
+
   def detach_from_project_confirmation
     {
         title: I18n.t('administration.projects.clients.confirmations.detach_from_project.title', name: display_name, project_name: context[:project_name]),
