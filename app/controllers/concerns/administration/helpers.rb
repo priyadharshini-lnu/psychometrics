@@ -36,7 +36,7 @@ module Administration
     end
 
     def resource
-      @_resource
+      @_resource || resource_class.new
     end
 
     def set_resource
