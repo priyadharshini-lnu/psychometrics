@@ -30,7 +30,7 @@ module Administration
       if @user.is?(:superadmin)
         CREATE_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
       else
-        CREATE_PARAMETERS
+        CREATE_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
       end
     end
 
