@@ -11,6 +11,10 @@ class Administration::UserPolicy < Administration::BasePolicy
     @user.is?(:superadmin, :admin)
   end
 
+  def create_superadmin?
+    @user.is?(:superadmin)
+  end
+
   def edit?
     update?
   end

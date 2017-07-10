@@ -23,19 +23,17 @@ class Administration::UsersController < Administration::BaseController
     render 'new'
   end
 
-  def create
+  def create_superadmin
     @_resource = resource_class.new(create_resource_params)
     resource.role = User::SUPER_ADMIN_ROLE
     resource.created_by_id = current_user.id
     resource.modified_by_id = current_user.id
     resource.create_by_invite = true
-    respond_to do |format|
-      if resource.save
-        resource.invite!(current_user)
-        format.js
-      else
-        format.js {render :new}
-      end
+    if resource.save
+      resource.invite!(current_user)
+      render :create
+    else
+      render :new
     end
   end
 

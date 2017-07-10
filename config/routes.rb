@@ -185,11 +185,14 @@ Rails.application.routes.draw do
     ### END DIMENSIONS
 
     ### USERS
-    resources :users do
+    resources :users, except: [:create] do
       member do
         patch :toggle_status
         get :sidebar
         get :reset_password
+      end
+      collection do
+        post :create_superadmin
       end
     end
     ### END USERS
