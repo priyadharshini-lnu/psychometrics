@@ -10,7 +10,7 @@ $(function () {
 
     // Notify message
     var message = '<%= t("administration.#{resource_class.model_name.plural}.admin_chosen.successfully") %>';
-    <% if resource.present? %>
+    <% if resource.persisted? %>
       message = '<%= t("administration.#{resource_class.model_name.plural}.create.successfully", name: resource.user.decorate.display_name) %>'
     <% end %>
 

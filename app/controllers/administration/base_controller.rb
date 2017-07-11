@@ -21,7 +21,7 @@ class Administration::BaseController < ActionController::Base
   private
 
   def user_not_authorized
-    raise ActionController::RoutingError.new('Not Found')
+    render plain: 'You does not have access to this page', status: 403
   end
 
   def authenticate_user!
@@ -33,5 +33,9 @@ class Administration::BaseController < ActionController::Base
 
   def pundit_authorize
     authorize resource || resource_class
+  end
+
+  def set_resource
+    @_resource = policy_scope(resource_class).find(params[:id])
   end
 end

@@ -1,4 +1,4 @@
-= simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true) do |f|
+= simple_form_for(resource, as: :resource, url: { action: :create_superadmin }, remote: true) do |f|
   .modal-body
     = f.error_notification
     .form-inputs.clearfix

@@ -8,6 +8,7 @@ module Features
       def create_tenancy(opts = {})
         visit administration_clients_path
         find('.panel-heading a', text: t('administration.clients.index.new')).click
+        find('.modal-header').click
         within '#new_resource' do
           fill_in 'resource_name', with: opts[:name]
           fill_in 'resource_number', with: opts[:number]
@@ -20,7 +21,6 @@ module Features
           end
           click_on t('administration.create')
         end
-        wait_for_ajax
         expect(page).to have_content t('administration.clients.create.successfully', name: opts[:name])
         expect(page).to have_css('#clients_list td', text: opts[:name])
 
@@ -33,6 +33,7 @@ module Features
       def create_project(tenancy, opts = {})
         visit administration_client_projects_path(tenancy)
         find('.panel-heading a', text: t('administration.clients.projects.index.new')).click
+        find('.modal-header').click
         within '#project_form' do
           fill_in 'resource_name', with: opts[:name]
           fill_in 'resource_subdomain', with: opts[:subdomain]
@@ -43,7 +44,6 @@ module Features
           end
           click_on t('administration.create')
         end
-        wait_for_ajax
         expect(page).to have_content t('administration.clients.projects.create.successfully', name: opts[:name])
         expect(page).to have_css('#clients_list td', text: opts[:name])
 
@@ -57,11 +57,11 @@ module Features
       def create_campaign(tenancy, project, opts = {})
         visit administration_client_project_campaigns_path(tenancy, project)
         find('.panel-heading a', text: t('administration.clients.projects.campaigns.index.new')).click
+        find('.modal-header').click
         within '#project_form' do
           fill_in 'resource_name', with: opts[:name]
           click_on t('administration.create')
         end
-        wait_for_ajax
         expect(page).to have_content t('administration.clients.campaigns.create.successfully', name: opts[:name])
         expect(page).to have_css('#clients_list td', text: opts[:name])
 
@@ -75,11 +75,11 @@ module Features
       def create_sub_campaign(tenancy, project, campaign, opts = {})
         visit administration_client_project_campaigns_path(tenancy, project)
         find("#client_#{campaign.id} a", text: t('administration.clients.campaigns.resource.sub_campaign.create')).click
+        find('.modal-header').click
         within '#project_form' do
           fill_in 'resource_name', with: opts[:name]
           click_on t('administration.create')
         end
-        wait_for_ajax
         expect(page).to have_content t('administration.clients.campaigns.create.successfully', name: opts[:name])
         expect(page).to have_css("#client_#{campaign.id} td", text: opts[:name])
 

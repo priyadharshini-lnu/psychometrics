@@ -10,119 +10,119 @@ table.table.grants-table
       td.text-nowrap
         label
           = check_box_tag 'resource[user_attributes][grants][norms][]',
-                  'view', u.object.has_grant?(:norms, :view)
+                  'view', u.object.has_grant?(:norms, :view), id: dom_id(u.object,:norms_view)
           i.fa.fa-eye title='View'
         label
           = check_box_tag 'resource[user_attributes][grants][norms][]',
-                  'manage', u.object.has_grant?(:norms, :manage)
+                  'manage', u.object.has_grant?(:norms, :manage), id: dom_id(u.object,:norms_manage)
           i.fa.fa-pencil title='Manage'
     tr
       td Dimensions
       td.text-nowrap
         label
           = check_box_tag 'resource[user_attributes][grants][dimensions][]',
-                  'view', u.object.has_grant?(:dimensions, :view)
+                  'view', u.object.has_grant?(:dimensions, :view), id: dom_id(u.object,:dimensions_view)
           i.fa.fa-eye title='View'
         label
           = check_box_tag 'resource[user_attributes][grants][dimensions][]',
-                  'manage', u.object.has_grant?(:dimensions, :manage)
+                  'manage', u.object.has_grant?(:dimensions, :manage), id: dom_id(u.object,:dimensions_manage)
           i.fa.fa-pencil title='Manage'
     tr
       td Assessments
       td.text-nowrap
         label
           = check_box_tag 'resource[user_attributes][grants][assessments][]',
-                  'view', u.object.has_grant?(:assessments, :view)
+                  'view', u.object.has_grant?(:assessments, :view), id: dom_id(u.object,:assessments_view)
           i.fa.fa-eye title='View'
         label
           = check_box_tag 'resource[user_attributes][grants][assessments][]',
-                  'manage', u.object.has_grant?(:assessments, :manage)
+                  'manage', u.object.has_grant?(:assessments, :manage), id: dom_id(u.object,:assessments_manage)
           i.fa.fa-pencil title='Manage'
         label
           = check_box_tag 'resource[user_attributes][grants][assessments][]',
-                  'assign', u.object.has_grant?(:assessments, :assign)
+                  'assign', u.object.has_grant?(:assessments, :assign), id: dom_id(u.object,:assessments_assign)
           i.fa.fa-user-plus title='Assign'
     tr
       td Raw Assessment Results
       td.text-nowrap
         label
           = check_box_tag 'resource[user_attributes][grants][assessments][]',
-                  'export', u.object.has_grant?(:assessments, :export)
+                  'export', u.object.has_grant?(:assessments, :export), id: dom_id(u.object,:assessments_export)
           i.fa.fa-upload
         label
           = check_box_tag 'resource[user_attributes][grants][assessments][]',
-                  'import', u.object.has_grant?(:assessments, :import)
+                  'import', u.object.has_grant?(:assessments, :import), id: dom_id(u.object,:assessments_import)
           i.fa.fa-download
     tr
       td Translations
       td.text-nowrap
         label
           = check_box_tag 'resource[user_attributes][grants][translations][]',
-                  'export', u.object.has_grant?(:translations, :export)
+                  'export', u.object.has_grant?(:translations, :export), id: dom_id(u.object,:translations_export)
           i.fa.fa-upload
         label
           = check_box_tag 'resource[user_attributes][grants][translations][]',
-                  'import', u.object.has_grant?(:translations, :import)
+                  'import', u.object.has_grant?(:translations, :import), id: dom_id(u.object,:translations_import)
           i.fa.fa-download
     tr
       td Client Tenancies
       td.text-nowrap
         label
           = check_box_tag 'resource[user_attributes][grants][clients][]',
-                  'manage', u.object.has_grant?(:clients, :manage)
+                  'manage', u.object.has_grant?(:clients, :manage), id: dom_id(u.object,:clients_manage)
           i.fa.fa-pencil title='Manage'
         label
           = check_box_tag 'resource[user_attributes][grants][clients][]',
-                  'design', u.object.has_grant?(:clients, :design)
+                  'design', u.object.has_grant?(:clients, :design), id: dom_id(u.object,:clients_design)
           i.fa.fa-paint-brush title='Design'
     tr
       td Question Centre
       td.text-nowrap
         label
           = check_box_tag 'resource[user_attributes][grants][questions][]',
-                  'view', u.object.has_grant?(:questions, :view)
+                  'view', u.object.has_grant?(:questions, :view), id: dom_id(u.object,:questions_view)
           i.fa.fa-eye title='View'
         label
           = check_box_tag 'resource[user_attributes][grants][questions][]',
-                  'manage', u.object.has_grant?(:questions, :manage)
+                  'manage', u.object.has_grant?(:questions, :manage), id: dom_id(u.object,:questions_manage)
           i.fa.fa-pencil title='Manage'
     tr
       td Media Libraries
       td.text-nowrap
         label
           = check_box_tag 'resource[user_attributes][grants][libraries][]',
-                  'view', u.object.has_grant?(:libraries, :view)
+                  'view', u.object.has_grant?(:libraries, :view), id: dom_id(u.object,:libraries_view)
           i.fa.fa-eye title='View'
         label
           = check_box_tag 'resource[user_attributes][grants][libraries][]',
-                  'manage', u.object.has_grant?(:libraries, :manage)
+                  'manage', u.object.has_grant?(:libraries, :manage), id: dom_id(u.object,:libraries_manage)
           i.fa.fa-pencil title='Manage'
     tr
       td Communication Centre
       td.text-nowrap
         label
           = check_box_tag 'resource[user_attributes][grants][communications][]',
-                  'view', u.object.has_grant?(:communications, :view)
+                  'view', u.object.has_grant?(:communications, :view), id: dom_id(u.object,:communications_view)
           i.fa.fa-eye title='View'
         label
           = check_box_tag 'resource[user_attributes][grants][communications][]',
-                  'manage', u.object.has_grant?(:communications, :manage)
+                  'manage', u.object.has_grant?(:communications, :manage), id: dom_id(u.object,:communications_manage)
           i.fa.fa-pencil title='Manage'
     tr
       td Reports
       td.text-nowrap
         label
           = check_box_tag 'resource[user_attributes][grants][reports][]',
-                  'view', u.object.has_grant?(:reports, :view)
+                  'view', u.object.has_grant?(:reports, :view), id: dom_id(u.object,:reports_view)
           i.fa.fa-eye title='View'
         label
           = check_box_tag 'resource[user_attributes][grants][reports][]',
-                  'manage', u.object.has_grant?(:reports, :manage)
+                  'manage', u.object.has_grant?(:reports, :manage), id: dom_id(u.object,:reports_manage)
           i.fa.fa-pencil title='Manage'
     tr
       td Overview Reports
       td.text-nowrap
         label
           = check_box_tag 'resource[user_attributes][grants][assigns][]',
-                  'view', u.object.has_grant?(:assigns, :view)
+                  'view', u.object.has_grant?(:assigns, :view), id: dom_id(u.object,:assigns_view)
           i.fa.fa-eye title='View'

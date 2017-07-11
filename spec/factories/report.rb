@@ -21,6 +21,6 @@ FactoryGirl.define do
   factory :report do
     association :assessment, factory: :assessment
     sequence(:name) { |i| "report #{i}" }
-    report_families { |r| [r.association(:report_family)] }
+    report_families { [association(:report_family)] }
   end
 end

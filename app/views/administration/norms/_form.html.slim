@@ -4,7 +4,8 @@
 
     .form-inputs.clearfix
       = f.input :name
-      = f.association :owner, collection: policy_scope(Client).tenancies.not_archived, include_blank: (t('administration.tte') if current_user.is?(:superadmin)), input_html: { data: { live_search: true } }
+      - if current_user.is?(:superadmin)
+        = f.association :owner, collection: policy_scope(Client).tenancies.not_archived, include_blank: t('administration.tte'), input_html: { data: { live_search: true } }
       = f.association :dimension, collection: policy_scope(Dimension).all, include_blank: true, input_html: { data: { live_search: true } }
 
   .modal-footer

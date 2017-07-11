@@ -9,7 +9,7 @@ module AdministrationHelper
       out << '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
         <span aria-hidden="true">×</span>
         </button>'
-      out << value.to_s
+      out << h(value.to_s)
       out << '</div>'
     end
     out.join('').html_safe

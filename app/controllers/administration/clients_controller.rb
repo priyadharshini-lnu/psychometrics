@@ -29,7 +29,7 @@ module Administration
       @_resource ||= resource_class.new(resource_params)
       resource.creator = current_user
       resource.modifier = current_user
-      authorize resource
+      resource.operator = current_user
       respond_to do |format|
         if resource.save
           if resource.project? && current_user.is?(:admin)
@@ -45,7 +45,7 @@ module Administration
     def update
       resource.modifier = current_user
       resource.assign_attributes(resource_params)
-      authorize resource
+      resource.operator = current_user
       respond_to do |format|
         if resource.save
           format.js
@@ -83,7 +83,6 @@ module Administration
     end
 
     def copy
-      # TODO: need to finalize
       @cloned_resource = resource.clone
       respond_to do |format|
         if @cloned_resource.save

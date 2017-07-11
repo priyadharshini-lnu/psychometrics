@@ -1,14 +1,13 @@
 module Copyable
   extend ActiveSupport::Concern
 
-  def gen_uniq_name
-    while self.class.exists?(name: name)
-      number = name.scan(/\((\d+)\)$/).flatten.join('').to_i
-      if number.zero?
-        self.name = "#{name} (1)"
-      else
-        name.gsub!(/\((\d+)\)$/, "(#{number + 1})")
-      end
+  def gen_uniq_name(attr = :name)
+    return unless has_attribute?(attr)
+    number = self[attr].scan(/\((\d+)\)$/).flatten.join('').to_i
+    if number.zero?
+      self[attr] = "#{name} (1)"
+    else
+      self[attr].gsub!(/\((\d+)\)$/, "(#{number + 1})")
     end
   end
 

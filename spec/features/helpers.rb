@@ -31,11 +31,11 @@ module Features
                         when :superadmin
                           create(:superadmin)
                         when :admin
-                          create(:user, :with_membership_admin, grants: grants)
+                          create(:admin, grants: grants)
                         when :manager
-                          create(:user, :with_membership_manager)
+                          create(:manager)
                         else
-                          create(:user, :with_membership_member)
+                          create(:user)
                       end
       @current_membership = current_user.memberships.try(:last)
       login_as(current_user)

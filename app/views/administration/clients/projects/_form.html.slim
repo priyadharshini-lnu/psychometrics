@@ -9,8 +9,8 @@
           | .
           = Settings.domain
       = f.input :number
-      = f.input :applicable_level, 
-                as: :select, 
+      = f.input :applicable_level,
+                as: :select,
                 collection: Client.applicable_levels.map { |name, value| [t("activerecord.attributes.client.applicable_levels.#{name}"), name] },
                 include_blank: false,
                 disabled: !f.object.new_record?
@@ -21,10 +21,10 @@
         .well
           h3 Design
           // File input
-          = f.input :logo, hint: f.object.logo.present? ? f.input(:remove_logo, as: :boolean) + image_tag(f.object.logo.url(:thumb)) : content_tag(:span, t('.no_logo'))
+          = f.input :logo, hint: (f.input(:remove_logo, as: :boolean) + image_tag(f.object.logo.url(:thumb)) if f.object.logo.present?)
           .row.mhn
             .col-sm-5.pln
-              = f.input :background, hint: f.object.background.present? ? f.input(:remove_background, as: :boolean) + image_tag(f.object.background.url(:thumb)) : content_tag(:span, t('.no_background'))
+              = f.input :background, hint: (f.input(:remove_background, as: :boolean) + image_tag(f.object.background.url(:thumb)) if f.object.background.present?)
             .col-sm-2 OR
             .col-sm-5.prn
               .form-group

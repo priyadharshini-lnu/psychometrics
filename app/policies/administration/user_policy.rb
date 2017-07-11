@@ -7,8 +7,20 @@ class Administration::UserPolicy < Administration::BasePolicy
     create?
   end
 
+  def create?
+    @user.is?(:superadmin, :admin)
+  end
+
+  def create_superadmin?
+    @user.is?(:superadmin)
+  end
+
   def edit?
     update?
+  end
+
+  def update?
+    @user.is?(:superadmin, :admin)
   end
 
   def toggle_status?

@@ -43,7 +43,7 @@ FactoryGirl.define do
       country 'Barbados'
       association :project_manager, factory: :superadmin
       association :account_manager, factory: :superadmin
-      report_families { |tenancy| [tenancy.association(:report_family)] }
+      report_families { [association(:report_family)] }
     end
 
     # applicable_levels
@@ -69,10 +69,9 @@ FactoryGirl.define do
       sequence(:subdomain) { |i| "test-#{i}" }
       sequence(:number) { |i| "Number #{i}" }
       reports { |project| [project.association(:report, report_families: [project.root.report_families.take])] }
-
-      factory :project, traits: [:project_level, :_end_level]
     end
 
+    factory :project, parent: :project_base, traits: [:project_level, :_end_level]
 
     factory :campaign_base do
       association :parent, factory: [:project_base, :sub_campaign_level]
