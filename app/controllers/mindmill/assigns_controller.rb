@@ -6,8 +6,8 @@ class Mindmill::AssignsController < ApplicationController
   def pass
     mindmill = Api::Mindmill.new(@assign, @current_membership, user_locale)
     mindmill.assign_user
-    redirect_back(fallback_location: root_path, error: t('errors.error_500')) && return unless mindmill.ssourl
-    redirect_to(mindmill.ssourl)
+    @ssourl = mindmill.ssourl
+    redirect_back(fallback_location: root_path, error: t('errors.error_500')) && return unless @ssourl
 
     @assign.in_progress!
     # Set Not Started for all Mindmill assigns, except current

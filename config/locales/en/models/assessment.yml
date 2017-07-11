@@ -16,6 +16,7 @@ en:
           psychometric: 'Psychometrics'
           organisational: 'Org Surveys'
           '360': '360 Feedback'
+          mindmill: 'Mindmill'
         types:
           common: 'Common Assessment'
           mindmill: 'Mindmill Assessment'

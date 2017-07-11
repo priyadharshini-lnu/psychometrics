@@ -28,3 +28,4 @@
 ///// Translations
 //= require i18n
 //= require i18n/translations
+//= require_tree ./application

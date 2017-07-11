@@ -1,15 +1,34 @@
 - reports = filter_reports_by_type(@reports.try(:[], assign.assessment_id) || [], assign.norm_type)
 - if reports.size == 1
   - report = reports.first
-  = link_to t('.results'), 
-            report.mindmill? ? assign.mindmill_report.url : report_path(report), 
-            class: "btn btn-info #{'disabled' unless assign.completed? || !policy(report).show?}"
+  //// MINDMILL OR COMMON REPORT
+  //
+  - if report.mindmill?
+    = link_to t('.results'), assign.mindmill_report.url,
+                             target: 'windowMindmill',
+                             onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
+  - else
+    = link_to t('.results'), report_path(report), 
+                             class: "btn btn-info #{'disabled' if !assign.completed? || !policy(report).show?}"
+  //
+  //// END MINDMILL OR COMMON REPORT                             
 - elsif reports.size > 1
   = dropdown t('.results'), context: :info, button: { class: "#{'disabled' unless assign.completed?}" }
     - reports.each do |report|
       = content_tag :li, class: "#{'disabled' unless policy(report).show?}"
+        // Don't use link_to helper
+        // Because bh gem overwrites this helper for dropdown
         - if policy(report).show?
-          = content_tag :a, report.name, href: (report.mindmill? ? assign.mindmill_report.url : report_path(report))
+          //// MINDMILL OR COMMON REPORT
+          //
+          - if report.mindmill?
+            = content_tag :a, report.name, href: assign.mindmill_report.url,
+                                           target: 'windowMindmill',
+                                           onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
+          - else
+            = content_tag :a, report.name, href: report_path(report)
+          //
+          //// END MINDMILL OR COMMON REPORT 
         - else
           = content_tag :a, report.name, href: '#'
 - else

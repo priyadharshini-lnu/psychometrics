@@ -9,11 +9,11 @@ module Api
     attr_accessor :report, :ssourl, :has_in_progress_assign
 
     def initialize(assign, current_membership, user_locale = 'en')
-      @api = Savon.client(wsdl: WSDL_URL)
-      @appid = assign.id
+      @api = Savon.client(wsdl: WSDL_URL, soap_version: 2, log_level: :debug, logger: Rails.logger)
+      @appid = assign.id # '2782' #
       @assessment = assign.assessment
       @current_membership = current_membership
-      @locale = user_locale && AVAILABLE_LANGUAGES.include?(user_locale) || 'en'
+      @locale = user_locale && AVAILABLE_LANGUAGES.include?(user_locale) ? user_locale : 'en'
       @has_in_progress_assign = current_membership.assigns.mindmill.in_progress.where.not(id: assign.id).exists?
     end
 
@@ -48,6 +48,8 @@ module Api
       result = response.body[:add_new_user_response][:add_new_user_result]
       return result if result.start_with?('http')
       return request_ssourl if result == 'D'
+      p 'add_new_user - ' * 5
+      p 'Result doesn\'t contains url or D'
       false
     end
 
@@ -59,6 +61,8 @@ module Api
       response = api.call(:request_ssourl, message: { strCompanyKey: KEY, strUsername: appid })
       result = response.body[:request_ssourl_response][:request_ssourl_result]
       return result if result.start_with?('http')
+      p 'request_ssourl - ' * 5
+      p 'Result doesn\'t contains url'
       false
     end
 
