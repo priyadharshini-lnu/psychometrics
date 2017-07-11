@@ -6,6 +6,7 @@
   - if report.mindmill?
     = link_to t('.results'), assign.mindmill_report.url,
                              target: 'windowMindmill',
+                             class: "btn btn-info #{'disabled' if !assign.completed? || !policy(report).show?}",
                              onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
   - else
     = link_to t('.results'), report_path(report), 
