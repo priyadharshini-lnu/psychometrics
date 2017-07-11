@@ -61,6 +61,7 @@ class Client < ApplicationRecord
   has_many :completed_memberships, -> { completed.distinct }, source: :membership, class_name: 'Membership'
   has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) }, through: :memberships, source: :user
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
+  # TODO use admins instead of projects_admins
   has_many :projects_admins, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, through: :projects, source: :users
 
   # Reports
@@ -205,9 +206,9 @@ class Client < ApplicationRecord
   end
 
   def relevant_reports
-    valid_ids = root.available_report_ids if prime_project?
+    valid_ids = root.available_reports.distinct.pluck(:id) if prime_project?
     valid_ids ||= project.report_ids
-    errors.add(:report_ids) if valid_ids & report_ids != report_ids
+    errors.add(:report_ids) if (valid_ids & report_ids).to_set != report_ids.to_set
   end
 
   def allowed_data

@@ -113,10 +113,4 @@ class Assessment < ApplicationRecord
       all.map { |assessment| [assessment.decorate.display_name, assessment.id, { data: { mindmill: assessment.mindmill? } }] }
     end
   end
-
-  private
-
-  def check_owner
-    errors.add(:owner, :invalid) if owner&.ancestors?
-  end
 end

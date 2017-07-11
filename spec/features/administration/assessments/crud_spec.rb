@@ -19,6 +19,7 @@ feature 'CRUD Assessment' do
             And should see fields for Mindmill type' do
     visit '/administration/assessments'
     click_link(t('administration.assessments.index.new'), href: '/administration/assessments/new')
+    find('.modal-header').click
     within '#assessments_form' do
       expect(page).not_to have_select('resource_mindmill_id', visible: false)
       select t('activerecord.attributes.assessment.types.mindmill'), from: 'resource_type', visible: false
@@ -34,6 +35,7 @@ feature 'CRUD Assessment' do
             Then should see in the table' do
     visit '/administration/assessments'
     click_link(t('administration.assessments.index.new'), href: '/administration/assessments/new')
+    find('.modal-header').click
     within '#assessments_form' do
       select t('activerecord.attributes.assessment.types.mindmill'), from: 'resource_type', visible: false
       fill_in t('activerecord.attributes.assessment.name'), with: 'New Mindmill Assessment'

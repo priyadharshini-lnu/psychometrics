@@ -52,13 +52,10 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
         return scope.none unless @user.has_grant?(:reports, :view)
-        admin_client_ids = @user.admin_client_ids
-        client_ids = Client.descendants_of_arr(admin_client_ids) + admin_client_ids
         scope.
             enabled.
             available_to_view.
-            left_outer_joins(:clients).
-            where('reports.owner_id in (?) or clients.id in (?) and clients.end_level = true', @user.tte_ids, client_ids)
+            where(owner_id: @user.admin_clients.select('tte_id').distinct)
       end
     end
   end

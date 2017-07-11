@@ -22,7 +22,7 @@ module Assessments
     end
 
     def check_owner
-      errors.add(:owner, :invalid) if owner&.child?
+      errors.add(:owner, :invalid) if owner&.ancestors?
     end
   end
 end

@@ -52,6 +52,7 @@ class Membership < ApplicationRecord
   validates :client_id, uniqueness: { scope: [:user_id, :role] }
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
   validate :relevant_role
+  validate :client_admin_scope, if: 'admin?'
 
   before_save :set_project_membership, if: 'client.end_level?'
   after_destroy :clear_project_membership, if: 'client.end_level?'
@@ -74,8 +75,7 @@ class Membership < ApplicationRecord
   }
   scope :hris_data_cont, lambda { |data|
     data = JSON.parse(data) if data.is_a?(String)
-    return if data.blank?
-    where('memberships.hris @> ?', data.to_json)
+    where('memberships.hris @> ?', data.to_json) if data.any?
   }
   scope :user_type_eq, lambda { |type|
     case type.to_s
@@ -152,6 +152,13 @@ class Membership < ApplicationRecord
         false
     end
     errors.add(:role, 'Invalid') unless valid
+  end
+
+  def client_admin_scope
+    # user can be client admin only within one tenancy
+    tte_id = user.admin_clients_tte_ids.sample
+    return unless tte_id
+    errors.add(:base, :admin_for_another_tte) if client.tte_id != tte_id
   end
 
   class << self

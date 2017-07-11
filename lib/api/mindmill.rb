@@ -77,10 +77,8 @@ module Api
 
     #
     def load_results
-      # binding.pry
       # return false unless test_taken?
       response = api.call(:send_cognitive_report, message: { strCompanyKey: KEY, strUsername: appid })
-      # binding.pry
       @report ||= response.body[:send_cognitive_report_response][:send_cognitive_report_result]
     end
 

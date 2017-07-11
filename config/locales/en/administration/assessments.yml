@@ -13,6 +13,9 @@ en:
             all: 'All Categories'
         owner: Owner
         new: Add
+      assigns:
+        form:
+          empty_client_ids: Select clients to continue
       form:
         timing:
           hint: 'For Example: 30 minutes to complete'

@@ -11,10 +11,11 @@
                                 include_blank: false,
                                 wrapper_html: { class: 'mindmill' }
         = f.input :name, wrapper_html: { class: 'common mindmill' }
-        = f.association :owner, collection: policy_scope(Client).roots.all, 
-                                include_blank: (t('administration.tte') if current_user.is?(:superadmin)), 
-                                input_html: { data: { live_search: true } },
-                                wrapper_html: { class: 'common' }
+        - if current_user.is?(:superadmin)
+          = f.association :owner, collection: policy_scope(Client).roots.all,
+                                  include_blank: t('administration.tte'),
+                                  input_html: { data: { live_search: true } },
+                                  wrapper_html: { class: 'common' }
         = f.input :category, collection: resource_class::CATEGORIES.values.map { |cat| [t(".categories.#{cat}"), cat] }, 
                              include_blank: false,
                              wrapper_html: { class: 'common' }

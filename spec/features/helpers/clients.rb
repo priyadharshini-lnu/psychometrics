@@ -21,13 +21,17 @@ module Features
           end
           click_on t('administration.create')
         end
-        expect(page).to have_content t('administration.clients.create.successfully', name: opts[:name])
-        expect(page).to have_css('#clients_list td', text: opts[:name])
-
-        tenancy = Client.last
-        expect(tenancy.tte).to be nil
-        expect(tenancy.end_level?).to be false
-        tenancy
+        wait_for_ajax
+        if block_given?
+          yield
+        else
+          tenancy = Client.last
+          expect(page).to have_content t('administration.clients.create.successfully', name: opts[:name])
+          expect(page).to have_css('#clients_list td', text: opts[:name])
+          expect(tenancy.tte).to be nil
+          expect(tenancy.end_level?).to be false
+          tenancy
+        end
       end
 
       def create_project(tenancy, opts = {})
@@ -44,14 +48,18 @@ module Features
           end
           click_on t('administration.create')
         end
-        expect(page).to have_content t('administration.clients.projects.create.successfully', name: opts[:name])
-        expect(page).to have_css('#clients_list td', text: opts[:name])
-
-        project = Client.last
-        expect(project.tte).to eql tenancy
-        expect(project.parent).to eql tenancy
-        expect(project.end_level?).to be false
-        project
+        wait_for_ajax
+        if block_given?
+          yield
+        else
+          project = Client.last
+          expect(page).to have_content t('administration.clients.projects.create.successfully', name: opts[:name])
+          expect(page).to have_css('#clients_list td', text: opts[:name])
+          expect(project.tte).to eql tenancy
+          expect(project.parent).to eql tenancy
+          expect(project.end_level?).to be false
+          project
+        end
       end
 
       def create_campaign(tenancy, project, opts = {})
@@ -62,14 +70,18 @@ module Features
           fill_in 'resource_name', with: opts[:name]
           click_on t('administration.create')
         end
-        expect(page).to have_content t('administration.clients.campaigns.create.successfully', name: opts[:name])
-        expect(page).to have_css('#clients_list td', text: opts[:name])
-
-        campaign = Client.last
-        expect(campaign.tte).to eql tenancy
-        expect(campaign.parent).to eql project
-        expect(campaign.end_level?).to be false
-        campaign
+        wait_for_ajax
+        if block_given?
+          yield
+        else
+          campaign = Client.last
+          expect(page).to have_content t('administration.clients.campaigns.create.successfully', name: opts[:name])
+          expect(page).to have_css('#clients_list td', text: opts[:name])
+          expect(campaign.tte).to eql tenancy
+          expect(campaign.parent).to eql project
+          expect(campaign.end_level?).to be false
+          campaign
+        end
       end
 
       def create_sub_campaign(tenancy, project, campaign, opts = {})
@@ -80,15 +92,19 @@ module Features
           fill_in 'resource_name', with: opts[:name]
           click_on t('administration.create')
         end
-        expect(page).to have_content t('administration.clients.campaigns.create.successfully', name: opts[:name])
-        expect(page).to have_css("#client_#{campaign.id} td", text: opts[:name])
-
-        sub_campaign = Client.last
-        expect(sub_campaign.tte).to eql tenancy
-        expect(sub_campaign.parent).to eql campaign
-        expect(sub_campaign.project).to eql project
-        expect(sub_campaign.end_level?).to be true
-        sub_campaign
+        wait_for_ajax
+        if block_given?
+          yield
+        else
+          sub_campaign = Client.last
+          expect(page).to have_content t('administration.clients.campaigns.create.successfully', name: opts[:name])
+          expect(page).to have_css("#client_#{campaign.id} td", text: opts[:name])
+          expect(sub_campaign.tte).to eql tenancy
+          expect(sub_campaign.parent).to eql campaign
+          expect(sub_campaign.project).to eql project
+          expect(sub_campaign.end_level?).to be true
+          sub_campaign
+        end
       end
     end
   end

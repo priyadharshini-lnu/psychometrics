@@ -12,7 +12,7 @@ class Administration::DimensionPolicy < Administration::BasePolicy
       scope = super
       return scope if @user.is?(:superadmin)
       if @user.has_grant?(:dimensions, :view)
-        scope.where(owner_id: @user.reload.admin_clients.select('tte_id').distinct)
+        scope.where(owner_id: @user.admin_clients.select('tte_id').distinct)
       else
         scope.none
       end

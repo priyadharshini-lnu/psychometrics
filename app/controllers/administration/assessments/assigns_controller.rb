@@ -39,6 +39,8 @@ module Administration
       end
 
       def form
+        return render :noty, locals: { message: t('.empty_client_ids'), type: :warning } unless assign_params[:client_ids]
+
         init_assign_form
         respond_to do |format|
           format.js
@@ -92,11 +94,11 @@ module Administration
       end
 
       def init_search_users
-        @search = policy_scope(::Membership).join_user.includes(:client).search(params[:q])
+        @search = policy_scope(::Membership).where.not(role: Membership::ADMIN_ROLE).join_user.includes(:client).search(params[:q])
 
         # Limit to use only assigned clients
         #   And clients where user has access
-        client_ids = policy_scope(Client).where(id: params.require(:client_ids)).pluck(:id)
+        client_ids = policy_scope(Client).where(id: params[:client_ids]).pluck(:id)
         @search.client_id_in = @search.client_id_in.blank? ? client_ids : client_ids & @search.client_id_in
       end
 

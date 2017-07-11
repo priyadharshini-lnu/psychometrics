@@ -187,7 +187,7 @@ class Assign < ApplicationRecord
   end
 
   def relevant_reports
-    errors.add(:reports) if membership.client.report_ids & assessment.report_ids & report_ids != report_ids
+    errors.add(:reports) if (membership.client.report_ids & assessment.report_ids & report_ids).to_set != report_ids.to_set
   end
 
   class << self

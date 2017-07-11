@@ -17,7 +17,7 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
         if @user.has_grant?(:libraries, :view)
-          scope.where(owner_id: [@user.admin_client_ids])
+          scope.where(owner_id: @user.admin_clients.select('tte_id').distinct)
         else
           scope.none
         end

@@ -64,14 +64,12 @@ module Administration
       end
 
       def assign_multiple
-        if client.project?
-          begin
-            client.admin_ids = client.root.projects_admins.where(id: params[:admin_ids]).distinct.ids
-          rescue => e
-            render :error, locals: { message: e.message } and return
-          end
+        return unless client.project?
+        if client.update(admin_ids: client.root.projects_admins.where(id: params[:admin_ids]).distinct.ids)
+          render :create
+        else
+          render :error, locals: { message: client.errors.full_messages.join('<br>') }
         end
-        render :create
       end
 
       # GET /administration/resources/1/edit

@@ -17,9 +17,10 @@ tr data-sidebar=url_for([:sidebar, :administration, @dimension, resource]) id=do
   td.text-center.vertical_middle = resource.decorate.created_at
   td.text-center.vertical_middle = resource.decorate.updated_at
   td.actions-cell
-    = link_to [:edit, :administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
-      span.fa.fa-pencil
-    = link_to [:copy, :administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
-      span.fa.fa-copy
-    = link_to [:administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm delete', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
-      span.fa.fa-times
+    - if policy(resource).actions?
+      = link_to [:edit, :administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
+        span.fa.fa-pencil
+      = link_to [:copy, :administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm copy', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
+        span.fa.fa-copy
+      = link_to [:administration, @dimension, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm delete', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
+        span.fa.fa-times

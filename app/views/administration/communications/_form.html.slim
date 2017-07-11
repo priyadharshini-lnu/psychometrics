@@ -4,7 +4,8 @@
 
     .form-inputs.clearfix
       h3 Settings
-      = f.association :owner, collection: policy_scope(Client).all, include_blank: (t('administration.tte') if current_user.is?(:superadmin)), input_html: { data: { live_search: true } }
+      - if current_user.is?(:superadmin)
+        = f.association :owner, collection: policy_scope(Client).roots, include_blank: t('administration.tte'), input_html: { data: { live_search: true } }
       = f.association :assessment,
                 collection: policy_scope(Assessment).all,
                 input_html: { data: { live_search: true } }

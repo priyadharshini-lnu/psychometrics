@@ -31,6 +31,7 @@ module Administration
 
     def create
       @_resource = resource_class.new(resource_params)
+      resource.owner_id = current_user.admin_clients.take.tte_id if current_user.is?(:admin)
 
       respond_to do |format|
         if resource.save

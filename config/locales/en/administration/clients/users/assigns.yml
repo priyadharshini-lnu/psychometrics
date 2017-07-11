@@ -10,6 +10,8 @@ en:
           index:
             title: '%{name} - Assessments and Reporting'
             add: 'Assign New Assessment and Reports'
+          create:
+            successfully: Successfully Updated
           header:
             uniq_id: Uniq ID
             assessment_name: 'Assessment Name'
@@ -17,11 +19,10 @@ en:
             status: 'Completion Status'
             reports: 'Reports'
             actions: Actions
-          assessment:
-            no_reports: 'No relative reports'
-            no_access_to_reports: 'No access to reports'
-            no_completed: 'Not completed'
           resource:
+            no_reports: No relative reports
+            no_access_to_reports: No access to reports
+            not_completed: Not completed
             tooltips:
               delete: Detach Assessment
               delete_report: Detach Report

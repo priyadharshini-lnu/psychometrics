@@ -96,6 +96,3 @@ en:
         form_admin:
           create_admin: Create Admin
           choose_admin: Choose Admin
-        assigns:
-          create:
-            successfully: Successfully Updated

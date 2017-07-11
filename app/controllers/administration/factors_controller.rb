@@ -83,7 +83,7 @@ class Administration::FactorsController < Administration::BaseController
   end
 
   def set_dimension
-    @dimension = Dimension.find(params[:dimension_id])
+    @dimension = policy_scope(Dimension).find(params[:dimension_id])
   end
 
   def resource_params

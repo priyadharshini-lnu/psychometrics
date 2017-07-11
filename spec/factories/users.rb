@@ -41,7 +41,7 @@ FactoryGirl.define do
     last_name 'test'
     transient do
       grants nil
-      memberships_options {}
+      memberships_options [{}]
     end
 
     factory :superadmin do
@@ -54,15 +54,15 @@ FactoryGirl.define do
     factory :manager, traits: [:with_membership_manager]
 
     trait :with_membership_admin do
-      memberships { [association(:admin_membership, memberships_options)] }
+      memberships { memberships_options.map { |opts| association(:admin_membership, opts) } }
     end
 
     trait :with_membership_manager do
-      memberships { [association(:manager_membership, memberships_options)] }
+      memberships { memberships_options.map { |opts| association(:manager_membership, opts) } }
     end
 
     trait :with_membership_member do
-      memberships { [association(:membership, memberships_options)] }
+      memberships { memberships_options.map { |opts| association(:membership, opts) } }
     end
 
     after(:create) do |user, evaluator|

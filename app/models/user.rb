@@ -98,6 +98,7 @@ class User < ApplicationRecord
   has_many :clients, through: :memberships
   has_many :ttes, through: :clients
   has_many :admin_clients, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, through: :memberships, source: 'client'
+  has_many :admin_clients_ttes, through: :admin_clients, source: 'tte', class_name: 'Client'
   accepts_nested_attributes_for :memberships
 
   before_save :ensure_authentication_token
