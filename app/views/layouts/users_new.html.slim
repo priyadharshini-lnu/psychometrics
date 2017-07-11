@@ -9,7 +9,7 @@ html
     = jquery_include_tag :google
     = stylesheet_link_tag 'application_new', media: 'all'
     = javascript_include_tag 'application_new'
-  body data-locale="#{I18n.locale}"
+  body#user data-locale="#{I18n.locale}"
     #modal-container
     header.solid
       .container-fluid

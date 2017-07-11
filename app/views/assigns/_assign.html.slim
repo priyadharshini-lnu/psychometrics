@@ -1,4 +1,4 @@
-.panel.panel-default
+.panel.panel-default.assign
   .panel-heading
     table.table.table-responsive.table-borderless
       thead
@@ -23,9 +23,13 @@
               span = assign.assessment.name
             - else
               - if assign.assessment.mindmill?
+                - need_confirm = in_progress_assign && in_progress_assign != assign
                 = link_to assign.assessment.name, 
-                          [:pass, :mindmill, assign], 
-                          data: { confirm: in_progress_assign && in_progress_assign != assign ? t('.mindmill_confirmation', assessment: in_progress_assign.assessment.name) : false }
+                          '#',
+                          data: { href: url_for([:pass, :mindmill, assign]),
+                                  confirm_text: in_progress_assign && t('.mindmill_confirmation', assessment: in_progress_assign.assessment.name),
+                                  need_confirm: need_confirm },
+                          class: 'mindmill_link'
               - else
                 = link_to assign.assessment.name, [:pass, assign]
           td.col-md-2 = assign.assessment.decorate.timing

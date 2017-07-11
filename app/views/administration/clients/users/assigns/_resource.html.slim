@@ -5,7 +5,13 @@ tr id=dom_id(resource)
     span = membership.decorate.display_name
     span.mlm
       - if policy(resource).destroy?
-        = link_to({action: :destroy, id: resource}, remote: true, class: 'btn btn-default btn-rounded btn-sm mrm', method: :delete, data: {confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')})
+        = link_to({ action: :destroy, id: resource }, 
+                  remote: true, 
+                  class: 'btn btn-default btn-rounded btn-sm mrm', 
+                  method: :delete, 
+                  data: { confirm: resource.decorate.delete_confirmation, 
+                          toggle: 'tooltip', 
+                          title: t('.tooltips.delete') })
           span.fa.fa-times
   td = assessment.try(:name)
   td = assessment.try(:decorate).try(:category)
@@ -17,8 +23,16 @@ tr id=dom_id(resource)
       - if resource.decorate.completed?
         - if reports.any?
           - reports.each do |report|
-            = link_to [:preview, :administration, client, :user, :report, user_id: membership.user_id, id: report.id], class: 'btn btn-default btn-rounded btn-sm', data: {toggle: 'tooltip', title: report.name}
-              span.fa.fa-pie-chart
+            - if report.mindmill?
+              = link_to resource.mindmill_report.url, 
+                        class: 'btn btn-default btn-rounded btn-sm', 
+                        data: { toggle: 'tooltip', title: report.name }
+                span.fa.fa-pie-chart            
+            - else 
+              = link_to [:preview, :administration, client, :user, :report, user_id: membership.user_id, id: report.id], 
+                        class: 'btn btn-default btn-rounded btn-sm', 
+                        data: { toggle: 'tooltip', title: report.name }
+                span.fa.fa-pie-chart
         - else
           = t('.no_reports')
       - else
@@ -31,5 +45,10 @@ tr id=dom_id(resource)
         span = report.name
         span.mlm
           - if policy(resource).destroy?
-            = link_to({action: :destroy_report, id: resource, params: {report_id: report.id}}, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: {confirm: report.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete_report')})
+            = link_to({ action: :destroy_report, id: resource, params: { report_id: report.id } }, 
+                      remote: true, 
+                      class: 'btn btn-default btn-rounded btn-sm', 
+                      data: { confirm: report.decorate.delete_confirmation, 
+                              toggle: 'tooltip', 
+                              title: t('.tooltips.delete_report') })
               span.fa.fa-times
