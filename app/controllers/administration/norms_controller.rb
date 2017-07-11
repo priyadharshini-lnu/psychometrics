@@ -20,9 +20,11 @@ class Administration::NormsController < Administration::BaseController
   end
 
   def create
-    @_resource         = resource_class.new(resource_params)
+    @_resource = resource_class.new(resource_params)
     resource.creator = current_user
     resource.updater = current_user
+    resource.owner = current_user.admin_clients.take.root if current_user.is?(:admin)
+
     respond_to do |format|
       if resource.save
         format.js
