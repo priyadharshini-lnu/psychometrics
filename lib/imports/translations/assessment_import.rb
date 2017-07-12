@@ -67,7 +67,7 @@ module Imports
               translateable_id: question_id,
               translateable_type: 'Question',
               resource_id: assessment_id,
-              resource_type: 'Assessment',
+              resource_type: Assessment::TYPES[:common],
               locale: locale
             })
             translation.props = props

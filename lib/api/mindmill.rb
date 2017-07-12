@@ -1,8 +1,8 @@
 module Api
   class Mindmill
-    COMPANY_ID = 137
+    COMPANY_ID = 70
     KEY = ENV['MINDMILL_KEY']
-    WSDL_URL = 'https://etst-api.mindmill.co.uk/ICAS/ICAS1.asmx?WSDL'.freeze
+    WSDL_URL = 'https://evo-api.mindmill.co.uk/ICAS/ICAS1.asmx?WSDL'.freeze
     AVAILABLE_LANGUAGES = %w(en ar fr).freeze
 
     attr_accessor :api, :appid, :assessment, :current_membership, :locale
