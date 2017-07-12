@@ -1,15 +1,72 @@
-dependencies:
-  override:
-    - mv config/secrets.ci.yml config/secrets.yml
-  pre:
-    - bundle config github.https true
-    - bundle install
-database:
-  override:
-    - cp config/database.ci.yml config/database.yml
-    - RAILS_ENV=test bundle exec rake db:drop
-    - RAILS_ENV=test bundle exec rake db:create
-    - RAILS_ENV=test bundle exec rake db:migrate
-machine:
-  services:
-    - redis
+version: 2
+jobs:
+  build:
+    working_directory: ~/psychometrics
+
+    docker:
+      - image: circleci/ruby:2.4-node-browsers
+        environment:
+          RAILS_ENV: test
+          PGHOST: 127.0.0.1
+          PGUSER: root
+      - image: circleci/postgres:9.6.3-alpine
+      - image: redis:3.2.9-alpine
+
+    steps:
+      - checkout
+
+      # Restore bundle cache
+      - restore_cache:
+          keys:
+            - psychometrics-bundle-{{ checksum "Gemfile.lock" }}
+            - psychometrics-bundle
+
+      # Bundle set https true
+      - run:
+          name: Bundle set https true
+          command: bundle config github.https true
+
+      # Bundle install dependencies
+      - run:
+          name: Bundle
+          command: bundle install --path vendor/bundle
+
+      - run:
+          name: Install phantomjs
+          command: sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
+
+      - run:
+          name: Install psql
+          command: sudo apt install postgresql-client
+
+      # Store bundle cache
+      - save_cache:
+          key: psychometrics-bundle-{{ checksum "Gemfile.lock" }}
+          paths:
+            - vendor/bundle
+
+      # Prepare DB connection info
+      - run:
+          name: Copy database.yml
+          command: cp config/database.ci.yml config/database.yml
+
+      # Prepare Web packer connection info
+      - run:
+          name: Copy secrets.yml
+          command: cp config/secrets.ci.yml config/secrets.yml
+
+      # Database setup
+      - run:
+          name: Database Setup
+          command: |
+            bundle exec rake db:create
+            bundle exec rake db:structure:load
+
+      # Run tests in parallel (Rspec for now)
+      - run:
+          name: Rspec
+          command: bundle exec rake
+
+      # Save artifacts
+      - store_artifacts:
+          path: /tmp/test-results

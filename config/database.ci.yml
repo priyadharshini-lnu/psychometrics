@@ -1,9 +1,10 @@
 default: &default
   adapter: postgresql
-  pool: 5
-  timeout: 5000
-  user: ubuntu
-  password:
+  encoding: unicode
+  # For details on connection pooling, see Rails configuration guide
+  # http://guides.rubyonrails.org/configuring.html#database-pooling
+  host: localhost
+  user: root
 
 test:
   <<: *default
