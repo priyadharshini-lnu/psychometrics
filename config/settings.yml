@@ -23,27 +23,33 @@ currencies:
   - QAR
 default_currency: 'USD'
 mindmill:
-  - name: Administration Entry Level
-    id: 369
-  - name: Administration Mid-Level
-    id: 370
-  - name: Administration Senior Level
-    id: 371
-  - name: Finance Entry Level
-    id: 372
-  - name: Finance Mid-Level
-    id: 373
-  - name: Finance Senior Level
-    id: 374
-  - name: Sales Entry Level
-    id: 375
-  - name: Sales Mid-Level
-    id: 376
-  - name: Sales Senior Level
-    id: 377
-  - name: Technical Entry Level
-    id: 378
-  - name: Technical Mid-Level
-    id: 379
-  - name: Technical Senior Level 
-    id: 380
+  - name: Cognitive – Entry Level TTE
+    id: 416
+  - name: Cognitive – Mid Level TTE
+    id: 417
+  - name: Cognitive – Senior Level TTE
+    id: 418
+  - name: Support Functions – Entry Level TTE
+    id: 419
+  - name: Support Functions – Mid Level TTE
+    id: 420
+  - name: Support Functions – Senior Level TTE
+    id: 421
+  - name: Sales – Entry Level TTE
+    id: 422
+  - name: Sales – Mid Level TTE
+    id: 423
+  - name: Sales – Senior Level TTE
+    id: 424
+  - name: Customer – Entry Level TTE
+    id: 425
+  - name: Customer – Mid Level TTE
+    id: 426
+  - name: Customer – Senior Level TTE
+    id: 427
+  - name: Technical Functions – Entry Level TTE
+    id: 428
+  - name: Technical Functions – Mid Level TTE
+    id: 429
+  - name: Technical Functions – Senior Level TTE
+    id: 430

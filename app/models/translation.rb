@@ -21,7 +21,7 @@ class Translation < ApplicationRecord
   validates :translateable_type, uniqueness: { scope: [:translateable_id, :locale] }
 
   scope :for_assessment, lambda { |assessment_id|
-    where(resource_type: 'Assessment', resource_id: assessment_id)
+    where(resource_type: Assessment::TYPES[:common], resource_id: assessment_id)
   }
   scope :for_report, lambda { |report_id|
     where(resource_type: 'Report', resource_id: report_id)
