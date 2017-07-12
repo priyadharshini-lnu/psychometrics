@@ -70,3 +70,9 @@ jobs:
       # Save artifacts
       - store_artifacts:
           path: /tmp/test-results
+
+      - store_artifacts:
+          path: tmp/capybara
+
+      - store_artifacts:
+          path: coverage
