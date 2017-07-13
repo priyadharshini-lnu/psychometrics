@@ -3,11 +3,7 @@ footer class="#{'loginFooter' if devise_controller?}"
     .row
       .col-xs-12.col-sm-6
         p.footerLinks
-          => link_to 'Privacy Statement', '#'
-          | |
-          =<> link_to 'Terms & Conditions', '#'
-          | |
-          =< link_to "FAQ's"
+          a href="http://www.thetalententerprise.com/lighthouse/termsandconditions/" target="_blank"  Terms, Conditions and Privacy Statement
       .col-xs-12.col-sm-6.text-right
         p.footerLogo
           span.poweredBy Lighthouse Powered by
