@@ -14,7 +14,7 @@
           = link_to current_user.decorate.display_name, edit_administration_profiles_path, class: 'profile-data-name'
           .profile-data-title = current_user.decorate.admin_role
 
-    = active_link_to(administration_root_path, wrap_tag: :li, active: /\/administration(\/|)(\/clients|\z)/, data: { toggle: 'tooltip', title: t('administration.navigation.clients'), placement: 'right' })
+    = active_link_to(administration_root_path, wrap_tag: :li, active: /\/administration(\/|)(\/clients|\z)/, data: { toggle: 'tooltip', title: (current_user.is?(:superadmin) ? t('administration.navigation.clients') : t('administration.navigation.home')), placement: 'right' })
       .fa.fa-briefcase
       span.xn-text = current_user.is?(:superadmin) ? t('administration.navigation.clients') : t('administration.navigation.home')
     /= active_link_to(administration_dashboard_path, active: :exclusive, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.home'), placement: 'right' })
