@@ -113,8 +113,9 @@ module Administration
     end
 
     def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
+      label = t("administration.breadcrumbs.#{resource_class.model_name.plural}") if current_user.is?(:superadmin)
+      label ||= t('administration.breadcrumbs.home')
+      add_breadcrumb label, [:administration, :root]
     end
 
     def resource_params
