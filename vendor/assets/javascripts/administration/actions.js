@@ -1,3 +1,7 @@
+var Psychometrics = Psychometrics || {};
+
+Psychometrics.WINDOW_RESIZE_TIMEOUT = null;
+
 $(document).ready(function(){
 
     var html_click_avail = true;
@@ -211,10 +215,15 @@ $(document).ready(function(){
 });
 
 
-$(window).resize(function(){
-    x_navigation_onresize();
-    page_content_onresize();
+$(window).resize(function () {
+  clearTimeout(Psychometrics.WINDOW_RESIZE_TIMEOUT);
+  Psychometrics.WINDOW_RESIZE_TIMEOUT = setTimeout(Psychometrics.on_window_resize, 50);
 });
+
+Psychometrics.on_window_resize = function () {
+  x_navigation_onresize();
+  page_content_onresize();
+};
 
 function onload(){
     x_navigation_onresize();
@@ -222,22 +231,11 @@ function onload(){
 }
 
 function page_content_onresize(){
-    $(".page-content,.content-frame-body,.content-frame-right,.content-frame-left").css("width","").css("height","");
+    $(".content-frame-body,.content-frame-right,.content-frame-left").css("width","").css("height","");
 
     var content_minus = 0;
     content_minus = ($(".page-container-boxed").length > 0) ? 40 : content_minus;
     content_minus += ($(".page-navigation-top-fixed").length > 0) ? 50 : 0;
-
-    var content = $(".page-content");
-    var sidebar = $(".page-sidebar");
-
-    if(content.height() < $(document).height() - content_minus){
-        content.height($(document).height() - content_minus);
-    }
-
-    if(sidebar.height() > content.height()){
-        content.height(sidebar.height());
-    }
 
     if($(window).width() > 1024){
 
@@ -248,7 +246,6 @@ function page_content_onresize(){
                 var doc_height = $(window).height();
             }
            $(".page-sidebar").height(doc_height);
-
        }
 
         if($(".content-frame-body").height() < $(document).height()-162){
