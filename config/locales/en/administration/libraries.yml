@@ -10,6 +10,8 @@ en:
         root: Media Library
         upload: Upload new file
         new_folder: New folder
+        updated_at: Modified Date
+        created_at: Created Date
       new:
         header: 'New Report'
       edit:

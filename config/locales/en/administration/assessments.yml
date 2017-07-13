@@ -13,6 +13,9 @@ en:
             all: 'All Categories'
         owner: Owner
         new: Add
+      list:
+        updated_at: Modified Date
+        created_at: Created Date
       assigns:
         form:
           empty_client_ids: Select clients to continue

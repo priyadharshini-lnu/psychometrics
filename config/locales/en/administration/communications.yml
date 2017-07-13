@@ -7,6 +7,9 @@ en:
           create: Create
         new: Add
         owner: Owner
+      list:
+        updated_at: Modified Date
+        created_at: Created Date
       new:
         header: 'New Communication'
       edit:

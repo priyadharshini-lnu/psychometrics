@@ -1,6 +1,9 @@
 en:
   administration:
     users: &USERS
+      list:
+        updated_at: Modified Date
+        created_at: Created Date
       new:
         header: 'New user'
       edit:

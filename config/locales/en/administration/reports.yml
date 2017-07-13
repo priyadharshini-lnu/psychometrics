@@ -19,6 +19,9 @@ en:
             '360': '360 Feedback'
         owner: Owner
         report_family: Report Family
+      list:
+        updated_at: Modified Date
+        created_at: Created Date
       new:
         header: 'Select Report'
       edit:

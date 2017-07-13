@@ -7,6 +7,9 @@ en:
           create: Create
         owner: Owner
         new: Add
+      list:
+        updated_at: Modified Date
+        created_at: Created Date
       new:
         header: 'New Dimension'
       edit:
@@ -27,7 +30,6 @@ en:
         assign: 'Assign Dimension'
         destroy: 'Delete Dimension'
         view: 'View Dimension'
-
       resource:
         tooltips:
           copy: 'Copy Dimension'

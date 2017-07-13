@@ -10,6 +10,9 @@ en:
             blocks: Blocks
           tooltips:
             create: Create
+        list:
+          updated_at: Modified Date
+          created_at: Created Date
         new:
           header: New Question
         edit:
@@ -41,6 +44,9 @@ en:
             <<: *templates
           tooltips:
             create: Create
+        list:
+          updated_at: Modified Date
+          created_at: Created Date
         new:
           header: New Block
         edit:

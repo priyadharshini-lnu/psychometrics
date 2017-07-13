@@ -4,6 +4,9 @@ en:
       index:
         title: Products list
         new: Add
+      list:
+        updated_at: Modified Date
+        created_at: Created Date
       new:
         header: New Product
       edit:

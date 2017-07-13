@@ -7,6 +7,9 @@ en:
         export: Export
         new: Add
         owner: Owner
+      list:
+        updated_at: Modified Date
+        created_at: Created Date
       new:
         header: 'New norm'
       edit:

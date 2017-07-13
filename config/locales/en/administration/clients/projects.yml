@@ -20,6 +20,8 @@ en:
           applicable_level: Applicable Level
           url: URL
           actual_usage: Actual Usage
+          updated_at: Modified Date
+          created_at: Created Date
         export:
           <<: *list
         index:
