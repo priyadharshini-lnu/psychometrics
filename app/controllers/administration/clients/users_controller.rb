@@ -97,7 +97,11 @@ module Administration
       end
 
       def destroy
-        resource.destroy
+        if resource.user.memberships.count == 1
+          resource.user.destroy
+        else
+          resource.destroy
+        end
         respond_to do |format|
           format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
           format.js
