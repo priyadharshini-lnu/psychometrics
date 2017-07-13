@@ -1,5 +1,6 @@
 MAIL_USERNAME: 'fake_username'
 MAIL_PASSWORD: 'fake_password'
 MAIL_DOMAIN: 'fake.domain.com'
+MAIL_ADDRESS: provider.address.com
 HASHIDS_SALT: 'fake_salt'
 MINDMILL_KEY: 'fake_key'

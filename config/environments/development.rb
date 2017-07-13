@@ -42,15 +42,17 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default charset: 'utf-8'
 
-  config.action_mailer.smtp_settings =  {
+  config.action_mailer.smtp_settings = {
       user_name: ENV['MAIL_USERNAME'],
       password: ENV['MAIL_PASSWORD'],
       domain: ENV['MAIL_DOMAIN'],
-      address: 'smtp.sendgrid.net',
+      address: ENV['MAIL_ADDRESS'],
       port: 587,
       authentication: :plain,
       enable_starttls_auto: true
   }
+  # Mailcatcher settings
+  # config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

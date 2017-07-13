@@ -72,7 +72,7 @@ Rails.application.configure do
       user_name: ENV['MAIL_USERNAME'],
       password: ENV['MAIL_PASSWORD'],
       domain: ENV['MAIL_DOMAIN'],
-      address: 'smtp.sparkpostmail.com',
+      address: ENV['MAIL_ADDRESS'],
       port: 587,
       authentication: :plain,
       enable_starttls_auto: true
