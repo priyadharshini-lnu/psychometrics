@@ -8,7 +8,7 @@
         span.input-group-addon
           | .
           = Settings.domain
-      = f.input :number
+      = f.input :number, label: t('.project_number')
       = f.input :applicable_level,
                 as: :select,
                 collection: Client.applicable_levels.map { |name, value| [t("activerecord.attributes.client.applicable_levels.#{name}"), name] },

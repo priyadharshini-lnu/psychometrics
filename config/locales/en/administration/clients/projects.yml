@@ -3,6 +3,7 @@ en:
     clients:
       projects:
         form:
+          project_number: Project Number
           applicable_levels:
             project: 'Project End Level'
             campaign: 'Campaign End Level'
