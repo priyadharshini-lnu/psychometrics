@@ -87,8 +87,13 @@ class ClientDecorator < BaseDecorator
   end
 
   def reports
+    report_ids = h.policy_scope(Report).ids
     object.reports.map do |report|
-      h.link_to report.decorate.display_name, h.administration_report_path(report)
+      if report_ids.include? report.id
+        h.link_to report.decorate.display_name, h.administration_report_path(report)
+      else
+        report.decorate.display_name
+      end
     end.join(', ').html_safe
   end
 

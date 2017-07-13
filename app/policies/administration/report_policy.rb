@@ -8,8 +8,8 @@ module Administration
     # true if it's not Mindmill report
     #   and user is Superadmin or user has grants
     def show?
-      !@record.mindmill? &&
-        (super || @user.has_grant?(:reports, :manage))
+      return false if record.mindmill?
+      super || @user.has_grant?(:reports, :view)
     end
 
     def create?
