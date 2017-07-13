@@ -1,27 +1,27 @@
 en:
   activerecord:
     models:
-      assessment: 'Assessments'
+      assessment: Assessments
     attributes:
       assessment: &DEFAULT
-        id: 'ID'
-        name: 'Name'
+        id: ID
+        name: Name
         category: Category
-        created_at: 'Created Date'
-        updated_at: 'Modified Date'
-        active: 'Active'
-        timing: 'Timing'
-        description: 'Description'
+        created_at: Created Date
+        updated_at: Modified Date
+        active: Active
+        timing: Timing
+        description: Description
         categories:
-          psychometric: 'Psychometrics'
-          organisational: 'Org Surveys'
-          '360': '360 Feedback'
-          mindmill: 'Mindmill'
+          psychometric: Psychometrics
+          organisational: Org Surveys
+          '360': 360 Feedback
+          mindmill: Mindmill
         types:
-          common: 'Common Assessment'
-          mindmill: 'Mindmill Assessment'
+          common: TTE Assessment
+          mindmill: Mindmill Assessment
         statuses:
-          finished: 'finished'
+          finished: finished
   simple_form:
     placeholders:
       assessment:
