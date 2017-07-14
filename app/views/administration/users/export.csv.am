@@ -1,5 +1,3 @@
-
-hris_keys = resources.map(&:hris).compact.map(&:keys).flatten.uniq
 csv << [
         resource_class.human_attribute_name('active'),
         resource_class.human_attribute_name('first_name'),
@@ -8,7 +6,6 @@ csv << [
         resource_class.human_attribute_name('memberships'),
         resource_class.human_attribute_name('role'),
         resource_class.human_attribute_name('created_at'),
-        *hris_keys
        ]
 
 resources.each do |resource|
@@ -21,9 +18,6 @@ resources.each do |resource|
           resource.decorate.role,
           resource.decorate.created_at
          ]
-  hris_keys.each do |key|
-    row << resource.hris[key]
-  end
 
   csv << row
 end

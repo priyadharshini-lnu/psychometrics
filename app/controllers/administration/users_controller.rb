@@ -11,7 +11,7 @@ class Administration::UsersController < Administration::BaseController
 
     respond_to do |format|
       format.html
-      format.js {render :index, formats: [:js]}
+      format.js { render :index, formats: [:js] }
     end
   end
 
@@ -41,7 +41,7 @@ class Administration::UsersController < Administration::BaseController
   def destroy
     resource.destroy
     respond_to do |format|
-      format.html {redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name))}
+      format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
       format.js
     end
   end
@@ -53,7 +53,7 @@ class Administration::UsersController < Administration::BaseController
     resource.update!(modified_by_id: current_user.id)
     resource.memberships.update_all(disabled: resource.disabled)
     respond_to do |format|
-      format.html {redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name))}
+      format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
       format.js
     end
   end
@@ -65,11 +65,21 @@ class Administration::UsersController < Administration::BaseController
     redirect_to :back, success: t('.successfully', name: resource.decorate.display_name)
   end
 
+    def export
+    @_resources = policy_scope(resource_class).includes(:clients).all
+    respond_to do |format|
+      format.csv do
+        headers['Content-Disposition'] = "attachment; filename=\"#{resource_class.model_name.plural}-#{Date.today}.csv\""
+        headers['Content-Type'] ||= 'text/csv'
+      end
+    end
+  end
+
   protected
 
   def init_breadcrumbs
     add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), {action: :index}
+    add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
   end
 
   # Set model

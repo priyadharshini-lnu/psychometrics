@@ -193,6 +193,7 @@ Rails.application.routes.draw do
       end
       collection do
         post :create_superadmin
+        get :export
       end
     end
     ### END USERS
