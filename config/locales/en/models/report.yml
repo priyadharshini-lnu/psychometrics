@@ -9,6 +9,10 @@ en:
         mindmill_report: Mindmill report
         created_at: Created Date
         updated_at: Modified Date
+    errors:
+      models:
+        report:
+          has_dependent_relation: This report is assinged on users
   simple_form:
     placeholders:
       report:
