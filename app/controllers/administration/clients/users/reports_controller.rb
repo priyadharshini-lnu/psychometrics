@@ -19,7 +19,7 @@ module Administration
           @results = Assign.
                      completed.
                      includes(:membership, :user).
-                     where(memberships: { client_id: client.id }, assessment_id: resource.assessment_id).
+                     where(memberships: { client_id: client.project.id }, assessment_id: resource.assessment_id).
                      references(:membership).
                      all
           @assign = Assign.find_by(assessment_id: resource.assessment_id, membership_id: membership.id)
@@ -58,7 +58,7 @@ module Administration
         def set_data
           @_client = policy_scope(Client).find(params[:client_id])
           @user = policy_scope(User).find(params[:user_id])
-          @_membership = @user.memberships.join_user.find_by(client_id: client.id)
+          @_membership = @user.memberships.join_user.find_by(client_id: client.project.id)
         end
       end
     end

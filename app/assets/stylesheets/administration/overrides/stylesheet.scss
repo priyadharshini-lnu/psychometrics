@@ -1,6 +1,7 @@
 html { overflow-x: auto; }
 body { overflow-x: initial; }
 .page-container { width: auto; min-width: 100%; }
+.page-container.page-container-wide .page-content { margin: 0; }
 .page-content {flex: 1 1 auto;}
 .table-responsive { overflow: inherit; }
 /**/

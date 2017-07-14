@@ -4,6 +4,9 @@
 - if params[:export]
   = javascript_include_tag :psychometrics_pdf_vendor
   = javascript_include_tag :psychometrics_pdf_app
-- else 
+- else
   = javascript_include_tag :psychometrics_reports_vendor
   = javascript_include_tag :psychometrics_reports_preview
+  / for debug
+  /= javascript_include_tag 'http://localhost:3000/psychometrics_reports_vendor.js'
+  /= javascript_include_tag 'http://localhost:3000/psychometrics_reports_preview.js'

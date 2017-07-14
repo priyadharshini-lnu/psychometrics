@@ -1,15 +1,16 @@
 = stylesheet_link_tag :psychometrics_reports_vendor
-= stylesheet_link_tag :administration
 = stylesheet_link_tag :psychometrics_reports_preview
 
-#report_preview.html_preview[class='html_preview' 
-                             data-user="#{Reports::UserSerializer.new(membership, assign: @assign).to_json}"
-                             data-results="#{(@results.map { |a| AssignSerializer.new(a, membership: membership)}).to_json}"
-                             data-data="#{ReportSerializer.new(resource, membership: membership).to_json(include: '**')}"
-                             data-locales=@translations.to_json]
+#report_preview.html_preview[data-user="#{Reports::UserSerializer.new(membership, assign: project_assign).to_json}"
+  data-results="#{(@results.map { |a| AssignSerializer.new(a, membership: membership) }).to_json}"
+  data-data="#{ReportSerializer.new(resource, membership: membership).to_json(include: '**')}"
+  data-locales=@translations.to_json]
 - if params[:export]
-  = javascript_include_tag :psychometrics_pdf_vendor 
+  = javascript_include_tag :psychometrics_pdf_vendor
   = javascript_include_tag :psychometrics_pdf_app
 - else
   = javascript_include_tag :psychometrics_reports_vendor
   = javascript_include_tag :psychometrics_reports_preview
+  / for debug
+  /= javascript_include_tag 'http://localhost:3000/psychometrics_reports_vendor.js'
+  /= javascript_include_tag 'http://localhost:3000/psychometrics_reports_preview.js'
