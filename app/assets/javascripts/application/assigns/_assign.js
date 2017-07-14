@@ -3,7 +3,7 @@ $(function () {
     e.preventDefault();
     var textConfirm = $(this).data('confirm-text'),
         href = $(this).data('href'),
-        need_confirm = $(this).data('need-confirm'),
+        need_confirm = !!$(this).data('need-confirm'),
         confirmed = need_confirm && confirm(textConfirm);
     if(need_confirm === false || confirmed === true) {
       window.open(href, 'windowMindmill', 'width=980,height=700');
