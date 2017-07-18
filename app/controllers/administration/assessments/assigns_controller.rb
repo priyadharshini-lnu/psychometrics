@@ -48,9 +48,9 @@ module Administration
       end
 
       def not_selected_users
-        @users = @search.result(distinct: true)
+        @_users = @search.result(distinct: true)
         respond_to do |format|
-          format.json { render json: ::ActiveModel::Serializer::CollectionSerializer.new(@users, serializer: MembershipSerializer).to_json }
+          format.json { render json: ::ActiveModel::Serializer::CollectionSerializer.new(users, serializer: MembershipSerializer).to_json }
         end
       end
 
@@ -59,9 +59,9 @@ module Administration
         #   Then not show users
         @search.id_blank = true if @search.id_in.nil?
 
-        @users = @search.result(distinct: true)
+        @_users = @search.result(distinct: true)
         respond_to do |format|
-          format.json { render json: ::ActiveModel::Serializer::CollectionSerializer.new(@users, serializer: MembershipSerializer).to_json }
+          format.json { render json: ::ActiveModel::Serializer::CollectionSerializer.new(users, serializer: MembershipSerializer).to_json }
         end
       end
 
@@ -90,7 +90,7 @@ module Administration
         @_filter_form = Membership.search(client_id_in: @clients.map(&:id))
         filter_form.id_not_in = @assign_form.user_ids
         filter_form.id_in = @assign_form.user_ids
-        @users = policy_scope(Membership).search(client_id_in: @clients.map(&:id)).result
+        @_users = policy_scope(Membership).search(client_id_in: @clients.map(&:id)).result
       end
 
       def init_search_users

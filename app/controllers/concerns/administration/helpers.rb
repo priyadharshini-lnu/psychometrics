@@ -6,6 +6,7 @@ module Administration
       helper_method :i18n
       helper_method :client, :project, :campaign, :resource, :resources, :resource_class, :filter_form
       helper_method :membership, :project_membership, :project_assign
+      helper_method :user, :users
     end
 
     def i18n
@@ -66,6 +67,14 @@ module Administration
 
     def project_assign
       @_project_assign ||= assign.project_assign || assign
+    end
+
+    def user
+      @_user
+    end
+
+    def users
+      @_users
     end
   end
 end

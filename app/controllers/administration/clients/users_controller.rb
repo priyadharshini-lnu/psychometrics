@@ -145,8 +145,6 @@ module Administration
         end
       end
 
-      # Send user instruction with reset password
-      #
       def reset_password
         resource.user.send_reset_password_instructions
         redirect_to :back, success: t('.successfully', name: resource.decorate.display_name)
@@ -177,7 +175,6 @@ module Administration
         params.require(:resource).permit(policy(resource).permitted_attributes_for_update)
       end
 
-      # Set model
       def set_resource_class
         @_resource_class ||= ::Membership
       end

@@ -18,7 +18,7 @@
           .hidden
             = f.input :id_not_in,
                       as: :select,
-                      collection: @users.map { |m| [m.id, m.id] },
+                      collection: users.map { |m| [m.id, m.id] },
                       input_html: { multiple: true }
           .row
             .col-md-6
@@ -75,7 +75,7 @@
               .hidden
                 = f.input :id_in,
                           as: :select,
-                          collection: @users.map { |m| [m.id, m.id] },
+                          collection: users.map { |m| [m.id, m.id] },
                           input_html: { multiple: true }
               = f.input :role_in,
                         collection: Membership::MEMBERSHIP_ROLES,

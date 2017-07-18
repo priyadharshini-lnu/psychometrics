@@ -16,7 +16,7 @@
   #specific_datetime class="mbm #{'hidden' if f.object.access_reports == 'immediately'}"
     = f.input :access_reports_at_date, input_html: { class: 'datepicker' }
     = f.input :access_reports_at_time, input_html: { class: 'timepicker' }
-  = f.input_field :user_ids, as: :select, collection: @users.map { |u| [u.id, u.id] }, multiple: true, class: 'hidden'
+  = f.input_field :user_ids, as: :select, collection: users.map { |u| [u.id, u.id] }, multiple: true, class: 'hidden'
   = f.input :manager_ids,
             as: :grouped_select,
             collection: @managers,

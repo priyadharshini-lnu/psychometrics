@@ -11,7 +11,7 @@
                             url: finish_administration_assessment_assigns_path, 
                             method: :post) do |f|               
             .hidden
-              = f.input :user_ids, as: :select, collection: @users, input_html: { multiple: true }
+              = f.input :user_ids, as: :select, collection: users, input_html: { multiple: true }
             .wizard.show-submit
               ul.steps_2.anchor
                 li.ms-hover

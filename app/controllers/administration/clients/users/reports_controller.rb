@@ -30,7 +30,7 @@ module Administration
               render('_preview', layout: 'pdf') if params[:export]
             end
             format.pdf do
-              pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, resource, @user, client, request.protocol.split(':').first, lang: user_locale)
+              pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, resource, user, client, request.protocol.split(':').first, lang: user_locale)
               send_file pdf_file, type: 'application/pdf'
             end
           end
@@ -42,13 +42,12 @@ module Administration
           add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
           add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, client, :users]
           add_breadcrumb client.decorate.display_name, [:administration, @client, :users]
-          add_breadcrumb @user.decorate.display_name, '#'
+          add_breadcrumb user.decorate.display_name, '#'
           add_breadcrumb I18n.t('administration.breadcrumbs.reports'), [:administration, client, :user, :assigns, { user_id: membership.id }]
         end
 
-        # Set model
         def set_resource_class
-          @_resource_class ||= Report
+          @_resource_class = Report
         end
 
         def set_resource
@@ -57,8 +56,8 @@ module Administration
 
         def set_data
           @_client = policy_scope(Client).find(params[:client_id])
-          @user = policy_scope(User).find(params[:user_id])
-          @_membership = @user.memberships.join_user.find_by(client_id: client.project.id)
+          @_user = policy_scope(User).find(params[:user_id])
+          @_membership = user.memberships.join_user.find_by(client_id: client.project.id)
         end
       end
     end
