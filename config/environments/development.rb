@@ -30,10 +30,6 @@ Rails.application.configure do
     config.cache_store = :null_store
   end
 
-  # config.action_controller.asset_host = proc { |_source, request|
-  #   (request ? request.protocol : 'http://') + 'my.psy.loc:' + (request ? request.port.to_s : '3030')
-  # }
-
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
 
@@ -42,17 +38,8 @@ Rails.application.configure do
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.default charset: 'utf-8'
 
-  config.action_mailer.smtp_settings = {
-      user_name: ENV['MAIL_USERNAME'],
-      password: ENV['MAIL_PASSWORD'],
-      domain: ENV['MAIL_DOMAIN'],
-      address: ENV['MAIL_ADDRESS'],
-      port: 587,
-      authentication: :plain,
-      enable_starttls_auto: true
-  }
-  # Mailcatcher settings
-  # config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
+  # Mailcatcher settings, https://mailcatcher.me/
+  config.action_mailer.smtp_settings = { address: 'localhost', port: 1025 }
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log

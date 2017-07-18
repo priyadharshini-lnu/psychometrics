@@ -4,6 +4,7 @@ class InvitationMailer < ApplicationMailer
     @client = Client.find_by_id(invited_to_id).project
     @token = token
     mail(
+      from: "#{t('devise.mailer.invitation_instructions.from')} <no-reply@#{Settings.domain}>",
       to: @resource.email,
       subject: I18n.t('devise.mailer.invitation_instructions.subject'),
       template_path: '/devise/mailer',
