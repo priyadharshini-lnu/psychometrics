@@ -1,18 +1,24 @@
 $(function () {
   $(document).on('change', '.grants-table input[type=checkbox]', function (e) {
     var $this = $(this),
-        val = $this.val(),
         checked = $this.prop('checked');
 
-    if (val === 'manage' && checked) {
-      trigger_input('view', checked)
-    }
-    if (val === 'view' && !checked) {
-      trigger_input('manage', false)
+    if (checked && $this.data('turnOn')) {
+      $.each($this.data('turnOn'), function (i, id) {
+        set_input(id, true)
+      });
+      return false;
     }
 
-    function trigger_input (value, checked) {
-      $this.parent('label').siblings('label').children('input[type=checkbox][value=' + value + ']').prop('checked', checked)
+    if (!checked && $this.data('turnOff')) {
+      $.each($this.data('turnOff'), function (i, id) {
+        set_input(id, false)
+      });
+      return false;
+    }
+
+    function set_input (id, value) {
+      return $('#' + id).prop('checked', value).trigger('change')
     }
   })
 });
