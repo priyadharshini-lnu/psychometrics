@@ -8,14 +8,12 @@
           th
             | Duration
           th
-            | Deadline
-          th
             | Progress
           th.text-center
             | Download
       tbody
         tr
-          td.col-md-3
+          td.col-md-4
             a.collapsed> data-parent="#assessments-#{assign.assessment.category}" data-toggle="collapse" href="##{dom_id(assign)}"
               span.toggle-icon.glyphicon.glyphicon-chevron-right
               span.toggle-icon.glyphicon.glyphicon-chevron-down
@@ -32,9 +30,7 @@
                           class: 'mindmill_link'
               - else
                 = link_to assign.assessment.name, [:pass, assign]
-          td.col-md-2 = assign.assessment.decorate.timing
-          td.col-md-2
-            | June. 30, 2017
+          td.col-md-3 = assign.assessment.decorate.timing
           td.col-md-3
             .progress
               - percent = assign.assessment.decorate.completion_percent
