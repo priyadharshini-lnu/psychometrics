@@ -33,7 +33,7 @@ html
                       = link_to [:destroy, pundit_user[:current_user].try(:scope), :session], method: :delete do
                         i.fa.fa-sign-out.pull-right
                         = t('.logout')
-                li.dropdown role="presentation"
+                /li.dropdown role="presentation"
                   a.dropdown-toggle.info-number aria-expanded="false" data-toggle="dropdown" href=""
                     = image_tag 'notificationIcon.png'
                     span.badge.bg-green 6
