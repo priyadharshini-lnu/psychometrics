@@ -39,15 +39,15 @@ table.table.grants-table
           - assessments_manage_id = dom_id(u.object, :assessments_manage)
           - assessments_assign_id = dom_id(u.object, :assessments_assign)
           = check_box_tag 'resource[user_attributes][grants][assessments][]',
-                  'view', u.object.has_grant?(:assessments, :view), id: assessments_view_id, data: { turn_off: [assessments_manage_id] }
+                  'view', u.object.has_grant?(:assessments, :view), id: assessments_view_id, data: { turn_off: [assessments_manage_id, assessments_assign_id] }
           i.fa.fa-eye title='View'
         label
           = check_box_tag 'resource[user_attributes][grants][assessments][]',
-                  'manage', u.object.has_grant?(:assessments, :manage), id: assessments_manage_id, data: { turn_on: [assessments_view_id], turn_off: [assessments_assign_id] }
+                  'manage', u.object.has_grant?(:assessments, :manage), id: assessments_manage_id, data: { turn_on: [assessments_view_id] }
           i.fa.fa-pencil title='Manage'
         label
           = check_box_tag 'resource[user_attributes][grants][assessments][]',
-                  'assign', u.object.has_grant?(:assessments, :assign), id: assessments_assign_id, data: { turn_on: [assessments_manage_id] }
+                  'assign', u.object.has_grant?(:assessments, :assign), id: assessments_assign_id, data: { turn_on: [assessments_view_id] }
           i.fa.fa-user-plus title='Assign'
     tr
       td Raw Assessment Results
