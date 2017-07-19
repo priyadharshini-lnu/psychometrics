@@ -17,6 +17,10 @@ body { overflow-x: initial; height: 100%; }
 /**/
 .bootstrap-timepicker-widget.dropdown-menu { z-index: 1050 !important; }
 /**/
+.modal-body::after { display: table; clear: both; content: ''; width: 100%; }
+/**/
+.note-editor.note-frame .note-editing-area { width: 100%; }
+/**/
 .breadcrumb li { color: #8ea1b7; }
 .breadcrumb li:hover { color: #8ea1b7; }
 .breadcrumb li:last-child { color: #8ea1b7; }

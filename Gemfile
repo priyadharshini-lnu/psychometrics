@@ -23,7 +23,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-quicksearch', '2.3.1'
   gem 'rails-assets-bootstrap-add-clear', '1.0.6'
   gem 'rails-assets-datatables', '1.10.12'
-  gem 'rails-assets-summernote', '0.5.10'
+  gem 'rails-assets-summernote', '0.8.6'
   gem 'rails-assets-js-cookie', '2.1.3'
   gem 'rails-assets-jquery-serialize-object', '2.5.0'
 end

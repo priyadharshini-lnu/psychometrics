@@ -259,8 +259,10 @@ $(function() {
                 $(".summernote_email").summernote({
                                                   height: 300,
                                                   focus: false,
+                                                  dialogsInBody: true,
                                                   toolbar: [
                                                       ['style', ['bold', 'italic', 'underline', 'clear']],
+                                                      ['insert', ['link']],
                                                       ['font', ['strikethrough']],
                                                       ['fontsize', ['fontsize']],
                                                       ['color', ['color']],
@@ -343,6 +345,26 @@ $(function() {
     window.formElements.init();
     window.uiElements.init();
     window.templatePlugins.init();
+
+  // summernote modals fix
+  $(document)
+      .on('summernote.init', '.summernote_email', function (e) {
+        $('body').children('.modal').attr('data-backdrop', '');
+      })
+      .on('show.bs.modal', function (e) {
+        if ($(e.target).parent('#modal-container').length) return;
+        $('#modal-container').css({position: 'relative', zIndex: 100});
+      })
+      .on('hide.bs.modal', function (e) {
+        if ($(e.target).parent('#modal-container').length) return;
+        $('#modal-container').attr('style', '');
+      })
+      .on('hidden.bs.modal', function (e) {
+        if ($(e.target).parent('#modal-container').length) return;
+        if ($('#modal-container .modal').length) {
+          $('body').addClass('modal-open')
+        }
+      });
 
     // New selector case insensivity
      $.expr[':'].containsi = function(a, i, m) {
