@@ -1,6 +1,7 @@
 module Administration
   module Clients
     class ProjectsController < Administration::ClientsController
+      include Administration::Clients
       before_action :ensure_client
 
       def index
@@ -46,8 +47,7 @@ module Administration
       private
 
       def init_breadcrumbs
-        add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-        add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
+        client_root_breadcrumb
         add_breadcrumb client.decorate.display_name, { action: :index }
       end
 
@@ -55,10 +55,6 @@ module Administration
         params.require(:resource).permit(:name, :subdomain, :logo, :background, :background_color,
                                          :remove_background, :remove_logo, :applicable_level, :number,
                                          report_ids: [])
-      end
-
-      def ensure_client
-        client || raise(Pundit::NotAuthorizedError)
       end
     end
   end

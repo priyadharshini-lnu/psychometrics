@@ -1,6 +1,7 @@
 module Administration
   module Clients
     class SubCampaignsController < Administration::ClientsController
+      include Administration::Clients
       before_action :ensure_client
 
       def index
@@ -21,13 +22,8 @@ module Administration
       private
 
       def init_breadcrumbs
-        add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-        add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
+        client_root_breadcrumb
         add_breadcrumb client.decorate.display_name, { action: :index }
-      end
-
-      def ensure_client
-        client || raise(Pundit::NotAuthorizedError)
       end
     end
   end

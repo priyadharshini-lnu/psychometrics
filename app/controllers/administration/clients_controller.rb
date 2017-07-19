@@ -1,5 +1,6 @@
 module Administration
   class ClientsController < Administration::BaseController
+    include Administration::Clients
     prepend_before_action :set_resource_class
     before_action :set_resource, only: [:show, :edit, :update, :destroy, :sidebar, :toggle_status, :copy, :archive]
     before_action :skip_authorization, only: [:sidebar]
@@ -113,9 +114,7 @@ module Administration
     end
 
     def init_breadcrumbs
-      label = t("administration.breadcrumbs.#{resource_class.model_name.plural}") if current_user.is?(:superadmin)
-      label ||= t('administration.breadcrumbs.home')
-      add_breadcrumb label, [:administration, :root]
+      client_root_breadcrumb
     end
 
     def resource_params

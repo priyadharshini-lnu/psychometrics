@@ -3,6 +3,7 @@ module Administration
     module Users
       class ReportsController < Administration::BaseController
         include AuthenticateByToken
+        include Administration::Clients
         # Turn off normally auth
         skip_before_action :authenticate_user!
         # Turn off browser auth

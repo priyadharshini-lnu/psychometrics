@@ -17,7 +17,7 @@ module Administration
       @_client ||= if params[:client_id]
         policy_scope(Client).find(params[:client_id])
       else
-        @resource.client
+        resource.client
       end
     end
 

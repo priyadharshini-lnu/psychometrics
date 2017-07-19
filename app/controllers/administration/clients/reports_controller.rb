@@ -2,6 +2,7 @@ module Administration
   module Clients
     class ReportsController < Administration::ReportsController
       include Administration::Clients
+      before_action :ensure_not_root
       append_before_action :init_breadcrumbs
 
       def index
@@ -41,8 +42,7 @@ module Administration
       end
 
       def init_breadcrumbs
-        add_breadcrumb t('administration.breadcrumbs.home'), [:administration, :root]
-        add_breadcrumb t('administration.breadcrumbs.clients'), [:administration, :clients]
+        client_root_breadcrumb
         add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
         add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) if client.subtenancy?
         add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent) if client.sub_campaign?

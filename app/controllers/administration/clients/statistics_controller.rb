@@ -2,6 +2,7 @@ module Administration
   module Clients
     class StatisticsController < Administration::BaseController
       include Administration::Clients
+      before_action :ensure_not_root
       before_action :set_resource_class
       append_before_action :pundit_authorize, :init_breadcrumbs
 
@@ -27,8 +28,7 @@ module Administration
       private
 
       def init_breadcrumbs
-        add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-        add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
+        client_root_breadcrumb
         add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
         add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
         add_breadcrumb client.decorate.display_name, administration_client_users_path(client)

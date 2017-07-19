@@ -3,6 +3,7 @@ module Administration
     class UsersController < Administration::BaseController
       include Administration::Clients
       prepend_before_action :set_resource_class
+      before_action :ensure_not_root
       before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof, :reset_password]
       before_action :skip_authorization, only: [:sidebar]
       append_before_action :init_breadcrumbs, except: [:new, :create, :assign_multiple]
@@ -157,8 +158,7 @@ module Administration
       protected
 
       def init_breadcrumbs
-        add_breadcrumb t('administration.breadcrumbs.home'), [:administration, :root]
-        add_breadcrumb t('administration.breadcrumbs.clients'), [:administration, :clients]
+        client_root_breadcrumb
         unless client.retail?
           add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
           add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) if client.has_children? || client.subtenancy?

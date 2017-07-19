@@ -2,6 +2,7 @@ module Administration
   module Clients
     module Users
       class AssignsController < Administration::BaseController
+        include Administration::Clients
         prepend_before_action :set_resource_class
         before_action :set_membership
         before_action :set_resource, only: [:destroy, :destroy_report]
@@ -74,10 +75,10 @@ module Administration
         end
 
         def init_breadcrumbs
-          add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-          add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
+          client_root_breadcrumb
           add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-          add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) unless client.project_level?
+          add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) if client.subtenancy?
+          add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent) if client.sub_campaign?
           add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
           add_breadcrumb I18n.t('administration.clients.users.assigns.index.title', name: membership.decorate.display_name), { action: :index }
         end

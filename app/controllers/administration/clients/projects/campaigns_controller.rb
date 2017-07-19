@@ -2,6 +2,7 @@ module Administration
   module Clients
     module Projects
       class CampaignsController < Administration::Clients::CampaignsController
+        include Administration::Clients
         before_action :ensure_project
 
         def index
@@ -44,14 +45,9 @@ module Administration
         end
 
         def init_breadcrumbs
-          add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-          add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, :clients]
+          client_root_breadcrumb
           add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
           add_breadcrumb project.decorate.display_name, administration_client_project_campaigns_path(client, project)
-        end
-
-        def ensure_project
-          project || raise(Pundit::NotAuthorizedError)
         end
       end
     end

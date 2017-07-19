@@ -5,10 +5,7 @@ class Administration::BaseController < ActionController::Base
   include Administration::Policies
   include Administration::Helpers
 
-  # Authentication admin
   prepend_before_action :authenticate_user!
-
-  # Ensuring policies and scopes are used
   append_after_action :verify_authorized, except: :index
   append_after_action :verify_policy_scoped, only: :index
 
