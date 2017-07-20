@@ -3,7 +3,7 @@
     = f.error_notification
     br
     .form-inputs.clearfix
-      = f.input :email
+      = f.input :email, label: t('.username'), disabled: true
       = f.input :password
       = f.input :first_name
       = f.input :last_name

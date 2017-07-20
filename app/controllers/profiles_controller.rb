@@ -20,6 +20,6 @@ class ProfilesController < ApplicationController
   end
 
   def profile_params
-    params.require(:resource).permit(:first_name, :last_name, :email, :password)
+    params.require(:resource).permit(:first_name, :last_name, :password)
   end
 end

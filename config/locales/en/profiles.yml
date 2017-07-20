@@ -1,5 +1,7 @@
 en:
   profiles:
+    form:
+      username: 'Username'
     edit:
       header: 'Profile Settings'
     update:
