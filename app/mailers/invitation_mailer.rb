@@ -1,7 +1,7 @@
 class InvitationMailer < ApplicationMailer
   def invite(user_id, invited_to_id, token)
     @resource = User.find(user_id)
-    @client = Client.find_by_id(invited_to_id).project
+    @project = Client.find_by_id(invited_to_id)&.project
     @token = token
     mail(
       from: "#{t('devise.mailer.invitation_instructions.from')} <no-reply@#{Settings.domain}>",
