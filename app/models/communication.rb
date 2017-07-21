@@ -87,7 +87,6 @@ class Communication < ApplicationRecord
 
   # Copy Communication
   def clone
-    @cloned_item = deep_clone include: [:memberships, :copy_memberships]
-    @cloned_item
+    deep_clone include: [:memberships, :copy_memberships]
   end
 end
