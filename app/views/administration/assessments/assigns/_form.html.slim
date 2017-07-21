@@ -26,6 +26,8 @@
             input_html: {  class: 'multiselect-two-sides-searchabel', multiple: true }
 #users.mtl
   = render partial: 'users'
+.clearfix
+  #assign_submit.btn.btn-primary.pull-right.mrh onclick="document.forms['new_assign'].submit();" = t('.next')
 javascript:
   $(function () {
     $('input[name="assign[access_reports]"]').change(function (e){

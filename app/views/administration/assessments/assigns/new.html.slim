@@ -24,7 +24,6 @@
             = render partial: 'form'        
       .panel-footer
         = link_to t('administration.back'), administration_assessments_path, class: 'btn btn-default mrh'
-        #assign_submit.btn.btn-primary.pull-right.mrh onclick="document.forms['new_assign'].submit();" = t('.next')                               
 javascript:
   $(function () {
     var load_form_url = '#{url_for({ action: :form })}';
