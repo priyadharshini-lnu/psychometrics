@@ -81,6 +81,14 @@ module Features
         find('#resource_user_attributes_grants_dimensions_view', visible: false).trigger('click')
         click_on t('administration.update')
       end
+
+      def follow_superadmin_invitation
+        email = Capybara::Node::Simple.new(ActionMailer::Base.deliveries.last.body.to_s)
+        accept_link = email.find("a", text: t("devise.mailer.invitation_instructions.accept"))
+        page.driver.browser.clear_cookies
+        visit accept_link[:href]
+        expect(page).to have_css(:h1, text: t('administration.administrator.invitations.edit.title'))
+      end
     end
   end
 end

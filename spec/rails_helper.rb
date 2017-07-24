@@ -40,8 +40,8 @@ Capybara::Screenshot.register_driver(:chrome) do |driver, path|
 end
 
 Capybara.configure do |c|
-  c.app_host = 'http://lvh.me:31338'
-  c.server_port = 31_338
+  c.app_host = "http://lvh.me:#{Settings.port}"
+  c.server_port = Settings.port
 end
 
 Capybara.default_driver = :poltergeist

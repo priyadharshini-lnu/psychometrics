@@ -12,6 +12,8 @@ Rails.application.configure do
   # preloads Rails for running tests, you may have to set it to true.
   config.eager_load = false
 
+  config.active_job.queue_adapter = :async
+
   # Configure public file server for tests with Cache-Control for performance.
   config.public_file_server.enabled = true
   config.public_file_server.headers = {
@@ -33,6 +35,7 @@ Rails.application.configure do
   # The :test delivery method accumulates sent emails in the
   # ActionMailer::Base.deliveries array.
   config.action_mailer.delivery_method = :test
+  config.action_mailer.default_url_options = { host: Settings.domain, port: Settings.port }
 
   # Print deprecation notices to the stderr.
   config.active_support.deprecation = :stderr
