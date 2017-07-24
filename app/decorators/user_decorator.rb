@@ -47,8 +47,16 @@ class UserDecorator < BaseDecorator
   end
 
   def clients_hierarchy
-    # todo refactor
-    object.clients.map do |client|
+    admin_levels = object.admin_clients.map do |client|
+      if client.subtenancy?
+        path = h.administration_client_project_campaigns_path(client.parent_id, client)
+      end
+      path ||= h.administration_client_users_path(client)
+      h.link_to client.decorate.display_name, path
+    end.join('<br/>')
+
+    # TODO: refactor
+    end_levels = object.clients.end_level.map do |client|
       clients_array = client.path.order(:id)
       clients_array.map do |c|
         next if c.tenancy?
@@ -60,7 +68,9 @@ class UserDecorator < BaseDecorator
         path ||= h.administration_client_users_path(c)
         h.link_to c.decorate.display_name, path
       end.compact.join(' > ')
-    end.join('<br/>').html_safe
+    end.join('<br/>')
+
+    [admin_levels, end_levels].reject(&:empty?).join('<br/>').html_safe
   end
 
   def delete_confirmation
