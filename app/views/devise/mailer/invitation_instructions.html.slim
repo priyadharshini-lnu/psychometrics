@@ -1,21 +1,5 @@
-p Dear Participant,
-p Greetings for the day!
-p The Talent Enterprise would like you to complete this psychometric assessment. Here is your personalised link to our Thriving Index questionnaire.
-p
-  | Request you to use the link below to open & complete the assessment as soon as possible, it shouldn't take more than 20 mins of your time.
-  br
-  ' URL :
-  - options = {id: @resource, invitation_token: @token, domain: Settings.domain,}
-  - options[:subdomain] = @project.subdomain if @project
-  = link_to 'LOGIN DETAILS',
-          url_for([:accept, @resource.role_scope, :invitation, options]),
-          target: :blank
-  br
-  | Please do not pass or forward this link to anyone else. 
-p We look forward to your response!
-p
-  | Best Regards,
-  br
-  | The Talent Enterprise
-  br
-  | (for any questions or clarifications write to us at :surveys@thetalententerprise.com)
+- options = {id: @resource, invitation_token: @token, domain: Settings.domain, subdomain: @project.subdomain}
+
+p = t("devise.mailer.invitation_instructions.hello", email: @resource.email)
+p = t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url)
+p = link_to t("devise.mailer.invitation_instructions.accept"), url_for([:accept, @resource.role_scope, :invitation, options]), target: :blank
