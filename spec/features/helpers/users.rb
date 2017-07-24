@@ -83,9 +83,21 @@ module Features
       end
 
       def follow_superadmin_invitation
-        email = Capybara::Node::Simple.new(ActionMailer::Base.deliveries.last.body.to_s)
-        accept_link = email.find("a", text: t("devise.mailer.invitation_instructions.accept"))
         page.driver.browser.clear_cookies
+        # the same as user invitation
+        follow_user_invitation
+      end
+
+      def follow_admin_invitation
+        page.driver.browser.clear_cookies
+        # the same as user invitation
+        follow_user_invitation
+      end
+
+      def follow_user_invitation
+        email = Capybara::Node::Simple.new(ActionMailer::Base.deliveries.last.body.to_s)
+        ActionMailer::Base.deliveries = []
+        accept_link = email.find("a", text: t('devise.mailer.invitation_instructions.accept'))
         visit accept_link[:href]
         expect(page).to have_css(:h1, text: t('administration.administrator.invitations.edit.title'))
       end

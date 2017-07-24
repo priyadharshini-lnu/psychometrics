@@ -17,9 +17,17 @@ feature 'CRUD User' do
     end
 
     context 'on Projects page' do
-      scenario 'I can create or choose admin user' do
-        admin_membership = create_admin(project, email: 'admin@example.com', first_name: 'admin', last_name: 'user')
-        choose_admin(project2, admin_membership)
+      scenario 'I can create client admin' do
+        create_admin(project, email: 'admin@example.com', first_name: 'admin', last_name: 'user')
+        follow_admin_invitation
+      end
+
+      context 'with existing client admin' do
+        given(:admin) { create(:admin_membership, client: project) }
+
+        scenario 'I can choose client admin' do
+          choose_admin(project2, admin)
+        end
       end
 
       context 'another Client Admin' do

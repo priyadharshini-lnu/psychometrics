@@ -50,7 +50,9 @@ FactoryGirl.define do
       last_name 'admin'
     end
 
-    factory :admin, traits: [:with_membership_admin]
+    factory :admin, traits: [:with_membership_admin] do
+      grants User::DEFAULT_ADMIN_GRANTS
+    end
     factory :manager, traits: [:with_membership_manager]
 
     trait :with_membership_admin do
