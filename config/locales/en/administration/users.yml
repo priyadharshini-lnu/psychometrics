@@ -23,6 +23,7 @@ en:
         import_hris: HRIS Data
         export: Export
         title: Users
+        breadcrumb: Users
         filterrific:
           with_role:
             all: All
@@ -90,9 +91,6 @@ en:
     clients:
       users:
         <<: *USERS
-        index:
-          breadcrumb: Users
-          title: Users
         admins:
           breadcrumb: Admin Users
           title: Admins

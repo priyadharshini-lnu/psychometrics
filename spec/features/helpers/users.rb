@@ -82,6 +82,43 @@ module Features
         click_on t('administration.update')
       end
 
+      def create_user(client, opts = {})
+        visit administration_client_users_path(client)
+        click_link(t('administration.clients.users.index.new'), href: "/administration/clients/#{client.id}/users/new")
+        find('.modal-header').click
+        within '#new_resource' do
+          fill_in 'resource_user_attributes_email', with: opts[:email]
+          fill_in 'resource_user_attributes_first_name', with: opts[:first_name]
+          fill_in 'resource_user_attributes_last_name', with: opts[:last_name]
+          click_on t('administration.create')
+        end
+        wait_for_ajax
+        if block_given?
+          yield
+        else
+          user_membership = Membership.last
+          expect(page).to have_content t('administration.memberships.create.successfully', name: user_membership.decorate.display_name)
+          expect(page).to have_css("#membership_#{user_membership.id} td", text: user_membership.user.email)
+          expect(user_membership.role).to eq Membership::MEMBER_ROLE
+
+          if client.subtenancy?
+            project_membership = user_membership.project_membership
+            expect(project_membership.project?).to be true
+            expect(project_membership.client_id).to eql client.project.id
+            expect(project_membership.clients_memberships.size).to eql 1
+            expect(project_membership.clients_memberships.take).to eq user_membership
+
+            expect(user_membership.project?).to be false
+            expect(user_membership.client.subtenancy?).to be true
+          else
+            expect(user_membership.project?).to be true
+            expect(user_membership.client.project?).to be true
+            expect(user_membership.clients_memberships.any?).to be false
+          end
+          user_membership
+        end
+      end
+
       def follow_superadmin_invitation
         page.driver.browser.clear_cookies
         # the same as user invitation

@@ -23,10 +23,10 @@ feature 'CRUD User' do
       end
 
       context 'with existing client admin' do
-        given(:admin) { create(:admin_membership, client: project) }
+        given(:admin_membership) { create(:admin_membership, client: project) }
 
         scenario 'I can choose client admin' do
-          choose_admin(project2, admin)
+          choose_admin(project2, admin_membership)
         end
       end
 
@@ -41,16 +41,35 @@ feature 'CRUD User' do
         end
       end
     end
+
+    context 'on Project Users page' do
+      given(:sub_campaign) { create(:sub_campaign) }
+
+      scenario 'I can create user' do
+        create_user(sub_campaign, email: 'user@example.com', first_name: 'Bob', last_name: 'Duke')
+        follow_user_invitation
+      end
+    end
   end
 
   context 'As Client Admin' do
-    given(:admin) { create(:admin, memberships_options: [{ client: project }, { client: project2 }]) }
     before { login_as admin }
 
     context 'on Projects page' do
+      given(:admin) { create(:admin, memberships_options: [{ client: project }, { client: project2 }]) }
+
       scenario 'I can create or choose admin user' do
         admin_membership = create_admin(project, email: 'admin@example.com', first_name: 'admin', last_name: 'user')
         choose_admin(project2, admin_membership)
+      end
+    end
+
+    context 'on Project Users page' do
+      given(:sub_campaign) { create(:sub_campaign) }
+      given(:admin) { create(:admin, memberships_options: [{ client: sub_campaign.project }]) }
+
+      scenario 'I can create user' do
+        create_user(sub_campaign, email: 'user@example.com', first_name: 'Bob', last_name: 'Duke')
       end
     end
   end
