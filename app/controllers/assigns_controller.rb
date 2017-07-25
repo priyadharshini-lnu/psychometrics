@@ -28,16 +28,15 @@ class AssignsController < ApplicationController
   # Skip CSRF
   skip_before_action :verify_authenticity_token, only: %i(update)
 
-  def pass
-    @assign.in_progress!
-
-    @translations = ::Translation.to_hash_for_assessment(@assign.assessment_id, user_locale)
-    @available_translations = ::Translation.available_translation_for_assessment(@assign.assessment_id)
-  end
-
   def index
     @reports = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.group_by(&:assessment_id)
     @assigns = policy_scope(Assign).preload(:assessment).order(:id)
+  end
+
+  def pass
+    @assign.in_progress!
+    @translations = ::Translation.to_hash_for_assessment(@assign.assessment_id, user_locale)
+    @available_translations = ::Translation.available_translation_for_assessment(@assign.assessment_id)
   end
 
   def update
