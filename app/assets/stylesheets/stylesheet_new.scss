@@ -3,7 +3,7 @@
 .mainContent .panel-heading .title { margin: 5px 0 0 0; float: left; }
 .mainContent .panel-heading .title i { font-size: 20px; margin-right: 10px; }
 /**/
-.report-holder { margin: 40px 0 0 0; }
+.report-holder { margin: 40px auto 0; padding: 0; }
 .assessment-holder { margin: 40px auto 0; padding: 0; max-width: 1170px;}
 .assessment-holder .progress-bar { background-color: #64984b; }
 .assessment-holder .assessment-box { padding: 25px 0; }
@@ -15,6 +15,7 @@
   .fe-module-frame-container:hover { border: 1px solid transparent !important; }
 }
 //
+.mobile-device .report-holder .panel-body { display: none; }
 
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,600');
 
