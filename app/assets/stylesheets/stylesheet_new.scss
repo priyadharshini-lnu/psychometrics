@@ -4,9 +4,9 @@
 .mainContent .panel-heading .title i { font-size: 20px; margin-right: 10px; }
 /**/
 .report-holder { margin: 40px 0 0 0; }
-.assessment-holder { margin: 40px 0 0 0; }
-.assessment-holder .progress-bar {  background-color: #64984b;}
-.assessment-holder .assessment-box {  padding: 25px 75px;}
+.assessment-holder { margin: 40px auto 0; padding: 0; max-width: 1170px;}
+.assessment-holder .progress-bar { background-color: #64984b; }
+.assessment-holder .assessment-box { padding: 25px 0; }
 .html_preview {
   .fe-page-container { margin: 25px auto; border: 1px solid #CCC; background-color: #fff; }
   .fe-module-container { border: none; }

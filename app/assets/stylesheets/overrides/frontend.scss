@@ -1,17 +1,5 @@
-.fe-page-container {
-  margin: auto;
-}
-.fe-module-container {
-  border: none;
-}
-.fe-module-frame-container {
-  border: none;
-}
-.fe-ass-page-container-pass_assessment {
-  border: none !important;
-  border-radius: 0 !important;
-  box-shadow: none !important;
-  background: none !important;
-  padding: 0 !important;
-  width: 81% !important;
-}
+.fe-page-container {  margin: auto; padding: 0;}
+.fe-module-container {  border: none;}
+.fe-module-frame-container {  border: none;}
+.fe-ass-page-container-pass_assessment {  border: none;  border-radius: 0;  box-shadow: none;  background: none;  padding: 0;  max-width: 800px;  width: auto;}
+.fe-ass-page-container-pass_assessment > .progress { margin: 0 20px;}

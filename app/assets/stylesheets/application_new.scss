@@ -6,7 +6,6 @@
 @import 'common/fonts';
 @import 'stylesheet_new';
 @import 'bootstrap-slider';
-@import 'overrides/*';
 @import 'common/helper';
 @import 'common/rtl';
 
@@ -15,3 +14,5 @@
 
 @import 'psychometrics_reports_vendor';
 @import 'psychometrics_reports_preview';
+
+@import 'overrides/*';
