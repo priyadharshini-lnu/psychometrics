@@ -1,31 +1,36 @@
-class Administration::ProfilesController < Administration::BaseController
-  before_action :set_profile, only: [:edit, :update]
-  add_breadcrumb I18n.t('administration.breadcrumbs.home'), :administration_root_path
-  before_action :skip_policy_scope
+module Administration
+  class ProfilesController < Administration::BaseController
+    before_action :set_profile, only: [:edit, :update]
+    add_breadcrumb I18n.t('administration.breadcrumbs.home'), :administration_root_path
 
-  def edit
-    authorize user
-  end
+    def edit
+      authorize user
+    end
 
-  def update
-    authorize user
-    respond_to do |format|
-      if user.update(profile_params)
-        sign_in :administrator, user, bypass: true
-        format.html { redirect_to edit_administration_profiles_path, notice: t('.edit.success') }
-      else
-        format.html { render :edit }
+    def update
+      authorize user
+      respond_to do |format|
+        if user.update(profile_params)
+          bypass_sign_in(user)
+          format.html { redirect_to edit_administration_profiles_path, notice: t('.edit.success') }
+        else
+          format.html { render :edit }
+        end
       end
     end
-  end
 
-  private
+    private
 
-  def set_profile
-    @_user = current_user
-  end
+    def set_profile
+      @_user = current_user
+    end
 
-  def profile_params
-    params.require(:user).permit(:first_name, :last_name, :email, :password)
+    def profile_params
+      if params[:user][:password].blank?
+        params[:user].delete(:password)
+        params[:user].delete(:password_confirmation)
+      end
+      params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
+    end
   end
 end

@@ -1,6 +1,7 @@
-= simple_form_for(@user, url: administration_profiles_url) do |f|
+= simple_form_for(user, as: :user, url: administration_profiles_url) do |f|
   = f.input :email
   = f.input :password
+  = f.input :password_confirmation
   = f.input :first_name
   = f.input :last_name
   = f.button :submit, t('administration.update'), class: 'btn-info'
