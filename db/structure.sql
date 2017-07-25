@@ -248,7 +248,6 @@ CREATE TABLE clients (
     applicable_level integer DEFAULT 0,
     account_manager_id integer,
     project_manager_id integer,
-    users_count integer DEFAULT 0,
     archived boolean DEFAULT false,
     tte_id integer,
     created_by_id integer,
@@ -3092,6 +3091,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170629130155'),
 ('20170704060854'),
 ('20170706095454'),
-('20170708231022');
+('20170708231022'),
+('20170725101235');
 
 

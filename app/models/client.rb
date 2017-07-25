@@ -19,7 +19,6 @@
 #  applicable_level   :integer          default("project")
 #  account_manager_id :integer
 #  project_manager_id :integer
-#  users_count        :integer          default(0)
 #  archived           :boolean          default(FALSE)
 #  tte_id             :integer
 #  created_by_id      :integer
@@ -59,6 +58,7 @@ class Client < ApplicationRecord
   has_many :admin_memberships, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
   has_many :assigned_memberships, -> { assigned.distinct }, source: :membership, class_name: 'Membership'
   has_many :completed_memberships, -> { completed.distinct }, source: :membership, class_name: 'Membership'
+  has_many :end_memberships, -> { where.not(memberships: { role: Membership::ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
   has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) }, through: :memberships, source: :user
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
   # TODO use admins instead of projects_admins
@@ -179,7 +179,6 @@ class Client < ApplicationRecord
     deep_clone include: [:reports] do |original, copy|
       copy.name += ' (copy)'
       copy.subdomain = original.subdomain + "_#{SecureRandom.random_number(Time.now.to_i)}"
-      copy.users_count = 0
     end
   end
 

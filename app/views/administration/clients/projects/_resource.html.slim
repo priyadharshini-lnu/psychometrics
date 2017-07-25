@@ -18,7 +18,7 @@
     td = resource.completed_memberships.size
     td
       - if resource.project_level?
-        = link_to resource.users_count, administration_client_users_path(resource)
+        = link_to resource.end_memberships.size, administration_client_users_path(resource)
         - if policy(Membership).create?
           .add-icon-box
             = link_to new_administration_client_user_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }

@@ -25,7 +25,7 @@ resources.each do |resource|
     row = [
             resource.name,
             resource.decorate.array_reports.join(', '),
-            resource.users_count
+            resource.end_memberships.size
           ]
   end
   if resource.project.sub_campaign_level?
@@ -33,7 +33,7 @@ resources.each do |resource|
         row_with_sub_campaign = row + [
                 sub_campaign.name,
                 sub_campaign.decorate.array_reports.join(', '),
-                sub_campaign.users_count
+                sub_campaign.end_memberships.size
               ]
         csv << row_with_sub_campaign
     end

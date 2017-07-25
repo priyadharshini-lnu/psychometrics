@@ -18,6 +18,7 @@ en:
           assigned_user: Assigned Users
           completed_user: Completed users
           applicable_level: Applicable Level
+          users_count: Users Count
           url: URL
           actual_usage: Actual Usage
           updated_at: Modified Date

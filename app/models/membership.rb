@@ -34,7 +34,7 @@ class Membership < ApplicationRecord
   enum role: MEMBERSHIP_ROLES
   delegate :is_anonym?, to: :user
 
-  belongs_to :client, counter_cache: :users_count
+  belongs_to :client
   belongs_to :user, inverse_of: :memberships, touch: true
   belongs_to :project_membership, foreign_key: :project_membership_id, class_name: 'Membership'
   accepts_nested_attributes_for :user

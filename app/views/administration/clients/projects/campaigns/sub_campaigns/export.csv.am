@@ -10,7 +10,7 @@ resources.each do |resource|
   row = [
           resource.decorate.display_name,
           resource.decorate.array_reports.join(', '),
-          resource.users_count,
+          resource.end_memberships.size,
           nil,
           resource.decorate.status
          ]

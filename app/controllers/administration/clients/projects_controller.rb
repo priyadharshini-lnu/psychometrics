@@ -7,7 +7,7 @@ module Administration
       def index
         @_filter_form = policy_scope(resource_class)
             .projects_of(client.id)
-            .includes(:admins, :assigned_memberships, :license_usages, :completed_memberships)
+            .includes(:admins, :assigned_memberships, :completed_memberships, :end_memberships, :license_usages)
             .order('name asc')
             .search(params[:q])
         filter_form.disabled_true ||= false
