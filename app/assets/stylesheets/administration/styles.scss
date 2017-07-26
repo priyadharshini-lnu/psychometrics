@@ -27,3 +27,7 @@
 .radio-tabs .modal-body { padding-top: 0; }
 .radio-tabs .tab { display: none; }
 .radio-tabs .tab.active { display: block; }
+
+/* icons */
+.btn .fa,
+.btn .glyphicon { vertical-align: inherit; }
