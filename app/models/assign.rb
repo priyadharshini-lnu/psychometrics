@@ -28,6 +28,7 @@ class Assign < ApplicationRecord
 
   has_many :assigns_reports # on delete cascade
   has_many :reports, through: :assigns_reports
+  has_many :clients, through: :membership
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
   validates :membership, :assessment, presence: true

@@ -35,8 +35,12 @@ module Administration
     class Scope < Administration::BasePolicy::Scope
       def resolve
         return scope if @user.is?(:superadmin)
-        assessment_ids = Assign.joining { membership }.where.has { |ass| ass.membership.user_id.eq(@user.id) }.pluck(:assessment_id)
-        scope.where(assessment_id: assessment_ids)
+        if @user.has_grant?(:assigns, :view)
+          admin_client_ids = @user.admin_client_ids
+          client_end_levels = Client.end_level.where('id in (?) or ancestry ~ ?', admin_client_ids, "/(#{admin_client_ids.join('|')})(/|$)")
+          return scope.joins(:clients).where(clients: { id: client_end_levels.ids })
+        end
+        scope.none
       end
     end
   end
