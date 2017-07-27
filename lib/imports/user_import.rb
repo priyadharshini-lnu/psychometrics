@@ -68,8 +68,7 @@ module Imports
 
       rows.map do |row|
         attributes = HEADER_IMPORT_KEYS.inject({}) { |h, k| h.merge(k => row[header.index(HEADER_IMPORT_DATA[k])]) }
-        report_ids = attributes.delete(:report_ids).split(',').map(&:to_i)
-        report_ids = client.report_ids & report_ids
+        report_ids = attributes.delete(:report_ids)
 
         memberships_attributes = {
           role: USER_ROLES_MAPS[attributes.delete(:role)],
@@ -87,10 +86,13 @@ module Imports
         membership = user.memberships.find_or_initialize_by(client_id: client.id)
         membership.assign_attributes(memberships_attributes)
 
-        reports_hash = Report.where(id: report_ids).includes(:assessment).group_by(&:assessment_id)
-        reports_hash.each do |assessment_id, report_arr|
-          assign = membership.assigns.find_or_initialize_by(assessment_id: assessment_id)
-          assign.report_ids = report_arr.map(&:id)
+        if report_ids
+          report_ids = client.report_ids & report_ids.split(',').map(&:to_i)
+          reports_hash = Report.where(id: report_ids).includes(:assessment).group_by(&:assessment_id)
+          reports_hash.each do |assessment_id, report_arr|
+            assign = membership.assigns.find_or_initialize_by(assessment_id: assessment_id)
+            assign.report_ids = report_arr.map(&:id)
+          end
         end
         membership
       end

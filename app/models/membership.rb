@@ -51,7 +51,7 @@ class Membership < ApplicationRecord
   validates :client, :user, presence: true
   validates :client_id, uniqueness: { scope: [:user_id, :role] }
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
-  validate :relevant_role
+  validate :relevant_role, if: 'client.present?'
   validate :client_admin_scope, if: 'admin?'
 
   before_save :set_project_membership, if: 'client.end_level?'

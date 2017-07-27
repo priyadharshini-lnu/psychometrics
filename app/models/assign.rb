@@ -30,7 +30,7 @@ class Assign < ApplicationRecord
   has_many :reports, through: :assigns_reports
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
-  validates :membership_id, :assessment_id, presence: true
+  validates :membership, :assessment, presence: true
 
   # TODO: extract validations to ActiveModel Form Objects
   validate :relevant_membership
