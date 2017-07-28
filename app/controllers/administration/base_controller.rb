@@ -1,20 +1,13 @@
 module Administration
-  class BaseController < ActionController::Base
-    include Pundit
-    include Authenticate
-    include SetLocale
+  class BaseController < ::BaseController
     include Administration::Policies
     include Administration::Helpers
+    layout 'administration'
 
-    prepend_before_action :authenticate_user!
     append_after_action :verify_authorized, except: :index
     append_after_action :verify_policy_scoped, only: :index
 
     rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
-    protect_from_forgery with: :exception
-    add_flash_types :notice, :error, :success
-
-    layout 'administration'
 
     private
 

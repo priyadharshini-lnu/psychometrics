@@ -9,7 +9,7 @@ html
     = jquery_include_tag :google
     = stylesheet_link_tag 'application_new', media: 'all'
     = javascript_include_tag 'application_new'
-  body#user data-locale="#{user_locale}"
+  body#user data-locale="#{user_locale}" class=('mobile-device' if browser.device.mobile?)
     #modal-container
     header.solid
       .container-fluid

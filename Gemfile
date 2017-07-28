@@ -110,6 +110,7 @@ gem 'mini_magick', '~> 4.5.1'
 gem 'carrierwave-aws', '~>1.0.1'
 
 gem 'ancestry'
+gem 'browser'
 
 gem 'mustache', '~> 1.0.3'
 gem 'sidekiq', '~> 4.2.4'

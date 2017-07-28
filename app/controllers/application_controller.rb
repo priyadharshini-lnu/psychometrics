@@ -1,16 +1,7 @@
-class ApplicationController < ActionController::Base
-  # Authorisation flow
-  #
-  include Pundit
-  include Authenticate
-  include SetLocale
-
+class ApplicationController < ::BaseController
   layout :layout_by_resource
-  protect_from_forgery with: :exception
-  add_flash_types :notice, :error, :success
 
   # Authentication user/manager
-  prepend_before_action :authenticate_user!
   before_action :set_client_by_subdomain
   append_before_action :set_membership, if: :user_signed_in?
 
