@@ -1,8 +1,17 @@
 $(function () {
-  var $modalBox = $('#modal-container').find('.modal');
+  var $modalBox = $('#modal-container').find('.modal'),
+      $flashMessages = $('#flash-messages');
   $modalBox.modal('hide');
   $modalBox.on('hidden.bs.modal', function () {
     $('#filter').trigger('reloadList');
+
+    <% if client.license_msg.any? %>
+      $flashMessages.html('');
+    <% end %>
+
+    <% client.license_msg.each do |k, v| %>
+      $flashMessages.append("<%= j alert_panel(v, :warning) %>");
+    <% end %>
 
     noty({
       text: '<%= t(".successfully") %>',

@@ -30,6 +30,7 @@
 
 class Client < ApplicationRecord
   include Copyable
+  attr_writer :license_msg
 
   HIERARCHY_LEVEL = {
       project: 1,
@@ -117,6 +118,10 @@ class Client < ApplicationRecord
   scope :campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign]) }
   scope :descendants_of_arr, -> (client_ids) { where('clients.ancestry ~ ?', "/(#{client_ids.join('|')})(/|$)") }
+
+  def license_msg
+    @license_msg ||= {}
+  end
 
   def self.options_for_select
     all.map { |client| [client.decorate.display_name, client.id] }

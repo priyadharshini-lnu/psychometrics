@@ -60,8 +60,7 @@ module Administration
         end
 
         def reports
-          form = client.reports.search(params[:q])
-          @_resources = form.result.distinct
+          @_resources = client.reports.where(assessment_id: params[:assessment_id]).distinct
 
           respond_to do |format|
             format.json

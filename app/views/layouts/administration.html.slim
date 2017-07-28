@@ -16,7 +16,7 @@ html
         = render partial: 'top_sidebar'
         .page-content-wrap
           .row
-            .col-md-12
+            #flash-messages.col-md-12
               = flash_messages
           = yield
     /! START PRELOADS

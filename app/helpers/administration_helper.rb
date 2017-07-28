@@ -4,15 +4,17 @@ module AdministrationHelper
     flash_types = { 'success' => 'success', 'error' => 'danger', 'notice' => 'info' }
     flash.delete('timedout')
     flash.each do |key, value|
-      class_flash = flash_types[key] ? "alert-#{flash_types[key]}" : 'alert-danger'
-      out << "<div class=\"alert #{class_flash} alert-dismissible fade in\" role=\"alert\">"
-      out << '<button type="button" class="close" data-dismiss="alert" aria-label="Close">
-        <span aria-hidden="true">×</span>
-        </button>'
-      out << h(value.to_s)
-      out << '</div>'
+      class_flash = flash_types[key] || 'danger'
+      concat alert_panel(value, class_flash)
     end
     out.join('').html_safe
+  end
+
+  def alert_panel(message, type = 'warning')
+    content_tag :div, class: "alert alert-#{type} alert-dismissible", role: 'alert' do
+      concat content_tag(:button, content_tag(:span, '&times;'.html_safe), class: 'close', data: { dismiss: 'alert' })
+      concat h(message)
+    end
   end
 
   #

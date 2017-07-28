@@ -10,6 +10,11 @@ en:
         overuse_number: Over Use Allowance
         used_number: Used License Number
         unlimited: Unlimited
+  activerecord:
+    errors:
+      models:
+        license:
+          overuse: License %{name} ssis overused
   simple_form:
     placeholders:
       license:

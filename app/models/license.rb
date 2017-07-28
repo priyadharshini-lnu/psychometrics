@@ -30,8 +30,14 @@ class License < ApplicationRecord
     where(report_family_id: report_family_id)
   }
 
+  scope :available, -> { where('end_date >= :date and start_date <= :date and number + overuse_number > used_number', date: Date.today) }
+
   def used_overuse_number
     number >= used_number ? 0 : used_number - number
+  end
+
+  def in_overuse?
+    used_overuse_number > 0
   end
 
   def enough_licenses?
