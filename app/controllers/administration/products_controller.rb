@@ -1,5 +1,5 @@
 module Administration
-  class ProductsController < BaseController
+  class ProductsController < Administration::BaseController
     prepend_before_action :set_resource_class
     before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy]
     before_action :skip_authorization, only: [:sidebar]

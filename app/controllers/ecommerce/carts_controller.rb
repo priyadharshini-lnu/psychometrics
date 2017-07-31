@@ -8,7 +8,7 @@ module Ecommerce
     end
 
     def update
-      params[:cart].each do |product_id, cart_item|
+      params[:cart]&.each do |product_id, cart_item|
         @cart.update(product_id, cart_item['quantity'].to_i)
       end
 

@@ -44,7 +44,7 @@ module Ecommerce
           # Invites specified users to assessment
           purchase.invites.each { |invite| invite_user(invite.email, report&.assessment) }
         end
-        @current_membership.client.increment!(:licenses, purchase.quantity)
+        @current_membership.client&.increment!(:licenses, purchase.quantity)
         @order.completed!
       end
     end
