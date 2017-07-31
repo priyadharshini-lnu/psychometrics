@@ -68,8 +68,6 @@ RSpec.configure do |config|
   end
 
   config.around(:each) do |example|
-    DownloadHelpers.clear_downloads
-
     if self.class.metadata[:clean] == false
       example.run
     else
