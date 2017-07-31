@@ -3,10 +3,8 @@
 /p = t("devise.mailer.invitation_instructions.hello", email: @resource.email)
 /p = t("devise.mailer.invitation_instructions.someone_invited_you", url: root_url)
 
-p
-  = "Dear #{@resource.decorate.display_name}, "
-  br
-  | Greetings for the day!
+p= "Dear #{@resource.decorate.display_name}, "
+p Greetings for the day!
 p The Talent Enterprise would like you to complete this psychometric assessment. Here is your personalised link to our Thriving Index and Mindmill questionnaire.
 p Request you to use the link below to open & complete the assessment as soon as possible, it shouldn't take more than 30 mins of your time. You can accept it through the link below.
 p
