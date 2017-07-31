@@ -30,7 +30,7 @@ module Administration
                 assigns_report.save
               rescue Errors::LicenseError => e
                 @assign_form.errors.add(:base, e.message) unless @assign_form.errors[:base].index(e.message)
-                (report_errors[report.id] ||= []) << membership.id
+                (report_errors[report.id] ||= []) << membership.decorate.display_name
               end
             end
             raise ActiveRecord::Rollback if assign.assigns_reports.empty?
