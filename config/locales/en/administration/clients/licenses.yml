@@ -27,7 +27,5 @@ en:
         mailer:
           license_expire:
             subject: License expired
-          license_final_expire:
-            subject: License final expired
           license_overuse:
             subject: License overuse
