@@ -1,1 +1,4 @@
-class ::Errors::ImportError < StandardError; end
+module Errors
+  class ImportError < StandardError
+  end
+end

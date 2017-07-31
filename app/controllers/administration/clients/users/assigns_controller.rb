@@ -36,8 +36,8 @@ module Administration
             else
               resource.update(report_ids: resource_params[:report_ids])
             end
-          rescue ActiveRecord::RecordInvalid
-            resource.errors.add(:base, :has_no_enough_licenses) if resource.errors[:base].empty?
+          rescue Errors::LicenseError => e
+            resource.errors.add(:base, e.message) if resource.errors[:base].empty?
           end
           render :new if resource.errors.any?
         end

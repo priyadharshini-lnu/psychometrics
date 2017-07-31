@@ -21,7 +21,6 @@ en:
           admin: Client Admin
     errors:
       messages:
-        has_no_enough_licenses: Client has no enough licenses
         admin_for_another_tte: User already admin in another tte
   simple_form:
     placeholders:

@@ -14,25 +14,31 @@ module Administration
       def create
         init_assign_form
         @reports = policy_scope(Report).for_clients(@clients.map(&:id)).where(id: @assign_form.report_ids).distinct
+        report_errors = {}
 
         # Update or Create assigns
         policy_scope(Membership).where(id: @assign_form.membership_ids).find_each do |membership|
           assign = membership.assigns.find_or_initialize_by(assessment_id: @assessment.id)
           assign.role = :member
           assign.role = :manager if @assign_form.manager_ids.include?(membership.id.to_s)
-          @reports.each do |report|
-            assigns_report = assign.assigns_reports.find_or_initialize_by(report_id: report.id)
-            assigns_report.access_reports_at = @assign_form.access_reports_at
-          end
-          next if assign.save
-
-          assign.errors.details.values.flatten.each do |message|
-            @assign_form.errors.add(:base, message[:error])
+          ActiveRecord::Base.transaction do
+            assign.save if assign.new_record?
+            @reports.each do |report|
+              assigns_report = AssignsReport.find_or_initialize_by(assign_id: assign.id, report_id: report.id)
+              assigns_report.access_reports_at = @assign_form.access_reports_at
+              begin
+                assigns_report.save
+              rescue Errors::LicenseError => e
+                @assign_form.errors.add(:base, e.message) unless @assign_form.errors[:base].index(e.message)
+                (report_errors[report.id] ||= []) << membership.id
+              end
+            end
+            raise ActiveRecord::Rollback if assign.assigns_reports.empty?
           end
         end
 
         if @assign_form.errors.any?
-          render :new
+          render :new, locals: { report_errors: report_errors }
         else
           redirect_to(administration_assessments_path, success: t('.successfully', name: @assessment.decorate.display_name))
         end

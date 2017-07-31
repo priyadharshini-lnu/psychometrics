@@ -13,11 +13,7 @@ module Licenses
       license = client.licenses.available.with_report_family(report.report_family_ids).take
 
       # Add error to Assign if tenancy has no enough licenses
-      unless license&.enough_licenses?
-        assign = licenseable.assign
-        assign.errors.add(:base, :has_no_enough_licenses) if assign.errors.empty?
-        raise ActiveRecord::RecordInvalid
-      end
+      raise Errors::LicenseError.new(client, report) unless license&.enough_licenses?
 
       return unless membership.excess_yti_eti?(report)
 

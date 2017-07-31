@@ -4,7 +4,8 @@
       .panel-heading
         h3.panel-title = t('.title', name: @assessment.decorate.display_name)
       .panel-body
-        = render_error_notification(@assign_form)      
+        = render_error_notification(@assign_form)
+        = render 'report_errors', report_errors: local_assigns[:report_errors]
         .form-horizontal.mbm
           .form-group
             label class="col-sm-3 control-label text-right" for="client_ids"        

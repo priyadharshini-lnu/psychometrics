@@ -1,0 +1,10 @@
+- if report_errors.present?
+  .alert.alert-danger
+    strong Unassigned reports:
+    - memberships = Membership.where(id: report_errors.values.flatten).distinct
+    - Report.where(id: report_errors.keys).each do |report|
+      br
+      p
+        strong= report.decorate.display_name
+        br
+        = memberships.select { |m| report_errors[report.id].include? m.id }.map { |m| m.decorate.display_name }.join(', ')
