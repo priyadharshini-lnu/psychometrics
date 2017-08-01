@@ -38,7 +38,7 @@ module Administration
         if @user.has_grant?(:assigns, :view)
           admin_client_ids = @user.admin_client_ids
           client_end_levels = Client.end_level.where('id in (?) or ancestry ~ ?', admin_client_ids, "/(#{admin_client_ids.join('|')})(/|$)")
-          return scope.joins(:clients).where(clients: { id: client_end_levels.ids })
+          return scope.joins(:membership).where(memberships: { client_id: client_end_levels.ids })
         end
         scope.none
       end
