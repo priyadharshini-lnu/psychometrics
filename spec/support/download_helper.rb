@@ -1,6 +1,6 @@
 module DownloadHelpers
   TIMEOUT = 1
-  PATH = Rails.root.join('tmp/downloads')
+  PATH = Pathname.new('/tmp/downloads')
 
   extend self
 

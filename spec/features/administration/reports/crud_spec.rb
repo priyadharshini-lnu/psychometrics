@@ -18,6 +18,7 @@ feature 'CRUD Report' do
 
     scenario 'Edit Report' do
       find("#report_#{report.id} .edit").click
+      find('.modal-header').click
       fill_in 'resource_name', with: 'My updated report'
       click_on 'Update'
       expect(page).to have_content t('administration.reports.update.successfully', name: 'My updated report')
