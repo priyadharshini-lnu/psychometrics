@@ -16,7 +16,9 @@ module Administration
 
     # GET /administration/resources
     def index
-      @_filter_form = policy_scope(resource_class).includes(:assessment, :report_families).order(:name).search(params[:q])
+      scope = policy_scope(resource_class).includes(:assessment, :report_families).order(:name)
+      scope = scope.with_owner(current_user.admin_clients_tte_ids) if current_user.is?(:admin)
+      @_filter_form = scope.search(params[:q])
       @_resources = filter_form.result.page(params[:page])
 
       respond_to do |format|

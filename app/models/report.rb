@@ -50,6 +50,7 @@ class Report < ApplicationRecord
   end
 
   scope :enabled, -> { where.not(disabled: true) }
+  scope :with_owner, -> (owner_id) { where(owner_id: owner_id) }
   scope :with_report_families, lambda { |report_family_ids|
     report_family_ids.blank? ? none : joins(:report_families).where(report_families: { id: report_family_ids })
   }

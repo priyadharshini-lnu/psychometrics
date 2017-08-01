@@ -18,11 +18,11 @@ module Administration
 
         def preview
           @results = Assign.
-                     completed.
-                     includes(:membership, :user).
-                     where(memberships: { client_id: client.project.id }, assessment_id: resource.assessment_id).
-                     references(:membership).
-                     all
+              completed.
+              includes(:membership, :user).
+              where(memberships: { client_id: client.project.id }, assessment_id: resource.assessment_id).
+              references(:membership).
+              all
           @assign = Assign.find_by(assessment_id: resource.assessment_id, membership_id: membership.id)
           @translations = Translation.to_hash_for_report(resource.id, resource.assessment_id, user_locale)
           @available_translations = Translation.available_translation_for_report(resource.id, resource.assessment_id)
@@ -40,8 +40,7 @@ module Administration
         private
 
         def init_breadcrumbs
-          add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-          add_breadcrumb I18n.t('administration.breadcrumbs.clients'), [:administration, client, :users]
+          client_root_breadcrumb
           add_breadcrumb client.decorate.display_name, [:administration, @client, :users]
           add_breadcrumb user.decorate.display_name, '#'
           add_breadcrumb I18n.t('administration.breadcrumbs.reports'), [:administration, client, :user, :assigns, { user_id: membership.id }]
@@ -53,6 +52,11 @@ module Administration
 
         def set_resource
           @_resource = policy_scope(resource_class).includes(pages: :modules).find(params[:id])
+        end
+
+        def pundit_authorize
+          raise Pundit::NotAuthorizedError, 'Wrong Membership' unless policy(membership).overview_assigns?
+          super
         end
 
         def set_data

@@ -13,11 +13,9 @@ module Administration
     end
 
     def create?
-      super || @user.has_grant?(:reports, :manage)
-    end
-
-    def edit?
-      super || @user.has_grant?(:reports, :manage)
+      permit = @user.has_grant?(:reports, :manage)
+      permit = permit && @user.admin_clients_tte_ids.include?(record.owner_id) if record.is_a? ::Report
+      super || permit
     end
 
     # Can open Websocket Channel for build Report (Reports, Modules and etc.)
@@ -52,10 +50,13 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
         return scope.none unless @user.has_grant?(:reports, :view)
-        scope.
-            enabled.
-            available_to_view.
-            where(owner_id: @user.admin_clients.select('tte_id').distinct)
+        owner_ids = @user.admin_clients_tte_ids
+        admin_client_ids = @user.admin_client_ids
+        client_end_levels = Client.end_level.where('id in (?) or ancestry ~ ?', admin_client_ids, "/(#{admin_client_ids.join('|')})(/|$)")
+        scope
+            .enabled
+            .available_to_view
+            .joins(:clients).where('clients.id in (?) or reports.owner_id in (?)', client_end_levels.ids, owner_ids)
       end
     end
   end
