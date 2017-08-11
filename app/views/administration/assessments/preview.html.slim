@@ -1,3 +1,5 @@
-#psychometrics_preview data-data="#{params[:data]&.as_json || AssessmentSerializer.new(resource).to_json(include: '**')}"
+#psychometrics_preview[data-data="#{params[:data]&.as_json || AssessmentSerializer.new(resource).to_json(include: '**')}"
+  data-locales=@translations.to_json
+  data-lang-partial="#{escape_once (render partial: 'application/lang', locals: { locales: @available_translations })}"]
 = javascript_include_tag :psychometrics_vendor
 = javascript_include_tag :psychometrics_preview

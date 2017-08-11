@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: 1669ab13e0d34ea5e1d585969896bf2068f314df
+  revision: 5979efce0186d9dd71459c804e3ee3be87041436
   specs:
     psychometrics-survey (0.0.1)
       railties (~> 5.0.0)
@@ -329,7 +329,7 @@ GEM
     mimemagic (0.3.2)
     mini_magick (4.5.1)
     mini_portile2 (2.2.0)
-    minitest (5.10.2)
+    minitest (5.10.3)
     monetize (1.4.0)
       money (~> 6.7)
     money (6.8.0)

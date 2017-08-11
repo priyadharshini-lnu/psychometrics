@@ -8,5 +8,5 @@ html.body-full-height
     = jquery_include_tag :google
     = stylesheet_link_tag :administration
     = javascript_include_tag 'administration'
-  body data-locale="#{I18n.locale}"
+  body data-locale="#{user_locale}"
     = yield
