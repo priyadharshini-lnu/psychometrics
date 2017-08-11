@@ -42,7 +42,7 @@
               = render partial: 'reports', locals: { assign: assign }
             // Show Load Results link if it's not completed Mindmill Assessment
             - if assign.assessment.mindmill? && !assign.completed?
-              = link_to 'Load Results', results_mindmill_assign_path(assign), class: "btn btn-info #{'disabled' unless assign.in_progress?}"
+              = link_to assign.in_progress? ? 'Load Results' : 'Not Available', results_mindmill_assign_path(assign), class: "btn btn-info #{'disabled' unless assign.in_progress?}"
   .panel-collapse.collapse id=dom_id(assign)
     hr.divider
     .panel-body
