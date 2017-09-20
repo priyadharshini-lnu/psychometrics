@@ -7,7 +7,7 @@
         .pull-right
           .btn-group
             - if policy(resource).preview?
-              = link_to({ action: :preview, format: :pdf, lang: I18n.locale, export: true }, class: 'btn btn-default')
+              = link_to({ action: :preview, format: :pdf, lang: params[:lang] || I18n.locale, export: true }, class: 'btn btn-default')
                 span.fa.fa-file-pdf-o
                 = t('.export_pdf')
       .panel-body
