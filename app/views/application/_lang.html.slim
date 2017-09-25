@@ -9,11 +9,11 @@
     = active_link_to t('languages.en'), 
                      params.to_h.merge(lang: 'en'), 
                      wrap_tag: :li, 
-                     active: user_locale == 'en', 
+                     active: params[:lang] || user_locale == 'en', 
                      data: local_assigns[:with_confirm] ? { confirm: 'You will lose the results of the current step. Are you sure?' } : {}
     - (locales || []).each do |lang|
         = active_link_to t("languages.#{lang}"), 
                          params.to_h.merge(lang: lang), 
                          wrap_tag: :li, 
-                         active: user_locale == lang, 
+                         active:  params[:lang] || user_locale == lang, 
                          data: local_assigns[:with_confirm] ? { confirm: 'You will lose the results of the current step. Are you sure?' } : {}
