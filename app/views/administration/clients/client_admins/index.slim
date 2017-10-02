@@ -1,0 +1,22 @@
+.row
+  .col-md-12
+    .page-title
+      h2.mrl = client.decorate.display_name
+      = render 'administration/clients/clients_menu'
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title = t('.title')
+        = search_form_for(filter_form,
+                          url: { action: :index },
+                          html: { id: 'filter', class: 'list-filter' },
+                          builder: SimpleForm::FormBuilder) do |f|
+          = f.input :user_first_name_or_user_last_name_or_user_email_cont,
+                    label: false,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    input_html: { class: 'has_clear periodically-observed' }
+          = link_to "Clear Filter", request.path, class: "btn btn-default"
+      .panel-body
+        #filter_results
+          = render partial: 'list'

@@ -1,0 +1,11 @@
+en:
+  administration:
+    clients:
+      project_admins:
+        form:
+          choose_admin: Choose Admin
+          create_admin: Create Admin
+      client_admins:
+        form:
+          choose_admin: Choose Admin
+          create_admin: Create Admin

@@ -2,10 +2,11 @@ require 'rails_helper'
 
 feature 'User Privileges', clean: false do
   def before_context
-    @admin_membership = create(:admin_membership)
+    @project = create(:project)
+    @client = @project.root
+    @admin_membership = create(:client_admin_membership, client: @client)
     @admin_user = @admin_membership.user
-    @client = @admin_membership.client
-    @manager_membership = create(:manager_membership, client: @client)
+    @manager_membership = create(:manager_membership, client: @project)
     @norm = create(:norm, owner: @client)
   end
 
@@ -38,7 +39,7 @@ feature 'User Privileges', clean: false do
   end
 =end
 
-  context 'As Admin user' do
+  context 'As Client Admin user' do
     before(:context) { reload_context }
     before { login_as admin_user }
 

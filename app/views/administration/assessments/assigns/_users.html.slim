@@ -23,7 +23,7 @@
           .row
             .col-md-6
               = f.input :role_in,
-                        collection: Membership.roles.except(Membership::ADMIN_ROLE),
+                        collection: Membership.roles.except(Membership::PROJECT_ADMIN_ROLE, Membership::CLIENT_ADMIN_ROLE),
                         input_html: { multiple: true },
                         include_blank: 'All',
                         required: false,

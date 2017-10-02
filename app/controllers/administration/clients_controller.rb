@@ -8,7 +8,7 @@ module Administration
     append_before_action :pundit_authorize, except: [:sidebar]
 
     def index
-      @_filter_form = policy_scope(resource_class).tenancies.includes(:projects_admins).order(:name).search(params[:q])
+      @_filter_form = policy_scope(resource_class).tenancies.includes(:project_admins).order(:name).search(params[:q])
       filter_form.archived_true ||= false
       @_resources = filter_form.result.page(params[:page])
 
@@ -33,8 +33,8 @@ module Administration
       resource.operator = current_user
       respond_to do |format|
         if resource.save
-          if resource.project? && current_user.is?(:admin)
-            current_user.memberships.create!(client: resource, role: Membership::ADMIN_ROLE)
+          if resource.project? && current_user.is?(:project_admin)
+            current_user.memberships.create!(client: resource, role: Membership::PROJECT_ADMIN_ROLE)
           end
           format.js
         else
@@ -97,7 +97,7 @@ module Administration
     end
 
     def export
-      @_resources = policy_scope(resource_class).tenancies.enabled.includes(projects: :admins)
+      @_resources = policy_scope(resource_class).tenancies.enabled.includes(projects: :project_admins)
 
       respond_to do |format|
         format.csv do

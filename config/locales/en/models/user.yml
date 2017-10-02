@@ -26,6 +26,7 @@ en:
           admins:
             superadmin: Super Admin
             regular: Client Admin
+            project_admin: Project Admin
         types:
           identified: Identified Users
           anonymous: Anonymous Users

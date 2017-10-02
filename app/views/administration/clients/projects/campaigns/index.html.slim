@@ -11,11 +11,12 @@
             = link_to({ action: :export, format: :csv }, target: :_blank, class: 'btn btn-default')
               span.fa.fa-upload
               = t('.export')
-          = link_to new_administration_client_project_campaign_path(client, project),
-                  remote: true,
-                  class: 'btn btn-default'
-            span.fa.fa-plus
-            = t('.new')
+          - if(policy(resource_class).manage_campaign?)
+            = link_to new_administration_client_project_campaign_path(client, project),
+                    remote: true,
+                    class: 'btn btn-default'
+              span.fa.fa-plus
+              = t('.new')
         = search_form_for(filter_form,
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },

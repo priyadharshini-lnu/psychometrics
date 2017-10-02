@@ -12,7 +12,8 @@ en:
         export: Export
       url: Url
       list: &list
-        project_admin: Project Admin
+        admin: Client Admin
+        client_admins: Client Admins
       export:
         <<: *list
       new:
@@ -50,8 +51,6 @@ en:
         form:
           no_logo: 'No Logo yet'
           no_background: 'No Background yet'
-      list:
-        admin: Client Admin
       resource:
         tooltips:
           copy: Copy Client
@@ -59,6 +58,7 @@ en:
           delete: Delete Client
           disable: Disable Client
           enable: Enable Client
+          create_admin: Create Client Admin
         confirmations:
           disable:
             title:

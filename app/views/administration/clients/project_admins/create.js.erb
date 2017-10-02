@@ -1,0 +1,22 @@
+$(function () {
+  var $modalBox = $('#modal-container').find('.modal');
+
+  $modalBox.modal('hide');
+  $modalBox.on('hidden.bs.modal', function () {
+    $('#filter').trigger('reloadList');
+
+    // Reinit all plugins
+    $(document).trigger('initPlugins');
+
+    // Notify message
+    var message = '<%= t("administration.#{resource_class.model_name.plural}.admin_chosen.successfully") %>';
+    <% if resource.persisted? %>
+      message = '<%= t("administration.#{resource_class.model_name.plural}.create.successfully", name: resource.user.decorate.display_name) %>'
+    <% end %>
+
+    noty({
+      text: message,
+      type: 'success'
+    });
+  });
+});

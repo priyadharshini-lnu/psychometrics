@@ -13,7 +13,12 @@ tbody data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(reso
     td rowspan=rowspan = resource.year
     - (current_user.is?(:superadmin) ? 6 : 4).times do
       td.fake
-    td rowspan=rowspan = resource.decorate.projects_admins
+    td rowspan=rowspan
+      = resource.decorate.client_admins
+      - if policy(:membership).create_client_admin?
+        .add-icon-box
+          = link_to new_administration_client_client_admin_path(resource), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
+            span.fa.fa-plus
     td rowspan=rowspan = resource.account_manager&.decorate&.display_name
     td rowspan=rowspan = resource.project_manager&.decorate&.display_name
     - if policy(:client).edit_tte?

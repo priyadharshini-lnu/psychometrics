@@ -49,7 +49,7 @@ class User < ApplicationRecord
   }.freeze
 
   USER_ROLES_SCOPES = {
-      administration: [USER_ROLES.key(SUPER_ADMIN_ROLE), Membership::ADMIN_ROLE],
+      administration: [USER_ROLES.key(SUPER_ADMIN_ROLE), Membership::PROJECT_ADMIN_ROLE, Membership::CLIENT_ADMIN_ROLE],
       user: [USER_ROLES.key(REGULAR_ROLE), Membership::MANAGER_ROLE, Membership::MEMBER_ROLE]
   }.freeze
 
@@ -63,6 +63,11 @@ class User < ApplicationRecord
       assessments: %w(view),
       reports: %w(view),
       communications: %w(view manage)
+  }.with_indifferent_access.freeze
+
+  DEFAULT_PROJECT_ADMIN_GRANTS = {
+    assessments: %w(view),
+    communications: %w(view manage)
   }.with_indifferent_access.freeze
 
   ADMIN_GRANTS = {
@@ -97,9 +102,16 @@ class User < ApplicationRecord
   has_many :memberships, inverse_of: :user # on delete cascade
   has_many :clients, through: :memberships
   has_many :ttes, through: :clients
-  has_many :admin_clients, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, through: :memberships, source: 'client'
-  has_many :admin_clients_ttes, through: :admin_clients, source: 'tte', class_name: 'Client'
+  has_many :project_admin_clients, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, through: :memberships, source: 'client'
+  has_many :project_admin_clients_ttes, through: :project_admin_clients, source: 'tte', class_name: 'Client'
+
+  has_many :client_admin_clients, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }, through: :memberships, source: 'client'
+  has_many :client_admin_clients_ttes, through: :client_admin_clients, source: 'tte', class_name: 'Client'
+  has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
+
   accepts_nested_attributes_for :memberships
+
+  scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
 
   before_save :ensure_authentication_token
   validates :email, uniqueness: true

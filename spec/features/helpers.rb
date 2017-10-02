@@ -31,7 +31,7 @@ module Features
                         when :superadmin
                           create(:superadmin)
                         when :admin
-                          create(:admin, grants: grants)
+                          create(:client_admin, grants: grants)
                         when :manager
                           create(:manager)
                         else

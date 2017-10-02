@@ -37,10 +37,16 @@ FactoryGirl.define do
     client factory: :project
     role Membership::MEMBER_ROLE
 
-    factory :admin_membership do
+    factory :client_admin_membership do
       association :user, factory: :user, grants: User::DEFAULT_ADMIN_GRANTS
+      client factory: :tenancy
+      role Membership::CLIENT_ADMIN_ROLE
+    end
+
+    factory :project_admin_membership do
+      association :user, factory: :user, grants: User::DEFAULT_PROJECT_ADMIN_GRANTS
       client factory: [:project, :sub_campaign_level]
-      role Membership::ADMIN_ROLE
+      role Membership::PROJECT_ADMIN_ROLE
     end
 
     factory :manager_membership do

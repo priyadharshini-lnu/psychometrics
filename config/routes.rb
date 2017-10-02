@@ -76,6 +76,28 @@ Rails.application.routes.draw do
             post :assign_multiple
           end
         end
+        resources :project_admins do
+          member do
+            patch :toggle_status
+            get :sidebar
+            get :reset_password
+            get :spoof
+          end
+          collection do
+            post :assign_multiple
+          end
+        end
+        resources :client_admins do
+          member do
+            patch :toggle_status
+            get :sidebar
+            get :reset_password
+            get :spoof
+          end
+          collection do
+            post :assign_multiple
+          end
+        end
         resources :reports, only: [:index, :destroy, :new, :create]
         resources :statistics, only: [:index]
 

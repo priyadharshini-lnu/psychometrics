@@ -19,11 +19,19 @@ module Administration
     ]].freeze
 
     def create?
-      @user.is?(:superadmin, :admin)
+      @user.is?(:superadmin, :client_admin, :project_admin)
+    end
+
+    def create_client_admin?
+      @user.is?(:superadmin) || (@user.is?(:client_admin) &&  @user.has_grant?(:clients, :manage))
+    end
+
+    def create_project_admin?
+      @user.is?(:superadmin) || @user.is?(:client_admin)
     end
 
     def admins?
-      @user.is?(:superadmin, :admin)
+      @user.is?(:superadmin, :client_admin, :project_admin)
     end
 
     def permitted_attributes_for_create
@@ -31,7 +39,7 @@ module Administration
     end
 
     def permitted_attributes_for_update
-      if @user.is?(:superadmin) && @record.user.is?(:admin)
+      if @user.is?(:superadmin) && (@record.user.is?(:client_admin) || @record.user.is?(:project_admin))
         UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS, GRANT_PARAMETERS].flatten]
       else
         UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS]]
@@ -47,8 +55,9 @@ module Administration
       def resolve
         return scope if @user.is?(:superadmin)
         # find memberships for clients with 'admin' role and it's subclients
-        client_ids = @user.admin_clients.not_retails.enabled.pluck(:id)
-        descendant_ids = Client.descendants_of_arr(client_ids).pluck(:id)
+        clients_scope = @user.is?(:client_admin) ? @user.client_admin_clients : @user.project_admin_clients
+        client_ids = clients_scope.not_retails.enabled.ids
+        descendant_ids = Client.descendants_of_arr(client_ids).ids
         scope.where(client_id: client_ids + descendant_ids)
       end
     end

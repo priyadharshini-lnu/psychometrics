@@ -100,7 +100,7 @@ module Administration
       end
 
       def init_search_users
-        @search = policy_scope(::Membership).where.not(role: Membership::ADMIN_ROLE).join_user.includes(:client).search(params[:q])
+        @search = policy_scope(::Membership).where.not(role: Membership::PROJECT_ADMIN_ROLE).join_user.includes(:client).search(params[:q])
 
         # Limit to use only assigned clients
         #   And clients where user has access

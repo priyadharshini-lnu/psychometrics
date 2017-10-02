@@ -50,13 +50,20 @@ FactoryGirl.define do
       last_name 'admin'
     end
 
-    factory :admin, traits: [:with_membership_admin] do
+    factory :client_admin, traits: [:with_membership_client_admin] do
       grants User::DEFAULT_ADMIN_GRANTS
+    end
+    factory :project_admin, traits: [:with_membership_project_admin] do
+      grants User::DEFAULT_PROJECT_ADMIN_GRANTS
     end
     factory :manager, traits: [:with_membership_manager]
 
-    trait :with_membership_admin do
-      memberships { memberships_options.map { |opts| association(:admin_membership, opts) } }
+    trait :with_membership_client_admin do
+      memberships { memberships_options.map { |opts| association(:client_admin_membership, opts) } }
+    end
+
+    trait :with_membership_project_admin do
+      memberships { memberships_options.map { |opts| association(:project_admin_membership, opts) } }
     end
 
     trait :with_membership_manager do

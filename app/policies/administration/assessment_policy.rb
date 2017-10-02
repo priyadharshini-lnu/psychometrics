@@ -40,13 +40,13 @@ module Administration
 
     def view_report?
       return true if @user.is?(:superadmin)
-      return true if @user.is?(:admin) && @record.psychometric? && @user.has_grant?(:assigns, :view)
+      return true if @user.is?(:project_admin) && @record.psychometric? && @user.has_grant?(:assigns, :view)
       return true if @user.is?(:manager) && !@record.psychometric?
       false
     end
 
     def client_index?
-      @user.is?(:superadmin, :admin)
+      @user.is?(:superadmin, :client_admin, :project_admin)
     end
 
     def export_results?
@@ -83,7 +83,8 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
         if @user.has_grant?(:assessments, :view)
-          scope.where(owner_id: @user.admin_clients.select('tte_id').distinct)
+          owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients.select('tte_id').distinct
+          scope.where(owner_id: owner_ids)
         else
           scope.none
         end

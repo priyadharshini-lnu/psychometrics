@@ -22,7 +22,7 @@ class Administration::DimensionsController < Administration::BaseController
 
   def create
     @_resource = resource_class.new(resource_params)
-    resource.owner_id = current_user.admin_clients.take.tte_id if current_user.is?(:admin)
+    resource.owner_id = current_user.client_admin_clients.take.id if current_user.is?(:client_admin)
 
     respond_to do |format|
       if resource.save

@@ -18,7 +18,8 @@ en:
         roles:
           member: User
           manager: Manager
-          admin: Client Admin
+          project_admin: Project Admin
+          client_admin: Client Admin
     errors:
       messages:
         admin_for_another_tte: User already admin in another tte

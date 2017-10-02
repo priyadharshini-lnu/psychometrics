@@ -16,7 +16,7 @@
         th.start_date = t('.start_date')
         - if current_user.is?(:superadmin)
           th.end_date = t('.end_date')
-        th = t('.project_admin')
+        th = t('.client_admins')
         th = link_to_sort resource_class, :account_manager_id, filter_form
         th = link_to_sort resource_class, :project_manager_id, filter_form
         - if policy(:client).edit_tte?

@@ -17,7 +17,7 @@ module Administration
 
     def authenticate_user!
       if user_signed_in?
-        sign_out current_user unless current_user.is?(:superadmin, :admin)
+        sign_out current_user unless current_user.is?(:superadmin, :client_admin, :project_admin)
       end
       super
     end

@@ -12,7 +12,7 @@ module Administration
       def index
         @_filter_form ||= policy_scope(resource_class)
                            .includes(user: [:clients, :memberships])
-                           .where.not(role: Membership::ADMIN_ROLE)
+                           .where.not(role: Membership::PROJECT_ADMIN_ROLE)
                            .join_user.search(params[:q])
         filter_form.client_id_in = client.id
         @_resources = filter_form.result.page(params[:page])
@@ -27,7 +27,7 @@ module Administration
       def admins
         @_filter_form = policy_scope(resource_class)
                            .includes(user: [:clients, :memberships])
-                           .where(role: Membership::ADMIN_ROLE)
+                           .where(role: Membership::PROJECT_ADMIN_ROLE)
                            .join_user.search(params[:q])
         index
       end
@@ -40,7 +40,7 @@ module Administration
       def create
         @_resource = resource_class.new(create_resource_params)
         resource.client = policy_scope(Client).where(id: client.id).take
-        resource.role = Membership::ADMIN_ROLE if params[:admin]
+        resource.role = Membership::PROJECT_ADMIN_ROLE if params[:admin]
 
         user = User.find_by(email: resource.user&.email)
         if user
@@ -66,7 +66,7 @@ module Administration
 
       def assign_multiple
         return unless client.project?
-        if client.update(admin_ids: client.root.projects_admins.where(id: params[:admin_ids]).distinct.ids)
+        if client.update(project_admin_ids: client.root.projects_admins.where(id: params[:project_admin_ids]).distinct.ids)
           render :create
         else
           render :error, locals: { message: client.errors.full_messages.join('<br>') }
@@ -122,7 +122,7 @@ module Administration
 
       # Spoof as user
       def spoof
-        if resource.user.is?(:superadmin, :admin)
+        if resource.user.is?(:superadmin, :project_admin)
           sign_in(resource.user)
         else
           spoof_token = SecureRandom.urlsafe_base64(64)

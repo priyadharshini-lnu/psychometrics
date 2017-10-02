@@ -1,4 +1,6 @@
 .btn-group role="group"
+  - if policy(client).client_admins?
+    = active_link_to(t('administration.navigation.client_admins'), administration_client_client_admins_path(client), class: 'btn btn-default')
   = link_to 'Projects', administration_client_projects_path(client), class: "btn btn-default #{'active' if current_page?(controller: 'projects',action: :index)}"
   - if client.campaigns.any?
     = link_to 'Campaigns', administration_client_campaigns_path(client), class: "btn btn-default #{'active' if current_page?(controller: 'campaigns',action: :index)}"

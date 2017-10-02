@@ -22,11 +22,13 @@ class Membership < ApplicationRecord
   MEMBERSHIP_ROLES = [
       MEMBER_ROLE = 'member'.freeze,
       MANAGER_ROLE = 'manager'.freeze,
-      ADMIN_ROLE = 'admin'.freeze,
+      PROJECT_ADMIN_ROLE = 'project_admin'.freeze,
+      CLIENT_ADMIN_ROLE = 'client_admin'.freeze
   ].freeze
 
   SCOPES = {
-      ADMIN_ROLE => :administration,
+      PROJECT_ADMIN_ROLE => :administration,
+      CLIENT_ADMIN_ROLE => :administration,
       MANAGER_ROLE => :user,
       MEMBER_ROLE => :user
   }.freeze
@@ -52,7 +54,7 @@ class Membership < ApplicationRecord
   validates :client_id, uniqueness: { scope: [:user_id, :role] }
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
   validate :relevant_role, if: 'client.present?'
-  validate :client_admin_scope, if: 'admin?'
+  validate :client_admin_scope, if: 'project_admin?'
 
   before_save :set_project_membership, if: 'client.end_level?'
   after_destroy :clear_project_membership, if: 'client.end_level?'
@@ -62,7 +64,7 @@ class Membership < ApplicationRecord
   scope :enabled, -> { where.not(disabled: true) }
   scope :assigned, -> { joins(:assigns) }
   scope :completed, -> { where(assigns_completed: true) }
-  scope :admin_role, -> { where(role: ADMIN_ROLE) }
+  scope :project_admin_role, -> { where(role: PROJECT_ADMIN_ROLE) }
   scope :with_client, -> (client_id) { where(client_id: client_id) }
   scope :user_reports, -> (client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
 
@@ -144,19 +146,21 @@ class Membership < ApplicationRecord
 
   def relevant_role
     valid = case role
-      when ADMIN_ROLE
-        client.project?
-      when MANAGER_ROLE, MEMBER_ROLE
-        client.end_level? || (project? && client.project?)
-      else
-        false
+    when CLIENT_ADMIN_ROLE
+      client.tenancy?
+    when PROJECT_ADMIN_ROLE
+      client.project?
+    when MANAGER_ROLE, MEMBER_ROLE
+      client.end_level? || (project? && client.project?)
+    else
+      false
     end
     errors.add(:role, 'Invalid') unless valid
   end
 
   def client_admin_scope
     # user can be client admin only within one tenancy
-    tte_id = user.admin_clients_tte_ids.sample
+    tte_id = user.project_admin_clients_tte_ids.sample
     return unless tte_id
     errors.add(:base, :admin_for_another_tte) if client.tte_id != tte_id
   end

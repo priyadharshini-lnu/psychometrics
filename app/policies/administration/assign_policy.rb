@@ -14,30 +14,30 @@ module Administration
 
     def destroy?
       return true if @user.is?(:superadmin)
-      @user.admin_client_ids.include?(@record.membership.client_id) && @user.has_grant?(:assessments, :assign)
+      @user.project_admin_client_ids.include?(@record.membership.client_id) && @user.has_grant?(:assessments, :assign)
     end
 
     def destroy_report?
       return true if @user.is?(:superadmin)
-      @user.admin_client_ids.include?(@record.membership.client_id) && @user.has_grant?(:assessments, :assign)
+      @user.project_admin_client_ids.include?(@record.membership.client_id) && @user.has_grant?(:assessments, :assign)
     end
 
     # Permission to view statistics link
     def statistics?
-      @user.is?(:superadmin, :admin)
+      @user.is?(:superadmin, :client_admin, :project_admin)
     end
 
     # Permission to clients/users/assigns#reports
     def reports?
-      @user.is?(:superadmin, :admin)
+      @user.is?(:superadmin, :client_admin, :project_admin)
     end
 
     class Scope < Administration::BasePolicy::Scope
       def resolve
         return scope if @user.is?(:superadmin)
         if @user.has_grant?(:assigns, :view)
-          admin_client_ids = @user.admin_client_ids
-          client_end_levels = Client.end_level.where('id in (?) or ancestry ~ ?', admin_client_ids, "/(#{admin_client_ids.join('|')})(/|$)")
+          client_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
+          client_end_levels = Client.end_level.where('id in (?) or ancestry ~ ?', client_ids, "(/|^)(#{client_ids.join('|')})(/|$)")
           return scope.joins(:membership).where(memberships: { client_id: client_end_levels.ids })
         end
         scope.none

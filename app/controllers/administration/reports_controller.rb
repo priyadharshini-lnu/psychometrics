@@ -17,7 +17,8 @@ module Administration
     # GET /administration/resources
     def index
       scope = policy_scope(resource_class).includes(:assessment, :report_families).order(:name)
-      scope = scope.with_owner(current_user.admin_clients_tte_ids) if current_user.is?(:admin)
+      scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
+      scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
       @_filter_form = scope.search(params[:q])
       @_resources = filter_form.result.page(params[:page])
 
@@ -37,7 +38,7 @@ module Administration
 
     def create
       @_resource = resource_class.new(resource_params)
-      resource.owner_id = current_user.admin_clients.take.tte_id if current_user.is?(:admin)
+      resource.owner_id = current_user.project_admin_client_ids.first if current_user.is?(:client_admin)
 
       respond_to do |format|
         if resource.save

@@ -5,7 +5,7 @@ module Licenses
     def perform(license_id)
       license = License.find license_id
       client = license.client
-      client.memberships.admin_role.each do |membership|
+      client.memberships.project_admin_role.each do |membership|
         LicenseMailer.license_overuse(membership.user_id).deliver_later
       end
       User.where(role: User::SUPER_ADMIN_ROLE).find_each do |superadmin|

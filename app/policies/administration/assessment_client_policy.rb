@@ -1,7 +1,7 @@
 module Administration
   class AssessmentClientPolicy < Administration::BasePolicy
     def index?
-      @user.is?(:superadmin, :admin)
+      @user.is?(:superadmin, :client_admin, :project_admin)
     end
 
     def export_results?

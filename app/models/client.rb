@@ -55,15 +55,17 @@ class Client < ApplicationRecord
   has_one :retail_user, class_name: 'User'
   has_many :memberships # on delete cascade
   has_many :users, through: :memberships
-  has_many :admins, through: :admin_memberships, source: :user, class_name: 'User'
-  has_many :admin_memberships, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
+  has_many :project_admins, through: :project_admin_memberships, source: :user, class_name: 'User'
+  has_many :project_admin_memberships, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
+  has_many :client_admins, through: :client_admin_memberships, source: :user, class_name: 'User'
+  has_many :client_admin_memberships, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
   has_many :assigned_memberships, -> { assigned.distinct }, source: :membership, class_name: 'Membership'
   has_many :completed_memberships, -> { completed.distinct }, source: :membership, class_name: 'Membership'
-  has_many :end_memberships, -> { where.not(memberships: { role: Membership::ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
+  has_many :end_memberships, -> { where.not(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
   has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) }, through: :memberships, source: :user
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
   # TODO use admins instead of projects_admins
-  has_many :projects_admins, -> { where(memberships: { role: Membership::ADMIN_ROLE }) }, through: :projects, source: :users
+  has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, through: :projects, source: :users
 
   # Reports
   has_many :clients_reports # on delete cascade
@@ -117,7 +119,7 @@ class Client < ApplicationRecord
   scope :projects_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:project]) }
   scope :campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign]) }
-  scope :descendants_of_arr, -> (client_ids) { where('clients.ancestry ~ ?', "/(#{client_ids.join('|')})(/|$)") }
+  scope :descendants_of_arr, -> (client_ids) { where('clients.ancestry ~ ?', "(/|^)(#{client_ids.join('|')})(/|$)") }
 
   def license_msg
     @license_msg ||= {}
@@ -216,7 +218,7 @@ class Client < ApplicationRecord
   end
 
   def allowed_data
-    if operator.is?(:admin)
+    if operator.is?(:project_admin)
       errors.add(:base) if root?
     end
   end

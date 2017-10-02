@@ -10,10 +10,10 @@
         span= t('.create_admin')
 .radio-tabs
   #existing-inputs.tab class=('active' if !is_new)
-    = form_tag(assign_multiple_administration_client_users_path, remote: true) do |f|
+    = form_tag({action: :assign_multiple}, remote: true) do |f|
       .modal-body
-        = select_tag :admin_ids,
-                options_for_select(client.root.projects_admins.distinct.map{ |u| [u.decorate.display_name, u.id] }, selected: client.admin_ids),
+        = select_tag :project_admin_ids,
+                options_for_select(client.root.projects_admins.distinct.map{ |u| [u.decorate.display_name, u.id] }, selected: client.project_admin_ids),
                 class: 'form-control select',
                 multiple: true,
                 include_blank: false

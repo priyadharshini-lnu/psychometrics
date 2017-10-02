@@ -52,6 +52,10 @@ RSpec.configure do |config|
   config.include AbstractController::Translation
   config.include FactoryGirl::Syntax::Methods
   config.include Warden::Test::Helpers
+  
+  # Sign in helper for controller
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.extend ControllerMacros, type: :controller
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!

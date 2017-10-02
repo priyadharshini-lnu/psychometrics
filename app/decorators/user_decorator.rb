@@ -13,6 +13,7 @@ class UserDecorator < BaseDecorator
   end
 
   def admin_role
+    return I18n.t("activerecord.attributes.user.roles.admins.project_admin") if object.is?(:project_admin)
     I18n.t("activerecord.attributes.user.roles.admins.#{User::USER_ROLES.key(object.role)}")
   end
 
@@ -47,7 +48,7 @@ class UserDecorator < BaseDecorator
   end
 
   def clients_hierarchy
-    admin_levels = object.admin_clients.map do |client|
+    admin_levels = object.project_admin_clients.map do |client|
       if client.subtenancy?
         path = h.administration_client_project_campaigns_path(client.parent_id, client)
       end

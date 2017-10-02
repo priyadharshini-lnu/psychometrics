@@ -34,7 +34,7 @@ feature 'CRUD Client' do
   context 'As Client Admin' do
     given!(:tenancy) { create(:tenancy, report_families: [report_family]) }
     given!(:project) { create(:project, :sub_campaign_level, parent: tenancy) }
-    given!(:admin) { create(:admin, memberships_options: [{ client: project }]) }
+    given!(:admin) { create(:client_admin, memberships_options: [{ client: tenancy }]) }
     before { login_as admin }
 
     context 'without manage privileges' do

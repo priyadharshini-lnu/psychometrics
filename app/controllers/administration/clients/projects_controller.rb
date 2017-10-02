@@ -7,7 +7,7 @@ module Administration
       def index
         @_filter_form = policy_scope(resource_class)
             .projects_of(client.id)
-            .includes(:admins, :assigned_memberships, :completed_memberships, :end_memberships, :license_usages)
+            .includes(:project_admins, :assigned_memberships, :completed_memberships, :end_memberships, :license_usages)
             .order('name asc')
             .search(params[:q])
         filter_form.disabled_true ||= false
@@ -25,7 +25,7 @@ module Administration
       end
 
       def export
-        @_resources = policy_scope(resource_class).projects_of(client.id).includes(:admins)
+        @_resources = policy_scope(resource_class).projects_of(client.id).includes(:project_admins)
         respond_to do |format|
           format.csv do
             headers['Content-Disposition'] = "attachment; filename=\"projects-#{Date.today}.csv\""

@@ -11,7 +11,7 @@ en:
         list: &list
           name: Project name
           admin: Client Admin
-          project_admin: Client Project Manager
+          project_admin: Project Admins
           tte_admin: TTE Project Manager
           tests_allocated: Tests Allocated
           archive_status: Status
@@ -39,7 +39,7 @@ en:
             copy: Copy Project
             edit: Edit Project
             delete: Delete Project
-            create_admin: Create Admin
+            create_admin: Create Project Admin
             create_report: Add New Report
             create_user: Add New User
         sidebar:

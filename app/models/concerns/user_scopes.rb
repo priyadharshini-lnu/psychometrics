@@ -47,7 +47,7 @@ module UserScopes
             where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
       elsif role == 'administrators'
         joining { memberships.outer }.
-            where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::ADMIN_ROLE) }
+            where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::PROJECT_ADMIN_ROLE) }
       end
     }
 
@@ -63,7 +63,7 @@ module UserScopes
             where(memberships: { role: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE] })
       elsif role_scope == 'administration'
         joining { memberships.outer }.
-            where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::ADMIN_ROLE) }
+            where.has { role.eq(User::SUPER_ADMIN_ROLE) | memberships.role.eq(Membership::PROJECT_ADMIN_ROLE) }
       end
     }
   end

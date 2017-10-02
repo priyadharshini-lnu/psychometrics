@@ -64,26 +64,36 @@ class ClientDecorator < BaseDecorator
     object.archived? ? I18n.t('administration.clients.base.archived') : I18n.t('administration.clients.base.active')
   end
 
-  def client_admins
-    client_admins_memberships.map do |membership|
-      h.link_to membership.user.decorate.display_name, h.edit_administration_client_user_path(membership.client_id, membership), class: 'text-nowrap'
+  def client_project_admins
+    client_project_admins_memberships.map do |membership|
+      h.link_to membership.user.decorate.display_name, h.edit_administration_client_project_admin_path(membership.client_id, membership), class: 'text-nowrap'
     end.join('<br>').html_safe
   end
 
-  def projects_admins
+  def project_admins
     object.projects_admins.distinct.map {|user| h.content_tag(:span, user.decorate.display_name, class: 'text-nowrap')}.join('<br>').html_safe
   end
 
-  def client_admins_memberships
+  def client_project_admins_memberships
     if object.tenancy?
-      object.projects.map {|project| project.admin_memberships}.reject(&:empty?).flatten
+      object.projects.map {|project| project.project_admin_memberships}.reject(&:empty?).flatten
     else
-      object.admin_memberships
+      object.project_admin_memberships
     end
   end
 
   def array_project_admins
-    client_admins_memberships.map {|membership| membership.user.decorate.display_name}
+    client_project_admins_memberships.map {|membership| membership.user.decorate.display_name}
+  end
+
+  def client_admins
+    object.client_admin_memberships.map do |membership|
+      h.link_to membership.user.decorate.display_name, h.edit_administration_client_client_admin_path(membership.client_id, membership), class: 'text-nowrap'
+    end.join('<br>').html_safe
+  end
+
+  def array_client_admins
+    client_admin_memberships.map {|membership| membership.user.decorate.display_name}
   end
 
   def reports

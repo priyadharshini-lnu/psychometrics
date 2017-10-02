@@ -1,4 +1,4 @@
-- if current_user.is?(:superadmin) || resource.admin_ids.include?(current_user.id)
+- if current_user.is?(:superadmin) || current_user.is?(:client_admin) || resource.project_admin_ids.include?(current_user.id)
   tr data-sidebar=url_for(sidebar_administration_client_project_path(client, resource)) id=dom_id(resource)
     td.nowrap
       - if resource.project_level?
@@ -25,10 +25,10 @@
               span.fa.fa-plus
     td = resource.parent.account_manager&.decorate&.display_name
     td
-      = resource.decorate.client_admins
-      - if policy(Membership).create?
+      = resource.decorate.client_project_admins
+      - if policy(:membership).create_project_admin?
         .add-icon-box
-          = link_to new_administration_client_user_path(client_id: resource.id, admin: true), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
+          = link_to new_administration_client_project_admin_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
             span.fa.fa-plus
     td = resource.decorate.url
     td = resource.decorate.actual_usage
@@ -37,7 +37,7 @@
     td.text-center = resource.decorate.updated_at
     td = resource.decorate.modifier_name
     td.actions-cell
-      - if policy(resource).actions?
+      - if policy(resource).actions? && policy(:client).manage_project?
         = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
           span.fa.fa-pencil
         = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') })

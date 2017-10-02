@@ -37,6 +37,8 @@ en:
       home: Dashboard
       users: Users
       admins: Admins
+      project_admins: Project Admins
+      client_admins: Client Admins
       users_add: Add New
       users_import: Import
       dimensions: Dimensions

@@ -89,6 +89,16 @@ en:
             body: >
               <p>Are you sure you want to delete this User?</p>
     clients:
+      project_admins:
+        <<: *USERS
+        index:
+          breadcrumb: Project Admins
+          title: Project Admins
+      client_admins:
+        <<: *USERS
+        index:
+          breadcrumb: Client Admins
+          title: Client Admins
       users:
         <<: *USERS
         admins:

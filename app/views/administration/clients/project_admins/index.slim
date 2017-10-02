@@ -6,7 +6,7 @@
       .panel-heading
         h3.panel-title = t('.title')
         = search_form_for(filter_form,
-                          url: { action: :admins },
+                          url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },
                           builder: SimpleForm::FormBuilder) do |f|
           = f.input :user_first_name_or_user_last_name_or_user_email_cont,

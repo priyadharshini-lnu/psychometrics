@@ -11,7 +11,7 @@
             = link_to({ action: :export, format: :csv }, target: :_blank, class: 'btn btn-default')
               span.fa.fa-upload
               = t('.export')
-          - if policy(resource_class).create?
+          - if policy(resource_class).manage_project?
             = link_to [:new, :administration, client, :project],
                       remote: true,
                       class: 'btn btn-default'

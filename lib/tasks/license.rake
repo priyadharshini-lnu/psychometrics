@@ -3,7 +3,7 @@ namespace :license do
 
   task check_expire: :environment do
     License.where(end_date: Date.today).find_each do |license|
-      Membership.admin_role.with_client(license.client_id).find_each do |membership|
+      Membership.project_admin_role.with_client(license.client_id).find_each do |membership|
         LicenseMailer.license_expire(membership.user_id).deliver_later
       end
       User.where(role: User::SUPER_ADMIN_ROLE).find_each do |superadmin|

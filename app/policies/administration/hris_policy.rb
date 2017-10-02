@@ -1,5 +1,5 @@
 class Administration::HrisPolicy < Administration::BasePolicy
   def import?
-    @user.is?(:superadmin, :admin, :manager)
+    @user.is?(:superadmin, :client_admin, :project_admin, :manager)
   end
 end

@@ -10,6 +10,7 @@ module Features
           select opts[:dimension_name], from: 'resource_dimension_id', visible: false
           click_on 'Create'
         end
+        wait_for_ajax
       end
 
       def toggle_norm(norm, enable = true)

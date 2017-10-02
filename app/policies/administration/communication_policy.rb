@@ -21,7 +21,8 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
         if @user.has_grant?(:communications, :view)
-          scope.where(owner_id: [@user.admin_client_ids])
+          owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
+          scope.where(owner_id: owner_ids)
         else
           scope.none
         end

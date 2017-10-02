@@ -14,7 +14,8 @@ module Administration
 
     def create?
       permit = @user.has_grant?(:reports, :manage)
-      permit = permit && @user.admin_clients_tte_ids.include?(record.owner_id) if record.is_a? ::Report
+      ttes_ids = @user.is?(:client_admin) ? @user.client_admin_clients_tte_ids : @user.project_admin_clients_tte_ids
+      permit = permit && ttes_ids.include?(record.owner_id) if record.is_a? ::Report
       super || permit
     end
 
@@ -29,7 +30,7 @@ module Administration
     def preview?
       return false if @record.mindmill?
       return true if @user.is?(:superadmin)
-      return true if @user.is?(:admin) && @record.assessment.psychometric? && @user.has_grant?(:reports, :view)
+      return true if (@user.is?(:client_admin) || @user.is?(:project_admin)) && @record.assessment.psychometric? && @user.has_grant?(:reports, :view)
       false
     end
 
@@ -50,13 +51,13 @@ module Administration
         scope = super
         return scope if @user.is?(:superadmin)
         return scope.none unless @user.has_grant?(:reports, :view)
-        owner_ids = @user.admin_clients_tte_ids
-        admin_client_ids = @user.admin_client_ids
-        client_end_levels = Client.end_level.where('id in (?) or ancestry ~ ?', admin_client_ids, "/(#{admin_client_ids.join('|')})(/|$)")
+        tte_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
+        client_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
+        client_end_level_ids = Client.end_level.where('id in (?) or ancestry ~ ?', client_ids, "(/|^)(#{client_ids.join('|')})(/|$)").ids
         scope
             .enabled
             .available_to_view
-            .joins(:clients).where('clients.id in (?) or reports.owner_id in (?)', client_end_levels.ids, owner_ids)
+            .joins(:clients).where('clients.id in (?) or reports.owner_id in (?)', client_end_level_ids, tte_ids)
       end
     end
   end

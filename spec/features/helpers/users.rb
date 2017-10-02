@@ -23,10 +23,10 @@ module Features
         end
       end
 
-      def create_admin(project, opts = {})
+      def create_project_admin(project, opts = {})
         visit administration_client_projects_path(project.tte)
-        find("#client_#{project.id} td .add-icon-box a[href='#{new_administration_client_user_path(project, admin: true)}']").click
-        find('label', text: t('administration.clients.users.form_admin.create_admin')).click
+        find("#client_#{project.id} td .add-icon-box a[href='#{new_administration_client_project_admin_path(project)}']").click
+        find('label', text: t('administration.clients.project_admins.form.create_admin')).click
         within '#new_resource' do
           fill_in 'resource_user_attributes_email', with: opts[:email]
           fill_in 'resource_user_attributes_first_name', with: opts[:first_name]
@@ -40,21 +40,21 @@ module Features
           admin_membership = Membership.last
           expect(page).to have_content t('administration.memberships.create.successfully', name: admin_membership.decorate.display_name)
           expect(page).to have_css("#client_#{project.id} td", text: admin_membership.decorate.display_name)
-          expect(admin_membership.role).to eq Membership::ADMIN_ROLE
+          expect(admin_membership.role).to eq Membership::PROJECT_ADMIN_ROLE
           expect(admin_membership.project?).to be true
           expect(admin_membership.client.project?).to be true
           expect(admin_membership.clients_memberships.any?).to be false
-          expect(admin_membership.user.grants).to eql User::DEFAULT_ADMIN_GRANTS
+          expect(admin_membership.user.grants).to eql(User::DEFAULT_PROJECT_ADMIN_GRANTS)
           admin_membership
         end
       end
 
-      def choose_admin(project, admin_membership)
+      def choose_project_admin(project, admin_membership)
         visit administration_client_projects_path(project.tte)
-        find("#client_#{project.id} td .add-icon-box a[href='#{new_administration_client_user_path(project, admin: true)}']").click
-        find('label', text: t('administration.clients.users.form_admin.choose_admin')).click
+        find("#client_#{project.id} td .add-icon-box a[href='#{new_administration_client_project_admin_path(project)}']").click
+        find('label', text: t('administration.clients.project_admins.form.choose_admin')).click
         within '#existing-inputs' do
-          select admin_membership.decorate.display_name, from: 'admin_ids', visible: false
+          select admin_membership.decorate.display_name, from: 'project_admin_ids', visible: false
           click_on t('administration.save')
         end
         wait_for_ajax
@@ -64,11 +64,11 @@ module Features
           new_admin_membership = Membership.last
           expect(page).to have_content t('administration.memberships.admin_chosen.successfully')
           expect(page).to have_css("#client_#{project.id} td", text: new_admin_membership.decorate.display_name)
-          expect(new_admin_membership.role).to eq Membership::ADMIN_ROLE
+          expect(new_admin_membership.role).to eq Membership::PROJECT_ADMIN_ROLE
           expect(new_admin_membership.project?).to be true
           expect(new_admin_membership.client.project?).to be true
           expect(new_admin_membership.clients_memberships.any?).to be false
-          expect(new_admin_membership.user.grants).to eql User::DEFAULT_ADMIN_GRANTS
+          expect(new_admin_membership.user.grants).to eql(User::DEFAULT_PROJECT_ADMIN_GRANTS)
           expect(new_admin_membership.user).to eql(admin_membership.user)
           new_admin_membership
         end
