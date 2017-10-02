@@ -1,7 +1,8 @@
 module Imports
   class UserImport < Imports::BaseImport
     USER_ROLES_MAPS = {
-      'Client Admin' => Membership::ADMIN_ROLE,
+      'Client Admin' => Membership::CLIENT_ADMIN_ROLE,
+      'Project Admin' => Membership::PROJECT_ADMIN_ROLE,
       'Manager' => Membership::MANAGER_ROLE,
       'User' => Membership::MEMBER_ROLE
     }.freeze
