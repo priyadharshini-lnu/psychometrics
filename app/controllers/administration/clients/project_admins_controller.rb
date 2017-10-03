@@ -129,8 +129,12 @@ module Administration
 
       def init_breadcrumbs
         client_root_breadcrumb
-        add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
-        add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project)
+        unless client.retail?
+          add_breadcrumb client.client.decorate.display_name, [:administration, client.client, :projects]
+          add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) if client.has_children? || client.subtenancy?
+          add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent) if client.sub_campaign?
+        end
+        add_breadcrumb client.decorate.display_name, { action: :index } if client.end_level?
       end
 
       def create_resource_params
