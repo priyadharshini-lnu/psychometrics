@@ -12,7 +12,7 @@
   #existing-inputs.tab class=('active' if !is_new)
     = form_tag({action: :assign_multiple}, remote: true) do |f|
       .modal-body
-        = select_tag :project_admin_ids,
+        = select_tag :client_admin_ids,
                 options_for_select(User.client_admins.distinct.map{ |u| [u.decorate.display_name, u.id] }, selected: client.client_admin_ids),
                 class: 'form-control select',
                 multiple: true,

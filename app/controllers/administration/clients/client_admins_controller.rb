@@ -60,8 +60,8 @@ module Administration
       end
 
       def assign_multiple
-        return unless client.project?
-        if client.update(client_admin_ids: client.root.projects_admins.where(id: params[:client_admin_ids]).distinct.ids)
+        return unless client.root?
+        if client.update(client_admin_ids: User.client_admins.where(id: params[:client_admin_ids]).distinct.ids)
           render :create
         else
           render :error, locals: { message: client.errors.full_messages.join('<br>') }
