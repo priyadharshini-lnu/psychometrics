@@ -41,7 +41,7 @@ module Administration
 
         def init_breadcrumbs
           client_root_breadcrumb
-          add_breadcrumb client.decorate.display_name, [:administration, @client, :users]
+          add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
           add_breadcrumb user.decorate.display_name, '#'
           add_breadcrumb I18n.t('administration.breadcrumbs.reports'), [:administration, client, :user, :assigns, { user_id: membership.id }]
         end
