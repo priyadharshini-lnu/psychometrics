@@ -154,6 +154,7 @@ group :development do
   gem 'capistrano-passenger',     '~> 0.2.0'
   gem 'capistrano-rvm',           '~> 0.1.2'
   gem 'capistrano-sidekiq'
+  gem 'capistrano-rails-console', '~> 2.2.1', require: false
   gem 'guard'
 end
 group :test do
