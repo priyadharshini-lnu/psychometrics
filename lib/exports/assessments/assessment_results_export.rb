@@ -78,11 +78,12 @@ module Exports
       end
 
       private
-
+      
       def export_norm(norm_data)
         return if norm_data.nil? || norm_data['id'].nil?
         norm = Norm.find(norm_data['id'])
         "#{norm.name}:#{norm_data['type']}"
+      rescue ActiveRecord::RecordNotFound
       end
     end
   end

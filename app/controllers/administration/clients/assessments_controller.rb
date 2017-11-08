@@ -20,7 +20,7 @@ module Administration
 
       def export_results
         @assessment = Assessment.find(params[:assessment_id])
-        results = ::Exports::Assessments::AssessmentResultsExport.new(@assessment.id, client.id, scoring: params[:scoring])
+        results = ::Exports::Assessments::AssessmentResultsExport.new(@assessment.id, client.project.id, scoring: params[:scoring])
         filename = params[:scoring] ? 'assessment_scoring_results.xlsx' : 'assessment_raw_results.xlsx'
         respond_to do |format|
           format.xlsx { send_data results.render.to_stream.read, filename: filename }
