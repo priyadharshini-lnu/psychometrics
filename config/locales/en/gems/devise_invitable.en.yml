@@ -18,7 +18,7 @@ en:
     mailer:
       invitation_instructions:
         from: The Talent Enterprise
-        subject: Your Link to The Thriving Index
+        subject: The Talent Enterprise – Your Link to Thriving Index
         hello: Hello %{email}
         someone_invited_you: Someone has invited you to %{url}, you can accept it through the link below.
         accept: Accept invitation
