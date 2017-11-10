@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: 8110e4c8cae5a493f2401b84512b0bba2ffcd100
+  revision: 229f3d3730ac4a38b94854c1dc2cf438eff0a8eb
   specs:
     psychometrics-survey (0.0.1)
       railties (~> 5.0.0)
