@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: 229f3d3730ac4a38b94854c1dc2cf438eff0a8eb
+  revision: 1c01038b924e5f2acdd008f4b09992bddfdbab23
   specs:
     psychometrics-survey (0.0.1)
       railties (~> 5.0.0)
@@ -440,7 +440,7 @@ GEM
       thor (>= 0.18.1, < 2.0)
     rainbow (2.2.2)
       rake
-    rake (12.1.0)
+    rake (12.2.1)
     ransack (1.8.2)
       actionpack (>= 3.0)
       activerecord (>= 3.0)
@@ -560,7 +560,7 @@ GEM
     thread_safe (0.3.6)
     tilt (2.0.5)
     timeliness (0.3.8)
-    tzinfo (1.2.3)
+    tzinfo (1.2.4)
       thread_safe (~> 0.1)
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
