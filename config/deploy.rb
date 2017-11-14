@@ -36,8 +36,6 @@ set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', '
 # Default value for keep_releases is 5
 set :keep_releases, 10
 
-after 'deploy:published', 'deploy:cleanup'
-
 task :compress_assets do
   on roles(:app) do
     assets_path = release_path.join('public', 'assets')
