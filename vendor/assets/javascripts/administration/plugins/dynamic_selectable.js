@@ -25,7 +25,11 @@ DynamicSelectable = (function() {
         if (url) {
           return $.getJSON(url, function(data) {
             $.each(data, function(index, el) {
-              return _this.$targetSelect.append("<option value='" + el.id + "'>" + el.name + "</option>").selectpicker('refresh');
+              var selected = '';
+              if (el.selected) {
+                selected = 'selected';
+              }
+              return _this.$targetSelect.append("<option value='" + el.id + "' " + selected + ">" + el.name + "</option>").selectpicker('refresh');
             });
             return _this.reinitializeTarget();
           });

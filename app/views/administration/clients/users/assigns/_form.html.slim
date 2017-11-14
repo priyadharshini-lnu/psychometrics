@@ -10,8 +10,7 @@
                                             include_blank: false } },
                       include_blank: true,
                       label: t('.assessment')
-      - reports_arr = client.reports.where(assessment_id: f.object.assessment_id).distinct if f.object.assessment.present?
-      = f.association :reports, collection: reports_arr || []
+      = f.association :reports, collection: []
       .form-group.has-error
         = f.error :client_id
   .modal-footer
