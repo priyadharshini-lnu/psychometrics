@@ -9,7 +9,7 @@ module DownloadHelpers
   end
 
   def download
-    downloads.first
+    downloads.first&.remove('.crdownload')
   end
 
   def download_content
