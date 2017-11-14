@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: 1c01038b924e5f2acdd008f4b09992bddfdbab23
+  revision: 2b043f540122ac9885d87da30fe8ea3b0ded17da
   specs:
     psychometrics-survey (0.0.1)
       railties (~> 5.0.0)
@@ -208,7 +208,7 @@ GEM
       activesupport (>= 3.0)
       deep_merge (~> 1.0, >= 1.0.1)
     connection_pool (2.2.1)
-    crass (1.0.2)
+    crass (1.0.3)
     database_cleaner (1.5.3)
     debug_inspector (0.0.2)
     debugger-linecache (1.2.0)
