@@ -121,6 +121,10 @@ class Client < ApplicationRecord
   scope :sub_campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign]) }
   scope :descendants_of_arr, -> (client_ids) { where('clients.ancestry ~ ?', "(/|^)(#{client_ids.join('|')})(/|$)") }
 
+  def assign_by_membership_and_assessment(membership_id, assessment_id)
+    memberships.find(membership_id).assigns.find_by(assessment_id: assessment_id)
+  end
+
   def license_msg
     @license_msg ||= {}
   end
