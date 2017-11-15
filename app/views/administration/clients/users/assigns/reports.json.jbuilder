@@ -1,3 +1,6 @@
 json.array!(resources) do |resource|
-  json.extract! resource, :name, :id
+  selected = @selected_reports.include?(resource) if @selected_reports
+  json.name resource.name
+  json.id resource.id
+  json.selected selected
 end
