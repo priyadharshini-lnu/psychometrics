@@ -35,6 +35,7 @@ en:
           after_complete: 'Right after completion'
           if_not_started: 'If assessment is not started'
           if_not_finished: 'If assessment was not finished'
+        kind: Communcation Types
         selected_recipients: 'Selected Recipients'
         selected_cc_recipients: 'Selected CC Recipients'
         body_mustache: >
