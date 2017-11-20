@@ -1,65 +1,59 @@
-= simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true,
-  data: { behavior: 'communications-form', form_url: resource.decorate.form_url }) do |f|
+= simple_form_for(@communication_facade.form,
+  as: :resource, url: { action: @communication_facade.communication.new_record? ? :create : :update },
+  remote: true,
+  data: { behavior: 'communications-form', form_url: @communication_facade.communication.decorate.form_url }) do |f|
   .modal-body
     = f.error_notification
 
     .form-inputs.clearfix
       h3 Settings
       - if current_user.is?(:superadmin)
-        = f.association :owner, collection: policy_scope(Client).roots, include_blank: t('administration.tte'), input_html: { data: { live_search: true } }
-      = f.association :assessment,
-                collection: policy_scope(Assessment).all,
-                input_html: { data: { live_search: true } }
-      = f.association :client,
-                collection: f.object.assessment && f.object.assessment.clients.distinct || [],
-                input_html: { data: { live_search: true } },
-                wrapper_html: { class: f.object.assessment_id.blank? ? 'hidden' : '' }
-      = f.input :recipients, 
-                as: :select, 
-                collection: Communication.recipients, 
-                value_method: :first,
-                label_method: proc { |rec| t(".#{rec.first}") },
-                include_blank: false
-      - if f.object.client_id && f.object.selected_recipients?
+        = f.association :owner, collection: @communication_facade.owners, include_blank: t('administration.tte'),
+          input_html: { data: { live_search: true, behavior: @communication_facade.owner_behavior } }
+      - unless current_user.is?(:superadmin) && @communication_facade.communication.owner_id.present?
+        = f.association :client,
+          collection: @communication_facade.owners,
+          input_html: { data: { live_search: true, behavior: @communication_facade.client_behavior } }
+      - if @communication_facade.show_projects?
+        = f.association :project,
+          collection: @communication_facade.projects,
+          input_html: { data: { live_search: true,
+            behavior: @communication_facade.project_behavior } }
+      - if @communication_facade.show_campaigns?
+        = f.association :campaign,
+          collection: @communication_facade.campaigns,
+          input_html: { data: { live_search: true,
+            behavior: @communication_facade.campaign_behavior } }
+      - if @communication_facade.show_sub_campaigns?
+        = f.association :sub_campaign,
+          collection: @communication_facade.sub_campaigns,
+          input_html: { data: { live_search: true,
+            behavior: @communication_facade.sub_campaign_behavior } }
+      - if @communication_facade.show_kind?
+        = f.input :kind,
+          as: :select,
+          collection: Communication.kinds,
+          value_method: :first,
+          label_method: proc { |rec| t(".#{rec.first}") },
+          input_html: { data: { live_search: true } },
+          label: t('.kind')
+      - if @communication_facade.show_recipients?
+        = f.input :recipients,
+          as: :select,
+          collection: Communication.recipients,
+          value_method: :first,
+          label_method: proc { |rec| t(".#{rec.first}") },
+          include_blank: false,
+          input_html: { data: { live_search: true,
+            behavior: 'communication-changeable' } }
+      - if @communication_facade.show_memberships?
         = f.association :memberships,
-                        collection: f.object.client.memberships.join_user || [],
-                        label_method: proc { |u| u.decorate.display_name },
-                        include_blank: false,
-                        input_html: { data: { live_search: true }, multiple: true },
-                        label: t('.selected_recipients')
-      - if f.object.client_id && f.object.selected_recipients?
-        = f.association :copy_memberships, 
-                        collection: Membership.with_head_assigns_for_client_and_assessment(f.object.client_id, f.object.assessment_id) || [],
-                        label_method: proc { |u| u.decorate.display_name },
-                        include_blank: false, 
-                        wrapper_html: { class: f.object.client_id.blank? ? 'hidden' : '' },
-                        input_html: { data: { live_search: true }, multiple: true },
-                        label: t('.selected_cc_recipients')
-      #delivery_rule.row.mbl
-        .col-md-4
-          = f.input :delivery_rule, 
-                    collection: Communication.delivery_rules,
-                    value_method: :first,
-                    label_method: proc { |rule| t(".delivery_rules.#{rule.first}") },
-                    include_blank: false
-        - if f.object.delivery_on_specific_datetime?
-          .col-md-4
-            = f.input :delivery_at_date, 
-                      input_html: { class: 'datepicker', value: f.object.delivery_at_date || Date.today }, 
-                      label: t('.delivery_at_date')
-          .col-md-4
-            = f.input :delivery_at_time, wrapper: :vertical_input_group
-              = f.input_field :delivery_at_time, class: "form-control timepicker"
-              span.input-group-addon
-                | UTC         
-        - if f.object.delivery_if_not_started? || f.object.delivery_if_not_finished?
-          .col-md-4
-            = f.input :delivery_interval_number,
-                      as: :integer
-          .col-md-4
-            = f.input :delivery_interval_period,
-                      as: :select,
-                      collection: [['Hours', 'hours'], ['Days', 'days'], ['Months', 'months']]      
+          collection: @communication_facade.memberships,
+          label_method: proc { |u| u.decorate.display_name },
+          include_blank: false,
+          input_html: { data: { live_search: true,
+            behavior: @communication_facade.memberships_behavior },
+            multiple: true }, label: t('.selected_recipients')
       h3 Message                  
       = f.input :subject
       = f.input :body, input_html: { class: 'summernote_email' }
@@ -67,5 +61,5 @@
 
   .modal-footer
     .btn-group
-      = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      = f.button :submit, @communication_facade.communication.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
       a.btn.btn-default data-dismiss='modal' = t 'administration.close'

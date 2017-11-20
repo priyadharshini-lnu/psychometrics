@@ -18,15 +18,16 @@ module Administration
 
     def new
       @_resource = resource_class.new
+      @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
     end
 
     def create
       @_resource = resource_class.new(resource_params)
-      resource.owner_id = current_user.project_admin_clients.take.tte_id if current_user.is?(:project_admin)
-      resource.owner_id = current_user.client_admin_client_ids.first if current_user.is?(:client_admin)
+      @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
 
       respond_to do |format|
-        if resource.save
+        if @communication_facade.form.validate(resource_params)
+          @communication_facade.form.save
           format.js
         else
           format.js { render :new }
@@ -73,6 +74,7 @@ module Administration
 
     def new_form
       @_resource = resource_class.preload(:assessment, :client).new(resource_params)
+      @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
       respond_to do |format|
         format.js { render :new }
       end
@@ -102,6 +104,8 @@ module Administration
         :client_id, :recipients, :owner_id,
         :delivery_rule, :delivery_at_date, :delivery_at_time,
         :delivery_interval_number, :delivery_interval_period,
+        :project_id, :campaign_id, :sub_campaign_id,
+        :kind,
         membership_ids: [], copy_membership_ids: []
       )
     end

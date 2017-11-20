@@ -124,6 +124,8 @@ gem 'bootstrap-slider-rails'
 gem 'money-rails', '~> 1.7.0'
 gem 'validates_timeliness', '~> 4.0.2'
 gem 'virtus', '~> 1.0.5'
+gem 'reform-rails', '~> 0.1.7'
+gem 'dry-types', '~> 0.12.2'
 
 # SOAP client
 gem 'savon', '~> 2.11.0'

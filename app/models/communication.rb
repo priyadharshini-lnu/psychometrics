@@ -25,26 +25,13 @@ class Communication < ApplicationRecord
   belongs_to :assessment
   belongs_to :client
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
+  belongs_to :project, class_name: 'Client', foreign_key: :project_id
+  belongs_to :campaign, class_name: 'Client', foreign_key: :campaign_id
+  belongs_to :sub_campaign, class_name: 'Client', foreign_key: :sub_campaign_id
+  belongs_to :end_level, class_name: 'Client', foreign_key: :end_level_id
 
   enum recipients: [:all, :selected], _suffix: true
-  enum delivery_rule: [:on_specific_datetime, :after_complete, :if_not_started, :if_not_finished], _prefix: :delivery
-
-  validates :delivery_at_date,
-            :delivery_at_time,
-            presence: true, if: :delivery_on_specific_datetime?
-  validates :delivery_interval_number,
-            :delivery_interval_period,
-            presence: true, if: proc { delivery_if_not_started? || delivery_if_not_finished? }
-  validates :subject, :assessment, :client, presence: true
-  validates :owner, presence: true, allow_nil: true
-
-  # CALLBACKS
-  after_validation :set_delivery_at, if: :delivery_on_specific_datetime?
-  after_initialize :parse_delivery_at, if: :delivery_on_specific_datetime?
-  after_validation :set_delivery_interval, if: proc { delivery_if_not_started? || delivery_if_not_finished? }
-  after_initialize :parse_delivery_interval, if: proc { delivery_if_not_started? || delivery_if_not_finished? }
-  # after_initialize :ensure_integrity
-  before_save :ensure_integrity
+  enum kind: { invitation: 0, reminder: 1, completion: 2, other: 3 }
 
   # SCOPES
   scope :enabled, -> { where(disabled: false) }
@@ -88,5 +75,13 @@ class Communication < ApplicationRecord
   # Copy Communication
   def clone
     deep_clone include: [:memberships, :copy_memberships]
+  end
+
+  def end_level_id
+    sub_campaign_id || campaign_id || project_id || client_id
+  end
+
+  def end_level
+    sub_campaign || campaign || project || client
   end
 end

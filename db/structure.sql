@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.4
--- Dumped by pg_dump version 9.6.4
+-- Dumped from database version 9.6.5
+-- Dumped by pg_dump version 9.6.5
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -402,7 +402,12 @@ CREATE TABLE communications (
     delivery_interval character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    owner_id integer
+    owner_id integer,
+    project_id integer,
+    campaign_id integer,
+    sub_campaign_id integer,
+    end_level_id integer,
+    kind integer
 );
 
 
@@ -2252,10 +2257,38 @@ CREATE INDEX index_communications_on_assessment_id ON communications USING btree
 
 
 --
+-- Name: index_communications_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_campaign_id ON communications USING btree (campaign_id);
+
+
+--
 -- Name: index_communications_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_communications_on_client_id ON communications USING btree (client_id);
+
+
+--
+-- Name: index_communications_on_end_level_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_end_level_id ON communications USING btree (end_level_id);
+
+
+--
+-- Name: index_communications_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_project_id ON communications USING btree (project_id);
+
+
+--
+-- Name: index_communications_on_sub_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_sub_campaign_id ON communications USING btree (sub_campaign_id);
 
 
 --
@@ -2644,6 +2677,14 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 
 
 --
+-- Name: communications fk_rails_03e5799fcb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications
+    ADD CONSTRAINT fk_rails_03e5799fcb FOREIGN KEY (end_level_id) REFERENCES clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: assigns fk_rails_05e55ff955; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2716,6 +2757,14 @@ ALTER TABLE ONLY libraries
 
 
 --
+-- Name: communications fk_rails_41c5e93ac9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications
+    ADD CONSTRAINT fk_rails_41c5e93ac9 FOREIGN KEY (project_id) REFERENCES clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: users fk_rails_45307c95a3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2772,6 +2821,14 @@ ALTER TABLE ONLY tasks
 
 
 --
+-- Name: communications fk_rails_904f7c8764; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications
+    ADD CONSTRAINT fk_rails_904f7c8764 FOREIGN KEY (sub_campaign_id) REFERENCES clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: norms fk_rails_922fac4f2e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2785,6 +2842,14 @@ ALTER TABLE ONLY norms
 
 ALTER TABLE ONLY assigns_reports
     ADD CONSTRAINT fk_rails_9418a5a870 FOREIGN KEY (assign_id) REFERENCES assigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: communications fk_rails_9635882d64; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications
+    ADD CONSTRAINT fk_rails_9635882d64 FOREIGN KEY (campaign_id) REFERENCES clients(id) ON DELETE CASCADE;
 
 
 --
@@ -3092,6 +3157,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170704060854'),
 ('20170706095454'),
 ('20170708231022'),
-('20170725101235');
+('20170725101235'),
+('20171115115341'),
+('20171115115658'),
+('20171115115739'),
+('20171117095652'),
+('20171117122756');
 
 

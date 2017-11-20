@@ -1,6 +1,18 @@
 $(function () {
-  $(document).on('change', '#resource_assessment_id, #resource_client_id, #resource_recipients, #resource_delivery_rule', function () {
+  $(document).on('change', '[data-behavior~=communication-changeable]', function () {
     var self = this;
+    var dataBehavior = $(self).data('behavior');
+    if (isCollectionContain(dataBehavior, 'client_id')) {
+      $('[data-behavior~=client-resettable]').val(null)
+    } else if (isCollectionContain(dataBehavior, 'project_id')) {
+      $('[data-behavior~=project-resettable]').val(null)
+    } else if (isCollectionContain(dataBehavior, 'campaign_id') &&
+      !isCollectionContain(dataBehavior, 'sub_campaign_id')) {
+      $('[data-behavior~=campaign-resettable]').val(null)
+    } else if (isCollectionContain(dataBehavior, 'sub_campaign_id')) {
+      $('[data-behavior~=sub_campaign-resettable]').val(null)
+    }
+
     // Sync WYSIWYG with form
     //$('#resource_body').val($('#resource_body').summernote('code'));
     var form = $('[data-behavior=communications-form]');
@@ -16,4 +28,8 @@ $(function () {
       });
     }
   });
+
+  function isCollectionContain(collection, element) {
+    return collection.indexOf(element) !== -1
+  }
 });
