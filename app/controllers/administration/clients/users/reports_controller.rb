@@ -42,7 +42,7 @@ module Administration
         def init_breadcrumbs
           client_root_breadcrumb
           add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
-          add_breadcrumb user.decorate.display_name, '#'
+          add_breadcrumb user.decorate.display_name, administration_client_user_assigns_path(client_id: client.id, user_id: user_membership_for_current_client.id || membership.id)
           add_breadcrumb I18n.t('administration.breadcrumbs.reports'), [:administration, client, :user, :assigns, { user_id: membership.id }]
         end
 
@@ -63,6 +63,10 @@ module Administration
           @_client = policy_scope(Client).find(params[:client_id])
           @_user = policy_scope(User).find(params[:user_id])
           @_membership = user.memberships.join_user.find_by(client_id: client.project.id)
+        end
+
+        def user_membership_for_current_client
+          Membership.find_by(client_id: client.id, user_id: user.id)
         end
       end
     end

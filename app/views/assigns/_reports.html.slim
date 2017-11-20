@@ -1,4 +1,4 @@
-- reports = filter_reports_by_type(@reports.try(:[], assign.assessment_id) || [], assign.norm_type)
+- reports = only_assigned_reports(assign, @reports)
 - if reports.size == 1
   - report = reports.first
   //// MINDMILL OR COMMON REPORT
@@ -16,7 +16,7 @@
 - elsif reports.size > 1
   = dropdown t('.results'), context: :info, button: { class: "#{'disabled' unless assign.completed?}" }
     - reports.each do |report|
-      = content_tag :li, class: "#{'disabled' unless policy(report).show?}"
+      = content_tag :li
         // Don't use link_to helper
         // Because bh gem overwrites this helper for dropdown
         - if policy(report).show?

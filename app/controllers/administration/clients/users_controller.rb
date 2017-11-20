@@ -18,7 +18,7 @@ module Administration
         @_resources = filter_form.result.page(params[:page])
 
         respond_to do |format|
-          format.html
+          format.html { render :index }
           format.js { render :index, formats: [:js] }
         end
         add_breadcrumb t('.breadcrumb')

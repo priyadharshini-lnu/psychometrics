@@ -86,9 +86,13 @@ class ClientDecorator < BaseDecorator
     client_project_admins_memberships.map {|membership| membership.user.decorate.display_name}
   end
 
-  def client_admins
+  def client_admins(user)
     object.client_admin_memberships.map do |membership|
-      h.link_to membership.user.decorate.display_name, h.edit_administration_client_client_admin_path(membership.client_id, membership), class: 'text-nowrap'
+      if object.projects_admins.exists?(user)
+        membership.user.decorate.display_name
+      else
+        h.link_to membership.user.decorate.display_name, h.edit_administration_client_client_admin_path(membership.client_id, membership), class: 'text-nowrap'
+      end
     end.join('<br>').html_safe
   end
 
