@@ -26,6 +26,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-summernote', '0.8.6'
   gem 'rails-assets-js-cookie', '2.1.3'
   gem 'rails-assets-jquery-serialize-object', '2.5.0'
+  gem 'rails-assets-ladda', '1.0.5'
+  gem 'rails-assets-jquery.fileDownload', '1.4.2'
 end
 
 ### Authentication and authorization
