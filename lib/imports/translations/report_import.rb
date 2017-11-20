@@ -24,7 +24,7 @@ module Imports
 
         report = Report.find report_id
         extract = imported_items.map(&:locale) & Translation.available_translation_for_report(report_id, report.assessment_id)
-        Translation.for_report(report_id).where.not(locale: extract).destroy_all
+        Translation.for_report(report_id).where(locale: extract).destroy_all
 
         if imported_items.map(&:valid?).all?
           imported_items.each(&:save!)
