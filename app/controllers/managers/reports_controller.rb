@@ -21,6 +21,7 @@ module Managers
           render('_show', layout: 'pdf') if params[:export]
         end
         format.pdf do
+          add_cookie_for_file_download
           pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @user, @current_project, request.protocol.split(':').first, lang: user_locale)
           send_file pdf_file, type: 'application/pdf'
         end
@@ -50,6 +51,10 @@ module Managers
     # Authorisation user
     def pundit_authorize
       authorize @resource || @resource_class
+    end
+
+    def add_cookie_for_file_download
+      cookies[:fileDownload] = true
     end
   end
 end
