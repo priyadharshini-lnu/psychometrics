@@ -22,8 +22,8 @@ module Forms
       validates :owner_id, :owner, presence: true, allow_nil: true
 
       validates :project, presence: true, if: proc { project_id.present? }
-      validates :campaign, presence: true, if: proc { project_id.present? }
-      validates :sub_campaign, presence: true, if: proc { project_id.present? }
+      validates :campaign, presence: true, if: proc { campaign_id.present? }
+      validates :sub_campaign, presence: true, if: proc { sub_campaign_id.present? }
 
       def owner
         Client.find_by(id: owner_id) if owner_id.present?
