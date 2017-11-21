@@ -5,5 +5,8 @@
         i.fa.fa-eye
         span.contentTitle = t('.header')
       = render partial: 'lang', locals: {locales: @available_translations}
-      = link_to t('.export_pdf'), { action: :show, export: true, format: :pdf, lang: params[:lang] || I18n.locale }, class: 'btn btn-default mrl pull-right'
+      = link_to({ action: :show, format: :pdf, lang: lang_param, export: true },
+        class: 'mrl pull-right', data: { behavior: 'export-pdf' })
+        button class="btn btn-default ladda-button" type="button" data-style="zoom-out" data-spinner-color="#000000"
+          = t('.export_pdf')
       .clearfix

@@ -31,6 +31,7 @@ module Administration
               render('_preview', layout: 'pdf') if params[:export]
             end
             format.pdf do
+              add_cookie_for_file_download
               pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, resource, user, client, request.protocol.split(':').first, lang: user_locale)
               send_file pdf_file, type: 'application/pdf'
             end
@@ -67,6 +68,10 @@ module Administration
 
         def user_membership_for_current_client
           Membership.find_by(client_id: client.id, user_id: user.id)
+        end
+
+        def add_cookie_for_file_download
+          cookies[:fileDownload] = true
         end
       end
     end

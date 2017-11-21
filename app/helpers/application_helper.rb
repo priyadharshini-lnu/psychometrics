@@ -6,4 +6,8 @@ module ApplicationHelper
       "background: #{@current_project.background_color};"
     end
   end
+
+  def lang_param
+    params[:lang] || I18n.locale
+  end
 end

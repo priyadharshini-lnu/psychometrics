@@ -26,6 +26,8 @@
 //= require administration/actions
 //= require filterrific/filterrific-jquery
 //= require administration/overrides/filterrific
+//= require file_downloader
+
 ///// Translations
 //= require i18n
 //= require i18n/translations

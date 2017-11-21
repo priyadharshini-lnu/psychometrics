@@ -58,4 +58,6 @@
 ///// Use mustache for js template
 //= require mustache.js.js
 
+//= require file_downloader
+
 //= require_tree ./administration
