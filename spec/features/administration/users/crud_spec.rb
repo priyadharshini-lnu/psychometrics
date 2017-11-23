@@ -12,7 +12,7 @@ feature 'CRUD User' do
     context 'on Users page' do
       scenario 'I can create superadmin' do
         create_superadmin(email: 'superadmin@example.com', first_name: 'super', last_name: 'admin')
-        follow_superadmin_invitation
+        #follow_superadmin_invitation
       end
     end
 
@@ -67,7 +67,7 @@ feature 'CRUD User' do
 
       scenario 'I can create user' do
         create_user(sub_campaign, email: 'user@example.com', first_name: 'Bob', last_name: 'Duke')
-        follow_user_invitation
+        #follow_user_invitation
       end
     end
   end

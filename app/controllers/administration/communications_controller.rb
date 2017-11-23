@@ -102,10 +102,10 @@ module Administration
       params.fetch(:resource, {}).permit(
         :subject, :body, :assessment_id,
         :client_id, :recipients, :owner_id,
-        :delivery_rule, :delivery_at_date, :delivery_at_time,
+        :delivery_rule,
         :delivery_interval_number, :delivery_interval_period,
         :project_id, :campaign_id, :sub_campaign_id,
-        :kind,
+        :kind, :delivery_at, :delivery_at_time, :delivery_at_date,
         membership_ids: [], copy_membership_ids: []
       )
     end

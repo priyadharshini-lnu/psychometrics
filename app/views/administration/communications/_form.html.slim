@@ -4,7 +4,6 @@
   data: { behavior: 'communications-form', form_url: @communication_facade.communication.decorate.form_url }) do |f|
   .modal-body
     = f.error_notification
-
     .form-inputs.clearfix
       h3 Settings
       - if current_user.is?(:superadmin)
@@ -35,7 +34,7 @@
           collection: Communication.kinds,
           value_method: :first,
           label_method: proc { |rec| t(".#{rec.first}") },
-          input_html: { data: { live_search: true } },
+          input_html: { data: { live_search: true, behavior: 'communication-changeable' } },
           label: t('.kind')
       - if @communication_facade.show_recipients?
         = f.input :recipients,
@@ -54,7 +53,25 @@
           input_html: { data: { live_search: true,
             behavior: @communication_facade.memberships_behavior },
             multiple: true }, label: t('.selected_recipients')
-      h3 Message                  
+      - if @communication_facade.show_delivery_rules?
+        = f.input :delivery_rule,
+          as: :select,
+          collection: @communication_facade.delivery_rules,
+          value_method: :last,
+          label_method: proc {|rec| t("administration.communications.form.delivery_rules.#{rec.first}")},
+          input_html: { data: { live_search: true, behavior: 'communication-changeable' } }
+        - if @communication_facade.show_inputs_for_date_and_time?
+          = f.input :delivery_at_date,
+            label: false,
+            as: :string,
+            include_blank: false,
+            input_html: { class: 'datepicker form-control' }
+          = f.input :delivery_at_time,
+            as: :string,
+            include_blank: false,
+            label: false,
+            input_html: { class: 'timepicker form-control' }
+      h3 Message
       = f.input :subject
       = f.input :body, input_html: { class: 'summernote_email' }
       = simple_format(t('.body_mustache'))

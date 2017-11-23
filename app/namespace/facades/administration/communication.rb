@@ -1,7 +1,9 @@
 module Facades
   module Administration
     class Communication
-      attr_reader :owners, :projects, :campaigns, :sub_campaigns, :communication, :memberships, :form
+      attr_reader :owners, :projects, :campaigns, :sub_campaigns, :communication, :memberships, :form, :delivery_rules
+
+      include EmailDelivery
 
       def initialize(current_user, communication)
         @form = ::Forms::Communications::Simple.new(communication)
@@ -11,6 +13,7 @@ module Facades
         @projects = fetch_projects(current_user)
         @campaigns = fetch_campaigns(current_user)
         @sub_campaigns = fetch_sub_campaigns(current_user)
+        @delivery_rules = fetch_delivery_rules
         @memberships = fetch_memberships
       end
 
@@ -38,6 +41,10 @@ module Facades
         form.end_level_id.present?
       end
 
+      def show_delivery_rules?
+        form.kind.present?
+      end
+
       def owner_behavior
         'communication-changeable owner_id'
       end
@@ -63,6 +70,9 @@ module Facades
         'owner-resettable client-resettable project-resettable campaign-resettable sub_campaign-resettable'
       end
 
+      def show_inputs_for_date_and_time?
+        form.kind == 'invitation' && EmailDelivery::SHOW_INPUTS_FOR_DATE_AND_TIME[kind_type_symbol].include?(form.delivery_rule)
+      end
       private
 
       def fetch_owners(user)
@@ -92,6 +102,14 @@ module Facades
         return Membership.none if form.end_level.blank? || !form.model.selected_recipients?
         Membership.member.
           where(client_id: [*form.model.end_level.descendant_ids, form.end_level.id]).join_user
+      end
+
+      def fetch_delivery_rules
+        EmailDelivery::RULES[kind_type_symbol] || { }
+      end
+
+      def kind_type_symbol
+        form.kind&.to_sym
       end
     end
   end

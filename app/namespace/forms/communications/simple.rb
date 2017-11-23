@@ -7,7 +7,7 @@ module Forms
       model :communication
 
       properties :subject, :body, :recipients, :owner, :client, :project, :campaign, :sub_campaign, :end_level,
-                 :membership_ids, :kind
+                 :membership_ids, :kind, :delivery_rule, :delivery_at_time, :delivery_at_date, :delivery_at
 
       property :owner_id, type: Types::Form::Int
       property :client_id, type: Types::Form::Int
@@ -58,6 +58,18 @@ module Forms
         self.owner_id = client_id if user.is?(:client_admin) || user.is?(:project_admin)
         self.client_id = owner_id if user.is?(:superadmin) && owner_id.present?
         self.end_level_id = sub_campaign_id || campaign_id || project_id || client_id
+        self.delivery_at = build_datetime if can_build_timedate?
+      end
+
+      private
+
+      def build_datetime
+        date = Date.parse(delivery_at_date)
+        date.to_datetime + Time.parse(delivery_at_time).seconds_since_midnight.seconds
+      end
+      
+      def can_build_timedate?
+        delivery_at_date.present? && delivery_at_time.present?
       end
     end
   end
