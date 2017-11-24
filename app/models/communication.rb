@@ -36,6 +36,8 @@ class Communication < ApplicationRecord
   # SCOPES
   scope :enabled, -> { where(disabled: false) }
 
+  after_commit :change_user_link_to_link_for_mustache, on: :create
+
   def selected_memberships
     all_recipients? ? client.memberships.join_user : memberships.join_user
   end
@@ -83,5 +85,11 @@ class Communication < ApplicationRecord
 
   def end_level
     sub_campaign || campaign || project || client
+  end
+
+  private
+
+  def change_user_link_to_link_for_mustache
+    update_column(:body, body.gsub('{{user_link}}', '{{{user_link}}}'))
   end
 end
