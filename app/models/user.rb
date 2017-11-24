@@ -112,7 +112,6 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :memberships
 
   scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
-
   before_save :ensure_authentication_token
   validates :email, uniqueness: true
   validates :role, inclusion: { in: ::User::USER_ROLES.values }, presence: true, allow_nil: true
@@ -168,6 +167,7 @@ class User < ApplicationRecord
   #   Then we just send him mail with link to new Client
   # Else we send him mail with link to set password
   def invite!(invited_by = nil, invited_to_id = nil, options = {})
+    return unless user_member_role_exists?(invited_to_id)
     if accepted_or_not_invited? && !sign_in_count.zero? && !is?(:superadmin)
       return InvitationMailer.link_to_client(id, invited_to_id).deliver_later
     end
@@ -197,6 +197,10 @@ class User < ApplicationRecord
       token = Devise.friendly_token
       break token unless User.exists?(authentication_token: token)
     end
+  end
+
+  def user_member_role_exists?(client_id)
+    memberships.where.not(role: :member).where(client_id: client_id).exists?
   end
 
   def validate_grants
