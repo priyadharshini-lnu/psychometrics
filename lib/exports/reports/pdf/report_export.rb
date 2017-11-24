@@ -32,19 +32,14 @@ module Exports
                                                          }))
                 end
 
-          args = {
-            url: url,
-            output: output,
-            pageWidth: 850,
-            pageHeight: 1100,
-            auth: 'staging:sumatosoft'
-          }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
-
           Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
 
-          Rails.logger.info "phantomjs #{Rails.root.join('lib/raster.js')} #{args}"
+          Rails.logger.info("google-chrome --headless --disable-gpu --print-to-pdf='#{output}' '#{url}'")
 
-          system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
+
+          url = URI(url).tap { |uri| uri.userinfo = 'staging:sumatosoft' }.to_s
+
+          system("#{Rails.application.secrets[:chrome_path]} --headless --disable-gpu --print-to-pdf='#{output}' '#{url}'")
 
           # output
           output
