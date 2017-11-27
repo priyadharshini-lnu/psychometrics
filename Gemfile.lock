@@ -391,6 +391,7 @@ GEM
       rack
     rack-test (0.6.3)
       rack (>= 1.0)
+    rack-timeout (0.4.2)
     rails (5.0.3)
       actioncable (= 5.0.3)
       actionmailer (= 5.0.3)
@@ -674,6 +675,7 @@ DEPENDENCIES
   psychometrics-survey!
   puma (~> 3.8)
   pundit (~> 1.1.0)
+  rack-timeout (~> 0.4.2)
   rails (~> 5.0.0)
   rails-assets-bootstrap-add-clear (= 1.0.6)!
   rails-assets-bootstrap-colorpicker (= 2.3.6)!
