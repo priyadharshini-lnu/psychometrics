@@ -12,6 +12,10 @@ $(function () {
       successCallback: function(url) {
         Ladda.stopAll();
       },
+      failCallback: function (html, url) {
+        noty({text: I18n.t('administration.noty.error_408'), layout: 'topCenter', type: 'error'});
+        Ladda.stopAll();
+      }
     });
     return false;
   });
