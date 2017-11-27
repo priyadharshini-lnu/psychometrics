@@ -75,6 +75,7 @@
             include_blank: false,
             label: false,
             input_html: { class: 'timepicker form-control' }
+          label.control-label.delivery_rule_gst GST time
       - if @communication_facade.show_delivery_intervals?
         .form-group
           = f.collection_radio_buttons :reminder_type, @communication_facade.reminder_types, :last, :first, {},

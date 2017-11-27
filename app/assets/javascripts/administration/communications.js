@@ -1,4 +1,8 @@
 $(function () {
+  $(document).on('switchChange.bootstrapSwitch', '[data-behavior~=communication-changeable]', function() {
+    updateForm(this);
+  });
+
   $(document).on('change', '[data-behavior~=communication-changeable]', function () {
     updateForm(this);
   });
@@ -35,4 +39,8 @@ $(function () {
       });
     }
   }
+
+  $(document).ready(function(){
+    $("[data-behavior~=bootstrap-switchable]").bootstrapSwitch();
+  });
 });

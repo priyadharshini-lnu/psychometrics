@@ -1,0 +1,11 @@
+<%= render template: 'administration/base/new' %>
+
+$(function () {
+  function truncateDate() {
+    var newDate = new Date();
+    return new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate());
+  };
+
+  $("[data-behavior~=bootstrap-switchable]").bootstrapSwitch();
+  $('#resource_delivery_at_date').datepicker('setStartDate', truncateDate());
+});

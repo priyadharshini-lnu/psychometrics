@@ -56,7 +56,7 @@ class Assign < ApplicationRecord
   delegate :project_membership, to: :membership
 
   def set_started_at
-    self.started_at = DateTime.now
+    self.started_at = DateTime.current
     self.step = 0
   end
 

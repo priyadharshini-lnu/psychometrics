@@ -40,10 +40,12 @@ en:
         selected_recipients: 'Selected Recipients'
         selected_cc_recipients: 'Selected CC Recipients'
         body_mustache: >
+          {{user_link}} - Link to the Platform for existing Users or a one time only link to set a password for new users
+
           {{first_name}} - Recipient First Name
 
           {{last_name}} - Recipient Last Name
-          
+
           {{email}} - Recipient Email
       resource:
         tooltips:

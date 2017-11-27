@@ -16,7 +16,7 @@ module Communications
     private
 
     def scheduled_next_job(communication)
-      communication.reminder_job.set(wait: communication.delivery_interval_duration).perform_later(communication.id)
+      communication.send_email_job.set(wait: communication.delivery_interval_duration).perform_later(communication.id)
     end
 
     def fetch_memberships(communication)

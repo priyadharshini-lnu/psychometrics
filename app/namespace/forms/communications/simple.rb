@@ -19,8 +19,7 @@ module Forms
       property :end_level_id, type: Types::Form::Int
       property :reminder_type, default: 'custom'
 
-      validates :subject, :body, :client_id, :end_level_id, :recipients, :end_level, :kind, :client,
-                presence: true
+      validates :subject, :body, :client_id, :end_level_id, :recipients, :end_level, :kind, :client, presence: true
 
       validates :owner_id, :owner, presence: true, allow_nil: true
 
@@ -33,6 +32,10 @@ module Forms
       validates :delivery_interval_number,
                 :delivery_interval_period,
                 presence: true, if: :custom_reminder?
+
+      validates :delivery_at_time,
+                presence: true,
+                if: :specified_date_and_time_invitation?
 
       validates :delivery_interval_number,
                 numericality: { only_integer: true, greater_than_or_equal_to: 1 },
@@ -47,6 +50,19 @@ module Forms
                 presence: true,
                 inclusion: { in: ::Facades::Administration::EmailDelivery::RULES[:reminder] },
                 if: :reminder?
+
+      validates :delivery_rule,
+                presence: true,
+                inclusion: { in: ::Facades::Administration::EmailDelivery::RULES[:invitation] },
+                if: :invitation? || :other?
+
+      validates :delivery_at_date,
+                presence: true,
+                if: :specified_date_and_time_invitation?
+
+      validates :delivery_at_time,
+                presence: true,
+                if: :specified_date_and_time_invitation? 
 
       def owner
         Client.find_by(id: owner_id)
@@ -76,6 +92,7 @@ module Forms
         sub_campaign_id || campaign_id || project_id || client_id
       end
 
+
       def end_level
         sub_campaign || campaign || project || client
       end
@@ -91,8 +108,9 @@ module Forms
       private
 
       def build_datetime
-        date = Date.parse(delivery_at_date)
-        date.to_datetime + Time.parse(delivery_at_time).seconds_since_midnight.seconds
+        date = Time.zone.parse(delivery_at_date)
+        date.to_datetime + Time.zone.parse(delivery_at_time).seconds_since_midnight.seconds
+
       end
 
       def can_build_timedate?
@@ -101,6 +119,18 @@ module Forms
 
       def reminder?
         kind == 'reminder'
+      end
+
+      def invitation?
+        kind == 'invitation'
+      end
+
+      def other?
+        kind == 'other'
+      end
+
+      def specified_date_and_time_invitation?
+        invitation? && delivery_rule == 'specific_datetime'
       end
 
       def custom_reminder?
