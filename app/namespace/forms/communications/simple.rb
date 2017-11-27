@@ -7,7 +7,8 @@ module Forms
       model :communication
 
       properties :subject, :body, :recipients, :owner, :client, :project, :campaign, :sub_campaign, :end_level,
-                 :membership_ids, :kind, :delivery_rule, :delivery_at_time, :delivery_at_date, :delivery_at
+                 :membership_ids, :kind, :delivery_rule, :delivery_at_time, :delivery_at_date, :delivery_at,
+                 :assessment
 
       property :owner_id, type: Types::Form::Int
       property :client_id, type: Types::Form::Int

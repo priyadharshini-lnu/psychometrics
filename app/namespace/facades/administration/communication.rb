@@ -44,6 +44,10 @@ module Facades
       def show_delivery_rules?
         form.kind.present?
       end
+      
+      def show_assessments?
+        show_kind? && form.kind == 'completion'
+      end
 
       def owner_behavior
         'communication-changeable owner_id'
