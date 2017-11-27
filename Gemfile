@@ -132,6 +132,8 @@ gem 'dry-types', '~> 0.12.2'
 # SOAP client
 gem 'savon', '~> 2.11.0'
 
+gem 'rack-timeout', '~> 0.4.2'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
