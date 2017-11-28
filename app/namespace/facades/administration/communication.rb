@@ -44,9 +44,21 @@ module Facades
       def show_delivery_rules?
         form.kind.present?
       end
-      
+
       def show_assessments?
         show_kind? && form.kind == 'completion'
+      end
+
+      def show_delivery_intervals?
+        form.kind == 'reminder'
+      end
+
+      def show_custom_reminder?
+        form.reminder_type == 'custom'
+      end
+
+      def show_timeframes_reminder?
+        form.reminder_type == 'timeframes'
       end
 
       def owner_behavior
@@ -77,6 +89,11 @@ module Facades
       def show_inputs_for_date_and_time?
         form.kind == 'invitation' && form.delivery_rule == 'specific_datetime'
       end
+
+      def delivery_interval_periods
+        [['Hours', 'hours'], ['Days', 'days'], ['Weeks', 'weeks'], ['Months', 'months']]
+      end
+
       private
 
       def fetch_owners(user)

@@ -8,7 +8,7 @@ module Forms
 
       properties :subject, :body, :recipients, :owner, :client, :project, :campaign, :sub_campaign, :end_level,
                  :membership_ids, :kind, :delivery_rule, :delivery_at_time, :delivery_at_date, :delivery_at,
-                 :assessment
+                 :assessment, :delivery_interval, :delivery_interval_number, :delivery_interval_period
 
       property :assessment_id
       property :owner_id, type: Types::Form::Int
@@ -17,6 +17,7 @@ module Forms
       property :campaign_id, type: Types::Form::Int
       property :sub_campaign_id, type: Types::Form::Int
       property :end_level_id, type: Types::Form::Int
+      property :reminder_type, default: 'custom'
 
       validates :subject, :body, :client_id, :end_level_id, :recipients, :end_level, :kind, :client,
                 presence: true
@@ -26,6 +27,23 @@ module Forms
       validates :project, presence: true, if: proc { project_id.present? }
       validates :campaign, presence: true, if: proc { campaign_id.present? }
       validates :sub_campaign, presence: true, if: proc { sub_campaign_id.present? }
+      validates :delivery_interval_number,
+                :delivery_interval_period,
+                presence: true, if: :custom_reminder?
+
+      validates :delivery_interval_number,
+                numericality: { only_integer: true, greater_than_or_equal_to: 1 },
+                if: :custom_reminder?
+
+      validates :delivery_interval,
+                presence: true,
+                inclusion: { in: ::Helpers::Communications.reminder_timeframes },
+                if: :timeframes_reminder?
+
+      validates :delivery_rule,
+                presence: true,
+                inclusion: { in: ::Facades::Administration::EmailDelivery::RULES[:reminder] },
+                if: :reminder?
 
       def owner
         Client.find_by(id: owner_id) if owner_id.present?
@@ -69,9 +87,21 @@ module Forms
         date = Date.parse(delivery_at_date)
         date.to_datetime + Time.parse(delivery_at_time).seconds_since_midnight.seconds
       end
-      
+
       def can_build_timedate?
         delivery_at_date.present? && delivery_at_time.present?
+      end
+
+      def reminder?
+        kind == 'reminder'
+      end
+
+      def custom_reminder?
+        reminder? && reminder_type == 'custom'
+      end
+
+      def timeframes_reminder?
+        reminder? && reminder_type == 'timeframes'
       end
     end
   end
