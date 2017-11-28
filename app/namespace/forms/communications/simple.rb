@@ -10,6 +10,7 @@ module Forms
                  :membership_ids, :kind, :delivery_rule, :delivery_at_time, :delivery_at_date, :delivery_at,
                  :assessment
 
+      property :assessment_id
       property :owner_id, type: Types::Form::Int
       property :client_id, type: Types::Form::Int
       property :project_id, type: Types::Form::Int
