@@ -62,8 +62,7 @@
         = f.input :delivery_rule,
           as: :select,
           collection: @communication_facade.delivery_rules,
-          value_method: :last,
-          label_method: proc {|rec| t("administration.communications.form.delivery_rules.#{rec.first}")},
+          label_method: proc { |rec| t("administration.communications.form.delivery_rules.#{rec}") },
           input_html: { data: { live_search: true, behavior: 'communication-changeable' } }
         - if @communication_facade.show_inputs_for_date_and_time?
           = f.input :delivery_at_date,

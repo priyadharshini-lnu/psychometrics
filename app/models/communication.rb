@@ -32,6 +32,7 @@ class Communication < ApplicationRecord
 
   enum recipients: [:all, :selected], _suffix: true
   enum kind: { invitation: 0, reminder: 1, completion: 2, other: 3 }
+  enum delivery_rule: { send_now: 0, specific_datetime: 1, not_started: 2, not_competed: 3, in_progress: 4 }
 
   # SCOPES
   scope :enabled, -> { where(disabled: false) }

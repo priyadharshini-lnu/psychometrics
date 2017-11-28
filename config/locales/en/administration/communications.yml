@@ -31,10 +31,11 @@ en:
         view: 'View Communication'
       form:
         delivery_rules:
-          on_specific_datetime: 'Specific date and time'
-          after_complete: 'Right after completion'
-          if_not_started: 'If assessment is not started'
-          if_not_finished: 'If assessment was not finished'
+          send_now: 'Send now'
+          specific_datetime: 'Specific date and time'
+          not_started: 'If assessment is not started'
+          in_progress: 'If assessment is in progress'
+          not_competed: 'If assessment in not completed'
         kind: Communcation Types
         selected_recipients: 'Selected Recipients'
         selected_cc_recipients: 'Selected CC Recipients'
