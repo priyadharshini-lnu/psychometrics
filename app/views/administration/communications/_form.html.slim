@@ -34,8 +34,13 @@
           collection: Communication.kinds,
           value_method: :first,
           label_method: proc { |rec| t(".#{rec.first}") },
-          input_html: { data: { live_search: true, behavior: 'communication-changeable' } },
+          input_html: { data: { live_search: true,
+            behavior: 'communication-changeable' } },
           label: t('.kind')
+      - if @communication_facade.show_assessments?
+        = f.association :assessment,
+            collection: @communication_facade.communication.end_level&.assessments || [],
+            input_html: { data: { live_search: true } }
       - if @communication_facade.show_recipients?
         = f.input :recipients,
           as: :select,

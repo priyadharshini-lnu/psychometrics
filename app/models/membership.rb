@@ -41,6 +41,7 @@ class Membership < ApplicationRecord
   belongs_to :project_membership, foreign_key: :project_membership_id, class_name: 'Membership'
   accepts_nested_attributes_for :user
 
+  has_and_belongs_to_many :communications, join_table: :communications_memberships
   has_many :assigns, inverse_of: :membership # on delete cascade
   has_many :reports, through: :assigns
   has_many :assessments, through: :assigns

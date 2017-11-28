@@ -39,7 +39,12 @@ class Communication < ApplicationRecord
   after_commit :change_user_link_to_link_for_mustache, on: :create
 
   def selected_memberships
-    all_recipients? ? client.memberships.join_user : memberships.join_user
+    ids = if selected_recipients?
+            membership_ids
+          else
+            end_level.final_children_arr.map(&:membership_ids).flatten.presence || end_level.membership_ids
+          end
+    Membership.where(id: ids).join_user
   end
 
   # If Delivery Rule is specific date time then delivery_interval set to nil

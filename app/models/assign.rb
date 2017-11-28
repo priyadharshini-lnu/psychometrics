@@ -55,10 +55,6 @@ class Assign < ApplicationRecord
 
   delegate :project_membership, to: :membership
 
-  def completion_callback
-    ::Communications::AfterCompleteJob.perform_later(id)
-  end
-
   def set_started_at
     self.started_at = DateTime.now
     self.step = 0
@@ -153,6 +149,10 @@ class Assign < ApplicationRecord
   end
 
   private
+
+  def completion_callback
+    ::Communications::AfterCompleteJob.perform_later(self)
+  end
 
   def update_membership_completed
     return if project_membership.nil? || membership.destroyed?
