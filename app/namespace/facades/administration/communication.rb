@@ -75,7 +75,7 @@ module Facades
       end
 
       def show_inputs_for_date_and_time?
-        form.kind == 'invitation' && EmailDelivery::SHOW_INPUTS_FOR_DATE_AND_TIME[kind_type_symbol].include?(form.delivery_rule)
+        form.kind == 'invitation' && form.delivery_rule == 'specific_datetime'
       end
       private
 
@@ -109,7 +109,8 @@ module Facades
       end
 
       def fetch_delivery_rules
-        EmailDelivery::RULES[kind_type_symbol] || { }
+        return if form.kind.blank?
+        ::Communication.delivery_rules.keys.select { |key| EmailDelivery::RULES[kind_type_symbol]&.include?(key) }
       end
 
       def kind_type_symbol
