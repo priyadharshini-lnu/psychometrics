@@ -41,6 +41,7 @@ class Communication < ApplicationRecord
   scope :enabled, -> { where(disabled: false) }
 
   after_commit :change_user_link_to_link_for_mustache, on: :create
+  after_commit :send_email_now, on: :create
 
   def selected_memberships
     ids = if selected_recipients?
@@ -98,7 +99,20 @@ class Communication < ApplicationRecord
     sub_campaign || campaign || project || client
   end
 
+  def emails_creating
+    end_level.final_children_arr.each do |client|
+      client.memberships.member.find_each(batch_size: 10) do |membership|
+        emails.create(membership: membership)
+      end
+    end
+  end
+
   private
+
+  def send_email_now
+    return unless other? && send_now?
+    emails_creating
+  end
 
   def change_user_link_to_link_for_mustache
     update_column(:body, body.gsub('{{user_link}}', '{{{user_link}}}'))

@@ -87,7 +87,8 @@ module Facades
       end
 
       def show_inputs_for_date_and_time?
-        form.kind == 'invitation' && form.delivery_rule == 'specific_datetime'
+        return if %w[invitation other].exclude?(form.kind)
+        form.delivery_rule == 'specific_datetime'
       end
 
       def delivery_interval_periods

@@ -14,6 +14,9 @@ class CommunicationEmail < ApplicationRecord
   belongs_to :communication, inverse_of: :emails
 
   after_commit :delivery_email, on: :create
+
+  private
+
   def delivery_email
     CommunicationEmailMailer.create(id).deliver_later
   end

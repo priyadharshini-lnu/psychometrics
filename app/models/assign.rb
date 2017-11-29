@@ -151,7 +151,7 @@ class Assign < ApplicationRecord
   private
 
   def completion_callback
-    ::Communications::AfterCompleteJob.perform_later(self)
+    ::Communications::CompletionTypeJob.perform_later(self)
   end
 
   def update_membership_completed

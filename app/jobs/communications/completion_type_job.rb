@@ -1,5 +1,5 @@
 module Communications
-  class AfterCompleteJob < ApplicationJob
+  class CompletionTypeJob < ApplicationJob
     queue_as :communication
 
     def perform(assign)
