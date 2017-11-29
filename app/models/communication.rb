@@ -18,7 +18,8 @@
 #
 
 class Communication < ApplicationRecord
-  attr_accessor :delivery_at_date, :delivery_at_time, :delivery_interval_number, :delivery_interval_period
+  attr_accessor :delivery_at_date, :delivery_at_time, :delivery_interval_number, :delivery_interval_period,
+                :reminder_type
   has_and_belongs_to_many :memberships, join_table: :communications_memberships
   has_and_belongs_to_many :copy_memberships, join_table: :communications_copy_memberships, class_name: 'Membership'
   has_many :emails, dependent: :destroy, inverse_of: :communication, class_name: 'CommunicationEmail'
@@ -34,6 +35,8 @@ class Communication < ApplicationRecord
   enum kind: { invitation: 0, reminder: 1, completion: 2, other: 3 }
   enum delivery_rule: { send_now: 0, specific_datetime: 1, not_started: 2, not_competed: 3, in_progress: 4 }
 
+  after_validation :set_delivery_interval, if: :reminder?
+  after_initialize :parse_delivery_interval, if: :reminder?
   # SCOPES
   scope :enabled, -> { where(disabled: false) }
 
@@ -69,15 +72,17 @@ class Communication < ApplicationRecord
   # Parse self.delivery_at to date and time
   # Example: '2016-11-04 10:48:33' to 2016-11-04 and 10:48 AM
   def parse_delivery_at
-    self.delivery_at_date = delivery_at.strftime('%Y-%m-%d') if delivery_at
-    self.delivery_at_time = delivery_at.strftime('%l:%M %p') if delivery_at
+    return if delivery_at.blank?
+    self.delivery_at_date = delivery_at.strftime('%Y-%m-%d')
+    self.delivery_at_time = delivery_at.strftime('%l:%M %p')
   end
 
   # Parse self.delivery_interval to number and period
   # Example: '1 days' to 1 and 'days'
   def parse_delivery_interval
-    self.delivery_interval_number = delivery_interval.split(' ').first.to_i if delivery_interval
-    self.delivery_interval_period = delivery_interval.split(' ').last if delivery_interval
+    return if delivery_interval.blank?
+    self.delivery_interval_number = delivery_interval.split(' ').first.to_i
+    self.delivery_interval_period = delivery_interval.split(' ').last
   end
 
   # Copy Communication

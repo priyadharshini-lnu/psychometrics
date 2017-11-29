@@ -75,6 +75,22 @@
             include_blank: false,
             label: false,
             input_html: { class: 'timepicker form-control' }
+      - if @communication_facade.show_delivery_intervals?
+        .form-group
+          = f.input :reminder_type, as: :boolean, label: false, wrapper: :vertical_boolean_without_label,
+            checked_value: 'timeframes', unchecked_value: 'custom',
+            input_html: { data: { behavior: 'bootstrap-switchable communication-changeable', size: 'small',
+              on_text: 'Timeframes', off_text: 'Custom' } }
+        - if @communication_facade.show_timeframes_reminder?
+          = f.input :delivery_interval, collection: ::Helpers::Communications.reminder_timeframes
+        - if @communication_facade.show_custom_reminder?
+          .row.mbl
+            .col-md-4.pln
+              = f.input :delivery_interval_period,
+                as: :select,
+                collection: @communication_facade.delivery_interval_periods
+            .col-md-4
+              = f.input :delivery_interval_number, as: :integer
       h3 Message
       = f.input :subject
       = f.input :body, input_html: { class: 'summernote_email' }

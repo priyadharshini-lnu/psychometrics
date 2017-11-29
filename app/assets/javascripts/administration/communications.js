@@ -1,6 +1,17 @@
 $(function () {
+  $(document).on('switchChange.bootstrapSwitch', '[data-behavior~=communication-changeable]', function() {
+    updateForm(this);
+  });
+
   $(document).on('change', '[data-behavior~=communication-changeable]', function () {
-    var self = this;
+    updateForm(this);
+  });
+
+  function isCollectionContain(collection, element) {
+    return collection.indexOf(element) !== -1
+  }
+
+  function updateForm(self) {
     var dataBehavior = $(self).data('behavior');
     if (isCollectionContain(dataBehavior, 'client_id')) {
       $('[data-behavior~=client-resettable]').val(null)
@@ -27,9 +38,9 @@ $(function () {
         }
       });
     }
-  });
-
-  function isCollectionContain(collection, element) {
-    return collection.indexOf(element) !== -1
   }
+
+  $(document).ready(function(){
+    $("[data-behavior~=bootstrap-switchable]").bootstrapSwitch();
+  });
 });
