@@ -42,7 +42,7 @@ module Facades
       end
 
       def show_delivery_rules?
-        form.kind.present?
+        form.kind.present? && form.kind != 'completion'
       end
 
       def show_assessments?
