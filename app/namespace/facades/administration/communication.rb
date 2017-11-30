@@ -22,11 +22,11 @@ module Facades
       end
 
       def show_campaigns?
-        show_projects? && form.project_id.present?
+        show_projects? && form.project_id.present? && !form.project.end_level?
       end
 
       def show_sub_campaigns?
-        show_campaigns? && form.campaign_id.present?
+        show_campaigns? && form.campaign_id.present? && !form.campaign.end_level?
       end
 
       def show_recipients?
