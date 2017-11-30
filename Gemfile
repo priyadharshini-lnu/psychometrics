@@ -131,7 +131,7 @@ gem 'dry-types', '~> 0.12.2'
 
 # SOAP client
 gem 'savon', '~> 2.11.0'
-
+# Abort requests that are taking too long
 gem 'rack-timeout', '~> 0.4.2'
 
 # for service objects

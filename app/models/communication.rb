@@ -18,6 +18,12 @@
 #
 
 class Communication < ApplicationRecord
+  JOBS = {
+    not_started: ::Communications::NotStartedJob,
+    not_competed: ::Communications::NotCompletedJob,
+    in_progress: ::Communications::InProgressJob
+  }.freeze
+
   attr_accessor :delivery_at_date, :delivery_at_time, :delivery_interval_number, :delivery_interval_period,
                 :reminder_type
   has_and_belongs_to_many :memberships, join_table: :communications_memberships
@@ -37,19 +43,30 @@ class Communication < ApplicationRecord
 
   after_validation :set_delivery_interval, if: :reminder?
   after_initialize :parse_delivery_interval, if: :reminder?
-  # SCOPES
-  scope :enabled, -> { where(disabled: false) }
 
   after_commit :change_user_link_to_link_for_mustache, on: :create
   after_commit :send_email_now, on: :create
+  after_create_commit ::Callbacks::Models::Communications::CreateReminderJob.new
+
+  # SCOPES
+  scope :enabled, -> { where(disabled: false) }
+
+  def self.lower_communications(communication)
+    Communication.where(kind: communication.kind).where(delivery_rule: communication.delivery_rule)
+      .where(end_level_id: communication.end_level.descendant_ids)
+  end
 
   def selected_memberships
-    ids = if selected_recipients?
-            membership_ids
-          else
-            end_level.final_children_arr.map(&:membership_ids).flatten.presence || end_level.membership_ids
-          end
-    Membership.where(id: ids).join_user
+    Membership.where(id: selected_memberships_ids).join_user
+  end
+
+
+  def selected_memberships_ids
+    if selected_recipients?
+      membership_ids
+    else
+      end_level.final_children_arr.map(&:membership_ids).flatten.presence || end_level.membership_ids
+    end
   end
 
   # If Delivery Rule is specific date time then delivery_interval set to nil
@@ -92,11 +109,31 @@ class Communication < ApplicationRecord
   end
 
   def end_level_id
-    sub_campaign_id || campaign_id || project_id || client_id
+    sub_campaign_id || campaign_id || project_id || client_id || owner_id
   end
 
   def end_level
-    sub_campaign || campaign || project || client
+    sub_campaign || campaign || project || client || owner
+  end
+
+  def current_memberships_ids
+    return selected_memberships_ids if end_level.is_childless?
+    selected_memberships_ids - low_level_ids
+  end
+
+  def current_memberships
+    membership_ids = ::Queries::Memberships::SelectCorrectId.call(self).map(&:final_id)
+    Membership.where(id: membership_ids).join_user
+  end
+
+  def delivery_interval_duration
+    valid_methods = %w[hour hours day days week weeks month months]
+    return unless reminder? && valid_methods.include?(delivery_interval_period.downcase)
+    delivery_interval_number.to_i.public_send(delivery_interval_period)
+  end
+
+  def reminder_job
+    JOBS[delivery_rule.to_sym]
   end
 
   def emails_creating
@@ -116,5 +153,9 @@ class Communication < ApplicationRecord
 
   def change_user_link_to_link_for_mustache
     update_column(:body, body.gsub('{{user_link}}', '{{{user_link}}}'))
+  end
+
+  def low_level_ids
+    Communication.lower_communications(self).flat_map(&:selected_memberships_ids).uniq
   end
 end
