@@ -4,6 +4,15 @@ class MembershipDecorator < BaseDecorator
     [object.first_name, object.last_name].reject(&:blank?).join(' ')
   end
 
+  def display_name_with_level
+    name = if object.respond_to?(:first_name) && object.respond_to?(:last_name)
+             [object.first_name, object.last_name].reject(&:blank?).join(' ')
+           else
+             object.user.decorate.display_name
+           end
+    "#{name} (#{object.client.name})"
+  end
+
   def role_name
     role = h.t("activerecord.attributes.membership.roles.#{object.role.demodulize.underscore}")
     role = h.t("activerecord.attributes.user.roles.#{object.user.role.demodulize.underscore}") if object.user.is?(:superadmin)

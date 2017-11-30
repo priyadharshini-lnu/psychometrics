@@ -122,8 +122,9 @@ module Facades
 
       def fetch_memberships
         return Membership.none if form.end_level.blank? || !form.model.selected_recipients?
-        Membership.member.
-          where(client_id: [*form.model.end_level.descendant_ids, form.end_level.id]).join_user
+
+        Membership.member.joins(:client).where(clients: { end_level: true })
+          .where(client_id: [*form.model.end_level.descendant_ids, form.end_level.id]).join_user
       end
 
       def fetch_delivery_rules
