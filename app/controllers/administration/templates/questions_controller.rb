@@ -35,7 +35,7 @@ module Administration
         end
       end
 
-      def configure
+      def edit
         add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
       end
 
