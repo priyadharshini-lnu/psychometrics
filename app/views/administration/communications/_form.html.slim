@@ -77,10 +77,10 @@
             input_html: { class: 'timepicker form-control' }
       - if @communication_facade.show_delivery_intervals?
         .form-group
-          = f.input :reminder_type, as: :boolean, label: false, wrapper: :vertical_boolean_without_label,
-            checked_value: 'timeframes', unchecked_value: 'custom',
-            input_html: { data: { behavior: 'bootstrap-switchable communication-changeable', size: 'small',
-              on_text: 'Timeframes', off_text: 'Custom' } }
+          = f.collection_radio_buttons :reminder_type, @communication_facade.reminder_types, :last, :first, {},
+            data: { behavior: 'communication-changeable' } do |b|
+            = b.label(class: 'mrl') { b.radio_button(class: 'mrx') + b.text }
+
         - if @communication_facade.show_timeframes_reminder?
           = f.input :delivery_interval, collection: ::Helpers::Communications.reminder_timeframes
         - if @communication_facade.show_custom_reminder?

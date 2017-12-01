@@ -95,6 +95,10 @@ module Facades
         [['Hours', 'hours'], ['Days', 'days'], ['Weeks', 'weeks'], ['Months', 'months']]
       end
 
+      def reminder_types
+        [['Timeframes', 'timeframes'], ['Custom', 'custom']]
+      end
+
       private
 
       def fetch_owners(user)

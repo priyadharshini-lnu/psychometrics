@@ -59,6 +59,5 @@
 //= require mustache.js.js
 
 //= require file_downloader
-//= require bootstrap-switch.min
 
 //= require_tree ./administration
