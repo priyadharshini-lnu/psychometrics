@@ -60,7 +60,7 @@ class Membership < ApplicationRecord
   validate :client_admin_scope, if: 'project_admin?'
 
   before_save :set_project_membership, if: 'client.end_level?'
-  after_create :send_invitation_emails
+  after_create_commit :send_invitation_emails
   after_destroy :clear_project_membership, if: 'client.end_level?'
 
   has_ancestry
