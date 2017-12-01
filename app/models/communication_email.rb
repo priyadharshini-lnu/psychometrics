@@ -15,9 +15,18 @@ class CommunicationEmail < ApplicationRecord
 
   after_commit :delivery_email, on: :create
 
+  scope :for_user, -> (user_id){ joins(:membership).where(memberships: { user_id: user_id }) }
+
+  def self.not_invitation_emails_for(user_id)
+    for_user(user_id).joins(:communication).select(:id)
+    .where.not(communications: { kind: 'invitation' })
+  end
+
   private
 
   def delivery_email
-    CommunicationEmailMailer.create(id).deliver_later
+    if membership.user.invitation_accepted? || communication.invitation?
+      CommunicationEmailMailer.create(id).deliver_later
+    end
   end
 end

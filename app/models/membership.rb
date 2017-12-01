@@ -33,6 +33,8 @@ class Membership < ApplicationRecord
       MEMBER_ROLE => :user
   }.freeze
 
+  include ::Facades::Administration::EmailDelivery
+
   enum role: MEMBERSHIP_ROLES
   delegate :is_anonym?, to: :user
 
@@ -58,6 +60,7 @@ class Membership < ApplicationRecord
   validate :client_admin_scope, if: 'project_admin?'
 
   before_save :set_project_membership, if: 'client.end_level?'
+  after_create :send_invitation_emails
   after_destroy :clear_project_membership, if: 'client.end_level?'
 
   has_ancestry
@@ -145,6 +148,24 @@ class Membership < ApplicationRecord
     project_membership.destroy!
   end
 
+
+  def send_invitation_emails
+    invites = invitations_for_current_membership
+    return unless invites
+    invites.each do |invite|
+      email = CommunicationEmail.create(membership_id: self.id, communication_id: invite.id)
+      deliver_invitation_email(invite, email.id)
+    end
+  end
+
+  def deliver_invitation_email(communication, email_id)
+    if communication.delivery_rule == 'send_now'
+      ::Services::Communications::DeliverInvitationEmails.call(email_id: email_id)
+    elsif communication.delivery_rule == 'specific_datetime'
+      ::Services::Communications::DeliverInvitationEmails.call(email_id: email_id, delay: communication.delivery_at)
+    end
+  end
+
   def relevant_role
     valid = case role
     when CLIENT_ADMIN_ROLE
@@ -157,6 +178,11 @@ class Membership < ApplicationRecord
       false
     end
     errors.add(:role, 'Invalid') unless valid
+  end
+
+
+  def invitations_for_current_membership
+    Communication.invitation_for_end_level_id(client_id).includes(:memberships).select{ |communication| communication.current_memberships.ids.include?(id) }
   end
 
   def client_admin_scope

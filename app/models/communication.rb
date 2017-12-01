@@ -21,7 +21,9 @@ class Communication < ApplicationRecord
   JOBS = {
     not_started: ::Communications::NotStartedJob,
     not_competed: ::Communications::NotCompletedJob,
-    in_progress: ::Communications::InProgressJob
+    in_progress: ::Communications::InProgressJob,
+    specific_datetime: ::Communications::SpecifiedDateTimeJob,
+    send_now: ::Communications::SendNowJob
   }.freeze
 
   attr_accessor :delivery_at_date, :delivery_at_time, :delivery_interval_number, :delivery_interval_period,
@@ -44,22 +46,23 @@ class Communication < ApplicationRecord
   after_validation :set_delivery_interval, if: :reminder?
   after_initialize :parse_delivery_interval, if: :reminder?
 
+
   after_commit :change_user_link_to_link_for_mustache, on: :create
   after_commit :send_email_now, on: :create
-  after_create_commit ::Callbacks::Models::Communications::CreateReminderJob.new
+  after_create_commit ::Callbacks::Models::Communications::CreateSendEmailJob.new
 
   # SCOPES
   scope :enabled, -> { where(disabled: false) }
+  scope :invitation_for_end_level_id, -> (end_level_id) { where(kind: 'invitation').where(end_level_id: end_level_id) }
 
   def self.lower_communications(communication)
     Communication.where(kind: communication.kind).where(delivery_rule: communication.delivery_rule)
-      .where(end_level_id: communication.end_level.descendant_ids)
+                                                    .where(end_level_id: communication.end_level.descendant_ids)
   end
 
   def selected_memberships
     Membership.where(id: selected_memberships_ids).join_user
   end
-
 
   def selected_memberships_ids
     if selected_recipients?
@@ -79,20 +82,8 @@ class Communication < ApplicationRecord
     self.copy_membership_ids = nil if client_id.blank?
   end
 
-  def set_delivery_at
-    self.delivery_at = DateTime.parse("#{delivery_at_date} #{delivery_at_time}")
-  end
-
   def set_delivery_interval
     self.delivery_interval = "#{delivery_interval_number} #{delivery_interval_period}"
-  end
-
-  # Parse self.delivery_at to date and time
-  # Example: '2016-11-04 10:48:33' to 2016-11-04 and 10:48 AM
-  def parse_delivery_at
-    return if delivery_at.blank?
-    self.delivery_at_date = delivery_at.strftime('%Y-%m-%d')
-    self.delivery_at_time = delivery_at.strftime('%l:%M %p')
   end
 
   # Parse self.delivery_interval to number and period
@@ -133,7 +124,7 @@ class Communication < ApplicationRecord
     delivery_interval_number.to_i.public_send(delivery_interval_period)
   end
 
-  def reminder_job
+  def send_email_job
     JOBS[delivery_rule.to_sym]
   end
 

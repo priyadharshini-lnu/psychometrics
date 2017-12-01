@@ -17,9 +17,24 @@ class CommunicationEmailMailer < ApplicationMailer
   private
 
   def accept_invitation_link
-    #options = {id: @recipient.user_id, invitation_token: @recipient.user.invitation_token, domain: Settings.domain, subdomain: @project.subdomain}
-    #@project = Client.find(@recipient.client_id).project
-    url = url_for([:accept, @recipient.user.role_scope, :invitation])
+    @project = Client.find(@recipient.client_id).project
+    if @recipient.user.accepted_or_not_invited?
+      options = { domain: Settings.domain, subdomain: @project.subdomain }
+      url = url_for([:root, options])
+    else
+      token = create_raw_invitation_token
+      options = { id: @recipient.user_id, invitation_token: token, domain: Settings.domain,
+                  subdomain: @project.subdomain
+                }
+      url = url_for([:accept, @recipient.user.role_scope, :invitation, options])
+    end
     "<a href=#{url}> #{I18n.t('devise.mailer.invitation_instructions.accept')} </a>"
+  end
+
+  def create_raw_invitation_token
+    @recipient.user.skip_invitation = true
+    @recipient.user.send(:generate_invitation_token!)
+    @recipient.user.update_column(:invitation_sent_at, DateTime.current)
+    @recipient.user.raw_invitation_token
   end
 end

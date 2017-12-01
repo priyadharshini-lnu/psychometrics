@@ -113,6 +113,7 @@ class User < ApplicationRecord
 
   scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
   before_save :ensure_authentication_token
+  after_invitation_accepted :deliver_all_emails
   validates :email, uniqueness: true
   validates :role, inclusion: { in: ::User::USER_ROLES.values }, presence: true, allow_nil: true
   validate :validate_grants
@@ -168,7 +169,7 @@ class User < ApplicationRecord
   # Else we send him mail with link to set password
   def invite!(invited_by = nil, invited_to_id = nil, options = {})
     return unless user_member_role_exists?(invited_to_id)
-    if accepted_or_not_invited? && !sign_in_count.zero? && !is?(:superadmin)
+    if accepted_or_not_invited? && !sign_in_count.zero? && !is?(:superadmin, :member)
       return InvitationMailer.link_to_client(id, invited_to_id).deliver_later
     end
     # Customizing default mail of devise_inviteable
@@ -213,6 +214,12 @@ class User < ApplicationRecord
       end
     end
     errors.add(:grants, :invalid) unless valid
+  end
+
+  def deliver_all_emails
+    CommunicationEmail.not_invitation_emails_for(id).pluck(:id).each do |email_id|
+      CommunicationEmailMailer.create(email_id).deliver_later
+    end
   end
 
   class << self
