@@ -6,6 +6,5 @@ $(function () {
     return new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate());
   };
 
-  $("[data-behavior~=bootstrap-switchable]").bootstrapSwitch();
   $('#resource_delivery_at_date').datepicker('setStartDate', truncateDate());
 });
