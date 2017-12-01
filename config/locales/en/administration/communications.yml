@@ -35,7 +35,7 @@ en:
           specific_datetime: 'Specific date and time'
           not_started: 'If assessment is not started'
           in_progress: 'If assessment is in progress'
-          not_competed: 'If assessment in not completed'
+          not_competed: 'If assessment is not completed'
         kind: Communcation Types
         selected_recipients: 'Selected Recipients'
         selected_cc_recipients: 'Selected CC Recipients'
