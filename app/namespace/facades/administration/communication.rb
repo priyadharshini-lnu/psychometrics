@@ -92,7 +92,9 @@ module Facades
       end
 
       def delivery_interval_periods
-        [['Hours', 'hours'], ['Days', 'days'], ['Weeks', 'weeks'], ['Months', 'months']]
+        array = [['Hours', 'hours'], ['Days', 'days'], ['Weeks', 'weeks'], ['Months', 'months']]
+        array.unshift(['Minutes', 'minute']) unless Rails.env.production?
+        array
       end
 
       def reminder_types

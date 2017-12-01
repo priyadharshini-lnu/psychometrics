@@ -128,6 +128,7 @@ class Communication < ApplicationRecord
 
   def delivery_interval_duration
     valid_methods = %w[hour hours day days week weeks month months]
+    valid_methods.unshift('minute', 'minutes') unless Rails.env.production?
     return unless reminder? && valid_methods.include?(delivery_interval_period.downcase)
     delivery_interval_number.to_i.public_send(delivery_interval_period)
   end
