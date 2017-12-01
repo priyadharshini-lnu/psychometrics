@@ -18,7 +18,7 @@ class CommunicationEmailMailer < ApplicationMailer
 
   def accept_invitation_link
     @project = Client.find(@recipient.client_id).project
-    if @recipient.user.accepted_or_not_invited?
+    if @recipient.user.invitation_accepted?
       options = { domain: Settings.domain, subdomain: @project.subdomain }
       url = url_for([:root, options])
     else
