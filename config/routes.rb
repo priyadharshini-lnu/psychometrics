@@ -277,12 +277,11 @@ Rails.application.routes.draw do
 
     put '/factors_norms/update', to: 'factors_norms#update'
 
-    resources :communications do
+    resources :communications, only: [:index, :new, :create, :destroy] do
       member do
         get :copy
         get :sidebar
         patch :toggle_status
-        match :edit_form, via: [:post, :patch, :put]
       end
 
       match :new_form, on: :collection, via: [:post, :patch, :put]

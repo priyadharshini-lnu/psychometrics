@@ -12,10 +12,6 @@ module Administration
       true
     end
 
-    def edit_form?
-      true
-    end
-
     class Scope < Scope
       def resolve
         scope = super

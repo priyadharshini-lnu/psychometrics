@@ -1,7 +1,7 @@
 module Administration
   class CommunicationsController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :edit_form]
+    before_action :set_resource, only: [:destroy, :copy, :toggle_status, :sidebar]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :pundit_authorize, except: [:sidebar]
     after_action :init_breadcrumbs
@@ -42,16 +42,6 @@ module Administration
       end
     end
 
-    def update
-      respond_to do |format|
-        if resource.update(resource_params)
-          format.js
-        else
-          format.js { render :edit }
-        end
-      end
-    end
-
     # DELETE /administration/resources/1
     def destroy
       resource.destroy
@@ -75,13 +65,6 @@ module Administration
     def new_form
       @_resource = resource_class.preload(:assessment, :client).new(resource_params)
       @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
-      respond_to do |format|
-        format.js { render :new }
-      end
-    end
-
-    def edit_form
-      resource.assign_attributes(resource_params)
       respond_to do |format|
         format.js { render :new }
       end
