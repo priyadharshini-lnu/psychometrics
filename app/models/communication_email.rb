@@ -24,9 +24,17 @@ class CommunicationEmail < ApplicationRecord
 
   private
 
+  def need_to_pass_wait_until?
+    communication.specific_datetime?
+  end
+
+  def params_for_set_job
+    need_to_pass_wait_until? ? { wait_until: communication.delivery_at } : {}
+  end
+
   def delivery_email
     if communication.invitation? || membership.user.invitation_accepted?
-      CommunicationEmailMailer.create(id).deliver_later
+      CommunicationEmailMailer.create(id).deliver_later(params_for_set_job)
     end
   end
 end

@@ -153,16 +153,7 @@ class Membership < ApplicationRecord
     invites = invitations_for_current_membership
     return unless invites
     invites.each do |invite|
-      email = CommunicationEmail.create(membership_id: self.id, communication_id: invite.id)
-      deliver_invitation_email(invite, email.id)
-    end
-  end
-
-  def deliver_invitation_email(communication, email_id)
-    if communication.delivery_rule == 'send_now'
-      ::Services::Communications::DeliverInvitationEmails.call(email_id: email_id)
-    elsif communication.delivery_rule == 'specific_datetime'
-      ::Services::Communications::DeliverInvitationEmails.call(email_id: email_id, delay: communication.delivery_at)
+      invite.emails.create(membership_id: self.id)
     end
   end
 
@@ -182,7 +173,9 @@ class Membership < ApplicationRecord
 
 
   def invitations_for_current_membership
-    Communication.invitation_for_end_level_id(client_id).includes(:memberships).select{ |communication| communication.current_memberships.ids.include?(id) }
+    Communication.invitation_for_end_level_id(client_id).includes(:memberships).select do |communication|
+      communication.selected_memberships_ids.include?(id)
+    end
   end
 
   def client_admin_scope
