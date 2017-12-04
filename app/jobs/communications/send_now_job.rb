@@ -14,7 +14,7 @@ module Communications
     private
 
     def fetch_memberships
-      @communication.current_memberships.distinct.reject{ |membership| membership.user.invitation_accepted? }
+      @communication.current_memberships.distinct
     end
   end
 end

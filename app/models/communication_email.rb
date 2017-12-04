@@ -25,7 +25,7 @@ class CommunicationEmail < ApplicationRecord
   private
 
   def delivery_email
-    if membership.user.invitation_accepted? && !communication.invitation?
+    if communication.invitation? || membership.user.invitation_accepted?
       CommunicationEmailMailer.create(id).deliver_later
     end
   end
