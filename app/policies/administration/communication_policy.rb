@@ -8,6 +8,10 @@ module Administration
       super || @user.has_grant?(:communications, :manage)
     end
 
+    def show?
+      super || @user.has_grant?(:communications, :view)
+    end
+
     def new_form?
       true
     end
