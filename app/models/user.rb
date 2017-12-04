@@ -168,7 +168,7 @@ class User < ApplicationRecord
   #   Then we just send him mail with link to new Client
   # Else we send him mail with link to set password
   def invite!(invited_by = nil, invited_to_id = nil, options = {})
-    return unless user_member_role_exists?(invited_to_id)
+    return unless user_member_role_exists?(invited_to_id) || is?(:superadmin)
     if accepted_or_not_invited? && !sign_in_count.zero? && !is?(:superadmin, :member)
       return InvitationMailer.link_to_client(id, invited_to_id).deliver_later
     end
@@ -179,7 +179,7 @@ class User < ApplicationRecord
     self.skip_invitation = true
     super(invited_by, options)
 
-    if is?(:superadmin, :client_admin)
+    if is?(:superadmin, :client_admin, :project_admin)
       InvitationMailer.invite_superadmin(id, @raw_invitation_token).deliver_later
     else
       InvitationMailer.invite(id, invited_to_id, @raw_invitation_token).deliver_later
