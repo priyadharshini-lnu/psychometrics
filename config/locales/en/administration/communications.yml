@@ -2,6 +2,12 @@ en:
   administration:
     communications:
       index:
+        invitation: Invitation
+        reminder: Reminder
+        completion: Completion
+        clients: Clients
+        other: Other
+        type: Type
         title: Communication Center
         tooltips:
           create: Create
@@ -9,6 +15,16 @@ en:
         owner: Owner
       list:
         updated_at: Modified Date
+        client_name: Client
+        project: Project
+        campaign: Campaign
+        sub_campaign: Sub-campaign
+        subject: Communication subject
+        kind: Communication type
+        recipients: Recipients
+        delivery_rule: Delivery
+        author: Created by
+        actions: Actions
         created_at: Created Date
       new:
         header: 'New Communication'

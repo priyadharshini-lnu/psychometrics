@@ -104,7 +104,7 @@ class User < ApplicationRecord
   has_many :ttes, through: :clients
   has_many :project_admin_clients, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, through: :memberships, source: 'client'
   has_many :project_admin_clients_ttes, through: :project_admin_clients, source: 'tte', class_name: 'Client'
-
+  has_many :communications, foreign_key: 'creator_id'
   has_many :client_admin_clients, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }, through: :memberships, source: 'client'
   has_many :client_admin_clients_ttes, through: :client_admin_clients, source: 'tte', class_name: 'Client'
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'

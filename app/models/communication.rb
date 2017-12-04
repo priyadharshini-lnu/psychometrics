@@ -39,6 +39,7 @@ class Communication < ApplicationRecord
   belongs_to :campaign, class_name: 'Client', foreign_key: :campaign_id
   belongs_to :sub_campaign, class_name: 'Client', foreign_key: :sub_campaign_id
   belongs_to :end_level, class_name: 'Client', foreign_key: :end_level_id
+  belongs_to :creator, class_name: 'User'
 
   enum recipients: [:all, :selected], _suffix: true
   enum kind: { invitation: 0, reminder: 1, completion: 2, other: 3 }

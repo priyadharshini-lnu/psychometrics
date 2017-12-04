@@ -22,6 +22,7 @@ FactoryGirl.define do
   factory :communication do
     sequence(:subject) { 'Test subject' }
     sequence(:body) { '<p> Test body </p>' }
+    creator { create(:user) }
     client { create(:tenancy, :campaign_level, name: 'Project',
                     subdomain: 'project',
                     number: 2,

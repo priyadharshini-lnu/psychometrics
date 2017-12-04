@@ -23,6 +23,7 @@ module Administration
 
     def create
       @_resource = resource_class.new(resource_params)
+      @_resource.creator_id = current_user.id
       @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
       respond_to do |format|
         if @communication_facade.form.validate(resource_params)
