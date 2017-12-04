@@ -52,6 +52,7 @@ en:
           copy: 'Copy Communication'
           edit: 'Edit Communication'
           delete: 'Delete Communication'
+          view: 'View Communication'
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?

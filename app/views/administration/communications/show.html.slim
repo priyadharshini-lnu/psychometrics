@@ -1,0 +1,58 @@
+.col-md-8.col-md-offset-2
+  ul.list-group
+    - if current_user.is?(:superadmin) && @communication.owner
+      li.list-group-item
+        strong.mrs Owner:
+        = @communication.owner.name
+
+    li.list-group-item
+      strong.mrs Client:
+      = @communication.client.name
+    - if @communication.project
+      li.list-group-item
+        strong.mrs Project:
+        = @communication.project.name
+    - if @communication.campaign
+      li.list-group-item
+        strong.mrs Campaign:
+        = @communication.campaign.name
+    - if @communication.sub_campaign
+      li.list-group-item
+        strong.mrs Sub campaign:
+        = @communication.sub_campaign.name
+    li.list-group-item
+      strong.mrs Communication type:
+      = @communication.kind
+    - if @communication.assessment
+      li.list-group-item
+        strong.mrs Assessment:
+        = @communication.assessment.name
+    li.list-group-item
+      strong.mrs Recipients:
+      = @communication.recipients
+    - if @communication.selected_recipients?
+      li.list-group-item
+        strong.mrs Users:
+        = select_tag :recipients,
+          options_from_collection_for_select(@communication.memberships.decorate, :display_name, :display_name),
+          class: 'form-control'
+    - if @communication.delivery_rule
+      li.list-group-item
+        strong.mrs Delivery rule:
+        = t("administration.communications.form.delivery_rules.#{@communication.delivery_rule}")
+    - if @communication.delivery_rule == 'specific_datetime'
+      li.list-group-item
+        strong.mrs Specific datetime:
+        = @communication.delivery_at
+    - if @communication.reminder?
+      li.list-group-item
+        strong.mrs Delivery interval:
+        = "Every #{@communication.delivery_interval}"
+
+    li.list-group-item
+      strong.mrs Subject:
+      = @communication.subject
+  li.list-group-item
+    p
+      strong Body:
+    = raw @communication.body
