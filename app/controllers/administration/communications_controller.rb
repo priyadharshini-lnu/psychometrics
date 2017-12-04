@@ -69,6 +69,10 @@ module Administration
       end
     end
 
+    def show
+      @communication = policy_scope(resource_class).find(params[:id])
+    end
+
     private
 
     def set_resource_class

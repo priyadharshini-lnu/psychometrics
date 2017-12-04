@@ -277,7 +277,7 @@ Rails.application.routes.draw do
 
     put '/factors_norms/update', to: 'factors_norms#update'
 
-    resources :communications, only: [:index, :new, :create, :destroy] do
+    resources :communications, only: [:index, :new, :create, :destroy, :show] do
       member do
         get :copy
         get :sidebar
