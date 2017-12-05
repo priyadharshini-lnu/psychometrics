@@ -25,6 +25,7 @@ class Assign < ApplicationRecord
   belongs_to :assessment
   belongs_to :membership, inverse_of: :assigns
   belongs_to :project_assign, foreign_key: :project_assign_id, class_name: 'Assign'
+  has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'
 
   has_many :assigns_reports # on delete cascade
   has_many :reports, through: :assigns_reports
@@ -47,10 +48,10 @@ class Assign < ApplicationRecord
   after_initialize :init
   after_create :set_project_assign
   before_save :notification_handler
-  before_update :completion_callback, if: proc { status_changed? && completed? }
   before_update :set_started_at, if: proc { status_changed? && in_progress? }
   after_destroy :clear_project_assign
 
+  after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
   after_commit :update_membership_completed
 
   delegate :project_membership, to: :membership
@@ -150,8 +151,9 @@ class Assign < ApplicationRecord
 
   private
 
-  def completion_callback
-    ::Communications::CompletionTypeJob.perform_later(self)
+  def send_completion_email
+    assign = original_assign || self
+    ::Communications::CompletionTypeJob.perform_later(assign)
   end
 
   def update_membership_completed
