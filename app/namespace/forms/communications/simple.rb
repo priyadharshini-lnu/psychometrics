@@ -8,7 +8,8 @@ module Forms
 
       properties :subject, :body, :recipients, :owner, :client, :project, :campaign, :sub_campaign, :end_level,
                  :membership_ids, :kind, :delivery_rule, :delivery_at_time, :delivery_at_date, :delivery_at,
-                 :assessment, :delivery_interval, :delivery_interval_number, :delivery_interval_period
+                 :assessment, :delivery_interval, :delivery_interval_number, :delivery_interval_period,
+                 :user_ids
 
       property :assessment_id
       property :owner_id, type: Types::Form::Int
@@ -62,7 +63,7 @@ module Forms
 
       validates :delivery_at_time,
                 presence: true,
-                if: :specified_date_and_time_invitation? 
+                if: :specified_date_and_time_invitation?
 
       def owner
         Client.find_by(id: owner_id)
