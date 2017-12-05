@@ -39,7 +39,7 @@
           label: t('.kind')
       - if @communication_facade.show_assessments?
         = f.association :assessment,
-            collection: @communication_facade.communication.end_level&.assessments || [],
+            collection: @communication_facade.assessments,
             input_html: { data: { live_search: true } }
       - if @communication_facade.show_recipients?
         = f.input :recipients,
