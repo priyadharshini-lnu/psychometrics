@@ -2,57 +2,57 @@
   ul.list-group
     - if current_user.is?(:superadmin) && @communication.owner
       li.list-group-item
-        strong.mrs Owner:
+        strong.mrs = t('.owner')
         = @communication.owner.name
 
     li.list-group-item
-      strong.mrs Client:
+      strong.mrs = t('.client')
       = @communication.client.name
     - if @communication.project
       li.list-group-item
-        strong.mrs Project:
+        strong.mrs = t('.project')
         = @communication.project.name
     - if @communication.campaign
       li.list-group-item
-        strong.mrs Campaign:
+        strong.mrs = t('.campaign')
         = @communication.campaign.name
     - if @communication.sub_campaign
       li.list-group-item
-        strong.mrs Sub campaign:
+        strong.mrs = t('.sub_campaign')
         = @communication.sub_campaign.name
     li.list-group-item
-      strong.mrs Communication type:
-      = @communication.kind
+      strong.mrs = t('.communication_type')
+      = @communication.kind_i18n
     - if @communication.assessment
       li.list-group-item
-        strong.mrs Assessment:
+        strong.mrs = t('.assessment')
         = @communication.assessment.name
     li.list-group-item
-      strong.mrs Recipients:
-      = @communication.recipients
+      strong.mrs = t('.recipients')
+      = @communication.recipients_i18n
     - if @communication.selected_recipients?
       li.list-group-item
-        strong.mrs Users:
+        strong.mrs = t('.users')
         = select_tag :recipients,
           options_from_collection_for_select(@communication.users.decorate, :display_name, :display_name),
           class: 'form-control'
     - if @communication.delivery_rule
       li.list-group-item
-        strong.mrs Delivery rule:
-        = t("administration.communications.form.delivery_rules.#{@communication.delivery_rule}")
+        strong.mrs = t('.delivery_rule')
+        = @communication.delivery_rule_i18n
     - if @communication.delivery_rule == 'specific_datetime'
       li.list-group-item
-        strong.mrs Specific datetime:
+        strong.mrs = t('.specific_datetime')
         = @communication.delivery_at
     - if @communication.reminder?
       li.list-group-item
-        strong.mrs Delivery interval:
-        = "Every #{@communication.delivery_interval}"
+        strong.mrs = t('.delivery_rule')
+        = t('.every_interval', interval: @communication.delivery_interval)
 
     li.list-group-item
-      strong.mrs Subject:
+      strong.mrs = t('.subject')
       = @communication.subject
-  li.list-group-item
-    p
-      strong Body:
-    = raw @communication.body
+    li.list-group-item
+      p
+        strong = t('.body')
+      = raw @communication.body

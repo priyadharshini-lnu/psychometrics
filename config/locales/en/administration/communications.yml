@@ -63,3 +63,19 @@ en:
               Delete <strong>Communication</strong> ?
             body: >
               <p>Are you sure you want to delete this Communication?</p>
+      show:
+        owner: 'Owner:'
+        client: 'Client:'
+        project: 'Project:'
+        campaign: 'Campaign:'
+        sub_campaign: 'Sub Campaign:'
+        communication_type: 'Communication type:'
+        assessment: 'Communication type'
+        recipients: 'Recipients:'
+        users: 'Users:'
+        delivery_rule: 'Delivery rule:'
+        specific_datetime: 'Specific datetime:'
+        delivery_interval: 'Delivery interval:'
+        subject: 'Subject:'
+        body: 'Body:'
+        every_interval: 'Every %{interval}'
