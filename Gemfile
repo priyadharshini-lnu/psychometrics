@@ -11,7 +11,7 @@ gem 'jquery-rails',               '~> 4.1.1'
 gem 'jquery-rails-cdn',           '~> 1.1.2'
 gem 'jbuilder',                   '~> 2.6.1'
 
-source 'https://rails-assets.org' do
+source 'http://insecure.rails-assets.org/' do
   gem 'rails-assets-jquery', '1.12'
   gem 'rails-assets-noty'
   gem 'rails-assets-bootstrap-select'

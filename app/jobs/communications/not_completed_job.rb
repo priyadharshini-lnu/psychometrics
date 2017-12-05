@@ -7,7 +7,8 @@ module Communications
     private
 
     def fetch_memberships(communication)
-      communication.current_memberships.member.joins(:assigns).where.not(assigns: { status: :completed }).distinct
+      communication.current_memberships.member_or_manager.
+        joins(:assigns).where.not(assigns: { status: :completed }).distinct
     end
   end
 end

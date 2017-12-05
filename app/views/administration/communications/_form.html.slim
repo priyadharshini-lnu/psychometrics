@@ -51,9 +51,9 @@
           input_html: { data: { live_search: true,
             behavior: 'communication-changeable' } }
       - if @communication_facade.show_memberships?
-        = f.association :memberships,
+        = f.association :users,
           collection: @communication_facade.memberships,
-          label_method: proc { |u| u.decorate.display_name_with_level },
+          label_method: proc { |u| u.decorate.display_name },
           include_blank: false,
           input_html: { data: { live_search: true,
             behavior: @communication_facade.memberships_behavior },

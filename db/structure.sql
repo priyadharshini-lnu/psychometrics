@@ -451,6 +451,38 @@ CREATE TABLE communications_memberships (
 
 
 --
+-- Name: communications_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE communications_users (
+    id integer NOT NULL,
+    user_id integer,
+    communication_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: communications_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE communications_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communications_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE communications_users_id_seq OWNED BY communications_users.id;
+
+
+--
 -- Name: data_geos; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1573,6 +1605,13 @@ ALTER TABLE ONLY communications ALTER COLUMN id SET DEFAULT nextval('communicati
 
 
 --
+-- Name: communications_users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications_users ALTER COLUMN id SET DEFAULT nextval('communications_users_id_seq'::regclass);
+
+
+--
 -- Name: data_geos id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1853,6 +1892,14 @@ ALTER TABLE ONLY communication_emails
 
 ALTER TABLE ONLY communications
     ADD CONSTRAINT communications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: communications_users communications_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications_users
+    ADD CONSTRAINT communications_users_pkey PRIMARY KEY (id);
 
 
 --
@@ -2289,6 +2336,20 @@ CREATE INDEX index_communications_on_project_id ON communications USING btree (p
 --
 
 CREATE INDEX index_communications_on_sub_campaign_id ON communications USING btree (sub_campaign_id);
+
+
+--
+-- Name: index_communications_users_on_communication_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_users_on_communication_id ON communications_users USING btree (communication_id);
+
+
+--
+-- Name: index_communications_users_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_users_on_user_id ON communications_users USING btree (user_id);
 
 
 --
@@ -2805,6 +2866,14 @@ ALTER TABLE ONLY questions
 
 
 --
+-- Name: communications_users fk_rails_7a00292b33; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications_users
+    ADD CONSTRAINT fk_rails_7a00292b33 FOREIGN KEY (communication_id) REFERENCES communications(id) ON DELETE CASCADE;
+
+
+--
 -- Name: comments fk_rails_7f3b1733e2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2898,6 +2967,14 @@ ALTER TABLE ONLY norms
 
 ALTER TABLE ONLY norms
     ADD CONSTRAINT fk_rails_b7d8a0337d FOREIGN KEY (updated_by) REFERENCES users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communications_users fk_rails_bc228f8bf6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications_users
+    ADD CONSTRAINT fk_rails_bc228f8bf6 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
 
 
 --
@@ -3162,6 +3239,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171115115658'),
 ('20171115115739'),
 ('20171117095652'),
-('20171117122756');
+('20171117122756'),
+('20171201131314');
 
 

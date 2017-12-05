@@ -92,7 +92,7 @@ module Administration
         :delivery_interval_number, :delivery_interval_period,
         :project_id, :campaign_id, :sub_campaign_id,
         :kind, :delivery_at, :delivery_at_time, :delivery_at_date,
-        membership_ids: [], copy_membership_ids: []
+        user_ids: []
       )
     end
   end
