@@ -34,7 +34,7 @@
       li.list-group-item
         strong.mrs Users:
         = select_tag :recipients,
-          options_from_collection_for_select(@communication.memberships.decorate, :display_name, :display_name),
+          options_from_collection_for_select(@communication.users.decorate, :display_name, :display_name),
           class: 'form-control'
     - if @communication.delivery_rule
       li.list-group-item

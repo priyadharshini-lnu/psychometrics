@@ -71,6 +71,7 @@ class Membership < ApplicationRecord
   scope :project_admin_role, -> { where(role: PROJECT_ADMIN_ROLE) }
   scope :with_client, -> (client_id) { where(client_id: client_id) }
   scope :user_reports, -> (client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
+  scope :member_or_manager, -> { where(role: [:member, :manager]) }
 
   scope :with_head_assigns_for_client_and_assessment, lambda { |client_id, assessment_id|
     joining { assigns.on(assigns.membership_id.eq(id) & assigns.assessment_id.eq(assessment_id) & assigns.role.in([Assign.roles[:admin], Assign.roles[:manager]])) }.

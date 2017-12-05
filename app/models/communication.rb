@@ -31,6 +31,8 @@ class Communication < ApplicationRecord
   has_and_belongs_to_many :memberships, join_table: :communications_memberships
   has_and_belongs_to_many :copy_memberships, join_table: :communications_copy_memberships, class_name: 'Membership'
   has_many :emails, dependent: :destroy, inverse_of: :communication, class_name: 'CommunicationEmail'
+  has_many :communications_users
+  has_many :users, through: :communications_users
   belongs_to :assessment
   belongs_to :client
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
@@ -56,20 +58,16 @@ class Communication < ApplicationRecord
   scope :invitation_for_end_level_id, -> (end_level_id) { where(kind: 'invitation').where(end_level_id: end_level_id) }
 
   def self.lower_communications(communication)
-    Communication.where(kind: communication.kind).where(delivery_rule: communication.delivery_rule)
-                                                    .where(end_level_id: communication.end_level.descendant_ids)
+    Communication.where(kind: communication.kind).where(delivery_rule: communication.delivery_rule).
+      where(end_level_id: communication.end_level.descendant_ids)
   end
 
   def selected_memberships
-    Membership.where(id: selected_memberships_ids).join_user
+    ::Queries::Memberships::ForCommunication.call(self).join_user
   end
 
   def selected_memberships_ids
-    if selected_recipients?
-      membership_ids
-    else
-      end_level.final_children_arr.map(&:membership_ids).flatten.presence || end_level.membership_ids
-    end
+    ::Queries::Memberships::ForCommunication.call(self).pluck(:id)
   end
 
   # If Delivery Rule is specific date time then delivery_interval set to nil
@@ -108,13 +106,12 @@ class Communication < ApplicationRecord
   end
 
   def current_memberships_ids
-    return selected_memberships_ids if end_level.is_childless?
+    return selected_memberships_ids if end_level.end_level?
     selected_memberships_ids - low_level_ids
   end
 
   def current_memberships
-    membership_ids = ::Queries::Memberships::SelectCorrectId.call(self).map(&:final_id)
-    Membership.where(id: membership_ids).join_user
+    Membership.where(id: current_memberships_ids).join_user
   end
 
   def delivery_interval_duration
@@ -130,7 +127,7 @@ class Communication < ApplicationRecord
 
   def emails_creating
     end_level.final_children_arr.each do |client|
-      client.memberships.member.find_each(batch_size: 10) do |membership|
+      client.memberships.member_or_manager.find_each(batch_size: 10) do |membership|
         emails.create(membership: membership)
       end
     end
