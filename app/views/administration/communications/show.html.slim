@@ -56,3 +56,6 @@
       p
         strong = t('.body')
       = raw @communication.body
+
+.col-md-1
+  = link_to t('.back'), administration_communications_path, class: 'btn btn-default'

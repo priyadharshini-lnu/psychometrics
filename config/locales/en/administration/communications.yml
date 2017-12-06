@@ -79,3 +79,4 @@ en:
         subject: 'Subject:'
         body: 'Body:'
         every_interval: 'Every %{interval}'
+        back: Back
