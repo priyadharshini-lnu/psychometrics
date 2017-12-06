@@ -70,7 +70,7 @@ en:
         campaign: 'Campaign:'
         sub_campaign: 'Sub Campaign:'
         communication_type: 'Communication type:'
-        assessment: 'Communication type'
+        assessment: 'Assessment:'
         recipients: 'Recipients:'
         users: 'Users:'
         delivery_rule: 'Delivery rule:'
