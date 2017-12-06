@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.5
--- Dumped by pg_dump version 9.6.5
+-- Dumped from database version 9.6.6
+-- Dumped by pg_dump version 9.6.6
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -397,7 +397,7 @@ CREATE TABLE communications (
     client_id integer,
     recipients integer DEFAULT 0,
     disabled boolean DEFAULT false,
-    delivery_rule integer DEFAULT 0,
+    delivery_rule integer,
     delivery_at timestamp without time zone,
     delivery_interval character varying,
     created_at timestamp without time zone NOT NULL,
@@ -3240,6 +3240,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171115115739'),
 ('20171117095652'),
 ('20171117122756'),
-('20171201131314');
+('20171201131314'),
+('20171206151008');
 
 
