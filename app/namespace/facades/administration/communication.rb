@@ -1,7 +1,8 @@
 module Facades
   module Administration
     class Communication
-      attr_reader :owners, :projects, :campaigns, :sub_campaigns, :communication, :memberships, :form, :delivery_rules
+      attr_reader :owners, :projects, :campaigns, :sub_campaigns, :communication, :memberships, :form, :delivery_rules,
+                  :assessments
 
       include EmailDelivery
 
@@ -15,6 +16,7 @@ module Facades
         @sub_campaigns = fetch_sub_campaigns(current_user)
         @delivery_rules = fetch_delivery_rules
         @memberships = fetch_memberships
+        @assessments = fetch_assessments
       end
 
       def show_projects?
@@ -126,10 +128,13 @@ module Facades
         @client_policy_scope ||= ::Administration::ClientPolicy::Scope.new(user, Client).resolve
       end
 
+      def fetch_assessments
+        return Assessment.none if form.end_level.blank?
+        ::Queries::Assessments::ByClientSubtree.call(form.model.end_level)
+      end
+
       def fetch_memberships
         return User.none if form.end_level.blank? || !form.model.selected_recipients?
-
-
         ::Queries::Users::MembersSubtreeByClient.call(form.model.end_level)
       end
 
