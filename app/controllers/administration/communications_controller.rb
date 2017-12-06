@@ -51,14 +51,9 @@ module Administration
     end
 
     def copy
-      @cloned_resource = resource.clone
-      respond_to do |format|
-        if @cloned_resource.save
-          format.js
-        else
-          format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: resource.id }) } }
-        end
-      end
+      clone_resource(resource)
+      @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
+      render :new
     end
 
     def new_form
@@ -74,6 +69,12 @@ module Administration
     end
 
     private
+
+    def clone_resource(resource)
+      clone_resource = resource.clone
+      clone_resource.user_ids = resource.user_ids
+      @_resource = clone_resource
+    end
 
     def set_resource_class
       @_resource_class ||= Communication
