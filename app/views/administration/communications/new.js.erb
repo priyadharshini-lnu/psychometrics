@@ -7,4 +7,6 @@ $(function () {
   };
 
   $('#resource_delivery_at_date').datepicker('setStartDate', truncateDate());
+  $('#resource_delivery_at_date').datepicker('setDate', truncateDate());
+  $('#resource_delivery_at_time').timepicker('setTime', "<%= time_for_communication_timepicker %>");
 });
