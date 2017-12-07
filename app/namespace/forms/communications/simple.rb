@@ -111,7 +111,6 @@ module Forms
       def build_datetime
         date = Time.zone.parse(delivery_at_date)
         date.to_datetime + Time.zone.parse(delivery_at_time).seconds_since_midnight.seconds
-
       end
 
       def can_build_timedate?
