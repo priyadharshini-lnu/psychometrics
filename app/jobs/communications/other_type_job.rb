@@ -3,12 +3,10 @@ module Communications
     queue_as :communication
 
     def perform
-      communications = Communication.enabled.other.specific_datetime.
-        joining { emails.outer }.where.has { emails.id.eq(nil) & (delivery_at <= Time.now) }.
+      communications = Communication.other.specific_datetime.
+        joining { emails.outer }.where.has { emails.id.eq(nil) & (delivery_at <= Time.current) }.
         group(:id)
-      communications.find_each(batch_size: 10) do |communication|
-        communication.emails_creating
-      end
+      communications.find_each(batch_size: 10, &:emails_creating)
     end
   end
 end
