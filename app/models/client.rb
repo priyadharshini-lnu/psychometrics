@@ -141,8 +141,8 @@ class Client < ApplicationRecord
     root?
   end
 
-  def final_children_arr
-    descendants.select(&:is_childless?)
+  def final_children
+    descendants.where(end_level: true)
   end
 
   def depth_symbol

@@ -19,11 +19,11 @@
 
 class Communication < ApplicationRecord
   JOBS = {
-    not_started: ::Communications::NotStartedJob,
-    not_competed: ::Communications::NotCompletedJob,
-    in_progress: ::Communications::InProgressJob,
-    specific_datetime: ::Communications::SpecifiedDateTimeJob,
-    send_now: ::Communications::SendNowJob
+    not_started: ::Communications::ReminderType::NotStartedJob,
+    not_competed: ::Communications::ReminderType::NotCompletedJob,
+    in_progress: ::Communications::ReminderType::InProgressJob,
+    specific_datetime: ::Communications::InvitationType::SpecifiedDateTimeJob,
+    send_now: ::Communications::InvitationType::SendNowJob
   }.freeze
 
   attr_accessor :delivery_at_date, :delivery_at_time, :delivery_interval_number, :delivery_interval_period,
@@ -126,10 +126,9 @@ class Communication < ApplicationRecord
   end
 
   def emails_creating
-    end_level.final_children_arr.each do |client|
-      client.memberships.member_or_manager.find_each(batch_size: 10) do |membership|
-        emails.create(membership: membership)
-      end
+    memberships = Membership.member_or_manager.where(client_id: end_level.final_children.ids)
+    memberships.find_each(batch_size: 10) do |membership|
+      emails.create(membership: membership)
     end
   end
 
