@@ -152,7 +152,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', '~> 4.7.0'
   # A fake data generator
-  gem 'forgery', '0.6.0'
 end
 
 group :development do
@@ -176,6 +175,7 @@ end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 2.13'
+  gem 'forgery', '0.6.0'
   gem 'poltergeist', '~> 1.14.0'
   gem 'capybara-screenshot', '~> 1.0.14'
   gem 'selenium-webdriver'

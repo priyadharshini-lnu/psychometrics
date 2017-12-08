@@ -407,6 +407,7 @@ CREATE TABLE communications (
     sub_campaign_id integer,
     end_level_id integer,
     kind integer,
+    creator_id integer,
     stop_reminder_datetime timestamp without time zone,
     stop_reminder boolean DEFAULT false NOT NULL
 );
@@ -2319,6 +2320,13 @@ CREATE INDEX index_communications_on_client_id ON communications USING btree (cl
 
 
 --
+-- Name: index_communications_on_creator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_creator_id ON communications USING btree (creator_id);
+
+
+--
 -- Name: index_communications_on_end_level_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2859,6 +2867,14 @@ ALTER TABLE ONLY clients
 
 
 --
+-- Name: communications fk_rails_639c49fe3d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications
+    ADD CONSTRAINT fk_rails_639c49fe3d FOREIGN KEY (creator_id) REFERENCES users(id) ON DELETE SET NULL;
+
+
+--
 -- Name: questions fk_rails_6ec04ddf91; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3243,6 +3259,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171117122756'),
 ('20171201131314'),
 ('20171206151008'),
+('20171206161732'),
 ('20171207080044'),
 ('20171207135522'),
 ('20171208153022');
