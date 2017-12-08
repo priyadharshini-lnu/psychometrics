@@ -4,7 +4,7 @@ module Callbacks
       class CreateSendEmailJob
         def after_commit(record)
           @record = record
-          @record.send_email_job.set(params_for_set_job).perform_later(@record.id)
+          @record.send_email_job.set(params_for_set_job).perform_later(@record)
         end
 
         private
