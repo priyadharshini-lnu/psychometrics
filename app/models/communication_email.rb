@@ -16,6 +16,7 @@ class CommunicationEmail < ApplicationRecord
   after_commit :delivery_email, on: :create
 
   scope :for_user, -> (user_id){ joins(:membership).where(memberships: { user_id: user_id }) }
+  scope :sent, -> { where.not(sent_at: nil) }
 
   def self.not_invitation_emails_for(user_id)
     for_user(user_id).joins(:communication).select(:id)

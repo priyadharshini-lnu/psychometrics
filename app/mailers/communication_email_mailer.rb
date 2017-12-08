@@ -12,6 +12,7 @@ class CommunicationEmailMailer < ApplicationMailer
       body: body,
       content_type: 'text/html'
     )
+    communication_mail.update(sent_at: Time.current)
   end
 
   private

@@ -13,6 +13,8 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
     - if policy(resource).actions?
       = link_to administration_communication_path(resource), class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.view') }
         span.fa.fa-eye
+      = link_to [:download_history, :administration, resource], class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.download') }
+        span.fa.fa-download
       = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
         span.fa.fa-copy
       = link_to [:administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
