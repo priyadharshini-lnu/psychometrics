@@ -1,8 +1,8 @@
 module Communications
   module ReminderType
     class NotCompletedJob < NotStartedJob
-      def perform(communication_id)
-        super(communication_id)
+      def perform(communication)
+        super(communication)
       end
 
       private

@@ -3,9 +3,8 @@ module Communications
     class NotStartedJob < ApplicationJob
       queue_as :communication
 
-      def perform(communication_id)
-        communication = Communication.enabled.reminder.find_by(id: communication_id)
-        return unless communication && communication.stop_reminder_datetime > DateTime.current
+      def perform(communication)
+        return if communication.stop_reminder_datetime && communication.stop_reminder_datetime <= DateTime.current
         memberships = membership_group_by_project_and_user(communication)
 
         memberships.each do |membership|
@@ -18,7 +17,7 @@ module Communications
       private
 
       def scheduled_next_job(communication)
-        communication.send_email_job.set(wait: communication.delivery_interval_duration).perform_later(communication.id)
+        communication.send_email_job.set(wait: communication.delivery_interval_duration).perform_later(communication)
       end
 
       def fetch_memberships(communication)
