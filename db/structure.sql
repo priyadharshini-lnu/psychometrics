@@ -396,7 +396,6 @@ CREATE TABLE communications (
     assessment_id integer,
     client_id integer,
     recipients integer DEFAULT 0,
-    disabled boolean DEFAULT false,
     delivery_rule integer,
     delivery_at timestamp without time zone,
     delivery_interval character varying,
@@ -3245,6 +3244,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171201131314'),
 ('20171206151008'),
 ('20171207080044'),
-('20171207135522');
+('20171207135522'),
+('20171208153022');
 
 

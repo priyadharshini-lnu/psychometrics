@@ -18,12 +18,12 @@
 #
 
 class Communication < ApplicationRecord
-  JOBS = {
+  REMINDER_AND_INVITATION_JOBS = {
     not_started: ::Communications::ReminderType::NotStartedJob,
     not_competed: ::Communications::ReminderType::NotCompletedJob,
     in_progress: ::Communications::ReminderType::InProgressJob,
-    specific_datetime: ::Communications::InvitationType::SpecifiedDateTimeJob,
-    send_now: ::Communications::InvitationType::SendNowJob
+    specific_datetime: ::Communications::InvitationTypeJob,
+    send_now: ::Communications::InvitationTypeJob
   }.freeze
 
   attr_accessor :delivery_interval_number, :delivery_interval_period, :reminder_type
@@ -53,7 +53,6 @@ class Communication < ApplicationRecord
   after_create_commit ::Callbacks::Models::Communications::CreateSendEmailJob.new
 
   # SCOPES
-  scope :enabled, -> { where(disabled: false) }
   scope :invitation_for_end_level_id, -> (end_level_id) { where(kind: 'invitation').where(end_level_id: end_level_id) }
 
   def self.lower_communications(communication)
@@ -121,12 +120,12 @@ class Communication < ApplicationRecord
   end
 
   def send_email_job
-    JOBS[delivery_rule.to_sym]
+    return if %w[reminder invitation].exclude?(kind)
+    REMINDER_AND_INVITATION_JOBS[delivery_rule&.to_sym]
   end
 
   def emails_creating
-    memberships = Membership.member_or_manager.where(client_id: end_level.final_children.ids)
-    memberships.find_each(batch_size: 10) do |membership|
+    selected_memberships.find_each(batch_size: 10) do |membership|
       emails.create(membership: membership)
     end
   end
