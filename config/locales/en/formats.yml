@@ -1,0 +1,7 @@
+en:
+  time:
+    formats:
+      datetimepicker_server: '%d/%m/%Y %I:%M %p'
+      datetimepicker_client: 'DD/MM/YYYY hh:mm A'
+      iso8601_without_seconds_and_timezone: '%Y-%m-%dT%H:%M'
+

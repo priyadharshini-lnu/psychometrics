@@ -1,12 +1,5 @@
 <%= render template: 'administration/base/new' %>
 
 $(function () {
-  function truncateDate() {
-    var newDate = new Date();
-    return new Date(newDate.getFullYear(), newDate.getMonth(), newDate.getDate());
-  };
-
-  $('#resource_delivery_at_date').datepicker('setStartDate', truncateDate());
-  $('#resource_delivery_at_date').datepicker('setDate', truncateDate());
-  $('#resource_delivery_at_time').timepicker('setTime', "<%= time_for_communication_timepicker %>");
+  $(document).trigger('initDatetimepicker');
 });

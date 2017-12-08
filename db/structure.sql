@@ -407,7 +407,9 @@ CREATE TABLE communications (
     campaign_id integer,
     sub_campaign_id integer,
     end_level_id integer,
-    kind integer
+    kind integer,
+    stop_reminder_datetime timestamp without time zone,
+    stop_reminder boolean DEFAULT false NOT NULL
 );
 
 
@@ -3241,6 +3243,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171117095652'),
 ('20171117122756'),
 ('20171201131314'),
-('20171206151008');
+('20171206151008'),
+('20171207080044'),
+('20171207135522');
 
 

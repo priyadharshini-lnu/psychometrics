@@ -7,9 +7,9 @@ module Forms
       model :communication
 
       properties :subject, :body, :recipients, :owner, :client, :project, :campaign, :sub_campaign, :end_level,
-                 :membership_ids, :kind, :delivery_rule, :delivery_at_time, :delivery_at_date, :delivery_at,
+                 :membership_ids, :kind, :delivery_rule, :delivery_at,
                  :assessment, :delivery_interval, :delivery_interval_number, :delivery_interval_period,
-                 :user_ids
+                 :user_ids, :stop_reminder_datetime
 
       property :assessment_id
       property :owner_id, type: Types::Form::Int
@@ -19,6 +19,7 @@ module Forms
       property :sub_campaign_id, type: Types::Form::Int
       property :end_level_id, type: Types::Form::Int
       property :reminder_type, default: 'custom'
+      property :stop_reminder, type: Types::Form::Bool
 
       validates :subject, :body, :client_id, :end_level_id, :recipients, :end_level, :kind, :client, presence: true
 
@@ -30,13 +31,14 @@ module Forms
       validates :assessment_id, presence: true, if: proc { kind == 'completion' }
       validates :assessment, presence: true, if: proc { assessment_id.present? }
 
+      validates :stop_reminder_datetime, presence: true,
+                date: { after: proc { DateTime.current } },
+                if: proc { reminder? && stop_reminder }
+
       validates :delivery_interval_number,
                 :delivery_interval_period,
                 presence: true, if: :custom_reminder?
 
-      validates :delivery_at_time,
-                presence: true,
-                if: :specified_date_and_time_invitation?
 
       validates :delivery_interval_number,
                 numericality: { only_integer: true, greater_than_or_equal_to: 1 },
@@ -62,12 +64,9 @@ module Forms
                 inclusion: { in: ::Facades::Administration::EmailDelivery::RULES[:other] },
                 if: :other?
 
-      validates :delivery_at_date,
+      validates :delivery_at,
                 presence: true,
-                if: :specified_date_and_time_invitation?
-
-      validates :delivery_at_time,
-                presence: true,
+                date: { after: proc { DateTime.current } },
                 if: :specified_date_and_time_invitation?
 
       def owner
@@ -108,19 +107,17 @@ module Forms
         self.owner_id = client_id if user.is?(:client_admin) || user.is?(:project_admin)
         self.client_id = owner_id if user.is?(:superadmin) && owner_id.present?
         self.end_level_id = sub_campaign_id || campaign_id || project_id || client_id
-        self.delivery_at = build_datetime if can_build_timedate?
+      end
+
+      def stop_reminder_datetime
+        Time.zone.parse(super.to_s)&.to_datetime
+      end
+
+      def delivery_at
+        Time.zone.parse(super.to_s)&.to_datetime
       end
 
       private
-
-      def build_datetime
-        date = Time.zone.parse(delivery_at_date)
-        date.to_datetime + Time.zone.parse(delivery_at_time).seconds_since_midnight.seconds
-      end
-
-      def can_build_timedate?
-        delivery_at_date.present? && delivery_at_time.present?
-      end
 
       def reminder?
         kind == 'reminder'
@@ -135,7 +132,7 @@ module Forms
       end
 
       def specified_date_and_time_invitation?
-        invitation? && delivery_rule == 'specific_datetime'
+        (invitation? || other?) && delivery_rule == 'specific_datetime'
       end
 
       def custom_reminder?

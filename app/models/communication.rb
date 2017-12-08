@@ -26,8 +26,7 @@ class Communication < ApplicationRecord
     send_now: ::Communications::InvitationType::SendNowJob
   }.freeze
 
-  attr_accessor :delivery_at_date, :delivery_at_time, :delivery_interval_number, :delivery_interval_period,
-                :reminder_type
+  attr_accessor :delivery_interval_number, :delivery_interval_period, :reminder_type
   has_and_belongs_to_many :memberships, join_table: :communications_memberships
   has_and_belongs_to_many :copy_memberships, join_table: :communications_copy_memberships, class_name: 'Membership'
   has_many :emails, dependent: :destroy, inverse_of: :communication, class_name: 'CommunicationEmail'

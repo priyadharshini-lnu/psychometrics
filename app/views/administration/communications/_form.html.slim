@@ -60,28 +60,23 @@
             behavior: @communication_facade.memberships_behavior },
             multiple: true }, label: t('.selected_recipients')
       - if @communication_facade.show_delivery_rules?
-        = f.input :delivery_rule,
-          as: :select,
-          collection: @communication_facade.delivery_rules,
-          label_method: proc { |rec| t("administration.communications.form.delivery_rules.#{rec}") },
-          input_html: { data: { live_search: true, behavior: 'communication-changeable' } }
-        - if @communication_facade.show_inputs_for_date_and_time?
-          = f.input :delivery_at_date,
-            label: false,
-            as: :string,
-            include_blank: false,
-            input_html: { class: 'datepicker form-control' }
-          = f.input :delivery_at_time,
-            as: :string,
-            include_blank: false,
-            label: false,
-            input_html: { class: 'timepicker form-control' }
-          label.control-label.delivery_rule_gst GST time
+        .row.mbl
+          .col-md-4.pln
+            = f.input :delivery_rule,
+              as: :select,
+              collection: @communication_facade.delivery_rules,
+              label_method: proc { |rec| t("administration.communications.form.delivery_rules.#{rec}") },
+              input_html: { data: { live_search: true, behavior: 'communication-changeable' } }
+          - if @communication_facade.show_inputs_for_date_and_time?
+            .col-md-8.prn
+              = f.input :delivery_at, as: :datetimepicker, initialize_time_now: true,
+                label: t('.delivery_at'),
+                min_date: date_without_seconds_and_timezone
       - if @communication_facade.show_delivery_intervals?
         .form-group
           = f.collection_radio_buttons :reminder_type, @communication_facade.reminder_types, :last, :first, {},
             data: { behavior: 'communication-changeable' } do |b|
-            = b.label(class: 'mrl') { b.radio_button(class: 'mrx') + b.text }
+            = b.label(class: 'mrl') { b.radio_button(class: 'mrs') + b.text }
 
         - if @communication_facade.show_timeframes_reminder?
           = f.input :delivery_interval, collection: ::Helpers::Communications.reminder_timeframes
@@ -93,6 +88,16 @@
                 collection: @communication_facade.delivery_interval_periods
             .col-md-4
               = f.input :delivery_interval_number, as: :integer
+        .row.mbl
+          .col-md-4.pln
+            = f.input :stop_reminder, as: :boolean, checked_value: true, unchecked_value: false,
+              label: t('.stop_reminder'),
+              input_html: { data: { behavior: 'communication-changeable' } }
+          .col-md-8
+            - if @communication_facade.show_stop_reminder_datetime?
+              = f.input :stop_reminder_datetime, as: :datetimepicker, initialize_time_now: true,
+                label: t('.stop_reminder_datetime'),
+                min_date: date_without_seconds_and_timezone
       h3 Message
       = f.input :subject
       = f.input :body, input_html: { class: 'summernote_email' }
