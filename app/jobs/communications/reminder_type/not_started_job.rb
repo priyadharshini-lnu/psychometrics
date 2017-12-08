@@ -5,7 +5,7 @@ module Communications
 
       def perform(communication_id)
         communication = Communication.enabled.reminder.find_by(id: communication_id)
-        return unless communication
+        return unless communication && communication.stop_reminder_datetime > DateTime.current
         memberships = membership_group_by_project_and_user(communication)
 
         memberships.each do |membership|

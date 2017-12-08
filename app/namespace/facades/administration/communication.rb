@@ -55,6 +55,10 @@ module Facades
         form.kind == 'reminder'
       end
 
+      def show_stop_reminder_datetime?
+        form.stop_reminder
+      end
+
       def show_custom_reminder?
         form.reminder_type == 'custom'
       end

@@ -92,7 +92,7 @@ module Administration
         :delivery_rule, :reminder_type, :delivery_interval,
         :delivery_interval_number, :delivery_interval_period,
         :project_id, :campaign_id, :sub_campaign_id,
-        :kind, :delivery_at, :delivery_at_time, :delivery_at_date,
+        :kind, :delivery_at, :stop_reminder, :stop_reminder_datetime,
         user_ids: []
       )
     end

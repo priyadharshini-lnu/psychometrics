@@ -28,6 +28,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-serialize-object', '2.5.0'
   gem 'rails-assets-ladda', '1.0.5'
   gem 'rails-assets-jquery.fileDownload', '1.4.2'
+  gem 'rails-assets-bootstrap-datetimepicker-3', '4.17.47'
+  gem 'rails-assets-moment', '2.19.3'
 end
 
 ### Authentication and authorization
@@ -138,6 +140,8 @@ gem 'rack-timeout', '~> 0.4.2'
 gem 'interactor', '~> 3.0'
 # Help ActiveRecord::Enum feature to work fine with I18n and simple_form.
 gem 'enum_help', '~> 0.0.17'
+# A simple date validator for Rails
+gem 'date_validator', '~> 0.9.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -59,5 +59,7 @@
 //= require mustache.js.js
 
 //= require file_downloader
+//= require moment
+//= require bootstrap-datetimepicker-3
 
 //= require_tree ./administration
