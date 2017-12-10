@@ -15,6 +15,7 @@
 #  project_membership_id :integer
 #  ancestry              :string
 #  role                  :integer          default("member"), not null
+# already_invited        :boolean          default(FALSE)
 #
 
 class Membership < ApplicationRecord
@@ -52,6 +53,7 @@ class Membership < ApplicationRecord
   has_many :clients_memberships, foreign_key: :project_membership_id, class_name: 'Membership' # on delete cascade
   has_many :clients_assigns, through: :clients_memberships, source: :assigns, class_name: 'Assign'
   has_many :clients_reports, through: :clients_assigns, source: :reports
+  has_one :original_membership, foreign_key: :project_membership_id, class_name: 'Membership'
 
   validates :client, :user, presence: true
   validates :client_id, uniqueness: { scope: [:user_id, :role] }
@@ -132,6 +134,10 @@ class Membership < ApplicationRecord
     project_membership_id.nil?
   end
 
+  def already_invited?
+    already_invited || project_membership&.already_invited
+  end
+
   private
 
   def set_project_membership
@@ -152,6 +158,7 @@ class Membership < ApplicationRecord
 
   def send_invitation_emails
     invites = invitations_for_current_membership
+    return if already_invited?
     return unless invites
     invites.each do |invite|
       invite.emails.create(membership_id: self.id)

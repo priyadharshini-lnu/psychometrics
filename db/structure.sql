@@ -408,9 +408,9 @@ CREATE TABLE communications (
     sub_campaign_id integer,
     end_level_id integer,
     kind integer,
+    creator_id integer,
     stop_reminder_datetime timestamp without time zone,
-    stop_reminder boolean DEFAULT false NOT NULL,
-    creator_id integer
+    stop_reminder boolean DEFAULT false NOT NULL
 );
 
 
@@ -875,7 +875,8 @@ CREATE TABLE memberships (
     assigns_completed boolean DEFAULT false,
     project_membership_id integer,
     ancestry character varying,
-    role integer DEFAULT 0 NOT NULL
+    role integer DEFAULT 0 NOT NULL,
+    already_invited boolean DEFAULT false NOT NULL
 );
 
 
@@ -3264,6 +3265,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171207080044'),
 ('20171207135522'),
 ('20171208153022'),
-('20171208171730');
+('20171208171730'),
+('20171210004245');
 
 

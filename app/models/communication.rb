@@ -131,6 +131,10 @@ class Communication < ApplicationRecord
     end
   end
 
+  def not_invited_to_project_current_memberships
+    current_memberships.distinct.reject(&:already_invited?)
+  end
+
   private
 
   def send_email_now
