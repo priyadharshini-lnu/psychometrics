@@ -12,7 +12,7 @@ module Communications
     private
 
     def fetch_memberships(communication)
-      communication.current_memberships.distinct
+      communication.not_invited_to_project_current_memberships
     end
   end
 end
