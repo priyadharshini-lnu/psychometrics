@@ -60,6 +60,7 @@
 
 //= require file_downloader
 //= require moment
+//= require moment-timezone
 //= require bootstrap-datetimepicker-3
 
 //= require_tree ./administration
