@@ -43,4 +43,38 @@ RSpec.describe Communication, type: :model do
       end
     end
   end
+
+  context '#current_memberships_ids' do
+    let!(:sub_campaign1) { create(:sub_campaign) }
+    let!(:sub_campaign2) { create(:sub_campaign, parent: sub_campaign1.parent) }
+    let!(:sub_campaign_membership1) { create(:membership, client: sub_campaign1) }
+    let!(:sub_campaign_membership2) { create(:membership, client: sub_campaign2) }
+    let!(:communication1) do
+      create(:communication, client_id: sub_campaign1.tte.id, owner_id: sub_campaign1.tte.id,
+             project_id: sub_campaign1.project.id, campaign_id: sub_campaign1.campaign.id,
+             sub_campaign_id: sub_campaign1.id, end_level_id: sub_campaign1.id)
+    end
+    let!(:communication2) do
+      create(:communication, client_id: sub_campaign1.tte.id, owner_id: sub_campaign1.tte.id,
+             project_id: sub_campaign1.project.id, campaign_id: sub_campaign1.campaign.id,
+             end_level_id: sub_campaign1.campaign.id)
+    end
+
+    context 'if end_level is client end_level' do
+      it 'eq to selected_memberships_ids' do
+        expect(communication1.current_memberships_ids).to eq(communication1.selected_memberships_ids)
+      end
+    end
+
+    context 'if end_level is not client end_level' do
+      it 'not eq to selected_memberships_ids' do
+        expect(communication2.current_memberships_ids).not_to eq(communication2.selected_memberships_ids)
+      end
+
+      it 'eq to selected_memberships_ids minus lower ids' do
+        selected_ids = communication2.selected_memberships_ids - communication1.selected_memberships_ids
+        expect(communication2.current_memberships_ids).to eq(selected_ids)
+      end
+    end
+  end
 end
