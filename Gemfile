@@ -30,6 +30,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery.fileDownload', '1.4.2'
   gem 'rails-assets-bootstrap-datetimepicker-3', '4.17.47'
   gem 'rails-assets-moment', '2.19.3'
+  gem 'rails-assets-moment-timezone', '0.5.14'
 end
 
 ### Authentication and authorization

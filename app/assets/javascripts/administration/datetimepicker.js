@@ -9,7 +9,8 @@
         minDate: input.data('min-date'),
         useCurrent: input.data('use-current') || false,
         allowInputToggle: true,
-        keepInvalid: input.data('keep-invalid') || true
+        keepInvalid: input.data('keep-invalid') || true,
+        timeZone: input.data('time-zone') || 'Etc/GMT-4'
       });
     });
   });
