@@ -279,6 +279,7 @@ Rails.application.routes.draw do
 
     resources :communications, only: [:index, :new, :create, :destroy, :show] do
       member do
+        get :download_history, defaults: { format: :csv }
         get :copy
         get :sidebar
         patch :toggle_status

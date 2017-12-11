@@ -38,13 +38,12 @@ en:
         successfully: 'Communication was successfully updated.'
       sidebar:
         title: "Communication's options"
-        disable: 'Disable Communication'
-        enable: 'Enable Communication'
         edit: 'Edit Communication'
         new: 'New Communication'
         copy: 'Copy Communication'
         destroy: 'Delete Communication'
         view: 'View Communication'
+        download: 'Download Communication History'
       form:
         delivery_rules:
           send_now: 'Send now'
@@ -72,6 +71,7 @@ en:
           edit: 'Edit Communication'
           delete: 'Delete Communication'
           view: 'View Communication'
+          download: 'Download Communication History'
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?

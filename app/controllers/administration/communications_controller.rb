@@ -1,7 +1,7 @@
 module Administration
   class CommunicationsController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:destroy, :copy, :toggle_status, :sidebar]
+    before_action :set_resource, only: [:destroy, :copy, :download_history, :toggle_status, :sidebar]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :pundit_authorize, except: [:sidebar]
     after_action :init_breadcrumbs
@@ -55,6 +55,11 @@ module Administration
       clone_resource(resource)
       @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
       render :new
+    end
+
+    def download_history
+      csv = ::Services::ExportCSV::CommunicationEmailsHistory.call(communication: resource, col_sep: ';').result
+      send_data csv, filename: "#{resource.subject}-#{Time.current}.csv"
     end
 
     def new_form

@@ -16,6 +16,10 @@ module Administration
       true
     end
 
+    def download_history?
+      create?
+    end
+
     class Scope < Scope
       def resolve
         scope = super

@@ -362,7 +362,8 @@ CREATE TABLE communication_emails (
     membership_id integer,
     communication_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    sent_at timestamp without time zone
 );
 
 
@@ -407,9 +408,9 @@ CREATE TABLE communications (
     sub_campaign_id integer,
     end_level_id integer,
     kind integer,
-    creator_id integer,
     stop_reminder_datetime timestamp without time zone,
-    stop_reminder boolean DEFAULT false NOT NULL
+    stop_reminder boolean DEFAULT false NOT NULL,
+    creator_id integer
 );
 
 
@@ -3262,6 +3263,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171206161732'),
 ('20171207080044'),
 ('20171207135522'),
-('20171208153022');
+('20171208153022'),
+('20171208171730');
 
 
