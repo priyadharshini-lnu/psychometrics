@@ -43,7 +43,7 @@
     - if @communication.delivery_rule == 'specific_datetime'
       li.list-group-item
         strong.mrs = t('.specific_datetime')
-        = "#{I18n.l(@communication.delivery_at, format: :short)} GST"
+        = "#{I18n.l(@communication.delivery_at, format: :short)} (GST)"
     - if @communication.reminder?
       li.list-group-item
         strong.mrs = t('.delivery_rule')
