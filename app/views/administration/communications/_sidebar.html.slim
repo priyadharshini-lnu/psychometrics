@@ -2,7 +2,7 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(resource)}"
   li.xn-title.title = t('.title')
   - if policy(resource).show?
     li = link_to t('.view'), administration_communication_path(resource)
-  - if policy(resource).download?
+  - if policy(resource).download_history?
     li = link_to t('.download'), [:download_history, :administration, resource]
   - if policy(resource).copy?
     li = link_to t('.copy'), [:copy, :administration, resource], remote: true
