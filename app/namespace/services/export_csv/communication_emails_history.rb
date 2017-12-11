@@ -17,7 +17,7 @@ module Services
       private
 
       def generate_csv(data)
-        CSV.generate(col_sep: @col_sep) do |csv|
+        CSV.generate(@csv_options) do |csv|
           csv << HEADERS
           data.each do |info|
             csv << info
@@ -26,7 +26,7 @@ module Services
       end
 
       def set_instances
-        @col_sep = context.col_sep
+        @csv_options = context.csv_options || {}
         @communication = context.communication
       end
     end
