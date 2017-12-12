@@ -19,7 +19,7 @@
                     placeholder: t('administration.search'),
                     input_html: { class: 'has_clear periodically-observed' }
           = f.input :client_id_in,
-                    collection: policy_scope(Client).all,
+                    collection: policy_scope(Client).roots,
                     input_html: { data: { live_search: true }, multiple: true, title: t('administration.communications.index.clients') },
                     required: false,
                     label: false
