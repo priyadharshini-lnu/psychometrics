@@ -34,7 +34,7 @@ class CommunicationEmail < ApplicationRecord
   end
 
   def delivery_email
-    if communication.invitation? || membership.user.invitation_accepted?
+    if communication.invitation? || membership.already_invited?
       CommunicationEmailMailer.create(id).deliver_later(params_for_set_job)
     end
   end

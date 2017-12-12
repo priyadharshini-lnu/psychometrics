@@ -125,7 +125,7 @@ class Communication < ApplicationRecord
   end
 
   def emails_creating
-    selected_memberships.find_each(batch_size: 10) do |membership|
+    selected_memberships.find_each(batch_size: 100) do |membership|
       emails.create(membership: membership)
     end
   end

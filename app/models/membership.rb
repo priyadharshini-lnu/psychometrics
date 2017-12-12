@@ -62,7 +62,8 @@ class Membership < ApplicationRecord
   validate :client_admin_scope, if: 'project_admin?'
 
   before_save :set_project_membership, if: 'client.end_level?'
-  after_create_commit :send_invitation_emails
+  after_create_commit :create_invitation_emails
+  after_create_commit :create_other_emails
   after_destroy :clear_project_membership, if: 'client.end_level?'
 
   has_ancestry
@@ -156,12 +157,20 @@ class Membership < ApplicationRecord
   end
 
 
-  def send_invitation_emails
+  def create_invitation_emails
     invites = invitations_for_current_membership
     return if already_invited?
     return unless invites
     invites.each do |invite|
       invite.emails.create(membership_id: self.id)
+    end
+  end
+
+  def create_other_emails
+    communications = Communication.other.where(end_level_id: client.path_ids)
+    communications = communications.send_now.or(communications.specific_datetime.where('delivery_at <= ?', Time.current))
+    communications.find_each(batch_size: 100) do |communication|
+      communication.emails.create(membership_id: id) if communication.selected_memberships_ids.include?(id)
     end
   end
 
