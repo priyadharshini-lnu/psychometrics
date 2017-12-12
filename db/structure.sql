@@ -1522,7 +1522,8 @@ CREATE TABLE users (
     grants jsonb,
     created_by_id integer,
     modified_by_id integer,
-    spoof_token character varying
+    spoof_token character varying,
+    encrypted_invitation_raw character varying
 );
 
 
@@ -3266,6 +3267,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171207135522'),
 ('20171208153022'),
 ('20171208171730'),
-('20171210004245');
+('20171210004245'),
+('20171212142402');
 
 

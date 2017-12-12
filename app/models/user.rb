@@ -193,6 +193,12 @@ class User < ApplicationRecord
 
   private
 
+  def generate_invitation_token
+    super
+    encrypted_token = Rails.application.message_verifier(Rails.application.secrets.secret_token_for_generate).generate(@raw_invitation_token)
+    self.encrypted_invitation_raw = encrypted_token
+  end
+
   def generate_authentication_token
     loop do
       token = Devise.friendly_token
