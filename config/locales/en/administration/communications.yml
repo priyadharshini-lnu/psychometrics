@@ -18,6 +18,7 @@ en:
         client_name: Client
         project: Project
         campaign: Campaign
+        creator_first_name: Created by
         sub_campaign: Sub-campaign
         subject: Communication subject
         kind: Communication type

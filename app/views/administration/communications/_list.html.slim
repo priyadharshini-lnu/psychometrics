@@ -3,16 +3,16 @@
     thead
       tr
         th = link_to_sort resource_class, :client_name, filter_form
-        th.text-center = t('.project')
-        th.text-center = t('.campaign')
-        th.text-center = t('.sub_campaign')
-        th.text-center = link_to_sort resource_class, :subject, filter_form
-        th.text-center = t('.kind')
-        th.text-center = t('.recipients')
-        th.text-center = t('.delivery_rule')
-        th.text-center = link_to_sort resource_class, :created_at, filter_form
-        th.text-center = link_to_sort resource_class, :creator_first_name, filter_form
-        th.text-center = t('.list.actions')
+        th = t('.project')
+        th = t('.campaign')
+        th = t('.sub_campaign')
+        th = link_to_sort resource_class, :subject, filter_form
+        th = t('.kind')
+        th = t('.recipients')
+        th = t('.delivery_rule')
+        th = link_to_sort resource_class, :created_at, filter_form
+        th = link_to_sort resource_class, :creator_first_name, filter_form
+        th = t('.list.actions')
     tbody
       - if resources.present?
         = render partial: 'resource', collection: resources
