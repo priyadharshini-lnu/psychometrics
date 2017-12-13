@@ -190,8 +190,8 @@ class Membership < ApplicationRecord
 
 
   def invitations_for_current_membership
-    Communication.invitation_for_end_level_id(client_id).includes(:memberships).select do |communication|
-      communication.selected_memberships_ids.include?(id)
+    Communication.invitation_for_end_level_id(client.path_ids).includes(:memberships).select do |communication|
+      communication.current_memberships_ids.include?(id)
     end
   end
 
