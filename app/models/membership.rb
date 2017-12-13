@@ -117,6 +117,11 @@ class Membership < ApplicationRecord
     SCOPES[role]
   end
 
+  def set_user_invited_for_current_project
+    return if already_invited?
+    update_columns(already_invited: true)
+  end
+
   # return true for new or overuse (:yti(:eti)) combinations
   def excess_yti_eti?(report)
     return true if !report.yti_eti? || reports.empty?
@@ -136,7 +141,7 @@ class Membership < ApplicationRecord
   end
 
   def already_invited?
-    already_invited || project_membership&.already_invited
+    project_membership&.already_invited || already_invited
   end
 
   private
