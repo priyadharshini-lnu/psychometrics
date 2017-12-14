@@ -69,7 +69,7 @@ module Forms
                 date: { after: proc { DateTime.current } },
                 if: :specified_date_and_time_invitation?
 
-      validates_with ::Validators::Forms::Communications::SelectedMembers, if: proc { recipients == 'selected' }
+      validates :user_ids, absence: true, if: proc { recipients == 'selected' }
 
       def owner
         Client.find_by(id: owner_id)
