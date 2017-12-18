@@ -17,3 +17,9 @@ en:
     placeholders:
       report:
         <<: *DEFAULT
+  enums:
+    report:
+      type:
+        common: 'Any'
+        eti: 'ETI'
+        yti: 'YTI'
