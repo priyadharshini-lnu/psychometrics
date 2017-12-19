@@ -8,6 +8,7 @@ $(function () {
   });
 
   $(document).on('click', '[data-behavior=export-pdf]', function (e) {
+    if ($(this).find('.ladda-button')[0].hasAttribute('data-loading')) return false;
     $.fileDownload($(this).attr('href'), {
       successCallback: function(url) {
         Ladda.stopAll();
