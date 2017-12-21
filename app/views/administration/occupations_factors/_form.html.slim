@@ -3,7 +3,7 @@
     = f.error_notification
 
     .form-inputs.clearfix
-      = f.association :factor, collection: Factor.no_roots.where(dimension_id: @dimension.id).all,
+      = f.association :factor, collection: Factor.no_roots.where(dimension_id: @dimension.id).order(:name),
         include_blank: true, input_html: {data: {live_search: true}}
       = f.input :predicate, collection: OccupationsFactor::CONDITION_MAP.map {|a, b| [b, a] },
         include_blank: false, input_html: {data: {live_search: false}}
