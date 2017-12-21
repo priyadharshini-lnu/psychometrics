@@ -31,6 +31,8 @@ en:
         header: 'New Communication'
       edit:
         header: 'Edit Communication'
+      create:
+        successfully: 'Communication created successfully.'
       destroy:
         successfully: 'Communication %{name} was successfully destroyed.'
       copy:
