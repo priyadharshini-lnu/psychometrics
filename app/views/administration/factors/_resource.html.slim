@@ -3,7 +3,7 @@ tr data-sidebar=url_for([:sidebar, :administration, @dimension, resource]) id=do
     = link_to [:toggle_status, :administration, @dimension, resource], method: :patch, class: 'toggle-status', remote: true do
       = resource.decorate.status
   td.vertical_middle
-    = image_tag resource.icon.url(:thumb) if resource.icon.url()
+    = image_tag resource.icon.url(:factors_icon), class: 'factors_icon' if resource.icon.url()
   td.vertical_middle = link_to resource.name, [:administration, @dimension, resource, :sub_factors]
   - questions_count = resource.questions_count_by_assessment
   - if questions_count

@@ -11,7 +11,7 @@
       = f.input :high_school_entry_roles, as: :text
       = f.input :diploma_qualification, as: :text
       = f.input :bachelors_or_masters_qualification, as: :text
-      = f.input :icon, hint: f.object.icon.present? ? f.input(:remove_icon, as: :boolean) + image_tag(f.object.icon.url(:thumb)) : content_tag(:span, t('.no_icon'))
+      = f.input :icon, hint: f.object.icon.present? ? f.input(:remove_icon, as: :boolean) + image_tag(f.object.icon.url(:factors_icon)) : content_tag(:span, t('.no_icon'))
 
   .modal-footer
     .btn-group
