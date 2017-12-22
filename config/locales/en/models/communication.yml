@@ -19,7 +19,7 @@ en:
         selected: Selected
       delivery_rule:
         send_now: 'Send now'
-        specific_datetime: 'Specific date and time'
+        specific_datetime: 'Send at'
         not_started: 'If assessment is not started'
         in_progress: 'If assessment is in progress'
         not_competed: 'If assessment is not completed'
