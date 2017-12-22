@@ -40,7 +40,7 @@
       li.list-group-item
         strong.mrs = t('.delivery_rule')
         = @communication.delivery_rule_i18n
-    - if @communication.delivery_rule == 'specific_datetime'
+    - if @communication.specific_datetime?
       li.list-group-item
         strong.mrs = t('.specific_datetime')
         = "#{I18n.l(@communication.delivery_at, format: :short)} (GST)"
@@ -48,7 +48,10 @@
       li.list-group-item
         strong.mrs = t('.delivery_rule')
         = t('.every_interval', interval: @communication.delivery_interval)
-
+      - if @communication.stop_reminder?
+        li.list-group-item
+          strong.mrs = t('.stop_reminder_datetime')
+          = "#{I18n.l(@communication.stop_reminder_datetime, format: :short)} (GST)"
     li.list-group-item
       strong.mrs = t('.subject')
       = @communication.subject
