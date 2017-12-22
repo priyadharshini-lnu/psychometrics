@@ -102,3 +102,4 @@ en:
         body: 'Body:'
         every_interval: 'Every %{interval}'
         back: Back
+        stop_reminder_datetime: End date for reminders (GST)
