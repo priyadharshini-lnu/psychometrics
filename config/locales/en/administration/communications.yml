@@ -50,7 +50,7 @@ en:
       form:
         delivery_rules:
           send_now: 'Send now'
-          specific_datetime: 'Specific date and time'
+          specific_datetime: 'Send at'
           not_started: 'If assessment is not started'
           in_progress: 'If assessment is in progress'
           not_competed: 'If assessment is not completed'
@@ -96,7 +96,7 @@ en:
         recipients: 'Recipients:'
         users: 'Users:'
         delivery_rule: 'Delivery rule:'
-        specific_datetime: 'Specific datetime:'
+        specific_datetime: 'Send at:'
         delivery_interval: 'Delivery interval:'
         subject: 'Subject:'
         body: 'Body:'
