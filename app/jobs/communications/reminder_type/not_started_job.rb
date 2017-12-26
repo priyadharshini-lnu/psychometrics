@@ -8,7 +8,7 @@ module Communications
         memberships = membership_group_by_project_and_user(communication)
 
         memberships.each do |membership|
-          communication.emails.create(membership_id: membership.first.id) if membership.first.already_invited?
+          communication.emails.create(membership_id: membership.first.id)
         end
 
         scheduled_next_job(communication)

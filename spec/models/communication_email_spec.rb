@@ -28,18 +28,5 @@ RSpec.describe CommunicationEmail, type: :model do
         end
       end
     end
-
-    describe '.not_invitation_emails_for(user_id)' do
-      before do
-        project = create(:project_base )
-        @membership = create(:membership, client_id: project.id, user: create(:user))
-        @communication = create(:communication, client_id: project.id)
-      end
-      context 'when there are some communication emails for user' do
-        it 'returns only ids of non-invitations communication emails' do
-          expect(CommunicationEmail.not_invitation_emails_for(@membership.user.id).size).to eq(@membership.communication_emails.joins(:communication).where.not(communications: { kind: 'invitation' }).size)
-        end
-      end
-    end
   end
 end

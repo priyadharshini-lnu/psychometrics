@@ -88,7 +88,7 @@ class ClientDecorator < BaseDecorator
 
   def client_admins(user)
     object.client_admin_memberships.map do |membership|
-      if object.projects_admins.exists?(user)
+      if object.projects_admins.exists?(user.id)
         membership.user.decorate.display_name
       else
         h.link_to membership.user.decorate.display_name, h.edit_administration_client_client_admin_path(membership.client_id, membership), class: 'text-nowrap'
