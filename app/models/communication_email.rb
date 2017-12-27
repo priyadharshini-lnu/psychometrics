@@ -18,11 +18,6 @@ class CommunicationEmail < ApplicationRecord
   scope :for_user, -> (user_id){ joins(:membership).where(memberships: { user_id: user_id }) }
   scope :sent, -> { where.not(sent_at: nil) }
 
-  def self.not_invitation_emails_for(user_id)
-    for_user(user_id).joins(:communication).select(:id)
-    .where.not(communications: { kind: 'invitation' })
-  end
-
   private
 
   def need_to_pass_wait_until?
@@ -34,8 +29,6 @@ class CommunicationEmail < ApplicationRecord
   end
 
   def delivery_email
-    if communication.invitation? || membership.already_invited?
-      CommunicationEmailMailer.create(id).deliver_later(params_for_set_job)
-    end
+    CommunicationEmailMailer.create(id).deliver_later(params_for_set_job)
   end
 end
