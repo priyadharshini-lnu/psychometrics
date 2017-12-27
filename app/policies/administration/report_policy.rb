@@ -30,7 +30,8 @@ module Administration
     def preview?
       return false if @record.mindmill?
       return true if @user.is?(:superadmin)
-      return true if (@user.is?(:client_admin) || @user.is?(:project_admin)) && @record.assessment.psychometric? && @user.has_grant?(:reports, :view)
+      return true if (@user.is?(:client_admin) || @user.is?(:project_admin)) && @record.assessment.psychometric? &&
+        @user.has_grant?(:assigns, :view)
       false
     end
 
@@ -50,7 +51,6 @@ module Administration
       def resolve
         scope = super
         return scope if @user.is?(:superadmin)
-        return scope.none unless @user.has_grant?(:reports, :view)
         tte_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients_tte_ids
         client_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
         client_end_level_ids = Client.end_level.where('id in (?) or ancestry ~ ?', client_ids, "(/|^)(#{client_ids.join('|')})(/|$)").ids
