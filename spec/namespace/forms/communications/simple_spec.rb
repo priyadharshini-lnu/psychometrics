@@ -13,8 +13,9 @@ RSpec.describe ::Forms::Communications::Simple do
       project_id: sub_campaign.project.id,
       campaign_id: sub_campaign.campaign.id,
       sub_campaign_id: sub_campaign.id,
-      kind: 'completion',
+      kind: 'invitation',
       recipients: 'all',
+      delivery_rule: 'send_now',
       subject: 123,
       body: '123'
     }

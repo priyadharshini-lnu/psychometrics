@@ -24,12 +24,22 @@ module Administration
       def resolve
         scope = super
         return scope if @user.is?(:superadmin)
-        if @user.has_grant?(:communications, :view)
-          owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_client_ids
-          scope.where(owner_id: owner_ids)
-        else
-          scope.none
-        end
+        return scope.none unless has_scope?
+        @user.is?(:client_admin) ? client_admin_scope(scope) : project_admin_scope(scope)
+      end
+
+      private
+
+      def has_scope?
+        @user.has_grant?(:communications, :view) && (@user.is?(:client_admin) || @user.is?(:project_admin))
+      end
+
+      def client_admin_scope(scope)
+        scope.where(owner_id: @user.client_admin_client_ids)
+      end
+
+      def project_admin_scope(scope)
+        scope.where(project_id: @user.project_admin_client_ids).where.not(owner_id: nil)
       end
     end
   end
