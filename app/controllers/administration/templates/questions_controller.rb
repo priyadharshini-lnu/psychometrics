@@ -2,7 +2,7 @@ module Administration
   module Templates
     class QuestionsController < Administration::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: [:show, :edit, :configure, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign]
+      before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :new_assign]
       before_action :skip_authorization, only: [:sidebar]
       before_action :init_breadcrumbs
       append_before_action :pundit_authorize, except: [:sidebar]
