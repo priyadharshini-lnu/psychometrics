@@ -3,6 +3,6 @@ class SubFactorSerializer < ActiveModel::Serializer
   attributes :id, :name, :description, :icon
 
   def icon
-    object.icon.url(:middle)
+    object.icon.url
   end
 end

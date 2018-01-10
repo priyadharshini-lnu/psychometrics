@@ -18,7 +18,7 @@ module Factors
     attributes :id, :name, :parent_id, :question_ids, :description, :icon
 
     def icon
-      object.icon.url(:middle)
+      object.icon.url
     end
 
     def question_ids

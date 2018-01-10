@@ -7,6 +7,22 @@ en:
         id: ID
         created_at: Created Date
         updated_at: Modified Date
+  enums:
+    communication:
+      kind:
+        invitation: Invitation
+        reminder: Reminder
+        completion: Completion
+        other: Other
+      recipients:
+        all: All
+        selected: Selected
+      delivery_rule:
+        send_now: 'Send now'
+        specific_datetime: 'Send at'
+        not_started: 'If assessment is not started'
+        in_progress: 'If assessment is in progress'
+        not_competed: 'If assessment is not completed'
   simple_form:
     placeholders:
       communication:

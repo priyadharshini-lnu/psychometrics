@@ -28,6 +28,9 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-jquery-serialize-object', '2.5.0'
   gem 'rails-assets-ladda', '1.0.5'
   gem 'rails-assets-jquery.fileDownload', '1.4.2'
+  gem 'rails-assets-bootstrap-datetimepicker-3', '4.17.47'
+  gem 'rails-assets-moment', '2.19.3'
+  gem 'rails-assets-moment-timezone', '0.5.14'
 end
 
 ### Authentication and authorization
@@ -126,11 +129,20 @@ gem 'bootstrap-slider-rails'
 gem 'money-rails', '~> 1.7.0'
 gem 'validates_timeliness', '~> 4.0.2'
 gem 'virtus', '~> 1.0.5'
+gem 'reform-rails', '~> 0.1.7'
+gem 'dry-types', '~> 0.12.2'
 
 # SOAP client
 gem 'savon', '~> 2.11.0'
-
+# Abort requests that are taking too long
 gem 'rack-timeout', '~> 0.4.2'
+
+# for service objects
+gem 'interactor', '~> 3.0'
+# Help ActiveRecord::Enum feature to work fine with I18n and simple_form.
+gem 'enum_help', '~> 0.0.17'
+# A simple date validator for Rails
+gem 'date_validator', '~> 0.9.0'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -141,7 +153,6 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', '~> 4.7.0'
   # A fake data generator
-  gem 'forgery', '0.6.0'
 end
 
 group :development do
@@ -165,6 +176,7 @@ end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 2.13'
+  gem 'forgery', '0.6.0'
   gem 'poltergeist', '~> 1.14.0'
   gem 'capybara-screenshot', '~> 1.0.14'
   gem 'selenium-webdriver'

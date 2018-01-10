@@ -18,7 +18,7 @@ module Factors
     attributes :id, :name, :description, :icon
 
     def icon
-      object.icon.url(:middle)
+      object.icon.url
     end
 
     # @deprecated

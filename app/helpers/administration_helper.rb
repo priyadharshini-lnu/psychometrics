@@ -74,4 +74,8 @@ module AdministrationHelper
       concat content_tag 'ul', resource.errors.full_messages.map { |msg| content_tag('li', msg) }.join.html_safe, class: 'list-unstyled'
     end
   end
+
+  def time_for_communication_timepicker
+    Time.current.strftime('%I:%M %p')
+  end
 end

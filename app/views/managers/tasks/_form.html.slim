@@ -16,7 +16,7 @@
       .form-inputs.row.mbm
         = f.input :status, collection: @resource_class.statuses.map { |k, v| [t(".statuses.#{k}"), k] }, include_blank: false, label: t('activerecord.attributes.task.status_label')
       .form-inputs.row.mbm
-        = f.input :priority, collection: @resource_class.priorities.map { |k, v| [t(".tasks.#{k}"), k] }, include_blank: false, label: t('activerecord.attributes.task.priority_label')
+        = f.input :priority, as: :select, collection: @resource_class.priorities.map { |k, v| [t(".tasks.#{k}"), k] }, include_blank: false, label: t('activerecord.attributes.task.priority_label')
     .form-inputs.row.mbm
       = f.input :planned_completed_at, as: :string, input_html: { class: 'managers_datepicker', value: f.object.planned_completed_at.try(:strftime, '%Y-%m-%d') || Date.tomorrow }, label: t('activerecord.attributes.task.planned_completed_at_label')
 

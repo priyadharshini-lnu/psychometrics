@@ -28,6 +28,6 @@ class OccupationSerializer < ActiveModel::Serializer
   end
 
   def icon
-    object.icon.url(:small)
+    object.icon.url
   end
 end
