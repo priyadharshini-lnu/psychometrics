@@ -17,7 +17,6 @@ en:
         submit_button: Set my password
     mailer:
       invitation_instructions:
-        from: The Talent Enterprise
         subject: The Talent Enterprise – Your Link to Thriving Index
         hello: Hello %{email}
         someone_invited_you: Someone has invited you to %{url}, you can accept it through the link below.
