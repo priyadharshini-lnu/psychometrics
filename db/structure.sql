@@ -2,8 +2,8 @@
 -- PostgreSQL database dump
 --
 
--- Dumped from database version 9.6.4
--- Dumped by pg_dump version 9.6.4
+-- Dumped from database version 9.6.6
+-- Dumped by pg_dump version 9.6.6
 
 SET statement_timeout = 0;
 SET lock_timeout = 0;
@@ -362,7 +362,8 @@ CREATE TABLE communication_emails (
     membership_id integer,
     communication_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    sent_at timestamp without time zone
 );
 
 
@@ -396,13 +397,20 @@ CREATE TABLE communications (
     assessment_id integer,
     client_id integer,
     recipients integer DEFAULT 0,
-    disabled boolean DEFAULT false,
-    delivery_rule integer DEFAULT 0,
+    delivery_rule integer,
     delivery_at timestamp without time zone,
     delivery_interval character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    owner_id integer
+    owner_id integer,
+    project_id integer,
+    campaign_id integer,
+    sub_campaign_id integer,
+    end_level_id integer,
+    kind integer,
+    creator_id integer,
+    stop_reminder_datetime timestamp without time zone,
+    stop_reminder boolean DEFAULT false NOT NULL
 );
 
 
@@ -443,6 +451,38 @@ CREATE TABLE communications_memberships (
     communication_id integer NOT NULL,
     membership_id integer NOT NULL
 );
+
+
+--
+-- Name: communications_users; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE communications_users (
+    id integer NOT NULL,
+    user_id integer,
+    communication_id integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: communications_users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE communications_users_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: communications_users_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE communications_users_id_seq OWNED BY communications_users.id;
 
 
 --
@@ -835,7 +875,8 @@ CREATE TABLE memberships (
     assigns_completed boolean DEFAULT false,
     project_membership_id integer,
     ancestry character varying,
-    role integer DEFAULT 0 NOT NULL
+    role integer DEFAULT 0 NOT NULL,
+    already_invited boolean DEFAULT false NOT NULL
 );
 
 
@@ -1481,7 +1522,8 @@ CREATE TABLE users (
     grants jsonb,
     created_by_id integer,
     modified_by_id integer,
-    spoof_token character varying
+    spoof_token character varying,
+    encrypted_invitation_raw character varying
 );
 
 
@@ -1565,6 +1607,13 @@ ALTER TABLE ONLY communication_emails ALTER COLUMN id SET DEFAULT nextval('commu
 --
 
 ALTER TABLE ONLY communications ALTER COLUMN id SET DEFAULT nextval('communications_id_seq'::regclass);
+
+
+--
+-- Name: communications_users id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications_users ALTER COLUMN id SET DEFAULT nextval('communications_users_id_seq'::regclass);
 
 
 --
@@ -1848,6 +1897,14 @@ ALTER TABLE ONLY communication_emails
 
 ALTER TABLE ONLY communications
     ADD CONSTRAINT communications_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: communications_users communications_users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications_users
+    ADD CONSTRAINT communications_users_pkey PRIMARY KEY (id);
 
 
 --
@@ -2252,10 +2309,59 @@ CREATE INDEX index_communications_on_assessment_id ON communications USING btree
 
 
 --
+-- Name: index_communications_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_campaign_id ON communications USING btree (campaign_id);
+
+
+--
 -- Name: index_communications_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX index_communications_on_client_id ON communications USING btree (client_id);
+
+
+--
+-- Name: index_communications_on_creator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_creator_id ON communications USING btree (creator_id);
+
+
+--
+-- Name: index_communications_on_end_level_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_end_level_id ON communications USING btree (end_level_id);
+
+
+--
+-- Name: index_communications_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_project_id ON communications USING btree (project_id);
+
+
+--
+-- Name: index_communications_on_sub_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_on_sub_campaign_id ON communications USING btree (sub_campaign_id);
+
+
+--
+-- Name: index_communications_users_on_communication_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_users_on_communication_id ON communications_users USING btree (communication_id);
+
+
+--
+-- Name: index_communications_users_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_communications_users_on_user_id ON communications_users USING btree (user_id);
 
 
 --
@@ -2644,6 +2750,14 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON users USING btree (re
 
 
 --
+-- Name: communications fk_rails_03e5799fcb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications
+    ADD CONSTRAINT fk_rails_03e5799fcb FOREIGN KEY (end_level_id) REFERENCES clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: assigns fk_rails_05e55ff955; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2716,6 +2830,14 @@ ALTER TABLE ONLY libraries
 
 
 --
+-- Name: communications fk_rails_41c5e93ac9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications
+    ADD CONSTRAINT fk_rails_41c5e93ac9 FOREIGN KEY (project_id) REFERENCES clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: users fk_rails_45307c95a3; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2748,11 +2870,27 @@ ALTER TABLE ONLY clients
 
 
 --
+-- Name: communications fk_rails_639c49fe3d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications
+    ADD CONSTRAINT fk_rails_639c49fe3d FOREIGN KEY (creator_id) REFERENCES users(id) ON DELETE SET NULL;
+
+
+--
 -- Name: questions fk_rails_6ec04ddf91; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY questions
     ADD CONSTRAINT fk_rails_6ec04ddf91 FOREIGN KEY (owner_id) REFERENCES clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communications_users fk_rails_7a00292b33; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications_users
+    ADD CONSTRAINT fk_rails_7a00292b33 FOREIGN KEY (communication_id) REFERENCES communications(id) ON DELETE CASCADE;
 
 
 --
@@ -2772,6 +2910,14 @@ ALTER TABLE ONLY tasks
 
 
 --
+-- Name: communications fk_rails_904f7c8764; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications
+    ADD CONSTRAINT fk_rails_904f7c8764 FOREIGN KEY (sub_campaign_id) REFERENCES clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: norms fk_rails_922fac4f2e; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2785,6 +2931,14 @@ ALTER TABLE ONLY norms
 
 ALTER TABLE ONLY assigns_reports
     ADD CONSTRAINT fk_rails_9418a5a870 FOREIGN KEY (assign_id) REFERENCES assigns(id) ON DELETE CASCADE;
+
+
+--
+-- Name: communications fk_rails_9635882d64; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications
+    ADD CONSTRAINT fk_rails_9635882d64 FOREIGN KEY (campaign_id) REFERENCES clients(id) ON DELETE CASCADE;
 
 
 --
@@ -2833,6 +2987,14 @@ ALTER TABLE ONLY norms
 
 ALTER TABLE ONLY norms
     ADD CONSTRAINT fk_rails_b7d8a0337d FOREIGN KEY (updated_by) REFERENCES users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: communications_users fk_rails_bc228f8bf6; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY communications_users
+    ADD CONSTRAINT fk_rails_bc228f8bf6 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
 
 
 --
@@ -3092,6 +3254,20 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20170704060854'),
 ('20170706095454'),
 ('20170708231022'),
-('20170725101235');
+('20170725101235'),
+('20171115115341'),
+('20171115115658'),
+('20171115115739'),
+('20171117095652'),
+('20171117122756'),
+('20171201131314'),
+('20171206151008'),
+('20171206161732'),
+('20171207080044'),
+('20171207135522'),
+('20171208153022'),
+('20171208171730'),
+('20171210004245'),
+('20171212142402');
 
 

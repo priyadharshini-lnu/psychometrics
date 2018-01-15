@@ -19,7 +19,7 @@ class ReportsController < ApplicationController
                includes(:membership, :user).
                where(memberships: { client_id: @current_project.id }, assessment_id: @resource.assessment_id).
                references(:membership).all
-    @assign = Assign.find_by(assessment_id: @resource.assessment_id, membership_id: @current_membership.id)
+    @assign = Assign.completed.find_by!(assessment_id: @resource.assessment_id, membership_id: @current_membership.id)
 
     @translations = Translation.to_hash_for_report(@resource.id, @resource.assessment_id, user_locale)
     @available_translations = Translation.available_translation_for_report(@resource.id, @resource.assessment_id)
@@ -29,6 +29,7 @@ class ReportsController < ApplicationController
         render('_show', layout: 'pdf') if params[:export]
       end
       format.pdf do
+        add_cookie_for_file_download
         pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @current_user, @current_project, request.protocol.split(':').first, lang: user_locale)
         send_file pdf_file, type: 'application/pdf'
       end
@@ -49,5 +50,9 @@ class ReportsController < ApplicationController
   # Authorisation user
   def pundit_authorize
     authorize @resource || @resource_class
+  end
+
+  def add_cookie_for_file_download
+    cookies[:fileDownload] = true
   end
 end

@@ -1,7 +1,7 @@
 module Administration
   class CommunicationsController < Administration::BaseController
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar, :edit_form]
+    before_action :set_resource, only: [:destroy, :copy, :download_history, :toggle_status, :sidebar]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :pundit_authorize, except: [:sidebar]
     after_action :init_breadcrumbs
@@ -18,15 +18,16 @@ module Administration
 
     def new
       @_resource = resource_class.new
+      @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
     end
 
     def create
       @_resource = resource_class.new(resource_params)
-      resource.owner_id = current_user.project_admin_clients.take.tte_id if current_user.is?(:project_admin)
-      resource.owner_id = current_user.client_admin_client_ids.first if current_user.is?(:client_admin)
-
+      @_resource.creator_id = current_user.id
+      @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
       respond_to do |format|
-        if resource.save
+        if @communication_facade.form.validate(resource_params)
+          @communication_facade.form.save
           format.js
         else
           format.js { render :new }
@@ -41,16 +42,6 @@ module Administration
       end
     end
 
-    def update
-      respond_to do |format|
-        if resource.update(resource_params)
-          format.js
-        else
-          format.js { render :edit }
-        end
-      end
-    end
-
     # DELETE /administration/resources/1
     def destroy
       resource.destroy
@@ -61,31 +52,35 @@ module Administration
     end
 
     def copy
-      @cloned_resource = resource.clone
-      respond_to do |format|
-        if @cloned_resource.save
-          format.js
-        else
-          format.js { render :error, locals: { message: t('administration.dimensions.copy.error', { id: resource.id }) } }
-        end
-      end
+      clone_resource(resource)
+      @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
+      render :new
+    end
+
+    def download_history
+      csv = ::Services::ExportCSV::CommunicationEmailsHistory.call(communication: resource).result
+      send_data csv, filename: "#{resource.subject}-#{Time.current}.csv"
     end
 
     def new_form
       @_resource = resource_class.preload(:assessment, :client).new(resource_params)
+      @communication_facade = ::Facades::Administration::Communication.new(current_user, resource)
       respond_to do |format|
         format.js { render :new }
       end
     end
 
-    def edit_form
-      resource.assign_attributes(resource_params)
-      respond_to do |format|
-        format.js { render :new }
-      end
+    def show
+      @communication = policy_scope(resource_class).find(params[:id])
     end
 
     private
+
+    def clone_resource(resource)
+      clone_resource = resource.clone
+      clone_resource.user_ids = resource.user_ids
+      @_resource = clone_resource
+    end
 
     def set_resource_class
       @_resource_class ||= Communication
@@ -100,9 +95,11 @@ module Administration
       params.fetch(:resource, {}).permit(
         :subject, :body, :assessment_id,
         :client_id, :recipients, :owner_id,
-        :delivery_rule, :delivery_at_date, :delivery_at_time,
+        :delivery_rule, :reminder_type, :delivery_interval,
         :delivery_interval_number, :delivery_interval_period,
-        membership_ids: [], copy_membership_ids: []
+        :project_id, :campaign_id, :sub_campaign_id,
+        :kind, :delivery_at, :stop_reminder, :stop_reminder_datetime,
+        user_ids: []
       )
     end
   end

@@ -9,7 +9,7 @@
       = f.input :description
       
     .form-inputs.clearfix
-      = f.input :icon, hint: f.object.icon.present? ? f.input(:remove_icon, as: :boolean) + image_tag(f.object.icon.url(:thumb)) : content_tag(:span, t('.no_icon'))
+      = f.input :icon, hint: f.object.icon.present? ? f.input(:remove_icon, as: :boolean) + image_tag(f.object.icon.url(:factors_icon)) : content_tag(:span, t('.no_icon'))
       
   .modal-footer
     .btn-group

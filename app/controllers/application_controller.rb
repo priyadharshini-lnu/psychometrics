@@ -4,7 +4,6 @@ class ApplicationController < ::BaseController
   # Authentication user/manager
   before_action :set_client_by_subdomain
   append_before_action :set_membership, if: :user_signed_in?
-
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   def layout_by_resource

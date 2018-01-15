@@ -23,6 +23,8 @@ module Administration
               where(memberships: { client_id: client.project.id }, assessment_id: resource.assessment_id).
               references(:membership).
               all
+          # TODO: think what should be done if there is a lot of users
+          @results = @results.where(membership_id: membership.id) if [8, 82].include?(resource.id)
           @assign = Assign.find_by(assessment_id: resource.assessment_id, membership_id: membership.id)
           @translations = Translation.to_hash_for_report(resource.id, resource.assessment_id, user_locale)
           @available_translations = Translation.available_translation_for_report(resource.id, resource.assessment_id)
@@ -31,6 +33,7 @@ module Administration
               render('_preview', layout: 'pdf') if params[:export]
             end
             format.pdf do
+              add_cookie_for_file_download
               pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, resource, user, client, request.protocol.split(':').first, lang: user_locale)
               send_file pdf_file, type: 'application/pdf'
             end
@@ -67,6 +70,10 @@ module Administration
 
         def user_membership_for_current_client
           Membership.find_by(client_id: client.id, user_id: user.id)
+        end
+
+        def add_cookie_for_file_download
+          cookies[:fileDownload] = true
         end
       end
     end

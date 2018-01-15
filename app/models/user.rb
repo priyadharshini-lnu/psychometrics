@@ -104,7 +104,7 @@ class User < ApplicationRecord
   has_many :ttes, through: :clients
   has_many :project_admin_clients, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, through: :memberships, source: 'client'
   has_many :project_admin_clients_ttes, through: :project_admin_clients, source: 'tte', class_name: 'Client'
-
+  has_many :communications, foreign_key: 'creator_id'
   has_many :client_admin_clients, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }, through: :memberships, source: 'client'
   has_many :client_admin_clients_ttes, through: :client_admin_clients, source: 'tte', class_name: 'Client'
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
@@ -112,7 +112,6 @@ class User < ApplicationRecord
   accepts_nested_attributes_for :memberships
 
   scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
-
   before_save :ensure_authentication_token
   validates :email, uniqueness: true
   validates :role, inclusion: { in: ::User::USER_ROLES.values }, presence: true, allow_nil: true
@@ -168,7 +167,8 @@ class User < ApplicationRecord
   #   Then we just send him mail with link to new Client
   # Else we send him mail with link to set password
   def invite!(invited_by = nil, invited_to_id = nil, options = {})
-    if accepted_or_not_invited? && !sign_in_count.zero? && !is?(:superadmin)
+    return unless user_member_role_exists?(invited_to_id) || is?(:superadmin)
+    if accepted_or_not_invited? && !sign_in_count.zero? && !is?(:superadmin, :member)
       return InvitationMailer.link_to_client(id, invited_to_id).deliver_later
     end
     # Customizing default mail of devise_inviteable
@@ -178,7 +178,7 @@ class User < ApplicationRecord
     self.skip_invitation = true
     super(invited_by, options)
 
-    if is?(:superadmin, :client_admin)
+    if is?(:superadmin, :client_admin, :project_admin)
       InvitationMailer.invite_superadmin(id, @raw_invitation_token).deliver_later
     else
       InvitationMailer.invite(id, invited_to_id, @raw_invitation_token).deliver_later
@@ -192,11 +192,21 @@ class User < ApplicationRecord
 
   private
 
+  def generate_invitation_token
+    super
+    encrypted_token = Rails.application.message_verifier(Rails.application.secrets.secret_token_for_generate).generate(@raw_invitation_token)
+    self.encrypted_invitation_raw = encrypted_token
+  end
+
   def generate_authentication_token
     loop do
       token = Devise.friendly_token
       break token unless User.exists?(authentication_token: token)
     end
+  end
+
+  def user_member_role_exists?(client_id)
+    memberships.where.not(role: :member).where(client_id: client_id).exists?
   end
 
   def validate_grants

@@ -1,0 +1,64 @@
+.col-md-8.col-md-offset-2
+  ul.list-group
+    - if current_user.is?(:superadmin) && @communication.owner
+      li.list-group-item
+        strong.mrs = t('.owner')
+        = @communication.owner.name
+
+    li.list-group-item
+      strong.mrs = t('.client')
+      = @communication.client.name
+    - if @communication.project
+      li.list-group-item
+        strong.mrs = t('.project')
+        = @communication.project.name
+    - if @communication.campaign
+      li.list-group-item
+        strong.mrs = t('.campaign')
+        = @communication.campaign.name
+    - if @communication.sub_campaign
+      li.list-group-item
+        strong.mrs = t('.sub_campaign')
+        = @communication.sub_campaign.name
+    li.list-group-item
+      strong.mrs = t('.communication_type')
+      = @communication.kind_i18n
+    - if @communication.assessment
+      li.list-group-item
+        strong.mrs = t('.assessment')
+        = @communication.assessment.name
+    li.list-group-item
+      strong.mrs = t('.recipients')
+      = @communication.recipients_i18n
+    - if @communication.selected_recipients?
+      li.list-group-item
+        strong.mrs = t('.users')
+        = select_tag :recipients,
+          options_from_collection_for_select(@communication.users.decorate, :display_name, :display_name),
+          class: 'form-control'
+    - if @communication.delivery_rule
+      li.list-group-item
+        strong.mrs = t('.delivery_rule')
+        = @communication.delivery_rule_i18n
+    - if @communication.specific_datetime?
+      li.list-group-item
+        strong.mrs = t('.specific_datetime')
+        = "#{I18n.l(@communication.delivery_at, format: :short)} (GST)"
+    - if @communication.reminder?
+      li.list-group-item
+        strong.mrs = t('.delivery_rule')
+        = t('.every_interval', interval: @communication.delivery_interval)
+      - if @communication.stop_reminder?
+        li.list-group-item
+          strong.mrs = t('.stop_reminder_datetime')
+          = "#{I18n.l(@communication.stop_reminder_datetime, format: :short)} (GST)"
+    li.list-group-item
+      strong.mrs = t('.subject')
+      = @communication.subject
+    li.list-group-item
+      p
+        strong = t('.body')
+      = raw @communication.body
+
+.col-md-1
+  = link_to t('.back'), administration_communications_path, class: 'btn btn-default'

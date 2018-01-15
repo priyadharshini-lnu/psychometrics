@@ -4,7 +4,7 @@
       = f.error_notification
 
       .form-inputs.clearfix
-        = f.input :type, collection: Assessment::TYPES.map { |key, value| [t("activerecord.attributes.assessment.types.#{key}"), value] }, 
+        = f.input :type, as: :select, collection: Assessment::TYPES.map { |key, value| [t("activerecord.attributes.assessment.types.#{key}"), value] },
                          include_blank: false,
                          wrapper_html: { class: 'common mindmill' }
         = f.input :mindmill_id, collection: Settings.mindmill.map { |m| [m[:name], m[:id]] },
@@ -16,10 +16,10 @@
                                   include_blank: t('administration.tte'),
                                   input_html: { data: { live_search: true } },
                                   wrapper_html: { class: 'common' }
-        = f.input :category, collection: resource_class::CATEGORIES.values.map { |cat| [t(".categories.#{cat}"), cat] }, 
+        = f.input :category, as: :select, collection: resource_class::CATEGORIES.values.map { |cat| [t(".categories.#{cat}"), cat] },
                              include_blank: false,
                              wrapper_html: { class: 'common' }
-        = f.input :status, collection: resource_class.statuses.map { |k, v| [t(".statuses.#{k}"), k] }, 
+        = f.input :status, as: :select, collection: resource_class.statuses.map { |k, v| [t(".statuses.#{k}"), k] },
                            include_blank: false,
                            wrapper_html: { class: 'common mindmill' }
         = f.association :dimension, collection: policy_scope(Dimension).all, 

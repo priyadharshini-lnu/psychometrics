@@ -21,7 +21,7 @@ module Imports
         imported_items = load_imported_items.compact
 
         extract = imported_items.map(&:locale) & Translation.available_translation_for_assessment(assessment_id)
-        Translation.for_assessment(assessment_id).where(locale: extract).destroy_all
+        Translation.for_assessment(assessment_id).where.not(locale: extract).destroy_all
 
         if imported_items.map(&:valid?).all?
           imported_items.each(&:save!)
@@ -44,9 +44,7 @@ module Imports
         # Parse header of xls/csv by strict rules
         rows = open_spreadsheet.parse
         header = rows.shift
-
         collect_translations = {}
-
         rows.each do |row|
           data = Hash[header.zip(row)]
           question_id, key = data.delete('Key').split(':')

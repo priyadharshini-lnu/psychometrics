@@ -8,10 +8,6 @@ module Administration
       super || @user.has_grant?(:questions, :manage)
     end
 
-    def configure?
-      update?
-    end
-
     def open_channel?
       @user.is?(:superadmin)
     end

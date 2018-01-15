@@ -15,6 +15,7 @@
 #  project_membership_id :integer
 #  ancestry              :string
 #  role                  :integer          default("member"), not null
+# already_invited        :boolean          default(FALSE)
 #
 
 class Membership < ApplicationRecord
@@ -33,6 +34,8 @@ class Membership < ApplicationRecord
       MEMBER_ROLE => :user
   }.freeze
 
+  include ::Facades::Administration::EmailDelivery
+
   enum role: MEMBERSHIP_ROLES
   delegate :is_anonym?, to: :user
 
@@ -41,6 +44,7 @@ class Membership < ApplicationRecord
   belongs_to :project_membership, foreign_key: :project_membership_id, class_name: 'Membership'
   accepts_nested_attributes_for :user
 
+  has_and_belongs_to_many :communications, join_table: :communications_memberships
   has_many :assigns, inverse_of: :membership # on delete cascade
   has_many :reports, through: :assigns
   has_many :assessments, through: :assigns
@@ -49,6 +53,7 @@ class Membership < ApplicationRecord
   has_many :clients_memberships, foreign_key: :project_membership_id, class_name: 'Membership' # on delete cascade
   has_many :clients_assigns, through: :clients_memberships, source: :assigns, class_name: 'Assign'
   has_many :clients_reports, through: :clients_assigns, source: :reports
+  has_one :original_membership, foreign_key: :project_membership_id, class_name: 'Membership'
 
   validates :client, :user, presence: true
   validates :client_id, uniqueness: { scope: [:user_id, :role] }
@@ -57,6 +62,8 @@ class Membership < ApplicationRecord
   validate :client_admin_scope, if: 'project_admin?'
 
   before_save :set_project_membership, if: 'client.end_level?'
+  after_create_commit :create_invitation_emails
+  after_create_commit :create_other_emails
   after_destroy :clear_project_membership, if: 'client.end_level?'
 
   has_ancestry
@@ -67,6 +74,7 @@ class Membership < ApplicationRecord
   scope :project_admin_role, -> { where(role: PROJECT_ADMIN_ROLE) }
   scope :with_client, -> (client_id) { where(client_id: client_id) }
   scope :user_reports, -> (client_ids) { select('reports.*').where(client_id: client_ids).joins(:reports) }
+  scope :member_or_manager, -> { where(role: [:member, :manager]) }
 
   scope :with_head_assigns_for_client_and_assessment, lambda { |client_id, assessment_id|
     joining { assigns.on(assigns.membership_id.eq(id) & assigns.assessment_id.eq(assessment_id) & assigns.role.in([Assign.roles[:admin], Assign.roles[:manager]])) }.
@@ -109,6 +117,11 @@ class Membership < ApplicationRecord
     SCOPES[role]
   end
 
+  def set_user_invited_for_current_project
+    return if already_invited?
+    update_columns(already_invited: true)
+  end
+
   # return true for new or overuse (:yti(:eti)) combinations
   def excess_yti_eti?(report)
     return true if !report.yti_eti? || reports.empty?
@@ -125,6 +138,10 @@ class Membership < ApplicationRecord
 
   def project?
     project_membership_id.nil?
+  end
+
+  def already_invited?
+    project_membership&.already_invited || already_invited
   end
 
   private
@@ -144,6 +161,24 @@ class Membership < ApplicationRecord
     project_membership.destroy!
   end
 
+
+  def create_invitation_emails
+    invites = invitations_for_current_membership
+    return if already_invited?
+    return unless invites
+    invites.each do |invite|
+      invite.emails.create(membership_id: self.id)
+    end
+  end
+
+  def create_other_emails
+    communications = Communication.other.where(end_level_id: client.path_ids)
+    communications = communications.send_now.or(communications.specific_datetime.where('delivery_at <= ?', Time.current))
+    communications.find_each(batch_size: 100) do |communication|
+      communication.emails.create(membership_id: id) if communication.selected_memberships_ids.include?(id)
+    end
+  end
+
   def relevant_role
     valid = case role
     when CLIENT_ADMIN_ROLE
@@ -156,6 +191,13 @@ class Membership < ApplicationRecord
       false
     end
     errors.add(:role, 'Invalid') unless valid
+  end
+
+
+  def invitations_for_current_membership
+    Communication.invitation_for_end_level_id(client.path_ids).includes(:memberships).select do |communication|
+      communication.current_memberships_ids.include?(id)
+    end
   end
 
   def client_admin_scope

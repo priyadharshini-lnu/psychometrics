@@ -7,6 +7,7 @@
 @import 'bootstrap-colorpicker';
 @import 'multiselect';
 @import 'summernote';
+@import 'ladda/ladda-themeless.min';
 
 @import 'datatables/dataTables.bootstrap';
 @import 'administration/dataTables.checkboxes';
@@ -21,6 +22,7 @@
 @import 'x-editable/dist/bootstrap3-editable/css/bootstrap-editable';
 
 @import './administration/*';
+@import 'bootstrap-datetimepicker-3';
 
 @import 'psychometrics_vendor';
 @import 'psychometrics_preview';

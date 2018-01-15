@@ -2,6 +2,12 @@ en:
   administration:
     communications:
       index:
+        invitation: Invitation
+        reminder: Reminder
+        completion: Completion
+        clients: Clients
+        other: Other
+        type: Type
         title: Communication Center
         tooltips:
           create: Create
@@ -9,11 +15,24 @@ en:
         owner: Owner
       list:
         updated_at: Modified Date
+        client_name: Client
+        project: Project
+        campaign: Campaign
+        creator_first_name: Created by
+        sub_campaign: Sub-campaign
+        subject: Communication subject
+        kind: Communication type
+        recipients: Recipients
+        delivery_rule: Delivery
+        author: Created by
+        actions: Actions
         created_at: Created Date
       new:
         header: 'New Communication'
       edit:
         header: 'Edit Communication'
+      create:
+        successfully: 'Communication created successfully.'
       destroy:
         successfully: 'Communication %{name} was successfully destroyed.'
       copy:
@@ -22,32 +41,40 @@ en:
         successfully: 'Communication was successfully updated.'
       sidebar:
         title: "Communication's options"
-        disable: 'Disable Communication'
-        enable: 'Enable Communication'
         edit: 'Edit Communication'
         new: 'New Communication'
         copy: 'Copy Communication'
         destroy: 'Delete Communication'
         view: 'View Communication'
+        download: 'Download Communication History'
       form:
         delivery_rules:
-          on_specific_datetime: 'Specific date and time'
-          after_complete: 'Right after completion'
-          if_not_started: 'If assessment is not started'
-          if_not_finished: 'If assessment was not finished'
+          send_now: 'Send now'
+          specific_datetime: 'Send at'
+          not_started: 'If assessment is not started'
+          in_progress: 'If assessment is in progress'
+          not_competed: 'If assessment is not completed'
+        kind: Communication Types
         selected_recipients: 'Selected Recipients'
         selected_cc_recipients: 'Selected CC Recipients'
         body_mustache: >
+          {{{user_link}}} - Link to the Platform for existing users or a one time only link to set a password for new users
+
           {{first_name}} - Recipient First Name
 
           {{last_name}} - Recipient Last Name
-          
+
           {{email}} - Recipient Email
+        delivery_at: Delivery at (GST)
+        stop_reminder_datetime: End date for reminders (GST)
+        stop_reminder: Stop sending reminders
       resource:
         tooltips:
           copy: 'Copy Communication'
           edit: 'Edit Communication'
           delete: 'Delete Communication'
+          view: 'View Communication'
+          download: 'Download Communication History'
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?
@@ -58,3 +85,21 @@ en:
               Delete <strong>Communication</strong> ?
             body: >
               <p>Are you sure you want to delete this Communication?</p>
+      show:
+        owner: 'Owner:'
+        client: 'Client:'
+        project: 'Project:'
+        campaign: 'Campaign:'
+        sub_campaign: 'Sub Campaign:'
+        communication_type: 'Communication type:'
+        assessment: 'Assessment:'
+        recipients: 'Recipients:'
+        users: 'Users:'
+        delivery_rule: 'Delivery rule:'
+        specific_datetime: 'Send at:'
+        delivery_interval: 'Delivery interval:'
+        subject: 'Subject:'
+        body: 'Body:'
+        every_interval: 'Every %{interval}'
+        back: Back
+        stop_reminder_datetime: End date for reminders (GST)

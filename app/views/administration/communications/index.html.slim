@@ -19,8 +19,13 @@
                     placeholder: t('administration.search'),
                     input_html: { class: 'has_clear periodically-observed' }
           = f.input :client_id_in,
-                    collection: policy_scope(Client).all,
-                    input_html: { data: { live_search: true }, multiple: true, title: 'Clients' },
+                    collection: policy_scope(Client).roots,
+                    input_html: { data: { live_search: true }, multiple: true, title: t('administration.communications.index.clients') },
+                    required: false,
+                    label: false
+          = f.input :kind_in,
+                    collection: Communication.kinds,
+                    input_html: { data: { live_search: true }, multiple: true, title: t('administration.communications.index.type') },
                     required: false,
                     label: false
           = link_to "Clear Filter", request.path, class: "btn btn-default"

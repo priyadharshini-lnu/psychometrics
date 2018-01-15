@@ -31,6 +31,7 @@ class AssignsController < ApplicationController
   def index
     @reports = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.group_by(&:assessment_id)
     @assigns = policy_scope(Assign).preload(:assessment).order(:id)
+    @current_membership.set_user_invited_for_current_project
   end
 
   def pass

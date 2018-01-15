@@ -240,7 +240,6 @@ Rails.application.routes.draw do
           get :sidebar
           patch :toggle_status
           get :new_assign
-          get :configure
         end
       end
       resources :blocks do
@@ -277,12 +276,12 @@ Rails.application.routes.draw do
 
     put '/factors_norms/update', to: 'factors_norms#update'
 
-    resources :communications do
+    resources :communications, only: [:index, :new, :create, :destroy, :show] do
       member do
+        get :download_history, defaults: { format: :csv }
         get :copy
         get :sidebar
         patch :toggle_status
-        match :edit_form, via: [:post, :patch, :put]
       end
 
       match :new_form, on: :collection, via: [:post, :patch, :put]

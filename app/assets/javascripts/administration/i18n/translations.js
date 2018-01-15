@@ -1350,7 +1350,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     },
     "noty": {
-      "error_500": "Something went wrong. Contact your administrator."
+      "error_500": "Something went wrong. Contact your administrator.",
+      "error_408": "This action takes too long. Please try to reload the page."
     },
     "occupations": {
       "copy": {
