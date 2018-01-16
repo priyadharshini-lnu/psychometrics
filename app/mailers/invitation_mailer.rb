@@ -4,7 +4,7 @@ class InvitationMailer < ApplicationMailer
     @token = token
     @project = Client.find(invited_to_id).project
     mail(
-        from: "#{t('devise.mailer.invitation_instructions.from')} <no-reply@#{Settings.domain}>",
+        from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
         to: @resource.email,
         subject: I18n.t('devise.mailer.invitation_instructions.subject'),
         template_path: '/devise/mailer',
@@ -16,7 +16,7 @@ class InvitationMailer < ApplicationMailer
     @resource = User.find(user_id)
     @token = token
     mail(
-        from: "#{t('devise.mailer.invitation_instructions.from')} <no-reply@#{Settings.domain}>",
+        from: "#{t('mailer.from')} <no-reply@#{Settings.domain}>",
         to: @resource.email,
         subject: I18n.t('devise.mailer.invitation_instructions.subject'),
         template_path: '/devise/mailer',
