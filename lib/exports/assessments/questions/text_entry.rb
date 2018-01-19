@@ -9,7 +9,11 @@ module Exports
         #   }, ...]
         # TO:
         #   ['Value']
+
         def self.result(answers, question, scoring = false)
+          # TODO: investigate single text entry save additional two empty answers
+          # remove two additional empty answers
+          remove_empty(answers) if single_answer?(answers) && remove_empty?(answers)
           factors_scoring = question.detect_specified_scoring.
                             inject({}) { |sum, s| sum[s['index']] = s['value']; sum }
           (answers || []).map { |a| scoring && factors_scoring[a['value']] || a['value'] }
@@ -26,6 +30,18 @@ module Exports
             parsed_header << "QID#{question.id}"
           end
           parsed_header
+        end
+
+        def self.single_answer?(answers)
+          answers.none? { |element| element.key?('index') }
+        end
+
+        def self.remove_empty?(answers)
+          answers.size > 1 && answers.count { |element| element['value'] == '' } >= 1
+        end
+
+        def self.remove_empty(answers)
+          answers.reject! { |element| element['value'] == '' }
         end
       end
     end
