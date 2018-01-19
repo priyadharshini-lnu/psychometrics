@@ -13,7 +13,7 @@ module Exports
         def self.result(answers, question, scoring = false)
           # TODO: investigate single text entry save additional two empty answers
           # remove two additional empty answers
-          remove_empty(answers) if single_answer?(answers) && remove_empty?(answers)
+          remove_empty(answers) if answers.present? && single_answer?(answers) && remove_empty?(answers)
           factors_scoring = question.detect_specified_scoring.
                             inject({}) { |sum, s| sum[s['index']] = s['value']; sum }
           (answers || []).map { |a| scoring && factors_scoring[a['value']] || a['value'] }
