@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: 66f6e01d76169b3163f0405da5d7ab652332211e
+  revision: 40bffc9729b1d2a670c85df248719e0ec77cdb47
   specs:
     psychometrics-survey (0.0.1)
       railties (~> 5.0.0)
@@ -374,7 +374,7 @@ GEM
     mimemagic (0.3.2)
     mini_magick (4.5.1)
     mini_portile2 (2.3.0)
-    minitest (5.11.1)
+    minitest (5.11.3)
     monetize (1.4.0)
       money (~> 6.7)
     money (6.8.0)
@@ -392,7 +392,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (4.1.0)
     nio4r (2.1.0)
-    nokogiri (1.8.1)
+    nokogiri (1.8.2)
       mini_portile2 (~> 2.3.0)
     nori (2.6.0)
     notiffany (0.1.1)
