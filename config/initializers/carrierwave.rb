@@ -5,19 +5,16 @@ if Rails.env.development?
   end
 else
   CarrierWave.configure do |config|
-    config.storage = :aws
-    config.aws_bucket = Rails.application.secrets.directory
-    config.aws_acl = 'public-read'
-
-    config.aws_attributes = {
-        expires: 1.week.from_now.httpdate,
-        cache_control: 'max-age=604800'
+    config.fog_provider = 'fog/aws'
+    config.fog_credentials = {
+      provider: 'AWS',
+      aws_access_key_id:     Rails.application.secrets.access_key_id,
+      aws_secret_access_key: Rails.application.secrets.secret_access_key,
+      region: Rails.application.secrets.region
     }
 
-    config.aws_credentials = {
-        access_key_id: Rails.application.secrets.access_key_id,
-        secret_access_key: Rails.application.secrets.secret_access_key,
-        region: Rails.application.secrets.region
-    }
+    config.fog_directory = Rails.application.secrets.directory
+    config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" } # optional, defaults to {}
+    config.storage = :fog
   end
 end
