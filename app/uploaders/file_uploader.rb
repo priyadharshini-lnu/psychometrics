@@ -19,13 +19,13 @@ class FileUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
-  def extension_white_list
+  def extension_whitelist
     %w(jpg jpeg gif png mp3 mp4 wma avi pdf)
   end
 
   protected
 
   def image?(new_file)
-    new_file.content_type.start_with? 'image'
+    new_file.extension.in?(%w(jpg jpeg gif png))
   end
 end

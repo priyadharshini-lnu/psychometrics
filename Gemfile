@@ -34,7 +34,7 @@ source 'https://rails-assets.org' do
 end
 
 ### Authentication and authorization
-gem 'devise',                     '~> 4.2.0'
+gem 'devise',                     '~> 4.4.3'
 gem 'devise_invitable',           '~> 1.6.0'
 gem 'devise-i18n',                '~> 1.1.0'
 gem 'pundit',                     '~> 1.1.0'
@@ -108,17 +108,17 @@ gem 'baby_squeel', '~> 1.0.1'
 gem 'amoeba', '~> 3.0.0'
 gem 'deep_cloneable', '~> 2.2.1'
 
-gem 'carrierwave', '~> 0.11.2'
+gem 'carrierwave', '~> 1.2.2'
 gem 'carrierwave-base64', '~> 2.5.3'
 gem 'remotipart', '~> 1.2'
 gem 'mini_magick', '~> 4.5.1'
-gem 'carrierwave-aws', '~>1.0.1'
+gem 'fog-aws', '~> 2.0.1'
 
 gem 'ancestry'
 gem 'browser'
 
 gem 'mustache', '~> 1.0.3'
-gem 'sidekiq', '~> 4.2.4'
+gem 'sidekiq', '~> 5.1.3'
 gem 'chronic', '~> 0.10.2'
 gem 'whenever', '~> 0.9.7', require: false
 
@@ -170,7 +170,7 @@ group :development do
   gem 'capistrano-rvm',           '~> 0.1.2'
   gem 'capistrano-sidekiq'
   gem 'capistrano-rails-console', '~> 2.2.1', require: false
-  gem 'capistrano-nc', '~> 0.1', require: false
+  gem 'capistrano-nc', '~> 0.2', require: false
   gem 'guard'
 end
 group :test do
