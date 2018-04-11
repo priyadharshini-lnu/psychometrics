@@ -16,5 +16,6 @@ else
     config.fog_directory = Rails.application.secrets.directory
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" } # optional, defaults to {}
     config.storage = :fog
+    config.asset_host = "//#{Rails.application.secrets.directory}.s3.dualstack.#{Rails.application.secrets.region}.amazonaws.com"
   end
 end
