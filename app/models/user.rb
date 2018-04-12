@@ -248,12 +248,12 @@ class User < ApplicationRecord
         enabled.
             identified.
             joins(:clients).
-            where.has { email.eq(warden_conditions[:email]) & clients.subdomain.eq(subdomain) & clients.disabled.not_eq(true) }.
+            where.has { email.eq(warden_conditions[:email]&.downcase) & clients.subdomain.eq(subdomain) & clients.disabled.not_eq(true) }.
             first
       else
         enabled.
             identified.
-            where(email: warden_conditions[:email]).
+            where('email = LOWER(?)', warden_conditions[:email]).
             first # If Subdomain not presented going normally
       end
     end
