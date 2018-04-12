@@ -197,7 +197,9 @@ class Client < ApplicationRecord
   def clone
     deep_clone include: [:reports] do |original, copy|
       copy.name += ' (copy)'
-      copy.subdomain = original.subdomain + "_#{SecureRandom.random_number(Time.now.to_i)}"
+      if original.subdomain.present?
+        copy.subdomain = original.subdomain + "_#{SecureRandom.random_number(Time.now.to_i)}"
+      end
     end
   end
 
