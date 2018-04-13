@@ -55,23 +55,22 @@ class Client < ApplicationRecord
   has_one :retail_user, class_name: 'User'
   has_many :memberships # on delete cascade
   has_many :users, through: :memberships
-  has_many :project_admins, through: :project_admin_memberships, source: :user, class_name: 'User'
   has_many :project_admin_memberships, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
-  has_many :client_admins, through: :client_admin_memberships, source: :user, class_name: 'User'
+  has_many :project_admins, through: :project_admin_memberships, source: :user, class_name: 'User'
   has_many :client_admin_memberships, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
+  has_many :client_admins, through: :client_admin_memberships, source: :user, class_name: 'User'
   has_many :assigned_memberships, -> { assigned.distinct }, source: :membership, class_name: 'Membership'
   has_many :completed_memberships, -> { completed.distinct }, source: :membership, class_name: 'Membership'
   has_many :end_memberships, -> { where.not(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
   has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) }, through: :memberships, source: :user
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
-  # TODO use admins instead of projects_admins
-  has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, through: :projects, source: :users
+
 
   # Reports
   has_many :clients_reports # on delete cascade
   has_many :reports, through: :clients_reports
-  has_many :available_reports, through: :report_families, source: :reports
   has_and_belongs_to_many :report_families, join_table: :clients_report_families, class_name: 'ReportFamily'
+  has_many :available_reports, through: :report_families, source: :reports
 
   # Self association
   has_many :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }, foreign_key: :tte_id, class_name: 'Client'
@@ -83,6 +82,9 @@ class Client < ApplicationRecord
   has_many :assessments, -> { group(:id) }, through: :reports
   has_many :license_usages
   has_many :licenses, inverse_of: :client, dependent: :destroy
+  # TODO use admins instead of projects_admins
+  has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, through: :projects, source: :users
+
   accepts_nested_attributes_for :licenses, allow_destroy: true
 
   validates :name, :type, presence: true, length: { maximum: 50 }

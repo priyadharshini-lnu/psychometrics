@@ -1,7 +1,7 @@
 source 'https://rubygems.org'
 gem 'bundler',                    '>= 1.8.4'
 
-gem 'rails',                      '~> 5.0.0'
+gem 'rails',                      '~> 5.1.6'
 gem 'pg',                         '~> 0.18.4'
 gem 'puma',                       '~> 3.8'
 gem 'sass-rails',                 '~> 5.0'
@@ -9,7 +9,7 @@ gem 'uglifier',                   '>= 1.3.0'
 gem 'coffee-rails',               '~> 4.2'
 gem 'jquery-rails',               '~> 4.1.1'
 gem 'jquery-rails-cdn',           '~> 1.1.2'
-gem 'jbuilder',                   '~> 2.6.1'
+gem 'jbuilder',                   '~> 2.6.4'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '1.12'
@@ -41,19 +41,19 @@ gem 'pundit',                     '~> 1.1.0'
 ### Assets
 gem 'bootstrap-sass',             '~> 3.3.6'
 gem 'bh',                         '~> 1.3'
-gem 'font-awesome-rails',         '~> 4.6.3.0'
+gem 'font-awesome-rails',         '~> 4.7'
 # gem 'noty-rails',                 '~> 2.3.8'
 
 ### TEMPLATES
 gem 'slim-rails',                 '~> 3.1.0'
 ### FORM BUILDERS
-gem 'simple_form',                '3.4.0'
+gem 'simple_form',                '3.5.1'
 gem 'cocoon', '1.2.9'
 ### Pagination helpers
 gem 'kaminari',                   '~> 0.17.0'
 gem 'bootstrap-kaminari-views',   '~> 0.0.5'
 ### Breadcrumbs
-gem 'breadcrumbs_on_rails',       '~> 2.3.1'
+gem 'breadcrumbs_on_rails',       '~> 3.0.1'
 ### Filter data list
 gem 'filterrific',                '~> 2.0.5'
 gem 'ransack', '~> 1.8.2'
@@ -97,7 +97,7 @@ gem 'i18n-tasks', '~> 0.9.5'
 gem 'acts_as_list', '~> 0.8.1'
 
 ### add fake destroying logic for models
-gem 'paranoia', '~> 2.2'
+gem 'paranoia', '~> 2.4'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'airbrake', '~> 5.0'
 
