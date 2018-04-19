@@ -2,9 +2,9 @@
 
 Psychometrics application
 
-Ruby version: 2.3.0
+Ruby version: 2.5.1
 
-Rails version: 5.0.0
+Rails version: 5.1.6
 
 Database: PostgresSql
 
