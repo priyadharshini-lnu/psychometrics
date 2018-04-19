@@ -12,12 +12,13 @@ module Imports
       first_name: Membership.human_attribute_name('first_name'),
       last_name: Membership.human_attribute_name('last_name'),
       email: Membership.human_attribute_name('email'),
+      password: Membership.human_attribute_name('password'),
       role: Membership.human_attribute_name('role'),
       created_at: Membership.human_attribute_name('created_at'),
       report_ids: Membership.human_attribute_name('report_ids')
     }.freeze
 
-    HEADER_IMPORT_KEYS = %i(first_name last_name email role report_ids).freeze
+    HEADER_IMPORT_KEYS = %i(first_name last_name password email role report_ids).freeze
 
     # Authorisation flow
     #
@@ -81,6 +82,13 @@ module Imports
 
         header.zip(row)[HEADER_IMPORT_DATA.size..-1]&.each_with_index do |z, i|
           memberships_attributes[:hris_data][i.to_s] = { key: z.first, value: z.last }
+        end
+
+        password = attributes.delete(:password)
+
+        if password.present? && user.encrypted_password.blank?
+          user.assign_attributes(password: password, invitation_token: nil, invitation_accepted_at: Time.current)
+          memberships_attributes[:already_invited] = true
         end
 
         user.assign_attributes(attributes.merge(role: User::REGULAR_ROLE, create_by_invite: true))
