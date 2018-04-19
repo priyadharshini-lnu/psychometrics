@@ -84,12 +84,8 @@ module Imports
           memberships_attributes[:hris_data][i.to_s] = { key: z.first, value: z.last }
         end
 
-        password = attributes.delete(:password)
 
-        if password.present? && user.encrypted_password.blank?
-          user.assign_attributes(password: password, invitation_token: nil, invitation_accepted_at: Time.current)
-          memberships_attributes[:already_invited] = true
-        end
+        assign_password(user, attributes, memberships_attributes)
 
         user.assign_attributes(attributes.merge(role: User::REGULAR_ROLE, create_by_invite: true))
         membership = user.memberships.find_or_initialize_by(client_id: client.id)
@@ -123,6 +119,22 @@ module Imports
       when '.xlsx' then ::Roo::Excelx.new(file.path)
       else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
       end
+    end
+
+    private
+
+    def assign_password(user, attributes, memberships_attributes)
+      password = attributes.delete(:password)
+
+      return if password.blank? || user.encrypted_password.present?
+
+      user.assign_attributes(
+        password: password,
+        invitation_token: nil,
+        invitation_accepted_at: user.invitation_accepted_at || Time.current
+      )
+
+      memberships_attributes[:already_invited] = true
     end
   end
 end
