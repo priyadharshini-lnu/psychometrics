@@ -5,6 +5,7 @@ csv << [
         resource_class.human_attribute_name('first_name'),
         resource_class.human_attribute_name('last_name'),
         resource_class.human_attribute_name('email'),
+        resource_class.human_attribute_name('password'),
         resource_class.human_attribute_name('role'),
         resource_class.human_attribute_name('created_at'),
         resource_class.human_attribute_name('report_ids'),
@@ -17,6 +18,7 @@ resources.each do |resource|
           resource.first_name,
           resource.last_name,
           resource.email,
+          nil,
           resource.decorate.role_name,
           resource.decorate.created_at,
           resource.report_ids.join(',')
