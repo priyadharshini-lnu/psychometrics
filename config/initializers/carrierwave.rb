@@ -1,4 +1,4 @@
-if Rails.env.development?
+if Rails.env.development? || Rails.env.test?
   CarrierWave.configure do |config|
     config.storage = :file
     config.asset_host = ActionController::Base.asset_host
