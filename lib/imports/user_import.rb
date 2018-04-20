@@ -33,6 +33,13 @@ module Imports
                                                   'application/vnd.ms-excel',
                                                   'text/csv'] }
 
+    attr_reader :existing_users_whose_password_not_changed
+
+    def initialize(attributes = {})
+      super(attributes)
+      @existing_users_whose_password_not_changed = []
+    end
+
     def pundit_user
       importer
     end
@@ -125,6 +132,7 @@ module Imports
 
     def assign_password(user, attributes, memberships_attributes)
       password = attributes.delete(:password)
+      @existing_users_whose_password_not_changed << user if user.encrypted_password.present? && password.present?
 
       return if password.blank? || user.encrypted_password.present?
 

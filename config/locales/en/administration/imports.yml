@@ -50,6 +50,8 @@ en:
         form:
           import: Import
           description: Refer to the Export functionality to extract a template that can be used to Import here.
+        existing_users_whose_password_not_changed_modal_dialog:
+          header: The list of users whose passwords will be not changed
       hris:
         <<: *default
       assessments:
