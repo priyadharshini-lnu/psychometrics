@@ -38,7 +38,7 @@ class UserDecorator < BaseDecorator
   end
 
   def tenancies_list
-    object.ttes.distinct.map do |tte|
+    object.ttes.select('DISTINCT ON (clients.id) clients.*').map do |tte|
       if tte.retail?
         h.link_to tte.decorate.display_name, h.administration_client_users_path(tte)
       else
