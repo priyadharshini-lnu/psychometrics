@@ -74,6 +74,10 @@ FactoryGirl.define do
       memberships { memberships_options.map { |opts| association(:membership, opts) } }
     end
 
+    trait :skip_validate do
+      to_create {|instance| instance.save(validate: false)}
+    end
+
     after(:create) do |user, evaluator|
       if evaluator.grants
         user.grants = evaluator.grants

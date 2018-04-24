@@ -49,7 +49,6 @@ module Imports
       return false unless valid?
 
       imported_items = load_imported_items.compact
-
       if imported_items.map(&:valid?).all?
         imported_items.each(&:save!).each { |i| i.user.invite!(importer, client_id) }
       else
@@ -90,7 +89,6 @@ module Imports
         header.zip(row)[HEADER_IMPORT_DATA.size..-1]&.each_with_index do |z, i|
           memberships_attributes[:hris_data][i.to_s] = { key: z.first, value: z.last }
         end
-
 
         assign_password(user, attributes, memberships_attributes)
 
