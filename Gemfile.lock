@@ -201,7 +201,7 @@ GEM
       deep_merge (~> 1.0, >= 1.0.1)
     connection_pool (2.2.1)
     crass (1.0.4)
-    database_cleaner (1.5.3)
+    database_cleaner (1.7.0)
     date_validator (0.9.0)
       activemodel
       activesupport
@@ -702,7 +702,7 @@ DEPENDENCIES
   cocoon (= 1.2.9)
   coffee-rails (~> 4.2)
   config (~> 1.2.1)
-  database_cleaner (~> 1.5.3)
+  database_cleaner (~> 1.7.0)
   date_validator (~> 0.9.0)
   debugger2
   deep_cloneable (~> 2.2.1)
