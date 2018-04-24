@@ -98,11 +98,11 @@ class Client < ApplicationRecord
     project.validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
     project.validate :subdomain_format_validation
   end
-  validate :relevant_reports, if: 'report_ids.any? && end_level?'
-  validate :allowed_data, if: 'operator'
+  validate :relevant_reports, if: -> { report_ids.any? && end_level? }
+  validate :allowed_data, if: -> { operator }
   before_validation :ensure_subdomain, if: :retail?
-  after_commit :set_tte, if: 'parent_id.present?', on: [:create, :update]
-  after_commit :set_end_level, if: 'parent_id.present?', on: [:create, :update]
+  after_commit :set_tte, if: -> { parent_id.present? }, on: [:create, :update]
+  after_commit :set_end_level, if: -> { parent_id.present? }, on: [:create, :update]
 
   # Type of client.
   # Retail - is client who bought some product

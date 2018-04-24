@@ -33,9 +33,9 @@ class Assign < ApplicationRecord
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
   validates :membership, :assessment, presence: true
 
-  validate :relevant_membership, if: 'membership.present?'
-  validate :relevant_assessment, if: 'assessment.present?'
-  validate :relevant_reports, if: 'report_ids.any?'
+  validate :relevant_membership, if: -> { membership.present? }
+  validate :relevant_assessment, if: -> { assessment.present? }
+  validate :relevant_reports, if: -> { report_ids.any? }
 
   enum status: %i(not_started in_progress completed)
   enum role: %i(member manager admin)
