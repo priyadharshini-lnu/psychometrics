@@ -73,6 +73,7 @@ Rails.application.routes.draw do
           collection do
             get :admins
             get :export
+            get :export_completion_status
             post :assign_multiple
           end
         end

@@ -13,18 +13,18 @@ describe 'Exports::Assessments::AssessmentResultsExport' do
 
     context 'for assessment in project level' do
       let(:project) { double('project', project?: true) }
-      let(:query_object) { Queries::Assigns::Export::ProjectLevel }
+      let(:query_object) { Queries::Assigns::ProjectLevel::ByClientAndAssessment }
 
-      it 'calls Queries::Assigns::Export::ProjectLevel' do
+      it 'calls Queries::Assigns::ProjectLevel::ByClientAndAssessment' do
         exporter.current_level_assigns
       end
     end
 
     context 'for assessment in subproject level' do
       let(:project) { double('project', project?: false) }
-      let(:query_object) { Queries::Assigns::Export::SubProjectLevel }
+      let(:query_object) { Queries::Assigns::SubProjectLevel::ByClientAndAssessment }
 
-      it 'calls Queries::Assigns::Export::SubProjectLevel' do
+      it 'calls Queries::Assigns::SubProjectLevel::ByClientAndAssessment' do
         exporter.current_level_assigns
       end
     end

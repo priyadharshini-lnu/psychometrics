@@ -121,7 +121,9 @@ feature 'CRUD User' do
         scenario 'I can create another Client Admin only whith my Privileges' do
           visit administration_client_path(tenancy)
           find("#client_#{tenancy.id} td .add-icon-box a[href='#{new_administration_client_client_admin_path(tenancy)}']").click
+          expect(page).to have_css('label', text: t('administration.clients.client_admins.form.create_admin'))
           find('label', text: t('administration.clients.client_admins.form.create_admin')).click
+          expect(page).to have_css('#new_resource .grants-table')
           within('#new_resource .grants-table') do
             expect(page).to have_content 'Assessments'
             expect(page).not_to have_content 'Data Centre (Exporting Assessment / Report data sets)'
