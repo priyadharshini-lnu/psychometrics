@@ -22,6 +22,8 @@ en:
         import_users: Users
         import_hris: HRIS Data
         export: Export
+        export_users: Users
+        export_completion_status: Completion Status 
         title: Users
         breadcrumb: Users
         filterrific:

@@ -18,9 +18,14 @@
                   li = link_to(t('.import_users'), new_administration_imports_users_path(client_id: client.id), remote: true, class: 'btn btn-default')
                   li = link_to(t('.import_hris'), new_administration_imports_hris_path(client_id: client.id), remote: true, class: 'btn btn-default')
             - if policy(resource_class).export?
-              = link_to({ action: :export, format: :csv }, target: :_blank, class: 'btn btn-default')
-                span.fa.fa-upload
-                = t('.export')
+              .btn-group
+                button type="button" class="btn btn-default dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"
+                  span.fa.fa-upload
+                  => t('.export')
+                  span.caret
+                ul.dropdown-menu
+                  li = link_to(t('.export_users'), { action: :export, format: :csv }, target: :_blank, class: 'btn btn-default')
+                  li = link_to(t('.export_completion_status'), { action: :export_completion_status, format: :xlsx }, target: :_blank, class: 'btn btn-default')
             - if policy(resource_class).create?
               = link_to({ action: :new }, remote: true, class: 'btn btn-default')
                 span.fa.fa-plus
