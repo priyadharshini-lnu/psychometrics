@@ -78,7 +78,7 @@ module Exports
       private
 
       def project_level_assigns
-        Queries::Assigns::Export::ProjectLevel.call(@client_id, @assessment_id).
+        Queries::Assigns::ProjectLevel::ByClientAndAssessment.call(@client_id, @assessment_id).
           selecting { [id,
                        results,
                        norm_data,
@@ -90,7 +90,7 @@ module Exports
       end
 
       def subproject_level_assigns
-        Queries::Assigns::Export::SubProjectLevel.call(@client_id, @assessment_id).
+        Queries::Assigns::SubProjectLevel::ByClientAndAssessment.call(@client_id, @assessment_id).
           selecting { [id,
                        results,
                        norm_data,

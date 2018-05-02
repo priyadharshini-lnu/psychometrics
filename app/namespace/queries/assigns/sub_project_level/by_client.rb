@@ -1,16 +1,16 @@
 module Queries
   module Assigns
-    module Export
-      class SubProjectLevel < ::Queries::Base
+    module SubProjectLevel
+      class ByClient < ::Queries::Base
         def initialize(relation = Assign.all)
           @relation = relation
         end
 
-        def call(client_id, assessment_id)
+        def call(client_id)
           @relation.
+            joining { assessment }.
             joining { original_assign.membership.user }.
-            where.has { original_assign.membership.client_id.eq(client_id) }.
-            where(assessment_id: assessment_id)
+            where.has { original_assign.membership.client_id.eq(client_id) }
         end
       end
     end
