@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe Queries::Assigns::Export::SubProjectLevel do
-  let(:query) { Queries::Assigns::Export::SubProjectLevel }
+describe Queries::Assigns::SubProjectLevel::ByClientAndAssessment do
+  let(:query) { Queries::Assigns::SubProjectLevel::ByClientAndAssessment }
 
   let(:sub_campaign1) { create(:sub_campaign) }
   let(:sub_campaign2) { create(:sub_campaign) }

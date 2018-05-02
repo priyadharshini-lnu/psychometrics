@@ -1,7 +1,7 @@
 require 'rails_helper'
 
-describe Queries::Assigns::Export::ProjectLevel do
-  let(:query) { Queries::Assigns::Export::ProjectLevel }
+describe Queries::Assigns::ProjectLevel::ByClientAndAssessment do
+  let(:query) { Queries::Assigns::ProjectLevel::ByClientAndAssessment }
 
   let(:project1) { create(:project) }
   let(:project2) { create(:project) }
