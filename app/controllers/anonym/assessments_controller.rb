@@ -12,8 +12,7 @@ module Anonym
     append_before_action :authenticate_user!
 
     def pass
-      @active_locale = user_locale
-      @translations = ::Translation.to_hash_for_assessment(@resource.id, @active_locale)
+      @translations = ::Translation.to_hash_for_assessment(@resource.id, user_locale)
       @available_translations = ::Translation.available_translation_for_assessment(@resource.id)
       # Find or create assign
       @assign = Assign.find_or_create_by(assessment_id: @resource.id, membership_id: @current_membership.id)
