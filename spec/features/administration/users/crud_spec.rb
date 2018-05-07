@@ -83,7 +83,7 @@ feature 'CRUD User' do
         choose_project_admin(project2, admin_membership)
       end
 
-      scenario 'I can create project admin with privileges limited by admin\'s privileges' do
+      skip 'I can create project admin with privileges limited by admin\'s privileges' do
         visit administration_client_projects_path(project.tte)
         find("#client_#{project.id} td .add-icon-box a[href='#{new_administration_client_project_admin_path(project)}']").click
         find('label', text: t('administration.clients.project_admins.form.create_admin')).click
@@ -118,7 +118,7 @@ feature 'CRUD User' do
           expect(page).to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{new_administration_client_client_admin_path(tenancy)}']")
         end
 
-        scenario 'I can create another Client Admin only whith my Privileges' do
+        skip 'I can create another Client Admin only whith my Privileges' do
           visit administration_client_path(tenancy)
           find("#client_#{tenancy.id} td .add-icon-box a[href='#{new_administration_client_client_admin_path(tenancy)}']").click
           expect(page).to have_css('label', text: t('administration.clients.client_admins.form.create_admin'))

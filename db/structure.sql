@@ -1,10 +1,3 @@
---
--- PostgreSQL database dump
---
-
--- Dumped from database version 9.6.6
--- Dumped by pg_dump version 9.6.6
-
 SET statement_timeout = 0;
 SET lock_timeout = 0;
 SET idle_in_transaction_session_timeout = 0;
@@ -132,7 +125,8 @@ CREATE TABLE assigns (
     norm_data jsonb,
     agile_scoring jsonb,
     project_assign_id integer,
-    mindmill_report character varying
+    mindmill_report character varying,
+    selected_locale character varying(10)
 );
 
 
@@ -3268,6 +3262,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171208153022'),
 ('20171208171730'),
 ('20171210004245'),
-('20171212142402');
+('20171212142402'),
+('20180503095443');
 
 
