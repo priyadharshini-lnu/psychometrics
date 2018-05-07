@@ -3,6 +3,14 @@ class AssessmentDecorator < BaseDecorator
     I18n.t("activerecord.attributes.assessment.categories.#{Assessment::CATEGORIES.key(object.category)}")
   end
 
+  def dashboard_category
+    if object.category == Assessment::MINDMILL
+      Assessment::PSYCHOMETRIC
+    else
+      object.category
+    end
+  end
+
   def description
     object.description || I18n.t('assigns.decorator.no_description')
   end
