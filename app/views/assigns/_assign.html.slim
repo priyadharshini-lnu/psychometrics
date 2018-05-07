@@ -14,7 +14,7 @@
       tbody
         tr
           td.col-md-4
-            a.collapsed> data-parent="#assessments-#{assign.assessment.category}" data-toggle="collapse" href="##{dom_id(assign)}"
+            a.collapsed> data-parent="#assessments-#{assign.assessment.decorate.dashboard_category}" data-toggle="collapse" href="##{dom_id(assign)}"
               span.toggle-icon.glyphicon.glyphicon-chevron-right
               span.toggle-icon.glyphicon.glyphicon-chevron-down
             - if assign.completed?
