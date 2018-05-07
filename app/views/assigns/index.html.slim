@@ -3,11 +3,11 @@
     .col-xs-12.col-md-8.col-md-offset-2
       h1.welcomeText Welcome to your dashboard, #{current_user.decorate.first_name}!
       - if @assigns.present?
-        - @assigns.group_by { |assign| assign.assessment.category }.each do |category, assigns|
-          h3.assessmentTitles = t("activerecord.attributes.assessment.categories.#{category}")
-          .panel-group.assessments-holder id="assessments-#{category}" role="tablist" aria-multiselectable="true"
-            = render partial: 'assign', 
-                     collection: assigns, 
-                     locals: { in_progress_assign: category == 'mindmill' && assigns.detect(&:in_progress?) }
+        - @assigns.group_by { |assign| assign.assessment.decorate.dashboard_category }.each do |dashboard_category, assigns|
+          h3.assessmentTitles = t("activerecord.attributes.assessment.categories.#{dashboard_category}")
+          .panel-group.assessments-holder id="assessments-#{dashboard_category}" role="tablist" aria-multiselectable="true"
+            - assigns.each do |assign|
+              = render partial: 'assign',
+                       locals: { assign: assign, in_progress_assign: assign.assessment.category == 'mindmill' && assigns.detect(&:in_progress?) }
       - else
         p = t('administration.no_data_found')
