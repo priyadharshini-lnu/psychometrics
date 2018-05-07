@@ -36,8 +36,12 @@ class AssignsController < ApplicationController
 
   def pass
     @assign.in_progress!
-    @translations = ::Translation.to_hash_for_assessment(@assign.assessment_id, user_locale)
     @available_translations = ::Translation.available_translation_for_assessment(@assign.assessment_id)
+    if params[:lang] && (@available_translations + [I18n.default_locale.to_s]).include?(params[:lang])
+      @assign.update(selected_locale: params[:lang])
+    end
+    @active_locale = @assign.selected_locale || user_locale
+    @translations = ::Translation.to_hash_for_assessment(@assign.assessment_id, @active_locale)
   end
 
   def update

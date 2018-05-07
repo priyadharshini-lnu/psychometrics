@@ -55,6 +55,11 @@ jobs:
           name: Copy secrets.yml
           command: cp config/secrets.ci.yml config/secrets.yml
 
+      # Prepare application environment variables
+      - run:
+          name: Copy application.yml
+          command: cp config/application.sample.yml config/application.yml
+
       # Database setup
       - run:
           name: Database Setup
