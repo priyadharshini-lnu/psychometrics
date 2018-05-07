@@ -150,6 +150,10 @@ class Assign < ApplicationRecord
     nil
   end
 
+  def assign_with_result
+    project_assign || self
+  end
+
   private
 
   def send_completion_email
