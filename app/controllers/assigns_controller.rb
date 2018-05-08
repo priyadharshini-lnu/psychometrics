@@ -40,8 +40,8 @@ class AssignsController < ApplicationController
     if params[:lang] && (@available_translations + [I18n.default_locale.to_s]).include?(params[:lang])
       @assign.update(selected_locale: params[:lang])
     end
-    @active_locale = @assign.selected_locale || user_locale
-    @translations = ::Translation.to_hash_for_assessment(@assign.assessment_id, @active_locale)
+    @selected_locale = @assign.selected_locale || user_locale
+    @translations = ::Translation.to_hash_for_assessment(@assign.assessment_id, @selected_locale)
   end
 
   def update
