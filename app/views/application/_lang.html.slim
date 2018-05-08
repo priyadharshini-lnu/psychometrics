@@ -1,5 +1,6 @@
 .dropdown.pull-right
   button#dropdownMenuLang.btn.btn-default.dropdown-toggle type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="true"
+    - active_locale = user_locale unless local_assigns[:active_locale]
     - if (locales || []).include?(active_locale)
       => t("languages.#{active_locale}")
     - else
@@ -9,11 +10,11 @@
     = active_link_to t('languages.en'),
                      params.permit.to_h.merge(lang: 'en'),
                      wrap_tag: :li,
-                     active: (active_locale) == 'en',
+                     active: active_locale == 'en',
                      data: local_assigns[:with_confirm] ? { confirm: 'You will lose the results of the current step. Are you sure?' } : {}
     - (locales || []).each do |lang|
         = active_link_to t("languages.#{lang}"),
                          params.permit.to_h.merge(lang: lang),
                          wrap_tag: :li,
-                         active:  (active_locale) == lang,
+                         active: active_locale == lang,
                          data: local_assigns[:with_confirm] ? { confirm: 'You will lose the results of the current step. Are you sure?' } : {}

@@ -34,8 +34,7 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def preview
-    @active_locale = user_locale
-    @translations = ::Translation.to_hash_for_assessment(resource.id, @active_locale)
+    @translations = ::Translation.to_hash_for_assessment(resource.id, user_locale)
     @available_translations = ::Translation.available_translation_for_assessment(resource.id)
     render layout: 'empty'
   end
