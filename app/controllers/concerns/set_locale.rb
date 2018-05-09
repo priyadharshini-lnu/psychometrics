@@ -4,6 +4,7 @@ module SetLocale
   included do
     helper_method :user_locale
     helper_method :user_locale_rtl?
+    helper_method :selected_locale
   end
 
   def user_locale
@@ -17,5 +18,9 @@ module SetLocale
 
   def user_locale_rtl?
     user_locale == 'ar'
+  end
+
+  def selected_locale
+    @selected_locale || user_locale
   end
 end
