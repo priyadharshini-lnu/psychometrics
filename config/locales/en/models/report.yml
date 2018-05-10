@@ -13,6 +13,8 @@ en:
       models:
         report:
           has_dependent_relation: This report is assinged on users
+          max_assessment_count: The maximum number of assessments is %{max}
+          min_assessment_count: The minimum number of assessments is %{min}
   simple_form:
     placeholders:
       report:

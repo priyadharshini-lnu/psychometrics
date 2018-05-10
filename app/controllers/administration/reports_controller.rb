@@ -38,6 +38,7 @@ module Administration
 
     def create
       @_resource = resource_class.new(resource_params)
+      resource.assessment_id = resource.assessment_ids.first
       resource.owner_id = current_user.project_admin_client_ids.first if current_user.is?(:client_admin)
 
       respond_to do |format|
@@ -56,6 +57,7 @@ module Administration
 
     # PATCH/PUT /administration/resources/1
     def update
+      resource.assessment_id = resource.assessment_ids.first
       respond_to do |format|
         if resource.update(resource_params)
           format.js
@@ -123,7 +125,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :assessment_id, :type, :owner_id, :mindmill, report_family_ids: [])
+      params.require(:resource).permit(:name, :type, :owner_id, :mindmill, report_family_ids: [], assessment_ids: [])
     end
 
     def authenticate_user_from_token!

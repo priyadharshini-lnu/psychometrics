@@ -60,8 +60,10 @@ class Assessment < ApplicationRecord
   has_many :factors_scoring, dependent: :destroy
   has_many :factors, through: :factors_scoring
 
+  has_many :assessments_reports
+  has_many :reports, through: :assessments_reports
+
   # HABTM Report Families
-  has_many :reports, dependent: :destroy
   has_many :report_families, through: :reports
 
   # HABTM Memberships
