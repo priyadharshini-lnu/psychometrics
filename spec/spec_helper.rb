@@ -1,4 +1,6 @@
 require 'simplecov'
+require 'rspec/retry'
+
 if ENV['CIRCLE_ARTIFACTS']
   dir = File.join(ENV['CIRCLE_ARTIFACTS'], "coverage")
   SimpleCov.coverage_dir(dir)
@@ -19,4 +21,10 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
+  
+  config.verbose_retry = true
+  config.display_try_failure_messages = true
+  config.around :each, type: :feature do |ex|
+    ex.run_with_retry retry: 3
+  end
 end

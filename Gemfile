@@ -183,4 +183,5 @@ group :test do
   gem 'shoulda', '~> 3.5.0'
   gem 'database_cleaner', '~> 1.5.3'
   gem 'simplecov', require: false
+  gem 'rspec-retry', '~> 0.5.7'
 end

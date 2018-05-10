@@ -551,6 +551,8 @@ GEM
       rspec-expectations (~> 3.5.0)
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
+    rspec-retry (0.5.7)
+      rspec-core (> 3.3)
     rspec-support (3.5.0)
     rubyXL (3.3.21)
       nokogiri (>= 1.4.4)
@@ -770,6 +772,7 @@ DEPENDENCIES
   remotipart (~> 1.2)
   roo (~> 2.4.0)
   rspec-rails (~> 3.5)
+  rspec-retry (~> 0.5.7)
   rubyXL
   sass-rails (~> 5.0)
   savon (~> 2.11.0)
