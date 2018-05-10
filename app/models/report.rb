@@ -21,6 +21,9 @@ class Report < ApplicationRecord
     ETI_TYPE = 'eti'.freeze
   ].freeze
 
+  MAX_ASSESSMENT_COUNT = 6
+  MIN_ASSESSMENT_COUNT = 1
+
   self.inheritance_column = :_type_disabled
 
   belongs_to :assessment
@@ -35,16 +38,20 @@ class Report < ApplicationRecord
   has_many :product_reports, dependent: :destroy
   has_many :products, through: :product_reports
   has_many :assigns_reports # on delete restrict
+  has_many :assessments_reports
+  has_many :assessments, through: :assessments_reports
 
   validates :assessment, presence: true
   validates :owner, presence: true, allow_nil: true
   validates :report_families, presence: true, allow_nil: false
+  validate :max_assessments_count
+  validate :min_assessments_count
 
   enum type: TYPES
 
   # Copy report with pages => modules
   def clone
-    @cloned_item = deep_clone include: [:report_families, { pages: :modules }]
+    @cloned_item = deep_clone include: [:assessments, :report_families, { pages: :modules }]
     @cloned_item.gen_uniq_name
     @cloned_item
   end
@@ -77,5 +84,19 @@ class Report < ApplicationRecord
 
   def yti_eti?
     [Report::YTI_TYPE, Report::ETI_TYPE].include? type
+  end
+
+  private
+
+  def max_assessments_count
+    return if assessments.size <= MAX_ASSESSMENT_COUNT
+    errors.add(:assessments,
+               I18n.t('activerecord.errors.models.report.max_assessment_count', max: MAX_ASSESSMENT_COUNT))
+  end
+
+  def min_assessments_count
+    return if assessments.size >= MIN_ASSESSMENT_COUNT
+    errors.add(:assessments,
+               I18n.t('activerecord.errors.models.report.min_assessment_count', min: MIN_ASSESSMENT_COUNT))
   end
 end

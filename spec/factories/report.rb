@@ -22,5 +22,6 @@ FactoryGirl.define do
     association :assessment, factory: :assessment
     sequence(:name) { |i| "report #{i}" }
     report_families { [association(:report_family)] }
+    assessments { build_list(:assessment, Report::MAX_ASSESSMENT_COUNT) }
   end
 end

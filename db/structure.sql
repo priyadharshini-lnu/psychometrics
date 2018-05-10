@@ -105,6 +105,38 @@ ALTER SEQUENCE assessments_id_seq OWNED BY assessments.id;
 
 
 --
+-- Name: assessments_reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE assessments_reports (
+    id bigint NOT NULL,
+    assessment_id bigint NOT NULL,
+    report_id bigint NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: assessments_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE assessments_reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assessments_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE assessments_reports_id_seq OWNED BY assessments_reports.id;
+
+
+--
 -- Name: assigns; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -126,7 +158,7 @@ CREATE TABLE assigns (
     agile_scoring jsonb,
     project_assign_id integer,
     mindmill_report character varying,
-    selected_locale character varying(10)
+    selected_locale character varying
 );
 
 
@@ -1548,6 +1580,13 @@ ALTER TABLE ONLY assessments ALTER COLUMN id SET DEFAULT nextval('assessments_id
 
 
 --
+-- Name: assessments_reports id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assessments_reports ALTER COLUMN id SET DEFAULT nextval('assessments_reports_id_seq'::regclass);
+
+
+--
 -- Name: assigns id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1827,6 +1866,14 @@ ALTER TABLE ONLY ar_internal_metadata
 
 ALTER TABLE ONLY assessments
     ADD CONSTRAINT assessments_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: assessments_reports assessments_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assessments_reports
+    ADD CONSTRAINT assessments_reports_pkey PRIMARY KEY (id);
 
 
 --
@@ -2146,6 +2193,20 @@ ALTER TABLE ONLY users
 --
 
 CREATE INDEX index_assessments_on_dimension_id ON assessments USING btree (dimension_id);
+
+
+--
+-- Name: index_assessments_reports_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessments_reports_on_assessment_id ON assessments_reports USING btree (assessment_id);
+
+
+--
+-- Name: index_assessments_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessments_reports_on_report_id ON assessments_reports USING btree (report_id);
 
 
 --
@@ -2768,6 +2829,14 @@ ALTER TABLE ONLY users
 
 
 --
+-- Name: assessments_reports fk_rails_105380adfd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assessments_reports
+    ADD CONSTRAINT fk_rails_105380adfd FOREIGN KEY (assessment_id) REFERENCES assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: licenses fk_rails_139c7e09c4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3032,6 +3101,14 @@ ALTER TABLE ONLY clients_reports
 
 
 --
+-- Name: assessments_reports fk_rails_df744d4dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY assessments_reports
+    ADD CONSTRAINT fk_rails_df744d4dd0 FOREIGN KEY (report_id) REFERENCES reports(id) ON DELETE CASCADE;
+
+
+--
 -- Name: assigns_reports fk_rails_eb27834cf2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3263,6 +3340,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171208171730'),
 ('20171210004245'),
 ('20171212142402'),
+('20180428143634'),
 ('20180503095443');
 
 
