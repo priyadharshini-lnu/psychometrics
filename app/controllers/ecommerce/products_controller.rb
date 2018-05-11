@@ -15,7 +15,7 @@ module Ecommerce
     def add_to_cart
       @cart.add(@product.id, (params[:quantity] || 1).to_i)
       respond_to do |format|
-        format.html { redirect_to :back, success: 'Successfully' }
+        format.html { redirect_back(fallback_location: root_path, success: 'Successfully') }
         format.js
       end
     end

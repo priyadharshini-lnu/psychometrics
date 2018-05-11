@@ -95,7 +95,11 @@ module Administration
           resource.destroy
         end
         respond_to do |format|
-          format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
+          format.html do
+            redirect_back(
+              fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
+            )
+          end
           format.js
         end
       end
@@ -115,14 +119,18 @@ module Administration
         # Reload with join_user
         @_resource = policy_scope(resource_class).join_user.find(params[:id])
         respond_to do |format|
-          format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
+          format.html do
+            redirect_back(
+              fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
+            )
+          end
           format.js
         end
       end
 
       def reset_password
         resource.user.send_reset_password_instructions
-        redirect_to :back, success: t('.successfully', name: resource.decorate.display_name)
+        redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
       end
 
       protected

@@ -53,7 +53,11 @@ module Administration
       def destroy
         resource.destroy
         respond_to do |format|
-          format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
+          format.html do
+            redirect_back(
+              fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
+            )
+          end
           format.js
         end
       end
@@ -74,7 +78,11 @@ module Administration
       def toggle_status
         resource.toggle!(:disabled)
         respond_to do |format|
-          format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
+          format.html do
+            redirect_back(
+              fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
+            )
+          end
           format.js
         end
       end
