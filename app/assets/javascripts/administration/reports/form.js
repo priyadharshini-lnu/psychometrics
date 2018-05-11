@@ -1,7 +1,7 @@
 function ReportsForm () {
   this.init = function() {
     this.startListening()
-    $(document).on('change', '#reports_form #resource_assessment_id', this.onResourceAssessmentChange);
+    $(document).on('change', '#reports_form #resource_assessment_ids', this.onResourceAssessmentChange);
   }
 
   this.startListening = function() {
@@ -14,7 +14,7 @@ function ReportsForm () {
   }
 
   this.fireResourceAssessment = function() {
-    $('#reports_form #resource_assessment_id').change();
+    $('#reports_form #resource_assessment_ids').change();
   }
 
   this.onResourceAssessmentChange = function(event) {
