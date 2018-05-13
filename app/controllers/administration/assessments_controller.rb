@@ -64,7 +64,9 @@ class Administration::AssessmentsController < Administration::BaseController
   def destroy
     resource.destroy
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
+      format.html do
+        redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
+      end
       format.js
     end
   end
@@ -74,7 +76,7 @@ class Administration::AssessmentsController < Administration::BaseController
   def toggle_status
     resource.toggle!(:disabled)
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully')) }
+      format.html { redirect_back(fallback_location: root_path, success: t('.successfully')) }
       format.js
     end
   end

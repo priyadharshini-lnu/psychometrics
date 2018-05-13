@@ -41,7 +41,9 @@ class Administration::UsersController < Administration::BaseController
   def destroy
     resource.destroy
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
+      format.html do
+        redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
+      end
       format.js
     end
   end
@@ -53,7 +55,9 @@ class Administration::UsersController < Administration::BaseController
     resource.update!(modified_by_id: current_user.id)
     resource.memberships.update_all(disabled: resource.disabled)
     respond_to do |format|
-      format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
+      format.html do
+        redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
+      end
       format.js
     end
   end
@@ -62,7 +66,7 @@ class Administration::UsersController < Administration::BaseController
   #
   def reset_password
     resource.send_reset_password_instructions
-    redirect_to :back, success: t('.successfully', name: resource.decorate.display_name)
+    redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
   end
 
     def export
