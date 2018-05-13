@@ -49,7 +49,7 @@ class Administration::SubFactorsController < Administration::BaseController
     resource.destroy
     respond_to do |format|
       format.html do
-        redirect_back(fallback_location: root_path success: t('.successfully', name: resource.decorate.display_name))
+        redirect_back(fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name))
       end
       format.js
     end
