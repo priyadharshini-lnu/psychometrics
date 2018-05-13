@@ -31,7 +31,11 @@ module Administration
         @_resource = client.assessments.find(params[:id])
         client.clients_reports.where(report_id: resource.report_ids).destroy_all
         respond_to do |format|
-          format.html { redirect_to(:back, success: t('.successfully', name: resource.decorate.display_name)) }
+          format.html do
+            redirect_back(
+              fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
+            )
+          end
           format.js
         end
       end

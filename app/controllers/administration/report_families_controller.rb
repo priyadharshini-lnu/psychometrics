@@ -15,7 +15,7 @@ module Administration
     rescue ActiveRecord::InvalidForeignKey
       msg = 'You have dependent records'
       respond_to do |format|
-        format.html { redirect_to(:back, error: msg) }
+        format.html { redirect_back(fallback_location: root_path, error: msg) }
         format.js { render :error, locals: { message: msg } }
       end
     end

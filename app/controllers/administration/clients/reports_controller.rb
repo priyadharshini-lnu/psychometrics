@@ -26,7 +26,11 @@ module Administration
         @_resource = client.clients_reports.find_by(report_id: params[:id])
         resource.destroy
         respond_to do |format|
-          format.html { redirect_to(:back, success: t('.successfully', name: resource.report.decorate.display_name)) }
+          format.html do
+            redirect_back(
+              fallback_location: root_path, success: t('.successfully', name: resource.report.decorate.display_name)
+            )
+          end
           format.js
         end
       end

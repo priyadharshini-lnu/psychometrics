@@ -45,7 +45,7 @@ module Administration
         def destroy
           resource.destroy
           respond_to do |format|
-            format.html { redirect_to(:back, success: t('.successfully')) }
+            format.html { redirect_back(fallback_location: root_path, success: t('.successfully')) }
             format.js
           end
         end
@@ -54,7 +54,7 @@ module Administration
           @report = Report.find(params[:report_id])
           resource.reports.delete(@report)
           respond_to do |format|
-            format.html { redirect_to(:back, success: t('.successfully')) }
+            format.html { redirect_back(fallback_location: root_path, success: t('.successfully')) }
             format.js
           end
         end
