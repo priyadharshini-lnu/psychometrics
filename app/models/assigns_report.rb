@@ -23,6 +23,8 @@ class AssignsReport < ApplicationRecord
 
   before_create :use_license
 
+  mount_base64_uploader :external_report, FileUploader, file_name: proc { 'external_report' }
+
   private
 
   def use_license

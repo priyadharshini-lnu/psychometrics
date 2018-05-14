@@ -28,6 +28,19 @@
                                   confirm_text: in_progress_assign && t('.mindmill_confirmation', assessment: in_progress_assign.assessment.name),
                                   need_confirm: need_confirm },
                           class: 'mindmill_link'
+              - elsif assign.assessment.hogan?
+                = link_to assign.assessment.name, 'javascript:void(0)', onclick: "$('#hogan-form-#{assign.id}').submit()"
+                = form_tag Rails.application.secrets.hogan[:login_url], id: "hogan-form-#{assign.id}" do
+                  = hidden_field_tag :UserID, @current_membership.hogan_credential.participant_id
+                  = hidden_field_tag :Password, @current_membership.hogan_credential.password
+                  = hidden_field_tag :UniqueID, current_user.email
+                  = hidden_field_tag :FirstName, current_user.first_name
+                  = hidden_field_tag :LastName, current_user.last_name
+                  = hidden_field_tag :LanguageID, 'en'
+                  = hidden_field_tag :DirectAssessmentID, assign.assessment.hogan_assessment_setting.hogan_assessment_id
+                  = hidden_field_tag :DisplayInformedConsent, 'YES'
+                  = hidden_field_tag :ReturnURL, redirect_hogan_assign_url(assign, email: 'CandID',
+                    participant_id: 'HASUserID', status: 'AssessmentStatus', assessment_id: 'AssessmentID')
               - else
                 = link_to assign.assessment.name, [:pass, assign]
           td.col-md-3 = assign.assessment.decorate.timing
@@ -43,6 +56,8 @@
             // Show Load Results link if it's not completed Mindmill Assessment
             - if assign.assessment.mindmill? && !assign.completed?
               = link_to assign.in_progress? ? 'Load Results' : 'Not Available', results_mindmill_assign_path(assign), class: "btn btn-info #{'disabled' unless assign.in_progress?}"
+            - if assign.assessment.hogan? && !assign.completed?
+              /= link_to assign.in_progress? ? 'Load Results' : 'Not Available', results_hogan_assign_path(assign), class: "btn btn-info #{'disabled' unless assign.in_progress?}"
   .panel-collapse.collapse id=dom_id(assign)
     hr.divider
     .panel-body
