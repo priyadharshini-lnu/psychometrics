@@ -11,7 +11,7 @@ tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource
       = link_to resource.name, administration_report_path(resource)
     - else
       = resource.name      
-  td = resource.assessment.try(:decorate).try(:display_name)
+  td = resource.decorate.assessments_names
   td = resource.decorate.type
   td = resource.decorate.client_name
   td = resource.decorate.report_families
