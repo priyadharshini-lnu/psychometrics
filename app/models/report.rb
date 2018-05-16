@@ -21,6 +21,9 @@ class Report < ApplicationRecord
     ETI_TYPE = 'eti'.freeze
   ].freeze
 
+  MAX_ASSESSMENT_COUNT = 6
+  MIN_ASSESSMENT_COUNT = 1
+
   self.inheritance_column = :_type_disabled
 
   belongs_to :assessment
@@ -35,6 +38,7 @@ class Report < ApplicationRecord
   has_many :product_reports, dependent: :destroy
   has_many :products, through: :product_reports
   has_many :assigns_reports # on delete restrict
+  has_one :hogan_report_setting
 
   validates :assessment, presence: true
   validates :owner, presence: true, allow_nil: true

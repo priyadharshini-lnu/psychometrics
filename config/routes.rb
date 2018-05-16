@@ -384,6 +384,14 @@ Rails.application.routes.draw do
         end
       end
     end
+    namespace :hogan do
+      resources :assigns, only: [] do
+        member do
+          get :redirect
+          get :results
+        end
+      end
+    end
 
     resources :reports, only: %i(show)
     resource :profiles, only: %i(update edit)

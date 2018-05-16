@@ -1,0 +1,6 @@
+en:
+  hogan:
+    assigns:
+      results:
+        not_completed: Hogan Report isn't ready yet
+        successfully: Hogan Report was successfully saved

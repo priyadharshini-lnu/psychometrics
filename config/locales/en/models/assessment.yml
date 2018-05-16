@@ -17,6 +17,7 @@ en:
           organisational: Org Surveys
           '360': 360 Feedback
           mindmill: Mindmill
+          hogan: Hogan
         types:
           common: TTE Assessment
           mindmill: Mindmill Assessment

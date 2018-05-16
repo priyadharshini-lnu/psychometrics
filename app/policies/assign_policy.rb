@@ -17,6 +17,10 @@ class AssignPolicy < BasePolicy
     @record.membership_id == @current_membership.id
   end
 
+  def redirect?
+    index?
+  end
+
   class Scope < Scope
     def resolve
       scope.

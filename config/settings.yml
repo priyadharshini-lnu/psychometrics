@@ -53,3 +53,28 @@ mindmill:
     id: 429
   - name: Technical Functions – Senior Level TTE
     id: 430
+hogan:
+  - name: HPI
+    assessment_id: HPI
+    report_id: EcHPIDML
+    form_id: 3
+    norm_id: General
+    language_id: en
+  - name: HDS
+    assessment_id: HDS
+    report_id: EcHDSDML
+    form_id: 5
+    norm_id: General
+    language_id: en
+  - name: MVPI
+    assessment_id: MVPI
+    report_id: EcMVPIDML
+    form_id: 1
+    norm_id: General
+    language_id: en
+  - name: HBRI
+    assessment_id: HBRIV1
+    report_id: EcHBRIV1D
+    form_id: 1
+    norm_id: General
+    language_id: en

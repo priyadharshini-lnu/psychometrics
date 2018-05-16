@@ -26,19 +26,22 @@ class Assessment < ApplicationRecord
     PSYCHOMETRIC = 'psychometric'.freeze,
     ORGANISATIONAL = 'organisational'.freeze,
     NUM_360 = '360'.freeze,
-    MINDMILL = 'mindmill'.freeze
+    MINDMILL = 'mindmill'.freeze,
+    HOGAN = 'hogan'.freeze,
   ].freeze
   CATEGORIES = {
     psychometric: PSYCHOMETRIC,
     organisational: ORGANISATIONAL,
     '360' => NUM_360,
-    mindmill: MINDMILL
+    mindmill: MINDMILL,
+    hogan: HOGAN,
   }.freeze
 
   # Assessments constant
   TYPES = {
     common: 'Assessments::Common',
-    mindmill: 'Assessments::Mindmill'
+    mindmill: 'Assessments::Mindmill',
+    hogan: 'Assessments::Hogan'
   }.freeze
 
   # STATUSES constant
@@ -70,7 +73,9 @@ class Assessment < ApplicationRecord
 
   # HABTM Clients
   has_many :clients, through: :reports
-  ##
+
+  has_one :hogan_assessment_setting
+  #
   ### END ASSOCIATIONS
 
   validates :type, presence: true, inclusion: { in: TYPES.values }
