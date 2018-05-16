@@ -96,6 +96,8 @@ GEM
       activerecord (>= 3.2.0)
     arel (8.0.0)
     ast (2.3.0)
+    attr_encrypted (3.1.0)
+      encryptor (~> 3.0.0)
     autoprefixer-rails (6.4.0.3)
       execjs
     axiom-types (0.1.1)
@@ -267,6 +269,7 @@ GEM
       json
       thread
       thread_safe
+    encryptor (3.0.0)
     enum_help (0.0.17)
       activesupport (>= 3.0.0)
     equalizer (0.0.11)
@@ -677,6 +680,7 @@ DEPENDENCIES
   amoeba (~> 3.0.0)
   ancestry
   annotate (~> 2.7.0)!
+  attr_encrypted (~> 3.1.0)
   axlsx!
   axlsx_rails (~> 0.4.0)
   baby_squeel (~> 1.0.1)

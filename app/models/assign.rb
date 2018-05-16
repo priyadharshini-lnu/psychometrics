@@ -154,6 +154,10 @@ class Assign < ApplicationRecord
     project_assign || self
   end
 
+  def original_or_self
+    original_assign || self
+  end
+
   private
 
   def send_completion_email

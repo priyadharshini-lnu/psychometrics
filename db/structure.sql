@@ -191,7 +191,8 @@ CREATE TABLE assigns_reports (
     assign_id integer,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    access_reports_at timestamp without time zone
+    access_reports_at timestamp without time zone,
+    external_report character varying
 );
 
 
@@ -778,6 +779,108 @@ CREATE SEQUENCE factors_scoring_id_seq
 --
 
 ALTER SEQUENCE factors_scoring_id_seq OWNED BY factors_scoring.id;
+
+
+--
+-- Name: hogan_assessment_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE hogan_assessment_settings (
+    id bigint NOT NULL,
+    hogan_assessment_id character varying,
+    hogan_form_id character varying NOT NULL,
+    assessment_id bigint NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: hogan_assessment_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE hogan_assessment_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: hogan_assessment_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE hogan_assessment_settings_id_seq OWNED BY hogan_assessment_settings.id;
+
+
+--
+-- Name: hogan_credentials; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE hogan_credentials (
+    id bigint NOT NULL,
+    membership_id bigint NOT NULL,
+    encrypted_password character varying NOT NULL,
+    encrypted_password_iv character varying NOT NULL,
+    participant_id character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: hogan_credentials_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE hogan_credentials_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: hogan_credentials_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE hogan_credentials_id_seq OWNED BY hogan_credentials.id;
+
+
+--
+-- Name: hogan_report_settings; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE hogan_report_settings (
+    id bigint NOT NULL,
+    report_id bigint NOT NULL,
+    hogan_report_id character varying NOT NULL,
+    hogan_norm_id character varying NOT NULL,
+    hogan_language_id character varying NOT NULL,
+    load_report boolean DEFAULT false NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: hogan_report_settings_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE hogan_report_settings_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: hogan_report_settings_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE hogan_report_settings_id_seq OWNED BY hogan_report_settings.id;
 
 
 --
@@ -1706,6 +1809,27 @@ ALTER TABLE ONLY factors_scoring ALTER COLUMN id SET DEFAULT nextval('factors_sc
 
 
 --
+-- Name: hogan_assessment_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY hogan_assessment_settings ALTER COLUMN id SET DEFAULT nextval('hogan_assessment_settings_id_seq'::regclass);
+
+
+--
+-- Name: hogan_credentials id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY hogan_credentials ALTER COLUMN id SET DEFAULT nextval('hogan_credentials_id_seq'::regclass);
+
+
+--
+-- Name: hogan_report_settings id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY hogan_report_settings ALTER COLUMN id SET DEFAULT nextval('hogan_report_settings_id_seq'::regclass);
+
+
+--
 -- Name: libraries id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2010,6 +2134,30 @@ ALTER TABLE ONLY factors
 
 ALTER TABLE ONLY factors_scoring
     ADD CONSTRAINT factors_scoring_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: hogan_assessment_settings hogan_assessment_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY hogan_assessment_settings
+    ADD CONSTRAINT hogan_assessment_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: hogan_credentials hogan_credentials_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY hogan_credentials
+    ADD CONSTRAINT hogan_credentials_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: hogan_report_settings hogan_report_settings_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY hogan_report_settings
+    ADD CONSTRAINT hogan_report_settings_pkey PRIMARY KEY (id);
 
 
 --
@@ -2497,6 +2645,27 @@ CREATE INDEX index_factors_scoring_on_question_id ON factors_scoring USING btree
 
 
 --
+-- Name: index_hogan_assessment_settings_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_hogan_assessment_settings_on_assessment_id ON hogan_assessment_settings USING btree (assessment_id);
+
+
+--
+-- Name: index_hogan_credentials_on_membership_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_hogan_credentials_on_membership_id ON hogan_credentials USING btree (membership_id);
+
+
+--
+-- Name: index_hogan_report_settings_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_hogan_report_settings_on_report_id ON hogan_report_settings USING btree (report_id);
+
+
+--
 -- Name: index_libraries_on_ancestry; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2973,6 +3142,14 @@ ALTER TABLE ONLY tasks
 
 
 --
+-- Name: hogan_credentials fk_rails_8b50dd238d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY hogan_credentials
+    ADD CONSTRAINT fk_rails_8b50dd238d FOREIGN KEY (membership_id) REFERENCES memberships(id) ON DELETE CASCADE;
+
+
+--
 -- Name: communications fk_rails_904f7c8764; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3061,6 +3238,14 @@ ALTER TABLE ONLY communications_users
 
 
 --
+-- Name: hogan_assessment_settings fk_rails_d0f7b433a7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY hogan_assessment_settings
+    ADD CONSTRAINT fk_rails_d0f7b433a7 FOREIGN KEY (assessment_id) REFERENCES assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: assigns fk_rails_d2e6622e0f; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3098,6 +3283,14 @@ ALTER TABLE ONLY license_usages
 
 ALTER TABLE ONLY clients_reports
     ADD CONSTRAINT fk_rails_d62c12c5d3 FOREIGN KEY (client_id) REFERENCES clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: hogan_report_settings fk_rails_d77e15b1b7; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY hogan_report_settings
+    ADD CONSTRAINT fk_rails_d77e15b1b7 FOREIGN KEY (report_id) REFERENCES reports(id) ON DELETE CASCADE;
 
 
 --
@@ -3341,6 +3534,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171210004245'),
 ('20171212142402'),
 ('20180428143634'),
-('20180503095443');
+('20180503095443'),
+('20180504074309'),
+('20180504075242'),
+('20180504082538'),
+('20180504091841');
 
 

@@ -3,16 +3,29 @@
   - report = reports.first
   //// MINDMILL OR COMMON REPORT
   //
+
   - if report.mindmill?
     = link_to t('.results'), assign.mindmill_report.url,
                              target: 'windowMindmill',
                              class: "btn btn-info #{'disabled' if !assign.completed? || !policy(report).show?}",
                              onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
+  - elsif report.assessment.hogan?
+    - if report.hogan_report_setting&.load_report?
+      - if assign.completed?
+        - original_assign = assign.original_or_self
+        - assigns_report = original_assign.assigns_reports.find_by(report: report)
+        - if assigns_report&.external_report.present?
+          = link_to t('.results'), assigns_report.external_report.url,
+            target: 'windowMindmill',
+            class: "btn btn-info #{'disabled' if !assign.completed? || !policy(report).show?}",
+            onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
+        - else
+          = link_to 'Load Results', results_hogan_assign_path(assign, report_id: report.id), class: 'btn btn-info'
   - else
     = link_to t('.results'), report_path(report), 
                              class: "btn btn-info #{'disabled' if !assign.completed? || !policy(report).show?}"
   //
-  //// END MINDMILL OR COMMON REPORT                             
+  //// END MINDMILL OR COMMON REPORT
 - elsif reports.size > 1
   = dropdown t('.results'), context: :info, button: { class: "#{'disabled' unless assign.completed?}" }
     - reports.each do |report|
@@ -26,10 +39,11 @@
             = content_tag :a, report.name, href: assign.mindmill_report.url,
                                            target: 'windowMindmill',
                                            onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
+          / TODO: add hogan multiple reports
           - else
             = content_tag :a, report.name, href: report_path(report)
           //
-          //// END MINDMILL OR COMMON REPORT 
+          //// END MINDMILL OR COMMON REPORT
         - else
           = content_tag :a, report.name, href: '#'
 - else

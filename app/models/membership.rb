@@ -54,6 +54,7 @@ class Membership < ApplicationRecord
   has_many :clients_assigns, through: :clients_memberships, source: :assigns, class_name: 'Assign'
   has_many :clients_reports, through: :clients_assigns, source: :reports
   has_one :original_membership, foreign_key: :project_membership_id, class_name: 'Membership'
+  has_one :hogan_credential
 
   validates :client, :user, presence: true
   validates :client_id, uniqueness: { scope: [:user_id, :role] }
@@ -142,6 +143,10 @@ class Membership < ApplicationRecord
 
   def already_invited?
     project_membership&.already_invited || already_invited
+  end
+
+  def membership_with_result
+    project_membership || self
   end
 
   private

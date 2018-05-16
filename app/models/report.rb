@@ -40,6 +40,7 @@ class Report < ApplicationRecord
   has_many :assigns_reports # on delete restrict
   has_many :assessments_reports
   has_many :assessments, through: :assessments_reports
+  has_one :hogan_report_setting
 
   validates :assessment, presence: true
   validates :owner, presence: true, allow_nil: true
