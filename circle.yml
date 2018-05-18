@@ -4,13 +4,13 @@ jobs:
     working_directory: ~/psychometrics
 
     docker:
-      - image: circleci/ruby:2.4-node-browsers
+      - image: circleci/ruby:2.5.1-node-browsers
         environment:
           RAILS_ENV: test
           PGHOST: 127.0.0.1
           PGUSER: root
-      - image: circleci/postgres:9.6.3-alpine
-      - image: redis:3.2.9-alpine
+      - image: circleci/postgres:10.3-alpine
+      - image: redis:4.0.9-alpine
 
     steps:
       - checkout
@@ -37,7 +37,7 @@ jobs:
 
       - run:
           name: Install psql
-          command: sudo apt install postgresql-client
+          command: sudo apt update && sudo apt install postgresql-client
 
       # Store bundle cache
       - save_cache:

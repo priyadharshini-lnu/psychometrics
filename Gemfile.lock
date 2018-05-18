@@ -282,6 +282,8 @@ GEM
     factory_girl_rails (4.7.0)
       factory_girl (~> 4.7.0)
       railties (>= 3.0.0)
+    faker (1.8.7)
+      i18n (>= 0.7)
     ffi (1.9.14)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -307,7 +309,6 @@ GEM
       nokogiri (>= 1.5.11, < 2.0.0)
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
-    forgery (0.6.0)
     formatador (0.2.5)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
@@ -326,7 +327,7 @@ GEM
     highline (1.7.8)
     hirb (0.7.3)
     htmlentities (4.3.4)
-    httpi (2.4.2)
+    httpi (2.4.3)
       rack
       socksify
     i18n (0.7.0)
@@ -553,6 +554,8 @@ GEM
       rspec-expectations (~> 3.5.0)
       rspec-mocks (~> 3.5.0)
       rspec-support (~> 3.5.0)
+    rspec-retry (0.5.7)
+      rspec-core (> 3.3)
     rspec-support (3.5.0)
     rubyXL (3.3.21)
       nokogiri (>= 1.4.4)
@@ -716,12 +719,12 @@ DEPENDENCIES
   dry-types (~> 0.12.2)
   enum_help (~> 0.0.17)
   factory_girl_rails (~> 4.7.0)
+  faker (~> 1.8.7)
   figaro (~> 1.1.1)
   file_validators (~> 2.1.0)
   filterrific (~> 2.0.5)
   fog-aws (~> 2.0.1)
   font-awesome-rails (~> 4.7)
-  forgery (= 0.6.0)
   guard
   hashids (~> 1.0.2)
   hirb
@@ -773,6 +776,7 @@ DEPENDENCIES
   remotipart (~> 1.2)
   roo (~> 2.4.0)
   rspec-rails (~> 3.5)
+  rspec-retry (~> 0.5.7)
   rubyXL
   sass-rails (~> 5.0)
   savon (~> 2.11.0)

@@ -1,0 +1,14 @@
+var $modalContainer = $('#modal-container');
+<% if resource.existing_users_whose_password_not_changed.present? %>
+  $modalContainer.find(".modal").html(
+    '<%= j render('existing_users_whose_password_not_changed_modal_dialog',
+        existing_users_whose_password_not_changed: resource.existing_users_whose_password_not_changed) %>'
+  );
+<% else %>
+  $modalContainer.find(".modal").modal('hide');
+<% end %>
+
+
+$('#filter').trigger('reloadList');
+// Notify message
+noty({text: '<%= t("administration.#{resource_class.model_name.plural}.create.successfully") %>', type: 'success'});

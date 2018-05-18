@@ -177,11 +177,12 @@ end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 2.13'
-  gem 'forgery', '0.6.0'
+  gem 'faker', '~> 1.8.7'
   gem 'poltergeist', '~> 1.14.0'
   gem 'capybara-screenshot', '~> 1.0.14'
   gem 'selenium-webdriver'
   gem 'shoulda', '~> 3.5.0'
   gem 'database_cleaner', '~> 1.5.3'
   gem 'simplecov', require: false
+  gem 'rspec-retry', '~> 0.5.7'
 end

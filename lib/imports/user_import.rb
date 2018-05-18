@@ -12,12 +12,13 @@ module Imports
       first_name: Membership.human_attribute_name('first_name'),
       last_name: Membership.human_attribute_name('last_name'),
       email: Membership.human_attribute_name('email'),
+      password: Membership.human_attribute_name('password'),
       role: Membership.human_attribute_name('role'),
       created_at: Membership.human_attribute_name('created_at'),
       report_ids: Membership.human_attribute_name('report_ids')
     }.freeze
 
-    HEADER_IMPORT_KEYS = %i(first_name last_name email role report_ids).freeze
+    HEADER_IMPORT_KEYS = %i(first_name last_name password email role report_ids).freeze
 
     # Authorisation flow
     #
@@ -32,6 +33,13 @@ module Imports
                                                   'application/vnd.ms-excel',
                                                   'text/csv'] }
 
+    attr_reader :existing_users_whose_password_not_changed
+
+    def initialize(attributes = {})
+      super(attributes)
+      @existing_users_whose_password_not_changed = []
+    end
+
     def pundit_user
       importer
     end
@@ -41,7 +49,6 @@ module Imports
       return false unless valid?
 
       imported_items = load_imported_items.compact
-
       if imported_items.map(&:valid?).all?
         imported_items.each(&:save!).each { |i| i.user.invite!(importer, client_id) }
       else
@@ -83,6 +90,8 @@ module Imports
           memberships_attributes[:hris_data][i.to_s] = { key: z.first, value: z.last }
         end
 
+        assign_password(user, attributes, memberships_attributes)
+
         user.assign_attributes(attributes.merge(role: User::REGULAR_ROLE, create_by_invite: true))
         membership = user.memberships.find_or_initialize_by(client_id: client.id)
         membership.assign_attributes(memberships_attributes)
@@ -115,6 +124,23 @@ module Imports
       when '.xlsx' then ::Roo::Excelx.new(file.path)
       else raise t('administration.imports.errors.unknown_type', filename: file.original_filename)
       end
+    end
+
+    private
+
+    def assign_password(user, attributes, memberships_attributes)
+      password = attributes.delete(:password)
+      @existing_users_whose_password_not_changed << user if user.encrypted_password.present? && password.present?
+
+      return if password.blank? || user.encrypted_password.present?
+
+      user.assign_attributes(
+        password: password,
+        invitation_token: nil,
+        invitation_accepted_at: user.invitation_accepted_at || Time.current
+      )
+
+      memberships_attributes[:already_invited] = true
     end
   end
 end

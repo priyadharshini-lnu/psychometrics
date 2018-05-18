@@ -71,7 +71,7 @@ feature 'Operations on communications#index', js: true do
     end
 
     scenario 'Search for subject' do
-      text = Forgery('internet').email_subject
+      text = Faker::Lorem.word
       create(:communication, subject: text, client_id: project.id )
       visit '/administration/communications'
       within '.list-filter' do
