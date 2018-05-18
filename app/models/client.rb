@@ -79,8 +79,7 @@ class Client < ApplicationRecord
 
   has_many :norms
   has_many :dimensions
-  # TODO: change after removing single assessment from report
-  has_many :assessments, -> { group(:id) }, through: :reports, source: :assessment
+  has_many :assessments, -> { group(:id) }, through: :reports, source: :assessments
   has_many :license_usages
   has_many :licenses, inverse_of: :client, dependent: :destroy
   # TODO use admins instead of projects_admins

@@ -60,7 +60,8 @@ module Administration
         end
 
         def reports
-          @_resources = client.reports.where(assessment_id: params[:assessment_id]).distinct
+          @_resources = client.reports.joins(:assessments_reports).
+            where(assessments_reports: { assessment_id:  params[:assessment_id] }).distinct
           @selected_reports = client.assign_by_membership_and_assessment(params[:user_id], params[:assessment_id])&.reports
           respond_to do |format|
             format.json

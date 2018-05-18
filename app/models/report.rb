@@ -48,6 +48,8 @@ class Report < ApplicationRecord
   validate :max_assessments_count
   validate :min_assessments_count
 
+  before_validation :set_assessment
+
   enum type: TYPES
 
   # Copy report with pages => modules
@@ -65,16 +67,16 @@ class Report < ApplicationRecord
 
   # Search entity by assessment category
   scope :with_assessment_category, lambda { |assessment_category|
-    assessment_category == 'all' ? all : joins(:assessment).where(assessments: { category: assessment_category })
+    assessment_category == 'all' ? all : joins(:assessments).where(assessments: { category: assessment_category })
   }
 
   # Search entity by assessment
   scope :with_assessment, lambda { |assessment_id|
-    where(assessment_id: assessment_id)
+    joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment_id })
   }
 
   scope :available_to_view, lambda {
-    joins(:assessment).where.has { assessment.access_reports_at.eq(nil) | (assessment.access_reports_at <= Time.now) }
+    joins(:assessments).where.has { assessments.access_reports_at.eq(nil) | (assessments.access_reports_at <= Time.now) }
   }
 
   scope :for_clients, lambda { |client_ids|
@@ -99,5 +101,9 @@ class Report < ApplicationRecord
     return if assessments.size >= MIN_ASSESSMENT_COUNT
     errors.add(:assessments,
                I18n.t('activerecord.errors.models.report.min_assessment_count', min: MIN_ASSESSMENT_COUNT))
+  end
+
+  def set_assessment
+    self.assessment = assessments&.first
   end
 end

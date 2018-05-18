@@ -16,7 +16,7 @@ module Administration
 
     # GET /administration/resources
     def index
-      scope = policy_scope(resource_class).includes(:assessment, :report_families).order(:name)
+      scope = policy_scope(resource_class).includes(:assessments, :report_families).order(:name).distinct
       scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
       scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
       @_filter_form = scope.search(params[:q])
@@ -38,7 +38,6 @@ module Administration
 
     def create
       @_resource = resource_class.new(resource_params)
-      resource.assessment_id = resource.assessment_ids.first
       resource.owner_id = current_user.project_admin_client_ids.first if current_user.is?(:client_admin)
 
       respond_to do |format|
@@ -57,7 +56,6 @@ module Administration
 
     # PATCH/PUT /administration/resources/1
     def update
-      resource.assessment_id = resource.assessment_ids.first
       respond_to do |format|
         if resource.update(resource_params)
           format.js
