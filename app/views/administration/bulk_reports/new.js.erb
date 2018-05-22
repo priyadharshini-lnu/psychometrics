@@ -1,0 +1,20 @@
+$(function () {
+  var $modalPartial = $("<%= j render 'modal', local_assigns.merge( header: t("administration.bulk_reports.new.header") ) %>"),
+      $modalPartialForm = $modalPartial.find('.modal-content'),
+      $modalContainer = $('#modal-container');
+
+  if ($modalContainer.html().length) {
+    $modalContainer.find('.modal-content').replaceWith($modalPartialForm)
+  } else {
+    $modalContainer.html($modalPartial);
+    $modalBox = $modalContainer.find('.modal');
+    $modalBox.modal('show');
+    $modalBox.on('hidden.bs.modal', function (e) {
+      $(this).remove();
+    });
+  }
+
+  // Reinit all plugins
+  $(document).trigger('initPlugins');
+  $(document).trigger('initDatetimepicker');
+});

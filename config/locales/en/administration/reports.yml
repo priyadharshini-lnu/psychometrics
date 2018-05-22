@@ -80,3 +80,4 @@ en:
           successfully: 'Report %{name} was successfully destroyed from Client.'
         create:
           successfully: 'Report %{name} was successfully created for Client.'
+        bulk_download: 'Bulk Download'

@@ -33,7 +33,7 @@ class ReportSerializer < ActiveModel::Serializer
                  ]}.
       where(dimension_id: object.assessment.dimension_id).
       order(name: :asc).map do |obj|
-      Factors::WithoutSubFactorsSerializer.new(obj, assessment_id: object_assessment_id)
+      ::Factors::WithoutSubFactorsSerializer.new(obj, assessment_id: object_assessment_id)
     end
   end
 
