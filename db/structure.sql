@@ -254,6 +254,39 @@ ALTER SEQUENCE blocks_id_seq OWNED BY blocks.id;
 
 
 --
+-- Name: bulk_reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE bulk_reports (
+    id bigint NOT NULL,
+    user_id bigint,
+    queue_size integer,
+    file character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: bulk_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE bulk_reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: bulk_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE bulk_reports_id_seq OWNED BY bulk_reports.id;
+
+
+--
 -- Name: clients; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1711,6 +1744,13 @@ ALTER TABLE ONLY blocks ALTER COLUMN id SET DEFAULT nextval('blocks_id_seq'::reg
 
 
 --
+-- Name: bulk_reports id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY bulk_reports ALTER COLUMN id SET DEFAULT nextval('bulk_reports_id_seq'::regclass);
+
+
+--
 -- Name: clients id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2022,6 +2062,14 @@ ALTER TABLE ONLY assigns_reports
 
 ALTER TABLE ONLY blocks
     ADD CONSTRAINT blocks_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: bulk_reports bulk_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY bulk_reports
+    ADD CONSTRAINT bulk_reports_pkey PRIMARY KEY (id);
 
 
 --
@@ -2397,6 +2445,13 @@ CREATE INDEX index_blocks_on_assessment_id ON blocks USING btree (assessment_id)
 --
 
 CREATE INDEX index_blocks_on_template_id ON blocks USING btree (template_id);
+
+
+--
+-- Name: index_bulk_reports_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_bulk_reports_on_user_id ON bulk_reports USING btree (user_id);
 
 
 --
@@ -3302,6 +3357,14 @@ ALTER TABLE ONLY assessments_reports
 
 
 --
+-- Name: bulk_reports fk_rails_ea7da51ed5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY bulk_reports
+    ADD CONSTRAINT fk_rails_ea7da51ed5 FOREIGN KEY (user_id) REFERENCES users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: assigns_reports fk_rails_eb27834cf2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3538,6 +3601,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180504074309'),
 ('20180504075242'),
 ('20180504082538'),
-('20180504091841');
+('20180504091841'),
+('20180514140843');
 
 

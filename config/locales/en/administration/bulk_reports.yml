@@ -1,0 +1,12 @@
+en:
+  administration:
+    bulk_reports:
+      new:
+        header: 'Bulk Download'
+      create:
+        no_data: 'No data is available for the report type and time range specified'
+        successfully: 'The reports are being created and you will be notified via email when ready'
+      download:
+        removed: 'Sorry, the file has been removed from the system after one week of storage'
+      mailer:
+        subject: 'Download bulk reports'
