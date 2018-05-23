@@ -1,0 +1,15 @@
+$(function () {
+  var $modalBox = $('#modal-container').find('.modal');
+
+  $modalBox.modal('hide');
+  $modalBox.on('hidden.bs.modal', function () {
+    $('#filter').trigger('reloadList');
+    $(document).trigger('initPlugins');
+
+    // Notify message
+    noty({
+      text: '<%= t("administration.bulk_reports.create.successfully") %>',
+      type: 'success'
+    });
+  });
+});

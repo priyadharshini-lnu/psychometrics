@@ -1,0 +1,19 @@
+= simple_form_for(:report, url: administration_bulk_reports_path, method: :post, remote: true) do |f|
+  - collection = client.decorate.reports_for_select
+  .modal-body
+    == flash_messages
+    .form-inputs.clearfix
+      = f.input :ids, as: :select, collection: collection, label: 'Reports', class: 'form-control', include_blank: false, selected: collection.ids, input_html: { multiple: true }
+      = f.input :start_date, as: :datetimepicker, label: t('.start_date'),
+                 server_format: :datetimepicker_without_time_server,
+                 client_format: :datetimepicker_without_time_client,
+                 input_html: { value: I18n.l(DateTime.current - 1.month, format: :datetimepicker_without_time_server) }
+      = f.input :end_date, as: :datetimepicker, initialize_time_now: false, label: t('.end_date'),
+                 server_format: :datetimepicker_without_time_server,
+                 client_format: :datetimepicker_without_time_client,
+                 input_html: { value: I18n.l(DateTime.current, format: :datetimepicker_without_time_server) }
+      = f.input :client_id, as: :hidden, input_html: { value: client.id }
+  .modal-footer
+    .btn-group
+      = button_tag t('administration.save'), type: 'submit', class: 'btn btn-default btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
