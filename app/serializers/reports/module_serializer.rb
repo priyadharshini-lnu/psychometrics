@@ -15,6 +15,6 @@
 
 module Reports
   class ModuleSerializer < ActiveModel::Serializer
-    attributes :id, :name, :position, :props, :type
+    attributes :id, :name, :position, :props, :type, :assessment_id
   end
 end
