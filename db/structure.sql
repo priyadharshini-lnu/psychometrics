@@ -1505,7 +1505,8 @@ CREATE TABLE reports_modules (
     deleted_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    type character varying
+    type character varying,
+    assessment_id bigint
 );
 
 
@@ -2903,6 +2904,13 @@ CREATE INDEX index_reports_filters_on_report_id ON reports_filters USING btree (
 
 
 --
+-- Name: index_reports_modules_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_modules_on_assessment_id ON reports_modules USING btree (assessment_id);
+
+
+--
 -- Name: index_reports_modules_on_page_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3178,6 +3186,14 @@ ALTER TABLE ONLY questions
 
 ALTER TABLE ONLY communications_users
     ADD CONSTRAINT fk_rails_7a00292b33 FOREIGN KEY (communication_id) REFERENCES communications(id) ON DELETE CASCADE;
+
+
+--
+-- Name: reports_modules fk_rails_7d52ca6463; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY reports_modules
+    ADD CONSTRAINT fk_rails_7d52ca6463 FOREIGN KEY (assessment_id) REFERENCES assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -3602,6 +3618,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180504075242'),
 ('20180504082538'),
 ('20180504091841'),
-('20180514140843');
+('20180514140843'),
+('20180522075755');
 
 

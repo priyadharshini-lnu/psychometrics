@@ -17,6 +17,7 @@ class ReportSerializer < ActiveModel::Serializer
   has_many :pages, serializer: Reports::PageSerializer
   has_many :filters, serializer: Reports::FilterSerializer
   has_one :assessment, serializer: AssessmentSerializer
+  has_many :assessments, serializer: AssessmentSerializer
 
   def factors
     object_assessment_id = object.assessment_id
