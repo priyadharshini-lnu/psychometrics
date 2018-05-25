@@ -8,8 +8,9 @@ module Exports
       def to_xlsx
         Axlsx::Package.new do |package|
           package.workbook.add_worksheet(name: 'CompletionStatus') do |sheet|
+            header_style = package.workbook.styles.add_style(b: true, sz: 14)
             header = ['Result ID', 'Name', 'Email', 'Assessment Type', 'Assessment Name', 'Started At', 'Completed At', 'Status']
-            sheet.add_row header
+            sheet.add_row(header, style: header_style)
             current_level_assigns.find_each(batch_size: 100) do |assign|
               sheet.add_row [assign.encode_id,
                              assign.user_name,
