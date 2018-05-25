@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: 87a5ed39301a76098407a9a775e9b0ca1b9261d4
+  revision: 2d2717bcc1f73469335d4961195d294a0bb5fe87
   specs:
     psychometrics-survey (0.0.1)
       railties (~> 5.0)
@@ -434,7 +434,7 @@ GEM
     puma (3.9.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
-    rack (2.0.4)
+    rack (2.0.5)
     rack-protection (2.0.1)
       rack
     rack-test (1.0.0)
