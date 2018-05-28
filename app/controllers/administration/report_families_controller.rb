@@ -10,6 +10,10 @@ module Administration
       end
     end
 
+    def new
+      @_resource = resource_class.new
+    end
+
     def destroy
       super
     rescue ActiveRecord::InvalidForeignKey
