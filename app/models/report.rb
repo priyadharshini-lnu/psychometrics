@@ -39,8 +39,10 @@ class Report < ApplicationRecord
   has_many :products, through: :product_reports
   has_many :assigns_reports # on delete restrict
   has_many :assessments_reports
-  has_many :assessments, through: :assessments_reports
+  has_many :assessments, -> { order(:name) }, through: :assessments_reports
+
   has_one :hogan_report_setting
+  accepts_nested_attributes_for :hogan_report_setting
 
   validates :assessment, presence: true
   validates :owner, presence: true, allow_nil: true
@@ -49,12 +51,13 @@ class Report < ApplicationRecord
   validate :min_assessments_count
 
   before_validation :set_assessment
+  before_save :delete_hogan_report_setting
 
   enum type: TYPES
 
   # Copy report with pages => modules
   def clone
-    @cloned_item = deep_clone include: [:assessments, :report_families, { pages: :modules }]
+    @cloned_item = deep_clone include: [:assessments, :report_families, { pages: :modules }, :hogan_report_setting]
     @cloned_item.gen_uniq_name
     @cloned_item
   end
@@ -104,6 +107,12 @@ class Report < ApplicationRecord
   end
 
   def set_assessment
-    self.assessment = assessments&.first
+    self.assessment = assessments.sort_by(&:name)&.first
+  end
+
+  def delete_hogan_report_setting
+    if hogan_report_setting && !assessment.hogan?
+      hogan_report_setting.destroy
+    end
   end
 end

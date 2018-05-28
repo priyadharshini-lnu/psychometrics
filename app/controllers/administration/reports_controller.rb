@@ -34,6 +34,7 @@ module Administration
 
     def new
       @_resource = resource_class.new
+      @_resource.build_hogan_report_setting
     end
 
     def create
@@ -46,6 +47,16 @@ module Administration
         else
           format.js { render :new }
         end
+      end
+    end
+
+    def hogan_reports
+      assessment_id = params[:assessment_id].split(',').first
+      assessment = Assessment.hogan.find_by(id: assessment_id)
+      @reports = assessment ? Settings.hogan.find { |s| s.name == assessment.name }.reports : []
+
+      respond_to do |format|
+        format.json
       end
     end
 
@@ -129,7 +140,8 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :type, :owner_id, :mindmill, report_family_ids: [], assessment_ids: [])
+      params.require(:resource).permit(:name, :type, :owner_id, :mindmill, report_family_ids: [], assessment_ids: [],
+                                       hogan_report_setting_attributes: [:id, :hogan_report_id])
     end
 
     def authenticate_user_from_token!
