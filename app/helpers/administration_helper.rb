@@ -81,7 +81,7 @@ module AdministrationHelper
 
   def assessments_options_for_select(assessments, report)
     assessments.all.map do |a|
-      [a.decorate.display_name, a.id, { disabled: report.assigns_reports.any?, data: { mindmill: a.mindmill? } }]
+      [a.decorate.display_name, a.id, { disabled: report.assigns_reports.any?, data: { mindmill: a.mindmill?, hogan: a.hogan? } }]
     end
   end
 end

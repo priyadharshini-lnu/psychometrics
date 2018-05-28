@@ -12,9 +12,14 @@
           input_html: { multiple: true,
             data: { live_search: true,
               max_options: Report::MAX_ASSESSMENT_COUNT,
-              max_options_text: I18n.t('activerecord.errors.models.report.max_assessment_count',
-                                        max: Report::MAX_ASSESSMENT_COUNT) } }
+              max_options_text: I18n.t('activerecord.errors.models.report.max_assessment_count', max: Report::MAX_ASSESSMENT_COUNT),
+              dynamic_selectable_url: url_for(action: :hogan_reports, assessment_id: '__id__'),
+              dynamic_selectable_target: '#resource_hogan_report_setting_attributes_hogan_report_id' } }
         = f.input :mindmill, wrapper_html: { class: 'hidden' }, disabled: true
+
+        = f.simple_fields_for :hogan_report_setting do |hogan|
+          = hogan.input :hogan_report_id, as: :select, collection: [], input_html: { multiple: false },
+                                          wrapper_html: { class: 'resource_hogan hidden' }, disabled: true
     .modal-footer
       .btn-group
         = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'

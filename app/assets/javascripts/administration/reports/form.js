@@ -18,12 +18,17 @@ function ReportsForm () {
   }
 
   this.onResourceAssessmentChange = function(event) {
-    var option = $('option:selected', this)
-    if(option.data('mindmill')) {
-      $('#reports_form .resource_mindmill').removeClass('hidden').find(":input").removeAttr('disabled')
-    } else {
-      $('#reports_form .resource_mindmill').addClass('hidden').find(":input").attr('disabled')
+    var toggleVisibility = function(option, name) {
+      if(option.data(name)) {
+        $('#reports_form .resource_' + name).removeClass('hidden').find(":input").removeAttr('disabled')
+      } else {
+        $('#reports_form .resource_' + name).addClass('hidden').find(":input").attr('disabled')
+      }
     }
+
+    var option = $('option:selected', this);
+    toggleVisibility(option, 'mindmill');
+    toggleVisibility(option, 'hogan');
   }
 }
 
