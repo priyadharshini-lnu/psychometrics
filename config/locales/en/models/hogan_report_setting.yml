@@ -1,0 +1,5 @@
+en:
+  activerecord:
+    attributes:
+      hogan_report_setting: &DEFAULT
+        load_report: Load report from Hogan

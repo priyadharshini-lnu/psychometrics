@@ -20,6 +20,7 @@
         = f.simple_fields_for :hogan_report_setting do |hogan|
           = hogan.input :hogan_report_id, as: :select, collection: [], input_html: { multiple: false },
                                           wrapper_html: { class: 'resource_hogan hidden' }, disabled: true
+          = hogan.input :load_report, wrapper_html: { class: 'resource_hogan hidden' }, disabled: true
     .modal-footer
       .btn-group
         = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
