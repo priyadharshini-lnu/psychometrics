@@ -141,7 +141,7 @@ module Administration
 
     def resource_params
       params.require(:resource).permit(:name, :assessment_id, :type, :owner_id, :mindmill, report_family_ids: [],
-                                       hogan_report_setting_attributes: [:id, :hogan_report_id])
+                                       hogan_report_setting_attributes: [:id, :hogan_report_id, :load_report])
     end
 
     def authenticate_user_from_token!
