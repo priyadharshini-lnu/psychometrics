@@ -7,7 +7,7 @@ module Hogan
     def results
       report = Report.find(params[:report_id])
       hogan_credential = @current_membership.hogan_credential
-      result = Services::Hogan::ParticipantReport.call(
+      result = Services::Hogan::API::ParticipantReport.call(
         group: 'AllData',
         assessment_id: @assign.assessment.hogan_assessment_setting.hogan_assessment_id,
         report_id: report.hogan_report_setting.hogan_report_id,

@@ -101,6 +101,7 @@ class Client < ApplicationRecord
   validate :relevant_reports, if: 'report_ids.any? && end_level?'
   validate :allowed_data, if: 'operator'
   before_validation :ensure_subdomain, if: :retail?
+  before_create :set_hogan_group_name, if: :project?
   after_commit :set_tte, if: 'parent_id.present?', on: [:create, :update]
   after_commit :set_end_level, if: 'parent_id.present?', on: [:create, :update]
 
@@ -205,7 +206,15 @@ class Client < ApplicationRecord
     end
   end
 
+  def set_hogan_group_name
+    self.hogan_group_name = generate_hogan_group_name
+  end
+
   private
+
+  def generate_hogan_group_name
+    "#{client.name} - #{project.subdomain}"
+  end
 
   def generate_subdomain
     loop do
