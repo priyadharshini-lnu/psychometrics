@@ -62,6 +62,7 @@ module Administration
 
     # GET /administration/resources/1/edit
     def edit
+      @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
       add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
     end
 
