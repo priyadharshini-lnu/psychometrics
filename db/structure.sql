@@ -314,7 +314,8 @@ CREATE TABLE clients (
     modified_by_id integer,
     ancestry character varying,
     ancestry_depth integer DEFAULT 0,
-    end_level boolean DEFAULT false
+    end_level boolean DEFAULT false,
+    hogan_group_name character varying
 );
 
 
@@ -3619,6 +3620,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180504082538'),
 ('20180504091841'),
 ('20180514140843'),
-('20180522075755');
+('20180522075755'),
+('20180529094014');
 
 
