@@ -21,6 +21,10 @@ module Services
         def client_password
           @client_password ||= Rails.application.secrets.hogan[:client_password]
         end
+
+        def log(obj, msg)
+          Rails.logger.debug("#{obj.class.name} - :#{msg}")
+        end
       end
     end
   end

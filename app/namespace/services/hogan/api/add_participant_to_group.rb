@@ -3,9 +3,12 @@ module Services
     module API
       class AddParticipantToGroup < Base
         def call
-          response(client.call(:add_participants_to_group, message: { inputXML: input_xml }).body)
-          participant_id
-          log
+          context.body = client.call(:add_participants_to_group, message: { inputXML: input_xml }).body
+          context.response = response(context.body)
+          context.participant_id = participant_id
+          log(self, "participantid: #{participant_id.inspect}")
+
+          context.fail! if context.participant_id.nil?
         end
 
         private
@@ -30,7 +33,7 @@ module Services
         end
 
         def response(body)
-          context.response ||= response_from_xml(body).with_indifferent_access
+          response_from_xml(body).with_indifferent_access
         end
 
         def response_from_xml(body)
@@ -38,13 +41,7 @@ module Services
         end
 
         def participant_id
-          context.participant_id ||= context.response.dig(
-            :participant, :participants, :participantdetails, :participantid
-          )
-        end
-
-        def log
-          Rails.logger.info(context.participant_id)
+          context.response.dig(:participant, :participants, :participantdetails, :participantid)
         end
       end
     end
