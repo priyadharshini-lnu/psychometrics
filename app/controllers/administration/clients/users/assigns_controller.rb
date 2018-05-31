@@ -33,7 +33,11 @@ module Administration
 
           begin
             if @assessment.hogan?
-              assessment_params = { group: client.project.hogan_group_name, membership: membership.membership_with_result }
+              assessment_params = {
+                group: client.project.hogan_group_name,
+                membership: membership.membership_with_result,
+                assessment: @assessment
+              }
               result = Services::Hogan::AssignAssessmentAndReports.call!(assessment_params: assessment_params)
             end
 
