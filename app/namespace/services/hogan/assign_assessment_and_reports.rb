@@ -7,10 +7,12 @@ module Services
         context.group = context.assessment_params[:group]
         context.membership = context.assessment_params[:membership]
         context.assessment = context.assessment_params[:assessment]
+        context.reports = context.assessment_params[:reports]
 
         create_group
         add_participant_to_group
         add_participant_assessment
+        add_participant_reports
       end
 
       private
@@ -37,6 +39,19 @@ module Services
           assessment_id: context.assessment.hogan_assessment_setting.hogan_assessment_id,
           form_id: context.assessment.hogan_assessment_setting.hogan_form_id
         )
+      end
+
+      def add_participant_reports
+        context.reports.each do |report|
+          Services::Hogan::API::AddParticipantReport.call!(
+            group: context.group,
+            norm_id: report.hogan_report_setting.hogan_norm_id,
+            language_id: report.hogan_report_setting.hogan_language_id,
+            assessment_id: context.assessment.hogan_assessment_setting.hogan_assessment_id,
+            report_id: report.hogan_report_setting.hogan_report_id,
+            participant_id: context.membership.hogan_credential.participant_id
+          )
+        end
       end
     end
   end
