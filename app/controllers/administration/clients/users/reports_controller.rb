@@ -26,6 +26,9 @@ module Administration
           # TODO: think what should be done if there is a lot of users
           @results = @results.where(membership_id: membership.id) if [8, 82].include?(resource.id)
           @assign = Assign.find_by(assessment_id: resource.assessment_id, membership_id: membership.id)
+          @assigns = Assign.where(
+            assessment_id: resource.assessment_ids, membership_id: membership.membership_with_result.id
+          )
           @translations = Translation.to_hash_for_report(resource.id, resource.assessment_id, user_locale)
           @available_translations = Translation.available_translation_for_report(resource.id, resource.assessment_id)
           respond_to do |format|
