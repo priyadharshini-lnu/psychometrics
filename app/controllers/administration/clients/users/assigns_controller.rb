@@ -36,7 +36,8 @@ module Administration
               assessment_params = {
                 group: client.project.hogan_group_name,
                 membership: membership.membership_with_result,
-                assessment: @assessment
+                assessment: @assessment,
+                reports: resource.reports
               }
               result = Services::Hogan::AssignAssessmentAndReports.call!(assessment_params: assessment_params)
             end
