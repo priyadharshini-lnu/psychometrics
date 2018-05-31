@@ -33,9 +33,8 @@ module Administration
 
           begin
             if @assessment.hogan?
-              assessment_params = { group: client.project.hogan_group_name }
-              result = Services::Hogan::AssignAssessmentAndReports.call(assessment_params: assessment_params)
-              result.fail! if result.failure?
+              assessment_params = { group: client.project.hogan_group_name, membership: membership.membership_with_result }
+              result = Services::Hogan::AssignAssessmentAndReports.call!(assessment_params: assessment_params)
             end
 
             if resource.new_record?

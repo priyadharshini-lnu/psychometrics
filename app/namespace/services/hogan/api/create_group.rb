@@ -7,8 +7,9 @@ module Services
           context.response = response(context.body)
 
           message = response_message(context.response)
+          log(self, message)
+
           unless message[/successfully/i]
-            Rails.logger.debug("Services::Hogan::API::CreateGroup - error: #{message}")
             context.fail!(error: message)
           end
         end

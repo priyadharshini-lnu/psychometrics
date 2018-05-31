@@ -9,7 +9,7 @@ module Services
           return if context.response[:group]
 
           error = response_message(context.response)
-          Rails.logger.debug("Services::Hogan::API::GroupDetails - error: #{error}")
+          log(self, error)
           context.fail!(error: error)
         end
 
