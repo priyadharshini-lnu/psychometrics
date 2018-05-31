@@ -3,7 +3,8 @@ module Services
     module API
       class AddParticipantReport < Base
         def call
-          response(client.call(:add_participant_reports, message: { inputXML: input_xml }).body)
+          context.body = client.call(:add_participant_reports, message: { inputXML: input_xml }).body
+          context.response = response(context.body)
         end
 
         private
@@ -33,7 +34,7 @@ module Services
         end
 
         def response(body)
-          context.response ||= response_from_xml(body).with_indifferent_access
+          response_from_xml(body).with_indifferent_access
         end
 
         def response_from_xml(body)
