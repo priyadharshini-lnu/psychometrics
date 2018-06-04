@@ -25,6 +25,11 @@ module Services
         def log(obj, msg)
           Rails.logger.debug("#{obj.class.name} - :#{msg}")
         end
+
+        def log_execution(interactor)
+          interactor.call
+          log(self, "response: #{context.response}")
+        end
       end
     end
   end

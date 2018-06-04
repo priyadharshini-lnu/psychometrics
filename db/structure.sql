@@ -192,7 +192,8 @@ CREATE TABLE assigns_reports (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     access_reports_at timestamp without time zone,
-    external_report character varying
+    external_report character varying,
+    hogan_score jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -3621,6 +3622,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180504091841'),
 ('20180514140843'),
 ('20180522075755'),
-('20180529094014');
+('20180529094014'),
+('20180601084716');
 
 
