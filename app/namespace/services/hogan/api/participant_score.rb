@@ -1,11 +1,11 @@
 module Services
   module Hogan
     module API
-      class AddParticipantReport < Base
+      class ParticipantScore < Base
         around :log_execution
 
         def call
-          context.body = client.call(:add_participant_reports, message: { inputXML: input_xml }).body
+          context.body = client.call(:get_participant_score, message: { inputXML: input_xml }).body
           context.response = response(context.body)
         end
 
@@ -23,15 +23,13 @@ module Services
             <participantdetails>
               <participantid>#{context.participant_id}</participantid>
             </participantdetails>
-            <reports>
-              <reportdetails>
-                <reportid>#{context.report_id}</reportid>
-                <assessmentid>#{context.assessment_id}</assessmentid>
-                <normid>#{context.norm_id}</normid>
-                <languageid>#{context.language_id}</languageid>
-              </reportdetails>
-            </reports>
+            <assessment>
+              <assessmentid>#{context.assessment_id}</assessmentid>
+              <normid>#{context.norm_id}</normid>
+              <scoretype>RAW</scoretype>
+            </assessment>
           </participant>
+
         }
         end
 
@@ -40,7 +38,18 @@ module Services
         end
 
         def response_from_xml(body)
-          Hash.from_xml(body[:add_participant_reports_response][:add_participant_reports_result])
+          response = body.dig(:get_participant_score_response, :get_participant_score_result)
+          return response if response.class == Hash
+
+          score_from_xml(response)
+        end
+
+        def score_from_xml(response)
+          ActiveSupport::XmlMini.with_backend("Nokogiri") do
+            doc = Nokogiri::XML(response)
+            doc.at('//participant/hassignature').remove
+            doc.to_hash
+          end
         end
       end
     end

@@ -2,6 +2,8 @@ module Services
   module Hogan
     module API
       class AddParticipantAssessment < Base
+        around :log_execution
+
         def call
           context.body = client.call(:add_participant_assessments, message: { inputXML: input_xml }).body
           context.response = response(context.body)
