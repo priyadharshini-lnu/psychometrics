@@ -2,6 +2,8 @@ module Services
   module Hogan
     module API
       class AddParticipantToGroup < Base
+        around :log_execution
+
         def call
           context.body = client.call(:add_participants_to_group, message: { inputXML: input_xml }).body
           context.response = response(context.body)

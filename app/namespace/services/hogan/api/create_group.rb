@@ -2,6 +2,8 @@ module Services
   module Hogan
     module API
       class CreateGroup < Base
+        around :log_execution
+
         def call
           context.body = client.call(:create_group, message: { inputXML: input_xml }).body
           context.response = response(context.body)
