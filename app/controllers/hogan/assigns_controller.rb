@@ -29,14 +29,14 @@ module Hogan
     end
 
     def redirect
-      status = if params[:status] == 'Completed'
-                 :completed
-               elsif params[:status] == 'Pending'
-                 :in_progress
-               end
+      @assign.update(status: :completed, completed_at: Time.current) if params[:status] == 'Completed'
 
-      @assign.update(status: status) if status
       redirect_to root_path
+    end
+
+    def pass
+      @assign.in_progress!
+      render json: :no_content
     end
 
     private
