@@ -3,8 +3,11 @@
 
 #psychometrics_report_root
 = javascript_include_tag Ckeditor.cdn_url
-= javascript_include_tag :psychometrics_reports_vendor
-= javascript_include_tag :psychometrics_reports_app
-/ for debug
-/= javascript_include_tag 'http://localhost:3000/psychometrics_reports_vendor.js'
-/= javascript_include_tag 'http://localhost:3000/psychometrics_reports_app.js'
+
+- if Settings.react_dev.reports
+  / for debug
+  = javascript_include_tag 'http://localhost:3000/psychometrics_reports_vendor.js'
+  = javascript_include_tag 'http://localhost:3000/psychometrics_reports_app.js'
+- else
+  = javascript_include_tag :psychometrics_reports_vendor
+  = javascript_include_tag :psychometrics_reports_app
