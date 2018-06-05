@@ -392,6 +392,7 @@ Rails.application.routes.draw do
         member do
           get :redirect
           get :results
+          put :pass
         end
       end
     end

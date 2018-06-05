@@ -29,7 +29,7 @@
                                   need_confirm: need_confirm },
                           class: 'mindmill_link'
               - elsif assign.assessment.hogan?
-                = link_to assign.assessment.name, 'javascript:void(0)', onclick: "$('#hogan-form-#{assign.id}').submit()"
+                = link_to assign.assessment.name, 'javascript:void(0)', data: { behavior: 'submit-hogan-link', assign_id: assign.id }
                 = form_tag Rails.application.secrets.hogan[:login_url], id: "hogan-form-#{assign.id}" do
                   = hidden_field_tag :UserID, @current_membership.hogan_credential.participant_id
                   = hidden_field_tag :Password, @current_membership.hogan_credential.password
