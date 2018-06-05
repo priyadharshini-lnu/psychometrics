@@ -25,6 +25,9 @@
 //= require administration/actions
 //= require filterrific/filterrific-jquery
 //= require administration/overrides/filterrific
+//= require js-routes
+//= require views/assigns/_assign
+
 ///// Translations
 //= require i18n
 //= require i18n/translations

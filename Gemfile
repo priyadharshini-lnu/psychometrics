@@ -144,6 +144,7 @@ gem 'enum_help', '~> 0.0.17'
 # A simple date validator for Rails
 gem 'date_validator', '~> 0.9.0'
 gem 'attr_encrypted', '~> 3.1.0'
+gem 'js-routes', '~> 1.4.4'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
