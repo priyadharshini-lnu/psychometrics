@@ -1,6 +1,9 @@
 project_name: Psychometrics
 timezone: Abu Dhabi
 timezone_tip: ' (GST)'
+react_dev:
+  reports: false
+  assessments: false
 hashids_length:
   anonym: 8
   assign_id: 6

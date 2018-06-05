@@ -4,9 +4,10 @@
 - if params[:export]
   = javascript_include_tag :psychometrics_pdf_vendor
   = javascript_include_tag :psychometrics_pdf_app
+- elsif Settings.react_dev.reports
+  / for debug
+  = javascript_include_tag 'http://localhost:3000/psychometrics_reports_vendor.js'
+  = javascript_include_tag 'http://localhost:3000/psychometrics_reports_preview.js'
 - else
   = javascript_include_tag :psychometrics_reports_vendor
   = javascript_include_tag :psychometrics_reports_preview
-  / for debug
-  /= javascript_include_tag 'http://localhost:3000/psychometrics_reports_vendor.js'
-  /= javascript_include_tag 'http://localhost:3000/psychometrics_reports_preview.js'
