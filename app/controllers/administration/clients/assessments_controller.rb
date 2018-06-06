@@ -27,6 +27,14 @@ module Administration
         end
       end
 
+      def export_hogan_results
+        @assessment = Assessment.find(params[:assessment_id])
+        results = ::Exports::Assessments::HoganResultsExport.new(client.id, @assessment.id, params[:hogan_report_id])
+        respond_to do |format|
+          format.xlsx { send_data results.to_xlsx.to_stream.read, filename: 'export_scoring.xlsx' }
+        end
+      end
+
       def destroy
         @_resource = client.assessments.find(params[:id])
         client.clients_reports.where(report_id: resource.report_ids).destroy_all
