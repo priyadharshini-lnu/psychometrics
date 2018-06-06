@@ -8,6 +8,10 @@ module Administration
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :export)
     end
 
+    def export_hogan_results?
+      export_results?
+    end
+
     def import_results?
       @user.is?(:superadmin) || @user.has_grant?(:assessments, :import)
     end

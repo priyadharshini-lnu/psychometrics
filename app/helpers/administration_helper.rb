@@ -84,4 +84,8 @@ module AdministrationHelper
       [a.decorate.display_name, a.id, { disabled: report.assigns_reports.any?, data: { mindmill: a.mindmill?, hogan: a.hogan? } }]
     end
   end
+
+  def hogan_report_settings_for_assessment(assessment)
+    Settings.hogan.find { |s| s.name == assessment.name }.reports
+  end
 end
