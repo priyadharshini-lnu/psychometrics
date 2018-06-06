@@ -29,13 +29,17 @@ module Hogan
     end
 
     def redirect
-      @assign.update(status: :completed, completed_at: Time.current) if params[:status] == 'Completed'
+      if params[:status] == 'Completed'
+        @assign.update(status: :completed, completed_at: Time.current)
+        @assign.original_or_self.update(status: :completed, completed_at: Time.current)
+      end
 
       redirect_to root_path
     end
 
     def pass
       @assign.in_progress!
+      @assign.original_or_self.in_progress!
       render json: :no_content
     end
 

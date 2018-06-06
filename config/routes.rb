@@ -127,6 +127,7 @@ Rails.application.routes.draw do
         resource :licenses, only: [:show, :edit, :update]
         resources :assessments, only: [:index, :destroy] do
           get :export_results
+          get :export_hogan_results
         end
       end
     end
