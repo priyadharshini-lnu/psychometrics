@@ -1,5 +1,21 @@
 module Builders
+  module PermitNested
+    refine ActionController::Parameters do
+      def permit!
+        each_pair do |key, value|
+          Array.wrap(value).flatten.each do |v|
+            v.permit! if v.respond_to? :permit!
+          end
+        end
+
+        @permitted = true
+        self
+      end
+    end
+  end
+
   class ReportBuilder
+    using PermitNested
     # Authorisation flow
     include Pundit
     include Administration::Policies
