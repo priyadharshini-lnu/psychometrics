@@ -20,7 +20,7 @@ module Administration
           @results = Assign.
               completed.
               includes(:membership, :user).
-              where(memberships: { client_id: client.project.id }, assessment_id: resource.assessment_id).
+              where(memberships: { client_id: client.project.id }, assessment_id: resource.assessment_ids).
               references(:membership).
               all
           # TODO: think what should be done if there is a lot of users
