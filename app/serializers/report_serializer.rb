@@ -46,8 +46,12 @@ class ReportSerializer < ActiveModel::Serializer
 
   def assigns
     return [] unless @instance_options[:membership]
-    Assign.includes(:membership).joins(:membership).where(assessment_id: object.assessment_id, memberships: { client_id: @instance_options[:membership].client_id }).map do |assign|
-      AssignShortSerializer.new(assign, membership: @instance_options[:membership])
+
+    assigns = Assign.includes(:membership).joins(:membership).
+      where(assessment_id: object.assessment_ids, memberships: { client_id: @instance_options[:membership].client_id })
+
+    assigns.group_by(&:assessment_id).transform_values do |group|
+      group.map { |assign| AssignShortSerializer.new(assign, membership: @instance_options[:membership]) }
     end
   end
 
