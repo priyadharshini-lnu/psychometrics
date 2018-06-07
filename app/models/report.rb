@@ -85,6 +85,10 @@ class Report < ApplicationRecord
     [Report::YTI_TYPE, Report::ETI_TYPE].include? type
   end
 
+  def external_report?
+    Assessment::TYPES.slice(:mindmill, :hogan).values.include?(assessment.type)
+  end
+
   private
 
   def delete_hogan_report_setting
