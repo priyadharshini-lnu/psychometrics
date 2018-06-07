@@ -52,8 +52,8 @@ module Administration
 
     def hogan_reports
       assessment_id = params[:assessment_id].split(',').first
-      assessment = Assessment.hogan.find_by(id: assessment_id)
-      @reports = assessment ? Settings.hogan.find { |s| s.name == assessment.name }.reports : []
+      hogan_assessment_id = Assessment.hogan.find_by(id: assessment_id)&.hogan_assessment_setting&.hogan_assessment_id
+      @reports = hogan_assessment_id ? Settings.hogan.find { |s| s.assessment_id == hogan_assessment_id }.reports : []
 
       respond_to do |format|
         format.json

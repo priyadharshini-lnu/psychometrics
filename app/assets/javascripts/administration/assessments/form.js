@@ -22,12 +22,18 @@ function AssessmentsForm () {
     switch (value) {
       case 'Assessments::Mindmill':
         $('#assessments_form').find('.common:not(.mindmill)').addClass('hidden').find(":input").attr('disabled', true)
+        $('#assessments_form').find('.hogan:not(.mindmill)').addClass('hidden').find(":input").attr('disabled', true)
         $('#assessments_form').find('.mindmill:not(.common)').removeClass('hidden').find(":input").removeAttr('disabled')
+        break;
+      case 'Assessments::Hogan':
+        $('#assessments_form').find('.common:not(.hogan)').addClass('hidden').find(":input").attr('disabled', true)
+        $('#assessments_form').find('.mindmill:not(.hogan)').addClass('hidden').find(":input").attr('disabled', true)
+        $('#assessments_form').find('.hogan:not(.common)').removeClass('hidden').find(":input").removeAttr('disabled')
         break;
       default:
         $('#assessments_form').find('.common').removeClass('hidden').find(":input").removeAttr('disabled', true)
         $('#assessments_form').find('.mindmill:not(.common)').addClass('hidden').find(":input").attr('disabled', true)
-
+        $('#assessments_form').find('.hogan:not(.common)').addClass('hidden').find(":input").attr('disabled', true)
     }
   }
 }
