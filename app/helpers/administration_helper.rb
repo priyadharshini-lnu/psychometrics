@@ -86,6 +86,6 @@ module AdministrationHelper
   end
 
   def hogan_report_settings_for_assessment(assessment)
-    Settings.hogan.find { |s| s.name == assessment.name }.reports
+    Settings.hogan.find { |s| s.assessment_id == assessment.hogan_assessment_setting.hogan_assessment_id }.reports
   end
 end
