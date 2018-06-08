@@ -77,6 +77,8 @@ class Assessment < ApplicationRecord
   has_many :clients, through: :reports
 
   has_one :hogan_assessment_setting
+  accepts_nested_attributes_for :hogan_assessment_setting
+  before_save :delete_hogan_assessment_setting
   #
   ### END ASSOCIATIONS
 
@@ -108,6 +110,10 @@ class Assessment < ApplicationRecord
     type == TYPES[:mindmill]
   end
 
+  def hogan?
+    type == TYPES[:hogan]
+  end
+
   class << self
     # Available role for the filter form
     #
@@ -118,6 +124,14 @@ class Assessment < ApplicationRecord
 
     def options_for_select
       all.map { |assessment| [assessment.decorate.display_name, assessment.id, { data: { mindmill: assessment.mindmill? } }] }
+    end
+  end
+
+  private
+
+  def delete_hogan_assessment_setting
+    if hogan_assessment_setting && !hogan?
+      hogan_assessment_setting.destroy
     end
   end
 end
