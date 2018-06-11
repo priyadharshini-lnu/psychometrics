@@ -1,10 +1,10 @@
 module Exports
   module Assessments
     class HoganResultsExport
-      def initialize(client_id, assessment_id, hogan_report_id)
+      def initialize(client_id, assessment_id, report_id)
         @client_id = client_id
         @assessment_id = assessment_id
-        @hogan_report_id = hogan_report_id
+        @report_id = report_id
       end
 
       def to_xlsx
@@ -86,8 +86,8 @@ module Exports
       end
 
       def assigns_reports
-        @assigns_reports ||= Queries::AssignsReports::ByClientAssessmentAndHoganReportId.
-                               call(@client_id, @assessment_id, @hogan_report_id).
+        @assigns_reports ||= Queries::AssignsReports::ByClientAssessmentAndReportId.
+                               call(@client_id, @assessment_id, @report_id).
                                selecting { [assign.id.as('assign_id'),
                                             assign.membership.user.first_name.op('||', quoted(' ')).op('||', assign.membership.user.last_name).as('full_name'),
                                             assign.membership.user.email.as('user_email'),
