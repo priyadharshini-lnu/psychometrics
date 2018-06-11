@@ -85,7 +85,7 @@ module AdministrationHelper
     end
   end
 
-  def hogan_report_settings_for_assessment(assessment)
-    Settings.hogan.find { |s| s.assessment_id == assessment.hogan_assessment_setting.hogan_assessment_id }.reports
+  def reports_for_assessment(assessment)
+    client.reports.joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment.id }).distinct
   end
 end
