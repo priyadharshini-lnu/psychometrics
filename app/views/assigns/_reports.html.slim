@@ -39,15 +39,16 @@
             = content_tag :a, report.name, href: assign.mindmill_report.url,
                                            target: 'windowMindmill',
                                            onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
-          - elsif report.assessment.hogan? && assign.completed? && report.hogan_report_setting&.load_report?
-            - assigns_report = assign.original_or_self.assigns_reports.find_by(report: report)
-            - if assigns_report&.external_report.present?
-              = content_tag :a, report.name, href: assigns_report.external_report.url,
-                target: 'windowMindmill',
-                class: ('disabled' unless policy(report).show?),
-                onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
-            - else
-              = content_tag :a, 'Load Results', href: results_hogan_assign_path(assign, report_id: report.id)
+          - elsif report.assessment.hogan?
+            - if assign.completed? && report.hogan_report_setting&.load_report?
+              - assigns_report = assign.original_or_self.assigns_reports.find_by(report: report)
+              - if assigns_report&.external_report.present?
+                = content_tag :a, report.name, href: assigns_report.external_report.url,
+                  target: 'windowMindmill',
+                  class: ('disabled' unless policy(report).show?),
+                  onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
+              - else
+                = content_tag :a, 'Load Results', href: results_hogan_assign_path(assign, report_id: report.id)
           - else
             = content_tag :a, report.name, href: report_path(report)
           //
