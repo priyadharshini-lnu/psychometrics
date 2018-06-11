@@ -56,7 +56,8 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def factor_norms
-    Norm.includes(:factors_norms).where(dimension_id: object.assessment.dimension_id).each_with_object(Hash.new) do |norm, hash|
+    norms = Norm.includes(:factors_norms).where(dimension_id: object.assessments.pluck(:dimension_id)).distinct
+    norms.each_with_object(Hash.new) do |norm, hash|
       hash[norm.id] = norm.factors_norms.group_by(&:type)
     end
   end
