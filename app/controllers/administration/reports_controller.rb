@@ -45,6 +45,7 @@ module Administration
         if resource.save
           format.js
         else
+          @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
           format.js { render :new }
         end
       end
@@ -72,6 +73,7 @@ module Administration
         if resource.update(resource_params)
           format.js
         else
+          @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
           format.js { render :edit }
         end
       end
