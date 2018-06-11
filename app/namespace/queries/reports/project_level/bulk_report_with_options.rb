@@ -8,7 +8,7 @@ module Queries
 
         def initial_scope
           Report.enabled.
-            select('reports.id, memberships.user_id').
+            select('reports.id, memberships.user_id, assigns.id as assign_id, assigns_reports.id as assigns_report_id').
             joins(assigns_reports: {assign: :membership})
         end
 

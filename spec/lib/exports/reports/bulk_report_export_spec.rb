@@ -31,11 +31,26 @@ describe Exports::Reports::Pdf::BulkReportExport do
       end
 
       context 'when query results are not empty' do
-        let(:item) { double('item', id: 1, user_id: 1) }
+        let(:item) { double('item', id: 1, user_id: 1, assign_id: 1, assigns_report_id: 1) }
         let(:items) { [item] }
         let(:bulk_report) { double('bulk_report') }
         let(:report) { double('report') }
         let(:user) { double('user') }
+        let(:assign) { double('assign') }
+        let(:assigns_report) { double('assigns_report') }
+        let(:export_params) do
+          {
+            bulk_report: bulk_report,
+            current_user: current_user,
+            report: report,
+            assign: assign,
+            assigns_report: assigns_report,
+            user: user,
+            client: client,
+            scheme: scheme,
+            opts: opts
+          }
+        end
 
         it 'enqueues ExportJob' do
           allow(query).to receive(:call).with(any_args).and_return(items)
@@ -43,8 +58,9 @@ describe Exports::Reports::Pdf::BulkReportExport do
 
           expect(Report).to receive(:find).with(item.id).and_return(report)
           expect(User).to receive(:find).with(item.user_id).and_return(user)
-          expect(BulkReports::ExportJob).to receive(:perform_later).with(bulk_report, current_user, report, user, client,
-                                                                         scheme, opts)
+          expect(Assign).to receive(:find).with(item.assign_id).and_return(assign)
+          expect(AssignsReport).to receive(:find).with(item.assigns_report_id).and_return(assigns_report)
+          expect(BulkReports::ExportJob).to receive(:perform_later).with(export_params)
           described_class.export(params)
         end
       end
