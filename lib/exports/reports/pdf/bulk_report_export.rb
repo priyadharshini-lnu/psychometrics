@@ -8,10 +8,18 @@ module Exports
             bulk_report = ::BulkReport.create(user: params[:current_user], queue_size: items.size)
 
             items.each do |item|
-              report = Report.find(item.id)
-              user = User.find(item.user_id)
-              ::BulkReports::ExportJob.perform_later(bulk_report, params[:current_user], report, user, params[:client],
-                                                     params[:scheme], params[:opts] || {})
+              export_params = {
+                bulk_report: bulk_report,
+                current_user: params[:current_user],
+                report: Report.find(item.id),
+                assign: Assign.find(item.assign_id),
+                assigns_report: AssignsReport.find(item.assigns_report_id),
+                user: User.find(item.user_id),
+                client: params[:client],
+                scheme: params[:scheme],
+                opts: params[:opts] || {}
+              }
+              ::BulkReports::ExportJob.perform_later(export_params)
             end
           end
 
