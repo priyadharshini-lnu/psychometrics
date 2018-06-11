@@ -1,7 +1,7 @@
 = stylesheet_link_tag :psychometrics_reports_vendor
 = stylesheet_link_tag :psychometrics_reports_app
 
-#psychometrics_report_root
+#psychometrics_report_root[data-assessment-ids="#{resource.assessment_ids.to_json}"]
 = javascript_include_tag Ckeditor.cdn_url
 
 - if Settings.react_dev.reports
