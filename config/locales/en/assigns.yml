@@ -18,6 +18,7 @@ en:
                               Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue"
     reports:
       results: "Results"
+      load_results: "Load Results %{report}"
     project_assessment:
       <<: *assign
     decorator:
