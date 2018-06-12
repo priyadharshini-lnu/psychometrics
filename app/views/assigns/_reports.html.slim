@@ -48,7 +48,7 @@
                   class: ('disabled' unless policy(report).show?),
                   onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
               - else
-                = content_tag :a, 'Load Results', href: results_hogan_assign_path(assign, report_id: report.id)
+                = content_tag :a, t('.load_results', report: report.name), href: results_hogan_assign_path(assign, report_id: report.id)
           - else
             = content_tag :a, report.name, href: report_path(report)
           //
