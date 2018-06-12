@@ -28,11 +28,14 @@ tr id=dom_id(resource)
                         class: 'btn btn-default btn-rounded btn-sm', 
                         data: { toggle: 'tooltip', title: report.name }
                 span.fa.fa-pie-chart
-            - elsif report.hogan_report_setting&.load_report?
-              = link_to resource.assigns_reports.find_by(report: report).external_report.url,
-                        class: 'btn btn-default btn-rounded btn-sm',
-                        data: { toggle: 'tooltip', title: report.name }
-                span.fa.fa-pie-chart
+            - elsif report.assessment.hogan?
+              - if report.hogan_report_setting&.load_report?
+                - url = resource.assigns_reports.find_by(report: report).external_report.url
+                - if url
+                  = link_to url,
+                            class: 'btn btn-default btn-rounded btn-sm',
+                            data: { toggle: 'tooltip', title: report.name }
+                    span.fa.fa-pie-chart
             - else
               = link_to [:preview, :administration, client, :user, :report, user_id: membership.user_id, id: report.id], 
                         class: 'btn btn-default btn-rounded btn-sm', 
