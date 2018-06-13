@@ -12,7 +12,8 @@
 #
 
 class ReportSerializer < ActiveModel::Serializer
-  attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations
+  attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations,
+             :dimension_ids
 
   has_many :pages, serializer: Reports::PageSerializer
   has_many :filters, serializer: Reports::FilterSerializer
@@ -39,8 +40,10 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def occupations
-    Occupation.includes(:occupations_factors).where(dimension_id: object.assessment.dimension_id).order(name: :asc).map do |obj|
-      OccupationSerializer.new(obj)
+    occupations = Occupation.includes(:occupations_factors).
+      where(dimension_id: object.assessments.pluck(:dimension_id)).order(name: :asc)
+    occupations.group_by(&:dimension_id).transform_values do |group|
+      group.map { |occupation| OccupationSerializer.new(occupation) }
     end
   end
 
@@ -60,5 +63,9 @@ class ReportSerializer < ActiveModel::Serializer
     norms.each_with_object(Hash.new) do |norm, hash|
       hash[norm.id] = norm.factors_norms.group_by(&:type)
     end
+  end
+
+  def dimension_ids
+    object.dimensions.ids
   end
 end
