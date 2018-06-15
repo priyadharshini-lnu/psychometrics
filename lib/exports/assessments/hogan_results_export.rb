@@ -40,7 +40,7 @@ module Exports
       def add_score(package, score)
         package.workbook.add_worksheet(name: score[:sheet_name]) do |sheet|
           header_style = package.workbook.styles.add_style(b: true, sz: 14)
-          headers = assigns_report_headers(assigns_reports_with_score.take, score[:score_type], score[:scale_type])
+          headers = assigns_reports_headers(score[:score_type], score[:scale_type])
           sheet.add_row(default_headers + headers, style: header_style)
 
           assigns_reports.each do |assigns_report|
@@ -48,6 +48,13 @@ module Exports
             sheet.add_row(default_content(assigns_report) + content)
           end
         end
+      end
+
+      def assigns_reports_headers(score_type, scale_type)
+        headers = assigns_reports_with_score.map do |assigns_report|
+          assigns_report_headers(assigns_report, score_type, scale_type)
+        end
+        headers.find(&:any?) || []
       end
 
       def assigns_report_headers(assigns_report, score_type, scale_type)
@@ -59,9 +66,9 @@ module Exports
       end
 
       def assigns_report_data(assigns_report, score_type, scale_type, data_type)
-        return [] if assigns_report.nil? || assigns_report.hogan_score.empty?
+        score = assigns_report&.hogan_score&.dig('participant', 'assessment', 'score')&.find { |i| i['type'] == score_type }
+        return [] if score.nil?
 
-        score = assigns_report.hogan_score.dig('participant', 'assessment', 'score').find { |i| i['type'] == score_type }
         data =
           if scale_type == 'scale'
             score.dig('scales', 'scale')
