@@ -29,8 +29,8 @@ module Administration
           @assigns = Assign.where(
             assessment_id: resource.assessment_ids, membership_id: membership.membership_with_result.id
           )
-          @translations = Translation.to_hash_for_report(resource.id, resource.assessment_id, user_locale)
-          @available_translations = Translation.available_translation_for_report(resource.id, resource.assessment_id)
+          @translations = Translation.to_hash_for_report(resource.id, resource.assessment_ids, user_locale)
+          @available_translations = Translation.available_translation_for_report(resource.id, resource.assessment_ids)
           respond_to do |format|
             format.html do
               render('_preview', layout: 'pdf') if params[:export]
