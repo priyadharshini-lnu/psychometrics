@@ -59,6 +59,7 @@ hogan:
     form_id: 3
     reports:
       - report_id: EcHPIDML
+        report_name: HPI Data Report
         norm_id: General
         language_id: en
   - name: HDS
@@ -66,6 +67,7 @@ hogan:
     form_id: 5
     reports:
       - report_id: EcHDSDML
+        report_name: HDS Data Report
         norm_id: General
         language_id: en
   - name: MVPI
@@ -73,6 +75,7 @@ hogan:
     form_id: 1
     reports:
       - report_id: EcMVPIDML
+        report_name: MVPI Data Report
         norm_id: General
         language_id: en
   - name: HBRI
@@ -80,5 +83,6 @@ hogan:
     form_id: 1
     reports:
       - report_id: EcHBRIV1D
+        report_name: HBRI Data Report
         norm_id: General
         language_id: en
