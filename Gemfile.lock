@@ -1,6 +1,7 @@
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: 87a5ed39301a76098407a9a775e9b0ca1b9261d4
+  revision: 797536488d66b49bb51c638afa07855dd0ba662c
+  branch: feature/cpi-top-factors
   specs:
     psychometrics-survey (0.0.1)
       railties (~> 5.0)
