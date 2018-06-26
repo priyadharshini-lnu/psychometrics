@@ -1,6 +1,7 @@
-- reports = only_assigned_reports(assign, @reports)
+- reports = only_assigned_reports(assign.original_or_self, @reports)
 - if reports.size == 1
   - report = reports.first
+  - assigns_report = assign.original_or_self.assigns_reports.find_by(report: report)
   //// MINDMILL OR COMMON REPORT
   //
 
@@ -12,8 +13,6 @@
   - elsif report.assessment.hogan?
     - if report.hogan_report_setting&.load_report?
       - if assign.completed?
-        - original_assign = assign.original_or_self
-        - assigns_report = original_assign.assigns_reports.find_by(report: report)
         - if assigns_report&.external_report.present?
           = link_to t('.results'), assigns_report.external_report.url,
             target: 'windowMindmill',
@@ -22,13 +21,14 @@
         - else
           = link_to 'Load Results', results_hogan_assign_path(assign, report_id: report.id), class: 'btn btn-info'
   - else
-    = link_to t('.results'), report_path(report), 
-                             class: "btn btn-info #{'disabled' if !assign.completed? || !policy(report).show?}"
+    = link_to t('.results'), report_path(report),
+                             class: "btn btn-info #{'disabled' if !assign.completed? || !policy(report).show? || !assigns_report.user_access}"
   //
   //// END MINDMILL OR COMMON REPORT
 - elsif reports.size > 1
   = dropdown t('.results'), context: :info, button: { class: "#{'disabled' unless assign.completed?}" }
     - reports.each do |report|
+      - assigns_report = assign.original_or_self.assigns_reports.find_by(report: report)
       = content_tag :li
         // Don't use link_to helper
         // Because bh gem overwrites this helper for dropdown
@@ -41,7 +41,6 @@
                                            onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
           - elsif report.assessment.hogan?
             - if assign.completed? && report.hogan_report_setting&.load_report?
-              - assigns_report = assign.original_or_self.assigns_reports.find_by(report: report)
               - if assigns_report&.external_report.present?
                 = content_tag :a, report.name, href: assigns_report.external_report.url,
                   target: 'windowMindmill',
@@ -50,7 +49,7 @@
               - else
                 = content_tag :a, t('.load_results', report: report.name), href: results_hogan_assign_path(assign, report_id: report.id)
           - else
-            = content_tag :a, report.name, href: report_path(report)
+            = content_tag :a, report.name, href: report_path(report), class: "btn #{'disabled' unless assigns_report.user_access?}"
           //
           //// END MINDMILL OR COMMON REPORT
         - else
