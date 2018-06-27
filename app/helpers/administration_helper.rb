@@ -86,6 +86,6 @@ module AdministrationHelper
   end
 
   def reports_for_assessment(assessment)
-    client.reports.joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment.id }).distinct
+    client.reports.where(assessment_id: assessment.id).distinct
   end
 end
