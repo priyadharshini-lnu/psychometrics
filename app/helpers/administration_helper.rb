@@ -79,9 +79,11 @@ module AdministrationHelper
     Time.current.strftime('%I:%M %p')
   end
 
-  def assessments_options_for_select(assessments, report)
+  def assessments_options_for_select(assessments, report = nil)
     assessments.all.map do |a|
-      [a.decorate.display_name, a.id, { disabled: report.assigns_reports.any?, data: { mindmill: a.mindmill?, hogan: a.hogan? } }]
+      disabled = report && report.assigns_reports.any?
+      data = { mindmill: a.mindmill?, hogan: a.hogan?, psychometric: a.psychometric? }
+      [a.decorate.display_name, a.id, { disabled: disabled, data: data }]
     end
   end
 

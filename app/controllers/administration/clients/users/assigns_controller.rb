@@ -30,6 +30,7 @@ module Administration
           @assessment = client.assessments.find(resource_params[:assessment_id])
           assigns_scope = membership.assigns
           @_resource = assigns_scope.where(assessment_id: @assessment.id).take || assigns_scope.build(resource_params)
+          resource.user_access = resource_params[:user_access]
 
           begin
             if @assessment.hogan?
@@ -103,7 +104,7 @@ module Administration
         end
 
         def resource_params
-          params.require(:resource).permit(:assessment_id, report_ids: [])
+          params.require(:resource).permit(:assessment_id, :user_access, report_ids: [])
         end
 
         def pundit_authorize
