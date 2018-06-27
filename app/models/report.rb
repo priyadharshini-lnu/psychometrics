@@ -39,16 +39,18 @@ class Report < ApplicationRecord
   has_many :products, through: :product_reports
   has_many :assigns_reports # on delete restrict
   has_one :hogan_report_setting
+  accepts_nested_attributes_for :hogan_report_setting
 
   validates :assessment, presence: true
   validates :owner, presence: true, allow_nil: true
   validates :report_families, presence: true, allow_nil: false
+  before_save :delete_hogan_report_setting
 
   enum type: TYPES
 
   # Copy report with pages => modules
   def clone
-    @cloned_item = deep_clone include: [:report_families, { pages: :modules }]
+    @cloned_item = deep_clone include: [:report_families, { pages: :modules }, :hogan_report_setting]
     @cloned_item.gen_uniq_name
     @cloned_item
   end
@@ -81,5 +83,13 @@ class Report < ApplicationRecord
 
   def yti_eti?
     [Report::YTI_TYPE, Report::ETI_TYPE].include? type
+  end
+
+  private
+
+  def delete_hogan_report_setting
+    if hogan_report_setting && !assessment.hogan?
+      hogan_report_setting.destroy
+    end
   end
 end

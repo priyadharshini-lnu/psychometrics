@@ -81,6 +81,7 @@ module Administration
     class Scope < Administration::BasePolicy::Scope
       def resolve
         scope = super
+        scope = scope.order(:name)
         return scope if @user.is?(:superadmin)
         if @user.has_grant?(:assessments, :view)
           owner_ids = @user.is?(:client_admin) ? @user.client_admin_client_ids : @user.project_admin_clients.select('tte_id').distinct

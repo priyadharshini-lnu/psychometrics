@@ -261,6 +261,9 @@ Rails.application.routes.draw do
         patch :toggle_status
         get :preview
       end
+      collection do
+        get :hogan_reports
+      end
       scope module: 'reports' do
         resource :builders, only: [:update]
       end
