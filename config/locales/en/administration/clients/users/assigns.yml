@@ -5,6 +5,10 @@ en:
         assigns:
           form:
             assessment: 'Assessment'
+            user_access:
+              access: 'Reports access'
+              user: 'User'
+              preserve_user_access: 'Apply access settings only for the newly added report'
           new:
             header: Assign Assessment and Reports
           index:

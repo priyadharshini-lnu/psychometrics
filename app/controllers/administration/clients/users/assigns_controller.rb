@@ -46,7 +46,7 @@ module Administration
             if resource.new_record?
               resource.save
             else
-              resource.update(report_ids: resource_params[:report_ids])
+              resource.reports << Report.where(id: resource_params[:report_ids])
             end
           rescue Errors::LicenseError => e
             resource.errors.add(:base, e.message) if resource.errors[:base].empty?
