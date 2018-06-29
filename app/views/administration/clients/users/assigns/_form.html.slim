@@ -14,8 +14,10 @@
       .form-group.has-error
         = f.error :client_id
 
-      = f.label 'Reports Access', class: 'resource_user_access'
-      = f.input :user_access, as: :boolean, label: 'User'
+      = f.label t('.user_access.access'), class: 'resource_user_access'
+      = f.input :user_access, as: :boolean, label: t('.user_access.user')
+      = f.input :preserve_user_access, as: :boolean, label: t('.user_access.preserve_user_access'),
+                class: 'resource_preserve_user_access hidden', input_html: { checked: 'checked', disabled: 'disabled' }
 
   .modal-footer
     .btn-group

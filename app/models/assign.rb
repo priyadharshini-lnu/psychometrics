@@ -51,7 +51,6 @@ class Assign < ApplicationRecord
   after_create :set_project_assign
   before_save :notification_handler
   before_update :set_started_at, if: proc { status_changed? && in_progress? }
-  after_create :set_user_access
   after_destroy :clear_project_assign
   after_update_commit ::Callbacks::Models::Assigns::UpdateResultByParent.new
   after_update_commit ::Callbacks::Models::Assigns::UpdateStartedAtByParent.new
@@ -203,12 +202,6 @@ class Assign < ApplicationRecord
 
   def relevant_reports
     errors.add(:reports) if (membership.client.report_ids & assessment.report_ids & report_ids).to_set != report_ids.to_set
-  end
-
-  def set_user_access
-    assigns_reports.each do |assigns_report|
-      assigns_report.update(user_access: user_access)
-    end
   end
 
   class << self
