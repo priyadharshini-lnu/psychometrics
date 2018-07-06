@@ -39,7 +39,7 @@ class Report < ApplicationRecord
   has_many :products, through: :product_reports
   has_many :assigns_reports # on delete restrict
   has_many :assessments_reports
-  has_many :assessments, -> { order(:name) }, through: :assessments_reports
+  has_many :assessments, -> { order(:name) }, through: :assessments_reports, dependent: :destroy
   has_many :assessments_default_order, through: :assessments_reports, source: :assessment
   has_many :dimensions, -> { distinct }, through: :assessments_default_order
 
