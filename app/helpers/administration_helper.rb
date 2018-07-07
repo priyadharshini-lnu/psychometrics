@@ -81,7 +81,7 @@ module AdministrationHelper
 
   def assessments_options_for_select(assessments, report = nil)
     assessments.all.map do |a|
-      disabled = report && report.assigns_reports.any?
+      disabled = report && (report.assigns_reports.any? || report.clients_reports.any?)
       data = { mindmill: a.mindmill?, hogan: a.hogan?, psychometric: a.psychometric? }
       [a.decorate.display_name, a.id, { disabled: disabled, data: data }]
     end

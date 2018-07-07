@@ -15,6 +15,9 @@
               max_options_text: I18n.t('activerecord.errors.models.report.max_assessment_count', max: Report::MAX_ASSESSMENT_COUNT),
               dynamic_selectable_url: url_for(action: :hogan_reports, assessment_id: '__id__'),
               dynamic_selectable_target: '#resource_hogan_report_setting_attributes_hogan_report_id' } }
+        - if (resource.assigns_reports.any? || resource.clients_reports.any?) && resource.errors[:assessments].blank?
+          span.help-block.text-danger.margin-top-minus-10
+            = I18n.t('activerecord.errors.models.report.has_already_assigned')
         = f.input :mindmill, wrapper_html: { class: 'hidden' }, disabled: true
 
         = f.simple_fields_for :hogan_report_setting do |hogan|
