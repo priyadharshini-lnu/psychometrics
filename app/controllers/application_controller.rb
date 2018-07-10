@@ -59,4 +59,8 @@ class ApplicationController < ::BaseController
       end
     end
   end
+
+  def user_not_authorized
+    render plain: 'You does not have access to this page', status: 403
+  end
 end
