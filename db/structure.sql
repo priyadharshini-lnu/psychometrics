@@ -1443,6 +1443,39 @@ CREATE TABLE public.reports (
 
 
 --
+-- Name: reports_accesses; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.reports_accesses (
+    id bigint NOT NULL,
+    report_id bigint,
+    membership_id bigint,
+    user_access boolean NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: reports_accesses_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.reports_accesses_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: reports_accesses_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.reports_accesses_id_seq OWNED BY public.reports_accesses.id;
+
+
+--
 -- Name: reports_filters; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1978,6 +2011,13 @@ ALTER TABLE ONLY public.reports ALTER COLUMN id SET DEFAULT nextval('public.repo
 
 
 --
+-- Name: reports_accesses id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_accesses ALTER COLUMN id SET DEFAULT nextval('public.reports_accesses_id_seq'::regclass);
+
+
+--
 -- Name: reports_filters id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2321,6 +2361,14 @@ ALTER TABLE ONLY public.questions
 
 ALTER TABLE ONLY public.report_families
     ADD CONSTRAINT report_families_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: reports_accesses reports_accesses_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_accesses
+    ADD CONSTRAINT reports_accesses_pkey PRIMARY KEY (id);
 
 
 --
@@ -2899,6 +2947,27 @@ CREATE INDEX index_report_families_reports_on_report_id ON public.report_familie
 
 
 --
+-- Name: index_reports_accesses_on_membership_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_accesses_on_membership_id ON public.reports_accesses USING btree (membership_id);
+
+
+--
+-- Name: index_reports_accesses_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_accesses_on_report_id ON public.reports_accesses USING btree (report_id);
+
+
+--
+-- Name: index_reports_accesses_on_report_id_and_membership_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_reports_accesses_on_report_id_and_membership_id ON public.reports_accesses USING btree (report_id, membership_id);
+
+
+--
 -- Name: index_reports_filters_on_report_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3183,6 +3252,14 @@ ALTER TABLE ONLY public.questions
 
 
 --
+-- Name: reports_accesses fk_rails_74cd2e276f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_accesses
+    ADD CONSTRAINT fk_rails_74cd2e276f FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
 -- Name: communications_users fk_rails_7a00292b33; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3212,6 +3289,14 @@ ALTER TABLE ONLY public.comments
 
 ALTER TABLE ONLY public.tasks
     ADD CONSTRAINT fk_rails_877a66d795 FOREIGN KEY (owner_id) REFERENCES public.memberships(id);
+
+
+--
+-- Name: reports_accesses fk_rails_88e27a8e2d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_accesses
+    ADD CONSTRAINT fk_rails_88e27a8e2d FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
 
 
 --
@@ -3624,6 +3709,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180522075755'),
 ('20180529094014'),
 ('20180601084716'),
-('20180618090010');
+('20180618090010'),
+('20180710120413');
 
 
