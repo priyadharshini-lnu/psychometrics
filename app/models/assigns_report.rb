@@ -24,6 +24,8 @@ class AssignsReport < ApplicationRecord
 
   before_create :use_license
   before_create :set_user_access
+  after_commit ::Callbacks::Models::AssignsReports::CreateOrUpdateReportsAccess.new, on: %i[create update]
+  after_destroy_commit ::Callbacks::Models::AssignsReports::UpdateOrRemoveReportsAccess.new
 
   mount_base64_uploader :external_report, FileUploader, file_name: proc { 'external_report' }
 

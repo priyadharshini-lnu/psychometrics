@@ -28,7 +28,7 @@ class Assign < ApplicationRecord
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'
 
   has_many :assigns_reports # on delete cascade
-  has_many :reports, through: :assigns_reports
+  has_many :reports, through: :assigns_reports, dependent: :destroy
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
   validates :membership, :assessment, presence: true
