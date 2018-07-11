@@ -16,4 +16,11 @@ class ReportDecorator < BaseDecorator
   def assessments_names
     assessments.map { |assessment| assessment&.decorate&.display_name }.join(', ')
   end
+
+  def detach_confirmation
+    {
+      title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.detach.title", name: display_name),
+      body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.detach.body")
+    }.to_json
+  end
 end

@@ -5,7 +5,7 @@ module Administration
         include Administration::Clients
         prepend_before_action :set_resource_class
         before_action :set_membership
-        before_action :set_resource, only: %i[edit update]
+        before_action :set_resource, only: %i[edit update destroy]
         append_before_action :pundit_authorize
 
         def edit
@@ -13,6 +13,13 @@ module Administration
 
         def update
           resource.update!(resource_params)
+        rescue ActiveRecord::RecordInvalid => e
+          Rails.logger.error(e.message)
+          render :edit
+        end
+
+        def destroy
+          resource.destroy!
         rescue ActiveRecord::RecordInvalid => e
           Rails.logger.error(e.message)
           render :edit
