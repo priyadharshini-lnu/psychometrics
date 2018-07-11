@@ -1,0 +1,13 @@
+$(function () {
+  var $modalBox = $('#modal-container').find('.modal')
+  $modalBox.modal('hide');
+  $modalBox.on('hidden.bs.modal', function () {
+
+    $('#client-tenancy-assign-<%= resource.assign.id %>-report-<%= resource.report.id %>').hide('slow')
+    // Notify message
+    noty({
+      text: '<%= t('administration.clients.users.assigns.common.detach_report',
+          name: resource.assign.decorate.display_name) %>', type: 'success'
+    });
+  });
+});

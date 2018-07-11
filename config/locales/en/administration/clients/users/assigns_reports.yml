@@ -8,7 +8,9 @@ en:
             user_access:
               access: 'Reports access'
               user: 'User'
-          edit:
-            header: Edit report assignment
+            detach: Detach
           update:
             successfully: Successfully Updated
+    assigns_reports:
+      edit:
+        header: Edit report assignment
