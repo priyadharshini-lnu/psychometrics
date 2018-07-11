@@ -63,6 +63,7 @@ Rails.application.routes.draw do
             resources :reports, only: [:destroy] do
               get :preview, on: :member
             end
+            resources :assigns_reports, only: %i[edit update]
           end
           member do
             patch :toggle_status

@@ -10,7 +10,7 @@ module Administration
 
         def index
           @_filter_form = policy_scope(::Assign).where(id: membership.assign_ids).includes(:assessment).search(params[:q])
-          @_resources = filter_form.result.page(params[:page])
+          @_resources = filter_form.result.includes(:enabled_assigns_reports).page(params[:page])
           @reports = policy_scope(Report).
               ransack(clients_reports_client_id_eq: client.id).result.
               group_by(&:assessment_id)
