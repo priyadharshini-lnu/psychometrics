@@ -29,6 +29,7 @@ en:
             not_completed: Not completed
             tooltips:
               delete: Detach Assessment
+              edit: Edit report assignment
               delete_report: Detach Report
           common:
             detach_assessment: 'Assessment %{name} was successfully detached.'

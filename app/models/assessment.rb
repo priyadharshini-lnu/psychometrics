@@ -114,6 +114,10 @@ class Assessment < ApplicationRecord
     type == TYPES[:hogan]
   end
 
+  def external?
+    mindmill? || hogan?
+  end
+
   class << self
     # Available role for the filter form
     #
