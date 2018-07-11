@@ -1,0 +1,14 @@
+en:
+  administration:
+    clients:
+      users:
+        assigns_reports:
+          form:
+            assessment: 'Assessment'
+            user_access:
+              access: 'Reports access'
+              user: 'User'
+          edit:
+            header: Edit report assignment
+          update:
+            successfully: Successfully Updated
