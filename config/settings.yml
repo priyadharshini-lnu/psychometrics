@@ -86,3 +86,7 @@ hogan:
         report_name: HBRI Data Report
         norm_id: General
         language_id: en
+      - report_id: EcHBRIV1IML
+        report_name: HBRI Interpret Report
+        norm_id: General
+        language_id: en
