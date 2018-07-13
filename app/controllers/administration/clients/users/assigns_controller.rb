@@ -5,7 +5,7 @@ module Administration
         include Administration::Clients
         prepend_before_action :set_resource_class
         before_action :set_membership
-        before_action :set_resource, only: [:destroy, :destroy_report]
+        before_action :set_resource, only: [:destroy]
         append_before_action :pundit_authorize, :init_breadcrumbs
 
         def index
@@ -59,15 +59,6 @@ module Administration
 
         def destroy
           resource.destroy
-          respond_to do |format|
-            format.html { redirect_back(fallback_location: root_path, success: t('.successfully')) }
-            format.js
-          end
-        end
-
-        def destroy_report
-          @report = Report.find(params[:report_id])
-          resource.reports.delete(@report)
           respond_to do |format|
             format.html { redirect_back(fallback_location: root_path, success: t('.successfully')) }
             format.js
