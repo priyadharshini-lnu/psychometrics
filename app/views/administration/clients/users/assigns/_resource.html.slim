@@ -53,7 +53,7 @@ tr id=dom_id(resource)
         span = assigns_report.report.name
         span.mlm
           - if policy(assigns_report).update?
-            = link_to edit_administration_client_user_assigns_report_path(client, membership.user, assigns_report),
+            = link_to edit_administration_client_user_assigns_report_path(client, membership, assigns_report),
               remote: true, class: 'btn btn-default btn-rounded btn-sm edit',
               data: { toggle: 'tooltip', title: t('.tooltips.edit') }
               span.fa.fa-pencil

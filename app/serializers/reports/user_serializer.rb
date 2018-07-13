@@ -21,7 +21,7 @@ module Reports
     def norm_used
       norm_data = @instance_options[:assigns].pluck(:norm_data)
       return if norm_data.blank?
-      norms = Norm.where(id: norm_data.map { |data| data['id'] }.compact)
+      norms = Norm.where(id: norm_data.map { |data| data.dig('id') }.compact)
       norms.map do |norm|
         norm&.decorate&.display_name
       end
