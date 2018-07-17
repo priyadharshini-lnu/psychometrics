@@ -107,8 +107,8 @@ class Assign < ApplicationRecord
     self.agile_scoring = {}
 
     factors_scoring_map.each do |factor_id, scoring_array|
-      self.scoring[factor_id] = { name: scoring_array.try(:first).try(:factor).try(:name), results: [] }
-      self.agile_scoring[factor_id] = { name: scoring_array.try(:first).try(:factor).try(:name), results: [] }
+      self.scoring[factor_id] = { results: [] }
+      self.agile_scoring[factor_id] = { results: [] }
       scoring_array.each do |question_scoring|
         question = questions_map[question_scoring.question_id].try(:first)
         scoring_class = "Scoring::#{question.try(:type)}"

@@ -17,11 +17,11 @@ class ReportSerializer < ActiveModel::Serializer
 
   has_many :pages, serializer: Reports::PageSerializer
   has_many :filters, serializer: Reports::FilterSerializer
-  has_many :assessments, serializer: AssessmentSerializer
+  has_many :assessments, serializer: Reports::AssessmentSerializer
 
   def factors
     object_assessment_ids = object.assessment_ids
-    Factor.
+    factors = Factor.
       selecting {['factors.*',
                   array(
                     _(
@@ -32,15 +32,22 @@ class ReportSerializer < ActiveModel::Serializer
                     )
                   ).as('question_ids')
       ]}.
-      where(dimension_id: object.assessments.pluck(:dimension_id)).
-      order(name: :asc).group_by(&:dimension_id).transform_values do |group|
-        group.map { |obj| ::Factors::WithoutSubFactorsSerializer.new(obj, assessment_id: object_assessment_ids) }
+      where(dimension_id: object.dimension_ids).
+      order(name: :asc)
+    aliases = FactorsAlias.where(factor_id: factors.ids, report_id: object.id).group_by(&:factor_id)
+    factors.group_by(&:dimension_id).transform_values do |group|
+      group.map do |obj|
+        ::Factors::WithoutSubFactorsSerializer.new(obj, assessment_id: object_assessment_ids,
+                                                        report_id: object.id,
+                                                        alias: aliases[obj.id].first)
+      end
     end
   end
 
   def occupations
     occupations = Occupation.includes(:occupations_factors).
-      where(dimension_id: object.assessments.pluck(:dimension_id)).order(name: :asc)
+                             where(dimension_id: object.assessments.pluck(:dimension_id)).
+                             order(name: :asc)
     occupations.group_by(&:dimension_id).transform_values do |group|
       group.map { |occupation| OccupationSerializer.new(occupation) }
     end
@@ -65,6 +72,6 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def dimension_ids
-    object.dimensions.ids
+    object.dimension_ids
   end
 end

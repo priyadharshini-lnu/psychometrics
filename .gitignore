@@ -58,3 +58,6 @@ config/environments/frontend.rb
 .rubocop.yml
 
 .ruby-gemset
+
+.pryrc
+npm-debug.log

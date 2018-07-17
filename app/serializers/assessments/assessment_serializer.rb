@@ -13,15 +13,9 @@ module Assessments
     end
 
     def factors
-      factors = (object.dimension&.factors&.includes(:sub_factors) || []).map do |factor|
-        result = []
-        result << Assessments::FactorSerializer.new(factor, assessment_id: object.id).to_hash
-        factor.sub_factors.map do |sub_factor|
-          result << Assessments::FactorSerializer.new(sub_factor, assessment_id: object.id).to_hash
-        end
-        result
+      object.dimension.all_factors.map do |factor|
+        Assessments::FactorSerializer.new(factor, assessment_id: object.id).to_hash
       end
-      factors.flatten
     end
   end
 end

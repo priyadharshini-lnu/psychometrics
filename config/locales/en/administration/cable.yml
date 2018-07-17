@@ -41,6 +41,7 @@ en:
         geo_filter: "Data filtered"
         report_update: "Report is updated"
         report_change_filters: "Filters are updated"
+        report_change_aliases: "Aliases are updated"
         page_create: "Page %{name} is created"
         page_update: "Page is updated"
         page_destroy: "Page has been deleted"

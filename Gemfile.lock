@@ -1,6 +1,6 @@
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: e673d52da551f6b6e95d672c8b711370c493b998
+  revision: dcbccc290e7e210ea72677cc2302474f4566f56d
   specs:
     psychometrics-survey (0.0.1)
       railties (~> 5.0)
@@ -100,6 +100,7 @@ GEM
       encryptor (~> 3.0.0)
     autoprefixer-rails (6.4.0.3)
       execjs
+    awesome_print (1.8.0)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -684,6 +685,7 @@ DEPENDENCIES
   ancestry
   annotate (~> 2.7.0)!
   attr_encrypted (~> 3.1.0)
+  awesome_print (~> 1.8.0)
   axlsx!
   axlsx_rails (~> 0.4.0)
   baby_squeel (~> 1.0.1)
