@@ -734,6 +734,39 @@ CREATE TABLE public.factors (
 
 
 --
+-- Name: factors_aliases; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.factors_aliases (
+    id bigint NOT NULL,
+    factor_id bigint NOT NULL,
+    report_id bigint NOT NULL,
+    name character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: factors_aliases_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.factors_aliases_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: factors_aliases_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.factors_aliases_id_seq OWNED BY public.factors_aliases.id;
+
+
+--
 -- Name: factors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1871,6 +1904,13 @@ ALTER TABLE ONLY public.factors ALTER COLUMN id SET DEFAULT nextval('public.fact
 
 
 --
+-- Name: factors_aliases id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_aliases ALTER COLUMN id SET DEFAULT nextval('public.factors_aliases_id_seq'::regclass);
+
+
+--
 -- Name: factors_norms id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2201,6 +2241,14 @@ ALTER TABLE ONLY public.ecommerce_purchase_invites
 
 ALTER TABLE ONLY public.ecommerce_purchases
     ADD CONSTRAINT ecommerce_purchases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: factors_aliases factors_aliases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_aliases
+    ADD CONSTRAINT factors_aliases_pkey PRIMARY KEY (id);
 
 
 --
@@ -2699,6 +2747,27 @@ CREATE INDEX index_ecommerce_purchases_on_order_id ON public.ecommerce_purchases
 --
 
 CREATE INDEX index_ecommerce_purchases_on_product_id ON public.ecommerce_purchases USING btree (product_id);
+
+
+--
+-- Name: index_factors_aliases_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_aliases_on_factor_id ON public.factors_aliases USING btree (factor_id);
+
+
+--
+-- Name: index_factors_aliases_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_aliases_on_report_id ON public.factors_aliases USING btree (report_id);
+
+
+--
+-- Name: index_factors_aliases_on_report_id_and_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_factors_aliases_on_report_id_and_factor_id ON public.factors_aliases USING btree (report_id, factor_id);
 
 
 --
@@ -3710,6 +3779,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180529094014'),
 ('20180601084716'),
 ('20180618090010'),
+('20180619110647'),
 ('20180710120413');
 
 

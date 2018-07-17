@@ -39,9 +39,13 @@ class Report < ApplicationRecord
   has_many :products, through: :product_reports
   has_many :assigns_reports # on delete restrict
   has_many :assessments_reports
-  has_many :assessments, -> { order(:name) }, through: :assessments_reports, dependent: :destroy
+  has_many :assessments, -> { order(:name) }, through: :assessments_reports, dependent: :destroy,
+                                              before_add: :add_factors_aliases,
+                                              before_remove: :remove_factor_aliases
   has_many :assessments_default_order, through: :assessments_reports, source: :assessment
   has_many :dimensions, -> { distinct }, through: :assessments_default_order
+  has_many :factors_aliases, dependent: :destroy
+  has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
 
   has_one :hogan_report_setting
   accepts_nested_attributes_for :hogan_report_setting
@@ -54,6 +58,7 @@ class Report < ApplicationRecord
 
   before_validation :set_assessment
   before_save :delete_hogan_report_setting
+  after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
 
   enum type: TYPES
 
@@ -120,5 +125,16 @@ class Report < ApplicationRecord
     if hogan_report_setting && !assessment.hogan?
       hogan_report_setting.destroy
     end
+  end
+
+  def add_factors_aliases(assessment)
+    return if new_record?
+    assessment.dimension.all_factors.each { |factor| factor.aliases.find_or_create_by(report: self) }
+  end
+
+  def remove_factor_aliases(assessment)
+    dimension = assessment.dimension
+    return if assessments.pluck(:dimension_id).count(dimension.id) > 1
+    FactorsAlias.where(report: self, factor_id: dimension.factor_ids).destroy_all
   end
 end
