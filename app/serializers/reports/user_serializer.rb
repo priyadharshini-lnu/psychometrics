@@ -19,7 +19,7 @@ module Reports
 
     # Using for Piped Text
     def norm_used
-      norm_data = @instance_options[:assigns].pluck(:norm_data)
+      norm_data = @instance_options[:assigns].pluck(:norm_data).compact
       return if norm_data.blank?
       norms = Norm.where(id: norm_data.map { |data| data.dig('id') }.compact)
       norms.map do |norm|
