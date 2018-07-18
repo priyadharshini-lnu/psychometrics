@@ -15,7 +15,7 @@ module Exports
             export: true,
             lang: opts[:lang] || I18n.locale
           }
-          url = if current_user.is?(:superadmin, :admin)
+          url = if current_user.is?(:superadmin, :client_admin, :project_admin)
                   Rails.application.routes.url_helpers.
                     preview_administration_client_user_report_url(url_params.merge({
                                                                                      client_id: client.id,
