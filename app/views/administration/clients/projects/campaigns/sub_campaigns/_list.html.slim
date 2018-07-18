@@ -5,7 +5,8 @@
         th = t('.header.name')
         th = t('.header.tests_allocated')
         th = t('.header.users')
-        th = t('.header.actual_usage')
+        - if current_user.is?(:superadmin)
+          th = t('.header.actual_usage')
         th width='1%' = t('administration.actions')
     tbody
       - if resources.present?
