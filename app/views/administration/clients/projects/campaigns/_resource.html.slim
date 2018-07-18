@@ -4,7 +4,8 @@ tbody id=dom_id(resource)
       - rowspan = resource.children.enabled.count + 2
       td rowspan=rowspan
         = link_to resource.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client, project, resource)
-      td rowspan=rowspan = resource.decorate.actual_usage
+      - if current_user.is?(:superadmin)
+        td rowspan=rowspan = resource.decorate.actual_usage
     = render partial: 'administration/clients/projects/campaigns/sub_campaigns/resource', collection: resource.children.enabled, as: :resource, locals: {campaign: resource}
     tr
       td.text-center colspan='5'
@@ -28,4 +29,5 @@ tbody id=dom_id(resource)
           .add-icon-box
             = link_to new_administration_client_user_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_user') }
               span.fa.fa-plus
-      td = resource.decorate.actual_usage
+      - if current_user.is?(:superadmin)
+        td = resource.decorate.actual_usage
