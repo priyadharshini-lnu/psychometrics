@@ -36,7 +36,11 @@ DynamicSelectable = (function() {
               if (el.selected) {
                 selected = 'selected';
               }
-              return _this.$targetSelect.append("<option value='" + el.id + "' " + selected + ">" + el.name + "</option>").selectpicker('refresh');
+              var disabled = '';
+              if (el.disabled) {
+                disabled = 'disabled';
+              }
+              return _this.$targetSelect.append("<option value='" + el.id + "' " + selected + " " + disabled + ">" + el.name + "</option>").selectpicker('refresh');
             });
             return _this.reinitializeTarget();
           });

@@ -1,9 +1,9 @@
-= simple_form_for(resource, as: :resource, url: { action: :create }, remote: true, method: :post) do |f|
+= simple_form_for(resource, as: :resource, url: { action: :create }, remote: true, html: { method: :post, id: :assigns_form }) do |f|
   .modal-body
     = render_error_notification resource
     .form-inputs.clearfix
       = f.association :assessment,
-                      collection: client.assessments,
+                      collection: assessments_options_for_select(client.assessments),
                       input_html: { data: { live_search: true,
                                             dynamic_selectable_url: url_for(action: :reports, assessment_id: '__id__'),
                                             dynamic_selectable_target: '#resource_report_ids',
@@ -13,6 +13,12 @@
       = f.association :reports, collection: []
       .form-group.has-error
         = f.error :client_id
+
+      = f.label t('.user_access.access'), class: 'resource_user_access'
+      = f.input :user_access, as: :boolean, label: t('.user_access.user')
+      = f.input :preserve_user_access, as: :boolean, label: t('.user_access.preserve_user_access'),
+                class: 'resource_preserve_user_access hidden', input_html: { checked: 'checked', disabled: 'disabled' }
+
   .modal-footer
     .btn-group
       = f.button :submit, t('administration.create'), class: 'btn-info'

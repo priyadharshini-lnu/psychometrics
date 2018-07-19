@@ -5,12 +5,12 @@ module Administration
         include Administration::Clients
         prepend_before_action :set_resource_class
         before_action :set_membership
-        before_action :set_resource, only: [:destroy, :destroy_report]
+        before_action :set_resource, only: [:destroy]
         append_before_action :pundit_authorize, :init_breadcrumbs
 
         def index
           @_filter_form = policy_scope(::Assign).where(id: membership.assign_ids).includes(:assessment).search(params[:q])
-          @_resources = filter_form.result.page(params[:page])
+          @_resources = filter_form.result.includes(:enabled_assigns_reports).page(params[:page])
           @reports = policy_scope(Report).
               ransack(clients_reports_client_id_eq: client.id).result.
               group_by(&:assessment_id)
@@ -30,6 +30,7 @@ module Administration
           @assessment = client.assessments.find(resource_params[:assessment_id])
           assigns_scope = membership.assigns
           @_resource = assigns_scope.where(assessment_id: @assessment.id).take || assigns_scope.build(resource_params)
+          resource.user_access = resource_params[:user_access]
 
           begin
             if @assessment.hogan?
@@ -45,7 +46,7 @@ module Administration
             if resource.new_record?
               resource.save
             else
-              resource.update(report_ids: resource_params[:report_ids])
+              resource.reports << Report.where(id: resource_params[:report_ids])
             end
           rescue Errors::LicenseError => e
             resource.errors.add(:base, e.message) if resource.errors[:base].empty?
@@ -58,15 +59,6 @@ module Administration
 
         def destroy
           resource.destroy
-          respond_to do |format|
-            format.html { redirect_back(fallback_location: root_path, success: t('.successfully')) }
-            format.js
-          end
-        end
-
-        def destroy_report
-          @report = Report.find(params[:report_id])
-          resource.reports.delete(@report)
           respond_to do |format|
             format.html { redirect_back(fallback_location: root_path, success: t('.successfully')) }
             format.js
@@ -102,7 +94,7 @@ module Administration
         end
 
         def resource_params
-          params.require(:resource).permit(:assessment_id, report_ids: [])
+          params.require(:resource).permit(:assessment_id, :user_access, report_ids: [])
         end
 
         def pundit_authorize

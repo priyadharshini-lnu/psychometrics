@@ -1,0 +1,16 @@
+en:
+  administration:
+    clients:
+      users:
+        assigns_reports:
+          form:
+            assessment: 'Assessment'
+            user_access:
+              access: 'Reports access'
+              user: 'User'
+            detach: Detach
+          update:
+            successfully: Successfully Updated
+    assigns_reports:
+      edit:
+        header: Edit report assignment

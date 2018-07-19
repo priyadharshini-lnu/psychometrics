@@ -28,7 +28,9 @@ class Assign < ApplicationRecord
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'
 
   has_many :assigns_reports # on delete cascade
-  has_many :reports, through: :assigns_reports
+  has_many :enabled_assigns_reports, -> { includes(:report).where(reports: { disabled: false }) },
+           class_name: 'AssignsReport'
+  has_many :reports, through: :assigns_reports, dependent: :destroy
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
   validates :membership, :assessment, presence: true
@@ -44,6 +46,8 @@ class Assign < ApplicationRecord
     joins(:assessment).
       where.has { |assigns| assigns.assessment.type.eq(Assessment::TYPES[:mindmill]) }
   }
+
+  attribute :user_access, :boolean, default: true
 
   after_initialize :init
   after_create :set_project_assign

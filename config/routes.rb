@@ -55,14 +55,15 @@ Rails.application.routes.draw do
       end
       scope module: :clients do
         resources :users do
+          # user_id means membership_id in this case
           scope module: :users do
             resources :assigns, only: [:index, :new, :create, :destroy] do
-              get :destroy_report, on: :member
               get :reports, on: :collection
             end
             resources :reports, only: [:destroy] do
               get :preview, on: :member
             end
+            resources :assigns_reports, only: %i[edit update destroy]
           end
           member do
             patch :toggle_status

@@ -48,15 +48,12 @@ tr id=dom_id(resource)
     - else
       = t('.no_access_to_reports')
   td.actions-cell
-    - resource.reports.enabled.all.each do |report|
-      div id="client-tenancy-assign-#{resource.id}-report-#{report.id}"
-        span = report.name
+    - resource.enabled_assigns_reports.each do |assigns_report|
+      div id="client-tenancy-assign-#{resource.id}-report-#{assigns_report.report.id}"
+        span = assigns_report.report.name
         span.mlm
-          - if policy(resource).destroy?
-            = link_to({ action: :destroy_report, id: resource, params: { report_id: report.id } }, 
-                      remote: true, 
-                      class: 'btn btn-default btn-rounded btn-sm', 
-                      data: { confirm: report.decorate.delete_confirmation, 
-                              toggle: 'tooltip', 
-                              title: t('.tooltips.delete_report') })
-              span.fa.fa-times
+          - if policy(assigns_report).update?
+            = link_to edit_administration_client_user_assigns_report_path(client, membership, assigns_report),
+              remote: true, class: 'btn btn-default btn-rounded btn-sm edit',
+              data: { toggle: 'tooltip', title: t('.tooltips.edit') }
+              span.fa.fa-pencil

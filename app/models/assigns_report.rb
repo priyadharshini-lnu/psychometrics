@@ -23,6 +23,8 @@ class AssignsReport < ApplicationRecord
   has_many :license_usages # on delete nullify
 
   before_create :use_license
+  before_create :set_user_access
+  after_commit ::Callbacks::Models::AssignsReports::UpdateOrRemoveReportsAccess.new
 
   mount_base64_uploader :external_report, FileUploader, file_name: proc { 'external_report' }
 
@@ -30,5 +32,9 @@ class AssignsReport < ApplicationRecord
 
   def use_license
     LICENSES[assign.assessment.category].use(self)
+  end
+
+  def set_user_access
+    self.user_access = assign.user_access
   end
 end

@@ -1,0 +1,22 @@
+= simple_form_for(resource, as: :resource, url: { action: :update }, remote: true, html: { method: :put }) do |f|
+  .modal-body
+    = render_error_notification resource
+    .form-inputs.clearfix
+      = simple_fields_for resource.assign do |assign_form|
+        = assign_form.association :assessment, label: t('.assessment'), disabled: true
+      = f.association :report, disabled: true
+
+      = f.label t('.user_access.access'), class: 'resource_user_access'
+      = f.input :user_access, as: :boolean, label: t('.user_access.user'),
+        disabled: resource.assign.assessment.external?
+
+  .modal-footer
+    - if policy(resource).destroy?
+      = link_to t('.detach'), administration_client_user_assigns_report_path(client, membership, resource),
+        remote: true,
+        method: :delete,
+        class: 'btn btn-danger pull-left',
+        data: { confirm: resource.report.decorate.detach_confirmation }
+    .btn-group
+      = f.button :submit, t('administration.save'), class: 'btn-info'
+      a.btn.btn-default data-dismiss='modal' = t('administration.close')
