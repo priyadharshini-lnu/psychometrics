@@ -15,4 +15,5 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(resource)}"
     li = link_to(t('.destroy'), { action: :destroy, id: resource }, remote: true, method: :delete, data: { confirm: resource.decorate.delete_confirmation })
   /- if policy(resource).archive?
     li = link_to(t('.archive'), { action: :archive, id: resource }, method: :patch, data: { confirm: resource.decorate.archive_confirmation, toggle: 'tooltip' })
-  li = link_to t('.view_licenses'), administration_client_licenses_path(resource), remote: true
+  - if current_user.is?(:superadmin)
+    li = link_to t('.view_licenses'), administration_client_licenses_path(resource), remote: true
