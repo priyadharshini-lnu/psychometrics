@@ -278,6 +278,10 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :bulk_reports, only: %i[new create] do
+      get :download, on: :member
+    end
+
     resources :libraries
 
     put '/factors_norms/update', to: 'factors_norms#update'

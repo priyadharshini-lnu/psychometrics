@@ -3,9 +3,11 @@ module Exports
     module Pdf
       class ReportExport
         def self.export(current_user, report, user, client, protocol, opts = {})
-          # TODO: Create task to periodical remove pdf files
-          tmp_folder = Rails.root.join('tmp', 'reports')
-          output = "#{tmp_folder}/#{user.email}_#{report.decorate.display_name}_#{Date.today.strftime('%F')}.pdf"
+          output_dir = opts.delete(:output_dir) || Rails.root.join('tmp', 'reports')
+          output_dir = File.join(output_dir, user.email)
+          FileUtils.mkdir_p(output_dir)
+          filename = "#{user.email}_#{report.decorate.display_name}_#{Date.today.strftime('%F')}.pdf"
+          output = File.join(output_dir, filename)
           # Generate valid url for parse report to pdf
           url_params = {
             host: Settings.domain,
@@ -40,13 +42,9 @@ module Exports
             auth: 'staging:sumatosoft'
           }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
-          Dir.mkdir(tmp_folder) unless Dir.exist?(tmp_folder)
-
           Rails.logger.info "phantomjs #{Rails.root.join('lib/raster.js')} #{args}"
-
           system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
 
-          # output
           output
         end
       end

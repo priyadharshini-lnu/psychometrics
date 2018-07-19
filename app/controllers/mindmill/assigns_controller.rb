@@ -24,7 +24,8 @@ class Mindmill::AssignsController < ApplicationController
     mindmill = Api::Mindmill.new(@assign, @current_membership, user_locale)
     mindmill.load_results
     redirect_back(fallback_location: root_path, error: t('.not_completed')) && return unless mindmill.report
-    @assign.update_attributes({ mindmill_report: "data:application/pdf;base64,#{mindmill.report}", status: :completed })
+    report = "data:application/pdf;base64,#{mindmill.report}"
+    @assign.update(mindmill_report: report, status: :completed, completed_at: Time.current)
     redirect_back(fallback_location: root_path, success: t('.successfully'))
   end
 

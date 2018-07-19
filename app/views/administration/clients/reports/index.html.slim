@@ -10,7 +10,12 @@
           .pull-right
             = link_to({ action: :new }, remote: true, class: 'btn btn-default')
               span.fa.fa-plus
-              = t('.add')        
+              = t('.add')
+        - if policy(BulkReport).new?
+          .pull-right
+            = link_to(new_administration_bulk_report_path(client_id: client.id), remote: true, class: 'btn btn-default')
+              span.fa.fa-download
+              = t('.bulk_download')
         = search_form_for(filter_form,
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },
