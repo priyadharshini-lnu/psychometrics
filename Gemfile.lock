@@ -1,7 +1,7 @@
 GIT
   remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: 797536488d66b49bb51c638afa07855dd0ba662c
-  branch: feature/cpi-top-factors
+  revision: cedf6cec5aa0cce83270b44f113db55ed319949f
+  branch: production
   specs:
     psychometrics-survey (0.0.1)
       railties (~> 5.0)
@@ -407,7 +407,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
     nio4r (2.3.0)
-    nokogiri (1.8.2)
+    nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
     nori (2.6.0)
     notiffany (0.1.1)
@@ -438,7 +438,7 @@ GEM
     puma (3.9.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
-    rack (2.0.4)
+    rack (2.0.5)
     rack-protection (2.0.1)
       rack
     rack-test (1.0.0)
