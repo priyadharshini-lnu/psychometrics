@@ -35,6 +35,10 @@ class Administration::UserPolicy < Administration::BasePolicy
     index?
   end
 
+  def export_completion_status?
+    index?
+  end
+
   def import?
     create?
   end

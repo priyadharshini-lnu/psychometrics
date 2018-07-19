@@ -21,6 +21,7 @@ en:
         types:
           common: TTE Assessment
           mindmill: Mindmill Assessment
+          hogan: Hogan
         statuses:
           finished: finished
   simple_form:

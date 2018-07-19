@@ -124,6 +124,13 @@ module Administration
         end
       end
 
+      def export_completion_status
+        results = Exports::Assessments::CompletionStatusExport.new(client.id)
+        respond_to do |format|
+          format.xlsx { send_data results.to_xlsx.to_stream.read, filename: 'completion_status_export.xlsx' }
+        end
+      end
+
       # Spoof as user
       def spoof
         if resource.user.is?(:superadmin, :project_admin)

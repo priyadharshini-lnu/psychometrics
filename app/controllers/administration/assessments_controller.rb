@@ -18,6 +18,7 @@ class Administration::AssessmentsController < Administration::BaseController
 
   def new
     @_resource = resource_class.new
+    @_resource.build_hogan_assessment_setting
   end
 
   def create
@@ -48,6 +49,7 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def edit
+    @_resource.build_hogan_assessment_setting if @_resource.hogan_assessment_setting.blank?
     add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
   end
 
@@ -116,6 +118,7 @@ class Administration::AssessmentsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:type, :mindmill_id, :name, :category, :description, :dimension_id, :timing, :status, :owner_id)
+    params.require(:resource).permit(:type, :mindmill_id, :name, :category, :description, :dimension_id, :timing, :status,
+                                     :owner_id, hogan_assessment_setting_attributes: [:id, :hogan_assessment_id])
   end
 end

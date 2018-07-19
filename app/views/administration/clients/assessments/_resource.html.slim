@@ -5,7 +5,7 @@ tr id=dom_id(resource)
     td = resource.decorate.clients_names
   td = resource.decorate.anonym_link_for(client)
   td.actions-cell
-    - if policy(:assessment).export_results?
+    - if policy(:assessment).export_results? && !resource.hogan?
       .btn-group
         button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'
           i.fa.fa-download
@@ -16,7 +16,7 @@ tr id=dom_id(resource)
             = link_to t('.scoring_results'), administration_client_assessment_export_results_path(client, resource, format: 'xlsx', scoring: true)
           li
             = link_to t('.raw_results'), administration_client_assessment_export_results_path(client, resource, format: 'xlsx')
-    - if policy(:assessment).import_results?
+    - if policy(:assessment).import_results? && !resource.hogan?
       .btn-group
         button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'
           i.fa.fa-upload
@@ -24,17 +24,29 @@ tr id=dom_id(resource)
           span.caret
         ul.dropdown-menu
           li
-            = link_to t('.scoring_results'), 
+            = link_to t('.scoring_results'),
                       new_administration_imports_results_path(client_id: client.id, assessment_id: resource.id, scoring: true),
-                      remote: true 
+                      remote: true
           li
-            = link_to t('.raw_results'), 
+            = link_to t('.raw_results'),
                       new_administration_imports_results_path(client_id: client.id, assessment_id: resource.id),
                       remote: true
+    - if policy(:assessment).export_hogan_results? && resource.hogan?
+      .btn-group
+        button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'
+          i.fa.fa-download
+          =<> t('.export_results')
+          span.caret
+        ul.dropdown-menu
+          - reports_for_assessment(resource).each do |report|
+            li
+              = link_to report.name,
+                        administration_client_assessment_export_hogan_results_path(client, resource, format: 'xlsx',
+                                                                                   report_id: report.id)
     - if policy(:assessment_client).destroy?
       = link_to administration_client_assessment_path(client, resource),
-                remote: true, 
+                remote: true,
                 class: 'btn btn-default btn-rounded btn-sm',
                 method: 'delete',
                 data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
-        span.fa.fa-times               
+        span.fa.fa-times

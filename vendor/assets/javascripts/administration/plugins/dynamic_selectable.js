@@ -21,7 +21,14 @@ DynamicSelectable = (function() {
       return function() {
         var url;
         _this.clearTarget();
-        url = _this.constructUrl($select.val());
+        var $options =  $select.find('option:selected');
+        var values = $.map($options ,function(option) {
+          return option.value;
+        });
+
+        values = $select.prop('multiple') ? values : values[0];
+
+        url = _this.constructUrl(values);
         if (url) {
           return $.getJSON(url, function(data) {
             $.each(data, function(index, el) {

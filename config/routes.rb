@@ -73,6 +73,7 @@ Rails.application.routes.draw do
           collection do
             get :admins
             get :export
+            get :export_completion_status
             post :assign_multiple
           end
         end
@@ -127,6 +128,7 @@ Rails.application.routes.draw do
         resource :licenses, only: [:show, :edit, :update]
         resources :assessments, only: [:index, :destroy] do
           get :export_results
+          get :export_hogan_results
         end
       end
     end
@@ -261,6 +263,9 @@ Rails.application.routes.draw do
         patch :toggle_status
         get :preview
       end
+      collection do
+        get :hogan_reports
+      end
       scope module: 'reports' do
         resource :builders, only: [:update]
       end
@@ -389,6 +394,7 @@ Rails.application.routes.draw do
         member do
           get :redirect
           get :results
+          put :pass
         end
       end
     end

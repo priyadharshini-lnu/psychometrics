@@ -1,15 +1,18 @@
 module Services
   module Hogan
-    class AddParticipantAssessment < Base
+    module API
+      class AddParticipantAssessment < Base
+        around :log_execution
 
-      def call
-        response(client.call(:add_participant_assessments, message: { inputXML: input_xml }).body)
-      end
+        def call
+          context.body = client.call(:add_participant_assessments, message: { inputXML: input_xml }).body
+          context.response = response(context.body)
+        end
 
-      private
+        private
 
-      def input_xml
-        %{
+        def input_xml
+          %{
           <participant>
             <clientdetails>
               <clientid>#{client_id}</clientid>
@@ -28,14 +31,15 @@ module Services
             </assessments>
           </participant>
         }
-      end
+        end
 
-      def response(body)
-        context.response ||= response_from_xml(body).with_indifferent_access
-      end
+        def response(body)
+          response_from_xml(body).with_indifferent_access
+        end
 
-      def response_from_xml(body)
-        Hash.from_xml(body[:add_participant_assessments_response][:add_participant_assessments_result])
+        def response_from_xml(body)
+          Hash.from_xml(body[:add_participant_assessments_response][:add_participant_assessments_result])
+        end
       end
     end
   end

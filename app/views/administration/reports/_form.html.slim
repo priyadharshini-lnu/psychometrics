@@ -8,8 +8,16 @@
         - if current_user.is?(:superadmin)
           = f.association :owner, collection: policy_scope(Client).enabled.roots, include_blank: t('administration.tte'), input_html: { data: { live_search: true } }
         = f.input :type, include_blank: false
-        = f.association :assessment, collection: policy_scope(Assessment).options_for_select, input_html: { data: { live_search: true } }
+        = f.association :assessment, collection: assessments_options_for_select(policy_scope(Assessment), resource),
+          input_html: { data: { live_search: true,
+            dynamic_selectable_url: url_for(action: :hogan_reports, assessment_id: '__id__'),
+            dynamic_selectable_target: '#resource_hogan_report_setting_attributes_hogan_report_id' } }
         = f.input :mindmill, wrapper_html: { class: 'hidden' }, disabled: true
+
+        = f.simple_fields_for :hogan_report_setting do |hogan|
+          = hogan.input :hogan_report_id, as: :select, collection: [], input_html: { multiple: false },
+                                          wrapper_html: { class: 'resource_hogan hidden' }, disabled: true
+          = hogan.input :load_report, wrapper_html: { class: 'resource_hogan hidden' }, disabled: true
     .modal-footer
       .btn-group
         = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'

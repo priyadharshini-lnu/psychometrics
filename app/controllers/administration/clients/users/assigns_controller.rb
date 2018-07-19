@@ -30,7 +30,18 @@ module Administration
           @assessment = client.assessments.find(resource_params[:assessment_id])
           assigns_scope = membership.assigns
           @_resource = assigns_scope.where(assessment_id: @assessment.id).take || assigns_scope.build(resource_params)
+
           begin
+            if @assessment.hogan?
+              assessment_params = {
+                group: client.project.hogan_group_name,
+                membership: membership.membership_with_result,
+                assessment: @assessment,
+                reports: resource.reports
+              }
+              result = Services::Hogan::AssignAssessmentAndReports.call!(assessment_params: assessment_params)
+            end
+
             if resource.new_record?
               resource.save
             else
@@ -38,6 +49,9 @@ module Administration
             end
           rescue Errors::LicenseError => e
             resource.errors.add(:base, e.message) if resource.errors[:base].empty?
+          rescue Interactor::Failure => e
+            Rails.logger.error(e.context)
+            resource.errors.add(:base, e.context.error) if e.context.error
           end
           render :new if resource.errors.any?
         end

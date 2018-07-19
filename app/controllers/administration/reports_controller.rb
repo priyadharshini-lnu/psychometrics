@@ -34,6 +34,7 @@ module Administration
 
     def new
       @_resource = resource_class.new
+      @_resource.build_hogan_report_setting
     end
 
     def create
@@ -44,13 +45,25 @@ module Administration
         if resource.save
           format.js
         else
+          @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
           format.js { render :new }
         end
       end
     end
 
+    def hogan_reports
+      assessment_id = params[:assessment_id].split(',').first
+      hogan_assessment_id = Assessment.hogan.find_by(id: assessment_id)&.hogan_assessment_setting&.hogan_assessment_id
+      @reports = hogan_assessment_id ? Settings.hogan.find { |s| s.assessment_id == hogan_assessment_id }.reports : []
+
+      respond_to do |format|
+        format.json
+      end
+    end
+
     # GET /administration/resources/1/edit
     def edit
+      @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
       add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
     end
 
@@ -60,6 +73,7 @@ module Administration
         if resource.update(resource_params)
           format.js
         else
+          @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
           format.js { render :edit }
         end
       end
@@ -129,7 +143,8 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :assessment_id, :type, :owner_id, :mindmill, report_family_ids: [])
+      params.require(:resource).permit(:name, :assessment_id, :type, :owner_id, :mindmill, report_family_ids: [],
+                                       hogan_report_setting_attributes: [:id, :hogan_report_id, :load_report])
     end
 
     def authenticate_user_from_token!

@@ -51,6 +51,8 @@ class Assign < ApplicationRecord
   before_update :set_started_at, if: proc { status_changed? && in_progress? }
   after_destroy :clear_project_assign
   after_update_commit ::Callbacks::Models::Assigns::UpdateResultByParent.new
+  after_update_commit ::Callbacks::Models::Assigns::UpdateStartedAtByParent.new
+  after_update_commit ::Callbacks::Models::Assigns::UpdateCompletedAtByParent.new
 
   after_commit :send_completion_email, if: proc { status_previously_changed? && completed? }
   after_commit :update_membership_completed
