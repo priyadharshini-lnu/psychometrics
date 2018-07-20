@@ -31,7 +31,8 @@
           = link_to new_administration_client_project_admin_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
             span.fa.fa-plus
     td = resource.decorate.url
-    td = resource.decorate.actual_usage
+    - if current_user.is?(:superadmin)
+      td = resource.decorate.actual_usage
     td.text-center = resource.decorate.created_at
     td = resource.decorate.creator_name
     td.text-center = resource.decorate.updated_at

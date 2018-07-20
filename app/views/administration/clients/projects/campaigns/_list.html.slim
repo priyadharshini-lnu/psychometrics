@@ -8,11 +8,13 @@
           th.text-center colspan='5' = t('.header.sub_campaigns')
         tr
           th = t('.header.name')
-          th = t('.header.actual_usage')
+          - if current_user.is?(:superadmin)
+            th = t('.header.actual_usage')
           th = t('.header.name')
           th = t('.header.tests_allocated')
           th = t('.header.users')
-          th = t('.header.actual_usage')
+          - if current_user.is?(:superadmin)
+            th = t('.header.actual_usage')
           th width='1%' = t('administration.actions')
       / campaign applicable level header
       - else
@@ -22,7 +24,8 @@
           th = t('.header.name')
           th = t('.header.tests_allocated')
           th = t('.header.users')
-          th = t('.header.actual_usage')
+          - if current_user.is?(:superadmin)
+            th = t('.header.actual_usage')
     tbody
       - if resources.present?
         = render partial: 'resource', collection: resources

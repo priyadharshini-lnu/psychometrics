@@ -12,7 +12,8 @@
         th = t('.tte_admin')
         th = t('.project_admin')
         th = t('.url')
-        th = t('.actual_usage')
+        - if current_user.is?(:superadmin)
+          th = t('.actual_usage')
         th.date = link_to_sort resource_class, :created_at, filter_form
         th = t('administration.created_by')
         th.date = link_to_sort resource_class, :updated_at, filter_form
