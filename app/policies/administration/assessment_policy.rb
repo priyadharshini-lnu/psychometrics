@@ -40,7 +40,8 @@ module Administration
 
     def view_report?
       return true if @user.is?(:superadmin)
-      return true if @user.is?(:project_admin, :client_admin) && @record.psychometric? && @user.has_grant?(:assigns, :view)
+      return true if @user.is?(:client_admin) && @user.has_grant?(:assigns, :view)
+      return true if @user.is?(:project_admin) && @record.psychometric? && @user.has_grant?(:assigns, :view)
       return true if @user.is?(:manager) && !@record.psychometric?
       false
     end
