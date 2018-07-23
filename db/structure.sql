@@ -261,7 +261,6 @@ ALTER SEQUENCE public.blocks_id_seq OWNED BY public.blocks.id;
 CREATE TABLE public.bulk_reports (
     id bigint NOT NULL,
     user_id bigint,
-    queue_size integer,
     file character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -3780,6 +3779,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180601084716'),
 ('20180618090010'),
 ('20180619110647'),
-('20180710120413');
+('20180710120413'),
+('20180723121434');
 
 

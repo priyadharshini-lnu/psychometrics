@@ -34,7 +34,6 @@ describe BulkReports::ExportJob do
 
       it "calls 'ExternalReportExport.export'" do
         expect(::Exports::Reports::Pdf::ExternalReportExport).to receive(:export).with(assign, report, assigns_report, user, opts)
-        expect(bulk_report).to receive(:decrement_queue_size)
         described_class.perform_now(params)
       end
     end
@@ -44,7 +43,6 @@ describe BulkReports::ExportJob do
 
       it "calls 'ReportExport.export'" do
         expect(::Exports::Reports::Pdf::ReportExport).to receive(:export).with(current_user, report, user, client, scheme, opts)
-        expect(bulk_report).to receive(:decrement_queue_size)
         described_class.perform_now(params)
       end
     end

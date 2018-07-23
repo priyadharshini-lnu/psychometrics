@@ -4,10 +4,16 @@ module BulkReports
 
     def perform(params)
       items = query(params[:client]).call(params[:client].id, params[:report_ids], params[:start_date], params[:end_date])
-      bulk_report = ::BulkReport.create(user: params[:current_user], queue_size: items.size)
+      return if items.empty?
+
+      bulk_report = ::BulkReport.create(user: params[:current_user])
+      FileUtils.rm_rf(bulk_report.input_dir) if File.directory?(bulk_report.input_dir)
       items.each do |item|
         ::BulkReports::ExportJob.perform_now(job_params(bulk_report, item, params))
       end
+      ::BulkReports::CompressJob.perform_now(bulk_report)
+      BulkReportMailer.notify(bulk_report).deliver_later
+      FileUtils.rm_rf(bulk_report.input_dir)
     end
 
     private
