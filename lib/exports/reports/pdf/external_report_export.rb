@@ -3,11 +3,14 @@ module Exports
     module Pdf
       class ExternalReportExport
         class << self
-          def export(report, user, external_report_path, opts = {})
+          def export(assign, report, assigns_report, user, opts = {})
+            external_report = external_report(assign, assigns_report)
+            return false unless external_report
+
             output_dir = output_dir(user, opts)
             FileUtils.mkdir_p(output_dir)
             output_path = output_path(user, report, output_dir)
-            FileUtils.cp(external_report_path, output_path, verbose: true)
+            copy_external_report(external_report, output_path)
           end
 
           private
@@ -20,6 +23,26 @@ module Exports
           def output_path(user, report, output_dir)
             filename = "#{user.email}_#{report.decorate.display_name}_#{Date.today.strftime('%F')}.pdf"
             output_path = File.join(output_dir, filename)
+          end
+
+          def external_report(assign, assigns_report)
+            mindmill_report = assign.mindmill_report.file
+            hogan_report = assigns_report.external_report.file
+            external_report = mindmill_report || hogan_report
+          end
+
+          def copy_external_report(external_report, output_path)
+            if remote_file?(external_report.url)
+              url = URI(external_report.url)
+              url.scheme = 'http'
+              IO.copy_stream(open(url.to_s), output_path)
+            else
+              FileUtils.cp(external_report.url, output_path)
+            end
+          end
+
+          def remote_file?(url)
+            url.start_with?('//')
           end
         end
       end
