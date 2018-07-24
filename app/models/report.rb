@@ -93,6 +93,10 @@ class Report < ApplicationRecord
     joins(:clients_reports).where.has { clients_reports.client_id.in(client_ids) }
   }
 
+  scope :multiple, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) > 1') }
+  scope :single, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) = 1') }
+
+
   scope :yti_eti, -> { where(type: [YTI_TYPE, ETI_TYPE]) }
 
   def yti_eti?

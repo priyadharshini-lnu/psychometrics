@@ -1,4 +1,4 @@
-- reports = only_assigned_reports(assign.original_or_self, @reports)
+- reports = only_assigned_reports(assign.original_or_self, @reports_ids)
 - if reports.size == 1
   - report = reports.first
   - assigns_report = assign.original_or_self.assigns_reports.find_by(report: report)
