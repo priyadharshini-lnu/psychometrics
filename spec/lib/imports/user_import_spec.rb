@@ -17,7 +17,8 @@ RSpec.describe Imports::UserImport do
         Membership.human_attribute_name('password'),
         Membership.human_attribute_name('role'),
         Membership.human_attribute_name('created_at'),
-        Membership.human_attribute_name('report_ids')
+        Membership.human_attribute_name('report_ids'),
+        Membership.human_attribute_name('user_access')
       ]
     ]
   end
