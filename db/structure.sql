@@ -1484,7 +1484,8 @@ CREATE TABLE public.reports_accesses (
     membership_id bigint,
     user_access boolean NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    assessment_id bigint
 );
 
 
@@ -3015,6 +3016,13 @@ CREATE INDEX index_report_families_reports_on_report_id ON public.report_familie
 
 
 --
+-- Name: index_reports_accesses_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_accesses_on_assessment_id ON public.reports_accesses USING btree (assessment_id);
+
+
+--
 -- Name: index_reports_accesses_on_membership_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3029,10 +3037,10 @@ CREATE INDEX index_reports_accesses_on_report_id ON public.reports_accesses USIN
 
 
 --
--- Name: index_reports_accesses_on_report_id_and_membership_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_reports_accesses_on_report_id_membership_id_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_reports_accesses_on_report_id_and_membership_id ON public.reports_accesses USING btree (report_id, membership_id);
+CREATE UNIQUE INDEX index_reports_accesses_on_report_id_membership_id_assessment_id ON public.reports_accesses USING btree (report_id, membership_id, assessment_id);
 
 
 --
@@ -3253,6 +3261,14 @@ ALTER TABLE ONLY public.ecommerce_purchases
 
 ALTER TABLE ONLY public.memberships
     ADD CONSTRAINT fk_rails_385eeb68ea FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: reports_accesses fk_rails_3a283de8a1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_accesses
+    ADD CONSTRAINT fk_rails_3a283de8a1 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -3780,6 +3796,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180618090010'),
 ('20180619110647'),
 ('20180710120413'),
-('20180723121434');
+('20180723121434'),
+('20180724151241');
 
 
