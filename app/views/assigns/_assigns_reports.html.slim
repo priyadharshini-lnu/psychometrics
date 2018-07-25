@@ -1,0 +1,15 @@
+.panel.panel-default.assign
+  .panel-heading
+    table.table.table-responsive.table-borderless
+      thead
+        tr
+          th = t('.summary_report')
+          th = t('.duration')
+          th = t('.progress')
+          th.text-center = t('.download')
+      tbody
+        - report.assigns_reports.each_with_index do |assigns_report, index|
+          = render 'multiple_report',
+            { assign: assigns_report.assign.assign_with_result, assigns_report: assigns_report,
+              report: report,
+              index: index }

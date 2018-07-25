@@ -29,8 +29,15 @@ class AssignsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i(update)
 
   def index
-    @reports = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.group_by(&:assessment_id)
-    @assigns = policy_scope(Assign).preload(:assessment).order(:id)
+    @reports_ids = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.ids
+    @single_assigns = policy_scope(Assign).preload(:assessment).
+      includes(:single_reports, original_assign: [:single_reports])
+
+    multiple_reports_ids =  multiple_reports_ids(@reports_ids)
+    multiple_assigns_reports = multiple_assigns_reports(current_user, @current_project, multiple_reports_ids)
+
+    @multiple_reports = multiple_reports(multiple_assigns_reports)
+
     @current_membership.set_user_invited_for_current_project
   end
 
@@ -71,5 +78,21 @@ class AssignsController < ApplicationController
   # Authorisation user
   def pundit_authorize
     authorize @assign || Assign
+  end
+
+  def multiple_reports(assigns_reports)
+    assigns_reports.group_by(&:report_id).map do |report_id, group|
+      Facades::Assigns::MultipleReport.new(report_id, group, pundit_user)
+    end
+  end
+
+  def multiple_assigns_reports(user, project, report_ids)
+    AssignsReport.includes(assign: [:membership, :project_assign]).
+      where(assigns: { memberships: { user_id: user.id, client_id: project.subtree_ids } }).
+      where(report_id: report_ids)
+  end
+
+  def multiple_reports_ids(reports_ids)
+    Report.multiple.where(id: reports_ids)
   end
 end
