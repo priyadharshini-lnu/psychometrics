@@ -3,6 +3,7 @@ $(function () {
   $modalBox.modal('hide');
   $modalBox.on('hidden.bs.modal', function () {
 
+    $('a[data-assign-id=<%= resource.assign.id %>][data-report-id=<%= resource.report.id %>]').hide('slow')
     $('#client-tenancy-assign-<%= resource.assign.id %>-report-<%= resource.report.id %>').hide('slow')
     // Notify message
     noty({
