@@ -107,6 +107,14 @@ class Report < ApplicationRecord
     Assessment::TYPES.slice(:mindmill, :hogan).values.include?(assessment.type)
   end
 
+  def multiple?
+    assessments.size > 1
+  end
+
+  def single?
+    assessments.size == 1
+  end
+
   private
 
   def max_assessments_count

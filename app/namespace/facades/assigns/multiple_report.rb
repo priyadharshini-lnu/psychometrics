@@ -10,13 +10,18 @@ module Facades
       end
 
       def show?
-        completed?
+        completed? && user_access?
       end
 
       private
 
       def completed?
-        @assigns_reports.count { |a| a.assign.completed? } == assigns_reports.first.report.assessments.size
+        completed_count = @assigns_reports.count { |a| a.assign.assign_with_result.completed? }
+        completed_count == assigns_reports.first.report.assessments.size
+      end
+
+      def user_access?
+        ::ReportPolicy.new(@pundit_user, assigns_reports.first.report).show?
       end
 
       def uniq_assigns_reports_by_assessment(assigns_reports)

@@ -25,7 +25,7 @@ module Administration
               all
           # TODO: think what should be done if there is a lot of users
           @results = @results.where(membership_id: membership.id) if [8, 82].include?(resource.id)
-          @assign = Assign.find_by(assessment_id: resource.assessment_id, membership_id: membership.id)
+          @assign = Assign.find_by(assessment_id: resource.assessment_ids, membership_id: membership.id)
           @assigns = Assign.where(
             assessment_id: resource.assessment_ids, membership_id: membership.membership_with_result.id
           )
