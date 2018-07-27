@@ -83,6 +83,8 @@ class Assessment < ApplicationRecord
   ### END ASSOCIATIONS
 
   validates :type, presence: true, inclusion: { in: TYPES.values }
+  validates :dimension, absence: true, if: :external?
+  validates :dimension, presence: true, if: :common?
 
   enum category: CATEGORIES
   enum status: STATUSES

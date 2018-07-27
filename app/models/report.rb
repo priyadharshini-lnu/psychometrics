@@ -140,13 +140,12 @@ class Report < ApplicationRecord
   end
 
   def add_factors_aliases(assessment)
-    return if new_record?
+    return if assessment.external? || new_record?
     assessment.dimension.all_factors.each { |factor| factor.aliases.find_or_create_by(report: self) }
   end
 
   def remove_factor_aliases(assessment)
-    dimension = assessment.dimension
-    return if assessments.pluck(:dimension_id).count(dimension.id) > 1
-    FactorsAlias.where(report: self, factor_id: dimension.factor_ids).destroy_all
+    return if assessment.external? || assessments.pluck(:dimension_id).count(assessment.dimension.id) > 1
+    FactorsAlias.where(report: self, factor_id: assessment.dimension.factor_ids).destroy_all
   end
 end
