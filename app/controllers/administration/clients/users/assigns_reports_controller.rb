@@ -12,6 +12,7 @@ module Administration
         end
 
         def update
+          return if resource.assign.assessment.external?
           resource.update!(resource_params)
         rescue ActiveRecord::RecordInvalid => e
           Rails.logger.error(e.message)
