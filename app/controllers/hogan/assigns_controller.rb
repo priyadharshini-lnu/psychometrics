@@ -6,21 +6,25 @@ module Hogan
 
     def results
       @report = Report.find(params[:report_id])
-      assigns_report = @assign.original_or_self.assigns_reports.find_by(report: @report)
 
       result = get_participant_report
       if result.report.present?
-        assigns_report.update(external_report: "data:application/pdf;base64,#{result.report}")
+        assigns_reports.find_each do |assigns_report|
+          assigns_report.update(external_report: "data:application/pdf;base64,#{result.report}")
+        end
         flash[:success] = t('.successfully')
       else
         flash[:error] = t('.not_completed')
       end
 
-      return if assigns_report.hogan_score.present?
+      without_score = assigns_reports.where(hogan_score: {})
+      return if without_score.empty?
 
       result = get_participant_score
       if result.response.present?
-        assigns_report.update(hogan_score: result.response)
+        without_score.find_each do |assigns_report|
+          assigns_report.update(hogan_score: result.response)
+        end
       end
     rescue ActiveRecord::RecordNotFound
       flash[:error] = I18n.t('administration.noty.error_500')
@@ -40,6 +44,19 @@ module Hogan
     end
 
     private
+
+    def assigns_reports
+      @assigns_reports ||=
+        if @current_project.end_level?
+          @assign.original_or_self.assigns_reports.where(report_id: @report.id)
+        else
+          AssignsReport.
+            joins(assign: :project_assign).
+            where(report_id: @report.id).
+            where(assigns: { assessment_id: @assign.assessment.id }).
+            where('project_assigns_assigns.id = ?', @assign.assign_with_result.id)
+        end
+    end
 
     def hogan_params
       @hogan_params ||= {
