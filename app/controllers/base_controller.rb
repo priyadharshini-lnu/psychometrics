@@ -1,6 +1,5 @@
 class BaseController < ActionController::Base
   include Pundit
-  include Authenticate
   include SetLocale
 
   protect_from_forgery with: :exception

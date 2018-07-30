@@ -1,9 +1,5 @@
 module Ecommerce
   class BaseController < ActionController::Base
-    # Authorisation flow
-    #
-    include Authenticate
-
     protect_from_forgery with: :exception
     add_flash_types :notice, :error, :success
     helper_method :current_currency

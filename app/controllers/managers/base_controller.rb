@@ -5,7 +5,6 @@ module Managers
     include Pundit
     ## Prepend :administration namespace to policy
     include Managers::Policies
-    include Authenticate
 
     # Ensuring policies and scopes are used
     after_action :verify_authorized, except: :index

@@ -6,8 +6,6 @@ module Administration
         include Administration::Clients
         # Turn off normally auth
         skip_before_action :authenticate_user!
-        # Turn off browser auth
-        skip_before_action :authenticate
         # Turn on auth by token
         prepend_before_action :authenticate_by_token!
 
