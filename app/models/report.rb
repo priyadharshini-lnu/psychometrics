@@ -115,6 +115,14 @@ class Report < ApplicationRecord
     assessments.size == 1
   end
 
+  def single_dimension?(dimension_id)
+    assessments.pluck(:dimension_id).count(dimension_id) == 1
+  end
+
+  def destroy_dimension_aliases(dimension)
+    FactorsAlias.where(report: self, factor_id: dimension.all_factor_ids).destroy_all
+  end
+
   private
 
   def max_assessments_count
@@ -140,13 +148,12 @@ class Report < ApplicationRecord
   end
 
   def add_factors_aliases(assessment)
-    return if new_record?
+    return if assessment.external? || new_record?
     assessment.dimension.all_factors.each { |factor| factor.aliases.find_or_create_by(report: self) }
   end
 
   def remove_factor_aliases(assessment)
-    dimension = assessment.dimension
-    return if assessments.pluck(:dimension_id).count(dimension.id) > 1
-    FactorsAlias.where(report: self, factor_id: dimension.factor_ids).destroy_all
+    return if assessment.external? || !single_dimension?(assessment.dimension_id)
+    destroy_dimension_aliases(assessment.dimension)
   end
 end

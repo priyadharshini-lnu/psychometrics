@@ -28,11 +28,10 @@ class Factor < ApplicationRecord
   validates :name, :dimension, presence: true
   validates :name, length: { maximum: 100 }, allow_blank: true
 
-  # For deep clone from dimension
-  before_validation :set_dimension_id, if: proc { dimension_id.nil? && parent }
   before_create :increment_factors
   before_destroy :decrement_factors
   after_update ::Callbacks::Models::Factors::UpdateAliases.new
+  after_create :create_aliases
   mount_uploader :icon, ImageUploader
 
   # norm types constant
@@ -104,5 +103,12 @@ class Factor < ApplicationRecord
 
   def decrement_factors
     dimension.decrement!(:factors_count) if parent_id.nil?
+  end
+
+  def create_aliases
+    existing_reports = Report.joins(:assessments).distinct.where(assessments: { dimension_id: dimension.id })
+    existing_reports.find_each do |report|
+      FactorsAlias.create(report: report, factor: self)
+    end
   end
 end

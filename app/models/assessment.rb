@@ -79,10 +79,13 @@ class Assessment < ApplicationRecord
   has_one :hogan_assessment_setting
   accepts_nested_attributes_for :hogan_assessment_setting
   before_save :delete_hogan_assessment_setting
+  before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
   #
   ### END ASSOCIATIONS
 
   validates :type, presence: true, inclusion: { in: TYPES.values }
+  validates :dimension, absence: true, if: :external?
+  validates :dimension, presence: true, if: :common?
 
   enum category: CATEGORIES
   enum status: STATUSES
