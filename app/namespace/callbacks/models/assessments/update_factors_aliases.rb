@@ -5,7 +5,7 @@ module Callbacks
         def before_update(assessment)
           return if dimension_not_changed?(assessment)
           previous_dimension_id, current_dimension_id = assessment.changes['dimension_id']
-          assessment.reports.each do |report|
+          assessment.reports.find_each do |report|
             if report.single_dimension?(previous_dimension_id)
               report.destroy_dimension_aliases(Dimension.find(previous_dimension_id))
             end
