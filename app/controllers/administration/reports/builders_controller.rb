@@ -16,7 +16,7 @@ module Administration
       private
 
       def set_assessment
-        @report = policy_scope(::Report).find(params[:report_id])
+        @report = policy_scope(::Report).includes(pages: [:modules]).find(params[:report_id])
       end
 
       # Authorisation user

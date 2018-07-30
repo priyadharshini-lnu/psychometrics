@@ -2,11 +2,8 @@ module Administration
   class ReportsController < Administration::BaseController
     # Turn off normally auth
     skip_before_action :authenticate_user!
-    # Turn off browser auth
-    skip_before_action :authenticate, only: [:preview]
     # Turn on auth by token
     prepend_before_action :authenticate_user_from_token!
-    before_action :authenticate, except: [:preview]
 
     prepend_before_action :set_resource_class
     before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :preview]

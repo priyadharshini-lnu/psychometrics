@@ -13,7 +13,7 @@
 
 class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations,
-             :dimension_ids
+             :dimension_ids, :completed_assessments
 
   has_many :pages, serializer: Reports::PageSerializer
   has_many :filters, serializer: Reports::FilterSerializer
@@ -73,5 +73,10 @@ class ReportSerializer < ActiveModel::Serializer
 
   def dimension_ids
     object.dimension_ids
+  end
+
+  def completed_assessments
+    return object.assessment_ids unless @instance_options[:assigns]
+    @instance_options[:assigns].select { |assign| assign.completed? }.map(&:assessment_id)
   end
 end

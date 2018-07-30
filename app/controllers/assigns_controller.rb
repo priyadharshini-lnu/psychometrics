@@ -93,6 +93,6 @@ class AssignsController < ApplicationController
   end
 
   def multiple_reports_ids(reports_ids)
-    Report.multiple.where(id: reports_ids)
+    Report.multiple.where(id: reports_ids).ids
   end
 end
