@@ -26,6 +26,7 @@ class Assign < ApplicationRecord
   has_one :user, through: :membership
   belongs_to :project_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'
+  has_many :original_assigns, foreign_key: :project_assign_id, class_name: 'Assign'
 
   has_many :assigns_reports # on delete cascade
   has_many :enabled_assigns_reports, -> { includes(:report).where(reports: { disabled: false }) },

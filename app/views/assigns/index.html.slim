@@ -9,8 +9,9 @@
           h3.assessmentTitles = t("activerecord.attributes.assessment.categories.#{dashboard_category}")
           .panel-group.assessments-holder id="assessments-#{dashboard_category}" role="tablist" aria-multiselectable="true"
             - assigns.each do |assign|
-              = render partial: 'assign',
-                       locals: { assign: assign, in_progress_assign: assign.assessment.category == 'mindmill' && assigns.detect(&:in_progress?) }
+              - if show_single_assign?(assign)
+                = render partial: 'assign',
+                         locals: { assign: assign, in_progress_assign: assign.assessment.category == 'mindmill' && assigns.detect(&:in_progress?) }
       - if @multiple_reports.present?
         h3.assessmentTitles Multiple assessments
         .panel-group.assessments-holder id="assessments-multiple" role="tablist" aria-multiselectable="true"
