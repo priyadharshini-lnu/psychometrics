@@ -6,9 +6,9 @@
         = assign_form.association :assessment, label: t('.assessment'), disabled: true
       = f.association :report, disabled: true
 
-      = f.label t('.user_access.access'), class: 'resource_user_access'
-      = f.input :user_access, as: :boolean, label: t('.user_access.user'),
-        disabled: resource.assign.assessment.external?
+      - unless resource.assign.assessment.external?
+        = f.label t('.user_access.access'), class: 'resource_user_access'
+        = f.input :user_access, as: :boolean, label: t('.user_access.user')
 
   .modal-footer
     - if policy(resource).destroy?
