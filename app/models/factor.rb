@@ -32,6 +32,8 @@ class Factor < ApplicationRecord
   before_destroy :decrement_factors
   after_update ::Callbacks::Models::Factors::UpdateAliases.new
   after_create :create_aliases
+  after_destroy ::Callbacks::Models::Factors::DestroyFactorSource.new
+
   mount_uploader :icon, ImageUploader
 
   # norm types constant
