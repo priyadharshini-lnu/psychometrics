@@ -80,7 +80,8 @@ CREATE TABLE public.assessments (
     status integer,
     owner_id integer,
     type character varying,
-    mindmill_id integer
+    mindmill_id integer,
+    enable_back boolean DEFAULT false NOT NULL
 );
 
 
@@ -3797,6 +3798,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180619110647'),
 ('20180710120413'),
 ('20180723121434'),
-('20180724151241');
+('20180724151241'),
+('20180731094932');
 
 
