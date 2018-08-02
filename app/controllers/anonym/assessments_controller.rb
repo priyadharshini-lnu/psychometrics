@@ -8,8 +8,7 @@ module Anonym
 
     prepend_before_action :set_client
     before_action :set_assessment
-    before_action :create_anonym_user, unless: :user_signed_in?
-    append_before_action :authenticate_user!
+    before_action :create_anonym_user
 
     def pass
       @translations = ::Translation.to_hash_for_assessment(@resource.id, user_locale)
@@ -47,12 +46,9 @@ module Anonym
           client_id: @client.id
         }]
       })
-      bypass_sign_in(user) if user.save
-    end
-
-    def authenticate_user!
-      super
-      @current_membership = @current_user.memberships.first
+      return unless user.save
+      bypass_sign_in(user)
+      @current_membership = user.memberships.first
     end
   end
 end
