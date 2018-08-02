@@ -39,7 +39,7 @@ class ReportSerializer < ActiveModel::Serializer
       group.map do |obj|
         ::Factors::WithoutSubFactorsSerializer.new(obj, assessment_id: object_assessment_ids,
                                                         report_id: object.id,
-                                                        alias: aliases[obj.id].first)
+                                                        alias: aliases[obj.id]&.first)
       end
     end
   end
