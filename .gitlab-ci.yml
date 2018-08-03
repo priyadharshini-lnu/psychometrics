@@ -22,6 +22,7 @@ before_script:
 
 test:
   script:
+  - bundle config github.https true
   - cp config/database.ci.yml config/database.yml
   - cp config/secrets.ci.yml config/secrets.yml
   - cp config/application.sample.yml  config/application.yml 
