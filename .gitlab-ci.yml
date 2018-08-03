@@ -28,3 +28,4 @@ test:
   - bundle install --without development
   - bundle exec rake db:create db:schema:load RAILS_ENV=test
   - bundle exec rspec
+  - pkill Xvfb
