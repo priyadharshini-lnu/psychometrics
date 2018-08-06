@@ -1,12 +1,13 @@
 module Administration
   module Reports
     class BuildersController < Administration::BaseController
-      before_action :set_assessment
+      before_action :set_report
       append_before_action :pundit_authorize
 
       def update
         builder = ::Builders::ReportBuilder.new(@report, params.require(:builder), current_user)
         if builder.save
+          @report = Report.includes(pages: [:modules]).find(@report.id)
           render json: { data: ReportSerializer.new(@report).to_hash(include: '**') }
         else
           render json: { error: true }, status: 400
@@ -15,8 +16,8 @@ module Administration
 
       private
 
-      def set_assessment
-        @report = policy_scope(::Report).includes(pages: [:modules]).find(params[:report_id])
+      def set_report
+        @report = policy_scope(::Report).find(params[:report_id])
       end
 
       # Authorisation user
