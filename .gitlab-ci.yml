@@ -1,12 +1,14 @@
 image: circleci/ruby:2.5.1-node-browsers
 
 services:
-  - mdillon/postgis:latest
+  - postgres:latest
   - redis:latest
 
-variables:
-  POSTGRES_USER: postgres
-  
+cache:
+  key: psychometrics-cache-key
+  paths:
+  - vendor/ruby
+
 before_script:
   # install ssh-agent
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
@@ -19,14 +21,17 @@ before_script:
   - mkdir -p ~/.ssh
   - echo -e "Host *\n\tStrictHostKeyChecking no\n\n" > ~/.ssh/config
   - ssh-keyscan 'github.com' >> ~/.ssh/known_hosts
+  - export RAILS_ENV=test
 
 test:
   script:
   - bundle config github.https true
   - cp config/database.ci.yml config/database.yml
   - cp config/secrets.ci.yml config/secrets.yml
-  - cp config/application.sample.yml  config/application.yml 
-  - bundle install --without development
-  - bundle exec rake db:create db:schema:load RAILS_ENV=test
+  - cp config/application.sample.yml  config/application.yml
+  - bundle install -j $(nproc) --path vendor  --without development # Install dependencies into ./vendor/ruby
+  - sudo apt update && sudo apt install postgresql-client
+  - bundle exec rake db:create
+  - bundle exec rake db:structure:load
   - bundle exec rspec
   - pkill Xvfb
