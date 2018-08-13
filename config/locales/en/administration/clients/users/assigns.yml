@@ -9,6 +9,8 @@ en:
               access: 'Reports access'
               user: 'User'
               preserve_user_access: 'Apply access settings only for the newly added report'
+            multiple_report_message: The report has data from multiple assessments. To provide an access to the user to
+              download the results you should assign all assessments linked to the report.
           new:
             header: Assign Assessment and Reports
           index:
