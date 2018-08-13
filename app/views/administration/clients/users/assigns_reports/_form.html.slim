@@ -9,7 +9,8 @@
       - unless resource.assign.assessment.external?
         = f.label t('.user_access.access'), class: 'resource_user_access'
         = f.input :user_access, as: :boolean, label: t('.user_access.user')
-
+      - if resource.report.multiple?
+        p.text-danger = t('.multiple_report_message')
   .modal-footer
     - if policy(resource).destroy?
       = link_to t('.detach'), administration_client_user_assigns_report_path(client, membership, resource),

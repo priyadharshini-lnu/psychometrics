@@ -19,6 +19,7 @@
       = f.input :preserve_user_access, as: :boolean, label: t('.user_access.preserve_user_access'),
                 class: 'resource_preserve_user_access hidden', input_html: { checked: 'checked', disabled: 'disabled' },
                 label_html: { class: 'disabled' }
+      p.text-danger *{data: { behavior: 'multiple-report-message' }} = t('.multiple_report_message')
 
   .modal-footer
     .btn-group

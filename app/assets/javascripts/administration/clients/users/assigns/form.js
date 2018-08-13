@@ -31,7 +31,15 @@ function AssignsForm () {
 
   this.onResourceReportChange = function(event) {
     var selectedAssessment = $('#assigns_form #resource_assessment_id option:selected')
+    var $selectedReports = $('#assigns_form #resource_report_ids option:selected:not([disabled])');
     var reportIsSelected = $('#assigns_form #resource_report_ids option:selected').length
+    var $multipleMessage = $('[data-behavior~=multiple-report-message]');
+    if ($selectedReports.data('multiple')) {
+      $multipleMessage.show();
+    } else {
+      $multipleMessage.hide();
+    }
+
     var assessmentIsPsychometric = selectedAssessment.data('psychometric')
     if(assessmentIsPsychometric && reportIsSelected) {
       $('#assigns_form .resource_user_access').find(':checkbox').prop('checked', true)

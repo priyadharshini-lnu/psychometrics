@@ -9,6 +9,8 @@ en:
               access: 'Reports access'
               user: 'User'
             detach: Detach
+            multiple_report_message: The report has data from multiple assessments. To provide an access to the user to
+              download the results you should assign all assessments linked to the report.
           update:
             successfully: Successfully Updated
     assigns_reports:
