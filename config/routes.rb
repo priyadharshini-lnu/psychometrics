@@ -356,7 +356,7 @@ Rails.application.routes.draw do
              singular: :user,
              to: 'User',
              class_name: 'User',
-             controllers: { registrations: 'users/registrations', invitations: 'users/invitations' }
+             controllers: { registrations: 'users/registrations', invitations: 'users/invitations', passwords: 'passwords' }
   # Manager's panel
   #
   constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
