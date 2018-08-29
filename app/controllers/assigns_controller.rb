@@ -66,6 +66,8 @@ class AssignsController < ApplicationController
 
   def set_assign
     @assign = policy_scope(Assign).where.not(status: :completed).find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to(action: :index)
   end
 
   def resource_params
