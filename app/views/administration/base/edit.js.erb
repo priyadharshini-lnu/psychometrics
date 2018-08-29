@@ -1,9 +1,10 @@
 $(function () {
   var $modalContainer = $('#modal-container');
-  if ($modalContainer.html().length)
-    return;
 
   <% if resource.errors.empty? %>
+    if ($modalContainer.html().length)
+      return;
+
     $modalContainer.html('<%= j render(partial: 'modal', locals: { header: t("administration.#{i18n || resource_class.model_name.plural}.edit.header") }) %>');
     var $modalBox = $modalContainer.find(".modal");
 
