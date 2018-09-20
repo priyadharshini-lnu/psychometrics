@@ -25,7 +25,7 @@ function AssignsForm () {
   }
 
   this.onResourceAssessmentChange = function(event) {
-    $('#assigns_form .resource_user_access').addClass('hidden').find(':checkbox').prop('disabled', true).addClass('disabled')
+    $('#assigns_form .resource_user_access').addClass('hidden').find(':checkbox').addClass('disabled')
     $('#assigns_form .resource_preserve_user_access').addClass('hidden')
   }
 
@@ -41,15 +41,15 @@ function AssignsForm () {
     }
 
     var assessmentIsPsychometric = selectedAssessment.data('psychometric')
-    if(assessmentIsPsychometric && reportIsSelected) {
+    if(reportIsSelected) {
       $('#assigns_form .resource_user_access').find(':checkbox').prop('checked', true)
       $('#assigns_form .resource_user_access').removeClass('hidden').find(':checkbox').prop('disabled', false).removeClass('disabled')
     } else {
-      $('#assigns_form .resource_user_access').addClass('hidden').find(':checkbox').prop('disabled', true).addClass('disabled')
+      $('#assigns_form .resource_user_access').addClass('hidden').find(':checkbox').addClass('disabled')
     }
 
     var reportIsPreselected = $('#resource_report_ids option:selected:disabled').length
-    if(assessmentIsPsychometric && reportIsPreselected) {
+    if(reportIsPreselected) {
       $('#assigns_form .resource_preserve_user_access').removeClass('hidden')
     } else {
       $('#assigns_form .resource_preserve_user_access').addClass('hidden')

@@ -6,9 +6,8 @@
         = assign_form.association :assessment, label: t('.assessment'), disabled: true
       = f.association :report, disabled: true
 
-      - unless resource.assign.assessment.external?
-        = f.label t('.user_access.access'), class: 'resource_user_access'
-        = f.input :user_access, as: :boolean, label: t('.user_access.user')
+      = f.label t('.user_access.access'), class: 'resource_user_access'
+      = f.input :user_access, as: :boolean, label: t('.user_access.user')
       - if resource.report.multiple?
         p.text-danger = t('.multiple_report_message')
   .modal-footer
