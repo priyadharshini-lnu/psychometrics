@@ -73,7 +73,7 @@ gem 'annotate', '~> 2.7.0', github: 'ctran/annotate_models'
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
-gem 'psychometrics-survey', git: 'git@gitlab-ssh.sumatosoft.com:psychometrics/psychometrics-survey.git'
+gem 'psychometrics-survey', git: 'git@gitlab.com:tte-lighthouse/psychometrics-survey.git'
 ### XLS import
 gem 'rubyXL'
 gem 'file_validators',            '~> 2.1.0'

@@ -1,7 +1,7 @@
 Airbrake.configure do |config|
-  config.host = 'https://errbit.sumatosoft.com'
-  config.project_id = -1
-  config.project_key = 'f0d332349d4336fd319efebbcacf97a5'
+  config.host = 'https://errbit.dokku.shabandri.com'
+  config.project_id = 1
+  config.project_key = 'bc509628ae8271e7cfa63778a922d2d1'
 
   # Uncomment for Rails apps
   config.environment = Rails.env

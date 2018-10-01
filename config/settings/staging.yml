@@ -1,5 +1,5 @@
-domain: psychometrics.demo.sumatosoft.com # psychometrics.co.uk
-subdomain: psychometrics.demo # subdomain
+domain: staging.tte-lighthouse.com # psychometrics.co.uk
+subdomain: staging # subdomain
 port: 80
 hogan:
   - name: HPI
