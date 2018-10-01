@@ -415,7 +415,7 @@ Rails.application.routes.draw do
     # - Use & (do not use &&) so that it doesn't short circuit.
     # - Use `secure_compare` to stop length information leaking
     ActiveSupport::SecurityUtils.secure_compare(username, 'staging') &
-        ActiveSupport::SecurityUtils.secure_compare(password, 'sumatosoft')
+        ActiveSupport::SecurityUtils.secure_compare(password, 'tte')
   end if Rails.env.production?
   mount Sidekiq::Web, at: '/sidekiq'
 

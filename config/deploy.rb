@@ -2,7 +2,7 @@
 lock '3.6.0'
 
 set :application, 'Psychometrics'
-set :repo_url, 'git@gitlab-ssh.sumatosoft.com:psychometrics/psychometrics.git'
+set :repo_url, 'git@gitlab.com:tte-lighthouse/psychometrics.git'
 
 # Default branch is :master
 # ask :branch, `git rev-parse --abbrev-ref HEAD`.chomp
