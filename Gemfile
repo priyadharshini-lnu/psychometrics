@@ -67,7 +67,7 @@ gem 'i18n-js',                    '~> 3.0.0.rc3'
 gem 'activemodel-serializers-xml'
 gem 'draper',                     '~> 3.0.0'
 ### Generate schema in each model
-gem 'annotate', '~> 2.7.0', github: 'ctran/annotate_models'
+gem 'annotate', '~> 2.7.0', git: 'git@github.com:ctran/annotate_models.git'
 
 ### For organisation ENV variable
 gem 'figaro',                     '~> 1.1.1'
@@ -87,7 +87,7 @@ gem 'redis'
 gem 'ckeditor'
 
 ### dependencies for XLS export (via templates)
-gem 'axlsx', github: 'randym/axlsx', ref: 'c8ac844'
+gem 'axlsx', git: 'git@github.com:randym/axlsx', ref: 'c8ac844'
 gem 'axlsx_rails', '~> 0.4.0'
 gem 'roo', '~> 2.4.0'
 

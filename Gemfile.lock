@@ -1,5 +1,5 @@
 GIT
-  remote: git://github.com/ctran/annotate_models.git
+  remote: git@github.com:ctran/annotate_models.git
   revision: 89bce57f2888babd9a620ae7772b5df02ee97516
   specs:
     annotate (2.7.3)
@@ -7,7 +7,7 @@ GIT
       rake (>= 10.4, < 13.0)
 
 GIT
-  remote: git://github.com/randym/axlsx.git
+  remote: git@github.com:randym/axlsx
   revision: c8ac844572b25fda358cc01d2104720c4c42f450
   ref: c8ac844
   specs:
@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: git@gitlab.com:tte-lighthouse/psychometrics-survey.git
-  revision: 84c12a951f4dedf387d317dff46020fcbde4f965
+  revision: e8222953369a5f300ae31baf9d8d82009a7f84fa
   specs:
     psychometrics-survey (0.0.1)
       railties (~> 5.0)
