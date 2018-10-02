@@ -90,6 +90,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key_career_tracks": "Key Career Tracks",
         "name": "Name",
         "potential_areas_of_study": "Potential Areas of Study",
+        "work_environment": "Work Environment",
         "updated_at": "Modified Date"
       },
       "occupations_factor": {

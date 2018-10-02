@@ -1182,7 +1182,12 @@ CREATE TABLE public.occupations (
     key_career_tracks text,
     high_school_entry_roles text,
     diploma_qualification text,
-    bachelors_or_masters_qualification text
+    bachelors_or_masters_qualification text,
+    work_environment text,
+    color character varying,
+    alternative_icon character varying,
+    indicative_roles_image character varying,
+    key_career_tracks_image character varying
 );
 
 
@@ -3799,6 +3804,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180710120413'),
 ('20180723121434'),
 ('20180724151241'),
-('20180731094932');
+('20180731094932'),
+('20180915101319');
 
 
