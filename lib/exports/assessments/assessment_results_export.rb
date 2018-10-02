@@ -52,6 +52,7 @@ module Exports
               end
 
               norm_data = export_norm(assign.norm_data)
+              user_results_flattened = user_results.map { |a| a == [] ? '' : a }.flatten
 
               sheet.add_row [assign.encode_id,
                              assign.user_name,
@@ -60,7 +61,7 @@ module Exports
                              assign.completed_at.try(:strftime, '%D %r'),
                              norm_data,
                              I18n.t("activerecord.attributes.assign.statuses.#{assign.status}"),
-                             *user_results.flatten]
+                             *user_results_flattened]
             end
           end
         end
