@@ -13,6 +13,10 @@ class ReportDecorator < BaseDecorator
     object.report_families.present? ? object.report_families.distinct.map{|rf| rf.decorate.display_name}.join('<br>').html_safe : ''
   end
 
+  def assessments_names
+    assessments.map { |assessment| assessment&.decorate&.display_name }.join(', ')
+  end
+
   def detach_confirmation
     {
       title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.detach.title", name: display_name),

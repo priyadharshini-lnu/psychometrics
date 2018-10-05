@@ -20,8 +20,4 @@ $(function () {
     }
     init();
     $(document).on('initEditable', init);
-
-    $(document).on('norm:updated', function() {
-        location.reload();
-    });
 });

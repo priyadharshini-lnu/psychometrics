@@ -15,10 +15,11 @@ module Imports
       password: Membership.human_attribute_name('password'),
       role: Membership.human_attribute_name('role'),
       created_at: Membership.human_attribute_name('created_at'),
-      report_ids: Membership.human_attribute_name('report_ids')
+      report_ids: Membership.human_attribute_name('report_ids'),
+      user_access: Membership.human_attribute_name('user_access')
     }.freeze
 
-    HEADER_IMPORT_KEYS = %i(first_name last_name password email role report_ids).freeze
+    HEADER_IMPORT_KEYS = %i(first_name last_name password email role report_ids user_access).freeze
 
     # Authorisation flow
     #
@@ -76,7 +77,8 @@ module Imports
 
       rows.map do |row|
         attributes = HEADER_IMPORT_KEYS.inject({}) { |h, k| h.merge(k => row[header.index(HEADER_IMPORT_DATA[k])]) }
-        report_ids = attributes.delete(:report_ids)
+        report_ids = attributes.delete(:report_ids).to_s.split(',').map(&:to_i)
+        user_access_ids = attributes.delete(:user_access).to_s.split(',').map(&:to_i)
 
         memberships_attributes = {
           role: USER_ROLES_MAPS[attributes.delete(:role)],
@@ -96,14 +98,12 @@ module Imports
         membership = user.memberships.find_or_initialize_by(client_id: client.id)
         membership.assign_attributes(memberships_attributes)
 
-        if report_ids
-          report_ids = client.report_ids & report_ids.split(',').map(&:to_i)
-          reports_hash = Report.where(id: report_ids).includes(:assessment).group_by(&:assessment_id)
-          reports_hash.each do |assessment_id, report_arr|
-            assign = membership.assigns.find_or_initialize_by(assessment_id: assessment_id)
-            assign.report_ids = report_arr.map(&:id)
-          end
+        membership.assigns.each do |assign|
+          assign.report_ids = membership.client.report_ids & assign.assessment.report_ids & report_ids
         end
+
+        set_user_access(user_access_ids, membership)
+
         membership
       end
 
@@ -127,6 +127,23 @@ module Imports
     end
 
     private
+
+    def set_user_access(user_access_ids, membership)
+      report_ids = membership.reports.reject { |r| r.external_report? }.map(&:id)
+      assigns_reports = AssignsReport.joins(assign: :membership).where('memberships.id = ?', membership.id)
+
+      add_access_ids = report_ids & user_access_ids
+      update_assigns_reports(assigns_reports, add_access_ids, true)
+
+      remove_access_ids = report_ids - user_access_ids
+      update_assigns_reports(assigns_reports, remove_access_ids, false)
+    end
+
+    def update_assigns_reports(assigns_reports, report_ids, access)
+      assigns_reports.where(report_id: report_ids).each do |assigns_report|
+        assigns_report.update(user_access: access)
+      end
+    end
 
     def assign_password(user, attributes, memberships_attributes)
       password = attributes.delete(:password)

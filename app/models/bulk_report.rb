@@ -1,18 +1,7 @@
 class BulkReport < ApplicationRecord
   belongs_to :user
 
-  after_save :compress, if: proc { |report| report.queue_size.zero? }
-
   mount_uploader :file, BulkReportUploader
-
-  def decrement_queue_size
-    with_lock do
-      if queue_size
-        decrement(:queue_size)
-        save
-      end
-    end
-  end
 
   def input_dir
     Rails.root.join('tmp', 'bulk_reports', id.to_s).to_s
@@ -20,11 +9,6 @@ class BulkReport < ApplicationRecord
 
   def output_file
     "bulk_reports_#{Date.today.strftime('%F')}.zip"
-  end
-
-  def compress
-    BulkReports::CompressJob.perform_later(self)
-    decrement_queue_size
   end
 
   def expiration_date

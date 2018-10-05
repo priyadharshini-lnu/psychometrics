@@ -1,22 +1,13 @@
 GIT
-  remote: git@github.com:SumatoSoft/psychometrics-survey.git
-  revision: cedf6cec5aa0cce83270b44f113db55ed319949f
-  branch: production
+  remote: git@github.com:ctran/annotate_models.git
+  revision: 89bce57f2888babd9a620ae7772b5df02ee97516
   specs:
-    psychometrics-survey (0.0.1)
-      railties (~> 5.0)
-      thor (>= 0.14, < 2.0)
-
-GIT
-  remote: https://github.com/ctran/annotate_models.git
-  revision: 5f37a974f3dff68f92b3495115f1399e7db5c584
-  specs:
-    annotate (2.7.2)
+    annotate (2.7.3)
       activerecord (>= 3.2, < 6.0)
       rake (>= 10.4, < 13.0)
 
 GIT
-  remote: https://github.com/randym/axlsx.git
+  remote: git@github.com:randym/axlsx
   revision: c8ac844572b25fda358cc01d2104720c4c42f450
   ref: c8ac844
   specs:
@@ -25,6 +16,14 @@ GIT
       mimemagic (~> 0.3)
       nokogiri (>= 1.6.6)
       rubyzip (>= 1.2.1)
+
+GIT
+  remote: git@gitlab.com:tte-lighthouse/psychometrics-survey.git
+  revision: e8222953369a5f300ae31baf9d8d82009a7f84fa
+  specs:
+    psychometrics-survey (0.0.1)
+      railties (~> 5.0)
+      thor (>= 0.14, < 2.0)
 
 GEM
   remote: https://rubygems.org/
@@ -101,6 +100,7 @@ GEM
       encryptor (~> 3.0.0)
     autoprefixer-rails (6.4.0.3)
       execjs
+    awesome_print (1.8.0)
     axiom-types (0.1.1)
       descendants_tracker (~> 0.0.4)
       ice_nine (~> 0.11.0)
@@ -204,7 +204,7 @@ GEM
       deep_merge (~> 1.0, >= 1.0.1)
     connection_pool (2.2.1)
     crass (1.0.4)
-    database_cleaner (1.5.3)
+    database_cleaner (1.7.0)
     date_validator (0.9.0)
       activemodel
       activesupport
@@ -441,7 +441,7 @@ GEM
     rack (2.0.5)
     rack-protection (2.0.1)
       rack
-    rack-test (1.0.0)
+    rack-test (1.1.0)
       rack (>= 1.0, < 3)
     rack-timeout (0.4.2)
     rails (5.1.6)
@@ -685,6 +685,7 @@ DEPENDENCIES
   ancestry
   annotate (~> 2.7.0)!
   attr_encrypted (~> 3.1.0)
+  awesome_print (~> 1.8.0)
   axlsx!
   axlsx_rails (~> 0.4.0)
   baby_squeel (~> 1.0.1)
@@ -712,7 +713,7 @@ DEPENDENCIES
   cocoon (= 1.2.9)
   coffee-rails (~> 4.2)
   config (~> 1.2.1)
-  database_cleaner (~> 1.5.3)
+  database_cleaner (~> 1.7.0)
   date_validator (~> 0.9.0)
   debugger2
   deep_cloneable (~> 2.2.1)
@@ -801,4 +802,4 @@ DEPENDENCIES
   whenever (~> 0.9.7)
 
 BUNDLED WITH
-   1.16.1
+   1.16.2

@@ -1,6 +1,9 @@
 domain: lvh.me # psychometrics.co.uk
 subdomain:  # subdomain
 port: 3030
+react_dev:
+  reports: false # set true if you are running npm server
+  assessments: false # set true if you are running npm server
 hogan:
   - name: HPI
     assessment_id: HPI

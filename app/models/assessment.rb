@@ -63,8 +63,10 @@ class Assessment < ApplicationRecord
   has_many :factors_scoring, dependent: :destroy
   has_many :factors, through: :factors_scoring
 
+  has_many :assessments_reports
+  has_many :reports, through: :assessments_reports
+
   # HABTM Report Families
-  has_many :reports, dependent: :destroy
   has_many :report_families, through: :reports
 
   # HABTM Memberships
@@ -77,10 +79,13 @@ class Assessment < ApplicationRecord
   has_one :hogan_assessment_setting
   accepts_nested_attributes_for :hogan_assessment_setting
   before_save :delete_hogan_assessment_setting
+  before_update ::Callbacks::Models::Assessments::UpdateFactorsAliases.new
   #
   ### END ASSOCIATIONS
 
   validates :type, presence: true, inclusion: { in: TYPES.values }
+  validates :dimension, absence: true, if: :external?
+  validates :dimension, presence: true, if: :common?
 
   enum category: CATEGORIES
   enum status: STATUSES

@@ -56,16 +56,19 @@ class Membership < ApplicationRecord
   has_one :original_membership, foreign_key: :project_membership_id, class_name: 'Membership'
   has_one :hogan_credential
 
+  has_many :reports_accesses
+  has_many :accessible_reports, -> { where('reports_accesses.user_access = ?', true) }, through: :reports_accesses, source: :report
+
   validates :client, :user, presence: true
   validates :client_id, uniqueness: { scope: [:user_id, :role] }
   validates :role, inclusion: { in: MEMBERSHIP_ROLES }, presence: true
-  validate :relevant_role, if: 'client.present?'
-  validate :client_admin_scope, if: 'project_admin?'
+  validate :relevant_role, if: -> { client.present? }
+  validate :client_admin_scope, if: -> { project_admin? }
 
-  before_save :set_project_membership, if: 'client.end_level?'
+  before_save :set_project_membership, if: -> { client.end_level? }
   after_create_commit :create_invitation_emails
   after_create_commit :create_other_emails
-  after_destroy :clear_project_membership, if: 'client.end_level?'
+  after_destroy :clear_project_membership, if: -> { client.end_level? }
 
   has_ancestry
 

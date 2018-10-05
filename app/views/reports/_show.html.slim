@@ -1,13 +1,14 @@
-#report_preview.html_preview[data-user="#{Reports::UserSerializer.new(@current_membership, assign: @assign).to_json}"
-  data-results="#{(@results.map { |a| AssignSerializer.new(a, membership: @current_membership) }).to_json}"
-  data-data="#{ReportSerializer.new(@resource, membership: @current_membership).to_json(include: '**')}"
+#report_preview.html_preview[data-user="#{Reports::UserSerializer.new(@current_membership, assign: @assign, assigns: @assigns).to_json}"
+  data-results="#{Facades::Reports::SerializedResults.new(@results, @current_membership).results}"
+  data-data="#{ReportSerializer.new(@resource, membership: @current_membership, assigns: @assigns).to_json(include: '**')}"
   data-locales=@translations.to_json]
   - if params[:export]
     = javascript_include_tag :psychometrics_pdf_vendor
     = javascript_include_tag :psychometrics_pdf_app
+  - elsif Settings.react_dev.reports
+    / for debug
+    = javascript_include_tag 'http://localhost:3000/psychometrics_reports_vendor.js'
+    = javascript_include_tag 'http://localhost:3000/psychometrics_reports_preview.js'
   - else
     = javascript_include_tag :psychometrics_reports_vendor
     = javascript_include_tag :psychometrics_reports_preview
-    / for debug
-    /= javascript_include_tag 'http://localhost:3000/psychometrics_reports_vendor.js'
-    /= javascript_include_tag 'http://localhost:3000/psychometrics_reports_preview.js'

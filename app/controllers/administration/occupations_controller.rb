@@ -73,7 +73,9 @@ module Administration
     def resource_params
       params.require(:resource).permit(:name, :description, :full_description, :potential_areas_of_study, :key_career_tracks,
                                        :high_school_entry_roles, :diploma_qualification, :bachelors_or_masters_qualification,
-                                       :icon, :remove_icon)
+                                       :icon, :remove_icon, :work_environment, :alternative_icon, :remove_alternative_icon,
+                                       :indicative_roles_image, :remove_indicative_roles_image, :key_career_tracks_image,
+                                       :remove_key_career_tracks_image, :color)
     end
   end
 end

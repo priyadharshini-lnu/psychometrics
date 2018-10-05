@@ -5,6 +5,9 @@
 #  id                                 :integer          not null, primary key
 #  name                               :string
 #  icon                               :string
+#  alternative_icon                   :string
+#  indicative_roles_image             :string
+#  key_career_tracks_image            :string
 #  description                        :text
 #  dimension_id                       :integer
 #  created_at                         :datetime         not null
@@ -15,6 +18,7 @@
 #  high_school_entry_roles            :text
 #  diploma_qualification              :text
 #  bachelors_or_masters_qualification :text
+#  work_environment                   :text
 #
 
 class Occupation < ApplicationRecord
@@ -24,5 +28,8 @@ class Occupation < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
+  mount_uploader :alternative_icon, ImageUploader
   mount_uploader :icon, ImageUploader
+  mount_uploader :indicative_roles_image, ImageUploader
+  mount_uploader :key_career_tracks_image, ImageUploader
 end

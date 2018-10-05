@@ -42,21 +42,21 @@ module Queries
         end
 
         def without_norm_data
-          @relation.where('project_assigns_assigns.norm_data is NULL').
-          or(@relation.where("project_assigns_assigns.norm_data->>'type' is NULL"))
+          @relation.where('assigns.norm_data is NULL').
+            or(@relation.where("assigns.norm_data->>'type' is NULL"))
         end
 
         def with_norm_data
-          @relation.where('project_assigns_assigns.norm_data is NOT NULL').
-            where("project_assigns_assigns.norm_data->>'type' is NOT NULL")
+          @relation.where('assigns.norm_data is NOT NULL').
+            where("assigns.norm_data->>'type' is NOT NULL")
         end
 
         def eti
-          with_norm_data.where("project_assigns_assigns.norm_data->>'type' = ?", 'ETI').where(type: 'eti')
+          with_norm_data.where("assigns.norm_data->>'type' = ?", 'ETI').where(type: 'eti')
         end
 
         def yti
-          with_norm_data.where("project_assigns_assigns.norm_data->>'type' = ?", 'YTI').where(type: 'yti')
+          with_norm_data.where("assigns.norm_data->>'type' = ?", 'YTI').where(type: 'yti')
         end
 
         def common

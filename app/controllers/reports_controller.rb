@@ -6,8 +6,6 @@ class ReportsController < ApplicationController
 
   # Turn off normally auth
   skip_before_action :authenticate_user!
-  # Turn off browser auth
-  skip_before_action :authenticate
   # Turn on auth by token
   prepend_before_action :authenticate_by_token!
 
@@ -17,10 +15,12 @@ class ReportsController < ApplicationController
     @results = Assign.
                completed.
                includes(:membership, :user).
-               where(memberships: { client_id: @current_project.id }, assessment_id: @resource.assessment_id).
+               where(memberships: { client_id: @current_project.id }, assessment_id: @resource.assessment_ids).
                references(:membership).all
-    @assign = Assign.completed.find_by!(assessment_id: @resource.assessment_id, membership_id: @current_membership.id)
-
+    @assign = Assign.completed.find_by!(assessment_id: @resource.assessment_ids, membership_id: @current_membership.id)
+    @assigns = Assign.where(
+      assessment_id: @resource.assessment_ids, membership_id: @current_membership.membership_with_result.id
+    )
     @translations = Translation.to_hash_for_report(@resource.id, @resource.assessment_id, user_locale)
     @available_translations = Translation.available_translation_for_report(@resource.id, @resource.assessment_id)
 
@@ -44,7 +44,7 @@ class ReportsController < ApplicationController
   end
 
   def set_resource
-    @resource = @resource_class.enabled.available_to_view.find(params[:id])
+    @resource = @resource_class.enabled.available_to_view.includes(pages: [:modules]).find(params[:id])
   end
 
   # Authorisation user

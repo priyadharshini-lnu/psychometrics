@@ -3,10 +3,11 @@ default: &default
   encoding: unicode
   # For details on connection pooling, see Rails configuration guide
   # http://guides.rubyonrails.org/configuring.html#database-pooling
-  host: localhost
-  user: root
+  host: postgres
+  username: postgres
+  password: postgres
 
 test:
   <<: *default
-  database: circle_test
+  database: ci_test
 

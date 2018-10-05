@@ -11,15 +11,20 @@ module Reports
 
     # Using for Piped Text
     def completed_at
-      @instance_options[:assign]&.completed_at&.strftime('%d %b %Y')
+      return if @instance_options[:assigns].blank?
+      @instance_options[:assigns].map do |assign|
+        assign&.completed_at&.strftime('%d %b %Y')
+      end.compact.join(', ')
     end
 
     # Using for Piped Text
     def norm_used
-      norm_data = @instance_options[:assign]&.norm_data
-      return nil if norm_data.blank?
-      norm = Norm.find_by(id: norm_data.try(:[], 'id'))
-      norm&.decorate&.display_name
+      norm_data = @instance_options[:assigns].pluck(:norm_data).compact
+      return if norm_data.blank?
+      norms = Norm.where(id: norm_data.map { |data| data.dig('id') }.compact)
+      norms.map do |norm|
+        norm&.decorate&.display_name
+      end
     end
   end
 end

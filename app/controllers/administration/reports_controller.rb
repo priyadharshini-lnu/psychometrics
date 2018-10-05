@@ -2,11 +2,8 @@ module Administration
   class ReportsController < Administration::BaseController
     # Turn off normally auth
     skip_before_action :authenticate_user!
-    # Turn off browser auth
-    skip_before_action :authenticate, only: [:preview]
     # Turn on auth by token
     prepend_before_action :authenticate_user_from_token!
-    before_action :authenticate, except: [:preview]
 
     prepend_before_action :set_resource_class
     before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :preview]
@@ -16,7 +13,7 @@ module Administration
 
     # GET /administration/resources
     def index
-      scope = policy_scope(resource_class).includes(:assessment, :report_families).order(:name)
+      scope = policy_scope(resource_class).includes(:assessments, :report_families).order(:name).distinct
       scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
       scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
       @_filter_form = scope.search(params[:q])
@@ -143,7 +140,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :assessment_id, :type, :owner_id, :mindmill, report_family_ids: [],
+      params.require(:resource).permit(:name, :type, :owner_id, :mindmill, report_family_ids: [], assessment_ids: [],
                                        hogan_report_setting_attributes: [:id, :hogan_report_id, :load_report])
     end
 

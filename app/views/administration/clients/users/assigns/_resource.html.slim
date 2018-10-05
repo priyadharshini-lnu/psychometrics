@@ -23,23 +23,20 @@ tr id=dom_id(resource)
       - if resource.decorate.completed?
         - if reports.any?
           - reports.each do |report|
+            - link_options = { class: 'btn btn-default btn-rounded btn-sm',
+                               data: { toggle: 'tooltip', title: report.name, assign_id: resource.id, report_id: report.id } }
             - if report.mindmill?
-              = link_to resource.assign_with_result.mindmill_report.url,
-                        class: 'btn btn-default btn-rounded btn-sm', 
-                        data: { toggle: 'tooltip', title: report.name }
+              = link_to resource.assign_with_result.mindmill_report.url, link_options
                 span.fa.fa-pie-chart
             - elsif report.assessment.hogan?
               - if report.hogan_report_setting&.load_report?
                 - url = resource.assigns_reports.find_by(report: report).external_report.url
                 - if url
-                  = link_to url,
-                            class: 'btn btn-default btn-rounded btn-sm',
-                            data: { toggle: 'tooltip', title: report.name }
+                  = link_to url, link_options
                     span.fa.fa-pie-chart
             - else
-              = link_to [:preview, :administration, client, :user, :report, user_id: membership.user_id, id: report.id], 
-                        class: 'btn btn-default btn-rounded btn-sm', 
-                        data: { toggle: 'tooltip', title: report.name }
+              = link_to [:preview, :administration, client, :user, :report, user_id: membership.user_id, id: report.id],
+                        link_options
                 span.fa.fa-pie-chart
         - else
           = t('.no_reports')

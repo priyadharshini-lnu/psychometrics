@@ -19,6 +19,13 @@ en:
     reports:
       results: "Results"
       load_results: "Load Results: %{report}"
+    multiple_report:
+      results: "Results"
+    assigns_reports:
+      summary_report: Summary report
+      duration: Duration
+      progress: Progress
+      download: Download
     project_assessment:
       <<: *assign
     decorator:

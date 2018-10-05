@@ -81,13 +81,13 @@ module AdministrationHelper
 
   def assessments_options_for_select(assessments, report = nil)
     assessments.all.map do |a|
-      disabled = report && report.assigns_reports.any?
+      disabled = report && (report.assigns_reports.any? || report.clients_reports.any?)
       data = { mindmill: a.mindmill?, hogan: a.hogan?, psychometric: a.psychometric? }
       [a.decorate.display_name, a.id, { disabled: disabled, data: data }]
     end
   end
 
   def reports_for_assessment(assessment)
-    client.reports.where(assessment_id: assessment.id).distinct
+    client.reports.joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment.id }).distinct
   end
 end

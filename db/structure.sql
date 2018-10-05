@@ -80,7 +80,8 @@ CREATE TABLE public.assessments (
     status integer,
     owner_id integer,
     type character varying,
-    mindmill_id integer
+    mindmill_id integer,
+    enable_back boolean DEFAULT false NOT NULL
 );
 
 
@@ -104,6 +105,38 @@ ALTER SEQUENCE public.assessments_id_seq OWNED BY public.assessments.id;
 
 
 --
+-- Name: assessments_reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessments_reports (
+    id bigint NOT NULL,
+    assessment_id bigint NOT NULL,
+    report_id bigint NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: assessments_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.assessments_reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assessments_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.assessments_reports_id_seq OWNED BY public.assessments_reports.id;
+
+
+--
 -- Name: assigns; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -124,7 +157,8 @@ CREATE TABLE public.assigns (
     norm_data jsonb,
     agile_scoring jsonb,
     project_assign_id integer,
-    mindmill_report character varying
+    mindmill_report character varying,
+    selected_locale character varying
 );
 
 
@@ -228,7 +262,6 @@ ALTER SEQUENCE public.blocks_id_seq OWNED BY public.blocks.id;
 CREATE TABLE public.bulk_reports (
     id bigint NOT NULL,
     user_id bigint,
-    queue_size integer,
     file character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -701,6 +734,39 @@ CREATE TABLE public.factors (
 
 
 --
+-- Name: factors_aliases; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.factors_aliases (
+    id bigint NOT NULL,
+    factor_id bigint NOT NULL,
+    report_id bigint NOT NULL,
+    name character varying NOT NULL,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: factors_aliases_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.factors_aliases_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: factors_aliases_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.factors_aliases_id_seq OWNED BY public.factors_aliases.id;
+
+
+--
 -- Name: factors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -1116,7 +1182,12 @@ CREATE TABLE public.occupations (
     key_career_tracks text,
     high_school_entry_roles text,
     diploma_qualification text,
-    bachelors_or_masters_qualification text
+    bachelors_or_masters_qualification text,
+    work_environment text,
+    color character varying,
+    alternative_icon character varying,
+    indicative_roles_image character varying,
+    key_career_tracks_image character varying
 );
 
 
@@ -1419,7 +1490,8 @@ CREATE TABLE public.reports_accesses (
     membership_id bigint,
     user_access boolean NOT NULL,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    assessment_id bigint
 );
 
 
@@ -1507,7 +1579,8 @@ CREATE TABLE public.reports_modules (
     deleted_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    type character varying
+    type character varying,
+    assessment_id bigint
 );
 
 
@@ -1718,6 +1791,13 @@ ALTER TABLE ONLY public.assessments ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: assessments_reports id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_reports ALTER COLUMN id SET DEFAULT nextval('public.assessments_reports_id_seq'::regclass);
+
+
+--
 -- Name: assigns id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -1827,6 +1907,13 @@ ALTER TABLE ONLY public.ecommerce_purchases ALTER COLUMN id SET DEFAULT nextval(
 --
 
 ALTER TABLE ONLY public.factors ALTER COLUMN id SET DEFAULT nextval('public.factors_id_seq'::regclass);
+
+
+--
+-- Name: factors_aliases id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_aliases ALTER COLUMN id SET DEFAULT nextval('public.factors_aliases_id_seq'::regclass);
 
 
 --
@@ -2035,6 +2122,14 @@ ALTER TABLE ONLY public.assessments
 
 
 --
+-- Name: assessments_reports assessments_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_reports
+    ADD CONSTRAINT assessments_reports_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: assigns assigns_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2152,6 +2247,14 @@ ALTER TABLE ONLY public.ecommerce_purchase_invites
 
 ALTER TABLE ONLY public.ecommerce_purchases
     ADD CONSTRAINT ecommerce_purchases_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: factors_aliases factors_aliases_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.factors_aliases
+    ADD CONSTRAINT factors_aliases_pkey PRIMARY KEY (id);
 
 
 --
@@ -2391,6 +2494,20 @@ ALTER TABLE ONLY public.users
 --
 
 CREATE INDEX index_assessments_on_dimension_id ON public.assessments USING btree (dimension_id);
+
+
+--
+-- Name: index_assessments_reports_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessments_reports_on_assessment_id ON public.assessments_reports USING btree (assessment_id);
+
+
+--
+-- Name: index_assessments_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_assessments_reports_on_report_id ON public.assessments_reports USING btree (report_id);
 
 
 --
@@ -2639,6 +2756,27 @@ CREATE INDEX index_ecommerce_purchases_on_product_id ON public.ecommerce_purchas
 
 
 --
+-- Name: index_factors_aliases_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_aliases_on_factor_id ON public.factors_aliases USING btree (factor_id);
+
+
+--
+-- Name: index_factors_aliases_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_factors_aliases_on_report_id ON public.factors_aliases USING btree (report_id);
+
+
+--
+-- Name: index_factors_aliases_on_report_id_and_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_factors_aliases_on_report_id_and_factor_id ON public.factors_aliases USING btree (report_id, factor_id);
+
+
+--
 -- Name: index_factors_norms_on_factor_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2884,6 +3022,13 @@ CREATE INDEX index_report_families_reports_on_report_id ON public.report_familie
 
 
 --
+-- Name: index_reports_accesses_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_accesses_on_assessment_id ON public.reports_accesses USING btree (assessment_id);
+
+
+--
 -- Name: index_reports_accesses_on_membership_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -2898,10 +3043,10 @@ CREATE INDEX index_reports_accesses_on_report_id ON public.reports_accesses USIN
 
 
 --
--- Name: index_reports_accesses_on_report_id_and_membership_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_reports_accesses_on_report_id_membership_id_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_reports_accesses_on_report_id_and_membership_id ON public.reports_accesses USING btree (report_id, membership_id);
+CREATE UNIQUE INDEX index_reports_accesses_on_report_id_membership_id_assessment_id ON public.reports_accesses USING btree (report_id, membership_id, assessment_id);
 
 
 --
@@ -2909,6 +3054,13 @@ CREATE UNIQUE INDEX index_reports_accesses_on_report_id_and_membership_id ON pub
 --
 
 CREATE INDEX index_reports_filters_on_report_id ON public.reports_filters USING btree (report_id);
+
+
+--
+-- Name: index_reports_modules_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_reports_modules_on_assessment_id ON public.reports_modules USING btree (assessment_id);
 
 
 --
@@ -3062,6 +3214,14 @@ ALTER TABLE ONLY public.users
 
 
 --
+-- Name: assessments_reports fk_rails_105380adfd; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_reports
+    ADD CONSTRAINT fk_rails_105380adfd FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: licenses fk_rails_139c7e09c4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3107,6 +3267,14 @@ ALTER TABLE ONLY public.ecommerce_purchases
 
 ALTER TABLE ONLY public.memberships
     ADD CONSTRAINT fk_rails_385eeb68ea FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: reports_accesses fk_rails_3a283de8a1; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_accesses
+    ADD CONSTRAINT fk_rails_3a283de8a1 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -3187,6 +3355,14 @@ ALTER TABLE ONLY public.reports_accesses
 
 ALTER TABLE ONLY public.communications_users
     ADD CONSTRAINT fk_rails_7a00292b33 FOREIGN KEY (communication_id) REFERENCES public.communications(id) ON DELETE CASCADE;
+
+
+--
+-- Name: reports_modules fk_rails_7d52ca6463; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.reports_modules
+    ADD CONSTRAINT fk_rails_7d52ca6463 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -3363,6 +3539,14 @@ ALTER TABLE ONLY public.clients_reports
 
 ALTER TABLE ONLY public.hogan_report_settings
     ADD CONSTRAINT fk_rails_d77e15b1b7 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
+-- Name: assessments_reports fk_rails_df744d4dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_reports
+    ADD CONSTRAINT fk_rails_df744d4dd0 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
 
 
 --
@@ -3605,14 +3789,23 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20171208171730'),
 ('20171210004245'),
 ('20171212142402'),
+('20180428143634'),
+('20180503095443'),
 ('20180504074309'),
 ('20180504075242'),
 ('20180504082538'),
 ('20180504091841'),
 ('20180514140843'),
+('20180522075755'),
 ('20180529094014'),
 ('20180601084716'),
 ('20180618090010'),
-('20180710120413');
+('20180619110647'),
+('20180710120413'),
+('20180723121434'),
+('20180724151241'),
+('20180731094932'),
+('20180915101319'),
+('20181002152730');
 
 

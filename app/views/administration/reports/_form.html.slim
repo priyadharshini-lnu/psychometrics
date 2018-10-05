@@ -8,10 +8,16 @@
         - if current_user.is?(:superadmin)
           = f.association :owner, collection: policy_scope(Client).enabled.roots, include_blank: t('administration.tte'), input_html: { data: { live_search: true } }
         = f.input :type, include_blank: false
-        = f.association :assessment, collection: assessments_options_for_select(policy_scope(Assessment), resource),
-          input_html: { data: { live_search: true,
-            dynamic_selectable_url: url_for(action: :hogan_reports, assessment_id: '__id__'),
-            dynamic_selectable_target: '#resource_hogan_report_setting_attributes_hogan_report_id' } }
+        = f.association :assessments, collection: assessments_options_for_select(policy_scope(Assessment), resource),
+          input_html: { multiple: true,
+            data: { live_search: true,
+              max_options: Report::MAX_ASSESSMENT_COUNT,
+              max_options_text: I18n.t('activerecord.errors.models.report.max_assessment_count', max: Report::MAX_ASSESSMENT_COUNT),
+              dynamic_selectable_url: url_for(action: :hogan_reports, assessment_id: '__id__'),
+              dynamic_selectable_target: '#resource_hogan_report_setting_attributes_hogan_report_id' } }
+        - if (resource.assigns_reports.any? || resource.clients_reports.any?) && resource.errors[:assessments].blank?
+          span.help-block.text-danger.margin-top-minus-10
+            = I18n.t('activerecord.errors.models.report.has_already_assigned')
         = f.input :mindmill, wrapper_html: { class: 'hidden' }, disabled: true
 
         = f.simple_fields_for :hogan_report_setting do |hogan|

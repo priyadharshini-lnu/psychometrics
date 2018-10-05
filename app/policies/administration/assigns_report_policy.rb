@@ -11,7 +11,13 @@ module Administration
     def destroy?
       return true if @user.is?(:superadmin)
       return false unless @user.has_grant?(:assessments, :assign)
-      @user.project_admin_client_ids.include?(@record.assign.membership.client_id)
+      if @user.is?(:client_admin)
+        @user.client_admin_client_ids.include?(@record.assign.membership.client.tte_id)
+      elsif @user.is?(:project_admin)
+        @user.project_admin_client_ids.include?(@record.assign.membership.membership_with_result.client_id)
+      else
+        false
+      end
     end
   end
 end

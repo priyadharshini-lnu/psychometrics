@@ -67,13 +67,13 @@ gem 'i18n-js',                    '~> 3.0.0.rc3'
 gem 'activemodel-serializers-xml'
 gem 'draper',                     '~> 3.0.0'
 ### Generate schema in each model
-gem 'annotate', '~> 2.7.0', github: 'ctran/annotate_models'
+gem 'annotate', '~> 2.7.0', git: 'git@github.com:ctran/annotate_models.git'
 
 ### For organisation ENV variable
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
-gem 'psychometrics-survey', git: 'git@github.com:SumatoSoft/psychometrics-survey.git', branch: 'production'
+gem 'psychometrics-survey', git: 'git@gitlab.com:tte-lighthouse/psychometrics-survey.git'
 ### XLS import
 gem 'rubyXL'
 gem 'file_validators',            '~> 2.1.0'
@@ -87,7 +87,7 @@ gem 'redis'
 gem 'ckeditor'
 
 ### dependencies for XLS export (via templates)
-gem 'axlsx', github: 'randym/axlsx', ref: 'c8ac844'
+gem 'axlsx', git: 'git@github.com:randym/axlsx', ref: 'c8ac844'
 gem 'axlsx_rails', '~> 0.4.0'
 gem 'roo', '~> 2.4.0'
 
@@ -152,6 +152,7 @@ group :development, :test do
   gem 'pry-byebug'
   gem 'pry-rails'
   gem 'hirb'
+  gem 'awesome_print', '~> 1.8.0'
   gem 'rspec-rails', '~> 3.5'
   gem 'factory_girl_rails', '~> 4.7.0'
   # A fake data generator
@@ -183,7 +184,7 @@ group :test do
   gem 'capybara-screenshot', '~> 1.0.14'
   gem 'selenium-webdriver'
   gem 'shoulda', '~> 3.5.0'
-  gem 'database_cleaner', '~> 1.5.3'
+  gem 'database_cleaner', '~> 1.7.0'
   gem 'simplecov', require: false
   gem 'rspec-retry', '~> 0.5.7'
 end

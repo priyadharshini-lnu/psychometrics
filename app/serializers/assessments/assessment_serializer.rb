@@ -1,6 +1,6 @@
 module Assessments
   class AssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors
+    attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :enable_back
 
     has_many :blocks, serializer: Assessments::BlockSerializer do
       object.blocks.
@@ -13,15 +13,9 @@ module Assessments
     end
 
     def factors
-      factors = (object.dimension&.factors&.includes(:sub_factors) || []).map do |factor|
-        result = []
-        result << Assessments::FactorSerializer.new(factor, assessment_id: object.id).to_hash
-        factor.sub_factors.map do |sub_factor|
-          result << Assessments::FactorSerializer.new(sub_factor, assessment_id: object.id).to_hash
-        end
-        result
+      object.dimension.all_factors.map do |factor|
+        Assessments::FactorSerializer.new(factor, assessment_id: object.id).to_hash
       end
-      factors.flatten
     end
   end
 end

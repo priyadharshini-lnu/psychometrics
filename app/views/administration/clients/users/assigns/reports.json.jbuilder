@@ -4,4 +4,5 @@ json.array!(resources) do |resource|
   json.id resource.id
   json.selected selected
   json.disabled selected
+  json.multiple resource.multiple?
 end

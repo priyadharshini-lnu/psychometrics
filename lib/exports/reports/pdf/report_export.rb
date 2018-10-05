@@ -39,7 +39,7 @@ module Exports
             output: output,
             pageWidth: 850,
             pageHeight: 1100,
-            auth: 'staging:sumatosoft'
+            auth: Rails.application.secrets.http_auth
           }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
           Rails.logger.info "phantomjs #{Rails.root.join('lib/raster.js')} #{args}"

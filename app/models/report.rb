@@ -38,19 +38,33 @@ class Report < ApplicationRecord
   has_many :product_reports, dependent: :destroy
   has_many :products, through: :product_reports
   has_many :assigns_reports # on delete restrict
+  has_many :assessments_reports
+  has_many :assessments, -> { order(:name) }, through: :assessments_reports, dependent: :destroy,
+                                              before_add: :add_factors_aliases,
+                                              before_remove: :remove_factor_aliases
+  has_many :assessments_default_order, through: :assessments_reports, source: :assessment
+  has_many :dimensions, -> { distinct }, through: :assessments_default_order
+  has_many :factors_aliases, dependent: :destroy
+  has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
+
   has_one :hogan_report_setting
   accepts_nested_attributes_for :hogan_report_setting
 
   validates :assessment, presence: true
   validates :owner, presence: true, allow_nil: true
   validates :report_families, presence: true, allow_nil: false
+  validate :max_assessments_count
+  validate :min_assessments_count
+
+  before_validation :set_assessment
   before_save :delete_hogan_report_setting
+  after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
 
   enum type: TYPES
 
   # Copy report with pages => modules
   def clone
-    @cloned_item = deep_clone include: [:report_families, { pages: :modules }, :hogan_report_setting]
+    @cloned_item = deep_clone include: [:assessments, :report_families, { pages: :modules }, :hogan_report_setting]
     @cloned_item.gen_uniq_name
     @cloned_item
   end
@@ -63,21 +77,25 @@ class Report < ApplicationRecord
 
   # Search entity by assessment category
   scope :with_assessment_category, lambda { |assessment_category|
-    assessment_category == 'all' ? all : joins(:assessment).where(assessments: { category: assessment_category })
+    assessment_category == 'all' ? all : joins(:assessments).where(assessments: { category: assessment_category })
   }
 
   # Search entity by assessment
   scope :with_assessment, lambda { |assessment_id|
-    where(assessment_id: assessment_id)
+    joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment_id })
   }
 
   scope :available_to_view, lambda {
-    joins(:assessment).where.has { assessment.access_reports_at.eq(nil) | (assessment.access_reports_at <= Time.now) }
+    joins(:assessments).where.has { assessments.access_reports_at.eq(nil) | (assessments.access_reports_at <= Time.now) }
   }
 
   scope :for_clients, lambda { |client_ids|
     joins(:clients_reports).where.has { clients_reports.client_id.in(client_ids) }
   }
+
+  scope :multiple, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) > 1') }
+  scope :single, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) = 1') }
+
 
   scope :yti_eti, -> { where(type: [YTI_TYPE, ETI_TYPE]) }
 
@@ -89,11 +107,53 @@ class Report < ApplicationRecord
     Assessment::TYPES.slice(:mindmill, :hogan).values.include?(assessment.type)
   end
 
+  def multiple?
+    assessments.size > 1
+  end
+
+  def single?
+    assessments.size == 1
+  end
+
+  def single_dimension?(dimension_id)
+    assessments.pluck(:dimension_id).count(dimension_id) == 1
+  end
+
+  def destroy_dimension_aliases(dimension)
+    FactorsAlias.where(report: self, factor_id: dimension.all_factor_ids).destroy_all
+  end
+
   private
+
+  def max_assessments_count
+    return if assessments.size <= MAX_ASSESSMENT_COUNT
+    errors.add(:assessments,
+               I18n.t('activerecord.errors.models.report.max_assessment_count', max: MAX_ASSESSMENT_COUNT))
+  end
+
+  def min_assessments_count
+    return if assessments.size >= MIN_ASSESSMENT_COUNT
+    errors.add(:assessments,
+               I18n.t('activerecord.errors.models.report.min_assessment_count', min: MIN_ASSESSMENT_COUNT))
+  end
+
+  def set_assessment
+    self.assessment = assessments.sort_by(&:name)&.first
+  end
 
   def delete_hogan_report_setting
     if hogan_report_setting && !assessment.hogan?
       hogan_report_setting.destroy
     end
+  end
+
+  def add_factors_aliases(assessment)
+    return if assessment.external? || new_record?
+    assessment.dimension.all_factors.each { |factor| factor.aliases.find_or_create_by(report: self) }
+  end
+
+  def remove_factor_aliases(assessment)
+    return if assessment.external? || !single_dimension?(assessment.dimension_id)
+    destroy_dimension_aliases(assessment.dimension)
   end
 end

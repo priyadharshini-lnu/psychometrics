@@ -40,7 +40,14 @@ DynamicSelectable = (function() {
               if (el.disabled) {
                 disabled = 'disabled';
               }
-              return _this.$targetSelect.append("<option value='" + el.id + "' " + selected + " " + disabled + ">" + el.name + "</option>").selectpicker('refresh');
+              var multiple = '';
+              if (el.multiple !== undefined) {
+                multiple = "data-multiple='" + el.multiple + "' ";
+              }
+
+              return _this.$targetSelect.append("<option " + multiple +
+                "value='" + el.id + "' " + selected + " " + disabled + ">" +
+                el.name + "</option>").selectpicker('refresh');
             });
             return _this.reinitializeTarget();
           });

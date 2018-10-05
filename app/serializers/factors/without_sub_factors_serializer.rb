@@ -15,7 +15,7 @@
 module Factors
   class WithoutSubFactorsSerializer < ActiveModel::Serializer
     type :factor
-    attributes :id, :name, :parent_id, :question_ids, :description, :icon
+    attributes :id, :name, :parent_id, :question_ids, :description, :icon, :alias
 
     def icon
       object.icon.url
@@ -28,6 +28,10 @@ module Factors
       else
         []
       end
+    end
+
+    def alias
+      @instance_options[:alias]&.name
     end
   end
 end

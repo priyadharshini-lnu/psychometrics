@@ -79,7 +79,7 @@ class Client < ApplicationRecord
 
   has_many :norms
   has_many :dimensions
-  has_many :assessments, -> { group(:id) }, through: :reports
+  has_many :assessments, -> { group(:id) }, through: :reports, source: :assessments
   has_many :license_usages
   has_many :licenses, inverse_of: :client, dependent: :destroy
   # TODO use admins instead of projects_admins
@@ -98,12 +98,13 @@ class Client < ApplicationRecord
     project.validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
     project.validate :subdomain_format_validation
   end
-  validate :relevant_reports, if: 'report_ids.any? && end_level?'
-  validate :allowed_data, if: 'operator'
+  validate :relevant_reports, if: -> { report_ids.any? && end_level? }
+  validate :allowed_data, if: -> { operator }
+
   before_validation :ensure_subdomain, if: :retail?
   before_create :set_hogan_group_name, if: :project?
-  after_commit :set_tte, if: 'parent_id.present?', on: [:create, :update]
-  after_commit :set_end_level, if: 'parent_id.present?', on: [:create, :update]
+  after_commit :set_tte, if: -> { parent_id.present? }, on: [:create, :update]
+  after_commit :set_end_level, if: -> { parent_id.present? }, on: [:create, :update]
 
   # Type of client.
   # Retail - is client who bought some product

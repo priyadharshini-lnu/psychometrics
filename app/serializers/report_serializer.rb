@@ -12,47 +12,71 @@
 #
 
 class ReportSerializer < ActiveModel::Serializer
-  attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations
+  attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations,
+             :dimension_ids, :completed_assessments
 
   has_many :pages, serializer: Reports::PageSerializer
   has_many :filters, serializer: Reports::FilterSerializer
-  has_one :assessment, serializer: AssessmentSerializer
+  has_many :assessments, serializer: Reports::AssessmentSerializer
 
   def factors
-    object_assessment_id = object.assessment_id
-    Factor.
+    object_assessment_ids = object.assessment_ids
+    factors = Factor.
       selecting {['factors.*',
                   array(
                     _(
                       FactorsScoring.
                         select(:question_id).
-                        where.has { |fs| fs.factor_id.eq(id) & fs.assessment_id.eq(object_assessment_id) }.
+                        where.has { |fs| fs.factor_id.eq(id) & fs.assessment_id.eq(object_assessment_ids) }.
                         where('json_array_length(props) > 0')
                     )
                   ).as('question_ids')
-                 ]}.
-      where(dimension_id: object.assessment.dimension_id).
-      order(name: :asc).map do |obj|
-      ::Factors::WithoutSubFactorsSerializer.new(obj, assessment_id: object_assessment_id)
+      ]}.
+      where(dimension_id: object.dimension_ids).
+      order(name: :asc)
+    aliases = FactorsAlias.where(factor_id: factors.ids, report_id: object.id).group_by(&:factor_id)
+    factors.group_by(&:dimension_id).transform_values do |group|
+      group.map do |obj|
+        ::Factors::WithoutSubFactorsSerializer.new(obj, assessment_id: object_assessment_ids,
+                                                        report_id: object.id,
+                                                        alias: aliases[obj.id]&.first)
+      end
     end
   end
 
   def occupations
-    Occupation.includes(:occupations_factors).where(dimension_id: object.assessment.dimension_id).order(name: :asc).map do |obj|
-      OccupationSerializer.new(obj)
+    occupations = Occupation.includes(:occupations_factors).
+                             where(dimension_id: object.assessments.pluck(:dimension_id)).
+                             order(name: :asc)
+    occupations.group_by(&:dimension_id).transform_values do |group|
+      group.map { |occupation| OccupationSerializer.new(occupation) }
     end
   end
 
   def assigns
     return [] unless @instance_options[:membership]
-    Assign.includes(:membership).joins(:membership).where(assessment_id: object.assessment_id, memberships: { client_id: @instance_options[:membership].client_id }).map do |assign|
-      AssignShortSerializer.new(assign, membership: @instance_options[:membership])
+
+    assigns = Assign.includes(:membership).joins(:membership).
+      where(assessment_id: object.assessment_ids, memberships: { client_id: @instance_options[:membership].client_id })
+
+    assigns.group_by(&:assessment_id).transform_values do |group|
+      group.map { |assign| AssignShortSerializer.new(assign, membership: @instance_options[:membership]) }
     end
   end
 
   def factor_norms
-    Norm.includes(:factors_norms).where(dimension_id: object.assessment.dimension_id).each_with_object(Hash.new) do |norm, hash|
+    norms = Norm.includes(:factors_norms).where(dimension_id: object.assessments.pluck(:dimension_id)).distinct
+    norms.each_with_object(Hash.new) do |norm, hash|
       hash[norm.id] = norm.factors_norms.group_by(&:type)
     end
+  end
+
+  def dimension_ids
+    object.dimension_ids
+  end
+
+  def completed_assessments
+    return object.assessment_ids unless @instance_options[:assigns]
+    @instance_options[:assigns].select { |assign| assign.completed? }.map(&:assessment_id)
   end
 end

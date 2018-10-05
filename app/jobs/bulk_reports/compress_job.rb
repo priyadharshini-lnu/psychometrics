@@ -12,9 +12,6 @@ module BulkReports
 
         save_report_with_file(report, output_file)
       end
-
-      BulkReportMailer.notify(report).deliver_later
-      FileUtils.rm_rf(report.input_dir)
     end
 
     private

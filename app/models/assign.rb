@@ -26,18 +26,23 @@ class Assign < ApplicationRecord
   has_one :user, through: :membership
   belongs_to :project_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'
+  has_many :original_assigns, foreign_key: :project_assign_id, class_name: 'Assign'
 
   has_many :assigns_reports # on delete cascade
   has_many :enabled_assigns_reports, -> { includes(:report).where(reports: { disabled: false }) },
            class_name: 'AssignsReport'
   has_many :reports, through: :assigns_reports, dependent: :destroy
 
+  has_many :multiple_reports, -> { multiple }, through: :assigns_reports, source: :report
+
+  has_many :single_reports, -> { single }, through: :assigns_reports, source: :report
+
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
   validates :membership, :assessment, presence: true
 
-  validate :relevant_membership, if: 'membership.present?'
-  validate :relevant_assessment, if: 'assessment.present?'
-  validate :relevant_reports, if: 'report_ids.any?'
+  validate :relevant_membership, if: -> { membership.present? }
+  validate :relevant_assessment, if: -> { assessment.present? }
+  validate :relevant_reports, if: -> { report_ids.any? }
 
   enum status: %i(not_started in_progress completed)
   enum role: %i(member manager admin)
@@ -107,8 +112,8 @@ class Assign < ApplicationRecord
     self.agile_scoring = {}
 
     factors_scoring_map.each do |factor_id, scoring_array|
-      self.scoring[factor_id] = { name: scoring_array.try(:first).try(:factor).try(:name), results: [] }
-      self.agile_scoring[factor_id] = { name: scoring_array.try(:first).try(:factor).try(:name), results: [] }
+      self.scoring[factor_id] = { results: [] }
+      self.agile_scoring[factor_id] = { results: [] }
       scoring_array.each do |question_scoring|
         question = questions_map[question_scoring.question_id].try(:first)
         scoring_class = "Scoring::#{question.try(:type)}"

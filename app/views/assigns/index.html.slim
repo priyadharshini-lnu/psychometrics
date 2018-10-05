@@ -2,12 +2,18 @@
   .row.dashboard-holder
     .col-xs-12.col-md-8.col-md-offset-2
       h1.welcomeText Welcome to your dashboard, #{current_user.decorate.first_name}!
-      - if @assigns.present?
-        - @assigns.group_by { |assign| assign.assessment.decorate.dashboard_category }.each do |dashboard_category, assigns|
+      - if @single_assigns.blank? && @multiple_assigns_reports.blank?
+        p = t('administration.no_data_found')
+      - if @single_assigns.present?
+        - @single_assigns.group_by { |assign| assign.assessment.decorate.dashboard_category }.each do |dashboard_category, assigns|
           h3.assessmentTitles = t("activerecord.attributes.assessment.categories.#{dashboard_category}")
           .panel-group.assessments-holder id="assessments-#{dashboard_category}" role="tablist" aria-multiselectable="true"
             - assigns.each do |assign|
-              = render partial: 'assign',
-                       locals: { assign: assign, in_progress_assign: assign.assessment.category == 'mindmill' && assigns.detect(&:in_progress?) }
-      - else
-        p = t('administration.no_data_found')
+              - if show_single_assign?(assign)
+                = render partial: 'assign',
+                         locals: { assign: assign, in_progress_assign: assign.assessment.category == 'mindmill' && assigns.detect(&:in_progress?) }
+      - if @multiple_reports.present?
+        h3.assessmentTitles Multiple assessments
+        .panel-group.assessments-holder id="assessments-multiple" role="tablist" aria-multiselectable="true"
+          - @multiple_reports.each do |report|
+            = render 'assigns_reports', report: report

@@ -15,6 +15,7 @@ en:
         disabled: Disable
         active: Active
         report_ids: Report IDs
+        user_access: User Access
         roles:
           member: User
           manager: Manager

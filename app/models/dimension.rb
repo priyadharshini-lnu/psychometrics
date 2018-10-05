@@ -18,6 +18,7 @@ class Dimension < ApplicationRecord
   has_many :factors, -> { roots.order(id: :asc) }
   has_many :occupations
   has_many :sub_factors, -> { no_roots.order(id: :asc) }, class_name: 'Factor'
+  has_many :all_factors, class_name: 'Factor'
   has_many :assessments
   has_many :norms
 

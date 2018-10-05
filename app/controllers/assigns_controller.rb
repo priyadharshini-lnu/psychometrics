@@ -29,15 +29,26 @@ class AssignsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i(update)
 
   def index
-    @reports = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.group_by(&:assessment_id)
-    @assigns = policy_scope(Assign).preload(:assessment).order(:id)
+    @reports_ids = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.ids
+    @single_assigns = policy_scope(Assign).preload(:assessment).
+      includes(:single_reports, original_assign: [:single_reports])
+
+    multiple_reports_ids =  multiple_reports_ids(@reports_ids)
+    multiple_assigns_reports = multiple_assigns_reports(current_user, @current_project, multiple_reports_ids)
+
+    @multiple_reports = multiple_reports(multiple_assigns_reports)
+
     @current_membership.set_user_invited_for_current_project
   end
 
   def pass
     @assign.in_progress!
-    @translations = ::Translation.to_hash_for_assessment(@assign.assessment_id, user_locale)
     @available_translations = ::Translation.available_translation_for_assessment(@assign.assessment_id)
+    if params[:lang] && (@available_translations + [I18n.default_locale.to_s]).include?(params[:lang])
+      @assign.update(selected_locale: params[:lang])
+    end
+    @selected_locale = @assign.selected_locale || user_locale
+    @translations = ::Translation.to_hash_for_assessment(@assign.assessment_id, @selected_locale)
   end
 
   def update
@@ -55,6 +66,8 @@ class AssignsController < ApplicationController
 
   def set_assign
     @assign = policy_scope(Assign).where.not(status: :completed).find(params[:id])
+  rescue ActiveRecord::RecordNotFound
+    redirect_to(action: :index)
   end
 
   def resource_params
@@ -67,5 +80,21 @@ class AssignsController < ApplicationController
   # Authorisation user
   def pundit_authorize
     authorize @assign || Assign
+  end
+
+  def multiple_reports(assigns_reports)
+    assigns_reports.group_by(&:report_id).map do |report_id, group|
+      Facades::Assigns::MultipleReport.new(report_id, group, pundit_user)
+    end
+  end
+
+  def multiple_assigns_reports(user, project, report_ids)
+    AssignsReport.includes(assign: [:membership, :project_assign]).
+      where(assigns: { memberships: { user_id: user.id, client_id: project.subtree_ids } }).
+      where(report_id: report_ids)
+  end
+
+  def multiple_reports_ids(reports_ids)
+    Report.multiple.where(id: reports_ids).ids
   end
 end

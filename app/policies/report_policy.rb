@@ -6,6 +6,12 @@ class ReportPolicy < BasePolicy
                      else
                        @current_membership.clients_report_ids.include?(@record.id)
                      end
-    include_report && ReportsAccess.where(report: @record, membership: @current_membership, user_access: true).exists?
+    reports_accesses = ReportsAccess.where(report: @record, membership: @current_membership, user_access: true)
+    user_access = if @record.single?
+                    reports_accesses.exists?
+                  else
+                    @record.assessments.size == reports_accesses.uniq(&:assessment_id).size
+                  end
+    include_report && user_access
   end
 end
