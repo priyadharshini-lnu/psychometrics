@@ -1,6 +1,8 @@
 domain: tte-lighthouse.com
 subdomain:
 port: 443
+assigns:
+  mindmill_prefix: TTEPROD
 hogan:
   - name: HPI
     assessment_id: HPI

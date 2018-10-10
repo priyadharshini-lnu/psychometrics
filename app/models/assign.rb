@@ -18,6 +18,7 @@
 #  started_at        :datetime
 #  agile_scoring     :jsonb
 #  project_assign_id :integer
+#  mindmill_prefix   :string
 #
 
 class Assign < ApplicationRecord
@@ -57,6 +58,7 @@ class Assign < ApplicationRecord
   after_initialize :init
   after_create :set_project_assign
   before_save :notification_handler
+  before_save :set_mindmill_prefix
   before_update :set_started_at, if: proc { status_changed? && in_progress? }
   after_destroy :clear_project_assign
   after_update_commit ::Callbacks::Models::Assigns::UpdateResultByParent.new
@@ -192,6 +194,10 @@ class Assign < ApplicationRecord
       project_assign.save!
     end
     update_column(:project_assign_id, project_assign.id)
+  end
+
+  def set_mindmill_prefix
+    self.mindmill_prefix = Settings.assigns.mindmill_prefix if assessment.type.eql?(Assessment::TYPES[:mindmill])
   end
 
   def clear_project_assign
