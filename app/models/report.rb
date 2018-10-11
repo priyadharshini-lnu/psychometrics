@@ -104,7 +104,7 @@ class Report < ApplicationRecord
   end
 
   def external_report?
-    Assessment::TYPES.slice(:mindmill, :hogan).values.include?(assessment.type)
+    assessments.any?(&:external?)
   end
 
   def multiple?
