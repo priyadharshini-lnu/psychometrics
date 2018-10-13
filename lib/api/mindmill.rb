@@ -5,11 +5,12 @@ module Api
     WSDL_URL = 'https://evo-api.mindmill.co.uk/ICAS/ICAS1.asmx?WSDL'.freeze
     AVAILABLE_LANGUAGES = %w(en ar fr).freeze
 
-    attr_accessor :api, :appid, :assessment, :current_membership, :locale
+    attr_accessor :api, :appid, :assessment, :current_membership, :locale, :assign
     attr_accessor :report, :ssourl, :has_in_progress_assign
 
     def initialize(assign, current_membership, user_locale = 'en')
       @api = Savon.client(wsdl: WSDL_URL, soap_version: 2, log_level: :debug, logger: Rails.logger)
+      @assign = assign
       @appid = assign.id.to_s.prepend(assign.mindmill_prefix || '') # '2782' #
       @assessment = assign.assessment
       @current_membership = current_membership
@@ -79,6 +80,9 @@ module Api
     def load_results
       # return false unless test_taken?
       response = api.call(:send_cognitive_report, message: { strCompanyKey: KEY, strUsername: appid })
+      # TODO (atanych): remove hardcoded path
+      xml = File.read('lib/imports/external/samples/mind_mill_import.xml')
+      Imports::External::MindMillImport.new(xml, assign).process!
       @report ||= response.body[:send_cognitive_report_response][:send_cognitive_report_result]
     end
 
