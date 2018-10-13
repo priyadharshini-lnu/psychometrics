@@ -82,7 +82,7 @@ module Api
       response = api.call(:send_cognitive_report, message: { strCompanyKey: KEY, strUsername: appid })
       # TODO (atanych): remove hardcoded path
       xml = File.read('lib/imports/external/samples/mind_mill_import.xml')
-      Imports::External::MindMillImport.new(xml, assign).process!
+      Imports::External::BaseExternalImport.build(:mindmill).process!(xml, assign)
       @report ||= response.body[:send_cognitive_report_response][:send_cognitive_report_result]
     end
 
