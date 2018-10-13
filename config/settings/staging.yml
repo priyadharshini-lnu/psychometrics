@@ -1,6 +1,8 @@
 domain: staging.tte-lighthouse.com # psychometrics.co.uk
 subdomain: staging # subdomain
 port: 80
+assigns:
+  mindmill_prefix: TTESTAG
 hogan:
   - name: HPI
     assessment_id: HPI

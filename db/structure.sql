@@ -158,7 +158,8 @@ CREATE TABLE public.assigns (
     agile_scoring jsonb,
     project_assign_id integer,
     mindmill_report character varying,
-    selected_locale character varying
+    selected_locale character varying,
+    mindmill_prefix character varying
 );
 
 
@@ -3806,6 +3807,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180724151241'),
 ('20180731094932'),
 ('20180915101319'),
-('20181002152730');
+('20181002152730'),
+('20181010120450');
 
 

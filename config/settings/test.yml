@@ -1,6 +1,8 @@
 domain: lvh.me
 subdomain:
 port: 31338
+assigns:
+  mindmill_prefix: TTETEST
 hogan:
   - name: HPI
     assessment_id: HPI

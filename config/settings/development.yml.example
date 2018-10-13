@@ -1,6 +1,8 @@
 domain: lvh.me # psychometrics.co.uk
 subdomain:  # subdomain
 port: 3030
+assigns:
+  mindmill_prefix: TTEDEV
 react_dev:
   reports: false # set true if you are running npm server
   assessments: false # set true if you are running npm server

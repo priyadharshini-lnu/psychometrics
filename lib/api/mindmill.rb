@@ -10,7 +10,7 @@ module Api
 
     def initialize(assign, current_membership, user_locale = 'en')
       @api = Savon.client(wsdl: WSDL_URL, soap_version: 2, log_level: :debug, logger: Rails.logger)
-      @appid = assign.id # '2782' #
+      @appid = assign.id.to_s.prepend(assign.mindmill_prefix || '') # '2782' #
       @assessment = assign.assessment
       @current_membership = current_membership
       @locale = user_locale && AVAILABLE_LANGUAGES.include?(user_locale) ? user_locale : 'en'
