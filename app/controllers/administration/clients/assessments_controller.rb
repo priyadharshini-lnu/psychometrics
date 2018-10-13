@@ -20,7 +20,7 @@ module Administration
 
       def export_results
         @assessment = Assessment.find(params[:assessment_id])
-        results = ::Exports::Assessments::AssessmentResultsExport.new(@assessment.id, client.id, scoring: params[:scoring])
+        results = ::Exports::Assessments::AssessmentResultsExport.new(@assessment, client.id, export_results_params)
         filename = params[:scoring] ? 'assessment_scoring_results.xlsx' : 'assessment_raw_results.xlsx'
         respond_to do |format|
           format.xlsx { send_data results.to_xlsx.to_stream.read, filename: filename }
@@ -71,6 +71,10 @@ module Administration
       # Authorisation user
       def pundit_authorize
         authorize :assessment_client
+      end
+
+      def export_results_params
+        params.permit(:external, :scoring)
       end
     end
   end
