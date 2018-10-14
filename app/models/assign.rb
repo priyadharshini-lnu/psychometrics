@@ -58,7 +58,7 @@ class Assign < ApplicationRecord
   after_initialize :init
   after_create :set_project_assign
   before_save :notification_handler
-  before_save :set_mindmill_prefix
+  before_create :set_mindmill_prefix
   before_update :set_started_at, if: proc { status_changed? && in_progress? }
   after_destroy :clear_project_assign
   after_update_commit ::Callbacks::Models::Assigns::UpdateResultByParent.new
