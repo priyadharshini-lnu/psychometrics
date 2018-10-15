@@ -98,8 +98,15 @@ module Imports
         membership = user.memberships.find_or_initialize_by(client_id: client.id)
         membership.assign_attributes(memberships_attributes)
 
-        membership.assigns.each do |assign|
-          assign.report_ids = membership.client.report_ids & assign.assessment.report_ids & report_ids
+        if report_ids
+          report_ids = client.report_ids & report_ids
+          reports_hash = Report.where(id: report_ids).includes(:assessments).group_by(&:assessments)
+          reports_hash.each do |assessments, report_arr|
+            assessments.each do |assessment|
+              assign = membership.assigns.find_or_initialize_by(assessment_id: assessment.id)
+              assign.report_ids = report_arr.map(&:id)
+            end
+          end
         end
 
         set_user_access(user_access_ids, membership)
@@ -129,7 +136,7 @@ module Imports
     private
 
     def set_user_access(user_access_ids, membership)
-      report_ids = membership.reports.reject { |r| r.external_report? }.map(&:id)
+      report_ids = membership.reports.map(&:id)
       assigns_reports = AssignsReport.joins(assign: :membership).where('memberships.id = ?', membership.id)
 
       add_access_ids = report_ids & user_access_ids

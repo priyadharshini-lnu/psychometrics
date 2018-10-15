@@ -53,7 +53,7 @@ class Assign < ApplicationRecord
       where.has { |assigns| assigns.assessment.type.eq(Assessment::TYPES[:mindmill]) }
   }
 
-  attribute :user_access, :boolean, default: true
+  attribute :user_access, :boolean, default: false
 
   after_initialize :init
   after_create :set_project_assign
