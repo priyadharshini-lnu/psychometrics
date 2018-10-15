@@ -13,10 +13,10 @@ html.body-full-height style=device_html_style
     header
       .container-fluid
         .row
-          .col-xs-12.col-sm-4
+          .col-xs-6
             - if @current_project&.logo&.url
               = link_to image_tag(@current_project.logo.url), root_path, class: 'clientLogo'
-          .col-xs-12.col-sm-6.hidden-xs
+          .col-xs-6.hidden-xs
             h1.pageTitle
           .col-sm-1.hidden-xs
     .vertical-center
