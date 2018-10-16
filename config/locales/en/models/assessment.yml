@@ -13,6 +13,7 @@ en:
         timing: Timing
         description: Description
         categories:
+          case_study: Case Studies
           psychometric: Psychometrics
           organisational: Org Surveys
           '360': 360 Feedback

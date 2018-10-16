@@ -25,6 +25,7 @@ class Assessment < ApplicationRecord
   CATEGORIES_TYPES = [
     PSYCHOMETRIC = 'psychometric'.freeze,
     ORGANISATIONAL = 'organisational'.freeze,
+    CASE_STUDY = 'case_study'.freeze,
     NUM_360 = '360'.freeze,
     MINDMILL = 'mindmill'.freeze,
     HOGAN = 'hogan'.freeze,
@@ -32,6 +33,7 @@ class Assessment < ApplicationRecord
   CATEGORIES = {
     psychometric: PSYCHOMETRIC,
     organisational: ORGANISATIONAL,
+    case_study: CASE_STUDY,
     '360' => NUM_360,
     mindmill: MINDMILL,
     hogan: HOGAN,
