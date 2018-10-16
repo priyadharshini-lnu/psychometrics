@@ -31,7 +31,7 @@ module Imports
         else
           imported_items.each do |translation|
             translation.errors.full_messages.each do |message|
-              errors.add(:base, I18n.t('administration.imports.errors.translation.error', id: translation.question_id, error: message))
+              errors.add(:base, I18n.t('administration.imports.errors.translation.error', id: "#{translation.translateable_type.downcase}:#{translation.translateable_id}", error: message))
             end
           end
         end
