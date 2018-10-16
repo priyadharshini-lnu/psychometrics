@@ -17,6 +17,7 @@ en:
             psychometric: 'Psychometrics'
             organisational: 'Org Surveys'
             '360': '360 Feedback'
+            case_study: 'Case Studies'
         owner: Owner
         report_family: Report Family
       list:

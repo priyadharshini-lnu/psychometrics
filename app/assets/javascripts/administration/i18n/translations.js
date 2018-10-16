@@ -6,6 +6,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Feedback",
+          "case_study": "Case Studies",
           "organisational": "Org Surveys",
           "psychometric": "Psychometrics"
         },
@@ -270,6 +271,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "360": "360 Feedback",
           "all": "All Categories",
           "organisational": "Org Surveys",
+          "case_study": "Case Studies",
           "psychometric": "Psychometrics"
         },
         "timing": {
@@ -282,6 +284,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "360": "360 Feedback",
             "all": "All Categories",
             "organisational": "Org Surveys",
+            "case_study": "Case Studies",
             "psychometric": "Psychometrics"
           }
         },
@@ -529,6 +532,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "categories": {
             "360": "360 Feedback",
             "all": "All Categories",
+            "case_study": "Case Studies",
             "organisational": "Org Surveys",
             "psychometric": "Psychometrics"
           },
@@ -541,6 +545,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "with_category": {
               "360": "360 Feedback",
               "all": "All Categories",
+              "case_study": "Case Studies",
               "organisational": "Org Surveys",
               "psychometric": "Psychometrics"
             }
@@ -635,6 +640,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "360": "360 Feedback",
               "all": "All",
               "organisational": "Org Surveys",
+              "case_study": "Case Studies",
               "psychometric": "Psychometrics"
             }
           },
@@ -803,6 +809,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "with_assessment_category": {
                 "360": "360 Feedback",
                 "all": "All",
+                "case_study": "Case Studies",
                 "organisational": "Org Surveys",
                 "psychometric": "Psychometrics"
               }
@@ -1490,6 +1497,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "with_assessment_category": {
             "360": "360 Feedback",
             "all": "All",
+            "case_study": "Case Studies",
             "organisational": "Org Surveys",
             "psychometric": "Psychometrics"
           }
@@ -2680,6 +2688,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Feedback",
+          "case_study": "Case Studies",
           "organisational": "Org Surveys",
           "psychometric": "Psychometrics"
         },
@@ -2855,6 +2864,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Feedback",
+          "case_study": "Case Studies",
           "organisational": "Org Surveys",
           "psychometric": "Psychometrics"
         },
@@ -3116,6 +3126,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
       "form": {
         "categories": {
           "360": "360 Feedback",
+          "case_study": "Case Studies",
           "all": "All Categories",
           "organisational": "Org Surveys",
           "psychometric": "Psychometrics"
@@ -3128,6 +3139,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "filterrific": {
           "with_category": {
             "360": "360 Feedback",
+            "case_study": "Case Studies",
             "all": "All Categories",
             "organisational": "Org Surveys",
             "psychometric": "Psychometrics"
@@ -3376,6 +3388,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "form": {
           "categories": {
             "360": "360 Feedback",
+            "case_study": "Case Studies",
             "all": "All Categories",
             "organisational": "Org Surveys",
             "psychometric": "Psychometrics"
@@ -3388,6 +3401,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "filterrific": {
             "with_category": {
               "360": "360 Feedback",
+              "case_study": "Case Studies",
               "all": "All Categories",
               "organisational": "Org Surveys",
               "psychometric": "Psychometrics"
@@ -3481,6 +3495,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "filterrific": {
             "with_assessment_category": {
               "360": "360 Feedback",
+              "case_study": "Case Studies",
               "all": "All",
               "organisational": "Org Surveys",
               "psychometric": "Psychometrics"
@@ -3650,6 +3665,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
             "filterrific": {
               "with_assessment_category": {
                 "360": "360 Feedback",
+                "case_study": "Case Studies",
                 "all": "All",
                 "organisational": "Org Surveys",
                 "psychometric": "Psychometrics"
@@ -4336,6 +4352,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "filterrific": {
           "with_assessment_category": {
             "360": "360 Feedback",
+            "case_study": "Case Studies",
             "all": "All",
             "organisational": "Org Surveys",
             "psychometric": "Psychometrics"
@@ -5527,6 +5544,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Feedback",
+          "case_study": "Case Studies",
           "organisational": "Org Surveys",
           "psychometric": "Psychometrics"
         },
@@ -5702,6 +5720,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "active": "Active",
         "categories": {
           "360": "360 Feedback",
+          "case_study": "Case Studies",
           "organisational": "Org Surveys",
           "psychometric": "Psychometrics"
         },
