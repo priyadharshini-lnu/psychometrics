@@ -15,10 +15,11 @@ module Administration
         append_before_action :pundit_authorize, except: [:sidebar]
 
         def preview
+          # TODO: Not the correct way to send all users result to the browser, adding user_id condition until better way is found
           @results = Assign.
               completed.
               includes(:membership, :user).
-              where(memberships: { client_id: client.project.id }, assessment_id: resource.assessment_ids).
+              where(memberships: { client_id: client.project.id, user_id: membership.user_id }, assessment_id: resource.assessment_ids).
               references(:membership).
               all
           # TODO: think what should be done if there is a lot of users
