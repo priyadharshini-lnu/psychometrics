@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: factors_norms
@@ -20,9 +22,9 @@ class FactorsNorm < ApplicationRecord
   self.inheritance_column = :_type_disabled
 
   # norm types constant
-  NORM_TYPES              = %w(eti yti).freeze
+  NORM_TYPES = %w[eti yti].freeze
   # factor types constant
-  FACTOR_TYPES            = %w(factors sub_factors).freeze
+  FACTOR_TYPES = %w[factors sub_factors].freeze
 
   LEVELS = ['Very Low', 'Low', 'Average', 'High', 'Very High'].freeze
 
@@ -54,9 +56,7 @@ class FactorsNorm < ApplicationRecord
       factors     = scope.select('factors.*, factors_norms.props as factors_norms_props').order('id': :asc).all
       parents_ids = factors.pluck(:parent_id).uniq.reject { |e| e.to_s.empty? }
       parents     = []
-      unless parents_ids.empty?
-        parents = Factor.find(parents_ids).group_by(&:id)
-      end
+      parents = Factor.find(parents_ids).group_by(&:id) unless parents_ids.empty?
       factors.map do |factor|
         data                       = { id: factor.id, name: factor.name }
         data[:parent]              = parents[factor.parent_id].try(:[], 0) if factor.parent_id
@@ -81,7 +81,7 @@ class FactorsNorm < ApplicationRecord
     #
     #
     def export_structured_hash(norm)
-      FactorsNorm::NORM_TYPES.inject(Hash.new({})) do |sum, norm_type|
+      FactorsNorm::NORM_TYPES.each_with_object(Hash.new({})) do |norm_type, sum|
         sum[norm_type] = {}
         FactorsNorm::FACTOR_TYPES.each do |factor_type|
           sql = Factor.where(dimension_id: norm.dimension_id).
@@ -89,7 +89,6 @@ class FactorsNorm < ApplicationRecord
                 with_factor_type(factor_type)
           sum[norm_type][factor_type] = FactorsNorm.structured_hash(sql)
         end
-        sum
       end
     end
 
@@ -105,9 +104,9 @@ class FactorsNorm < ApplicationRecord
         cell[params[:field_name]] = value
       else
         factors_norm.props << {
-            level:      params[:level],
-            score_from: params[:field_name] == 'score_from' ? value : '',
-            score_to:   params[:field_name] == 'score_to' ? value : '',
+          level:      params[:level],
+          score_from: params[:field_name] == 'score_from' ? value : '',
+          score_to:   params[:field_name] == 'score_to' ? value : ''
         }
       end
       factors_norm.save
@@ -132,10 +131,10 @@ class FactorsNorm < ApplicationRecord
           errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_to_must_be_number')
         end
       end
-      if item['score_from'].present?
-        unless item['score_from'].to_s.valid_float?
-          errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_from_must_be_number')
-        end
+      next unless item['score_from'].present?
+
+      unless item['score_from'].to_s.valid_float?
+        errors[:props] << I18n.t('activerecord.errors.models.factors_norm.score_from_must_be_number')
       end
     end
   end

@@ -27,6 +27,14 @@ module Administration
         end
       end
 
+      def export_normed_results
+        @assessment = Assessment.find(params[:assessment_id])
+        results = ::Exports::Assessments::AssessmentNormedResultsExport.new(@assessment, client.id)
+        respond_to do |format|
+          format.xlsx { send_data results.to_xlsx.to_stream.read, filename: 'assessment_normed_data.xlsx' }
+        end
+      end
+
       def export_hogan_results
         @assessment = Assessment.find(params[:assessment_id])
         results = ::Exports::Assessments::HoganResultsExport.new(client.id, @assessment.id, params[:report_id])
