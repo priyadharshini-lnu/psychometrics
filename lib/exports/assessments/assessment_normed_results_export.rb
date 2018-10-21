@@ -19,6 +19,7 @@ module Exports
               header2: ['', '', '', '', '', '', '']
             }
             factors = assessment.dimension.factors.active.includes(:sub_factors)
+            factor_ids = {}
             normed_results = {}
 
             # Builds header and creates hash of Factor IDs
@@ -27,6 +28,8 @@ module Exports
               header[:header] << factor.name
               header[:header2] << ''
               normed_results[factor.id.to_s] = nil
+              # Creates an Factor reference with SubFactors
+              factor_ids[factor.id] = factor.sub_factor_ids
 
               factor.sub_factors.each do |sub_factor|
                 header[:header] << ''
@@ -59,6 +62,13 @@ module Exports
                 scoring = assign.scoring&.dig(factor_id, 'results')
                 normed_results[factor_id] = ''
 
+                # Gets sub_factor results
+                if scoring.blank? && !factor_ids[factor_id.to_i].blank?
+                  scoring = factor_ids[factor_id.to_i].
+                            each_with_object([]) { |sub_factor_id, res| res << assign.scoring&.dig(sub_factor_id.to_s, 'results') }.
+                            flatten.compact
+                end
+
                 # Skip if there is no scoring or norm
                 next if scoring.blank? || norm.nil?
 
@@ -80,7 +90,7 @@ module Exports
                 normed_results[factor_id] = normed_result + 1 if normed_result
               end
 
-              sheet.add_row [assign.id,
+              sheet.add_row [assign.encode_id,
                              assign.user_name,
                              assign.user_email,
                              assign.started_at.try(:strftime, '%D %r'),
