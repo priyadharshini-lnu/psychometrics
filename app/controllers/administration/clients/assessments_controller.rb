@@ -4,7 +4,7 @@ module Administration
       include Administration::Clients
       prepend_before_action :set_resource_class
       before_action :ensure_not_root
-      before_action :pundit_authorize
+      before_action :pundit_authorize, except: [:export_normed_results]
       before_action :init_breadcrumbs
       skip_after_action :verify_policy_scoped, only: [:index]
 
@@ -24,6 +24,15 @@ module Administration
         filename = params[:scoring] ? 'assessment_scoring_results.xlsx' : 'assessment_raw_results.xlsx'
         respond_to do |format|
           format.xlsx { send_data results.to_xlsx.to_stream.read, filename: filename }
+        end
+      end
+
+      def export_normed_results
+        @assessment = Assessment.find(params[:assessment_id])
+        authorize @assessment
+        results = ::Exports::Assessments::AssessmentNormedResultsExport.new(@assessment, client.id)
+        respond_to do |format|
+          format.xlsx { send_data results.to_xlsx.to_stream.read, filename: 'assessment_normed_data.xlsx' }
         end
       end
 
@@ -60,7 +69,7 @@ module Administration
         add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) if client.subtenancy?
         add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent) if client.sub_campaign?
         add_breadcrumb client.decorate.display_name, administration_client_users_path(client)
-        add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), { action: :index }
+        add_breadcrumb I18n.t('administration.breadcrumbs.assessments'), action: :index
       end
 
       # Set model

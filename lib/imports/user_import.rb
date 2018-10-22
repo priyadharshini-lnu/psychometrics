@@ -48,12 +48,18 @@ module Imports
     def process!
       # Return error if form not valid
       return false unless valid?
-
       imported_items = load_imported_items.compact
-      if imported_items.map(&:valid?).all?
-        imported_items.each(&:save!).each { |i| i.user.invite!(importer, client_id) }
+      return false if imported_items.compact.size == 0
+      memberships = imported_items.map(&:first)
+      membership_user_access_ids = imported_items.map { |i| i.at(1)}
+      if memberships.map(&:valid?).all?
+        memberships.each(&:save!).each_with_index do |membership, index|
+          membership.user.invite!(importer, client_id)
+          set_user_access(membership_user_access_ids[index], membership)
+        end
+
       else
-        imported_items.each_with_index do |membership, index|
+        memberships.each_with_index do |membership, index|
           membership.user.errors.full_messages.each do |message|
             errors.add(:base, I18n.t('administration.imports.errors.error', row: index + 2, error: message))
           end
@@ -89,7 +95,7 @@ module Imports
         next if user.is?(:superadmin)
 
         header.zip(row)[HEADER_IMPORT_DATA.size..-1]&.each_with_index do |z, i|
-          memberships_attributes[:hris_data][i.to_s] = { key: z.first, value: z.last }
+          memberships_attributes[:hris_data][i.to_s] = { 'key' => z.first, 'value' => z.last }
         end
 
         assign_password(user, attributes, memberships_attributes)
@@ -98,13 +104,17 @@ module Imports
         membership = user.memberships.find_or_initialize_by(client_id: client.id)
         membership.assign_attributes(memberships_attributes)
 
-        membership.assigns.each do |assign|
-          assign.report_ids = membership.client.report_ids & assign.assessment.report_ids & report_ids
+        if report_ids
+          report_ids = client.report_ids & report_ids
+          reports_hash = Report.select(:id).where(id: report_ids).includes(:assessments).group_by(&:assessment_ids)
+          reports_hash.each do |assessment_ids, report_arr|
+            assessment_ids.each do |assessment_id|
+              assign = membership.assigns.find_or_initialize_by(assessment_id: assessment_id)
+              assign.report_ids = report_arr.map(&:id)
+            end
+          end
         end
-
-        set_user_access(user_access_ids, membership)
-
-        membership
+        [membership, user_access_ids]
       end
 
     rescue => e
@@ -129,7 +139,7 @@ module Imports
     private
 
     def set_user_access(user_access_ids, membership)
-      report_ids = membership.reports.reject { |r| r.external_report? }.map(&:id)
+      report_ids = membership.reports.ids
       assigns_reports = AssignsReport.joins(assign: :membership).where('memberships.id = ?', membership.id)
 
       add_access_ids = report_ids & user_access_ids

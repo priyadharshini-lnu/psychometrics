@@ -41,6 +41,8 @@ class Factor < ApplicationRecord
   # factor types constant
   FACTOR_TYPES = %w(factors sub_factors).freeze
 
+
+  scope :active, -> { where(disabled: false) }
   scope :with_factor_type, lambda { |type|
     type = type.to_s
     raise "supported types: #{FACTOR_TYPES}" unless FACTOR_TYPES.include? type

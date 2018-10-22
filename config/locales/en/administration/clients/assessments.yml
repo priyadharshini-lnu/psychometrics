@@ -1,0 +1,9 @@
+en:
+  administration:
+    clients:
+      assessments:
+        resource:
+          export_results: Export results
+          scoring_results: Scoring results
+          raw_results: Raw results
+          normed_results: Normed results
