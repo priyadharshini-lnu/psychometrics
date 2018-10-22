@@ -95,7 +95,7 @@ module Imports
         next if user.is?(:superadmin)
 
         header.zip(row)[HEADER_IMPORT_DATA.size..-1]&.each_with_index do |z, i|
-          memberships_attributes[:hris_data][i.to_s] = { key: z.first, value: z.last }
+          memberships_attributes[:hris_data][i.to_s] = { 'key' => z.first, 'value' => z.last }
         end
 
         assign_password(user, attributes, memberships_attributes)
