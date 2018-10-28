@@ -1252,6 +1252,37 @@ ALTER SEQUENCE public.occupations_id_seq OWNED BY public.occupations.id;
 
 
 --
+-- Name: privacy_consents; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.privacy_consents (
+    id bigint NOT NULL,
+    membership_id bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: privacy_consents_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.privacy_consents_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: privacy_consents_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.privacy_consents_id_seq OWNED BY public.privacy_consents.id;
+
+
+--
 -- Name: product_images; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2016,6 +2047,13 @@ ALTER TABLE ONLY public.occupations_factors ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
+-- Name: privacy_consents id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_consents ALTER COLUMN id SET DEFAULT nextval('public.privacy_consents_id_seq'::regclass);
+
+
+--
 -- Name: product_images id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2375,6 +2413,14 @@ ALTER TABLE ONLY public.occupations_factors
 
 ALTER TABLE ONLY public.occupations
     ADD CONSTRAINT occupations_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: privacy_consents privacy_consents_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_consents
+    ADD CONSTRAINT privacy_consents_pkey PRIMARY KEY (id);
 
 
 --
@@ -2967,6 +3013,13 @@ CREATE INDEX index_occupations_on_dimension_id ON public.occupations USING btree
 
 
 --
+-- Name: index_privacy_consents_on_membership_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_privacy_consents_on_membership_id ON public.privacy_consents USING btree (membership_id);
+
+
+--
 -- Name: index_product_images_on_product_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3339,6 +3392,14 @@ ALTER TABLE ONLY public.clients
 
 ALTER TABLE ONLY public.communications
     ADD CONSTRAINT fk_rails_639c49fe3d FOREIGN KEY (creator_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: privacy_consents fk_rails_6cd91d815a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.privacy_consents
+    ADD CONSTRAINT fk_rails_6cd91d815a FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
 
 
 --
