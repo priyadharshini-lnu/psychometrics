@@ -17,3 +17,4 @@
         .panel-group.assessments-holder id="assessments-multiple" role="tablist" aria-multiselectable="true"
           - @multiple_reports.each do |report|
             = render 'assigns_reports', report: report
+= render partial: '//assigns/modals/accept_privacy'
