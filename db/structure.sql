@@ -162,7 +162,8 @@ CREATE TABLE public.assigns (
     project_assign_id integer,
     mindmill_report character varying,
     selected_locale character varying,
-    mindmill_prefix character varying
+    mindmill_prefix character varying,
+    external_results json
 );
 
 
@@ -320,7 +321,8 @@ CREATE TABLE public.clients (
     ancestry character varying,
     ancestry_depth integer DEFAULT 0,
     end_level boolean DEFAULT false,
-    hogan_group_name character varying
+    hogan_group_name character varying,
+    privacy_consent boolean
 );
 
 
