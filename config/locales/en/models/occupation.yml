@@ -8,8 +8,8 @@ en:
         name: 'Name'
         description: 'Description'
         full_description: 'Full Description'
-        full_description: 'Full Description'
         potential_areas_of_study: 'Potential Areas of Study'
+        work_environment: Work Environment
         key_career_tracks: 'Key Career Tracks'
         high_school_entry_roles: 'High School Entry Roles'
         diploma_qualification: 'Diploma Qualification'
