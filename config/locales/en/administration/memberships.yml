@@ -37,7 +37,7 @@ en:
       update:
         successfully: User %{name} was successfully updated.
       destroy:
-        successfully: User %{name} was successfully destroyed.
+        successfully: User %{name} was successfully deleted.
       toggle_status:
         successfully: User %{name} was successfully updated.
       reset_password:

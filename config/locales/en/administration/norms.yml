@@ -15,7 +15,7 @@ en:
       edit:
         header: 'Rename Norm'
       destroy:
-        successfully: 'Norm %{name} was successfully destroyed.'
+        successfully: 'Norm %{name} was successfully deleted.'
       create:
         successfully: 'Norm %{name} was successfully created.'
       update:

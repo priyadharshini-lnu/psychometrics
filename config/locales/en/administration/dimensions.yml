@@ -15,7 +15,7 @@ en:
       edit:
         header: 'Edit Dimension Name'
       destroy:
-        successfully: 'Dimension %{name} was successfully destroyed.'
+        successfully: 'Dimension %{name} was successfully deleted.'
       copy:
         error: 'Dimension #%{id} was not copied.'
       toggle_status:
