@@ -75,14 +75,18 @@ module Exports
       # Calculates value for external_result type
       #
       def external_result(assign, data)
+        # Skip if the assign is for another assessment
+        return unless assign.assessment_id == data['assessmentId']
+
+        assign.try(:external_results).try(:[], data['key'])
       end
 
       # Calculates value for normed_factor type
       #
       def normed_factor(assign, data)
-        # Skip if assign for another assessment
+        # Skip if the assign is for another assessment
         return unless assign.assessment_id == data['assessmentId']
-        # Skip if assign has no norm data
+        # Skip if the assign has no norm data
         return unless assign.norm_data
         # Skip if can't find factor
         factor = Factor.find(data['factorId'])
