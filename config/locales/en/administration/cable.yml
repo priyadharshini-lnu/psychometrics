@@ -39,6 +39,7 @@ en:
         report_update: "Report is updated"
         report_change_filters: "Filters are updated"
         report_change_aliases: "Aliases are updated"
+        report_change_data_configuration: 'Data Report Configuration was successfully updated'
         page_create: "Page %{name} is created"
         page_update: "Page is updated"
         page_destroy: "Page has been deleted"

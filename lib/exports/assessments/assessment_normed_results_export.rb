@@ -76,18 +76,7 @@ module Exports
                 factors_norm = factors_norms["#{norm.id}_#{norm_data['type']}_#{factor_id}".downcase]&.first
                 next unless factors_norm
 
-                # Calculates sum of value
-                sum_scoring = scoring.inject(0) { |sum, result| sum + result['value'].to_i }
-                # Calculates avg of value with 2 numbers after comma
-                avg_scoring = (sum_scoring / scoring.size.to_f).round(2)
-
-                prop = (factors_norm.props || []).
-                       detect { |item| item['score_from'].to_f <= avg_scoring && item['score_to'].to_f >= avg_scoring }
-
-                # Converts level to index
-                normed_result = FactorsNorm::LEVELS.index(prop&.dig('level'))
-                # +1 cause (Very Low = 1, Low = 2, Average = 3, High = 4, Very High = 5)
-                normed_results[factor_id] = normed_result + 1 if normed_result
+                normed_results[factor_id] = factors_norm.detect_normed_result(scoring)
               end
 
               sheet.add_row [assign.encode_id,

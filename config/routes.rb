@@ -100,7 +100,9 @@ Rails.application.routes.draw do
             post :assign_multiple
           end
         end
-        resources :reports, only: [:index, :destroy, :new, :create]
+        resources :reports, only: [:index, :destroy, :new, :create] do
+          get :export
+        end
         resources :statistics, only: [:index]
 
         resources :projects, concerns: :client_editable do

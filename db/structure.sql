@@ -1516,7 +1516,8 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
+    data_configuration jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -3880,11 +3881,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181010120450'),
 ('20181013151355'),
 ('20181022210715'),
+('20181103095056'),
 ('20181028143714'),
 ('20181028180057'),
 ('20181112210040'),
 ('20181118154257'),
 ('20181119095817'),
 ('20181224184633');
-
-
