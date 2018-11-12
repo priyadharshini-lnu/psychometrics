@@ -20,7 +20,7 @@ module Builders
     def save
       ActiveRecord::Base.transaction do
         begin
-          @assessment.update(@assessment_params.slice(:flow, :norm_rules, :enable_back))
+          @assessment.update(@assessment_params.slice(:flow, :norm_rules, :enable_back, :enable_progress))
           @assessment_params[:blocks].each do |block_params|
             id = block_params.delete(:id)
             questions = block_params.delete(:questions)
