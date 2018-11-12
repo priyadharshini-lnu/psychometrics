@@ -28,7 +28,7 @@ en:
       edit:
         header: 'Edit Report Name'
       destroy:
-        successfully: 'Report %{name} was successfully destroyed.'
+        successfully: 'Report %{name} was successfully deleted.'
       create:
         successfully: 'Report %{name} was successfully created.'
       update:
@@ -78,7 +78,7 @@ en:
       reports:
         <<: *REPORTS
         destroy:
-          successfully: 'Report %{name} was successfully destroyed from Client.'
+          successfully: 'Report %{name} was successfully deleted from Client.'
         create:
           successfully: 'Report %{name} was successfully created for Client.'
         bulk_download: 'Bulk Download'

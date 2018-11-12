@@ -59,7 +59,7 @@ en:
         edit:
           header: 'Edit Project'
         destroy:
-          successfully: 'Project %{name} was successfully destroyed.'
+          successfully: 'Project %{name} was successfully deleted.'
         copy:
           successfully: 'Project %{name} was successfully copied.'
           error: 'Project %{name} was not copied.'

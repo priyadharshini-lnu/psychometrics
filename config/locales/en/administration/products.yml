@@ -12,7 +12,7 @@ en:
       edit:
         header: Edit Product
       destroy:
-        successfully: Product %{name} was successfully destroyed.
+        successfully: Product %{name} was successfully deleted.
       copy:
         error: Product #%{name} was not copied.
         successfully: Product %{name} was successfully copied.

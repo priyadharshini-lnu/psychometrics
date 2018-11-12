@@ -14,7 +14,7 @@ en:
       edit:
         header: 'Edit occupation'
       destroy:
-        successfully: 'Occupation #%{name} was successfully destroyed.'
+        successfully: 'Occupation #%{name} was successfully deleted.'
       copy:
         error: 'Occupation #%{id} was not copied.'
       toggle_status:
