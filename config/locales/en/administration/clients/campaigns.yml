@@ -46,7 +46,7 @@ en:
         edit:
           header: 'Edit Campaign'
         destroy:
-          successfully: 'Campaign %{name} was successfully destroyed.'
+          successfully: 'Campaign %{name} was successfully deleted.'
         copy:
           successfully: 'Campaign %{name} was successfully copied.'
           error: 'Campaign %{name} was not copied.'

@@ -17,7 +17,7 @@ en:
       edit:
         header: 'Edit'
       destroy:
-        successfully: 'Item %{name} was successfully destroyed.'
+        successfully: 'Item %{name} was successfully deleted.'
       create:
         successfully: 'Item %{name} was successfully created.'
       update:

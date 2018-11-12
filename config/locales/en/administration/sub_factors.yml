@@ -11,7 +11,7 @@ en:
       edit:
         header: 'Edit Sub-Factor Name'
       destroy:
-        successfully: 'Sub-Factor %{name} was successfully destroyed.'
+        successfully: 'Sub-Factor %{name} was successfully deleted.'
       copy:
         error: 'Sub-Factor #%{id} was not copied.'
       toggle_status:

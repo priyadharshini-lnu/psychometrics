@@ -8,7 +8,7 @@ en:
       edit:
         header: 'Edit Question'
       destroy:
-        successfully: 'Question %{name} was successfully destroyed.'
+        successfully: 'Question %{name} was successfully deleted.'
       resource:
         confirmations:
           delete:
