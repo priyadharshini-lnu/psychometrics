@@ -34,7 +34,7 @@ en:
       create:
         successfully: 'Communication created successfully.'
       destroy:
-        successfully: 'Communication %{name} was successfully destroyed.'
+        successfully: 'Communication %{name} was successfully deleted.'
       copy:
         error: 'Communication #%{id} was not copied.'
       toggle_status:

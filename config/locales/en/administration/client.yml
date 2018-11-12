@@ -27,7 +27,7 @@ en:
       license:
         header: '%{name} - Edit license'
       destroy:
-        successfully: 'Client Tenancy %{name} was successfully destroyed.'
+        successfully: 'Client Tenancy %{name} was successfully deleted.'
       copy:
         successfully: 'Client Tenancy %{name} was successfully copied.'
         error: 'Client Tenancy %{name} was not copied.'

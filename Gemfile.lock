@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: git@gitlab.com:tte-lighthouse/psychometrics-survey.git
-  revision: b1d32c5505debf7b585c7f4049bd06ba1b01578c
+  revision: db98f286c8e0f9e3deb718914dce2f81685e853f
   specs:
     psychometrics-survey (0.0.1)
       railties (~> 5.0)

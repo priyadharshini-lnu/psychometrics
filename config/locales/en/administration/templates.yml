@@ -18,7 +18,7 @@ en:
         edit:
           header: Edit Question
         destroy:
-          successfully: Question %{name} was successfully destroyed.
+          successfully: Question %{name} was successfully deleted.
         copy:
           error: Question #%{name} was not copied.
         sidebar:
@@ -52,7 +52,7 @@ en:
         edit:
           header: Edit Block
         destroy:
-          successfully: Block %{name} was successfully destroyed.
+          successfully: Block %{name} was successfully deleted.
         copy:
           error: Block #%{name} was not copied.
         sidebar:

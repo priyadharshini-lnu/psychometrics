@@ -493,7 +493,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -527,7 +527,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -609,7 +609,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -641,7 +641,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -772,7 +772,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -848,7 +848,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -947,7 +947,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -1016,7 +1016,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -1117,7 +1117,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -1193,7 +1193,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -1278,7 +1278,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -1377,7 +1377,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -1529,7 +1529,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -1680,7 +1680,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -1738,7 +1738,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -1890,7 +1890,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -2002,7 +2002,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -2062,7 +2062,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -2223,7 +2223,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -2273,7 +2273,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -2368,7 +2368,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -2444,7 +2444,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -2545,7 +2545,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -2609,7 +2609,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -2641,7 +2641,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -2698,7 +2698,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -2790,7 +2790,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -2833,7 +2833,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -2879,7 +2879,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -2942,7 +2942,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -4209,10 +4209,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -4220,6 +4221,11 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -5112,7 +5118,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -5146,7 +5152,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -5228,7 +5234,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -5260,7 +5266,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -5391,7 +5397,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -5467,7 +5473,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -5566,7 +5572,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -5635,7 +5641,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -5736,7 +5742,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -5812,7 +5818,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -5897,7 +5903,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -5996,7 +6002,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -6148,7 +6154,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -6299,7 +6305,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -6357,7 +6363,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -6509,7 +6515,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -6621,7 +6627,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -6681,7 +6687,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -6842,7 +6848,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -6892,7 +6898,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -6987,7 +6993,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -7063,7 +7069,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -7164,7 +7170,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -7228,7 +7234,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -7260,7 +7266,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -7317,7 +7323,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -7409,7 +7415,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -7452,7 +7458,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -7498,7 +7504,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -7561,7 +7567,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -8832,10 +8838,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -8843,6 +8850,11 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -9735,7 +9747,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -9769,7 +9781,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -9851,7 +9863,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -9883,7 +9895,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -10014,7 +10026,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -10090,7 +10102,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -10189,7 +10201,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -10258,7 +10270,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -10359,7 +10371,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -10435,7 +10447,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -10520,7 +10532,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -10619,7 +10631,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -10771,7 +10783,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -10922,7 +10934,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -10980,7 +10992,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -11132,7 +11144,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -11244,7 +11256,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -11304,7 +11316,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -11465,7 +11477,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -11515,7 +11527,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -11610,7 +11622,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -11686,7 +11698,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -11787,7 +11799,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -11851,7 +11863,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -11883,7 +11895,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -11940,7 +11952,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -12032,7 +12044,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -12075,7 +12087,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -12121,7 +12133,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -12184,7 +12196,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -13451,10 +13463,11 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -13462,6 +13475,11 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -14354,7 +14372,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -14388,7 +14406,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -14470,7 +14488,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -14502,7 +14520,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -14633,7 +14651,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -14709,7 +14727,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -14808,7 +14826,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -14877,7 +14895,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -14978,7 +14996,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -15054,7 +15072,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -15139,7 +15157,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -15238,7 +15256,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -15390,7 +15408,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -15541,7 +15559,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -15599,7 +15617,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -15751,7 +15769,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -15863,7 +15881,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -15923,7 +15941,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -16084,7 +16102,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -16134,7 +16152,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -16229,7 +16247,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -16305,7 +16323,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -16406,7 +16424,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -16470,7 +16488,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -16502,7 +16520,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -16559,7 +16577,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -16651,7 +16669,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -16694,7 +16712,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -16740,7 +16758,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -16803,7 +16821,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -18072,10 +18090,11 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -18083,6 +18102,11 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -18975,7 +18999,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -19009,7 +19033,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -19091,7 +19115,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -19123,7 +19147,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -19254,7 +19278,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -19330,7 +19354,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -19429,7 +19453,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -19498,7 +19522,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -19599,7 +19623,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -19675,7 +19699,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -19760,7 +19784,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -19859,7 +19883,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -20011,7 +20035,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -20162,7 +20186,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -20220,7 +20244,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -20372,7 +20396,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -20484,7 +20508,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -20544,7 +20568,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -20705,7 +20729,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -20755,7 +20779,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -20850,7 +20874,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -20926,7 +20950,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -21027,7 +21051,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -21091,7 +21115,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -21123,7 +21147,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -21180,7 +21204,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -21272,7 +21296,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -21315,7 +21339,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -21361,7 +21385,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -21424,7 +21448,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -22691,10 +22715,11 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -22702,6 +22727,11 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -23594,7 +23624,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -23628,7 +23658,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -23710,7 +23740,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -23742,7 +23772,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -23873,7 +23903,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -23949,7 +23979,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -24048,7 +24078,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -24117,7 +24147,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -24218,7 +24248,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -24294,7 +24324,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -24379,7 +24409,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -24478,7 +24508,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -24630,7 +24660,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -24781,7 +24811,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -24839,7 +24869,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -24991,7 +25021,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -25103,7 +25133,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -25163,7 +25193,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -25324,7 +25354,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -25374,7 +25404,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -25469,7 +25499,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -25545,7 +25575,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -25646,7 +25676,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -25710,7 +25740,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -25742,7 +25772,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -25799,7 +25829,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -25891,7 +25921,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -25934,7 +25964,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -25980,7 +26010,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -26043,7 +26073,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -27311,10 +27341,11 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -27322,6 +27353,11 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -28214,7 +28250,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -28248,7 +28284,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -28330,7 +28366,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -28362,7 +28398,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -28493,7 +28529,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -28569,7 +28605,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -28668,7 +28704,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -28737,7 +28773,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -28838,7 +28874,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -28914,7 +28950,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -28999,7 +29035,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -29098,7 +29134,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -29250,7 +29286,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -29401,7 +29437,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -29459,7 +29495,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -29611,7 +29647,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -29723,7 +29759,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -29783,7 +29819,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -29944,7 +29980,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -29994,7 +30030,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -30089,7 +30125,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -30165,7 +30201,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -30266,7 +30302,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -30330,7 +30366,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -30362,7 +30398,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -30419,7 +30455,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -30511,7 +30547,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -30554,7 +30590,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -30600,7 +30636,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -30663,7 +30699,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -31930,10 +31966,11 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -31941,6 +31978,11 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -32833,7 +32875,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -32867,7 +32909,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -32949,7 +32991,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -32981,7 +33023,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -33112,7 +33154,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -33188,7 +33230,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -33287,7 +33329,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -33356,7 +33398,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -33457,7 +33499,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -33533,7 +33575,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -33618,7 +33660,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -33717,7 +33759,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -33869,7 +33911,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -34020,7 +34062,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -34078,7 +34120,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -34230,7 +34272,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -34342,7 +34384,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -34402,7 +34444,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -34563,7 +34605,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -34613,7 +34655,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -34708,7 +34750,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -34784,7 +34826,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -34885,7 +34927,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -34949,7 +34991,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -34981,7 +35023,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -35038,7 +35080,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -35130,7 +35172,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -35173,7 +35215,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -35219,7 +35261,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -35282,7 +35324,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -36549,10 +36591,11 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -36560,6 +36603,11 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -37452,7 +37500,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -37486,7 +37534,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -37568,7 +37616,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -37600,7 +37648,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -37731,7 +37779,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -37807,7 +37855,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -37906,7 +37954,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -37975,7 +38023,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -38076,7 +38124,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -38152,7 +38200,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -38237,7 +38285,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -38336,7 +38384,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -38488,7 +38536,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -38639,7 +38687,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -38697,7 +38745,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -38849,7 +38897,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -38961,7 +39009,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -39021,7 +39069,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -39182,7 +39230,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -39232,7 +39280,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -39327,7 +39375,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -39403,7 +39451,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -39504,7 +39552,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -39568,7 +39616,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -39600,7 +39648,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -39657,7 +39705,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -39749,7 +39797,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -39792,7 +39840,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -39838,7 +39886,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -39901,7 +39949,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -41168,10 +41216,11 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -41179,6 +41228,11 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -42071,7 +42125,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -42105,7 +42159,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -42187,7 +42241,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -42219,7 +42273,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -42350,7 +42404,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -42426,7 +42480,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -42525,7 +42579,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -42594,7 +42648,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -42695,7 +42749,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -42771,7 +42825,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -42856,7 +42910,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -42955,7 +43009,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -43107,7 +43161,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -43258,7 +43312,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -43316,7 +43370,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -43468,7 +43522,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -43580,7 +43634,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -43640,7 +43694,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -43801,7 +43855,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -43851,7 +43905,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -43946,7 +44000,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -44022,7 +44076,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -44123,7 +44177,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -44187,7 +44241,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -44219,7 +44273,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -44276,7 +44330,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -44368,7 +44422,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -44411,7 +44465,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -44457,7 +44511,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -44520,7 +44574,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -45787,10 +45841,11 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -45798,6 +45853,11 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -46690,7 +46750,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -46724,7 +46784,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -46806,7 +46866,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -46838,7 +46898,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -46969,7 +47029,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -47045,7 +47105,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -47144,7 +47204,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -47213,7 +47273,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -47314,7 +47374,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -47390,7 +47450,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -47475,7 +47535,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -47574,7 +47634,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -47726,7 +47786,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -47877,7 +47937,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -47935,7 +47995,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -48087,7 +48147,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -48199,7 +48259,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -48259,7 +48319,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -48420,7 +48480,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -48470,7 +48530,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -48565,7 +48625,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -48641,7 +48701,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -48742,7 +48802,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -48806,7 +48866,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -48838,7 +48898,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -48895,7 +48955,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -48987,7 +49047,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -49030,7 +49090,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -49076,7 +49136,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -49139,7 +49199,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -50409,7 +50469,8 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "key_career_tracks_within": "(es) Key Career Tracks Within",
         "potential_areas_of_study": "(es) Potential Areas of Study",
         "potential_roles": "(es) Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "(es) career",
@@ -50417,6 +50478,11 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "key": "(es) key",
         "strengths": "(es) strengths",
         "your_scores": "(es) Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -51309,7 +51375,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -51343,7 +51409,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -51425,7 +51491,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -51457,7 +51523,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -51588,7 +51654,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -51664,7 +51730,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -51763,7 +51829,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -51832,7 +51898,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -51933,7 +51999,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -52009,7 +52075,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -52094,7 +52160,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -52193,7 +52259,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -52345,7 +52411,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -52496,7 +52562,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -52554,7 +52620,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -52706,7 +52772,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -52818,7 +52884,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -52878,7 +52944,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -53039,7 +53105,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -53089,7 +53155,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -53184,7 +53250,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -53260,7 +53326,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -53361,7 +53427,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -53425,7 +53491,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -53457,7 +53523,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -53514,7 +53580,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -53606,7 +53672,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -53649,7 +53715,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -53695,7 +53761,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -53758,7 +53824,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -55025,10 +55091,11 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -55036,6 +55103,11 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -55928,7 +56000,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -55962,7 +56034,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -56044,7 +56116,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -56076,7 +56148,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -56207,7 +56279,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -56283,7 +56355,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -56382,7 +56454,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -56451,7 +56523,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -56552,7 +56624,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -56628,7 +56700,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -56713,7 +56785,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -56812,7 +56884,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -56964,7 +57036,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -57115,7 +57187,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -57173,7 +57245,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -57325,7 +57397,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -57437,7 +57509,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -57497,7 +57569,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -57658,7 +57730,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -57708,7 +57780,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -57803,7 +57875,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -57879,7 +57951,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -57980,7 +58052,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -58044,7 +58116,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -58076,7 +58148,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -58133,7 +58205,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -58225,7 +58297,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -58268,7 +58340,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -58314,7 +58386,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -58377,7 +58449,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -59644,10 +59716,11 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -59655,6 +59728,11 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -60547,7 +60625,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -60581,7 +60659,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -60663,7 +60741,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -60695,7 +60773,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -60826,7 +60904,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -60902,7 +60980,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -61001,7 +61079,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -61070,7 +61148,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -61171,7 +61249,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -61247,7 +61325,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -61332,7 +61410,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -61431,7 +61509,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -61583,7 +61661,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -61734,7 +61812,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -61792,7 +61870,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -61944,7 +62022,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -62056,7 +62134,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -62116,7 +62194,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -62277,7 +62355,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -62327,7 +62405,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -62422,7 +62500,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -62498,7 +62576,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -62599,7 +62677,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -62663,7 +62741,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -62695,7 +62773,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -62752,7 +62830,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -62844,7 +62922,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -62887,7 +62965,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -62933,7 +63011,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -62996,7 +63074,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -64263,10 +64341,11 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -64274,6 +64353,11 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -65166,7 +65250,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -65200,7 +65284,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -65282,7 +65366,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -65314,7 +65398,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -65445,7 +65529,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -65521,7 +65605,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -65620,7 +65704,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -65689,7 +65773,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -65790,7 +65874,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -65866,7 +65950,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -65951,7 +66035,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -66050,7 +66134,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -66202,7 +66286,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -66353,7 +66437,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -66411,7 +66495,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -66563,7 +66647,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -66675,7 +66759,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -66735,7 +66819,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -66896,7 +66980,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -66946,7 +67030,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -67041,7 +67125,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -67117,7 +67201,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -67218,7 +67302,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -67282,7 +67366,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -67314,7 +67398,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -67371,7 +67455,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -67463,7 +67547,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -67506,7 +67590,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -67552,7 +67636,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -67615,7 +67699,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -68882,10 +68966,11 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -68893,6 +68978,11 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -69785,7 +69875,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -69819,7 +69909,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -69901,7 +69991,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -69933,7 +70023,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -70064,7 +70154,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -70140,7 +70230,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -70239,7 +70329,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -70308,7 +70398,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -70409,7 +70499,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -70485,7 +70575,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -70570,7 +70660,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -70669,7 +70759,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -70821,7 +70911,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -70972,7 +71062,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -71030,7 +71120,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -71182,7 +71272,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -71294,7 +71384,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -71354,7 +71444,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -71515,7 +71605,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -71565,7 +71655,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -71660,7 +71750,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -71736,7 +71826,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -71837,7 +71927,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -71901,7 +71991,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -71933,7 +72023,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -71990,7 +72080,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -72082,7 +72172,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -72125,7 +72215,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -72171,7 +72261,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -72234,7 +72324,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -73503,10 +73593,11 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -73514,6 +73605,11 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -74406,7 +74502,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -74440,7 +74536,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -74522,7 +74618,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -74554,7 +74650,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -74685,7 +74781,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -74761,7 +74857,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -74860,7 +74956,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -74929,7 +75025,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -75030,7 +75126,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -75106,7 +75202,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -75191,7 +75287,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -75290,7 +75386,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -75442,7 +75538,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -75593,7 +75689,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -75651,7 +75747,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -75803,7 +75899,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -75915,7 +76011,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -75975,7 +76071,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -76136,7 +76232,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -76186,7 +76282,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -76281,7 +76377,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -76357,7 +76453,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -76458,7 +76554,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -76522,7 +76618,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -76554,7 +76650,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -76611,7 +76707,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -76703,7 +76799,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -76746,7 +76842,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -76792,7 +76888,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -76855,7 +76951,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -78122,10 +78218,11 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -78133,6 +78230,11 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -79025,7 +79127,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -79059,7 +79161,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -79141,7 +79243,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -79173,7 +79275,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -79304,7 +79406,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -79380,7 +79482,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -79479,7 +79581,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -79548,7 +79650,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -79649,7 +79751,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -79725,7 +79827,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -79810,7 +79912,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -79909,7 +80011,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -80061,7 +80163,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -80212,7 +80314,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -80270,7 +80372,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -80422,7 +80524,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -80534,7 +80636,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -80594,7 +80696,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -80755,7 +80857,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -80805,7 +80907,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -80900,7 +81002,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -80976,7 +81078,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -81077,7 +81179,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -81141,7 +81243,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -81173,7 +81275,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -81230,7 +81332,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -81322,7 +81424,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -81365,7 +81467,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -81411,7 +81513,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -81474,7 +81576,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -82738,10 +82840,11 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -82749,6 +82852,11 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -83641,7 +83749,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -83675,7 +83783,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -83757,7 +83865,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -83789,7 +83897,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -83920,7 +84028,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -83996,7 +84104,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -84095,7 +84203,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -84164,7 +84272,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -84265,7 +84373,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -84341,7 +84449,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -84426,7 +84534,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -84525,7 +84633,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -84677,7 +84785,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -84828,7 +84936,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -84886,7 +84994,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -85038,7 +85146,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -85150,7 +85258,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -85210,7 +85318,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -85371,7 +85479,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -85421,7 +85529,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -85516,7 +85624,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -85592,7 +85700,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -85693,7 +85801,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -85757,7 +85865,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -85789,7 +85897,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -85846,7 +85954,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -85938,7 +86046,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -85981,7 +86089,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -86027,7 +86135,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -86090,7 +86198,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -87357,10 +87465,11 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -87368,6 +87477,11 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -88260,7 +88374,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -88294,7 +88408,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -88376,7 +88490,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -88408,7 +88522,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -88539,7 +88653,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -88615,7 +88729,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -88714,7 +88828,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -88783,7 +88897,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -88884,7 +88998,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -88960,7 +89074,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -89045,7 +89159,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -89144,7 +89258,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -89296,7 +89410,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -89447,7 +89561,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -89505,7 +89619,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -89657,7 +89771,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -89769,7 +89883,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -89829,7 +89943,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -89990,7 +90104,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -90040,7 +90154,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -90135,7 +90249,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -90211,7 +90325,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -90312,7 +90426,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -90376,7 +90490,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -90408,7 +90522,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -90465,7 +90579,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -90557,7 +90671,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -90600,7 +90714,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -90646,7 +90760,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -90709,7 +90823,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -91976,10 +92090,11 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -91987,6 +92102,11 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -92879,7 +92999,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -92913,7 +93033,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -92995,7 +93115,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -93027,7 +93147,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -93158,7 +93278,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -93234,7 +93354,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -93333,7 +93453,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -93402,7 +93522,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -93503,7 +93623,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -93579,7 +93699,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -93664,7 +93784,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -93763,7 +93883,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -93915,7 +94035,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -94066,7 +94186,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -94124,7 +94244,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -94276,7 +94396,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -94388,7 +94508,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -94448,7 +94568,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -94609,7 +94729,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -94659,7 +94779,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -94754,7 +94874,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -94830,7 +94950,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -94931,7 +95051,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -94995,7 +95115,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -95027,7 +95147,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -95084,7 +95204,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -95176,7 +95296,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -95219,7 +95339,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -95265,7 +95385,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -95328,7 +95448,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -96592,10 +96712,11 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -96603,6 +96724,11 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -97495,7 +97621,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -97529,7 +97655,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -97611,7 +97737,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -97643,7 +97769,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -97774,7 +97900,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -97850,7 +97976,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -97949,7 +98075,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -98018,7 +98144,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -98119,7 +98245,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -98195,7 +98321,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -98280,7 +98406,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -98379,7 +98505,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -98531,7 +98657,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -98682,7 +98808,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -98740,7 +98866,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -98892,7 +99018,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -99004,7 +99130,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -99064,7 +99190,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -99225,7 +99351,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -99275,7 +99401,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -99370,7 +99496,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -99446,7 +99572,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -99547,7 +99673,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -99611,7 +99737,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -99643,7 +99769,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -99700,7 +99826,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -99792,7 +99918,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -99835,7 +99961,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -99881,7 +100007,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -99944,7 +100070,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -101212,10 +101338,11 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -101223,6 +101350,11 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -102115,7 +102247,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -102149,7 +102281,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -102231,7 +102363,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -102263,7 +102395,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -102394,7 +102526,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -102470,7 +102602,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -102569,7 +102701,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -102638,7 +102770,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -102739,7 +102871,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -102815,7 +102947,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -102900,7 +103032,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -102999,7 +103131,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -103151,7 +103283,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -103302,7 +103434,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -103360,7 +103492,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -103512,7 +103644,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -103624,7 +103756,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -103684,7 +103816,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -103845,7 +103977,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -103895,7 +104027,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -103990,7 +104122,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -104066,7 +104198,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -104167,7 +104299,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -104231,7 +104363,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -104263,7 +104395,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -104320,7 +104452,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -104412,7 +104544,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -104455,7 +104587,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -104501,7 +104633,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -104564,7 +104696,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -105832,10 +105964,11 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -105843,6 +105976,11 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -106735,7 +106873,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -106769,7 +106907,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -106851,7 +106989,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -106883,7 +107021,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -107014,7 +107152,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -107090,7 +107228,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -107189,7 +107327,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -107258,7 +107396,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -107359,7 +107497,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -107435,7 +107573,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -107520,7 +107658,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -107619,7 +107757,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -107771,7 +107909,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -107922,7 +108060,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -107980,7 +108118,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -108132,7 +108270,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -108244,7 +108382,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -108304,7 +108442,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -108465,7 +108603,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -108515,7 +108653,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -108610,7 +108748,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -108686,7 +108824,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -108787,7 +108925,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -108851,7 +108989,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -108883,7 +109021,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -108940,7 +109078,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -109032,7 +109170,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -109075,7 +109213,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -109121,7 +109259,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -109184,7 +109322,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -110451,10 +110589,11 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -110462,6 +110601,11 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -111354,7 +111498,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -111388,7 +111532,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -111470,7 +111614,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -111502,7 +111646,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -111633,7 +111777,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -111709,7 +111853,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -111808,7 +111952,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -111877,7 +112021,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -111978,7 +112122,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -112054,7 +112198,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -112139,7 +112283,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -112238,7 +112382,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -112390,7 +112534,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -112541,7 +112685,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -112599,7 +112743,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -112751,7 +112895,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -112863,7 +113007,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -112923,7 +113067,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -113084,7 +113228,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -113134,7 +113278,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -113229,7 +113373,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -113305,7 +113449,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -113406,7 +113550,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -113470,7 +113614,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -113502,7 +113646,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -113559,7 +113703,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -113651,7 +113795,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -113694,7 +113838,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -113740,7 +113884,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -113803,7 +113947,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -115070,10 +115214,11 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -115081,6 +115226,11 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -115973,7 +116123,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -116007,7 +116157,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -116089,7 +116239,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -116121,7 +116271,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -116252,7 +116402,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -116328,7 +116478,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -116427,7 +116577,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -116496,7 +116646,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -116597,7 +116747,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -116673,7 +116823,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -116758,7 +116908,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -116857,7 +117007,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -117009,7 +117159,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -117160,7 +117310,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -117218,7 +117368,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -117370,7 +117520,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -117482,7 +117632,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -117542,7 +117692,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -117703,7 +117853,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -117753,7 +117903,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -117848,7 +117998,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -117924,7 +118074,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -118025,7 +118175,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -118089,7 +118239,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -118121,7 +118271,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -118178,7 +118328,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -118270,7 +118420,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -118313,7 +118463,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -118359,7 +118509,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -118422,7 +118572,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -119689,10 +119839,11 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -119700,6 +119851,11 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -120592,7 +120748,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -120626,7 +120782,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -120708,7 +120864,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -120740,7 +120896,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -120871,7 +121027,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -120947,7 +121103,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -121046,7 +121202,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -121115,7 +121271,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -121216,7 +121372,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -121292,7 +121448,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -121377,7 +121533,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -121476,7 +121632,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -121628,7 +121784,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -121779,7 +121935,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -121837,7 +121993,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -121989,7 +122145,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -122101,7 +122257,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -122161,7 +122317,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -122322,7 +122478,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -122372,7 +122528,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -122467,7 +122623,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -122543,7 +122699,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -122644,7 +122800,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -122708,7 +122864,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -122740,7 +122896,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -122797,7 +122953,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -122889,7 +123045,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -122932,7 +123088,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -122978,7 +123134,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -123041,7 +123197,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -124310,10 +124466,11 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -124321,6 +124478,11 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -125213,7 +125375,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -125247,7 +125409,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -125329,7 +125491,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -125361,7 +125523,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -125492,7 +125654,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -125568,7 +125730,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -125667,7 +125829,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -125736,7 +125898,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -125837,7 +125999,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -125913,7 +126075,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -125998,7 +126160,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -126097,7 +126259,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -126249,7 +126411,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -126400,7 +126562,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -126458,7 +126620,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -126610,7 +126772,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -126722,7 +126884,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -126782,7 +126944,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -126943,7 +127105,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -126993,7 +127155,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -127088,7 +127250,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -127164,7 +127326,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -127265,7 +127427,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -127329,7 +127491,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -127361,7 +127523,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -127418,7 +127580,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -127510,7 +127672,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -127553,7 +127715,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -127599,7 +127761,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -127662,7 +127824,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -128929,10 +129091,11 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -128940,6 +129103,11 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -129832,7 +130000,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -129866,7 +130034,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -129948,7 +130116,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -129980,7 +130148,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -130111,7 +130279,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -130187,7 +130355,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -130286,7 +130454,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -130355,7 +130523,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -130456,7 +130624,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -130532,7 +130700,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -130617,7 +130785,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -130716,7 +130884,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -130868,7 +131036,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -131019,7 +131187,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -131077,7 +131245,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -131229,7 +131397,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -131341,7 +131509,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -131401,7 +131569,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -131562,7 +131730,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -131612,7 +131780,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -131707,7 +131875,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -131783,7 +131951,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -131884,7 +132052,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -131948,7 +132116,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -131980,7 +132148,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -132037,7 +132205,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -132129,7 +132297,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -132172,7 +132340,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -132218,7 +132386,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -132281,7 +132449,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -133548,10 +133716,11 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -133559,6 +133728,11 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -134451,7 +134625,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -134485,7 +134659,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -134567,7 +134741,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -134599,7 +134773,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -134730,7 +134904,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -134806,7 +134980,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -134905,7 +135079,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -134974,7 +135148,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -135075,7 +135249,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -135151,7 +135325,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -135236,7 +135410,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -135335,7 +135509,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -135487,7 +135661,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -135638,7 +135812,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -135696,7 +135870,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -135848,7 +136022,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -135960,7 +136134,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -136020,7 +136194,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -136181,7 +136355,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -136231,7 +136405,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -136326,7 +136500,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -136402,7 +136576,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -136503,7 +136677,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -136567,7 +136741,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -136599,7 +136773,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -136656,7 +136830,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -136748,7 +136922,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -136791,7 +136965,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -136837,7 +137011,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -136900,7 +137074,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -138168,10 +138342,11 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -138179,6 +138354,11 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -139071,7 +139251,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -139105,7 +139285,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -139187,7 +139367,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -139219,7 +139399,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -139350,7 +139530,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -139426,7 +139606,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -139525,7 +139705,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -139594,7 +139774,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -139695,7 +139875,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -139771,7 +139951,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -139856,7 +140036,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -139955,7 +140135,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -140107,7 +140287,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -140258,7 +140438,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -140316,7 +140496,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -140468,7 +140648,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -140580,7 +140760,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -140640,7 +140820,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -140801,7 +140981,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -140851,7 +141031,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -140946,7 +141126,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -141022,7 +141202,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -141123,7 +141303,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -141187,7 +141367,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -141219,7 +141399,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -141276,7 +141456,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -141368,7 +141548,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -141411,7 +141591,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -141457,7 +141637,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -141520,7 +141700,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -142786,10 +142966,11 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -142797,6 +142978,11 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -143689,7 +143875,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -143723,7 +143909,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -143805,7 +143991,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -143837,7 +144023,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -143968,7 +144154,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -144044,7 +144230,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -144143,7 +144329,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -144212,7 +144398,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -144313,7 +144499,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -144389,7 +144575,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -144474,7 +144660,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -144573,7 +144759,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -144725,7 +144911,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -144876,7 +145062,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -144934,7 +145120,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -145086,7 +145272,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -145198,7 +145384,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -145258,7 +145444,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -145419,7 +145605,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -145469,7 +145655,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -145564,7 +145750,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -145640,7 +145826,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -145741,7 +145927,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -145805,7 +145991,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -145837,7 +146023,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -145894,7 +146080,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -145986,7 +146172,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -146029,7 +146215,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -146075,7 +146261,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -146138,7 +146324,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -147406,10 +147592,11 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -147417,6 +147604,11 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -148309,7 +148501,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -148343,7 +148535,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -148425,7 +148617,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -148457,7 +148649,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -148588,7 +148780,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -148664,7 +148856,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -148763,7 +148955,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -148832,7 +149024,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -148933,7 +149125,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -149009,7 +149201,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -149094,7 +149286,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -149193,7 +149385,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -149345,7 +149537,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -149496,7 +149688,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -149554,7 +149746,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -149706,7 +149898,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -149818,7 +150010,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -149878,7 +150070,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -150039,7 +150231,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -150089,7 +150281,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -150184,7 +150376,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -150260,7 +150452,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -150361,7 +150553,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -150425,7 +150617,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -150457,7 +150649,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -150514,7 +150706,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -150606,7 +150798,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -150649,7 +150841,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -150695,7 +150887,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -150758,7 +150950,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -152027,10 +152219,11 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -152038,6 +152231,11 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -152930,7 +153128,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -152964,7 +153162,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -153046,7 +153244,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -153078,7 +153276,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -153209,7 +153407,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -153285,7 +153483,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -153384,7 +153582,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -153453,7 +153651,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -153554,7 +153752,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -153630,7 +153828,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -153715,7 +153913,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -153814,7 +154012,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -153966,7 +154164,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -154117,7 +154315,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -154175,7 +154373,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -154327,7 +154525,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -154439,7 +154637,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -154499,7 +154697,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -154660,7 +154858,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -154710,7 +154908,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -154805,7 +155003,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -154881,7 +155079,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -154982,7 +155180,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -155046,7 +155244,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -155078,7 +155276,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -155135,7 +155333,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -155227,7 +155425,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -155270,7 +155468,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -155316,7 +155514,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -155379,7 +155577,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -156648,10 +156846,11 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -156659,6 +156858,11 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -157551,7 +157755,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -157585,7 +157789,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -157667,7 +157871,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -157699,7 +157903,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -157830,7 +158034,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -157906,7 +158110,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -158005,7 +158209,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -158074,7 +158278,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -158175,7 +158379,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -158251,7 +158455,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -158336,7 +158540,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -158435,7 +158639,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -158587,7 +158791,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -158738,7 +158942,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -158796,7 +159000,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -158948,7 +159152,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -159060,7 +159264,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -159120,7 +159324,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -159281,7 +159485,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -159331,7 +159535,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -159426,7 +159630,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -159502,7 +159706,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -159603,7 +159807,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -159667,7 +159871,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -159699,7 +159903,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -159756,7 +159960,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -159848,7 +160052,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -159891,7 +160095,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -159937,7 +160141,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -160000,7 +160204,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -161267,10 +161471,11 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -161278,6 +161483,11 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -162170,7 +162380,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -162204,7 +162414,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -162286,7 +162496,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -162318,7 +162528,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -162449,7 +162659,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -162525,7 +162735,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -162624,7 +162834,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -162693,7 +162903,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -162794,7 +163004,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -162870,7 +163080,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -162955,7 +163165,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -163054,7 +163264,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -163206,7 +163416,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -163357,7 +163567,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -163415,7 +163625,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -163567,7 +163777,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -163679,7 +163889,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -163739,7 +163949,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -163900,7 +164110,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -163950,7 +164160,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -164045,7 +164255,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -164121,7 +164331,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -164222,7 +164432,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -164286,7 +164496,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -164318,7 +164528,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -164375,7 +164585,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -164467,7 +164677,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -164510,7 +164720,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -164556,7 +164766,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -164619,7 +164829,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -165883,10 +166093,11 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -165894,6 +166105,11 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -166786,7 +167002,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -166820,7 +167036,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -166902,7 +167118,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -166934,7 +167150,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -167065,7 +167281,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -167141,7 +167357,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -167240,7 +167456,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -167309,7 +167525,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -167410,7 +167626,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -167486,7 +167702,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -167571,7 +167787,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -167670,7 +167886,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -167822,7 +168038,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -167973,7 +168189,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -168031,7 +168247,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -168183,7 +168399,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -168295,7 +168511,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -168355,7 +168571,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -168516,7 +168732,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -168566,7 +168782,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -168661,7 +168877,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -168737,7 +168953,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -168838,7 +169054,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -168902,7 +169118,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -168934,7 +169150,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -168991,7 +169207,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -169083,7 +169299,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -169126,7 +169342,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -169172,7 +169388,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -169235,7 +169451,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -170499,10 +170715,11 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -170510,6 +170727,11 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -171402,7 +171624,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -171436,7 +171658,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -171518,7 +171740,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -171550,7 +171772,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -171681,7 +171903,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -171757,7 +171979,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -171856,7 +172078,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -171925,7 +172147,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -172026,7 +172248,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -172102,7 +172324,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -172187,7 +172409,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -172286,7 +172508,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -172438,7 +172660,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -172589,7 +172811,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -172647,7 +172869,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -172799,7 +173021,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -172911,7 +173133,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -172971,7 +173193,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -173132,7 +173354,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -173182,7 +173404,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -173277,7 +173499,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -173353,7 +173575,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -173454,7 +173676,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -173518,7 +173740,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -173550,7 +173772,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -173607,7 +173829,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -173699,7 +173921,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -173742,7 +173964,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -173788,7 +174010,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -173851,7 +174073,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -175120,10 +175342,11 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -175131,6 +175354,11 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -176023,7 +176251,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -176057,7 +176285,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -176139,7 +176367,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -176171,7 +176399,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -176302,7 +176530,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -176378,7 +176606,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -176477,7 +176705,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -176546,7 +176774,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -176647,7 +176875,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -176723,7 +176951,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -176808,7 +177036,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -176907,7 +177135,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -177059,7 +177287,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -177210,7 +177438,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -177268,7 +177496,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -177420,7 +177648,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -177532,7 +177760,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -177592,7 +177820,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -177753,7 +177981,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -177803,7 +178031,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -177898,7 +178126,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -177974,7 +178202,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -178075,7 +178303,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -178139,7 +178367,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -178171,7 +178399,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -178228,7 +178456,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -178320,7 +178548,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -178363,7 +178591,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -178409,7 +178637,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -178472,7 +178700,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -179739,10 +179967,11 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -179750,6 +179979,11 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -180642,7 +180876,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -180676,7 +180910,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -180758,7 +180992,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -180790,7 +181024,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -180921,7 +181155,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -180997,7 +181231,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -181096,7 +181330,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -181165,7 +181399,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -181266,7 +181500,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -181342,7 +181576,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -181427,7 +181661,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -181526,7 +181760,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -181678,7 +181912,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -181829,7 +182063,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -181887,7 +182121,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -182039,7 +182273,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -182151,7 +182385,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -182211,7 +182445,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -182372,7 +182606,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -182422,7 +182656,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -182517,7 +182751,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -182593,7 +182827,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -182694,7 +182928,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -182758,7 +182992,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -182790,7 +183024,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -182847,7 +183081,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -182939,7 +183173,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -182982,7 +183216,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -183028,7 +183262,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -183091,7 +183325,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -184358,10 +184592,11 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -184369,6 +184604,11 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -185261,7 +185501,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -185295,7 +185535,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -185377,7 +185617,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -185409,7 +185649,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -185540,7 +185780,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -185616,7 +185856,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -185715,7 +185955,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -185784,7 +186024,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -185885,7 +186125,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -185961,7 +186201,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -186046,7 +186286,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -186145,7 +186385,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -186297,7 +186537,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -186448,7 +186688,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -186506,7 +186746,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -186658,7 +186898,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -186770,7 +187010,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -186830,7 +187070,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -186991,7 +187231,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -187041,7 +187281,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -187136,7 +187376,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -187212,7 +187452,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -187313,7 +187553,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -187377,7 +187617,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -187409,7 +187649,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -187466,7 +187706,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -187558,7 +187798,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -187601,7 +187841,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -187647,7 +187887,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -187710,7 +187950,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -188977,10 +189217,11 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -188988,6 +189229,11 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -189880,7 +190126,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -189914,7 +190160,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -189996,7 +190242,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -190028,7 +190274,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -190159,7 +190405,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -190235,7 +190481,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -190334,7 +190580,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -190403,7 +190649,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -190504,7 +190750,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -190580,7 +190826,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -190665,7 +190911,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -190764,7 +191010,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -190916,7 +191162,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -191067,7 +191313,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -191125,7 +191371,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -191277,7 +191523,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -191389,7 +191635,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -191449,7 +191695,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -191610,7 +191856,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -191660,7 +191906,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -191755,7 +192001,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -191831,7 +192077,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -191932,7 +192178,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -191996,7 +192242,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -192028,7 +192274,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -192085,7 +192331,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -192177,7 +192423,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -192220,7 +192466,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -192266,7 +192512,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -192329,7 +192575,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -193596,10 +193842,11 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -193607,6 +193854,11 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -194499,7 +194751,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -194533,7 +194785,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -194615,7 +194867,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -194647,7 +194899,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -194778,7 +195030,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -194854,7 +195106,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -194953,7 +195205,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -195022,7 +195274,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -195123,7 +195375,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -195199,7 +195451,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -195284,7 +195536,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -195383,7 +195635,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -195535,7 +195787,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -195686,7 +195938,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -195744,7 +195996,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -195896,7 +196148,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -196008,7 +196260,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -196068,7 +196320,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -196229,7 +196481,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -196279,7 +196531,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -196374,7 +196626,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -196450,7 +196702,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -196551,7 +196803,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -196615,7 +196867,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -196647,7 +196899,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -196704,7 +196956,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -196796,7 +197048,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -196839,7 +197091,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -196885,7 +197137,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -196948,7 +197200,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -198215,10 +198467,11 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -198226,6 +198479,11 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -199118,7 +199376,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -199152,7 +199410,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -199234,7 +199492,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -199266,7 +199524,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -199397,7 +199655,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -199473,7 +199731,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -199572,7 +199830,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -199641,7 +199899,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -199742,7 +200000,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -199818,7 +200076,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -199903,7 +200161,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -200002,7 +200260,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -200154,7 +200412,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -200305,7 +200563,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -200363,7 +200621,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -200515,7 +200773,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -200627,7 +200885,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -200687,7 +200945,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -200848,7 +201106,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -200898,7 +201156,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -200993,7 +201251,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -201069,7 +201327,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -201170,7 +201428,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -201234,7 +201492,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -201266,7 +201524,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -201323,7 +201581,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -201415,7 +201673,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -201458,7 +201716,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -201504,7 +201762,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -201567,7 +201825,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -202837,7 +203095,8 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "key_career_tracks_within": "(es) Key Career Tracks Within",
         "potential_areas_of_study": "(es) Potential Areas of Study",
         "potential_roles": "(es) Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "(es) career",
@@ -202845,6 +203104,11 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "key": "(es) key",
         "strengths": "(es) strengths",
         "your_scores": "(es) Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -203737,7 +204001,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -203771,7 +204035,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -203853,7 +204117,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -203885,7 +204149,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -204016,7 +204280,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -204092,7 +204356,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -204191,7 +204455,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -204260,7 +204524,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -204361,7 +204625,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -204437,7 +204701,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -204522,7 +204786,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -204621,7 +204885,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -204773,7 +205037,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -204924,7 +205188,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -204982,7 +205246,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -205134,7 +205398,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -205246,7 +205510,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -205306,7 +205570,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -205467,7 +205731,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -205517,7 +205781,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -205612,7 +205876,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -205688,7 +205952,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -205789,7 +206053,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -205853,7 +206117,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -205885,7 +206149,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -205942,7 +206206,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -206034,7 +206298,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -206077,7 +206341,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -206123,7 +206387,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -206186,7 +206450,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -207453,10 +207717,11 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -207464,6 +207729,11 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -208356,7 +208626,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -208390,7 +208660,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -208472,7 +208742,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -208504,7 +208774,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -208635,7 +208905,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -208711,7 +208981,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -208810,7 +209080,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -208879,7 +209149,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -208980,7 +209250,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -209056,7 +209326,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -209141,7 +209411,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -209240,7 +209510,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -209392,7 +209662,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -209543,7 +209813,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -209601,7 +209871,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -209753,7 +210023,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -209865,7 +210135,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -209925,7 +210195,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -210086,7 +210356,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -210136,7 +210406,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -210231,7 +210501,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -210307,7 +210577,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -210408,7 +210678,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -210472,7 +210742,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -210504,7 +210774,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -210561,7 +210831,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -210653,7 +210923,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -210696,7 +210966,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -210742,7 +211012,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -210805,7 +211075,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -212072,10 +212342,11 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -212083,6 +212354,11 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -212975,7 +213251,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -213009,7 +213285,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -213091,7 +213367,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -213123,7 +213399,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -213254,7 +213530,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -213330,7 +213606,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -213429,7 +213705,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -213498,7 +213774,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -213599,7 +213875,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -213675,7 +213951,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -213760,7 +214036,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -213859,7 +214135,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -214011,7 +214287,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -214162,7 +214438,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -214220,7 +214496,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -214372,7 +214648,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -214484,7 +214760,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -214544,7 +214820,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -214705,7 +214981,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -214755,7 +215031,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -214850,7 +215126,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -214926,7 +215202,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -215027,7 +215303,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -215091,7 +215367,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -215123,7 +215399,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -215180,7 +215456,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -215272,7 +215548,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -215315,7 +215591,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -215361,7 +215637,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -215424,7 +215700,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -216691,10 +216967,11 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -216702,6 +216979,11 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -217594,7 +217876,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -217628,7 +217910,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -217710,7 +217992,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -217742,7 +218024,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -217873,7 +218155,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -217949,7 +218231,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -218048,7 +218330,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -218117,7 +218399,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -218218,7 +218500,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -218294,7 +218576,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -218379,7 +218661,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -218478,7 +218760,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -218630,7 +218912,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -218781,7 +219063,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -218839,7 +219121,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -218991,7 +219273,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -219103,7 +219385,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -219163,7 +219445,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -219324,7 +219606,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -219374,7 +219656,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -219469,7 +219751,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -219545,7 +219827,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -219646,7 +219928,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -219710,7 +219992,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -219742,7 +220024,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -219799,7 +220081,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -219891,7 +220173,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -219934,7 +220216,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -219980,7 +220262,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -220043,7 +220325,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -221310,10 +221592,11 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -221321,6 +221604,11 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -222213,7 +222501,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -222247,7 +222535,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -222329,7 +222617,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -222361,7 +222649,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -222492,7 +222780,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -222568,7 +222856,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -222667,7 +222955,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -222736,7 +223024,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -222837,7 +223125,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -222913,7 +223201,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -222998,7 +223286,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -223097,7 +223385,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -223249,7 +223537,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -223400,7 +223688,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -223458,7 +223746,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -223610,7 +223898,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -223722,7 +224010,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -223782,7 +224070,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -223943,7 +224231,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -223993,7 +224281,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -224088,7 +224376,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -224164,7 +224452,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -224265,7 +224553,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -224329,7 +224617,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -224361,7 +224649,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -224418,7 +224706,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -224510,7 +224798,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -224553,7 +224841,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -224599,7 +224887,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -224662,7 +224950,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -225929,10 +226217,11 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -225940,6 +226229,11 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -226832,7 +227126,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -226866,7 +227160,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -226948,7 +227242,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -226980,7 +227274,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -227111,7 +227405,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -227187,7 +227481,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -227286,7 +227580,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -227355,7 +227649,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -227456,7 +227750,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -227532,7 +227826,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -227617,7 +227911,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -227716,7 +228010,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -227868,7 +228162,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -228019,7 +228313,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -228077,7 +228371,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -228229,7 +228523,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -228341,7 +228635,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -228401,7 +228695,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -228562,7 +228856,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -228612,7 +228906,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -228707,7 +229001,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -228783,7 +229077,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -228884,7 +229178,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -228948,7 +229242,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -228980,7 +229274,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -229037,7 +229331,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -229129,7 +229423,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -229172,7 +229466,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -229218,7 +229512,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -229281,7 +229575,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -230548,10 +230842,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -230559,6 +230854,11 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -231451,7 +231751,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -231485,7 +231785,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -231567,7 +231867,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -231599,7 +231899,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -231730,7 +232030,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -231806,7 +232106,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -231905,7 +232205,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -231974,7 +232274,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -232075,7 +232375,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -232151,7 +232451,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -232236,7 +232536,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -232335,7 +232635,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -232487,7 +232787,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -232638,7 +232938,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -232696,7 +232996,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -232848,7 +233148,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -232960,7 +233260,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -233020,7 +233320,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -233181,7 +233481,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -233231,7 +233531,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -233326,7 +233626,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -233402,7 +233702,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -233503,7 +233803,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -233567,7 +233867,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -233599,7 +233899,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -233656,7 +233956,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -233748,7 +234048,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -233791,7 +234091,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -233837,7 +234137,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -233900,7 +234200,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -235167,10 +235467,11 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -235178,6 +235479,11 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -236070,7 +236376,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -236104,7 +236410,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -236186,7 +236492,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -236218,7 +236524,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -236349,7 +236655,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -236425,7 +236731,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -236524,7 +236830,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -236593,7 +236899,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -236694,7 +237000,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -236770,7 +237076,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -236855,7 +237161,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -236954,7 +237260,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -237106,7 +237412,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -237257,7 +237563,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -237315,7 +237621,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -237467,7 +237773,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -237579,7 +237885,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -237639,7 +237945,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -237800,7 +238106,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -237850,7 +238156,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -237945,7 +238251,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -238021,7 +238327,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -238122,7 +238428,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -238186,7 +238492,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -238218,7 +238524,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -238275,7 +238581,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -238367,7 +238673,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -238410,7 +238716,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -238456,7 +238762,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -238519,7 +238825,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -239786,10 +240092,11 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -239797,6 +240104,11 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -240689,7 +241001,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -240723,7 +241035,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -240805,7 +241117,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -240837,7 +241149,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -240968,7 +241280,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -241044,7 +241356,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -241143,7 +241455,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -241212,7 +241524,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -241313,7 +241625,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -241389,7 +241701,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -241474,7 +241786,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -241573,7 +241885,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -241725,7 +242037,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -241876,7 +242188,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -241934,7 +242246,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -242086,7 +242398,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -242198,7 +242510,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -242258,7 +242570,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -242419,7 +242731,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -242469,7 +242781,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -242564,7 +242876,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -242640,7 +242952,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -242741,7 +243053,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -242805,7 +243117,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -242837,7 +243149,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -242894,7 +243206,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -242986,7 +243298,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -243029,7 +243341,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -243075,7 +243387,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -243138,7 +243450,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -244405,10 +244717,11 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -244416,6 +244729,11 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
@@ -245308,7 +245626,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "successfully": "New assign to assessment was successfully created"
       },
       "destroy": {
-        "successfully": "Assign to assessment was successfully destroyed"
+        "successfully": "Assign to assessment was successfully deleted"
       },
       "index": {
         "title": "Reports"
@@ -245342,7 +245660,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
     },
     "blocks": {
       "destroy": {
-        "successfully": "Block %{name} was successfully destroyed."
+        "successfully": "Block %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Block"
@@ -245424,7 +245742,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "block_destroy": "Block has been deleted",
         "block_move_down": "Block %{name} is moved down",
         "block_move_up": "Block %{name} is moved up",
-        "block_permanent_destroy": "Block is permanent destroyed",
+        "block_permanent_destroy": "Block is permanently deleted",
         "block_rename": "Block is renamed",
         "block_restore": "Block is restored",
         "block_save_as_template": "Block saved as template",
@@ -245456,7 +245774,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "question_insert_before": "Question is inserted before",
         "question_move_down": "Question is moved down",
         "question_move_up": "Question is moved up",
-        "question_permanent_destroy": "Question is permanent destroyed",
+        "question_permanent_destroy": "Question is permanently deleted",
         "question_rename": "Question is renamed",
         "question_restore": "Question is restored",
         "question_save_as_template": "Question saved as template",
@@ -245587,7 +245905,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "successfully": "Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Campaign %{name} was successfully destroyed."
+          "successfully": "Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Campaign"
@@ -245663,7 +245981,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -245762,7 +246080,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         }
       },
       "destroy": {
-        "successfully": "Client Tenancy %{name} was successfully destroyed."
+        "successfully": "Client Tenancy %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Client"
@@ -245831,7 +246149,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -245932,7 +246250,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
             "successfully": "Campaign %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Campaign %{name} was successfully destroyed."
+            "successfully": "Campaign %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Campaign"
@@ -246008,7 +246326,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
               "successfully": "Sub-Campaign %{name} was successfully created."
             },
             "destroy": {
-              "successfully": "Sub-Campaign %{name} was successfully destroyed."
+              "successfully": "Sub-Campaign %{name} was successfully deleted."
             },
             "edit": {
               "header": "Edit Sub-Campaign"
@@ -246093,7 +246411,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "successfully": "Project %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Project %{name} was successfully destroyed."
+          "successfully": "Project %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Project"
@@ -246192,7 +246510,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "successfully": "Report %{name} was successfully created for Client."
         },
         "destroy": {
-          "successfully": "Report %{name} was successfully destroyed from Client."
+          "successfully": "Report %{name} was successfully deleted from Client."
         },
         "edit": {
           "header": "Edit Report Name"
@@ -246344,7 +246662,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "successfully": "Sub-Campaign %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "Sub-Campaign %{name} was successfully destroyed."
+          "successfully": "Sub-Campaign %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Sub-Campaign"
@@ -246495,7 +246813,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "successfully": "User %{name} was successfully created."
         },
         "destroy": {
-          "successfully": "User %{name} was successfully destroyed."
+          "successfully": "User %{name} was successfully deleted."
         },
         "edit": {
           "add": "Add",
@@ -246553,7 +246871,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
             "successfully": "Report %{name} was successfully created."
           },
           "destroy": {
-            "successfully": "Report %{name} was successfully destroyed."
+            "successfully": "Report %{name} was successfully deleted."
           },
           "edit": {
             "header": "Edit Report Name"
@@ -246705,7 +247023,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "successfully": "Communication created successfully."
       },
       "destroy": {
-        "successfully": "Communication %{name} was successfully destroyed."
+        "successfully": "Communication %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Communication"
@@ -246817,7 +247135,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "error": "Dimension #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Dimension %{name} was successfully destroyed."
+        "successfully": "Dimension %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Dimension Name"
@@ -246877,7 +247195,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "error": "Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Factor %{name} was successfully destroyed."
+        "successfully": "Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Factor Name"
@@ -247038,7 +247356,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "successfully": "Item %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Item %{name} was successfully destroyed."
+        "successfully": "Item %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit"
@@ -247088,7 +247406,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -247183,7 +247501,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "successfully": "Norm %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Norm %{name} was successfully destroyed."
+        "successfully": "Norm %{name} was successfully deleted."
       },
       "edit": {
         "header": "Rename Norm"
@@ -247259,7 +247577,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "error": "Occupation #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Occupation #%{name} was successfully destroyed."
+        "successfully": "Occupation #%{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit occupation"
@@ -247360,7 +247678,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "successfully": "Product %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Product %{name} was successfully destroyed."
+        "successfully": "Product %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Product"
@@ -247424,7 +247742,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
     "psychometrics": "Psychometrics",
     "questions": {
       "destroy": {
-        "successfully": "Question %{name} was successfully destroyed."
+        "successfully": "Question %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Question"
@@ -247456,7 +247774,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "successfully": "Report Family %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report Family %{name} was successfully destroyed."
+        "successfully": "Report Family %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Family Name"
@@ -247513,7 +247831,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "successfully": "Report %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "Report %{name} was successfully destroyed."
+        "successfully": "Report %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Report Name"
@@ -247605,7 +247923,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "error": "Sub-Factor #%{id} was not copied."
       },
       "destroy": {
-        "successfully": "Sub-Factor %{name} was successfully destroyed."
+        "successfully": "Sub-Factor %{name} was successfully deleted."
       },
       "edit": {
         "header": "Edit Sub-Factor Name"
@@ -247648,7 +247966,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "error": "Block"
         },
         "destroy": {
-          "successfully": "Block %{name} was successfully destroyed."
+          "successfully": "Block %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Block"
@@ -247694,7 +248012,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "error": "Question"
         },
         "destroy": {
-          "successfully": "Question %{name} was successfully destroyed."
+          "successfully": "Question %{name} was successfully deleted."
         },
         "edit": {
           "header": "Edit Question"
@@ -247757,7 +248075,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "successfully": "User %{name} was successfully created."
       },
       "destroy": {
-        "successfully": "User %{name} was successfully destroyed."
+        "successfully": "User %{name} was successfully deleted."
       },
       "edit": {
         "add": "Add",
@@ -249024,10 +249342,11 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within",
+        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
-        "work_environment": "Work Environment"
+        "work_environment": "Work Environment",
+        "your_suitability": "Your Suitability"
       },
       "potential_career_short": {
         "career": "career",
@@ -249035,6 +249354,11 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "strength_clusters": {
+        "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
+        "possible_roles": "Possible Roles",
+        "work_environments": "Expected Work Environments"
       }
     },
     "show": {
