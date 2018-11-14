@@ -174,6 +174,7 @@ group :development do
   gem 'capistrano-sidekiq'
   gem 'capistrano-rails-console', '~> 2.2.1', require: false
   gem 'capistrano-nc', '~> 0.2', require: false
+  gem 'capistrano-npm', '~> 1.0', '>= 1.0.2'
   gem 'guard'
 end
 group :test do
