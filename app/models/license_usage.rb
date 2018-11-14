@@ -9,9 +9,11 @@
 #
 
 class LicenseUsage < ApplicationRecord
-  belongs_to :license
-  belongs_to :assigns_report
-  belongs_to :client
+  belongs_to :license,        inverse_of: :license_usages
+  belongs_to :assigns_report, inverse_of: :license_usages
+  belongs_to :client,         inverse_of: :license_usages
+  belongs_to :membership,     inverse_of: :license_usages
+
   validates :license, :assigns_report, :client, presence: true
 
   after_commit :increase_license_used_number, on: :create

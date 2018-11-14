@@ -19,7 +19,6 @@
         = f.input :year, as: :select, collection: 2.years.ago.year..10.years.since.year
         = f.association :account_manager, collection: User.superadmins.map { |user| [user.decorate.display_name, user.id] }
         = f.association :project_manager, collection: User.superadmins.map { |user| [user.decorate.display_name, user.id] }
-        = f.association :report_families, data: { live_search: true }, multiple: true
 
   .modal-footer
     .btn-group

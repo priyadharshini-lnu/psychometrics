@@ -64,12 +64,14 @@ class Client < ApplicationRecord
   has_many :end_memberships, -> { where.not(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
   has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) }, through: :memberships, source: :user
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
-
-
+  # Licenses
+  has_many :license_usages
+  has_many :licenses, inverse_of: :client, dependent: :destroy
+  has_many :active_licenses, -> { active }, class_name: License
   # Reports
   has_many :clients_reports # on delete cascade
   has_many :reports, through: :clients_reports
-  has_and_belongs_to_many :report_families, join_table: :clients_report_families, class_name: 'ReportFamily'
+  has_many :report_families, through: :active_licenses, source: :report_family
   has_many :available_reports, through: :report_families, source: :reports
 
   # Self association
@@ -80,8 +82,6 @@ class Client < ApplicationRecord
   has_many :norms
   has_many :dimensions
   has_many :assessments, -> { group(:id) }, through: :reports, source: :assessments
-  has_many :license_usages
-  has_many :licenses, inverse_of: :client, dependent: :destroy
   # TODO use admins instead of projects_admins
   has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, through: :projects, source: :users
 
@@ -90,11 +90,10 @@ class Client < ApplicationRecord
   validates :name, :type, presence: true, length: { maximum: 50 }
   with_options if: :root? do |root|
     root.validates :number, :country, :year, presence: true
-    root.validates :account_manager, :project_manager, :report_families, presence: true, on: :create
+    root.validates :account_manager, :project_manager, presence: true, on: :create
   end
   with_options if: :project? do |project|
     project.validates :number, presence: true
-    project.validates :reports, presence: true, on: :create
     project.validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
     project.validate :subdomain_format_validation
   end

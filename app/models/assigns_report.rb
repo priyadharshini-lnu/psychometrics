@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: assigns_reports
@@ -12,16 +14,17 @@
 
 class AssignsReport < ApplicationRecord
   LICENSES = {
-      Assessment::PSYCHOMETRIC => Licenses::AssignReportPsychometrics,
-      Assessment::ORGANISATIONAL => Licenses::AssignReportOrgSurvey,
-      Assessment::CASE_STUDY => Licenses::AssignReportCaseStudy,
-      Assessment::NUM_360 => Licenses::AssignReport_360_Feedback,
-      Assessment::MINDMILL => Licenses::AssignReportMindmill,
-      Assessment::HOGAN => Licenses::AssignReportHogan
+    Assessment::PSYCHOMETRIC    => Licenses::AssignReportPsychometrics,
+    Assessment::ORGANISATIONAL  => Licenses::AssignReportOrgSurvey,
+    Assessment::CASE_STUDY      => Licenses::AssignReportCaseStudy,
+    Assessment::NUM_360         => Licenses::AssignReport_360_Feedback,
+    Assessment::MINDMILL        => Licenses::AssignReportMindmill,
+    Assessment::HOGAN           => Licenses::AssignReportHogan
   }.freeze
-  belongs_to :assign
-  belongs_to :report
-  has_many :license_usages # on delete nullify
+
+  belongs_to :assign, inverse_of: :assigns_reports
+  belongs_to :report, inverse_of: :assigns_reports
+  has_many :license_usages, inverse_of: :assigns_report # on delete nullify
 
   before_create :use_license
   before_create :set_user_access

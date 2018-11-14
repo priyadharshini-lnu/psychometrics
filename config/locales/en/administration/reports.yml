@@ -8,7 +8,7 @@ en:
       index:
         title: "Reports"
         add: Add
-        families: Report Families
+        families: Report Bundles
         tooltips:
           create: Create
         filterrific:
@@ -19,7 +19,7 @@ en:
             '360': '360 Feedback'
             case_study: 'Case Studies'
         owner: Owner
-        report_family: Report Family
+        report_family: Report Bundle
       list:
         updated_at: Modified Date
         created_at: Created Date
@@ -40,7 +40,7 @@ en:
       form:
         types:
           <<: *types
-        select_family: Select Report Family
+        select_family: Select Report Bundle
       sidebar:
         title: "Report's options"
         view: 'View Report'

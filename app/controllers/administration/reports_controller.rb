@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class ReportsController < Administration::BaseController
     # Turn off normally auth
@@ -6,7 +8,7 @@ module Administration
     prepend_before_action :authenticate_user_from_token!
 
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :preview]
+    before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
@@ -63,7 +65,7 @@ module Administration
     # GET /administration/resources/1/edit
     def edit
       @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
-      add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
+      add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
     end
 
     # PATCH/PUT /administration/resources/1
@@ -81,7 +83,7 @@ module Administration
     # DELETE /administration/resources/1
     def destroy
       begin
-      resource.destroy
+        resource.destroy
       rescue ActiveRecord::InvalidForeignKey
         resource.errors.add(:base, :has_dependent_relation)
       end
@@ -105,7 +107,7 @@ module Administration
         if @cloned_resource.save
           format.js
         else
-          format.js { render :error, locals: { message: t('.error', { name: resource.decorate.display_name }) } }
+          format.js { render :error, locals: { message: t('.error', name: resource.decorate.display_name) } }
         end
       end
     end
@@ -123,7 +125,7 @@ module Administration
     end
 
     def preview
-      add_breadcrumb resource.decorate.display_name, { action: :show, id: resource }
+      add_breadcrumb resource.decorate.display_name, action: :show, id: resource
       respond_to do |format|
         format.html
       end
@@ -132,8 +134,8 @@ module Administration
     private
 
     def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
     end
 
     # Set model
@@ -142,12 +144,12 @@ module Administration
     end
 
     def resource_params
-      report_params = params.require(:resource).permit(:name, :type, :owner_id, :mindmill, :icon, :icon_color, :props,
-                                                       :remove_icon, report_family_ids: [], assessment_ids: [],
-                                       hogan_report_setting_attributes: [:id, :hogan_report_id, :load_report])
+      report_params = params.require(:resource).permit(:name, :type, :owner_id, :mindmill, :icon,
+                                                       :icon_color,:remove_icon, assessment_ids: [],
+                                                       hogan_report_setting_attributes: %i[id hogan_report_id load_report])
       # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids are empty and causes errors
       # Does this need a better fix?
-      report_params = report_params.except(:assessment_ids) if report_params.has_key?(:assessment_ids) && report_params[:assessment_ids].reject(&:empty?).empty?
+      report_params = report_params.except(:assessment_ids) if report_params.key?(:assessment_ids) && report_params[:assessment_ids].reject(&:empty?).empty?
       report_params
     end
 

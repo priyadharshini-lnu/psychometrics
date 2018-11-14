@@ -60,6 +60,8 @@ class Membership < ApplicationRecord
 
   has_many :privacy_consents
 
+  has_many :license_usages, inverse_of: :membership # on delete cascade
+
   has_many :reports_accesses
   has_many :accessible_reports, -> { where('reports_accesses.user_access = ?', true) }, through: :reports_accesses, source: :report
 
@@ -131,6 +133,7 @@ class Membership < ApplicationRecord
   end
 
   # return true for new or overuse (:yti(:eti)) combinations
+  # TODO: remove it
   def excess_yti_eti?(report)
     return true if !report.yti_eti? || reports.empty?
     hash = reports.yti_eti.group(:type).count.transform_keys { |k| Report.types.key(k) }

@@ -1,0 +1,14 @@
+= simple_form_for(@form, as: :resource, url: { action: :create }, remote: true) do |f|
+  .modal-body
+    = f.error_notification
+    .form-inputs.clearfix
+      = f.input :report_id,
+                as: :select,
+                collection: @reports.map { |report| [report.name, report.id] },
+                class: 'form-control',
+                include_blank: false,
+                input_html: { data: { live_search: true, behavior: 'communication-changeable' } }
+  .modal-footer
+    .btn-group
+      = f.button :submit, t('administration.create'), class: 'btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'

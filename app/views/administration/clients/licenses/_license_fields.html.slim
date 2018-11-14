@@ -1,9 +1,9 @@
 tr.nested-fields
   td
     = f.association :report_family,
-            input_html: { data: { live_search: true } },
-            include_blank: false,
-            label: false
+                    input_html: { data: { live_search: true } },
+                    include_blank: false,
+                    label: false
   td
     = f.input :number, label: false, input_html: { value: f.object.number.zero? ? 1 : f.object.number, min: 1 }
   td
@@ -13,5 +13,8 @@ tr.nested-fields
   td
     = f.input_field :end_date, as: :string, label: false, class: 'datepicker form-control'
   td
-    = link_to_remove_association f
-      i.fa.fa-times
+    = f.input :disabled, label: false
+  td
+    - if f.object.id.nil?
+      = link_to_remove_association f
+        i.fa.fa-times

@@ -6,7 +6,7 @@ en:
           header: '%{client_name} - Manage Licenses'
         form:
           add_license: Add Another License
-          report_family: Report Family
+          report_family: Report Bundle
           license_number: License Number
           license_overuse_number: Over Use Allowance
         license_fields:
@@ -21,7 +21,7 @@ en:
           end_date: End Date
           usage_percent: '% of Usage'
           used_out_of: '%{used_number} out of %{number}'
-          report_family: Report Family
+          report_family: Report Bundle
           date_expire: 'Date Of Expiry: %{date}'
           license_has_expired: License package has expired
         mailer:

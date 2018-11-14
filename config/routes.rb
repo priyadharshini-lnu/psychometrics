@@ -283,6 +283,9 @@ Rails.application.routes.draw do
       member do
         get :sidebar
       end
+      scope module: :report_families do
+        resources :reports, only: %i[index destroy new create]
+      end
     end
 
     resources :bulk_reports, only: %i[new create] do

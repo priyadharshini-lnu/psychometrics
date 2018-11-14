@@ -1034,7 +1034,8 @@ CREATE TABLE public.license_usages (
     id integer NOT NULL,
     license_id integer,
     assigns_report_id integer,
-    client_id integer NOT NULL
+    client_id integer NOT NULL,
+    membership_id bigint
 );
 
 
@@ -1071,7 +1072,8 @@ CREATE TABLE public.licenses (
     updated_at timestamp without time zone NOT NULL,
     end_date date NOT NULL,
     start_date date NOT NULL,
-    report_family_id integer NOT NULL
+    report_family_id integer NOT NULL,
+    disabled boolean DEFAULT false
 );
 
 
@@ -3041,6 +3043,13 @@ CREATE INDEX index_license_usages_on_license_id ON public.license_usages USING b
 
 
 --
+-- Name: index_license_usages_on_membership_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_membership_id ON public.license_usages USING btree (membership_id);
+
+
+--
 -- Name: index_licenses_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3650,6 +3659,14 @@ ALTER TABLE ONLY public.reports
 
 
 --
+-- Name: license_usages fk_rails_a4a7857249; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_a4a7857249 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
 -- Name: ecommerce_purchase_invites fk_rails_acede09d2c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4032,5 +4049,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190101143027'),
 ('20190105160407'),
 ('20190113180725');
-
-

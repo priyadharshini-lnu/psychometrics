@@ -68,7 +68,7 @@ class Assessment < ApplicationRecord
   has_many :assessments_reports
   has_many :reports, through: :assessments_reports
 
-  # HABTM Report Families
+  # HABTM Report Bundles
   has_many :report_families, through: :reports
 
   # HABTM Memberships
@@ -98,6 +98,8 @@ class Assessment < ApplicationRecord
 
   scope :common, -> { where(type: TYPES[:common]) }
   scope :mindmill, -> { where(type: TYPES[:mindmill]) }
+  scope :hogan, -> { where(type: TYPES[:hogan]) }
+  scope :external, -> { where.has { type.in([TYPES[:mindmill], TYPES[:hogan]]) } }
   scope :enabled, -> { where.not(disabled: true) }
   scope :disabled, -> { where(disabled: true) }
   scope :with_category, lambda { |category|
@@ -119,6 +121,7 @@ class Assessment < ApplicationRecord
   end
 
   # Return true if assessmnent is Mindmill
+  #
   def mindmill?
     type == TYPES[:mindmill]
   end
