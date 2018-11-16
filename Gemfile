@@ -73,7 +73,9 @@ gem 'annotate', '~> 2.7.0', git: 'git@github.com:ctran/annotate_models.git'
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
-gem 'psychometrics-survey', git: 'git@gitlab.com:tte-lighthouse/psychometrics-survey.git'
+gem 'psychometrics-reports-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git', branch: 'autonomous_builder'
+gem 'psychometrics-survey-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git', branch: 'autonomous_builder'
+
 ### XLS import
 gem 'rubyXL'
 gem 'file_validators',            '~> 2.1.0'
@@ -163,9 +165,6 @@ group :development do
   gem 'debugger2'
   gem 'web-console'
   gem 'listen', '~> 3.0.5'
-  # Spring speeds up development by keeping your application running in the background. Read more: https://github.com/rails/spring
-  gem 'spring'
-  gem 'spring-watcher-listen', '~> 2.0.0'
 
   gem 'capistrano',               '3.6.0'
   gem 'capistrano-rails',         '~> 1.1.6'
