@@ -92,6 +92,10 @@ class Assessment < ApplicationRecord
   enum category: CATEGORIES
   enum status: STATUSES
 
+  store :extra, accessors: [:icon_color], coder: JsonSerializer
+
+  mount_uploader :icon, ImageUploader
+
   scope :common, -> { where(type: TYPES[:common]) }
   scope :mindmill, -> { where(type: TYPES[:mindmill]) }
   scope :enabled, -> { where.not(disabled: true) }
