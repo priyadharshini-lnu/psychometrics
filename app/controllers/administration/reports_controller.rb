@@ -32,6 +32,7 @@ module Administration
     def new
       @_resource = resource_class.new
       @_resource.build_hogan_report_setting
+      @_resource.set_default_color
     end
 
     def create

@@ -19,6 +19,7 @@ class Administration::AssessmentsController < Administration::BaseController
   def new
     @_resource = resource_class.new
     @_resource.build_hogan_assessment_setting
+    @_resource.set_default_color
   end
 
   def create

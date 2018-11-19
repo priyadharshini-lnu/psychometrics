@@ -65,6 +65,10 @@ class Report < ApplicationRecord
 
   mount_uploader :icon, ImageUploader
 
+  def set_default_color
+    self.icon_color = Settings.default_colors.sample
+  end
+
   # Copy report with pages => modules
   def clone
     @cloned_item = deep_clone include: [:assessments, :report_families, { pages: :modules }, :hogan_report_setting]

@@ -104,6 +104,10 @@ class Assessment < ApplicationRecord
     where(category: category)
   }
 
+  def set_default_color
+    self.icon_color = Settings.default_colors.sample
+  end
+
   # TODO: Remove, cause does not used
   def active_questions_count
     questions.not_deleted.where(disabled: false).count
