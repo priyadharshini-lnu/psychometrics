@@ -81,7 +81,9 @@ CREATE TABLE public.assessments (
     owner_id integer,
     type character varying,
     mindmill_id integer,
-    enable_back boolean DEFAULT false NOT NULL
+    enable_back boolean DEFAULT false NOT NULL,
+    extra jsonb DEFAULT '{}'::jsonb NOT NULL,
+    icon character varying
 );
 
 
@@ -1477,7 +1479,9 @@ CREATE TABLE public.reports (
     updated_at timestamp without time zone NOT NULL,
     type integer DEFAULT 0,
     owner_id integer,
-    mindmill boolean DEFAULT false
+    mindmill boolean DEFAULT false,
+    extra jsonb DEFAULT '{}'::jsonb NOT NULL,
+    icon character varying
 );
 
 
@@ -3809,6 +3813,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20180915101319'),
 ('20181002152730'),
 ('20181010120450'),
-('20181022210715');
+('20181022210715'),
+('20181118154257'),
+('20181119095817');
 
 

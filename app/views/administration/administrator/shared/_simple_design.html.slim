@@ -1,0 +1,14 @@
+.well.mtx
+  h3 = t('.design')
+  // File input
+  .row.mhn
+    .col-sm-5.pln
+      = f.input :icon, hint: (f.input(:remove_icon, as: :boolean) + image_tag(f.object.icon.url(:thumb)) if f.object.icon.present?)
+    .col-sm-2 = t('.or')
+    .col-sm-5.prn
+      .form-group
+        = f.label :icon_color, class: 'control-label'
+        .input-group.colorfield
+          = f.input_field :icon_color, class: 'form-control'
+          span.input-group-addon
+            i

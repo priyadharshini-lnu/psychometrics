@@ -32,6 +32,7 @@ module Administration
     def new
       @_resource = resource_class.new
       @_resource.build_hogan_report_setting
+      @_resource.set_default_color
     end
 
     def create
@@ -140,7 +141,8 @@ module Administration
     end
 
     def resource_params
-      report_params = params.require(:resource).permit(:name, :type, :owner_id, :mindmill, report_family_ids: [], assessment_ids: [],
+      report_params = params.require(:resource).permit(:name, :type, :owner_id, :mindmill, :icon, :icon_color,
+                                                       :remove_icon, report_family_ids: [], assessment_ids: [],
                                        hogan_report_setting_attributes: [:id, :hogan_report_id, :load_report])
       # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids are empty and causes errors
       # Does this need a better fix?

@@ -61,6 +61,13 @@ class Report < ApplicationRecord
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
 
   enum type: TYPES
+  store :extra, accessors: [:icon_color], coder: JsonSerializer
+
+  mount_uploader :icon, ImageUploader
+
+  def set_default_color
+    self.icon_color = Settings.default_colors.sample
+  end
 
   # Copy report with pages => modules
   def clone
