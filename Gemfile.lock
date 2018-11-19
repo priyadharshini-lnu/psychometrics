@@ -18,10 +18,20 @@ GIT
       rubyzip (>= 1.2.1)
 
 GIT
-  remote: git@gitlab.com:tte-lighthouse/psychometrics-survey.git
-  revision: db98f286c8e0f9e3deb718914dce2f81685e853f
+  remote: git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git
+  revision: 124d8c371dde4ffb4a2313ec471d84ad9e824911
+  branch: master
   specs:
-    psychometrics-survey (0.0.1)
+    psychometrics-reports-ui (0.0.1)
+      railties (~> 5.0)
+      thor (>= 0.14, < 2.0)
+
+GIT
+  remote: git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git
+  revision: afd8812152283886949d22864cf6f9817b22a516
+  branch: master
+  specs:
+    psychometrics-survey-ui (0.0.1)
       railties (~> 5.0)
       thor (>= 0.14, < 2.0)
 
@@ -617,10 +627,6 @@ GEM
     slop (3.6.0)
     smarter_csv (1.1.0)
     socksify (1.7.1)
-    spring (1.7.2)
-    spring-watcher-listen (2.0.0)
-      listen (>= 2.7, < 4.0)
-      spring (~> 1.2)
     sprockets (3.7.1)
       concurrent-ruby (~> 1.0)
       rack (> 1, < 3)
@@ -754,7 +760,8 @@ DEPENDENCIES
   poltergeist (~> 1.14.0)
   pry-byebug
   pry-rails
-  psychometrics-survey!
+  psychometrics-reports-ui!
+  psychometrics-survey-ui!
   puma (~> 3.8)
   pundit (~> 1.1.0)
   rack-timeout (~> 0.4.2)
@@ -796,8 +803,6 @@ DEPENDENCIES
   simplecov
   slim-rails (~> 3.1.0)
   smarter_csv (~> 1.1.0)
-  spring
-  spring-watcher-listen (~> 2.0.0)
   uglifier (>= 1.3.0)
   validates_timeliness (~> 4.0.2)
   virtus (~> 1.0.5)
@@ -805,4 +810,4 @@ DEPENDENCIES
   whenever (~> 0.9.7)
 
 BUNDLED WITH
-   1.16.2
+   1.16.6
