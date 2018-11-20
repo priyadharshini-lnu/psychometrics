@@ -386,6 +386,7 @@ Rails.application.routes.draw do
 
     resources :assigns, only: %i(index update) do
       get :pass, on: :member
+      post :accept_privacy, on: :collection
     end
     namespace :mindmill do
       resources :assigns, only: [] do

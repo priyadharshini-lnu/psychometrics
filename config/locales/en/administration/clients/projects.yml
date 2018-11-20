@@ -4,6 +4,7 @@ en:
       projects:
         form:
           project_number: Project Number
+          data_privacy: Data privacy
           applicable_levels:
             project: 'Project End Level'
             campaign: 'Campaign End Level'
