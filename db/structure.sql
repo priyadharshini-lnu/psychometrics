@@ -162,8 +162,7 @@ CREATE TABLE public.assigns (
     project_assign_id integer,
     mindmill_report character varying,
     selected_locale character varying,
-    mindmill_prefix character varying,
-    external_results json
+    mindmill_prefix character varying
 );
 
 
@@ -3878,6 +3877,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181002152730'),
 ('20181010120450'),
 ('20181022210715'),
+('20181028143714'),
+('20181028180057'),
 ('20181112210040'),
 ('20181118154257'),
 ('20181119095817');
