@@ -82,6 +82,7 @@ CREATE TABLE public.assessments (
     type character varying,
     mindmill_id integer,
     enable_back boolean DEFAULT false NOT NULL,
+    enable_progress boolean DEFAULT true,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying
 );
@@ -3814,6 +3815,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181002152730'),
 ('20181010120450'),
 ('20181022210715'),
+('20181112210040'),
 ('20181118154257'),
 ('20181119095817');
 

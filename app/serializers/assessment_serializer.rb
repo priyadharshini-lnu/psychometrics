@@ -18,7 +18,7 @@
 #
 
 class AssessmentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id, :enable_back
+  attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id, :enable_back, :enable_progress
 
   has_many :blocks, serializer: BlockSerializer do
     object.blocks.
