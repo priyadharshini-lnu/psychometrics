@@ -1,11 +1,31 @@
 tr data-sidebar=url_for(sidebar_administration_client_project_campaign_sub_campaign_path(client, project, campaign, resource)) id=dom_id(resource)
   td = link_to resource.decorate.display_name, administration_client_users_path(resource)
   td
-    = resource.decorate.reports
+    strong = t('.assessments')
+    div = resource.assigned_assessments.pluck(:name).join(', ')
     - if policy(:clients_report).create?
-      .add-icon-box
-        = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
+      .add-icon-box.nowrap
+        = link_to new_administration_client_assign_assessments_path(client_id: resource.id), remote: true
           span.fa.fa-plus
+          =< t('.add_assessment')
+  td
+    - resource.clients_reports.includes(:report_family, :report).group_by(&:report_family).each do |report_family, reports|
+      div
+        - if report_family
+          strong
+            = report_family.name
+            = link_to edit_administration_client_assign_reports_path(resource.id, report_family_id: report_family.id), class: 'mlm', remote: true
+              span.fa.fa-pencil
+          .clearfix
+        - reports.each do |report|
+          span.nowrap
+            = report&.report&.name
+            | ,
+    - if policy(:clients_report).create?
+      .add-icon-box.nowrap
+        = link_to new_administration_client_assign_reports_path(resource.id), remote: true
+          span.fa.fa-plus
+          =< t('.add_report')
   td
     = link_to resource.end_memberships.size, administration_client_users_path(resource)
     - if policy(User).create?

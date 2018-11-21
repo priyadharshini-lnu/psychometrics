@@ -6,6 +6,10 @@ $(function() {
     }
   });
 
+  $(document).on('click', '[data-loading-text]', function () {
+    $(this).button('loading');
+  })
+
   $(document).on('ajax:beforeSend', function (e) {
     var panel = $(e.target).parents('.panel');
     panel_refresh(panel);

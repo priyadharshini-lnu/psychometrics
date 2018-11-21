@@ -20,7 +20,6 @@ module Ecommerce
 
     def extract_shopping_cart
       @cart = Ecommerce::Cart.new(session)
-      p session[:cart]
     end
 
     def authenticate_user!

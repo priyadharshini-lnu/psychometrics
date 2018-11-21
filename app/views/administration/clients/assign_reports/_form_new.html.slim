@@ -1,0 +1,43 @@
+= simple_form_for(resource, as: :resource, url: { action: :create }, method: :post, remote: true) do |f|
+  .modal-body
+    .form-inputs.clearfix
+      = f.input :report_family_id,
+                as: :select,
+                collection: @report_families,
+                class: 'form-control',
+                include_blank: true
+      table.table#reports
+        thead
+          tr
+            th = t('.reports')
+            th = t('.access')
+        - @report_families.each do |report_family|
+          - reports = report_family.reports.enabled.distinct
+          tr class="reports_input #{'hidden' unless report_family.id == f.object.report_family_id}" id=dom_id(report_family)
+            td = f.input :report_ids,
+                         as: :check_boxes,
+                         collection: reports,
+                         label: false
+            td = f.input :user_access_report_ids,
+                         as: :check_boxes,
+                         collection: reports,
+                         label: false,
+                         label_method: proc { t('.user_access') }
+      br
+      = f.input :apply_to_existing_users, as: :boolean, hint: t('.apply_to_existing_users_hint')
+  .modal-footer
+    .btn-group
+      = button_tag t('administration.save'),
+                   type: 'submit',
+                   class: 'btn btn-default btn-info',
+                   data: { loading_text: t('loading') }
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+javascript:
+  $(function(){
+    $('#resource_report_family_id').on('change', function () {
+      report_family_id = $(this).val();
+      $('.reports_input').addClass('hidden');
+      $('.reports_input :checkbox').prop('checked', false);
+      $('#report_family_' + report_family_id).removeClass('hidden');
+    });
+  })

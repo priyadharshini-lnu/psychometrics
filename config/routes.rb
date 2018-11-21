@@ -104,9 +104,11 @@ Rails.application.routes.draw do
             post :assign_multiple
           end
         end
-        resources :reports, only: [:index, :destroy, :new, :create] do
+        resources :reports, only: %i[index] do
           get :export
         end
+        resource :assign_reports, only: %i[new create edit update]
+        resource :assign_assessments, only: %i[new create]
         resources :statistics, only: [:index]
 
         resources :projects, concerns: :client_editable do

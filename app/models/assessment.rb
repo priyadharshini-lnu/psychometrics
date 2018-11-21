@@ -96,6 +96,10 @@ class Assessment < ApplicationRecord
 
   mount_uploader :icon, ImageUploader
 
+  # TODO:
+  # Creating scope :mindmill. Overwriting existing method Assessment.mindmill.
+  # Creating scope :hogan. Overwriting existing method Assessment.hogan.
+  #
   scope :common, -> { where(type: TYPES[:common]) }
   scope :mindmill, -> { where(type: TYPES[:mindmill]) }
   scope :hogan, -> { where(type: TYPES[:hogan]) }

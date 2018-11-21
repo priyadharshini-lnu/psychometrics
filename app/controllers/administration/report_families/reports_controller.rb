@@ -18,16 +18,15 @@ module Administration
       end
 
       def new
-        @reports = policy_scope(::Report).enabled.where.has { |scope| scope.id.not_in(@report_family.report_ids) }
+        @reports = policy_scope(::Report).enabled.where.not(id: @report_family.report_ids)
         @form = AssignReportForm.new
       end
 
       def create
-        @reports = policy_scope(::Report).enabled.where.has { |scope| scope.id.not_in(@report_family.report_ids) }
+        @reports = policy_scope(::Report).enabled.where.not(id: @report_family.report_ids)
         @form = AssignReportForm.
                 from_params(params.require(:resource)).
                 with_context(report_family: @report_family)
-
 
         respond_to do |format|
           AssignReport.call(@form, @report_family) do

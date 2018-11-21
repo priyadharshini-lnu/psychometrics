@@ -55,6 +55,7 @@ class Client < ApplicationRecord
   has_one :retail_user, class_name: 'User'
   has_many :memberships # on delete cascade
   has_many :users, through: :memberships
+  has_many :assigns, through: :memberships, source: :assigns
   has_many :project_admin_memberships, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
   has_many :project_admins, through: :project_admin_memberships, source: :user, class_name: 'User'
   has_many :client_admin_memberships, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
@@ -67,12 +68,17 @@ class Client < ApplicationRecord
   # Licenses
   has_many :license_usages
   has_many :licenses, inverse_of: :client, dependent: :destroy
-  has_many :active_licenses, -> { active }, class_name: License
+  has_many :active_licenses, -> { active }, class_name: 'License'
   # Reports
   has_many :clients_reports # on delete cascade
   has_many :reports, through: :clients_reports
   has_many :report_families, through: :active_licenses, source: :report_family
   has_many :available_reports, through: :report_families, source: :reports
+  # Assessments
+  has_many :assessments, -> { group(:id) }, through: :reports, source: :assessments
+  has_many :assessments_clients
+  has_many :assigned_assessments, through: :assessments_clients, source: :assessment
+
 
   # Self association
   has_many :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }, foreign_key: :tte_id, class_name: 'Client'
@@ -81,7 +87,6 @@ class Client < ApplicationRecord
 
   has_many :norms
   has_many :dimensions
-  has_many :assessments, -> { group(:id) }, through: :reports, source: :assessments
   # TODO use admins instead of projects_admins
   has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, through: :projects, source: :users
 

@@ -1,18 +1,16 @@
 tr id=dom_id(resource)
-  td = resource.name
-  td = resource.decorate.assessments_names
+  td = resource.report.name
+  td = resource.report.decorate.assessments_names
   - if client.tenancy?
-    td = resource.decorate.clients_names
-  td = resource.decorate.created_at
+    td = resource.report.decorate.clients_names
+  td = resource.report.decorate.created_at
   td.actions-cell
     - if policy(:report).export?
       = link_to t('.export_data'),
                 administration_client_report_export_path(client, resource, format: 'xlsx'),
                 class: 'btn btn-default btn-rounded btn-sm'
-    - if policy(:client_report).destroy?
-      = link_to administration_client_report_path(client, resource),
+    - if policy(:client_report).edit?
+      = link_to edit_administration_client_assign_reports_path(client, report_family_id: resource.report_family_id),
                 remote: true,
-                class: 'btn btn-default btn-rounded btn-sm',
-                method: 'delete',
-                data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
-        span.fa.fa-times
+                class: 'btn btn-default btn-rounded btn-sm'
+        span.fa.fa-pencil

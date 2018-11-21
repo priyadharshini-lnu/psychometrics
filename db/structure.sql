@@ -122,6 +122,16 @@ CREATE TABLE public.assessments (
 
 
 --
+-- Name: assessments_clients; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessments_clients (
+    assessment_id bigint NOT NULL,
+    client_id bigint NOT NULL
+);
+
+
+--
 -- Name: assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -397,7 +407,9 @@ CREATE TABLE public.clients_reports (
     client_id integer,
     report_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    user_access boolean DEFAULT false,
+    report_family_id bigint
 );
 
 
@@ -2644,17 +2656,10 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: index_api_keys_on_token; Type: INDEX; Schema: public; Owner: -
+-- Name: index_assessments_clients_on_client_id_and_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_api_keys_on_token ON public.api_keys USING btree (token);
-
-
---
--- Name: index_api_keys_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
+CREATE INDEX index_assessments_clients_on_client_id_and_assessment_id ON public.assessments_clients USING btree (client_id, assessment_id);
 
 
 --
@@ -3736,6 +3741,14 @@ ALTER TABLE ONLY public.clients_reports
 
 ALTER TABLE ONLY public.license_usages
     ADD CONSTRAINT fk_rails_d35fd7791e FOREIGN KEY (license_id) REFERENCES public.licenses(id) ON DELETE CASCADE;
+
+
+--
+-- Name: clients_reports fk_rails_d3a555a5c2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.clients_reports
+    ADD CONSTRAINT fk_rails_d3a555a5c2 FOREIGN KEY (report_family_id) REFERENCES public.report_families(id);
 
 
 --
