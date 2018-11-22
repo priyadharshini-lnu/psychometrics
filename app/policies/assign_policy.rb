@@ -13,6 +13,10 @@ class AssignPolicy < BasePolicy
     true
   end
 
+  def accept_privacy?
+    index?
+  end
+
   def update?
     @record.membership_id == @current_membership.id
   end

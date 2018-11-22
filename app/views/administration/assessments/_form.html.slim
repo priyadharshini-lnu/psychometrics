@@ -34,7 +34,7 @@
                            hint: t('.timing.hint'),
                            wrapper_html: { class: 'common mindmill hogan' }
         = f.input :description, as: :text, wrapper_html: { class: 'common mindmill hogan' }
-
+        = render partial: 'administration/administrator/shared/simple_design', locals: { f: f }
     .modal-footer
       .btn-group
         = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'

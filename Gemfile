@@ -73,7 +73,9 @@ gem 'annotate', '~> 2.7.0', git: 'git@github.com:ctran/annotate_models.git'
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
-gem 'psychometrics-survey', git: 'git@gitlab.com:tte-lighthouse/psychometrics-survey.git'
+gem 'psychometrics-reports-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git', branch: 'master'
+gem 'psychometrics-survey-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git', branch: 'master'
+
 ### XLS import
 gem 'rubyXL'
 gem 'file_validators',            '~> 2.1.0'

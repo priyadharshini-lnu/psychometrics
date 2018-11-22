@@ -55,6 +55,7 @@ class Membership < ApplicationRecord
   has_many :clients_reports, through: :clients_assigns, source: :reports
   has_one :original_membership, foreign_key: :project_membership_id, class_name: 'Membership'
   has_one :hogan_credential
+  has_many :privacy_consents
 
   has_many :reports_accesses
   has_many :accessible_reports, -> { where('reports_accesses.user_access = ?', true) }, through: :reports_accesses, source: :report
@@ -150,6 +151,11 @@ class Membership < ApplicationRecord
 
   def membership_with_result
     project_membership || self
+  end
+
+  def accepted_privacy?
+    # TODO (atanych): this logic will be broken when we add new types of consents
+    privacy_consents.take.present?
   end
 
   private
