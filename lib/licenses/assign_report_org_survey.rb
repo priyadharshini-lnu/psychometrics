@@ -10,7 +10,7 @@ module Licenses
       return if client.id == report.owner_id
 
       # Get License by report family type
-      license = client.licenses.available.with_report_family(report.report_family_ids).take
+      license = client.licenses.available.with_report_family(report.report_family_ids).first
 
       # Return if report has already assigned
       report_ids = Membership.user_reports(client.descendants.ids).map(&:id)
@@ -18,7 +18,7 @@ module Licenses
 
       # Returns if license was already used by another Report from Report Family
       # TASK: gitlab.com/tte-lighthouse/psychometrics/issues/48
-      return if license && membership.license_usages.where(license: license).exists?      
+      return if license && membership.license_usages.where(license: license).exists?
 
       # Add error to Assign if tenancy has no enough licenses
       raise Errors::LicenseError.new(client, report) unless license&.enough_licenses?

@@ -2,7 +2,7 @@
 
 module Administration
   module Clients
-    class AssignAssessments < Rectify::Command
+    class NewAssessmentsClient < Rectify::Command
       def initialize(form, client)
         @form = form
         @client = client
@@ -23,8 +23,10 @@ module Administration
 
       attr_reader :form, :client
 
+      # Update the list of assigned assessments
+      #
       def update_client
-        client.assigned_assessment_ids = form.assessment_ids
+        client.assessment_ids += form.assessment_ids
         client.save
       end
 

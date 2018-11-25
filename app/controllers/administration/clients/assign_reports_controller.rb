@@ -7,15 +7,15 @@ module Administration
       append_before_action :pundit_authorize
 
       def new
-        @report_families = client.client.report_families.includes(:reports)
+        @report_families = client.client.report_families.includes(:reports).distinct
         @_resource = AssignReportsForm.new
       end
 
       def create
-        @report_families = client.client.report_families.includes(:reports)
+        @report_families = client.client.report_families.includes(:reports).distinct
         @_resource = AssignReportsForm.
                      from_params(params[:resource]).
-                     with_context(client: client)
+                     with_context(client: client, client_tenancy: client.root)
 
         respond_to do |format|
           format.js do
@@ -27,7 +27,7 @@ module Administration
       end
 
       def edit
-        @report_family = client.client.report_families.find(params[:report_family_id])
+        @report_family = ReportFamily.find(params[:report_family_id])
         @reports_assigned = @report_family.reports.where(id: client.report_ids).distinct
         @reports = @report_family.reports.where.not(id: client.report_ids).distinct
         @_resource = AssignReportsForm.new({
@@ -39,13 +39,12 @@ module Administration
       end
 
       def update
+        @report_family = ReportFamily.find(params.dig(:resource, :report_family_id))
+        @reports_assigned = @report_family.reports.where(id: client.report_ids).distinct
+        @reports = @report_family.reports.where.not(id: client.report_ids).distinct
         @_resource = AssignReportsForm.
                      from_params(params[:resource], { new_record: false }).
-                     with_context(client: client)
-
-        @report_family = client.client.report_families.find(resource.report_family_id)
-        @reports_selected = @report_family.reports.where(id: client.report_ids).distinct
-        @reports = @report_family.reports.where.not(id: client.report_ids).distinct
+                     with_context(client: client, client_tenancy: client.root)
 
         respond_to do |format|
           format.js do

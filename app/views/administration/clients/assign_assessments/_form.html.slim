@@ -1,18 +1,1 @@
-= simple_form_for(resource, as: :resource, url: { action: :create }, remote: true) do |f|
-  .modal-body
-    .form-inputs.clearfix
-      = f.input :assessment_ids,
-                as: :select,
-                collection: @assessments,
-                multiple: true,
-                class: 'form-control',
-                include_blank: false,
-                input_html: { data: { live_search: true }, multiple: true }
-      = f.input :apply_to_existing_users, as: :boolean, hint: t('.apply_to_existing_users_hint')
-  .modal-footer
-    .btn-group
-      = f.button :submit,
-                 t('administration.create'),
-                 class: 'btn-info',
-                 data: { loading_button: t('loading') }
-      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+= render partial: %w[new create].include?(action_name) ? 'form_new' : 'form_edit'

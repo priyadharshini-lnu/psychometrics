@@ -12,8 +12,6 @@ body {
   min-height:120px;
 }
 
-
-
 .navbar-default .navbar-toggle {
   margin-top:70px;
 }
@@ -185,4 +183,26 @@ body {
 
 .factors_icon {
   border: black 1px solid;
+}
+
+.icon-circle {
+  width: 29px;
+  height: 29px;
+  line-height: 28px;
+  border-radius: 50%;
+  text-transform: uppercase;
+  color: #fff;
+  font-weight: bold;
+  text-align: center;
+  display: inline-block;
+  border: 1px solid #d9dad9;
+}
+#sortable {
+  .sortable-bar {
+    cursor: grab;
+  }
+  .sortable-ghost {
+    opacity: 0.4;
+    background-color: #F4E2C9;
+  }
 }

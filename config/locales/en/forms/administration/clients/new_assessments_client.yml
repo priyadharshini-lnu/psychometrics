@@ -1,0 +1,6 @@
+en:
+  activemodel:
+    attributes:
+      new_assessments_client:
+        assessment_ids: 'Assessments'
+        apply_to_existing_users: 'Apply these changes to existing users'

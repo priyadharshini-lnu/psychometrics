@@ -14,7 +14,7 @@
             th = t('.disabled')
             th
         tbody
-          = f.simple_fields_for :licenses do |license|
+          = f.simple_fields_for :licenses, f.object.licenses.order(:created_at) do |license|
             = render 'license_fields', f: license
       .links
         = link_to_add_association t('.add_license'),

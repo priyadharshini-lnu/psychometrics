@@ -20,7 +20,7 @@ module Administration
         end
 
         broadcast(:ok)
-      rescue ActiveRecord::RecordInvalid => e
+      rescue ActiveRecord::RecordInvalid, Errors::LicenseError => e
         form.errors.add(:base, e.message)
         broadcast(:invalid)
       end
@@ -45,8 +45,8 @@ module Administration
       end
 
       def apply_assigned_assessments
-        client.assigned_assessment_ids.each do |assessment_id|
-          membership.assigns.find_or_create_by!(assessment_id: assessment_id)
+        client.assessment_ids.each do |assessment_id|
+          assign = membership.assigns.find_or_create_by(assessment_id: assessment_id)
         end
       end
 

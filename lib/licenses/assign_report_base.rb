@@ -10,7 +10,7 @@ module Licenses
       return if client.id == report.owner_id
 
       # Get License by report family type
-      license = client.licenses.available.with_report_family(report.report_family_ids).take
+      license = client.licenses.available.with_report_family(report.report_family_ids).first
 
       # Returns if license was already used by another Report from Report Family
       # TASK: gitlab.com/tte-lighthouse/psychometrics/issues/48

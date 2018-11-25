@@ -210,8 +210,7 @@ class Assign < ApplicationRecord
   end
 
   def relevant_assessment
-    errors.add(:assessment) if membership.client.assessment_ids.exclude?(assessment_id) &&
-                               membership.client.assigned_assessment_ids.exclude?(assessment_id)
+    errors.add(:assessment) if membership.client.assessment_ids.exclude?(assessment_id)
   end
 
   def relevant_reports

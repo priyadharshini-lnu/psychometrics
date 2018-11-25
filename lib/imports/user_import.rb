@@ -140,7 +140,7 @@ module Imports
     end
 
     def apply_assigned_assessments(membership)
-      client.assigned_assessment_ids.each do |assessment_id|
+      client.assessment_ids.each do |assessment_id|
         membership.assigns.find_or_create_by!(assessment_id: assessment_id)
       end
     end

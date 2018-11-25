@@ -5,4 +5,6 @@ en:
         form:
           apply_to_existing_users_hint: '(If is not selected, changes will be applied only to new users)'
         new:
-          header: Add Reports
+          header: Add Assessments
+        edit:
+          header: Manage assigned Assessments

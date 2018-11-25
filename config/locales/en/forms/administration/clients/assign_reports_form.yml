@@ -1,0 +1,6 @@
+en:
+  activemodel:
+    attributes:
+      assign_reports:
+        report_family_id: 'Report Bundle'
+        apply_to_existing_users: 'Apply these changes to existing users'

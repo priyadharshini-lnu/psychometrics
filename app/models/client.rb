@@ -75,9 +75,8 @@ class Client < ApplicationRecord
   has_many :report_families, through: :active_licenses, source: :report_family
   has_many :available_reports, through: :report_families, source: :reports
   # Assessments
-  has_many :assessments, -> { group(:id) }, through: :reports, source: :assessments
-  has_many :assessments_clients
-  has_many :assigned_assessments, through: :assessments_clients, source: :assessment
+  has_many :assessments_clients, -> { order(:position) } # on delete cascade
+  has_many :assessments, through: :assessments_clients, source: :assessment
 
 
   # Self association

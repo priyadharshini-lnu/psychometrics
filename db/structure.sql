@@ -126,9 +126,32 @@ CREATE TABLE public.assessments (
 --
 
 CREATE TABLE public.assessments_clients (
-    assessment_id bigint NOT NULL,
-    client_id bigint NOT NULL
+    id bigint NOT NULL,
+    client_id bigint,
+    assessment_id bigint,
+    "position" integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
 );
+
+
+--
+-- Name: assessments_clients_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.assessments_clients_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assessments_clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.assessments_clients_id_seq OWNED BY public.assessments_clients.id;
 
 
 --
@@ -1919,6 +1942,13 @@ ALTER TABLE ONLY public.assessments ALTER COLUMN id SET DEFAULT nextval('public.
 
 
 --
+-- Name: assessments_clients id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_clients ALTER COLUMN id SET DEFAULT nextval('public.assessments_clients_id_seq'::regclass);
+
+
+--
 -- Name: assessments_reports id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2261,6 +2291,14 @@ ALTER TABLE ONLY public.api_keys
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: assessments_clients assessments_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_clients
+    ADD CONSTRAINT assessments_clients_pkey PRIMARY KEY (id);
 
 
 --
@@ -2659,7 +2697,7 @@ ALTER TABLE ONLY public.users
 -- Name: index_assessments_clients_on_client_id_and_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_assessments_clients_on_client_id_and_assessment_id ON public.assessments_clients USING btree (client_id, assessment_id);
+CREATE UNIQUE INDEX index_assessments_clients_on_client_id_and_assessment_id ON public.assessments_clients USING btree (client_id, assessment_id);
 
 
 --
@@ -3065,7 +3103,7 @@ CREATE INDEX index_licenses_on_client_id ON public.licenses USING btree (client_
 -- Name: index_licenses_on_client_id_and_report_family_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_licenses_on_client_id_and_report_family_id ON public.licenses USING btree (client_id, report_family_id);
+CREATE INDEX index_licenses_on_client_id_and_report_family_id ON public.licenses USING btree (client_id, report_family_id);
 
 
 --
@@ -3672,6 +3710,14 @@ ALTER TABLE ONLY public.license_usages
 
 
 --
+-- Name: assessments_clients fk_rails_a7b4e42c48; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_clients
+    ADD CONSTRAINT fk_rails_a7b4e42c48 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: ecommerce_purchase_invites fk_rails_acede09d2c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3709,6 +3755,14 @@ ALTER TABLE ONLY public.norms
 
 ALTER TABLE ONLY public.communications_users
     ADD CONSTRAINT fk_rails_bc228f8bf6 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
+-- Name: assessments_clients fk_rails_cc339dda78; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_clients
+    ADD CONSTRAINT fk_rails_cc339dda78 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -4054,8 +4108,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181022210715'),
 ('20181028143714'),
 ('20181028180057'),
-('20181103095056'),
+('20181111105703'),
 ('20181112210040'),
+('20181114075818'),
+('20181114150808'),
+('20181117114931'),
 ('20181118154257'),
 ('20181119095817'),
 ('20181224184633'),

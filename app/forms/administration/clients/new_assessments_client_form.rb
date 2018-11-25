@@ -2,23 +2,16 @@
 
 module Administration
   module Clients
-    class AssignAssessmentsForm < Rectify::Form
+    class NewAssessmentsClientForm < Rectify::Form
       # Fields
       attribute :assessment_ids, Array[Integer]
       attribute :apply_to_existing_users, Boolean
 
       #   VALIDATIONS
       #
-      validates :assessment_ids, presence: true
       validate :assessments_owned_by_client
       validate :assessments_uniqueness
       validate :assessments_is_enabled
-
-      # Rejects from an array a blank items
-      #
-      def assessment_ids=(ids)
-        super(ids.reject(&:blank?))
-      end
 
       protected
 
@@ -33,7 +26,8 @@ module Administration
       # Returns error if there is at least one already assigned Assessment
       #
       def assessments_uniqueness
-        errors.add(:assessment_ids, :taken) if context.client.assessments.exists?(id: assessment_ids)
+        errors.add(:assessment_ids, :taken) if ::AssessmentsClient.
+                                               exists?(client_id: context.client.id, assessment_id: assessment_ids)
       end
 
       # Returns error if there is at least one disabled Assessment

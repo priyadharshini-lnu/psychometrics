@@ -3,6 +3,14 @@ class ReportDecorator < BaseDecorator
     I18n.t("administration.reports.types.#{object.type}")
   end
 
+  # Returns a round image or circle with the specified color and two letters of the name
+  #
+  def icon
+    return h.image_tag(object.icon.url(:thumb), class: 'img-circle icon-circle') if object.icon?
+
+    h.content_tag(:div, object.name.first(2), class: 'icon-circle', style: "background-color: #{object.icon_color}")
+  end
+
   def clients_names
     object.clients.
       map { |client| client.decorate.display_name }.

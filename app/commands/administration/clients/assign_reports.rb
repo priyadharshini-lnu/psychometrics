@@ -6,6 +6,7 @@ module Administration
       def initialize(form, client)
         @form = form
         @client = client
+        @reports = Report.includes(:assessments).where(id: form.report_ids)
       end
 
       def call
@@ -21,20 +22,26 @@ module Administration
 
       private
 
-      attr_reader :form, :client
+      attr_reader :form, :client, :reports
 
+      # Builds ClientReport and AssessmentClient entities
       def assign_reports
-        form.report_ids.each do |report_id|
+        reports.each do |report|
+          # Creates ClientReport
           client_report = client.
                           clients_reports.
-                          find_or_initialize_by(report_id: report_id, report_family_id: form.report_family_id)
-          client_report.user_access = form.user_access_report_ids.include?(report_id)
+                          find_or_initialize_by(report_id: report.id, report_family_id: form.report_family_id)
+          client_report.user_access = form.user_access_report_ids.include?(report.id)
           client_report.save!
+
+          # Creates AssessmentClient
+          report.assessments.each do |assessment|
+            client.assessments_clients.find_or_create_by!(assessment_id: assessment.id)
+          end
         end
       end
 
       def apply_to_existing_users
-        reports = Report.includes(:assessments).where(id: form.report_ids)
         client.memberships.find_each do |membership|
           reports.find_each do |report|
             report.assessments.each do |assessment|

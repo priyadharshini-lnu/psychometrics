@@ -14,10 +14,10 @@ module Administration
       #   VALIDATIONS
       #
       validates :report_family_id, presence: true
-      validates :report_ids,       presence: true, if: proc { new_record? }
-      validate :report_family_enabled
-      validate :reports_enabled
-      validate :reports_linked_to_report_family
+      validates :report_ids,       presence: true, if: -> { new_record? }
+      validate :report_family_enabled, if: -> { new_record? }
+      validate :reports_enabled, if: -> { report_ids.any? }
+      validate :reports_linked_to_report_family, if: -> { report_family_id && report_ids.any? }
 
       # Rejects from an array a blank items
       #
@@ -29,7 +29,6 @@ module Administration
         super(ids.reject(&:blank?))
       end
 
-
       protected
 
       # Returns error if License with Report Family is disabled
@@ -37,7 +36,7 @@ module Administration
       def report_family_enabled
         errors.add(:report_ids, :invalid) if ::ReportFamily.
                                              joins(:licenses).
-                                             where(licenses: { disabled: true, client_id: context.client.id }).
+                                             where(licenses: { disabled: true, client_id: context.client_tenancy.id }).
                                              where(id: report_family_id).
                                              exists?
       end
@@ -51,12 +50,9 @@ module Administration
       # Returns error if there is a Report not from Report Family
       #
       def reports_linked_to_report_family
-        errors.add(:report_ids, :invalid) if ::Report.
-                                             enabled.
-                                             joins(:report_families).
-                                             where(id: report_ids).
-                                             where.not(report_families: { id: report_family_id }).
-                                             exists?
+        report_family = ReportFamily.find(report_family_id)
+        report_family_report_ids = report_family.report_ids
+        errors.add(:report_ids, :invalid) unless report_ids.all? { |id| report_family_report_ids.include?(id) }
       end
 
     end

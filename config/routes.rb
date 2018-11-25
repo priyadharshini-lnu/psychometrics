@@ -108,7 +108,7 @@ Rails.application.routes.draw do
           get :export
         end
         resource :assign_reports, only: %i[new create edit update]
-        resource :assign_assessments, only: %i[new create]
+        resource :assign_assessments, only: %i[new create edit update]
         resources :statistics, only: [:index]
 
         resources :projects, concerns: :client_editable do
