@@ -84,6 +84,7 @@ module Api
       xml = File.read('lib/imports/external/samples/mind_mill_import.xml')
       # xml = File.write('lib/imports/external/samples/mind_mill_import11.xml', response.xml)
       # Imports::External::BaseExternalImport.build(:mindmill).process!(response.body, assign)
+      binding.pry
       Imports::External::BaseExternalImport.build(:mindmill).process!(xml, assign)
       @report ||= response.body[:send_cognitive_report_response][:send_cognitive_report_result]
     end
