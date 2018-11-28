@@ -4,8 +4,11 @@ $(function () {
   var storage = {}
 
   $(document).on('click', '#user #assigns_index .assign a', function (e) {
-    e.preventDefault()
-    processPrivacyConsent($(this))
+    var $el = $(this)
+    if($el.data('privacy-consent')) {
+      e.preventDefault()
+      processPrivacyConsent($(this))  
+    }
   })
 
   function processPrivacyConsent($el) {
@@ -38,11 +41,7 @@ $(function () {
       url: "/assigns/accept_privacy",
       method: 'POST',
       success: function() {
-        if (storage.isMindMill) {
-          processMindMill(storage.mindmillData)
-        } else {
-          location.href = storage.href
-        }
+        location.reload()
       }
     })
   })
