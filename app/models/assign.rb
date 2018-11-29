@@ -210,6 +210,7 @@ class Assign < ApplicationRecord
   end
 
   def relevant_assessment
+    # return if membership.client.project? && !membership.client.end_level?
     errors.add(:assessment) if membership.client.assessment_ids.exclude?(assessment_id)
   end
 

@@ -41,6 +41,10 @@ module Administration
         attributes.except(*USER_FIELDS, :user_id)
       end
 
+      def full_name
+        "#{first_name} #{last_name}"
+      end
+
       protected
 
       # Try to find existing user by email

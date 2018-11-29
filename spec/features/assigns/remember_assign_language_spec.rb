@@ -6,7 +6,7 @@ feature 'Incomplete assessment should continue in the same language' do
   let(:question_text_ar) { 'استبيان تفضيلات العمل' }
 
   let!(:project) { create(:project) }
-  let!(:assessment) { create(:assessment) }
+  let!(:assessment) { project.assessments.take }
   let!(:question) { create(:question, assessment_id: assessment.id, position: 1, type: 'StaticContent',
                            props: {'questionText' => question_text_en, 'hasValidations' => false, 'type' => 'Text'},
                            block: create(:block, assessment_id: assessment.id)) }

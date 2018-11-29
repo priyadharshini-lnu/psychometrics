@@ -13,18 +13,16 @@ feature 'CRUD Client' do
       import_countries
       tenancy = create_tenancy(name: 'TTE',
                                number: 1,
-                               country: Data::Geo.take.country_name,
+                               country: Data::Geo.take&.country_name,
                                year: Date.today.year,
                                account_manager: 'super admin',
-                               project_manager: 'super admin',
-                               report_families: [report_family.name])
+                               project_manager: 'super admin')
 
       project = create_project(tenancy,
                                name: 'Project',
                                subdomain: 'project',
                                number: 2,
-                               applicable_level: 'Sub-Campaign',
-                               reports: [report.name])
+                               applicable_level: 'Sub-Campaign')
 
       campaign = create_campaign(tenancy, project, name: 'Campaign')
       create_sub_campaign(tenancy, project, campaign, name: 'SubCampaign')
@@ -32,7 +30,7 @@ feature 'CRUD Client' do
   end
 
   context 'As Client Admin' do
-    given!(:tenancy) { create(:tenancy, report_families: [report_family]) }
+    given!(:tenancy) { create(:tenancy) }
     given!(:project) { create(:project, :sub_campaign_level, parent: tenancy) }
     given!(:admin) { create(:client_admin, memberships_options: [{ client: tenancy }]) }
     before { login_as admin }

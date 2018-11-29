@@ -9,10 +9,7 @@ $(function () {
     $(document).trigger('initPlugins');
 
     // Notify message
-    var message = '<%= t("administration.#{resource_class.model_name.plural}.admin_chosen.successfully") %>';
-    <% if resource.persisted? %>
-      message = '<%= t("administration.#{resource_class.model_name.plural}.create.successfully", name: resource.user.decorate.display_name) %>'
-    <% end %>
+    var message = '<%= t("administration.memberships.create.successfully", name: resource.full_name) %>'
 
     noty({
       text: message,

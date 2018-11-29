@@ -74,6 +74,7 @@ class Client < ApplicationRecord
   has_many :reports, through: :clients_reports
   has_many :report_families, through: :active_licenses, source: :report_family
   has_many :available_reports, through: :report_families, source: :reports
+  has_many :available_assessments, through: :report_families, source: :assessments
   # Assessments
   has_many :assessments_clients, -> { order(:position) } # on delete cascade
   has_many :assessments, through: :assessments_clients, source: :assessment

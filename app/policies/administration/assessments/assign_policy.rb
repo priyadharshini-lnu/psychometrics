@@ -2,7 +2,7 @@ module Administration
   module Assessments
     class AssignPolicy < Administration::BasePolicy
       def new?
-        @user.is?(:superadmin, :client_admin, :project_admin)
+        false # @user.is?(:superadmin, :client_admin, :project_admin)
       end
 
       def step1?

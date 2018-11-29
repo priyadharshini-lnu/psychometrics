@@ -3,14 +3,14 @@ require 'rails_helper'
 describe Queries::Assigns::SubProjectLevel::ByClient do
   let(:query) { Queries::Assigns::SubProjectLevel::ByClient }
 
-  let(:sub_campaign1) { create(:sub_campaign) }
-  let(:sub_campaign2) { create(:sub_campaign) }
+  let(:sub_campaign1) { create(:sub_campaign, :with_reports) }
+  let(:sub_campaign2) { create(:sub_campaign, :with_reports) }
 
-  let(:assessment1) { create(:assessment) }
-  let(:assessment2) { create(:assessment) }
+  let(:assessment1) { sub_campaign1.assessments.take }
+  let(:assessment2) { sub_campaign2.assessments.take }
 
-  let(:report1) { create(:report, assessment: assessment1) }
-  let(:report2) { create(:report, assessment: assessment2) }
+  let(:report1) { assessment1.reports.take }
+  let(:report2) { assessment2.reports.take }
 
   let!(:clients_report1) { create(:clients_report, client: sub_campaign1, report: report1) }
   let!(:clients_report2) { create(:clients_report, client: sub_campaign2, report: report2) }
@@ -44,4 +44,3 @@ describe Queries::Assigns::SubProjectLevel::ByClient do
     end
   end
 end
-
