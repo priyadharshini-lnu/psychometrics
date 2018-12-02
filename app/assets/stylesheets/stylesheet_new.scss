@@ -1,12 +1,18 @@
 //custom styles
-.mainContent { background: #ebebeb; padding-bottom: 50px; }
+.mainContent { background: #ebebeb; }
 .mainContent .panel-heading .title { margin: 5px 0 0 0; float: left; }
 .mainContent .panel-heading .title i { font-size: 20px; margin-right: 10px; }
 /**/
 .report-holder { margin: 40px auto 0; padding: 0; }
-.assessment-holder { margin: 40px auto 0; padding: 0; max-width: 1170px;}
+.assessment-holder { margin: 16px auto 0; padding: 0; max-width: 1170px;}
 .assessment-holder .progress-bar { background-color: #64984b; }
-.assessment-holder .assessment-box { padding: 25px 0; }
+.assessment-holder .assessment-box {
+  padding: 25px 0;
+  .progress {
+    margin: 0 auto 60px auto;
+    max-width: 400px;
+  }
+}
 .html_preview {
   .fe-page-container { margin: 25px auto; border: 1px solid #CCC; background-color: #fff; }
   .fe-module-container { border: none; }
@@ -452,6 +458,7 @@ img.userIcon {
   padding-right: 10px;
 }
 .dashboard-holder {
+  min-height: 300px;
   .panel-heading {
     overflow-x: auto !important;
   }
@@ -505,10 +512,8 @@ td a:hover, td a:active, td a:focus {
   }
 }
 .progress {
-  border-radius: 15px;
   border: 1px solid #cccccc;
   background: transparent;
-  margin-bottom: 0;
 }
 .downloadIcon {
   font-size: 32px;
