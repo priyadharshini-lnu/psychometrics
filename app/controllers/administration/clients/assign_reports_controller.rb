@@ -7,12 +7,22 @@ module Administration
       append_before_action :pundit_authorize
 
       def new
-        @report_families = client.client.report_families.includes(:reports).distinct
+        @report_families = client.root.
+                                  report_families.
+                                  includes(:reports).
+                                  where(reports: { disabled: false }).
+                                  references(:reports).
+                                  distinct
         @_resource = AssignReportsForm.new
       end
 
       def create
-        @report_families = client.client.report_families.includes(:reports).distinct
+        @report_families = client.root.
+                                  report_families.
+                                  includes(:reports).
+                                  where(reports: { disabled: false }).
+                                  references(:reports).
+                                  distinct
         @_resource = AssignReportsForm.
                      from_params(params[:resource]).
                      with_context(client: client, client_tenancy: client.root)
@@ -28,8 +38,8 @@ module Administration
 
       def edit
         @report_family = ReportFamily.find(params[:report_family_id])
-        @reports_assigned = @report_family.reports.where(id: client.report_ids).distinct
-        @reports = @report_family.reports.where.not(id: client.report_ids).distinct
+        @reports_assigned = @report_family.reports.where(id: client.report_ids)
+        @reports = @report_family.reports.where.not(id: client.report_ids)
         @_resource = AssignReportsForm.new({
           report_family_id: @report_family.id,
           report_ids: client.report_ids,
