@@ -12,10 +12,11 @@ class ReportsController < ApplicationController
   layout 'users_new'
 
   def show
+    # TODO: Not the correct way to send all users result to the browser, adding user_id condition until better way is found
     @results = Assign.
                completed.
                includes(:membership, :user).
-               where(memberships: { client_id: @current_project.id }, assessment_id: @resource.assessment_ids).
+               where(memberships: { client_id: @current_project.id, user_id: @current_membership.user_id }, assessment_id: @resource.assessment_ids).
                references(:membership).all
     @assign = Assign.completed.find_by!(assessment_id: @resource.assessment_ids, membership_id: @current_membership.id)
     @assigns = Assign.where(

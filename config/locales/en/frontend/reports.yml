@@ -15,13 +15,19 @@ en:
         high_school_entry_roles: 'High School Entry Roles'
         diploma_qualification: 'Diploma Qualification'
         bachelors_or_masters_qualification: 'Bachelors or Masters Qualification'
-        key_career_tracks_within: 'Key Career Tracks Within'
+        key_career_tracks_within: 'Key Career Tracks Within {{occupation}}'
+        work_environment: 'Work Environment'
+        your_suitability: Your Suitability
       potential_career_short:
         key: 'key'
         your_scores: 'Your Scores'
         strengths: 'strengths'
         for_this: 'for this'
         career: 'career'
+      strength_clusters:
+        possible_roles: Possible Roles
+        work_environments: Expected Work Environments
+        index_sub_factors_considered: Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment
       cpi_occupations:
         occupations: 'Occupations'
         your_potential_suitability: 'Your Potential Suitability'

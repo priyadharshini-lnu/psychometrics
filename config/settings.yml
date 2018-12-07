@@ -58,3 +58,14 @@ mindmill:
     id: 430
   - name: Technical Functions
     id: 469
+default_colors:
+  - "#845EC2"
+  - "#2C73D2"
+  - "#0089BA"
+  - "#008E9B"
+  - "#008F7A"
+  - "#4B4453"
+  - "#C34A36"
+  - "#467EBF"
+  - "#0098EE"
+  - "#D45DB1"

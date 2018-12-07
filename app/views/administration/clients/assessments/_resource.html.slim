@@ -19,6 +19,9 @@ tr id=dom_id(resource)
           - unless resource.common?
             li
               = link_to t('.external_results'), administration_client_assessment_export_results_path(client, resource, format: 'xlsx', external: true)
+          - if policy(resource).export_normed_results?
+            li
+              = link_to t('.normed_results'), administration_client_assessment_export_normed_results_path(client, resource, format: 'xlsx')
     - if policy(:assessment).import_results? && !resource.hogan?
       .btn-group
         button.btn.btn-default.btn-rounded.dropdown-toggle.btn-sm.mrm data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" type='button'

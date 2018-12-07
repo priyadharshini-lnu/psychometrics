@@ -62,6 +62,11 @@ class AssignsController < ApplicationController
     head :no_content
   end
 
+  def accept_privacy
+    @current_membership.privacy_consents.create!
+    render json: { status: :ok }
+  end
+
   private
 
   def set_assign

@@ -1,0 +1,13 @@
+.modal.modal-accept-privacy.fade role='dialog' tabindex='-1'
+  .modal-dialog
+    .modal-content
+      .modal-header
+        button.close aria-hidden='true' data-dismiss='modal' type='button'  &times;
+        h4.modal-title = t('assigns.assign.accept_privacy_modal.title')
+      .modal-body
+        == t('assigns.assign.accept_privacy_modal.text')
+      .modal-footer
+        .btn-group
+          button.btn.btn-success = t('assigns.assign.accept_privacy_modal.accept')
+          button.btn.btn-default data-dismiss='modal' = t('assigns.assign.accept_privacy_modal.reject')
+

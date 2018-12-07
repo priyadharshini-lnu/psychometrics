@@ -4,6 +4,7 @@ en:
       projects:
         form:
           project_number: Project Number
+          data_privacy: Data privacy
           applicable_levels:
             project: 'Project End Level'
             campaign: 'Campaign End Level'
@@ -59,7 +60,7 @@ en:
         edit:
           header: 'Edit Project'
         destroy:
-          successfully: 'Project %{name} was successfully destroyed.'
+          successfully: 'Project %{name} was successfully deleted.'
         copy:
           successfully: 'Project %{name} was successfully copied.'
           error: 'Project %{name} was not copied.'

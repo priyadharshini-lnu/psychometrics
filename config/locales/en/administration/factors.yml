@@ -15,7 +15,7 @@ en:
       edit:
         header: 'Edit Factor Name'
       destroy:
-        successfully: 'Factor %{name} was successfully destroyed.'
+        successfully: 'Factor %{name} was successfully deleted.'
       copy:
         error: 'Factor #%{id} was not copied.'
       toggle_status:

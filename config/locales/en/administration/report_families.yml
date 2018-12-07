@@ -15,7 +15,7 @@ en:
       edit:
         header: 'Edit Report Family Name'
       destroy:
-        successfully: 'Report Family %{name} was successfully destroyed.'
+        successfully: 'Report Family %{name} was successfully deleted.'
       create:
         successfully: 'Report Family %{name} was successfully created.'
       update:

@@ -22,7 +22,7 @@ FactoryGirl.define do
   factory :assessment, class: ::Assessments::Common  do
     sequence(:name) { |i| "assessment #{i}" }
     dimension
-
+    extra { {icon_color: '#845EC2'} }
     trait :with_report do
       after(:create) do |assessment, _evaluator|
         create :report, assessment: assessment

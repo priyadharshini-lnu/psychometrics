@@ -25,6 +25,7 @@ class Assessment < ApplicationRecord
   CATEGORIES_TYPES = [
     PSYCHOMETRIC = 'psychometric'.freeze,
     ORGANISATIONAL = 'organisational'.freeze,
+    CASE_STUDY = 'case_study'.freeze,
     NUM_360 = '360'.freeze,
     MINDMILL = 'mindmill'.freeze,
     HOGAN = 'hogan'.freeze,
@@ -32,6 +33,7 @@ class Assessment < ApplicationRecord
   CATEGORIES = {
     psychometric: PSYCHOMETRIC,
     organisational: ORGANISATIONAL,
+    case_study: CASE_STUDY,
     '360' => NUM_360,
     mindmill: MINDMILL,
     hogan: HOGAN,
@@ -90,6 +92,10 @@ class Assessment < ApplicationRecord
   enum category: CATEGORIES
   enum status: STATUSES
 
+  store :extra, accessors: [:icon_color], coder: JsonSerializer
+
+  mount_uploader :icon, ImageUploader
+
   scope :common, -> { where(type: TYPES[:common]) }
   scope :mindmill, -> { where(type: TYPES[:mindmill]) }
   scope :enabled, -> { where.not(disabled: true) }
@@ -97,6 +103,10 @@ class Assessment < ApplicationRecord
   scope :with_category, lambda { |category|
     where(category: category)
   }
+
+  def set_default_color
+    self.icon_color = Settings.default_colors.sample
+  end
 
   # TODO: Remove, cause does not used
   def active_questions_count

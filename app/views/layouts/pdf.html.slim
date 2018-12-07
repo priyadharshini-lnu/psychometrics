@@ -7,7 +7,7 @@ html.body-full-height
     = csrf_meta_tags
     = jquery_include_tag :google
     = javascript_include_tag 'application'
-  body data-locale="#{I18n.locale}"
+  body data-locale="#{params[:lang] || I18n.locale}"
     = yield
 css:
   body[data-locale="ar"] #psychometrics_preview,
@@ -16,4 +16,7 @@ css:
   }
   * {
     box-sizing: border-box;
+  }
+  p {
+    margin: 0 0 10px;
   }

@@ -18,10 +18,20 @@ GIT
       rubyzip (>= 1.2.1)
 
 GIT
-  remote: git@gitlab.com:tte-lighthouse/psychometrics-survey.git
-  revision: e41fbf668dca07a28056628193b0d9d2afa7df44
+  remote: git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git
+  revision: dabd097aff8012d15dd42204cc41b7ab7c4c87de
+  branch: master
   specs:
-    psychometrics-survey (0.0.1)
+    psychometrics-reports-ui (0.0.1)
+      railties (~> 5.0)
+      thor (>= 0.14, < 2.0)
+
+GIT
+  remote: git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git
+  revision: e353d7740e77bd67b696995f9dfa89b9926ec779
+  branch: master
+  specs:
+    psychometrics-survey-ui (0.0.1)
       railties (~> 5.0)
       thor (>= 0.14, < 2.0)
 
@@ -144,6 +154,8 @@ GEM
     capistrano-nc (0.2.0)
       capistrano (~> 3.0)
       terminal-notifier (~> 2.0)
+    capistrano-npm (1.0.2)
+      capistrano (>= 3.0.0)
     capistrano-passenger (0.2.0)
       capistrano (~> 3.0)
     capistrano-rails (1.1.7)
@@ -699,6 +711,7 @@ DEPENDENCIES
   byebug
   capistrano (= 3.6.0)
   capistrano-nc (~> 0.2)
+  capistrano-npm (~> 1.0, >= 1.0.2)
   capistrano-passenger (~> 0.2.0)
   capistrano-rails (~> 1.1.6)
   capistrano-rails-console (~> 2.2.1)
@@ -751,7 +764,8 @@ DEPENDENCIES
   poltergeist (~> 1.14.0)
   pry-byebug
   pry-rails
-  psychometrics-survey!
+  psychometrics-reports-ui!
+  psychometrics-survey-ui!
   puma (~> 3.8)
   pundit (~> 1.1.0)
   rack-timeout (~> 0.4.2)
@@ -802,4 +816,4 @@ DEPENDENCIES
   whenever (~> 0.9.7)
 
 BUNDLED WITH
-   1.16.2
+   1.17.1

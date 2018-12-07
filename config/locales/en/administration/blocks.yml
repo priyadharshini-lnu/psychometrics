@@ -6,7 +6,7 @@ en:
       edit:
         header: 'Edit Block'
       destroy:
-        successfully: 'Block %{name} was successfully destroyed.'
+        successfully: 'Block %{name} was successfully deleted.'
       resource:
         confirmations:
           delete:

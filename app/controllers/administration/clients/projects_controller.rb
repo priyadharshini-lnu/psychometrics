@@ -53,7 +53,7 @@ module Administration
 
       def resource_params
         params.require(:resource).permit(:name, :subdomain, :logo, :background, :background_color,
-                                         :remove_background, :remove_logo, :applicable_level, :number,
+                                         :remove_background, :remove_logo, :applicable_level, :number, :privacy_consent,
                                          report_ids: [])
       end
     end

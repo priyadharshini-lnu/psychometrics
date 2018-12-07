@@ -1,0 +1,25 @@
+{
+  "name": "psychometrics",
+  "version": "1.0.0",
+  "description": "Psychometrics application",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "export_pdf": "node ./lib/raster.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@gitlab.com/tte-lighthouse/psychometrics.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://gitlab.com/tte-lighthouse/psychometrics/issues"
+  },
+  "homepage": "https://gitlab.com/tte-lighthouse/psychometrics#readme",
+  "dependencies": {
+    "puppeteer": "1.9.0"
+  }
+}
