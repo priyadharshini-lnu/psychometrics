@@ -6,10 +6,11 @@ class Mindmill::AssignsController < ApplicationController
   def pass
     mindmill = Api::Mindmill.new(@assign, @current_membership, user_locale)
     mindmill.assign_user
-    @ssourl = "#{mindmill.ssourl}&URL=#{request.base_url + results_mindmill_assign_path(@assign)}"
+    @ssourl = mindmill.ssourl
     redirect_back(fallback_location: root_path, error: t('errors.error_500')) && return unless @ssourl
 
     @assign.in_progress!
+    BuildMindmillResultsJob.set(wait: 1.hour).perform_later(@assign, @current_membership, user_locale)
     # Set Not Started for all Mindmill assigns, except current
     # Cause only one Mindmill can has In Progress status
     Assign.
