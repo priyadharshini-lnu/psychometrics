@@ -1,7 +1,7 @@
 module Imports
   module External
     class MindmillImport < BaseExternalImport
-      EXCLUDED_FIELDS = ['cmstudent'].freeze
+      EXCLUDED_FIELDS = %w(cmstudent cpiintro ed.memo nf.memo ti.memo cpi.memo oe.memo or.memo ab.memo rc.memo bands.memo wr.memo).freeze
 
       def normalize_data(raw_data_or_file, extra)
         # TODO (atanych): sort out that store xml as is (raw data) or normalize (like bellow)
