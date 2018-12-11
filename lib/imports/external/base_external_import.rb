@@ -1,28 +1,29 @@
 module Imports
   module External
     class BaseExternalImport
-      attr_accessor :raw_data_or_file, :assign, :extra
+      attr_accessor :data, :assign, :extra
 
       def self.build(type)
         "Imports::External::#{type.capitalize}Import".constantize.new
       end
 
-      def normalize_data(raw_data_or_file, extra)
+      def normalize_data(data, extra)
         raise 'should be implemented in particular external import'
       end
 
-      def process!(raw_data_or_file, assign, extra = {})
-        assign.update(external_results: normalize_data(raw_data_or_file, extra))
+      def process(data, assign, extra = {})
+        normalize_data(data, extra)
       end
 
       def normalize_nested_hash(nested_hash, result_hash = {}, parent_keys = [])
         nested_hash.reduce(result_hash) do |normalized_hash, entity|
-          next normalized_hash if excluded_fields.include?(entity.first)
           keys = parent_keys + [entity.first]
+          key = keys.join('.')
+          next normalized_hash if excluded_fields.include?(key)
           if entity.last.is_a?(Hash)
             normalized_hash = normalize_nested_hash(entity.last, normalized_hash, keys)
           else
-            normalized_hash[keys.join('.')] = entity.last
+            normalized_hash[key] = entity.last
           end
           normalized_hash
         end

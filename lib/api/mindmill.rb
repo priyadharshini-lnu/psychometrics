@@ -6,7 +6,7 @@ module Api
     AVAILABLE_LANGUAGES = %w(en ar fr).freeze
 
     attr_accessor :api, :appid, :assessment, :current_membership, :locale, :assign
-    attr_accessor :report, :ssourl, :has_in_progress_assign
+    attr_accessor :report, :ssourl, :has_in_progress_assign, :scores
 
     def initialize(assign, current_membership, user_locale = 'en')
       @api = Savon.client(wsdl: WSDL_URL, soap_version: 2, log_level: :debug, logger: Rails.logger)
@@ -80,13 +80,16 @@ module Api
     def load_results
       # return false unless test_taken?
       response = api.call(:send_cognitive_report, message: { strCompanyKey: KEY, strUsername: appid })
-      # TODO (atanych): remove hardcoded path
-      xml = File.read('lib/imports/external/samples/mind_mill_import.xml')
-      # xml = File.write('lib/imports/external/samples/mind_mill_import11.xml', response.xml)
-      # Imports::External::BaseExternalImport.build(:mindmill).process!(response.body, assign)
-      # binding.pry
-      Imports::External::BaseExternalImport.build(:mindmill).process!(xml, assign)
-      @report ||= response.body[:send_cognitive_report_response][:send_cognitive_report_result]
+      @report = response.body[:send_cognitive_report_response][:send_cognitive_report_result]
+    rescue Savon::Error => e
+      Rails.logger.error(e.inspect)
+    end
+
+    def load_scores
+      response = api.call(:send_results2, message: { strCompanyKey: KEY, strUserName: appid, strOptions: "ALL", strReportLang: "EN" })
+      @scores = response.body[:send_results2_response][:send_results2_result]
+    rescue Savon::Error => e
+      Rails.logger.error(e.inspect)
     end
 
     protected
