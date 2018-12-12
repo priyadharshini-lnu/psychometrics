@@ -5,13 +5,23 @@ module Exports
                      MatrixTable MetaInfo MultipleChoice PickGroupRank
                      RankOrder SideBySide Slider TextEntry Timing).freeze
 
-      def initialize(assessment_id, client_id, options = {})
-        @assessment_id = assessment_id
+      def initialize(assessment, client_id, options = {})
+        @assessment = assessment
         @client_id = client_id
         @scoring = !!options[:scoring]
+        @external = !!options[:external]
       end
 
       def to_xlsx
+        if @external
+          Exports::External::BaseExternalExport.build(Assessment::TYPES.key(@assessment.type)).to_xlsx(current_level_assigns)
+        else
+          to_xlsx_common
+        end
+      end
+
+      # TODO (atanych): should be refactored
+      def to_xlsx_common
         Axlsx::Package.new do |package|
           package.workbook.add_worksheet(name: 'AssessmentRawResults') do |sheet|
             questions = Question.
@@ -19,7 +29,7 @@ module Exports
               not_deleted.
               includes(:factors_scorings).
               selecting { [id, name, type, props] }.
-              where.has { |q| q.block.assessment_id == @assessment_id }.
+              where.has { |q| q.block.assessment_id == @assessment.id }.
               ordering { [block.position.asc, position.asc] }
             ## header
             header = {
@@ -79,9 +89,10 @@ module Exports
       private
 
       def project_level_assigns
-        Queries::Assigns::ProjectLevel::ByClientAndAssessment.call(@client_id, @assessment_id).
+        Queries::Assigns::ProjectLevel::ByClientAndAssessment.call(@client_id, @assessment.id).
           selecting { [id,
                        results,
+                       external_results,
                        norm_data,
                        status,
                        completed_at,
@@ -91,9 +102,10 @@ module Exports
       end
 
       def subproject_level_assigns
-        Queries::Assigns::SubProjectLevel::ByClientAndAssessment.call(@client_id, @assessment_id).
+        Queries::Assigns::SubProjectLevel::ByClientAndAssessment.call(@client_id, @assessment.id).
           selecting { [id,
                        results,
+                       external_results,
                        norm_data,
                        status,
                        completed_at,
