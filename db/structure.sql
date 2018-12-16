@@ -84,8 +84,7 @@ CREATE TABLE public.assessments (
     enable_back boolean DEFAULT false NOT NULL,
     enable_progress boolean DEFAULT true,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
-    icon character varying,
-    external_id character varying
+    icon character varying
 );
 
 
@@ -138,42 +137,6 @@ CREATE SEQUENCE public.assessments_reports_id_seq
 --
 
 ALTER SEQUENCE public.assessments_reports_id_seq OWNED BY public.assessments_reports.id;
-
-
---
--- Name: assign_results; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.assign_results (
-    id bigint NOT NULL,
-    assign_id bigint,
-    membership_id bigint,
-    results jsonb DEFAULT '{}'::jsonb,
-    scores jsonb DEFAULT '{}'::jsonb,
-    agile_scores jsonb DEFAULT '{}'::jsonb,
-    embedded_data jsonb DEFAULT '{}'::jsonb,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: assign_results_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.assign_results_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: assign_results_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.assign_results_id_seq OWNED BY public.assign_results.id;
 
 
 --
@@ -1552,8 +1515,7 @@ CREATE TABLE public.reports (
     owner_id integer,
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
-    icon character varying,
-    external_id character varying
+    icon character varying
 );
 
 
@@ -1872,13 +1834,6 @@ ALTER TABLE ONLY public.assessments ALTER COLUMN id SET DEFAULT nextval('public.
 --
 
 ALTER TABLE ONLY public.assessments_reports ALTER COLUMN id SET DEFAULT nextval('public.assessments_reports_id_seq'::regclass);
-
-
---
--- Name: assign_results id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assign_results ALTER COLUMN id SET DEFAULT nextval('public.assign_results_id_seq'::regclass);
 
 
 --
@@ -2218,14 +2173,6 @@ ALTER TABLE ONLY public.assessments
 
 ALTER TABLE ONLY public.assessments_reports
     ADD CONSTRAINT assessments_reports_pkey PRIMARY KEY (id);
-
-
---
--- Name: assign_results assign_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assign_results
-    ADD CONSTRAINT assign_results_pkey PRIMARY KEY (id);
 
 
 --
@@ -2615,20 +2562,6 @@ CREATE INDEX index_assessments_reports_on_assessment_id ON public.assessments_re
 --
 
 CREATE INDEX index_assessments_reports_on_report_id ON public.assessments_reports USING btree (report_id);
-
-
---
--- Name: index_assign_results_on_assign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_assign_results_on_assign_id ON public.assign_results USING btree (assign_id);
-
-
---
--- Name: index_assign_results_on_membership_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_assign_results_on_membership_id ON public.assign_results USING btree (membership_id);
 
 
 --
@@ -3438,14 +3371,6 @@ ALTER TABLE ONLY public.clients
 
 
 --
--- Name: assign_results fk_rails_49f71118a2; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assign_results
-    ADD CONSTRAINT fk_rails_49f71118a2 FOREIGN KEY (assign_id) REFERENCES public.assigns(id) ON DELETE CASCADE;
-
-
---
 -- Name: ecommerce_orders fk_rails_4e7fc0242c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3683,14 +3608,6 @@ ALTER TABLE ONLY public.clients_reports
 
 ALTER TABLE ONLY public.hogan_report_settings
     ADD CONSTRAINT fk_rails_d77e15b1b7 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
-
-
---
--- Name: assign_results fk_rails_de3190d293; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assign_results
-    ADD CONSTRAINT fk_rails_de3190d293 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
 
 
 --
@@ -3966,9 +3883,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181028180057'),
 ('20181112210040'),
 ('20181118154257'),
-('20181119095817'),
-('20181201222326'),
-('20181202194050'),
-('20181203212244');
+('20181119095817');
 
 
