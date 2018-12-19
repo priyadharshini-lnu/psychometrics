@@ -1,0 +1,99 @@
+<soap:Envelope xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema">
+  <soap:Body>
+    <SendResults2Response xmlns="https://evo-api.mindmill.co.uk/ICAS/">
+      <SendResults2Result>
+        <results xmlns="">
+          <applicant id="76668">
+            <firstname>ddd</firstname>
+            <lastname>kkk</lastname>
+            <age>0</age>
+            <gender>ذكر</gender>
+            <lastprogid>416</lastprogid>
+            <lastprogname>TTE - Cognitive - Entry</lastprogname>
+            <lastdatetested>01/06/2018 09:41:18</lastdatetested>
+            <cpiintro><![CDATA[<heading>Introduction</heading><br><p>This report provides the candidate's results on a range of cognitive ability assessments. Mindmill cognitive assessments are based on natural ability and can provide insights into an individual's potential to learn new information within a given range of skills.</p><p>An individual's overall trainability can be seen from their Capacity to Process Information (CPI) score. The results in the individual assessments can further distinguish the ability to learn using different skills, identifying where an individual will excel, and where they need more help or time to learn new skills.</p><p>The results can provide objective information about a candidate's ability and can be used to assist with many HR decisions including recruitment and selection, training and development, fast track potential and leadership identification.</p><p>The report should not be provided to the candidate unless a trained Mindmill user is present to explain the information contained within this report.</p><p>The results will prove most valuable when supplemented with other information obtained about the candidate. The information contained within this report should be confidential, and as a result it should be stored in a secure location.</p><strong>Content of Report</strong><br><p>The report clearly identifies the applicant, with personal details and Applicant ID.</p><p>The report contains numerical, graphic, and verbal information about applicant performance.</p><p>The results are explained in the written report sections for each assessment completed.</p><p>Caution should be demonstrated if any warnings are provided in the report.</p><strong>Important points to remember that if there are any low confidence scores;</strong><br><p>Determine whether the candidate understood the instructions for the assessments. If extra help is required it should be provided before any retest is taken.</p><p>If the assessment is completed again, the Mindmill system will automatically adjust to retest norms to ensure no advantage is given with familiarity to the assessment procedure.</p>]]></cpiintro>
+            <ab>
+              <attempted>94</attempted>
+              <correct>76</correct>
+              <adjusted>70.00</adjusted>
+              <stable>true</stable>
+              <adjpercentile>20</adjpercentile>
+              <zscore>88.20</zscore>
+              <zxscore>882046</zxscore>
+              <tscore>42.1363988538457</tscore>
+              <sscore>3.92727977076915</sscore>
+              <pc>80.85</pc>
+              <memo><![CDATA[<strong>ALPHABET TEST (AB)</strong><br/><br/>This is an assessment of basic literacy skills; it measures the foundation skills that allow individuals to read and write fluently and utilise language proficiently. Perceptual Speed - the quality associated with alphabetic fluency - is a recognised building block in the development of literacy skills.<br/><br/><strong>LOWER TIER: BOTTOM 20% OF PERFORMANCE SCORE RANGE</strong><br/><br/>In comparison to the majority, this candidate has achieved a lower than average score in literacy skills. A high accuracy indicates that the individual may have slowed down to maintain accuracy. A low accuracy is indicative of difficulty with basic literacy skills.<br/><br/><strong>Level of ability in literacy includes:-</strong><br/><br/><ul><li>Low work rate when processing words and sentences.</li><li>Unless working at a slow rate, finds recognising discrepancies a difficult exercise.</li><li>May overlook mistakes if scanning material quickly.</li><li>Reading large amounts of text may induce fatigue.</li></ul>]]></memo>
+            </ab>
+            <nf>
+              <attempted>76</attempted>
+              <correct>34</correct>
+              <adjusted>13.00</adjusted>
+              <stable>true</stable>
+              <adjpercentile>1</adjpercentile>
+              <zscore>71.88</zscore>
+              <zxscore>718755</zxscore>
+              <tscore>31.2503303913486</tscore>
+              <sscore>1.75006607826972</sscore>
+              <pc>44.74</pc>
+              <memo><![CDATA[<strong>NUMBER FLUENCY (NF)</strong><br/><br/>This is an assessment of basic numeracy skills; it measures an individual's ability to reason with numbers. It assesses an individual's understanding of the basic numeracy skills of addition, subtraction, multiplication and division.<br/><br/><strong>LOWER TIER: BOTTOM 10% OF PERFORMANCE SCORE RANGE</strong><br/><br/>In comparison to others, the candidate achieved a lower than average score in tasks which required the use of numeracy skills. A high accuracy indicates that the individual slowed down to preserve accuracy. A low accuracy is indicative of difficulty with numerical skills.<br/><br/><strong>Level of ability in numeracy includes:-</strong><br/><br/><ul><li>Either, makes errors, or, is sluggish in the completion numerical operations.</li><li>Will need time when required to make mental comparisons of numerical values.</li><li>A slow pace was observed when manipulating operators in basic numeracy.</li><li>Constant numerical tasks may result in diminished attention and concentration.</li></ul>]]></memo>
+            </nf>
+            <or>
+              <attempted>14</attempted>
+              <correct>2</correct>
+              <adjusted>-0.40</adjusted>
+              <stable>false</stable>
+              <adjpercentile>1</adjpercentile>
+              <zscore>58.94</zscore>
+              <zxscore>589406</zxscore>
+              <tscore>22.6270449598243</tscore>
+              <sscore>0.0254089919649</sscore>
+              <pc>14.29</pc>
+              <memo><![CDATA[<strong>ORIENTATION (OR)</strong><br/><br/>This is an assessment of logic and spatial awareness. It involves the mental manipulation of shapes and is most commonly used where visualisation and orientation skills are prerequisites for understanding and executing tasks within the work environment.<br/><br/><strong>LOWER TIER: BOTTOM 10% OF PERFORMANCE SCORE RANGE</strong><br/><br/>In comparison to others, the candidate has achieved a lower than average score in tasks which demand the use of logic and spatial awareness skills. A high accuracy indicates that the individual may have slowed down to maintain accuracy. A low accuracy is indicative of difficulty with these skills.<br/><br/><strong>Level of ability includes:-</strong><br/><br/><ul><li>Additional effort is required to visualise shapes and diagrams.</li><li>Visualisation of directions and instructions will be followed with considerable effort.</li><li>May be unable to sustain mental energy during cognitive comparison and manipulation of shapes.</li><li>Slow and/or error-prone in mental representations, constructions and comparisons.</li></ul>]]></memo>
+            </or>
+            <cpi>
+              <average>53.36</average>
+              <percentile>1</percentile>
+              <zscore>41.8877185001223</zscore>
+              <zxscore>418878</zxscore>
+              <tscore>11.2584790000815</tscore>
+              <sscore>-2.2483041999837</sscore>
+              <memo><![CDATA[<strong>THE CAPACITY FOR PROCESSING INFORMATION (CPI) SCORE</strong><br/><br/>The CPI or Capacity for Processing Information Score is a fundamental building block in the rate of learning new skills on the job. It is also a valid and reliable predictor of success in training. Thus, it is directly linked to trainability. The CPI score is an averaged value of the results of the candidate tested. Its meaning is dependent upon the set of cognitive skills tested and completed. The score itself estimates the candidates level of fluid intelligence; that is, their capacity to think logically and solve problems in novel circumstances, independent of acquired knowledge.<br/><br/><strong>LOW SCORE CPI 1/5/10 PERCENTILE GROUP</strong><br/><br/>This score suggests that the candidate possesses a lower than average working memory capacity and will likely take more time to process new information. If their accuracy has been high, then they are typically an individual who slows down substantially when processing new information. As a result, they will take longer than most to be trained and may be considerably delayed in the learning and acquisition of new skills. Assistance and guidance from others is likely to be accepted and they will benefit from the repetition of tasks to ensure they are confident in their completion. They may prefer more practical job roles, wherein, they know what to expect and what they need to do on a day to day basis as opposed to a more challenging role with ever changing demands. If their accuracy is low, they may have had difficulty in understanding the assessments and, as a consequence, may experience difficulty when learning new tasks which require the use of these skills.]]></memo>
+            </cpi>
+            <cmstudent>
+              <ab>
+                <attempted>94</attempted>
+                <correct>76</correct>
+                <adjusted>70.00</adjusted>
+                <stable>true</stable>
+                <adjpercentile>20</adjpercentile>
+                <zscore>88.20</zscore>
+                <zxscore>882046</zxscore>
+                <pc>80.85</pc>
+                <memo><![CDATA[<strong>ALPHABET TEST (AB)</strong><br/><br/>This is an assessment of basic literacy skills; it measures the foundation skills that allow you to read and write fluently and utilise language proficiently.<br/><br/>You have achieved a lower score in this area but this may be due to a number of potential reasons. You may have slowed down when answering questions to make sure you got the answer right.  A high level of accuracy is important in the workplace as it means you are concerned with the high quality of your work, but other people in the same job as you may be able to complete the same task faster.  If your accuracy score was low, you may find literacy-based tasks challenging.  This is something to explore further with your teacher.]]></memo>
+              </ab>
+              <nf>
+                <attempted>76</attempted>
+                <correct>34</correct>
+                <adjusted>13.00</adjusted>
+                <stable>true</stable>
+                <adjpercentile>1</adjpercentile>
+                <zscore>71.88</zscore>
+                <zxscore>718755</zxscore>
+                <pc>44.74</pc>
+                <memo><![CDATA[<strong>NUMBER FLUENCY (NF)</strong><br/><br/>This is an assessment of basic numeracy skills; it measures your ability to reason with numbers as well as assessing your confidence and understanding in the areas of addition, subtraction, multiplication and division.<br/><br/><strong>You have achieved a lower score in this area but this may be due to a number of potential reasons. You may have slowed down when answering questions to make sure you got the answer right.  A high level of accuracy is important in the workplace as it means you are concerned with the high quality of your work, but other people in the same job as you may be able to complete the same task faster.  If your accuracy score was low, you may find numerical tasks challenging.  This is something to explore further with your teacher.]]></memo>
+              </nf>
+              <cpi>
+                <average>53.36</average>
+                <percentile>1</percentile>
+                <zscore>41.8877185001223</zscore>
+                <zxscore>418878</zxscore>
+                <memo><![CDATA[<strong>THE CAPACITY FOR PROCESSING INFORMATION (CPI) SCORE</strong><br/><br/>The CPI or Capacity for Processing Information Score is a fundamental building block in the rate of learning new skills on the job. It is also a valid and reliable predictor of success in training. Thus, it is directly linked to trainability. The CPI score is an averaged value of the results of the candidate tested. Its meaning is dependent upon the set of cognitive skills tested and completed. The score itself estimates the candidates level of fluid intelligence; that is, their capacity to think logically and solve problems in novel circumstances, independent of acquired knowledge.<br/><br/><strong>CPI 1/5/10 PERCENTILE GROUP</strong><br/><br/>You appear to have a lower than average working memory capacity and are less likely to process and learn new information quickly.  However  this may be because you will want to take your time and ensure that what you are doing is correct.  If a job role or training course is particular complex or technical it may take you longer to master it - this is something to consider when looking at further education or job sectors as you may find fast-paced environments difficult to adapt to.]]></memo>
+              </cpi>
+            </cmstudent>
+          </applicant>
+        </results>
+      </SendResults2Result>
+    </SendResults2Response>
+  </soap:Body>
+</soap:Envelope>

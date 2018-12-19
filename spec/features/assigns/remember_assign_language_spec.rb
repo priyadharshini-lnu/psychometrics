@@ -31,7 +31,7 @@ feature 'Incomplete assessment should continue in the same language' do
     login_as(user)
   end
 
-  scenario 'resume assessment after changing assessment language' do
+  scenario 'resume assessment after changing assessment language', js: true do
     visit dashboard_url
     expect(page).to have_text(assessment.name)
 
@@ -39,7 +39,7 @@ feature 'Incomplete assessment should continue in the same language' do
     expect(page).to have_text(question_text_en)
 
     click_button('dropdownMenuLang')
-    accept_alert { click_link('Arabic') }
+    click_link('Arabic')
     expect(page).to have_text(question_text_ar)
 
     visit dashboard_url
