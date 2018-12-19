@@ -22,8 +22,7 @@
             - else
               - privacy_consent_data = { need_confirm: @current_project.privacy_consent && !@current_membership.accepted_privacy?, href: url_for([:pass, assign]) }
               - if assign.assessment.mindmill?
-                - need_confirm = in_progress_assign && in_progress_assign != assign
-                - mindmill_data = { href: url_for([:pass, :mindmill, assign]), confirm_text: in_progress_assign && t('.mindmill_confirmation', assessment: in_progress_assign.assessment.name), need_confirm: need_confirm }
+                - mindmill_data = { href: url_for([:pass, :mindmill, assign]) }
                 = link_to assign.assessment.name,
                           '#',
                           data: { mindmill: mindmill_data, privacy_consent: privacy_consent_data },
