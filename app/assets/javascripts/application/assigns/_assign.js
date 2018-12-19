@@ -31,7 +31,7 @@ $(function () {
       needConfirm = !!data.need_confirm,
       confirmed = needConfirm && confirm(textConfirm)
     if(needConfirm === false || confirmed === true) {
-      window.open(href, 'windowMindmill', 'width=980,height=700,resizable,scrollbars')
+      location.href = href
     }
   }
 

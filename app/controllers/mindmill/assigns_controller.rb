@@ -19,6 +19,7 @@ class Mindmill::AssignsController < ApplicationController
       where(membership_id: @current_membership.id).
       where.not(id: @assign.id).
       update_all(status: :not_started)
+    redirect_to @ssourl
   end
 
   def results
