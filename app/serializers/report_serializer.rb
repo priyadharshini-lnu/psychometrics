@@ -12,7 +12,7 @@
 #
 
 class ReportSerializer < ActiveModel::Serializer
-  attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations,
+  attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations, :props,
              :dimension_ids, :completed_assessments
 
   has_many :pages, serializer: Reports::PageSerializer
