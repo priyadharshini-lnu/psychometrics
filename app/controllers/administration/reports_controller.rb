@@ -13,7 +13,8 @@ module Administration
 
     # GET /administration/resources
     def index
-      scope = policy_scope(resource_class).includes(:assessments, :report_families).order(:name).distinct
+      # TODO (atanych): do we really need dictinct?
+      scope = policy_scope(resource_class).includes(:assessments, :report_families).order(:name)
       scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
       scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
       @_filter_form = scope.search(params[:q])
