@@ -1516,7 +1516,7 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props json DEFAULT '{}'::json NOT NULL
+    props jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
 
