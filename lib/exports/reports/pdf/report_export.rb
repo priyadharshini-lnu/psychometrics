@@ -33,12 +33,11 @@ module Exports
                                                           protocol: protocol
                                                          }))
                 end
-
           args = {
             url: url,
             output: output,
-            pageWidth: 850,
-            pageHeight: 1100,
+            pageWidth: report.props.try(:[], 'sizes').try(:[], 'width') || 850,
+            pageHeight: report.props.try(:[], 'sizes').try(:[], 'height') || 1100,
             auth: Rails.application.secrets.http_auth
           }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
