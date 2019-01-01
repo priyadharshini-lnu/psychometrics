@@ -1515,7 +1515,8 @@ CREATE TABLE public.reports (
     owner_id integer,
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
-    icon character varying
+    icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
 
@@ -1799,7 +1800,8 @@ CREATE TABLE public.users (
     created_by_id integer,
     modified_by_id integer,
     spoof_token character varying,
-    encrypted_invitation_raw character varying
+    encrypted_invitation_raw character varying,
+    project_id integer
 );
 
 
@@ -3202,13 +3204,6 @@ CREATE INDEX index_users_on_created_by_id ON public.users USING btree (created_b
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
-
-
---
 -- Name: index_users_on_grants; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3241,6 +3236,13 @@ CREATE INDEX index_users_on_invited_by_id ON public.users USING btree (invited_b
 --
 
 CREATE INDEX index_users_on_modified_by_id ON public.users USING btree (modified_by_id);
+
+
+--
+-- Name: index_users_on_project_id_and_email; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_project_id_and_email ON public.users USING btree (project_id, email);
 
 
 --
@@ -3683,6 +3685,14 @@ ALTER TABLE ONLY public.clients
 
 
 --
+-- Name: users fk_rails_fedc809cf8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT fk_rails_fedc809cf8 FOREIGN KEY (project_id) REFERENCES public.clients(id);
+
+
+--
 -- PostgreSQL database dump complete
 --
 
@@ -3883,6 +3893,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181028180057'),
 ('20181112210040'),
 ('20181118154257'),
-('20181119095817');
+('20181119095817'),
+('20181224184633'),
+('20190101143027');
 
 
