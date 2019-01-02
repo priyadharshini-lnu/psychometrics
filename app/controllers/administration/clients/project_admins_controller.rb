@@ -37,7 +37,7 @@ module Administration
         resource.client = policy_scope(Client).where(id: client.id).take
         resource.role = Membership::PROJECT_ADMIN_ROLE
 
-        user = Users::Admin.find_by(email: resource.user&.email, project_id: nil)
+        user = ::Users::Admin.find_by(email: resource.user&.email, project_id: nil)
         if user
           resource.user = user
           resource.user.assign_attributes(create_resource_params[:user_attributes])
