@@ -37,7 +37,7 @@ module Administration
         resource.client = policy_scope(Client).where(id: client.id).take
         resource.role = Membership::PROJECT_ADMIN_ROLE
 
-        user = User.find_by(email: resource.user&.email)
+        user = Users::Admin.find_by(email: resource.user&.email, project_id: nil)
         if user
           resource.user = user
           resource.user.assign_attributes(create_resource_params[:user_attributes])
@@ -47,6 +47,7 @@ module Administration
           u.create_by_invite = true
           u.created_by_id = current_user.id
           u.modified_by_id = current_user.id
+          u.role = 'Users::Admin'
         end
 
         respond_to do |format|

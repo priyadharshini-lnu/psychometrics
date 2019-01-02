@@ -42,10 +42,12 @@ class User < ApplicationRecord
   # Roles constant
   SUPER_ADMIN_ROLE = 'Users::SuperAdmin'.freeze
   REGULAR_ROLE = 'Users::Regular'.freeze
+  ADMIN_ROLE = 'Users::Admin'.freeze
 
   USER_ROLES = {
       superadmin: SUPER_ADMIN_ROLE,
-      regular: REGULAR_ROLE
+      regular: REGULAR_ROLE,
+      admin: ADMIN_ROLE,
   }.freeze
 
   USER_ROLES_SCOPES = {
@@ -113,7 +115,7 @@ class User < ApplicationRecord
 
   scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
   before_save :ensure_authentication_token
-  validates :email, uniqueness: { scope: :project_id }
+  validates :email, uniqueness: { scope: [:project_id, :role] }
   # Rules are copy-pasted from lib/devise/models/validatable.rb
   validates_format_of     :email, with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email?
   validates_presence_of   :email
@@ -252,7 +254,7 @@ class User < ApplicationRecord
       subdomain = warden_conditions[:subdomain] && warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
       if subdomain.present?
         project = Client.find_by(subdomain: subdomain)
-        enabled.
+        Users::Regular.enabled.
             identified.
             joins(:clients).
             where.has { project_id.eq(project.id) & email.eq(warden_conditions[:email]&.downcase) & clients.subdomain.eq(subdomain) & clients.disabled.not_eq(true) }.
@@ -260,6 +262,7 @@ class User < ApplicationRecord
       else
         enabled.
             identified.
+            where(project_id: nil, role: ['Users::Admin', 'Users::SuperAdmin']).
             where('email = LOWER(?)', warden_conditions[:email]).
             first # If Subdomain not presented going normally
       end

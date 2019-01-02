@@ -3204,6 +3204,13 @@ CREATE INDEX index_users_on_created_by_id ON public.users USING btree (created_b
 
 
 --
+-- Name: index_users_on_email_and_project_id_and_role; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_on_email_and_project_id_and_role ON public.users USING btree (email, project_id, role);
+
+
+--
 -- Name: index_users_on_grants; Type: INDEX; Schema: public; Owner: -
 --
 
