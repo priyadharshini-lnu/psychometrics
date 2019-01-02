@@ -3246,13 +3246,6 @@ CREATE INDEX index_users_on_modified_by_id ON public.users USING btree (modified
 
 
 --
--- Name: index_users_on_project_id_and_email; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_users_on_project_id_and_email ON public.users USING btree (project_id, email);
-
-
---
 -- Name: index_users_on_reset_password_token; Type: INDEX; Schema: public; Owner: -
 --
 
