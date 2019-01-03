@@ -51,9 +51,11 @@ FactoryGirl.define do
     end
 
     factory :client_admin, traits: [:with_membership_client_admin] do
+      role User::ADMIN_ROLE
       grants User::DEFAULT_ADMIN_GRANTS
     end
     factory :project_admin, traits: [:with_membership_project_admin] do
+      role User::ADMIN_ROLE
       grants User::DEFAULT_PROJECT_ADMIN_GRANTS
     end
     factory :manager, traits: [:with_membership_manager]
