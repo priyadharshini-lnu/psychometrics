@@ -3,8 +3,9 @@ require 'rails_helper'
 RSpec.describe Imports::UserImport do
   let!(:client) { create(:project_base) }
   let!(:super_admin) { create(:superadmin) }
-  let!(:user_without_password) { create(:user, :skip_validate, password: nil) }
-  let!(:membership1) { create(:membership, client: client) }
+  let!(:base_user) { create(:user, project_id: client.project.id) }
+  let!(:user_without_password) { create(:user, :skip_validate, password: nil, project_id: client.project.id) }
+  let!(:membership1) { create(:membership, client: client, user: base_user) }
   let!(:membership2) { create(:membership, client: client, user: user_without_password) }
   let!(:user_with_password) { membership1.user }
   let!(:headers) do
@@ -15,7 +16,6 @@ RSpec.describe Imports::UserImport do
         Membership.human_attribute_name('last_name'),
         Membership.human_attribute_name('email'),
         Membership.human_attribute_name('password'),
-        Membership.human_attribute_name('role'),
         Membership.human_attribute_name('created_at'),
         Membership.human_attribute_name('report_ids'),
         Membership.human_attribute_name('user_access')
@@ -24,7 +24,7 @@ RSpec.describe Imports::UserImport do
   end
   let!(:body) do
     Array.new(5) do
-      ['Yes', Faker::Name.first_name, Faker::Name.last_name, Faker::Internet.email, Faker::Lorem.characters(10), 'User',
+      ['Yes', Faker::Name.first_name, Faker::Name.last_name, Faker::Internet.email, Faker::Lorem.characters(10),
        Time.current, nil]
     end
   end
@@ -38,11 +38,11 @@ RSpec.describe Imports::UserImport do
     [
       [
         'Yes', user_with_password.first_name, user_with_password.last_name, user_with_password.email,
-        Faker::Lorem.characters(10), 'User', user_with_password.created_at, nil
+        Faker::Lorem.characters(10), user_with_password.created_at, nil
       ],
       [
         'Yes', user_without_password.first_name, user_without_password.last_name, user_without_password.email,
-        Faker::Lorem.characters(10), 'User', user_without_password.created_at, nil
+        Faker::Lorem.characters(10), user_without_password.created_at, nil
       ]
     ]
   end
