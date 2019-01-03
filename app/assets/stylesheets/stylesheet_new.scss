@@ -4,6 +4,7 @@
 .mainContent .panel-heading .title i { font-size: 20px; margin-right: 10px; }
 /**/
 .report-holder { margin: 40px auto 0; padding: 0; }
+.report-holder .panel-body { overflow-x: auto; overflow-y: hidden; }
 .assessment-holder { margin: 16px auto 0; padding: 0; max-width: 1170px;}
 .assessment-holder .progress-bar { background-color: #64984b; }
 .assessment-holder .assessment-box {

@@ -1515,7 +1515,8 @@ CREATE TABLE public.reports (
     owner_id integer,
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
-    icon character varying
+    icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
 
@@ -3883,6 +3884,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181028180057'),
 ('20181112210040'),
 ('20181118154257'),
-('20181119095817');
+('20181119095817'),
+('20181224184633');
 
 
