@@ -13,13 +13,12 @@ module Imports
       last_name: Membership.human_attribute_name('last_name'),
       email: Membership.human_attribute_name('email'),
       password: Membership.human_attribute_name('password'),
-      role: Membership.human_attribute_name('role'),
       created_at: Membership.human_attribute_name('created_at'),
       report_ids: Membership.human_attribute_name('report_ids'),
       user_access: Membership.human_attribute_name('user_access')
     }.freeze
 
-    HEADER_IMPORT_KEYS = %i(first_name last_name password email role report_ids user_access).freeze
+    HEADER_IMPORT_KEYS = %i(first_name last_name password email report_ids user_access).freeze
 
     # Authorisation flow
     #
@@ -85,13 +84,12 @@ module Imports
         attributes = HEADER_IMPORT_KEYS.inject({}) { |h, k| h.merge(k => row[header.index(HEADER_IMPORT_DATA[k])]) }
         report_ids = attributes.delete(:report_ids).to_s.split(',').map(&:to_i)
         user_access_ids = attributes.delete(:user_access).to_s.split(',').map(&:to_i)
-
         memberships_attributes = {
-          role: USER_ROLES_MAPS[attributes.delete(:role)],
+          role: Membership::MEMBER_ROLE,
           hris_data: {}
         }
 
-        user = User.find_or_initialize_by(email: attributes[:email])
+        user = Users::Regular.find_or_initialize_by(email: attributes[:email], project_id: client.project.id)
         next if user.is?(:superadmin)
 
         header.zip(row)[HEADER_IMPORT_DATA.size..-1]&.each_with_index do |z, i|
