@@ -220,6 +220,57 @@
 
         ]
       }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/sso": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Creates a new authenticated login URL",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": {
+                "expires_at": "2019-01-05T00:57:45.077+03:00",
+                "url": "my.url.com"
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+
+        ]
+      }
     }
   },
   "tags": [

@@ -12,7 +12,7 @@ module Api
       end
 
       def sso
-        render json: [:sso]
+        render json: {expires_at: Time.now, url: 'my.url.com'}
       end
 
       def user_params
