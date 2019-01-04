@@ -6,18 +6,16 @@
     "termsOfService": "http://xxx.psy.io/terms/",
     "version": "1.0.1"
   },
-  "host": "localhost:3030",
+  "host": "lvh.me:3030",
   "schemes": [
     "http",
     "https"
   ],
   "consumes": [
-    "application/json",
-    "application/xml"
+    "application/json"
   ],
   "produces": [
-    "application/json",
-    "application/xml"
+    "application/json"
   ],
   "paths": {
     "/api/v1/projects/{project_id}/users": {
@@ -39,11 +37,65 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "first_name",
+            "in": "formData",
+            "description": "First name of new user",
+            "required": false,
+            "type": "string",
+            "example": "Max"
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "description": "Last name of new user",
+            "required": false,
+            "type": "string",
+            "example": "Holloway"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "Email of new user",
+            "required": true,
+            "type": "string",
+            "example": "email@example.com"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "Password for new user",
+            "required": true,
+            "type": "string",
+            "example": "password"
+          },
+          {
+            "name": "accepted_terms",
+            "in": "formData",
+            "description": "Accepted terms",
+            "required": true,
+            "type": "boolean",
+            "example": true
+          },
+          {
+            "name": "campaign_ids",
+            "in": "formData",
+            "description": "Array of campaign ids",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "example": [
+              1,
+              2
+            ]
           }
         ],
         "responses": {
           "200": {
-            "description": "create",
+            "description": "Getting a list of orders",
             "schema": {
               "type": "object",
               "properties": {
@@ -52,9 +104,105 @@
             "headers": {
             },
             "examples": {
-              "application/json": [
-                "create_user"
-              ]
+              "application/json": {
+                "id": null,
+                "first_name": "Max",
+                "last_name": "Holloway",
+                "email": "email@example.com",
+                "created_at": null,
+                "updated_at": null,
+                "campaign_ids": [
+                  2,
+                  3
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+
+        ]
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Updates user details",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "first_name",
+            "in": "formData",
+            "description": "John",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "last_name",
+            "in": "formData",
+            "description": "Doe",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "email",
+            "in": "formData",
+            "description": "john.doe@example.com",
+            "required": false,
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "formData",
+            "description": "superpassword",
+            "required": false,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update Users Details",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": {
+                "id": 2,
+                "first_name": "test",
+                "last_name": "test",
+                "email": "user+2@example.com",
+                "created_at": "2019-01-05T00:58:10.801+04:00",
+                "updated_at": "2019-01-05T00:58:10.801+04:00",
+                "campaign_ids": [
+                  2,
+                  3
+                ]
+              }
             }
           }
         },

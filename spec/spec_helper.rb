@@ -39,7 +39,6 @@ RspecApiDocumentation.configure do |config|
   config.api_explanation = "API Example Description"
   config.format = :open_api
   config.docs_dir = Rails.root.join('public/api')
-  config.curl_host = 'http://localhostttt:3000'
-  config.request_headers_to_include = []
+  config.curl_host = 'http://lvh.me:3030'
   config.response_headers_to_include = []
 end

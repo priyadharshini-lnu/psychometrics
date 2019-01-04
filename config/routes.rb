@@ -449,23 +449,25 @@ Rails.application.routes.draw do
 
   root to: 'administration/administrator/sessions#new'
 
-  namespace :api do
-    namespace :v1 do
-      resources :projects, only: [] do
-        resources :users do
-          post :sso, on: :member
+  # constraints format: :json do
+    namespace :api do
+      namespace :v1 do
+        resources :projects, only: [] do
+          resources :users do
+            post :sso, on: :member
 
-          resources :campaigns, only: [:index, :create]
-          resources :assessments, only: [:index]
-          resources :reports, only: [:index] do
-            get :results, on: :member
-            get :pdf, on: :member
+            resources :campaigns, only: [:index, :create]
+            resources :assessments, only: [:index]
+            resources :reports, only: [:index] do
+              get :results, on: :member
+              get :pdf, on: :member
+            end
           end
-        end
-        resources :campaigns, only: [] do
-          post :duplicate, on: :collection
+          resources :campaigns, only: [] do
+            post :duplicate, on: :collection
+          end
         end
       end
     end
-  end
+  # end
 end
