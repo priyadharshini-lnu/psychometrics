@@ -41,4 +41,5 @@ RspecApiDocumentation.configure do |config|
   config.docs_dir = Rails.root.join('public/api')
   config.curl_host = 'http://lvh.me:3030'
   config.response_headers_to_include = []
+  config.request_body_formatter = :json
 end

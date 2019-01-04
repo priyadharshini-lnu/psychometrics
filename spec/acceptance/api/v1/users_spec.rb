@@ -9,27 +9,22 @@ resource "Users" do
   before { create(:user) }
 
   post "/api/v1/projects/:project_id/users" do
-    header 'Content-Type', 'application/json'
     route_summary 'Adds a new user to the project'
 
-    with_options with_example: true do
-      parameter :first_name, 'First name of new user'
-      parameter :last_name, 'Last name of new user'
+    with_options scope: :user, with_example: true do
+      parameter :first_name, 'First Name of new user'
+      parameter :last_name, 'Last Name of new user'
       parameter :email, 'Email of new user', required: true
       parameter :password, 'Password for new user', required: true
       parameter :accepted_terms, 'Accepted terms', required: true
       parameter :campaign_ids, 'Array of campaign ids'
     end
 
-
-    parameter :first_name, "Current page of orders", with_example: true
-
     let(:first_name) { 'Max' }
     let(:last_name) { 'Holloway' }
-    let(:email) { 'email@example.com' }
+    let(:email) { 'max@example.com' }
     let(:password) { 'password' }
     let(:accepted_terms) { true }
-    let(:raw_post) { params.to_json }
     let(:campaign_ids) { [1, 2] }
 
     context '200' do
@@ -37,6 +32,7 @@ resource "Users" do
         user = JSON.parse(response_body)
         expect(user['first_name']).to eq first_name
         expect(user['last_name']).to eq last_name
+        expect(user['email']).to eq email
         expect(status).to eq(200)
       end
     end
@@ -45,17 +41,26 @@ resource "Users" do
   put "/api/v1/projects/:project_id/users/:user_id" do
     route_summary 'Updates user details'
 
-    with_options with_example: true do
-      parameter :first_name, 'John'
-      parameter :last_name, 'Doe'
-      parameter :email, 'john.doe@example.com'
-      parameter :password, 'superpassword'
+    with_options scope: :user, with_example: true do
+      parameter :first_name, 'First Name'
+      parameter :last_name, 'Last Name'
+      parameter :email, 'Email'
+      parameter :password, 'Password'
     end
 
-    example "Update Users Details" do
-      do_request
+    let(:first_name) { 'Brian' }
+    let(:last_name) { 'Ortega' }
+    let(:email) { 'ortega@example.com' }
+    let(:password) { 'password' }
 
-      status.should == 200
+    context '200' do
+      example_request 'Update the user' do
+        user = JSON.parse(response_body)
+        expect(user['first_name']).to eq first_name
+        expect(user['last_name']).to eq last_name
+        expect(user['email']).to eq email
+        expect(status).to eq(200)
+      end
     end
   end
 end

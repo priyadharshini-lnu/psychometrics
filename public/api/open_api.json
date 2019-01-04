@@ -4,7 +4,7 @@
     "title": "Psychometric API",
     "description": "It used for external systems",
     "termsOfService": "http://xxx.psy.io/terms/",
-    "version": "1.0.1"
+    "version": "1.0.0"
   },
   "host": "lvh.me:3030",
   "schemes": [
@@ -39,58 +39,59 @@
             "type": "string"
           },
           {
-            "name": "first_name",
-            "in": "formData",
-            "description": "First name of new user",
+            "name": "body",
+            "in": "body",
+            "description": "",
             "required": false,
-            "type": "string",
-            "example": "Max"
-          },
-          {
-            "name": "last_name",
-            "in": "formData",
-            "description": "Last name of new user",
-            "required": false,
-            "type": "string",
-            "example": "Holloway"
-          },
-          {
-            "name": "email",
-            "in": "formData",
-            "description": "Email of new user",
-            "required": true,
-            "type": "string",
-            "example": "email@example.com"
-          },
-          {
-            "name": "password",
-            "in": "formData",
-            "description": "Password for new user",
-            "required": true,
-            "type": "string",
-            "example": "password"
-          },
-          {
-            "name": "accepted_terms",
-            "in": "formData",
-            "description": "Accepted terms",
-            "required": true,
-            "type": "boolean",
-            "example": true
-          },
-          {
-            "name": "campaign_ids",
-            "in": "formData",
-            "description": "Array of campaign ids",
-            "required": false,
-            "type": "array",
-            "items": {
-              "type": "integer"
-            },
-            "example": [
-              1,
-              2
-            ]
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "first_name": {
+                      "type": "string",
+                      "example": "Max",
+                      "description": "First Name of new user"
+                    },
+                    "last_name": {
+                      "type": "string",
+                      "example": "Holloway",
+                      "description": "Last Name of new user"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "max@example.com",
+                      "description": "Email of new user"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "password",
+                      "description": "Password for new user"
+                    },
+                    "accepted_terms": {
+                      "type": "boolean",
+                      "example": true,
+                      "description": "Accepted terms"
+                    },
+                    "campaign_ids": {
+                      "type": "array",
+                      "example": [
+                        1,
+                        2
+                      ],
+                      "description": "Array of campaign ids",
+                      "items": {
+                        "type": "integer"
+                      }
+                    }
+                  },
+                  "required": [
+                    "email"
+                  ]
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -108,7 +109,7 @@
                 "id": null,
                 "first_name": "Max",
                 "last_name": "Holloway",
-                "email": "email@example.com",
+                "email": "max@example.com",
                 "created_at": null,
                 "updated_at": null,
                 "campaign_ids": [
@@ -152,37 +153,45 @@
             "type": "string"
           },
           {
-            "name": "first_name",
-            "in": "formData",
-            "description": "John",
+            "name": "body",
+            "in": "body",
+            "description": "",
             "required": false,
-            "type": "string"
-          },
-          {
-            "name": "last_name",
-            "in": "formData",
-            "description": "Doe",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "email",
-            "in": "formData",
-            "description": "john.doe@example.com",
-            "required": false,
-            "type": "string"
-          },
-          {
-            "name": "password",
-            "in": "formData",
-            "description": "superpassword",
-            "required": false,
-            "type": "string"
+            "schema": {
+              "type": "object",
+              "properties": {
+                "user": {
+                  "type": "object",
+                  "properties": {
+                    "first_name": {
+                      "type": "string",
+                      "example": "Brian",
+                      "description": "First Name"
+                    },
+                    "last_name": {
+                      "type": "string",
+                      "example": "Ortega",
+                      "description": "Last Name"
+                    },
+                    "email": {
+                      "type": "string",
+                      "example": "ortega@example.com",
+                      "description": "Email"
+                    },
+                    "password": {
+                      "type": "string",
+                      "example": "password",
+                      "description": "Password"
+                    }
+                  }
+                }
+              }
+            }
           }
         ],
         "responses": {
           "200": {
-            "description": "Update Users Details",
+            "description": "Update the user",
             "schema": {
               "type": "object",
               "properties": {
@@ -192,12 +201,12 @@
             },
             "examples": {
               "application/json": {
-                "id": 2,
-                "first_name": "test",
-                "last_name": "test",
-                "email": "user+2@example.com",
-                "created_at": "2019-01-05T00:58:10.801+04:00",
-                "updated_at": "2019-01-05T00:58:10.801+04:00",
+                "id": null,
+                "first_name": "Brian",
+                "last_name": "Ortega",
+                "email": "ortega@example.com",
+                "created_at": null,
+                "updated_at": null,
                 "campaign_ids": [
                   2,
                   3

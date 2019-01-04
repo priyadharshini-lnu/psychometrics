@@ -7,7 +7,7 @@ info:
 #    name: API Support
 #    url: 'http://www.psy.io/support'
 #    email: support@psy.io
-  version: 1.0.1
+  version: 1.0.0
 host: 'lvh.me:3030'
 schemes:
   - http
