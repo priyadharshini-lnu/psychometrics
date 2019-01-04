@@ -1,6 +1,8 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
   mount ActionCable.server => '/cable'
+  mount SwaggerUiEngine::Engine, at: "/api_docs"
+
   # Administration panel
   #
   namespace :administration do

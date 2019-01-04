@@ -1,5 +1,8 @@
 require 'simplecov'
 require 'rspec/retry'
+require 'rails_helper'
+require 'rspec_api_documentation'
+require 'rspec_api_documentation/dsl'
 
 if ENV['CIRCLE_ARTIFACTS']
   dir = File.join(ENV['CIRCLE_ARTIFACTS'], "coverage")
@@ -28,4 +31,15 @@ RSpec.configure do |config|
   config.around :each, type: :feature do |ex|
     ex.run_with_retry retry: 3
   end
+end
+
+RspecApiDocumentation.configure do |config|
+  config.app = Rails.application
+  config.api_name = 'Psychometric App API'
+  config.api_explanation = "API Example Description"
+  config.format = :open_api
+  config.docs_dir = Rails.root.join('public/api')
+  config.curl_host = 'http://localhostttt:3000'
+  config.request_headers_to_include = []
+  config.response_headers_to_include = []
 end

@@ -149,7 +149,8 @@ gem 'enum_help', '~> 0.0.17'
 gem 'date_validator', '~> 0.9.0'
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'js-routes', '~> 1.4.4'
-
+gem 'swagger_ui_engine', '~> 1.1.2'
+gem 'rspec_api_documentation', git: 'https://github.com/zipmark/rspec_api_documentation', branch: 'master'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platform: :mri
