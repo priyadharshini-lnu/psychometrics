@@ -18,6 +18,60 @@
     "application/json"
   ],
   "paths": {
+    "/api/v1/projects/{project_id}/users/{user_id}/assessments": {
+      "get": {
+        "tags": [
+          "Assessments"
+        ],
+        "summary": "Get the list of assessments",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 1,
+                  "name": "assessment 1",
+                  "status": "in_progress"
+                }
+              ]
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+
+        ]
+      }
+    },
     "/api/v1/projects/{project_id}/users": {
       "post": {
         "tags": [
@@ -260,7 +314,7 @@
             },
             "examples": {
               "application/json": {
-                "expires_at": "2019-01-05T00:57:45.077+03:00",
+                "expires_at": "2019-01-05T01:32:55.607+03:00",
                 "url": "my.url.com"
               }
             }
@@ -274,6 +328,10 @@
     }
   },
   "tags": [
+    {
+      "name": "Assessments",
+      "description": "Assessments within particular user and project"
+    },
     {
       "name": "Users",
       "description": "Users within particular project"

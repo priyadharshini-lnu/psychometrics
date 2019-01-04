@@ -6,8 +6,6 @@ resource "Users" do
   header 'Content-Type', 'application/json'
   explanation 'Users within particular project'
 
-  before { create(:user) }
-
   post "/api/v1/projects/:project_id/users" do
     route_summary 'Adds a new user to the project'
 
