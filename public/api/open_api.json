@@ -72,6 +72,177 @@
         ]
       }
     },
+    "/api/v1/projects/{project_id}/users/{user_id}/reports": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Get user reports",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 1,
+                  "name": "report 1",
+                  "status": "any",
+                  "assessment_ids": [
+                    1,
+                    2
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+
+        ]
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/reports/{report_id}/results": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Get Result",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": {
+                "any": "any"
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+
+        ]
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/reports/{report_id}/pdf": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Get Result",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": {
+                "url": "s3.amazon.com/uri",
+                "status": "ready"
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+
+        ]
+      }
+    },
     "/api/v1/projects/{project_id}/users": {
       "post": {
         "tags": [
@@ -314,7 +485,7 @@
             },
             "examples": {
               "application/json": {
-                "expires_at": "2019-01-05T01:32:55.607+03:00",
+                "expires_at": "2019-01-05T02:35:09.674+03:00",
                 "url": "my.url.com"
               }
             }
@@ -331,6 +502,10 @@
     {
       "name": "Assessments",
       "description": "Assessments within particular user and project"
+    },
+    {
+      "name": "Reports",
+      "description": "Reports within particular user and project"
     },
     {
       "name": "Users",

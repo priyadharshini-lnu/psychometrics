@@ -2,13 +2,13 @@ module Api
   module V1
     class ReportsController < Api::BaseController
       def index
-        render json: [:list_reports]
+        render json: Report.all.limit(5).map { |r| Api::V1::ReportSerializer.new(r) }
       end
       def results
-        render json: [:results]
+        render json: { any: :any }
       end
       def pdf
-        render json: [:pdf]
+        render json: { url: 's3.amazon.com/uri', status: 'ready' }
       end
     end
   end
