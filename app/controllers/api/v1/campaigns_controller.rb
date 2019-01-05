@@ -1,7 +1,8 @@
 module Api
   module V1
-    class CampaignsController < Api::ProjectScopeController
+    class CampaignsController < ProjectScopeController
       def duplicate
+        binding.pry
         render json: Api::V1::CampaignSerializer.new(Client.last)
       end
       def index

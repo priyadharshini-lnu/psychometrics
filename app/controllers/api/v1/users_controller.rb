@@ -1,6 +1,6 @@
 module Api
   module V1
-    class UsersController < Api::ProjectScopeController
+    class UsersController < ProjectScopeController
       def create
         user = User.new(user_params)
         render json: Api::V1::UserSerializer.new(user)

@@ -1,6 +1,6 @@
 module Api
   module V1
-    class AssessmentsController < Api::ProjectScopeController
+    class AssessmentsController < ProjectScopeController
       def index
         render json: Assessment.all.limit(5).map { |a| Api::V1::AssessmentSerializer.new(a) }
       end

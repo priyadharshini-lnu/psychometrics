@@ -1,6 +1,6 @@
 module Api
   module V1
-    class ProjectsController < Api::BaseController
+    class ProjectsController < BaseController
     end
   end
 end
