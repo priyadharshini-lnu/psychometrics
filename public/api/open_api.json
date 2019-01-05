@@ -72,6 +72,185 @@
         ]
       }
     },
+    "/api/v1/projects/{project_id}/campaigns/{campaign_id}/duplicate": {
+      "post": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Creates a copy of the campaign without users",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": {
+                "id": 1,
+                "name": "Client Tenancy 1",
+                "created_at": "2019-01-05T03:59:12.148+04:00",
+                "updated_at": "2019-01-05T03:59:12.148+04:00"
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+
+        ]
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/campaigns": {
+      "get": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Get user campaigns",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 3,
+                  "name": "Client Tenancy 3",
+                  "created_at": "2019-01-05T03:59:12.293+04:00",
+                  "updated_at": "2019-01-05T03:59:12.293+04:00"
+                }
+              ]
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+
+        ]
+      },
+      "post": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Adds user to new campaigns",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "string"
+          },
+          {
+            "name": "campaign_ids",
+            "in": "formData",
+            "description": "Array of campaign ids",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "example": [
+              1,
+              2
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": {
+                "id": 4,
+                "first_name": "super",
+                "last_name": "admin",
+                "email": "user+4@example.com",
+                "created_at": "2019-01-05T03:59:12.211+04:00",
+                "updated_at": "2019-01-05T03:59:12.211+04:00",
+                "campaign_ids": [
+                  2,
+                  3
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+
+        ]
+      }
+    },
     "/api/v1/projects/{project_id}/users/{user_id}/reports": {
       "get": {
         "tags": [
@@ -135,7 +314,7 @@
         "tags": [
           "Reports"
         ],
-        "summary": "Get Result",
+        "summary": "Get user results",
         "description": "",
         "consumes": [
           "application/json"
@@ -191,7 +370,7 @@
         "tags": [
           "Reports"
         ],
-        "summary": "Get Result",
+        "summary": "Get user report PDF",
         "description": "",
         "consumes": [
           "application/json"
@@ -485,7 +664,7 @@
             },
             "examples": {
               "application/json": {
-                "expires_at": "2019-01-05T02:35:09.674+03:00",
+                "expires_at": "2019-01-05T02:59:12.785+03:00",
                 "url": "my.url.com"
               }
             }
@@ -502,6 +681,10 @@
     {
       "name": "Assessments",
       "description": "Assessments within particular user and project"
+    },
+    {
+      "name": "Campaigns",
+      "description": "Campaigns"
     },
     {
       "name": "Reports",

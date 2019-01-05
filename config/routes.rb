@@ -464,7 +464,7 @@ Rails.application.routes.draw do
             end
           end
           resources :campaigns, only: [] do
-            post :duplicate, on: :collection
+            post :duplicate, on: :member
           end
         end
       end

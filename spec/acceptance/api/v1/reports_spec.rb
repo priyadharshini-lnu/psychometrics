@@ -23,7 +23,7 @@ resource "Reports" do
   end
 
   get "/api/v1/projects/:project_id/users/:user_id/reports/:report_id/results" do
-    route_summary 'Get Result'
+    route_summary 'Get user results'
 
     context '200' do
       example_request '...' do
@@ -34,7 +34,7 @@ resource "Reports" do
   end
 
   get "/api/v1/projects/:project_id/users/:user_id/reports/:report_id/pdf" do
-    route_summary 'Get PDF'
+    route_summary 'Get user report PDF'
 
     context '200' do
       example_request '...' do
