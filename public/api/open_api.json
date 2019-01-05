@@ -137,8 +137,8 @@
               "application/json": {
                 "id": 4,
                 "name": "Project 2",
-                "created_at": "2019-01-06T02:11:36.591+04:00",
-                "updated_at": "2019-01-06T02:11:36.591+04:00"
+                "created_at": "2019-01-06T02:35:50.000+04:00",
+                "updated_at": "2019-01-06T02:35:50.000+04:00"
               }
             }
           }
@@ -195,14 +195,14 @@
                 {
                   "id": 7,
                   "name": "Client Tenancy 4",
-                  "created_at": "2019-01-06T02:11:37.037+04:00",
-                  "updated_at": "2019-01-06T02:11:37.037+04:00"
+                  "created_at": "2019-01-06T02:35:50.399+04:00",
+                  "updated_at": "2019-01-06T02:35:50.399+04:00"
                 },
                 {
                   "id": 8,
                   "name": "Project 4",
-                  "created_at": "2019-01-06T02:11:37.126+04:00",
-                  "updated_at": "2019-01-06T02:11:37.126+04:00"
+                  "created_at": "2019-01-06T02:35:50.523+04:00",
+                  "updated_at": "2019-01-06T02:35:50.523+04:00"
                 }
               ]
             }
@@ -273,8 +273,8 @@
                 "first_name": "super",
                 "last_name": "admin",
                 "email": "user+9@example.com",
-                "created_at": "2019-01-06T02:11:36.779+04:00",
-                "updated_at": "2019-01-06T02:11:36.779+04:00",
+                "created_at": "2019-01-06T02:35:50.142+04:00",
+                "updated_at": "2019-01-06T02:35:50.142+04:00",
                 "campaign_ids": [
 
                 ]
@@ -575,8 +575,8 @@
                 "first_name": "Max",
                 "last_name": "Holloway",
                 "email": "max@example.com",
-                "created_at": "2019-01-06T02:11:38.007+04:00",
-                "updated_at": "2019-01-06T02:11:38.074+04:00",
+                "created_at": "2019-01-06T02:35:51.621+04:00",
+                "updated_at": "2019-01-06T02:35:51.688+04:00",
                 "campaign_ids": [
                   17
                 ]
@@ -618,7 +618,7 @@
             "name": "user_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "body",
@@ -669,12 +669,12 @@
             },
             "examples": {
               "application/json": {
-                "id": null,
+                "id": 29,
                 "first_name": "Brian",
                 "last_name": "Ortega",
                 "email": "ortega@example.com",
-                "created_at": null,
-                "updated_at": null,
+                "created_at": "2019-01-06T02:35:51.871+04:00",
+                "updated_at": "2019-01-06T02:35:51.900+04:00",
                 "campaign_ids": [
 
                 ]
@@ -731,7 +731,7 @@
             },
             "examples": {
               "application/json": {
-                "expires_at": "2019-01-06T01:11:38.449+03:00",
+                "expires_at": "2019-01-06T01:35:52.083+03:00",
                 "url": "my.url.com"
               }
             }
@@ -768,7 +768,7 @@
     },
     {
       "name": "Users",
-      "description": "Users within particular project"
+      "description": "Add / update users"
     }
   ]
 }
