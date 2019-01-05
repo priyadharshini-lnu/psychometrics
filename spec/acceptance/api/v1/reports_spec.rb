@@ -5,8 +5,10 @@ resource "Reports" do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   explanation 'Reports within particular user and project'
+  before { create(:api_key, token: 'token', membership: create(:membership)) }
 
   before { create(:report) }
+  authentication :basic, 'token'
 
   get "/api/v1/projects/:project_id/users/:user_id/reports" do
     route_summary 'Get user reports'

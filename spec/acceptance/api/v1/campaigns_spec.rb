@@ -5,8 +5,10 @@ resource "Campaigns" do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   explanation 'Campaigns'
-
-  before { create(:tenancy) }
+  let!(:membership) { create(:client_admin_membership) }
+  let!(:project) { create(:project, parent: membership.client) }
+  before { create(:api_key, token: 'token', membership: membership) }
+  authentication :basic, 'token'
 
   post "/api/v1/projects/:project_id/campaigns/:campaign_id/duplicate" do
     route_summary 'Creates a copy of the campaign without users'
@@ -29,6 +31,7 @@ resource "Campaigns" do
     end
 
     let(:campaign_ids) { [1, 2] }
+    let(:project_id) { project.id }
 
 
     context '200' do

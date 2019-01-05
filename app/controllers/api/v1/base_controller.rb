@@ -9,7 +9,7 @@ module Api
       end
 
       def api_key
-        @api_key ||= ApiKey.active.find_by(token: request.headers['X-Api-Key'])
+        @api_key ||= ApiKey.active.find_by(token: request.headers['Authorization'])
       end
 
       def current_user
@@ -18,6 +18,10 @@ module Api
 
       def current_client
         @current_client ||= api_key&.membership&.client
+      end
+
+      def render_form_errors(form)
+        render json: { errors: form.errors }, status: :bad_request
       end
     end
   end

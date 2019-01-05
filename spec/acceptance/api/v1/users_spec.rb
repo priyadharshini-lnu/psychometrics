@@ -5,6 +5,11 @@ resource "Users" do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
   explanation 'Users within particular project'
+  let!(:membership) { create(:client_admin_membership) }
+  let!(:project) { create(:project, parent: membership.client) }
+  let(:campaign) { create(:campaign, parent: project) }
+  before { create(:api_key, token: 'token', membership: membership) }
+  authentication :basic, 'token'
 
   post "/api/v1/projects/:project_id/users" do
     route_summary 'Adds a new user to the project'
@@ -23,14 +28,17 @@ resource "Users" do
     let(:email) { 'max@example.com' }
     let(:password) { 'password' }
     let(:accepted_terms) { true }
-    let(:campaign_ids) { [1, 2] }
+    let(:campaign_ids) { [campaign.id] }
+    let(:project_id) { project.id }
 
     context '200' do
       example_request 'Getting a list of orders' do
         user = JSON.parse(response_body)
+        expect(user['id']).to be
         expect(user['first_name']).to eq first_name
         expect(user['last_name']).to eq last_name
         expect(user['email']).to eq email
+        expect(user['campaign_ids']).to eq [campaign.id]
         expect(status).to eq(200)
       end
     end
@@ -50,6 +58,7 @@ resource "Users" do
     let(:last_name) { 'Ortega' }
     let(:email) { 'ortega@example.com' }
     let(:password) { 'password' }
+    let(:project_id) { project.id }
 
     context '200' do
       example_request 'Update the user' do
