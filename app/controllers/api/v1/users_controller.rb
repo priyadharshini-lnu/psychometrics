@@ -14,8 +14,9 @@ module Api
       end
 
       def update
-        user = User.new(user_params)
-
+        form = Api::V1::Users::UpdateForm.from_params(params[:user].merge(project: project, user: user))
+        return render_form_errors(form) if form.invalid?
+        user.update!(user_params)
         render json: Api::V1::UserSerializer.new(user, project: project).to_h
       end
 
@@ -25,6 +26,10 @@ module Api
 
       def user_params
         params.require(:user).permit(:email, :first_name, :last_name, :password)
+      end
+
+      def user
+        @user ||= ::Users::Regular.find_by(project_id: params[:project_id], id: params[:id])
       end
     end
   end

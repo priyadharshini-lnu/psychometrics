@@ -4,10 +4,11 @@ require 'rspec_api_documentation/dsl'
 resource "Users" do
   header 'Accept', 'application/json'
   header 'Content-Type', 'application/json'
-  explanation 'Users within particular project'
+  explanation 'Add / update users'
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:campaign) { create(:campaign, parent: project) }
+  let(:user) { create(:user, project: project) }
   before { create(:api_key, token: 'token', membership: membership) }
   authentication :basic, 'token'
 
@@ -59,6 +60,7 @@ resource "Users" do
     let(:email) { 'ortega@example.com' }
     let(:password) { 'password' }
     let(:project_id) { project.id }
+    let(:user_id) { user.id }
 
     context '200' do
       example_request 'Update the user' do
