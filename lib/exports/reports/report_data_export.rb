@@ -5,7 +5,7 @@ module Exports
     class ReportDataExport
       attr_accessor :report, :client
 
-      def initialize(report_id, client_id, _options = {})
+      def initialize(report_id, client_id)
         self.report = Report.find(report_id)
         self.client = Client.find(client_id)
       end
@@ -50,8 +50,7 @@ module Exports
             end
 
             current_level_assigns.find_each do |assign|
-              # next unless assign.id == 82542
-              results = export_data.map { |data| self.try(data['type'].to_s, assign, data) || '' }
+              results = export_data.map { |data| try(data['type'].to_s, assign, data) || '' }
               sheet.add_row results
             end
           end
@@ -69,7 +68,7 @@ module Exports
       # Gets user data
       #
       def user_data(assign, data)
-        assign.membership.user.try(data['key']) || ''
+        assign.membership.user.try(data['key'])
       end
 
       # Calculates value for external_result type
@@ -88,17 +87,27 @@ module Exports
         return unless assign.assessment_id == data['assessmentId']
         # Skip if the assign has no norm data
         return unless assign.norm_data
+
         # Skip if can't find factor
         factor = Factor.find(data['factorId'])
         # Fetchs Norm
         norm = Norm.find(assign.norm_data['id'])
         # Fetchs FactorsNorm by Norm ID and Type
-        factors_norm = factor.factors_norms.find_by!(norm_id: norm.id, type: assign.norm_data['type'].to_s.downcase)
+        factors_norm = FactorsNorm.find_by!(factor_id: factor.id,
+                                            norm_id: norm.id,
+                                            type: assign.norm_data['type'].to_s.downcase)
         # Gets scoring
         scoring = assign.scoring&.dig(factor.id.to_s, 'results') || []
+        # If there is no results for Factor
+        #   Then collect SubFactors results
+        if scoring.blank? && factor.parent_id.nil?
+          scoring = factor.sub_factor_ids.
+                    each_with_object([]) { |id, res| res << assign.scoring&.dig(id.to_s, 'results') }.
+                    flatten.
+                    compact
+        end
         # Detects normed result
         factors_norm.detect_normed_result(scoring)
-
       rescue ActiveRecord::RecordNotFound
       end
 
@@ -106,10 +115,11 @@ module Exports
       #
       def formula(assign, data)
         formula_op = data.dig('formula', 'op')
-        results = (data.dig('formula', 'args') || []).map { |arg| self.try(arg['type'], assign, arg) }.compact
+        results = (data.dig('formula', 'args') || []).map { |arg| try(arg['type'], assign, arg) }.flatten.compact
         return if results.blank?
         return (results.inject(0.0, :+) / results.size.to_f).round(2) if formula_op == 'AVERAGE'
         return results.min if formula_op == 'MIN'
+
         results.max
       end
 
