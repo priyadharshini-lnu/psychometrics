@@ -1,6 +1,6 @@
 module Api
   module V1
-    class CampaignsController < Api::BaseController
+    class CampaignsController < Api::ProjectScopeController
       def duplicate
         render json: Api::V1::CampaignSerializer.new(Client.last)
       end

@@ -1,6 +1,6 @@
 module Api
   module V1
-    class ReportsController < Api::BaseController
+    class ReportsController < Api::ProjectScopeController
       def index
         render json: Report.all.limit(5).map { |r| Api::V1::ReportSerializer.new(r) }
       end
