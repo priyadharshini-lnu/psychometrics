@@ -16,6 +16,7 @@ module Api
       def update
         form = Api::V1::Users::UpdateForm.from_params(params[:user].merge(project: project, user: user))
         return render_form_errors(form) if form.invalid?
+
         user.update!(user_params)
         render json: Api::V1::UserSerializer.new(user, project: project).to_h
       end

@@ -186,6 +186,7 @@ class Assign < ApplicationRecord
     membership.update_column(:assigns_completed, completed)
   end
 
+  # TODO (atanych): should be refactored
   def set_project_assign
     return if project_membership.nil?
     project_assign = project_membership.assigns.where(assessment_id: assessment_id).take

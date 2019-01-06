@@ -36,13 +36,13 @@
             "name": "project_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "user_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {
@@ -59,28 +59,8 @@
               "application/json": [
                 {
                   "id": 1,
-                  "name": "assessment 1",
-                  "status": "in_progress"
-                },
-                {
-                  "id": 2,
-                  "name": "assessment 2",
-                  "status": "in_progress"
-                },
-                {
-                  "id": 3,
-                  "name": "assessment 3",
-                  "status": "in_progress"
-                },
-                {
-                  "id": 4,
-                  "name": "assessment 4",
-                  "status": "in_progress"
-                },
-                {
-                  "id": 5,
-                  "name": "assessment 5",
-                  "status": "in_progress"
+                  "name": "Super Assessment",
+                  "status": "not_started"
                 }
               ]
             }
@@ -114,13 +94,21 @@
             "name": "project_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "campaign_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "New Campaign's name",
+            "required": false,
+            "type": "string",
+            "example": "Promotion"
           }
         ],
         "responses": {
@@ -135,10 +123,10 @@
             },
             "examples": {
               "application/json": {
-                "id": 4,
-                "name": "Project 2",
-                "created_at": "2019-01-06T02:35:50.000+04:00",
-                "updated_at": "2019-01-06T02:35:50.000+04:00"
+                "id": 7,
+                "name": "Promotion",
+                "created_at": "2019-01-06T15:27:53.370+04:00",
+                "updated_at": "2019-01-06T15:27:53.370+04:00"
               }
             }
           }
@@ -171,13 +159,13 @@
             "name": "project_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "user_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer"
           }
         ],
         "responses": {
@@ -193,16 +181,10 @@
             "examples": {
               "application/json": [
                 {
-                  "id": 7,
-                  "name": "Client Tenancy 4",
-                  "created_at": "2019-01-06T02:35:50.399+04:00",
-                  "updated_at": "2019-01-06T02:35:50.399+04:00"
-                },
-                {
-                  "id": 8,
-                  "name": "Project 4",
-                  "created_at": "2019-01-06T02:35:50.523+04:00",
-                  "updated_at": "2019-01-06T02:35:50.523+04:00"
+                  "id": 1111,
+                  "name": "Super campaign",
+                  "created_at": "2019-01-06T15:27:53.789+04:00",
+                  "updated_at": "2019-01-06T15:27:53.789+04:00"
                 }
               ]
             }
@@ -269,12 +251,12 @@
             },
             "examples": {
               "application/json": {
-                "id": 9,
+                "id": 10,
                 "first_name": "super",
                 "last_name": "admin",
-                "email": "user+9@example.com",
-                "created_at": "2019-01-06T02:35:50.142+04:00",
-                "updated_at": "2019-01-06T02:35:50.142+04:00",
+                "email": "user+10@example.com",
+                "created_at": "2019-01-06T15:27:53.492+04:00",
+                "updated_at": "2019-01-06T15:27:53.492+04:00",
                 "campaign_ids": [
 
                 ]
@@ -332,8 +314,8 @@
             "examples": {
               "application/json": [
                 {
-                  "id": 5,
-                  "name": "report 5",
+                  "id": 6,
+                  "name": "report 6",
                   "status": "any",
                   "assessment_ids": [
                     1,
@@ -341,8 +323,8 @@
                   ]
                 },
                 {
-                  "id": 6,
-                  "name": "report 6",
+                  "id": 7,
+                  "name": "report 7",
                   "status": "any",
                   "assessment_ids": [
                     1,
@@ -543,7 +525,7 @@
                     "campaign_ids": {
                       "type": "array",
                       "example": [
-                        17
+                        20
                       ],
                       "description": "Array of campaign ids",
                       "items": {
@@ -571,14 +553,14 @@
             },
             "examples": {
               "application/json": {
-                "id": 25,
+                "id": 27,
                 "first_name": "Max",
                 "last_name": "Holloway",
                 "email": "max@example.com",
-                "created_at": "2019-01-06T02:35:51.621+04:00",
-                "updated_at": "2019-01-06T02:35:51.688+04:00",
+                "created_at": "2019-01-06T15:27:54.650+04:00",
+                "updated_at": "2019-01-06T15:27:54.672+04:00",
                 "campaign_ids": [
-                  17
+                  20
                 ]
               }
             }
@@ -669,12 +651,12 @@
             },
             "examples": {
               "application/json": {
-                "id": 29,
+                "id": 31,
                 "first_name": "Brian",
                 "last_name": "Ortega",
                 "email": "ortega@example.com",
-                "created_at": "2019-01-06T02:35:51.871+04:00",
-                "updated_at": "2019-01-06T02:35:51.900+04:00",
+                "created_at": "2019-01-06T15:27:54.828+04:00",
+                "updated_at": "2019-01-06T15:27:54.850+04:00",
                 "campaign_ids": [
 
                 ]
@@ -731,7 +713,7 @@
             },
             "examples": {
               "application/json": {
-                "expires_at": "2019-01-06T01:35:52.083+03:00",
+                "expires_at": "2019-01-06T14:27:55.009+03:00",
                 "url": "my.url.com"
               }
             }

@@ -7,17 +7,27 @@ resource "Campaigns" do
   explanation 'Campaigns'
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
+  let(:campaign) { create(:campaign, parent: project) }
+
   before { create(:api_key, token: 'token', membership: membership) }
   authentication :basic, 'token'
 
   post "/api/v1/projects/:project_id/campaigns/:campaign_id/duplicate" do
     route_summary 'Creates a copy of the campaign without users'
 
+    with_options with_example: true do
+      parameter :name, 'New Campaign\'s name'
+    end
+
+    let(:campaign_id) { campaign.id }
+    let(:project_id) { project.id }
+    let(:name) { 'Promotion' }
+
     context '200' do
       example_request '...' do
         campaign = JSON.parse(response_body)
         expect(campaign).to have_key('id')
-        expect(campaign).to have_key('name')
+        expect(campaign['name']).to eq 'Promotion'
         expect(status).to eq(200)
       end
     end
