@@ -11,8 +11,19 @@ resource "Reports" do
   before { create(:api_key, token: 'token', membership: membership) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:user) { create(:user, project: project) }
+  let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
+  let(:report) { assessment.reports.first }
 
-  before { create(:report) }
+  before do
+    user_membership = create(:membership, client: campaign, user: user)
+    user_membership.client.reports = assessment.reports
+    user_membership.client.project.reports = assessment.reports
+    assign = create(:assign, membership: user_membership, assessment: assessment)
+
+    allow_any_instance_of(AssignsReport).to receive(:use_license) { "nth" }
+    create(:assigns_report, report: report, assign: assign)
+  end
+
   authentication :apiKey, 'token', name: "X-Api-Key"
 
   get "/api/v1/projects/:project_id/users/:user_id/reports" do
@@ -20,16 +31,6 @@ resource "Reports" do
 
     let(:project_id) { project.id }
     let(:user_id) { user.id }
-    let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
-    before do
-      user_membership = create(:membership, client: campaign, user: user)
-      user_membership.client.reports = assessment.reports
-      user_membership.client.project.reports = assessment.reports
-      assign = create(:assign, membership: user_membership, assessment: assessment)
-
-      allow_any_instance_of(AssignsReport).to receive(:use_license) { "nth" }
-      create(:assigns_report, report: assessment.reports.first, assign: assign)
-    end
 
     context '200' do
       example_request '...' do
@@ -46,6 +47,9 @@ resource "Reports" do
 
   get "/api/v1/projects/:project_id/users/:user_id/reports/:report_id/results" do
     route_summary 'Get user results'
+    let(:project_id) { project.id }
+    let(:user_id) { user.id }
+    let(:report_id) { report.id }
 
     context '200' do
       example_request '...' do
@@ -57,6 +61,9 @@ resource "Reports" do
 
   get "/api/v1/projects/:project_id/users/:user_id/reports/:report_id/pdf" do
     route_summary 'Get user report PDF'
+    let(:project_id) { project.id }
+    let(:user_id) { user.id }
+    let(:report_id) { report.id }
 
     context '200' do
       example_request '...' do
