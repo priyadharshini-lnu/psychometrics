@@ -76,13 +76,16 @@ resource "Users" do
   post "/api/v1/projects/:project_id/users/:user_id/sso" do
     route_summary 'Creates a new authenticated login URL'
 
-    context '200' do
-      example_request '...' do
-        response = JSON.parse(response_body)
-        expect(response['expires_at']).to be
-        expect(response['url']).to be
-        expect(status).to eq(200)
-      end
+    let(:project_id) { project.id }
+    let(:user_id) { user.id }
+
+    example '200' do
+      expect(Redis.current).to receive(:setex)
+      do_request
+      response = JSON.parse(response_body)
+      expect(response['expires_at']).to be
+      expect(response['url']).to be
+      expect(status).to eq(200)
     end
   end
 end

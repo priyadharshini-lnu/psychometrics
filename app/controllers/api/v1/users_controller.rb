@@ -22,7 +22,9 @@ module Api
       end
 
       def sso
-        render json: {expires_at: Time.now, url: 'my.url.com'}
+        ::Users::BuildSsoUrl.call(project, user) do
+          on(:ok) { |url, expires_at| render json: { expires_at: expires_at, url: url } }
+        end
       end
 
       def user_params

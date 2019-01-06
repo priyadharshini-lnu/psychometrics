@@ -32,6 +32,10 @@ module Api
           end
       end
 
+      def project_membership
+        user.project_membership
+      end
+
       def render_form_errors(form)
         render json: { errors: form.errors }, status: :bad_request
       end

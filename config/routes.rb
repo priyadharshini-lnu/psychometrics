@@ -435,6 +435,7 @@ Rails.application.routes.draw do
     resources :reports, only: %i(show)
     resource :profiles, only: %i(update edit)
     get 'survey_instructions', to: 'home#survey_instructions'
+    get 'sso/:user_id/:token', to: 'home#sso'
     root to: 'assigns#index'
   end
 
