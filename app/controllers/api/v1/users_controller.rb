@@ -28,10 +28,6 @@ module Api
       def user_params
         params.require(:user).permit(:email, :first_name, :last_name, :password)
       end
-
-      def user
-        @user ||= ::Users::Regular.find_by(project_id: params[:project_id], id: params[:id])
-      end
     end
   end
 end

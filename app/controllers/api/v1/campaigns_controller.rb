@@ -29,12 +29,13 @@ module Api
         render json: Api::V1::UserSerializer.new(user, project: project).to_h
       end
 
-      def user
-        @user ||= ::Users::Regular.find_by(project_id: params[:project_id], id: params[:user_id])
-      end
-
       def campaign
-        @campaign ||= Client.campaigns_and_sub_campaigns_of(project.id).find(params[:id])
+        @campaign ||=
+          begin
+            c = Client.campaigns_and_sub_campaigns_of(project.id).find_by(id: params[:id])
+            raise Errors::ApiError, "Campaign with id=#{params[:id]} is not found" unless c
+            c
+          end
       end
     end
   end

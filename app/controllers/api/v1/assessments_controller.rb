@@ -7,10 +7,6 @@ module Api
         assigns = Assign.includes(:assessment).where(membership_id: membership_ids)
         render json: assigns.map { |a| Api::V1::AssignSerializer.new(a).to_h }
       end
-
-      def user
-        @user ||= ::Users::Regular.find_by(project_id: params[:project_id], id: params[:user_id])
-      end
     end
   end
 end

@@ -125,8 +125,8 @@
               "application/json": {
                 "id": 7,
                 "name": "Promotion",
-                "created_at": "2019-01-06T16:51:36.296+04:00",
-                "updated_at": "2019-01-06T16:51:36.296+04:00"
+                "created_at": "2019-01-06T17:56:07.120+04:00",
+                "updated_at": "2019-01-06T17:56:07.120+04:00"
               }
             }
           }
@@ -183,8 +183,8 @@
                 {
                   "id": 1111,
                   "name": "Super campaign",
-                  "created_at": "2019-01-06T16:51:36.899+04:00",
-                  "updated_at": "2019-01-06T16:51:36.899+04:00"
+                  "created_at": "2019-01-06T17:56:07.704+04:00",
+                  "updated_at": "2019-01-06T17:56:07.704+04:00"
                 }
               ]
             }
@@ -255,8 +255,8 @@
                 "first_name": "test",
                 "last_name": "test",
                 "email": "user+11@example.com",
-                "created_at": "2019-01-06T16:51:36.613+04:00",
-                "updated_at": "2019-01-06T16:51:36.687+04:00",
+                "created_at": "2019-01-06T17:56:07.348+04:00",
+                "updated_at": "2019-01-06T17:56:07.418+04:00",
                 "campaign_ids": [
                   10,
                   11
@@ -558,8 +558,8 @@
                 "first_name": "Max",
                 "last_name": "Holloway",
                 "email": "max@example.com",
-                "created_at": "2019-01-06T16:51:37.874+04:00",
-                "updated_at": "2019-01-06T16:51:37.903+04:00",
+                "created_at": "2019-01-06T17:56:08.621+04:00",
+                "updated_at": "2019-01-06T17:56:08.688+04:00",
                 "campaign_ids": [
                   22
                 ]
@@ -656,8 +656,8 @@
                 "first_name": "Brian",
                 "last_name": "Ortega",
                 "email": "ortega@example.com",
-                "created_at": "2019-01-06T16:51:38.078+04:00",
-                "updated_at": "2019-01-06T16:51:38.105+04:00",
+                "created_at": "2019-01-06T17:56:08.858+04:00",
+                "updated_at": "2019-01-06T17:56:08.880+04:00",
                 "campaign_ids": [
 
                 ]
@@ -714,7 +714,7 @@
             },
             "examples": {
               "application/json": {
-                "expires_at": "2019-01-06T15:51:38.281+03:00",
+                "expires_at": "2019-01-06T16:56:09.094+03:00",
                 "url": "my.url.com"
               }
             }

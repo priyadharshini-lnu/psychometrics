@@ -3,7 +3,12 @@ module Api
     class ProjectScopeController < BaseController
 
       def project
-        @project ||= current_client.projects.find(params[:project_id])
+        @project ||=
+          begin
+            p = current_client.projects.find_by(id: params[:project_id])
+            raise Errors::ApiError, "Project with id=#{params[:project_id]} is not found" unless p
+            p
+          end
       end
     end
   end
