@@ -13,7 +13,7 @@ module Api
           return if email == user.email
           return unless ::Users::Regular.exists?(email: email, project_id: project.id)
 
-          errors.add(:email, "User with email #{email} is existing")
+          errors.add(:email, "Another user with email #{email} is existing")
         end
       end
     end
