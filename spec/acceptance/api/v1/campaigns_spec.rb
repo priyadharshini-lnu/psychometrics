@@ -8,6 +8,7 @@ resource "Campaigns" do
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:campaign) { create(:campaign, parent: project) }
+  let(:campaign_2) { create(:campaign, parent: project) }
 
   before { create(:api_key, token: 'token', membership: membership) }
   authentication :basic, 'token'
@@ -39,9 +40,10 @@ resource "Campaigns" do
     with_options with_example: true do
       parameter :campaign_ids, 'Array of campaign ids'
     end
-
-    let(:campaign_ids) { [1, 2] }
+    let(:user) { create(:user, project: project) }
+    let(:campaign_ids) { [campaign.id, campaign_2.id] }
     let(:project_id) { project.id }
+    let(:user_id) { user.id }
 
 
     context '200' do
@@ -49,6 +51,7 @@ resource "Campaigns" do
         user = JSON.parse(response_body)
         expect(user).to have_key('first_name')
         expect(user).to have_key('last_name')
+        expect(user['campaign_ids']).to eq [campaign.id, campaign_2.id]
         expect(status).to eq(200)
       end
     end

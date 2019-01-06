@@ -17,8 +17,16 @@ module Api
         campaigns = user.memberships.includes(:client).where(client_id: project_campaign_ids).map(&:client)
         render json: campaigns.map { |c| Api::V1::CampaignSerializer.new(c) }
       end
+
       def create
-        render json: Api::V1::UserSerializer.new(User.last, project: project).to_h
+        form = Api::V1::Campaigns::AttachToUserForm.from_params(params.merge(project: project, user: user))
+        return render_form_errors(form) if form.invalid?
+
+        form.campaign_ids.each do |client_id|
+          user.memberships.create!(role: Membership::MEMBER_ROLE, client_id: client_id)
+        end
+
+        render json: Api::V1::UserSerializer.new(user, project: project).to_h
       end
 
       def user

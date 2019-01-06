@@ -125,8 +125,8 @@
               "application/json": {
                 "id": 7,
                 "name": "Promotion",
-                "created_at": "2019-01-06T15:27:53.370+04:00",
-                "updated_at": "2019-01-06T15:27:53.370+04:00"
+                "created_at": "2019-01-06T16:00:15.219+04:00",
+                "updated_at": "2019-01-06T16:00:15.219+04:00"
               }
             }
           }
@@ -183,8 +183,8 @@
                 {
                   "id": 1111,
                   "name": "Super campaign",
-                  "created_at": "2019-01-06T15:27:53.789+04:00",
-                  "updated_at": "2019-01-06T15:27:53.789+04:00"
+                  "created_at": "2019-01-06T16:00:15.990+04:00",
+                  "updated_at": "2019-01-06T16:00:15.990+04:00"
                 }
               ]
             }
@@ -222,7 +222,7 @@
             "name": "user_id",
             "in": "path",
             "required": true,
-            "type": "string"
+            "type": "integer"
           },
           {
             "name": "campaign_ids",
@@ -234,8 +234,8 @@
               "type": "integer"
             },
             "example": [
-              1,
-              2
+              10,
+              11
             ]
           }
         ],
@@ -251,14 +251,15 @@
             },
             "examples": {
               "application/json": {
-                "id": 10,
-                "first_name": "super",
-                "last_name": "admin",
-                "email": "user+10@example.com",
-                "created_at": "2019-01-06T15:27:53.492+04:00",
-                "updated_at": "2019-01-06T15:27:53.492+04:00",
+                "id": 11,
+                "first_name": "test",
+                "last_name": "test",
+                "email": "user+11@example.com",
+                "created_at": "2019-01-06T16:00:15.660+04:00",
+                "updated_at": "2019-01-06T16:00:15.740+04:00",
                 "campaign_ids": [
-
+                  10,
+                  11
                 ]
               }
             }
@@ -525,7 +526,7 @@
                     "campaign_ids": {
                       "type": "array",
                       "example": [
-                        20
+                        22
                       ],
                       "description": "Array of campaign ids",
                       "items": {
@@ -553,14 +554,14 @@
             },
             "examples": {
               "application/json": {
-                "id": 27,
+                "id": 28,
                 "first_name": "Max",
                 "last_name": "Holloway",
                 "email": "max@example.com",
-                "created_at": "2019-01-06T15:27:54.650+04:00",
-                "updated_at": "2019-01-06T15:27:54.672+04:00",
+                "created_at": "2019-01-06T16:00:16.926+04:00",
+                "updated_at": "2019-01-06T16:00:16.969+04:00",
                 "campaign_ids": [
-                  20
+                  22
                 ]
               }
             }
@@ -651,12 +652,12 @@
             },
             "examples": {
               "application/json": {
-                "id": 31,
+                "id": 32,
                 "first_name": "Brian",
                 "last_name": "Ortega",
                 "email": "ortega@example.com",
-                "created_at": "2019-01-06T15:27:54.828+04:00",
-                "updated_at": "2019-01-06T15:27:54.850+04:00",
+                "created_at": "2019-01-06T16:00:17.177+04:00",
+                "updated_at": "2019-01-06T16:00:17.201+04:00",
                 "campaign_ids": [
 
                 ]
@@ -713,7 +714,7 @@
             },
             "examples": {
               "application/json": {
-                "expires_at": "2019-01-06T14:27:55.009+03:00",
+                "expires_at": "2019-01-06T15:00:17.397+03:00",
                 "url": "my.url.com"
               }
             }
