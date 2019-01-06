@@ -9,7 +9,7 @@ module Api
       end
 
       def api_key
-        @api_key ||= ApiKey.active.find_by(token: request.headers['Authorization'])
+        @api_key ||= ApiKey.active.find_by(token: request.headers['X-Api-Key'])
       end
 
       def current_user

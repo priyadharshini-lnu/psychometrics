@@ -10,7 +10,7 @@ resource "Assessments" do
   before { create(:api_key, token: 'token', membership: membership) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:user) { create(:user, project: project) }
-  authentication :basic, 'token'
+  authentication :apiKey, 'token', name: "X-Api-Key"
 
   get "/api/v1/projects/:project_id/users/:user_id/assessments" do
     route_summary 'Get the list of assessments'

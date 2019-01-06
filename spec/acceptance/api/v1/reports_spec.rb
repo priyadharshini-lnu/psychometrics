@@ -8,7 +8,7 @@ resource "Reports" do
   before { create(:api_key, token: 'token', membership: create(:membership)) }
 
   before { create(:report) }
-  authentication :basic, 'token'
+  authentication :apiKey, 'token', name: "X-Api-Key"
 
   get "/api/v1/projects/:project_id/users/:user_id/reports" do
     route_summary 'Get user reports'

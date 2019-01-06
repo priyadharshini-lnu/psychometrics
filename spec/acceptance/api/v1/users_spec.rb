@@ -10,7 +10,7 @@ resource "Users" do
   let(:campaign) { create(:campaign, parent: project) }
   let(:user) { create(:user, project: project) }
   before { create(:api_key, token: 'token', membership: membership) }
-  authentication :basic, 'token'
+  authentication :apiKey, 'token', name: "X-Api-Key"
 
   post "/api/v1/projects/:project_id/users" do
     route_summary 'Adds a new user to the project'

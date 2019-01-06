@@ -11,7 +11,7 @@ resource "Campaigns" do
   let(:campaign_2) { create(:campaign, parent: project) }
 
   before { create(:api_key, token: 'token', membership: membership) }
-  authentication :basic, 'token'
+  authentication :apiKey, 'token', name: "X-Api-Key"
 
   post "/api/v1/projects/:project_id/campaigns/:campaign_id/duplicate" do
     route_summary 'Creates a copy of the campaign without users'

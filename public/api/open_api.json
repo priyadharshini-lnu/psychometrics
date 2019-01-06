@@ -69,7 +69,7 @@
         "deprecated": false,
         "security": [
           {
-            "Authorization": [
+            "X-Api-Key": [
 
             ]
           }
@@ -125,8 +125,8 @@
               "application/json": {
                 "id": 7,
                 "name": "Promotion",
-                "created_at": "2019-01-06T16:00:15.219+04:00",
-                "updated_at": "2019-01-06T16:00:15.219+04:00"
+                "created_at": "2019-01-06T16:51:36.296+04:00",
+                "updated_at": "2019-01-06T16:51:36.296+04:00"
               }
             }
           }
@@ -134,7 +134,7 @@
         "deprecated": false,
         "security": [
           {
-            "Authorization": [
+            "X-Api-Key": [
 
             ]
           }
@@ -183,8 +183,8 @@
                 {
                   "id": 1111,
                   "name": "Super campaign",
-                  "created_at": "2019-01-06T16:00:15.990+04:00",
-                  "updated_at": "2019-01-06T16:00:15.990+04:00"
+                  "created_at": "2019-01-06T16:51:36.899+04:00",
+                  "updated_at": "2019-01-06T16:51:36.899+04:00"
                 }
               ]
             }
@@ -193,7 +193,7 @@
         "deprecated": false,
         "security": [
           {
-            "Authorization": [
+            "X-Api-Key": [
 
             ]
           }
@@ -255,8 +255,8 @@
                 "first_name": "test",
                 "last_name": "test",
                 "email": "user+11@example.com",
-                "created_at": "2019-01-06T16:00:15.660+04:00",
-                "updated_at": "2019-01-06T16:00:15.740+04:00",
+                "created_at": "2019-01-06T16:51:36.613+04:00",
+                "updated_at": "2019-01-06T16:51:36.687+04:00",
                 "campaign_ids": [
                   10,
                   11
@@ -268,7 +268,7 @@
         "deprecated": false,
         "security": [
           {
-            "Authorization": [
+            "X-Api-Key": [
 
             ]
           }
@@ -339,7 +339,7 @@
         "deprecated": false,
         "security": [
           {
-            "Authorization": [
+            "X-Api-Key": [
 
             ]
           }
@@ -399,7 +399,7 @@
         "deprecated": false,
         "security": [
           {
-            "Authorization": [
+            "X-Api-Key": [
 
             ]
           }
@@ -460,7 +460,7 @@
         "deprecated": false,
         "security": [
           {
-            "Authorization": [
+            "X-Api-Key": [
 
             ]
           }
@@ -558,8 +558,8 @@
                 "first_name": "Max",
                 "last_name": "Holloway",
                 "email": "max@example.com",
-                "created_at": "2019-01-06T16:00:16.926+04:00",
-                "updated_at": "2019-01-06T16:00:16.969+04:00",
+                "created_at": "2019-01-06T16:51:37.874+04:00",
+                "updated_at": "2019-01-06T16:51:37.903+04:00",
                 "campaign_ids": [
                   22
                 ]
@@ -570,7 +570,7 @@
         "deprecated": false,
         "security": [
           {
-            "Authorization": [
+            "X-Api-Key": [
 
             ]
           }
@@ -656,8 +656,8 @@
                 "first_name": "Brian",
                 "last_name": "Ortega",
                 "email": "ortega@example.com",
-                "created_at": "2019-01-06T16:00:17.177+04:00",
-                "updated_at": "2019-01-06T16:00:17.201+04:00",
+                "created_at": "2019-01-06T16:51:38.078+04:00",
+                "updated_at": "2019-01-06T16:51:38.105+04:00",
                 "campaign_ids": [
 
                 ]
@@ -668,7 +668,7 @@
         "deprecated": false,
         "security": [
           {
-            "Authorization": [
+            "X-Api-Key": [
 
             ]
           }
@@ -714,7 +714,7 @@
             },
             "examples": {
               "application/json": {
-                "expires_at": "2019-01-06T15:00:17.397+03:00",
+                "expires_at": "2019-01-06T15:51:38.281+03:00",
                 "url": "my.url.com"
               }
             }
@@ -723,7 +723,7 @@
         "deprecated": false,
         "security": [
           {
-            "Authorization": [
+            "X-Api-Key": [
 
             ]
           }
@@ -732,8 +732,10 @@
     }
   },
   "securityDefinitions": {
-    "Authorization": {
-      "type": "basic"
+    "X-Api-Key": {
+      "type": "apiKey",
+      "name": "X-Api-Key",
+      "in": "header"
     }
   },
   "tags": [
