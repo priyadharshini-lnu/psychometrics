@@ -39,6 +39,12 @@ module Administration
       false
     end
 
+    # Can export Report Data?
+    #
+    def export?
+      @user.is?(:superadmin)
+    end
+
     def left_menu?
       index?
     end

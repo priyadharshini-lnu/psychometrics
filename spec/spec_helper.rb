@@ -10,6 +10,7 @@ SimpleCov.start 'rails'
 require 'capybara/rspec'
 require 'support/mailer_macros'
 RSpec.configure do |config|
+  config.color = true
   config.include(MailerMacros)
   config.before(:each) { reset_email }
   config.expect_with :rspec do |expectations|
@@ -21,7 +22,7 @@ RSpec.configure do |config|
   end
 
   config.shared_context_metadata_behavior = :apply_to_host_groups
-  
+
   config.verbose_retry = true
   config.display_try_failure_messages = true
   config.around :each, type: :feature do |ex|

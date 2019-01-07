@@ -13,7 +13,7 @@
         th.date = link_to_sort resource_class, :updated_at, filter_form
         th width='1%' = t('administration.actions')
     tbody
-      - if resources.present?
+      - unless resources.blank?
         = render partial: 'resource', collection: resources
       - else
         tr.no_records
