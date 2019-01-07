@@ -104,7 +104,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'airbrake', '~> 5.0'
 
 # DSL for activerecord
-gem 'baby_squeel', '~> 1.0.1'
+gem 'baby_squeel', '~> 1.3.1'
 
 # Cloning ActiveRecord object
 gem 'amoeba', '~> 3.0.0'
