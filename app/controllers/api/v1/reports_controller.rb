@@ -6,7 +6,7 @@ module Api
         membership_ids = user.memberships.where(client_id: project_campaign_ids).ids
         assigns = Assign.includes(:assessment, assigns_reports: :report).where(membership_id: membership_ids)
 
-        render json: assigns.flat_map(&:assigns_reports).map { |r| Api::V1::AssignReportSerializer.new(r).to_h }
+        render json: assigns.flat_map(&:assigns_reports).uniq { |r| r.report.id }.map { |r| Api::V1::AssignReportSerializer.new(r).to_h }
       end
 
       def results
