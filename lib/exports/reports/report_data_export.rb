@@ -5,9 +5,9 @@ module Exports
     class ReportDataExport
       attr_accessor :report, :client
 
-      def initialize(report_id, client_id)
-        self.report = Report.find(report_id)
-        self.client = Client.find(client_id)
+      def initialize(report, client)
+        @report = report
+        @client = client
       end
 
       def to_xlsx
@@ -26,7 +26,6 @@ module Exports
             # Draws headers and collect data
             #
             header_position = 0
-            export_data = []
             (report.data_configuration['sections'] || []).each do |section|
               subheaders = (section['data'] || [])
               subheaders_size = subheaders.size - 1
@@ -40,7 +39,6 @@ module Exports
                 label = subheader['label']
                 label ||= fetch_factor_label(subheader['factorId']) if subheader['factorId']
                 sheet.rows.second.add_cell(label || '')
-                export_data << subheader
               end
               # Merge Header cells to one cell
               cells_range = header_position..(header_position + subheaders_size)
@@ -48,10 +46,11 @@ module Exports
               # Calculates next header position
               header_position = cells_range.last + 1
             end
-
+            # TODO (atanych): too many N+1 queries. Might be resolved by cached_find. https://youtu.be/q8ausBZTrxU?t=400
             current_level_assigns.find_each do |assign|
-              results = export_data.map { |data| try(data['type'].to_s, assign, data) || '' }
-              sheet.add_row results
+              ::Reports::BuildResults.call(report, client, assign) do
+                on(:ok) { |results| sheet.add_row results }
+              end
             end
           end
         end
@@ -63,64 +62,6 @@ module Exports
         else
           Queries::Assigns::SubProjectLevel::ByClientAndReport.call(client.id, report.id)
         end
-      end
-
-      # Gets user data
-      #
-      def user_data(assign, data)
-        assign.membership.user.try(data['key'])
-      end
-
-      # Calculates value for external_result type
-      #
-      def external_result(assign, data)
-        # Skip if the assign is for another assessment
-        return unless assign.assessment_id == data['assessmentId']
-
-        assign.try(:external_results).try(:[], data['key'])
-      end
-
-      # Calculates value for normed_factor type
-      #
-      def normed_factor(assign, data)
-        # Skip if the assign is for another assessment
-        return unless assign.assessment_id == data['assessmentId']
-        # Skip if the assign has no norm data
-        return unless assign.norm_data
-
-        # Skip if can't find factor
-        factor = Factor.find(data['factorId'])
-        # Fetchs Norm
-        norm = Norm.find(assign.norm_data['id'])
-        # Fetchs FactorsNorm by Norm ID and Type
-        factors_norm = FactorsNorm.find_by!(factor_id: factor.id,
-                                            norm_id: norm.id,
-                                            type: assign.norm_data['type'].to_s.downcase)
-        # Gets scoring
-        scoring = assign.scoring&.dig(factor.id.to_s, 'results') || []
-        # If there is no results for Factor
-        #   Then collect SubFactors results
-        if scoring.blank? && factor.parent_id.nil?
-          scoring = factor.sub_factor_ids.
-                    each_with_object([]) { |id, res| res << assign.scoring&.dig(id.to_s, 'results') }.
-                    flatten.
-                    compact
-        end
-        # Detects normed result
-        factors_norm.detect_normed_result(scoring)
-      rescue ActiveRecord::RecordNotFound
-      end
-
-      # Calculates value for formula type
-      #
-      def formula(assign, data)
-        formula_op = data.dig('formula', 'op')
-        results = (data.dig('formula', 'args') || []).map { |arg| try(arg['type'], assign, arg) }.flatten.compact
-        return if results.blank?
-        return (results.inject(0.0, :+) / results.size.to_f).round(2) if formula_op == 'AVERAGE'
-        return results.min if formula_op == 'MIN'
-
-        results.max
       end
 
       private

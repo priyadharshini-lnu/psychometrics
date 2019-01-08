@@ -17,7 +17,7 @@ module Administration
 
       def export
         @report = Report.find(params[:report_id])
-        results = ::Exports::Reports::ReportDataExport.new(@report.id, client.id)
+        results = ::Exports::Reports::ReportDataExport.new(@report, client)
         respond_to do |format|
           format.xlsx { send_data results.to_xlsx.to_stream.read, filename: 'report_data.xlsx' }
         end

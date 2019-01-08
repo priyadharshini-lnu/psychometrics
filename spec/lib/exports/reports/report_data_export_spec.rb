@@ -4,7 +4,7 @@ require 'rails_helper'
 
 describe Exports::Reports::ReportDataExport do
   describe '.export' do
-    let(:report)           { double('report', data_configuration: data_configuration) }
+    let(:report)           { create(:report, data_configuration: data_configuration) }
     let(:client)           { double('client') }
     let(:norm)             { double('norm', id: 1) }
     let(:factors_norm)     { double('factors_norm') }
@@ -74,109 +74,6 @@ describe Exports::Reports::ReportDataExport do
         expect(sheet).to have_cells(['User Details', '', 'Error Detection', '', 'Thriving Index', '']).in_row(0)
         expect(sheet).to have_cells(['First Name', 'Last Name', 'Attempted', 'Correct', 'Test factor', 'Fit Score']).in_row(1)
         expect(sheet).to have_cells(["Jon", "Snow", 1, 2, 3, 3.0]).in_row(2)
-      end
-    end
-
-    context '#user_data' do
-      let(:data) { { 'key' => 'first_name' } }
-      subject { report_data_export.user_data(assign, data) }
-
-      it { is_expected.to eq(user.first_name) }
-      context 'when data is not valid' do
-        it do
-          data['key'] = 'not_exists'
-          is_expected.to be_nil
-        end
-      end
-    end
-
-    context '#external_result' do
-      let(:data) { { 'key' => 'ed.attempted', 'assessmentId' => 1 } }
-      subject { report_data_export.external_result(assign, data) }
-
-      it { is_expected.to eq(external_results['ed.attempted']) }
-
-      context 'when data is not valid' do
-        it do
-          data['key'] = 'not_exists'
-          is_expected.to be_nil
-        end
-        it do
-          data['assessmentId'] = 'not_exists'
-          is_expected.to be_nil
-        end
-      end
-    end
-
-    context '#normed_factor' do
-      let(:data) { { 'assessmentId' => 1, 'factorId' => 1 } }
-      subject { report_data_export.normed_factor(assign, data) }
-
-      it do
-        expect(factors_norm).to receive(:detect_normed_result).with(scoring['1']['results'])
-        subject
-      end
-
-      it 'collect sub_factors results' do
-        allow(factor).to receive(:id).and_return(-1)
-        expect(factors_norm).to receive(:detect_normed_result).with(scoring['2']['results'])
-        subject
-      end
-
-      it 'assessment ID not exists' do
-        data['assessmentId'] = 'not_exists'
-        is_expected.to be_nil
-      end
-      it 'assign#norm_data is nil' do
-        allow(assign).to receive(:norm_data).and_return(nil)
-        is_expected.to be_nil
-      end
-      it 'factor is not exists' do
-        allow(Factor).to receive(:find).and_raise(ActiveRecord::RecordNotFound)
-        is_expected.to be_nil
-      end
-      it 'norm is not exists' do
-        allow(Norm).to receive(:find).and_raise(ActiveRecord::RecordNotFound)
-        is_expected.to be_nil
-      end
-      it 'factors_norms is not exists' do
-        allow(FactorsNorm).to receive(:find_by!).and_raise(ActiveRecord::RecordNotFound)
-        is_expected.to be_nil
-      end
-    end
-
-    context '#formula' do
-      let(:data) { {} }
-      subject { report_data_export.formula(assign, data) }
-
-      it 'data is blank' do
-        is_expected.to be_nil
-      end
-
-      context 'normal flow' do
-        before(:each) do
-          allow(data).to receive(:dig).with('formula', 'args').and_return([{ 'type' => 'normed_factor' }])
-          allow(report_data_export).to receive(:normed_factor).and_return([1, 2, 3])
-        end
-        it 'AVERAGE' do
-          allow(data).to receive(:dig).with('formula', 'op').and_return('AVERAGE')
-          is_expected.to eq(2.0)
-        end
-
-        it 'MIN' do
-          allow(data).to receive(:dig).with('formula', 'op').and_return('MIN')
-          is_expected.to eq(1)
-        end
-
-        it 'MAX' do
-          allow(data).to receive(:dig).with('formula', 'op').and_return('MAX')
-          is_expected.to eq(3)
-        end
-
-        it 'op is wrong' do
-          allow(data).to receive(:dig).with('formula', 'op').and_return('wrong')
-          is_expected.to eq(3)
-        end
       end
     end
   end
