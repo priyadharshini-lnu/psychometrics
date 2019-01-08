@@ -15,8 +15,7 @@ module Api
       end
 
       def assessments
-        # TODO (atanych): should be has_many assessments
-        [Api::V1::AssignSerializer.new(object.assign)]
+        object.report.assessment_ids.map { |id| Api::V1::AssignSerializer.new(instance_options[:assigns][id].project_assign).to_h }
       end
     end
   end

@@ -8,11 +8,13 @@ describe Exports::Reports::ReportDataExport do
     let(:client)           { double('client') }
     let(:norm)             { double('norm', id: 1) }
     let(:factors_norm)     { double('factors_norm') }
-    let(:membership)       { double('membership', user: user) }
+    let(:membership)       { double('membership', user: user, id: 1) }
     let(:user)             { double('user', first_name: 'Jon', last_name: 'Snow') }
     let(:assigns_report)   { double('assigns_report') }
+    let(:aliases)          { double('aliases') }
     let(:assign) do
       double('assign', membership: membership,
+                       membership_id: membership.id,
                        external_results: external_results,
                        assessment_id: 1,
                        norm_data: norm_data,
@@ -22,6 +24,7 @@ describe Exports::Reports::ReportDataExport do
       double('factor', id: 1,
                        name: 'Test factor',
                        parent_id: nil,
+                       aliases: aliases,
                        sub_factor_ids: [2, 3],
                        factors_norms: [factors_norm])
     end
@@ -53,6 +56,7 @@ describe Exports::Reports::ReportDataExport do
       allow(Norm).to          receive(:find).and_return(norm)
       allow(FactorsNorm).to   receive(:find_by!).and_return(factors_norm)
       allow(factors_norm).to  receive(:detect_normed_result).and_return(3)
+      allow(aliases).to  receive(:find_by).and_return(nil)
     end
 
     context '#to_xlsx' do
@@ -68,7 +72,7 @@ describe Exports::Reports::ReportDataExport do
 
       it do
         allow(report_data_export).to receive(:fetch_factor_label).with(factor.id).and_return(factor.name)
-        allow(report_data_export).to receive(:current_level_assigns).and_return(assigns_with_mocked_find_each)
+        allow(report_data_export).to receive(:current_level_assigns).and_return([assign])
         sheet = report_data_export.to_xlsx.workbook.worksheets.first
 
         expect(sheet).to have_cells(['User Details', '', 'Error Detection', '', 'Thriving Index', '']).in_row(0)

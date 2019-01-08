@@ -2,17 +2,22 @@ module Api
   module V1
     class ReportsController < ProjectScopeController
       def index
-        project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids
+        project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids + [project.id]
         membership_ids = user.memberships.where(client_id: project_campaign_ids).ids
-        assigns = Assign.includes(:assessment, assigns_reports: :report).where(membership_id: membership_ids)
-
-        render json: assigns.flat_map(&:assigns_reports).uniq { |r| r.report.id }.map { |r| Api::V1::AssignReportSerializer.new(r).to_h }
+        # We fetch all assigns from (sub)campaigns and filter project assigns
+        assigns = Assign.includes(project_assign: :assessment, assigns_reports: { report: :assessments }).
+          where(membership_id: membership_ids).
+          where.not(project_assign_id: nil)
+        render json: assigns.flat_map(&:assigns_reports).
+          uniq { |r| r.report.id }.
+          map { |r| Api::V1::AssignReportSerializer.new(r, assigns: assigns.index_by(&:assessment_id)).to_h }
       end
 
       def results
-        report
-        # TODO (atanych): awating https://gitlab.com/tte-lighthouse/psychometrics/issues/37
-        render json: { any: :any }
+        assigns = Assign.completed.where(membership_id: project_membership, project_assign_id: nil, assessment_id: report.assessment_ids)
+        ::Reports::BuildResults.call(report, assigns) do
+          on(:ok) { |results| render json: results }
+        end
       end
 
       def pdf
