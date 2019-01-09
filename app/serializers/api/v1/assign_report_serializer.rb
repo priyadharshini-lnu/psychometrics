@@ -15,7 +15,10 @@ module Api
       end
 
       def assessments
-        object.report.assessment_ids.map { |id| Api::V1::AssignSerializer.new(instance_options[:assigns][id].project_assign).to_h }
+        object.report.assessment_ids.map do |id|
+          assign = instance_options[:assigns][id]
+          assign ? Api::V1::AssignSerializer.new(assign.project_assign).to_h : nil
+        end.compact
       end
     end
   end

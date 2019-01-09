@@ -15,9 +15,7 @@ module Api
 
       def results
         assigns = Assign.completed.where(membership_id: project_membership, project_assign_id: nil, assessment_id: report.assessment_ids)
-        ::Reports::BuildResults.call(report, assigns) do
-          on(:ok) { |results| render json: results }
-        end
+        render json: ::Reports::BuildResults.call(report, assigns)
       end
 
       def pdf

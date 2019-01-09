@@ -58,9 +58,9 @@ describe Reports::BuildResults do
       allow(aliases).to  receive(:find_by).and_return(nil)
     end
 
-    context '#user_data' do
+    context 'UserData' do
       let(:data) { { 'key' => 'first_name', 'label' => 'First Name' } }
-      subject { build_results_command.user_data(data) }
+      subject { Reports::ResultTypes::UserData.call(build_results_command, data) }
 
       it { is_expected.to eq(key: 'first_name', name: 'First Name', value: user.first_name) }
       context 'when data is not valid' do
@@ -71,9 +71,9 @@ describe Reports::BuildResults do
       end
     end
 
-    context '#external_result' do
+    context 'ExternalResults' do
       let(:data) { { 'key' => 'ed.attempted', 'assessmentId' => 1, 'label' => 'Attempted' } }
-      subject { build_results_command.external_result(data) }
+      subject { Reports::ResultTypes::ExternalResults.call(build_results_command, data) }
 
       it { is_expected.to eq(key: 'ed.attempted', name: 'Attempted', value: external_results['ed.attempted']) }
 
@@ -89,9 +89,9 @@ describe Reports::BuildResults do
       end
     end
 
-    context '#normed_factor' do
+    context 'NormedFactor' do
       let(:data) { { 'assessmentId' => 1, 'factorId' => 1 } }
-      subject { build_results_command.normed_factor(data) }
+      subject { Reports::ResultTypes::NormedFactor.call(build_results_command, data) }
 
       it do
         expect(factors_norm).to receive(:detect_normed_result).with(scoring['1']['results'])
@@ -123,9 +123,9 @@ describe Reports::BuildResults do
       end
     end
 
-    context '#formula' do
+    context 'Formula' do
       let(:data) { {} }
-      subject { build_results_command.formula(data) }
+      subject { Reports::ResultTypes::Formula.call(build_results_command, data) }
 
       it 'data is blank' do
         is_expected.to eq(key: nil, name: nil, value: nil)
@@ -134,7 +134,7 @@ describe Reports::BuildResults do
       context 'normal flow' do
         before(:each) do
           allow(data).to receive(:dig).with('formula', 'args').and_return([{ 'type' => 'normed_factor' }])
-          allow_any_instance_of(::Reports::BuildResults).to receive(:normed_factor).and_return({ value: [1, 2, 3] })
+          allow(Reports::ResultTypes::NormedFactor).to receive(:call).and_return({ value: [1, 2, 3] })
         end
         it 'AVERAGE' do
           allow(data).to receive(:dig).with('formula', 'op').and_return('AVERAGE')
