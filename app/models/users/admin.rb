@@ -36,6 +36,9 @@
 #
 
 module Users
-  class Admin < Regular
+  class Admin < User
+    def scope
+      :user
+    end
   end
 end
