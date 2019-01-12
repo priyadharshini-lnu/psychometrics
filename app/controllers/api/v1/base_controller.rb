@@ -15,7 +15,12 @@ module Api
       end
 
       def current_user
-        @current_user ||= api_key&.membership&.user
+        @current_user ||=
+          begin
+            u = api_key.user
+            raise Errors::ApiError, "User for api token not found" if u.nil? || u.disabled
+            u
+          end
       end
 
       def current_client
