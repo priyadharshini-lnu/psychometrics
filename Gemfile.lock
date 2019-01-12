@@ -549,7 +549,7 @@ GEM
       execjs
       railties (>= 3.2)
       tilt
-    rectify (0.10.0)
+    rectify (0.13.0)
       activemodel (>= 4.1.0)
       activerecord (>= 4.1.0)
       activesupport (>= 4.1.0)
@@ -822,7 +822,7 @@ DEPENDENCIES
   rails-assets-x-editable (= 1.5.0)!
   ransack (~> 1.8.2)
   react-rails (~> 1.10.0)
-  rectify (~> 0.10.0)
+  rectify (~> 0.13.0)
   redis
   reform-rails (~> 0.1.7)
   remotipart (~> 1.2)

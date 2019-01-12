@@ -2829,13 +2829,6 @@ CREATE UNIQUE INDEX index_assessments_clients_on_client_id_and_assessment_id ON 
 
 
 --
--- Name: index_api_keys_on_token; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_api_keys_on_token ON public.api_keys USING btree (token);
-
-
---
 -- Name: index_assessments_on_dimension_id; Type: INDEX; Schema: public; Owner: -
 --
 

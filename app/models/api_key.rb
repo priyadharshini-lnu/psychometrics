@@ -1,5 +1,5 @@
 class ApiKey < ApplicationRecord
-  belongs_to :membership
+  belongs_to :user
 
   scope :active, -> { where(active: true) }
 end
