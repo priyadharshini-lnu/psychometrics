@@ -22,6 +22,14 @@ module Administration
       @user.is?(:superadmin, :client_admin, :project_admin)
     end
 
+    def new_step_1?
+      create?
+    end
+
+    def new_step_2?
+      create?
+    end
+
     def create_client_admin?
       @user.is?(:superadmin) || (@user.is?(:client_admin) &&  @user.has_grant?(:clients, :manage))
     end

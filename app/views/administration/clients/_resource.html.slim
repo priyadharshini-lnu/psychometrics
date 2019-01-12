@@ -17,7 +17,7 @@ tbody data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(reso
       = resource.decorate.client_admins(current_user)
       - if policy(:membership).create_client_admin?
         .add-icon-box
-          = link_to new_administration_client_client_admin_path(resource), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
+          = link_to new_step_1_administration_client_client_admins_path(resource), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
             span.fa.fa-plus
     td rowspan=rowspan = resource.account_manager&.decorate&.display_name
     td rowspan=rowspan = resource.project_manager&.decorate&.display_name

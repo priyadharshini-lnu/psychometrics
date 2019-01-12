@@ -23,6 +23,7 @@ en:
   'yes': 'Yes'
   'no': 'No'
   'clear_filter': 'Clear Filter'
+  next: Next
   languages:
     en: 'English'
     en-GB: 'English - UK'

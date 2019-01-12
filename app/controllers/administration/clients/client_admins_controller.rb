@@ -24,7 +24,16 @@ module Administration
         add_breadcrumb t('.breadcrumb')
       end
 
-      def new
+      def new_step_1
+        @form = Administration::Users::FetchUserForm.new
+        render 'new', locals: { form: 'fetch_user_form' }
+      end
+
+      def new_step_2
+        @form = Administration::Users::FetchUserForm.from_params(params)
+        return render 'new', locals: { form: 'fetch_user_form' } if @form.invalid?
+
+        @user = Users::Admin.find_or_create_by
         @_resource = resource_class.new
         # Assign grants to new user
         @_resource.build_user
