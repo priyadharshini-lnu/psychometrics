@@ -1,22 +1,22 @@
-- norms_view_id = dom_id(u.object, :norms_view)
-- norms_manage_id = dom_id(u.object, :norms_manage)
-- dimensions_view_id = dom_id(u.object, :dimensions_view)
-- dimensions_manage_id = dom_id(u.object, :dimensions_manage)
-- assessments_view_id = dom_id(u.object, :assessments_view)
-- assessments_manage_id = dom_id(u.object, :assessments_manage)
-- assessments_assign_id = dom_id(u.object, :assessments_assign)
-- translations_export_id = dom_id(u.object, :translations_export)
-- translations_import_id = dom_id(u.object, :translations_import)
-- questions_view_id = dom_id(u.object, :questions_view)
-- questions_manage_id = dom_id(u.object, :questions_manage)
-- libraries_view_id = dom_id(u.object, :libraries_view)
-- libraries_manage_id = dom_id(u.object, :libraries_manage)
-- communications_view_id = dom_id(u.object, :communications_view)
-- communications_manage_id = dom_id(u.object, :communications_manage)
-- reports_view_id = dom_id(u.object, :reports_view)
-- reports_manage_id = dom_id(u.object, :reports_manage)
+- norms_view_id = dom_id(u, :norms_view)
+- norms_manage_id = dom_id(u, :norms_manage)
+- dimensions_view_id = dom_id(u, :dimensions_view)
+- dimensions_manage_id = dom_id(u, :dimensions_manage)
+- assessments_view_id = dom_id(u, :assessments_view)
+- assessments_manage_id = dom_id(u, :assessments_manage)
+- assessments_assign_id = dom_id(u, :assessments_assign)
+- translations_export_id = dom_id(u, :translations_export)
+- translations_import_id = dom_id(u, :translations_import)
+- questions_view_id = dom_id(u, :questions_view)
+- questions_manage_id = dom_id(u, :questions_manage)
+- libraries_view_id = dom_id(u, :libraries_view)
+- libraries_manage_id = dom_id(u, :libraries_manage)
+- communications_view_id = dom_id(u, :communications_view)
+- communications_manage_id = dom_id(u, :communications_manage)
+- reports_view_id = dom_id(u, :reports_view)
+- reports_manage_id = dom_id(u, :reports_manage)
 
-= hidden_field_tag 'resource[user_attributes][grants]{}'
+= hidden_field_tag 'resource[grants_attributes][data]{}'
 table.table.grants-table
   thead
     tr
@@ -29,15 +29,15 @@ table.table.grants-table
         td.text-nowrap
           - if policy(:user).manage_grants_for_action?('assessments', 'view')
             label
-              = check_box_tag 'resource[user_attributes][grants][assessments][]',
-                      'view', u.object.has_grant?(:assessments, :view), id: assessments_view_id,
+              = check_box_tag 'resource[grants_attributes][data][assessments][]',
+                      'view', u.has_grant?(:assessments, :view), id: assessments_view_id,
                       data: { turn_off: [assessments_manage_id, assessments_assign_id],
                               turn_off_if: [{ ids: [translations_export_id, translations_import_id], disabled: [reports_view_id] }] }
               i.fa.fa-eye title='View'
           - if policy(:user).manage_grants_for_action?('assessments', 'assign')
             label
-              = check_box_tag 'resource[user_attributes][grants][assessments][]',
-                      'assign', u.object.has_grant?(:assessments, :assign), id: assessments_assign_id, data: { turn_on: [assessments_view_id] }
+              = check_box_tag 'resource[grants_attributes][data][assessments][]',
+                      'assign', u.has_grant?(:assessments, :assign), id: assessments_assign_id, data: { turn_on: [assessments_view_id] }
               i.fa.fa-user-plus title='Assign'
     - if policy(:user).manage_grants_for_actions?('assessments', ['export', 'import'])
       tr
@@ -45,13 +45,13 @@ table.table.grants-table
         td.text-nowrap
           - if policy(:user).manage_grants_for_action?('assessments', 'export')
             label
-              = check_box_tag 'resource[user_attributes][grants][assessments][]',
-                      'export', u.object.has_grant?(:assessments, :export), id: dom_id(u.object, :assessments_export)
+              = check_box_tag 'resource[grants_attributes][data][assessments][]',
+                      'export', u.has_grant?(:assessments, :export), id: dom_id(u, :assessments_export)
               i.fa.fa-upload
           - if policy(:user).manage_grants_for_action?('assessments', 'import')
             label
-              = check_box_tag 'resource[user_attributes][grants][assessments][]',
-                      'import', u.object.has_grant?(:assessments, :import), id: dom_id(u.object, :assessments_import)
+              = check_box_tag 'resource[grants_attributes][data][assessments][]',
+                      'import', u.has_grant?(:assessments, :import), id: dom_id(u, :assessments_import)
               i.fa.fa-download
     - if policy(:user).manage_grants_for_actions?('clients', ['manage'])
       tr
@@ -59,8 +59,8 @@ table.table.grants-table
         td.text-nowrap
           - if policy(:user).manage_grants_for_action?('clients', 'manage')
             label
-              = check_box_tag 'resource[user_attributes][grants][clients][]',
-                      'manage', u.object.has_grant?(:clients, :manage), id: dom_id(u.object, :clients_manage)
+              = check_box_tag 'resource[grants_attributes][data][clients][]',
+                      'manage', u.has_grant?(:clients, :manage), id: dom_id(u, :clients_manage)
               i.fa.fa-pencil title='Manage'
     - if policy(:user).manage_grants_for_actions?('communications', ['view', 'manage'])
       tr
@@ -68,19 +68,19 @@ table.table.grants-table
         td.text-nowrap
           - if policy(:user).manage_grants_for_action?('communications', 'view')
             label
-              = check_box_tag 'resource[user_attributes][grants][communications][]',
-                      'view', u.object.has_grant?(:communications, :view), id: communications_view_id, data: { turn_off: [communications_manage_id] }
+              = check_box_tag 'resource[grants_attributes][data][communications][]',
+                      'view', u.has_grant?(:communications, :view), id: communications_view_id, data: { turn_off: [communications_manage_id] }
               i.fa.fa-eye title='View'
           - if policy(:user).manage_grants_for_action?('communications', 'manage')
             label
-              = check_box_tag 'resource[user_attributes][grants][communications][]',
-                      'manage', u.object.has_grant?(:communications, :manage), id: communications_manage_id, data: { turn_on: [communications_view_id] }
+              = check_box_tag 'resource[grants_attributes][data][communications][]',
+                      'manage', u.has_grant?(:communications, :manage), id: communications_manage_id, data: { turn_on: [communications_view_id] }
               i.fa.fa-pencil title='Manage'
     - if policy(:user).manage_grants_for_action?('assigns', 'view')
       tr
         td Overview Reports
         td.text-nowrap
           label
-            = check_box_tag 'resource[user_attributes][grants][assigns][]',
-                    'view', u.object.has_grant?(:assigns, :view), id: dom_id(u.object, :assigns_view)
+            = check_box_tag 'resource[grants_attributes][data][assigns][]',
+                    'view', u.has_grant?(:assigns, :view), id: dom_id(u, :assigns_view)
             i.fa.fa-eye title='View'
