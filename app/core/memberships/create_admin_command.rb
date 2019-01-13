@@ -1,7 +1,5 @@
 module Memberships
   class CreateAdminCommand < Rectify::Command
-    include Pundit
-    include Administration::Policies
     attr_reader :membership, :role, :client, :creator
 
     def initialize(membership, client, creator, role)
@@ -25,10 +23,10 @@ module Memberships
           u.created_by_id = creator.id
           u.modified_by_id = creator.id
           u.role = 'Users::Admin'
+          u.invite!(creator, client.id)
         end
       end
       if membership.save
-        membership.user.invite!(creator, client.id)
         broadcast :ok, membership
       else
         broadcast :invalid

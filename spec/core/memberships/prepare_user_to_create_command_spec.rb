@@ -1,9 +1,6 @@
 require 'rails_helper'
 
 describe Memberships::PrepareUserToCreateCommand do
-  # let(:assessment) { create(:assessment) }
-  # let(:client_id) { 0 }
-  # let(:exporter) { Exports::Assessments::AssessmentResultsExport.new(assessment, client_id) }
 
   describe '.call' do
     it "returns prepared membership with new user" do
