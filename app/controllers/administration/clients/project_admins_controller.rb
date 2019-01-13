@@ -49,29 +49,10 @@ module Administration
       end
 
       def create
-        @_resource = resource_class.new(create_resource_params)
-        resource.client = policy_scope(Client).where(id: client.id).take
-        resource.role = Membership::PROJECT_ADMIN_ROLE
-
-        user = ::Users::Admin.find_by(email: resource.user&.email, project_id: nil)
-        if user
-          resource.user = user
-          resource.user.assign_attributes(create_resource_params[:user_attributes])
-        end
-
-        resource.user.tap do |u|
-          u.create_by_invite = true
-          u.created_by_id = current_user.id
-          u.modified_by_id = current_user.id
-          u.role = 'Users::Admin'
-        end
-
-        respond_to do |format|
-          if resource.save
-            resource.user.invite!(current_user, client.id)
-            format.js
-          else
-            format.js { render :new, locals: { is_new: true } }
+        Memberships::CreateAdminCommand.call(resource_class.new(create_resource_params), client, current_user, Membership::PROJECT_ADMIN_ROLE) do
+          on(:invalid) { render :new, locals: { is_new: true } }
+          on(:ok) do |res|
+            self.resource = res
           end
         end
       end
