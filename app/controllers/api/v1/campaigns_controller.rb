@@ -1,6 +1,6 @@
 module Api
   module V1
-    class CampaignsController < ProjectScopeController
+    class CampaignsController < BaseController
       def duplicate
         form = Api::V1::Campaigns::DuplicateForm.from_params(params)
         return render_form_errors(form) if form.invalid?

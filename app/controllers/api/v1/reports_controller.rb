@@ -1,6 +1,6 @@
 module Api
   module V1
-    class ReportsController < ProjectScopeController
+    class ReportsController < BaseController
       def index
         project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids + [project.id]
         membership_ids = user.memberships.where(client_id: project_campaign_ids).ids
@@ -15,7 +15,7 @@ module Api
 
       def results
         assigns = Assign.completed.where(membership_id: project_membership, project_assign_id: nil, assessment_id: report.assessment_ids)
-        render json: ::Reports::BuildResults.call(report, assigns)
+        render json: ::Reports::BuildResults.call(report, assigns)[:ok]
       end
 
       def pdf

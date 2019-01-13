@@ -37,6 +37,25 @@ module Api
           end
       end
 
+      def project
+        @project ||=
+          begin
+            if current_user.superadmin?
+              Client.projects.find_by(id: params[:project_id])
+            else
+              memberships = current_user.memberships
+              project_admin_memberships = memberships.select(&:role_project_admin?)
+              client_admin_memberships = memberships.select(&:client_project_admin?)
+              project_ids = project_admin_memberships.map(&:client_id)
+              client_ids = client_admin_memberships.map(&:client_id)
+              binding.pry
+              p = Client.projects.where(id: project_ids, ansestry: client_ids).find_by(id: params[:project_id])
+              raise Errors::ApiError, "Project with id=#{params[:project_id]} is not found" unless p
+              p
+            end
+          end
+      end
+
       def project_membership
         user.project_membership
       end

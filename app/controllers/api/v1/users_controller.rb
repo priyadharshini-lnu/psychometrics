@@ -1,6 +1,6 @@
 module Api
   module V1
-    class UsersController < ProjectScopeController
+    class UsersController < BaseController
       def create
         form = Api::V1::Users::CreateForm.from_params(params[:user].merge(project: project))
         return render_form_errors(form) if form.invalid?
