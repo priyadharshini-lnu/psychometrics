@@ -54,7 +54,7 @@ SET default_with_oids = false;
 
 CREATE TABLE public.api_keys (
     id bigint NOT NULL,
-    membership_id bigint NOT NULL,
+    user_id bigint NOT NULL,
     active boolean,
     token character varying,
     created_at timestamp without time zone NOT NULL,
@@ -1095,6 +1095,38 @@ ALTER SEQUENCE public.licenses_id_seq OWNED BY public.licenses.id;
 
 
 --
+-- Name: membership_grants; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.membership_grants (
+    id bigint NOT NULL,
+    membership_id bigint,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: membership_grants_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.membership_grants_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: membership_grants_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.membership_grants_id_seq OWNED BY public.membership_grants.id;
+
+
+--
 -- Name: memberships; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2055,6 +2087,13 @@ ALTER TABLE ONLY public.licenses ALTER COLUMN id SET DEFAULT nextval('public.lic
 
 
 --
+-- Name: membership_grants id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.membership_grants ALTER COLUMN id SET DEFAULT nextval('public.membership_grants_id_seq'::regclass);
+
+
+--
 -- Name: memberships id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2427,6 +2466,14 @@ ALTER TABLE ONLY public.licenses
 
 
 --
+-- Name: membership_grants membership_grants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.membership_grants
+    ADD CONSTRAINT membership_grants_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: memberships memberships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2595,17 +2642,17 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: index_api_keys_on_membership_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_api_keys_on_membership_id ON public.api_keys USING btree (membership_id);
-
-
---
 -- Name: index_api_keys_on_token; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX index_api_keys_on_token ON public.api_keys USING btree (token);
+
+
+--
+-- Name: index_api_keys_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
 
 
 --
@@ -3008,6 +3055,13 @@ CREATE UNIQUE INDEX index_licenses_on_client_id_and_report_family_id ON public.l
 
 
 --
+-- Name: index_membership_grants_on_membership_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_membership_grants_on_membership_id ON public.membership_grants USING btree (membership_id);
+
+
+--
 -- Name: index_memberships_on_ancestry; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3356,14 +3410,6 @@ ALTER TABLE ONLY public.licenses
 
 
 --
--- Name: api_keys fk_rails_15f2e97278; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.api_keys
-    ADD CONSTRAINT fk_rails_15f2e97278 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
-
-
---
 -- Name: assigns fk_rails_1b51e2cce0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3385,6 +3431,14 @@ ALTER TABLE ONLY public.memberships
 
 ALTER TABLE ONLY public.communication_emails
     ADD CONSTRAINT fk_rails_2a329ed34d FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: api_keys fk_rails_32c28d0dc2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT fk_rails_32c28d0dc2 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -3569,6 +3623,14 @@ ALTER TABLE ONLY public.assigns_reports
 
 ALTER TABLE ONLY public.communications
     ADD CONSTRAINT fk_rails_9635882d64 FOREIGN KEY (campaign_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: membership_grants fk_rails_98668bfd47; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.membership_grants
+    ADD CONSTRAINT fk_rails_98668bfd47 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
 
 
 --
@@ -3968,6 +4030,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181119095817'),
 ('20181224184633'),
 ('20190101143027'),
-('20190105160407');
+('20190105160407'),
+('20190113180725');
 
 

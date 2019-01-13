@@ -1,43 +1,18 @@
-.modal-body
-  .radio-switch.clearfix
-    span.radio
-      label[for="existing-user"]
-        input#existing-user.radio_buttons.optional[type="radio" value="false" checked=!is_new name="new_admin" data-target="#existing-inputs"]
-        span= t('.choose_admin')
-    span.radio
-      label[for="new-user"]
-        input#new-user.radio_buttons.optional[type="radio" value="true" checked=is_new name="new_admin" data-target="#new-user-inputs"]
-        span= t('.create_admin')
-.radio-tabs
-  #existing-inputs.tab class=('active' if !is_new)
-    = form_tag({action: :assign_multiple}, remote: true) do |f|
-      .modal-body
-        - binding.pry
-        = select_tag :client_admin_ids,
-                options_for_select(User.client_admins.distinct.map{ |u| [u.decorate.display_name, u.id] }, selected: client.client_admin_ids),
-                class: 'form-control select',
-                multiple: true,
-                include_blank: false
-      .modal-footer
-        .btn-group
-          = button_tag t('administration.save'), type: 'submit', class: 'btn btn-default btn-info'
-          a.btn.btn-default data-dismiss='modal' = t 'administration.close'
-  #new-user-inputs.tab class=('active' if is_new)
-    = simple_form_for(resource, as: :resource, url: { action: :create }, remote: true) do |f|
-      .modal-body
-        = render_error_notification(resource)
-        .form-inputs.clearfix
-          = f.simple_fields_for :user, f.object.user || User.new  do |u|
-            = u.input :email
-            = u.input :first_name
-            = u.input :last_name
-          = f.input :parent_id,
-                  collection: client.memberships.join_user,
-                  label_method: lambda { |u| u.decorate.display_name },
-                  input_html: { data: { live_search: true } }
-          = f.simple_fields_for :user do |u|
-            = render partial: 'grants', locals: { u: u }
-      .modal-footer
-        .btn-group
-          = f.button :submit, t('administration.create'), class: 'btn-info'
-          a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+= simple_form_for(resource, as: :resource, url: { action: :create }, remote: true) do |f|
+  .modal-body
+    = render_error_notification(resource)
+    .form-inputs.clearfix
+      = f.simple_fields_for :user, f.object.user  do |u|
+        = u.input :email, readonly: true
+        = u.input :first_name, readonly: u.object.persisted?
+        = u.input :last_name, readonly: u.object.persisted?
+      = f.input :parent_id,
+              collection: client.memberships.join_user,
+              label_method: lambda { |u| u.decorate.display_name },
+              input_html: { data: { live_search: true } }
+      = f.simple_fields_for :grants do |grants|
+        = render partial: 'grants', locals: { grants: grants, u: resource.user }
+    .modal-footer
+      .btn-group
+        = f.button :submit, t('administration.create'), class: 'btn-info'
+        a.btn.btn-default data-dismiss='modal' = t 'administration.close'

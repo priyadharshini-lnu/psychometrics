@@ -25,46 +25,26 @@ module Administration
       end
 
       def new_step_1
-        @form = Administration::Users::FetchUserForm.new
+        @form = Memberships::PrepareUserForm.new
         render 'new', locals: { form: 'fetch_user_form' }
       end
 
       def new_step_2
-        @form = Administration::Users::FetchUserForm.from_params(params)
-        return render 'new', locals: { form: 'fetch_user_form' } if @form.invalid?
-
-        @user = Users::Admin.find_or_create_by
-        @_resource = resource_class.new
-        # Assign grants to new user
-        @_resource.build_user
-        @_resource.user.grants = current_user.is?(:client_admin) ? current_user.grants : User::DEFAULT_ADMIN_GRANTS
-        render 'new', locals: { is_new: false }
+        @form = Memberships::PrepareUserForm.from_params(params)
+        Memberships::PrepareUserToCreateCommand.call(@form, User::DEFAULT_ADMIN_GRANTS) do
+          on(:invalid) { render 'new', locals: { form: 'fetch_user_form' } }
+          on(:ok) do |res|
+            self.resource = res
+            render 'new', locals: { is_new: false }
+          end
+        end
       end
 
       def create
-        @_resource = resource_class.new(create_resource_params)
-        resource.client = policy_scope(Client).where(id: client.id).take
-        resource.role = Membership::CLIENT_ADMIN_ROLE
-
-        user = ::Users::Admin.find_by(email: resource.user&.email, project_id: nil)
-        if user
-          resource.user = user
-          resource.user.assign_attributes(create_resource_params[:user_attributes])
-        end
-
-        resource.user.tap do |u|
-          u.create_by_invite = true
-          u.created_by_id = current_user.id
-          u.modified_by_id = current_user.id
-          u.role = 'Users::Admin'
-        end
-
-        respond_to do |format|
-          if resource.save
-            resource.user.invite!(current_user, client.id)
-            format.js
-          else
-            format.js { render :new, locals: { is_new: true } }
+        Memberships::CreateAdminCommand.call(resource_class.new(create_resource_params), client, current_user, Membership::CLIENT_ADMIN_ROLE) do
+          on(:invalid) { render :new, locals: { is_new: true } }
+          on(:ok) do |res|
+            self.resource = res
           end
         end
       end

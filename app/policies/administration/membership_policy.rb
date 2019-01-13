@@ -4,7 +4,7 @@ module Administration
     UPDATE_PARAMETERS = [:parent_id, :role, hris_data: [:key, :value]].freeze
     USER_PARAMETERS = [:first_name, :last_name, :email].freeze
     UPDATE_USER_PARAMETERS = [:id, USER_PARAMETERS].flatten.freeze
-    GRANT_PARAMETERS = [grants: [
+    GRANT_PARAMETERS = [data: [
         norms: [],
         dimensions: [],
         clients: [],
@@ -43,7 +43,7 @@ module Administration
     end
 
     def permitted_attributes_for_create
-      CREATE_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
+      CREATE_PARAMETERS + [user_attributes: [USER_PARAMETERS], grants_attributes: [GRANT_PARAMETERS].flatten]
     end
 
     def permitted_attributes_for_update

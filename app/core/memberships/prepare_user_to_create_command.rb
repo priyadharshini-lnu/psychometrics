@@ -1,0 +1,18 @@
+module Memberships
+  class PrepareUserToCreateCommand < Rectify::Command
+    attr_reader :form, :grants
+
+    def initialize(form, grants)
+      @form = form
+      @grants = grants
+    end
+
+    def call
+      return broadcast :invalid if form.invalid?
+      user = Users::Admin.find_or_create_by(email: form.email)
+      membership = Membership.new(user: user)
+      membership.build_grants(data: grants)
+      broadcast :ok, membership
+    end
+  end
+end

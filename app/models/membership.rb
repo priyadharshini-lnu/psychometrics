@@ -55,6 +55,9 @@ class Membership < ApplicationRecord
   has_many :clients_reports, through: :clients_assigns, source: :reports
   has_one :original_membership, foreign_key: :project_membership_id, class_name: 'Membership'
   has_one :hogan_credential
+  has_one :grants, class_name: 'MembershipGrant'
+  accepts_nested_attributes_for :grants
+
   has_many :privacy_consents
 
   has_many :reports_accesses
