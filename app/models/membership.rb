@@ -38,7 +38,6 @@ class Membership < ApplicationRecord
 
   enum role: MEMBERSHIP_ROLES
   delegate :is_anonym?, to: :user
-  delegate :has_grant?, to: :grants
 
   belongs_to :client
   belongs_to :user, inverse_of: :memberships, touch: true
@@ -160,6 +159,11 @@ class Membership < ApplicationRecord
   def accepted_privacy?
     # TODO (atanych): this logic will be broken when we add new types of consents
     privacy_consents.take.present?
+  end
+
+  def has_grant?(scope, grant)
+    return false unless grants
+    grants.has_grant?(scope, grant)
   end
 
   private

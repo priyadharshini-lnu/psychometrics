@@ -193,10 +193,8 @@ class User < ApplicationRecord
     end
   end
 
-  # TODO (atanych): refactor
   def has_grant?(scope, grant)
-    return false if grants.nil?
-    !!grants[scope.to_s]&.index(grant.to_s)
+    memberships.any? { |m| m.has_grant?(scope, grant) }
   end
 
   private

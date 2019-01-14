@@ -23,7 +23,6 @@ table.table.grants-table
       th Entity
       th.actions Privileges
   tbody
-    - binding.pry
     - if policy(:membership).manage_grants_for_actions?('norms', ['view', 'assign'], client: client)
       tr
         td Norms
