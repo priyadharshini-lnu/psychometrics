@@ -23,60 +23,60 @@ table.table.grants-table
       th Entity
       th.actions Privileges
   tbody
-    - if policy(:user).manage_grants_for_actions?('assessments', ['view', 'assign'])
+    - if policy(:membership).manage_grants_for_actions?('assessments', ['view', 'assign'], project: project)
       tr
         td Assessments
         td.text-nowrap
-          - if policy(:user).manage_grants_for_action?('assessments', 'view')
+          - if policy(:membership).manage_grants_for_action?('assessments', 'view', project: project)
             label
               = check_box_tag 'resource[grants_attributes][data][assessments][]',
                       'view', resource.has_grant?(:assessments, :view), id: assessments_view_id,
                       data: { turn_off: [assessments_manage_id, assessments_assign_id],
                               turn_off_if: [{ ids: [translations_export_id, translations_import_id], disabled: [reports_view_id] }] }
               i.fa.fa-eye title='View'
-          - if policy(:user).manage_grants_for_action?('assessments', 'assign')
+          - if policy(:membership).manage_grants_for_action?('assessments', 'assign', project: project)
             label
               = check_box_tag 'resource[grants_attributes][data][assessments][]',
                       'assign', resource.has_grant?(:assessments, :assign), id: assessments_assign_id, data: { turn_on: [assessments_view_id] }
               i.fa.fa-user-plus title='Assign'
-    - if policy(:user).manage_grants_for_actions?('assessments', ['export', 'import'])
+    - if policy(:membership).manage_grants_for_actions?('assessments', ['export', 'import'], project: project)
       tr
         td Data Centre (Exporting Assessment / Report data sets)
         td.text-nowrap
-          - if policy(:user).manage_grants_for_action?('assessments', 'export')
+          - if policy(:membership).manage_grants_for_action?('assessments', 'export', project: project)
             label
               = check_box_tag 'resource[grants_attributes][data][assessments][]',
                       'export', resource.has_grant?(:assessments, :export), id: dom_id(u, :assessments_export)
               i.fa.fa-upload
-          - if policy(:user).manage_grants_for_action?('assessments', 'import')
+          - if policy(:membership).manage_grants_for_action?('assessments', 'import', project: project)
             label
               = check_box_tag 'resource[grants_attributes][data][assessments][]',
                       'import', resource.has_grant?(:assessments, :import), id: dom_id(u, :assessments_import)
               i.fa.fa-download
-    - if policy(:user).manage_grants_for_actions?('clients', ['manage'])
+    - if policy(:membership).manage_grants_for_actions?('clients', ['manage'], project: project)
       tr
         td Campaigns & Sub-Campaigns
         td.text-nowrap
-          - if policy(:user).manage_grants_for_action?('clients', 'manage')
+          - if policy(:membership).manage_grants_for_action?('clients', 'manage', project: project)
             label
               = check_box_tag 'resource[grants_attributes][data][clients][]',
                       'manage', resource.has_grant?(:clients, :manage), id: dom_id(u, :clients_manage)
               i.fa.fa-pencil title='Manage'
-    - if policy(:user).manage_grants_for_actions?('communications', ['view', 'manage'])
+    - if policy(:membership).manage_grants_for_actions?('communications', ['view', 'manage'], project: project)
       tr
         td Communication Centre
         td.text-nowrap
-          - if policy(:user).manage_grants_for_action?('communications', 'view')
+          - if policy(:membership).manage_grants_for_action?('communications', 'view', project: project)
             label
               = check_box_tag 'resource[grants_attributes][data][communications][]',
                       'view', resource.has_grant?(:communications, :view), id: communications_view_id, data: { turn_off: [communications_manage_id] }
               i.fa.fa-eye title='View'
-          - if policy(:user).manage_grants_for_action?('communications', 'manage')
+          - if policy(:membership).manage_grants_for_action?('communications', 'manage', project: project)
             label
               = check_box_tag 'resource[grants_attributes][data][communications][]',
                       'manage', resource.has_grant?(:communications, :manage), id: communications_manage_id, data: { turn_on: [communications_view_id] }
               i.fa.fa-pencil title='Manage'
-    - if policy(:user).manage_grants_for_action?('assigns', 'view')
+    - if policy(:membership).manage_grants_for_action?('assigns', 'view', project: project)
       tr
         td Overview Reports
         td.text-nowrap

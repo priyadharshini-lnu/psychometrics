@@ -54,9 +54,25 @@ module Administration
       end
     end
 
+    def manage_grants_for_action?(resource, action, project: nil, client: nil)
+      @user.is?(:superadmin) || related_memberships(project, client).any? { |m| m.has_grant?(resource, action) }
+    end
+
+    def manage_grants_for_actions?(resource, actions, project: nil, client: nil)
+      return true if @user.is?(:superadmin)
+
+      related_memberships(project, client).any? { |m| ((m.grants&.data.try(:[], resource) || []) & actions).any? }
+    end
+
     def overview_assigns?
       return false if record.scope == :administration
       @user.is?(:superadmin) || @user.has_grant?(:assigns, :view)
+    end
+
+    def related_memberships(project, client)
+      @related_memberships ||= {}
+      cache_key = "#{project&.id}|#{client&.id}"
+      @related_memberships[cache_key] ||= ::Users::LookupRelatedMembershipsCommand.call(@user, project, client)[:ok]
     end
 
     class Scope < Administration::BasePolicy::Scope
