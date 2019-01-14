@@ -30,14 +30,14 @@ table.table.grants-table
           - if policy(:user).manage_grants_for_action?('assessments', 'view')
             label
               = check_box_tag 'resource[grants_attributes][data][assessments][]',
-                      'view', u.has_grant?(:assessments, :view), id: assessments_view_id,
+                      'view', resource.has_grant?(:assessments, :view), id: assessments_view_id,
                       data: { turn_off: [assessments_manage_id, assessments_assign_id],
                               turn_off_if: [{ ids: [translations_export_id, translations_import_id], disabled: [reports_view_id] }] }
               i.fa.fa-eye title='View'
           - if policy(:user).manage_grants_for_action?('assessments', 'assign')
             label
               = check_box_tag 'resource[grants_attributes][data][assessments][]',
-                      'assign', u.has_grant?(:assessments, :assign), id: assessments_assign_id, data: { turn_on: [assessments_view_id] }
+                      'assign', resource.has_grant?(:assessments, :assign), id: assessments_assign_id, data: { turn_on: [assessments_view_id] }
               i.fa.fa-user-plus title='Assign'
     - if policy(:user).manage_grants_for_actions?('assessments', ['export', 'import'])
       tr
@@ -46,12 +46,12 @@ table.table.grants-table
           - if policy(:user).manage_grants_for_action?('assessments', 'export')
             label
               = check_box_tag 'resource[grants_attributes][data][assessments][]',
-                      'export', u.has_grant?(:assessments, :export), id: dom_id(u, :assessments_export)
+                      'export', resource.has_grant?(:assessments, :export), id: dom_id(u, :assessments_export)
               i.fa.fa-upload
           - if policy(:user).manage_grants_for_action?('assessments', 'import')
             label
               = check_box_tag 'resource[grants_attributes][data][assessments][]',
-                      'import', u.has_grant?(:assessments, :import), id: dom_id(u, :assessments_import)
+                      'import', resource.has_grant?(:assessments, :import), id: dom_id(u, :assessments_import)
               i.fa.fa-download
     - if policy(:user).manage_grants_for_actions?('clients', ['manage'])
       tr
@@ -60,7 +60,7 @@ table.table.grants-table
           - if policy(:user).manage_grants_for_action?('clients', 'manage')
             label
               = check_box_tag 'resource[grants_attributes][data][clients][]',
-                      'manage', u.has_grant?(:clients, :manage), id: dom_id(u, :clients_manage)
+                      'manage', resource.has_grant?(:clients, :manage), id: dom_id(u, :clients_manage)
               i.fa.fa-pencil title='Manage'
     - if policy(:user).manage_grants_for_actions?('communications', ['view', 'manage'])
       tr
@@ -69,12 +69,12 @@ table.table.grants-table
           - if policy(:user).manage_grants_for_action?('communications', 'view')
             label
               = check_box_tag 'resource[grants_attributes][data][communications][]',
-                      'view', u.has_grant?(:communications, :view), id: communications_view_id, data: { turn_off: [communications_manage_id] }
+                      'view', resource.has_grant?(:communications, :view), id: communications_view_id, data: { turn_off: [communications_manage_id] }
               i.fa.fa-eye title='View'
           - if policy(:user).manage_grants_for_action?('communications', 'manage')
             label
               = check_box_tag 'resource[grants_attributes][data][communications][]',
-                      'manage', u.has_grant?(:communications, :manage), id: communications_manage_id, data: { turn_on: [communications_view_id] }
+                      'manage', resource.has_grant?(:communications, :manage), id: communications_manage_id, data: { turn_on: [communications_view_id] }
               i.fa.fa-pencil title='Manage'
     - if policy(:user).manage_grants_for_action?('assigns', 'view')
       tr
@@ -82,5 +82,5 @@ table.table.grants-table
         td.text-nowrap
           label
             = check_box_tag 'resource[grants_attributes][data][assigns][]',
-                    'view', u.has_grant?(:assigns, :view), id: dom_id(u, :assigns_view)
+                    'view', resource.has_grant?(:assigns, :view), id: dom_id(u, :assigns_view)
             i.fa.fa-eye title='View'

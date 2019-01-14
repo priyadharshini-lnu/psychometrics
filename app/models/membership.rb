@@ -38,6 +38,7 @@ class Membership < ApplicationRecord
 
   enum role: MEMBERSHIP_ROLES
   delegate :is_anonym?, to: :user
+  delegate :has_grant?, to: :grants
 
   belongs_to :client
   belongs_to :user, inverse_of: :memberships, touch: true
@@ -216,6 +217,8 @@ class Membership < ApplicationRecord
       communication.current_memberships_ids.include?(id)
     end
   end
+
+
 
   def client_admin_scope
     # user can be client admin only within one tenancy
