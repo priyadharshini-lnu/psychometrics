@@ -24,6 +24,7 @@ en:
     reports:
       results: "Results"
       load_results: "Load Results: %{report}"
+      processing: "Processing..."
     multiple_report:
       results: "Results"
     assigns_reports:

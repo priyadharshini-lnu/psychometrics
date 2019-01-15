@@ -1,6 +1,7 @@
 domain: lvh.me # psychometrics.co.uk
 subdomain:  # subdomain
 port: 3030
+protocol: 'http'
 assigns:
   mindmill_prefix: TTEDEV
 react_dev:

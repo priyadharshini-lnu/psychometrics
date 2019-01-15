@@ -23,6 +23,9 @@
           = hogan.input :hogan_report_id, as: :select, collection: [], input_html: { multiple: false },
                                           wrapper_html: { class: 'resource_hogan hidden' }, disabled: true
           = hogan.input :load_report, wrapper_html: { class: 'resource_hogan hidden' }, disabled: true
+        = f.input :default_language,
+                  collection: I18n.available_locales.map { |locale| [t("languages.#{locale}"), locale] },
+                  include_blank: false
         = render partial: 'administration/administrator/shared/simple_design', locals: { f: f }
     .modal-footer
       .btn-group

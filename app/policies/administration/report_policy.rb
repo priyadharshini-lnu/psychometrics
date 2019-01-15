@@ -57,6 +57,10 @@ module Administration
       edit?
     end
 
+    def regenerate?
+      @user.is?(:superadmin)
+    end
+
     class Scope < Scope
       def resolve
         scope = super

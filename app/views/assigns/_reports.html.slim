@@ -21,15 +21,19 @@
         - else
           = link_to 'Load Results', results_hogan_assign_path(assign, report_id: report.id), class: 'btn btn-info'
   - else
-    = link_to t('.results'), report_path(report),
-                             class: "btn btn-info #{'disabled' if !assign.completed?}"
+    - if assigns_report.generating?
+      a.btn.btn-warning.disabled = t('.processing')
+    - else
+      = link_to t('.results'), assigns_report.pdf.url,
+                               class: "btn btn-info #{'disabled' if !assign.completed?}",
+                               target: :_blank
   //
   //// END MINDMILL OR COMMON REPORT
 - elsif reports.size > 1
   = dropdown t('.results'), context: :info, button: { class: "#{'disabled' unless assign.completed?}" }
     - reports.each do |report|
       - assigns_report = assign.original_or_self.assigns_reports.find_by(report: report)
-      = content_tag :li
+      = content_tag :li, class: "#{'processing disabled' if assigns_report.generating?}"
         // Don't use link_to helper
         // Because bh gem overwrites this helper for dropdown
         //// MINDMILL OR COMMON REPORT
@@ -47,7 +51,13 @@
             - else
               = content_tag :a, t('.load_results', report: report.name), href: results_hogan_assign_path(assign, report_id: report.id)
         - else
-          = content_tag :a, report.name, href: report_path(report)
+          - if assigns_report.generating?
+            a
+              = report.name
+              span.mlm = t('.processing')
+          - else
+            = content_tag :a, report.name, href:  assigns_report.pdf.url, target: :_blank
+
         //
         //// END MINDMILL OR COMMON REPORT
 - else

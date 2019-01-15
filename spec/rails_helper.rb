@@ -65,6 +65,9 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   # config.filter_gems_from_backtrace("gem name")
 
+  config.before(:each) { Timecop.freeze(Time.local(2018, 9, 15, 9, 31, 42)) }
+  config.after(:each) { Timecop.return }
+
   config.before(:suite) do
     DatabaseCleaner.strategy = :deletion
     DatabaseCleaner.clean_with(:truncation)

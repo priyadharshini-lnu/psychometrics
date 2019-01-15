@@ -1,6 +1,7 @@
 domain: tte-lighthouse.com
 subdomain:
 port: 443
+protocol: 'https'
 assigns:
   mindmill_prefix: TTEPROD
 hogan:

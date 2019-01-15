@@ -9,6 +9,8 @@ en:
         title: "Reports"
         add: Add
         families: Report Bundles
+        bulk_download: 'Bulk Download'
+        regenerate: Regenerate Reports
         tooltips:
           create: Create
         filterrific:
@@ -37,6 +39,8 @@ en:
         error: 'Report #%{id} was not copied.'
       toggle_status:
         successfully: 'Report was successfully updated.'
+      regenerate:
+        successfully: 'Report successfully sent for regeneration'
       form:
         types:
           <<: *types
@@ -47,6 +51,7 @@ en:
         edit: 'Edit Report'
         copy: 'Copy Report'
         destroy: 'Delete Report'
+        regenerate: 'Regenerate Report'
       resource:
         tooltips:
           preview: 'Preview Report'
@@ -68,6 +73,11 @@ en:
               Detach <strong>Report</strong> ?
             body: >
               <p>Are you sure you want to detach this Report?</p>
+          regenerate:
+            title:
+              Regenerate <strong>%{name}</strong>?
+            body:
+              <p>Are you sure you want to regenerate this Report for all Users?</p>
       preview:
         title: 'Preview'
         export_pdf: 'Export to PDF'
@@ -81,4 +91,6 @@ en:
           successfully: 'Report %{name} was successfully deleted from Client.'
         create:
           successfully: 'Report %{name} was successfully created for Client.'
-        bulk_download: 'Bulk Download'
+        regenerates:
+          create:
+            successfully: 'Report(s) successfully sent for regeneration'

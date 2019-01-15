@@ -184,7 +184,6 @@ body {
 .factors_icon {
   border: black 1px solid;
 }
-
 .icon-circle {
   width: 29px;
   height: 29px;
@@ -204,5 +203,16 @@ body {
   .sortable-ghost {
     opacity: 0.4;
     background-color: #F4E2C9;
+  }
+}
+
+#assigns_list {
+  .actions-cell {
+    .report {
+      display: flex !important;
+      .control {
+        margin-left: auto !important;
+      }
+    }
   }
 }
