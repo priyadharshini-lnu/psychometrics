@@ -14,7 +14,7 @@ module Administration
       reports = query(export_params[:client]).call(export_params[:client].id, export_params[:report_ids],
                                                    export_params[:start_date], export_params[:end_date])
       if reports.any?
-        ::BulkReports::ExportAllJob.perform_now(export_params)
+        ::BulkReports::ExportAllJob.perform_later(export_params)
         respond_to do |format|
           format.js
         end
