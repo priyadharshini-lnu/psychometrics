@@ -60,7 +60,6 @@ module Administration
 
     def manage_grants_for_actions?(resource, actions, project: nil, client: nil)
       return true if @user.is?(:superadmin)
-
       related_memberships(project, client).any? { |m| ((m.grants&.data.try(:[], resource) || []) & actions).any? }
     end
 
@@ -72,7 +71,7 @@ module Administration
     def related_memberships(project, client)
       @related_memberships ||= {}
       cache_key = "#{project&.id}|#{client&.id}"
-      @related_memberships[cache_key] ||= ::Users::LookupRelatedMembershipsCommand.call(@user, project, client)[:ok]
+      @related_memberships[cache_key] ||= ::Users::LookupRelatedMembershipsQuery.call(@user, project, client)[:ok]
     end
 
     class Scope < Administration::BasePolicy::Scope

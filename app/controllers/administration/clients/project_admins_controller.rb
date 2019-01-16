@@ -24,14 +24,6 @@ module Administration
         add_breadcrumb t('.breadcrumb')
       end
 
-      def new
-        @_resource = resource_class.new
-        # Assign grants to new user
-        @_resource.build_user
-        @_resource.user.grants = current_user.is?(:client_admin) ? current_user.grants : User::DEFAULT_PROJECT_ADMIN_GRANTS
-        render 'new', locals: { is_new: false }
-      end
-
       def new_step_1
         @form = Memberships::PrepareUserForm.new
         render 'new', locals: { form: 'fetch_user_form' }

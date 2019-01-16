@@ -1,6 +1,6 @@
 module Users
-  class LookupRelatedMembershipsCommand < Rectify::Command
-    attr_reader :user, :project, :client
+  class LookupRelatedMembershipsQuery < Rectify::Command
+    attr_reader :user, :project
 
     def initialize(user, project, client)
       @user = user
@@ -13,6 +13,10 @@ module Users
       memberships.select { |m| m.client_admin? && m.client_id == client&.id }).uniq
 
       broadcast :ok, result
+    end
+
+    def client
+      @client ||= project.client
     end
 
     def memberships

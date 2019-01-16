@@ -22,29 +22,28 @@ feature 'CRUD User' do
         follow_admin_invitation
       end
 
-      context 'with existing client admin' do
-        given(:admin_membership) { create(:project_admin_membership, client: project) }
+      context 'with existing user' do
+        given!(:user) { create(:user, email: 'admin@example.com', role: 'Users::Admin') }
 
-        scenario 'I can choose client admin' do
-          choose_project_admin(project2, admin_membership)
-        end
-      end
-
-      context 'another Client Admin' do
-        given(:admin) { create(:project_admin) }
-
-        scenario 'I cant assign client admin from another tenancy' do
-          create_project_admin(project, email: admin.email, first_name: 'Bob', last_name: 'Duke') do
-            expect(page).to have_css('form#new_resource .alert-danger')
-            expect(page).to have_content(t('activerecord.errors.messages.admin_for_another_tte'))
+        scenario 'I can create new project admin' do
+          create_project_admin(project2, email: 'admin@example.com') do
+            new_admin_membership = Membership.last
+            expect(new_admin_membership.client_id).to eq(project2.id)
+            expect(new_admin_membership.user.id).to eq(user.id)
           end
         end
       end
 
       scenario 'I can create project admin with limit privileges' do
         visit administration_client_projects_path(project.tte)
-        find("#client_#{project.id} td .add-icon-box a[href='#{new_administration_client_project_admin_path(project)}']").click
-        find('label', text: t('administration.clients.project_admins.form.create_admin')).click
+        find("#client_#{project.id} td .add-icon-box a[href='#{new_step_1_administration_client_project_admins_path(project)}']").click
+        wait_for_ajax
+
+        within '.new_prepare_user' do
+          fill_in 'prepare_user_email', with: 'konor@mac.gregor'
+          click_on 'Next'
+        end
+        wait_for_ajax
         within('#new_resource .grants-table') do
           expect(page).to have_content 'Assessments'
           expect(page).to have_content 'Data Centre (Exporting Assessment / Report data sets)'
@@ -76,24 +75,10 @@ feature 'CRUD User' do
     before { login_as client_admin }
 
     context 'on Projects page' do
-      given(:client_admin) { create(:client_admin, memberships_options: [{ client: project2.root }]) }
+      given(:client_admin) { create(:client_admin, memberships_options: [{ client: project.root }]) }
 
-      scenario 'I can create or choose admin user' do
-        admin_membership = create_project_admin(project, email: 'admin@example.com', first_name: 'admin', last_name: 'user')
-        choose_project_admin(project2, admin_membership)
-      end
-
-      scenario 'I can create project admin with privileges limited by admin\'s privileges' do
-        visit administration_client_projects_path(project.tte)
-        find("#client_#{project.id} td .add-icon-box a[href='#{new_administration_client_project_admin_path(project)}']").click
-        find('label', text: t('administration.clients.project_admins.form.create_admin')).click
-        within('#new_resource .grants-table') do
-          expect(page).to have_content 'Assessments'
-          expect(page).not_to have_content 'Data Centre (Exporting Assessment / Report data sets)'
-          expect(page).not_to have_content 'Campaigns & Sub-Campaigns'
-          expect(page).to have_content 'Communication Centre'
-          expect(page).not_to have_content 'Overview Reports'
-        end
+      scenario 'I can create admin user' do
+        create_project_admin(project, email: 'admin@example.com', first_name: 'admin', last_name: 'user')
       end
     end
 
@@ -111,18 +96,21 @@ feature 'CRUD User' do
       given(:client_admin) { create(:client_admin, memberships_options: [{ client: tenancy }]) }
 
       context 'with Privileges to manage Client Tenancies' do
-        before { client_admin.update!(grants: client_admin.grants.merge({ clients: [:manage] })) }
+        before { client_admin.memberships.first.grants.update(data: client_admin.memberships.first.grants.data.merge({ clients: [:manage] })) }
 
         scenario 'I can create another Client Admin' do
           visit administration_client_path(tenancy)
-          expect(page).to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{new_administration_client_client_admin_path(tenancy)}']")
+          expect(page).to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{new_step_1_administration_client_client_admins_path(tenancy)}']")
         end
 
-        scenario 'I can create another Client Admin only whith my Privileges' do
+        scenario 'I can create another Client Admin only with my Privileges' do
           visit administration_client_path(tenancy)
-          find("#client_#{tenancy.id} td .add-icon-box a[href='#{new_administration_client_client_admin_path(tenancy)}']").click
-          expect(page).to have_css('label', text: t('administration.clients.client_admins.form.create_admin'))
-          find('label', text: t('administration.clients.client_admins.form.create_admin')).click
+          find("#client_#{tenancy.id} td .add-icon-box a[href='#{new_step_1_administration_client_client_admins_path(tenancy)}']").click
+          wait_for_ajax
+          fill_in 'prepare_user_email', with: 'romero@gmail.com'
+          click_on 'Next'
+          wait_for_ajax
+
           expect(page).to have_css('#new_resource .grants-table')
           within('#new_resource .grants-table') do
             expect(page).to have_content 'Assessments'
@@ -139,7 +127,7 @@ feature 'CRUD User' do
 
         scenario 'I cant create another Client Admin' do
           visit administration_client_path(tenancy)
-          expect(page).not_to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{new_administration_client_client_admin_path(tenancy)}']")
+          expect(page).not_to have_css("#client_#{tenancy.id} td .add-icon-box a[href='#{new_step_1_administration_client_client_admins_path(tenancy)}']")
         end
       end
     end
