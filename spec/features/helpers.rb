@@ -25,6 +25,7 @@ module Features
       page.evaluate_script('jQuery.active').zero?
     end
 
+    # For now is used only for superadmin
     def enter_as(role_name, options = {})
       grants = options[:grants] || {}
       @current_user = case role_name

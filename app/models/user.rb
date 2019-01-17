@@ -216,6 +216,7 @@ class User < ApplicationRecord
     memberships.where.not(role: :member).where(client_id: client_id).exists?
   end
 
+  # @deprecated
   def validate_grants
     return if grants.nil?
     valid = grants.is_a?(Hash) && (grants.keys - ADMIN_GRANTS.keys).empty?

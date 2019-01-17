@@ -123,7 +123,7 @@ feature 'CRUD User' do
       end
 
       context 'without Privileges to manage Client Tenancies' do
-        before { client_admin.update!(grants: {}) }
+        before { client_admin.memberships.first.grants.update(data: {}) }
 
         scenario 'I cant create another Client Admin' do
           visit administration_client_path(tenancy)
