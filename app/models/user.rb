@@ -197,6 +197,10 @@ class User < ApplicationRecord
     memberships.any? { |m| m.has_grant?(scope, grant) }
   end
 
+  def superadmin?
+    role == 'Users::SuperAdmin'
+  end
+
   private
 
   def generate_invitation_token
