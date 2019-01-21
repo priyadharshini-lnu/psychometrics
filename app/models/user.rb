@@ -42,10 +42,12 @@ class User < ApplicationRecord
   # Roles constant
   SUPER_ADMIN_ROLE = 'Users::SuperAdmin'.freeze
   REGULAR_ROLE = 'Users::Regular'.freeze
+  ADMIN_ROLE = 'Users::Admin'.freeze
 
   USER_ROLES = {
       superadmin: SUPER_ADMIN_ROLE,
-      regular: REGULAR_ROLE
+      regular: REGULAR_ROLE,
+      admin: ADMIN_ROLE,
   }.freeze
 
   USER_ROLES_SCOPES = {
@@ -86,7 +88,7 @@ class User < ApplicationRecord
 
   # Authentication
   devise :invitable, :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable,
+         :recoverable, :rememberable, :trackable,
          :timeoutable, request_keys: { subdomain: false }
 
   attr_accessor :create_by_invite
@@ -113,14 +115,20 @@ class User < ApplicationRecord
 
   scope :client_admins, -> { joins(:memberships).where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }
   before_save :ensure_authentication_token
-  validates :email, uniqueness: true
+  validates :email, uniqueness: { scope: [:project_id, :role] }
+  # Rules are copy-pasted from lib/devise/models/validatable.rb
+  validates_format_of     :email, with: Devise.email_regexp, allow_blank: true, if: :will_save_change_to_email?
+  validates_presence_of   :email
+  validates_presence_of     :password, if: :password_required?
+  validates_confirmation_of :password, if: :password_required?
+  validates_length_of       :password, within: Devise.password_length, allow_blank: true
   validates :role, inclusion: { in: ::User::USER_ROLES.values }, presence: true, allow_nil: true
   validate :validate_grants
 
   # We won't set password, we will send inviting
   def password_required?
     return false if new_record? && create_by_invite
-    super
+    !persisted? || !password.nil? || !password_confirmation.nil?
   end
 
   # Time to strong sign out
@@ -186,8 +194,11 @@ class User < ApplicationRecord
   end
 
   def has_grant?(scope, grant)
-    return false if grants.nil?
-    !!grants[scope.to_s]&.index(grant.to_s)
+    memberships.any? { |m| m.has_grant?(scope, grant) }
+  end
+
+  def superadmin?
+    role == 'Users::SuperAdmin'
   end
 
   private
@@ -209,6 +220,7 @@ class User < ApplicationRecord
     memberships.where.not(role: :member).where(client_id: client_id).exists?
   end
 
+  # @deprecated
   def validate_grants
     return if grants.nil?
     valid = grants.is_a?(Hash) && (grants.keys - ADMIN_GRANTS.keys).empty?
@@ -245,14 +257,16 @@ class User < ApplicationRecord
       # Cut from Subdomain part of expected Subdomain
       subdomain = warden_conditions[:subdomain] && warden_conditions[:subdomain].gsub(/\.{0,1}#{Settings.subdomain}/, '')
       if subdomain.present?
-        enabled.
+        project = Client.find_by(subdomain: subdomain)
+        Users::Regular.enabled.
             identified.
             joins(:clients).
-            where.has { email.eq(warden_conditions[:email]&.downcase) & clients.subdomain.eq(subdomain) & clients.disabled.not_eq(true) }.
+            where.has { project_id.eq(project.id) & email.eq(warden_conditions[:email]&.downcase) & clients.subdomain.eq(subdomain) & clients.disabled.not_eq(true) }.
             first
       else
         enabled.
             identified.
+            where(project_id: nil, role: ['Users::Admin', 'Users::SuperAdmin']).
             where('email = LOWER(?)', warden_conditions[:email]).
             first # If Subdomain not presented going normally
       end

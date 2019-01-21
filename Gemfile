@@ -133,7 +133,7 @@ gem 'validates_timeliness', '~> 4.0.2'
 gem 'virtus', '~> 1.0.5'
 gem 'reform-rails', '~> 0.1.7'
 gem 'dry-types', '~> 0.12.2'
-
+gem 'rectify', '~> 0.13.0'
 # SOAP client
 gem 'savon', '~> 2.11.0'
 # Abort requests that are taking too long
@@ -190,4 +190,5 @@ group :test do
   gem 'database_cleaner', '~> 1.7.0'
   gem 'simplecov', require: false
   gem 'rspec-retry', '~> 0.5.7'
+  gem 'wisper-rspec', '~> 1.1.0', require: false
 end

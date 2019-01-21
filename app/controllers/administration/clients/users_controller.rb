@@ -42,10 +42,13 @@ module Administration
         resource.client = policy_scope(Client).where(id: client.id).take
         resource.role = Membership::PROJECT_ADMIN_ROLE if params[:admin]
 
-        user = User.find_by(email: resource.user&.email)
+        user = User.find_by(email: resource.user&.email, project_id: resource.client.project.id)
         if user
           resource.user = user
+          # TODO (atanych): do we really need to override user profile?
           resource.user.assign_attributes(create_resource_params[:user_attributes])
+        else
+          resource.user.project_id = resource.client.project.id
         end
 
         resource.user.tap do |u|

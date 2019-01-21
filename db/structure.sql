@@ -49,6 +49,39 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: api_keys; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.api_keys (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    active boolean,
+    token character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: api_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.api_keys_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: api_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.api_keys_id_seq OWNED BY public.api_keys.id;
+
+
+--
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -86,39 +119,6 @@ CREATE TABLE public.assessments (
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying
 );
-
-
---
--- Name: assessments_clients; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.assessments_clients (
-    id bigint NOT NULL,
-    client_id bigint,
-    assessment_id bigint,
-    "position" integer,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: assessments_clients_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.assessments_clients_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: assessments_clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.assessments_clients_id_seq OWNED BY public.assessments_clients.id;
 
 
 --
@@ -232,9 +232,7 @@ CREATE TABLE public.assigns_reports (
     access_reports_at timestamp without time zone,
     external_report character varying,
     hogan_score jsonb DEFAULT '{}'::jsonb,
-    user_access boolean DEFAULT true,
-    pdf character varying,
-    generating boolean DEFAULT false
+    user_access boolean DEFAULT true
 );
 
 
@@ -399,9 +397,7 @@ CREATE TABLE public.clients_reports (
     client_id integer,
     report_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    user_access boolean DEFAULT false,
-    report_family_id bigint
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -1038,8 +1034,7 @@ CREATE TABLE public.license_usages (
     id integer NOT NULL,
     license_id integer,
     assigns_report_id integer,
-    client_id integer NOT NULL,
-    membership_id bigint
+    client_id integer NOT NULL
 );
 
 
@@ -1076,8 +1071,7 @@ CREATE TABLE public.licenses (
     updated_at timestamp without time zone NOT NULL,
     end_date date NOT NULL,
     start_date date NOT NULL,
-    report_family_id integer NOT NULL,
-    disabled boolean DEFAULT false
+    report_family_id integer NOT NULL
 );
 
 
@@ -1098,6 +1092,38 @@ CREATE SEQUENCE public.licenses_id_seq
 --
 
 ALTER SEQUENCE public.licenses_id_seq OWNED BY public.licenses.id;
+
+
+--
+-- Name: membership_grants; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.membership_grants (
+    id bigint NOT NULL,
+    membership_id bigint,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: membership_grants_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.membership_grants_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: membership_grants_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.membership_grants_id_seq OWNED BY public.membership_grants.id;
 
 
 --
@@ -1556,7 +1582,6 @@ CREATE TABLE public.reports (
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
     props jsonb DEFAULT '{}'::jsonb NOT NULL,
-    default_language character varying DEFAULT 'en'::character varying,
     data_configuration jsonb DEFAULT '{}'::jsonb
 );
 
@@ -1841,7 +1866,8 @@ CREATE TABLE public.users (
     created_by_id integer,
     modified_by_id integer,
     spoof_token character varying,
-    encrypted_invitation_raw character varying
+    encrypted_invitation_raw character varying,
+    project_id integer
 );
 
 
@@ -1865,17 +1891,17 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
+-- Name: api_keys id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api_keys_id_seq'::regclass);
+
+
+--
 -- Name: assessments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.assessments ALTER COLUMN id SET DEFAULT nextval('public.assessments_id_seq'::regclass);
-
-
---
--- Name: assessments_clients id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assessments_clients ALTER COLUMN id SET DEFAULT nextval('public.assessments_clients_id_seq'::regclass);
 
 
 --
@@ -2061,6 +2087,13 @@ ALTER TABLE ONLY public.licenses ALTER COLUMN id SET DEFAULT nextval('public.lic
 
 
 --
+-- Name: membership_grants id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.membership_grants ALTER COLUMN id SET DEFAULT nextval('public.membership_grants_id_seq'::regclass);
+
+
+--
 -- Name: memberships id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2201,19 +2234,19 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
+-- Name: api_keys api_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT api_keys_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
-
-
---
--- Name: assessments_clients assessments_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assessments_clients
-    ADD CONSTRAINT assessments_clients_pkey PRIMARY KEY (id);
 
 
 --
@@ -2433,6 +2466,14 @@ ALTER TABLE ONLY public.licenses
 
 
 --
+-- Name: membership_grants membership_grants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.membership_grants
+    ADD CONSTRAINT membership_grants_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: memberships memberships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -2601,10 +2642,17 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: index_assessments_clients_on_client_id_and_assessment_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_api_keys_on_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_assessments_clients_on_client_id_and_assessment_id ON public.assessments_clients USING btree (client_id, assessment_id);
+CREATE UNIQUE INDEX index_api_keys_on_token ON public.api_keys USING btree (token);
+
+
+--
+-- Name: index_api_keys_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
 
 
 --
@@ -2993,13 +3041,6 @@ CREATE INDEX index_license_usages_on_license_id ON public.license_usages USING b
 
 
 --
--- Name: index_license_usages_on_membership_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_license_usages_on_membership_id ON public.license_usages USING btree (membership_id);
-
-
---
 -- Name: index_licenses_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3010,7 +3051,14 @@ CREATE INDEX index_licenses_on_client_id ON public.licenses USING btree (client_
 -- Name: index_licenses_on_client_id_and_report_family_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_licenses_on_client_id_and_report_family_id ON public.licenses USING btree (client_id, report_family_id);
+CREATE UNIQUE INDEX index_licenses_on_client_id_and_report_family_id ON public.licenses USING btree (client_id, report_family_id);
+
+
+--
+-- Name: index_membership_grants_on_membership_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_membership_grants_on_membership_id ON public.membership_grants USING btree (membership_id);
 
 
 --
@@ -3273,10 +3321,10 @@ CREATE INDEX index_users_on_created_by_id ON public.users USING btree (created_b
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
+-- Name: index_users_on_email_and_project_id_and_role; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
+CREATE UNIQUE INDEX index_users_on_email_and_project_id_and_role ON public.users USING btree (email, project_id, role);
 
 
 --
@@ -3383,6 +3431,14 @@ ALTER TABLE ONLY public.memberships
 
 ALTER TABLE ONLY public.communication_emails
     ADD CONSTRAINT fk_rails_2a329ed34d FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: api_keys fk_rails_32c28d0dc2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT fk_rails_32c28d0dc2 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -3570,6 +3626,14 @@ ALTER TABLE ONLY public.communications
 
 
 --
+-- Name: membership_grants fk_rails_98668bfd47; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.membership_grants
+    ADD CONSTRAINT fk_rails_98668bfd47 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
 -- Name: memberships fk_rails_99326fb65d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3583,22 +3647,6 @@ ALTER TABLE ONLY public.memberships
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT fk_rails_9c1b8d7e35 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
-
-
---
--- Name: license_usages fk_rails_a4a7857249; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.license_usages
-    ADD CONSTRAINT fk_rails_a4a7857249 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
-
-
---
--- Name: assessments_clients fk_rails_a7b4e42c48; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assessments_clients
-    ADD CONSTRAINT fk_rails_a7b4e42c48 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
 
 
 --
@@ -3642,14 +3690,6 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
--- Name: assessments_clients fk_rails_cc339dda78; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.assessments_clients
-    ADD CONSTRAINT fk_rails_cc339dda78 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
-
-
---
 -- Name: hogan_assessment_settings fk_rails_d0f7b433a7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3679,14 +3719,6 @@ ALTER TABLE ONLY public.clients_reports
 
 ALTER TABLE ONLY public.license_usages
     ADD CONSTRAINT fk_rails_d35fd7791e FOREIGN KEY (license_id) REFERENCES public.licenses(id) ON DELETE CASCADE;
-
-
---
--- Name: clients_reports fk_rails_d3a555a5c2; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.clients_reports
-    ADD CONSTRAINT fk_rails_d3a555a5c2 FOREIGN KEY (report_family_id) REFERENCES public.report_families(id);
 
 
 --
@@ -3783,6 +3815,14 @@ ALTER TABLE ONLY public.clients
 
 ALTER TABLE ONLY public.clients
     ADD CONSTRAINT fk_rails_f99d964d82 FOREIGN KEY (project_manager_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: users fk_rails_fedc809cf8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT fk_rails_fedc809cf8 FOREIGN KEY (project_id) REFERENCES public.clients(id);
 
 
 --
@@ -3985,14 +4025,12 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181028143714'),
 ('20181028180057'),
 ('20181103095056'),
-('20181111105703'),
 ('20181112210040'),
-('20181114075818'),
-('20181114150808'),
-('20181117114931'),
 ('20181118154257'),
 ('20181119095817'),
 ('20181224184633'),
-('20181124083412'),
-('20181209135656'),
-('20181217073128');
+('20190101143027'),
+('20190105160407'),
+('20190113180725');
+
+

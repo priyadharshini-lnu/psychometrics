@@ -9,6 +9,8 @@ require 'capybara/poltergeist'
 require 'capybara-screenshot/rspec'
 require 'selenium-webdriver'
 require 'features/helpers'
+require 'wisper/rspec/matchers'
+require 'rectify/rspec'
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
@@ -52,7 +54,8 @@ RSpec.configure do |config|
   config.include AbstractController::Translation
   config.include FactoryGirl::Syntax::Methods
   config.include Warden::Test::Helpers
-
+  config.include Rectify::RSpec::Helpers
+  config.include(Wisper::RSpec::BroadcastMatcher)
   # Sign in helper for controller
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.extend ControllerMacros, type: :controller

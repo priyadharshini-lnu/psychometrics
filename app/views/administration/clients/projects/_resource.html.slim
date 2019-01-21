@@ -28,7 +28,7 @@
       = resource.decorate.client_project_admins
       - if policy(:membership).create_project_admin?
         .add-icon-box
-          = link_to new_administration_client_project_admin_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
+          = link_to new_step_1_administration_client_project_admins_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
             span.fa.fa-plus
     td = resource.decorate.url
     - if current_user.is?(:superadmin)

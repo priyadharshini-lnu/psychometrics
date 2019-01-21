@@ -14,9 +14,9 @@
         .panel-body.tab-content
           #tab-first.tab-pane.active
             = f.simple_fields_for :user do |u|
-              = u.input :email
-              = u.input :first_name
-              = u.input :last_name
+              = u.input :email, readonly: true
+              = u.input :first_name, readonly: true
+              = u.input :last_name, readonly: true
             = f.input :parent_id,
                       collection: f.object.decorate.managers_for_select,
                       label_method: lambda { |u| u.user.decorate.display_name },
@@ -26,8 +26,8 @@
           - if policy(resource).manage_grants?
             #tab-grants.tab-pane
               .col-md-5
-                = f.simple_fields_for :user do |u|
-                  = render partial: 'grants', locals: { u: u }
+                = f.simple_fields_for :grants do |grants|
+                  = render partial: 'grants', locals: { grants: grants, u: resource.user }
         .panel-footer
           .btn-group.pull-left
             = link_to(t('administration.back'), {action: :index}, class: 'btn btn-info')

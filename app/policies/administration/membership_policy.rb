@@ -4,7 +4,7 @@ module Administration
     UPDATE_PARAMETERS = [:parent_id, :role, hris_data: [:key, :value]].freeze
     USER_PARAMETERS = [:first_name, :last_name, :email].freeze
     UPDATE_USER_PARAMETERS = [:id, USER_PARAMETERS].flatten.freeze
-    GRANT_PARAMETERS = [grants: [
+    GRANT_PARAMETERS = [data: [
         norms: [],
         dimensions: [],
         clients: [],
@@ -22,6 +22,14 @@ module Administration
       @user.is?(:superadmin, :client_admin, :project_admin)
     end
 
+    def new_step_1?
+      create?
+    end
+
+    def new_step_2?
+      create?
+    end
+
     def create_client_admin?
       @user.is?(:superadmin) || (@user.is?(:client_admin) &&  @user.has_grant?(:clients, :manage))
     end
@@ -35,20 +43,35 @@ module Administration
     end
 
     def permitted_attributes_for_create
-      CREATE_PARAMETERS + [user_attributes: [USER_PARAMETERS, GRANT_PARAMETERS].flatten]
+      CREATE_PARAMETERS + [user_attributes: [USER_PARAMETERS], grants_attributes: [GRANT_PARAMETERS].flatten]
     end
 
     def permitted_attributes_for_update
       if @user.is?(:superadmin) && (@record.user.is?(:client_admin) || @record.user.is?(:project_admin))
-        UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS, GRANT_PARAMETERS].flatten]
+        UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS], grants_attributes: [GRANT_PARAMETERS].flatten]
       else
         UPDATE_PARAMETERS + [user_attributes: [UPDATE_USER_PARAMETERS]]
       end
     end
 
+    def manage_grants_for_action?(resource, action, project: nil, client: nil)
+      @user.is?(:superadmin) || related_memberships(project, client).any? { |m| m.has_grant?(resource, action) }
+    end
+
+    def manage_grants_for_actions?(resource, actions, project: nil, client: nil)
+      return true if @user.is?(:superadmin)
+      related_memberships(project, client).any? { |m| ((m.grants&.data.try(:[], resource) || []) & actions).any? }
+    end
+
     def overview_assigns?
       return false if record.scope == :administration
       @user.is?(:superadmin) || @user.has_grant?(:assigns, :view)
+    end
+
+    def related_memberships(project, client)
+      @related_memberships ||= {}
+      cache_key = "#{project&.id}|#{client&.id}"
+      @related_memberships[cache_key] ||= ::Users::LookupRelatedMembershipsQuery.call(@user, project, client)[:ok]
     end
 
     class Scope < Administration::BasePolicy::Scope

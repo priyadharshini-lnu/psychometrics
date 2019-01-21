@@ -55,6 +55,9 @@ class Membership < ApplicationRecord
   has_many :clients_reports, through: :clients_assigns, source: :reports
   has_one :original_membership, foreign_key: :project_membership_id, class_name: 'Membership'
   has_one :hogan_credential
+  has_one :grants, class_name: 'MembershipGrant'
+  accepts_nested_attributes_for :grants
+
   has_many :privacy_consents
 
   has_many :reports_accesses
@@ -158,6 +161,11 @@ class Membership < ApplicationRecord
     privacy_consents.take.present?
   end
 
+  def has_grant?(scope, grant)
+    return false unless grants
+    grants.has_grant?(scope, grant)
+  end
+
   private
 
   def set_project_membership
@@ -213,6 +221,8 @@ class Membership < ApplicationRecord
       communication.current_memberships_ids.include?(id)
     end
   end
+
+
 
   def client_admin_scope
     # user can be client admin only within one tenancy
