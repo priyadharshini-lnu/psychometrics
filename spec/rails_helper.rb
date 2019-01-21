@@ -50,6 +50,7 @@ Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :chrome
 
 RSpec.configure do |config|
+  config.color = true
   config.include Features::Helpers, type: :feature
   config.include AbstractController::Translation
   config.include FactoryGirl::Syntax::Methods

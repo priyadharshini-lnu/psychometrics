@@ -23,6 +23,7 @@ class License < ApplicationRecord
   validates :overuse_number, :used_number,
             numericality: { greater_than_or_equal_to: 0 }
   validates :number, numericality: { greater_than_or_equal_to: 1 }
+  validates :number, numericality: { greater_than_or_equal_to: :used_number }, unless: :new_record?
   validates :report_family_id, presence: true
   validate :license_expire_validation
 
@@ -30,7 +31,6 @@ class License < ApplicationRecord
     where(report_family_id: report_family_id)
   }
   scope :active, -> { where(disabled: false) }
-
   scope :available, -> { active.where('end_date >= :date and start_date <= :date and number + overuse_number > used_number', date: Date.today) }
 
   def used_overuse_number

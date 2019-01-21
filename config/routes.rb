@@ -134,7 +134,10 @@ Rails.application.routes.draw do
         resources :campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
         resources :sub_campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
 
-        resource :licenses, only: [:show, :edit, :update]
+        resources :licenses, only: %i[index show new create edit update] do
+          patch :toggle_status, on: :member
+          get :overview, on: :collection
+        end
         resources :assessments, only: [:index, :destroy] do
           get :export_results
           get :export_normed_results

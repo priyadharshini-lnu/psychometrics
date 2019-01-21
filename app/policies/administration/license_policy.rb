@@ -1,7 +1,7 @@
 module Administration
   class LicensePolicy < Administration::BasePolicy
-    def show?
-      @user.is?(:superadmin, :client_admin, :project_admin)
+    def overview?
+      show?
     end
   end
 end

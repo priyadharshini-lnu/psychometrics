@@ -69,6 +69,7 @@ en:
       projects: Projects
       campaigns: Campaigns
       sub_campaigns: Sub Campaigns
+      licenses: Licenses
     breadcrumbs:
       <<: *NAVIGATION
     tte: TTE

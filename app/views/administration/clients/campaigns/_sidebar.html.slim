@@ -4,8 +4,8 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(resource)}"
     li
       = link_to(resource.decorate.toggle_status_text,
                 { action: :toggle_status, id: resource },
-                remote: true, 
-                method: :patch, 
+                remote: true,
+                method: :patch,
                 data: { confirm: resource.decorate.status_confirmation })
   - if policy(resource).edit?
     li = link_to(t('.edit'), { action: :edit, id: resource }, remote: true)
@@ -15,5 +15,5 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(resource)}"
     li = link_to(t('.destroy'), { action: :destroy, id: resource }, remote: true, method: :delete, data: { confirm: resource.decorate.delete_confirmation })
   /- if policy(resource).archive?
     li = link_to(t('.archive'), { action: :archive, id: resource }, method: :patch, data: { confirm: resource.decorate.archive_confirmation, toggle: 'tooltip' })
-  - if current_user.is?(:superadmin)
-    li = link_to t('.view_licenses'), administration_client_licenses_path(resource), remote: true
+  - if policy(:license).overview?
+    li = link_to t('.view_licenses'), overview_administration_client_licenses_path(resource), remote: true

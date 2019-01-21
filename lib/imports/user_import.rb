@@ -65,6 +65,9 @@ module Imports
       end
 
       errors.blank?
+    rescue Errors::LicenseError => e
+      errors.add(:base, e.message)
+      false
     end
 
     #

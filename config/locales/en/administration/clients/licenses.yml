@@ -2,17 +2,24 @@ en:
   administration:
     clients:
       licenses:
+        index:
+          title: '%{client_name} - Manage Licenses'
+          new: Add License
+          report_family: Report Bundle
         edit:
           header: '%{client_name} - Manage Licenses'
+        create:
+          successfully: 'License was successfully created.'
+        update:
+          successfully: 'License was successfully updated.'
+        toggle_status:
+          successfully: 'Status of License was successfully updated.'
         form:
           add_license: Add Another License
           report_family: Report Bundle
           license_number: License Number
           license_overuse_number: Over Use Allowance
-        license_fields:
-          remove: Remove
-          unlimited: Unlimited
-        show:
+        show: &DEFAULT
           header: '%{client_name} - Licenses Usage'
           license_type: License Type
           used_license_number: Used Licenses
@@ -24,6 +31,18 @@ en:
           report_family: Report Bundle
           date_expire: 'Date Of Expiry: %{date}'
           license_has_expired: License package has expired
+        overview:
+          <<: *DEFAULT
+        list:
+          <<: *DEFAULT
+        resource:
+          tooltips:
+            edit: Edit License
+          confirmations:
+            toggle_status:
+              title: <strong>%{status}</strong> License for %{name}?
+              body: >
+                <p>Are you sure you want to %{status} this License?</p>
         mailer:
           license_expire:
             subject: License expired
