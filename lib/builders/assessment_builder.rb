@@ -30,7 +30,7 @@ module Builders
             questions.each do |question_params|
               id = question_params.delete(:id)
               question = id ? @assessment.questions.find(id) : block.questions.build
-              question.update(question_params)
+              question.update(question_params.merge(block_id: block.id))
             end
           end
 
