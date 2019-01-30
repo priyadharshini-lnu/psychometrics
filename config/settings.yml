@@ -25,11 +25,95 @@ currencies:
   - OMR
   - QAR
 default_currency: 'USD'
+hogan:
+  - name: HPI
+    assessment_id: HPI
+    form_id: 3
+    reports:
+      - report_id: EcHPIDML
+        report_name: HPI Data Report
+        norm_id: General
+        language_id: en
+    factors:
+      - id: '01'
+        name: Validity
+        type: Raw
+      - id: '02'
+        name: Adjustment
+        type: Raw
+      - id: '03'
+        name: Ambition
+        type: Raw
+      - id: '04'
+        name: Sociability
+        type: Raw
+      - id: '01'
+        name: Validity
+        type: Percentile
+      - id: '02'
+        name: Adjustment
+        type: Percentile
+      - id: '03'
+        name: Ambition
+        type: Percentile
+      - id: '04'
+        name: Sociability
+        type: Percentile
+  - name: HDS
+    assessment_id: HDS
+    form_id: 5
+    reports:
+      - report_id: EcHDSDML
+        report_name: HDS Data Report
+        norm_id: General
+        language_id: en
+  - name: MVPI
+    assessment_id: MVPI
+    form_id: 1
+    reports:
+      - report_id: EcMVPIDML
+        report_name: MVPI Data Report
+        norm_id: General
+        language_id: en
+  - name: HBRI
+    assessment_id: HBRIV1
+    form_id: 1
+    reports:
+      - report_id: EcHBRIV1D
+        report_name: HBRI Data Report
+        norm_id: General
+        language_id: en
+      - report_id: EcHBRIV1IML
+        report_name: HBRI Interpret Report
+        norm_id: General
+        language_id: en
+
 mindmill:
   - name: Cognitive – Entry Level TTE
     id: 416
   - name: Cognitive – Mid Level TTE
     id: 417
+    factors:
+      - id: nf.attempted
+        type: Count
+      - id: nf.correct
+        type: Count
+      - id: nf.pc
+        type: Count
+      - id: ed.attempted
+        type: Count
+      - id: ed.correct
+        type: Count
+      - id: ed.pc
+        type: Count
+      - id: nf.zscore
+        type: Score
+      - id: ed.zscore
+        type: Score
+      - id: nf.stable
+        type: Stability
+      - id: ed.stable
+        type: Stability
   - name: Cognitive – Senior Level TTE
     id: 418
   - name: Support Functions – Entry Level TTE
@@ -52,6 +136,27 @@ mindmill:
     id: 427
   - name: Technical Functions – Entry Level TTE
     id: 428
+    factors:
+      - id: nf.attempted
+        type: Count
+      - id: nf.correct
+        type: Count
+      - id: nf.pc
+        type: Count
+      - id: ed.attempted
+        type: Count
+      - id: ed.correct
+        type: Count
+      - id: ed.pc
+        type: Count
+      - id: nf.zscore
+        type: Score
+      - id: ed.zscore
+        type: Score
+      - id: nf.stable
+        type: Stability
+      - id: ed.stable
+        type: Stability
   - name: Technical Functions – Mid Level TTE
     id: 429
   - name: Technical Functions – Senior Level TTE
