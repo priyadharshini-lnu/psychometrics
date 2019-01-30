@@ -8,7 +8,6 @@ module Administration
     # true if it's not Mindmill report
     #   and user is Superadmin or user has grants
     def show?
-      return false if record.external_report?
       super || @user.has_grant?(:reports, :view)
     end
 
@@ -32,7 +31,6 @@ module Administration
     # Can preview Report
     # true if it's not Mindmill report and user is Superadmin
     def preview?
-      return false if @record.external_report?
       return true if @user.is?(:superadmin)
       return true if (@user.is?(:client_admin) || @user.is?(:project_admin)) && @record.assessment.psychometric? &&
         @user.has_grant?(:assigns, :view)
