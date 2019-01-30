@@ -28,8 +28,9 @@ module Builders
             block.update(block_params)
 
             questions.each do |question_params|
-              question = block.questions.find_or_initialize_by(id: question_params.delete(:id))
-              question.update(question_params)
+              id = question_params.delete(:id)
+              question = id ? @assessment.questions.find(id) : block.questions.build
+              question.update(question_params.merge(block_id: block.id))
             end
           end
 
