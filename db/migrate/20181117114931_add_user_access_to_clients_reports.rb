@@ -9,10 +9,7 @@ class AddUserAccessToClientsReports < ActiveRecord::Migration[5.1]
     ClientsReport.includes(:client, report: :assessments).all.find_each do |client_report|
       client = client_report.client
       # try to find at least one assigned report with user access
-      client_report.user_access = client.
-                                  assigns.
-                                  joins(:assigns_reports).
-                                  exists?(assigns_reports: { report_id: client_report.report_id, user_access: true })
+      client_report.user_access = false
       # try to get first ReportFamily of report
       report_family = client.
                       root.

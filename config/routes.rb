@@ -63,7 +63,10 @@ Rails.application.routes.draw do
             resources :reports, only: [:destroy] do
               get :preview, on: :member
             end
-            resources :assigns_reports, only: %i[edit update destroy]
+            resources :assigns_reports, only: %i[new create destroy] do
+              put :toggle_user_access, on: :member
+            end
+            resources :assign_assessments, only: %i[new create]
           end
           member do
             patch :toggle_status

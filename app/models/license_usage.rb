@@ -12,11 +12,11 @@ class LicenseUsage < ApplicationRecord
   belongs_to :license,        inverse_of: :license_usages
   belongs_to :assigns_report, inverse_of: :license_usages
   belongs_to :client,         inverse_of: :license_usages
-  belongs_to :membership,     inverse_of: :license_usages
+  belongs_to :user,           inverse_of: :license_usages
 
   validates :license, :assigns_report, :client, presence: true
 
-  after_commit :increase_license_used_number, on: :create
+  after_create :increase_license_used_number
 
   def increase_license_used_number
     license.increment!(:used_number)

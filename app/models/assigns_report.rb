@@ -24,7 +24,7 @@ class AssignsReport < ApplicationRecord
 
   belongs_to :assign, inverse_of: :assigns_reports
   belongs_to :report, inverse_of: :assigns_reports
-  has_many :license_usages, inverse_of: :assigns_report # on delete nullify
+  has_many :license_usages, inverse_of: :assigns_report, autosave: true # on delete nullify
 
   before_create :use_license
   after_commit ::Callbacks::Models::AssignsReports::UpdateOrRemoveReportsAccess.new

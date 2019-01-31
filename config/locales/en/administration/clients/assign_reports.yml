@@ -1,7 +1,7 @@
 en:
   administration:
     clients:
-      assign_reports:
+      assign_reports: &ASSIGN_REPORT
         form_new: &FORM_NEW
           user_access: 'User Access'
           apply_to_existing_users_hint: '(If is not selected, changes will be applied only to new users)'
@@ -9,7 +9,12 @@ en:
           access: 'Access'
         form_edit:
           <<: *FORM_NEW
+        form:
+          <<: *FORM_NEW
         edit:
           header: Add Reports
         new:
           header: Add Reports
+      users:
+        assigns_reports:
+          <<: *ASSIGN_REPORT

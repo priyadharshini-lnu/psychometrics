@@ -110,6 +110,7 @@ class User < ApplicationRecord
   has_many :client_admin_clients, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }, through: :memberships, source: 'client'
   has_many :client_admin_clients_ttes, through: :client_admin_clients, source: 'tte', class_name: 'Client'
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
+  has_many :license_usages, inverse_of: :user 
 
   accepts_nested_attributes_for :memberships
 

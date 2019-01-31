@@ -19,16 +19,6 @@ module Administration
       validate :reports_enabled, if: -> { report_ids.any? }
       validate :reports_linked_to_report_family, if: -> { report_family_id && report_ids.any? }
 
-      # Rejects from an array a blank items
-      #
-      def report_ids=(ids)
-        super(ids.reject(&:blank?))
-      end
-
-      def user_access_report_ids=(ids)
-        super(ids.reject(&:blank?))
-      end
-
       protected
 
       # Returns error if License with Report Family is disabled

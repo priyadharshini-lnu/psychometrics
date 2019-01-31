@@ -50,16 +50,19 @@ module Imports
       return false unless valid?
       memberships = load_imported_items.compact
       return false if memberships.size == 0
-      if memberships.map(&:valid?).all?
-        memberships.each(&:save!).each_with_index do |membership, index|
-          membership.user.invite!(importer, client_id)
-          apply_assigned_assessments(membership)
-          apply_reports(membership)
-        end
-      else
-        memberships.each_with_index do |membership, index|
-          membership.user.errors.full_messages.each do |message|
-            errors.add(:base, I18n.t('administration.imports.errors.error', row: index + 2, error: message))
+
+      ActiveRecord::Base.transaction do
+        if memberships.map(&:valid?).all?
+          memberships.each(&:save!).each_with_index do |membership, index|
+            membership.user.invite!(importer, client_id)
+            apply_assigned_assessments(membership)
+            apply_reports(membership)
+          end
+        else
+          memberships.each_with_index do |membership, index|
+            membership.user.errors.full_messages.each do |message|
+              errors.add(:base, I18n.t('administration.imports.errors.error', row: index + 2, error: message))
+            end
           end
         end
       end

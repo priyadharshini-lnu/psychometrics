@@ -6,8 +6,10 @@ en:
           title: '%{client_name} - Manage Licenses'
           new: Add License
           report_family: Report Bundle
+        new:
+          header: 'Add License'
         edit:
-          header: '%{client_name} - Manage Licenses'
+          header: 'Edit License'
         create:
           successfully: 'License was successfully created.'
         update:

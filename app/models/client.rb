@@ -113,7 +113,7 @@ class Client < ApplicationRecord
   # Type of client.
   # Retail - is client who bought some product
   enum type: [:partner, :corporate, :distributer, :associate, :tte, :retail, :other]
-  enum applicable_level: {project: 0, campaign: 1, sub_campaign: 2}, _suffix: :level
+  enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
 
   mount_uploader :logo, ImageUploader
   mount_uploader :background, ImageUploader

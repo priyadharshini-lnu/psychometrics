@@ -1,16 +1,16 @@
 - assessment = resource.assessment
 tr id=dom_id(resource)
   td = resource.encode_id
-  td
+  td.nowrap
     span = membership.decorate.display_name
     span.mlm
       - if policy(resource).destroy?
-        = link_to({ action: :destroy, id: resource }, 
-                  remote: true, 
-                  class: 'btn btn-default btn-rounded btn-sm mrm', 
-                  method: :delete, 
-                  data: { confirm: resource.decorate.delete_confirmation, 
-                          toggle: 'tooltip', 
+        = link_to({ action: :destroy, id: resource },
+                  remote: true,
+                  class: 'btn btn-default btn-rounded btn-sm mrm',
+                  method: :delete,
+                  data: { confirm: resource.decorate.delete_confirmation,
+                          toggle: 'tooltip',
                           title: t('.tooltips.delete') })
           span.fa.fa-times
   td = assessment.try(:name)
@@ -50,7 +50,33 @@ tr id=dom_id(resource)
         span = assigns_report.report.name
         span.mlm
           - if policy(assigns_report).update?
-            = link_to edit_administration_client_user_assigns_report_path(client, membership, assigns_report),
-              remote: true, class: 'btn btn-default btn-rounded btn-sm edit',
-              data: { toggle: 'tooltip', title: t('.tooltips.edit') }
-              span.fa.fa-pencil
+            - if assigns_report.user_access
+              = link_to toggle_user_access_administration_client_user_assigns_report_path(client, membership, assigns_report, format: :js),
+                        remote: true,
+                        class: 'btn btn-default btn-rounded btn-sm edit',
+                        method: :put,
+                        data: { confirm: { title: t('.confirms.assigns_report.remove_user_access.title', name: assigns_report.report.name),
+                                           body: t('.confirms.assigns_report.remove_user_access.body') },
+                                toggle: 'tooltip',
+                                title: t('.tooltips.assigns_report.remove_user_access') }
+                span.fa.fa-eye
+            - else
+              = link_to toggle_user_access_administration_client_user_assigns_report_path(client, membership, assigns_report, format: :js),
+                        remote: true,
+                        method: :put,
+                        class: 'btn btn-default btn-rounded btn-sm edit',
+                        data: { confirm: { title: t('.confirms.assigns_report.add_user_access.title', name: assigns_report.report.name),
+                                           body: t('.confirms.assigns_report.add_user_access.body') },
+                                toggle: 'tooltip',
+                                title: t('.tooltips.assigns_report.add_user_access') }
+                span.fa.fa-eye-slash
+          - if policy(assigns_report).destroy?
+            = link_to(administration_client_user_assigns_report_path(client, membership, assigns_report, format: :js),
+                      remote: true,
+                      class: 'btn btn-default btn-rounded btn-sm mrm',
+                      method: :delete,
+                      data: { confirm: { title: t('.confirms.assigns_report.delete.title', name: assigns_report.report.name),
+                                         body: t('.confirms.assigns_report.delete.body') },
+                              toggle: 'tooltip',
+                              title: t('.tooltips.assigns_report.delete') })
+              span.fa.fa-times

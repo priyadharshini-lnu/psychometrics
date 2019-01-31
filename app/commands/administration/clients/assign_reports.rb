@@ -3,29 +3,37 @@
 module Administration
   module Clients
     class AssignReports < Rectify::Command
-      def initialize(form, client)
+      def initialize(form, client, membership = nil)
         @form = form
         @client = client
         @reports = Report.includes(:assessments).where(id: form.report_ids)
+        @membership = membership
       end
 
       def call
         return broadcast(:invalid) if form.invalid?
 
         transaction do
-          assign_reports
+          assign_reports_to_client
+          # Applies to all existing users
           apply_to_existing_users if form.apply_to_existing_users
+          # Applies reports to particular membership
+          assign_reports_to_membership(membership) if membership
         end
 
         broadcast(:ok)
+      rescue Errors::LicenseError => e
+        form.errors.add(:report_ids, e.message)
+        broadcast(:invalid)
       end
 
       private
 
-      attr_reader :form, :client, :reports
+      attr_reader :form, :client, :reports, :membership
 
       # Builds ClientReport and AssessmentClient entities
-      def assign_reports
+      #
+      def assign_reports_to_client
         reports.each do |report|
           # Creates ClientReport
           client_report = client.
@@ -41,15 +49,23 @@ module Administration
         end
       end
 
+      # Iterates all memberships and assigns reports
+      #
       def apply_to_existing_users
         client.memberships.find_each do |membership|
-          reports.find_each do |report|
-            report.assessments.each do |assessment|
-              assign = membership.assigns.find_or_create_by!(assessment_id: assessment.id)
-              assign_report = assign.assigns_reports.find_or_initialize_by(report_id: report.id)
-              assign_report.user_access = form.user_access_report_ids.include?(report.id)
-              assign_report.save!
-            end
+          assign_reports_to_membership(membership)
+        end
+      end
+
+      # Assigns selected Reports to membership
+      #
+      def assign_reports_to_membership(membership)
+        reports.each do |report|
+          report.assessments.each do |assessment|
+            assign = membership.assigns.find_or_create_by!(assessment_id: assessment.id)
+            assign_report = assign.assigns_reports.find_or_initialize_by(report_id: report.id)
+            assign_report.user_access = form.user_access_report_ids.include?(report.id)
+            assign_report.save!
           end
         end
       end
