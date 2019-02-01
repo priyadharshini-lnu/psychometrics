@@ -15,8 +15,8 @@ class ChangeMembershipToUserInLicenseUsages < ActiveRecord::Migration[5.1]
   def self.up
     LicenseUsage.delete_all
     License.update_all(used_number: 0, overuse_number: 0)
-    # add_belongs_to :license_usages, :user, foreign_key: { on_delete: :cascade }
-    # remove_column :license_usages, :membership_id
+    add_belongs_to :license_usages, :user, foreign_key: { on_delete: :cascade }
+    remove_column :license_usages, :membership_id
     AssignsReport.find_each do |ar|
       begin
         ar.send(:use_license)
