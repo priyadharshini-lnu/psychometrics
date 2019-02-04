@@ -23,7 +23,6 @@ module Psychometrics
     config.i18n.fallbacks = [:en]
     config.active_record.schema_format = :sql
     config.autoload_paths << Rails.root.join('app/forms')
-    config.autoload_paths << Rails.root.join('app/jobs')
     config.autoload_paths << Rails.root.join('lib')
     config.eager_load_paths << Rails.root.join('lib')
     # Setup Active Job to use Sidekiq

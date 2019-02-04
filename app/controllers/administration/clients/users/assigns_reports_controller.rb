@@ -65,7 +65,7 @@ module Administration
         #
         def regenerate
           resource.update_column(:generating, true)
-          ::Reports::ExportJob.perform_later(resource.id, current_user.id)
+          ::Reports::ExportJob.perform_later(resource, current_user)
           render :regenerate, format: [:js]
         end
 

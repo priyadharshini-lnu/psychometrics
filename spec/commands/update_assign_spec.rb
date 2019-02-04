@@ -25,11 +25,15 @@ describe UpdateAssign do
   end
 
   context 'form is valid' do
-    let(:form) { double('form', 'invalid?': false, attributes: {}) }
-    let(:assign) { double('assign', 'completed?': false, step: 1) }
-    let(:current_user) { double('user', id: 1) }
-
-    before { allow(assign).to receive_messages(%i[assign_attributes step= save calculate_scoring completed_at=]) }
+    let(:project)         { create(:project) }
+    let(:assessment)      { create(:assessment) }
+    let(:report)          { create(:report, assessment: assessment) }
+    let!(:clients_report) { create(:clients_report, client: project, report: report) }
+    let(:membership)      { create(:membership, client: project) }
+    let(:current_user)    { membership.user }
+    let!(:assign)         { create(:assign, assessment: assessment, membership: membership, step: 3) }
+    let(:assigns_report)  { create(:assigns_report, :licensed, assign: assign, report: report) }
+    let(:form)            { double('form', 'invalid?': false, attributes: {}) }
 
     it { expect { subject }.to broadcast(:ok) }
     it { expect { subject }.not_to broadcast(:invalid) }
@@ -39,13 +43,12 @@ describe UpdateAssign do
       subject { assign }
 
       it { is_expected.to receive(:assign_attributes).with(form.attributes) }
-      it { is_expected.to receive(:'step=').with(2) }
-      it { is_expected.to receive(:save) }
+      it { is_expected.to receive(:'step=').with(4) }
+      it { is_expected.to receive(:save!) }
 
       context 'assign is completed' do
         before do
           allow(assign).to receive(:'completed?').and_return(true)
-          allow_any_instance_of(described_class).to receive(:generate_report)
         end
 
         it { is_expected.to receive(:calculate_scoring) }
@@ -55,18 +58,13 @@ describe UpdateAssign do
 
     context '#generate_report' do
       before { allow(assign).to receive(:'completed?').and_return(true) }
-      after { described_class.call(form, assign, current_user) }
+      subject { described_class.call(form, assign, current_user) }
 
-      let(:ids) { [1] }
-
-      before do
-        allow(assign).to receive_message_chain(:original_or_self, :assigns_reports) { double }
-        allow(assign.original_or_self.assigns_reports).to receive(:update_all).with({ generating: true })
-        allow(assign.original_or_self.assigns_reports).to receive(:ids).and_return(ids)
+      it { expect{ subject }.to change{ assigns_report.reload.generating? }.from(false).to(true) }
+      it do
+        expect(::Reports::ExportJob).to receive(:perform_later).with(assigns_report, current_user)
+        subject
       end
-
-      xit { expect(assign.original_or_self.assigns_reports).to receive(:update_all).with({ generating: true }) }
-      xit { expect(::Reports::ExportJob).to receive(:perform_later).with(ids.first, current_user.id) }
     end
   end
 end

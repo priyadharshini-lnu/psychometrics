@@ -1,14 +1,14 @@
 require 'rails_helper'
 
 describe Reports::ExportJob do
-  let(:assigns_report) { double('assigns_report', id: 1, report: report, assign: assign) }
-  let(:assign)         { double('assign', membership: membership) }
-  let(:membership)     { double('membership', user: user, client: client) }
-  let(:client)         { double('client', project: project) }
-  let(:report)         { double('report', id: 1, default_language: 'en') }
-  let(:user)           { double('user') }
-  let(:current_user)   { double('current_user', id: 1) }
-  let(:project)        { double('project') }
+  let(:assigns_report) { create(:assigns_report, :licensed, report: report, assign: assign) }
+  let(:assign)         { create(:assign, membership: membership) }
+  let(:membership)     { create(:membership, client: project) }
+  let(:client)         { project.client }
+  let(:report)         { create(:report, default_language: 'en') }
+  let(:user)           { membership.user }
+  let(:current_user)   { create(:user) }
+  let(:project)        { create(:project) }
   let(:pdf_file)       { Rails.root.join('tmp/test.pdf') }
   let(:dirname)        { Rails.root.join('tmp') }
   let(:file)           { double('file') }
@@ -18,7 +18,7 @@ describe Reports::ExportJob do
     allow(User).to receive(:find).with(current_user.id).and_return(current_user)
   end
 
-  subject { described_class.perform_now(assigns_report.id, current_user.id) }
+  subject { described_class.perform_now(assigns_report, current_user) }
 
   it '#generate_report' do
     allow_any_instance_of(described_class).to receive_messages(save_to_assign_report: nil, remove_tmp_file: nil)

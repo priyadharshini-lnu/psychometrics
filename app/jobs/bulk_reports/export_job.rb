@@ -2,12 +2,12 @@ module BulkReports
   class ExportJob < ApplicationJob
     queue_as :default
 
-    def perform(params)
-      @report         = params[:report]
-      @bulk_report    = params[:bulk_report]
-      @user           = params[:user]
-      @assign         = params[:assign]
-      @assigns_report = params[:assigns_report]
+    def perform(report:, bulk_report:, user:, assign:, assigns_report:)
+      @report         = report
+      @bulk_report    = bulk_report
+      @user           = user
+      @assign         = assign
+      @assigns_report = assigns_report
 
       # TODO: Should be refactored together with task #59
       report_file = if report.external_report?

@@ -134,10 +134,7 @@ module Administration
     # Sends to re-generate Reports for all passed Assessments
     #
     def regenerate
-      ::Reports::BulkExportJob.perform_later([resource.id], current_user.id)
-      respond_to do |format|
-        format.js
-      end
+      ::Reports::BulkExportJob.perform_later([resource.id], current_user)
     end
 
     private
@@ -153,14 +150,10 @@ module Administration
     end
 
     def resource_params
-      report_params = params.require(:resource).permit(:name, :type, :owner_id, :mindmill, :icon,
-                                                       :icon_color, :props, :remove_icon, :default_language,
-                                                       report_family_ids: [], assessment_ids: [],
-                                                       hogan_report_setting_attributes: %i[id hogan_report_id load_report])
-      # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids are empty and causes errors
-      # Does this need a better fix?
-      report_params = report_params.except(:assessment_ids) if report_params.key?(:assessment_ids) && report_params[:assessment_ids].reject(&:empty?).empty?
-      report_params
+      params.require(:resource).permit(:name, :type, :owner_id, :mindmill, :icon,
+                                       :icon_color, :props, :remove_icon, :default_language,
+                                       report_family_ids: [], assessment_ids: [],
+                                       hogan_report_setting_attributes: %i[id hogan_report_id load_report])
     end
 
     def authenticate_user_from_token!

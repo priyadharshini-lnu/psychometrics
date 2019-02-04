@@ -2,12 +2,12 @@ module Reports
   class ExportJob < ApplicationJob
     queue_as :reports
 
-    def perform(assigns_report_id, current_user_id)
-      @assigns_report = AssignsReport.find assigns_report_id
-      @report = assigns_report.report
-      @user = assigns_report.assign.membership.user
-      @current_user = User.find current_user_id
-      @project = assigns_report.assign.membership.client.project
+    def perform(assigns_report, current_user)
+      @assigns_report   = assigns_report
+      @report           = assigns_report.report
+      @user             = assigns_report.assign.membership.user
+      @current_user     = current_user
+      @project          = assigns_report.assign.membership.client.project
 
       generate_report
       save_to_assign_report
@@ -16,13 +16,12 @@ module Reports
 
     private
 
-    attr_reader :assigns_report, :report, :user, :current_user, :project
-    attr_reader :pdf_file
+    attr_reader :assigns_report, :report, :user, :current_user, :project, :pdf_file
 
     # Generates PDF file and placed it into TMP folder
     #
     def generate_report
-      @pdf_file = Exports::Reports::Pdf::ReportExport.export(current_user, report, user, project, lang: report.default_language)
+      @pdf_file = ::Exports::Reports::Pdf::ReportExport.export(current_user, report, user, project, lang: report.default_language)
     end
 
     # Uploads PDF file to AssignsReport

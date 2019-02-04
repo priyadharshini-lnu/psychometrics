@@ -33,15 +33,15 @@ class UpdateAssign < Rectify::Command
       assign.completed_at = Time.now
     end
 
-    assign.save
+    assign.save!
   end
 
   # Sends to generate PDF report
   #
   def generate_report
     assign.original_or_self.assigns_reports.update_all(generating: true)
-    assign.original_or_self.assigns_reports.ids.each do |assigns_report_id|
-      ::Reports::ExportJob.perform_later(assigns_report_id, current_user.id)
+    assign.original_or_self.assigns_reports.each do |assigns_report|
+      ::Reports::ExportJob.perform_later(assigns_report, current_user)
     end
   end
 end

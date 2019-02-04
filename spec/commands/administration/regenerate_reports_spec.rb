@@ -1,8 +1,8 @@
 require 'rails_helper'
 
 describe Administration::RegenerateReports do
-  let(:client) { double('client', id: 1) }
-  let(:current_user) { double('user', id: 1) }
+  let(:client) { build_stubbed(:client) }
+  let(:current_user) { build_stubbed(:user) }
 
   context 'form is invalid' do
     let(:form) { double('form', 'invalid?': true, report_ids: []) }
@@ -35,7 +35,7 @@ describe Administration::RegenerateReports do
     end
 
     it 'run background job' do
-      expect(::Reports::BulkExportJob).to receive(:perform_later).with(form.report_ids, current_user.id, client.id)
+      expect(::Reports::BulkExportJob).to receive(:perform_later).with(form.report_ids, current_user, client)
       subject
     end
   end

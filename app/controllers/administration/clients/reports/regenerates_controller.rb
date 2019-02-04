@@ -8,7 +8,7 @@ module Administration
         append_before_action :pundit_authorize
 
         def create
-          @_resource = resource_class.from_params(params[:resource])
+          @_resource = resource_class.from_params(params)
           ::Administration::RegenerateReports.call(resource, current_user, client) do
             on(:invalid)  { render :new }
           end

@@ -9,7 +9,7 @@ module Administration
     def call
       return broadcast(:invalid) if form.invalid?
 
-      ::Reports::BulkExportJob.perform_later(form.report_ids, current_user.id, client.id)
+      ::Reports::BulkExportJob.perform_later(form.report_ids, current_user, client)
 
       broadcast(:ok)
     end
