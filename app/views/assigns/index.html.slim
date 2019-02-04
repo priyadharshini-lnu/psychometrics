@@ -8,8 +8,7 @@
         .panel-group.assessments-holder id="assessments-1" role="tablist" aria-multiselectable="true"
           - @single_assigns.each do |assign|
             - if show_single_assign?(assign)
-              = render partial: 'assign',
-                       locals: { assign: assign, in_progress_assign: assign.assessment.category == 'mindmill' && assigns.detect(&:in_progress?) }
+              = render partial: 'assign', locals: { assign: assign }
       - if @multiple_reports.present?
         h3.assessmentTitles Multiple assessments
         .panel-group.assessments-holder id="assessments-multiple" role="tablist" aria-multiselectable="true"
