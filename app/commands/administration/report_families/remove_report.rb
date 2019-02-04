@@ -10,7 +10,6 @@ module Administration
 
       def call
         report_family.report_ids -= [report_id]
-        report_family.save!
 
         broadcast(:ok)
       end

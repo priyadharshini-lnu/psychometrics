@@ -37,7 +37,7 @@ module Administration
       end
 
       def toggle_status
-        resource.toggle(:disabled).save
+        resource.toggle!(:disabled)
         respond_to do |format|
           format.js
         end
