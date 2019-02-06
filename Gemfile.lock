@@ -337,7 +337,7 @@ GEM
       thor (>= 0.18.1)
     gyoku (1.3.1)
       builder (>= 2.1.2)
-    hashids (1.0.2)
+    hashids (1.0.5)
     highline (1.7.8)
     hirb (0.7.3)
     htmlentities (4.3.4)
@@ -756,7 +756,7 @@ DEPENDENCIES
   fog-aws (~> 2.0.1)
   font-awesome-rails (~> 4.7)
   guard
-  hashids (~> 1.0.2)
+  hashids (~> 1.0.5)
   hirb
   i18n-js (~> 3.0.0.rc3)
   i18n-tasks (~> 0.9.5)
@@ -831,4 +831,4 @@ DEPENDENCIES
   wisper-rspec (~> 1.1.0)
 
 BUNDLED WITH
-   1.17.2
+   1.17.3

@@ -12,7 +12,7 @@
 
         = f.input :number
         = f.input :country, as: :select,
-                            collection: Data::Geo.order(:country_name).select(:country_name).distinct,
+                            collection: ::Datas::Geo.order(:country_name).select(:country_name).distinct,
                             label_method: :country_name,
                             value_method: :country_name,
                             input_html: { data: { live_search: true } }

@@ -3,8 +3,6 @@
 module Administration
   module Clients
     class AssignReportsForm < Rectify::Form
-      attribute :new_record, Boolean, default: true
-
       # Fields
       attribute :report_family_id, Integer
       attribute :report_ids, Array[Integer]
@@ -14,8 +12,8 @@ module Administration
       #   VALIDATIONS
       #
       validates :report_family_id, presence: true
-      validates :report_ids,       presence: true, if: -> { new_record? }
-      validate :report_family_enabled, if: -> { new_record? }
+      validates :report_ids, presence: true, if: -> { context.new_record }
+      validate :report_family_enabled, if: -> { context.new_record }
       validate :reports_enabled, if: -> { report_ids.any? }
       validate :reports_linked_to_report_family, if: -> { report_family_id && report_ids.any? }
 

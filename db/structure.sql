@@ -1039,7 +1039,7 @@ CREATE TABLE public.license_usages (
     license_id integer,
     assigns_report_id integer,
     client_id integer NOT NULL,
-    membership_id bigint
+    user_id bigint
 );
 
 
@@ -1098,6 +1098,38 @@ CREATE SEQUENCE public.licenses_id_seq
 --
 
 ALTER SEQUENCE public.licenses_id_seq OWNED BY public.licenses.id;
+
+
+--
+-- Name: membership_grants; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.membership_grants (
+    id bigint NOT NULL,
+    membership_id bigint,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: membership_grants_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.membership_grants_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: membership_grants_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.membership_grants_id_seq OWNED BY public.membership_grants.id;
 
 
 --
@@ -1841,7 +1873,8 @@ CREATE TABLE public.users (
     created_by_id integer,
     modified_by_id integer,
     spoof_token character varying,
-    encrypted_invitation_raw character varying
+    encrypted_invitation_raw character varying,
+    project_id integer
 );
 
 
@@ -2058,6 +2091,13 @@ ALTER TABLE ONLY public.license_usages ALTER COLUMN id SET DEFAULT nextval('publ
 --
 
 ALTER TABLE ONLY public.licenses ALTER COLUMN id SET DEFAULT nextval('public.licenses_id_seq'::regclass);
+
+
+--
+-- Name: membership_grants id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.membership_grants ALTER COLUMN id SET DEFAULT nextval('public.membership_grants_id_seq'::regclass);
 
 
 --
@@ -2430,6 +2470,14 @@ ALTER TABLE ONLY public.license_usages
 
 ALTER TABLE ONLY public.licenses
     ADD CONSTRAINT licenses_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: membership_grants membership_grants_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.membership_grants
+    ADD CONSTRAINT membership_grants_pkey PRIMARY KEY (id);
 
 
 --
@@ -2993,10 +3041,10 @@ CREATE INDEX index_license_usages_on_license_id ON public.license_usages USING b
 
 
 --
--- Name: index_license_usages_on_membership_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_license_usages_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_license_usages_on_membership_id ON public.license_usages USING btree (membership_id);
+CREATE INDEX index_license_usages_on_user_id ON public.license_usages USING btree (user_id);
 
 
 --
@@ -3011,6 +3059,13 @@ CREATE INDEX index_licenses_on_client_id ON public.licenses USING btree (client_
 --
 
 CREATE INDEX index_licenses_on_client_id_and_report_family_id ON public.licenses USING btree (client_id, report_family_id);
+
+
+--
+-- Name: index_membership_grants_on_membership_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_membership_grants_on_membership_id ON public.membership_grants USING btree (membership_id);
 
 
 --
@@ -3273,10 +3328,10 @@ CREATE INDEX index_users_on_created_by_id ON public.users USING btree (created_b
 
 
 --
--- Name: index_users_on_email; Type: INDEX; Schema: public; Owner: -
+-- Name: index_users_on_email_and_project_id_and_role; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_on_email ON public.users USING btree (email);
+CREATE UNIQUE INDEX index_users_on_email_and_project_id_and_role ON public.users USING btree (email, project_id, role);
 
 
 --
@@ -3570,6 +3625,14 @@ ALTER TABLE ONLY public.communications
 
 
 --
+-- Name: membership_grants fk_rails_98668bfd47; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.membership_grants
+    ADD CONSTRAINT fk_rails_98668bfd47 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
 -- Name: memberships fk_rails_99326fb65d; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3583,14 +3646,6 @@ ALTER TABLE ONLY public.memberships
 
 ALTER TABLE ONLY public.reports
     ADD CONSTRAINT fk_rails_9c1b8d7e35 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
-
-
---
--- Name: license_usages fk_rails_a4a7857249; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.license_usages
-    ADD CONSTRAINT fk_rails_a4a7857249 FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
 
 
 --
@@ -3778,11 +3833,27 @@ ALTER TABLE ONLY public.clients
 
 
 --
+-- Name: license_usages fk_rails_f4894a9b56; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_f4894a9b56 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: clients fk_rails_f99d964d82; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.clients
     ADD CONSTRAINT fk_rails_f99d964d82 FOREIGN KEY (project_manager_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: users fk_rails_fedc809cf8; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users
+    ADD CONSTRAINT fk_rails_fedc809cf8 FOREIGN KEY (project_id) REFERENCES public.clients(id);
 
 
 --
@@ -3995,4 +4066,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181124083412'),
 ('20181209135656'),
 ('20181217073128'),
-('20181224184633');
+('20181224184633'),
+('20190101143027'),
+('20190113180725'),
+('20190127164957');
+
+

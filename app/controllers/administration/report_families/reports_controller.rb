@@ -8,8 +8,8 @@ module Administration
       append_before_action :init_breadcrumbs
 
       def index
-        @_filter_form = @report_family.reports.distinct.search(params[:q])
-        @_resources = filter_form.result.page(params[:page])
+        @_filter_form = @report_family.reports.search(params[:q])
+        @_resources = filter_form.result(distinct: true).page(params[:page])
 
         respond_to do |format|
           format.html

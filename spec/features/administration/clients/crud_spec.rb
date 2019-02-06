@@ -13,7 +13,7 @@ feature 'CRUD Client' do
       import_countries
       tenancy = create_tenancy(name: 'TTE',
                                number: 1,
-                               country: Data::Geo.take&.country_name,
+                               country: ::Datas::Geo.take&.country_name,
                                year: Date.today.year,
                                account_manager: 'super admin',
                                project_manager: 'super admin')

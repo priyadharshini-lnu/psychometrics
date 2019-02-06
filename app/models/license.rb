@@ -55,7 +55,9 @@ class License < ApplicationRecord
   end
 
   def used_by(client)
-    license_usages.where(client_id: client.subtree_ids).size
+    license_usages.joins(assigns_report: { assign: :membership }).
+                   where(assigns_report: { assign: { memberships: { client_id: [client.subtree_ids].flatten } } }).
+                   size
   end
 
   private
