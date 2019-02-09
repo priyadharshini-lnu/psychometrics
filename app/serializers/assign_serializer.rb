@@ -21,7 +21,7 @@
 
 class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id, :relationship,
-             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring
+             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet
 
   attribute :agile_scoring, if: -> { object.membership_id == @instance_options[:membership].try(:id) }
 
@@ -60,6 +60,10 @@ class AssignSerializer < ActiveModel::Serializer
     end
     {}
   end
+
+  def data_sheet
+    {Field1: '5', Field2: 'MARKDOWN', Field3: 2}
+end
 
   def normalize_hogan_type(type)
     return 'Raw' if type == 'RAW'
