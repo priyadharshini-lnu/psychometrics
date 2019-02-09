@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Hogan
   class AssignsController < ApplicationController
     before_action :set_assign
@@ -39,8 +41,10 @@ module Hogan
     end
 
     def pass
-      @assign.in_progress!
-      render json: :no_content
+      Hogan::PassAssessment.call(@assign, @current_membership.membership_with_result, @current_project) do
+        on(:ok)      { render(:pass) }
+        on(:invalid) { render(:error, locals: { message: t('errors.error_500') }) }
+      end
     end
 
     private
