@@ -28,7 +28,7 @@
                           data: { mindmill: mindmill_data, privacy_consent: privacy_consent_data },
                           class: 'mindmill_link'
               - elsif assign.assessment.hogan?
-                = link_to assign.assessment.name, pass_hogan_assign_path(assign.id), remote: true, method: :put
+                = link_to assign.assessment.name, pass_hogan_assign_path(assign.id), remote: true, method: :put, data: { loading: true }
                 div id=dom_id(assign)
               - else
                 = link_to assign.assessment.name, '#', data: { privacy_consent: privacy_consent_data }
