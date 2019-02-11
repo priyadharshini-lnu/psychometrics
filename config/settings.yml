@@ -681,6 +681,186 @@ hogan:
       - id: '04'
         name: Completion_Time
         type: Percentile Scale
+mindmill_factors:
+  nf: &nf
+  - name: "NF Attempted"
+    id: "nf.attempted"
+    type: Count
+  - name: "NF Correct"
+    id: "nf.correct"
+    type: Count
+  - name: "NF Stable"
+    id: "nf.stable"
+    type: Stability
+  - name: "NF Standard Score"
+    id: "nf.zscore"
+    type: Score
+  - name: "NF Adjusted Percentile"
+    id: "nf.adjpercentile"
+    type: Score
+  - name: "NF Percentage Correct"
+    id: "nf.pc"
+    type: Score
+  ed: &ed
+  - name: "ED Attempted"
+    id: "ed.attempted"
+    type: Count
+  - name: "ED Correct"
+    id: "ed.correct"
+    type: Count
+  - name: "ED Stable"
+    id: "ed.stable"
+    type: Stability
+  - name: "ED Standard Score"
+    id: "ed.zscore"
+    type: Score
+  - name: "ED Adjusted Percentile"
+    id: "ed.adjpercentile"
+    type: Score
+  - name: "ED Percentage Correct"
+    id: "ed.pc"
+    type: Score
+  ti: &ti
+  - name: "TI Attempted"
+    id: "ti.attempted"
+    type: Count
+  - name: "TI Correct"
+    id: "ti.correct"
+    type: Count
+  - name: "TI Stable"
+    id: "ti.stable"
+    type: Stability
+  - name: "TI Standard Score"
+    id: "ti.zscore"
+    type: Score
+  - name: "TI Adjusted Percentile"
+    id: "ti.adjpercentile"
+    type: Score
+  - name: "TI Percentage Correct"
+    id: "ti.pc"
+    type: Score
+  oe: &oe
+  - name: "OE Attempted"
+    id: "oe.attempted"
+    type: Count
+  - name: "OE Correct"
+    id: "oe.correct"
+    type: Count
+  - name: "OE Stable"
+    id: "oe.stable"
+    type: Stability
+  - name: "OE Standard Score"
+    id: "oe.zscore"
+    type: Score
+  - name: "OE Adjusted Percentile"
+    id: "oe.adjpercentile"
+    type: Score
+  - name: "OE Percentage Correct"
+    id: "oe.pc"
+    type: Score
+  or: &or
+  - name: "OR Attempted"
+    id: "or.attempted"
+    type: Count
+  - name: "OR Correct"
+    id: "or.correct"
+    type: Count
+  - name: "OR Stable"
+    id: "or.stable"
+    type: Stability
+  - name: "OR Standard Score"
+    id: "or.zscore"
+    type: Score
+  - name: "OR Adjusted Percentile"
+    id: "or.adjpercentile"
+    type: Score
+  - name: "OR Percentage Correct"
+    id: "or.pc"
+    type: Score
+  ab: &ab
+  - name: "AB Attempted"
+    id: "ab.attempted"
+    type: Count
+  - name: "AB Correct"
+    id: "ab.correct"
+    type: Count
+  - name: "AB Stable"
+    id: "ab.stable"
+    type: Stability
+  - name: "AB Standard Score"
+    id: "ab.zscore"
+    type: Score
+  - name: "AB Adjusted Percentile"
+    id: "ab.adjpercentile"
+    type: Score
+  - name: "AB Percentage Correct"
+    id: "ab.pc"
+    type: Score
+  rc: &rc
+  - name: "RC Attempted"
+    id: "rc.attempted"
+    type: Count
+  - name: "RC Correct"
+    id: "rc.correct"
+    type: Count
+  - name: "RC Stable"
+    id: "rc.stable"
+    type: Stability
+  - name: "RC Standard Score"
+    id: "rc.zscore"
+    type: Score
+  - name: "RC Adjusted Percentile"
+    id: "rc.adjpercentile"
+    type: Score
+  - name: "RC Percentage Correct"
+    id: "rc.pc"
+    type: Score
+  bands: &bands
+  - name: "BANDS Attempted"
+    id: "bands.attempted"
+    type: Count
+  - name: "BANDS Correct"
+    id: "bands.correct"
+    type: Count
+  - name: "BANDS Stable"
+    id: "bands.stable"
+    type: Stability
+  - name: "BANDS Standard Score"
+    id: "bands.zscore"
+    type: Score
+  - name: "BANDS Adjusted Percentile"
+    id: "bands.adjpercentile"
+    type: Score
+  - name: "BANDS Percentage Correct"
+    id: "bands.pc"
+    type: Score
+  wr: &wr
+  - name: "WR Attempted"
+    id: "wr.attempted"
+    type: Count
+  - name: "WR Correct"
+    id: "wr.correct"
+    type: Count
+  - name: "WR Stable"
+    id: "wr.stable"
+    type: Stability
+  - name: "WR "
+    id: "wr.zscore"
+    type: Score
+  - name: "WR Adjusted Percentile"
+    id: "wr.adjpercentile"
+    type: Score
+  - name: "WR Percentage Correct"
+    id: "wr.pc"
+    type: Score
+  cpi: &cpi
+  - name: "CPI Standard Score"
+    id: "cpi.zscore"
+    type: Score
+  - name: "CPI Percentile"
+    id: "cpi.percentile"
+    type: Score
+
 
 mindmill:
   - name: Cognitive – Entry Level TTE
