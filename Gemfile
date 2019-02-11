@@ -123,6 +123,7 @@ gem 'mustache', '~> 1.0.3'
 gem 'sidekiq', '~> 5.1.3'
 gem 'chronic', '~> 0.10.2'
 gem 'whenever', '~> 0.9.7', require: false
+gem 'rectify', '~> 0.13.0'
 
 gem 'hashids', '~> 1.0.2'
 gem 'react-rails', '~> 1.10.0'

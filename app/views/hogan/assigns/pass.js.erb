@@ -1,0 +1,5 @@
+$(function () {
+  var $hoganFormContainer = $('#<%= dom_id(@assign) %>');
+  $hoganFormContainer.html('<%= j render(partial: "form", locals: { assign: @assign }) %>');
+  $('form', $hoganFormContainer).submit();
+});
