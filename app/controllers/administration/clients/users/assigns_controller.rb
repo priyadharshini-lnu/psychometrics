@@ -33,16 +33,6 @@ module Administration
           resource.user_access = resource_params[:user_access]
 
           begin
-            if @assessment.hogan?
-              assessment_params = {
-                group: client.project.hogan_group_name,
-                membership: membership.membership_with_result,
-                assessment: @assessment,
-                reports: resource.reports
-              }
-              result = Services::Hogan::AssignAssessmentAndReports.call!(assessment_params: assessment_params)
-            end
-
             if resource.new_record?
               resource.save
             else
