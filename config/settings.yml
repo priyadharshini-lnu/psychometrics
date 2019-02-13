@@ -865,78 +865,52 @@ mindmill_factors:
 mindmill:
   - name: Cognitive – Entry Level TTE
     id: 416
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Cognitive – Mid Level TTE
     id: 417
-    factors:
-      - id: nf.attempted
-        type: Count
-      - id: nf.correct
-        type: Count
-      - id: nf.pc
-        type: Count
-      - id: ed.attempted
-        type: Count
-      - id: ed.correct
-        type: Count
-      - id: ed.pc
-        type: Count
-      - id: nf.zscore
-        type: Score
-      - id: ed.zscore
-        type: Score
-      - id: nf.stable
-        type: Stability
-      - id: ed.stable
-        type: Stability
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Cognitive – Senior Level TTE
     id: 418
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Support Functions – Entry Level TTE
     id: 419
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Support Functions – Mid Level TTE
     id: 420
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Support Functions – Senior Level TTE
     id: 421
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Sales – Entry Level TTE
     id: 422
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Sales – Mid Level TTE
     id: 423
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Sales – Senior Level TTE
     id: 424
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Customer – Entry Level TTE
     id: 425
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Customer – Mid Level TTE
     id: 426
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Customer – Senior Level TTE
     id: 427
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Technical Functions – Entry Level TTE
     id: 428
-    factors:
-      - id: nf.attempted
-        type: Count
-      - id: nf.correct
-        type: Count
-      - id: nf.pc
-        type: Count
-      - id: ed.attempted
-        type: Count
-      - id: ed.correct
-        type: Count
-      - id: ed.pc
-        type: Count
-      - id: nf.zscore
-        type: Score
-      - id: ed.zscore
-        type: Score
-      - id: nf.stable
-        type: Stability
-      - id: ed.stable
-        type: Stability
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Technical Functions – Mid Level TTE
     id: 429
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Technical Functions – Senior Level TTE
     id: 430
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
   - name: Technical Functions
     id: 469
+    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
 default_colors:
   - "#845EC2"
   - "#2C73D2"
