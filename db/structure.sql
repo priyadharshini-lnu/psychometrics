@@ -23,6 +23,20 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
+-- Name: citext; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION citext; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings';
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -232,9 +246,7 @@ CREATE TABLE public.assigns_reports (
     access_reports_at timestamp without time zone,
     external_report character varying,
     hogan_score jsonb DEFAULT '{}'::jsonb,
-    user_access boolean DEFAULT true,
-    pdf character varying,
-    generating boolean DEFAULT false
+    user_access boolean DEFAULT true
 );
 
 
@@ -1585,10 +1597,9 @@ CREATE TABLE public.reports (
     type integer DEFAULT 0,
     owner_id integer,
     mindmill boolean DEFAULT false,
-    data_configuration jsonb DEFAULT '{}'::jsonb,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    default_language character varying DEFAULT 'en'::character varying,
+    data_configuration jsonb DEFAULT '{}'::jsonb,
     props jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
@@ -4064,8 +4075,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181118154257'),
 ('20181119095817'),
 ('20181124083412'),
-('20181209135656'),
-('20181217073128'),
 ('20181224184633'),
 ('20190101143027'),
 ('20190113180725'),

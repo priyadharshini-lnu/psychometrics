@@ -11,9 +11,6 @@ module Licenses
       # Returns if client is not retail
       return if client.retail?
 
-      # Returns if client is owner of the report
-      return if client.id == report.owner_id
-
       build_license
     end
 
