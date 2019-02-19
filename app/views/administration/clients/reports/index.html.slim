@@ -8,7 +8,7 @@
         h3.panel-title = t('.title')
         - if policy(resource_class).create?
           .pull-right
-            = link_to({ action: :new }, remote: true, class: 'btn btn-default')
+            = link_to(new_administration_client_assign_reports_path(client_id: client.id), remote: true, class: 'btn btn-default')
               span.fa.fa-plus
               = t('.add')
         - if policy(BulkReport).new?
@@ -21,17 +21,17 @@
                           html: { id: 'filter', class: 'list-filter' },
                           builder: SimpleForm::FormBuilder) do |f|
 
-          = f.input :assessments_category_in,
+          = f.input :report_assessments_category_in,
                     collection: ::Assessment::CATEGORIES,
                     input_html: { title: 'Category '},
                     include_blank: t('administration.any'),
                     label: false
-          = f.input :assessments_id_in,
+          = f.input :report_assessments_id_in,
                     collection: policy_scope(Assessment).all.options_for_select,
                     input_html: { data: { live_search: true }, multiple: true, title: 'Assessment' },
                     required: false,
                     label: false
-          = f.input :name_cont,
+          = f.input :report_name_cont,
                     as: :string,
                     required: false,
                     placeholder: t('administration.search'),

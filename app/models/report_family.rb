@@ -10,7 +10,9 @@
 
 class ReportFamily < ApplicationRecord
   has_and_belongs_to_many :reports
-  has_and_belongs_to_many :clients, join_table: :clients_report_families, class_name: 'Client'
+  has_many :assessments, through: :reports
+  has_many :licenses
+  has_many :clients, through: :licenses, source: :client
 
   validates :name, presence: true
 end

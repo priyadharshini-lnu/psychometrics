@@ -59,7 +59,7 @@ en:
       client: Client Tenancy
       create: Create
       reports: Reports
-      report_families: Report Families
+      report_families: Report Bundles
       design: Design
       question_center: Question Center
       libraries: Media Library
@@ -69,6 +69,7 @@ en:
       projects: Projects
       campaigns: Campaigns
       sub_campaigns: Sub Campaigns
+      licenses: Licenses
     breadcrumbs:
       <<: *NAVIGATION
     tte: TTE

@@ -15,7 +15,8 @@ en:
             header: Assign Assessment and Reports
           index:
             title: '%{name} - Assessments and Reporting'
-            add: 'Assign New Assessment and Reports'
+            add_assessments: Add Assessments
+            add_reports: Add Reports
           create:
             successfully: Successfully Updated
           header:
@@ -31,8 +32,27 @@ en:
             not_completed: Not completed
             tooltips:
               delete: Detach Assessment
-              edit: Edit report assignment
-              delete_report: Detach Report
+              assigns_report:
+                add_user_access: Add user access
+                remove_user_access: Remove user access
+                delete: Detach Report
+            confirms:
+              assigns_report:
+                delete:
+                  title:
+                    Detach <strong>%{name}</strong> ?
+                  body:
+                    <p>Are you sure you want to detach this report?</p>
+                remove_user_access:
+                  title:
+                    Remove user access to <strong>%{name}</strong> ?
+                  body:
+                    <p>Are you sure you want to remove user access to this report?</p>
+                add_user_access:
+                  title:
+                    Add user access to <strong>%{name}</strong> ?
+                  body:
+                    <p>Are you sure you want to add user access to this report?</p>
           common:
             detach_assessment: 'Assessment %{name} was successfully detached.'
             detach_report: 'Report %{name} was successfully detached.'

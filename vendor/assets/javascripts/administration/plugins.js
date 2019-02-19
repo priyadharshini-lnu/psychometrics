@@ -140,6 +140,12 @@ $(function() {
     }();
 
     window.uiElements = function(){
+        // Calculate sidebar position
+        var uiSidebarPosition = function() {
+          var fromTop = 50 - $(window).scrollTop();
+          var top = fromTop > 0 ? fromTop : 0
+          $("#sidebar").css('top', top + 'px');
+        }
 
         //Datatables
         var uiDatatable = function(){
@@ -280,7 +286,11 @@ $(function() {
 
 
         return {
+            sidebarPosition: function() {
+              uiSidebarPosition();
+            },
             init: function(){
+                uiSidebarPosition();
                 uiDatatable();
                 uiRangeSlider();
                 uiScroller();

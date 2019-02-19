@@ -19,5 +19,9 @@ module Administration
         false
       end
     end
+
+    def toggle_user_access?
+      update?
+    end
   end
 end

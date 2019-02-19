@@ -1,14 +1,7 @@
-$(function () {
-  var $modalBox = $('#modal-container').find('.modal')
-  $modalBox.modal('hide');
-  $modalBox.on('hidden.bs.modal', function () {
+$('#filter').trigger('reloadList');
 
-    $('a[data-assign-id=<%= resource.assign.id %>][data-report-id=<%= resource.report.id %>]').hide('slow')
-    $('#client-tenancy-assign-<%= resource.assign.id %>-report-<%= resource.report.id %>').hide('slow')
-    // Notify message
-    noty({
-      text: '<%= t('administration.clients.users.assigns.common.detach_report',
-          name: resource.assign.decorate.display_name) %>', type: 'success'
-    });
-  });
-});
+// Reinit all plugins
+$(document).trigger('initPlugins');
+
+// Notify message
+noty({text: 'Successfully destroyed', type: 'success'});

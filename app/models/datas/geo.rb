@@ -12,7 +12,7 @@
 #  updated_at   :datetime         not null
 #
 
-class Data::Geo < ApplicationRecord
+class Datas::Geo < ApplicationRecord
   FIELDS = %w(city country_name country_code region_name).freeze
 
   self.table_name_prefix = 'data_'

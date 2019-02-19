@@ -6,32 +6,12 @@ module Administration
       append_before_action :init_breadcrumbs
 
       def index
-        @_filter_form = client.reports.includes(:assessments).search(params[:q])
+        @_filter_form = client.clients_reports.includes(:report_family, report: :assessments).search(params[:q])
         @_resources = filter_form.result.page(params[:page])
 
         respond_to do |format|
           format.html
           format.js { render :index, formats: [:js] }
-        end
-      end
-
-      def new
-      end
-
-      def create
-        render :new unless client.update(client_params)
-      end
-
-      def destroy
-        @_resource = client.clients_reports.find_by(report_id: params[:id])
-        resource.destroy
-        respond_to do |format|
-          format.html do
-            redirect_back(
-              fallback_location: root_path, success: t('.successfully', name: resource.report.decorate.display_name)
-            )
-          end
-          format.js
         end
       end
 

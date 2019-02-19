@@ -15,8 +15,6 @@
                 include_blank: false,
                 disabled: !f.object.new_record?
       - if f.object.project?
-        = f.association :reports, collection: Report.with_report_families(client.report_family_ids).distinct
-      - if f.object.project?
         label = t('.data_privacy')
         = f.input :privacy_consent
       .clearfix

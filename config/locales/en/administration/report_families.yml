@@ -2,7 +2,7 @@ en:
   administration:
     report_families: &REPORT_FAMILIES
       index:
-        title: Report Families
+        title: Report Bundles
         add: Add
         families: Families
         tooltips:
@@ -11,36 +11,51 @@ en:
         updated_at: Modified Date
         created_at: Created Date
       new:
-        header: 'New Report Family'
+        header: 'New Report Bundle'
       edit:
-        header: 'Edit Report Family Name'
+        header: 'Edit Report Bundle Name'
       destroy:
-        successfully: 'Report Family %{name} was successfully deleted.'
+        successfully: 'Report Bundle %{name} was successfully deleted.'
       create:
-        successfully: 'Report Family %{name} was successfully created.'
+        successfully: 'Report Bundle %{name} was successfully created.'
       update:
-        successfully: 'Report Family %{name} was successfully updated.'
+        successfully: 'Report Bundle %{name} was successfully updated.'
       copy:
-        error: 'Report Family #%{id} was not copied.'
+        error: 'Report Bundle #%{id} was not copied.'
       sidebar:
-        title: Report Family's options
-        view: View Report Family
-        edit: Edit Report Family
-        copy: Copy Report Family
-        destroy: Delete Report Family
+        title: Report Bundle's options
+        view: View Report Bundle
+        edit: Edit Report Bundle
+        copy: Copy Report Bundle
+        destroy: Delete Report Bundle
       resource:
         tooltips:
-          preview: Preview Report Family
-          copy: Copy Report Family
-          edit: Edit Report Family
-          delete: Delete Report Family
+          preview: Preview Report Bundle
+          copy: Copy Report Bundle
+          edit: Edit Report Bundle
+          delete: Delete Report Bundle
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?
             body: >
-              <p>Are you sure you want to %{status} this Report Family?</p>
+              <p>Are you sure you want to %{status} this Report Bundle?</p>
           delete:
             title:
               Delete <strong>Report</strong> ?
             body: >
-              <p>Are you sure you want to delete this Report Family?</p>
+              <p>Are you sure you want to delete this Report Bundle?</p>
+      reports:
+        index:
+          title: Reports in the Bundle
+          add: Add new Report
+          tooltips:
+            create: Create
+        resource:
+          tooltips:
+            delete: Delete Report from Bundle
+          confirmations:
+            delete:
+              title:
+                Delete <strong>Report</strong> from Bundle?
+              body: >
+                <p>Are you sure you want to delete this Report from Bundle?</p>

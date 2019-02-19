@@ -6,6 +6,15 @@ $(function() {
     }
   });
 
+  // Show loading text on buttons which process send data
+  $(document).on('click', '[data-loading-text]', function () {
+    $(this).button('loading');
+  });
+
+  $(window).scroll(function(){
+    window.uiElements.sidebarPosition();
+  });
+
   $(document).on('ajax:beforeSend', function (e) {
     var panel = $(e.target).parents('.panel');
     panel_refresh(panel);

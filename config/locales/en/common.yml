@@ -24,6 +24,7 @@ en:
   'no': 'No'
   'clear_filter': 'Clear Filter'
   next: Next
+  loading: 'Processing...'
   languages:
     en: 'English'
     en-GB: 'English - UK'

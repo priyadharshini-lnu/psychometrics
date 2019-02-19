@@ -1,19 +1,21 @@
+# frozen_string_literal: true
+
 module Administration
   module Clients
     class UsersController < Administration::BaseController
       include Administration::Clients
       prepend_before_action :set_resource_class
       before_action :ensure_not_root
-      before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :spoof, :reset_password]
+      before_action :set_resource, only: %i[show edit update destroy toggle_status sidebar spoof reset_password]
       before_action :skip_authorization, only: [:sidebar]
-      append_before_action :init_breadcrumbs, except: [:new, :create, :assign_multiple]
+      append_before_action :init_breadcrumbs, except: %i[new create assign_multiple]
       append_before_action :pundit_authorize, except: [:sidebar]
 
       def index
-        @_filter_form ||= policy_scope(resource_class)
-                           .includes(user: [:clients, :memberships])
-                           .where.not(role: Membership::PROJECT_ADMIN_ROLE)
-                           .join_user.search(params[:q])
+        @_filter_form ||= policy_scope(resource_class).
+                          includes(user: %i[clients memberships]).
+                          where.not(role: Membership::PROJECT_ADMIN_ROLE).
+                          join_user.search(params[:q])
         filter_form.client_id_in = client.id
         @_resources = filter_form.result.page(params[:page])
 
@@ -25,50 +27,34 @@ module Administration
       end
 
       def admins
-        @_filter_form = policy_scope(resource_class)
-                           .includes(user: [:clients, :memberships])
-                           .where(role: Membership::PROJECT_ADMIN_ROLE)
-                           .join_user.search(params[:q])
+        @_filter_form = policy_scope(resource_class).
+                        includes(user: %i[clients memberships]).
+                        where(role: Membership::PROJECT_ADMIN_ROLE).
+                        join_user.search(params[:q])
         index
       end
 
       def new
-        @_resource = resource_class.new
-        render 'new', locals: { is_new: false }
+        @_resource = UserForm.new
+        render :new, locals: { is_new: false }
       end
 
       def create
-        @_resource = resource_class.new(create_resource_params)
-        resource.client = policy_scope(Client).where(id: client.id).take
-        resource.role = Membership::PROJECT_ADMIN_ROLE if params[:admin]
-
-        user = User.find_by(email: resource.user&.email, project_id: resource.client.project.id)
-        if user
-          resource.user = user
-          # TODO (atanych): do we really need to override user profile?
-          resource.user.assign_attributes(create_resource_params[:user_attributes])
-        else
-          resource.user.project_id = resource.client.project.id
-        end
-
-        resource.user.tap do |u|
-          u.create_by_invite = true
-          u.created_by_id = current_user.id
-          u.modified_by_id = current_user.id
-        end
-
+        @_resource = UserForm.
+                     from_params(params[:resource]).
+                     with_context(client: client)
         respond_to do |format|
-          if resource.save
-            resource.user.invite!(current_user, client.id)
-            format.js
-          else
-            format.js { render :new, locals: { is_new: true } }
+          format.js do
+            CreateUser.call(resource, client, current_user) do
+              on(:invalid) { render(:new, locals: { is_new: true }) }
+            end
           end
         end
       end
 
       def assign_multiple
         return unless client.project?
+
         if client.update(project_admin_ids: client.root.projects_admins.where(id: params[:project_admin_ids]).distinct.ids)
           render :create
         else
@@ -79,11 +65,11 @@ module Administration
       # GET /administration/resources/1/edit
       def edit
         if resource.scope == :administration
-          add_breadcrumb t('administration.breadcrumbs.admins'), { action: :admins }
+          add_breadcrumb t('administration.breadcrumbs.admins'), action: :admins
         else
-          add_breadcrumb t('administration.breadcrumbs.users'), { action: :index }
+          add_breadcrumb t('administration.breadcrumbs.users'), action: :index
         end
-        add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
+        add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
       end
 
       # PATCH/PUT /administration/resources/1
@@ -182,7 +168,7 @@ module Administration
           add_breadcrumb client.project.decorate.display_name, administration_client_project_campaigns_path(client.client, client.project) if client.has_children? || client.subtenancy?
           add_breadcrumb client.parent.decorate.display_name, administration_client_project_campaign_sub_campaigns_path(client.client, client.project, client.parent) if client.sub_campaign?
         end
-        add_breadcrumb client.decorate.display_name, { action: :index } if client.end_level?
+        add_breadcrumb client.decorate.display_name, action: :index if client.end_level?
       end
 
       def create_resource_params

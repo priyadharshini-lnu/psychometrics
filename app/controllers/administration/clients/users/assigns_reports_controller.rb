@@ -5,24 +5,60 @@ module Administration
         include Administration::Clients
         prepend_before_action :set_resource_class
         before_action :set_membership
-        before_action :set_resource, only: %i[edit update destroy]
+        before_action :set_resource, only: %i[toggle_user_access destroy]
         append_before_action :pundit_authorize
 
-        def edit
+        def new
+          @report_families = client.root.
+                                    report_families.
+                                    includes(:reports).
+                                    where(reports: { disabled: false }).
+                                    references(:reports).
+                                    distinct
+          @_resource = Administration::Clients::AssignReportsForm.new
         end
 
-        def update
-          resource.update!(resource_params)
+        def create
+          @report_families = client.root.
+                                    report_families.
+                                    includes(:reports).
+                                    where(reports: { disabled: false }).
+                                    references(:reports).
+                                    distinct
+          @_resource = Administration::Clients::AssignReportsForm.
+                       from_params(params[:resource]).
+                       with_context(client: client, client_tenancy: client.root)
+          resource.apply_to_existing_users = false
+
+          respond_to do |format|
+            format.js do
+              Administration::Clients::AssignReports.call(resource, client, membership) do
+                on(:invalid) { render :new }
+              end
+            end
+          end
+        end
+
+        def toggle_user_access
+          resource.toggle!(:user_access)
+
         rescue ActiveRecord::RecordInvalid => e
-          Rails.logger.error(e.message)
-          render :edit
+          respond_to do |format|
+            format.js { render(:error, locals: { message: e.message }) }
+          end
         end
 
         def destroy
           resource.destroy!
+          
         rescue ActiveRecord::RecordInvalid => e
-          Rails.logger.error(e.message)
-          render :edit
+          respond_to do |format|
+            format.js { render(:error, locals: { message: e.message }) }
+          end
+        end
+
+        def i18n
+          'clients.users.assigns_reports'
         end
 
         private

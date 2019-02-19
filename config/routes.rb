@@ -63,7 +63,10 @@ Rails.application.routes.draw do
             resources :reports, only: [:destroy] do
               get :preview, on: :member
             end
-            resources :assigns_reports, only: %i[edit update destroy]
+            resources :assigns_reports, only: %i[new create destroy] do
+              put :toggle_user_access, on: :member
+            end
+            resources :assign_assessments, only: %i[new create]
           end
           member do
             patch :toggle_status
@@ -104,9 +107,11 @@ Rails.application.routes.draw do
             post :assign_multiple
           end
         end
-        resources :reports, only: [:index, :destroy, :new, :create] do
+        resources :reports, only: %i[index] do
           get :export
         end
+        resource :assign_reports, only: %i[new create edit update]
+        resource :assign_assessments, only: %i[new create edit update]
         resources :statistics, only: [:index]
 
         resources :projects, concerns: :client_editable do
@@ -132,7 +137,10 @@ Rails.application.routes.draw do
         resources :campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
         resources :sub_campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
 
-        resource :licenses, only: [:show, :edit, :update]
+        resources :licenses, only: %i[index show new create edit update] do
+          patch :toggle_status, on: :member
+          get :overview, on: :collection
+        end
         resources :assessments, only: [:index, :destroy] do
           get :export_results
           get :export_normed_results
@@ -282,6 +290,9 @@ Rails.application.routes.draw do
     resources :report_families, except: [:show] do
       member do
         get :sidebar
+      end
+      scope module: :report_families do
+        resources :reports, only: %i[index destroy new create]
       end
     end
 

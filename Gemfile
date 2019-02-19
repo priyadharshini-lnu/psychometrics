@@ -31,6 +31,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-datetimepicker-3', '4.17.47'
   gem 'rails-assets-moment', '2.19.3'
   gem 'rails-assets-moment-timezone', '0.5.14'
+  gem 'rails-assets-Sortable', '1.6.0'
 end
 
 ### Authentication and authorization
@@ -125,7 +126,7 @@ gem 'chronic', '~> 0.10.2'
 gem 'whenever', '~> 0.9.7', require: false
 gem 'rectify', '~> 0.13.0'
 
-gem 'hashids', '~> 1.0.2'
+gem 'hashids', '~> 1.0.5'
 gem 'react-rails', '~> 1.10.0'
 gem 'bootstrap-slider-rails'
 
@@ -134,7 +135,7 @@ gem 'validates_timeliness', '~> 4.0.2'
 gem 'virtus', '~> 1.0.5'
 gem 'reform-rails', '~> 0.1.7'
 gem 'dry-types', '~> 0.12.2'
-gem 'rectify', '~> 0.13.0'
+
 # SOAP client
 gem 'savon', '~> 2.11.0'
 # Abort requests that are taking too long

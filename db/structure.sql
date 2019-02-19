@@ -23,6 +23,20 @@ COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
 
 
 --
+-- Name: citext; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION citext; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings';
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -47,39 +61,6 @@ CREATE TYPE public.user_roles AS ENUM (
 SET default_tablespace = '';
 
 SET default_with_oids = false;
-
---
--- Name: api_keys; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.api_keys (
-    id bigint NOT NULL,
-    user_id bigint NOT NULL,
-    active boolean,
-    token character varying,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: api_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.api_keys_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: api_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.api_keys_id_seq OWNED BY public.api_keys.id;
-
 
 --
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
@@ -119,6 +100,39 @@ CREATE TABLE public.assessments (
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying
 );
+
+
+--
+-- Name: assessments_clients; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.assessments_clients (
+    id bigint NOT NULL,
+    client_id bigint,
+    assessment_id bigint,
+    "position" integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: assessments_clients_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.assessments_clients_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: assessments_clients_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.assessments_clients_id_seq OWNED BY public.assessments_clients.id;
 
 
 --
@@ -397,7 +411,9 @@ CREATE TABLE public.clients_reports (
     client_id integer,
     report_id integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    user_access boolean DEFAULT false,
+    report_family_id bigint
 );
 
 
@@ -1034,7 +1050,8 @@ CREATE TABLE public.license_usages (
     id integer NOT NULL,
     license_id integer,
     assigns_report_id integer,
-    client_id integer NOT NULL
+    client_id integer NOT NULL,
+    user_id bigint
 );
 
 
@@ -1071,7 +1088,8 @@ CREATE TABLE public.licenses (
     updated_at timestamp without time zone NOT NULL,
     end_date date NOT NULL,
     start_date date NOT NULL,
-    report_family_id integer NOT NULL
+    report_family_id integer NOT NULL,
+    disabled boolean DEFAULT false
 );
 
 
@@ -1581,8 +1599,8 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
-    data_configuration jsonb DEFAULT '{}'::jsonb
+    data_configuration jsonb DEFAULT '{}'::jsonb,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
 
@@ -1891,17 +1909,17 @@ ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
 
 
 --
--- Name: api_keys id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api_keys_id_seq'::regclass);
-
-
---
 -- Name: assessments id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.assessments ALTER COLUMN id SET DEFAULT nextval('public.assessments_id_seq'::regclass);
+
+
+--
+-- Name: assessments_clients id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_clients ALTER COLUMN id SET DEFAULT nextval('public.assessments_clients_id_seq'::regclass);
 
 
 --
@@ -2234,19 +2252,19 @@ ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_
 
 
 --
--- Name: api_keys api_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.api_keys
-    ADD CONSTRAINT api_keys_pkey PRIMARY KEY (id);
-
-
---
 -- Name: ar_internal_metadata ar_internal_metadata_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.ar_internal_metadata
     ADD CONSTRAINT ar_internal_metadata_pkey PRIMARY KEY (key);
+
+
+--
+-- Name: assessments_clients assessments_clients_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_clients
+    ADD CONSTRAINT assessments_clients_pkey PRIMARY KEY (id);
 
 
 --
@@ -2642,17 +2660,10 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: index_api_keys_on_token; Type: INDEX; Schema: public; Owner: -
+-- Name: index_assessments_clients_on_client_id_and_assessment_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_api_keys_on_token ON public.api_keys USING btree (token);
-
-
---
--- Name: index_api_keys_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
+CREATE UNIQUE INDEX index_assessments_clients_on_client_id_and_assessment_id ON public.assessments_clients USING btree (client_id, assessment_id);
 
 
 --
@@ -3041,6 +3052,13 @@ CREATE INDEX index_license_usages_on_license_id ON public.license_usages USING b
 
 
 --
+-- Name: index_license_usages_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_user_id ON public.license_usages USING btree (user_id);
+
+
+--
 -- Name: index_licenses_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -3051,7 +3069,7 @@ CREATE INDEX index_licenses_on_client_id ON public.licenses USING btree (client_
 -- Name: index_licenses_on_client_id_and_report_family_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_licenses_on_client_id_and_report_family_id ON public.licenses USING btree (client_id, report_family_id);
+CREATE INDEX index_licenses_on_client_id_and_report_family_id ON public.licenses USING btree (client_id, report_family_id);
 
 
 --
@@ -3434,14 +3452,6 @@ ALTER TABLE ONLY public.communication_emails
 
 
 --
--- Name: api_keys fk_rails_32c28d0dc2; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.api_keys
-    ADD CONSTRAINT fk_rails_32c28d0dc2 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
-
-
---
 -- Name: ecommerce_purchases fk_rails_3546ed727a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3650,6 +3660,14 @@ ALTER TABLE ONLY public.reports
 
 
 --
+-- Name: assessments_clients fk_rails_a7b4e42c48; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_clients
+    ADD CONSTRAINT fk_rails_a7b4e42c48 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: ecommerce_purchase_invites fk_rails_acede09d2c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3690,6 +3708,14 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
+-- Name: assessments_clients fk_rails_cc339dda78; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.assessments_clients
+    ADD CONSTRAINT fk_rails_cc339dda78 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
 -- Name: hogan_assessment_settings fk_rails_d0f7b433a7; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3719,6 +3745,14 @@ ALTER TABLE ONLY public.clients_reports
 
 ALTER TABLE ONLY public.license_usages
     ADD CONSTRAINT fk_rails_d35fd7791e FOREIGN KEY (license_id) REFERENCES public.licenses(id) ON DELETE CASCADE;
+
+
+--
+-- Name: clients_reports fk_rails_d3a555a5c2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.clients_reports
+    ADD CONSTRAINT fk_rails_d3a555a5c2 FOREIGN KEY (report_family_id) REFERENCES public.report_families(id);
 
 
 --
@@ -3807,6 +3841,14 @@ ALTER TABLE ONLY public.assessments
 
 ALTER TABLE ONLY public.clients
     ADD CONSTRAINT fk_rails_f28b175e74 FOREIGN KEY (modified_by_id) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: license_usages fk_rails_f4894a9b56; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_f4894a9b56 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
 
 
 --
@@ -4025,12 +4067,17 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181028143714'),
 ('20181028180057'),
 ('20181103095056'),
+('20181111105703'),
 ('20181112210040'),
+('20181114075818'),
+('20181114150808'),
+('20181117114931'),
 ('20181118154257'),
 ('20181119095817'),
+('20181124083412'),
 ('20181224184633'),
 ('20190101143027'),
-('20190105160407'),
-('20190113180725');
+('20190113180725'),
+('20190127164957');
 
 
