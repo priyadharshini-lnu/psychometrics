@@ -79,7 +79,7 @@ gem 'psychometrics-survey-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics
 
 ### XLS import
 gem 'rubyXL'
-gem 'file_validators',            '~> 2.1.0'
+gem 'file_validators',            '~> 2.3.0'
 
 # For import csv
 gem 'smarter_csv',                '~> 1.1.0'
@@ -92,7 +92,7 @@ gem 'ckeditor'
 ### dependencies for XLS export (via templates)
 gem 'axlsx', git: 'git@github.com:randym/axlsx', ref: 'c8ac844'
 gem 'axlsx_rails', '~> 0.4.0'
-gem 'roo', '~> 2.4.0'
+gem 'roo', '~> 2.8.2'
 
 gem 'i18n-tasks', '~> 0.9.5'
 

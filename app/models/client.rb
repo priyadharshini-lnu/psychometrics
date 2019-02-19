@@ -90,6 +90,8 @@ class Client < ApplicationRecord
   # TODO use admins instead of projects_admins
   has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, through: :projects, source: :users
 
+  has_many :datasheets, foreign_key: :project_id, dependent: :destroy
+
   accepts_nested_attributes_for :licenses, allow_destroy: true
 
   validates :name, :type, presence: true, length: { maximum: 50 }

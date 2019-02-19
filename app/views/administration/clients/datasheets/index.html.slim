@@ -1,0 +1,26 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title = t('.title', name: client.name)
+        .pull-right
+          - if policy(resource_class).create?
+            = link_to new_administration_client_datasheet_path(client),
+                      remote: true,
+                      class: 'btn btn-default',
+                      data: { loading_text: t('loading') }
+              span.fa.fa-plus
+              = t('.new')
+        = search_form_for(filter_form,
+                          url: { action: :index },
+                          html: { id: 'filter', class: 'list-filter' },
+                          builder: SimpleForm::FormBuilder) do |f|
+          = f.input :filename_cont,
+                    as: :string,
+                    required: false,
+                    placeholder: t('administration.search'),
+                    label: false,
+                    input_html: { class: 'has_clear periodically-observed' }
+      .panel-body
+        #filter_results
+          = render partial: 'list'

@@ -70,6 +70,7 @@ en:
       campaigns: Campaigns
       sub_campaigns: Sub Campaigns
       licenses: Licenses
+      datasheets: Datasheets
     breadcrumbs:
       <<: *NAVIGATION
     tte: TTE
