@@ -26,8 +26,8 @@ describe UpdateAssign do
 
   context 'form is valid' do
     let(:project)         { create(:project) }
-    let(:assessment)      { create(:assessment) }
-    let(:report)          { create(:report, assessment: assessment) }
+    let(:assessment)      { project.assessments.first }
+    let(:report)          { assessment.reports.first }
     let!(:clients_report) { create(:clients_report, client: project, report: report) }
     let(:membership)      { create(:membership, client: project) }
     let(:current_user)    { membership.user }
