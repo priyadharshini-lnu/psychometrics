@@ -81,21 +81,20 @@ tr id=dom_id(resource)
           - if policy(assigns_report).destroy?
             = link_to(administration_client_user_assigns_report_path(client, membership, assigns_report, format: :js),
                       remote: true,
-                      class: 'btn btn-default btn-rounded btn-sm mrm',
+                      class: 'btn btn-default btn-rounded btn-sm',
                       method: :delete,
                       data: { confirm: { title: t('.confirms.assigns_report.delete.title', name: assigns_report.report.name),
                                          body: t('.confirms.assigns_report.delete.body') },
                               toggle: 'tooltip',
                               title: t('.tooltips.assigns_report.delete') })
               span.fa.fa-times
-          span.mls
-            - if policy(assigns_report).regenerate?
-              = link_to regenerate_administration_client_user_assigns_report_path(client, membership, assigns_report),
-                        remote: true,
-                        class: 'btn btn-default btn-rounded btn-sm',
-                        method: :put,
-                        data: { toggle: 'tooltip',
-                                title: t('.tooltips.regenerate'),
-                                confirm: { title: t('.confirmations.regenerate.title', name: assigns_report.report.name),
-                                           body: t('.confirmations.regenerate.body') } }
-                span.fa.fa-refresh
+          - if policy(assigns_report).regenerate?
+            = link_to regenerate_administration_client_user_assigns_report_path(client, membership, assigns_report),
+                      remote: true,
+                      class: 'btn btn-default btn-rounded btn-sm mrm',
+                      method: :put,
+                      data: { toggle: 'tooltip',
+                              title: t('.tooltips.assigns_report.regenerate'),
+                              confirm: { title: t('.confirms.assigns_report.regenerate.title', name: assigns_report.report.name),
+                                         body: t('.confirms.assigns_report.regenerate.body') } }
+              span.fa.fa-refresh

@@ -39,12 +39,6 @@ en:
                 remove_user_access: Remove user access
                 delete: Detach Report
                 regenerate: Regenerate report file
-            confirmations:
-              regenerate:
-                title:
-                  Regenerate <strong>%{name}</strong> ?
-                body:
-                  <p>Are you sure you want to regenerate this report?</p>                
             confirms:
               assigns_report:
                 delete:
@@ -62,6 +56,11 @@ en:
                     Add user access to <strong>%{name}</strong> ?
                   body:
                     <p>Are you sure you want to add user access to this report?</p>
+                regenerate:
+                  title:
+                    Regenerate <strong>%{name}</strong> ?
+                  body:
+                    <p>Are you sure you want to regenerate this report?</p>
           common:
             detach_assessment: 'Assessment %{name} was successfully detached.'
             detach_report: 'Report %{name} was successfully detached.'
