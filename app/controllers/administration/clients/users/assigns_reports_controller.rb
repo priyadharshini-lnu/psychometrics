@@ -5,7 +5,7 @@ module Administration
         include Administration::Clients
         prepend_before_action :set_resource_class
         before_action :set_membership
-        before_action :set_resource, only: %i[toggle_user_access destroy]
+        before_action :set_resource, only: %i[toggle_user_access edit update destroy regenerate]
         append_before_action :pundit_authorize
 
         def new
@@ -50,7 +50,7 @@ module Administration
 
         def destroy
           resource.destroy!
-          
+
         rescue ActiveRecord::RecordInvalid => e
           respond_to do |format|
             format.js { render(:error, locals: { message: e.message }) }
@@ -59,6 +59,14 @@ module Administration
 
         def i18n
           'clients.users.assigns_reports'
+        end
+
+        # Regenerates PDF file
+        #
+        def regenerate
+          resource.update_column(:generating, true)
+          ::Reports::ExportJob.perform_later(resource, current_user)
+          render :regenerate, format: [:js]
         end
 
         private

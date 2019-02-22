@@ -15,6 +15,10 @@ Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 Psychometrics::Application.load_tasks
+# Needs for able to stub methods inside FactoryGirl
+FactoryGirl::SyntaxRunner.class_eval do
+  include RSpec::Mocks::ExampleMethods
+end
 
 Capybara.default_max_wait_time = 5
 Capybara.register_driver :poltergeist do |app|
@@ -64,6 +68,9 @@ RSpec.configure do |config|
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
   # config.filter_gems_from_backtrace("gem name")
+
+  config.before(:each) { Timecop.freeze(Time.local(2018, 9, 15, 9, 31, 42)) }
+  config.after(:each) { Timecop.return }
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :deletion

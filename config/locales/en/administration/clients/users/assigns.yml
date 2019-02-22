@@ -19,23 +19,26 @@ en:
             add_reports: Add Reports
           create:
             successfully: Successfully Updated
-          header:
+          list:
             uniq_id: Uniq ID
             assessment_name: 'Assessment Name'
             assessment_type: 'Assessment Type'
-            status: 'Completion Status'
+            status: 'Status'
             reports: 'Reports'
             actions: Actions
+            completed_at: Completed at
           resource:
             no_reports: No relative reports
             no_access_to_reports: No access to reports
             not_completed: Not completed
+            generating: 'Report "%{name}" is generating'
             tooltips:
               delete: Detach Assessment
               assigns_report:
                 add_user_access: Add user access
                 remove_user_access: Remove user access
                 delete: Detach Report
+                regenerate: Regenerate report file
             confirms:
               assigns_report:
                 delete:
@@ -53,6 +56,11 @@ en:
                     Add user access to <strong>%{name}</strong> ?
                   body:
                     <p>Are you sure you want to add user access to this report?</p>
+                regenerate:
+                  title:
+                    Regenerate <strong>%{name}</strong> ?
+                  body:
+                    <p>Are you sure you want to regenerate this report?</p>
           common:
             detach_assessment: 'Assessment %{name} was successfully detached.'
             detach_report: 'Report %{name} was successfully detached.'

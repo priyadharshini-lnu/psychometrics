@@ -64,6 +64,7 @@ Rails.application.routes.draw do
               get :preview, on: :member
             end
             resources :assigns_reports, only: %i[new create destroy] do
+              put :regenerate, on: :member
               put :toggle_user_access, on: :member
             end
             resources :assign_assessments, only: %i[new create]
@@ -110,6 +111,9 @@ Rails.application.routes.draw do
         resources :reports, only: %i[index] do
           get :export
         end
+        namespace :reports do
+          resources :regenerates, only: %i[new create]
+        end        
         resource :assign_reports, only: %i[new create edit update]
         resource :assign_assessments, only: %i[new create edit update]
         resources :statistics, only: [:index]
@@ -278,6 +282,7 @@ Rails.application.routes.draw do
         get :sidebar
         patch :toggle_status
         get :preview
+        put :regenerate
       end
       collection do
         get :hogan_reports

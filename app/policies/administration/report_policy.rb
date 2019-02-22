@@ -57,6 +57,13 @@ module Administration
       edit?
     end
 
+    # Can regenerate reports if Superadmin
+    #   and record is not external
+    #
+    def regenerate?
+      @user.is?(:superadmin) && !record.try(:external_report?)
+    end
+
     class Scope < Scope
       def resolve
         scope = super

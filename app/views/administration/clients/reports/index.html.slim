@@ -16,6 +16,11 @@
             = link_to(new_administration_bulk_report_path(client_id: client.id), remote: true, class: 'btn btn-default')
               span.fa.fa-download
               = t('.bulk_download')
+        - if policy(resource_class).regenerate?
+          .pull-right
+            = link_to(new_administration_client_reports_regenerate_path(client_id: client.id), remote: true, class: 'btn btn-default')
+              span.fa.fa-refresh
+              = t('.regenerate')
         = search_form_for(filter_form,
                           url: { action: :index },
                           html: { id: 'filter', class: 'list-filter' },

@@ -1,0 +1,8 @@
+= simple_form_for(resource, url: administration_client_reports_path, method: :post, remote: true) do |f|
+  .modal-body
+    .form-inputs.clearfix
+      = f.input :report_ids, as: :select, collection: client.decorate.reports_for_select, class: 'form-control', include_blank: false, input_html: { multiple: true }
+  .modal-footer
+    .btn-group
+      = button_tag t('administration.save'), type: 'submit', class: 'btn btn-default btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'

@@ -246,7 +246,9 @@ CREATE TABLE public.assigns_reports (
     access_reports_at timestamp without time zone,
     external_report character varying,
     hogan_score jsonb DEFAULT '{}'::jsonb,
-    user_access boolean DEFAULT true
+    user_access boolean DEFAULT true,
+    pdf character varying,
+    generating boolean DEFAULT false
 );
 
 
@@ -635,6 +637,72 @@ CREATE SEQUENCE public.data_geos_id_seq
 --
 
 ALTER SEQUENCE public.data_geos_id_seq OWNED BY public.data_geos.id;
+
+
+--
+-- Name: datasheet_rows; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.datasheet_rows (
+    id bigint NOT NULL,
+    datasheet_id bigint,
+    email public.citext,
+    data jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: datasheet_rows_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.datasheet_rows_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: datasheet_rows_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.datasheet_rows_id_seq OWNED BY public.datasheet_rows.id;
+
+
+--
+-- Name: datasheets; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.datasheets (
+    id bigint NOT NULL,
+    project_id bigint,
+    filename character varying,
+    columns jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: datasheets_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.datasheets_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: datasheets_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.datasheets_id_seq OWNED BY public.datasheets.id;
 
 
 --
@@ -1600,7 +1668,8 @@ CREATE TABLE public.reports (
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
     data_configuration jsonb DEFAULT '{}'::jsonb,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
+    default_language character varying DEFAULT 'en'::character varying
 );
 
 
@@ -2007,6 +2076,20 @@ ALTER TABLE ONLY public.data_geos ALTER COLUMN id SET DEFAULT nextval('public.da
 
 
 --
+-- Name: datasheet_rows id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.datasheet_rows ALTER COLUMN id SET DEFAULT nextval('public.datasheet_rows_id_seq'::regclass);
+
+
+--
+-- Name: datasheets id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.datasheets ALTER COLUMN id SET DEFAULT nextval('public.datasheets_id_seq'::regclass);
+
+
+--
 -- Name: dimensions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2369,6 +2452,22 @@ ALTER TABLE ONLY public.communications_users
 
 ALTER TABLE ONLY public.data_geos
     ADD CONSTRAINT data_geos_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: datasheet_rows datasheet_rows_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.datasheet_rows
+    ADD CONSTRAINT datasheet_rows_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: datasheets datasheets_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.datasheets
+    ADD CONSTRAINT datasheets_pkey PRIMARY KEY (id);
 
 
 --
@@ -2902,6 +3001,27 @@ CREATE INDEX index_communications_users_on_communication_id ON public.communicat
 --
 
 CREATE INDEX index_communications_users_on_user_id ON public.communications_users USING btree (user_id);
+
+
+--
+-- Name: index_datasheet_rows_on_datasheet_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_datasheet_rows_on_datasheet_id ON public.datasheet_rows USING btree (datasheet_id);
+
+
+--
+-- Name: index_datasheet_rows_on_email_and_datasheet_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_datasheet_rows_on_email_and_datasheet_id ON public.datasheet_rows USING btree (email, datasheet_id);
+
+
+--
+-- Name: index_datasheets_on_project_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_datasheets_on_project_id ON public.datasheets USING btree (project_id);
 
 
 --
@@ -3508,6 +3628,14 @@ ALTER TABLE ONLY public.clients
 
 
 --
+-- Name: datasheets fk_rails_481da9714d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.datasheets
+    ADD CONSTRAINT fk_rails_481da9714d FOREIGN KEY (project_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
 -- Name: ecommerce_orders fk_rails_4e7fc0242c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3553,6 +3681,14 @@ ALTER TABLE ONLY public.questions
 
 ALTER TABLE ONLY public.reports_accesses
     ADD CONSTRAINT fk_rails_74cd2e276f FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: datasheet_rows fk_rails_782a23bcc9; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.datasheet_rows
+    ADD CONSTRAINT fk_rails_782a23bcc9 FOREIGN KEY (datasheet_id) REFERENCES public.datasheets(id) ON DELETE CASCADE;
 
 
 --
@@ -4075,9 +4211,13 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181118154257'),
 ('20181119095817'),
 ('20181124083412'),
+('20181209135656'),
+('20181217073128'),
 ('20181224184633'),
 ('20190101143027'),
 ('20190113180725'),
-('20190127164957');
+('20190127164957'),
+('20190210122115'),
+('20190210123606');
 
 

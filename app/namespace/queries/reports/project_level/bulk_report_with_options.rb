@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Queries
   module Reports
     module ProjectLevel
@@ -9,7 +11,7 @@ module Queries
         def initial_scope
           Report.enabled.
             select('reports.id, memberships.user_id, assigns.id as assign_id, assigns_reports.id as assigns_report_id').
-            joins(assigns_reports: {assign: :membership})
+            joins(assigns_reports: { assign: :membership })
         end
 
         def call(client_id, report_ids, start_date, end_date)
@@ -33,8 +35,8 @@ module Queries
 
         def filter_by_completion_date(start_date, end_date)
           @relation = @relation.
-                        where('assigns.status = ?', Assign.statuses[:completed]).
-                        where('assigns.completed_at::date BETWEEN ? AND ?', start_date.to_date, end_date.to_date)
+                      where('assigns.status = ?', Assign.statuses[:completed]).
+                      where('assigns.completed_at::date BETWEEN ? AND ?', start_date.to_date, end_date.to_date)
         end
 
         def filter_by_membership_role

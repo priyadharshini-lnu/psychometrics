@@ -30,6 +30,7 @@ class AssignsReport < ApplicationRecord
   after_commit ::Callbacks::Models::AssignsReports::UpdateOrRemoveReportsAccess.new
 
   mount_base64_uploader :external_report, FileUploader, file_name: proc { 'external_report' }
+  mount_uploader :pdf, PdfUploader
 
   private
 

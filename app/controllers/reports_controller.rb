@@ -31,7 +31,7 @@ class ReportsController < ApplicationController
       end
       format.pdf do
         add_cookie_for_file_download
-        pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @current_user, @current_project, request.protocol.split(':').first, lang: user_locale)
+        pdf_file = ::Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @current_user, @current_project, lang: user_locale)
         send_file pdf_file, type: 'application/pdf'
       end
     end
