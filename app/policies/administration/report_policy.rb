@@ -22,6 +22,10 @@ module Administration
       create?
     end
 
+    def upload_data_sheet?
+      create?
+    end
+
     # Can open Websocket Channel for build Report (Reports, Modules and etc.)
     # true if it's not Mindmill report and user is Superadmin
     def open_channel?

@@ -8,7 +8,7 @@ module Administration
     prepend_before_action :authenticate_user_from_token!
 
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview regenerate]
+    before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview regenerate upload_data_sheet]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
@@ -26,6 +26,10 @@ module Administration
         format.html
         format.js { render :index, formats: [:js] }
       end
+    end
+
+    def upload_data_sheet
+      render json: [{"name": "Text1", "type": "Number"}, {"name": "Text2", "type": "Markdown"}]
     end
 
     def show
