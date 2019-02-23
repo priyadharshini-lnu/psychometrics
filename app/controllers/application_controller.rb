@@ -41,6 +41,7 @@ class ApplicationController < ::BaseController
   def set_client_by_subdomain
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
+    return if request.controller_class.to_s.start_with?('Api::V1')
     subdomain = request.subdomain
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
     @current_project = Client.enabled.find_by(subdomain: subdomain)

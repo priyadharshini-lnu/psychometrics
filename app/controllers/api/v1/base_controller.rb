@@ -7,7 +7,9 @@ module Api
 
       def auth
         @api_key = api_key
+        @current_user = api_key&.user
         raise Errors::ApiError, "Api key is not correct" unless api_key
+        raise Errors::ApiError, "User for api token not found" if @current_user.nil? || @current_user.disabled
       end
 
       def api_key
@@ -15,12 +17,7 @@ module Api
       end
 
       def current_user
-        @current_user ||=
-          begin
-            u = api_key.user
-            raise Errors::ApiError, "User for api token not found" if u.nil? || u.disabled
-            u
-          end
+        @current_user
       end
 
       def current_client
@@ -31,7 +28,7 @@ module Api
         @user ||=
           begin
             user_id = params[:user_id] || params[:id]
-            u = ::Users::Regular.find_by(project_id: params[:project_id], id: user_id)
+            u       = ::Users::Regular.find_by(project_id: params[:project_id], id: user_id)
             raise Errors::ApiError, "User with id=#{user_id} is not found" unless u
             u
           end
@@ -43,13 +40,10 @@ module Api
             if current_user.superadmin?
               Client.projects.find_by(id: params[:project_id])
             else
-              memberships = current_user.memberships
-              project_admin_memberships = memberships.select(&:role_project_admin?)
-              client_admin_memberships = memberships.select(&:client_project_admin?)
-              project_ids = project_admin_memberships.map(&:client_id)
-              client_ids = client_admin_memberships.map(&:client_id)
-              binding.pry
-              p = Client.projects.where(id: project_ids, ansestry: client_ids).find_by(id: params[:project_id])
+              memberships               = current_user.memberships
+              project_ids               = memberships.select(&:project_admin?).map(&:client_id)
+              client_ids                = memberships.select(&:client_admin?).map(&:client_id)
+              p = Client.projects.where.has {(id.in project_ids) | (ancestry.in client_ids)}.find_by(id: params[:project_id])
               raise Errors::ApiError, "Project with id=#{params[:project_id]} is not found" unless p
               p
             end
