@@ -80,7 +80,6 @@ resource "Users" do
     let(:user_id) { user.id }
 
     example '200' do
-      expect(Redis.current).to receive(:setex)
       do_request
       response = JSON.parse(response_body)
       expect(response['expires_at']).to be
