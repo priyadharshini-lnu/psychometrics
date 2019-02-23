@@ -48,7 +48,7 @@ module Exports
             end
             # TODO (atanych): too many N+1 queries. Might be resolved by cached_find. https://youtu.be/q8ausBZTrxU?t=400
             current_level_assigns.group_by(&:membership_id).each do |_, assigns|
-              results = ::Reports::BuildResults.call(report, assigns)
+              results = ::Reports::BuildResults.call(report, assigns)[:ok]
               sheet.add_row(results.map { |r| r[:value] })
             end
           end
