@@ -11,5 +11,5 @@ en:
           attributes:
             file:
               invalid_format: 'Invalid format (.xlsx)'
-              no_email_column: 'File does not contain Email Address column'
-              email_duplicate: 'There are duplicates in Email Address column'
+              no_email_column: 'File does not contain Email column'
+              email_duplicate: 'There are duplicates in Email column'

@@ -2,6 +2,9 @@
 
 module Datasheets
   class DatasheetForm < Rectify::Form
+    # Contains the name of column which contains Email
+    EMAIL_COLUMN = 'Email'.freeze
+
     attribute :file, Object
 
     validates :file, presence: true,
@@ -19,14 +22,14 @@ module Datasheets
     # Checks if there is column Email Address in file
     #
     def has_email_column
-      errors.add(:file, :no_email_column) unless parsed_file.first.keys.include? 'Email Address'
+      errors.add(:file, :no_email_column) unless parsed_file.first.keys.include? EMAIL_COLUMN
     end
 
     # Checks if there is duplicates in email column
     #
     def no_duplicates
       errors.add(:file, :email_duplicate) unless parsed_file.
-                                                 map { |item| item['Email Address'] }.
+                                                 map { |item| item[EMAIL_COLUMN] }.
                                                  reject(&:blank?).
                                                  uniq!.
                                                  nil?

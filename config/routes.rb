@@ -150,7 +150,8 @@ Rails.application.routes.draw do
           get :export_normed_results
           get :export_hogan_results
         end
-        resources :datasheets, except: [:show]
+        resources :datasheet_rows, except: %i[show edit update]
+
       end
     end
     ### END CLIENTS

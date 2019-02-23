@@ -1,0 +1,22 @@
+en:
+  administration:
+    clients:
+      datasheet_rows:
+        index:
+          title: '%{name} Datasheet'
+          new: Upload datasheet
+        list:
+        resource:
+          tooltips: &tooltips
+            delete: Delete
+          delete:
+            title:
+              Delete <strong>%{name}</strong> ?
+            body: >
+              <p>Are you sure you want to delete this Datasheet Row?</p>
+        new:
+          header: 'Upload datasheet'
+        destroy:
+          successfully: 'Datasheet Row %{name} was successfully deleted.'
+        create:
+          successfully: 'New Datasheet was successfully uploaded.'

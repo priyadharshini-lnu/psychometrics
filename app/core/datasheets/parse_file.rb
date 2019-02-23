@@ -8,7 +8,7 @@ module Datasheets
     def call
       return broadcast :invalid if form.invalid?
       transaction do
-        form.id.blank? ? create_datasheet : update_datasheet
+        create_and_update_datasheet
         parse_file
       end
       broadcast :ok, datasheet
@@ -20,19 +20,17 @@ module Datasheets
 
     #
     #
-    def create_datasheet
-      @datasheet = project.datasheets.create(filename: form.file.original_filename,
-                                             columns: form.parsed_file.first)
-    end
-
-    def update_datasheet
-      @datasheet = project.datasheets.update(form.id, filename: form.file.original_filename,
-                                                      columns: form.parsed_file.first)
+    def create_and_update_datasheet
+      @datasheet = project.datasheet.nil? ? project.build_datasheet : project.datasheet
+      datasheet.attributes = { columns: form.parsed_file.first }
+      datasheet.save!
     end
 
     def parse_file
       form.parsed_file[1..-1].each do |data|
-        email = ActionView::Base.full_sanitizer.sanitize(data['Email Address'])
+        email = ActionView::Base.full_sanitizer.sanitize(data['Email'])
+        next if email.blank?
+        
         row = datasheet.rows.find_or_initialize_by(email: email)
         row.data = data.except('Email Address')
         row.save!

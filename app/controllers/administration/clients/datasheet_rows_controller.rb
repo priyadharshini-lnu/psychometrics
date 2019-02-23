@@ -2,17 +2,21 @@
 
 module Administration
   module Clients
-    class DatasheetsController < Administration::BaseController
+    class DatasheetRowsController < Administration::BaseController
       include Administration::Clients
       prepend_before_action :set_resource_class
       before_action :ensure_project
-      before_action :set_resource, only: %i[edit update destroy]
+      before_action :set_resource, only: %i[destroy]
       append_before_action :init_breadcrumbs, except: %i[new create]
       append_before_action :pundit_authorize
 
       def index
         @_filter_form = policy_scope(resource_class).search(params[:q])
-        @_resources = filter_form.result.where(project_id: client.id).page(params[:page])
+        @_resources = filter_form.
+                      result.
+                      joins(:datasheet).
+                      where(datasheets: { project_id: project.id }).
+                      page(params[:page])
 
         respond_to do |format|
           format.html
@@ -28,17 +32,6 @@ module Administration
         @form = ::Datasheets::DatasheetForm.from_params(params)
         ::Datasheets::ParseFile.call(@form, project) do
           on(:invalid) { render :new }
-         end
-      end
-
-      def edit
-        @form = ::Datasheets::DatasheetForm.from_model(resource)
-      end
-
-      def update
-        @form = ::Datasheets::DatasheetForm.from_params(params)
-        ::Datasheets::ParseFile.call(@form, project) do
-          on(:invalid) { render :edit }
         end
       end
 
@@ -47,13 +40,13 @@ module Administration
       end
 
       def i18n
-        'clients.datasheets'
+        'clients.datasheet_rows'
       end
 
       private
 
       def set_resource_class
-        @_resource_class ||= ::Datasheet
+        @_resource_class ||= ::DatasheetRow
       end
 
       def set_resource

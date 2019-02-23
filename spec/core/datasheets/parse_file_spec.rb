@@ -18,7 +18,6 @@ describe Datasheets::ParseFile do
     expect { subject }.to change { Datasheet.count }.from(0).to(1)
     datasheet = Datasheet.last
     expect(datasheet.project).to eq(project)
-    expect(datasheet.filename).to eq(file.original_filename)
     expect(datasheet.columns).to eq(parsed_file.first)
   end
 

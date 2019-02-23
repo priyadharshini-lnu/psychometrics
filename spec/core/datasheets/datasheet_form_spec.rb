@@ -6,7 +6,7 @@ describe Datasheets::DatasheetForm do
   context 'Validation' do
     let(:file) { double('file', content_type: 'application/xlsx') }
     let(:form) { described_class.new({ file: file, parsed_file: parsed_file }) }
-    let(:parsed_file) { [{ 'Email Address' => 'test@email.com' }] }
+    let(:parsed_file) { [{ 'Email' => 'test@email.com' }] }
     subject { form }
 
     context 'failure flow' do
@@ -16,7 +16,7 @@ describe Datasheets::DatasheetForm do
         expect(form.errors.details[:file]).to include({ error: :no_email_column })
       end
       it '#no_duplicates' do
-        allow(form).to receive(:parsed_file).and_return(parsed_file.push({ 'Email Address' => 'test@email.com' }))
+        allow(form).to receive(:parsed_file).and_return(parsed_file.push({ 'Email' => 'test@email.com' }))
         is_expected.to be_invalid
         expect(form.errors.details[:file]).to include({ error: :email_duplicate })
       end

@@ -1,14 +1,9 @@
 tr id=dom_id(resource)
-  td = resource.filename
+  td = resource.email
   td.text-center = resource.decorate.created_at
   td.text-center = resource.decorate.updated_at
   td.actions-cell
     - if policy(resource_class).actions?
-      = link_to [:edit, :administration, project, resource],
-                remote: true,
-                class: 'btn btn-default btn-rounded btn-sm edit',
-                data: { toggle: 'tooltip', title: t('.tooltips.edit') }
-        span.fa.fa-pencil
       = link_to [:administration, project, resource],
                 remote: true,
                 class: 'btn btn-default btn-rounded btn-sm delete',
