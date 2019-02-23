@@ -9,7 +9,7 @@ resource "Users" do
   let!(:project) { create(:project, parent: membership.client) }
   let(:campaign) { create(:campaign, parent: project) }
   let(:user) { create(:user, project: project) }
-  before { create(:api_key, token: 'token', membership: membership) }
+  before { create(:api_key, token: 'token', user: membership.user) }
   authentication :apiKey, 'token', name: "X-Api-Key"
 
   post "/api/v1/projects/:project_id/users" do

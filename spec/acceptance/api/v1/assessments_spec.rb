@@ -7,7 +7,7 @@ resource "Assessments" do
   explanation 'Assessments within particular user and project'
   let!(:membership) { create(:client_admin_membership) }
   let(:campaign) { create(:campaign, parent: project) }
-  before { create(:api_key, token: 'token', membership: membership) }
+  before { create(:api_key, token: 'token', user: membership.user) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:user) { create(:user, project: project) }
   authentication :apiKey, 'token', name: "X-Api-Key"
@@ -20,6 +20,8 @@ resource "Assessments" do
       user_membership = create(:membership, client: campaign, user: user)
       assessment = create(:assessment, :with_report, name: 'Super Assessment')
       user_membership.client.reports = assessment.reports
+      user_membership.client.assessments = [assessment]
+      user_membership.client.project.assessments = [assessment]
       user_membership.client.project.reports = assessment.reports
       create(:assign, membership: user_membership, assessment: assessment)
     end

@@ -22,7 +22,7 @@ module Api
       end
 
       def sso
-        url, expires_at = ::Users::BuildSsoUrl.call(project, user)
+        url, expires_at = ::Users::BuildSsoUrl.call(project, user)[:ok]
         render json: { expires_at: expires_at, url: url }
       end
 

@@ -10,7 +10,7 @@ resource "Campaigns" do
   let(:campaign) { create(:campaign, parent: project) }
   let(:campaign_2) { create(:campaign, parent: project) }
 
-  before { create(:api_key, token: 'token', membership: membership) }
+  before { create(:api_key, token: 'token', user: membership.user) }
   authentication :apiKey, 'token', name: "X-Api-Key"
 
   post "/api/v1/projects/:project_id/campaigns/:campaign_id/duplicate" do
