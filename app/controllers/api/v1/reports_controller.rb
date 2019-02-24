@@ -4,7 +4,8 @@ module Api
       def index
         project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids + [project.id]
         membership_ids = user.memberships.where(client_id: project_campaign_ids).ids
-        # We fetch all assigns from (sub)campaigns and filter project assigns
+        # We should filter project assigns due to assign_reports relations are created only for (sub)campaigns
+        # TODO (atanych): after fixing DB relations between assigns->assign_reports, fix this controller
         assigns = Assign.includes(project_assign: :assessment, assigns_reports: { report: :assessments }).
           where(membership_id: membership_ids).
           where.not(project_assign_id: nil)
@@ -14,7 +15,7 @@ module Api
       end
 
       def results
-        assigns = Assign.completed.where(membership_id: project_membership, project_assign_id: nil, assessment_id: report.assessment_ids)
+        assigns = Assign.completed.where(membership: project_membership, project_assign_id: nil, assessment_id: report.assessment_ids)
         render json: ::Reports::BuildResults.call(report, assigns)[:ok]
       end
 
