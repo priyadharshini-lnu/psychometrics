@@ -3,25 +3,17 @@ module Api
     module Users
       class CreateForm < Rectify::Form
         attribute %i[first_name last_name email password], String
-        attribute :accepted_terms,  Boolean
         attribute :campaign_ids,  Array
 
         validates :email, :password, presence: true
         validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
         validate :uniq_email
-        validate :accepted_terms_is_true
         validate :verify_campaign_ids
 
         def uniq_email
           return unless ::Users::Regular.exists?(email: email, project_id: context.project.id)
 
           errors.add(:email, "Another user with email #{email} is existing")
-        end
-
-        def accepted_terms_is_true
-          return if accepted_terms == true
-
-          errors.add(:accepted_terms, 'Accepted terms should be adopted')
         end
 
         def verify_campaign_ids
@@ -34,7 +26,7 @@ module Api
         end
 
         def attributes
-          super.except(:accepted_terms, :campaign_ids)
+          super.except(:campaign_ids)
         end
       end
     end

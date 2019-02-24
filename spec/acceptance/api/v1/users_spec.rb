@@ -20,7 +20,6 @@ resource "Users" do
       parameter :last_name, 'Last Name of new user'
       parameter :email, 'Email of new user', required: true
       parameter :password, 'Password for new user', required: true
-      parameter :accepted_terms, 'Accepted terms', required: true
       parameter :campaign_ids, 'Array of campaign ids'
     end
 
@@ -28,7 +27,6 @@ resource "Users" do
     let(:last_name) { 'Holloway' }
     let(:email) { 'max@example.com' }
     let(:password) { 'password' }
-    let(:accepted_terms) { true }
     let(:campaign_ids) { [campaign.id] }
     let(:project_id) { project.id }
 
