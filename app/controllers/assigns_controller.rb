@@ -22,8 +22,6 @@
 #
 
 class AssignsController < ApplicationController
-  layout 'users_new'
-
   before_action :set_assign, only: %i[pass update]
   append_before_action :pundit_authorize
 
