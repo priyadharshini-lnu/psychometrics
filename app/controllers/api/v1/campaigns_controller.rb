@@ -3,13 +3,10 @@ module Api
     class CampaignsController < BaseController
       def duplicate
         form = Api::V1::Campaigns::DuplicateForm.from_params(params)
-        return render_form_errors(form) if form.invalid?
-
-        duplicated_campaign = campaign.dup
-        duplicated_campaign.update!(form.attributes)
-        duplicated_campaign.reports = campaign.reports
-
-        render json: Api::V1::CampaignSerializer.new(duplicated_campaign).to_h
+        Campaigns::Duplicate.call(form, campaign) do
+          on(:invalid) { |form| render_form_errors(form) }
+          on(:ok) { |new_campaign| Api::V1::CampaignSerializer.new(new_campaign).to_h }
+        end
       end
 
       def index
