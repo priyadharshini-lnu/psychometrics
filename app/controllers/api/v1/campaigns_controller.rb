@@ -3,9 +3,9 @@ module Api
     class CampaignsController < BaseController
       def duplicate
         form = Api::V1::Campaigns::DuplicateForm.from_params(params)
-        Campaigns::Duplicate.call(form, campaign) do
+        ::Campaigns::Duplicate.call(form, campaign) do
           on(:invalid) { |form| render_form_errors(form) }
-          on(:ok) { |new_campaign| Api::V1::CampaignSerializer.new(new_campaign).to_h }
+          on(:ok) { |new_campaign| render json: Api::V1::CampaignSerializer.new(new_campaign).to_h }
         end
       end
 
@@ -16,14 +16,11 @@ module Api
       end
 
       def create
-        form = Api::V1::Campaigns::AttachToUserForm.from_params(params.merge(project: project, user: user))
-        return render_form_errors(form) if form.invalid?
-
-        form.campaign_ids.each do |client_id|
-          user.memberships.create!(role: Membership::MEMBER_ROLE, client_id: client_id)
+        form = Api::V1::Campaigns::AttachToUserForm.from_params(params).with_context(project: project, user: user)
+        ::Campaigns::AttachToUser.call(form, user) do
+          on(:invalid) { |form| render_form_errors(form) }
+          on(:ok) { |user| render json: Api::V1::UserSerializer.new(user, project: project).to_h }
         end
-
-        render json: Api::V1::UserSerializer.new(user, project: project).to_h
       end
 
       def campaign
