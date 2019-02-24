@@ -2,13 +2,13 @@ module Api
   module V1
     class ReportsController < BaseController
       def index
-        project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids + [project.id]
+        project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids
         membership_ids = user.memberships.where(client_id: project_campaign_ids).ids
         # We should filter project assigns due to assign_reports relations are created only for (sub)campaigns
         # TODO (atanych): after fixing DB relations between assigns->assign_reports, fix this controller
-        assigns = Assign.includes(project_assign: :assessment, assigns_reports: { report: :assessments }).
-          where(membership_id: membership_ids).
-          where.not(project_assign_id: nil)
+        assigns = Assign.
+          includes(project_assign: :assessment, assigns_reports: { report: :assessments }).
+          where(membership_id: membership_ids)
         render json: assigns.flat_map(&:assigns_reports).
           uniq { |r| r.report.id }.
           map { |r| Api::V1::AssignReportSerializer.new(r, assigns: assigns.index_by(&:assessment_id)).to_h }
@@ -20,9 +20,13 @@ module Api
       end
 
       def pdf
-        report
-        # TODO (atanych): awating https://gitlab.com/tte-lighthouse/psychometrics/issues/27
-        render json: { url: 's3.amazon.com/uri', status: 'ready' }
+        project_campaign_ids = Client.campaigns_and_sub_campaigns_of(project.id).ids
+        membership_ids = user.memberships.where(client_id: project_campaign_ids).ids
+        # TODO (atanych): we might fetch N different assigns_reports for different campaigns with one project and report id
+        # TODO (atanych): How to handle it???
+        assigns_report = report.assigns_reports.joins(:assign).find_by(assigns: { membership_id: membership_ids})
+        # TODO (atanych): we should think through report statuses
+        render json: { url: assigns_report.pdf&.url, status: assigns_report.status }
       end
 
       def report
