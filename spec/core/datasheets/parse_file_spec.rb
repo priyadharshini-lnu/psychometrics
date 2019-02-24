@@ -3,7 +3,7 @@ require 'rails_helper'
 describe Datasheets::ParseFile do
   let(:file)        { double('file', content_type: 'application/xlsx', original_filename: 'datasheet file name') }
   let(:form)        { stub_form(valid?: true, file: file, parsed_file: parsed_file, id: nil) }
-  let(:parsed_file) { [{ 'Email Address' => 'text', 'key' => 'text' }, { 'Email Address' => email, 'key' => 'value' }] }
+  let(:parsed_file) { [{ 'Email' => 'text', 'key' => 'text' }, { 'Email' => email, 'key' => 'value' }] }
   let(:email)       { 'test@email.com' }
   let(:project)     { create(:project) }
 
@@ -25,7 +25,7 @@ describe Datasheets::ParseFile do
     expect { subject }.to change { DatasheetRow.count }.from(0).to(1)
     datasheet_row = DatasheetRow.last
     expect(datasheet_row.email).to eq(email)
-    expect(datasheet_row.data).to eq(parsed_file.last.except('Email Address'))
+    expect(datasheet_row.data).to eq(parsed_file.last.except('Email'))
   end
 
   xit 'sanitize email column'

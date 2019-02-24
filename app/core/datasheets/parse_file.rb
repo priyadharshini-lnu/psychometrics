@@ -28,11 +28,11 @@ module Datasheets
 
     def parse_file
       form.parsed_file[1..-1].each do |data|
-        email = ActionView::Base.full_sanitizer.sanitize(data['Email'])
+        email = ActionView::Base.full_sanitizer.sanitize(data[Datasheet::EMAIL_COLUMN])
         next if email.blank?
-        
+
         row = datasheet.rows.find_or_initialize_by(email: email)
-        row.data = data.except('Email Address')
+        row.data = data.except(Datasheet::EMAIL_COLUMN)
         row.save!
       end
     end
