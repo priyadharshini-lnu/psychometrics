@@ -29,7 +29,8 @@ module Administration
     end
 
     def upload_data_sheet
-      render json: [{"name": "Text1", "type": "Number"}, {"name": "Text2", "type": "Markdown"}]
+      @form = ::Datasheets::DatasheetForm.from_params(params)
+      render json: @form.parsed_file.first.map { |k, v| {name: k, type: v} }
     end
 
     def show
