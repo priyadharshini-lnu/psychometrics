@@ -1,0 +1,46 @@
+= simple_form_for(@form, html: { multipart: true }, url: { action: @form.id.blank? ? :create : :update }) do |f|
+  .modal-body
+    = f.input :id, as: :hidden
+    .form-inputs.clearfix
+      = f.input :file, as: :file
+  .modal-footer
+    .btn-group
+      = f.button :submit,
+                 @form.id.blank? ? t('administration.create') : t('administration.update'),
+                 class: 'btn-info',
+                 data: { loading_text: t('loading') }
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+
+javascript:
+  $(function(){
+    var submit = function (method) {
+      var form = $(this);
+      var formdata = false;
+      var formAction = form.attr('action');
+
+      if (window.FormData){
+        formdata = new FormData(form[0]);
+      }
+
+      $.ajax({
+        url         : formAction,
+        data        : formdata ? formdata : form.serialize(),
+        dataType    : 'script',
+        cache       : false,
+        contentType : false,
+        processData : false,
+        type        : method
+      });
+    }
+
+    $('#new_datasheet_').on('submit', function(event) {
+      event.stopPropagation(); // Stop stuff happening
+      event.preventDefault(); // Totally stop stuff happening
+      submit.call(this, 'POST')
+    });
+    $('#edit_#{dom_id(@form)}').on('submit', function(event) {
+      event.stopPropagation(); // Stop stuff happening
+      event.preventDefault(); // Totally stop stuff happening
+      submit.call(this, 'PUT')
+    });
+  });

@@ -39,9 +39,12 @@ $(function() {
   });
 
   // Disabled button after submit
-  // $(document).on('click', '[type="submit"]', function () {
-  //   $(this).button('loading');
-  // })
+  $(document).on('click', '[data-loading-text]', function () {
+    $(this).button('loading');
+  });
+  $('[data-loading-text]').on('ajax:complete', function () {
+    $(this).button('reset');
+  });
 
   // Noty plugin settings
   $.noty.defaults.timeout = 4000;
