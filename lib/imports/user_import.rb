@@ -32,7 +32,8 @@ module Imports
     validates :client_id, :importer, presence: true
     validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                   'application/vnd.ms-excel',
-                                                  'text/csv'] }
+                                                  'text/csv',
+                                                  'text/plain'] }
 
     attr_reader :existing_users_whose_password_not_changed
 
