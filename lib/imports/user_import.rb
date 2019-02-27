@@ -33,6 +33,7 @@ module Imports
     validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                   'application/vnd.ms-excel',
                                                   'text/csv',
+                                                  'application/octet-stream',
                                                   'text/plain'] }
 
     attr_reader :existing_users_whose_password_not_changed
