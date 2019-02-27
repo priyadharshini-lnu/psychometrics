@@ -91,7 +91,7 @@ module Imports
           hris_data: {}
         }
 
-        user = User.find_or_initialize_by(email: attributes[:email])
+        user = User.find_or_initialize_by(email: attributes[:email].downcase)
         next if user.is?(:superadmin)
 
         header.zip(row)[HEADER_IMPORT_DATA.size..-1]&.each_with_index do |z, i|
