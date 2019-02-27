@@ -32,7 +32,9 @@ module Imports
     validates :client_id, :importer, presence: true
     validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                   'application/vnd.ms-excel',
-                                                  'text/csv'] }
+                                                  'text/csv',
+                                                  'application/octet-stream',
+                                                  'text/plain'] }
 
     attr_reader :existing_users_whose_password_not_changed
 
@@ -93,7 +95,7 @@ module Imports
           hris_data: {}
         }
 
-        user = Users::Regular.find_or_initialize_by(email: attributes[:email], project_id: client.project.id)
+        user = Users::Regular.find_or_initialize_by(email: attributes[:email].downcase, project_id: client.project.id)
         next if user.is?(:superadmin)
 
         header.zip(row)[HEADER_IMPORT_DATA.size..-1]&.each_with_index do |z, i|
