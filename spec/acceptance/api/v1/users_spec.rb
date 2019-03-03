@@ -15,7 +15,7 @@ resource "Users" do
   post "/api/v1/projects/:project_id/users" do
     route_summary 'Adds a new user to the project'
 
-    with_options scope: :user, with_example: true do
+    with_options scope: {}, with_example: true do
       parameter :first_name, 'First Name of new user'
       parameter :last_name, 'Last Name of new user'
       parameter :email, 'Email of new user', required: true
@@ -46,7 +46,7 @@ resource "Users" do
   put "/api/v1/projects/:project_id/users/:user_id" do
     route_summary 'Updates user details'
 
-    with_options scope: :user, with_example: true do
+    with_options scope: {}, with_example: true do
       parameter :first_name, 'First Name'
       parameter :last_name, 'Last Name'
       parameter :email, 'Email'

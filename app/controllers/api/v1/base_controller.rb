@@ -38,7 +38,9 @@ module Api
         @project ||=
           begin
             if current_user.superadmin?
-              Client.projects.find_by(id: params[:project_id])
+              p = Client.projects.find_by(id: params[:project_id])
+              raise Errors::ApiError, "Project with id=#{params[:project_id]} is not found" unless p
+              p
             else
               memberships               = current_user.memberships
               project_ids               = memberships.select(&:project_admin?).map(&:client_id)

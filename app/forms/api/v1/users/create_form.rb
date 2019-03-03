@@ -7,7 +7,7 @@ module Api
 
         validates :email, :password, presence: true
         validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
-        validate :uniq_email
+        validate :uniq_email, if: -> { email.present? }
         validate :verify_campaign_ids
 
         def uniq_email

@@ -61,8 +61,8 @@
                   "id": 7,
                   "name": "Super Assessment",
                   "status": "not_started",
-                  "created_at": "2019-01-07T01:39:41.786+04:00",
-                  "updated_at": "2019-01-07T01:39:41.786+04:00"
+                  "created_at": "2018-09-15T10:31:42.000+04:00",
+                  "updated_at": "2018-09-15T10:31:42.000+04:00"
                 }
               ]
             }
@@ -127,8 +127,8 @@
               "application/json": {
                 "id": 7,
                 "name": "Promotion",
-                "created_at": "2019-01-07T01:39:42.245+04:00",
-                "updated_at": "2019-01-07T01:39:42.245+04:00"
+                "created_at": "2018-09-15T10:31:42.000+04:00",
+                "updated_at": "2018-09-15T10:31:42.000+04:00"
               }
             }
           }
@@ -185,8 +185,8 @@
                 {
                   "id": 1111,
                   "name": "Super campaign",
-                  "created_at": "2019-01-07T01:39:42.747+04:00",
-                  "updated_at": "2019-01-07T01:39:42.747+04:00"
+                  "created_at": "2018-09-15T10:31:42.000+04:00",
+                  "updated_at": "2018-09-15T10:31:42.000+04:00"
                 }
               ]
             }
@@ -257,8 +257,8 @@
                 "first_name": "test",
                 "last_name": "test",
                 "email": "user+11@example.com",
-                "created_at": "2019-01-07T01:39:42.475+04:00",
-                "updated_at": "2019-01-07T01:39:42.553+04:00",
+                "created_at": "2018-09-15T10:31:42.000+04:00",
+                "updated_at": "2018-09-15T10:31:42.000+04:00",
                 "campaign_ids": [
                   10,
                   11
@@ -325,8 +325,8 @@
                       "id": 37,
                       "name": "Super Assessment",
                       "status": "not_started",
-                      "created_at": "2019-01-07T01:39:43.340+04:00",
-                      "updated_at": "2019-01-07T01:39:43.340+04:00"
+                      "created_at": "2018-09-15T10:31:42.000+04:00",
+                      "updated_at": "2018-09-15T10:31:42.000+04:00"
                     }
                   ]
                 }
@@ -388,9 +388,9 @@
             "headers": {
             },
             "examples": {
-              "application/json": {
-                "any": "any"
-              }
+              "application/json": [
+
+              ]
             }
           }
         },
@@ -449,8 +449,8 @@
             },
             "examples": {
               "application/json": {
-                "url": "s3.amazon.com/uri",
-                "status": "ready"
+                "url": null,
+                "status": "not_ready"
               }
             }
           }
@@ -491,50 +491,40 @@
             "description": "",
             "required": false,
             "schema": {
+              "required": [
+                "email"
+              ],
               "type": "object",
               "properties": {
-                "user": {
-                  "type": "object",
-                  "properties": {
-                    "first_name": {
-                      "type": "string",
-                      "example": "Max",
-                      "description": "First Name of new user"
-                    },
-                    "last_name": {
-                      "type": "string",
-                      "example": "Holloway",
-                      "description": "Last Name of new user"
-                    },
-                    "email": {
-                      "type": "string",
-                      "example": "max@example.com",
-                      "description": "Email of new user"
-                    },
-                    "password": {
-                      "type": "string",
-                      "example": "password",
-                      "description": "Password for new user"
-                    },
-                    "accepted_terms": {
-                      "type": "boolean",
-                      "example": true,
-                      "description": "Accepted terms"
-                    },
-                    "campaign_ids": {
-                      "type": "array",
-                      "example": [
-                        25
-                      ],
-                      "description": "Array of campaign ids",
-                      "items": {
-                        "type": "integer"
-                      }
-                    }
-                  },
-                  "required": [
-                    "email"
-                  ]
+                "first_name": {
+                  "type": "string",
+                  "example": "Max",
+                  "description": "First Name of new user"
+                },
+                "last_name": {
+                  "type": "string",
+                  "example": "Holloway",
+                  "description": "Last Name of new user"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "max@example.com",
+                  "description": "Email of new user"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "password",
+                  "description": "Password for new user"
+                },
+                "campaign_ids": {
+                  "type": "array",
+                  "example": [
+                    25
+                  ],
+                  "description": "Array of campaign ids",
+                  "items": {
+                    "type": "integer"
+                  }
                 }
               }
             }
@@ -556,8 +546,8 @@
                 "first_name": "Max",
                 "last_name": "Holloway",
                 "email": "max@example.com",
-                "created_at": "2019-01-07T01:39:44.803+04:00",
-                "updated_at": "2019-01-07T01:39:44.833+04:00",
+                "created_at": "2018-09-15T10:31:42.000+04:00",
+                "updated_at": "2018-09-15T10:31:42.000+04:00",
                 "campaign_ids": [
                   25
                 ]
@@ -609,30 +599,25 @@
             "schema": {
               "type": "object",
               "properties": {
-                "user": {
-                  "type": "object",
-                  "properties": {
-                    "first_name": {
-                      "type": "string",
-                      "example": "Brian",
-                      "description": "First Name"
-                    },
-                    "last_name": {
-                      "type": "string",
-                      "example": "Ortega",
-                      "description": "Last Name"
-                    },
-                    "email": {
-                      "type": "string",
-                      "example": "ortega@example.com",
-                      "description": "Email"
-                    },
-                    "password": {
-                      "type": "string",
-                      "example": "password",
-                      "description": "Password"
-                    }
-                  }
+                "first_name": {
+                  "type": "string",
+                  "example": "Brian",
+                  "description": "First Name"
+                },
+                "last_name": {
+                  "type": "string",
+                  "example": "Ortega",
+                  "description": "Last Name"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "ortega@example.com",
+                  "description": "Email"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "password",
+                  "description": "Password"
                 }
               }
             }
@@ -654,8 +639,8 @@
                 "first_name": "Brian",
                 "last_name": "Ortega",
                 "email": "ortega@example.com",
-                "created_at": "2019-01-07T01:39:45.057+04:00",
-                "updated_at": "2019-01-07T01:39:45.084+04:00",
+                "created_at": "2018-09-15T10:31:42.000+04:00",
+                "updated_at": "2018-09-15T10:31:42.000+04:00",
                 "campaign_ids": [
 
                 ]
@@ -712,8 +697,8 @@
             },
             "examples": {
               "application/json": {
-                "expires_at": "2019-01-07T01:09:45.289+03:00",
-                "url": "http://test-10.lvh.me/sso/39/4QqdGkq-uH6Ie6Lv04FD4fBESWE"
+                "expires_at": "2018-09-15T10:01:42.000+03:00",
+                "url": "http://test-10.lvh.me/sso/39/XDQmtop2XYhVt7ANGB8tcdewOtQ"
               }
             }
           }
