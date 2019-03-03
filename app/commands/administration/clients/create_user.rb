@@ -10,19 +10,18 @@ module Administration
       end
 
       def call
-        return broadcast(:invalid) if form.invalid?
-
+        return broadcast(:invalid, form) if form.invalid?
         transaction do
           create_membership_and_user
           apply_assigned_assessments
           apply_reports
-          invite_user
+          assign_campaigns
         end
 
-        broadcast(:ok)
+        broadcast(:ok, membership.user)
       rescue ActiveRecord::RecordInvalid, Errors::LicenseError => e
         form.errors.add(:base, e.message)
-        broadcast(:invalid)
+        broadcast(:invalid, form)
       end
 
       private
@@ -61,8 +60,10 @@ module Administration
         end
       end
 
-      def invite_user
-        membership.user.invite!(current_user, client.id)
+      def assign_campaigns
+        (form.campaign_ids).each do |client_id|
+          membership.user.memberships.create!(role: Membership::MEMBER_ROLE, client_id: client_id)
+        end
       end
     end
   end

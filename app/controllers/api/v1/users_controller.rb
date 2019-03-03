@@ -3,7 +3,7 @@ module Api
     class UsersController < BaseController
       def create
         form = Api::V1::Users::CreateForm.from_params(params).with_context(project: project)
-        ::Users::Create.call(form, project) do
+        Administration::Clients::CreateUser.call(form, project, current_user) do
           on(:invalid) { |form| render_form_errors(form) }
           on(:ok) { |user| render json: Api::V1::UserSerializer.new(user, project: project).to_h }
         end

@@ -2,10 +2,10 @@ module Api
   module V1
     module Users
       class CreateForm < Rectify::Form
-        attribute %i[first_name last_name email password], String
+        attribute %i[first_name last_name email], String
         attribute :campaign_ids,  Array
 
-        validates :email, :password, presence: true
+        validates :email, presence: true
         validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }
         validate :uniq_email, if: -> { email.present? }
         validate :verify_campaign_ids
@@ -25,8 +25,12 @@ module Api
           errors.add(:campaign_ids, 'Not all campaign ids are existing')
         end
 
-        def attributes
-          super.except(:campaign_ids)
+        def user_attributes
+          attributes.except(:campaign_ids)
+        end
+
+        def membership_attributes
+          {}
         end
       end
     end
