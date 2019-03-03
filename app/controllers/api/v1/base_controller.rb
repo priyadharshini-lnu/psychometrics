@@ -6,14 +6,14 @@ module Api
       rescue_from Errors::ApiError, with: :render_error
 
       def auth
-        @api_key = api_key
+        @api_key      = api_key
         @current_user = api_key&.user
         raise Errors::ApiError, "Api key is not correct" unless api_key
         raise Errors::ApiError, "User for api token not found" if @current_user.nil? || @current_user.disabled
       end
 
       def api_key
-        @api_key ||= ApiKey.active.find_by(token: request.headers['X-Api-Key'])
+        @api_key ||= ApiKey.active.find_by(token: request.headers['X-Api-Key'] || bearer_token)
       end
 
       def current_user
@@ -42,10 +42,10 @@ module Api
               raise Errors::ApiError, "Project with id=#{params[:project_id]} is not found" unless p
               p
             else
-              memberships               = current_user.memberships
-              project_ids               = memberships.select(&:project_admin?).map(&:client_id)
-              client_ids                = memberships.select(&:client_admin?).map(&:client_id)
-              p = Client.projects.where.has {(id.in project_ids) | (ancestry.in client_ids)}.find_by(id: params[:project_id])
+              memberships = current_user.memberships
+              project_ids = memberships.select(&:project_admin?).map(&:client_id)
+              client_ids  = memberships.select(&:client_admin?).map(&:client_id)
+              p           = Client.projects.where.has { (id.in project_ids) | (ancestry.in client_ids) }.find_by(id: params[:project_id])
               raise Errors::ApiError, "Project with id=#{params[:project_id]} is not found" unless p
               p
             end
@@ -62,6 +62,12 @@ module Api
 
       def render_error(e)
         render json: { errors: [e.message] }, status: :forbidden
+      end
+
+      def bearer_token
+        pattern = /^Bearer /
+        header  = request.headers['Authorization']
+        header.gsub(pattern, '') if header&.match(pattern)
       end
     end
   end
