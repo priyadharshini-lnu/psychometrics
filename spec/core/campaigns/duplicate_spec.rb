@@ -7,10 +7,12 @@ describe Campaigns::Duplicate do
   let!(:campaign) { create(:campaign, parent: project, id: 102) }
   let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
   let(:report) { assessment.reports.first }
+  let!(:clients_report) { create(:clients_report, client: campaign, report: report, report_family: create(:report_family)) }
+
 
   before do
     campaign.assessments = [assessment]
-    campaign.reports = [report]
+    campaign.clients_reports = [clients_report]
   end
 
   describe 'broadcast ok' do
@@ -22,6 +24,7 @@ describe Campaigns::Duplicate do
       expect(new_campaign.name).to eq "Keep calm"
       expect(new_campaign.assessments.first.name).to eq 'Super Assessment'
       expect(new_campaign.reports.first.name).to eq report.name
+      expect(new_campaign.clients_reports.first.report_family_id).to eq campaign.clients_reports.first.report_family_id
     end
   end
 end

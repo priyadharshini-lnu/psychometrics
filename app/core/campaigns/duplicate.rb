@@ -11,7 +11,7 @@ module Campaigns
       return broadcast :invalid, form if form.invalid?
       duplicated_campaign = campaign.dup
       duplicated_campaign.update!(form.attributes)
-      duplicated_campaign.reports = campaign.reports
+      duplicated_campaign.clients_reports = campaign.clients_reports
       duplicated_campaign.assessments = campaign.assessments
 
       broadcast :ok, duplicated_campaign
