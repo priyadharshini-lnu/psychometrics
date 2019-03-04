@@ -1,0 +1,17 @@
+tr id=dom_id(resource)
+  td.text-center
+    = link_to({ action: :toggle_status, id: resource }, remote: true, method: :patch, data: { confirm: resource.decorate.toggle_status_confirmation })
+      = resource.decorate.status
+  td
+    .hiding-token
+      span = '*' * resource.token.size
+      - unless resource.disabled?
+        button.mlm.btn.btn-default.btn-rounded.btn-xs.show-token
+          = t('administration.show')
+    - unless resource.disabled?
+      .showing-token.hidden
+        input.token-input autofocus='autofocus' readonly='readonly' value=resource.token
+        button.mlm.btn.btn-default.btn-rounded.btn-xs.hide-token
+          = t('administration.hide')
+  td.text-center = resource.decorate.created_at
+  td.text-center = resource.decorate.updated_at

@@ -72,6 +72,7 @@ Rails.application.routes.draw do
             end
             resources :assign_assessments, only: %i[new create]
           end
+
           member do
             patch :toggle_status
             get :sidebar
@@ -83,6 +84,12 @@ Rails.application.routes.draw do
             get :export
             get :export_completion_status
             post :assign_multiple
+          end
+
+          resources :api_keys, except: %i[destroy edit update show] do
+            member do
+              patch :toggle_status
+            end
           end
         end
         resources :project_admins do

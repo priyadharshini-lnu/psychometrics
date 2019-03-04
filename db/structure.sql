@@ -69,7 +69,7 @@ SET default_with_oids = false;
 CREATE TABLE public.api_keys (
     id bigint NOT NULL,
     user_id bigint NOT NULL,
-    active boolean,
+    disabled boolean DEFAULT false,
     token character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -1700,9 +1700,8 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
-    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     default_language character varying DEFAULT 'en'::character varying
 );
 
@@ -4291,6 +4290,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190127164957'),
 ('20190210122115'),
 ('20190210123606'),
-('20190221202711');
+('20190303082715');
 
 

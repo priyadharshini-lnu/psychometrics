@@ -1,5 +1,7 @@
 FactoryGirl.define do
   factory :api_key do
-    active true
+    trait :with_user do
+      user
+    end
   end
 end

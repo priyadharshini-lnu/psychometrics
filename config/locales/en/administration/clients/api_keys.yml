@@ -1,0 +1,27 @@
+en:
+  administration:
+    clients:
+      api_keys:
+        index:
+          breadcrumb: "%{name}'s API keys"
+          title: "%{name}'s API keys"
+          new: Create new API key
+        list:
+          active: Active
+          token: Token
+          created_at: Created
+          updated_at: Last modified
+        resource:
+          confirmations:
+            create:
+              title: <strong>Create</strong> a new API key?
+              body: >
+                <p>Are you sure you want to create a new API key?</p>
+            toggle_status:
+              title: <strong>%{status}</strong> API key?
+              body: >
+                <p>Are you sure you want to %{status} this API key?</p>
+        create:
+          successfully: 'New API key was successfully created.'
+        toggle_status:
+          successfully: 'API key was successfully updated.'
