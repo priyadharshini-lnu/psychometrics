@@ -19,7 +19,8 @@ module Api
 
       def sso
         url, expires_at = ::Users::BuildSsoUrl.call(project, user)[:ok]
-        render json: { expires_at: expires_at, url: url }
+        assigns = Assign.includes(:assessment).where(membership: project_membership)
+        render json: { expires_at: expires_at, url: url, assessments: assigns.map { |a| Api::V1::SsoAssignSerializer.new(a, url: url).to_h } }
       end
 
       def user_params
