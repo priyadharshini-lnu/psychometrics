@@ -32,6 +32,22 @@ RSpec.configure do |config|
             completed_at: { type: 'string', 'x-nullable': true }
           }
         },
+        UserReport: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer'},
+            name: { type: 'string' },
+            status: { type: 'string'},
+            asessments: { type: 'array', items: { '$ref' => '#/definitions/UserAssessment' } }
+          }
+        },
+        ReportPdf: {
+          type: 'object',
+          properties: {
+            url: { type: 'string', 'x-nullable': true },
+            status: { type: 'string' },
+          }
+        },
         NewUser: {
           type: 'object',
           properties: {
@@ -47,6 +63,22 @@ RSpec.configure do |config|
             first_name: { type: 'string', 'x-nullable': true },
             last_name: { type: 'string', 'x-nullable': true },
             email: { type: 'string', 'x-nullable': true },
+          }
+        },
+        ReportResults: {
+          type: 'object',
+          properties: {
+            user: { '$ref' => '#/definitions/UserAssessment' },
+            results: { type: 'array', items: { type: 'object', properties: {
+              key: { type: 'string', 'x-nullable': true },
+              name: { type: 'string', 'x-nullable': true },
+              value: { type: 'string', 'x-nullable': true },
+            } }, 'x-nullable': true },
+            occupations: { type: 'array', items: { type: 'object', properties: {
+              key: { type: 'string', 'x-nullable': true },
+              name: { type: 'string', 'x-nullable': true },
+              value: { type: 'string', 'x-nullable': true },
+            } }, 'x-nullable': true },
           }
         },
         DuplicatedCampaign: {
