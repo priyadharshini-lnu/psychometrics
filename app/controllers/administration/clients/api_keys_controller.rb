@@ -23,7 +23,12 @@ module Administration
       end
 
       def create
-        @_resource = @user.api_keys.create
+        CreateApiKey.call(@user) do
+          on(:invalid) { render(:error, locals: { message: t('errors.error_500') }) }
+          on(:ok) do |api_key|
+            self.resource = api_key
+          end
+        end
       end
 
       # Change resources's status to active/disabled

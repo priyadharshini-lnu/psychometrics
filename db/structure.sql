@@ -70,9 +70,11 @@ CREATE TABLE public.api_keys (
     id bigint NOT NULL,
     user_id bigint NOT NULL,
     disabled boolean DEFAULT false,
-    token character varying,
+    encrypted_token character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    key character varying,
+    encrypted_token_iv character varying
 );
 
 
@@ -2807,10 +2809,24 @@ ALTER TABLE ONLY public.users
 
 
 --
--- Name: index_api_keys_on_token; Type: INDEX; Schema: public; Owner: -
+-- Name: index_api_keys_on_encrypted_token; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_api_keys_on_token ON public.api_keys USING btree (token);
+CREATE UNIQUE INDEX index_api_keys_on_encrypted_token ON public.api_keys USING btree (encrypted_token);
+
+
+--
+-- Name: index_api_keys_on_encrypted_token_iv; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_api_keys_on_encrypted_token_iv ON public.api_keys USING btree (encrypted_token_iv);
+
+
+--
+-- Name: index_api_keys_on_key; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_api_keys_on_key ON public.api_keys USING btree (key);
 
 
 --
@@ -4290,6 +4306,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190127164957'),
 ('20190210122115'),
 ('20190210123606'),
-('20190303082715');
+('20190303082715'),
+('20190304063803');
 
 

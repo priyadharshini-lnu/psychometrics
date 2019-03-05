@@ -8,10 +8,13 @@ en:
           new: Create new API key
         list:
           active: Active
+          key: Key
           token: Token
           created_at: Created
           updated_at: Last modified
         resource:
+          show_and_copy: Show and Copy
+          copy: Copy
           confirmations:
             create:
               title: <strong>Create</strong> a new API key?
