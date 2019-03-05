@@ -2,10 +2,6 @@ module Api
   module V1
     class AssignReportSerializer < ActiveModel::Serializer
       attributes :id, :name, :status, :assessments
-      def status
-        :will_be_added_later
-      end
-
       def id
         object.report.id
       end

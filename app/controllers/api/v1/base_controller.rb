@@ -13,7 +13,7 @@ module Api
       end
 
       def api_key
-        @api_key ||= ApiKey.active.find_by(token: request.headers['X-Api-Key'] || bearer_token)
+        @api_key ||= ApiKey.active.find_by(token: request.headers['HTTP_X_API_KEY'] || bearer_token)
       end
 
       def current_user

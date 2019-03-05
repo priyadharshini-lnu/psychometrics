@@ -1,0 +1,782 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "API V1",
+    "version": "v1"
+  },
+  "securityDefinitions": {
+    "apiKey": {
+      "type": "apiKey",
+      "name": "X-Api-Key",
+      "in": "header"
+    }
+  },
+  "paths": {
+    "/api/v1/projects/{project_id}/users/{user_id}/assessments": {
+      "get": {
+        "summary": "Get the list of assessments",
+        "tags": [
+          "Assessments"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiKey": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessments presented",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserAssessment"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": "11234",
+                  "name": "Assessment 1",
+                  "status": "completed",
+                  "started_at": "2019-03-04T15:47:33.570+04:00",
+                  "completed_at": "2019-03-04T15:47:33.570+04:00"
+                },
+                {
+                  "id": "11235",
+                  "name": "Assessment 2",
+                  "status": "completed",
+                  "started_at": "2019-03-04T15:47:33.570+04:00",
+                  "completed_at": "2019-03-04T15:47:33.570+04:00"
+                },
+                {
+                  "id": "11236",
+                  "name": "Assessment 3",
+                  "status": "completed",
+                  "started_at": "2019-03-04T15:47:33.570+04:00",
+                  "completed_at": "2019-03-04T15:47:33.570+04:00"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/campaigns/{campaign_id}/duplicate": {
+      "post": {
+        "summary": "Creates a copy of the campaign without users",
+        "tags": [
+          "Campaigns"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiKey": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DuplicatedCampaign"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign duplicated",
+            "schema": {
+              "$ref": "#/definitions/Campaign"
+            },
+            "examples": {
+              "application/json": {
+                "id": 770,
+                "name": "Duplicated Campaign Name",
+                "created_at": "2019-03-05T10:56:53.349+04:00",
+                "updated_at": "2019-03-05T10:56:53.349+04:00"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/campaigns": {
+      "post": {
+        "summary": "Adds user to new campaigns",
+        "tags": [
+          "Campaigns"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiKey": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/NewCampaigns"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "application/json": {
+                "id": 14602,
+                "first_name": "Kamaru",
+                "last_name": "Usman",
+                "email": "marti@gmail.com",
+                "created_at": "2019-03-04T15:47:33.570+04:00",
+                "updated_at": "2019-03-04T15:47:33.950+04:00",
+                "campaign_ids": [
+                  510
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get user campaigns",
+        "tags": [
+          "Campaigns"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiKey": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Campaign"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 367,
+                  "name": "Employee Engagement Survey",
+                  "created_at": "2018-02-11T10:55:25.569+04:00",
+                  "updated_at": "2018-02-11T10:55:25.569+04:00"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/reports": {
+      "get": {
+        "summary": "Get user reports",
+        "tags": [
+          "Reports"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiKey": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get user reports",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserReport"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 127,
+                  "name": "Thriving Index - Alinma Resource - PRO ",
+                  "status": "not_ready",
+                  "assessments": [
+                    {
+                      "id": 91731,
+                      "name": "Thriving Index Assessment - Alinma",
+                      "status": "not_started",
+                      "started_at": "2019-01-06T20:54:05.714+04:00",
+                      "completed_at": "2019-01-06T20:54:05.714+04:00"
+                    }
+                  ]
+                },
+                {
+                  "id": 110,
+                  "name": "Thriving Index - Alinma Custom Report",
+                  "status": "not_ready",
+                  "assessments": [
+                    {
+                      "id": 91731,
+                      "name": "Thriving Index Assessment - Alinma",
+                      "status": "not_started",
+                      "started_at": "2019-01-06T20:54:05.714+04:00",
+                      "completed_at": "2019-01-06T20:54:05.714+04:00"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/reports/{report_id}/results": {
+      "get": {
+        "summary": "Get user results",
+        "tags": [
+          "Reports"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiKey": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get user reports",
+            "schema": {
+              "$ref": "#/definitions/ReportResults"
+            },
+            "examples": {
+              "application/json": {
+                "user": {
+                  "id": 14602,
+                  "first_name": "Kamaru",
+                  "last_name": "Usman",
+                  "email": "marti@gmail.com",
+                  "created_at": "2019-03-04T15:47:33.570+04:00",
+                  "updated_at": "2019-03-04T15:47:33.950+04:00",
+                  "campaign_ids": [
+                    510
+                  ]
+                },
+                "results": [
+                  {
+                    "key": "factor 1",
+                    "name": "Factor One",
+                    "value": "5"
+                  }
+                ],
+                "occupations": [
+                  {
+                    "key": "factor 1",
+                    "name": "Factor One",
+                    "value": "5"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/reports/{report_id}/pdf": {
+      "get": {
+        "summary": "Get user report PDF",
+        "tags": [
+          "Reports"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiKey": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get user report PDF",
+            "schema": {
+              "$ref": "#/definitions/ReportPdf"
+            },
+            "examples": {
+              "application/json": {
+                "url": "https://some.aws.s3.com/report.pdf",
+                "status": "ready"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/users": {
+      "post": {
+        "summary": "Adds a new user to the project",
+        "tags": [
+          "Users"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiKey": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/NewUser"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "application/json": {
+                "id": 14602,
+                "first_name": "Kamaru",
+                "last_name": "Usman",
+                "email": "marti@gmail.com",
+                "created_at": "2019-03-04T15:47:33.570+04:00",
+                "updated_at": "2019-03-04T15:47:33.950+04:00",
+                "campaign_ids": [
+                  510
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}": {
+      "put": {
+        "summary": "Updates user details",
+        "tags": [
+          "Users"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "apiKey": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdatedUser"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update the user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "application/json": {
+                "id": 14602,
+                "first_name": "Kamaru",
+                "last_name": "Usman",
+                "email": "marti@gmail.com",
+                "created_at": "2019-03-04T15:47:33.570+04:00",
+                "updated_at": "2019-03-04T15:47:33.950+04:00",
+                "campaign_ids": [
+                  510
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "UserAssessment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "started_at": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "completed_at": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "UserReport": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "asessments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserAssessment"
+          }
+        }
+      }
+    },
+    "ReportPdf": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "NewUser": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "last_name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "email": {
+          "type": "string",
+          "required": true
+        },
+        "campaign_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "x-nullable": true
+        }
+      }
+    },
+    "UpdatedUser": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "last_name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "email": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "ReportResults": {
+      "type": "object",
+      "properties": {
+        "user": {
+          "$ref": "#/definitions/UserAssessment"
+        },
+        "results": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "x-nullable": true
+              },
+              "name": {
+                "type": "string",
+                "x-nullable": true
+              },
+              "value": {
+                "type": "string",
+                "x-nullable": true
+              }
+            }
+          },
+          "x-nullable": true
+        },
+        "occupations": {
+          "type": "array",
+          "items": {
+            "type": "object",
+            "properties": {
+              "key": {
+                "type": "string",
+                "x-nullable": true
+              },
+              "name": {
+                "type": "string",
+                "x-nullable": true
+              },
+              "value": {
+                "type": "string",
+                "x-nullable": true
+              }
+            }
+          },
+          "x-nullable": true
+        }
+      }
+    },
+    "DuplicatedCampaign": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "NewCampaigns": {
+      "type": "object",
+      "properties": {
+        "campaign_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "Campaign": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "campaign_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}
