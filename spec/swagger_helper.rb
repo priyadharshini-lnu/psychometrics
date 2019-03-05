@@ -49,6 +49,18 @@ RSpec.configure do |config|
             email: { type: 'string', 'x-nullable': true },
           }
         },
+        DuplicatedCampaign: {
+          type: 'object',
+          properties: {
+            name: { type: 'string' },
+          }
+        },
+        NewCampaigns: {
+          type: 'object',
+          properties: {
+            campaign_ids: { type: 'array', items: { type: 'integer' } },
+          }
+        },
         Campaign: {
           type: 'object',
           properties: {
