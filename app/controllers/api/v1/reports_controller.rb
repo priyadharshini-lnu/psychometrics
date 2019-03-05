@@ -16,11 +16,7 @@ module Api
 
       def results
         assigns = Assign.completed.where(membership: project_membership, project_assign_id: nil, assessment_id: report.assessment_ids)
-        render json: {
-          user: Api::V1::UserSerializer.new(user, project: project).to_h,
-          results: ::Reports::BuildResults.call(report, assigns)[:ok],
-          occupations: []
-        }
+        render json: ::Reports::BuildResults.call(report, assigns)[:ok]
       end
 
       def pdf

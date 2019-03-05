@@ -91,23 +91,9 @@ describe 'Reports' do
       parameter name: :user_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string
 
-      response '200', 'Get user reports' do
+      response '200', 'Get user report results' do
         schema '$ref' => '#/definitions/ReportResults'
-        examples 'application/json' => {
-          user: {
-            "id":           14602,
-            "first_name":   "Kamaru",
-            "last_name":    "Usman",
-            "email":        "marti@gmail.com",
-            "created_at":   "2019-03-04T15:47:33.570+04:00",
-            "updated_at":   "2019-03-04T15:47:33.950+04:00",
-            "campaign_ids": [
-                              510
-                            ]
-          },
-          results: [{ "key": "factor 1", "name": "Factor One", value: "5" }],
-          occupations: [{ "key": "factor 1", "name": "Factor One", value: "5" }]
-        }
+        examples 'application/json' => [{ "key": "factor 1", "name": "Factor One", value: "5" }]
 
         let(:project_id) { project.id }
         let(:user_id) { user.id }
@@ -115,9 +101,7 @@ describe 'Reports' do
 
         run_test! do |response|
           result = JSON.parse(response.body)
-          expect(result).to have_key('user')
-          expect(result).to have_key('occupations')
-          expect(result).to have_key('results')
+          expect(result).to be_an_instance_of(Array)
         end
       end
     end

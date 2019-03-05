@@ -66,19 +66,18 @@ RSpec.configure do |config|
           }
         },
         ReportResults: {
+          type: 'array',
+          'x-nullable': true,
+          items: {
+            '$ref' => '#/definitions/ReportResult'
+          }
+        },
+        ReportResult: {
           type: 'object',
           properties: {
-            user: { '$ref' => '#/definitions/UserAssessment' },
-            results: { type: 'array', items: { type: 'object', properties: {
-              key: { type: 'string', 'x-nullable': true },
-              name: { type: 'string', 'x-nullable': true },
-              value: { type: 'string', 'x-nullable': true },
-            } }, 'x-nullable': true },
-            occupations: { type: 'array', items: { type: 'object', properties: {
-              key: { type: 'string', 'x-nullable': true },
-              name: { type: 'string', 'x-nullable': true },
-              value: { type: 'string', 'x-nullable': true },
-            } }, 'x-nullable': true },
+            key: { type: 'string', 'x-nullable': true },
+            name: { type: 'string', 'x-nullable': true },
+            value: { type: 'string', 'x-nullable': true },
           }
         },
         DuplicatedCampaign: {

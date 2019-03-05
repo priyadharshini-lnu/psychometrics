@@ -366,33 +366,13 @@
               "$ref": "#/definitions/ReportResults"
             },
             "examples": {
-              "application/json": {
-                "user": {
-                  "id": 14602,
-                  "first_name": "Kamaru",
-                  "last_name": "Usman",
-                  "email": "marti@gmail.com",
-                  "created_at": "2019-03-04T15:47:33.570+04:00",
-                  "updated_at": "2019-03-04T15:47:33.950+04:00",
-                  "campaign_ids": [
-                    510
-                  ]
-                },
-                "results": [
-                  {
-                    "key": "factor 1",
-                    "name": "Factor One",
-                    "value": "5"
-                  }
-                ],
-                "occupations": [
-                  {
-                    "key": "factor 1",
-                    "name": "Factor One",
-                    "value": "5"
-                  }
-                ]
-              }
+              "application/json": [
+                {
+                  "key": "factor 1",
+                  "name": "Factor One",
+                  "value": "5"
+                }
+              ]
             }
           }
         }
@@ -666,49 +646,16 @@
     "ReportResults": {
       "type": "object",
       "properties": {
-        "user": {
-          "$ref": "#/definitions/UserAssessment"
-        },
-        "results": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "key": {
-                "type": "string",
-                "x-nullable": true
-              },
-              "name": {
-                "type": "string",
-                "x-nullable": true
-              },
-              "value": {
-                "type": "string",
-                "x-nullable": true
-              }
-            }
-          },
+        "key": {
+          "type": "string",
           "x-nullable": true
         },
-        "occupations": {
-          "type": "array",
-          "items": {
-            "type": "object",
-            "properties": {
-              "key": {
-                "type": "string",
-                "x-nullable": true
-              },
-              "name": {
-                "type": "string",
-                "x-nullable": true
-              },
-              "value": {
-                "type": "string",
-                "x-nullable": true
-              }
-            }
-          },
+        "name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "value": {
+          "type": "string",
           "x-nullable": true
         }
       }
