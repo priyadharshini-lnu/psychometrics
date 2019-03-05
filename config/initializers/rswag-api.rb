@@ -10,5 +10,5 @@ Rswag::Api.configure do |c|
   # The function will have access to the rack env for the current request
   # For example, you could leverage this to dynamically assign the "host" property
   #
-  c.swagger_filter = lambda { |swagger, env| swagger['host'] = 'http://lvh.me:3030' }
+  c.swagger_filter = lambda { |swagger, env| swagger['host'] = "http://#{Settings.domain}:#{Settings.port}" }
 end
