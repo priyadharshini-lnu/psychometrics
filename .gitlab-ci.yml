@@ -5,7 +5,7 @@ services:
   - redis:latest
 
 cache:
-  key: psychometrics-cache-key
+  key: ${CI_COMMIT_REF_SLUG}
   paths:
   - vendor/ruby
 
@@ -23,6 +23,11 @@ before_script:
   - ssh-keyscan 'github.com' >> ~/.ssh/known_hosts
   - ssh-keyscan 'gitlab.com' >> ~/.ssh/known_hosts
   - export RAILS_ENV=test
+  - bundle install -j $(nproc) --path vendor  --without development # Install dependencies into ./vendor/ruby
+  - sudo apt update && sudo apt install postgresql-client
+  - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
+  - sudo chmod 0655 /usr/local/bin/phantomjs
+  - npm install
 
 test:
   script:
@@ -30,11 +35,6 @@ test:
   - cp config/database.ci.yml config/database.yml
   - cp config/secrets.ci.yml config/secrets.yml
   - cp config/application.sample.yml  config/application.yml
-  - bundle install -j $(nproc) --path vendor  --without development # Install dependencies into ./vendor/ruby
-  - sudo apt update && sudo apt install postgresql-client
-  - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
-  - sudo chmod 0655 /usr/local/bin/phantomjs
-  - npm install
   - bundle exec rake db:create
   - bundle exec rake db:structure:load
   - bundle exec rspec
