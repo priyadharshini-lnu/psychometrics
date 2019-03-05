@@ -7,9 +7,10 @@ describe 'Campaigns' do
   let!(:project) { create(:project, parent: membership.client) }
   let(:campaign) { create(:campaign, parent: project) }
   let(:campaign_2) { create(:campaign, parent: project) }
+  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
-  before { create(:api_key, token: 'token', user: membership.user) }
-  let(:'X-Api-Key') { "token" }
+  before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
+
   path '/api/v1/projects/{project_id}/campaigns/{campaign_id}/duplicate' do
 
     post 'Creates a copy of the campaign without users' do

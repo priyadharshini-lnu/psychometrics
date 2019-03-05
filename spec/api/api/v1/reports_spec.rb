@@ -5,12 +5,12 @@ require 'swagger_helper'
 describe 'Reports' do
   let!(:membership) { create(:client_admin_membership) }
   let(:campaign) { create(:campaign, parent: project) }
-  before { create(:api_key, token: 'token', user: membership.user) }
+  before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:user) { create(:user, project: project) }
   let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
   let(:report) { assessment.reports.first }
-  let(:'X-Api-Key') { "token" }
+  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
   before do
     user_membership = create(:membership, client: campaign, user: user)

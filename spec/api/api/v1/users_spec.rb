@@ -7,8 +7,9 @@ describe 'Users' do
   let!(:project) { create(:project, parent: membership.client) }
   let(:campaign) { create(:campaign, parent: project) }
   let(:user) { create(:user, project: project) }
-  before { create(:api_key, token: 'token', user: membership.user) }
-  let(:'X-Api-Key') { "token" }
+  before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
+  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+
   path '/api/v1/projects/{project_id}/users' do
 
     post 'Adds a new user to the project' do

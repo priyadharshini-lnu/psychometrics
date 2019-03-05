@@ -4,10 +4,12 @@ require 'swagger_helper'
 describe 'Assessments' do
   let!(:membership) { create(:client_admin_membership) }
   let(:campaign) { create(:campaign, parent: project) }
-  before { create(:api_key, token: 'token', user: membership.user) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:user) { create(:user, project: project) }
-  let(:'X-Api-Key') { "token" }
+  let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
+
+  before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
+
   path '/api/v1/projects/{project_id}/users/{user_id}/assessments' do
 
     get 'Get the list of assessments' do

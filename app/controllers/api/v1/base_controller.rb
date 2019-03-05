@@ -62,20 +62,12 @@ module Api
       # Fetchs API key
       #
       def fetch_api_key
-        key, token = basic_auth_credentials
-        possible_api_key = ApiKey.active.find_by(key: key)
+        authenticate_or_request_with_http_basic do |key, token|
+          possible_api_key = ApiKey.active.find_by(key: key)
+          return nil if possible_api_key.nil? || possible_api_key.token != token
 
-        return nil if possible_api_key.nil? || possible_api_key.token != token
-
-        possible_api_key
-      end
-
-      # Decodes credentials
-      #
-      def basic_auth_credentials
-        auth_param = request.authorization.to_s.split(' ', 2).second
-        decoded_credentials = ::Base64.decode64(auth_param || '')
-        decoded_credentials.split(':', 2)
+          possible_api_key
+        end
       end
     end
   end
