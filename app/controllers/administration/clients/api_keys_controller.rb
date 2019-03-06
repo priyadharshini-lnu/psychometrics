@@ -25,9 +25,7 @@ module Administration
       def create
         CreateApiKey.call(@user) do
           on(:invalid) { render(:error, locals: { message: t('errors.error_500') }) }
-          on(:ok) do |api_key|
-            self.resource = api_key
-          end
+          on(:ok) { |api_key| self.resource = api_key }
         end
       end
 
@@ -35,14 +33,6 @@ module Administration
       #
       def toggle_status
         resource.toggle!(:disabled)
-        respond_to do |format|
-          format.html do
-            redirect_back(
-              fallback_location: root_path, success: t('.successfully', name: resource.decorate.display_name)
-            )
-          end
-          format.js
-        end
       end
 
       def i18n
