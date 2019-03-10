@@ -43,6 +43,7 @@ gem 'pundit',                     '~> 1.1.0'
 gem 'bootstrap-sass',             '~> 3.3.6'
 gem 'bh',                         '~> 1.3'
 gem 'font-awesome-rails',         '~> 4.7'
+gem 'webpacker',                  '~> 4.0.2'
 # gem 'noty-rails',                 '~> 2.3.8'
 
 ### TEMPLATES
