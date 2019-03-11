@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.5.1"
 gem 'bundler',                    '>= 1.8.4'
 
 gem 'rails',                      '~> 5.1.6'
@@ -10,6 +11,7 @@ gem 'coffee-rails',               '~> 4.2'
 gem 'jquery-rails',               '~> 4.1.1'
 gem 'jquery-rails-cdn',           '~> 1.1.2'
 gem 'jbuilder',                   '~> 2.6.4'
+gem "barnes",                     '~> 0.0.7'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '1.12'
@@ -67,15 +69,13 @@ gem 'i18n-js',                    '~> 3.0.0.rc3'
 ### Decorator
 gem 'activemodel-serializers-xml'
 gem 'draper',                     '~> 3.0.0'
-### Generate schema in each model
-gem 'annotate', '~> 2.7.0', git: 'git@github.com:ctran/annotate_models.git'
-
+gem 'annotate', '~> 2.7.0'
 ### For organisation ENV variable
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
-gem 'psychometrics-reports-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git', branch: 'master'
-gem 'psychometrics-survey-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git', branch: 'master'
+gem 'psychometrics-reports-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git', branch: 'master'
+gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', branch: 'master'
 
 ### XLS import
 gem 'rubyXL'
@@ -86,11 +86,11 @@ gem 'smarter_csv',                '~> 1.1.0'
 # For unpoad file as Ajax
 gem 'jquery-fileupload-rails',    '~> 0.4.6'
 gem 'redis'
-
+gem 'redis-rails',                '~> 5.0.2'
 gem 'ckeditor'
 
 ### dependencies for XLS export (via templates)
-gem 'axlsx', git: 'git@github.com:randym/axlsx', ref: 'c8ac844'
+gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails', '~> 0.4.0'
 gem 'roo', '~> 2.8.2'
 
@@ -149,7 +149,9 @@ gem 'enum_help', '~> 0.0.17'
 gem 'date_validator', '~> 0.9.0'
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'js-routes', '~> 1.4.4'
-gem 'rswag', '~> 2.0.5'
+# swagger
+gem 'rswag-api', '~> 2.0.5'
+gem 'rswag-ui', '~> 2.0.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -161,6 +163,8 @@ group :development, :test do
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_girl_rails', '~> 4.7.0'
   # A fake data generator
+  ### Generate schema in each model
+  gem 'rswag-specs', '~> 2.0.5'
 end
 
 group :development do
@@ -189,11 +193,12 @@ group :test do
   gem 'faker', '~> 1.8.7'
   gem 'poltergeist', '~> 1.14.0'
   gem 'capybara-screenshot', '~> 1.0.14'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.0.5'
   gem 'shoulda', '~> 3.5.0'
   gem 'database_cleaner', '~> 1.7.0'
   gem 'simplecov', require: false
   gem 'rspec-retry', '~> 0.6.1'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'timecop', '~> 0.9.1'
+  gem 'rswag-specs', '~> 2.0.5'
 end

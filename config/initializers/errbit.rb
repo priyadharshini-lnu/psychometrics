@@ -4,6 +4,6 @@ Airbrake.configure do |config|
   config.project_key = 'bc509628ae8271e7cfa63778a922d2d1'
 
   # Uncomment for Rails apps
-  config.environment = Rails.env
+  config.environment = ENV['PIPELINE_STAGE'] || Rails.env
   config.ignore_environments = %w(development test)
 end

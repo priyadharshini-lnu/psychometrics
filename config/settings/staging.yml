@@ -1,9 +1,9 @@
-domain: staging.tte-lighthouse.com # psychometrics.co.uk
-subdomain: staging # subdomain
+domain: <%= ENV["APP_DOMAIN"] || 'staging.tte-lighthouse.com' %> # psychometrics.co.uk
+subdomain: <%= ENV["APP_SUB_DOMAIN"] || 'staging' %> # subdomain
 port: 80
-protocol: 'http'
+protocol: <%= ENV["APP_PROTOCOL"] || 'http' %>
 assigns:
-  mindmill_prefix: TTESTAG
+  mindmill_prefix: <%= ENV["MINDMILL_PREFIX"] || 'TTESTAG' %>
 hogan:
   - name: HPI
     assessment_id: HPI
@@ -11,7 +11,7 @@ hogan:
     reports:
       - report_id: EcHPIDML
         report_name: HPI Data Report
-        norm_id: General
+        norm_id: Global
         language_id: en
   - name: HDS
     assessment_id: HDS
@@ -19,7 +19,7 @@ hogan:
     reports:
       - report_id: EcHDSDML
         report_name: HDS Data Report
-        norm_id: General
+        norm_id: Global
         language_id: en
   - name: MVPI
     assessment_id: MVPI
@@ -27,7 +27,7 @@ hogan:
     reports:
       - report_id: EcMVPIDML
         report_name: MVPI Data Report
-        norm_id: General
+        norm_id: Global
         language_id: en
   - name: HBRI
     assessment_id: HBRIV1
@@ -35,9 +35,9 @@ hogan:
     reports:
       - report_id: EcHBRIV1D
         report_name: HBRI Data Report
-        norm_id: General
+        norm_id: Global
         language_id: en
       - report_id: EcHBRIV1IML
         report_name: HBRI Interpret Report
-        norm_id: General
+        norm_id: Global
         language_id: en
