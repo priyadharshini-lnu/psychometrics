@@ -3,19 +3,20 @@
 module Administration
   module Clients
     class CreateUser < Rectify::Command
-      def initialize(form, client, current_user)
+      def initialize(form, clients, current_user)
         @form = form
-        @client = client
+        @clients = clients
         @current_user = current_user
       end
 
       def call
         return broadcast(:invalid, form) if form.invalid?
         transaction do
-          create_membership_and_user
-          apply_assigned_assessments
-          apply_reports
-          assign_campaigns
+          clients.each do |client|
+            create_membership_and_user(client)
+            apply_assigned_assessments(client)
+            apply_reports(client)
+          end
         end
 
         broadcast(:ok, membership.user)
@@ -26,9 +27,9 @@ module Administration
 
       private
 
-      attr_reader :client, :current_user, :membership_params, :form, :membership
+      attr_reader :clients, :current_user, :membership_params, :form, :membership
 
-      def create_membership_and_user
+      def create_membership_and_user(client)
         @membership = client.memberships.new(form.membership_attributes)
         membership.user = User.find_or_initialize_by(email: form.email, project_id: client.project.id)
         membership.user.assign_attributes(form.user_attributes)
@@ -43,13 +44,13 @@ module Administration
         membership.save!
       end
 
-      def apply_assigned_assessments
+      def apply_assigned_assessments(client)
         client.assessment_ids.each do |assessment_id|
           assign = membership.assigns.find_or_create_by(assessment_id: assessment_id)
         end
       end
 
-      def apply_reports
+      def apply_reports(client)
         client.clients_reports.includes(report: :assessments).each do |client_report|
           client_report.report.assessments.each do |assessment|
             assign = membership.assigns.find_or_create_by(assessment_id: assessment.id)
@@ -57,12 +58,6 @@ module Administration
             assign_report.user_access = client_report.user_access
             assign_report.save!
           end
-        end
-      end
-
-      def assign_campaigns
-        (form.campaign_ids).each do |client_id|
-          membership.user.memberships.create!(role: Membership::MEMBER_ROLE, client_id: client_id)
         end
       end
     end
