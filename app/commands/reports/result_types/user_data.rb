@@ -5,7 +5,7 @@ module Reports
         {
           key: data['key'],
           name: data['label'],
-          value: context.assigns.sample.membership.user.try(data['key'])
+          value: context.assigns.first.membership.user.try(data['key'])
         }
       end
     end
