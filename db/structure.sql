@@ -714,7 +714,6 @@ ALTER SEQUENCE public.datasheet_rows_id_seq OWNED BY public.datasheet_rows.id;
 CREATE TABLE public.datasheets (
     id bigint NOT NULL,
     project_id bigint,
-    filename character varying,
     columns jsonb,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -1703,8 +1702,9 @@ CREATE TABLE public.reports (
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
     data_configuration jsonb DEFAULT '{}'::jsonb,
+    default_language character varying DEFAULT 'en'::character varying,
     props jsonb DEFAULT '{}'::jsonb NOT NULL,
-    default_language character varying DEFAULT 'en'::character varying
+    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL
 );
 
 
@@ -4306,6 +4306,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190127164957'),
 ('20190210122115'),
 ('20190210123606'),
+('20190221202711'),
 ('20190303082715'),
 ('20190304063803');
 
