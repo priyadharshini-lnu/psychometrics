@@ -25,6 +25,8 @@ describe Campaigns::Duplicate do
       expect(new_campaign.assessments.first.name).to eq 'Super Assessment'
       expect(new_campaign.reports.first.name).to eq report.name
       expect(new_campaign.clients_reports.first.report_family_id).to eq campaign.clients_reports.first.report_family_id
+      expect(campaign.assessments.first.name).to eq 'Super Assessment'
+      expect(campaign.reports.first.name).to eq report.name
     end
   end
 end
