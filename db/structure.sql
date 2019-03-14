@@ -63,6 +63,39 @@ SET default_tablespace = '';
 SET default_with_oids = false;
 
 --
+-- Name: api_keys; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.api_keys (
+    id bigint NOT NULL,
+    user_id bigint NOT NULL,
+    active boolean,
+    token character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: api_keys_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.api_keys_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: api_keys_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.api_keys_id_seq OWNED BY public.api_keys.id;
+
+
+--
 -- Name: ar_internal_metadata; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1667,8 +1700,9 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    data_configuration jsonb DEFAULT '{}'::jsonb,
     props jsonb DEFAULT '{}'::jsonb NOT NULL,
+    data_configuration jsonb DEFAULT '{}'::jsonb,
+    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     default_language character varying DEFAULT 'en'::character varying
 );
 
@@ -1975,6 +2009,13 @@ CREATE SEQUENCE public.users_id_seq
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: api_keys id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.api_keys ALTER COLUMN id SET DEFAULT nextval('public.api_keys_id_seq'::regclass);
 
 
 --
@@ -2332,6 +2373,14 @@ ALTER TABLE ONLY public.translations ALTER COLUMN id SET DEFAULT nextval('public
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: api_keys api_keys_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT api_keys_pkey PRIMARY KEY (id);
 
 
 --
@@ -2756,6 +2805,20 @@ ALTER TABLE ONLY public.translations
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: index_api_keys_on_token; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_api_keys_on_token ON public.api_keys USING btree (token);
+
+
+--
+-- Name: index_api_keys_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_api_keys_on_user_id ON public.api_keys USING btree (user_id);
 
 
 --
@@ -3572,6 +3635,14 @@ ALTER TABLE ONLY public.communication_emails
 
 
 --
+-- Name: api_keys fk_rails_32c28d0dc2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.api_keys
+    ADD CONSTRAINT fk_rails_32c28d0dc2 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE CASCADE;
+
+
+--
 -- Name: ecommerce_purchases fk_rails_3546ed727a; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4215,9 +4286,11 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20181217073128'),
 ('20181224184633'),
 ('20190101143027'),
+('20190105160407'),
 ('20190113180725'),
 ('20190127164957'),
 ('20190210122115'),
-('20190210123606');
+('20190210123606'),
+('20190221202711');
 
 

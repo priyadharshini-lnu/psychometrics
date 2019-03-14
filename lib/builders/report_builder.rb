@@ -35,7 +35,7 @@ module Builders
     def save
       ActiveRecord::Base.transaction do
         begin
-          @report.update(@report_params.slice(:name, :props))
+          @report.update(@report_params.slice(:name, :props, :data_sheet_columns))
           @report_params[:pages].each do |page_params|
             id = page_params.delete(:id)
             modules = page_params.delete(:modules)
