@@ -15,7 +15,7 @@ describe 'Users' do
     post 'Adds a new user to the project' do
       tags 'Users'
       consumes 'application/json'
-      security [apiKey: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/NewUser' }, required: true
 
@@ -57,7 +57,7 @@ describe 'Users' do
     put 'Updates user details' do
       tags 'Users'
       consumes 'application/json'
-      security [apiKey: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/UpdatedUser' }, required: true
