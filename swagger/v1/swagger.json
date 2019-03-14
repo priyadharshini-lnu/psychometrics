@@ -5,10 +5,8 @@
     "version": "v1"
   },
   "securityDefinitions": {
-    "apiKey": {
-      "type": "apiKey",
-      "name": "X-Api-Key",
-      "in": "header"
+    "basic": {
+      "type": "basic"
     }
   },
   "paths": {
@@ -361,7 +359,7 @@
         ],
         "responses": {
           "200": {
-            "description": "Get user reports",
+            "description": "Get user report results",
             "schema": {
               "$ref": "#/definitions/ReportResults"
             },
@@ -644,6 +642,13 @@
       }
     },
     "ReportResults": {
+      "type": "array",
+      "x-nullable": true,
+      "items": {
+        "$ref": "#/definitions/ReportResult"
+      }
+    },
+    "ReportResult": {
       "type": "object",
       "properties": {
         "key": {
