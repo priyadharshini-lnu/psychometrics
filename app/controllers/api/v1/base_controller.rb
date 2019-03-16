@@ -10,7 +10,7 @@ module Api
       def auth
         @api_key      = fetch_api_key
         @current_user = api_key&.user
-        raise Errors::ApiError, 'Api key is not correct' unless api_key
+        raise Errors::ApiError, 'Auth is not correct' unless api_key
         raise Errors::ApiError, 'User for api token not found' if @current_user.nil? || @current_user.disabled
       end
 
@@ -62,7 +62,7 @@ module Api
       # Fetchs API key
       #
       def fetch_api_key
-        authenticate_or_request_with_http_basic do |key, token|
+        authenticate_with_http_basic do |key, token|
           possible_api_key = ApiKey.active.find_by(key: key)
           return nil if possible_api_key.nil? || possible_api_key.token != token
 
