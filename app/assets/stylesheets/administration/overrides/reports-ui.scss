@@ -4,16 +4,21 @@
     border: 1px solid #CCC;
     background-color: #fff;
   }
+
   .fe-module-container {
     border: none;
+
     &:hover {
       border: none;
     }
   }
+
   .fe-module-frame-container {
     border: 1px solid transparent !important;
+
     &:hover {
       border: 1px solid transparent !important;
     }
   }
 }
+

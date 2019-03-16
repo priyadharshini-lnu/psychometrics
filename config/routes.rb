@@ -113,7 +113,7 @@ Rails.application.routes.draw do
         end
         namespace :reports do
           resources :regenerates, only: %i[new create]
-        end        
+        end
         resource :assign_reports, only: %i[new create edit update]
         resource :assign_assessments, only: %i[new create edit update]
         resources :statistics, only: [:index]
@@ -285,6 +285,7 @@ Rails.application.routes.draw do
         patch :toggle_status
         get :preview
         put :regenerate
+        post :upload_data_sheet
       end
       collection do
         get :hogan_reports
