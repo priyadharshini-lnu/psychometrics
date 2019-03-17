@@ -21,7 +21,7 @@
         ],
         "security": [
           {
-            "apiKey": [
+            "basic": [
 
             ]
           }
@@ -89,7 +89,7 @@
         ],
         "security": [
           {
-            "apiKey": [
+            "basic": [
 
             ]
           }
@@ -145,7 +145,7 @@
         ],
         "security": [
           {
-            "apiKey": [
+            "basic": [
 
             ]
           }
@@ -204,7 +204,7 @@
         ],
         "security": [
           {
-            "apiKey": [
+            "basic": [
 
             ]
           }
@@ -257,7 +257,7 @@
         ],
         "security": [
           {
-            "apiKey": [
+            "basic": [
 
             ]
           }
@@ -332,7 +332,7 @@
         ],
         "security": [
           {
-            "apiKey": [
+            "basic": [
 
             ]
           }
@@ -387,7 +387,7 @@
         ],
         "security": [
           {
-            "apiKey": [
+            "basic": [
 
             ]
           }
@@ -439,7 +439,7 @@
         ],
         "security": [
           {
-            "apiKey": [
+            "basic": [
 
             ]
           }
@@ -494,7 +494,7 @@
         ],
         "security": [
           {
-            "apiKey": [
+            "basic": [
 
             ]
           }
