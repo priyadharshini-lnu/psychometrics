@@ -32,6 +32,12 @@ class AssignsReport < ApplicationRecord
   mount_base64_uploader :external_report, FileUploader, file_name: proc { 'external_report' }
   mount_uploader :pdf, PdfUploader
 
+  # TODO (atanych): temp hack
+  def status
+    return 'ready' if !generating? && pdf&.url
+    'not_ready'
+  end
+
   private
 
   def use_license

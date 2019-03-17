@@ -37,6 +37,10 @@ class ApplicationController < ::BaseController
       user = User.by_spoof_token(params[:spoof_token])
       sign_in(user) if user
     end
+    if params[:token] && action_name == 'sso'
+      user = Users::Regular.find(params[:user_id])
+      sign_in(user) if Redis.current.get(user&.sso_key) == params[:token]
+    end
     super
   end
 
@@ -44,7 +48,7 @@ class ApplicationController < ::BaseController
   def set_client_by_subdomain
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
-
+    return if request.controller_class.to_s.start_with?('Api::V1')
     subdomain = request.subdomain
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
     @current_project = Client.enabled.find_by(subdomain: subdomain)

@@ -141,6 +141,10 @@ class Report < ApplicationRecord
     FactorsAlias.where(report: self, factor_id: dimension.all_factor_ids).destroy_all
   end
 
+  def flat_data_configuration
+    (data_configuration['sections'] || []).flat_map { |section| section['data'] || [] }
+  end
+
   private
 
   def max_assessments_count

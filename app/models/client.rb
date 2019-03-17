@@ -129,7 +129,11 @@ class Client < ApplicationRecord
   scope :projects_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:project]) }
   scope :campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign]) }
+  scope :campaigns_and_sub_campaigns_of, -> (client_id) { Client.campaigns_of(client_id).or(Client.sub_campaigns_of(client_id)) }
   scope :descendants_of_arr, -> (client_ids) { where('clients.ancestry ~ ?', "(/|^)(#{client_ids.join('|')})(/|$)") }
+  scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
+  scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
+  scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
 
   def assign_by_membership_and_assessment(membership_id, assessment_id)
     memberships.find(membership_id).assigns.find_by(assessment_id: assessment_id)

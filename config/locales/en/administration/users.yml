@@ -23,7 +23,7 @@ en:
         import_hris: HRIS Data
         export: Export
         export_users: Users
-        export_completion_status: Completion Status 
+        export_completion_status: Completion Status
         title: Users
         breadcrumb: Users
         filterrific:
@@ -60,6 +60,7 @@ en:
         assessments_and_reports: Assessments and Reporting
         login_as_user: Login as User
         destroy: Delete User
+        api_keys: API keys
       form:
         choose: ' - Choose - '
       resource:

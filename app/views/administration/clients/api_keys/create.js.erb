@@ -1,0 +1,10 @@
+$(function () {
+  $('#filter').trigger('reloadList');
+  $(document).trigger('initPlugins');
+
+  // Notify message
+  noty({
+    text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.create.successfully", name: resource.decorate.display_name) %>',
+    type: 'success'
+  });
+});
