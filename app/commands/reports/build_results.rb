@@ -7,6 +7,7 @@ module Reports
       external_result: 'Reports::ResultTypes::ExternalResults',
       normed_factor: 'Reports::ResultTypes::NormedFactor',
       formula: 'Reports::ResultTypes::Formula',
+      ranked_occupations: 'Reports::ResultTypes::RankedOccupations',
     }
 
     def initialize(report, assigns)

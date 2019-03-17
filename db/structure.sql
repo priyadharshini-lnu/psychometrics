@@ -9,20 +9,6 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
-
---
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -245,7 +231,8 @@ CREATE TABLE public.assigns (
     mindmill_report character varying,
     selected_locale character varying,
     mindmill_prefix character varying,
-    external_results json
+    external_results json,
+    occupations jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -714,7 +701,6 @@ ALTER SEQUENCE public.datasheet_rows_id_seq OWNED BY public.datasheet_rows.id;
 CREATE TABLE public.datasheets (
     id bigint NOT NULL,
     project_id bigint,
-    filename character varying,
     columns jsonb,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
@@ -1700,11 +1686,11 @@ CREATE TABLE public.reports (
     type integer DEFAULT 0,
     owner_id integer,
     mindmill boolean DEFAULT false,
+    data_configuration jsonb DEFAULT '{}'::jsonb,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    data_configuration jsonb DEFAULT '{}'::jsonb,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
-    default_language character varying DEFAULT 'en'::character varying
+    default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL
 );
 
 
@@ -4307,6 +4293,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190210122115'),
 ('20190210123606'),
 ('20190303082715'),
-('20190304063803');
+('20190304063803'),
+('20190315160908');
 
 

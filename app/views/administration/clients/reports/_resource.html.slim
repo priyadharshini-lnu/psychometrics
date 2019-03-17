@@ -7,7 +7,7 @@ tr id=dom_id(resource)
   td.actions-cell
     - if policy(:report).export?
       = link_to t('.export_data'),
-                administration_client_report_export_path(client, resource, format: 'xlsx'),
+                administration_client_report_export_path(client, resource.report, format: 'xlsx'),
                 class: 'btn btn-default btn-rounded btn-sm'
     - if policy(:client_report).edit?
       = link_to edit_administration_client_assign_reports_path(client, report_family_id: resource.report_family_id),
