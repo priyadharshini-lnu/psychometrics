@@ -1689,8 +1689,10 @@ CREATE TABLE public.reports (
     data_configuration jsonb DEFAULT '{}'::jsonb,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
+    data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL
+    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL
 );
 
 
@@ -4292,6 +4294,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190127164957'),
 ('20190210122115'),
 ('20190210123606'),
+('20190221202711'),
 ('20190303082715'),
 ('20190304063803'),
 ('20190315160908');

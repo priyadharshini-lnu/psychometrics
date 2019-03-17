@@ -16,7 +16,7 @@ describe 'Campaigns' do
     post 'Creates a copy of the campaign without users' do
       tags 'Campaigns'
       consumes 'application/json'
-      security [apiKey: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :campaign_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/DuplicatedCampaign' }, required: true
@@ -48,7 +48,7 @@ describe 'Campaigns' do
     post 'Adds user to new campaigns' do
       tags 'Campaigns'
       consumes 'application/json'
-      security [apiKey: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :body, in: :body, schema: { '$ref' => '#/definitions/NewCampaigns' }, required: true
@@ -88,7 +88,7 @@ describe 'Campaigns' do
     get 'Get user campaigns' do
       tags 'Campaigns'
       consumes 'application/json'
-      security [apiKey: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
 

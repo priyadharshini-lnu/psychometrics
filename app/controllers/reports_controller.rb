@@ -3,13 +3,10 @@ class ReportsController < ApplicationController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:show]
   append_before_action :pundit_authorize
-
   # Turn off normally auth
   skip_before_action :authenticate_user!
   # Turn on auth by token
   prepend_before_action :authenticate_by_token!
-
-  layout 'users_new'
 
   def show
     # TODO: Not the correct way to send all users result to the browser, adding user_id condition until better way is found

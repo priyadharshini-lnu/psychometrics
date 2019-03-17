@@ -26,6 +26,14 @@ module Api
         def existing_campaign_ids
           @existing_campaign_ids ||= Client.campaigns_and_sub_campaigns_of(context.project.id).ids
         end
+
+        def membership_attributes
+          {}
+        end
+
+        def email
+          context.user.email
+        end
       end
     end
   end

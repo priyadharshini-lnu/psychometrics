@@ -1,5 +1,6 @@
 module Users
   class RegistrationsController < Devise::RegistrationsController
+    layout 'devise'
     before_action :configure_permitted_parameters
 
     # Set Client after sign up user

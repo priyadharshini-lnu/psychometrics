@@ -17,7 +17,7 @@ module Api
         end
 
         def verify_campaign_ids
-          return if campaign_ids.empty?
+          return errors.add(:campaign_ids, 'Campaign ids should be filled') if campaign_ids.empty?
 
           existing_campaign_ids = Client.campaigns_and_sub_campaigns_of(context.project.id).ids
           return if existing_campaign_ids & campaign_ids == campaign_ids

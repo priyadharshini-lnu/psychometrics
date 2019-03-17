@@ -8,7 +8,7 @@ module Administration
     prepend_before_action :authenticate_user_from_token!
 
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview regenerate]
+    before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview regenerate upload_data_sheet]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
@@ -26,6 +26,11 @@ module Administration
         format.html
         format.js { render :index, formats: [:js] }
       end
+    end
+
+    def upload_data_sheet
+      @form = ::Datasheets::DatasheetForm.from_params(params)
+      render json: @form.parsed_file.first.map { |k, v| {name: k, type: v} }
     end
 
     def show
@@ -150,10 +155,13 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:name, :type, :owner_id, :mindmill, :icon,
-                                       :icon_color, :props, :remove_icon, :default_language,
-                                       report_family_ids: [], assessment_ids: [],
+      report_params = params.require(:resource).permit(:name, :type, :owner_id, :mindmill, :icon, :icon_color, :props,
+                                                       :remove_icon, :default_language, report_family_ids: [], assessment_ids: [],
                                        hogan_report_setting_attributes: %i[id hogan_report_id load_report])
+      # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids are empty and causes errors
+      # Does this need a better fix?
+      report_params = report_params.except(:assessment_ids) if report_params.has_key?(:assessment_ids) && report_params[:assessment_ids].reject(&:empty?).empty?
+      report_params
     end
 
     def authenticate_user_from_token!

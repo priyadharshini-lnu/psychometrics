@@ -29,7 +29,7 @@ describe 'Reports' do
     get 'Get user reports' do
       tags 'Reports'
       consumes 'application/json'
-      security [apiKey: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
 
@@ -86,7 +86,7 @@ describe 'Reports' do
     get 'Get user results' do
       tags 'Reports'
       consumes 'application/json'
-      security [apiKey: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string
@@ -111,7 +111,7 @@ describe 'Reports' do
     get 'Get user report PDF' do
       tags 'Reports'
       consumes 'application/json'
-      security [apiKey: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
       parameter name: :report_id, in: :path, type: :string

@@ -15,7 +15,7 @@ describe 'Assessments' do
     get 'Get the list of assessments' do
       tags 'Assessments'
       consumes 'application/json'
-      security [apiKey: []]
+      security [basic: []]
       parameter name: :project_id, in: :path, type: :string
       parameter name: :user_id, in: :path, type: :string
 

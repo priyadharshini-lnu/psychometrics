@@ -17,7 +17,7 @@ module Api
 
       def create
         form = Api::V1::Campaigns::AttachToUserForm.from_params(params).with_context(project: project, user: user)
-        ::Campaigns::AttachToUser.call(form, user) do
+        Administration::Clients::CreateUser.call(form, Client.where(id: form.campaign_ids).all, current_user) do
           on(:invalid) { |form| render_form_errors(form) }
           on(:ok) { |user| render json: Api::V1::UserSerializer.new(user, project: project).to_h }
         end
