@@ -1701,10 +1701,11 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    data_configuration jsonb DEFAULT '{}'::jsonb,
-    default_language character varying DEFAULT 'en'::character varying,
+
     props jsonb DEFAULT '{}'::jsonb NOT NULL,
-    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL
+    data_configuration jsonb DEFAULT '{}'::jsonb,
+    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
+    default_language character varying DEFAULT 'en'::character varying
 );
 
 

@@ -295,6 +295,7 @@ Rails.application.routes.draw do
         patch :toggle_status
         get :preview
         put :regenerate
+        post :upload_data_sheet
       end
       collection do
         get :hogan_reports
