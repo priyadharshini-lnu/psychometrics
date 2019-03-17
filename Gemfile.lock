@@ -18,18 +18,20 @@ GIT
       rubyzip (>= 1.2.1)
 
 GIT
+  remote: git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git
+  revision: b7bfbeee37c5cacc83555dc2f386acf608e66a07
+  branch: master
+  specs:
+    psychometrics-reports-ui (0.0.1)
+      railties (~> 5.0)
+      thor (>= 0.14, < 2.0)
+
+GIT
   remote: git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git
   revision: 7350bccaa4a16eadeba1c814c8354a58e1b5dbc3
   branch: master
   specs:
     psychometrics-survey-ui (0.0.1)
-      railties (~> 5.0)
-      thor (>= 0.14, < 2.0)
-
-PATH
-  remote: ../psychometrics-reports-ui
-  specs:
-    psychometrics-reports-ui (0.0.1)
       railties (~> 5.0)
       thor (>= 0.14, < 2.0)
 
