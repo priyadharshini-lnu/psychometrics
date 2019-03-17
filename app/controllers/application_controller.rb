@@ -1,22 +1,33 @@
+# frozen_string_literal: true
+
 class ApplicationController < ::BaseController
   layout :layout_by_resource
 
   # Authentication user/manager
   before_action :set_client_by_subdomain
   append_before_action :set_membership, if: :user_signed_in?
+  after_action :allow_iframe, if: proc { params['display'] == 'iframe' }
+
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
+  # Sets particular layout in depends of conditions
+  #
   def layout_by_resource
-    return 'devise' if request.controller_class.to_s.start_with?('Administration')
-    return 'ecommerce' if request.controller_class.to_s.start_with?('Ecommerce')
-    return 'devise' if request.controller_class.to_s.start_with?('Devise')
-    return 'devise' if request.controller_class.to_s.start_with?('Users::Registrations')
-    return 'devise' if request.controller_class.to_s.start_with?('Users::Invitation')
-    'application'
+    return 'devise'     if request.controller_class.to_s.start_with?('Administration')
+    return 'ecommerce'  if request.controller_class.to_s.start_with?('Ecommerce')
+    return 'devise'     if request.controller_class.to_s.start_with?('Devise')
+    return 'iframe'     if params['display'] == 'iframe'
+
+    'users_new'
   end
 
   def pundit_user
-    { current_user: current_user, current_client: @current_client, current_project: @current_project, current_membership: @current_membership }
+    {
+      current_user: current_user,
+      current_client: @current_client,
+      current_project: @current_project,
+      current_membership: @current_membership
+    }
   end
 
   private
@@ -33,10 +44,6 @@ class ApplicationController < ::BaseController
     super
   end
 
-  def user_not_authorized(_e)
-    render text: 'You does not have access to this page'
-  end
-
   # Detect Client by subdomain
   def set_client_by_subdomain
     return if request.controller_class.to_s.start_with?('Administration')
@@ -46,6 +53,7 @@ class ApplicationController < ::BaseController
     subdomain.gsub!(/\.{0,1}#{Settings.subdomain}/, '') if Settings.subdomain
     @current_project = Client.enabled.find_by(subdomain: subdomain)
     return redirect_to("#{request.protocol}#{Settings.domain}:#{request.port}") unless @current_project
+
     @current_client = @current_project.client
   end
 
@@ -53,6 +61,7 @@ class ApplicationController < ::BaseController
   def set_membership
     return if request.controller_class.to_s.start_with?('Administration')
     return if request.controller_class.to_s.start_with?('Ecommerce')
+
     @current_membership = current_user.memberships.join_user.find_by(client_id: @current_project)
     current_user.current_membership = @current_membership
     if !@current_membership && current_user
@@ -63,6 +72,20 @@ class ApplicationController < ::BaseController
         redirect_to root_url
       end
     end
+  end
+
+  # Allows to be in Iframe
+  #
+  def allow_iframe
+    response.headers['X-Frame-Options'] = 'ALLOWALL'
+  end
+
+  # Sets default URL params to be in all links
+  #
+  def default_url_options
+    return super.merge(display: 'iframe') if params['display'] == 'iframe'
+
+    super
   end
 
   def user_not_authorized
