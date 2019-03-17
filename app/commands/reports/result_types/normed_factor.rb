@@ -20,6 +20,10 @@ module Reports
         factors_norm = FactorsNorm.find_by!(factor_id: factor.id,
                                             norm_id: assign.norm_data['id'],
                                             type: assign.norm_data['type'].to_s.downcase)
+        # TODO:
+        # I have created a special command for calculate average scoring
+        # app/core/assigns/average_scoring => Assigns::AverageScoring
+        # Below code can be rewritten
         # Gets scoring
         scoring = assign.scoring&.dig(factor.id.to_s, 'results') || []
         # If there is no results for Factor

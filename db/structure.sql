@@ -231,7 +231,8 @@ CREATE TABLE public.assigns (
     mindmill_report character varying,
     selected_locale character varying,
     mindmill_prefix character varying,
-    external_results json
+    external_results json,
+    occupations jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -1685,6 +1686,7 @@ CREATE TABLE public.reports (
     type integer DEFAULT 0,
     owner_id integer,
     mindmill boolean DEFAULT false,
+    data_configuration jsonb DEFAULT '{}'::jsonb,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
     props jsonb DEFAULT '{}'::jsonb NOT NULL,
@@ -4294,6 +4296,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190210123606'),
 ('20190221202711'),
 ('20190303082715'),
-('20190304063803');
+('20190304063803'),
+('20190315160908');
 
 
