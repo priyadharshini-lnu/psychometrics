@@ -74,25 +74,15 @@ module Exports
         factor_alias&.name || factor&.name
       end
 
-      # Builds a simple sub headers
+      # Builds sub headers
       #
       def build_sub_headers(section)
-        return build_ranked_occupations(section['data'].try(:first)) if section['data'].try(:first).try(:[], 'type') == 'ranked_occupations'
-
         sub_headers = section['data'] || []
         sub_headers.map do |sub_header|
           label = sub_header['label']
           label ||= fetch_factor_label(sub_header['factorId']) if sub_header['factorId']
 
           label || ''
-        end
-      end
-
-      # Builds ranked sub header
-      #
-      def build_ranked_occupations(data)
-        (1..data['limit'].to_i).to_a.map do |i|
-          "OccupationRank #{i}"
         end
       end
     end
