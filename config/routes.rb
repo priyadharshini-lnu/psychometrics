@@ -392,7 +392,10 @@ Rails.application.routes.draw do
              singular: :user,
              to: 'User',
              class_name: 'User',
-             controllers: { registrations: 'users/registrations', invitations: 'users/invitations', passwords: 'passwords' }
+             controllers: { registrations: 'users/registrations',
+                            sessions: 'users/sessions',
+                            invitations: 'users/invitations',
+                            passwords: 'passwords' }
   # Manager's panel
   #
   constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
@@ -444,7 +447,7 @@ Rails.application.routes.draw do
     resources :reports, only: %i(show)
     resource :profiles, only: %i(update edit)
     get 'survey_instructions', to: 'home#survey_instructions'
-    get 'sso/:user_id/:token', to: 'home#sso'
+    get 'sso/:user_id/:sso_token', to: 'home#sso'
     root to: 'assigns#index'
   end
 
