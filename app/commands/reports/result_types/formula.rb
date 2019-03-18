@@ -13,6 +13,7 @@ module Reports
         {
           key: data['key'],
           name: data['label'],
+          config_data: data,
           value: calc(results, formula_op)
         }
       end

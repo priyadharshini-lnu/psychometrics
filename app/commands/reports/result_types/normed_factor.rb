@@ -45,6 +45,7 @@ module Reports
         {
           key: data['factorId'],
           name: factor_alias&.name || factor&.name,
+          config_data: data,
           value: result
         }
       end

@@ -16,7 +16,8 @@ module Api
 
       def results
         assigns = Assign.completed.where(membership: project_membership, project_assign_id: nil, assessment_id: report.assessment_ids)
-        render json: ::Reports::BuildResults.call(report, assigns)[:ok]
+        raise Errors::ApiError, "Assessments for report #{report.id} are not passed" if assigns.blank?
+        render json: Api::V1::ResultSerializer.new(::Reports::BuildResults.call(report, assigns)[:ok]).to_h
       end
 
       def pdf

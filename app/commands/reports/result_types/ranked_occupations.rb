@@ -8,6 +8,7 @@ module Reports
         {
           key: ranked_occupation['id'],
           name: occupation&.decorate&.display_name,
+          config_data: data,
           value: ranked_occupation['value']
         }
       end
