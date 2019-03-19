@@ -136,6 +136,22 @@ RSpec.configure do |config|
             created_at: { type: 'string'},
             updated_at: { type: 'string'}
           }
+        },
+        SsoUrl: {
+          type: 'object',
+          properties: {
+            url: { type: 'string' },
+            expires_at: { type: 'string' },
+            assessments: { type: 'array', items: { '$ref' => '#/definitions/AssessmentSsoUrl' } }
+          }
+        },
+        AssessmentSsoUrl: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer'},
+            name: { type: 'string' },
+            url: { type: 'string' },
+          }
         }
       }
     }
