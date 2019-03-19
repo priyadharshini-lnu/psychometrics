@@ -66,18 +66,42 @@ RSpec.configure do |config|
           }
         },
         ReportResults: {
-          type: 'array',
-          'x-nullable': true,
-          items: {
-            '$ref' => '#/definitions/ReportResult'
+          type: 'object',
+          properties: {
+            user_data: { type: 'object', 'x-nullable': true },
+            assessments: { type: 'array', items: { '$ref' => '#/definitions/ResultAssessment' } }
           }
         },
-        ReportResult: {
+        ResultAssessment: {
+          type: 'object',
+          properties: {
+            id: { type: 'integer', 'x-nullable': true },
+            name: { type: 'string', 'x-nullable': true },
+            results: { '$ref' => '#/definitions/ResultAssessmentResults', 'x-nullable': true },
+          }
+        },
+        ResultAssessmentResults: {
+          type: 'object',
+          properties: {
+            normed_factors: { type: 'array', items: { '$ref' => '#/definitions/NormedFactor' }, 'x-nullable': true },
+            ranked_occupations: { type: 'array', items: { '$ref' => '#/definitions/RankedOccupation' }, 'x-nullable': true },
+          }
+        },
+        NormedFactor: {
           type: 'object',
           properties: {
             key: { type: 'string', 'x-nullable': true },
             name: { type: 'string', 'x-nullable': true },
             value: { type: 'string', 'x-nullable': true },
+          }
+        },
+        RankedOccupation: {
+          type: 'object',
+          properties: {
+            key: { type: 'string', 'x-nullable': true },
+            name: { type: 'string', 'x-nullable': true },
+            rank: { type: 'integer', 'x-nullable': true },
+            normed_factors: { type: 'array', items: { '$ref' => '#/definitions/NormedFactor' }, 'x-nullable': true },
           }
         },
         DuplicatedCampaign: {
