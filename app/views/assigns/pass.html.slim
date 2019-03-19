@@ -12,7 +12,7 @@
                                data-type="pass_assessment"
                                data-data="#{AssessmentSerializer.new(@assign.assessment).to_json(include: '**')}"
                                data-locales=@translations.to_json
-                               data-dashboard-url=root_path]
+                               data-dashboard-url=assessment_completed_path]
       - if Settings.react_dev.assessments
         /for debug
         = javascript_include_tag 'http://localhost:3000/psychometrics_vendor.js'

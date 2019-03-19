@@ -16,13 +16,17 @@ class HomeController < ApplicationController
     redirect_to(root_path)
   end
 
+  def assessment_completed
+    redirect_to_return_url('assessment_completed')
+  end
+
   private
 
   def redirect_to_return_url(type)
     return redirect_to(root_path) if params[:return_url].blank?
 
     uri = URI.parse params[:return_url]
-    uri.query = [uri.query, "status=#{type}"].compact.join('&')
+    uri.query = uri.query.gsub('ASSESSMENT_STATUS', type) unless uri.query.nil?
     redirect_to uri.to_s
   end
 end
