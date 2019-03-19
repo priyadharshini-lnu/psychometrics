@@ -18,7 +18,7 @@ describe 'Reports' do
     user_membership.client.project.assessments = [assessment]
     user_membership.client.reports = assessment.reports
     user_membership.client.project.reports = assessment.reports
-    assign = create(:assign, membership: user_membership, assessment: assessment)
+    assign = create(:assign, membership: user_membership, assessment: assessment, status: :completed)
 
     allow_any_instance_of(AssignsReport).to receive(:use_license) { "nth" }
     create(:assigns_report, report: report, assign: assign)
@@ -93,7 +93,13 @@ describe 'Reports' do
 
       response '200', 'Get user report results' do
         schema '$ref' => '#/definitions/ReportResults'
-        examples 'application/json' => [{ "key": "factor 1", "name": "Factor One", value: "5" }]
+        examples 'application/json' => {"user_data"=>{"first_name"=>"Spider", "last_name"=>"Man"},
+                                        "assessments"=>
+                                          [{"id"=>17,
+                                            "name"=>"Thriving Index Assessment",
+                                            "results"=>
+                                              {"normed_factors"=>[{"key"=>549, "name"=>"Accountability", "value"=>nil}, {"key"=>554, "name"=>"Efficacy", "value"=>nil}],
+                                               "ranked_occupations"=>[{"key"=>2, "rank"=>1, "name"=>"Occupation 2", "normed_factors"=>[]}, {"key"=>1, "rank"=>2, "name"=>"Occupation 1", "normed_factors"=>[]}]}}]}
 
         let(:project_id) { project.id }
         let(:user_id) { user.id }
@@ -101,7 +107,8 @@ describe 'Reports' do
 
         run_test! do |response|
           result = JSON.parse(response.body)
-          expect(result).to be_an_instance_of(Array)
+          expect(result["assessments"]).to be_an_instance_of(Array)
+          expect(result).to have_key('user_data')
         end
       end
     end

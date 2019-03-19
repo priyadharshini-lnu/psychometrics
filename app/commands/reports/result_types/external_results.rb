@@ -6,6 +6,7 @@ module Reports
         {
           key: data['key'],
           name: data['label'],
+          config_data: data,
           value: assign&.assessment_id == data['assessmentId'] ? assign.external_results.try(:[], data['key']) : nil
         }
       end

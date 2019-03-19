@@ -62,11 +62,11 @@ describe Reports::BuildResults do
       let(:data) { { 'key' => 'first_name', 'label' => 'First Name' } }
       subject { Reports::ResultTypes::UserData.call(build_results_command, data) }
 
-      it { is_expected.to eq(key: 'first_name', name: 'First Name', value: user.first_name) }
+      it { is_expected.to eq(key: 'first_name', name: 'First Name', value: user.first_name, config_data: data) }
       context 'when data is not valid' do
         it do
           data['key'] = 'not_exists'
-          is_expected.to eq(key: 'not_exists', name: 'First Name', value: nil)
+          is_expected.to eq(key: 'not_exists', name: 'First Name', value: nil, config_data: data)
         end
       end
     end
@@ -75,16 +75,16 @@ describe Reports::BuildResults do
       let(:data) { { 'key' => 'ed.attempted', 'assessmentId' => 1, 'label' => 'Attempted' } }
       subject { Reports::ResultTypes::ExternalResults.call(build_results_command, data) }
 
-      it { is_expected.to eq(key: 'ed.attempted', name: 'Attempted', value: external_results['ed.attempted']) }
+      it { is_expected.to eq(key: 'ed.attempted', name: 'Attempted', value: external_results['ed.attempted'], config_data: data) }
 
       context 'when data is not valid' do
         it do
           data['key'] = 'not_exists'
-          is_expected.to eq(key: 'not_exists', name: 'Attempted', value: nil)
+          is_expected.to eq(key: 'not_exists', name: 'Attempted', value: nil, config_data: data)
         end
         it do
           data['assessmentId'] = 'not_exists'
-          is_expected.to eq(key: 'ed.attempted', name: 'Attempted', value: nil)
+          is_expected.to eq(key: 'ed.attempted', name: 'Attempted', value: nil, config_data: data)
         end
       end
     end
@@ -95,31 +95,31 @@ describe Reports::BuildResults do
 
       it do
         expect(factors_norm).to receive(:detect_normed_result).with(scoring['1']['results'])
-        is_expected.to eq(key: 1, name: 'Test factor', value: 3)
+        is_expected.to eq(key: 1, name: 'Test factor', value: 3, config_data: data)
       end
 
       it 'collect sub_factors results' do
         allow(factor).to receive(:id).and_return(-1)
         expect(factors_norm).to receive(:detect_normed_result).with(scoring['2']['results'])
-        is_expected.to eq(key: 1, name: 'Test factor', value: 3)
+        is_expected.to eq(key: 1, name: 'Test factor', value: 3, config_data: data)
       end
 
       it 'assessment ID not exists' do
         data['assessmentId'] = 'not_exists'
-        is_expected.to eq(key: 1, name: 'Test factor', value: nil)
+        is_expected.to eq(key: 1, name: 'Test factor', value: nil, config_data: data)
       end
 
       it 'assign#norm_data is nil' do
         allow(assign).to receive(:norm_data).and_return(nil)
-        is_expected.to eq(key: 1, name: 'Test factor', value: nil)
+        is_expected.to eq(key: 1, name: 'Test factor', value: nil, config_data: data)
       end
       it 'factor is not exists' do
         allow(Factor).to receive(:find).and_raise(ActiveRecord::RecordNotFound)
-        is_expected.to eq(key: 1, name: nil, value: nil)
+        is_expected.to eq(key: 1, name: nil, value: nil, config_data: data)
       end
       it 'factors_norms is not exists' do
         allow(FactorsNorm).to receive(:find_by!).and_raise(ActiveRecord::RecordNotFound)
-        is_expected.to eq(key: 1, name: 'Test factor', value: nil)
+        is_expected.to eq(key: 1, name: 'Test factor', value: nil, config_data: data)
       end
     end
 
@@ -128,7 +128,7 @@ describe Reports::BuildResults do
       subject { Reports::ResultTypes::Formula.call(build_results_command, data) }
 
       it 'data is blank' do
-        is_expected.to eq(key: nil, name: nil, value: nil)
+        is_expected.to eq(key: nil, name: nil, value: nil, config_data: data)
       end
 
       context 'normal flow' do
@@ -138,17 +138,17 @@ describe Reports::BuildResults do
         end
         it 'AVERAGE' do
           allow(data).to receive(:dig).with('formula', 'op').and_return('AVERAGE')
-          is_expected.to eq(key: nil, name: nil, value: 2.0)
+          is_expected.to eq(key: nil, name: nil, value: 2.0, config_data: data)
         end
 
         it 'MIN' do
           allow(data).to receive(:dig).with('formula', 'op').and_return('MIN')
-          is_expected.to eq(key: nil, name: nil, value: 1)
+          is_expected.to eq(key: nil, name: nil, value: 1, config_data: data)
         end
 
         it 'MAX' do
           allow(data).to receive(:dig).with('formula', 'op').and_return('MAX')
-          is_expected.to eq(key: nil, name: nil, value: 3)
+          is_expected.to eq(key: nil, name: nil, value: 3, config_data: data)
         end
 
         it 'op is wrong' do

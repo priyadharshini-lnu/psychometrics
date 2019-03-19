@@ -5,6 +5,7 @@ module Reports
         {
           key: data['key'],
           name: data['label'],
+          config_data: data,
           value: context.assigns.first.membership.user.try(data['key'])
         }
       end
