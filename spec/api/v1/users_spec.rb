@@ -10,8 +10,42 @@ describe 'Users' do
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
-  path '/api/v1/projects/{project_id}/users' do
+  path '/api/v1/projects/{project_id}/users/{user_id}/sso' do
 
+    post 'Create an authenticated SSO URL' do
+      tags 'Users'
+      consumes 'application/json'
+      security [basic: []]
+      parameter name: :project_id, in: :path, type: :string
+      parameter name: :user_id, in: :path, type: :string
+
+      response '200', 'SSO URL Created' do
+        schema '$ref' => '#/definitions/SsoUrl'
+        examples 'application/json' => {
+          "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987",
+          "expires_at": "2014-01-01T23:28:56.782Z",
+          "assessments": [
+            {
+              "id": "3456",
+              "name": "Thriving Index Assessment",
+              "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875"
+            }
+          ]
+        }
+
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+
+        run_test! do |response|
+          sso_url = JSON.parse(response.body)
+          expect(sso_url['url']).to be
+          expect(user['expires_at']).to be
+        end
+      end
+    end
+  end
+
+  path '/api/v1/projects/{project_id}/users' do
     post 'Adds a new user to the project' do
       tags 'Users'
       consumes 'application/json'

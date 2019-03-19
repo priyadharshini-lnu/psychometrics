@@ -465,6 +465,59 @@
         }
       }
     },
+    "/api/v1/projects/{project_id}/users/{user_id}/sso": {
+      "post": {
+        "summary": "Create an authenticated SSO URL",
+        "tags": [
+          "Users"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SSO URL Created",
+            "schema": {
+              "$ref": "#/definitions/SsoUrl"
+            },
+            "examples": {
+              "application/json": {
+                "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987",
+                "expires_at": "2014-01-01T23:28:56.782Z",
+                "assessments": [
+                  {
+                    "id": "3456",
+                    "name": "Thriving Index Assessment",
+                    "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
     "/api/v1/projects/{project_id}/users": {
       "post": {
         "summary": "Adds a new user to the project",
@@ -831,6 +884,37 @@
           "type": "string"
         },
         "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "SsoUrl": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "expires_at": {
+          "type": "string"
+        },
+        "assessments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AssessmentSsoUrl"
+          }
+        }
+      }
+    },
+    "AssessmentSsoUrl": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
           "type": "string"
         }
       }
