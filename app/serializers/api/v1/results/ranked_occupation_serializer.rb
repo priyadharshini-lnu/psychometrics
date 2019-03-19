@@ -2,9 +2,9 @@ module Api
   module V1
     module Results
       class RankedOccupationSerializer < ActiveModel::Serializer
-        attributes :key, :rank, :name, :normed_factors
+        attributes :id, :rank, :name, :value, :stars
 
-        def key
+        def id
           object[:key]
         end
 
@@ -16,9 +16,21 @@ module Api
           object[:name]
         end
 
-        def normed_factors
-          []
+        def value
+          object[:value]
         end
+
+        def stars
+          return 0 if value.nil?
+          val = value
+          return 1 if val >= 0.6 && val < 0.7
+          return 2 if val >= 0.7 && val < 0.8
+          return 3 if val >= 0.8 && val < 0.9
+          return 4 if val >= 0.9 && val < 1
+          return 5 if val == 1
+          0
+        end
+
       end
     end
   end
