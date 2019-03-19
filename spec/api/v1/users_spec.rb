@@ -39,7 +39,7 @@ describe 'Users' do
         run_test! do |response|
           sso_url = JSON.parse(response.body)
           expect(sso_url['url']).to be
-          expect(user['expires_at']).to be
+          expect(sso_url['expires_at']).to be
         end
       end
     end

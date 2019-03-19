@@ -28,15 +28,16 @@ describe Api::V1::ResultSerializer do
            name: 'ass 17',
            results: {
              normed_factors: [
-               {key: 549, name: 'Accountability', value: 6},
-               {key: 554, name: 'Efficacy', value: 5},
+               {id: 549, name: 'Accountability', value: 6},
+               {id: 554, name: 'Efficacy', value: 5},
              ],
              ranked_occupations: [
                 {
-                  key: 2,
+                  id: 2,
                   rank: 1,
                   name: 'Occupation 2',
-                  normed_factors: []
+                  stars: 0,
+                  value: 3
                 }
              ]
            }
@@ -48,10 +49,11 @@ describe Api::V1::ResultSerializer do
              normed_factors: [],
              ranked_occupations: [
                 {
-                  key: 3,
+                  id: 3,
                   rank: 2,
                   name: 'Occupation 3',
-                  normed_factors: []
+                  stars: 0,
+                  value: 5
                 }
              ]
            }
