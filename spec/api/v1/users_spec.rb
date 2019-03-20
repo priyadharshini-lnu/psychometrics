@@ -10,10 +10,26 @@ describe 'Users' do
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
-  path '/api/v1/projects/{project_id}/users/{user_id}/sso' do
+  path '/projects/{project_id}/users/{user_id}/sso' do
 
     post 'Create an authenticated SSO URL' do
+      operationId 'GetUserSsoUrl'
       tags 'Users'
+      description <<~HEREDOC
+        Creates an single sign on URL for the user. Response also contains assessment specific URLs. All these URLs will be invalid after the time in `expires_at`.
+
+        Append  **&return_url=<your_application_return_url>** to any SSO URL to be redirected back after user completes the assessment.
+
+        ### Example
+        
+        `https://example.com/sso?token=d98df98d9f3434asdfasf98987&return_url=https://yourportal.com/tte-redirect?status=ASSESSMENT_STATUS`
+
+        After completing the assessment, user will be redirected to 
+        
+        `https://yourportal.com/tte-redirect?status=assessment_completed`
+
+        **ASSESSMENT_STATUS** will get replaced with one of assessment_completed, assessment_invalid, invalid_token
+      HEREDOC
       consumes 'application/json'
       security [basic: []]
       parameter name: :project_id, in: :path, type: :string
@@ -45,9 +61,11 @@ describe 'Users' do
     end
   end
 
-  path '/api/v1/projects/{project_id}/users' do
+  path '/projects/{project_id}/users' do
     post 'Adds a new user to the project' do
+      operationId 'CreateUser'
       tags 'Users'
+      description 'Creates a new user and adds to the campaigns specified along with the campaign\'s default assessments and reports.'
       consumes 'application/json'
       security [basic: []]
       parameter name: :project_id, in: :path, type: :string
@@ -86,9 +104,10 @@ describe 'Users' do
     end
   end
 
-  path '/api/v1/projects/{project_id}/users/{user_id}' do
+  path '/projects/{project_id}/users/{user_id}' do
 
     put 'Updates user details' do
+      operationId 'UpdateUser'
       tags 'Users'
       consumes 'application/json'
       security [basic: []]

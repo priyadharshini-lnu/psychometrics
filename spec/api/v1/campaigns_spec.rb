@@ -11,9 +11,11 @@ describe 'Campaigns' do
 
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
 
-  path '/api/v1/projects/{project_id}/campaigns/{campaign_id}/duplicate' do
+  path '/projects/{project_id}/campaigns/{campaign_id}/duplicate' do
 
     post 'Creates a copy of the campaign without users' do
+      operationId 'DuplicateCampaign'
+      description 'Duplicated campaign will have the same default assessments and reports as the source campaign'
       tags 'Campaigns'
       consumes 'application/json'
       security [basic: []]
@@ -43,9 +45,11 @@ describe 'Campaigns' do
       end
     end
   end
-  path '/api/v1/projects/{project_id}/users/{user_id}/campaigns' do
+  path '/projects/{project_id}/users/{user_id}/campaigns' do
 
     post 'Adds user to new campaigns' do
+      operationId 'AddUserCampaigns'
+      description 'Adds new campaigns to the user. Adding campaigns to user assigns the campaign\'s default assessments and reports.'
       tags 'Campaigns'
       consumes 'application/json'
       security [basic: []]
@@ -83,9 +87,11 @@ describe 'Campaigns' do
     end
   end
 
-  path '/api/v1/projects/{project_id}/users/{user_id}/campaigns' do
+  path '/projects/{project_id}/users/{user_id}/campaigns' do
 
     get 'Get user campaigns' do
+      operationId 'GetUserCampaigns'
+      description 'returns all campaigns associated with the user'
       tags 'Campaigns'
       consumes 'application/json'
       security [basic: []]
