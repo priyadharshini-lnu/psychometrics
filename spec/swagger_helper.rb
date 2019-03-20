@@ -22,10 +22,26 @@ RSpec.configure do |config|
           url: 'https://tte-static.s3.amazonaws.com/brand/lighthouse/TTE_Lighthouse_Logo.svg',
           backgroundColor: '#FFFFFF',
           altText: 'Lighthouse'
-        }
+        },
+        description: "## Introduction\nLighthouse REST API enables TTE customers to integrate Lighthouse with their portal.\n## API Integration\nLighthouse can be integrated with many environments and programming languages via our REST API.\n\n## Authentication\nBasic Auth is used to authenticate on behalf of the Client Admin. \n\n## User Single Sign-on\nSingle Sign-on is achieved via calling the sso endpoint and redirecting the user to the URL returned in the response."
       },
       securityDefinitions: { basic: { type: :basic } },
       paths: {},
+      security: [
+        {
+          "basic": []
+        }
+      ],
+      basePath: "/api/v1",
+      schemes: [
+        "https"
+      ],
+      consumes: [
+        "application/json"
+      ],
+      produces: [
+        "application/json"
+      ],
       definitions: {
         UserAssessment: {
           type: 'object',

@@ -10,9 +10,11 @@ describe 'Assessments' do
 
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
 
-  path '/api/v1/projects/{project_id}/users/{user_id}/assessments' do
+  path '/projects/{project_id}/users/{user_id}/assessments' do
 
     get 'Get the list of assessments' do
+      operationId 'GetUserAssessments'
+      description 'returns a list of assessments currently assigned to the user'
       tags 'Assessments'
       consumes 'application/json'
       security [basic: []]

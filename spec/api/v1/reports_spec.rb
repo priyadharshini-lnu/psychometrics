@@ -24,9 +24,11 @@ describe 'Reports' do
     create(:assigns_report, report: report, assign: assign)
   end
 
-  path '/api/v1/projects/{project_id}/users/{user_id}/reports' do
+  path '/projects/{project_id}/users/{user_id}/reports' do
 
     get 'Get user reports' do
+      operationId 'GetUserReports'
+      description 'All reports currently assigned to the user. Each report object also contains the required assessments and the user\'s completion status.'
       tags 'Reports'
       consumes 'application/json'
       security [basic: []]
@@ -81,9 +83,11 @@ describe 'Reports' do
     end
   end
 
-  path '/api/v1/projects/{project_id}/users/{user_id}/reports/{report_id}/results' do
+  path '/projects/{project_id}/users/{user_id}/reports/{report_id}/results' do
 
     get 'Get user results' do
+      operationId 'GetUserResults'
+      description 'Assessment results for the user\'s report. '
       tags 'Reports'
       consumes 'application/json'
       security [basic: []]
@@ -114,8 +118,10 @@ describe 'Reports' do
     end
     end
 
-  path '/api/v1/projects/{project_id}/users/{user_id}/reports/{report_id}/pdf' do
+  path '/projects/{project_id}/users/{user_id}/reports/{report_id}/pdf' do
     get 'Get user report PDF' do
+      operationId 'GetUserReport'
+      description 'Returns the user\'s report PDF url. This url is time-limited, check the expires_at attribute in the response.'
       tags 'Reports'
       consumes 'application/json'
       security [basic: []]

@@ -54,7 +54,7 @@ module Users
       return if params[REDIRECT_KEY].blank?
 
       uri = URI.parse params[REDIRECT_KEY]
-      uri.query = [uri.query, 'status=invalid_token'].compact.join('&')
+      uri.query = uri.query.gsub('ASSESSMENT_STATUS', 'invalid_token') unless uri.query.nil?
       uri.to_s
     end
   end
