@@ -7,7 +7,8 @@
       "url": "https://tte-static.s3.amazonaws.com/brand/lighthouse/TTE_Lighthouse_Logo.svg",
       "backgroundColor": "#FFFFFF",
       "altText": "Lighthouse"
-    }
+    },
+    "description": "## Introduction\nLighthouse REST API enables TTE customers to integrate Lighthouse with their portal.\n## API Integration\nLighthouse can be integrated with many environments and programming languages via our REST API.\n\n## Authentication\nBasic Auth is used to authenticate on behalf of the Client Admin. \n\n## User Single Sign-on\nSingle Sign-on is achieved via calling the sso endpoint and redirecting the user to the URL returned in the response."
   },
   "securityDefinitions": {
     "basic": {
@@ -15,9 +16,11 @@
     }
   },
   "paths": {
-    "/api/v1/projects/{project_id}/users/{user_id}/assessments": {
+    "/projects/{project_id}/users/{user_id}/assessments": {
       "get": {
         "summary": "Get the list of assessments",
+        "operationId": "GetUserAssessments",
+        "description": "returns a list of assessments currently assigned to the user",
         "tags": [
           "Assessments"
         ],
@@ -83,9 +86,11 @@
         }
       }
     },
-    "/api/v1/projects/{project_id}/campaigns/{campaign_id}/duplicate": {
+    "/projects/{project_id}/campaigns/{campaign_id}/duplicate": {
       "post": {
         "summary": "Creates a copy of the campaign without users",
+        "operationId": "DuplicateCampaign",
+        "description": "Duplicated campaign will have the same default assessments and reports as the source campaign",
         "tags": [
           "Campaigns"
         ],
@@ -139,9 +144,11 @@
         }
       }
     },
-    "/api/v1/projects/{project_id}/users/{user_id}/campaigns": {
+    "/projects/{project_id}/users/{user_id}/campaigns": {
       "post": {
         "summary": "Adds user to new campaigns",
+        "operationId": "AddUserCampaigns",
+        "description": "Adds new campaigns to the user. Adding campaigns to user assigns the campaign's default assessments and reports.",
         "tags": [
           "Campaigns"
         ],
@@ -201,6 +208,8 @@
       },
       "get": {
         "summary": "Get user campaigns",
+        "operationId": "GetUserCampaigns",
+        "description": "returns all campaigns associated with the user",
         "tags": [
           "Campaigns"
         ],
@@ -251,9 +260,11 @@
         }
       }
     },
-    "/api/v1/projects/{project_id}/users/{user_id}/reports": {
+    "/projects/{project_id}/users/{user_id}/reports": {
       "get": {
         "summary": "Get user reports",
+        "operationId": "GetUserReports",
+        "description": "All reports currently assigned to the user. Each report object also contains the required assessments and the user's completion status.",
         "tags": [
           "Reports"
         ],
@@ -326,9 +337,11 @@
         }
       }
     },
-    "/api/v1/projects/{project_id}/users/{user_id}/reports/{report_id}/results": {
+    "/projects/{project_id}/users/{user_id}/reports/{report_id}/results": {
       "get": {
         "summary": "Get user results",
+        "operationId": "GetUserResults",
+        "description": "Assessment results for the user's report. ",
         "tags": [
           "Reports"
         ],
@@ -418,9 +431,11 @@
         }
       }
     },
-    "/api/v1/projects/{project_id}/users/{user_id}/reports/{report_id}/pdf": {
+    "/projects/{project_id}/users/{user_id}/reports/{report_id}/pdf": {
       "get": {
         "summary": "Get user report PDF",
+        "operationId": "GetUserReport",
+        "description": "Returns the user's report PDF url. This url is time-limited, check the expires_at attribute in the response.",
         "tags": [
           "Reports"
         ],
@@ -470,12 +485,14 @@
         }
       }
     },
-    "/api/v1/projects/{project_id}/users/{user_id}/sso": {
+    "/projects/{project_id}/users/{user_id}/sso": {
       "post": {
         "summary": "Create an authenticated SSO URL",
+        "operationId": "GetUserSsoUrl",
         "tags": [
           "Users"
         ],
+        "description": "Creates an single sign on URL for the user. Response also contains assessment specific URLs. All these URLs will be invalid after the time in `expires_at`.\n\nAppend  **&return_url=<your_application_return_url>** to any SSO URL to be redirected back after user completes the assessment.\n\n### Example\n\n`https://example.com/sso?token=d98df98d9f3434asdfasf98987&return_url=https://yourportal.com/tte-redirect?status=ASSESSMENT_STATUS`\n\nAfter completing the assessment, user will be redirected to \n\n`https://yourportal.com/tte-redirect?status=assessment_completed`\n\n**ASSESSMENT_STATUS** will get replaced with one of assessment_completed, assessment_invalid, invalid_token\n",
         "consumes": [
           "application/json"
         ],
@@ -523,12 +540,14 @@
         }
       }
     },
-    "/api/v1/projects/{project_id}/users": {
+    "/projects/{project_id}/users": {
       "post": {
         "summary": "Adds a new user to the project",
+        "operationId": "CreateUser",
         "tags": [
           "Users"
         ],
+        "description": "Creates a new user and adds to the campaigns specified along with the campaign's default assessments and reports.",
         "consumes": [
           "application/json"
         ],
@@ -578,9 +597,10 @@
         }
       }
     },
-    "/api/v1/projects/{project_id}/users/{user_id}": {
+    "/projects/{project_id}/users/{user_id}": {
       "put": {
         "summary": "Updates user details",
+        "operationId": "UpdateUser",
         "tags": [
           "Users"
         ],
@@ -640,6 +660,23 @@
       }
     }
   },
+  "security": [
+    {
+      "basic": [
+
+      ]
+    }
+  ],
+  "basePath": "/api/v1",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
   "definitions": {
     "UserAssessment": {
       "type": "object",
