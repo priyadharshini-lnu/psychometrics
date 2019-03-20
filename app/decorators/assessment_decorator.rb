@@ -54,12 +54,16 @@ class AssessmentDecorator < BaseDecorator
 
   # todo refactor db, add completion
   def completion_percent
-    assing = object.assigns.where(membership_id: h.pundit_user[:current_membership].id).take
-    return 100 if assing.completed?
-    answered = assing.results&.size || 0
+    assign = object.assigns.where(membership_id: h.pundit_user[:current_membership].id).take
+    return 100 if assign.completed?
+    answered = assign.results&.size || 0
     total = object.questions&.size
     return 0 if total.nil? || total == 0
-    (100 * answered) / total
+    result = (100 * answered) / total
+
+    # TODO (atanych): Store progress bar in DB and calculate only on frontend.
+    99 if result > 99
+    result
   end
 
   def clients_by_report_families
