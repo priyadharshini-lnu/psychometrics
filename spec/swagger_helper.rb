@@ -16,8 +16,13 @@ RSpec.configure do |config|
     'v1/swagger.json' => {
       swagger: '2.0',
       info: {
-        title: 'API V1',
-        version: 'v1'
+        title: 'TTE Lighthouse API',
+        version: 'v1',
+        'x-logo': {
+          url: "https://tte-static.s3.amazonaws.com/brand/lighthouse/TTE_Lighthouse_Logo.svg"
+          backgroundColor: "#FFFFFF"
+          altText: "Lighthouse"
+        }
       },
       securityDefinitions: { basic: { type: :basic } },
       paths: {},
