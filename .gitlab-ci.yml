@@ -29,7 +29,7 @@ test:
   script:
   - bundle config github.https true
   - cp config/database.ci.yml config/database.yml
-  - cp config/secrets.ci.yml config/secrets.yml
+  # - cp config/secrets.ci.yml config/secrets.yml
   - cp config/application.sample.yml  config/application.yml
   - bundle install -j $(nproc) --path vendor  --without development # Install dependencies into ./vendor/ruby
   - sudo apt update && sudo apt install postgresql-client
