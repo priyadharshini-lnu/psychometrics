@@ -58,9 +58,10 @@ RSpec.configure do |config|
           properties: {
             first_name: { type: 'string', 'x-nullable': true },
             last_name: { type: 'string', 'x-nullable': true },
-            email: { type: 'string', required: true },
+            email: { type: 'string' },
             campaign_ids: { type: 'array', items: { type: 'integer' }, 'x-nullable': true },
-          }
+          },
+          required: ['email', 'first_name', 'last_name', 'campaign_ids']
         },
         UpdatedUser: {
           type: 'object',
