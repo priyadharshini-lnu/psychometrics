@@ -19,9 +19,9 @@ RSpec.configure do |config|
         title: 'TTE Lighthouse API',
         version: 'v1',
         'x-logo': {
-          url: "https://tte-static.s3.amazonaws.com/brand/lighthouse/TTE_Lighthouse_Logo.svg"
-          backgroundColor: "#FFFFFF"
-          altText: "Lighthouse"
+          url: 'https://tte-static.s3.amazonaws.com/brand/lighthouse/TTE_Lighthouse_Logo.svg',
+          backgroundColor: '#FFFFFF',
+          altText: 'Lighthouse'
         }
       },
       securityDefinitions: { basic: { type: :basic } },
