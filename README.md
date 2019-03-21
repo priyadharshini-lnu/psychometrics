@@ -1,6 +1,6 @@
 # README
 
-Psychometrics application
+## Psychometrics application
 
 Ruby version: 2.5.1
 
