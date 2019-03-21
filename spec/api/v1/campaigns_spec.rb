@@ -13,7 +13,7 @@ describe 'Campaigns' do
 
   path '/projects/{project_id}/campaigns/{campaign_id}/duplicate' do
 
-    post 'Creates a copy of the campaign without users' do
+    post 'Duplicate a campaign' do
       operationId 'DuplicateCampaign'
       description 'Duplicated campaign will have the same default assessments and reports as the source campaign'
       tags 'Campaigns'
@@ -47,7 +47,7 @@ describe 'Campaigns' do
   end
   path '/projects/{project_id}/users/{user_id}/campaigns' do
 
-    post 'Adds user to new campaigns' do
+    post 'Add user to campaigns' do
       operationId 'AddUserCampaigns'
       description 'Adds new campaigns to the user. Adding campaigns to user assigns the campaign\'s default assessments and reports.'
       tags 'Campaigns'

@@ -12,7 +12,7 @@ describe 'Users' do
 
   path '/projects/{project_id}/users/{user_id}/sso' do
 
-    post 'Create an authenticated SSO URL' do
+    post 'Create authenticated SSO URL' do
       operationId 'GetUserSsoUrl'
       tags 'Users'
       description <<~HEREDOC
@@ -62,7 +62,7 @@ describe 'Users' do
   end
 
   path '/projects/{project_id}/users' do
-    post 'Adds a new user to the project' do
+    post 'Create new user' do
       operationId 'CreateUser'
       tags 'Users'
       description 'Creates a new user and adds to the campaigns specified along with the campaign\'s default assessments and reports.'
@@ -106,7 +106,7 @@ describe 'Users' do
 
   path '/projects/{project_id}/users/{user_id}' do
 
-    put 'Updates user details' do
+    put 'Updates user' do
       operationId 'UpdateUser'
       tags 'Users'
       consumes 'application/json'

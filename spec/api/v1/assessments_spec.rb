@@ -12,9 +12,9 @@ describe 'Assessments' do
 
   path '/projects/{project_id}/users/{user_id}/assessments' do
 
-    get 'Get the list of assessments' do
+    get 'Get user assessments' do
       operationId 'GetUserAssessments'
-      description 'returns a list of assessments currently assigned to the user'
+      description 'List of assessments currently assigned to the user'
       tags 'Assessments'
       consumes 'application/json'
       security [basic: []]
