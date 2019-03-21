@@ -48,7 +48,7 @@ module Exports
           dir = opts.delete(:output_dir) || Rails.root.join('tmp', 'reports')
           dir = File.join(dir, user.email)
           filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
-
+          File.delete(filename) if File.exists?(filename)
           FileUtils.mkdir_p(dir)
           @output = File.join(dir, filename)
         end
