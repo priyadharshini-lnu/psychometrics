@@ -18,9 +18,9 @@
   "paths": {
     "/projects/{project_id}/users/{user_id}/assessments": {
       "get": {
-        "summary": "Get the list of assessments",
+        "summary": "Get user assessments",
         "operationId": "GetUserAssessments",
-        "description": "returns a list of assessments currently assigned to the user",
+        "description": "List of assessments currently assigned to the user",
         "tags": [
           "Assessments"
         ],
@@ -88,7 +88,7 @@
     },
     "/projects/{project_id}/campaigns/{campaign_id}/duplicate": {
       "post": {
-        "summary": "Creates a copy of the campaign without users",
+        "summary": "Duplicate a campaign",
         "operationId": "DuplicateCampaign",
         "description": "Duplicated campaign will have the same default assessments and reports as the source campaign",
         "tags": [
@@ -146,7 +146,7 @@
     },
     "/projects/{project_id}/users/{user_id}/campaigns": {
       "post": {
-        "summary": "Adds user to new campaigns",
+        "summary": "Add user to campaigns",
         "operationId": "AddUserCampaigns",
         "description": "Adds new campaigns to the user. Adding campaigns to user assigns the campaign's default assessments and reports.",
         "tags": [
@@ -487,7 +487,7 @@
     },
     "/projects/{project_id}/users/{user_id}/sso": {
       "post": {
-        "summary": "Create an authenticated SSO URL",
+        "summary": "Create authenticated SSO URL",
         "operationId": "GetUserSsoUrl",
         "tags": [
           "Users"
@@ -542,7 +542,7 @@
     },
     "/projects/{project_id}/users": {
       "post": {
-        "summary": "Adds a new user to the project",
+        "summary": "Create new user",
         "operationId": "CreateUser",
         "tags": [
           "Users"
@@ -599,7 +599,7 @@
     },
     "/projects/{project_id}/users/{user_id}": {
       "put": {
-        "summary": "Updates user details",
+        "summary": "Updates user",
         "operationId": "UpdateUser",
         "tags": [
           "Users"
