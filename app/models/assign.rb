@@ -30,9 +30,7 @@ class Assign < ApplicationRecord
   has_many :original_assigns, foreign_key: :project_assign_id, class_name: 'Assign'
 
   has_many :assigns_reports, inverse_of: :assign # on delete cascade
-  has_many :enabled_assigns_reports,
-           -> { includes(:report).where(reports: { disabled: false }) },
-           class_name: 'AssignsReport'
+  has_many :enabled_assigns_reports, -> { active }, class_name: 'AssignsReport'
   has_many :reports, through: :assigns_reports, dependent: :destroy
 
   has_many :multiple_reports, -> { multiple }, through: :assigns_reports, source: :report

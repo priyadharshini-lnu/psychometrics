@@ -14,4 +14,10 @@ class ReportPolicy < BasePolicy
                   end
     include_report && user_access
   end
+
+  def export?
+    @current_project.end_level? ?
+      @current_membership.report_ids.include?(@record.id) :
+      @current_membership.clients_report_ids.include?(@record.id)
+  end
 end

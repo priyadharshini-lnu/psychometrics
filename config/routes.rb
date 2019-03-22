@@ -444,7 +444,9 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :reports, only: %i(show)
+    resources :reports, only: %i(show) do
+      get :export, on: :member
+    end
     resource :profiles, only: %i(update edit)
     get 'survey_instructions', to: 'home#survey_instructions'
     get 'sso/:user_id/:sso_token', to: 'home#sso'
