@@ -11,15 +11,16 @@ describe 'Reports' do
   let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
   let(:report) { assessment.reports.first }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
-
-  before do
+  let!(:assign) do
     user_membership = create(:membership, client: campaign, user: user)
     user_membership.client.assessments = [assessment]
     user_membership.client.project.assessments = [assessment]
     user_membership.client.reports = assessment.reports
     user_membership.client.project.reports = assessment.reports
-    assign = create(:assign, membership: user_membership, assessment: assessment, status: :completed)
+    create(:assign, membership: user_membership, assessment: assessment, status: :completed)
+  end
 
+  before do
     allow_any_instance_of(AssignsReport).to receive(:use_license) { "nth" }
     create(:assigns_report, report: report, assign: assign)
   end
@@ -113,6 +114,32 @@ describe 'Reports' do
           result = JSON.parse(response.body)
           expect(result["assessments"]).to be_an_instance_of(Array)
           expect(result).to have_key('user_data')
+        end
+      end
+
+
+      response '403', 'Assessment is not passed' do
+        schema '$ref' => '#/definitions/ReportResults'
+        examples 'application/json' => {
+          "code" => 1004,
+          "message" => 'Assessment is not passed',
+          "more_info" => 'Assessments for report 111 are not passed'
+        }
+
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+        let(:report_id) { report.id }
+
+        before do
+          assign.project_assign.in_progress!
+        end
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq({
+                                "code" => 1004,
+                                "message" => 'Assessment is not passed',
+                                "more_info" => "Assessments for report #{report_id} are not passed"
+                              })
         end
       end
     end

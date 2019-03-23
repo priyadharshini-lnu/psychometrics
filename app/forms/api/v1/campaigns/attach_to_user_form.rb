@@ -20,7 +20,7 @@ module Api
           duplicated_ids = context.user.memberships.map(&:client_id) & campaign_ids
           return if duplicated_ids.empty?
 
-          errors.add(:campaign_ids, "Follow campaign ids already existed: #{duplicated_ids}")
+          errors.add(:campaign_ids, "Following campaign ids already existed: #{duplicated_ids}")
         end
 
         def existing_campaign_ids

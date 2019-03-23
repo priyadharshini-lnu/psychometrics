@@ -43,6 +43,50 @@ describe 'Campaigns' do
           expect(campaign['name']).to eq 'Promotion'
         end
       end
+
+      response '400', 'Campaign name is not filled' do
+        schema '$ref' => '#/definitions/ApiError'
+        examples 'application/json' => {
+          "code" => 1002,
+          "message" => 'Validation error',
+          "more_info" => "Name can't be blank",
+        }
+
+        let(:campaign_id) { campaign.id }
+        let(:project_id) { project.id }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq({
+                                "code" => 1002,
+                                "message" => 'Validation error',
+                                "more_info" => "Name can't be blank",
+                              })
+        end
+      end
+
+      response '404', 'Campaign is not found' do
+        let(:project_id) { project.id }
+        let(:campaign_id) { 1111 }
+
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' => {
+          "code": 4000,
+          "message": 'Resource not found',
+          "more_info": 'Campaign with id=111 is not found',
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq({
+                                "code" => 4000,
+                                "message" => 'Resource not found',
+                                "more_info" => 'Campaign with id=1111 is not found',
+                              })
+        end
+      end
     end
   end
   path '/projects/{project_id}/users/{user_id}/campaigns' do

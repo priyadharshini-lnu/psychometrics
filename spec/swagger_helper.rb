@@ -43,6 +43,14 @@ RSpec.configure do |config|
         "application/json"
       ],
       definitions: {
+        ApiError: {
+          type: 'object',
+          properties: {
+            code: { type: 'integer' },
+            message: { type: 'string' },
+            more_info: { type: 'string', 'x-nullable': true }
+          }
+        },
         UserAssessment: {
           type: 'object',
           properties: {

@@ -22,7 +22,7 @@ module Administration
         broadcast(:ok, membership.user)
       rescue ActiveRecord::RecordInvalid, Errors::LicenseError => e
         form.errors.add(:base, e.message)
-        broadcast(:invalid, form)
+        broadcast(:license_error, form, e)
       end
 
       private
