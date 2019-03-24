@@ -118,11 +118,11 @@ describe 'Reports' do
       end
 
 
-      response '403', 'Assessment is not passed' do
+      response '403', 'Assessment not completed' do
         schema '$ref' => '#/definitions/ReportResults'
         examples 'application/json' => {
           "code" => 1004,
-          "message" => 'Assessment is not passed',
+          "message" => 'Assessment not completed',
           "more_info" => 'Assessments for report 111 are not passed'
         }
 
@@ -137,7 +137,7 @@ describe 'Reports' do
           error = JSON.parse(response.body)
           expect(error).to eq({
                                 "code" => 1004,
-                                "message" => 'Assessment is not passed',
+                                "message" => 'Assessment not completed',
                                 "more_info" => "Assessments for report #{report_id} are not passed"
                               })
         end

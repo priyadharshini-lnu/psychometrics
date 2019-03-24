@@ -3,7 +3,7 @@ module Errors
     class AssessmentIsNotPassedError < Errors::ApiError
       def initialize(more_info = nil)
         super(more_info)
-        @message = 'Assessment is not passed'
+        @message = 'Assessment not completed'
         @code = 1004
         @status = :forbidden
       end

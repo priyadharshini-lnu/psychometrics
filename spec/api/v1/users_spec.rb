@@ -107,7 +107,7 @@ describe 'Users' do
         examples 'application/json' => {
           "code" => 4003,
           "message" => 'User with this email exists',
-          "more_info" => 'Another user with email max@example.com is existing'
+          "more_info" => "Email address max@example.com is already taken"
         }
 
         let(:first_name) { 'Max' }
@@ -123,7 +123,7 @@ describe 'Users' do
           expect(error).to eq({
                                 "code" => 4003,
                                 "message" => 'User with this email exists',
-                                "more_info" => 'Another user with email max@example.com is existing'
+                                "more_info" => "Email address max@example.com is already taken"
                               })
         end
       end
