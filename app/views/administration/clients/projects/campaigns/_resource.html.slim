@@ -15,8 +15,8 @@ tbody id=dom_id(resource)
                     remote: true
   - else
     tr data-sidebar=url_for(sidebar_administration_client_project_campaign_path(client, project, resource))
-    td
-      = link_to resource.name, administration_client_users_path(resource)
+      td
+        = link_to resource.name, administration_client_users_path(resource)
       td
         - if resource.project_level?
           strong.nowrap
@@ -57,3 +57,11 @@ tbody id=dom_id(resource)
               span.fa.fa-plus
       - if current_user.is?(:superadmin)
         td = resource.decorate.actual_usage
+      td.actions-cell
+        - if policy(resource).actions? && policy(:client).manage_campaign?
+          = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
+            span.fa.fa-pencil
+          = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') })
+            span.fa.fa-copy
+          = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')})
+            span.fa.fa-times
