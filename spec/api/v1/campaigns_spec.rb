@@ -73,7 +73,7 @@ describe 'Campaigns' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          "code": 4000,
+          "code": 1005,
           "message": 'Resource not found',
           "more_info": 'Campaign with id=111 is not found',
         }
@@ -81,7 +81,7 @@ describe 'Campaigns' do
         run_test! do |response|
           error = JSON.parse(response.body)
           expect(error).to eq({
-                                "code" => 4000,
+                                "code" => 1005,
                                 "message" => 'Resource not found',
                                 "more_info" => 'Campaign with id=1111 is not found',
                               })

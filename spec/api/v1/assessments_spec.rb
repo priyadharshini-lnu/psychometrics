@@ -117,7 +117,7 @@ describe 'Assessments' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          "code": 4000,
+          "code": 1005,
           "message": 'Resource not found',
           "more_info": 'User with id=111 is not found',
         }
@@ -125,7 +125,7 @@ describe 'Assessments' do
         run_test! do |response|
           error = JSON.parse(response.body)
           expect(error).to eq({
-                                "code" => 4000,
+                                "code" => 1005,
                                 "message" => 'Resource not found',
                                 "more_info" => 'User with id=111 is not found',
                               })

@@ -4,7 +4,7 @@ module Errors
       def initialize(more_info = nil)
         super(more_info)
         @message = 'Resource not found'
-        @code = 4000
+        @code = 1005
         @status = :not_found
       end
     end

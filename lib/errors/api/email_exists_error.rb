@@ -4,7 +4,7 @@ module Errors
       def initialize(more_info = nil)
         super(more_info)
         @message = 'User with this email exists'
-        @code = 4003
+        @code = 1006
         @status = :bad_request
       end
     end

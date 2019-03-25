@@ -105,7 +105,7 @@ describe 'Users' do
       response '400', 'User with this email exists' do
         schema '$ref' => '#/definitions/ApiError'
         examples 'application/json' => {
-          "code" => 4003,
+          "code" => 1006,
           "message" => 'User with this email exists',
           "more_info" => "Email address max@example.com is already taken"
         }
@@ -121,7 +121,7 @@ describe 'Users' do
         run_test! do |response|
           error = JSON.parse(response.body)
           expect(error).to eq({
-                                "code" => 4003,
+                                "code" => 1006,
                                 "message" => 'User with this email exists',
                                 "more_info" => "Email address max@example.com is already taken"
                               })
@@ -134,7 +134,7 @@ describe 'Users' do
         schema '$ref' => '#/definitions/ApiError'
 
         examples 'application/json' => {
-          "code": 4000,
+          "code": 1005,
           "message": 'Resource not found',
           "more_info": 'Project with id=111 is not found',
         }
@@ -142,7 +142,7 @@ describe 'Users' do
         run_test! do |response|
           error = JSON.parse(response.body)
           expect(error).to eq({
-                                "code" => 4000,
+                                "code" => 1005,
                                 "message" => 'Resource not found',
                                 "more_info" => 'Project with id=111 is not found',
                               })
