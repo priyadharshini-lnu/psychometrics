@@ -66,6 +66,71 @@ describe 'Assessments' do
           expect(assessments.first).to have_key('status')
         end
       end
+
+      response '401', 'Auth error' do
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+        let(:Authorization) { "Basic #{::Base64.strict_encode64('key:wrong_token')}" }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' =>
+        {
+          "code": 1000,
+          "message": 'Invalid authentication',
+          "more_info": nil,
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq ({'code' => 1000, 'message' => 'Invalid authentication', 'more_info' => nil})
+        end
+      end
+
+      response '401', 'We are disabled' do
+        let(:project_id) { project.id }
+        let(:user_id) { user.id }
+        before { membership.user.update(disabled: true) }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' => {
+          "code": 1000,
+          "message": 'Invalid authentication',
+          "more_info": 'User for api token is disabled',
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq ({
+            "code" => 1000,
+            "message" => 'Invalid authentication',
+            "more_info" => 'User for api token is disabled',
+          })
+        end
+      end
+
+      response '404', 'User is not found' do
+        let(:project_id) { project.id }
+        let(:user_id) { 111 }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' => {
+          "code": 1005,
+          "message": 'Resource not found',
+          "more_info": 'User with id=111 is not found',
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq({
+                                "code" => 1005,
+                                "message" => 'Resource not found',
+                                "more_info" => 'User with id=111 is not found',
+                              })
+        end
+      end
     end
   end
 end

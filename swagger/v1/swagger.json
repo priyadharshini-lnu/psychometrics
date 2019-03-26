@@ -82,6 +82,32 @@
                 }
               ]
             }
+          },
+          "401": {
+            "description": "We are disabled",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 1000,
+                "message": "Invalid authentication",
+                "more_info": "User for api token is disabled"
+              }
+            }
+          },
+          "404": {
+            "description": "User is not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 4000,
+                "message": "Resource not found",
+                "more_info": "User with id=111 is not found"
+              }
+            }
           }
         }
       }
@@ -138,6 +164,32 @@
                 "name": "Duplicated Campaign Name",
                 "created_at": "2019-03-05T10:56:53.349+04:00",
                 "updated_at": "2019-03-05T10:56:53.349+04:00"
+              }
+            }
+          },
+          "400": {
+            "description": "Campaign name is not filled",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 1002,
+                "message": "Validation error",
+                "more_info": "Name can't be blank"
+              }
+            }
+          },
+          "404": {
+            "description": "Campaign is not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 4000,
+                "message": "Resource not found",
+                "more_info": "Campaign with id=111 is not found"
               }
             }
           }
@@ -427,6 +479,19 @@
                 ]
               }
             }
+          },
+          "403": {
+            "description": "Assessment is not passed",
+            "schema": {
+              "$ref": "#/definitions/ReportResults"
+            },
+            "examples": {
+              "application/json": {
+                "code": 1004,
+                "message": "Assessment is not passed",
+                "more_info": "Assessments for report 111 are not passed"
+              }
+            }
           }
         }
       }
@@ -593,6 +658,45 @@
                 ]
               }
             }
+          },
+          "400": {
+            "description": "User with this email exists",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 4003,
+                "message": "User with this email exists",
+                "more_info": "Email address max@example.com is already taken"
+              }
+            }
+          },
+          "404": {
+            "description": "Project is not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 4000,
+                "message": "Resource not found",
+                "more_info": "Project with id=111 is not found"
+              }
+            }
+          },
+          "403": {
+            "description": "Not enough licenses",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 1003,
+                "message": "Not enough licenses",
+                "more_info": "<b>sss@sssss.com</b> in <b>Al Futtaim</b> has not enough licenses for <b>Cognitive - Entry Level</b> report."
+              }
+            }
           }
         }
       }
@@ -678,6 +782,21 @@
     "application/json"
   ],
   "definitions": {
+    "ApiError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        },
+        "more_info": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
     "UserAssessment": {
       "type": "object",
       "properties": {

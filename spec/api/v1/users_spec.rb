@@ -101,6 +101,84 @@ describe 'Users' do
           expect(user['campaign_ids']).to eq [campaign.id]
         end
       end
+
+      response '400', 'User with this email exists' do
+        schema '$ref' => '#/definitions/ApiError'
+        examples 'application/json' => {
+          "code" => 1006,
+          "message" => 'User with this email exists',
+          "more_info" => "Email address max@example.com is already taken"
+        }
+
+        let(:first_name) { 'Max' }
+        let(:last_name) { 'Holloway' }
+        let(:email) { 'max@example.com' }
+        let(:campaign_ids) { [campaign.id] }
+        let(:project_id) { project.id }
+        let(:body) { { email: email, first_name: first_name, last_name: last_name, campaign_ids: campaign_ids } }
+
+        before { create(:user, project: project, email: 'max@example.com') }
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq({
+                                "code" => 1006,
+                                "message" => 'User with this email exists',
+                                "more_info" => "Email address max@example.com is already taken"
+                              })
+        end
+      end
+
+      response '404', 'Project is not found' do
+        let(:project_id) { 111 }
+
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' => {
+          "code": 1005,
+          "message": 'Resource not found',
+          "more_info": 'Project with id=111 is not found',
+        }
+
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq({
+                                "code" => 1005,
+                                "message" => 'Resource not found',
+                                "more_info" => 'Project with id=111 is not found',
+                              })
+        end
+      end
+
+      response '403', 'Not enough licenses' do
+        let(:email) { 'max@example.com' }
+        let(:campaign_ids) { [campaign.id] }
+        let(:project_id) { project.id }
+        let(:body) { { email: email, campaign_ids: campaign_ids } }
+        schema '$ref' => '#/definitions/ApiError'
+
+        examples 'application/json' => {
+          "code": 1003,
+          "message": 'Not enough licenses',
+          "more_info": "<b>sss@sssss.com</b> in <b>Al Futtaim</b> has not enough licenses for <b>Cognitive - Entry Level</b> report.",
+        }
+
+        let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
+        let(:report) { assessment.reports.first }
+        before do
+          campaign.assessments = [assessment]
+          campaign.project.assessments = [assessment]
+          campaign.reports = assessment.reports
+          campaign.project.reports = assessment.reports
+        end
+        run_test! do |response|
+          error = JSON.parse(response.body)
+          expect(error).to eq({
+                                "code" => 1003,
+                                "message" => 'Not enough licenses',
+                                "more_info" => "<b>max@example.com</b> in <b>#{membership.client.name}</b> has not enough licenses for <b>#{report.name}</b> report.",
+                              })
+        end
+      end
     end
   end
 

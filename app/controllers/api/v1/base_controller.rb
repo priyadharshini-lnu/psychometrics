@@ -10,8 +10,8 @@ module Api
       def auth
         @api_key      = fetch_api_key
         @current_user = api_key&.user
-        raise Errors::ApiError, 'Auth is not correct' unless api_key
-        raise Errors::ApiError, 'User for api token not found' if @current_user.nil? || @current_user.disabled
+        raise Errors::Api::AuthError unless api_key
+        raise Errors::Api::AuthError, 'User for api token is disabled' if @current_user&.disabled
       end
 
       attr_reader :current_user, :api_key
@@ -21,7 +21,7 @@ module Api
           begin
             user_id = params[:user_id] || params[:id]
             u       = ::Users::Regular.find_by(project_id: params[:project_id], id: user_id)
-            raise Errors::ApiError, "User with id=#{user_id} is not found" unless u
+            raise Errors::Api::ResourceNotFoundError, "User with id=#{user_id} is not found" unless u
 
             u
           end
@@ -32,7 +32,7 @@ module Api
           begin
             if current_user.superadmin?
               p = Client.projects.find_by(id: params[:project_id])
-              raise Errors::ApiError, "Project with id=#{params[:project_id]} is not found" unless p
+              raise Errors::Api::ResourceNotFoundError, "Project with id=#{params[:project_id]} is not found" unless p
 
               p
             else
@@ -40,7 +40,7 @@ module Api
               project_ids = memberships.select(&:project_admin?).map(&:client_id)
               client_ids  = memberships.select(&:client_admin?).map(&:client_id)
               p           = Client.projects.where.has { (id.in project_ids) | (ancestry.in client_ids) }.find_by(id: params[:project_id])
-              raise Errors::ApiError, "Project with id=#{params[:project_id]} is not found" unless p
+              raise Errors::Api::ResourceNotFoundError, "Project with id=#{params[:project_id]} is not found" unless p
 
               p
             end
@@ -51,15 +51,15 @@ module Api
         user.project_membership
       end
 
-      def render_form_errors(form)
-        render json: { errors: form.errors }, status: :bad_request
+      def render_validation_errors(form)
+        raise Errors::Api::ValidationError, form.errors.full_messages.first
       end
 
       def render_error(e)
-        render json: { errors: [e.message] }, status: :forbidden
+        render json: { code: e.code, message: e.message, more_info: e.more_info }, status: e.status
       end
 
-      # Fetchs API key
+      # Fetches API key
       #
       def fetch_api_key
         authenticate_with_http_basic do |key, token|
