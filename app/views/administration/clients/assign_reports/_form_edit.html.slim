@@ -17,20 +17,24 @@
                        as: :check_boxes,
                        collection: @reports_assigned,
                        label: false,
+                       include_hidden: false,
                        disabled: true
           td = f.input :user_access_report_ids,
                        as: :check_boxes,
                        collection: @reports_assigned,
                        label: false,
+                       include_hidden: false,
                        label_method: proc { t('.user_access') }
         tr
           td = f.input :report_ids,
                        as: :check_boxes,
                        collection: @reports,
+                       include_hidden: false,
                        label: false
           td = f.input :user_access_report_ids,
                        as: :check_boxes,
                        collection: @reports,
+                       include_hidden: false,
                        label: false,
                        label_method: proc { t('.user_access') }
       br
