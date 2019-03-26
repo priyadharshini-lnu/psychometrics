@@ -53,7 +53,6 @@ class AssignsController < ApplicationController
 
   def update
     @assign.assign_attributes(resource_params)
-    @assign.step += 1
     if @assign.completed?
       @assign.calculate_scoring
       @assign.completed_at = Time.now
