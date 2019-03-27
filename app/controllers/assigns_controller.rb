@@ -33,8 +33,8 @@ class AssignsController < ApplicationController
 
     @single_assigns = policy_scope(Assign).
                       includes(:single_reports, original_assign: [:single_reports]).
-                      joining { original_assign.membership.client }.
-                      joins('INNER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id" AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
+                      joining { original_assign.outer.membership.outer.client.outer }.
+                      joins('LEFT OUTER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id" AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
                       order('assessments_clients.position ASC').
                       preload(:assessment)
 
