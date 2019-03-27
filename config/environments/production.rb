@@ -73,7 +73,7 @@ Rails.application.configure do
       password: ENV['MAIL_PASSWORD'],
       domain: ENV['MAIL_DOMAIN'],
       address: ENV['MAIL_ADDRESS'],
-      port: 587,
+      port: ENV.fetch('MAIL_PORT', 587),
       authentication: :plain,
       enable_starttls_auto: true
   }
