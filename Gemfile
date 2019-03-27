@@ -182,6 +182,7 @@ group :development do
   gem 'capistrano-npm', '~> 1.0', '>= 1.0.2'
   gem 'guard'
   gem 'rubocop', require: false
+  gem 'meta_request'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
