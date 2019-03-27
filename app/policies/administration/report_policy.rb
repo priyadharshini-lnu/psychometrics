@@ -22,10 +22,14 @@ module Administration
       create?
     end
 
+    def upload_data_sheet?
+      create?
+    end
+
     # Can open Websocket Channel for build Report (Reports, Modules and etc.)
     # true if it's not Mindmill report and user is Superadmin
     def open_channel?
-      !record.external_report? && @user.is?(:superadmin)
+      @user.is?(:superadmin)
     end
 
     # Can preview Report
@@ -53,6 +57,13 @@ module Administration
 
     def toggle_status?
       edit?
+    end
+
+    # Can regenerate reports if Superadmin
+    #   and record is not external
+    #
+    def regenerate?
+      @user.is?(:superadmin) && !record.try(:external_report?)
     end
 
     class Scope < Scope

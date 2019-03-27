@@ -6,8 +6,8 @@ describe Queries::Assigns::ProjectLevel::ByClientAndAssessment do
   let(:project1) { create(:project) }
   let(:project2) { create(:project) }
 
-  let(:assessment1) { create(:assessment) }
-  let(:assessment2) { create(:assessment) }
+  let(:assessment1) { project1.assessments.take }
+  let(:assessment2) { project2.assessments.take }
 
   let(:report1) { create(:report, assessment: assessment1) }
   let(:report2) { create(:report, assessment: assessment2) }

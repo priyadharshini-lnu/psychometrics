@@ -26,6 +26,8 @@ class Report < ApplicationRecord
 
   self.inheritance_column = :_type_disabled
 
+  # ASSOCIATIONS
+  #
   belongs_to :assessment
   belongs_to :owner, class_name: 'Client', foreign_key: :owner_id
   has_and_belongs_to_many :report_families
@@ -50,12 +52,15 @@ class Report < ApplicationRecord
   has_one :hogan_report_setting
   accepts_nested_attributes_for :hogan_report_setting
 
+  #   VALIDATIONS
+  #
   validates :assessment, presence: true
   validates :owner, presence: true, allow_nil: true
-  validates :report_families, presence: true, allow_nil: false
   validate :max_assessments_count
   validate :min_assessments_count
 
+  #   CALLBACKS
+  #
   before_validation :set_assessment
   before_save :delete_hogan_report_setting
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
@@ -69,65 +74,75 @@ class Report < ApplicationRecord
     self.icon_color = Settings.default_colors.sample
   end
 
-  # Copy report with pages => modules
+  #   SCOPES
+  #
+  scope :enabled, -> { where.not(disabled: true) }
+  scope :disabled, -> { where(disabled: true) }
+  scope :with_owner, -> (owner_id) { where(owner_id: owner_id) }
+  scope :with_report_families, lambda { |report_family_ids|
+    report_family_ids.blank? ? none : joins(:report_families).where(report_families: { id: report_family_ids })
+  }
+  # Search entity by assessment category
+  scope :with_assessment_category, lambda { |assessment_category|
+    assessment_category == 'all' ? all : joins(:assessments).where(assessments: { category: assessment_category })
+  }
+  # Search entity by assessment
+  scope :with_assessment, lambda { |assessment_id|
+    joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment_id })
+  }
+  scope :available_to_view, lambda {
+    joins(:assessments).where.has { assessments.access_reports_at.eq(nil) | (assessments.access_reports_at <= Time.now) }
+  }
+  scope :for_clients, lambda { |client_ids|
+    joins(:clients_reports).where.has { clients_reports.client_id.in(client_ids) }
+  }
+  scope :multiple, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) > 1') }
+  scope :single, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) = 1') }
+  scope :yti_eti, -> { where(type: [YTI_TYPE, ETI_TYPE]) }
+  scope :not_external, -> { joins(:assessments).where(assessments: { type: Assessment::TYPES[:common] }) }
+
+  # Copy report with nested resources
+  #
   def clone
     @cloned_item = deep_clone include: [:assessments, :report_families, { pages: :modules }, :hogan_report_setting]
     @cloned_item.gen_uniq_name
     @cloned_item
   end
 
-  scope :enabled, -> { where.not(disabled: true) }
-  scope :with_owner, -> (owner_id) { where(owner_id: owner_id) }
-  scope :with_report_families, lambda { |report_family_ids|
-    report_family_ids.blank? ? none : joins(:report_families).where(report_families: { id: report_family_ids })
-  }
-
-  # Search entity by assessment category
-  scope :with_assessment_category, lambda { |assessment_category|
-    assessment_category == 'all' ? all : joins(:assessments).where(assessments: { category: assessment_category })
-  }
-
-  # Search entity by assessment
-  scope :with_assessment, lambda { |assessment_id|
-    joins(:assessments_reports).where(assessments_reports: { assessment_id: assessment_id })
-  }
-
-  scope :available_to_view, lambda {
-    joins(:assessments).where.has { assessments.access_reports_at.eq(nil) | (assessments.access_reports_at <= Time.now) }
-  }
-
-  scope :for_clients, lambda { |client_ids|
-    joins(:clients_reports).where.has { clients_reports.client_id.in(client_ids) }
-  }
-
-  scope :multiple, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) > 1') }
-  scope :single, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) = 1') }
-
-
-  scope :yti_eti, -> { where(type: [YTI_TYPE, ETI_TYPE]) }
-
   def yti_eti?
     [Report::YTI_TYPE, Report::ETI_TYPE].include? type
   end
 
+  # Returns true if Report has at least one external assessment (Mindmill, Hogan)
+  #
   def external_report?
-    assessments.any?(&:external?)
+    assessments.external.exists?
   end
 
+  # Returns true if Report has 2 or more assessments
+  #
   def multiple?
-    assessments.size > 1
+    !single?
   end
 
+  # Returns true if Report has only 1 assessment
+  #
   def single?
     assessments.size == 1
   end
 
+  # Returns true if Report has 2 or more assessments with provided Dimension ID
+  #
   def single_dimension?(dimension_id)
     assessments.pluck(:dimension_id).count(dimension_id) == 1
   end
 
   def destroy_dimension_aliases(dimension)
     FactorsAlias.where(report: self, factor_id: dimension.all_factor_ids).destroy_all
+  end
+
+  def flat_data_configuration
+    (data_configuration['sections'] || []).flat_map { |section| section['data'] || [] }
   end
 
   private

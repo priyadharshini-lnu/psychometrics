@@ -1,27 +1,20 @@
-= simple_form_for(resource, as: :resource, url: { action: :update }, remote: true, html: { id: 'manage_licenses' }) do |f|
+= simple_form_for(resource, as: :resource,
+                            url: { action: resource.new_record? ? :create : :update },
+                            remote: true,
+                            html: { id: 'manage_licenses' }) do |f|
   .modal-body
     = render_error_notification(resource)
-
-    .form-inputs.clearfix
-      table#licenses.table
-        thead
-          tr
-            th = t('.license_type')
-            th = t('.license_number')
-            th = t('.license_overuse_number')
-            th = t('.start_date')
-            th = t('.end_date')
-            th
-        tbody
-          = f.simple_fields_for :licenses do |license|
-            = render 'license_fields', f: license
-      .links
-        = link_to_add_association t('.add_license'),
-                                  f, :licenses,
-                                  class: 'btn btn-default',
-                                  data: { association_insertion_node: 'table#licenses tbody',
-                                          association_insertion_method: 'append'}
-
+    = f.association :report_family,
+                    input_html: { data: { live_search: true } },
+                    include_blank: false,
+                    disabled: !f.object.new_record?
+    = f.input :number,
+              input_html: { value: f.object.number.zero? ? 1 : f.object.number,
+                            min: f.object.new_record? ? 1 : f.object.used_number }
+    = f.input :overuse_number, input_html: { min: 0 }
+    = f.input :start_date, as: :string, input_html: { class: 'datepicker' }
+    = f.input :end_date, as: :string, input_html: { class: 'datepicker' }
+    = f.input :disabled
   .modal-footer
     .btn-group
       = f.button :submit, t('administration.save'), class: 'btn-info'

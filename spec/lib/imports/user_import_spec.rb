@@ -17,15 +17,13 @@ RSpec.describe Imports::UserImport do
         Membership.human_attribute_name('email'),
         Membership.human_attribute_name('password'),
         Membership.human_attribute_name('created_at'),
-        Membership.human_attribute_name('report_ids'),
-        Membership.human_attribute_name('user_access')
       ]
     ]
   end
   let!(:body) do
     Array.new(5) do
       ['Yes', Faker::Name.first_name, Faker::Name.last_name, Faker::Internet.email, Faker::Lorem.characters(10),
-       Time.current, nil]
+       Time.current]
     end
   end
   let(:parsed_array) do

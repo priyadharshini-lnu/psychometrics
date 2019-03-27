@@ -55,6 +55,7 @@ class Client < ApplicationRecord
   has_one :retail_user, class_name: 'User'
   has_many :memberships # on delete cascade
   has_many :users, through: :memberships
+  has_many :assigns, through: :memberships, source: :assigns
   has_many :project_admin_memberships, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
   has_many :project_admins, through: :project_admin_memberships, source: :user, class_name: 'User'
   has_many :client_admin_memberships, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
@@ -64,13 +65,20 @@ class Client < ApplicationRecord
   has_many :end_memberships, -> { where.not(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, source: :membership, class_name: 'Membership'
   has_many :managers, -> { where(memberships: { role: Membership::MANAGER_ROLE }) }, through: :memberships, source: :user
   has_many :members, -> { where(memberships: { role: Membership::MEMBER_ROLE }) }, through: :memberships, source: :user
-
-
+  # Licenses
+  has_many :license_usages
+  has_many :licenses, inverse_of: :client, dependent: :destroy
+  has_many :active_licenses, -> { active }, class_name: 'License'
   # Reports
   has_many :clients_reports # on delete cascade
   has_many :reports, through: :clients_reports
-  has_and_belongs_to_many :report_families, join_table: :clients_report_families, class_name: 'ReportFamily'
+  has_many :report_families, through: :active_licenses, source: :report_family
   has_many :available_reports, through: :report_families, source: :reports
+  has_many :available_assessments, through: :report_families, source: :assessments
+  # Assessments
+  has_many :assessments_clients, -> { order(:position) } # on delete cascade
+  has_many :assessments, through: :assessments_clients, source: :assessment
+
 
   # Self association
   has_many :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }, foreign_key: :tte_id, class_name: 'Client'
@@ -79,22 +87,20 @@ class Client < ApplicationRecord
 
   has_many :norms
   has_many :dimensions
-  has_many :assessments, -> { group(:id) }, through: :reports, source: :assessments
-  has_many :license_usages
-  has_many :licenses, inverse_of: :client, dependent: :destroy
   # TODO use admins instead of projects_admins
   has_many :projects_admins, -> { where(memberships: { role: Membership::PROJECT_ADMIN_ROLE }) }, through: :projects, source: :users
+
+  has_one :datasheet, foreign_key: :project_id, dependent: :destroy
 
   accepts_nested_attributes_for :licenses, allow_destroy: true
 
   validates :name, :type, presence: true, length: { maximum: 50 }
   with_options if: :root? do |root|
     root.validates :number, :country, :year, presence: true
-    root.validates :account_manager, :project_manager, :report_families, presence: true, on: :create
+    root.validates :account_manager, :project_manager, presence: true, on: :create
   end
   with_options if: :project? do |project|
     project.validates :number, presence: true
-    project.validates :reports, presence: true, on: :create
     project.validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
     project.validate :subdomain_format_validation
   end
@@ -109,7 +115,7 @@ class Client < ApplicationRecord
   # Type of client.
   # Retail - is client who bought some product
   enum type: [:partner, :corporate, :distributer, :associate, :tte, :retail, :other]
-  enum applicable_level: {project: 0, campaign: 1, sub_campaign: 2}, _suffix: :level
+  enum applicable_level: { project: 0, campaign: 1, sub_campaign: 2 }, _suffix: :level
 
   mount_uploader :logo, ImageUploader
   mount_uploader :background, ImageUploader
@@ -123,7 +129,11 @@ class Client < ApplicationRecord
   scope :projects_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:project]) }
   scope :campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:campaign]) }
   scope :sub_campaigns_of, -> (client_id) { where(id: client_id).take.descendants.at_depth(Client::HIERARCHY_LEVEL[:sub_campaign]) }
+  scope :campaigns_and_sub_campaigns_of, -> (client_id) { Client.campaigns_of(client_id).or(Client.sub_campaigns_of(client_id)) }
   scope :descendants_of_arr, -> (client_ids) { where('clients.ancestry ~ ?', "(/|^)(#{client_ids.join('|')})(/|$)") }
+  scope :projects, -> { where(ancestry_depth: HIERARCHY_LEVEL[:project]) }
+  scope :campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:campaign]) }
+  scope :sub_campaigns, -> { where(ancestry_depth: HIERARCHY_LEVEL[:sub_campaign]) }
 
   def assign_by_membership_and_assessment(membership_id, assessment_id)
     memberships.find(membership_id).assigns.find_by(assessment_id: assessment_id)

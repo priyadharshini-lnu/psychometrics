@@ -12,7 +12,9 @@ module Imports
 
       validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                     'application/vnd.ms-excel',
-                                                    'text/csv'] }
+                                                    'text/csv',
+                                                    'application/octet-stream',
+                                                    'text/plain'] }
 
       AVAILABLE_TRANSLATEABLE_TYPES = %w(reports/filter factor occupation reports/module).freeze
 

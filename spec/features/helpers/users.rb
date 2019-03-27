@@ -92,9 +92,9 @@ module Features
         click_link(t('administration.clients.users.index.new'), href: "/administration/clients/#{client.id}/users/new")
         find('.modal-header').click
         within '#new_resource' do
-          fill_in 'resource_user_attributes_email', with: opts[:email]
-          fill_in 'resource_user_attributes_first_name', with: opts[:first_name]
-          fill_in 'resource_user_attributes_last_name', with: opts[:last_name]
+          fill_in 'resource_email', with: opts[:email]
+          fill_in 'resource_first_name', with: opts[:first_name]
+          fill_in 'resource_last_name', with: opts[:last_name]
           click_on t('administration.create')
         end
         wait_for_ajax

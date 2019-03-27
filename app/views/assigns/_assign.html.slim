@@ -28,18 +28,8 @@
                           data: { mindmill: mindmill_data, privacy_consent: privacy_consent_data },
                           class: 'mindmill_link'
               - elsif assign.assessment.hogan?
-                = link_to assign.assessment.name, 'javascript:void(0)', data: { behavior: 'submit-hogan-link', assign_id: assign.id }
-                = form_tag Rails.application.secrets.hogan[:login_url], id: "hogan-form-#{assign.id}" do
-                  = hidden_field_tag :UserID, @current_membership.hogan_credential.participant_id
-                  = hidden_field_tag :Password, @current_membership.hogan_credential.password
-                  = hidden_field_tag :UniqueID, current_user.email
-                  = hidden_field_tag :FirstName, current_user.first_name
-                  = hidden_field_tag :LastName, current_user.last_name
-                  = hidden_field_tag :LanguageID, 'en'
-                  = hidden_field_tag :DirectAssessmentID, assign.assessment.hogan_assessment_setting.hogan_assessment_id
-                  = hidden_field_tag :DisplayInformedConsent, 'YES'
-                  = hidden_field_tag :ReturnURL, redirect_hogan_assign_url(assign, email: 'CandID',
-                    participant_id: 'HASUserID', status: 'AssessmentStatus', assessment_id: 'AssessmentID')
+                = link_to assign.assessment.name, pass_hogan_assign_path(assign.id), remote: true, method: :put, data: { loading: true }
+                div id=dom_id(assign)
               - else
                 = link_to assign.assessment.name, '#', data: { privacy_consent: privacy_consent_data }
           td.col-md-3.word-break-all = assign.assessment.decorate.timing

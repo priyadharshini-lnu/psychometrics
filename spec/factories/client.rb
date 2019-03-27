@@ -43,7 +43,9 @@ FactoryGirl.define do
       country 'Barbados'
       association :project_manager, factory: :superadmin
       association :account_manager, factory: :superadmin
-      report_families { [association(:report_family)] }
+      after(:create) do |tenancy, _evaluator|
+        create :license, client: tenancy
+      end
     end
 
     # applicable_levels
@@ -63,12 +65,20 @@ FactoryGirl.define do
       end_level true
     end
 
-    factory :project_base do
+    trait :with_reports do
+      after(:create) do |client, _evaluator|
+        report_family = client.root.report_families.take
+        report = create(:report, report_families: [report_family])
+        create :clients_report, client: client, report: report, report_family: report_family
+        client.assessment_ids = report.assessment_ids
+      end
+    end
+
+    factory :project_base, traits: [:with_reports] do
       association :parent, factory: :tenancy
       sequence(:name) { |i| "Project #{i}" }
       sequence(:subdomain) { |i| "test-#{i}" }
       sequence(:number) { |i| "Number #{i}" }
-      reports { |project| [project.association(:report, report_families: [project.root.report_families.take])] }
     end
 
     factory :project, parent: :project_base, traits: [:project_level, :_end_level]
@@ -78,7 +88,7 @@ FactoryGirl.define do
       sequence(:name) { |i| "Campaign #{i}" }
     end
 
-    factory :campaign, parent: :campaign do
+    factory :campaign, parent: :campaign_base do
       association :parent, factory: [:project_base, :campaign_level]
       _end_level
     end

@@ -8,9 +8,9 @@ module Assessments
       # data['q'] - query filter
       ###
       action :filter do |data, _current_user, _assessment|
-        geo = ::Data::Geo.
+        geo = ::Datas::Geo.
                 select(data['column']).
-                where("#{::Data::Geo.connection.quote_column_name(data['column'])} ILIKE ?", "#{data['q']}%").
+                where("#{::Datas::Geo.connection.quote_column_name(data['column'])} ILIKE ?", "#{data['q']}%").
                 group(data['column']).
                 limit(10)
         geo.map { |g| { value: g.value(data['column']), label: g.value(data['column']) } }

@@ -3,13 +3,10 @@ class ReportsController < ApplicationController
   prepend_before_action :set_resource_class
   before_action :set_resource, only: [:show]
   append_before_action :pundit_authorize
-
   # Turn off normally auth
   skip_before_action :authenticate_user!
   # Turn on auth by token
   prepend_before_action :authenticate_by_token!
-
-  layout 'users_new'
 
   def show
     # TODO: Not the correct way to send all users result to the browser, adding user_id condition until better way is found
@@ -31,7 +28,7 @@ class ReportsController < ApplicationController
       end
       format.pdf do
         add_cookie_for_file_download
-        pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @current_user, @current_project, request.protocol.split(':').first, lang: user_locale)
+        pdf_file = ::Exports::Reports::Pdf::ReportExport.export(@current_user, @resource, @current_user, @current_project, lang: user_locale)
         send_file pdf_file, type: 'application/pdf'
       end
     end

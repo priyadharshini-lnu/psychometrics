@@ -21,7 +21,7 @@
 
 class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id, :relationship,
-             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring
+             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet
 
   attribute :agile_scoring, if: -> { object.membership_id == @instance_options[:membership].try(:id) }
 
@@ -59,6 +59,12 @@ class AssignSerializer < ActiveModel::Serializer
       end
     end
     {}
+  end
+
+  def data_sheet
+    # TODO (atanych): this serialization can not be used for multi assigns (e.g. for 360)
+    row = DatasheetRow.joins(:datasheet).find_by(datasheets: {project_id: object.membership.client_id}, email: object.membership.user.email)
+    row&.data || {}
   end
 
   def normalize_hogan_type(type)

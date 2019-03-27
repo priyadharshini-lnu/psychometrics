@@ -3,5 +3,5 @@ class Imports::UserForm < BaseForm
 
   validates :file, presence: true,
                    file_size: { less_than_or_equal_to: 4.megabytes },
-                   file_content_type: { allow: ['text/csv'] }
+                   file_content_type: { allow: ['text/csv', 'text/plain'] }
 end

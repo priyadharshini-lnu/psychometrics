@@ -1,0 +1,11 @@
+en:
+  activemodel:
+    attributes:
+      edit_assessments_client:
+        remove_assessment_ids: ''
+    errors:
+      models:
+        edit_assessments_client:
+          attributes:
+            remove_assessment_ids:
+              invalid: You can't remove Assessments that depend on an assigned Reports

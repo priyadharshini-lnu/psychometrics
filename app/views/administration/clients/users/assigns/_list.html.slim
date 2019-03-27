@@ -8,7 +8,7 @@
         th = t('.assessment_type')
         th = t('.status')
         th = link_to_sort resource_class, :completed_at, filter_form
-        th.text-center width='290' = t '.reports'
+        th.text-center = t '.reports'
         th width='1%' = t('.actions')
     tbody
       - if resources.present?

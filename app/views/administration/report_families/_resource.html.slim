@@ -1,5 +1,5 @@
 tr data-sidebar=(url_for({ action: :sidebar, id: resource }) if  policy(resource).sidebar?) id=dom_id(resource)
-  td = resource.name
+  td = link_to resource.name, administration_report_family_reports_path(resource)
   td = resource.decorate.created_at
   td = resource.decorate.updated_at
   - if policy(resource_class).actions?

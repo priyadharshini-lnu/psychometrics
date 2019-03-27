@@ -5,9 +5,9 @@ module Exports
     class ReportDataExport
       attr_accessor :report, :client
 
-      def initialize(report_id, client_id)
-        self.report = Report.find(report_id)
-        self.client = Client.find(client_id)
+      def initialize(report, client)
+        @report = report
+        @client = client
       end
 
       def to_xlsx
@@ -26,32 +26,31 @@ module Exports
             # Draws headers and collect data
             #
             header_position = 0
-            export_data = []
             (report.data_configuration['sections'] || []).each do |section|
-              subheaders = (section['data'] || [])
-              subheaders_size = subheaders.size - 1
+              # Builds Sub Headers
+              sub_headers = build_sub_headers(section).flatten
+              sub_headers_size = sub_headers.size - 1
 
-              # Draws header
+              # Draws Header
               sheet.rows.first.add_cell(section['label'])
               # Adds blank cell for then able to merge
-              subheaders_size.times { sheet.rows.first.add_cell('') }
+              sub_headers_size.times { sheet.rows.first.add_cell('') }
               # Draws Sub Headers
-              subheaders.each do |subheader|
-                label = subheader['label']
-                label ||= fetch_factor_label(subheader['factorId']) if subheader['factorId']
-                sheet.rows.second.add_cell(label || '')
-                export_data << subheader
+              sub_headers.each do |sub_header|
+                sheet.rows.second.add_cell(sub_header)
               end
+
               # Merge Header cells to one cell
-              cells_range = header_position..(header_position + subheaders_size)
+              cells_range = header_position..(header_position + sub_headers_size)
               sheet.merge_cells sheet.rows.first.cells[cells_range]
               # Calculates next header position
               header_position = cells_range.last + 1
             end
 
-            current_level_assigns.find_each do |assign|
-              results = export_data.map { |data| try(data['type'].to_s, assign, data) || '' }
-              sheet.add_row results
+            # TODO (atanych): too many N+1 queries. Might be resolved by cached_find. https://youtu.be/q8ausBZTrxU?t=400
+            current_level_assigns.group_by(&:membership_id).each do |_, assigns|
+              results = ::Reports::BuildResults.call(report, assigns)[:ok].flatten
+              sheet.add_row(results.map { |r| r[:value] })
             end
           end
         end
@@ -65,64 +64,6 @@ module Exports
         end
       end
 
-      # Gets user data
-      #
-      def user_data(assign, data)
-        assign.membership.user.try(data['key'])
-      end
-
-      # Calculates value for external_result type
-      #
-      def external_result(assign, data)
-        # Skip if the assign is for another assessment
-        return unless assign.assessment_id == data['assessmentId']
-
-        assign.try(:external_results).try(:[], data['key'])
-      end
-
-      # Calculates value for normed_factor type
-      #
-      def normed_factor(assign, data)
-        # Skip if the assign is for another assessment
-        return unless assign.assessment_id == data['assessmentId']
-        # Skip if the assign has no norm data
-        return unless assign.norm_data
-
-        # Skip if can't find factor
-        factor = Factor.find(data['factorId'])
-        # Fetchs Norm
-        norm = Norm.find(assign.norm_data['id'])
-        # Fetchs FactorsNorm by Norm ID and Type
-        factors_norm = FactorsNorm.find_by!(factor_id: factor.id,
-                                            norm_id: norm.id,
-                                            type: assign.norm_data['type'].to_s.downcase)
-        # Gets scoring
-        scoring = assign.scoring&.dig(factor.id.to_s, 'results') || []
-        # If there is no results for Factor
-        #   Then collect SubFactors results
-        if scoring.blank? && factor.parent_id.nil?
-          scoring = factor.sub_factor_ids.
-                    each_with_object([]) { |id, res| res << assign.scoring&.dig(id.to_s, 'results') }.
-                    flatten.
-                    compact
-        end
-        # Detects normed result
-        factors_norm.detect_normed_result(scoring)
-      rescue ActiveRecord::RecordNotFound
-      end
-
-      # Calculates value for formula type
-      #
-      def formula(assign, data)
-        formula_op = data.dig('formula', 'op')
-        results = (data.dig('formula', 'args') || []).map { |arg| try(arg['type'], assign, arg) }.flatten.compact
-        return if results.blank?
-        return (results.inject(0.0, :+) / results.size.to_f).round(2) if formula_op == 'AVERAGE'
-        return results.min if formula_op == 'MIN'
-
-        results.max
-      end
-
       private
 
       # Gets factor title
@@ -131,6 +72,18 @@ module Exports
         factor = Factor.select(:id, :name).find_by(id: factor_id)
         factor_alias = factor.aliases.find_by(report_id: report.id)
         factor_alias&.name || factor&.name
+      end
+
+      # Builds sub headers
+      #
+      def build_sub_headers(section)
+        sub_headers = section['data'] || []
+        sub_headers.map do |sub_header|
+          label = sub_header['label']
+          label ||= fetch_factor_label(sub_header['factorId']) if sub_header['factorId']
+
+          label || ''
+        end
       end
     end
   end

@@ -1,8 +1,8 @@
 namespace :geo do
   desc 'Import data source'
   task :import => :environment do
-    Data::Geo.transaction do
-      Data::Geo.delete_all
+    ::Datas::Geo.transaction do
+      ::Datas::Geo.delete_all
       source_path = Rails.root.join('public', 'source', 'GeoLite2-City-Locations-en_test.csv') if Rails.env == 'test'
       source_path ||= Rails.root.join('public', 'source', 'GeoLite2-City-Locations-en.csv')
       source = Roo::CSV.new(source_path)
@@ -14,7 +14,7 @@ namespace :geo do
         city: /city_name/
       })
       datas[1..-1].each do |data|
-        Data::Geo.create(data)
+        ::Datas::Geo.create(data)
       end
     end
   end

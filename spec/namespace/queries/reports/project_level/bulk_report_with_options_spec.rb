@@ -3,17 +3,17 @@ require 'rails_helper'
 describe Queries::Reports::ProjectLevel::BulkReportWithOptions do
   let(:query) { Queries::Reports::ProjectLevel::BulkReportWithOptions }
 
-  let(:report_family1) { create(:report_family) }
-  let(:report_family2) { create(:report_family) }
+  let(:project1) { create(:project, :with_reports) }
+  let(:project2) { create(:project, :with_reports) }
 
-  let(:project1) { create(:project, report_families: [report_family1]) }
-  let(:project2) { create(:project, report_families: [report_family2]) }
+  let(:report_family1) { project1.root.report_families.take }
+  let(:report_family2) { project2.root.report_families.take }
 
-  let(:assessment1) { create(:assessment) }
-  let(:assessment2) { create(:assessment) }
+  let(:assessment1) { project1.assessments.take }
+  let(:assessment2) { project2.assessments.take }
 
-  let(:report1) { create(:report, assessment: assessment1, report_families: [report_family1]) }
-  let(:report2) { create(:report, assessment: assessment2, report_families: [report_family2]) }
+  let(:report1) { assessment1.reports.take }
+  let(:report2) { assessment2.reports.take }
 
   let!(:clients_report1) { create(:clients_report, client: project1, report: report1) }
   let!(:clients_report2) { create(:clients_report, client: project2, report: report2) }

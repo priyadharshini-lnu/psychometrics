@@ -14,14 +14,7 @@
     max-width: 400px;
   }
 }
-.html_preview {
-  .fe-page-container { margin: 25px auto; border: 1px solid #CCC; background-color: #fff; }
-  .fe-module-container { border: none; }
-  .fe-module-container:hover { border: none; }
-  .fe-module-frame-container { border: 1px solid transparent !important; }
-  .fe-module-frame-container:hover { border: 1px solid transparent !important; }
-}
-//
+
 .mobile-device .report-holder .panel-body { display: none; }
 
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:300,400,600');
@@ -475,6 +468,24 @@ img.userIcon {
   }
   .well { margin-bottom: 0; }
 }
+
+.assign {
+  position: relative;
+  &.loading {
+    .panel-heading, .panel-collapse {
+      opacity: 0.3;
+    }
+    .loading {
+      top: 0;
+      z-index: 1000;
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: transparent url('/loaders/default.gif') no-repeat center center !important;
+    }
+  }
+}
+
 hr.divider {
   margin: 0 25px;
   color: #e5e5e5;
@@ -482,6 +493,7 @@ hr.divider {
 .table-borderless tbody tr td, .table-borderless tbody tr th, .table-borderless thead tr th, .table-borderless thead tr td, .table-borderless tfoot tr th, .table-borderless tfoot tr td {
   border: none;
 }
+
 th {
   text-transform: uppercase;
   color: #7d8fa2;
@@ -503,6 +515,7 @@ td a:hover, td a:active, td a:focus {
   color: #e0933f;
   text-decoration: none;
 }
+
 .table.rowPadding tbody tr td, .table.rowPadding th {
   padding: 15px 0;
 }

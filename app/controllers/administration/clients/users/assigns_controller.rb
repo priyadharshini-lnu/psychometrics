@@ -9,11 +9,15 @@ module Administration
         append_before_action :pundit_authorize, :init_breadcrumbs
 
         def index
-          @_filter_form = policy_scope(::Assign).where(id: membership.assign_ids).includes(:assessment).search(params[:q])
-          @_resources = filter_form.result.includes(:enabled_assigns_reports).page(params[:page])
+          @_filter_form = policy_scope(::Assign).
+                          where(id: membership.assign_ids).
+                          includes(:assessment, :enabled_assigns_reports).
+                          search(params[:q])
+          @_resources = filter_form.result.page(params[:page])
           @reports = policy_scope(Report).
-              ransack(clients_reports_client_id_eq: client.id).result.
-              group_by(&:assessment_id)
+                     ransack(clients_reports_client_id_eq: client.id).
+                     result.
+                     group_by(&:assessment_id)
           respond_to do |format|
             format.html
             format.js { render :index, formats: [:js] }
@@ -33,16 +37,6 @@ module Administration
           resource.user_access = resource_params[:user_access]
 
           begin
-            if @assessment.hogan?
-              assessment_params = {
-                group: client.project.hogan_group_name,
-                membership: membership.membership_with_result,
-                assessment: @assessment,
-                reports: resource.reports
-              }
-              result = Services::Hogan::AssignAssessmentAndReports.call!(assessment_params: assessment_params)
-            end
-
             if resource.new_record?
               resource.save
             else

@@ -35,7 +35,7 @@ module Administration
     end
 
     def assign?
-      @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
+      false # @user.is?(:superadmin) || @user.has_grant?(:assessments, :assign)
     end
 
     def view_report?

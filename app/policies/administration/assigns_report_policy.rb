@@ -19,5 +19,15 @@ module Administration
         false
       end
     end
+
+    def toggle_user_access?
+      update?
+    end
+
+    #  Can re-generate report if superadmin and assessment passed
+    #
+    def regenerate?
+      @user.is?(:superadmin) && @record.assign.assign_with_result.completed?
+    end
   end
 end

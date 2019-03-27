@@ -29,4 +29,19 @@ class LicenseDecorator < BaseDecorator
     used_number = (used_number * 100 / object.number).round(0) if used_number > 0
     used_number.to_s + ' %'
   end
+
+  def toggle_status_confirmation
+    status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
+    {
+        title: I18n.t(
+            "administration.clients.licenses.resource.confirmations.toggle_status.title",
+            status: status,
+            name: display_name
+        ),
+        body: I18n.t(
+            "administration.clients.licenses.resource.confirmations.toggle_status.body",
+            status: status.downcase
+        )
+    }.to_json
+  end
 end

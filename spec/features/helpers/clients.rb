@@ -16,9 +16,6 @@ module Features
           select opts[:year], from: 'resource_year', visible: false
           select opts[:account_manager], from: 'resource_account_manager_id', visible: false
           select opts[:project_manager], from: 'resource_project_manager_id', visible: false
-          opts[:report_families].each do |report_family|
-            select report_family, from: 'resource_report_family_ids', visible: false
-          end
           click_on t('administration.create')
         end
         wait_for_ajax
@@ -43,9 +40,6 @@ module Features
           fill_in 'resource_subdomain', with: opts[:subdomain]
           fill_in 'resource_number', with: opts[:number]
           select opts[:applicable_level], from: 'resource_applicable_level', visible: false
-          opts[:reports].each do |report|
-            select report, from: 'resource_report_ids', visible: false
-          end
           click_on t('administration.create')
         end
         wait_for_ajax
