@@ -60,10 +60,26 @@ describe UpdateAssign do
       before { allow(assign).to receive(:'completed?').and_return(true) }
       subject { described_class.call(form, assign, current_user) }
 
-      it { expect{ subject }.to change{ assigns_report.reload.generating? }.from(false).to(true) }
-      it do
-        expect(::Reports::ExportJob).to receive(:perform_later).with(assigns_report, current_user)
-        subject
+      context 'report is enabled' do
+        it 'sets generating status' do
+          expect { subject }.to change { assigns_report.reload.generating? }.from(false).to(true)
+        end
+        it 'sends to generate report' do
+          expect(::Reports::ExportJob).to receive(:perform_later).with(assigns_report, current_user)
+          subject
+        end
+      end
+
+      context 'report is disabled' do
+        before(:each) { report.update_column(:disabled, true) }
+        it 'dont sets generating status' do
+          subject
+          expect(assigns_report.reload.generating?).to be_falsy
+        end
+        it 'dont sends to generate report' do
+          expect(::Reports::ExportJob).not_to receive(:perform_later).with(assigns_report, current_user)
+          subject
+        end
       end
     end
   end
