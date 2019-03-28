@@ -26,6 +26,8 @@ class AssignsReport < ApplicationRecord
   belongs_to :report, inverse_of: :assigns_reports
   has_many :license_usages, inverse_of: :assigns_report, autosave: true # on delete nullify
 
+  scope :active, -> { joins(:report).where.not(reports: { disabled: true }) }
+
   before_create :use_license
   after_commit ::Callbacks::Models::AssignsReports::UpdateOrRemoveReportsAccess.new
 

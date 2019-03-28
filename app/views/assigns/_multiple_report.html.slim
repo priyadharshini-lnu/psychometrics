@@ -16,7 +16,13 @@ tr
   - if index.zero?
     td.text-center.col-md-3.vertical_middle *{ rowspan: report.assigns_reports.size * 2  - 1 }
       - if report.show?
-        = link_to t('.results'), report_path(assigns_report.report), class: 'btn btn-info'
+        - if assigns_report.generating?
+          a.btn.btn-warning.disabled = t('.processing')
+        - else
+          = link_to t('.results'),
+                    assigns_report.pdf.url,
+                    class: 'btn btn-info',
+                    target: :_blank
 tr
   td colspan=3
     .panel-collapse.collapse  id="#{dom_id(assign)}-#{report.report_id}"
