@@ -30,10 +30,12 @@ class AssignsController < ApplicationController
 
   def index
     @reports_ids = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.ids
+
     @single_assigns = policy_scope(Assign).
                       includes(:single_reports, original_assign: [:single_reports]).
-                      joins("INNER JOIN \"assessments_clients\" ac ON  ac.\"assessment_id\" = \"assigns\".\"assessment_id\" AND ac.\"client_id\" = #{@current_project.id}").
-                      order("ac.position ASC").
+                      joining { original_assign.outer.membership.outer.client.outer }.
+                      joins('LEFT OUTER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id" AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
+                      order('assessments_clients.position ASC').
                       preload(:assessment)
 
     multiple_reports_ids = multiple_reports_ids(@reports_ids)
