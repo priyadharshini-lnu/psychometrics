@@ -1842,7 +1842,8 @@ CREATE TABLE public.reports_pages (
     "position" integer,
     deleted_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    display_logic jsonb
 );
 
 
@@ -4291,6 +4292,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190127164957'),
 ('20190210122115'),
 ('20190210123606'),
-('20190221202711');
-
-
+('20190221202711'),
+('20190312220042');
