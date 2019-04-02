@@ -7,7 +7,7 @@ services:
 cache:
   key: psychometrics-cache-key
   paths:
-  - vendor/ruby
+  - vendor/
 
 before_script:
   # install ssh-agent
@@ -23,7 +23,7 @@ before_script:
   - ssh-keyscan 'github.com' >> ~/.ssh/known_hosts
   - ssh-keyscan 'gitlab.com' >> ~/.ssh/known_hosts
   - export RAILS_ENV=test
-  - export REDIS_HOST=redis
+  - export REDIS_URL=redis://redis:6379/1
 
 test:
   script:
