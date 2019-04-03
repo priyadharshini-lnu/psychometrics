@@ -1,0 +1,15 @@
+en:
+  activemodel:
+    models:
+      datasheet: 'Datasheet Form'
+    attributes:
+      datasheet:
+        file: 'File (.xlsx)'
+    errors:
+      models:
+        datasheet:
+          attributes:
+            file:
+              invalid_format: 'Invalid format (.xlsx)'
+              no_email_column: 'File does not contain Email column'
+              email_duplicate: 'There are duplicates in Email column'

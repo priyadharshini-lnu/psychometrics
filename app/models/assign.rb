@@ -29,9 +29,8 @@ class Assign < ApplicationRecord
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_many :original_assigns, foreign_key: :project_assign_id, class_name: 'Assign'
 
-  has_many :assigns_reports # on delete cascade
-  has_many :enabled_assigns_reports, -> { includes(:report).where(reports: { disabled: false }) },
-           class_name: 'AssignsReport'
+  has_many :assigns_reports, inverse_of: :assign # on delete cascade
+  has_many :enabled_assigns_reports, -> { active }, class_name: 'AssignsReport'
   has_many :reports, through: :assigns_reports, dependent: :destroy
 
   has_many :multiple_reports, -> { multiple }, through: :assigns_reports, source: :report
@@ -185,6 +184,7 @@ class Assign < ApplicationRecord
     membership.update_column(:assigns_completed, completed)
   end
 
+  # TODO (atanych): should be refactored
   def set_project_assign
     return if project_membership.nil?
     project_assign = project_membership.assigns.where(assessment_id: assessment_id).take
@@ -210,7 +210,9 @@ class Assign < ApplicationRecord
   end
 
   def relevant_assessment
-    errors.add(:assessment) if membership.client.assessment_ids.exclude? assessment_id
+    # Skip validation if Client is Project and not end level
+    return if membership.client.project? && !membership.client.end_level?
+    errors.add(:assessment) if membership.client.assessment_ids.exclude?(assessment_id)
   end
 
   def relevant_reports

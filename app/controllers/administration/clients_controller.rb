@@ -1,8 +1,10 @@
+# frozen_string_literal: true
+
 module Administration
   class ClientsController < Administration::BaseController
     include Administration::Clients
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:show, :edit, :update, :destroy, :sidebar, :toggle_status, :copy, :archive]
+    before_action :set_resource, only: %i[show edit update destroy sidebar toggle_status copy archive]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
@@ -125,7 +127,7 @@ module Administration
 
     def resource_params
       params.require(:resource).permit(:name, :subdomain, :year, :number, :country, :type,
-                                       :account_manager_id, :project_manager_id, report_family_ids: [])
+                                       :account_manager_id, :project_manager_id)
     end
   end
 end

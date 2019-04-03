@@ -15,11 +15,11 @@ module Reports
     def factors
       if object.mindmill?
         external_assessment = Settings.mindmill.find { |a| a.id == object.mindmill_id }
-        return external_assessment.factors.map { |f| f.to_h.merge(name: Exports::External::MindmillExport::EXPORTING_FIELDS[f.id.to_sym])}
+        return external_assessment.factors.flatten
       end
       if object.hogan?
         external_assessment = Settings.hogan.find { |a| a.assessment_id == object.hogan_assessment_setting.hogan_assessment_id }
-        return external_assessment.factors.map(&:to_h)
+        return external_assessment.factors.flatten.map(&:to_h)
       end
       []
     end

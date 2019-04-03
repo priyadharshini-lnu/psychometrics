@@ -49,10 +49,3 @@ tr id=dom_id(resource)
               = link_to report.name,
                         administration_client_assessment_export_hogan_results_path(client, resource, format: 'xlsx',
                                                                                    report_id: report.id)
-    - if policy(:assessment_client).destroy?
-      = link_to administration_client_assessment_path(client, resource),
-                remote: true,
-                class: 'btn btn-default btn-rounded btn-sm',
-                method: 'delete',
-                data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
-        span.fa.fa-times

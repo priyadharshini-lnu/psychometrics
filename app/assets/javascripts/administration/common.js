@@ -6,6 +6,15 @@ $(function() {
     }
   });
 
+  // Show loading text on buttons which process send data
+  $(document).on('click', '[data-loading-text]', function () {
+    $(this).button('loading');
+  });
+
+  $(window).scroll(function(){
+    window.uiElements.sidebarPosition();
+  });
+
   $(document).on('ajax:beforeSend', function (e) {
     var panel = $(e.target).parents('.panel');
     panel_refresh(panel);
@@ -30,9 +39,12 @@ $(function() {
   });
 
   // Disabled button after submit
-  // $(document).on('click', '[type="submit"]', function () {
-  //   $(this).button('loading');
-  // })
+  $(document).on('click', '[data-loading-text]', function () {
+    $(this).button('loading');
+  });
+  $('[data-loading-text]').on('ajax:complete', function () {
+    $(this).button('reset');
+  });
 
   // Noty plugin settings
   $.noty.defaults.timeout = 4000;

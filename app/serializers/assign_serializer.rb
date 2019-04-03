@@ -62,8 +62,10 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   def data_sheet
-    {Field1: '5', Field2: 'MARKDOWN', Field3: 2}
-end
+    # TODO (atanych): this serialization can not be used for multi assigns (e.g. for 360)
+    row = DatasheetRow.joins(:datasheet).find_by(datasheets: {project_id: object.membership.client_id}, email: object.membership.user.email)
+    row&.data || {}
+  end
 
   def normalize_hogan_type(type)
     return 'Raw' if type == 'RAW'

@@ -9,7 +9,7 @@
           th = link_to_sort resource_class, :location, filter_form
         th width='1%' = link_to_sort resource_class, :year, filter_form
         - if current_user.is?(:superadmin)
-          th.report_family = t('.report_family')
+          th.report_family = t('.report_bundle')
           th.used_number = t('.used_license_number')
           th.overuse = t('.used_license_overuse_number')
           th.usage_percent = t('.usage_percent')

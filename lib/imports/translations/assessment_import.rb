@@ -12,7 +12,9 @@ module Imports
 
       validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                     'application/vnd.ms-excel',
-                                                    'text/csv'] }
+                                                    'text/csv',
+                                                    'application/octet-stream',
+                                                    'text/plain'] }
 
       def process!
         # Return error if form not valid

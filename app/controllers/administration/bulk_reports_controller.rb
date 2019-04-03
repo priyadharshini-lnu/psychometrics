@@ -51,9 +51,7 @@ module Administration
         client: client,
         report_ids: report_params[:ids].reject(&:blank?),
         start_date: report_params[:start_date],
-        end_date: report_params[:end_date],
-        scheme: request.scheme,
-        opts: { lang: user_locale }
+        end_date: report_params[:end_date]
       }
     end
 

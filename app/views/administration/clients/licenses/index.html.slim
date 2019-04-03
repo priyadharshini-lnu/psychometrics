@@ -1,0 +1,22 @@
+.row
+  .col-md-12
+    .panel.panel-default
+      .panel-heading
+        h3.panel-title = t('.title', client_name: client.decorate.display_name)
+        - if policy(:license).new?
+          .pull-right
+            = link_to new_administration_client_license_path(client_id: client.id), remote: true, class: 'btn btn-default'
+              span.fa.fa-plus
+              = t('.new')
+        = search_form_for(filter_form,
+                          url: { action: :index },
+                          html: { id: 'filter', class: 'list-filter' },
+                          builder: SimpleForm::FormBuilder) do |f|
+          = f.input :report_family_id_in,
+                    collection: @report_families.map { |report_family| [report_family.decorate.display_name, report_family.id] },
+                    input_html: { data: { live_search: true }, multiple: true, title: t('.report_family') },
+                    required: false,
+                    label: false
+      .panel-body
+        #filterrific_results
+          = render partial: 'list'

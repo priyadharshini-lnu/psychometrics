@@ -1,16 +1,19 @@
 module Errors
   class LicenseError < StandardError
-    attr_reader :client, :report
+    attr_reader :client, :report, :user
 
-    def initialize(client, report, msg = nil)
+    def initialize(client, report, user, msg = nil)
       @client = client
       @report = report
+      @user = user
+
       super(msg || default_message)
     end
 
     private
+
     def default_message
-      "Client <strong>#{client.decorate.display_name}</strong> has not enough licenses for <strong>#{report.decorate.display_name}</strong> report.".html_safe
+      "<b>#{user.decorate.display_name}</b> in <b>#{client.decorate.display_name}</b> has not enough licenses for <b>#{report.decorate.display_name}</b> report.".html_safe
     end
   end
 end

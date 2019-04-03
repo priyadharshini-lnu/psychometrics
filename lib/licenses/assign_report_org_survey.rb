@@ -1,28 +1,28 @@
 module Licenses
-  class AssignReportOrgSurvey
-    # licenseable - it's AssignReport
-    def self.use(licenseable)
-      membership = licenseable.assign.membership
-      report = licenseable.report
-      client = membership.client
-      client = client.client unless client.tenancy?
-      return if client.retail?
-      return if client.id == report.owner_id
+  class AssignReportOrgSurvey < AssignReportBase
 
+    private
+
+    def build_license
       # Get License by report family type
-      license = client.licenses.available.with_report_family(report.report_family_ids).take
+      licenses = fetch_licenses
 
-      # Return if report has already assigned
+      # Returns if report has already assigned
       report_ids = Membership.user_reports(client.descendants.ids).map(&:id)
-      return if license && report_ids.include?(report.id)
+      return if licenses && report_ids.include?(report.id)
+
+      # Returns if license was already used by another Report from Report Family
+      # TASK: gitlab.com/tte-lighthouse/psychometrics/issues/48
+      return if user.license_usages.where(license: licenses).exists?
+
+      # Detects first license which has enough free space
+      license = licenses.detect(&:enough_licenses?)
 
       # Add error to Assign if tenancy has no enough licenses
-      raise Errors::LicenseError.new(client, report) unless license&.enough_licenses?
-
-      return unless membership.excess_yti_eti?(report)
+      raise Errors::LicenseError.new(client, report, user) unless license
 
       # Build License Usage for save history of usage
-      licenseable.license_usages.build(license: license, client: membership.client)
+      licenseable.license_usages.build(license: license, client: client)
     end
   end
 end

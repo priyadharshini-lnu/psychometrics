@@ -131,6 +131,7 @@ class Membership < ApplicationRecord
   end
 
   # return true for new or overuse (:yti(:eti)) combinations
+  # TODO: remove it
   def excess_yti_eti?(report)
     return true if !report.yti_eti? || reports.empty?
     hash = reports.yti_eti.group(:type).count.transform_keys { |k| Report.types.key(k) }

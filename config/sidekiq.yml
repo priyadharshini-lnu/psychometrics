@@ -8,4 +8,5 @@ production:
 :queues:
   - mailers
   - communication
+  - reports
   - default

@@ -1,6 +1,7 @@
 domain: staging.tte-lighthouse.com # psychometrics.co.uk
 subdomain: staging # subdomain
 port: 80
+protocol: 'http'
 assigns:
   mindmill_prefix: TTESTAG
 hogan:

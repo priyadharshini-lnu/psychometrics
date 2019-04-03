@@ -49,10 +49,5 @@ module Features
     def current_membership
       @current_membership
     end
-
-    def set_host_by_client(client)
-      port = 31_338
-      Capybara.app_host = "http://#{client.subdomain}.lvh.me:#{port}"
-    end
   end
 end

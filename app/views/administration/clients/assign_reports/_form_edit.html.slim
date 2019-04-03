@@ -1,0 +1,48 @@
+= simple_form_for(resource, as: :resource, url: { action: :update }, method: :put, remote: true) do |f|
+  - @reports_assigned.each do |assigned_report|
+    = f.input_field :report_ids, value: assigned_report.id, as: :hidden, multiple: true
+  .modal-body
+    .form-inputs.clearfix
+      .form-group
+        = f.label :report_family_id
+        = f.input :report_family_id, as: :hidden
+        div = @report_family.name
+      table.table#reports
+        thead
+          tr
+            th = t('.reports')
+            th = t('.access')
+        tr
+          td = f.input :report_ids,
+                       as: :check_boxes,
+                       collection: @reports_assigned,
+                       label: false,
+                       include_hidden: false,
+                       disabled: true
+          td = f.input :user_access_report_ids,
+                       as: :check_boxes,
+                       collection: @reports_assigned,
+                       label: false,
+                       include_hidden: false,
+                       label_method: proc { t('.user_access') }
+        tr
+          td = f.input :report_ids,
+                       as: :check_boxes,
+                       collection: @reports,
+                       include_hidden: false,
+                       label: false
+          td = f.input :user_access_report_ids,
+                       as: :check_boxes,
+                       collection: @reports,
+                       include_hidden: false,
+                       label: false,
+                       label_method: proc { t('.user_access') }
+      br
+      = f.input :apply_to_existing_users, as: :boolean, hint: t('.apply_to_existing_users_hint')
+  .modal-footer
+    .btn-group
+      = button_tag t('administration.save'),
+                   type: 'submit',
+                   class: 'btn btn-default btn-info',
+                   data: { loading_text: t('loading') }
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'

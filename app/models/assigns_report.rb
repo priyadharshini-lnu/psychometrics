@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: assigns_reports
@@ -12,30 +14,35 @@
 
 class AssignsReport < ApplicationRecord
   LICENSES = {
-      Assessment::PSYCHOMETRIC => Licenses::AssignReportPsychometrics,
-      Assessment::ORGANISATIONAL => Licenses::AssignReportOrgSurvey,
-      Assessment::CASE_STUDY => Licenses::AssignReportCaseStudy,
-      Assessment::NUM_360 => Licenses::AssignReport_360_Feedback,
-      Assessment::MINDMILL => Licenses::AssignReportMindmill,
-      Assessment::HOGAN => Licenses::AssignReportHogan
+    Assessment::PSYCHOMETRIC    => Licenses::AssignReportPsychometrics,
+    Assessment::ORGANISATIONAL  => Licenses::AssignReportOrgSurvey,
+    Assessment::CASE_STUDY      => Licenses::AssignReportCaseStudy,
+    Assessment::NUM_360         => Licenses::AssignReport_360_Feedback,
+    Assessment::MINDMILL        => Licenses::AssignReportMindmill,
+    Assessment::HOGAN           => Licenses::AssignReportHogan
   }.freeze
-  belongs_to :assign
-  belongs_to :report
-  has_many :license_usages # on delete nullify
+
+  belongs_to :assign, inverse_of: :assigns_reports
+  belongs_to :report, inverse_of: :assigns_reports
+  has_many :license_usages, inverse_of: :assigns_report, autosave: true # on delete nullify
+
+  scope :active, -> { joins(:report).where.not(reports: { disabled: true }) }
 
   before_create :use_license
-  before_create :set_user_access
   after_commit ::Callbacks::Models::AssignsReports::UpdateOrRemoveReportsAccess.new
 
   mount_base64_uploader :external_report, FileUploader, file_name: proc { 'external_report' }
+  mount_uploader :pdf, PdfUploader
+
+  # TODO (atanych): temp hack
+  def status
+    return 'ready' if !generating? && pdf&.url
+    'not_ready'
+  end
 
   private
 
   def use_license
     LICENSES[assign.assessment.category].use(self)
-  end
-
-  def set_user_access
-    self.user_access = assign.user_access
   end
 end

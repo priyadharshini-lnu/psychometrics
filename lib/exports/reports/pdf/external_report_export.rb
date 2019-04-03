@@ -21,7 +21,7 @@ module Exports
           end
 
           def output_path(user, report, output_dir)
-            filename = "#{user.email}_#{report.decorate.display_name}_#{Date.today.strftime('%F')}.pdf"
+            filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
             output_path = File.join(output_dir, filename)
           end
 

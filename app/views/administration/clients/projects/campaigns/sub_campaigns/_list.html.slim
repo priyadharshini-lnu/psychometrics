@@ -3,7 +3,8 @@
     thead
       tr
         th = t('.header.name')
-        th = t('.header.tests_allocated')
+        th = t('.assessments')
+        th = t('.reports')
         th = t('.header.users')
         - if current_user.is?(:superadmin)
           th = t('.header.actual_usage')

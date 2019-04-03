@@ -2,12 +2,11 @@
   .modal-body
     = render_error_notification(resource)
     .form-inputs.clearfix
-      = f.simple_fields_for :user, f.object.user || User.new  do |u|
-        = u.input :email
-        = u.input :first_name
-        = u.input :last_name
+      = f.input :email
+      = f.input :first_name
+      = f.input :last_name
       = f.input :role, as: :select, label: t('simple_form.labels.membership.role'),
-              collection: [Membership::MANAGER_ROLE, Membership::MEMBER_ROLE],
+              collection: [Membership::MEMBER_ROLE, Membership::MANAGER_ROLE],
               class: 'form-control select mll',
               include_blank: false
       = f.input :parent_id,

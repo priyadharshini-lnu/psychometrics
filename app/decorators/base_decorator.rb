@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BaseDecorator < Draper::Decorator
   delegate_all
 
@@ -45,30 +47,30 @@ class BaseDecorator < Draper::Decorator
 
   def delete_confirmation
     {
-        title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.title", name: display_name),
-        body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.delete.body")
+      title: I18n.t("administration.#{i18n}.resource.confirmations.delete.title", name: display_name),
+      body: I18n.t("administration.#{i18n}.resource.confirmations.delete.body")
     }.to_json
   end
 
   def archive_confirmation
     {
-        title: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.title", name: display_name),
-        body: I18n.t("administration.#{object.class.model_name.plural}.resource.confirmations.archive.body")
+      title: I18n.t("administration.#{i18n}.resource.confirmations.archive.title", name: display_name),
+      body: I18n.t("administration.#{i18n}.resource.confirmations.archive.body")
     }.to_json
   end
 
   def toggle_status_confirmation
     status = object.disabled ? I18n.t('administration.enable') : I18n.t('administration.disable')
     {
-        title: I18n.t(
-            "administration.#{object.class.model_name.plural}.resource.confirmations.toggle_status.title",
-            status: status,
-            name: display_name
-        ),
-        body: I18n.t(
-            "administration.#{object.class.model_name.plural}.resource.confirmations.toggle_status.body",
-            status: status.downcase
-        )
+      title: I18n.t(
+        "administration.#{i18n}.resource.confirmations.toggle_status.title",
+        status: status,
+        name: display_name
+      ),
+      body: I18n.t(
+        "administration.#{i18n}.resource.confirmations.toggle_status.body",
+        status: status.downcase
+      )
     }.to_json
   end
 
@@ -86,5 +88,9 @@ class BaseDecorator < Draper::Decorator
 
   def modifier_name
     h.content_tag(:span, object.modifier&.decorate&.display_name, class: 'text-nowrap')
+  end
+
+  def i18n
+    object.class.model_name.plural
   end
 end

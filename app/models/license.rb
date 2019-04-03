@@ -23,14 +23,15 @@ class License < ApplicationRecord
   validates :overuse_number, :used_number,
             numericality: { greater_than_or_equal_to: 0 }
   validates :number, numericality: { greater_than_or_equal_to: 1 }
+  validates :number, numericality: { greater_than_or_equal_to: :used_number }, unless: :new_record?
   validates :report_family_id, presence: true
   validate :license_expire_validation
 
   scope :with_report_family, lambda { |report_family_id|
     where(report_family_id: report_family_id)
   }
-
-  scope :available, -> { where('end_date >= :date and start_date <= :date and number + overuse_number > used_number', date: Date.today) }
+  scope :active, -> { where(disabled: false) }
+  scope :available, -> { active.where('end_date >= :date and start_date <= :date and number + overuse_number > used_number', date: Date.today) }
 
   def used_overuse_number
     number >= used_number ? 0 : used_number - number
@@ -54,7 +55,9 @@ class License < ApplicationRecord
   end
 
   def used_by(client)
-    license_usages.where(client_id: client.subtree_ids).size
+    license_usages.joins(assigns_report: { assign: :membership }).
+                   where(assigns_report: { assign: { memberships: { client_id: [client.subtree_ids].flatten } } }).
+                   size
   end
 
   private

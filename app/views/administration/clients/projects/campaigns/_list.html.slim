@@ -5,13 +5,14 @@
       - if project.sub_campaign_level?
         tr
           th.text-center colspan='2' = t('.header.campaigns')
-          th.text-center colspan='5' = t('.header.sub_campaigns')
+          th.text-center colspan='6' = t('.header.sub_campaigns')
         tr
           th = t('.header.name')
           - if current_user.is?(:superadmin)
             th = t('.header.actual_usage')
           th = t('.header.name')
-          th = t('.header.tests_allocated')
+          th = t('.header.assessments')
+          th = t('.header.reports')
           th = t('.header.users')
           - if current_user.is?(:superadmin)
             th = t('.header.actual_usage')
@@ -19,17 +20,19 @@
       / campaign applicable level header
       - else
         tr
-          th.text-center colspan='4' = t('.header.campaigns')
+          th.text-center colspan='6' = t('.header.campaigns')
         tr
           th = t('.header.name')
-          th = t('.header.tests_allocated')
+          th = t('.header.assessments')
+          th = t('.header.reports')
           th = t('.header.users')
           - if current_user.is?(:superadmin)
             th = t('.header.actual_usage')
+          th width='1%' = t('administration.actions')
     tbody
       - if resources.present?
         = render partial: 'resource', collection: resources
       - else
         tr.no_records
-          td align='center' colspan='9' = t('administration.no_data_found')
+          td align='center' colspan='10' = t('administration.no_data_found')
   = paginate resources, theme: 'twitter-bootstrap-3'

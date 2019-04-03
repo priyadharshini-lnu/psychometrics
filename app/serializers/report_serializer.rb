@@ -13,7 +13,7 @@
 
 class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations, :props,
-             :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_schema
+             :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns
 
   has_many :pages, serializer: Reports::PageSerializer
   has_many :filters, serializer: Reports::FilterSerializer
@@ -84,9 +84,5 @@ class ReportSerializer < ActiveModel::Serializer
   #
   def data_configuration
     object.data_configuration.to_yaml
-  end
-
-  def data_sheet_schema
-    [{name: "Field1", type: "Number"}, {name: "Field2", type: "Markdown"}, {name: "Field3", type: "Number"}]
   end
 end

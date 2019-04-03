@@ -101,6 +101,7 @@ class User < ApplicationRecord
 
   belongs_to :creator, foreign_key: :created_by_id, class_name: 'User'
   belongs_to :modifier, foreign_key: :modified_by_id, class_name: 'User'
+  belongs_to :project, class_name: 'Client'
   has_many :memberships, inverse_of: :user # on delete cascade
   has_many :clients, through: :memberships
   has_many :ttes, through: :clients
@@ -110,6 +111,8 @@ class User < ApplicationRecord
   has_many :client_admin_clients, -> { where(memberships: { role: Membership::CLIENT_ADMIN_ROLE }) }, through: :memberships, source: 'client'
   has_many :client_admin_clients_ttes, through: :client_admin_clients, source: 'tte', class_name: 'Client'
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
+  has_many :license_usages, inverse_of: :user
+  has_many :api_keys, inverse_of: :user
 
   accepts_nested_attributes_for :memberships
 
@@ -234,13 +237,6 @@ class User < ApplicationRecord
   end
 
   class << self
-    def by_spoof_token(token)
-      return nil if token.blank?
-      user = User.where(spoof_token: token).take
-      user.update_column(:spoof_token, nil) if user
-      user
-    end
-
     # White list scopes for Ransack
     def ransackable_scopes(_auth_object = nil)
       [:hris_data_cont, :role_scope_in]
