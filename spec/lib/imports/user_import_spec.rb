@@ -30,7 +30,7 @@ RSpec.describe Imports::UserImport do
     headers + body
   end
   let(:open_spreadsheet) do
-    OpenStruct.new(parse: parsed_array)
+    OpenStruct.new(to_a: parsed_array)
   end
   let(:existing_users) do
     [
