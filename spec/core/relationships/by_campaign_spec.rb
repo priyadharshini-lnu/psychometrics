@@ -14,7 +14,7 @@ describe Relationships::ByCampaign do
     end
 
     it do
-      relationships = described_class.new([campaign]).to_a
+      relationships = described_class.new(campaign).to_a
       expect(relationships.map(&:name)).to match_array %w[manager peer]
     end
   end

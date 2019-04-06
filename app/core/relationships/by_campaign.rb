@@ -1,15 +1,15 @@
 module Relationships
   class ByCampaign < Rectify::Query
-    def initialize(campaigns)
-      @campaigns = campaigns
+    def initialize(campaign)
+      @campaign = campaign
     end
 
     def query
-      Relationship.where(type: :global).or(Relationship.where(campaign_id: campaigns.map(&:id)))
+      Relationship.where(type: :global).or(campaign.relationships)
     end
 
     private
 
-    attr_reader :campaigns
+    attr_reader :campaign
   end
 end
