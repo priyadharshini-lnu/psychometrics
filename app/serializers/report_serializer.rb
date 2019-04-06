@@ -13,7 +13,7 @@
 
 class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations, :props,
-             :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns
+             :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships
 
   has_many :pages, serializer: Reports::PageSerializer
   has_many :filters, serializer: Reports::FilterSerializer
@@ -76,5 +76,12 @@ class ReportSerializer < ActiveModel::Serializer
   #
   def data_configuration
     object.data_configuration.to_yaml
+  end
+
+  def relationships
+    return [] unless object.threesixty?
+
+    campaigns = Campaign.joins(:threesixty_campaign).where(threesixty_campaigns: { report_id: object.id }).all
+    Relationships::ByCampaign.new(campaigns).map { |r| RelationshipSerializer.new(r).to_h }
   end
 end

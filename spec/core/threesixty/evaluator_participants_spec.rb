@@ -16,7 +16,7 @@ describe Threesixty::EvaluatorParticipants do
 
     it do
       results = described_class.new(subject).query
-      expect(results.map(&:evaluator_id)).to eq [evaluator_1.id, evaluator_2.id] || [evaluator_2.id, evaluator_1.id]
+      expect(results.map(&:evaluator_id)).to match_array [evaluator_1.id, evaluator_2.id]
     end
   end
 end
