@@ -20,16 +20,11 @@
 #
 
 class AssignSerializer < ActiveModel::Serializer
-  attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id, :relationship,
+  attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
              :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet
 
-  attribute :agile_scoring, if: -> { object.membership_id == @instance_options[:membership].try(:id) }
 
   has_one :user, serializer: UserSerializer
-
-  def relationship
-    object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship if @instance_options[:membership]
-  end
 
   def hris
     object.membership.hris
