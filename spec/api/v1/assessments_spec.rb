@@ -3,7 +3,7 @@ require 'swagger_helper'
 
 describe 'Assessments' do
   let!(:membership) { create(:client_admin_membership) }
-  let(:campaign) { create(:campaign, parent: project) }
+  let(:campaign) { create(:client_campaign, parent: project) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:user) { create(:user, project: project) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
