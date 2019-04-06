@@ -17,7 +17,7 @@ class AssignsReport < ApplicationRecord
     Assessment::PSYCHOMETRIC    => Licenses::AssignReportPsychometrics,
     Assessment::ORGANISATIONAL  => Licenses::AssignReportOrgSurvey,
     Assessment::CASE_STUDY      => Licenses::AssignReportCaseStudy,
-    Assessment::NUM_360         => Licenses::AssignReport_360_Feedback,
+    Assessment::THREESIXTY      => Licenses::AssignReport_360_Feedback,
     Assessment::MINDMILL        => Licenses::AssignReportMindmill,
     Assessment::HOGAN           => Licenses::AssignReportHogan
   }.freeze

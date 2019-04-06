@@ -21,7 +21,7 @@
 
 class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
-             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet
+             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet, :relationship
 
 
   has_one :user, serializer: UserSerializer
@@ -32,6 +32,15 @@ class AssignSerializer < ActiveModel::Serializer
 
   def user_id
     object.membership.user_id
+  end
+
+  def relationship
+    return nil unless @instance_options[:participants_map]
+
+    participant = @instance_options[:participants_map][object.evaluator_id]
+    return nil unless participant
+
+    participant.relationship.name
   end
 
   def hash_id

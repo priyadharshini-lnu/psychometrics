@@ -145,6 +145,10 @@ class Report < ApplicationRecord
     (data_configuration['sections'] || []).flat_map { |section| section['data'] || [] }
   end
 
+  def threesixty?
+    single? && assessments.first.threesixty?
+  end
+
   private
 
   def max_assessments_count
