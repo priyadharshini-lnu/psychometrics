@@ -44,7 +44,7 @@ describe Reports::PrepareDataForReport do
     let(:evaluator_3) { create(:campaigns_user) }
 
     before do
-      allow_any_instance_of(Report).to receive(:threesixty?).and_return(true)
+      allow_any_instance_of(Report).to receive(:category_threesixty?).and_return(true)
       create(:participant, subject: subject.campaigns_user, evaluator: evaluator_1, relationship: manager)
       create(:participant, subject: subject.campaigns_user, evaluator: evaluator_2, relationship: peer)
       create(:participant, evaluator: evaluator_3, relationship: customer)

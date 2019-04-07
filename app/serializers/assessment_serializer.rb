@@ -38,7 +38,7 @@ class AssessmentSerializer < ActiveModel::Serializer
   def data_sheet_columns
     return [] unless object.threesixty?
 
-    Datasheet.find_by(project_id: connected_campaign.project_id).normalize_columns
+    Datasheet.find_by(project_id: connected_campaign.project_id)&.normalize_columns || []
   end
 
   def relationships

@@ -13,7 +13,8 @@
 
 class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations, :props,
-             :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships
+             :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
+             :category
 
   has_many :pages, serializer: Reports::PageSerializer
   has_many :filters, serializer: Reports::FilterSerializer
@@ -73,9 +74,9 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def data_sheet_columns
-    return object.data_sheet_columns unless object.threesixty?
+    return object.data_sheet_columns unless object.category_threesixty?
 
-    Datasheet.find_by(project_id: connected_campaign.project_id).normalize_columns
+    Datasheet.find_by(project_id: connected_campaign.project_id)&.normalize_columns || []
   end
 
   # Returns YAML rules for exporting data.
@@ -85,7 +86,7 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def relationships
-    return [] unless object.threesixty?
+    return [] unless object.category_threesixty?
 
     Relationships::ByCampaign.new(connected_campaign).map { |r| RelationshipSerializer.new(r).to_h }
   end

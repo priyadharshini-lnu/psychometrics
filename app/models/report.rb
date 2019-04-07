@@ -66,6 +66,7 @@ class Report < ApplicationRecord
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
 
   enum type: TYPES
+  enum category: { common: 0, threesixty: 1 }, _prefix: :category
   store :extra, accessors: [:icon_color], coder: JsonSerializer
 
   mount_uploader :icon, ImageUploader
@@ -143,10 +144,6 @@ class Report < ApplicationRecord
 
   def flat_data_configuration
     (data_configuration['sections'] || []).flat_map { |section| section['data'] || [] }
-  end
-
-  def threesixty?
-    single? && assessments.first.threesixty?
   end
 
   private

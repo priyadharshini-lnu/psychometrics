@@ -28,7 +28,7 @@ module Reports
     end
 
     def lookup_results
-      if report.threesixty?
+      if report.category_threesixty?
         participants = Threesixty::EvaluatorParticipants.new(subject).query
         participants_map = participants.index_by(&:evaluator_id)
         # TODO: (atanych): Replace completed status with relevant
