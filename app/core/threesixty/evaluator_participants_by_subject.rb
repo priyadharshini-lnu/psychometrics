@@ -1,5 +1,5 @@
 module Threesixty
-  class EvaluatorParticipants < Rectify::Query
+  class EvaluatorParticipantsBySubject < Rectify::Query
     def initialize(subject)
       @subject = subject
     end

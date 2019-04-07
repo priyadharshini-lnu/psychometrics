@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-describe Threesixty::EvaluatorParticipants do
+describe Threesixty::EvaluatorParticipantsBySubject do
 
   describe '.call' do
     let(:subject) { create(:threesixty_subject) }
