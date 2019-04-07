@@ -2,8 +2,8 @@ require 'simplecov'
 require 'rspec/retry'
 require 'rails_helper'
 
-if ENV['CIRCLE_ARTIFACTS']
-  dir = File.join(ENV['CIRCLE_ARTIFACTS'], "coverage")
+if ENV['CI_PROJECT_DIR']
+  dir = File.join(ENV['CI_PROJECT_DIR'], "coverage")
   SimpleCov.coverage_dir(dir)
 end
 SimpleCov.start 'rails'

@@ -37,3 +37,6 @@ test:
   - bundle exec rake db:structure:load
   - bundle exec rspec
   - pkill Xvfb
+  artifacts:
+    paths:
+    - coverage
