@@ -23,6 +23,8 @@ class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
              :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet, :relationship
 
+  attribute :relationship, if: -> { object.assessment.threesixty? }
+
   has_one :user, serializer: UserSerializer
 
   def user_id
@@ -30,12 +32,15 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   def relationship
-    return nil unless @instance_options[:participants_map]
+    participant =
+      # For multi assigns we should pass participant map in order to avoid N+1 queries
+      if @instance_options[:participants_map]
+        @instance_options[:participants_map][object.evaluator_id]
+      else
+        Participant.find_by(evaluator_id: object.evaluator_id, subject_id: object.subject_id)
+      end
 
-    participant = @instance_options[:participants_map][object.evaluator_id]
-    return nil unless participant
-
-    participant.relationship.name
+    participant&.relationship&.name
   end
 
   def hash_id
@@ -62,6 +67,7 @@ class AssignSerializer < ActiveModel::Serializer
 
   def data_sheet
     row =
+      # For multi assigns we should pass data sheet map in order to avoid N+1 queries
       if @instance_options[:data_sheet_map]
         @instance_options[:data_sheet_map][object.evaluator.email]
       else

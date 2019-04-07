@@ -40,14 +40,14 @@ module Reports
         # TODO: (atanych): Replace completed status with relevant
         Assign.completed.
           where(evaluator_id: participants.map(&:evaluator_id)).
-          includes(:evaluator).
+          includes(:evaluator, :assessment).
           map do |assign|
           ::AssignSerializer.new(assign, participants_map: participants_map, data_sheet_map: data_sheet_map)
         end
       else
         Assign.
           completed.
-          includes(:membership, :user).
+          includes(:membership, :user, :assessment).
           where(
             memberships: { client_id: project.id, user_id: membership.user_id },
             assessment_id: report.assessment_ids
