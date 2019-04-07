@@ -96,4 +96,8 @@ class AssignsController < ApplicationController
   def multiple_reports_ids(reports_ids)
     Report.multiple.where(id: reports_ids).ids
   end
+
+  def current_campaigns_user
+    CampaignsUser.find_by(user_id: @current_membership.user_id, campaign: params[:campaign_id])
+  end
 end

@@ -24,8 +24,8 @@
 class Assign < ApplicationRecord
   belongs_to :assessment
   belongs_to :membership, inverse_of: :assigns
-  belongs_to :evaluator, class_name: 'CampaignsUser'
-  belongs_to :subject, class_name: 'CampaignsUser'
+  belongs_to :evaluator, class_name: 'User'
+  belongs_to :subject, class_name: 'User'
   has_one :user, through: :membership
   belongs_to :project_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'

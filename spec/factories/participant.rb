@@ -1,6 +1,6 @@
 FactoryGirl.define do
   factory :participant do
     campaign
-    evaluator { create(:campaigns_user) }
+    evaluator { create(:user) }
   end
 end

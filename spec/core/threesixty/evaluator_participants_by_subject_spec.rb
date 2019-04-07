@@ -4,13 +4,13 @@ describe Threesixty::EvaluatorParticipantsBySubject do
 
   describe '.call' do
     let(:subject) { create(:threesixty_subject) }
-    let(:evaluator_1) { create(:campaigns_user) }
-    let(:evaluator_2) { create(:campaigns_user) }
-    let(:evaluator_3) { create(:campaigns_user) }
+    let(:evaluator_1) { create(:user) }
+    let(:evaluator_2) { create(:user) }
+    let(:evaluator_3) { create(:user) }
 
     before do
-      create(:participant, subject: subject.campaigns_user, evaluator: evaluator_1)
-      create(:participant, subject: subject.campaigns_user, evaluator: evaluator_2)
+      create(:participant, subject: subject.user, evaluator: evaluator_1)
+      create(:participant, subject: subject.user, evaluator: evaluator_2)
       create(:participant, evaluator: evaluator_3)
     end
 

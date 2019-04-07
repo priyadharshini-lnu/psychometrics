@@ -2,7 +2,7 @@
 
 FactoryGirl.define do
   factory :threesixty_subject, class: 'Threesixty::Subject' do
-    campaigns_user
+    user
     campaign
   end
 end

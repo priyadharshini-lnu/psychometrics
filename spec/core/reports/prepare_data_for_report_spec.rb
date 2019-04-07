@@ -39,14 +39,14 @@ describe Reports::PrepareDataForReport do
     let(:manager) { create(:relationship, name: 'manager') }
     let(:peer) { create(:relationship, name: 'peer') }
     let(:customer) { create(:relationship, name: 'customer') }
-    let(:evaluator_1) { create(:campaigns_user) }
-    let(:evaluator_2) { create(:campaigns_user) }
-    let(:evaluator_3) { create(:campaigns_user) }
+    let(:evaluator_1) { create(:user) }
+    let(:evaluator_2) { create(:user) }
+    let(:evaluator_3) { create(:user) }
 
     before do
       allow_any_instance_of(Report).to receive(:category_threesixty?).and_return(true)
-      create(:participant, subject: subject.campaigns_user, evaluator: evaluator_1, relationship: manager)
-      create(:participant, subject: subject.campaigns_user, evaluator: evaluator_2, relationship: peer)
+      create(:participant, subject: subject.user, evaluator: evaluator_1, relationship: manager)
+      create(:participant, subject: subject.user, evaluator: evaluator_2, relationship: peer)
       create(:participant, evaluator: evaluator_3, relationship: customer)
       create(:assign, evaluator: evaluator_1, status: :completed)
       create(:assign, evaluator: evaluator_2, status: :completed)
