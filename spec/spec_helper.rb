@@ -6,7 +6,9 @@ if ENV['CI_PROJECT_DIR']
   dir = File.join(ENV['CI_PROJECT_DIR'], "coverage")
   SimpleCov.coverage_dir(dir)
 end
-SimpleCov.start 'rails'
+SimpleCov.start 'rails'do
+  add_filter 'vendor'
+end
 # See http://rubydoc.info/gems/rspec-core/RSpec/Core/Configuration
 require 'capybara/rspec'
 require 'support/mailer_macros'
