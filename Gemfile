@@ -94,7 +94,6 @@ gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails', '~> 0.4.0'
 gem 'roo', '~> 2.8.2'
 
-gem 'i18n-tasks', '~> 0.9.5'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
 gem 'acts_as_list', '~> 0.8.1'
@@ -103,6 +102,8 @@ gem 'acts_as_list', '~> 0.8.1'
 gem 'paranoia', '~> 2.4'
 gem 'active_model_serializers', '~> 0.10.0'
 gem 'airbrake', '~> 5.0'
+gem 'sentry-raven', '~> 2.9.0'
+
 
 # DSL for activerecord
 gem 'baby_squeel', '~> 1.3.1'
@@ -165,6 +166,8 @@ group :development, :test do
   # A fake data generator
   ### Generate schema in each model
   gem 'rswag-specs', '~> 2.0.5'
+  gem 'derailed_benchmarks'
+  gem 'stackprof'
 end
 
 group :development do
@@ -187,6 +190,7 @@ group :development do
   gem 'guard'
   gem 'rubocop', require: false
   gem 'meta_request'
+  gem 'i18n-tasks', '~> 0.9.5'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

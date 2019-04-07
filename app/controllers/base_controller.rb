@@ -7,6 +7,7 @@ class BaseController < ActionController::Base
 
   prepend_before_action :authenticate_user!
   before_action :detect_mobile
+  before_action :set_raven_context
 
   rescue_from Rack::Timeout::RequestTimeoutException, with: :timeout
 
@@ -23,5 +24,9 @@ class BaseController < ActionController::Base
 
   def remove_cookie_for_file_download
     cookies.delete(:fileDownload)
+  end
+  def set_raven_context
+    Raven.user_context(id: current_user&.id) # or anything else in session
+    Raven.extra_context(params: params.to_unsafe_h, url: request.url)
   end
 end
