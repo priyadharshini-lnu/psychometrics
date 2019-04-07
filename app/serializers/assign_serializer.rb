@@ -21,17 +21,12 @@
 
 class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
-             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet, :relationship
-
+             :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet, :relationship
 
   has_one :user, serializer: UserSerializer
 
-  def hris
-    object.membership.hris
-  end
-
   def user_id
-    object.membership.user_id
+    object.evaluator_id || object.membership.user_id
   end
 
   def relationship
@@ -66,8 +61,13 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   def data_sheet
-    # TODO (atanych): this serialization can not be used for multi assigns (e.g. for 360)
-    row = DatasheetRow.joins(:datasheet).find_by(datasheets: {project_id: object.membership.client_id}, email: object.membership.user.email)
+    row =
+      if @instance_options[:data_sheet_map]
+        @instance_options[:data_sheet_map][object.evaluator.email]
+      else
+        DatasheetRow.joins(:datasheet).
+          find_by(datasheets: { project_id: object.membership.client_id }, email: object.membership.user.email)
+      end
     row&.data || {}
   end
 

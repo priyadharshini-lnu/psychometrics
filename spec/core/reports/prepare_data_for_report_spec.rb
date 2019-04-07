@@ -4,9 +4,9 @@ require 'rails_helper'
 
 describe Reports::PrepareDataForReport do
   let!(:assessment) { create(:assessment, :with_report, name: 'first assessment') }
+  let(:project) { create(:project) }
 
   describe '.call' do
-    let(:project) { create(:project) }
     let(:campaign) { create(:campaign) }
     let(:user) { create(:user, email: 'a@a.com') }
     let!(:membership) { create(:membership, user: user, client: project) }
@@ -55,6 +55,7 @@ describe Reports::PrepareDataForReport do
 
     it do
       args = {
+        project: project,
         subject: subject,
         report: assessment.reports.first
       }

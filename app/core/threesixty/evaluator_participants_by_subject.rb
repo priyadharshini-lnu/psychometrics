@@ -6,7 +6,7 @@ module Threesixty
 
     def query
       # TODO (atanych): should be used statuses
-      Participant.where(subject_id: subject.user_id).includes(:relationship)
+      Participant.where(subject_id: subject.user_id).includes(:evaluator, :relationship)
     end
 
     private
