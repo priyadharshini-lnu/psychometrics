@@ -5,7 +5,7 @@
       - if @single_assigns.blank? && @multiple_assigns_reports.blank?
         p = t('administration.no_data_found')
       - if @single_assigns.present?
-        - @single_assigns.group_by { |assign| assign.assessment.decorate.dashboard_category }.each do |dashboard_category, assigns|
+        - @single_assigns.order(id: :asc).group_by { |assign| assign.assessment.decorate.dashboard_category }.each do |dashboard_category, assigns|
           h3.assessmentTitles = t("activerecord.attributes.assessment.categories.#{dashboard_category}")
           .panel-group.assessments-holder id="assessments-#{dashboard_category}" role="tablist" aria-multiselectable="true"
             - assigns.each do |assign|
