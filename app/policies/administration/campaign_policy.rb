@@ -46,12 +46,12 @@ module Administration
       true
     end
 
-    def edit?
-      record.active? && super
+    def dimensions?
+      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
     end
 
-    def copy?
-      record.active? && super
+    def factors?
+      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
     end
 
     def archive?

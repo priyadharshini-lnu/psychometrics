@@ -38,20 +38,12 @@ module Administration
       record.prime_project? && @user.is?(:superadmin, :client_admin)
     end
 
-    def dimensions?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
-    end
-
-    def factors?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
-    end
-
     def show?
       true
     end
 
     def edit?
-      record.active? && super
+      super
     end
 
     def copy?

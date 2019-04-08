@@ -17,8 +17,8 @@ module Administration
       def create
         campaign = Campaign.new(campaign_params)
         campaign.project_id = client.id
+        campaign.build_threesixty_campaign(threesixty_campaign_params)
         campaign.save
-        super
       end
 
       def dimensions
@@ -53,11 +53,20 @@ module Administration
       end
 
       def campaign_params
-        params.permit(:name)
+        params.require(:resource).permit(:name)
       end
 
-      def threesixty_params
-        params.permit(:assessment_id, :report_id, threesixty_campaign: {})
+      def threesixty_campaign_params
+        params.require(:resource).require(:threesixty_campaign).permit(:assessment_id)
+      end
+
+
+      def set_resource_class
+        @_resource_class ||= ::Campaign
+      end
+
+      def set_resource
+        @_resource = policy_scope(resource_class).find(params[:threesixty_campaign_id])
       end
     end
   end
