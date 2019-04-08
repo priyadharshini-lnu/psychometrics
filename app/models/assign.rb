@@ -113,8 +113,8 @@ class Assign < ApplicationRecord
     self.agile_scoring = {}
 
     factors_scoring_map.each do |factor_id, scoring_array|
-      self.scoring[factor_id] = { results: [] }
-      self.agile_scoring[factor_id] = { results: [] }
+      self.scoring[factor_id.to_s] = { 'results' => [] }
+      self.agile_scoring[factor_id.to_s] = { 'results' => [] }
       scoring_array.each do |question_scoring|
         question = questions_map[question_scoring.question_id].try(:first)
         scoring_class = "Scoring::#{question.try(:type)}"
@@ -124,9 +124,9 @@ class Assign < ApplicationRecord
           # type 'PickGroupRank' is used for agile methodology
           # for common scoring we need to skip this type
           if question.try(:type) == 'PickGroupRank'
-            self.agile_scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
+            self.agile_scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point } if scoring_point
           else
-            self.scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
+            self.scoring[factor_id.to_s]['results'] << { 'question_id' => question.id, 'value' => scoring_point } if scoring_point
           end
         end
       end

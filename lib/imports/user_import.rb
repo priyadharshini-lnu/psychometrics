@@ -84,7 +84,7 @@ module Imports
       raise 'Invalid client' unless client
 
       # Parse header of xls/csv by strict rules
-      rows = open_spreadsheet.parse
+      rows = open_spreadsheet.to_a
       header = rows.shift
 
       rows.map do |row|

@@ -48,7 +48,7 @@ module Imports
       #
       def load_imported_items
         # Parse header of xls/csv by strict rules
-        rows = open_spreadsheet.parse
+        rows = open_spreadsheet.to_a
         header = rows.shift.map { |h| h.to_s.tr(' ', '').underscore }
 
         # Remove support row
@@ -118,7 +118,10 @@ module Imports
             new_results[qid] = parsed_value if parsed_value
           end
           assign.results = new_results
-          assign.calculate_scoring if assign.completed?
+          if assign.completed?
+            assign.calculate_scoring
+            assign.occupations = Assigns::CalculateOccupations.call!(assign)
+          end
           assign
         end
 
@@ -139,7 +142,7 @@ module Imports
       private
 
       def find_or_create_user(data, index)
-        last_name, first_name = data['name'].split(', ')
+        last_name, first_name = data['name']&.split(', ')
         # TODO: Remove password and uncommit Invite
         user = User.
                create_with({
