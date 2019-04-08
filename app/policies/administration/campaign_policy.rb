@@ -1,5 +1,5 @@
 module Administration
-  class ClientPolicy < Administration::BasePolicy
+  class CampaignPolicy < Administration::BasePolicy
     def index?
       @user.is?(:superadmin, :client_admin, :project_admin)
     end
@@ -12,7 +12,11 @@ module Administration
       @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
     end
 
-    def manage_campaign?
+    def dimensions?
+      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
+    end
+
+    def manage_threesixty?
       return true if @user.is?(:superadmin)
       return true if (@user.is?(:client_admin, :project_admin) && @user.has_grant?(:clients, :manage))
       false
@@ -36,14 +40,6 @@ module Administration
 
     def project_admins?
       record.prime_project? && @user.is?(:superadmin, :client_admin)
-    end
-
-    def dimensions?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
-    end
-
-    def factors?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
     end
 
     def show?
@@ -85,12 +81,7 @@ module Administration
     class Scope < Scope
       def resolve
         return scope if @user.is?(:superadmin)
-        # collect ancestors + self + descendants matching (id | id/* | */id | */id/*) pattern
-        clients_scope = @user.is?(:client_admin) ? @user.client_admin_clients : @user.project_admin_clients
-        clients = clients_scope.not_retails.select(:id, :ancestry)
-        client_ids, ancestors = clients.map { |c| [c.id, c.ancestry] }.transpose
-        ancestor_ids = ancestors.compact.map { |path| path.split('/').map(&:to_i) }.flatten.uniq
-        scope.where("id in (?) or ancestry ~ ?", ancestor_ids + client_ids, "(^|\\D)(#{client_ids.join('|')})(/|$)")
+        scope
       end
     end
   end

@@ -1,0 +1,53 @@
+= simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, remote: true, html: { id: 'threesixty_campaign' }) do |f|
+  .modal-body
+    = f.error_notification
+    .form-inputs.clearfix
+      = f.input :name
+      = f.fields_for :threesixty_campaign do |ff|
+        = ff.input :assessment_id, as: :select, collection: Assessment.where(category: Assessment.categories['360']).map { |a| [a.decorate.name, a.id] }
+        #dimentions_field
+          = ff.input :dimension_id, as: :select, collection: Dimension.all.map { |d| [d.decorate.name, d.id] }
+          #factors_field
+            = ff.input :factors, as: :select, collection: [], input_html: { multiple: true }
+
+
+  .modal-footer
+    .btn-group
+      = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+
+javascript:
+  $(function () {
+    function fetchFactors (dimention) {
+      var url = $('#threesixty_campaign').attr('action') + '/factors?dimension_id=' + dimention
+
+      $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'script',
+      });
+    }
+
+    function dimensionHandler () {
+      $('#threesixty_campaign #resource_threesixty_campaign_dimension_id').change(function(){
+        var dimention = $(this).find('option:selected').attr('value')
+        fetchFactors(dimention)
+      })
+    }
+
+    $('#threesixty_campaign #resource_threesixty_campaign_assessment_id').change(function(){
+
+      var assessment = $(this).find('option:selected').attr('value')
+      var url = $('#threesixty_campaign').attr('action') + '/dimensions?assessment_id=' + assessment
+
+      $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'script',
+        complete: function () {
+          dimensionHandler()
+        }
+      });
+    })
+    dimensionHandler()
+  })

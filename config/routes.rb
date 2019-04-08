@@ -150,6 +150,13 @@ Rails.application.routes.draw do
         end
         resources :campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
         resources :sub_campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
+        resources :threesixty_campaigns, concerns: :client_editable, only: [:index, :new, :create, :edit, :update, :destroy] do
+          get :sidebar
+          collection do
+            get :dimensions
+            get :factors
+          end
+        end
 
         resources :licenses, only: %i[index show new create edit update] do
           patch :toggle_status, on: :member

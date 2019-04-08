@@ -1,0 +1,5 @@
+.form-group.select
+  = label_tag 'resource[threesixty_campaign][dimension_id]', 'Dimentions', class: 'control-label select required'
+  = select_tag 'resource[threesixty_campaign][dimension_id]', options_from_collection_for_select(@dimensions, 'id', 'name', @dimension.id), class: 'form-control select'
+#factors_field
+  = render partial: 'factors', locals: {factors: @dimension ? @dimension.factors : []}

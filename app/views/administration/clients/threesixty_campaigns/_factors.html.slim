@@ -1,0 +1,3 @@
+.form-group.select
+  = label_tag 'resource[threesixty_campaign][factors][]', 'Factors', class: 'control-label select required'
+  = select_tag 'resource[threesixty_campaign][factors][]', options_from_collection_for_select(factors, 'id', 'name'), class: 'form-control select', multiple: true
