@@ -1,6 +1,9 @@
 require 'simplecov'
 require 'rspec/retry'
 require 'rails_helper'
+require 'coveralls'
+
+Coveralls.wear!('rails')
 
 if ENV['CI_PROJECT_DIR']
   dir = File.join(ENV['CI_PROJECT_DIR'], "coverage")

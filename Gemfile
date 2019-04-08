@@ -206,4 +206,5 @@ group :test do
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'timecop', '~> 0.9.1'
   gem 'rswag-specs', '~> 2.0.5'
+  gem 'coveralls', require: false
 end
