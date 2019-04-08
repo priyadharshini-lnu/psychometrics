@@ -34,7 +34,7 @@ module Reports
         participants_map = participants.index_by(&:evaluator_id)
         data_sheet_map = DatasheetRow.
           joins(:datasheet).
-          where(datasheets: { project_id: project.id }, email: participants.map { |p| p.evaluator.email }).
+          where(datasheets: { project_id: project.id }, email: participants.map(&:evaluator_email)).
           index_by(&:email)
 
         # TODO: (atanych): Replace completed status with relevant
