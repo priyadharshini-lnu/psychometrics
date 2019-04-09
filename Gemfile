@@ -154,6 +154,7 @@ gem 'js-routes', '~> 1.4.4'
 # swagger
 gem 'rswag-api', '~> 2.0.5'
 gem 'rswag-ui', '~> 2.0.5'
+gem 'tty-progressbar', '~> 0.16.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

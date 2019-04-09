@@ -2,7 +2,6 @@ module Assigns
   class CalculateOccupations < BaseCommand
     def initialize(assign)
       @assign = assign
-      @occupations_scope = assign.assessment.dimension.occupations.includes(occupations_factors: :factor)
     end
 
     def call
@@ -11,10 +10,14 @@ module Assigns
 
     private
 
-    attr_reader :assign, :occupations_scope
+    attr_reader :assign
 
     def calculate_occupations
-      occupations_scope.each_with_object([]) do |occupation, mem|
+      assign.assessment&.
+             dimension&.
+             occupations&.
+             includes(occupations_factors: :factor)&.
+             each_with_object([]) do |occupation, mem|
         # Fetchs a valid factor ids
         valid_factor_ids = []
         occupation.occupations_factors.each do |occupations_factor|
