@@ -94,7 +94,7 @@ gem 'axlsx', git: 'git@github.com:randym/axlsx', ref: 'c8ac844'
 gem 'axlsx_rails', '~> 0.4.0'
 gem 'roo', '~> 2.8.2'
 
-gem 'i18n-tasks', '~> 0.9.5'
+gem 'i18n-tasks', '~> 0.9.25'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
 gem 'acts_as_list', '~> 0.8.1'
@@ -181,7 +181,7 @@ group :development do
   gem 'capistrano-nc', '~> 0.2', require: false
   gem 'capistrano-npm', '~> 1.0', '>= 1.0.2'
   gem 'guard'
-  gem 'rubocop', require: false
+  gem 'rubocop', '~> 0.67.2', require: false
   gem 'meta_request'
 end
 group :test do

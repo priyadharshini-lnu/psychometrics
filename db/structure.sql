@@ -233,9 +233,9 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
+    campaign_id bigint,
     evaluator_id bigint,
-    subject_id bigint,
-    campaign_id bigint
+    subject_id bigint
 );
 
 
@@ -406,9 +406,9 @@ ALTER SEQUENCE public.campaigns_id_seq OWNED BY public.campaigns.id;
 CREATE TABLE public.campaigns_users (
     id bigint NOT NULL,
     campaign_id bigint,
-    users_id bigint,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    user_id bigint
 );
 
 
@@ -1537,12 +1537,12 @@ CREATE TABLE public.participants (
     project_id bigint,
     campaign_id bigint,
     relationship_id bigint,
-    subject_id bigint,
-    evaluator_id bigint,
     manager_status integer,
     evaluator_status integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    subject_id bigint,
+    evaluator_id bigint
 );
 
 
@@ -1866,7 +1866,8 @@ CREATE TABLE public.reports (
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
     props jsonb DEFAULT '{}'::jsonb NOT NULL,
-    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL
+    data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
+    category integer DEFAULT 0
 );
 
 
@@ -2144,6 +2145,38 @@ CREATE SEQUENCE public.threesixty_options_id_seq
 --
 
 ALTER SEQUENCE public.threesixty_options_id_seq OWNED BY public.threesixty_options.id;
+
+
+--
+-- Name: threesixty_subjects; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.threesixty_subjects (
+    id bigint NOT NULL,
+    campaign_id bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    user_id bigint
+);
+
+
+--
+-- Name: threesixty_subjects_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.threesixty_subjects_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: threesixty_subjects_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.threesixty_subjects_id_seq OWNED BY public.threesixty_subjects.id;
 
 
 --
@@ -2642,6 +2675,13 @@ ALTER TABLE ONLY public.threesixty_options ALTER COLUMN id SET DEFAULT nextval('
 
 
 --
+-- Name: threesixty_subjects id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_subjects ALTER COLUMN id SET DEFAULT nextval('public.threesixty_subjects_id_seq'::regclass);
+
+
+--
 -- Name: translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3128,6 +3168,14 @@ ALTER TABLE ONLY public.threesixty_options
 
 
 --
+-- Name: threesixty_subjects threesixty_subjects_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_subjects
+    ADD CONSTRAINT threesixty_subjects_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: translations translations_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3284,10 +3332,10 @@ CREATE INDEX index_campaigns_users_on_campaign_id ON public.campaigns_users USIN
 
 
 --
--- Name: index_campaigns_users_on_users_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_campaigns_users_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE INDEX index_campaigns_users_on_users_id ON public.campaigns_users USING btree (users_id);
+CREATE INDEX index_campaigns_users_on_user_id ON public.campaigns_users USING btree (user_id);
 
 
 --
@@ -3963,6 +4011,20 @@ CREATE INDEX index_threesixty_options_on_threesixty_campaign_id ON public.threes
 
 
 --
+-- Name: index_threesixty_subjects_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_subjects_on_campaign_id ON public.threesixty_subjects USING btree (campaign_id);
+
+
+--
+-- Name: index_threesixty_subjects_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_threesixty_subjects_on_user_id ON public.threesixty_subjects USING btree (user_id);
+
+
+--
 -- Name: index_translations_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4053,6 +4115,14 @@ ALTER TABLE ONLY public.communications
 
 ALTER TABLE ONLY public.threesixty_options
     ADD CONSTRAINT fk_rails_0437d1f6f7 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: campaigns_users fk_rails_056e63be0f; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.campaigns_users
+    ADD CONSTRAINT fk_rails_056e63be0f FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
 --
@@ -4212,7 +4282,7 @@ ALTER TABLE ONLY public.clients
 --
 
 ALTER TABLE ONLY public.participants
-    ADD CONSTRAINT fk_rails_60c2fd6734 FOREIGN KEY (subject_id) REFERENCES public.campaigns_users(id) ON DELETE RESTRICT;
+    ADD CONSTRAINT fk_rails_60c2fd6734 FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
 --
@@ -4292,7 +4362,7 @@ ALTER TABLE ONLY public.comments
 --
 
 ALTER TABLE ONLY public.assigns
-    ADD CONSTRAINT fk_rails_8538dc1cd7 FOREIGN KEY (subject_id) REFERENCES public.campaigns_users(id) ON DELETE RESTRICT;
+    ADD CONSTRAINT fk_rails_8538dc1cd7 FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
 --
@@ -4332,7 +4402,7 @@ ALTER TABLE ONLY public.hogan_credentials
 --
 
 ALTER TABLE ONLY public.participants
-    ADD CONSTRAINT fk_rails_8c39407ad4 FOREIGN KEY (evaluator_id) REFERENCES public.campaigns_users(id) ON DELETE RESTRICT;
+    ADD CONSTRAINT fk_rails_8c39407ad4 FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
 --
@@ -4472,14 +4542,6 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
--- Name: campaigns_users fk_rails_c2521b2786; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.campaigns_users
-    ADD CONSTRAINT fk_rails_c2521b2786 FOREIGN KEY (users_id) REFERENCES public.users(id) ON DELETE RESTRICT;
-
-
---
 -- Name: assessments_clients fk_rails_cc339dda78; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4576,11 +4638,27 @@ ALTER TABLE ONLY public.hogan_report_settings
 
 
 --
+-- Name: threesixty_subjects fk_rails_d91185866e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_subjects
+    ADD CONSTRAINT fk_rails_d91185866e FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: assessments_reports fk_rails_df744d4dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.assessments_reports
     ADD CONSTRAINT fk_rails_df744d4dd0 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE CASCADE;
+
+
+--
+-- Name: threesixty_subjects fk_rails_e425b52825; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_subjects
+    ADD CONSTRAINT fk_rails_e425b52825 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
 
 
 --
@@ -4668,7 +4746,7 @@ ALTER TABLE ONLY public.clients
 --
 
 ALTER TABLE ONLY public.assigns
-    ADD CONSTRAINT fk_rails_f9a46f0162 FOREIGN KEY (evaluator_id) REFERENCES public.campaigns_users(id) ON DELETE RESTRICT;
+    ADD CONSTRAINT fk_rails_f9a46f0162 FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
 --
@@ -4900,6 +4978,10 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190303082715'),
 ('20190304063803'),
 ('20190315160908'),
-('20190331125508');
+('20190331125508'),
+('20190406093054'),
+('20190406205517'),
+('20190407085318'),
+('20190407142655');
 
 

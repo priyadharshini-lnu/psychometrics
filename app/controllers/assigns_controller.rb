@@ -48,6 +48,7 @@ class AssignsController < ApplicationController
 
   def pass
     @assign.in_progress!
+    @threesixty_subject = @assign.threesixty? ? @assign.threesixty_subject : nil
     @available_translations = ::Translation.available_translation_for_assessment(@assign.assessment_id)
     if params[:lang] && (@available_translations + [I18n.default_locale.to_s]).include?(params[:lang])
       @assign.update(selected_locale: params[:lang])
@@ -95,5 +96,9 @@ class AssignsController < ApplicationController
 
   def multiple_reports_ids(reports_ids)
     Report.multiple.where(id: reports_ids).ids
+  end
+
+  def current_campaigns_user
+    CampaignsUser.find_by(user_id: @current_membership.user_id, campaign: params[:campaign_id])
   end
 end

@@ -5,7 +5,7 @@ require 'swagger_helper'
 describe 'Users' do
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
-  let(:campaign) { create(:campaign, parent: project) }
+  let(:campaign) { create(:client_campaign, parent: project) }
   let(:user) { create(:user, project: project) }
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }

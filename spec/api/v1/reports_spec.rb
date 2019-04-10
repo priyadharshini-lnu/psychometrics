@@ -4,7 +4,7 @@ require 'swagger_helper'
 
 describe 'Reports' do
   let!(:membership) { create(:client_admin_membership) }
-  let(:campaign) { create(:campaign, parent: project) }
+  let(:campaign) { create(:client_campaign, parent: project) }
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
   let!(:project) { create(:project, parent: membership.client) }
   let(:user) { create(:user, project: project) }

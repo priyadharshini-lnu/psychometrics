@@ -18,7 +18,8 @@
 #
 
 class AssessmentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id, :enable_back, :enable_progress
+  attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id,
+             :enable_back, :enable_progress, :data_sheet_columns, :relationships
 
   has_many :blocks, serializer: BlockSerializer do
     object.blocks.
@@ -32,5 +33,21 @@ class AssessmentSerializer < ActiveModel::Serializer
 
   def factors
     object.dimension.all_factors.map { |factor| Factors::WithoutSubFactorsSerializer.new(factor).to_hash }
+  end
+
+  def data_sheet_columns
+    return [] unless object.threesixty?
+
+    Datasheet.find_by(project_id: connected_campaign.project_id)&.normalize_columns || []
+  end
+
+  def relationships
+    return [] unless object.threesixty?
+
+    Relationships::ByCampaign.new(connected_campaign).map { |r| RelationshipSerializer.new(r).to_h }
+  end
+
+  def connected_campaign
+    @connected_campaign ||= Campaign.joins(:threesixty_campaign).find_by(threesixty_campaigns: { assessment_id: object.id })
   end
 end
