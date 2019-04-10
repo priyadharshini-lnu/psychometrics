@@ -15,9 +15,9 @@ describe ReportSerializer do
 
     before do
       allow_any_instance_of(Report).to receive(:category_threesixty?).and_return(true)
-      create(:relationship, name: 'manager', type: :global)
-      create(:relationship, name: 'peer', type: :campaign, campaign: campaign)
-      create(:relationship, name: 'self', type: :campaign, campaign: another_campaign)
+      create(:relationship, id: 1001, name: 'manager', type: :global)
+      create(:relationship, id: 1002, name: 'peer', type: :campaign, campaign: campaign)
+      create(:relationship, id: 1003, name: 'self', type: :campaign, campaign: another_campaign)
 
       create(:threesixty_campaign, report: create(:report))
     end
@@ -25,8 +25,8 @@ describe ReportSerializer do
     it do
       relationships = described_class.new(report).relationships
       expect(relationships).to match_array [
-        { type: 'global', name: 'manager' },
-        { type: 'campaign', name: 'peer' }
+        { id: 1001, type: 'global', name: 'manager' },
+        { id: 1002, type: 'campaign', name: 'peer' }
       ]
     end
   end
