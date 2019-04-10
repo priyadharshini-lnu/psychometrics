@@ -505,6 +505,7 @@ GEM
     rails-assets-js-cookie (2.1.3)
     rails-assets-ladda (1.0.5)
       rails-assets-spin.js (~> 2.0.2)
+    rails-assets-lodash (4.17.11)
     rails-assets-moment (2.19.3)
     rails-assets-moment-timezone (0.5.14)
       rails-assets-moment (>= 2.9.0)
@@ -832,6 +833,7 @@ DEPENDENCIES
   rails-assets-jquery.fileDownload (= 1.4.2)!
   rails-assets-js-cookie (= 2.1.3)!
   rails-assets-ladda (= 1.0.5)!
+  rails-assets-lodash!
   rails-assets-moment (= 2.19.3)!
   rails-assets-moment-timezone (= 0.5.14)!
   rails-assets-multiselect (= 0.9.12)!

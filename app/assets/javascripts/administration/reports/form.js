@@ -19,13 +19,11 @@ function ReportsForm () {
 
   this.onResourceAssessmentChange = function(event) {
     var toggleVisibility = function(options, name) {
-
-      var allSameType = options.size() > 0
-      options.each(function(index) {
-        allSameType = allSameType & $(this).data(name);
+      var allSameType = _.every(options, function(option) {
+        return $(option).data(name)
       });
 
-      if(allSameType) {
+      if(allSameType && !_.isEmpty(options)) {
         $('#reports_form .resource_' + name).removeClass('hidden').find(":input").removeAttr('disabled').removeClass('disabled')
       } else {
         $('#reports_form .resource_' + name).addClass('hidden').find(":input").attr('disabled')
@@ -33,6 +31,7 @@ function ReportsForm () {
     }
 
     var options = $('option:selected', this);
+
     toggleVisibility(options, 'mindmill');
     toggleVisibility(options, 'hogan');
   }

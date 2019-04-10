@@ -63,5 +63,6 @@
 //= require moment
 //= require moment-timezone
 //= require bootstrap-datetimepicker-3
+//= require lodash
 
 //= require_tree ./administration

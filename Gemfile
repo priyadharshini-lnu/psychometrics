@@ -32,6 +32,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-moment', '2.19.3'
   gem 'rails-assets-moment-timezone', '0.5.14'
   gem 'rails-assets-Sortable', '1.6.0'
+  gem 'rails-assets-lodash'
 end
 
 ### Authentication and authorization
