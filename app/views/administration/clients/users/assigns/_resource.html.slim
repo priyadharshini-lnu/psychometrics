@@ -32,12 +32,11 @@ tr id=dom_id(resource)
             - if report.mindmill?
               = link_to resource.assign_with_result.mindmill_report.url, link_options
                 span.fa.fa-pie-chart
-            - elsif report.assessment.hogan?
-              - if report.hogan_report_setting&.load_report?
-                - url = resource.assigns_reports.find_by(report: report).external_report.url
-                - if url
-                  = link_to url, link_options
-                    span.fa.fa-pie-chart
+            - elsif report.assessment.hogan? && report.hogan_report_setting
+              - url = resource.assigns_reports.find_by(report: report).external_report.url
+              - if url
+                = link_to url, link_options
+                  span.fa.fa-pie-chart
             // Render blank link if
             - elsif assigns_report.generating?
               .btn.btn-default.btn-rounded.btn-sm.disabled data-toggle='tooltip' data-title=t('.generating', name: report.name)

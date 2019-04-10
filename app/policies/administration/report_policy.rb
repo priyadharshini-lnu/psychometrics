@@ -8,7 +8,8 @@ module Administration
     # true if it's not Mindmill report
     #   and user is Superadmin or user has grants
     def show?
-      super || @user.has_grant?(:reports, :view)
+      @record.hogan_report_setting.blank? &&
+        (super || @user.has_grant?(:reports, :view))
     end
 
     def create?

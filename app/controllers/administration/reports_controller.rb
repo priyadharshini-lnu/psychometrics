@@ -58,10 +58,14 @@ module Administration
     end
 
     def hogan_reports
-      assessment_id = params[:assessment_id].split(',').first
-      hogan_assessment_id = Assessment.hogan.find_by(id: assessment_id)&.hogan_assessment_setting&.hogan_assessment_id
-      @reports = hogan_assessment_id ? Settings.hogan.find { |s| s.assessment_id == hogan_assessment_id }.reports : []
-
+      assessment_ids = params[:assessment_ids].to_s.split(',').compact
+      hogan_assessment_ids = HoganAssessmentSetting.
+                             where(assessment_id: assessment_ids).
+                             pluck(:hogan_assessment_id).
+                             uniq
+      @reports = hogan_assessment_ids ?
+                   Settings.providers.hogan.reports.select { |report| report[:assessment_ids].to_set == hogan_assessment_ids.to_set } :
+                   []
       respond_to do |format|
         format.json
       end
@@ -157,7 +161,7 @@ module Administration
     def resource_params
       report_params = params.require(:resource).permit(:name, :type, :owner_id, :mindmill, :icon, :icon_color, :props,
                                                        :remove_icon, :default_language, report_family_ids: [], assessment_ids: [],
-                                       hogan_report_setting_attributes: %i[id hogan_report_id load_report])
+                                       hogan_report_setting_attributes: %i[id hogan_report_id])
       # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids are empty and causes errors
       # Does this need a better fix?
       report_params = report_params.except(:assessment_ids) if report_params.has_key?(:assessment_ids) && report_params[:assessment_ids].reject(&:empty?).empty?
