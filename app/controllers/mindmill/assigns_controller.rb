@@ -4,6 +4,7 @@ class Mindmill::AssignsController < ApplicationController
   layout false
 
   def pass
+    redirect_back(fallback_location: root_path, success: t('mindmill.assigns.results.successfully')) && return if @assign.completed?
     mindmill = Api::Mindmill.new(@assign, @current_membership, user_locale)
     mindmill.assign_user
     redirect_back(fallback_location: root_path, error: t('errors.error_500')) && return unless mindmill.ssourl
@@ -23,20 +24,21 @@ class Mindmill::AssignsController < ApplicationController
   end
 
   def results
+    redirect_to(root_path, success: t('.successfully')) && return if @assign.completed?
     mindmill = Api::Mindmill.new(@assign, @current_membership, user_locale)
     mindmill.load_scores
     mindmill.load_results
-    redirect_back(fallback_location: root_path, error: t('.not_completed')) && return unless mindmill.report && mindmill.scores
+    redirect_to(root_path, error: t('.not_completed')) && return unless mindmill.report && mindmill.scores
     report = "data:application/pdf;base64,#{mindmill.report}"
     normalised_scores = Imports::External::BaseExternalImport.build(:mindmill).process(mindmill.scores, @assign)
     @assign.update(mindmill_report: report, external_results: normalised_scores, status: :completed, completed_at: Time.current)
-    redirect_back(fallback_location: root_path, success: t('.successfully'))
+    redirect_to(root_path, success: t('.successfully'))
   end
 
   private
 
   def set_assign
-    @assign = policy_scope(Assign).where.not(status: :completed).find(params[:id])
+    @assign = policy_scope(Assign).find(params[:id])
   end
 
   # Authorisation user
