@@ -30,6 +30,7 @@ class UpdateAssign < Rectify::Command
     # Calculates scoring and sets time of completion
     if assign.completed?
       assign.calculate_scoring
+      assign.occupations = Assigns::CalculateOccupations.call!(assign)
       assign.completed_at = Time.now
     end
 
@@ -39,8 +40,12 @@ class UpdateAssign < Rectify::Command
   # Sends to generate PDF report
   #
   def generate_report
-    assign.original_or_self.assigns_reports.update_all(generating: true)
-    assign.original_or_self.assigns_reports.each do |assigns_report|
+    # Gets a list of enabled assigns reports
+    enabled_assigns_reports = assign.original_or_self.enabled_assigns_reports
+
+    # Sets status to generating and sends to generate report
+    AssignsReport.where(id: enabled_assigns_reports.map(&:id)).update_all(generating: true)
+    enabled_assigns_reports.each do |assigns_report|
       ::Reports::ExportJob.perform_later(assigns_report, current_user)
     end
   end

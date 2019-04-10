@@ -1,0 +1,742 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "Psychometric API",
+    "description": "It used for external systems",
+    "termsOfService": "http://xxx.psy.io/terms/",
+    "version": "1.0.0"
+  },
+  "host": "lvh.me:3030",
+  "schemes": [
+    "http",
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "paths": {
+    "/api/v1/projects/{project_id}/users/{user_id}/assessments": {
+      "get": {
+        "tags": [
+          "Assessments"
+        ],
+        "summary": "Get the list of assessments",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 7,
+                  "name": "Super Assessment",
+                  "status": "not_started",
+                  "created_at": "2018-09-15T10:31:42.000+04:00",
+                  "updated_at": "2018-09-15T10:31:42.000+04:00"
+                }
+              ]
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "X-Api-Key": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/projects/{project_id}/campaigns/{campaign_id}/duplicate": {
+      "post": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Creates a copy of the campaign without users",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "name",
+            "in": "formData",
+            "description": "New Campaign's name",
+            "required": false,
+            "type": "string",
+            "example": "Promotion"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": {
+                "id": 7,
+                "name": "Promotion",
+                "created_at": "2018-09-15T10:31:42.000+04:00",
+                "updated_at": "2018-09-15T10:31:42.000+04:00"
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "X-Api-Key": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/campaigns": {
+      "get": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Get user campaigns",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 1111,
+                  "name": "Super campaign",
+                  "created_at": "2018-09-15T10:31:42.000+04:00",
+                  "updated_at": "2018-09-15T10:31:42.000+04:00"
+                }
+              ]
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "X-Api-Key": [
+
+            ]
+          }
+        ]
+      },
+      "post": {
+        "tags": [
+          "Campaigns"
+        ],
+        "summary": "Adds user to new campaigns",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "campaign_ids",
+            "in": "formData",
+            "description": "Array of campaign ids",
+            "required": false,
+            "type": "array",
+            "items": {
+              "type": "integer"
+            },
+            "example": [
+              10,
+              11
+            ]
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": {
+                "id": 11,
+                "first_name": "test",
+                "last_name": "test",
+                "email": "user+11@example.com",
+                "created_at": "2018-09-15T10:31:42.000+04:00",
+                "updated_at": "2018-09-15T10:31:42.000+04:00",
+                "campaign_ids": [
+                  10,
+                  11
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "X-Api-Key": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/reports": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Get user reports",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 7,
+                  "name": "report 7",
+                  "status": "will_be_added_later",
+                  "assessments": [
+                    {
+                      "id": 37,
+                      "name": "Super Assessment",
+                      "status": "not_started",
+                      "created_at": "2018-09-15T10:31:42.000+04:00",
+                      "updated_at": "2018-09-15T10:31:42.000+04:00"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "X-Api-Key": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/reports/{report_id}/results": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Get user results",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": [
+
+              ]
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "X-Api-Key": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/reports/{report_id}/pdf": {
+      "get": {
+        "tags": [
+          "Reports"
+        ],
+        "summary": "Get user report PDF",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "...",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": {
+                "url": null,
+                "status": "not_ready"
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "X-Api-Key": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/projects/{project_id}/users": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Adds a new user to the project",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "required": [
+                "email"
+              ],
+              "type": "object",
+              "properties": {
+                "first_name": {
+                  "type": "string",
+                  "example": "Max",
+                  "description": "First Name of new user"
+                },
+                "last_name": {
+                  "type": "string",
+                  "example": "Holloway",
+                  "description": "Last Name of new user"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "max@example.com",
+                  "description": "Email of new user"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "password",
+                  "description": "Password for new user"
+                },
+                "campaign_ids": {
+                  "type": "array",
+                  "example": [
+                    25
+                  ],
+                  "description": "Array of campaign ids",
+                  "items": {
+                    "type": "integer"
+                  }
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Getting a list of orders",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": {
+                "id": 31,
+                "first_name": "Max",
+                "last_name": "Holloway",
+                "email": "max@example.com",
+                "created_at": "2018-09-15T10:31:42.000+04:00",
+                "updated_at": "2018-09-15T10:31:42.000+04:00",
+                "campaign_ids": [
+                  25
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "X-Api-Key": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}": {
+      "put": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Updates user details",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "description": "",
+            "required": false,
+            "schema": {
+              "type": "object",
+              "properties": {
+                "first_name": {
+                  "type": "string",
+                  "example": "Brian",
+                  "description": "First Name"
+                },
+                "last_name": {
+                  "type": "string",
+                  "example": "Ortega",
+                  "description": "Last Name"
+                },
+                "email": {
+                  "type": "string",
+                  "example": "ortega@example.com",
+                  "description": "Email"
+                },
+                "password": {
+                  "type": "string",
+                  "example": "password",
+                  "description": "Password"
+                }
+              }
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update the user",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": {
+                "id": 35,
+                "first_name": "Brian",
+                "last_name": "Ortega",
+                "email": "ortega@example.com",
+                "created_at": "2018-09-15T10:31:42.000+04:00",
+                "updated_at": "2018-09-15T10:31:42.000+04:00",
+                "campaign_ids": [
+
+                ]
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "X-Api-Key": [
+
+            ]
+          }
+        ]
+      }
+    },
+    "/api/v1/projects/{project_id}/users/{user_id}/sso": {
+      "post": {
+        "tags": [
+          "Users"
+        ],
+        "summary": "Creates a new authenticated login URL",
+        "description": "",
+        "consumes": [
+          "application/json"
+        ],
+        "produces": [
+          "application/json"
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "required": true,
+            "type": "integer"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "200",
+            "schema": {
+              "type": "object",
+              "properties": {
+              }
+            },
+            "headers": {
+            },
+            "examples": {
+              "application/json": {
+                "expires_at": "2018-09-15T10:01:42.000+03:00",
+                "url": "http://test-10.lvh.me/sso/39/XDQmtop2XYhVt7ANGB8tcdewOtQ"
+              }
+            }
+          }
+        },
+        "deprecated": false,
+        "security": [
+          {
+            "X-Api-Key": [
+
+            ]
+          }
+        ]
+      }
+    }
+  },
+  "securityDefinitions": {
+    "X-Api-Key": {
+      "type": "apiKey",
+      "name": "X-Api-Key",
+      "in": "header"
+    }
+  },
+  "tags": [
+    {
+      "name": "Assessments",
+      "description": "Assessments within particular user and project"
+    },
+    {
+      "name": "Campaigns",
+      "description": "Campaigns"
+    },
+    {
+      "name": "Reports",
+      "description": "Reports within particular user and project"
+    },
+    {
+      "name": "Users",
+      "description": "Add / update users"
+    }
+  ]
+}

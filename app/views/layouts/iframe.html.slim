@@ -1,0 +1,19 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    title = Settings.project_name
+    = csrf_meta_tags
+    = jquery_include_tag :google
+    = stylesheet_link_tag 'iframe', media: 'all'
+    = javascript_include_tag 'application_new'
+  body#user data-locale="#{selected_locale}" class=('mobile-device' if browser.device.mobile?)
+    #modal-container
+    .banner
+    .container-fluid.mainContent
+      .row
+        .col-xs-12.col-md-8.col-md-offset-2
+          == flash_messages
+      = yield

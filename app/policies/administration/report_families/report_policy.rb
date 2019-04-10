@@ -1,6 +1,6 @@
 module Administration
   module ReportFamilies
-    class ReportPolicy < ReportPolicy
+    class ReportPolicy < Administration::ReportPolicy
       def create?
         @user.is?(:superadmin)
       end

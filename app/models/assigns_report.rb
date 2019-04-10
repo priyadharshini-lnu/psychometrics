@@ -17,7 +17,7 @@ class AssignsReport < ApplicationRecord
     Assessment::PSYCHOMETRIC    => Licenses::AssignReportPsychometrics,
     Assessment::ORGANISATIONAL  => Licenses::AssignReportOrgSurvey,
     Assessment::CASE_STUDY      => Licenses::AssignReportCaseStudy,
-    Assessment::NUM_360         => Licenses::AssignReport_360_Feedback,
+    Assessment::THREESIXTY      => Licenses::AssignReport_360_Feedback,
     Assessment::MINDMILL        => Licenses::AssignReportMindmill,
     Assessment::HOGAN           => Licenses::AssignReportHogan
   }.freeze
@@ -26,11 +26,19 @@ class AssignsReport < ApplicationRecord
   belongs_to :report, inverse_of: :assigns_reports
   has_many :license_usages, inverse_of: :assigns_report, autosave: true # on delete nullify
 
+  scope :active, -> { joins(:report).where.not(reports: { disabled: true }) }
+
   before_create :use_license
   after_commit ::Callbacks::Models::AssignsReports::UpdateOrRemoveReportsAccess.new
 
   mount_base64_uploader :external_report, FileUploader, file_name: proc { 'external_report' }
   mount_uploader :pdf, PdfUploader
+
+  # TODO (atanych): temp hack
+  def status
+    return 'ready' if !generating? && pdf&.url
+    'not_ready'
+  end
 
   private
 

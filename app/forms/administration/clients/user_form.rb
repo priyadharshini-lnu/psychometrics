@@ -45,6 +45,10 @@ module Administration
         "#{first_name} #{last_name}"
       end
 
+      def campaign_ids
+        []
+      end
+
       protected
 
       # Try to find existing user by email

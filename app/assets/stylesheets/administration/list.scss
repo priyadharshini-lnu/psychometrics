@@ -5,6 +5,7 @@ table.list { margin-bottom: 0;
   tbody.active { background: #f5f5f5; }
   tbody .fa { margin-right: 0; }
   .nowrap { white-space: nowrap; }
+  .minimal { width: 1%; white-space: nowrap; }
   .sorting a,
   .sorting_asc a,
   .sorting_desc a { color: inherit; display: block; }

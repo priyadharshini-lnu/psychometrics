@@ -22,8 +22,6 @@
 #
 
 class AssignsController < ApplicationController
-  layout 'users_new'
-
   before_action :set_assign, only: %i[pass update]
   append_before_action :pundit_authorize
 
@@ -32,10 +30,12 @@ class AssignsController < ApplicationController
 
   def index
     @reports_ids = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.ids
+
     @single_assigns = policy_scope(Assign).
                       includes(:single_reports, original_assign: [:single_reports]).
-                      joins("INNER JOIN \"assessments_clients\" ac ON  ac.\"assessment_id\" = \"assigns\".\"assessment_id\" AND ac.\"client_id\" = #{@current_project.id}").
-                      order("ac.position ASC").
+                      joining { original_assign.outer.membership.outer.client.outer }.
+                      joins('LEFT OUTER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id" AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
+                      order('assessments_clients.position ASC').
                       preload(:assessment)
 
     multiple_reports_ids = multiple_reports_ids(@reports_ids)
@@ -48,6 +48,7 @@ class AssignsController < ApplicationController
 
   def pass
     @assign.in_progress!
+    @threesixty_subject = @assign.threesixty? ? @assign.threesixty_subject : nil
     @available_translations = ::Translation.available_translation_for_assessment(@assign.assessment_id)
     if params[:lang] && (@available_translations + [I18n.default_locale.to_s]).include?(params[:lang])
       @assign.update(selected_locale: params[:lang])
@@ -95,5 +96,9 @@ class AssignsController < ApplicationController
 
   def multiple_reports_ids(reports_ids)
     Report.multiple.where(id: reports_ids).ids
+  end
+
+  def current_campaigns_user
+    CampaignsUser.find_by(user_id: @current_membership.user_id, campaign: params[:campaign_id])
   end
 end

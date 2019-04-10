@@ -1,5 +1,6 @@
 require 'simplecov'
 require 'rspec/retry'
+require 'rails_helper'
 
 if ENV['CIRCLE_ARTIFACTS']
   dir = File.join(ENV['CIRCLE_ARTIFACTS'], "coverage")

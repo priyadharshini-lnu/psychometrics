@@ -45,8 +45,8 @@ module Administration
                      with_context(client: client)
         respond_to do |format|
           format.js do
-            CreateUser.call(resource, client, current_user) do
-              on(:invalid) { render(:new, locals: { is_new: true }) }
+            CreateUser.call(resource, [client], current_user) do
+              on(:invalid, :license_error) { render(:new, locals: { is_new: true }) }
             end
           end
         end

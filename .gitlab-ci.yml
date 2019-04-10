@@ -23,6 +23,7 @@ before_script:
   - ssh-keyscan 'github.com' >> ~/.ssh/known_hosts
   - ssh-keyscan 'gitlab.com' >> ~/.ssh/known_hosts
   - export RAILS_ENV=test
+  - export REDIS_HOST=redis
 
 test:
   script:

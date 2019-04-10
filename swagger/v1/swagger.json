@@ -1,0 +1,1089 @@
+{
+  "swagger": "2.0",
+  "info": {
+    "title": "TTE Lighthouse API",
+    "version": "1.0.0",
+    "x-logo": {
+      "url": "https://tte-static.s3.amazonaws.com/brand/lighthouse/TTE_Lighthouse_Logo.svg",
+      "backgroundColor": "#FFFFFF",
+      "altText": "Lighthouse"
+    },
+    "description": "## Introduction\nLighthouse REST API enables TTE customers to integrate Lighthouse with their portal.\n## API Integration\nLighthouse can be integrated with many environments and programming languages via our REST API.\n\n## Authentication\nBasic Auth is used to make API calls. \n\n## User Single Sign-on\nSingle Sign-on is achieved via calling the sso endpoint and redirecting the user to the URL returned in the response."
+  },
+  "securityDefinitions": {
+    "basic": {
+      "type": "basic"
+    }
+  },
+  "paths": {
+    "/projects/{project_id}/users/{user_id}/assessments": {
+      "get": {
+        "summary": "Get user assessments",
+        "operationId": "GetUserAssessments",
+        "description": "List of assessments currently assigned to the user",
+        "tags": [
+          "Assessments"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Assessments presented",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserAssessment"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": "11234",
+                  "name": "Assessment 1",
+                  "status": "completed",
+                  "started_at": "2019-03-04T15:47:33.570+04:00",
+                  "completed_at": "2019-03-04T15:47:33.570+04:00"
+                },
+                {
+                  "id": "11235",
+                  "name": "Assessment 2",
+                  "status": "completed",
+                  "started_at": "2019-03-04T15:47:33.570+04:00",
+                  "completed_at": "2019-03-04T15:47:33.570+04:00"
+                },
+                {
+                  "id": "11236",
+                  "name": "Assessment 3",
+                  "status": "completed",
+                  "started_at": "2019-03-04T15:47:33.570+04:00",
+                  "completed_at": "2019-03-04T15:47:33.570+04:00"
+                }
+              ]
+            }
+          },
+          "401": {
+            "description": "We are disabled",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 1000,
+                "message": "Invalid authentication",
+                "more_info": "User for api token is disabled"
+              }
+            }
+          },
+          "404": {
+            "description": "User is not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 4000,
+                "message": "Resource not found",
+                "more_info": "User with id=111 is not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/campaigns/{campaign_id}/duplicate": {
+      "post": {
+        "summary": "Duplicate a campaign",
+        "operationId": "DuplicateCampaign",
+        "description": "Duplicated campaign will have the same default assessments and reports as the source campaign",
+        "tags": [
+          "Campaigns"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "campaign_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/DuplicatedCampaign"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Campaign duplicated",
+            "schema": {
+              "$ref": "#/definitions/Campaign"
+            },
+            "examples": {
+              "application/json": {
+                "id": 770,
+                "name": "Duplicated Campaign Name",
+                "created_at": "2019-03-05T10:56:53.349+04:00",
+                "updated_at": "2019-03-05T10:56:53.349+04:00"
+              }
+            }
+          },
+          "400": {
+            "description": "Campaign name is not filled",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 1002,
+                "message": "Validation error",
+                "more_info": "Name can't be blank"
+              }
+            }
+          },
+          "404": {
+            "description": "Campaign is not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 4000,
+                "message": "Resource not found",
+                "more_info": "Campaign with id=111 is not found"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/users/{user_id}/campaigns": {
+      "post": {
+        "summary": "Add user to campaigns",
+        "operationId": "AddUserCampaigns",
+        "description": "Adds new campaigns to the user. Adding campaigns to user assigns the campaign's default assessments and reports.",
+        "tags": [
+          "Campaigns"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/NewCampaigns"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "application/json": {
+                "id": 14602,
+                "first_name": "Kamaru",
+                "last_name": "Usman",
+                "email": "marti@gmail.com",
+                "created_at": "2019-03-04T15:47:33.570+04:00",
+                "updated_at": "2019-03-04T15:47:33.950+04:00",
+                "campaign_ids": [
+                  510
+                ]
+              }
+            }
+          }
+        }
+      },
+      "get": {
+        "summary": "Get user campaigns",
+        "operationId": "GetUserCampaigns",
+        "description": "returns all campaigns associated with the user",
+        "tags": [
+          "Campaigns"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/Campaign"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 367,
+                  "name": "Employee Engagement Survey",
+                  "created_at": "2018-02-11T10:55:25.569+04:00",
+                  "updated_at": "2018-02-11T10:55:25.569+04:00"
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/users/{user_id}/reports": {
+      "get": {
+        "summary": "Get user reports",
+        "operationId": "GetUserReports",
+        "description": "All reports currently assigned to the user. Each report object also contains the required assessments and the user's completion status.",
+        "tags": [
+          "Reports"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get user reports",
+            "schema": {
+              "type": "array",
+              "items": {
+                "$ref": "#/definitions/UserReport"
+              }
+            },
+            "examples": {
+              "application/json": [
+                {
+                  "id": 127,
+                  "name": "Thriving Index - Alinma Resource - PRO ",
+                  "status": "not_ready",
+                  "assessments": [
+                    {
+                      "id": 91731,
+                      "name": "Thriving Index Assessment - Alinma",
+                      "status": "not_started",
+                      "started_at": "2019-01-06T20:54:05.714+04:00",
+                      "completed_at": "2019-01-06T20:54:05.714+04:00"
+                    }
+                  ]
+                },
+                {
+                  "id": 110,
+                  "name": "Thriving Index - Alinma Custom Report",
+                  "status": "not_ready",
+                  "assessments": [
+                    {
+                      "id": 91731,
+                      "name": "Thriving Index Assessment - Alinma",
+                      "status": "not_started",
+                      "started_at": "2019-01-06T20:54:05.714+04:00",
+                      "completed_at": "2019-01-06T20:54:05.714+04:00"
+                    }
+                  ]
+                }
+              ]
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/users/{user_id}/reports/{report_id}/results": {
+      "get": {
+        "summary": "Get user results",
+        "operationId": "GetUserResults",
+        "description": "Assessment results for the user's report. ",
+        "tags": [
+          "Reports"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get user report results",
+            "schema": {
+              "$ref": "#/definitions/ReportResults"
+            },
+            "examples": {
+              "application/json": {
+                "user_data": {
+                  "first_name": "Spider",
+                  "last_name": "Man"
+                },
+                "assessments": [
+                  {
+                    "id": 17,
+                    "name": "Thriving Index Assessment",
+                    "results": {
+                      "normed_factors": [
+                        {
+                          "key": 549,
+                          "name": "Accountability",
+                          "value": null
+                        },
+                        {
+                          "key": 554,
+                          "name": "Efficacy",
+                          "value": null
+                        }
+                      ],
+                      "ranked_occupations": [
+                        {
+                          "key": 2,
+                          "rank": 1,
+                          "name": "Occupation 2",
+                          "normed_factors": [
+
+                          ]
+                        },
+                        {
+                          "key": 1,
+                          "rank": 2,
+                          "name": "Occupation 1",
+                          "normed_factors": [
+
+                          ]
+                        }
+                      ]
+                    }
+                  }
+                ]
+              }
+            }
+          },
+          "403": {
+            "description": "Assessment is not passed",
+            "schema": {
+              "$ref": "#/definitions/ReportResults"
+            },
+            "examples": {
+              "application/json": {
+                "code": 1004,
+                "message": "Assessment is not passed",
+                "more_info": "Assessments for report 111 are not passed"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/users/{user_id}/reports/{report_id}/pdf": {
+      "get": {
+        "summary": "Get user report PDF",
+        "operationId": "GetUserReport",
+        "description": "Returns the user's report PDF url. This url is time-limited, check the expires_at attribute in the response.",
+        "tags": [
+          "Reports"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "report_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get user report PDF",
+            "schema": {
+              "$ref": "#/definitions/ReportPdf"
+            },
+            "examples": {
+              "application/json": {
+                "url": "https://some.aws.s3.com/report.pdf",
+                "status": "ready"
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/users/{user_id}/sso": {
+      "post": {
+        "summary": "Create authenticated SSO URL",
+        "operationId": "GetUserSsoUrl",
+        "tags": [
+          "Users"
+        ],
+        "description": "Creates an single sign on URL for the user. Response also contains assessment specific URLs. All these URLs will be invalid after the time in `expires_at`.\n\nAppend  **&return_url=<your_application_return_url>** to any SSO URL to be redirected back after user completes the assessment.\n\n### Example\n\n`https://example.com/sso?token=d98df98d9f3434asdfasf98987&return_url=https://yourportal.com/tte-redirect?status=ASSESSMENT_STATUS`\n\nAfter completing the assessment, user will be redirected to \n\n`https://yourportal.com/tte-redirect?status=assessment_completed`\n\n**ASSESSMENT_STATUS** will get replaced with one of assessment_completed, assessment_invalid, invalid_token\n",
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "SSO URL Created",
+            "schema": {
+              "$ref": "#/definitions/SsoUrl"
+            },
+            "examples": {
+              "application/json": {
+                "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987",
+                "expires_at": "2014-01-01T23:28:56.782Z",
+                "assessments": [
+                  {
+                    "id": "3456",
+                    "name": "Thriving Index Assessment",
+                    "url": "https://example.com/sso?token=d98df98d9f3434asdfasf98987&assign_id=9875"
+                  }
+                ]
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/users": {
+      "post": {
+        "summary": "Create new user",
+        "operationId": "CreateUser",
+        "tags": [
+          "Users"
+        ],
+        "description": "Creates a new user and adds to the campaigns specified along with the campaign's default assessments and reports.",
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/NewUser"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "User created",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "application/json": {
+                "id": 14602,
+                "first_name": "Kamaru",
+                "last_name": "Usman",
+                "email": "marti@gmail.com",
+                "created_at": "2019-03-04T15:47:33.570+04:00",
+                "updated_at": "2019-03-04T15:47:33.950+04:00",
+                "campaign_ids": [
+                  510
+                ]
+              }
+            }
+          },
+          "400": {
+            "description": "User with this email exists",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 4003,
+                "message": "User with this email exists",
+                "more_info": "Email address max@example.com is already taken"
+              }
+            }
+          },
+          "404": {
+            "description": "Project is not found",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 4000,
+                "message": "Resource not found",
+                "more_info": "Project with id=111 is not found"
+              }
+            }
+          },
+          "403": {
+            "description": "Not enough licenses",
+            "schema": {
+              "$ref": "#/definitions/ApiError"
+            },
+            "examples": {
+              "application/json": {
+                "code": 1003,
+                "message": "Not enough licenses",
+                "more_info": "<b>sss@sssss.com</b> in <b>Al Futtaim</b> has not enough licenses for <b>Cognitive - Entry Level</b> report."
+              }
+            }
+          }
+        }
+      }
+    },
+    "/projects/{project_id}/users/{user_id}": {
+      "put": {
+        "summary": "Updates user",
+        "operationId": "UpdateUser",
+        "tags": [
+          "Users"
+        ],
+        "consumes": [
+          "application/json"
+        ],
+        "security": [
+          {
+            "basic": [
+
+            ]
+          }
+        ],
+        "parameters": [
+          {
+            "name": "project_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "user_id",
+            "in": "path",
+            "type": "string",
+            "required": true
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "$ref": "#/definitions/UpdatedUser"
+            },
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Update the user",
+            "schema": {
+              "$ref": "#/definitions/User"
+            },
+            "examples": {
+              "application/json": {
+                "id": 14602,
+                "first_name": "Kamaru",
+                "last_name": "Usman",
+                "email": "marti@gmail.com",
+                "created_at": "2019-03-04T15:47:33.570+04:00",
+                "updated_at": "2019-03-04T15:47:33.950+04:00",
+                "campaign_ids": [
+                  510
+                ]
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "security": [
+    {
+      "basic": [
+
+      ]
+    }
+  ],
+  "basePath": "/api/v1",
+  "schemes": [
+    "https"
+  ],
+  "consumes": [
+    "application/json"
+  ],
+  "produces": [
+    "application/json"
+  ],
+  "definitions": {
+    "ApiError": {
+      "type": "object",
+      "properties": {
+        "code": {
+          "type": "integer"
+        },
+        "message": {
+          "type": "string"
+        },
+        "more_info": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "UserAssessment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "started_at": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "completed_at": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "UserReport": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "status": {
+          "type": "string"
+        },
+        "asessments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/UserAssessment"
+          }
+        }
+      }
+    },
+    "ReportPdf": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "status": {
+          "type": "string"
+        }
+      }
+    },
+    "NewUser": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "last_name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "email": {
+          "type": "string"
+        },
+        "campaign_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          },
+          "x-nullable": true
+        }
+      },
+      "required": [
+        "email",
+        "first_name",
+        "last_name",
+        "campaign_ids"
+      ]
+    },
+    "UpdatedUser": {
+      "type": "object",
+      "properties": {
+        "first_name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "last_name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "email": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "ReportResults": {
+      "type": "object",
+      "properties": {
+        "user_data": {
+          "type": "object",
+          "x-nullable": true
+        },
+        "assessments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/ResultAssessment"
+          }
+        }
+      }
+    },
+    "ResultAssessment": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "x-nullable": true
+        },
+        "name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "results": {
+          "$ref": "#/definitions/ResultAssessmentResults",
+          "x-nullable": true
+        }
+      }
+    },
+    "ResultAssessmentResults": {
+      "type": "object",
+      "properties": {
+        "normed_factors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NormedFactor"
+          },
+          "x-nullable": true
+        },
+        "ranked_occupations": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/RankedOccupation"
+          },
+          "x-nullable": true
+        }
+      }
+    },
+    "NormedFactor": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "value": {
+          "type": "string",
+          "x-nullable": true
+        }
+      }
+    },
+    "RankedOccupation": {
+      "type": "object",
+      "properties": {
+        "key": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "name": {
+          "type": "string",
+          "x-nullable": true
+        },
+        "rank": {
+          "type": "integer",
+          "x-nullable": true
+        },
+        "normed_factors": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/NormedFactor"
+          },
+          "x-nullable": true
+        }
+      }
+    },
+    "DuplicatedCampaign": {
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string"
+        }
+      }
+    },
+    "NewCampaigns": {
+      "type": "object",
+      "properties": {
+        "campaign_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        }
+      }
+    },
+    "Campaign": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "User": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "first_name": {
+          "type": "string"
+        },
+        "last_name": {
+          "type": "string"
+        },
+        "email": {
+          "type": "string"
+        },
+        "campaign_ids": {
+          "type": "array",
+          "items": {
+            "type": "integer"
+          }
+        },
+        "created_at": {
+          "type": "string"
+        },
+        "updated_at": {
+          "type": "string"
+        }
+      }
+    },
+    "SsoUrl": {
+      "type": "object",
+      "properties": {
+        "url": {
+          "type": "string"
+        },
+        "expires_at": {
+          "type": "string"
+        },
+        "assessments": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/AssessmentSsoUrl"
+          }
+        }
+      }
+    },
+    "AssessmentSsoUrl": {
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer"
+        },
+        "name": {
+          "type": "string"
+        },
+        "url": {
+          "type": "string"
+        }
+      }
+    }
+  }
+}

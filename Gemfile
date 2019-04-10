@@ -95,7 +95,7 @@ gem 'axlsx', git: 'git@github.com:randym/axlsx', ref: 'c8ac844'
 gem 'axlsx_rails', '~> 0.4.0'
 gem 'roo', '~> 2.8.2'
 
-gem 'i18n-tasks', '~> 0.9.5'
+gem 'i18n-tasks', '~> 0.9.25'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
 gem 'acts_as_list', '~> 0.8.1'
@@ -150,6 +150,7 @@ gem 'enum_help', '~> 0.0.17'
 gem 'date_validator', '~> 0.9.0'
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'js-routes', '~> 1.4.4'
+gem 'rswag', '~> 2.0.5'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -158,7 +159,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'hirb'
   gem 'awesome_print', '~> 1.8.0'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.8'
   gem 'factory_girl_rails', '~> 4.7.0'
   # A fake data generator
 end
@@ -181,6 +182,8 @@ group :development do
   gem 'capistrano-nc', '~> 0.2', require: false
   gem 'capistrano-npm', '~> 1.0', '>= 1.0.2'
   gem 'guard'
+  gem 'rubocop', '~> 0.67.2', require: false
+  gem 'meta_request'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -192,7 +195,7 @@ group :test do
   gem 'shoulda', '~> 3.5.0'
   gem 'database_cleaner', '~> 1.7.0'
   gem 'simplecov', require: false
-  gem 'rspec-retry', '~> 0.5.7'
+  gem 'rspec-retry', '~> 0.6.1'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'timecop', '~> 0.9.1'
 end
