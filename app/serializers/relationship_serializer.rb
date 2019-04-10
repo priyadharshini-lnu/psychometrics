@@ -1,3 +1,3 @@
 class RelationshipSerializer < ActiveModel::Serializer
-  attributes :type, :name
+  attributes :id, :type, :name
 end
