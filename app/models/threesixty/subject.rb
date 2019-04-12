@@ -1,6 +1,6 @@
 module Threesixty
   class Subject < ApplicationRecord
     belongs_to :user
-    belongs_to :campaign
+    belongs_to :campaign, class_name: '::Campaign'
   end
 end

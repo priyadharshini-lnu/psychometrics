@@ -226,6 +226,25 @@ $h-space: 25px;
 .mah {
   margin-left: $h-space !important;
 }
+.mn {
+  margin: 0 !important;
+}
+.mx {
+  margin: $x-space !important;
+}
+.ms {
+  margin: $s-space !important;
+}
+.mm {
+  margin: $m-space !important;
+}
+.ml {
+  margin: $l-space !important;
+}
+.mh {
+  margin: $h-space !important;
+}
+
 .vertical_middle { vertical-align: middle !important; }
 .text-nowrap { white-space: nowrap; }
 
