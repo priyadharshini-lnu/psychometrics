@@ -54,5 +54,9 @@ FactoryGirl.define do
     factory :manager_membership do
       role Membership::MANAGER_ROLE
     end
+
+    trait :for_campaign do
+      client factory: :campaign
+    end
   end
 end

@@ -19,6 +19,8 @@ en:
             add_reports: Add Reports
           create:
             successfully: Successfully Updated
+          reset:
+            successfully: Result data was successfully reseted
           list:
             uniq_id: Uniq ID
             assessment_name: 'Assessment Name'
@@ -34,12 +36,18 @@ en:
             generating: 'Report "%{name}" is generating'
             tooltips:
               delete: Detach Assessment
+              reset: Reset result
               assigns_report:
                 add_user_access: Add user access
                 remove_user_access: Remove user access
                 delete: Detach Report
                 regenerate: Regenerate report file
             confirms:
+              reset:
+                title:
+                  Reset <strong>Result</strong> ?
+                body:
+                  <p>Are you sure you want to reset result?</p>
               assigns_report:
                 delete:
                   title:
