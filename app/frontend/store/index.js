@@ -12,10 +12,4 @@ if (__DEV__) {
   }
 }
 
-export default createStore(
-  rootReducers,
-  initState,
-  composeEnhancers(
-    applyMiddleware(api, logger),
-  ),
-)
+export default createStore(rootReducers, initState, composeEnhancers(applyMiddleware(api, logger)))

@@ -1,5 +1,12 @@
 import React, { useEffect } from 'react'
-import { Table, Divider } from 'antd'
+import {
+  Table, Dropdown, Icon, Row, Col, Button,
+} from 'antd'
+import userPresenter from 'presenters/userPresenter'
+import css from './SubjectList.scss'
+import ActionsMenu from './ActionsMenu'
+import ToolsMenu from './ToolsMenu'
+import CreateSubjectsMenu from './CreateSubjectsMenu'
 
 const { Column } = Table
 
@@ -15,24 +22,52 @@ export default function SubjectList ({
   }, [])
 
   return (
-    <Table rowKey="id" dataSource={subjects}>
-      <Column title="First Name" dataIndex="user.firstName" key="firstName" />
-      <Column title="Last Name" dataIndex="user.lastName" key="lastName" />
+    <>
+      <Row>
+        <Col span={4} className="pls">
+          <Icon type="user" />
+          <span className="mlm">4 Subjects</span>
+        </Col>
+        <Col span={6} offset={14} className="text-align-r">
+          <Dropdown overlay={ToolsMenu} className="mrm" trigger={['click']}>
+            <Button>
+              <Icon type="tool" />
+              <span>Tools</span>
+              <Icon type="down" />
+            </Button>
+          </Dropdown>
+          <Dropdown overlay={CreateSubjectsMenu} className="mrm" trigger={['click']}>
+            <Button type="primary">
+              <Icon type="plus" />
+              <span>Add Subjects</span>
+              <Icon type="down" />
+            </Button>
+          </Dropdown>
+        </Col>
+      </Row>
+      <Row>
+        <Col span={24}>
+          <Table className="mtm" rowKey="id" dataSource={subjects} pagination={false}>
+            <Column title="Name" key="fullName" render={({ user }) => userPresenter.getFullName(user)} />
+            <Column title="Email" dataIndex="user.email" key="email" />
+            <Column title="Evaluations Received" dataIndex="receivedEvaluations" key="received_evaluations" />
+            <Column title="Evaluations Completed" dataIndex="completedEvaluations" key="completed_evaluations" />
+            <Column title="Report Status" dataIndex="reportStatus" key="report_status" />
+            <Column title="Status" dataIndex="status" key="status" />
 
-      <Column
-        title="Action"
-        key="action"
-        render={(text, record) => (
-          <span>
-            <span>
-              Invite
-              {record.lastName}
-            </span>
-            <Divider type="vertical" />
-            <span>Delete</span>
-          </span>
-        )}
-      />
-    </Table>
+            <Column
+              key="action"
+              render={() => (
+                <Dropdown overlay={ActionsMenu} trigger={['click']}>
+                  <div className={css.actions}>
+                    <Icon type="ellipsis" />
+                  </div>
+                </Dropdown>
+              )}
+            />
+          </Table>
+        </Col>
+      </Row>
+    </>
   )
 }

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Threesixty::SubjectSerializer do
+describe Results::SubjectSerializer do
   describe '#to_hash' do
     let(:user) { create(:user, email: 'dustin@poirier.com') }
     let(:project) { create(:project) }

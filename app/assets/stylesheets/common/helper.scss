@@ -244,10 +244,32 @@ $h-space: 25px;
 .mh {
   margin: $h-space !important;
 }
+.pn {
+  padding: 0 !important;
+}
+.px {
+  padding: $x-space !important;
+}
+.ps {
+  padding: $s-space !important;
+}
+.pm {
+  padding: $m-space !important;
+}
+.pl {
+  padding: $l-space !important;
+}
+.ph {
+  padding: $h-space !important;
+}
 
 .vertical_middle { vertical-align: middle !important; }
 .text-nowrap { white-space: nowrap; }
 
 .margin-top-minus-10 {
   margin-top: -10px;
+}
+
+.text-align-r {
+  text-align: right !important;
 }

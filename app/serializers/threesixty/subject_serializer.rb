@@ -1,13 +1,22 @@
 module Threesixty
   class SubjectSerializer < ActiveModel::Serializer
-    attributes :id, :data_sheet
+    attributes :id, :status, :report_status, :completed_evaluations, :received_evaluations
 
     has_one :user, serializer: UserSerializer
+    def status
+      :incomplete
+    end
 
-    def data_sheet
-      row = DatasheetRow.joins(:datasheet).
-            find_by(datasheets: { project_id: object.campaign.project_id }, email: object.user.email)
-      row&.data || {}
+    def report_status
+      :incomplete
+    end
+
+    def completed_evaluations
+      '1 / 2'
+    end
+
+    def received_evaluations
+      '1 / 5'
     end
   end
 end

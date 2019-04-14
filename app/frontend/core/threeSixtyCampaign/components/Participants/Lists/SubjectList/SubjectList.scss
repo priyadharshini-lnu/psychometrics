@@ -1,0 +1,10 @@
+.actions {
+  padding: 3px 5px;
+  display: inline-block;
+  cursor: pointer;
+  color: rgb(24, 144, 255);
+  &:hover {
+    background-color: rgba(24, 144, 255, 0.3);
+    color: white;
+  }
+}

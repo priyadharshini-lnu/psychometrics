@@ -10,7 +10,7 @@ const MyMenu = ({ history, routes }) => {
   return (
     <Menu className="mbm" onSelect={onClick} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
       <Menu.Item key="/participants">
-        <Icon type="mail" />
+        <Icon type="user" />
         Participants
       </Menu.Item>
       <Menu.Item key="/messages">
@@ -18,7 +18,7 @@ const MyMenu = ({ history, routes }) => {
         Messages
       </Menu.Item>
       <Menu.Item key="/reports">
-        <Icon type="mail" />
+        <Icon type="pie-chart" />
         Reports
       </Menu.Item>
     </Menu>
