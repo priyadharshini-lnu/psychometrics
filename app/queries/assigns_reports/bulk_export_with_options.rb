@@ -18,7 +18,7 @@ module AssignsReports
     # Initial scope
     #
     def initial_scope
-      AssignsReport.where(report_id: report_ids)
+      AssignsReport.active.where(report_id: report_ids)
     end
 
     private

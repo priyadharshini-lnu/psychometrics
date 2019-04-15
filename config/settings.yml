@@ -35,216 +35,217 @@ hogan:
         norm_id: General
         language_id: en
     factors:
-      - id: '01'
-        name: Validity
-        type: RAW Scale
-      - id: '02'
-        name: Adjustment
-        type: RAW Scale
-      - id: '03'
-        name: Ambition
-        type: RAW Scale
-      - id: '04'
-        name: Sociability
-        type: RAW Scale
-      - id: '05'
-        name: Interpersonal Sensitivity
-        type: RAW Scale
-      - id: '06'
-        name: Prudence
-        type: RAW Scale
-      - id: '07'
-        name: Inquisitive
-        type: RAW Scale
-      - id: 08
-        name: Learning Approach
-        type: RAW Scale
-      - id: 09
-        name: Service Orientation
-        type: RAW Scale
-      - id: '10'
-        name: Stress Tolerance
-        type: RAW Scale
-      - id: '11'
-        name: Reliability
-        type: RAW Scale
-      - id: '12'
-        name: Clerical Potential
-        type: RAW Scale
-      - id: '13'
-        name: Sales Potential
-        type: RAW Scale
-      - id: '14'
-        name: Managerial Potential
-        type: RAW Scale
-      - id: '01'
-        name: Validity
-        type: Percentile Scale
-      - id: '02'
-        name: Adjustment
-        type: Percentile Scale
-      - id: '03'
-        name: Ambition
-        type: Percentile Scale
-      - id: '04'
-        name: Sociability
-        type: Percentile Scale
-      - id: '05'
-        name: Interpersonal Sensitivity
-        type: Percentile Scale
-      - id: '06'
-        name: Prudence
-        type: Percentile Scale
-      - id: '07'
-        name: Inquisitive
-        type: Percentile Scale
-      - id: 08
-        name: Learning Approach
-        type: Percentile Scale
-      - id: 09
-        name: ServiceOrientation
-        type: Percentile Scale
-      - id: '10'
-        name: StressTolerance
-        type: Percentile Scale
-      - id: '11'
-        name: Reliability
-        type: Percentile Scale
-      - id: '12'
-        name: Clerical
-        type: Percentile Scale
-      - id: '13'
-        name: Sales
-        type: Percentile Scale
-      - id: '14'
-        name: Manager
-        type: Percentile Scale
-      - id: '01'
-        name: Valid
-        type: Percentile Subscale
-      - id: '02'
-        name: Empathy
-        type: Percentile Subscale
-      - id: '03'
-        name: NotAnxious
-        type: Percentile Subscale
-      - id: '04'
-        name: NoGuilt
-        type: Percentile Subscale
-      - id: '05'
-        name: Calmness
-        type: Percentile Subscale
-      - id: '06'
-        name: EvenTempered
-        type: Percentile Subscale
-      - id: '07'
-        name: NoComplaints
-        type: Percentile Subscale
-      - id: 08
-        name: Trusting
-        type: Percentile Subscale
-      - id: 09
-        name: GoodAttachment
-        type: Percentile Subscale
-      - id: '10'
-        name: Competitive
-        type: Percentile Subscale
-      - id: '11'
-        name: SelfConfidence
-        type: Percentile Subscale
-      - id: '12'
-        name: Accomplishment
-        type: Percentile Subscale
-      - id: '13'
-        name: Leadership
-        type: Percentile Subscale
-      - id: '14'
-        name: Identity
-        type: Percentile Subscale
-      - id: '15'
-        name: NoSocialAnxiety
-        type: Percentile Subscale
-      - id: '16'
-        name: LikesParties
-        type: Percentile Subscale
-      - id: '17'
-        name: LikesCrowds
-        type: Percentile Subscale
-      - id: '18'
-        name: ExperienceSeeking
-        type: Percentile Subscale
-      - id: '19'
-        name: Exhibitionistic
-        type: Percentile Subscale
-      - id: '20'
-        name: Entertaining
-        type: Percentile Subscale
-      - id: '21'
-        name: EasyToLiveWith
-        type: Percentile Subscale
-      - id: '22'
-        name: Sensitive
-        type: Percentile Subscale
-      - id: '23'
-        name: Caring
-        type: Percentile Subscale
-      - id: '24'
-        name: LikesPeople
-        type: Percentile Subscale
-      - id: '25'
-        name: NoHostility
-        type: Percentile Subscale
-      - id: '26'
-        name: Moralistic
-        type: Percentile Subscale
-      - id: '27'
-        name: Mastery
-        type: Percentile Subscale
-      - id: '28'
-        name: Virtuous
-        type: Percentile Subscale
-      - id: '29'
-        name: NotAutonomous
-        type: Percentile Subscale
-      - id: '30'
-        name: NotSpontaneous
-        type: Percentile Subscale
-      - id: '31'
-        name: ImpulseControl
-        type: Percentile Subscale
-      - id: '32'
-        name: AvoidsTrouble
-        type: Percentile Subscale
-      - id: '33'
-        name: ScienceAbility
-        type: Percentile Subscale
-      - id: '34'
-        name: Curiosity
-        type: Percentile Subscale
-      - id: '35'
-        name: ThrillSeeking
-        type: Percentile Subscale
-      - id: '36'
-        name: IntellectualGames
-        type: Percentile Subscale
-      - id: '37'
-        name: GeneratesIdeas
-        type: Percentile Subscale
-      - id: '38'
-        name: Culture
-        type: Percentile Subscale
-      - id: '39'
-        name: Education
-        type: Percentile Subscale
-      - id: '40'
-        name: MathAbility
-        type: Percentile Subscale
-      - id: '41'
-        name: GoodMemory
-        type: Percentile Subscale
-      - id: '42'
-        name: Reading
-        type: Percentile Subscale
+      -
+        - id: '01'
+          name: Validity
+          type: RawScale
+        - id: '02'
+          name: Adjustment
+          type: RawScale
+        - id: '03'
+          name: Ambition
+          type: RawScale
+        - id: '04'
+          name: Sociability
+          type: RawScale
+        - id: '05'
+          name: Interpersonal Sensitivity
+          type: RawScale
+        - id: '06'
+          name: Prudence
+          type: RawScale
+        - id: '07'
+          name: Inquisitive
+          type: RawScale
+        - id: 08
+          name: Learning Approach
+          type: RawScale
+        - id: 09
+          name: Service Orientation
+          type: RawScale
+        - id: '10'
+          name: Stress Tolerance
+          type: RawScale
+        - id: '11'
+          name: Reliability
+          type: RawScale
+        - id: '12'
+          name: Clerical Potential
+          type: RawScale
+        - id: '13'
+          name: Sales Potential
+          type: RawScale
+        - id: '14'
+          name: Managerial Potential
+          type: RawScale
+        - id: '01'
+          name: Validity
+          type: PercentileScale
+        - id: '02'
+          name: Adjustment
+          type: PercentileScale
+        - id: '03'
+          name: Ambition
+          type: PercentileScale
+        - id: '04'
+          name: Sociability
+          type: PercentileScale
+        - id: '05'
+          name: Interpersonal Sensitivity
+          type: PercentileScale
+        - id: '06'
+          name: Prudence
+          type: PercentileScale
+        - id: '07'
+          name: Inquisitive
+          type: PercentileScale
+        - id: 08
+          name: Learning Approach
+          type: PercentileScale
+        - id: 09
+          name: ServiceOrientation
+          type: PercentileScale
+        - id: '10'
+          name: StressTolerance
+          type: PercentileScale
+        - id: '11'
+          name: Reliability
+          type: PercentileScale
+        - id: '12'
+          name: Clerical
+          type: PercentileScale
+        - id: '13'
+          name: Sales
+          type: PercentileScale
+        - id: '14'
+          name: Manager
+          type: PercentileScale
+        - id: '01'
+          name: Valid
+          type: PercentileSubscale
+        - id: '02'
+          name: Empathy
+          type: PercentileSubscale
+        - id: '03'
+          name: NotAnxious
+          type: PercentileSubscale
+        - id: '04'
+          name: NoGuilt
+          type: PercentileSubscale
+        - id: '05'
+          name: Calmness
+          type: PercentileSubscale
+        - id: '06'
+          name: EvenTempered
+          type: PercentileSubscale
+        - id: '07'
+          name: NoComplaints
+          type: PercentileSubscale
+        - id: 08
+          name: Trusting
+          type: PercentileSubscale
+        - id: 09
+          name: GoodAttachment
+          type: PercentileSubscale
+        - id: '10'
+          name: Competitive
+          type: PercentileSubscale
+        - id: '11'
+          name: SelfConfidence
+          type: PercentileSubscale
+        - id: '12'
+          name: Accomplishment
+          type: PercentileSubscale
+        - id: '13'
+          name: Leadership
+          type: PercentileSubscale
+        - id: '14'
+          name: Identity
+          type: PercentileSubscale
+        - id: '15'
+          name: NoSocialAnxiety
+          type: PercentileSubscale
+        - id: '16'
+          name: LikesParties
+          type: PercentileSubscale
+        - id: '17'
+          name: LikesCrowds
+          type: PercentileSubscale
+        - id: '18'
+          name: ExperienceSeeking
+          type: PercentileSubscale
+        - id: '19'
+          name: Exhibitionistic
+          type: PercentileSubscale
+        - id: '20'
+          name: Entertaining
+          type: PercentileSubscale
+        - id: '21'
+          name: EasyToLiveWith
+          type: PercentileSubscale
+        - id: '22'
+          name: Sensitive
+          type: PercentileSubscale
+        - id: '23'
+          name: Caring
+          type: PercentileSubscale
+        - id: '24'
+          name: LikesPeople
+          type: PercentileSubscale
+        - id: '25'
+          name: NoHostility
+          type: PercentileSubscale
+        - id: '26'
+          name: Moralistic
+          type: PercentileSubscale
+        - id: '27'
+          name: Mastery
+          type: PercentileSubscale
+        - id: '28'
+          name: Virtuous
+          type: PercentileSubscale
+        - id: '29'
+          name: NotAutonomous
+          type: PercentileSubscale
+        - id: '30'
+          name: NotSpontaneous
+          type: PercentileSubscale
+        - id: '31'
+          name: ImpulseControl
+          type: PercentileSubscale
+        - id: '32'
+          name: AvoidsTrouble
+          type: PercentileSubscale
+        - id: '33'
+          name: ScienceAbility
+          type: PercentileSubscale
+        - id: '34'
+          name: Curiosity
+          type: PercentileSubscale
+        - id: '35'
+          name: ThrillSeeking
+          type: PercentileSubscale
+        - id: '36'
+          name: IntellectualGames
+          type: PercentileSubscale
+        - id: '37'
+          name: GeneratesIdeas
+          type: PercentileSubscale
+        - id: '38'
+          name: Culture
+          type: PercentileSubscale
+        - id: '39'
+          name: Education
+          type: PercentileSubscale
+        - id: '40'
+          name: MathAbility
+          type: PercentileSubscale
+        - id: '41'
+          name: GoodMemory
+          type: PercentileSubscale
+        - id: '42'
+          name: Reading
+          type: PercentileSubscale
 
 
   - name: HDS
@@ -256,171 +257,172 @@ hogan:
         norm_id: General
         language_id: en
     factors:
-      - id: '01'
-        name: Excitable
-        type: RAW Scale
-      - id: '02'
-        name: Skeptical
-        type: RAW Scale
-      - id: '03'
-        name: Cautious
-        type: RAW Scale
-      - id: '04'
-        name: Reserved
-        type: RAW Scale
-      - id: '05'
-        name: Leisurely
-        type: RAW Scale
-      - id: '06'
-        name: Bold
-        type: RAW Scale
-      - id: '07'
-        name: Mischievous
-        type: RAW Scale
-      - id: 08
-        name: Colorful
-        type: RAW Scale
-      - id: 09
-        name: Imaginative
-        type: RAW Scale
-      - id: '10'
-        name: Diligent
-        type: RAW Scale
-      - id: '11'
-        name: Dutiful
-        type: RAW Scale
-      - id: '01'
-        name: Volatile
-        type: Percentile Subscale
-      - id: '02'
-        name: EasilyDisappointed
-        type: Percentile Subscale
-      - id: '03'
-        name: NoDirection
-        type: Percentile Subscale
-      - id: '04'
-        name: Cynical
-        type: Percentile Subscale
-      - id: '05'
-        name: Mistrusting
-        type: Percentile Subscale
-      - id: '06'
-        name: Grudges
-        type: Percentile Subscale
-      - id: '07'
-        name: Avoidant
-        type: Percentile Subscale
-      - id: 08
-        name: Fearful
-        type: Percentile Subscale
-      - id: 09
-        name: Unassertive
-        type: Percentile Subscale
-      - id: '10'
-        name: Introverted
-        type: Percentile Subscale
-      - id: '11'
-        name: Unsocial
-        type: Percentile Subscale
-      - id: '12'
-        name: Tough
-        type: Percentile Subscale
-      - id: '13'
-        name: PassiveAggressive
-        type: Percentile Subscale
-      - id: '14'
-        name: Unappreciated
-        type: Percentile Subscale
-      - id: '15'
-        name: Irritated
-        type: Percentile Subscale
-      - id: '16'
-        name: Entitled
-        type: Percentile Subscale
-      - id: '17'
-        name: Overconfidence
-        type: Percentile Subscale
-      - id: '18'
-        name: FantasizedTalent
-        type: Percentile Subscale
-      - id: '19'
-        name: Risky
-        type: Percentile Subscale
-      - id: '20'
-        name: Impulsive
-        type: Percentile Subscale
-      - id: '21'
-        name: Manipulative
-        type: Percentile Subscale
-      - id: '22'
-        name: PublicConfidence
-        type: Percentile Subscale
-      - id: '23'
-        name: Distractible
-        type: Percentile Subscale
-      - id: '24'
-        name: Self-Display
-        type: Percentile Subscale
-      - id: '25'
-        name: Eccentric
-        type: Percentile Subscale
-      - id: '26'
-        name: SpecialSensitivity
-        type: Percentile Subscale
-      - id: '27'
-        name: CreativeThinking
-        type: Percentile Subscale
-      - id: '28'
-        name: Standards
-        type: Percentile Subscale
-      - id: '29'
-        name: Perfectionistic
-        type: Percentile Subscale
-      - id: '30'
-        name: Organized
-        type: Percentile Subscale
-      - id: '31'
-        name: Indecisive
-        type: Percentile Subscale
-      - id: '32'
-        name: Ingratiating
-        type: Percentile Subscale
-      - id: '33'
-        name: Conforming
-        type: Percentile Subscale
-      - id: '01'
-        name: Excitable
-        type: Percentile Scale
-      - id: '02'
-        name: Skeptical
-        type: Percentile Scale
-      - id: '03'
-        name: Cautious
-        type: Percentile Scale
-      - id: '04'
-        name: Reserved
-        type: Percentile Scale
-      - id: '05'
-        name: Leisurely
-        type: Percentile Scale
-      - id: '06'
-        name: Bold
-        type: Percentile Scale
-      - id: '07'
-        name: Mischievous
-        type: Percentile Scale
-      - id: 08
-        name: Colorful
-        type: Percentile Scale
-      - id: 09
-        name: Imaginative
-        type: Percentile Scale
-      - id: '10'
-        name: Diligent
-        type: Percentile Scale
-      - id: '11'
-        name: Dutiful
-        type: Percentile Scale
+      -
+        - id: '01'
+          name: Excitable
+          type: RawScale
+        - id: '02'
+          name: Skeptical
+          type: RawScale
+        - id: '03'
+          name: Cautious
+          type: RawScale
+        - id: '04'
+          name: Reserved
+          type: RawScale
+        - id: '05'
+          name: Leisurely
+          type: RawScale
+        - id: '06'
+          name: Bold
+          type: RawScale
+        - id: '07'
+          name: Mischievous
+          type: RawScale
+        - id: 08
+          name: Colorful
+          type: RawScale
+        - id: 09
+          name: Imaginative
+          type: RawScale
+        - id: '10'
+          name: Diligent
+          type: RawScale
+        - id: '11'
+          name: Dutiful
+          type: RawScale
+        - id: '01'
+          name: Volatile
+          type: PercentileSubscale
+        - id: '02'
+          name: EasilyDisappointed
+          type: PercentileSubscale
+        - id: '03'
+          name: NoDirection
+          type: PercentileSubscale
+        - id: '04'
+          name: Cynical
+          type: PercentileSubscale
+        - id: '05'
+          name: Mistrusting
+          type: PercentileSubscale
+        - id: '06'
+          name: Grudges
+          type: PercentileSubscale
+        - id: '07'
+          name: Avoidant
+          type: PercentileSubscale
+        - id: 08
+          name: Fearful
+          type: PercentileSubscale
+        - id: 09
+          name: Unassertive
+          type: PercentileSubscale
+        - id: '10'
+          name: Introverted
+          type: PercentileSubscale
+        - id: '11'
+          name: Unsocial
+          type: PercentileSubscale
+        - id: '12'
+          name: Tough
+          type: PercentileSubscale
+        - id: '13'
+          name: PassiveAggressive
+          type: PercentileSubscale
+        - id: '14'
+          name: Unappreciated
+          type: PercentileSubscale
+        - id: '15'
+          name: Irritated
+          type: PercentileSubscale
+        - id: '16'
+          name: Entitled
+          type: PercentileSubscale
+        - id: '17'
+          name: Overconfidence
+          type: PercentileSubscale
+        - id: '18'
+          name: FantasizedTalent
+          type: PercentileSubscale
+        - id: '19'
+          name: Risky
+          type: PercentileSubscale
+        - id: '20'
+          name: Impulsive
+          type: PercentileSubscale
+        - id: '21'
+          name: Manipulative
+          type: PercentileSubscale
+        - id: '22'
+          name: PublicConfidence
+          type: PercentileSubscale
+        - id: '23'
+          name: Distractible
+          type: PercentileSubscale
+        - id: '24'
+          name: Self-Display
+          type: PercentileSubscale
+        - id: '25'
+          name: Eccentric
+          type: PercentileSubscale
+        - id: '26'
+          name: SpecialSensitivity
+          type: PercentileSubscale
+        - id: '27'
+          name: CreativeThinking
+          type: PercentileSubscale
+        - id: '28'
+          name: Standards
+          type: PercentileSubscale
+        - id: '29'
+          name: Perfectionistic
+          type: PercentileSubscale
+        - id: '30'
+          name: Organized
+          type: PercentileSubscale
+        - id: '31'
+          name: Indecisive
+          type: PercentileSubscale
+        - id: '32'
+          name: Ingratiating
+          type: PercentileSubscale
+        - id: '33'
+          name: Conforming
+          type: PercentileSubscale
+        - id: '01'
+          name: Excitable
+          type: PercentileScale
+        - id: '02'
+          name: Skeptical
+          type: PercentileScale
+        - id: '03'
+          name: Cautious
+          type: PercentileScale
+        - id: '04'
+          name: Reserved
+          type: PercentileScale
+        - id: '05'
+          name: Leisurely
+          type: PercentileScale
+        - id: '06'
+          name: Bold
+          type: PercentileScale
+        - id: '07'
+          name: Mischievous
+          type: PercentileScale
+        - id: 08
+          name: Colorful
+          type: PercentileScale
+        - id: 09
+          name: Imaginative
+          type: PercentileScale
+        - id: '10'
+          name: Diligent
+          type: PercentileScale
+        - id: '11'
+          name: Dutiful
+          type: PercentileScale
 
 
   - name: MVPI
@@ -432,216 +434,217 @@ hogan:
         norm_id: General
         language_id: en
     factors:
-      - id: '01'
-        name: Aesthetic
-        type: RAW Scale
-      - id: '02'
-        name: Affiliation
-        type: RAW Scale
-      - id: '03'
-        name: Altruistic
-        type: RAW Scale
-      - id: '04'
-        name: Commercial
-        type: RAW Scale
-      - id: '05'
-        name: Hedonistic
-        type: RAW Scale
-      - id: '06'
-        name: Power
-        type: RAW Scale
-      - id: '07'
-        name: Recognition
-        type: RAW Scale
-      - id: 08
-        name: Scientific
-        type: RAW Scale
-      - id: 09
-        name: Security
-        type: RAW Scale
-      - id: '10'
-        name: Tradition
-        type: RAW Scale
-      - id: '01'
-        name: Aesthetic
-        type: Percentile Scale
-      - id: '02'
-        name: Affiliation
-        type: Percentile Scale
-      - id: '03'
-        name: Altruistic
-        type: Percentile Scale
-      - id: '04'
-        name: Commercial
-        type: Percentile Scale
-      - id: '05'
-        name: Hedonistic
-        type: Percentile Scale
-      - id: '06'
-        name: Power
-        type: Percentile Scale
-      - id: '07'
-        name: Recognition
-        type: Percentile Scale
-      - id: 08
-        name: Scientific
-        type: Percentile Scale
-      - id: 09
-        name: Security
-        type: Percentile Scale
-      - id: '10'
-        name: Tradition
-        type: Percentile Scale
-      - id: '01'
-        name: Aesthetic_Lifestyles
-        type: Percentile Subscale
-      - id: '02'
-        name: Aesthetic_Beliefs
-        type: Percentile Subscale
-      - id: '03'
-        name: Aesthetic_Occupational_Prferences
-        type: Percentile Subscale
-      - id: '04'
-        name: Aesthetic_Aversions
-        type: Percentile Subscale
-      - id: '05'
-        name: Aesthetic_Preferred_Associates
-        type: Percentile Subscale
-      - id: '06'
-        name: Affiliation_Lifestyles
-        type: Percentile Subscale
-      - id: '07'
-        name: Affiliation_Beliefs
-        type: Percentile Subscale
-      - id: 08
-        name: Affiliation_Occupational_Prferences
-        type: Percentile Subscale
-      - id: 09
-        name: Affiliation_Aversions
-        type: Percentile Subscale
-      - id: '10'
-        name: Affiliation_Preferred_Associates
-        type: Percentile Subscale
-      - id: '11'
-        name: Altruistic_Lifestyles
-        type: Percentile Subscale
-      - id: '12'
-        name: Altruistic_Beliefs
-        type: Percentile Subscale
-      - id: '13'
-        name: Altruistic_Occupational_Prferences
-        type: Percentile Subscale
-      - id: '14'
-        name: Altruistic_Aversions
-        type: Percentile Subscale
-      - id: '15'
-        name: Altruistic_Preferred_Associates
-        type: Percentile Subscale
-      - id: '16'
-        name: Commercial_Lifestyles
-        type: Percentile Subscale
-      - id: '17'
-        name: Commercial_Beliefs
-        type: Percentile Subscale
-      - id: '18'
-        name: Commercial_Occupational_Prferences
-        type: Percentile Subscale
-      - id: '19'
-        name: Commercial_Aversions
-        type: Percentile Subscale
-      - id: '20'
-        name: Commercial_Preferred_Associates
-        type: Percentile Subscale
-      - id: '21'
-        name: Hedonistic_Lifestyles
-        type: Percentile Subscale
-      - id: '22'
-        name: Hedonistic_Beliefs
-        type: Percentile Subscale
-      - id: '23'
-        name: Hedonistic_Occupational_Prferences
-        type: Percentile Subscale
-      - id: '24'
-        name: Hedonistic_Aversions
-        type: Percentile Subscale
-      - id: '25'
-        name: Hedonistic_Preferred_Associates
-        type: Percentile Subscale
-      - id: '26'
-        name: Power_Lifestyles
-        type: Percentile Subscale
-      - id: '27'
-        name: Power_Beliefs
-        type: Percentile Subscale
-      - id: '28'
-        name: Power_Occupational_Prferences
-        type: Percentile Subscale
-      - id: '29'
-        name: Power_Aversions
-        type: Percentile Subscale
-      - id: '30'
-        name: Power_Preferred_Associates
-        type: Percentile Subscale
-      - id: '31'
-        name: Recognition_Lifestyles
-        type: Percentile Subscale
-      - id: '32'
-        name: Recognition_Beliefs
-        type: Percentile Subscale
-      - id: '33'
-        name: Recognition_Occupational_Prferences
-        type: Percentile Subscale
-      - id: '34'
-        name: Recognition_Aversions
-        type: Percentile Subscale
-      - id: '35'
-        name: Recognition_Preferred_Associates
-        type: Percentile Subscale
-      - id: '36'
-        name: Scientific_Lifestyles
-        type: Percentile Subscale
-      - id: '37'
-        name: Scientific_Beliefs
-        type: Percentile Subscale
-      - id: '38'
-        name: Scientific_Occupational_Prferences
-        type: Percentile Subscale
-      - id: '39'
-        name: Scientific_Aversions
-        type: Percentile Subscale
-      - id: '40'
-        name: Scientific_Preferred_Associates
-        type: Percentile Subscale
-      - id: '41'
-        name: Security_Lifestyles
-        type: Percentile Subscale
-      - id: '42'
-        name: Security_Beliefs
-        type: Percentile Subscale
-      - id: '43'
-        name: Security_Occupational_Prferences
-        type: Percentile Subscale
-      - id: '44'
-        name: Security_Aversions
-        type: Percentile Subscale
-      - id: '45'
-        name: Security_Preferred_Associates
-        type: Percentile Subscale
-      - id: '46'
-        name: Tradition_Lifestyles
-        type: Percentile Subscale
-      - id: '47'
-        name: Tradition_Beliefs
-        type: Percentile Subscale
-      - id: '48'
-        name: Tradition_Occupational_Prferences
-        type: Percentile Subscale
-      - id: '49'
-        name: Tradition_Aversions
-        type: Percentile Subscale
-      - id: '50'
-        name: Tradition_Preferred_Associates
-        type: Percentile Subscale
+      -
+        - id: '01'
+          name: Aesthetic
+          type: RawScale
+        - id: '02'
+          name: Affiliation
+          type: RawScale
+        - id: '03'
+          name: Altruistic
+          type: RawScale
+        - id: '04'
+          name: Commercial
+          type: RawScale
+        - id: '05'
+          name: Hedonistic
+          type: RawScale
+        - id: '06'
+          name: Power
+          type: RawScale
+        - id: '07'
+          name: Recognition
+          type: RawScale
+        - id: 08
+          name: Scientific
+          type: RawScale
+        - id: 09
+          name: Security
+          type: RawScale
+        - id: '10'
+          name: Tradition
+          type: RawScale
+        - id: '01'
+          name: Aesthetic
+          type: PercentileScale
+        - id: '02'
+          name: Affiliation
+          type: PercentileScale
+        - id: '03'
+          name: Altruistic
+          type: PercentileScale
+        - id: '04'
+          name: Commercial
+          type: PercentileScale
+        - id: '05'
+          name: Hedonistic
+          type: PercentileScale
+        - id: '06'
+          name: Power
+          type: PercentileScale
+        - id: '07'
+          name: Recognition
+          type: PercentileScale
+        - id: 08
+          name: Scientific
+          type: PercentileScale
+        - id: 09
+          name: Security
+          type: PercentileScale
+        - id: '10'
+          name: Tradition
+          type: PercentileScale
+        - id: '01'
+          name: Aesthetic_Lifestyles
+          type: PercentileSubscale
+        - id: '02'
+          name: Aesthetic_Beliefs
+          type: PercentileSubscale
+        - id: '03'
+          name: Aesthetic_Occupational_Prferences
+          type: PercentileSubscale
+        - id: '04'
+          name: Aesthetic_Aversions
+          type: PercentileSubscale
+        - id: '05'
+          name: Aesthetic_Preferred_Associates
+          type: PercentileSubscale
+        - id: '06'
+          name: Affiliation_Lifestyles
+          type: PercentileSubscale
+        - id: '07'
+          name: Affiliation_Beliefs
+          type: PercentileSubscale
+        - id: 08
+          name: Affiliation_Occupational_Prferences
+          type: PercentileSubscale
+        - id: 09
+          name: Affiliation_Aversions
+          type: PercentileSubscale
+        - id: '10'
+          name: Affiliation_Preferred_Associates
+          type: PercentileSubscale
+        - id: '11'
+          name: Altruistic_Lifestyles
+          type: PercentileSubscale
+        - id: '12'
+          name: Altruistic_Beliefs
+          type: PercentileSubscale
+        - id: '13'
+          name: Altruistic_Occupational_Prferences
+          type: PercentileSubscale
+        - id: '14'
+          name: Altruistic_Aversions
+          type: PercentileSubscale
+        - id: '15'
+          name: Altruistic_Preferred_Associates
+          type: PercentileSubscale
+        - id: '16'
+          name: Commercial_Lifestyles
+          type: PercentileSubscale
+        - id: '17'
+          name: Commercial_Beliefs
+          type: PercentileSubscale
+        - id: '18'
+          name: Commercial_Occupational_Prferences
+          type: PercentileSubscale
+        - id: '19'
+          name: Commercial_Aversions
+          type: PercentileSubscale
+        - id: '20'
+          name: Commercial_Preferred_Associates
+          type: PercentileSubscale
+        - id: '21'
+          name: Hedonistic_Lifestyles
+          type: PercentileSubscale
+        - id: '22'
+          name: Hedonistic_Beliefs
+          type: PercentileSubscale
+        - id: '23'
+          name: Hedonistic_Occupational_Prferences
+          type: PercentileSubscale
+        - id: '24'
+          name: Hedonistic_Aversions
+          type: PercentileSubscale
+        - id: '25'
+          name: Hedonistic_Preferred_Associates
+          type: PercentileSubscale
+        - id: '26'
+          name: Power_Lifestyles
+          type: PercentileSubscale
+        - id: '27'
+          name: Power_Beliefs
+          type: PercentileSubscale
+        - id: '28'
+          name: Power_Occupational_Prferences
+          type: PercentileSubscale
+        - id: '29'
+          name: Power_Aversions
+          type: PercentileSubscale
+        - id: '30'
+          name: Power_Preferred_Associates
+          type: PercentileSubscale
+        - id: '31'
+          name: Recognition_Lifestyles
+          type: PercentileSubscale
+        - id: '32'
+          name: Recognition_Beliefs
+          type: PercentileSubscale
+        - id: '33'
+          name: Recognition_Occupational_Prferences
+          type: PercentileSubscale
+        - id: '34'
+          name: Recognition_Aversions
+          type: PercentileSubscale
+        - id: '35'
+          name: Recognition_Preferred_Associates
+          type: PercentileSubscale
+        - id: '36'
+          name: Scientific_Lifestyles
+          type: PercentileSubscale
+        - id: '37'
+          name: Scientific_Beliefs
+          type: PercentileSubscale
+        - id: '38'
+          name: Scientific_Occupational_Prferences
+          type: PercentileSubscale
+        - id: '39'
+          name: Scientific_Aversions
+          type: PercentileSubscale
+        - id: '40'
+          name: Scientific_Preferred_Associates
+          type: PercentileSubscale
+        - id: '41'
+          name: Security_Lifestyles
+          type: PercentileSubscale
+        - id: '42'
+          name: Security_Beliefs
+          type: PercentileSubscale
+        - id: '43'
+          name: Security_Occupational_Prferences
+          type: PercentileSubscale
+        - id: '44'
+          name: Security_Aversions
+          type: PercentileSubscale
+        - id: '45'
+          name: Security_Preferred_Associates
+          type: PercentileSubscale
+        - id: '46'
+          name: Tradition_Lifestyles
+          type: PercentileSubscale
+        - id: '47'
+          name: Tradition_Beliefs
+          type: PercentileSubscale
+        - id: '48'
+          name: Tradition_Occupational_Prferences
+          type: PercentileSubscale
+        - id: '49'
+          name: Tradition_Aversions
+          type: PercentileSubscale
+        - id: '50'
+          name: Tradition_Preferred_Associates
+          type: PercentileSubscale
 
 
   - name: HBRI
@@ -657,30 +660,31 @@ hogan:
         norm_id: General
         language_id: en
     factors:
-      - id: '01'
-        name: Strategic_Reasoning_Scale
-        type: RAW Scale
-      - id: '02'
-        name: Tactical_Reasoning_Scale
-        type: RAW Scale
-      - id: '03'
-        name: Overall_Test_Score
-        type: RAW Scale
-      - id: '04'
-        name: Completion_Time
-        type: RAW Scale
-      - id: '01'
-        name: Strategic_Reasoning_Scale
-        type: Percentile Scale
-      - id: '02'
-        name: Tactical_Reasoning_Scale
-        type: Percentile Scale
-      - id: '03'
-        name: Overall_Test_Score
-        type: Percentile Scale
-      - id: '04'
-        name: Completion_Time
-        type: Percentile Scale
+      -
+        - id: '01'
+          name: Strategic_Reasoning_Scale
+          type: RawScale
+        - id: '02'
+          name: Tactical_Reasoning_Scale
+          type: RawScale
+        - id: '03'
+          name: Overall_Test_Score
+          type: RawScale
+        - id: '04'
+          name: Completion_Time
+          type: RawScale
+        - id: '01'
+          name: Strategic_Reasoning_Scale
+          type: PercentileScale
+        - id: '02'
+          name: Tactical_Reasoning_Scale
+          type: PercentileScale
+        - id: '03'
+          name: Overall_Test_Score
+          type: PercentileScale
+        - id: '04'
+          name: Completion_Time
+          type: Percentile Scale
 mindmill_factors:
   nf: &nf
   - name: "NF Attempted"
@@ -865,52 +869,52 @@ mindmill_factors:
 mindmill:
   - name: Cognitive – Entry Level TTE
     id: 416
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*or, *nf, *ab, *cpi]
   - name: Cognitive – Mid Level TTE
     id: 417
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *nf, *ti, *cpi]
   - name: Cognitive – Senior Level TTE
     id: 418
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *nf, *ti, *cpi]
   - name: Support Functions – Entry Level TTE
     id: 419
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *nf, *oe, *ab, *cpi]
   - name: Support Functions – Mid Level TTE
     id: 420
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *rc, *nf, *ti, *cpi]
   - name: Support Functions – Senior Level TTE
     id: 421
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *rc, *nf, *ti, *cpi]
   - name: Sales – Entry Level TTE
     id: 422
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *nf, *ab, *cpi]
   - name: Sales – Mid Level TTE
     id: 423
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *rc, *nf, *ti, *cpi]
   - name: Sales – Senior Level TTE
     id: 424
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *rc, *nf, *ti, *cpi]
   - name: Customer – Entry Level TTE
     id: 425
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *nf, *oe, *ab, *bands, *cpi]
   - name: Customer – Mid Level TTE
     id: 426
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *nf, *wr, *ti, *bands, *cpi]
   - name: Customer – Senior Level TTE
     id: 427
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *rc, *nf, *ti, *cpi]
   - name: Technical Functions – Entry Level TTE
     id: 428
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *or, *nf, *oe, *ab, *bands, *cpi]
   - name: Technical Functions – Mid Level TTE
     id: 429
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *or, *rc, *nf, *ti, *bands, *cpi]
   - name: Technical Functions – Senior Level TTE
     id: 430
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *or, *rc, *nf, *ti, *cpi]
   - name: Technical Functions
     id: 469
-    factors: [*nf, *ed, *ti, *oe, *or, *ab, *rc, *bands, *wr, *cpi]
+    factors: [*ed, *or, *nf, *oe, *cpi]
 default_colors:
   - "#845EC2"
   - "#2C73D2"

@@ -13,7 +13,7 @@ module Errors
     private
 
     def default_message
-      "<b>#{user.decorate.display_name} (#{user.id})</b> in <b>#{client.decorate.display_name}</b> has not enough licenses for <b>#{report.decorate.display_name}</b> report.".html_safe
+      "<b>#{user.decorate.display_name}</b> in <b>#{client.decorate.display_name}</b> has not enough licenses for <b>#{report.decorate.display_name}</b> report.".html_safe
     end
   end
 end

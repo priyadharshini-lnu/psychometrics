@@ -1,0 +1,21 @@
+tr id=dom_id(resource)
+  td.text-center
+    = link_to({ action: :toggle_status, id: resource },
+              remote: true,
+              method: :patch,
+              data: { confirm: resource.decorate.toggle_status_confirmation })
+      = resource.decorate.status
+  td.minimal
+    span.key = resource.key
+    button.mlm.btn.btn-default.btn-rounded.btn-xs.copy-key
+      = t('.copy')
+  td.nowrap
+    span.token.encrypted
+      - unless resource.disabled?
+        span.hidden = resource.token
+    - unless resource.disabled?
+      button.mlm.btn.btn-default.btn-rounded.btn-xs.show-token
+        = t('.show_and_copy')
+      button.mlm.btn.btn-default.btn-rounded.btn-xs.hide-token.hidden
+        = t('administration.hide')
+  td.text-center = resource.decorate.updated_at

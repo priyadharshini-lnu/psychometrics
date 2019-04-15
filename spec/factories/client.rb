@@ -88,7 +88,7 @@ FactoryGirl.define do
       sequence(:name) { |i| "Campaign #{i}" }
     end
 
-    factory :campaign, parent: :campaign do
+    factory :client_campaign, parent: :campaign_base do
       association :parent, factory: [:project_base, :campaign_level]
       _end_level
     end

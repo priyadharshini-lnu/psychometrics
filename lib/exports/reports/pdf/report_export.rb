@@ -97,7 +97,7 @@ module Exports
           Rails.application.
             routes.
             url_helpers.
-            report_url(report, params)
+            export_report_url(report, params)
         end
       end
     end

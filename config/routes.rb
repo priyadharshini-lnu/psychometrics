@@ -1,6 +1,9 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
+
   # Administration panel
   #
   namespace :administration do
@@ -69,6 +72,7 @@ Rails.application.routes.draw do
             end
             resources :assign_assessments, only: %i[new create]
           end
+
           member do
             patch :toggle_status
             get :sidebar
@@ -80,6 +84,12 @@ Rails.application.routes.draw do
             get :export
             get :export_completion_status
             post :assign_multiple
+          end
+
+          resources :api_keys, except: %i[destroy edit update show] do
+            member do
+              patch :toggle_status
+            end
           end
         end
         resources :project_admins do
@@ -382,7 +392,10 @@ Rails.application.routes.draw do
              singular: :user,
              to: 'User',
              class_name: 'User',
-             controllers: { registrations: 'users/registrations', invitations: 'users/invitations', passwords: 'passwords' }
+             controllers: { registrations: 'users/registrations',
+                            sessions: 'users/sessions',
+                            invitations: 'users/invitations',
+                            passwords: 'passwords' }
   # Manager's panel
   #
   constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
@@ -431,9 +444,13 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :reports, only: %i(show)
+    resources :reports, only: %i(show) do
+      get :export, on: :member
+    end
     resource :profiles, only: %i(update edit)
     get 'survey_instructions', to: 'home#survey_instructions'
+    get 'sso/:user_id/:sso_token', to: 'home#sso'
+    get 'assessment_completed', to: 'home#assessment_completed'
     root to: 'assigns#index'
   end
 
@@ -447,4 +464,26 @@ Rails.application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
 
   root to: 'administration/administrator/sessions#new'
+
+  constraints format: :json do
+    namespace :api do
+      namespace :v1 do
+        resources :projects, only: [] do
+          resources :users, only: %i[create update] do
+            post :sso, on: :member
+
+            resources :campaigns, only: [:index, :create]
+            resources :assessments, only: [:index]
+            resources :reports, only: [:index] do
+              get :results, on: :member
+              get :pdf, on: :member
+            end
+          end
+          resources :campaigns, only: [] do
+            post :duplicate, on: :member
+          end
+        end
+      end
+    end
+  end
 end

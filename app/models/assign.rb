@@ -24,15 +24,16 @@
 class Assign < ApplicationRecord
   belongs_to :assessment
   belongs_to :membership, inverse_of: :assigns
+  belongs_to :evaluator, class_name: 'User'
+  belongs_to :subject, class_name: 'User'
+  belongs_to :campaign
   has_one :user, through: :membership
   belongs_to :project_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_many :original_assigns, foreign_key: :project_assign_id, class_name: 'Assign'
 
   has_many :assigns_reports, inverse_of: :assign # on delete cascade
-  has_many :enabled_assigns_reports,
-           -> { includes(:report).where(reports: { disabled: false }) },
-           class_name: 'AssignsReport'
+  has_many :enabled_assigns_reports, -> { active }, class_name: 'AssignsReport'
   has_many :reports, through: :assigns_reports, dependent: :destroy
 
   has_many :multiple_reports, -> { multiple }, through: :assigns_reports, source: :report
@@ -70,6 +71,7 @@ class Assign < ApplicationRecord
   after_commit :update_membership_completed
 
   delegate :project_membership, to: :membership
+  delegate :threesixty?, to: :assessment
 
   def set_started_at
     self.started_at = DateTime.current
@@ -172,6 +174,10 @@ class Assign < ApplicationRecord
     original_assign || self
   end
 
+  def threesixty_subject
+    Threesixty::Subject.find_by(user_id: subject_id, campaign_id: campaign_id)
+  end
+
   private
 
   def send_completion_email
@@ -186,6 +192,7 @@ class Assign < ApplicationRecord
     membership.update_column(:assigns_completed, completed)
   end
 
+  # TODO (atanych): should be refactored
   def set_project_assign
     return if project_membership.nil?
     project_assign = project_membership.assigns.where(assessment_id: assessment_id).take

@@ -13,7 +13,8 @@
 
 class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations, :props,
-             :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns
+             :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
+             :category
 
   has_many :pages, serializer: Reports::PageSerializer
   has_many :filters, serializer: Reports::FilterSerializer
@@ -22,7 +23,7 @@ class ReportSerializer < ActiveModel::Serializer
   def factors
     object_assessment_ids = object.assessment_ids
     factors = Factor.
-      selecting {['factors.*',
+              selecting {['factors.*',
                   array(
                     _(
                       FactorsScoring.
@@ -32,8 +33,8 @@ class ReportSerializer < ActiveModel::Serializer
                     )
                   ).as('question_ids')
       ]}.
-      where(dimension_id: object.dimension_ids).
-      order(name: :asc)
+              where(dimension_id: object.dimension_ids).
+              order(name: :asc)
     aliases = FactorsAlias.where(factor_id: factors.ids, report_id: object.id).group_by(&:factor_id)
     factors.group_by(&:dimension_id).transform_values do |group|
       group.map do |obj|
@@ -46,22 +47,15 @@ class ReportSerializer < ActiveModel::Serializer
 
   def occupations
     occupations = Occupation.includes(:occupations_factors).
-                             where(dimension_id: object.assessments.pluck(:dimension_id)).
-                             order(name: :asc)
+                  where(dimension_id: object.assessments.pluck(:dimension_id)).
+                  order(name: :asc)
     occupations.group_by(&:dimension_id).transform_values do |group|
       group.map { |occupation| OccupationSerializer.new(occupation) }
     end
   end
 
   def assigns
-    return [] unless @instance_options[:membership]
-
-    assigns = Assign.includes(:membership).joins(:membership).
-      where(assessment_id: object.assessment_ids, memberships: { client_id: @instance_options[:membership].client_id })
-
-    assigns.group_by(&:assessment_id).transform_values do |group|
-      group.map { |assign| AssignShortSerializer.new(assign, membership: @instance_options[:membership]) }
-    end
+    []
   end
 
   def factor_norms
@@ -76,13 +70,28 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def completed_assessments
-    return object.assessment_ids unless @instance_options[:assigns]
-    @instance_options[:assigns].select { |assign| assign.completed? }.map(&:assessment_id)
+    object.assessment_ids
+  end
+
+  def data_sheet_columns
+    return object.data_sheet_columns unless object.category_threesixty?
+
+    Datasheet.find_by(project_id: connected_campaign.project_id)&.normalize_columns || []
   end
 
   # Returns YAML rules for exporting data.
   #
   def data_configuration
     object.data_configuration.to_yaml
+  end
+
+  def relationships
+    return [] unless object.category_threesixty?
+
+    Relationships::ByCampaign.new(connected_campaign).map { |r| RelationshipSerializer.new(r).to_h }
+  end
+
+  def connected_campaign
+    @connected_campaign ||= Campaign.joins(:threesixty_campaign).find_by(threesixty_campaigns: { report_id: object.id })
   end
 end
