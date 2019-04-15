@@ -14,18 +14,27 @@
                                       data: { live_search: true,
                                               max_options: Report::MAX_ASSESSMENT_COUNT,
                                               max_options_text: I18n.t('activerecord.errors.models.report.max_assessment_count', max: Report::MAX_ASSESSMENT_COUNT),
-                                              dynamic_selectable_url: url_for(action: :hogan_reports, assessment_ids: '__id__'),
-                                              dynamic_selectable_target: '#resource_hogan_report_setting_attributes_hogan_report_id' } }
+                                              dynamic_selectable_url: url_for(action: :hogan_reports, assessment_ids: '__id__', hogan_report_id: f.object.hogan_report_setting&.hogan_report_id),
+                                              dynamic_selectable_target: '#resource_hogan_report_setting_attributes_hogan_report_id',
+                                              include_blank: t('.none_external') }}
         - if (resource.assigns_reports.any? || resource.clients_reports.any?) && resource.errors[:assessments].blank?
           span.help-block.text-danger.margin-top-minus-10
             = I18n.t('activerecord.errors.models.report.has_already_assigned')
+
+        = f.input :mindmill, as: :select,
+                             collection: [[t('.none_external'), false], [t('.load_mindmill_report'), true]],
+                             wrapper_html: { class: 'hidden' },
+                             input_html: {disabled: true},
+                             include_blank: false
+
         = f.simple_fields_for :hogan_report_setting do |hogan|
           = hogan.input :hogan_report_id,
                         as: :select,
                         collection: [],
                         input_html: { multiple: false },
                         wrapper_html: { class: 'resource_hogan hidden' },
-                        disabled: true
+                        disabled: true,
+                        include_hidden: false
         = f.input :default_language,
                   collection: I18n.available_locales.map { |locale| [t("languages.#{locale}"), locale] },
                   include_blank: false

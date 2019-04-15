@@ -46,12 +46,14 @@ module Administration
     def create
       @_resource = resource_class.new(resource_params)
       resource.owner_id = current_user.project_admin_client_ids.first if current_user.is?(:client_admin)
+      # TODO (ivan) Move creating and updating to Command and Form
+      resource.hogan_report_setting&.delete if resource.hogan_report_setting&.hogan_report_id.blank?
 
       respond_to do |format|
         if resource.save
           format.js
         else
-          @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
+          resource.build_hogan_report_setting if resource.hogan_report_setting.blank?
           format.js { render :new }
         end
       end

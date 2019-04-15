@@ -270,31 +270,31 @@ providers:
     reports:
       - id: EcHPIDML
         name: HPI Data Report
-        norm_id: General
+        norm_id: Global
         language_id: en
         assessment_ids:
           - HPI
       - id: EcHDSDML
         name: HDS Data Report
-        norm_id: General
+        norm_id: Global
         language_id: en
         assessment_ids:
           - HDS
       - id: EcMVPIDML
         name: MVPI Data Report
-        norm_id: General
+        norm_id: Global
         language_id: en
         assessment_ids:
           - MVPI
       - id: EcHBRIV1D
         name: HBRI Data Report
-        norm_id: General
+        norm_id: Global
         language_id: en
         assessment_ids:
           - HBRIV1
       - id: EcHBRIV1IML
         name: HBRI Interpret Report
-        norm_id: General
+        norm_id: Global
         language_id: en
         assessment_ids:
           - HBRIV1
