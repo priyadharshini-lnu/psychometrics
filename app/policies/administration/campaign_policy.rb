@@ -12,7 +12,7 @@ module Administration
       @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
     end
 
-    def dimensions?
+    def assessments?
       @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
     end
 

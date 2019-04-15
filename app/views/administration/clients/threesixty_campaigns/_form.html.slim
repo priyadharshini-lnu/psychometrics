@@ -3,12 +3,12 @@
     = f.error_notification
     .form-inputs.clearfix
       = f.input :name
+      = f.input :type, as: :select, collection: Campaign::TYPES.map{|k,v| [v, k]}, include_blank: false
       = f.fields_for :threesixty_campaign do |ff|
-        = ff.input :assessment_id, as: :select, collection: Assessment.where(category: Assessment.categories['360']).map { |a| [a.decorate.name, a.id] }
-        #dimentions_field
-          = ff.input :dimension_id, as: :select, collection: Dimension.all.map { |d| [d.decorate.name, d.id] }
-          #factors_field
-            = ff.input :factors, as: :select, collection: [], input_html: { multiple: true }
+        #assessment_field.form-group
+          = ff.input :assessment_id, as: :select, collection: Assessment.where(category: Assessment.categories['360']).map { |a| [a.decorate.name, a.id] }
+        #factors_field.form-group
+          = ff.input :factors, as: :select, collection: [], input_html: { multiple: true }
 
 
   .modal-footer
@@ -18,36 +18,50 @@
 
 javascript:
   $(function () {
-    function fetchFactors (dimention) {
-      var url = $('#threesixty_campaign').attr('action') + '/factors?dimension_id=' + dimention
-
-      $.ajax({
-        url: url,
-        type: 'GET',
-        dataType: 'script',
-      });
+    function changeType(){
+      var type = $(this).find('option:selected').attr('value')
+      if (type === 'empty') {
+        $('#assessment_field').css('display', 'none')
+        $('#factors_field').css('display', 'none')
+      } else {
+        fetchAssessments(type)
+        $('#assessment_field').css('display', 'block')
+        $('#factors_field').css('display', 'block')
+      }
     }
 
-    function dimensionHandler () {
-      $('#threesixty_campaign #resource_threesixty_campaign_dimension_id').change(function(){
-        var dimention = $(this).find('option:selected').attr('value')
-        fetchFactors(dimention)
+    $('#threesixty_campaign #resource_type').change(changeType)
+    changeType.call($('#threesixty_campaign #resource_type'))
+
+    function assessmentHandler () {
+      $('#threesixty_campaign #resource_threesixty_campaign_assessment_id').change(function(){
+        var assessment = $(this).find('option:selected').attr('value')
+        fetchFactors(assessment)
       })
     }
 
-    $('#threesixty_campaign #resource_threesixty_campaign_assessment_id').change(function(){
-
-      var assessment = $(this).find('option:selected').attr('value')
-      var url = $('#threesixty_campaign').attr('action') + '/dimensions?assessment_id=' + assessment
+    function fetchAssessments (type) {
+      var url = $('#threesixty_campaign').attr('action') + '/assessments?type=' + type
 
       $.ajax({
         url: url,
         type: 'GET',
         dataType: 'script',
-        complete: function () {
-          dimensionHandler()
+        success: function () {
+          assessmentHandler()
         }
       });
-    })
-    dimensionHandler()
+    }
+
+    function fetchFactors (assessment) {
+      var url = $('#threesixty_campaign').attr('action') + '/factors?assessment_id=' + assessment
+
+      $.ajax({
+        url: url,
+        type: 'GET',
+        dataType: 'script',
+      });
+    }
+
+    assessmentHandler()
   })

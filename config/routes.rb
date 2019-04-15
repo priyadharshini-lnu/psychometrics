@@ -150,10 +150,10 @@ Rails.application.routes.draw do
         end
         resources :campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
         resources :sub_campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
-        resources :threesixty_campaigns, concerns: :client_editable, only: [:index, :new, :create, :edit, :update, :destroy] do
+        resources :threesixty_campaigns, concerns: :client_editable do
           get :sidebar
           collection do
-            get :dimensions
+            get :assessments
             get :factors
           end
         end
@@ -358,6 +358,12 @@ Rails.application.routes.draw do
         get :copy
         get :sidebar
         patch :toggle_status
+      end
+    end
+
+    resources :campaign_templates do
+      member do
+        get :sidebar
       end
     end
 

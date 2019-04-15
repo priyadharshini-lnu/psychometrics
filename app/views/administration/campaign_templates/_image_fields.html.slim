@@ -1,0 +1,7 @@
+.nested-fields
+  .row
+    .col-sm-7
+      = f.input :image, label: false, hint: f.object.image? ? image_tag(f.object.image_url(:thumb)) : ''
+      = f.input :image_cache, as: :hidden
+    .col-sm-5
+      = link_to_remove_association t('.remove'), f

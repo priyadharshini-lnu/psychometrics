@@ -1,30 +1,10 @@
 tr data-sidebar=url_for(sidebar_administration_client_threesixty_campaign_path(client, resource)) id=dom_id(resource)
-  td = resource.name
+  td = link_to resource.name, administration_client_threesixty_campaign_path(client, resource)
   td
-    div
-      span.mrm= resource.threesixty_campaign.assessment.decorate.name
-    - if policy(:clients_report).create?
-      .add-icon-box.nowrap
-        = link_to administration_assessment_path(resource.threesixty_campaign.assessment_id)
-          span.fa.fa-pencil
-          =< t('.edit_assessment')
+    = link_to resource.threesixty_campaign.assessment.decorate.name, administration_assessment_path(resource.threesixty_campaign.assessment_id)
   td
-    div
-      span.mrm= resource.threesixty_campaign.report.decorate.name
-    .add-icon-box.nowrap
-      = link_to administration_report_path(resource.threesixty_campaign.report_id)
-        span.fa.fa-pencil
-        =< t('.edit_report')
-  td
-    div
-      span.mrm
-        / = resource.threesixty_campaign.dimention.name
+    = link_to resource.threesixty_campaign.report.decorate.name, administration_report_path(resource.threesixty_campaign.report_id)
   td.text-center = resource.created_at
   td.actions-cell
-    / - if policy(resource).actions? && policy(:client).manage_campaign?
-    /   = link_to edit_administration_client_project_campaign_sub_campaign_path(client, project, campaign, resource), remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
-    /     span.fa.fa-pencil
-    /   = link_to copy_administration_client_project_campaign_sub_campaign_path(client, project, campaign, resource), remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') }
-    /     span.fa.fa-copy
-    /   = link_to administration_client_project_campaign_sub_campaign_path(client, project, campaign, resource), remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
-    /     span.fa.fa-times
+    = link_to administration_client_threesixty_campaign_path(client, resource), remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: 'Are you sure?', toggle: 'tooltip', title: t('.tooltips.delete')}
+      span.fa.fa-times

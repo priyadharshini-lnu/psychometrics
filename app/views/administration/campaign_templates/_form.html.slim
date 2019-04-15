@@ -1,0 +1,40 @@
+= simple_form_for(resource, as: :resource, url: { action: resource.new_record? ? :create : :update }, html: { multipart: true }) do |f|
+  .modal-body
+    = f.error_notification
+    .form-inputs.clearfix
+      = f.input :name
+      = f.input :assessment_id, as: :select, collection: Assessment.where(category: Assessment.categories['360']).map { |a| [a.decorate.name, a.id] }
+      #report_field.form-group
+        = f.input :report_id, as: :select, collection: Report.all.map { |a| [a.decorate.name, a.id] }
+
+  .modal-footer
+    .btn-group
+      = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+
+  javascript:
+    $(function(){
+      $('#new_resource, #edit_resource').on('submit', function(event) {
+        event.stopPropagation(); // Stop stuff happening
+        event.preventDefault(); // Totally stop stuff happening
+
+        var form = $(this);
+        var formdata = false;
+        if (window.FormData){
+          formdata = new FormData(form[0]);
+        }
+
+        var formAction = form.attr('action');
+        $.ajax({
+          url: formAction,
+          data: formdata ? formdata : form.serialize(),
+          dataType: 'script',
+          cache: false,
+          contentType: false,
+          processData: false,
+          type: 'POST',
+          success: function(data, textStatus, jqXHR) {
+          }
+        });
+      });
+    });

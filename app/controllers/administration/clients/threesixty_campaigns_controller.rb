@@ -3,6 +3,7 @@ module Administration
     class ThreesixtyCampaignsController < Administration::ClientsController
       include Administration::Clients
       before_action :ensure_client
+      wrap_parameters :threesixty_campaign, include: Threesixty::Campaign.attribute_names
 
       def index
         @_filter_form = client.threesixty_campaigns.search(params[:q])
@@ -14,6 +15,10 @@ module Administration
         end
       end
 
+      def show
+
+      end
+
       def create
         campaign = Campaign.new(campaign_params)
         campaign.project_id = client.id
@@ -21,21 +26,19 @@ module Administration
         campaign.save
       end
 
-      def dimensions
-        if params[:assessment_id].present?
-          assessment = Assessment.find(params[:assessment_id])
-          @dimension = assessment.dimension
-          @dimensions = [@dimension]
+      def assessments
+        type = params[:type]
+        @assessments = if type == 'standard_360'
+          CampaignTemplate.includes(:assessment).map(&:assessment)
         else
-          @dimensions = Dimension.all
-          @dimension = @dimensions.first
+          client.threesixty_campaigns.map(&:threesixty_campaign).map(&:assessment)
         end
       end
 
       def factors
-        @factors = if params[:dimension_id].present?
-          dimension = Dimension.find(params[:dimension_id])
-          dimension.factors
+        @factors = if params[:assessment_id].present?
+          assessment = Assessment.find(params[:assessment_id])
+          assessment.dimension.factors
         else
           []
         end
@@ -53,20 +56,19 @@ module Administration
       end
 
       def campaign_params
-        params.require(:resource).permit(:name)
+        params.require(:resource).permit(:name, :type)
       end
 
       def threesixty_campaign_params
-        params.require(:resource).require(:threesixty_campaign).permit(:assessment_id)
+        params.require(:resource).require(:threesixty_campaign).permit(:assessment_id, factors: [])
       end
-
 
       def set_resource_class
         @_resource_class ||= ::Campaign
       end
 
       def set_resource
-        @_resource = policy_scope(resource_class).find(params[:threesixty_campaign_id])
+        @_resource = policy_scope(resource_class).find(params[:threesixty_campaign_id] || params[:id])
       end
     end
   end
