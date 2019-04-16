@@ -1,3 +1,4 @@
 import ManagerList from './ManagerList'
+import connect from './connect'
 
-export default ManagerList
+export default connect(ManagerList)

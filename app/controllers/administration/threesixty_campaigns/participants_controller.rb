@@ -8,7 +8,8 @@ module Administration
       append_before_action :pundit_authorize
 
       def index
-        participants = policy_scope(::Participant).where(campaign_id: threesixty_campaign.campaign_id).ransack(params[:q]).result
+        query = params[:q] ? JSON.parse(params[:q]) : {}
+        participants = policy_scope(::Participant).where(campaign_id: threesixty_campaign.campaign_id).ransack(query).result
         subject_map = policy_scope(::Threesixty::Subject).where(campaign_id: threesixty_campaign.campaign_id).index_by(&:user_id)
         render json: participants.map { |p| ::Threesixty::ParticipantSerializer.new(p, subject_map: subject_map).to_h }
       end

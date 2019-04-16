@@ -2,10 +2,19 @@ import axios from 'axios'
 import queryString from 'query-string'
 import humps from 'humps'
 
-const buildUrl = ({ method, url, body }) => {
+const buildUrl = ({ method = 'get', url, body }) => {
   if (method !== 'get') return url
-
-  return `${url}?${queryString.stringify(body, { arrayFormat: 'bracket' })}`
+  const normalizedBody = _.transform(
+    body,
+    (res, v, k) => {
+      if (_.isPlainObject(v)) {
+        res[k] = JSON.stringify(v)
+      }
+      return res
+    },
+    {},
+  )
+  return `${url}?${queryString.stringify(normalizedBody, { arrayFormat: 'bracket' })}`
 }
 
 const apiMiddleware = () => next => (action) => {
