@@ -173,6 +173,9 @@ Rails.application.routes.draw do
         resources :subjects do
 
         end
+        resources :participants do
+
+        end
       end
     end
 

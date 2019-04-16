@@ -1,7 +1,9 @@
 import React from 'react'
-import { Menu } from 'antd'
+import {
+  Button, Dropdown, Icon, Menu,
+} from 'antd'
 
-const ActionsMenu = () => (
+const menu = (
   <Menu>
     <Menu.Item key="1">Manage Data Sheets...</Menu.Item>
     <Menu.Item key="2">Manage Relationships...</Menu.Item>
@@ -19,5 +21,14 @@ const ActionsMenu = () => (
     <Menu.Item key="8">Manage Previous Jobs...</Menu.Item>
   </Menu>
 )
-
-export default ActionsMenu
+export default function ToolsDropdown () {
+  return (
+    <Dropdown overlay={menu} className="mrm" trigger={['click']}>
+      <Button>
+        <Icon type="tool" />
+        <span>Tools</span>
+        <Icon type="down" />
+      </Button>
+    </Dropdown>
+  )
+}

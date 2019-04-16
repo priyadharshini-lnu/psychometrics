@@ -1,5 +1,5 @@
 const settings = {
-  urlPrefix: '*/threesixty_campaigns/:campaignId',
+  urlPrefix: '*/projects/:projectId/threesixty_campaigns/:campaignId',
 }
 
 export default settings

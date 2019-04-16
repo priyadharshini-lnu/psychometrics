@@ -5,7 +5,7 @@ import {
 import userPresenter from 'presenters/userPresenter'
 import css from './SubjectList.scss'
 import ActionsMenu from './ActionsMenu'
-import ToolsMenu from './ToolsMenu'
+import ToolsDropdown from '../ToolsDropdown'
 import CreateSubjectsMenu from './CreateSubjectsMenu'
 
 const { Column } = Table
@@ -26,16 +26,10 @@ export default function SubjectList ({
       <Row>
         <Col span={4} className="pls">
           <Icon type="user" />
-          <span className="mlm">4 Subjects</span>
+          <span className="mlm">{`${subjects.length} Subjects`}</span>
         </Col>
         <Col span={6} offset={14} className="text-align-r">
-          <Dropdown overlay={ToolsMenu} className="mrm" trigger={['click']}>
-            <Button>
-              <Icon type="tool" />
-              <span>Tools</span>
-              <Icon type="down" />
-            </Button>
-          </Dropdown>
+          <ToolsDropdown />
           <Dropdown overlay={CreateSubjectsMenu} className="mrm" trigger={['click']}>
             <Button type="primary">
               <Icon type="plus" />
