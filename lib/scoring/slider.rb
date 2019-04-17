@@ -8,8 +8,11 @@ module Scoring
       result['answers'].each do |answer|
         if answer['value']
           object = scoring_template.find { |template| template['index'] == answer['index'] }
-          percent = (answer['value'].to_f -  min_value)/(max_value - min_value)
-          scoring += object['value'] * percent if object
+          if object
+            percent = (answer['value'].to_f - min_value) / (max_value - min_value)
+            percent = 1 - percent if object['reverse']
+            scoring += object['value'] * percent
+          end
         end
       end
       scoring / choices
