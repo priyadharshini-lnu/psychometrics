@@ -18,7 +18,7 @@ module Administration
     end
 
     def reset?
-      destroy?
+      destroy? && !@record&.assign_with_result&.not_started?
     end
 
     # Permission to view statistics link
