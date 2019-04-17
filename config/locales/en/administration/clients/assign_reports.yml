@@ -9,6 +9,10 @@ en:
           access: 'Access'
         form_edit:
           <<: *FORM_NEW
+          added_reports: Already assigned Reports
+          new_reports: Add new Reports
+          remove: Remove*
+          remove_note: Removing Report will affect all existing users independently of setting "Apply to existing users"
         form:
           <<: *FORM_NEW
         edit:

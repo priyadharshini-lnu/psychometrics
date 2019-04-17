@@ -1,12 +1,13 @@
 # frozen_string_literal: true
 
-module Administration
-  module Clients
-    class AssignReports < Rectify::Command
+module Clients
+  module AssignReports
+    class AssignReport < Rectify::Command
       def initialize(form, client, membership = nil)
         @form = form
         @client = client
         @reports = Report.includes(:assessments).where(id: form.report_ids)
+        @remove_reports = Report.includes(:assessments).where(id: form.remove_report_ids)
         @membership = membership
       end
 
@@ -15,6 +16,7 @@ module Administration
 
         transaction do
           assign_reports_to_client
+          remove_reports_from_client unless form.remove_report_ids.blank?
           # Applies to all existing users
           apply_to_existing_users if form.apply_to_existing_users
           # Applies reports to particular membership
@@ -29,7 +31,7 @@ module Administration
 
       private
 
-      attr_reader :form, :client, :reports, :membership
+      attr_reader :form, :client, :reports, :membership, :remove_reports
 
       # Builds ClientReport and AssessmentClient entities
       #
@@ -47,6 +49,26 @@ module Administration
             client.assessments_clients.find_or_create_by!(assessment_id: assessment.id)
           end
         end
+      end
+
+      # Removes already assigned reports from client
+      #
+      def remove_reports_from_client
+        keep_report_ids = client.reports.ids + form.report_ids - form.remove_report_ids
+        remove_assessment_ids = Assessment.
+                              joins(:assessments_reports).
+                              where(assessments_reports: { report_id: form.remove_report_ids }).
+                              ids
+        keep_assessment_ids = Assessment.
+                              joins(:assessments_reports).
+                              where(assessments_reports: { report_id: keep_report_ids }).
+                              ids
+        client.clients_reports.
+               where(report_id: form.remove_report_ids, report_family_id: form.report_family_id).
+               delete_all
+        client.assessments_clients.
+               where(assessment_id: (remove_assessment_ids - keep_assessment_ids)).
+               delete_all
       end
 
       # Iterates all memberships and assigns reports

@@ -10,21 +10,30 @@
       table.table#reports
         thead
           tr
-            th = t('.reports')
-            th = t('.access')
+            th colspan=3 = t('.added_reports')
         tr
           td = f.input :report_ids,
                        as: :check_boxes,
                        collection: @reports_assigned,
                        label: false,
                        include_hidden: false,
-                       disabled: true
+                       disabled: true,
+                       input_html: { class: 'hidden' }
           td = f.input :user_access_report_ids,
                        as: :check_boxes,
                        collection: @reports_assigned,
                        label: false,
                        include_hidden: false,
                        label_method: proc { t('.user_access') }
+          td = f.input :remove_report_ids,
+                       as: :check_boxes,
+                       collection: @reports_assigned,
+                       label: false,
+                       include_hidden: false,
+                       label_method: proc { t('.remove') }
+        thead
+          tr
+            th colspan=3 = t('.new_reports')
         tr
           td = f.input :report_ids,
                        as: :check_boxes,
@@ -37,8 +46,11 @@
                        include_hidden: false,
                        label: false,
                        label_method: proc { t('.user_access') }
+          td
       br
       = f.input :apply_to_existing_users, as: :boolean, hint: t('.apply_to_existing_users_hint')
+      sup *
+      span = t('.remove_note')
   .modal-footer
     .btn-group
       = button_tag t('administration.save'),

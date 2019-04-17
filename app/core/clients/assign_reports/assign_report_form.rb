@@ -1,11 +1,12 @@
 # frozen_string_literal: true
 
-module Administration
-  module Clients
-    class AssignReportsForm < Rectify::Form
+module Clients
+  module AssignReports
+    class AssignReportForm < Rectify::Form
       # Fields
       attribute :report_family_id, Integer
       attribute :report_ids, Array[Integer]
+      attribute :remove_report_ids, Array[Integer]
       attribute :user_access_report_ids, Array[Integer]
       attribute :apply_to_existing_users, Boolean
 
@@ -38,11 +39,10 @@ module Administration
       # Returns error if there is a Report not from Report Family
       #
       def reports_linked_to_report_family
-        report_family = ReportFamily.find(report_family_id)
-        report_family_report_ids = report_family.report_ids
-        errors.add(:report_ids, :invalid) unless report_ids.all? { |id| report_family_report_ids.include?(id) }
+        report_family_report_ids = ReportFamily.find(report_family_id).report_ids.to_set
+        errors.add(:report_ids, :invalid) unless report_ids.to_set.subset?(report_family_report_ids)
+        errors.add(:remove_report_ids, :invalid) unless remove_report_ids.to_set.subset?(report_family_report_ids)
       end
-
     end
   end
 end

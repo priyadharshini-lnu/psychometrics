@@ -13,7 +13,7 @@ module Administration
                                   where(reports: { disabled: false }).
                                   references(:reports).
                                   distinct
-        @_resource = AssignReportsForm.new.with_context(new_record: true)
+        @_resource = ::Clients::AssignReports::AssignReportForm.new.with_context(new_record: true)
       end
 
       def create
@@ -23,13 +23,13 @@ module Administration
                                   where(reports: { disabled: false }).
                                   references(:reports).
                                   distinct
-        @_resource = AssignReportsForm.
+        @_resource = ::Clients::AssignReports::AssignReportForm.
                      from_params(params[:resource]).
                      with_context(client: client, client_tenancy: client.root, new_record: true)
 
         respond_to do |format|
           format.js do
-            AssignReports.call(resource, client) do
+            ::Clients::AssignReports::AssignReport.call(resource, client) do
               on(:invalid) { render :new }
             end
           end
@@ -41,24 +41,27 @@ module Administration
         @reports_assigned = @report_family.reports.where(id: client.report_ids)
         @reports = @report_family.reports.where.not(id: client.report_ids)
 
-        user_access_report_ids = client.clients_reports.where(user_access: true).pluck(:report_id)
-        @_resource = AssignReportsForm.new({ report_family_id: @report_family.id,
-                                             report_ids: client.report_ids,
-                                             user_access_report_ids: user_access_report_ids }).
-                                       with_context(new_record: false)
+        assign_report_attributes = {
+          report_family_id: @report_family.id,
+          report_ids: client.report_ids,
+          user_access_report_ids: client.clients_reports.where(user_access: true).pluck(:report_id)
+        }
+        @_resource = ::Clients::AssignReports::AssignReportForm.
+                     new(assign_report_attributes).
+                     with_context(new_record: false)
       end
 
       def update
         @report_family = ReportFamily.find(params.dig(:resource, :report_family_id))
         @reports_assigned = @report_family.reports.where(id: client.report_ids).distinct
         @reports = @report_family.reports.where.not(id: client.report_ids).distinct
-        @_resource = AssignReportsForm.
+        @_resource = ::Clients::AssignReports::AssignReportForm.
                      from_params(params[:resource]).
                      with_context(client: client, client_tenancy: client.root, new_record: false)
 
         respond_to do |format|
           format.js do
-            AssignReports.call(resource, client) do
+            ::Clients::AssignReports::AssignReport.call(resource, client) do
               on(:invalid) { render :edit }
             end
           end
