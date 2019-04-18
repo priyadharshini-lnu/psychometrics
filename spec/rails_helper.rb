@@ -21,37 +21,42 @@ FactoryGirl::SyntaxRunner.class_eval do
 end
 
 Capybara.default_max_wait_time = 5
-Capybara.register_driver :poltergeist do |app|
-  options = {
-      js_errors: false,
-      timeout: 120,
-      phantomjs_options: ['--load-images=no', '--disk-cache=false', '--web-security=false'],
-      inspector: true,
-      window_size: [1366, 768]
-  }
-  Capybara::Poltergeist::Driver.new(app, options)
+# Capybara.register_driver :poltergeist do |app|
+#   options = {
+#       js_errors: false,
+#       timeout: 120,
+#       phantomjs_options: ['--load-images=no', '--disk-cache=false', '--web-security=false'],
+#       inspector: true,
+#       window_size: [1366, 768]
+#   }
+#   Capybara::Poltergeist::Driver.new(app, options)
+# end
+
+# Capybara.register_driver :chrome do |app|
+#   # optional
+#   client = Selenium::WebDriver::Remote::Http::Default.new
+#   client.read_timeout = 120
+#   profile = Selenium::WebDriver::Chrome::Profile.new
+#   profile['download.default_directory'] = DownloadHelpers::PATH.to_s
+#   Capybara::Selenium::Driver.new(app, browser: :chrome, http_client: client, profile: profile)
+# end
+
+Capybara.register_driver :headless_chrome do |app|
+  # options = Selenium::WebDriver::Chrome::Options.new(args: ['headless'])
+  Capybara::Selenium::Driver.new(app, :browser => :chrome, :args => ['headless'])
 end
 
-Capybara.register_driver :chrome do |app|
-  # optional
-  client = Selenium::WebDriver::Remote::Http::Default.new
-  client.read_timeout = 120
-  profile = Selenium::WebDriver::Chrome::Profile.new
-  profile['download.default_directory'] = DownloadHelpers::PATH.to_s
-  Capybara::Selenium::Driver.new(app, browser: :chrome, http_client: client, profile: profile)
-end
-
-Capybara::Screenshot.register_driver(:chrome) do |driver, path|
-  driver.browser.save_screenshot(path)
-end
+# Capybara::Screenshot.register_driver(:chrome) do |driver, path|
+#   driver.browser.save_screenshot(path)
+# end
 
 Capybara.configure do |c|
   c.app_host = "http://lvh.me:#{Settings.port}"
   c.server_port = Settings.port
 end
 
-Capybara.default_driver = :poltergeist
-Capybara.javascript_driver = :chrome
+Capybara.default_driver = :headless_chrome
+Capybara.javascript_driver = :headless_chrome
 
 RSpec.configure do |config|
   config.color = true

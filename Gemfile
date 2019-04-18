@@ -200,4 +200,5 @@ group :test do
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'timecop', '~> 0.9.1'
   gem 'rails-controller-testing'
+  gem 'webdrivers'
 end
