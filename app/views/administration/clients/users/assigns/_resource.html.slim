@@ -7,12 +7,22 @@ tr id=dom_id(resource)
       - if policy(resource).destroy?
         = link_to({ action: :destroy, id: resource },
                   remote: true,
-                  class: 'btn btn-default btn-rounded btn-sm mrm',
+                  class: 'btn btn-default btn-rounded btn-sm',
                   method: :delete,
                   data: { confirm: resource.decorate.delete_confirmation,
                           toggle: 'tooltip',
                           title: t('.tooltips.delete') })
           span.fa.fa-times
+      - if policy(resource).reset?
+        = link_to({ action: :reset, id: resource },
+                  remote: true,
+                  class: 'btn btn-default btn-rounded btn-sm mlm',
+                  method: :put,
+                  data: { confirm: { title: t('.confirms.reset.title'),
+                                     body: t('.confirms.reset.body') },
+                          toggle: 'tooltip',
+                          title: t('.tooltips.reset') })
+          span.fa.fa-trash-o
   td = assessment.try(:name)
   td = assessment.try(:decorate).try(:category)
   td = resource.decorate.status
