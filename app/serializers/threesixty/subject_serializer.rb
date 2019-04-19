@@ -1,6 +1,6 @@
 module Threesixty
   class SubjectSerializer < ActiveModel::Serializer
-    attributes :id, :status, :report_status, :completed_evaluations, :received_evaluations
+    attributes :id, :status, :report_status, :evaluators, :evaluations
 
     has_one :user, serializer: UserSerializer
     def status
@@ -8,15 +8,15 @@ module Threesixty
     end
 
     def report_status
-      :incomplete
+      Threesixty::Participants::GetReportStatus.call!(object, @instance_options[:option])
     end
 
-    def completed_evaluations
-      '1 / 2'
+    def evaluations
+      "#{object.evaluator&.completed_evaluations_count || 0} / #{object.evaluator&.evaluations_count || 0}"
     end
 
-    def received_evaluations
-      '1 / 5'
+    def evaluators
+      "#{object.completed_evaluators_count} / #{object.evaluators_count}"
     end
   end
 end
