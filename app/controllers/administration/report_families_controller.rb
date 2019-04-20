@@ -1,5 +1,11 @@
 module Administration
-  class ReportFamiliesController < Administration::ReportsController
+  class ReportFamiliesController < Administration::BaseController
+    prepend_before_action :set_resource_class
+    before_action :set_resource, only: %i[show edit update destroy sidebar]
+    before_action :skip_authorization, only: [:sidebar]
+    append_before_action :init_breadcrumbs
+    append_before_action :pundit_authorize, except: [:sidebar]
+
     # GET /administration/resources
     def index
       @_filter_form = policy_scope(resource_class).search(params[:q])
@@ -14,12 +20,34 @@ module Administration
       @_resource = resource_class.new
     end
 
+    def create
+      @_resource = resource_class.new(resource_params)
+
+      respond_to do |format|
+        if resource.save
+          format.js
+        else
+          format.js { render :new }
+        end
+      end
+    end
+
     def edit
       add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
     end
 
+    def update
+      respond_to do |format|
+        if resource.update(resource_params)
+          format.js
+        else
+          format.js { render :edit }
+        end
+      end
+    end
+
     def destroy
-      super
+      resource.destroy
     rescue ActiveRecord::InvalidForeignKey
       msg = 'You have dependent records'
       respond_to do |format|
