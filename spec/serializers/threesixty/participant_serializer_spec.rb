@@ -12,7 +12,7 @@ describe Threesixty::ParticipantSerializer do
     let(:participant_dustin) { create(:participant, relationship: relationship_manager, subject: dustin, evaluator: dustin) }
     let(:subject_map) do
       {
-        1001 => build(:threesixty_subject, id: 1001, user: dustin, campaign: campaign),
+        dustin.id => build(:threesixty_subject, id: 1001, user: dustin, campaign: campaign),
       }
     end
 
