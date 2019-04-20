@@ -11,7 +11,7 @@ class CreateSubjectRelationshipCounters < ActiveRecord::Migration[5.1]
 
     create_table :threesixty_subjects_relationships do |t|
       t.belongs_to :campaign, foreign_key: { on_delete: :restrict }
-      t.belongs_to :subject, foreign_key: { to_table: :campaigns_users, on_delete: :restrict }
+      t.belongs_to :subject, foreign_key: { to_table: :users, on_delete: :restrict }
       t.belongs_to :relationship, foreign_key: { on_delete: :restrict }
       t.integer :completed_evaluators_count, default: 0
       t.integer :approved_evaluators_count, default: 0

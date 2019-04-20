@@ -44,8 +44,8 @@ export default function SubjectList ({
           <Table className="mtm" rowKey="id" dataSource={subjects} pagination={false}>
             <Column title="Name" key="fullName" render={({ user }) => userPresenter.getFullName(user)} />
             <Column title="Email" dataIndex="user.email" key="email" />
-            <Column title="Evaluations Received" dataIndex="receivedEvaluations" key="received_evaluations" />
-            <Column title="Evaluations Completed" dataIndex="completedEvaluations" key="completed_evaluations" />
+            <Column title="Evaluations Received" dataIndex="evaluators" key="received_evaluations" />
+            <Column title="Evaluations Completed" dataIndex="evaluations" key="completed_evaluations" />
             <Column title="Report Status" dataIndex="reportStatus" key="report_status" />
             <Column title="Status" dataIndex="status" key="status" />
 

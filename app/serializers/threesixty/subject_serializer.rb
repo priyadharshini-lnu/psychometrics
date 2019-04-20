@@ -4,7 +4,7 @@ module Threesixty
 
     has_one :user, serializer: UserSerializer
     def status
-      :incomplete
+      Threesixty::Participants::GetStatus.call!(object.evaluator, object, @instance_options[:option], @instance_options[:nomination_requirement])
     end
 
     def report_status
