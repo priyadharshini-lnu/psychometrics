@@ -38,8 +38,8 @@ module Administration
 
       def edit
         @report_family = ReportFamily.find(params[:report_family_id])
-        @reports_assigned = @report_family.reports.where(id: client.report_ids)
-        @reports = @report_family.reports.where.not(id: client.report_ids)
+        @reports_assigned = @report_family.reports.where(id: client.report_ids).distinct
+        @reports = @report_family.reports.where.not(id: client.report_ids).distinct
 
         assign_report_attributes = {
           report_family_id: @report_family.id,

@@ -51,6 +51,13 @@ class Assign < ApplicationRecord
     joins(:assessment).
       where.has { |assigns| assigns.assessment.type.eq(Assessment::TYPES[:mindmill]) }
   }
+  scope :projects, ->  { where(project_assign_id: nil) }
+  scope :originals, ->  { where.not(project_assign_id: nil) }
+  scope :with_status, lambda { |status|
+    joining { project_assign.outer }.
+      where.has { |s| (s.project_assign.status == self.statuses[status]) |
+                      ((s.project_assign.id == nil) & (s.status == self.statuses[status])) }
+  }
 
   attribute :user_access, :boolean, default: false
 

@@ -3,7 +3,6 @@ FactoryGirl.define do
     assign
     report
 
-
     trait :licensed do
       after(:build) do |assigns_report|
         allow(assigns_report).to receive(:use_license).and_return(true)

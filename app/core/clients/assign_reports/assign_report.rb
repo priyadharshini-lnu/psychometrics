@@ -55,20 +55,34 @@ module Clients
       #
       def remove_reports_from_client
         keep_report_ids = client.reports.ids + form.report_ids - form.remove_report_ids
-        remove_assessment_ids = Assessment.
-                              joins(:assessments_reports).
-                              where(assessments_reports: { report_id: form.remove_report_ids }).
-                              ids
+        assessment_ids = Assessment.
+                         joins(:assessments_reports).
+                         where(assessments_reports: { report_id: form.remove_report_ids }).
+                         ids
         keep_assessment_ids = Assessment.
                               joins(:assessments_reports).
                               where(assessments_reports: { report_id: keep_report_ids }).
                               ids
+        remove_assessment_ids = assessment_ids - keep_assessment_ids
+        # Remove assigned reports
         client.clients_reports.
                where(report_id: form.remove_report_ids, report_family_id: form.report_family_id).
                delete_all
+        # Remove relative assessments
         client.assessments_clients.
-               where(assessment_id: (remove_assessment_ids - keep_assessment_ids)).
-               delete_all
+               where(assessment_id: remove_assessment_ids).
+               destroy_all
+        # Remove not started assigns
+        Assign.joins(:membership).
+               where(memberships: { client_id: client.id }).
+               where(assessment_id: remove_assessment_ids).
+               with_status(:not_started).
+               destroy_all
+        # Remove reports from user
+        AssignsReport.joins(assign: :membership).
+                      where(assign: { memberships: { client_id: client.id } }).
+                      where(report_id: form.remove_report_ids).
+                      delete_all
       end
 
       # Iterates all memberships and assigns reports
