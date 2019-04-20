@@ -23,7 +23,7 @@ module Threesixty
     end
 
     def is_subject
-      !!@instance_options[:subject_map][object.subject_id]
+      !!@instance_options[:subject_map][object.evaluator_id]
     end
   end
 end
