@@ -4,7 +4,7 @@ export const defaultState = []
 export const fetchEvaluators = campaignId => ({
   type: FETCH_EVALUATORS,
   request: {
-    url: `/administration/threesixty_campaigns/${campaignId}/participants`,
+    url: `/administration/threesixty_campaigns/${campaignId}/evaluators`,
   },
 })
 

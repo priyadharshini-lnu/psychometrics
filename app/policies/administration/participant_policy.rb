@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration
-  class ParticipantPolicy < Administration::BasePolicy
+  class EvaluatorPolicy < Administration::BasePolicy
     def index?
       # TODO (atanych): check campaign_id
       return true if @user.is?(:superadmin)

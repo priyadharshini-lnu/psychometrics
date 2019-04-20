@@ -1,18 +1,15 @@
 import React, { useEffect } from 'react'
 import {
-  Button, Col, Dropdown, Icon, Row, Table,
+  Button, Col, Dropdown, Icon, Row,
 } from 'antd'
-import userPresenter from 'presenters/userPresenter'
 import ToolsDropdown from '../ToolsDropdown'
 import CreateEvaluatorsMenu from './CreateEvaluatorsMenu'
-import ActionsMenu from '../SubjectList/ActionsMenu'
-import css from '../SubjectList/SubjectList.scss'
-
-const { Column } = Table
+import EvaluatorTable from './EvaluatorTable/EvaluatorTable'
 
 export default function EvaluatorList ({
   fetchEvaluators,
   evaluators,
+
   match: {
     params: { campaignId },
   },
@@ -41,30 +38,7 @@ export default function EvaluatorList ({
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={evaluators} pagination={false}>
-            <Column title="Name" key="fullName" render={({ evaluator }) => userPresenter.getFullName(evaluator)} />
-            <Column title="Email" dataIndex="evaluator.email" key="email" />
-            <Column title="Evaluations Received" dataIndex="receivedEvaluations" key="received_evaluations" />
-            <Column title="Evaluations Completed" dataIndex="completedEvaluations" key="completed_evaluations" />
-            <Column title="Report Status" dataIndex="reportStatus" key="report_status" />
-            <Column title="Status" dataIndex="status" key="status" />
-            <Column
-              title="Is Subject"
-              render={({ isSubject }) => isSubject && <Icon className="text-success" type="check" />}
-              key="isSubject"
-            />
-
-            <Column
-              key="action"
-              render={() => (
-                <Dropdown overlay={ActionsMenu} trigger={['click']}>
-                  <div className={css.actions}>
-                    <Icon type="ellipsis" />
-                  </div>
-                </Dropdown>
-              )}
-            />
-          </Table>
+          <EvaluatorTable evaluators={evaluators} />
         </Col>
       </Row>
     </>

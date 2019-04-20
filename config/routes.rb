@@ -180,7 +180,7 @@ Rails.application.routes.draw do
         resources :subjects do
 
         end
-        resources :participants do
+        resources :evaluators do
 
         end
       end

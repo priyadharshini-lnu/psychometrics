@@ -54,7 +54,7 @@ describe Threesixty::SubjectSerializer do
       expect(result[:evaluators]).to eq '4 / 5'
       expect(result[:report_status]).to eq 'denied'
       expect(result[:status]).to eq 'completed'
-      expect(result[:evaluations]).to eq '0 / 0'
+      expect(result[:evaluations]).to eq nil
       expect(result[:user][:email]).to eq 'dustin@poirier.com'
     end
   end
