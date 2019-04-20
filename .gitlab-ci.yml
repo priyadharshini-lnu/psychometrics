@@ -35,7 +35,8 @@ test:
   - sudo apt update && sudo apt install postgresql-client
   - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
   - sudo chmod 0655 /usr/local/bin/phantomjs
-  - npm install
+  - yarn install
+  - node_modules/eslint/bin/eslint.js app/frontend/
   - bundle exec rake db:create
   - bundle exec rake db:structure:load
   - bundle exec rspec
