@@ -1915,7 +1915,8 @@ CREATE TABLE public.reports_filters (
     name character varying,
     conditions json,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    assessment_id integer
 );
 
 
@@ -4982,6 +4983,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190406093054'),
 ('20190406205517'),
 ('20190407085318'),
-('20190407142655');
-
-
+('20190407142655'),
+('20190419104112');

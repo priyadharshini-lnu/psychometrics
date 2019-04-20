@@ -12,6 +12,6 @@
 
 module Reports
   class FilterSerializer < ActiveModel::Serializer
-    attributes :id, :name, :conditions
+    attributes :id, :name, :conditions, :assessment_id
   end
 end
