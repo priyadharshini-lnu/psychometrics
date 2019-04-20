@@ -1,6 +1,7 @@
 import axios from 'axios'
 import queryString from 'query-string'
 import humps from 'humps'
+import _ from 'lodash'
 
 const buildUrl = ({ method = 'get', url, body }) => {
   if (method !== 'get') return url

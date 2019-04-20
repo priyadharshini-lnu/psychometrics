@@ -7,9 +7,9 @@ export const fetchManagers = campaignId => ({
     url: `/administration/threesixty_campaigns/${campaignId}/participants`,
     body: {
       q: {
-        relationship_name_eq: 'Manager'
-      }
-    }
+        relationship_name_eq: 'Manager',
+      },
+    },
   },
 })
 

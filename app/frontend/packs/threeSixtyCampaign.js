@@ -1,4 +1,4 @@
-import ThreeSixtyApp from 'core/threeSixtyCampaign/components/App'
+import ThreeSixtyApp from 'admin/core/threeSixtyCampaign/components/App'
 import ReactDOM from 'react-dom'
 import React from 'react'
 import 'antd/dist/antd.css'

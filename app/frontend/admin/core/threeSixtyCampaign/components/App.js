@@ -1,6 +1,6 @@
 import React from 'react'
 import { BrowserRouter as Router } from 'react-router-dom'
-import store from 'store'
+import store from 'admin/store'
 import { Provider } from 'react-redux'
 import RouteList from 'components/RouteList'
 import routes from '../routes'
