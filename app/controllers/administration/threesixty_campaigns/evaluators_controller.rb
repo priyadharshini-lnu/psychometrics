@@ -10,12 +10,9 @@ module Administration
       def index
         option = threesixty_campaign.option || ::Threesixty::Option.new
 
-        query = params[:q] ? JSON.parse(params[:q]) : {}
         evaluators = policy_scope(::Threesixty::Evaluator).
                      includes(:subject, :user).
                      where(campaign_id: threesixty_campaign.campaign_id).
-                     ransack(query).
-                     result.
                      map do |e|
           nomination_requirement = ::Threesixty::NominationRequirements::FindForSubject.call!(e.subject)
           ::Threesixty::EvaluatorSerializer.new(e, option: option, nomination_requirement: nomination_requirement).to_h

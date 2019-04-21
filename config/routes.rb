@@ -183,6 +183,7 @@ Rails.application.routes.draw do
         resources :evaluators do
 
         end
+        resources :managers
       end
     end
 
