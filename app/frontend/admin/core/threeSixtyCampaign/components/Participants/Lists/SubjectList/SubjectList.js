@@ -6,7 +6,9 @@ import userPresenter from 'presenters/userPresenter'
 import css from './SubjectList.scss'
 import ActionsMenu from './ActionsMenu'
 import ToolsDropdown from '../ToolsDropdown'
-import CreateSubjectsMenu from './CreateSubjectsMenu'
+import CreateSubjectsDropdown from './CreateSubjectsDropdown'
+import CreateSubjectModal from './CreateSubjectModal'
+
 
 const { Column } = Table
 
@@ -30,13 +32,7 @@ export default function SubjectList ({
         </Col>
         <Col span={6} offset={14} className="text-align-r">
           <ToolsDropdown />
-          <Dropdown overlay={CreateSubjectsMenu} className="mrm" trigger={['click']}>
-            <Button type="primary">
-              <Icon type="plus" />
-              <span>Add Subjects</span>
-              <Icon type="down" />
-            </Button>
-          </Dropdown>
+          <CreateSubjectsDropdown />
         </Col>
       </Row>
       <Row>
@@ -62,6 +58,7 @@ export default function SubjectList ({
           </Table>
         </Col>
       </Row>
+      <CreateSubjectModal />
     </>
   )
 }
