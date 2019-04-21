@@ -58,6 +58,7 @@ class Report < ApplicationRecord
   validates :owner, presence: true, allow_nil: true
   validate :max_assessments_count
   validate :min_assessments_count
+  validate :all_assessments_hogan, if: :hogan_report_setting
 
   #   CALLBACKS
   #
@@ -177,5 +178,9 @@ class Report < ApplicationRecord
   def remove_factor_aliases(assessment)
     return if assessment.external? || !single_dimension?(assessment.dimension_id)
     destroy_dimension_aliases(assessment.dimension)
+  end
+
+  def all_assessments_hogan
+    errors.add(:base, :assessments_not_hogan) unless assessments.all?(&:hogan?)
   end
 end

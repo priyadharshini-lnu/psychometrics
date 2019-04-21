@@ -23,10 +23,21 @@ FactoryGirl.define do
     sequence(:name) { |i| "assessment #{i}" }
     dimension
     extra { {icon_color: '#845EC2'} }
+
     trait :with_report do
       after(:create) do |assessment, _evaluator|
         create :report, assessment: assessment
       end
     end
+
+    trait :hogan do
+      category Assessment::CATEGORIES[:hogan]
+      type ::Assessments::Hogan
+      dimension nil
+    end
+  end
+  factory :assessment_hogan, class: ::Assessments::Hogan  do
+    sequence(:name) { |i| "hogan assessment #{i}" }
+    extra { {icon_color: '#845EC2'} }
   end
 end

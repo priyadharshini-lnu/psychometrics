@@ -32,6 +32,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-moment', '2.19.3'
   gem 'rails-assets-moment-timezone', '0.5.14'
   gem 'rails-assets-Sortable', '1.6.0'
+  gem 'rails-assets-lodash'
 end
 
 ### Authentication and authorization
@@ -198,4 +199,5 @@ group :test do
   gem 'rspec-retry', '~> 0.6.1'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'timecop', '~> 0.9.1'
+  gem 'rails-controller-testing'
 end
