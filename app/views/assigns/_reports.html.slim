@@ -10,16 +10,15 @@
                              target: 'windowMindmill',
                              class: "btn btn-info #{'disabled' if !assign.completed?}",
                              onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
-  - elsif report.assessment.hogan?
-    - if report.hogan_report_setting&.load_report?
-      - if assign.completed?
-        - if assigns_report&.external_report.present?
-          = link_to t('.results'), assigns_report.external_report.url,
-            target: 'windowMindmill',
-            class: "btn btn-info #{'disabled' if !assign.completed?}",
-            onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
-        - else
-          = link_to 'Load Results', results_hogan_assign_path(assign, report_id: report.id), class: 'btn btn-info'
+  - elsif report.assessment.hogan? && report.hogan_report_setting
+    - if assign.completed?
+      - if assigns_report&.external_report.present?
+        = link_to t('.results'), assigns_report.external_report.url,
+          target: 'windowMindmill',
+          class: "btn btn-info #{'disabled' if !assign.completed?}",
+          onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
+      - else
+        = link_to 'Load Results', results_hogan_assign_path(assign, report_id: report.id), class: 'btn btn-info'
   - else
     - if assigns_report.generating?
       a.btn.btn-warning.disabled = t('.processing')
@@ -42,8 +41,8 @@
           = content_tag :a, report.name, href: assign.mindmill_report.url,
                                          target: 'windowMindmill',
                                          onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
-        - elsif report.assessment.hogan?
-          - if assign.completed? && report.hogan_report_setting&.load_report?
+        - elsif report.assessment.hogan? && report.hogan_report_setting
+          - if assign.completed?
             - if assigns_report&.external_report.present?
               = content_tag :a, report.name, href: assigns_report.external_report.url,
                 target: 'windowMindmill',

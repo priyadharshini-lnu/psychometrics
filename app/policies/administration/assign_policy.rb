@@ -17,6 +17,10 @@ module Administration
       @user.project_admin_client_ids.include?(@record.membership.client_id) && @user.has_grant?(:assessments, :assign)
     end
 
+    def reset?
+      destroy? && !@record&.assign_with_result&.not_started?
+    end
+
     # Permission to view statistics link
     def statistics?
       @user.is?(:superadmin, :client_admin, :project_admin)

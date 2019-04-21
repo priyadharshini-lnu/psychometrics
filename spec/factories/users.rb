@@ -42,7 +42,7 @@ FactoryGirl.define do
       memberships_options [{}]
     end
 
-    factory :superadmin do
+    factory :superadmin, class: 'Users::SuperAdmin' do
       role User::SUPER_ADMIN_ROLE
       first_name 'super'
       last_name 'admin'

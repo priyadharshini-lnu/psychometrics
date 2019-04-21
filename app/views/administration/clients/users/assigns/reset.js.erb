@@ -1,0 +1,8 @@
+$('#filter').trigger('reloadList');
+// Reinit all plugins
+$(document).trigger('initPlugins');
+
+$(document).trigger('close_sidebar');
+
+// Notify message
+noty({text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.reset.successfully") %>', type: 'success'});

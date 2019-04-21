@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'rails_helper'
 require 'swagger_helper'
 
 describe 'Users' do
@@ -21,11 +20,11 @@ describe 'Users' do
         Append  **&return_url=<your_application_return_url>** to any SSO URL to be redirected back after user completes the assessment.
 
         ### Example
-        
+
         `https://example.com/sso?token=d98df98d9f3434asdfasf98987&return_url=https://yourportal.com/tte-redirect?status=ASSESSMENT_STATUS`
 
-        After completing the assessment, user will be redirected to 
-        
+        After completing the assessment, user will be redirected to
+
         `https://yourportal.com/tte-redirect?status=assessment_completed`
 
         **ASSESSMENT_STATUS** will get replaced with one of assessment_completed, assessment_invalid, invalid_token

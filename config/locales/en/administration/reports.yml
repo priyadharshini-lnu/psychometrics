@@ -45,6 +45,8 @@ en:
         types:
           <<: *types
         select_family: Select Report Bundle
+        none_external: None - Use report builder
+        load_mindmill_report: Load from Mindmill
       sidebar:
         title: "Report's options"
         view: 'View Report'
