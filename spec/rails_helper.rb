@@ -58,9 +58,8 @@ Capybara.configure do |c|
   c.server_port = Settings.port
 end
 
-# Replace headless_chrome with chrome if you want to debug any failing tests
-Capybara.default_driver = :headless_chrome
-Capybara.javascript_driver = :headless_chrome
+driver = ENV['CHROME_VISIBLE_MODE'] ? :chrome : :headless_chrome
+Capybara.default_driver = Capybara.javascript_driver = driver
 
 RSpec.configure do |config|
   config.color = true
