@@ -1,0 +1,12 @@
+doctype html
+html
+  head
+    meta content=("text/html; charset=UTF-8") http-equiv="Content-Type" /
+    meta content="IE=edge" http-equiv="X-UA-Compatible"
+    meta content="width=device-width, initial-scale=1" name="viewport"
+    title = Settings.project_name
+    = csrf_meta_tags
+    = jquery_include_tag :google
+    = render '//layouts/custom_styles'
+  body data-locale="#{I18n.locale}"
+    = yield

@@ -9,7 +9,7 @@ import settings from '../settings'
 
 export default function App () {
   return (
-    <div className="ms" style={{ background: 'white' }}>
+    <div>
       <Provider store={store}>
         <Router>
           <Menu routes={routes} />

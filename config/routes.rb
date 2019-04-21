@@ -439,6 +439,15 @@ Rails.application.routes.draw do
       get :pass, on: :member
       post :accept_privacy, on: :collection
     end
+
+    scope module: :threesixty do
+      resources :campaigns, only: %i(show) do
+        resources :nominations
+        resources :evaluations
+        resources :reports
+      end
+    end
+
     namespace :mindmill do
       resources :assigns, only: [] do
         member do
