@@ -10,6 +10,8 @@ require 'selenium-webdriver'
 require 'features/helpers'
 require 'wisper/rspec/matchers'
 require 'rectify/rspec'
+require 'capybara_config'
+
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
@@ -18,48 +20,6 @@ Psychometrics::Application.load_tasks
 FactoryGirl::SyntaxRunner.class_eval do
   include RSpec::Mocks::ExampleMethods
 end
-
-Capybara.default_max_wait_time = 5
-
-chrome_profile = Selenium::WebDriver::Chrome::Profile.new
-chrome_profile['download.default_directory'] = DownloadHelpers::PATH.to_s
-
-Capybara.register_driver :chrome do |app|
-  client = Selenium::WebDriver::Remote::Http::Default.new
-  client.read_timeout = 120
-  Capybara::Selenium::Driver.new(app, browser: :chrome, http_client: client, profile: chrome_profile)
-end
-
-Capybara.register_driver :headless_chrome do |app|
-  options = Selenium::WebDriver::Chrome::Options.new
-  options.add_argument('--headless')
-  options.add_argument('--no-sandbox')
-  options.add_argument('--disable-gpu')
-  options.add_argument('--disable-popup-blocking')
-  options.add_argument('--window-size=1366,768')
-
-  driver = Capybara::Selenium::Driver.new(app, browser: :chrome, options: options).tap do |driver|
-    driver.browser.download_path = DownloadHelpers::PATH.to_s
-  end
-
-  driver
-end
-
-Capybara::Screenshot.register_driver(:chrome) do |driver, path|
-  driver.browser.save_screenshot(path)
-end
-
-Capybara::Screenshot.register_driver(:headless_chrome) do |driver, path|
-  driver.browser.save_screenshot(path)
-end
-
-Capybara.configure do |c|
-  c.app_host = "http://lvh.me:#{Settings.port}"
-  c.server_port = Settings.port
-end
-
-driver = ENV['CHROME_VISIBLE_MODE'] ? :chrome : :headless_chrome
-Capybara.default_driver = Capybara.javascript_driver = driver
 
 RSpec.configure do |config|
   config.color = true

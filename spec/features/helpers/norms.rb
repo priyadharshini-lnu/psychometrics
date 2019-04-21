@@ -32,8 +32,8 @@ module Features
         visit '/administration/norms'
         click_norm norm
 
-        # Chrome headless is not able to download file in new tab. This patch is applied to download file without opening new window
-        sleep 1
+        # Chrome headless is not able to download file in new tab. This patch is applied to download file without opening new tab.
+        expect(page).to have_selector('.x-navigation [target=_blank]')
         page.execute_script("$('.x-navigation [target=_blank]').removeAttr('target')")
 
         click_on t('administration.norms.sidebar.export')
