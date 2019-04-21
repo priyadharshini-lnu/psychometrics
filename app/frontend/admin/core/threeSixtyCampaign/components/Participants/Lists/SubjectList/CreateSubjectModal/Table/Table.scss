@@ -1,0 +1,15 @@
+.table {
+  width: 100%;
+  td {
+    border: 1px solid var(--grey-color);
+    input {
+      padding: 5px;
+      border: none;
+    }
+  }
+  thead {
+    td {
+      border: none;
+    }
+  }
+}

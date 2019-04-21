@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Table, Dropdown, Icon, Row, Col, Button,
+  Table, Dropdown, Icon, Row, Col,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import css from './SubjectList.scss'

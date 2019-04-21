@@ -1,5 +1,8 @@
 import React from 'react'
-import { Modal, Button, Icon } from 'antd'
+import {
+  Modal, Button, Icon, Input, Divider,
+} from 'antd'
+import Table from './Table'
 
 const CreateSubjectModal = ({ current, closeModal }) => {
   if (current !== 'CreateSubjectModal') return null
@@ -7,6 +10,7 @@ const CreateSubjectModal = ({ current, closeModal }) => {
   const handleOk = () => console.log('handleOk')
   return (
     <Modal
+      width={700}
       title="Add subjects"
       visible
       onCancel={closeModal}
@@ -20,9 +24,9 @@ const CreateSubjectModal = ({ current, closeModal }) => {
         </Button>,
       ]}
     >
-      <p>Some contents...</p>
-      <p>Some contents...</p>
-      <p>Some contents...</p>
+      <Input.Search placeholder="input search text" onSearch={value => console.log(value)} style={{ width: 200 }} />
+      <Divider />
+      <Table />
     </Modal>
   )
 }
