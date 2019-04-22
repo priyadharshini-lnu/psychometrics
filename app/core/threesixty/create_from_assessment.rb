@@ -45,7 +45,7 @@ module Threesixty
     end
 
     def copy_report(assessment)
-      @report = source_assessment.reports.first.clone
+      @report = assessment.reports.first.clone
       @report.owner_id = @campaign.campaign.project_id
       @report.save
     end
