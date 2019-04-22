@@ -4,7 +4,7 @@ describe Campaigns::Duplicate do
 
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client, id: 101) }
-  let!(:campaign) { create(:campaign, parent: project, id: 102) }
+  let!(:campaign) { create(:client_campaign, parent: project, id: 102) }
   let(:assessment) { create(:assessment, :with_report, name: 'Super Assessment') }
   let(:report) { assessment.reports.first }
   let!(:clients_report) { create(:clients_report, client: campaign, report: report, report_family: create(:report_family)) }

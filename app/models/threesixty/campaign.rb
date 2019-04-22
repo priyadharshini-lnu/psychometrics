@@ -3,8 +3,10 @@ module Threesixty
     belongs_to :campaign
     belongs_to :assessment
     belongs_to :report
+    has_one :option, foreign_key: :threesixty_campaign_id
 
     before_create :create_dependencies
+
     attr_accessor :factors
 
     def attribute_names

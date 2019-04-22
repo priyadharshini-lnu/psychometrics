@@ -149,6 +149,9 @@ Rails.application.routes.draw do
           end
         end
         resources :campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
+        get '/projects/:project_id/threesixty_campaigns/:id/*all', to: 'projects/threesixty_campaigns#show', constraints: { all: /.*/ }
+        get '/projects/:project_id/threesixty_campaigns/:id/', to: 'projects/threesixty_campaigns#show'
+
         resources :sub_campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
         resources :threesixty_campaigns, concerns: :client_editable do
           get :sidebar
@@ -172,8 +175,18 @@ Rails.application.routes.draw do
       end
     end
     ### END CLIENTS
+    resources :threesixty_campaigns do
+      scope module: 'threesixty_campaigns' do
+        resources :subjects do
 
-    ### ASSESSMENTS
+        end
+        resources :participants do
+
+        end
+      end
+    end
+
+      ### ASSESSMENTS
     resources :assessments do
       member do
         get :copy

@@ -1,0 +1,59 @@
+AllCops:
+  Exclude:
+    - "vendor/**/*"
+    - "db/schema.rb"
+  UseCache: false
+
+Layout/AlignHash:
+  EnforcedLastArgumentHashStyle: ignore_implicit
+
+Layout/DotPosition:
+  Enabled: true
+  EnforcedStyle: trailing
+
+Metrics/BlockNesting:
+  Enabled: false
+
+Layout/CaseIndentation:
+  IndentOneStep: true
+
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+Style/Documentation:
+  Enabled: false
+
+Metrics/AbcSize:
+  Enabled: true
+  Max: 40
+
+Style/FormatString:
+  Enabled: false
+
+Style/GuardClause:
+  Enabled: false
+
+Layout/IndentHash:
+  EnforcedStyle: consistent
+
+Style/LambdaCall:
+  EnforcedStyle: call
+
+Metrics/LineLength:
+  Max: 120
+
+Style/NonNilCheck:
+  IncludeSemanticChanges: true
+
+Metrics/MethodLength:
+  Enabled: false
+
+Naming/PredicateName:
+  NamePrefixBlacklist:
+    - is_
+
+Style/RedundantReturn:
+  AllowMultipleReturnValues: true
+
+Style/SingleLineBlockParams:
+  Enabled: false

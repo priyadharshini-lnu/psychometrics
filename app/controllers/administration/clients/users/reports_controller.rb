@@ -15,21 +15,17 @@ module Administration
         append_before_action :pundit_authorize, except: [:sidebar]
 
         def preview
-          # TODO: Not the correct way to send all users result to the browser, adding user_id condition until better way is found
-          @results = Assign.
-              completed.
-              includes(:membership, :user, :assessment).
-              where(memberships: { client_id: client.project.id, user_id: membership.user_id }, assessment_id: resource.assessment_ids).
-              references(:membership).
-              all
-          # TODO: think what should be done if there is a lot of users
-          @results = @results.where(membership_id: membership.id) if [8, 82].include?(resource.id)
-          @assign = Assign.find_by(assessment_id: resource.assessment_ids, membership_id: membership.id)
-          @assigns = Assign.where(
-            assessment_id: resource.assessment_ids, membership_id: membership.membership_with_result.id
-          )
-          @translations = Translation.to_hash_for_report(resource.id, resource.assessment_ids, user_locale)
-          @available_translations = Translation.available_translation_for_report(resource.id, resource.assessment_ids)
+          args = {
+            project: client.project,
+            campaign: nil,
+            subject: nil,
+            membership: membership,
+            report: resource,
+            locale: user_locale,
+          }
+
+          @data = Reports::PrepareDataForReport.call!(args)
+
           respond_to do |format|
             format.html do
               render('_preview', layout: 'pdf') if params[:export]
