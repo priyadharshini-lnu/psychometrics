@@ -1,4 +1,4 @@
-tr data-sidebar=url_for({ action: :sidebar, id: resource }) id=dom_id(resource)
+tr id=dom_id(resource)
   td = resource.name
   td = link_to resource.assessment.name, administration_assessment_path(resource.assessment)
   td = link_to resource.report.name, administration_report_path(resource.report)

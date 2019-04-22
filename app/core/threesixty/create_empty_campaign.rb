@@ -14,7 +14,8 @@ module Threesixty
                                      category: Assessment::CATEGORIES["360"])
       report = Report.new(name: "#{@campaign.campaign.name} Report",
                              owner_id: @campaign.campaign.project_id,
-                             assessment_id: assessment.id)
+                             assessment_id: assessment.id,
+                             category: 'threesixty')
       report.assessments << assessment
       report.save
       @campaign.assessment_id = assessment.id

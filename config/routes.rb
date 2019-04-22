@@ -374,12 +374,7 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :campaign_templates do
-      member do
-        get :sidebar
-      end
-    end
-
+    resources :campaign_templates
     root to: 'clients#index'
   end
   #

@@ -7,9 +7,13 @@ class Campaign < ApplicationRecord
 
   enum type: %i[empty standard_360 previous_360]
 
+  EMPTY = 'empty'
+  STANDARD_360 = 'standard_360'
+  PREVIOUS_360 = 'previous_360'
+
   TYPES = {
-    empty: 'Empty',
-    standard_360: 'Standard 360',
-    previous_360: 'Previous 360'
+    EMPTY => 'Empty',
+    STANDARD_360 => 'Standard 360',
+    PREVIOUS_360 => 'Previous 360'
   }.freeze
 end

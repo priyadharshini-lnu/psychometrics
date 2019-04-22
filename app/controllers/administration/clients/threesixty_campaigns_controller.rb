@@ -28,7 +28,7 @@ module Administration
 
       def assessments
         type = params[:type]
-        @assessments = if type == 'standard_360'
+        @assessments = if type == Campaign::STANDARD_360
           CampaignTemplate.includes(:assessment).map(&:assessment)
         else
           client.threesixty_campaigns.map(&:threesixty_campaign).map(&:assessment)
