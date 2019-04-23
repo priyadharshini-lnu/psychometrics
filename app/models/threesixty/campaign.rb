@@ -7,10 +7,22 @@ module Threesixty
 
     before_create :create_dependencies
 
-    attr_accessor :factors
+    attr_accessor :factors, :type
+
+    enum type: %i[empty standard_360 previous_360]
+
+    EMPTY = 'empty'
+    STANDARD_360 = 'standard_360'
+    PREVIOUS_360 = 'previous_360'
+
+    TYPES = {
+      EMPTY => 'Empty',
+      STANDARD_360 => 'Standard 360',
+      PREVIOUS_360 => 'Previous 360'
+    }.freeze
 
     def attribute_names
-      super + [:factors]
+      super + [:factors, :type]
     end
 
     def create_dependencies

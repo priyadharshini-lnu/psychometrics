@@ -134,6 +134,13 @@ Rails.application.routes.draw do
           end
           # resource :designs, only: [:edit, :update]
           scope module: :projects do
+            resources :threesixty_campaigns, concerns: :client_editable do
+              get :sidebar
+              collection do
+                get :assessments
+                get :factors
+              end
+            end
             resources :campaigns, concerns: :client_editable do
               collection do
                 get :export
@@ -153,13 +160,6 @@ Rails.application.routes.draw do
         get '/projects/:project_id/threesixty_campaigns/:id/', to: 'projects/threesixty_campaigns#show'
 
         resources :sub_campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
-        resources :threesixty_campaigns, concerns: :client_editable do
-          get :sidebar
-          collection do
-            get :assessments
-            get :factors
-          end
-        end
 
         resources :licenses, only: %i[index show new create edit update] do
           patch :toggle_status, on: :member
@@ -174,6 +174,7 @@ Rails.application.routes.draw do
 
       end
     end
+
     ### END CLIENTS
     resources :threesixty_campaigns do
       scope module: 'threesixty_campaigns' do
@@ -186,7 +187,7 @@ Rails.application.routes.draw do
       end
     end
 
-      ### ASSESSMENTS
+    ### ASSESSMENTS
     resources :assessments do
       member do
         get :copy

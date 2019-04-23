@@ -1,8 +1,0 @@
-ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(resource)}"
-  li.xn-title.title = t('.title')
-  - if policy(resource).edit?
-    li = link_to(t('.edit'), { action: :edit, id: resource }, remote: true)
-  - if policy(resource).destroy?
-    li = link_to(t('.destroy'), { action: :destroy, id: resource }, remote: true, method: :delete, data: { confirm: 'Are you sure?' })
-  /- if policy(resource).archive?
-    li = link_to(t('.archive'), { action: :archive, id: resource }, method: :patch, data: { confirm: resource.decorate.archive_confirmation, toggle: 'tooltip' })

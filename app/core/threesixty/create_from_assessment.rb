@@ -11,7 +11,8 @@ module Threesixty
 
       copy_report(source_assessment)
       @assessment = CopyAssessment.process!(source_assessment.id)
-      copy_dimension(@assessment)
+
+      copy_dimension
       copy_factors_and_map_scoring(source_assessment.dimension)
 
       @assessment.dimension_id = @dimension.id
@@ -26,7 +27,7 @@ module Threesixty
 
 
     def copy_dimension
-      @dimension = assessment.dimension.deep_clone(include: [:occupations])
+      @dimension = @assessment.dimension.deep_clone(include: [:occupations])
       @dimension.owner_id = @campaign.campaign.project_id
       @dimension.gen_uniq_name
       @dimension.save

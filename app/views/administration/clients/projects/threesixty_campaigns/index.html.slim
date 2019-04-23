@@ -8,7 +8,7 @@
         h3.panel-title = t '.title'
         .pull-right
           - if(policy(Campaign).manage_threesixty?)
-            = link_to new_administration_client_threesixty_campaign_path(client),
+            = link_to new_administration_client_project_threesixty_campaign_path(client, project),
                     remote: true,
                     class: 'btn btn-default'
               span.fa.fa-plus

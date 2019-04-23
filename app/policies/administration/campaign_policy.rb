@@ -12,10 +12,6 @@ module Administration
       @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
     end
 
-    def assessments?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
-    end
-
     def manage_threesixty?
       return true if @user.is?(:superadmin)
       return true if (@user.is?(:client_admin, :project_admin) && @user.has_grant?(:clients, :manage))
@@ -42,15 +38,7 @@ module Administration
       record.prime_project? && @user.is?(:superadmin, :client_admin)
     end
 
-    def show?
-      true
-    end
-
     def dimensions?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
-    end
-
-    def factors?
       @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
     end
 
