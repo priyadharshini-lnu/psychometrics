@@ -10,7 +10,7 @@ module Administration
         def show; end
 
         def index
-          @_filter_form = project.threesixty_campaigns.search(params[:q])
+          @_filter_form = project.project_campaigns.search(params[:q])
           @_resources = filter_form.result.page(params[:page])
 
           respond_to do |format|
@@ -24,7 +24,7 @@ module Administration
         end
 
         def create
-          campaign = project.threesixty_campaigns.build(campaign_params)
+          campaign = project.project_campaigns.build(campaign_params)
           campaign.project_id = project.id
           campaign.type = Campaign::THREESIXTY
           threesixty = campaign.build_threesixty_campaign(threesixty_campaign_params)
@@ -42,7 +42,7 @@ module Administration
           @assessments = if type == ::Threesixty::Campaign::STANDARD_360
             CampaignTemplate.includes(:assessment).map(&:assessment)
           else
-            project.threesixty_campaigns.map(&:threesixty_campaign).map(&:assessment)
+            project.project_campaigns.map(&:threesixty_campaign).map(&:assessment)
           end
         end
 
@@ -56,7 +56,7 @@ module Administration
         end
 
         def destroy
-          campaign = project.threesixty_campaigns.find(params[:id])
+          campaign = project.project_campaigns.find(params[:id])
           campaign.destroy
           @_resource = campaign
           respond_to do |format|

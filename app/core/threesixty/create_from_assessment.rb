@@ -30,7 +30,7 @@ module Threesixty
       @dimension = @assessment.dimension.deep_clone(include: [:occupations])
       @dimension.owner_id = @campaign.campaign.project_id
       @dimension.gen_uniq_name
-      @dimension.save
+      @dimension.save!
     end
 
     def copy_factors_and_map_scoring(source_dimension)
@@ -38,7 +38,7 @@ module Threesixty
       source_dimension.factors.where(id: campaign_factors).each do |factor|
         new_factor = factor.clone_and_save
         new_factor.dimension_id = @dimension.id
-        new_factor.save
+        new_factor.save!
         @assessment.factors_scoring.where(factor_id: factor.id).update_all(factor_id: new_factor.id)
       end
 
@@ -49,7 +49,7 @@ module Threesixty
     def copy_report(assessment)
       @report = assessment.reports.first.clone
       @report.owner_id = @campaign.campaign.project_id
-      @report.save
+      @report.save!
     end
   end
 end
