@@ -4,8 +4,9 @@ require 'rails_helper'
 
 describe AssessmentSerializer do
   describe 'threesixty' do
-    let(:campaign) { create(:campaign, type: 'empty') }
-    let(:assessment) { campaign.threesixty_campaign.assessment }
+    let(:threesixty_campaign) { create(:threesixty_campaign) }
+    let(:assessment) { threesixty_campaign.assessment }
+    let(:campaign) {  threesixty_campaign.campaign }
 
     describe '#relationships' do
       it { expect(described_class.new(assessment).relationships).to eq [] }
