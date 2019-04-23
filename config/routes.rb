@@ -134,13 +134,6 @@ Rails.application.routes.draw do
           end
           # resource :designs, only: [:edit, :update]
           scope module: :projects do
-            resources :threesixty_campaigns, concerns: :client_editable do
-              get :sidebar
-              collection do
-                get :assessments
-                get :factors
-              end
-            end
             resources :campaigns, concerns: :client_editable do
               collection do
                 get :export
@@ -151,6 +144,12 @@ Rails.application.routes.draw do
                     get :export
                   end
                 end
+              end
+            end
+            resources :threesixty_campaigns, concerns: :client_editable do
+              collection do
+                get :assessments
+                get :factors
               end
             end
           end
