@@ -27,7 +27,12 @@ module Administration
           campaign = project.threesixty_campaigns.build(campaign_params)
           campaign.project_id = project.id
           campaign.type = Campaign::THREESIXTY
-          campaign.build_threesixty_campaign(threesixty_campaign_params)
+          threesixty = campaign.build_threesixty_campaign(threesixty_campaign_params)
+          if threesixty.assessment.present?
+            ::Threesixty::CreateFromAssessment.call(threesixty)
+          else
+            ::Threesixty::CreateEmptyCampaign.call(threesixty)
+          end
           campaign.save
           @_resource = campaign
         end
@@ -37,7 +42,7 @@ module Administration
           @assessments = if type == ::Threesixty::Campaign::STANDARD_360
             CampaignTemplate.includes(:assessment).map(&:assessment)
           else
-            client.threesixty_campaigns.map(&:threesixty_campaign).map(&:assessment)
+            project.threesixty_campaigns.map(&:threesixty_campaign).map(&:assessment)
           end
         end
 

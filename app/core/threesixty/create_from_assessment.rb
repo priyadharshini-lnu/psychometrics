@@ -34,14 +34,15 @@ module Threesixty
     end
 
     def copy_factors_and_map_scoring(source_dimension)
-      source_dimension.factors.where(id: @campaign.factors).each do |factor|
+      campaign_factors = @campaign.factors || []
+      source_dimension.factors.where(id: campaign_factors).each do |factor|
         new_factor = factor.clone_and_save
         new_factor.dimension_id = @dimension.id
         new_factor.save
         @assessment.factors_scoring.where(factor_id: factor.id).update_all(factor_id: new_factor.id)
       end
 
-      factors_to_delete = source_dimension.factor_ids - @campaign.factors.map(&:to_i)
+      factors_to_delete = source_dimension.factor_ids - campaign_factors.map(&:to_i)
       @assessment.factors_scoring.where(factor_id: factors_to_delete).destroy_all
     end
 

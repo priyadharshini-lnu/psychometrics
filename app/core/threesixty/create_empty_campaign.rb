@@ -8,14 +8,17 @@ module Threesixty
 
     def call
       dimension = Dimension.create(name: "#{@campaign.campaign.name} Dimension", owner_id: @campaign.campaign.project_id)
-      assessment = Assessment.create(name: "#{@campaign.campaign.name} Assessment",
-                                     dimension_id: dimension.id,
-                                     type: Assessment::TYPES[:common],
-                                     category: Assessment::CATEGORIES["360"])
+      assessment = Assessment.new(name: "#{@campaign.campaign.name} Assessment",
+                                  dimension_id: dimension.id,
+                                  type: Assessment::TYPES[:common],
+                                  category: Assessment::CATEGORIES["360"])
+      assessment.set_default_color
+      assessment.save
       report = Report.new(name: "#{@campaign.campaign.name} Report",
-                             owner_id: @campaign.campaign.project_id,
-                             assessment_id: assessment.id,
-                             category: 'threesixty')
+                          owner_id: @campaign.campaign.project_id,
+                          assessment_id: assessment.id,
+                          category: 'threesixty')
+      report.set_default_color
       report.assessments << assessment
       report.save
       @campaign.assessment_id = assessment.id
