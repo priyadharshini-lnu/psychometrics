@@ -360,9 +360,6 @@ img.notificationIcon {
   padding-top: 5px;
   padding-bottom: 5px;
 }
-.navbar-right {
-  margin-right: 25px;
-}
 @media screen and (max-width: 767px) {
   .navbar-right {
     margin-right: 0;
@@ -432,6 +429,9 @@ ul.notificationList li:last-child {
 @media screen and (max-width: 767px) {
   .userNav .navbar-right li {
     float: none;
+    & > a > img {
+      max-width: 32px;
+    }
   }
 }
 @media screen and (min-width: 480px) {
@@ -458,7 +458,7 @@ img.userIcon {
   }
 
   .panel-default > .panel-heading {
-    padding: 5px 15px 5px 15px;
+    padding: 5px;
     border: none;
     background: #fff;
   }
@@ -467,6 +467,9 @@ img.userIcon {
     border: none;
   }
   .well { margin-bottom: 0; }
+  .table-responsive {
+    border: 0;
+  }
 }
 
 .assign {
