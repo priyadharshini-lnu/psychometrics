@@ -1,3 +1,4 @@
-import Options from './Options'
+import Options from './Options';
+import connect from './connect';
 
-export default Options
+export default connect(Options)

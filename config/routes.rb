@@ -176,6 +176,10 @@ Rails.application.routes.draw do
         resources :participants do
 
         end
+
+        resource :options do
+          get :participation_options
+        end
       end
     end
 
