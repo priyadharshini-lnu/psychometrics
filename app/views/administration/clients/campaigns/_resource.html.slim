@@ -8,7 +8,7 @@ tr data-sidebar=url_for(sidebar_administration_client_campaign_path(client, reso
     = resource.decorate.reports
     - if policy(:clients_report).create?
       .add-icon-box
-        = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
+        = link_to new_administration_client_reports_regenerate_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
           span.fa.fa-plus
   td = resource.assigned_memberships.size
   td = resource.completed_memberships.size
