@@ -57,5 +57,9 @@
       = active_link_to(administration_products_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.products'), placement: 'right' })
         i.fa.fa-shopping-basket
         span.xn-text = t('administration.navigation.products')
+    - if policy(:campaign_template).index?
+      = active_link_to(administration_campaign_templates_path, wrap_tag: :li, data: { toggle: 'tooltip', title: t('administration.navigation.campaign_templates'), placement: 'right' })
+        i.fa.fa-gear
+        span.xn-text = t('administration.navigation.campaign_templates')
   /! END X-NAVIGATION
 /! END PAGE SIDEBAR

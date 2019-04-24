@@ -1,6 +1,11 @@
 class Campaign < ApplicationRecord
   self.inheritance_column = :_type_disabled
+
+  belongs_to :project, class_name: "Client"
+  has_one :threesixty_campaign, class_name: "Threesixty::Campaign", dependent: :destroy
   has_many :relationships
-  has_one :threesixty_campaign, class_name: 'Threesixty::Campaign'
-  belongs_to :project, class_name: 'Client'
+
+  THREESIXTY = :threesixty
+
+  enum type: %i[common threesixty]
 end
