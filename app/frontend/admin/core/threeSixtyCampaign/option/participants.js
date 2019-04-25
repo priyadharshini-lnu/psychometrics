@@ -41,22 +41,22 @@ export const updateDatasheetCriteria = (key, index, name, value) => ({
 
 const DEFAULT = {
   evaluator_can_decline_nomination: true,
-  decline_nomination_email: true,
+  email_subject_when_evaluators_declines_nomination: true,
   manager_can_view_nominations: true,
   manager_can_choose_evaluators: true,
 
   managers_approve_nominations: true,
   email_managers_on_nomination_approval: true,
   subjects_can_email_managers: true,
-  email_subjects_when_nominated: true,
-  email_subject_on_nomination_declin: true,
+  email_subjects_when_manager_nominates_them: true,
+  email_subject_when_manager_declines_nomination: true,
 
   manager_approves_evaluations: true,
 
   subject_can_evaluate_self: true,
   limit_self_evaluation_by_criteria: true,
   self_evaluation_criteria:  [
-    { field: "gender", operator: "equal", value: "10" },
+    { field: "gender", operator: "equal", value: "12" },
     { field: "grade", operator: "is_same_as_subject" }
   ],
 
@@ -72,6 +72,7 @@ const DEFAULT = {
 
   subject_can_nominate_anyone_from_datasheet: true,
   limit_nomination_by_subject_from_datasheet: true,
+  limit_nomination_by_subject_from_datasheet_criteria: [],
 
   subject_cannot_remove_nomination_set_by_manager_and_admin: true,
 
@@ -91,16 +92,18 @@ export default function reducer (state = defaultState, {type, payload}) {
     case UPDATE_PARTICIPATION_OPTIONS:
       return { ...state, [payload.key]: payload.value };
     case ADD_DATASHEET_CRITERIA:
-      let criterias = (state[payload.key] || []).concat([{operator: "is_same_as_subject"}])
+      var criterias = (state[payload.key] || []).concat([{operator: "is_same_as_subject"}])
       return { ...state, [payload.key]: criterias }
     case REMOVE_DATASHEET_CRITERIA:
-      let criterias = [...state[action.key]].splice(index, 1)
+      var criterias = [...state[payload.key]]
+      criterias.splice(payload.index, 1)
       return { ...state, [payload.key]: criterias }
     case UPDATE_DATASHEET_CRITERIA:
-      let criterias = state[action.key].map((criteria, index) => {
+      var criterias = state[payload.key].map((criteria, index) => {
         if (index != payload.index) { return criteria }
         return { ...criteria, [payload.name]: payload.value }
       })
+      return { ...state, [payload.key]: criterias }
     default:
       return state
   }
