@@ -1,7 +1,9 @@
 import { connect } from 'react-redux'
-import { closeModal } from 'admin/core/modals'
+import { closeModal } from 'admin/core/temp/modals'
+import { searchUsers } from 'admin/core/temp/users'
+import { createAll } from 'admin/core/threeSixtyCampaign/subjects'
 
 export default connect(
-  ({ temp: { modals: { current } } }) => ({ current }),
-  { closeModal },
+  ({ temp: { errors, modals: { current }, users } }) => ({ errors, current, tempUsers: users }),
+  { closeModal, searchUsers, createAll },
 )

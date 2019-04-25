@@ -1,23 +1,27 @@
 import React from 'react'
 
-const Row = ({ isLast, addRow }) => {
+export default function Row ({
+  isLast, addRow, updateSubject, index, subject: { email, firstName, lastName },
+}) {
   const onKeyDown = ({ key }) => {
     if (key === 'Tab' && isLast) addRow()
+  }
+
+  const onChange = ({ currentTarget }) => {
+    updateSubject([index, currentTarget.name], currentTarget.value)
   }
 
   return (
     <tr>
       <td>
-        <input />
+        <input name="email" value={email || ''} onChange={onChange} />
       </td>
       <td>
-        <input />
+        <input name="firstName" value={firstName || ''} onChange={onChange} />
       </td>
       <td>
-        <input onKeyDown={onKeyDown} />
+        <input name="lastName" onKeyDown={onKeyDown} value={lastName || ''} onChange={onChange} />
       </td>
     </tr>
   )
 }
-
-export default Row

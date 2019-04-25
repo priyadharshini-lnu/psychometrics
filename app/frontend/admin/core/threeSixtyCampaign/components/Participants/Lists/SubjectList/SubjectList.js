@@ -9,7 +9,6 @@ import ToolsDropdown from '../ToolsDropdown'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
 import CreateSubjectModal from './CreateSubjectModal'
 
-
 const { Column } = Table
 
 export default function SubjectList ({
@@ -18,6 +17,7 @@ export default function SubjectList ({
   match: {
     params: { campaignId },
   },
+  match,
 }) {
   useEffect(() => {
     fetchSubjects(campaignId)
@@ -58,7 +58,7 @@ export default function SubjectList ({
           </Table>
         </Col>
       </Row>
-      <CreateSubjectModal />
+      <CreateSubjectModal match={match} />
     </>
   )
 }

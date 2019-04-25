@@ -11,7 +11,7 @@ export const fetchManagers = campaignId => ({
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
     case FETCH_MANAGERS:
-      return action.data
+      return action.response
     default:
       return state
   }

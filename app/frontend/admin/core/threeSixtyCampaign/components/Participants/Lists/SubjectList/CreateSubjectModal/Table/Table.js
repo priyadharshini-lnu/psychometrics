@@ -1,12 +1,15 @@
-import React, { useState } from 'react'
+import React from 'react'
 import _ from 'lodash'
+import { setIn } from 'utils/immutable'
 import Row from './Row'
 import css from './Table.scss'
 
-const Table = () => {
-  const [rows, updateRow] = useState(3)
+const Table = ({
+  subjects, rowSize, updateRowSize, updateSubjects,
+}) => {
+  const addRow = () => updateRowSize(rowSize + 1)
 
-  const addRow = () => updateRow(rows + 1)
+  const updateSubject = (path, value) => updateSubjects(setIn(subjects, path, value))
 
   return (
     <table className={css.table}>
@@ -18,8 +21,15 @@ const Table = () => {
         </tr>
       </thead>
       <tbody>
-        {_.times(rows, index => (
-          <Row key={index} isLast={rows === index + 1} addRow={addRow} />
+        {_.times(rowSize, index => (
+          <Row
+            index={index}
+            updateSubject={updateSubject}
+            subject={subjects[index] || {}}
+            key={index}
+            isLast={rowSize === index + 1}
+            addRow={addRow}
+          />
         ))}
       </tbody>
     </table>

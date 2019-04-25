@@ -1,4 +1,5 @@
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
+export const CREATE_ALL = 'threeSixty/subjects/CREATE_ALL'
 export const defaultState = []
 
 export const fetchSubjects = campaignId => ({
@@ -8,10 +9,19 @@ export const fetchSubjects = campaignId => ({
   },
 })
 
+export const createAll = (campaignId, subjects) => ({
+  type: CREATE_ALL,
+  request: {
+    method: 'post',
+    url: `/administration/threesixty_campaigns/${campaignId}/subjects/create_all`,
+    body: { subjects },
+  },
+})
+
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
     case FETCH_SUBJECTS:
-      return action.data
+      return action.response
     default:
       return state
   }

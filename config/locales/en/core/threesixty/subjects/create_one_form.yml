@@ -1,0 +1,9 @@
+en:
+  activemodel:
+    errors:
+      models:
+        create_one:
+          attributes:
+            email:
+              invalid: 'Email is invalid'
+              already_exists: 'A subject with same email already exists'

@@ -2,11 +2,12 @@ import axios from 'axios'
 import queryString from 'query-string'
 import humps from 'humps'
 import _ from 'lodash'
+import { VALIDATION_ERROR } from 'admin/core/temp/errors'
 
 const buildUrl = ({ method = 'get', url, body }) => {
   if (method !== 'get') return url
   const normalizedBody = _.transform(
-    body,
+    humps.decamelizeKeys(body),
     (res, v, k) => {
       if (_.isPlainObject(v)) {
         res[k] = JSON.stringify(v)
@@ -18,12 +19,20 @@ const buildUrl = ({ method = 'get', url, body }) => {
   return `${url}?${queryString.stringify(normalizedBody, { arrayFormat: 'bracket' })}`
 }
 
+const buildOptions = ({ options: options = {} }) => ({
+  ...options,
+  headers: {
+    ...options.headers,
+    'X-CSRF-Token': window.$('meta[name="csrf-token"]').attr('content'),
+  },
+})
+
 const apiMiddleware = () => next => (action) => {
   if (!action.request) return next(action)
 
   const {
     request,
-    request: { method: method = 'get', options: options = {}, body },
+    request: { method: method = 'get', body },
   } = action
   const REQUEST = `${action.type}_REQUEST`
   const SUCCESS = action.type
@@ -31,9 +40,12 @@ const apiMiddleware = () => next => (action) => {
 
   next({ ...action, type: REQUEST })
 
-  return axios[method](buildUrl(request), body, options)
-    .then(({ data }) => next({ type: SUCCESS, data: humps.camelizeKeys(data), requestAction: action }))
-    .catch(error => next({ type: FAILURE, error }))
+  return axios[method](buildUrl(request), body, buildOptions(request))
+    .then(({ data }) => next({ type: SUCCESS, response: humps.camelizeKeys(data), requestAction: action }))
+    .catch((error) => {
+      next({ type: FAILURE, error })
+      next({ type: VALIDATION_ERROR, errors: error.response.data.errors }) // TODO (atanych): sort out with Fedor
+    })
 }
 
 export default apiMiddleware
