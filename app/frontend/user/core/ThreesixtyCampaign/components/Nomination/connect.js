@@ -1,13 +1,19 @@
 import { connect } from 'react-redux'
-import { fetchNomination } from 'user/core/ThreesixtyCampaign/nomination'
+import {
+  fetchNomination,
+  removeNomination,
+  addNomination,
+} from 'user/core/ThreesixtyCampaign/nomination'
 
 const mapStateToProps = state => ({
-  nominations: state.threeSixtyCampaign.campaign.nominations,
   nomination: state.threeSixtyCampaign.nomination,
+  subject: state.threeSixtyCampaign.nomination.subject,
 })
 
 const mapDispatchToProps = {
   fetchNomination,
+  removeNomination,
+  addNomination,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

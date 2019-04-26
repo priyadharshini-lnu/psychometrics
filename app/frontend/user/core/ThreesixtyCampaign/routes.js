@@ -1,5 +1,5 @@
 import Campaign, { CampaignSidebar } from './components/Campaign'
-import Nomination, { Sidebar as NominationSidebar } from './components/Nomination'
+import Nomination, { NominationSidebar } from './components/Nomination'
 import Evaluation, { Sidebar as EvaluationSidebar } from './components/Evaluation'
 import Reports, { Sidebar as ReportsSidebar } from './components/Reports'
 
