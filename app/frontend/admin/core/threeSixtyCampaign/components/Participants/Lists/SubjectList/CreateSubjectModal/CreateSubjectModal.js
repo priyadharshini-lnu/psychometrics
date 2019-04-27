@@ -36,7 +36,6 @@ export default function CreateSubjectModal ({
   if (current !== 'CreateSubjectModal') return null
 
   const [subjects, setSubjects] = useState({})
-  const [rowSize, setRowSize] = useState(3)
 
   const handleOk = () => createAll(campaignId, _.pickBy(subjects, s => s.email || s.lastName || s.firstName))
 
@@ -57,9 +56,6 @@ export default function CreateSubjectModal ({
 
   const onSelect = (user) => {
     const newSubjects = setIn(subjects, getFreeRowIndex(subjects), _.omit(JSON.parse(user), ['id']))
-    if (_.size(newSubjects) > rowSize) {
-      setRowSize(rowSize + 1)
-    }
     setSubjects(newSubjects)
   }
 
@@ -96,10 +92,8 @@ export default function CreateSubjectModal ({
       </AutoComplete>
       <Divider />
       <SpreadSheet
-        rowSize={rowSize}
         entities={subjects}
         fields={tableFields}
-        updateRowSize={setRowSize}
         updateEntities={setSubjects}
       />
       {errors && (

@@ -43,7 +43,6 @@ export default function CreateEvaluatorModal ({
   if (current !== 'CreateEvaluatorModal') return null
 
   const [evaluators, updateEvaluators] = useState({})
-  const [rowSize, updateRowSize] = useState(3)
 
   const handleOk = () => createAll(campaignId, _.pickBy(evaluators, s => s.email || s.lastName || s.firstName))
 
@@ -64,9 +63,6 @@ export default function CreateEvaluatorModal ({
 
   const onSelect = (user) => {
     const newEvaluators = setIn(evaluators, getFreeRowIndex(evaluators), _.omit(JSON.parse(user), ['id']))
-    if (_.size(newEvaluators) > rowSize) {
-      updateRowSize(rowSize + 1)
-    }
     updateEvaluators(newEvaluators)
   }
 
@@ -102,13 +98,7 @@ export default function CreateEvaluatorModal ({
         <Input.Search style={{ width: 300 }} onSearch={value => searchUsersInProject(clientId, projectId, value)} />
       </AutoComplete>
       <Divider />
-      <SpreadSheet
-        fields={tableFields}
-        rowSize={rowSize}
-        entities={evaluators}
-        updateRowSize={updateRowSize}
-        updateEntities={updateEvaluators}
-      />
+      <SpreadSheet fields={tableFields} entities={evaluators} updateEntities={updateEvaluators} />
       {errors && (
         <Alert style={{ whiteSpace: 'pre' }} description={renderErrorMessage()} type="error" className="mtl" showIcon />
       )}
