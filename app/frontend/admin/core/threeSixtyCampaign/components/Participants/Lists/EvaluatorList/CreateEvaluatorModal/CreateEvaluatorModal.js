@@ -9,20 +9,27 @@ import SpreadSheet from 'components/SpreadSheet'
 
 const tableFields = [
   {
-    name: 'Email',
-    key: 'email',
+    name: "Evaluator's Email",
+    key: 'evaluatorEmail',
   },
   {
-    name: 'First Name',
-    key: 'firstName',
+    name: "Evaluator's First Name",
+    key: 'evaluatorFirstName',
   },
   {
-    name: 'Last Name',
-    key: 'lastName',
+    name: "Evaluator's Last Name",
+    key: 'evaluatorLastName',
+  },
+  {
+    name: "Subject's Email",
+    key: 'subjectEmail',
+  },
+  {
+    name: 'Relationship',
+    key: 'relationship',
   },
 ]
-
-export default function CreateSubjectModal ({
+export default function CreateEvaluatorModal ({
   current,
   closeModal,
   searchUsers,
@@ -33,17 +40,17 @@ export default function CreateSubjectModal ({
     params: { projectId, clientId, campaignId },
   },
 }) {
-  if (current !== 'CreateSubjectModal') return null
+  if (current !== 'CreateEvaluatorModal') return null
 
-  const [subjects, updateSubjects] = useState({})
+  const [evaluators, updateEvaluators] = useState({})
   const [rowSize, updateRowSize] = useState(3)
 
-  const handleOk = () => createAll(campaignId, _.pickBy(subjects, s => s.email || s.lastName || s.firstName))
+  const handleOk = () => createAll(campaignId, _.pickBy(evaluators, s => s.email || s.lastName || s.firstName))
 
-  const getFreeRowIndex = (subjects) => {
-    if (_.isEmpty(subjects)) return 0
+  const getFreeRowIndex = (evaluators) => {
+    if (_.isEmpty(evaluators)) return 0
 
-    const keys = _.keys(subjects)
+    const keys = _.keys(evaluators)
       .map(key => parseInt(key, 10))
       .sort()
 
@@ -56,11 +63,11 @@ export default function CreateSubjectModal ({
   }
 
   const onSelect = (user) => {
-    const newSubjects = setIn(subjects, getFreeRowIndex(subjects), _.omit(JSON.parse(user), ['id']))
-    if (_.size(newSubjects) > rowSize) {
+    const newEvaluators = setIn(evaluators, getFreeRowIndex(evaluators), _.omit(JSON.parse(user), ['id']))
+    if (_.size(newEvaluators) > rowSize) {
       updateRowSize(rowSize + 1)
     }
-    updateSubjects(newSubjects)
+    updateEvaluators(newEvaluators)
   }
 
   const renderErrorMessage = () => (
@@ -70,7 +77,7 @@ export default function CreateSubjectModal ({
   return (
     <Modal
       width={700}
-      title="Add subjects"
+      title="Add evaluators"
       visible
       onCancel={closeModal}
       footer={[
@@ -89,18 +96,18 @@ export default function CreateSubjectModal ({
           text: userPresenter.getFullNameWithEmail(user),
         }))}
         autoFocus
-        placeholder="Search User..."
+        placeholder="Search Subject..."
         onSelect={onSelect}
       >
         <Input.Search style={{ width: 300 }} onSearch={value => searchUsers(clientId, projectId, value)} />
       </AutoComplete>
       <Divider />
       <SpreadSheet
-        rowSize={rowSize}
-        entities={subjects}
         fields={tableFields}
+        rowSize={rowSize}
+        entities={evaluators}
         updateRowSize={updateRowSize}
-        updateEntities={updateSubjects}
+        updateEntities={updateEvaluators}
       />
       {errors && (
         <Alert style={{ whiteSpace: 'pre' }} description={renderErrorMessage()} type="error" className="mtl" showIcon />

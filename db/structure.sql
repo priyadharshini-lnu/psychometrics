@@ -2156,7 +2156,6 @@ CREATE TABLE public.threesixty_evaluators (
     id bigint NOT NULL,
     campaign_id bigint,
     user_id bigint,
-    role integer DEFAULT 0,
     evaluations_count integer DEFAULT 0,
     completed_evaluations_count integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
@@ -5272,12 +5271,15 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190312220042'),
 ('20190315160908'),
 ('20190331125508'),
-('20190411194041'),
 ('20190406093054'),
 ('20190406205517'),
 ('20190407085318'),
 ('20190407142655'),
+('20190411194041'),
 ('20190418194558'),
 ('20190419104112'),
 ('20190419193357'),
-('20190419202055');
+('20190419202055'),
+('20190421102715');
+
+
