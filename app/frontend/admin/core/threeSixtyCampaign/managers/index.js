@@ -4,19 +4,14 @@ export const defaultState = []
 export const fetchManagers = campaignId => ({
   type: FETCH_MANAGERS,
   request: {
-    url: `/administration/threesixty_campaigns/${campaignId}/participants`,
-    body: {
-      q: {
-        relationship_name_eq: 'Manager',
-      },
-    },
+    url: `/administration/threesixty_campaigns/${campaignId}/managers`,
   },
 })
 
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
     case FETCH_MANAGERS:
-      return action.data
+      return action.response
     default:
       return state
   }
