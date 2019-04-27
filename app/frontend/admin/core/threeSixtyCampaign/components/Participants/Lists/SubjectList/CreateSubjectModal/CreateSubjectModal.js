@@ -25,7 +25,7 @@ const tableFields = [
 export default function CreateSubjectModal ({
   current,
   closeModal,
-  searchUsers,
+  searchUsersInProject,
   tempUsers,
   createAll,
   errors,
@@ -35,8 +35,8 @@ export default function CreateSubjectModal ({
 }) {
   if (current !== 'CreateSubjectModal') return null
 
-  const [subjects, updateSubjects] = useState({})
-  const [rowSize, updateRowSize] = useState(3)
+  const [subjects, setSubjects] = useState({})
+  const [rowSize, setRowSize] = useState(3)
 
   const handleOk = () => createAll(campaignId, _.pickBy(subjects, s => s.email || s.lastName || s.firstName))
 
@@ -58,9 +58,9 @@ export default function CreateSubjectModal ({
   const onSelect = (user) => {
     const newSubjects = setIn(subjects, getFreeRowIndex(subjects), _.omit(JSON.parse(user), ['id']))
     if (_.size(newSubjects) > rowSize) {
-      updateRowSize(rowSize + 1)
+      setRowSize(rowSize + 1)
     }
-    updateSubjects(newSubjects)
+    setSubjects(newSubjects)
   }
 
   const renderErrorMessage = () => (
@@ -92,15 +92,15 @@ export default function CreateSubjectModal ({
         placeholder="Search User..."
         onSelect={onSelect}
       >
-        <Input.Search style={{ width: 300 }} onSearch={value => searchUsers(clientId, projectId, value)} />
+        <Input.Search style={{ width: 300 }} onSearch={value => searchUsersInProject(clientId, projectId, value)} />
       </AutoComplete>
       <Divider />
       <SpreadSheet
         rowSize={rowSize}
         entities={subjects}
         fields={tableFields}
-        updateRowSize={updateRowSize}
-        updateEntities={updateSubjects}
+        updateRowSize={setRowSize}
+        updateEntities={setSubjects}
       />
       {errors && (
         <Alert style={{ whiteSpace: 'pre' }} description={renderErrorMessage()} type="error" className="mtl" showIcon />

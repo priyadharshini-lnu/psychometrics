@@ -32,7 +32,7 @@ const tableFields = [
 export default function CreateEvaluatorModal ({
   current,
   closeModal,
-  searchUsers,
+  searchUsersInProject,
   tempUsers,
   createAll,
   errors,
@@ -99,7 +99,7 @@ export default function CreateEvaluatorModal ({
         placeholder="Search Subject..."
         onSelect={onSelect}
       >
-        <Input.Search style={{ width: 300 }} onSearch={value => searchUsers(clientId, projectId, value)} />
+        <Input.Search style={{ width: 300 }} onSearch={value => searchUsersInProject(clientId, projectId, value)} />
       </AutoComplete>
       <Divider />
       <SpreadSheet
