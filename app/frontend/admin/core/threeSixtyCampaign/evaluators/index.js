@@ -1,5 +1,11 @@
 const FETCH_EVALUATORS = 'threeSixty/subjects/FETCH_EVALUATORS'
-export const defaultState = []
+export const defaultState = {
+  list: [],
+  form: {
+    attrs: {},
+    errors: {},
+  },
+}
 
 export const fetchEvaluators = campaignId => ({
   type: FETCH_EVALUATORS,
@@ -11,7 +17,7 @@ export const fetchEvaluators = campaignId => ({
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
     case FETCH_EVALUATORS:
-      return action.response
+      return { ...state, list: action.response }
     default:
       return state
   }

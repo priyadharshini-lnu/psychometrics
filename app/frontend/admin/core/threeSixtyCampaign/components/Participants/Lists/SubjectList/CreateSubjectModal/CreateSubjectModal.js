@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import _ from 'lodash'
 import {
   Modal, Button, Icon, Input, Divider, AutoComplete, Alert,
@@ -6,6 +6,7 @@ import {
 import userPresenter from 'presenters/userPresenter'
 import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
+import spreadSheetUtils from 'utils/spreadSheet'
 
 const tableFields = [
   {
@@ -27,36 +28,21 @@ export default function CreateSubjectModal ({
   closeModal,
   searchUsersInProject,
   tempUsers,
+  fillSubjects,
   createAll,
   errors,
+  subjects,
   match: {
     params: { projectId, clientId, campaignId },
   },
 }) {
   if (current !== 'CreateSubjectModal') return null
 
-  const [subjects, setSubjects] = useState({})
-
   const handleOk = () => createAll(campaignId, _.pickBy(subjects, s => s.email || s.lastName || s.firstName))
 
-  const getFreeRowIndex = (subjects) => {
-    if (_.isEmpty(subjects)) return 0
-
-    const keys = _.keys(subjects)
-      .map(key => parseInt(key, 10))
-      .sort()
-
-    /* eslint-disable */
-    for (const [index, key] of keys.entries()) {
-      if (index !== key) return index
-    }
-    /* eslint-enable */
-    return keys.length
-  }
-
   const onSelect = (user) => {
-    const newSubjects = setIn(subjects, getFreeRowIndex(subjects), _.omit(JSON.parse(user), ['id']))
-    setSubjects(newSubjects)
+    const newSubjects = setIn(subjects, spreadSheetUtils.getFreeRowIndex(subjects), _.omit(JSON.parse(user), ['id']))
+    fillSubjects(newSubjects)
   }
 
   const renderErrorMessage = () => (
@@ -94,7 +80,7 @@ export default function CreateSubjectModal ({
       <SpreadSheet
         entities={subjects}
         fields={tableFields}
-        updateEntities={setSubjects}
+        updateEntities={fillSubjects}
       />
       {errors && (
         <Alert style={{ whiteSpace: 'pre' }} description={renderErrorMessage()} type="error" className="mtl" showIcon />

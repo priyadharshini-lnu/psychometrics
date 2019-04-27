@@ -6,7 +6,6 @@ import css from './styles.scss'
 
 const MIN_ROW_SIZE = 3
 const SpreadSheet = ({ entities, updateEntities, fields }) => {
-
   const [rowSize, setRowSize] = useState(MIN_ROW_SIZE)
 
   useEffect(() => {

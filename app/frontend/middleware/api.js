@@ -2,7 +2,6 @@ import axios from 'axios'
 import queryString from 'query-string'
 import humps from 'humps'
 import _ from 'lodash'
-import { VALIDATION_ERROR } from 'admin/core/temp/errors'
 
 const buildUrl = ({ method = 'get', url, body }) => {
   if (method !== 'get') return url
@@ -43,8 +42,7 @@ const apiMiddleware = () => next => (action) => {
   return axios[method](buildUrl(request), body, buildOptions(request))
     .then(({ data }) => next({ type: SUCCESS, response: humps.camelizeKeys(data), requestAction: action }))
     .catch((error) => {
-      next({ type: FAILURE, error })
-      next({ type: VALIDATION_ERROR, errors: error.response.data.errors }) // TODO (atanych): sort out with Fedor
+      next({ type: FAILURE, errors: error.response.data.errors })
     })
 }
 

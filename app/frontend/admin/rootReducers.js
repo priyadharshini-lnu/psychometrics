@@ -4,7 +4,6 @@ import evaluators from './core/threeSixtyCampaign/evaluators'
 import managers from './core/threeSixtyCampaign/managers'
 import modals from './core/temp/modals'
 import autocomplete from './core/temp/autocomplete'
-import errors from './core/temp/errors'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -15,6 +14,5 @@ export default combineReducers({
   temp: combineReducers({
     modals,
     autocomplete,
-    errors,
   }),
 })

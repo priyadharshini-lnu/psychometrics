@@ -1,6 +1,6 @@
 const SEARCH_USERS_IN_PROJECT = 'temp/users/SEARCH_USERS_IN_PROJECT'
 export const defaultState = {
-  users: []
+  users: [],
 }
 
 export const searchUsersInProject = (clientId, projectId, q) => ({

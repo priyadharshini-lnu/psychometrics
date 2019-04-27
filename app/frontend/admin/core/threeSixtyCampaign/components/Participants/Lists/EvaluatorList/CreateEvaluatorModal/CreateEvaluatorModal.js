@@ -6,6 +6,7 @@ import {
 import userPresenter from 'presenters/userPresenter'
 import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
+import spreadSheetUtils from 'utils/spreadSheet'
 
 const tableFields = [
   {
@@ -46,23 +47,12 @@ export default function CreateEvaluatorModal ({
 
   const handleOk = () => createAll(campaignId, _.pickBy(evaluators, s => s.email || s.lastName || s.firstName))
 
-  const getFreeRowIndex = (evaluators) => {
-    if (_.isEmpty(evaluators)) return 0
-
-    const keys = _.keys(evaluators)
-      .map(key => parseInt(key, 10))
-      .sort()
-
-    /* eslint-disable */
-    for (const [index, key] of keys.entries()) {
-      if (index !== key) return index
-    }
-    /* eslint-enable */
-    return keys.length
-  }
-
   const onSelect = (user) => {
-    const newEvaluators = setIn(evaluators, getFreeRowIndex(evaluators), _.omit(JSON.parse(user), ['id']))
+    const newEvaluators = setIn(
+      evaluators,
+      spreadSheetUtils.getFreeRowIndex(evaluators),
+      _.omit(JSON.parse(user), ['id']),
+    )
     updateEvaluators(newEvaluators)
   }
 
