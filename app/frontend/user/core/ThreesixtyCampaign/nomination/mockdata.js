@@ -12,17 +12,17 @@ export default {
       subjects: [{
         id: 1,
         name: 'Casper Hammer',
-        status: 'need_approval',
+        status: 'needs_approval',
         role: 'directReport',
       }, {
         id: 2,
         name: 'Prasanjit Serkar',
-        status: 'need_approval',
+        status: 'needs_approval',
         role: 'directReport',
       }, {
         id: 3,
         name: 'Yara Mirdad',
-        status: 'need_approval',
+        status: 'needs_approval',
         role: 'directReport',
       }],
     },

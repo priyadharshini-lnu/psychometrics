@@ -64,12 +64,16 @@ export default function NominationForm (props) {
     return { children: subject.name }
   }
 
+  const renderApprovalStatus = ({ subject }) => ({
+    children: subject && subject.status,
+  })
+
   return (
     <div className="nominations-table">
       <Table className="mtm" rowKey="id" dataSource={rows} pagination={false} bordered rowClassName="nomination-row">
         <Column title="Requirements" key="title" render={renderRequirementCell} />
         <Column title="Name" key="name" render={renderNameCell} width="40%" />
-        <Column title="Approval Status" dataIndex="subject.status" key="status" />
+        <Column title="Approval Status" render={renderApprovalStatus} key="status" />
         <Column title="Evaluation Status" dataIndex="subject.evaluatorStatus" key="evaluatorStatus" />
 
         <Column

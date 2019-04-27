@@ -1,6 +1,6 @@
 module Threesixty
   class Campaign < ApplicationRecord
-    belongs_to :campaign
+    belongs_to :campaign, class_name: '::Campaign'
     belongs_to :assessment
     belongs_to :report
     has_one :option, foreign_key: :threesixty_campaign_id

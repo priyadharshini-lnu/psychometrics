@@ -14,7 +14,6 @@ export const fetchNomination = campaignId => ({
 export const removeNomination = subject => ({ type: REMOVE_NOMINATION, subject })
 export const addNomination = ({ role, name }) => ({ type: ADD_NOMINATION, role, name })
 
-
 export const defaultState = {}
 
 const HANDLERS = {
@@ -22,7 +21,10 @@ const HANDLERS = {
   [ADD_NOMINATION]: (state, action) => {
     const { name, role } = action
     const list = _.clone(state.evaluators[role])
-    list.subjects.push({ id: Date.now(), name, role })
+
+    list.subjects.push({
+      id: Date.now(), name, role, status: 'needs_approved',
+    })
     return {
       ...state,
       [role]: list,

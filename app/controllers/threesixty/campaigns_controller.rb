@@ -5,7 +5,11 @@ module Threesixty
     def show
       respond_to do |format|
         format.html {}
-        format.json { render json: Threesixty::CampaignSerializer.new(Campaign.first)}
+        format.json do
+          campaign = Threesixty::Campaign.find(params[:id])
+          nominations = Threesixty::NominationsByUser.new(current_user).query
+          render json: campaign, serializer: Threesixty::CampaignSerializer, nominations: nominations, include: '**'
+        end
       end
 
     end
