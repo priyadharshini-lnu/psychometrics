@@ -132,6 +132,9 @@ Rails.application.routes.draw do
           collection do
             get :export
           end
+          member do
+            post :search_users
+          end
           # resource :designs, only: [:edit, :update]
           scope module: :projects do
             resources :campaigns, concerns: :client_editable do
@@ -178,11 +181,14 @@ Rails.application.routes.draw do
     resources :threesixty_campaigns do
       scope module: 'threesixty_campaigns' do
         resources :subjects do
+          collection do
+            post :create_all
+          end
+        end
+        resources :evaluators do
 
         end
-        resources :participants do
-
-        end
+        resources :managers
       end
     end
 

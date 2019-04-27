@@ -12,7 +12,9 @@ module Threesixty
     end
 
     def evaluations
-      "#{object.evaluator&.completed_evaluations_count || 0} / #{object.evaluator&.evaluations_count || 0}"
+      return nil unless object.evaluator
+
+      "#{object.evaluator.completed_evaluations_count} / #{object.evaluator.evaluations_count}"
     end
 
     def evaluators

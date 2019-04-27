@@ -10,6 +10,10 @@ module Administration
 
         false
       end
+
+      def create_all?
+        index?
+      end
     end
   end
 end
