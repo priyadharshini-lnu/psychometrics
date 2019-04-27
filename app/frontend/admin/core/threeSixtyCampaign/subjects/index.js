@@ -14,6 +14,7 @@ export const defaultState = {
     attrs: {},
     errors: null,
   },
+  autocompleted: [],
 }
 
 export const fetchSubjects = campaignId => ({
