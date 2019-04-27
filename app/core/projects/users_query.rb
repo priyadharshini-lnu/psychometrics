@@ -2,6 +2,8 @@ module Projects
   class UsersQuery < Rectify::Query
     include Rectify::SqlQuery
 
+    LIMIT = 3
+
     def initialize(project, q)
       @project = project
       @q = "%#{q}%"
@@ -21,12 +23,12 @@ module Projects
         FROM datasheet_rows
         JOIN datasheets on datasheets.id = datasheet_rows.datasheet_id and datasheets.project_id = :project_id
         WHERE datasheet_rows.email LIKE :query
-        LIMIT 3
+        LIMIT :limit
       SQL
     end
 
     def params
-      { project_id: project.id, query: q }
+      { project_id: project.id, query: q, limit: LIMIT }
     end
 
     private

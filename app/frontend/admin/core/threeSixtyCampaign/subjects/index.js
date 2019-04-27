@@ -1,5 +1,6 @@
 import { takeLatest, put } from 'redux-saga/effects'
 import { setIn } from 'utils/immutable'
+import { closeModal } from 'admin/core/temp/modals'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
 const FILL_SUBJECTS = 'threeSixty/subjects/FILL_SUBJECTS'
@@ -57,5 +58,12 @@ function* genFetchSubjects ({ requestAction }) {
 function* genClearForm () {
   yield put(clearForm({}))
 }
+function* genCloseModal () {
+  yield put(closeModal())
+}
 
-export const watchers = [takeLatest(CREATE_ALL, genFetchSubjects), takeLatest(CREATE_ALL, genClearForm)]
+export const watchers = [
+  takeLatest(CREATE_ALL, genFetchSubjects),
+  takeLatest(CREATE_ALL, genClearForm),
+  takeLatest(CREATE_ALL, genCloseModal),
+]

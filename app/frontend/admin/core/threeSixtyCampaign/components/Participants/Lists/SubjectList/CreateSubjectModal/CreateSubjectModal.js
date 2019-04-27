@@ -45,10 +45,6 @@ export default function CreateSubjectModal ({
     fillSubjects(newSubjects)
   }
 
-  const renderErrorMessage = () => (
-    <div>{_.values(errors).map(error => error.map((e, i) => <div key={i}>{e}</div>))}</div>
-  )
-
   return (
     <Modal
       width={700}
@@ -77,14 +73,20 @@ export default function CreateSubjectModal ({
         <Input.Search style={{ width: 300 }} onSearch={value => searchUsersInProject(clientId, projectId, value)} />
       </AutoComplete>
       <Divider />
-      <SpreadSheet
-        entities={subjects}
-        fields={tableFields}
-        updateEntities={fillSubjects}
-      />
+      <SpreadSheet entities={subjects} fields={tableFields} updateEntities={fillSubjects} />
       {errors && (
-        <Alert style={{ whiteSpace: 'pre' }} description={renderErrorMessage()} type="error" className="mtl" showIcon />
+        <Alert
+          style={{ whiteSpace: 'pre' }}
+          description={<ErrorMessage errors={errors} />}
+          type="error"
+          className="mtl"
+          showIcon
+        />
       )}
     </Modal>
   )
+}
+
+function ErrorMessage ({ errors }) {
+  return <div>{_.values(errors).map(error => error.map((e, i) => <div key={i}>{e}</div>))}</div>
 }

@@ -56,10 +56,6 @@ export default function CreateEvaluatorModal ({
     updateEvaluators(newEvaluators)
   }
 
-  const renderErrorMessage = () => (
-    <div>{_.values(errors).map(error => error.map((e, i) => <div key={i}>{e}</div>))}</div>
-  )
-
   return (
     <Modal
       width={700}
@@ -90,8 +86,18 @@ export default function CreateEvaluatorModal ({
       <Divider />
       <SpreadSheet fields={tableFields} entities={evaluators} updateEntities={updateEvaluators} />
       {errors && (
-        <Alert style={{ whiteSpace: 'pre' }} description={renderErrorMessage()} type="error" className="mtl" showIcon />
+        <Alert
+          style={{ whiteSpace: 'pre' }}
+          description={<ErrorMessage errors={errors} />}
+          type="error"
+          className="mtl"
+          showIcon
+        />
       )}
     </Modal>
   )
+}
+
+function ErrorMessage ({ errors }) {
+  return <div>{_.values(errors).map(error => error.map((e, i) => <div key={i}>{e}</div>))}</div>
 }
