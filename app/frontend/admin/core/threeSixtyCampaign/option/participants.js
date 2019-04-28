@@ -13,12 +13,7 @@ export const getParticipantOption = state => state.threeSixtyCampaign.option.par
 export const fetchParticipationOptions = campaignId => ({
   type: FETCH_PARTICIPATION_OPTIONS,
   request: {
-    url: `/administration/threesixty_campaigns/${campaignId}/options/participation_options`,
-    body: {
-      q: {
-        relationship_name_eq: 'Manager',
-      },
-    },
+    url: `/administration/threesixty_campaigns/${campaignId}/options/participation_options`
   },
 })
 
