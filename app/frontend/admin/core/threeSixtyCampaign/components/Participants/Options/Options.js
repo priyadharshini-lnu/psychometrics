@@ -77,7 +77,7 @@ export default function Options ({
 
           <OptionSwitch label="Subjects can opt-in to this assessment" {...parametersForSwitch('subject_can_opt_in_assessment')} type="checkbox" actionable={<Button size="small">Opt-In-Link</Button>}>
             <OptionSwitch label="Restrict subject email to domains:" {...parametersForSwitch('restrict_subject_email_to_domail')} type="checkbox">
-              <Input style={{maxWidth: "240px"}} placeholder="ex: gmail.com, yahoo.com" />
+              <Input value={participantOptions['restricted_domain_name']} onChange={(e) => updateParticipationOptions('restricted_domain_name', e.target.value)} style={{maxWidth: "240px"}} placeholder="ex: gmail.com, yahoo.com" />
             </OptionSwitch>
           </OptionSwitch>
         </OptionSwitch>

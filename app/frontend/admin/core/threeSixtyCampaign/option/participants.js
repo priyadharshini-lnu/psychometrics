@@ -1,4 +1,5 @@
 import _ from "lodash";
+import { takeLatest, put, select, delay } from 'redux-saga/effects'
 
 const FETCH_PARTICIPATION_OPTIONS = 'threeSixty/option/participations/FETCH_PARTICIPATION_OPTIONS'
 const UPDATE_PARTICIPATION_OPTIONS = 'threeSixty/option/participations/UPDATE_PARTICIPATION_OPTIONS'
@@ -30,48 +31,38 @@ const syncParticipationOptionsWithServer = (campaignId, body) => ({
   }
 })
 
-const debouncedSyncParticipationOptionsWithServer = _.debounce((dispatch, campaignId, body) => dispatch(syncParticipationOptionsWithServer(campaignId, body)) , 1000);
+export const updateParticipationOptions = (campaignId, key, value) => ({
+  type: UPDATE_PARTICIPATION_OPTIONS,
+  payload: { campaignId, key, value }
+})
 
-export const updateParticipationOptions = (campaignId, key, value) => {
-  return (dispatch, getState) => {
-    dispatch({
-      type: UPDATE_PARTICIPATION_OPTIONS,
-      payload: { key, value }
-    })
-    debouncedSyncParticipationOptionsWithServer(dispatch, campaignId, getParticipantOption(getState()))
-  }
+export const addDatasheetCriteria = (campaignId, key) => ({
+  type: ADD_DATASHEET_CRITERIA,
+  payload: { campaignId, key }
+})
+
+export const removeDatasheetCriteria = (campaignId, key, index) => ({
+  type: REMOVE_DATASHEET_CRITERIA,
+  payload: { campaignId, key, index }
+})
+
+export const updateDatasheetCriteria = (campaignId, key, index, name, value) => ({
+  type: UPDATE_DATASHEET_CRITERIA,
+  payload: { campaignId, key, index, name, value }
+})
+
+function* genSyncParticipationOptionsWithServer({payload: { campaignId }}) {
+  yield delay(1000)
+  let body = yield select(getParticipantOption)
+  yield put(syncParticipationOptionsWithServer(campaignId, body))
 }
 
-export const addDatasheetCriteria = (campaignId, key) => {
-  return (dispatch, getState) => {
-    dispatch({
-      type: ADD_DATASHEET_CRITERIA,
-      payload: { key }
-    })
-    debouncedSyncParticipationOptionsWithServer(dispatch, campaignId, getParticipantOption(getState()))
-  }
-}
-
-export const removeDatasheetCriteria = (campaignId, key, index) => {
-  return (dispatch, getState) => {
-    dispatch({
-      type: REMOVE_DATASHEET_CRITERIA,
-      payload: { key, index }
-    })
-    debouncedSyncParticipationOptionsWithServer(dispatch, campaignId, getParticipantOption(getState()))
-  }
-}
-
-export const updateDatasheetCriteria = (campaignId, key, index, name, value) => {
-  return (dispatch, getState) => {
-    dispatch({
-      type: UPDATE_DATASHEET_CRITERIA,
-      payload: { key, index, name, value }
-    })
-    debouncedSyncParticipationOptionsWithServer(dispatch, campaignId, getParticipantOption(getState()))
-  }
-}
-
+export const watchers = [
+  takeLatest(
+    [UPDATE_PARTICIPATION_OPTIONS, ADD_DATASHEET_CRITERIA, REMOVE_DATASHEET_CRITERIA, UPDATE_DATASHEET_CRITERIA],
+    genSyncParticipationOptionsWithServer
+  )
+]
 
 const DEFAULT = {
   evaluator_can_decline_nomination: true,
@@ -96,7 +87,7 @@ const DEFAULT = {
 
   subject_can_opt_in_assessment: true,
   restrict_subject_email_to_domail: true,
-  subject_rescticted_to_domain: "gmail.com, mm.com",
+  restricted_domain_name: "gmail.com, mm.com",
 
   subject_can_nominate_evaluators: true,
   subject_can_nominate_anyone_not_in_assessment: true,
