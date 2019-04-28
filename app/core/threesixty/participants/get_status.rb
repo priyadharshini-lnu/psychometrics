@@ -20,7 +20,7 @@ module Threesixty
 
         return broadcast :ok, status_by_evaluator_data unless subject
 
-        return broadcast :ok, NOT_COMPLETED if subject == NOT_COMPLETED
+        return broadcast :ok, NOT_COMPLETED if status_by_evaluator_data == NOT_COMPLETED
 
         return broadcast :ok, COMPLETED if valid_nomination_requirements?
 

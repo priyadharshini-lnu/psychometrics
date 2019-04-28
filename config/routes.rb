@@ -132,6 +132,9 @@ Rails.application.routes.draw do
           collection do
             get :export
           end
+          member do
+            post :search_users
+          end
           # resource :designs, only: [:edit, :update]
           scope module: :projects do
             resources :campaigns, concerns: :client_editable do
@@ -144,6 +147,12 @@ Rails.application.routes.draw do
                     get :export
                   end
                 end
+              end
+            end
+            resources :threesixty_campaigns, concerns: :client_editable do
+              collection do
+                get :assessments
+                get :factors
               end
             end
           end
@@ -167,23 +176,28 @@ Rails.application.routes.draw do
 
       end
     end
+
     ### END CLIENTS
     resources :threesixty_campaigns do
       scope module: 'threesixty_campaigns' do
         resources :subjects do
-
+          collection do
+            post :create_all
+          end
         end
-        resources :participants do
+        resources :evaluators do
 
         end
 
         resource :options do
           get :participation_options
         end
+
+        resources :managers
       end
     end
 
-      ### ASSESSMENTS
+    ### ASSESSMENTS
     resources :assessments do
       member do
         get :copy
@@ -371,6 +385,7 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :campaign_templates
     root to: 'clients#index'
   end
   #

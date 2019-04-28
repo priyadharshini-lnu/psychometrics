@@ -38,12 +38,18 @@ module Administration
       record.prime_project? && @user.is?(:superadmin, :client_admin)
     end
 
+    def search_users?
+      # TODO (atanych): check campaign_id
+      return true if @user.is?(:superadmin)
+      return true if @user.is?(:client_admin, :project_admin) && @user.has_grant?(:clients, :manage)
+    end
+
     def show?
       true
     end
 
     def edit?
-      record.active? && super
+      super
     end
 
     def copy?

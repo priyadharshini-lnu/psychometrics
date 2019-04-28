@@ -5,7 +5,6 @@ const routeUtils = {
     const re = pathToRegexp(`(${prefix})(/*){0,1}`)
     return re.exec(location.pathname)[1]
   },
-
   moveTo (history, prefix, path) {
     history.push(`${this.getBasePath(prefix)}${path}`)
   },
