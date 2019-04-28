@@ -2,9 +2,12 @@ import _ from "lodash";
 
 const FETCH_PARTICIPATION_OPTIONS = 'threeSixty/option/participations/FETCH_PARTICIPATION_OPTIONS'
 const UPDATE_PARTICIPATION_OPTIONS = 'threeSixty/option/participations/UPDATE_PARTICIPATION_OPTIONS'
+const SYNC_PARTICIPATION_OPTIONS = 'threeSixty/option/participations/SYNC_PARTICIPATION_OPTIONS'
 const ADD_DATASHEET_CRITERIA = 'threeSixty/option/participations/ADD_DATASHEET_CRITERIA'
 const REMOVE_DATASHEET_CRITERIA = 'threeSixty/option/participations/REMOVE_DATASHEET_CRITERIA'
 const UPDATE_DATASHEET_CRITERIA = 'threeSixty/option/participations/UPDATE_DATASHEET_CRITERIA'
+
+export const getParticipantOption = state => state.threeSixtyCampaign.option.participants
 
 export const fetchParticipationOptions = campaignId => ({
   type: FETCH_PARTICIPATION_OPTIONS,
@@ -18,25 +21,56 @@ export const fetchParticipationOptions = campaignId => ({
   },
 })
 
-export const updateParticipationOptions = (key, value) => ({
-  type: UPDATE_PARTICIPATION_OPTIONS,
-  payload: { key, value }
+const syncParticipationOptionsWithServer = (campaignId, body) => ({
+  type: SYNC_PARTICIPATION_OPTIONS,
+  request: {
+    method: 'put',
+    url: `/administration/threesixty_campaigns/${campaignId}/options/`,
+    body: body
+  }
 })
 
-export const addDatasheetCriteria = (key) => ({
-  type: ADD_DATASHEET_CRITERIA,
-  payload: { key }
-})
+const debouncedSyncParticipationOptionsWithServer = _.debounce((dispatch, campaignId, body) => dispatch(syncParticipationOptionsWithServer(campaignId, body)) , 1000);
 
-export const removeDatasheetCriteria = (key, index) => ({
-  type: REMOVE_DATASHEET_CRITERIA,
-  payload: { key, index }
-})
+export const updateParticipationOptions = (campaignId, key, value) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: UPDATE_PARTICIPATION_OPTIONS,
+      payload: { key, value }
+    })
+    debouncedSyncParticipationOptionsWithServer(dispatch, campaignId, getParticipantOption(getState()))
+  }
+}
 
-export const updateDatasheetCriteria = (key, index, name, value) => ({
-  type: UPDATE_DATASHEET_CRITERIA,
-  payload: { key, index, name, value }
-})
+export const addDatasheetCriteria = (campaignId, key) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: ADD_DATASHEET_CRITERIA,
+      payload: { key }
+    })
+    debouncedSyncParticipationOptionsWithServer(dispatch, campaignId, getParticipantOption(getState()))
+  }
+}
+
+export const removeDatasheetCriteria = (campaignId, key, index) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: REMOVE_DATASHEET_CRITERIA,
+      payload: { key, index }
+    })
+    debouncedSyncParticipationOptionsWithServer(dispatch, campaignId, getParticipantOption(getState()))
+  }
+}
+
+export const updateDatasheetCriteria = (campaignId, key, index, name, value) => {
+  return (dispatch, getState) => {
+    dispatch({
+      type: UPDATE_DATASHEET_CRITERIA,
+      payload: { key, index, name, value }
+    })
+    debouncedSyncParticipationOptionsWithServer(dispatch, campaignId, getParticipantOption(getState()))
+  }
+}
 
 
 const DEFAULT = {
@@ -78,7 +112,11 @@ const DEFAULT = {
 
   subject_can_select_relationship: true,
   limit_relationship_that_subject_can_select: true,
-  limit_relationship_list: ["customer"],
+  subject_can_select_customer_relationship: true,
+  subject_can_select_direct_report_relationship: true,
+  subject_can_select_manager_relationship: true,
+  subject_can_select_peer_relationship: true,
+  subject_can_select_supplier_relationship: true,
 
   subject_can_view_completion_status_of_evaluation: true,
   subject_can_view_individual_evaluations: true

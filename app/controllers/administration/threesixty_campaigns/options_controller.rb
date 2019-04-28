@@ -11,6 +11,10 @@ module Administration
         render json: threesixty_campaign.option.participants
       end
 
+      def update
+        render json: threesixty_campaign.option.participants
+      end
+
       private
 
       # Set model

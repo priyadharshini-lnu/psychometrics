@@ -18,6 +18,15 @@ const buildUrl = ({ method = 'get', url, body }) => {
   return `${url}?${queryString.stringify(normalizedBody, { arrayFormat: 'bracket' })}`
 }
 
+const buildOptions = ({ options: options = {} }) => ({
+  ...options,
+  headers: {
+    ...options.headers,
+    'X-CSRF-Token': document.querySelector("meta[name=csrf-token]").content,
+  },
+})
+
+
 const apiMiddleware = () => next => (action) => {
   if (!action.request) return next(action)
 
@@ -31,7 +40,7 @@ const apiMiddleware = () => next => (action) => {
 
   next({ ...action, type: REQUEST })
 
-  return axios[method](buildUrl(request), body, options)
+  return axios[method](buildUrl(request), body, buildOptions(request))
     .then(({ data }) => next({ type: SUCCESS, data: humps.camelizeKeys(data), requestAction: action }))
     .catch(error => next({ type: FAILURE, error }))
 }

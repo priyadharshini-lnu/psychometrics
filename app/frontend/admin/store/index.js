@@ -1,4 +1,6 @@
 import { createStore, applyMiddleware, compose } from 'redux'
+import multi from 'redux-multi'
+import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import api from 'middleware/api'
 import rootReducers from '../rootReducers'
@@ -12,4 +14,4 @@ if (__DEV__) {
   }
 }
 
-export default createStore(rootReducers, initState, composeEnhancers(applyMiddleware(api, logger)))
+export default createStore(rootReducers, initState, composeEnhancers(applyMiddleware(api, logger, multi, thunk)))

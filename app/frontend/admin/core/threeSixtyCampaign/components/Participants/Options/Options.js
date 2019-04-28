@@ -18,8 +18,10 @@ export default function Options ({
     fetchParticipationOptions(campaignId)
   }, [])
 
-  const [option, setOption] = useState(true);
-  const [option1, setOption1] = useState(true);
+  updateParticipationOptions = updateParticipationOptions.bind(this, campaignId)
+  addDatasheetCriteria = addDatasheetCriteria.bind(this, campaignId)
+  removeDatasheetCriteria = removeDatasheetCriteria.bind(this, campaignId)
+  updateDatasheetCriteria = updateDatasheetCriteria.bind(this, campaignId)
 
   function parametersForSwitch(name) {
     return {
@@ -37,6 +39,7 @@ export default function Options ({
     }
 
   }
+
   return (
     <div style={{padding: "10px 10px 20px 20px", maxWidth: "1159px"}}>
       <OptionSection label='Evaluator Options'>
@@ -93,13 +96,13 @@ export default function Options ({
           </OptionSwitch>
 
           <OptionSwitch label="Subjects cannot remove nominations set by managers or admins" {...parametersForSwitch('subject_cannot_remove_nomination_set_by_manager_and_admin')} type="checkbox"></OptionSwitch>
-          <OptionSwitch label="Allow subjects to select relationships" {...parametersForSwitch('subject_can_select_relationship')} type="checkbox"actionable={<Button size="small">Manage Relationships</Button>}>
+          <OptionSwitch label="Allow subjects to select relationships" {...parametersForSwitch('subject_can_select_relationship')} type="checkbox">
             <OptionSwitch label="Only allow relationships of specified types" {...parametersForSwitch('limit_relationship_that_subject_can_select')} type="checkbox">
-              <OptionSwitch label="Customer" type="checkbox" onOptionChanged={setOption} />
-              <OptionSwitch label="Direct Report" type="checkbox" onOptionChanged={setOption} />
-              <OptionSwitch label="Manager" type="checkbox" onOptionChanged={setOption} />
-              <OptionSwitch label="Peer" type="checkbox" onOptionChanged={setOption} />
-              <OptionSwitch label="Supplier" type="checkbox" onOptionChanged={setOption} />
+              <OptionSwitch label="Customer" {...parametersForSwitch('subject_can_select_customer_relationship')} type="checkbox" />
+              <OptionSwitch label="Direct Report" {...parametersForSwitch('subject_can_select_direct_report_relationship')} type="checkbox" />
+              <OptionSwitch label="Manager" {...parametersForSwitch('subject_can_select_manager_relationship')} type="checkbox" />
+              <OptionSwitch label="Peer" {...parametersForSwitch('subject_can_select_peer_relationship')} type="checkbox" />
+              <OptionSwitch label="Supplier" {...parametersForSwitch('subject_can_select_supplier_relationship')} type="checkbox" />
             </OptionSwitch>
           </OptionSwitch>
         </OptionSwitch>
