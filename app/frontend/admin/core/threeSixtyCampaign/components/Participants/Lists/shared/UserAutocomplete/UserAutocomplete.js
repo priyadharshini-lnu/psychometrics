@@ -3,7 +3,7 @@ import { AutoComplete, Input } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 
 export default function UserAutocomplete ({
-  users, search, onSelect, url, placeholder, source,
+  users, search, onSelect, url, placeholder, source, value, onChange,
 }) {
   return (
     <AutoComplete
@@ -12,6 +12,8 @@ export default function UserAutocomplete ({
         text: userPresenter.getFullNameWithEmail(user),
       }))}
       autoFocus
+      value={value}
+      onChange={value => onChange(value)}
       placeholder={placeholder}
       onSelect={onSelect}
     >

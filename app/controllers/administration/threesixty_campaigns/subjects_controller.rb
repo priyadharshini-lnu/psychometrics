@@ -17,6 +17,13 @@ module Administration
         render json: subjects
       end
 
+      def search
+        users = ::Threesixty::Subjects::UsersQuery.new(threesixty_campaign.campaign, params[:q]).query.map do |user|
+          ::Projects::SearchUserSerializer.new(user).to_h
+        end
+        render json: users
+      end
+
       def create_all
         form = ::Threesixty::Subjects::CreateAllForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
         if form.valid?

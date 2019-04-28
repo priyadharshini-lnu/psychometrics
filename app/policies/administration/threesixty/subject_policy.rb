@@ -14,6 +14,10 @@ module Administration
       def create_all?
         index?
       end
+
+      def search?
+        index?
+      end
     end
   end
 end

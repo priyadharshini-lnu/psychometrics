@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {useState} from 'react'
 import _ from 'lodash'
 import {
   Modal, Button, Icon, Divider, Alert, Form, Form as AntForm,
@@ -38,6 +38,7 @@ export default function CreateSubjectModal ({
   },
 }) {
   if (current !== 'CreateSubjectModal') return null
+  const [autocompletedUser, setAutocompletedUser] = useState('')
 
   const handleOk = () => createAll(campaignId, _.pickBy(subjects, s => s.email || s.lastName || s.firstName))
 
@@ -65,6 +66,8 @@ export default function CreateSubjectModal ({
       <Form {...formItemLayout}>
         <AntForm.Item label="Subject">
           <UserAutocomplete
+            value={autocompletedUser}
+            onChange={setAutocompletedUser}
             onSelect={onSelect}
             source="users"
             users={autocompletedUsers}
