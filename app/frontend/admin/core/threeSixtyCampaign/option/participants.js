@@ -1,5 +1,6 @@
 import _ from "lodash";
 import { takeLatest, put, select, delay } from 'redux-saga/effects'
+import { genShowSpinner, genHideSpinner } from '../../temp/spinner';
 
 const FETCH_PARTICIPATION_OPTIONS = 'threeSixty/option/participations/FETCH_PARTICIPATION_OPTIONS'
 const UPDATE_PARTICIPATION_OPTIONS = 'threeSixty/option/participations/UPDATE_PARTICIPATION_OPTIONS'
@@ -8,7 +9,7 @@ const ADD_DATASHEET_CRITERIA = 'threeSixty/option/participations/ADD_DATASHEET_C
 const REMOVE_DATASHEET_CRITERIA = 'threeSixty/option/participations/REMOVE_DATASHEET_CRITERIA'
 const UPDATE_DATASHEET_CRITERIA = 'threeSixty/option/participations/UPDATE_DATASHEET_CRITERIA'
 
-export const getParticipantOption = state => state.threeSixtyCampaign.option.participants
+export const getParticipantOption = state => _.get(state, ['threeSixtyCampaign', 'option', 'participants'])
 
 export const fetchParticipationOptions = campaignId => ({
   type: FETCH_PARTICIPATION_OPTIONS,
@@ -56,7 +57,9 @@ export const watchers = [
   takeLatest(
     [UPDATE_PARTICIPATION_OPTIONS, ADD_DATASHEET_CRITERIA, REMOVE_DATASHEET_CRITERIA, UPDATE_DATASHEET_CRITERIA],
     genSyncParticipationOptionsWithServer
-  )
+  ),
+  takeLatest(`${FETCH_PARTICIPATION_OPTIONS}_REQUEST`, genShowSpinner),
+  takeLatest([`${FETCH_PARTICIPATION_OPTIONS}`], genHideSpinner)
 ]
 
 const DEFAULT = {

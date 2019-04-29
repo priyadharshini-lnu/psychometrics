@@ -5,6 +5,7 @@ import managers from './core/threeSixtyCampaign/managers'
 import option from './core/threeSixtyCampaign/option'
 import modals from './core/temp/modals'
 import autocomplete from './core/temp/autocomplete'
+import spinner from './core/temp/spinner'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -16,5 +17,6 @@ export default combineReducers({
   temp: combineReducers({
     modals,
     autocomplete,
+    spinner
   }),
 })
