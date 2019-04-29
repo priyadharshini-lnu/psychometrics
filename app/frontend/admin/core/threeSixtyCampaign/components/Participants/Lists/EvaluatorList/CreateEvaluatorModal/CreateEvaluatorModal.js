@@ -27,7 +27,7 @@ const tableFields = [
   },
   {
     name: 'Relationship',
-    key: 'relationship',
+    key: 'relationshipName',
   },
 ]
 export default function CreateEvaluatorModal ({
@@ -44,7 +44,15 @@ export default function CreateEvaluatorModal ({
 }) {
   if (current !== 'CreateEvaluatorModal') return null
 
-  const handleOk = () => createAllEvaluators(campaignId, _.pickBy(evaluators, s => s.email || s.lastName || s.firstName))
+  const handleOk = () => {
+    createAllEvaluators(
+      campaignId,
+      _.pickBy(
+        evaluators,
+        s => s.subjectEmail || s.evaluatorEmail || s.evaluatorLastName || s.evaluatorFirstName || s.relationshipName,
+      ),
+    )
+  }
 
   const onSubmitForm = (user) => {
     const newEvaluators = setIn(evaluators, spreadSheetUtils.getFreeRowIndex(evaluators), {
@@ -52,7 +60,7 @@ export default function CreateEvaluatorModal ({
       evaluatorEmail: user.evaluator && user.evaluator.email,
       evaluatorFirstName: user.evaluator && user.evaluator.firstName,
       evaluatorLastName: user.evaluator && user.evaluator.lastName,
-      relationship: user.relationship.name,
+      relationshipName: user.relationship.name,
     })
     fillEvaluators(newEvaluators)
   }

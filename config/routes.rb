@@ -187,7 +187,9 @@ Rails.application.routes.draw do
           end
         end
         resources :evaluators do
-
+          collection do
+            post :create_all
+          end
         end
         resources :managers
         resources :relationships

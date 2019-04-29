@@ -24,13 +24,13 @@ export default function Form ({
   }, [])
 
   useEffect(() => {
-    setEvaluator({ relationship: relationships[0] })
+    setEvaluator({ relationshipName: relationships[0] })
   }, [relationships])
 
   const onSelect = (field, user) => setEvaluator({ ...evaluator, [field]: JSON.parse(user) })
 
   const onClick = () => {
-    setEvaluator({ relationship: evaluator.relationship })
+    setEvaluator({ relationshipName: evaluator.relationship })
     setAutocompletedSubject('')
     setAutocompletedEvaluator('')
     onSubmit(evaluator)
@@ -63,7 +63,7 @@ export default function Form ({
       <AntForm.Item label="Relationship">
         <Select
           value={evaluator.relationship && evaluator.relationship.id}
-          onChange={id => setEvaluator({ ...evaluator, relationship: _.find(relationships, { id }) })}
+          onChange={id => setEvaluator({ ...evaluator, relationshipName: _.find(relationships, { id }) })}
         >
           {relationships.map(r => (
             <Select.Option key={r.id} value={r.id}>
