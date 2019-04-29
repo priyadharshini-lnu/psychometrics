@@ -12,11 +12,11 @@ export default combineReducers({
     subjects,
     evaluators,
     managers,
-    option
+    option,
   }),
   temp: combineReducers({
     modals,
     autocomplete,
-    spinner
+    spinner,
   }),
 })

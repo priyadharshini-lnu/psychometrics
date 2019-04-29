@@ -16,7 +16,11 @@ if (__DEV__) {
   }
 }
 
-const store = createStore(rootReducers, initState, composeEnhancers(applyMiddleware(api, sagaMiddleware, thunk, logger)))
+const store = createStore(
+  rootReducers,
+  initState,
+  composeEnhancers(applyMiddleware(api, sagaMiddleware, thunk, logger)),
+)
 
 sagaMiddleware.run(rootSagas)
 

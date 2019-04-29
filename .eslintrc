@@ -25,7 +25,8 @@
     "no-restricted-globals": 0,
     "class-methods-use-this": 0,
     "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
-    "import/no-extraneous-dependencies": 0
+    "import/no-extraneous-dependencies": 0,
+    "jsx-a11y/click-events-have-key-events": 0
   },
   "globals": {
     "__DEV__": true,

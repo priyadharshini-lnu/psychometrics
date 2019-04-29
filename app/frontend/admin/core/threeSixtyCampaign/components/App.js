@@ -12,12 +12,11 @@ import { getSpinnerState } from '../../temp/spinner'
 export default function App () {
   return (
     <div className="ms" style={{ background: 'white' }}>
-
       <Provider store={store}>
         <Router>
           <Menu routes={routes} />
           <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-          <Spinner active={getSpinnerState(store.getState())}></Spinner>
+          <Spinner active={getSpinnerState(store.getState())} />
         </Router>
       </Provider>
     </div>

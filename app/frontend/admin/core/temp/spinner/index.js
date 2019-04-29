@@ -1,4 +1,4 @@
-import _ from 'lodash';
+import _ from 'lodash'
 import { put } from 'redux-saga/effects'
 
 const SHOW_SPINNER = 'modals/SHOW_SPINNER'
@@ -9,13 +9,13 @@ export const defaultState = {
 
 export const showSpinner = () => ({ type: SHOW_SPINNER, name })
 export const hideSpinner = () => ({ type: HIDE_SPINNER })
-export const getSpinnerState = (state) => _.get(state, ['temp', 'spinner', 'visible']);
+export const getSpinnerState = state => _.get(state, ['temp', 'spinner', 'visible'])
 
-export function *genShowSpinner() {
+export function* genShowSpinner () {
   yield put(showSpinner())
 }
 
-export function *genHideSpinner() {
+export function* genHideSpinner () {
   yield put(hideSpinner())
 }
 

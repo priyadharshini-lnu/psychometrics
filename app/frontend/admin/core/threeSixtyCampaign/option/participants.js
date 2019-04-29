@@ -1,6 +1,8 @@
-import _ from "lodash";
-import { takeLatest, put, select, delay } from 'redux-saga/effects'
-import { genShowSpinner, genHideSpinner } from '../../temp/spinner';
+import _ from 'lodash'
+import {
+  takeLatest, put, select, delay,
+} from 'redux-saga/effects'
+import { genShowSpinner, genHideSpinner } from '../../temp/spinner'
 
 const FETCH_PARTICIPATION_OPTIONS = 'threeSixty/option/participations/FETCH_PARTICIPATION_OPTIONS'
 const UPDATE_PARTICIPATION_OPTIONS = 'threeSixty/option/participations/UPDATE_PARTICIPATION_OPTIONS'
@@ -14,7 +16,7 @@ export const getParticipantOption = state => _.get(state, ['threeSixtyCampaign',
 export const fetchParticipationOptions = campaignId => ({
   type: FETCH_PARTICIPATION_OPTIONS,
   request: {
-    url: `/administration/threesixty_campaigns/${campaignId}/options/participation_options`
+    url: `/administration/threesixty_campaigns/${campaignId}/options/participation_options`,
   },
 })
 
@@ -23,43 +25,49 @@ const syncParticipationOptionsWithServer = (campaignId, body) => ({
   request: {
     method: 'put',
     url: `/administration/threesixty_campaigns/${campaignId}/options/`,
-    body: body
-  }
+    body,
+  },
 })
 
 export const updateParticipationOptions = (campaignId, key, value) => ({
   type: UPDATE_PARTICIPATION_OPTIONS,
-  payload: { campaignId, key, value }
+  payload: { campaignId, key, value },
 })
 
 export const addDatasheetCriteria = (campaignId, key) => ({
   type: ADD_DATASHEET_CRITERIA,
-  payload: { campaignId, key }
+  payload: { campaignId, key },
 })
 
 export const removeDatasheetCriteria = (campaignId, key, index) => ({
   type: REMOVE_DATASHEET_CRITERIA,
-  payload: { campaignId, key, index }
+  payload: { campaignId, key, index },
 })
 
 export const updateDatasheetCriteria = (campaignId, key, index, name, value) => ({
   type: UPDATE_DATASHEET_CRITERIA,
-  payload: { campaignId, key, index, name, value }
+  payload: {
+    campaignId,
+    key,
+    index,
+    name,
+    value,
+  },
 })
 
-function* genSyncParticipationOptionsWithServer({payload: { campaignId }}) {
+function* genSyncParticipationOptionsWithServer ({ payload: { campaignId } }) {
   yield delay(1000)
-  let body = yield select(getParticipantOption)
+  const body = yield select(getParticipantOption)
   yield put(syncParticipationOptionsWithServer(campaignId, body))
 }
 
 export const watchers = [
   takeLatest(
     [UPDATE_PARTICIPATION_OPTIONS, ADD_DATASHEET_CRITERIA, REMOVE_DATASHEET_CRITERIA, UPDATE_DATASHEET_CRITERIA],
-    genSyncParticipationOptionsWithServer
+    genSyncParticipationOptionsWithServer,
   ),
   takeLatest(`${FETCH_PARTICIPATION_OPTIONS}_REQUEST`, genShowSpinner),
-  takeLatest([`${FETCH_PARTICIPATION_OPTIONS}`], genHideSpinner)
+  takeLatest([`${FETCH_PARTICIPATION_OPTIONS}`], genHideSpinner),
 ]
 
 const DEFAULT = {
@@ -78,14 +86,14 @@ const DEFAULT = {
 
   subject_can_evaluate_self: true,
   limit_self_evaluation_by_criteria: true,
-  self_evaluation_criteria:  [
-    { field: "gender", operator: "equal", value: "12" },
-    { field: "grade", operator: "is_same_as_subject" }
+  self_evaluation_criteria: [
+    { field: 'gender', operator: 'equal', value: '12' },
+    { field: 'grade', operator: 'is_same_as_subject' },
   ],
 
   subject_can_opt_in_assessment: true,
   restrict_subject_email_to_domail: true,
-  restricted_domain_name: "gmail.com, mm.com",
+  restricted_domain_name: 'gmail.com, mm.com',
 
   subject_can_nominate_evaluators: true,
   subject_can_nominate_anyone_not_in_assessment: true,
@@ -108,26 +116,29 @@ const DEFAULT = {
   subject_can_select_supplier_relationship: true,
 
   subject_can_view_completion_status_of_evaluation: true,
-  subject_can_view_individual_evaluations: true
+  subject_can_view_individual_evaluations: true,
 }
 
 export const defaultState = []
-export default function reducer (state = defaultState, {type, payload}) {
+export default function reducer (state = defaultState, { type, payload }) {
+  let criterias
   switch (type) {
     case FETCH_PARTICIPATION_OPTIONS:
       return DEFAULT
     case UPDATE_PARTICIPATION_OPTIONS:
-      return { ...state, [payload.key]: payload.value };
+      return { ...state, [payload.key]: payload.value }
     case ADD_DATASHEET_CRITERIA:
-      var criterias = (state[payload.key] || []).concat([{operator: "is_same_as_subject"}])
+      criterias = (state[payload.key] || []).concat([{ operator: 'is_same_as_subject' }])
       return { ...state, [payload.key]: criterias }
     case REMOVE_DATASHEET_CRITERIA:
-      var criterias = [...state[payload.key]]
+      criterias = [...state[payload.key]]
       criterias.splice(payload.index, 1)
       return { ...state, [payload.key]: criterias }
     case UPDATE_DATASHEET_CRITERIA:
-      var criterias = state[payload.key].map((criteria, index) => {
-        if (index != payload.index) { return criteria }
+      criterias = state[payload.key].map((criteria, index) => {
+        if (index !== payload.index) {
+          return criteria
+        }
         return { ...criteria, [payload.name]: payload.value }
       })
       return { ...state, [payload.key]: criterias }
