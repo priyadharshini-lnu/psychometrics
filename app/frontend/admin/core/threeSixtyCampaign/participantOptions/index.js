@@ -75,8 +75,8 @@ function updateParticipationOptionToState (state, { key, value }) {
 }
 
 function addDataSheetCriteriaToState (state, { key }) {
-  const { options } = state
-  const criterias = (options[key] || []).concat([{ operator: 'is_same_as_subject' }])
+  const { options, datasheetFields } = state
+  const criterias = (options[key] || []).concat([{ operator: 'is_same_as_subject', field: datasheetFields[0] }])
   return updateParticipationOptionToState(state, { key, value: criterias })
 }
 

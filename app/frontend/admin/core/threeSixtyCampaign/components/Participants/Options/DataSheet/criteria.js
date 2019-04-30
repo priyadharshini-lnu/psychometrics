@@ -1,11 +1,11 @@
 import React from 'react'
 import { Input, Select } from 'antd'
 
-export default function DataSheetCriteria ({ condition: { field, operator, value }, updateCriteria }) {
+export default function Criteria ({ fields, condition: { field, operator, value }, updateCriteria }) {
   const valueAttr = field ? { value: field } : {}
 
-  return (
-    <span>
+  function fieldSelectList () {
+    return (
       <Select
         {...valueAttr}
         size="small"
@@ -15,10 +15,16 @@ export default function DataSheetCriteria ({ condition: { field, operator, value
           updateCriteria('field', value)
         }}
       >
-        <Select.Option key="gender">Gender</Select.Option>
-        <Select.Option key="grade">Grade</Select.Option>
-        <Select.Option key="language">Language</Select.Option>
+        {fields.map(name => (
+          <Select.Option key={name}>{name}</Select.Option>
+        ))}
       </Select>
+    )
+  }
+
+  return (
+    <span>
+      {fieldSelectList()}
       <Select
         value={operator}
         size="small"

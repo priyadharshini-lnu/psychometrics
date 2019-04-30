@@ -8,7 +8,7 @@ module Administration
       append_before_action :pundit_authorize
 
       def participation_options
-        datasheet_fields = Datasheet.find_by(project_id: params[:project_id])&.columns&.keys || []
+        datasheet_fields = threesixty_campaign.datasheet&.columns&.keys || []
         render json: { options: threesixty_campaign.option.participants, datasheet_fields: datasheet_fields }
       end
 

@@ -11,6 +11,7 @@ export default function Options ({
   removeDatasheetCriteria,
   updateDatasheetCriteria,
   options,
+  datasheetFields,
   match: {
     params: { campaignId },
   },
@@ -33,6 +34,7 @@ export default function Options ({
 
   function parametersForDatasheet (name) {
     return {
+      fields: datasheetFields,
       criterias: options[name],
       addCriteria: boundedAddDatasheetCriteria.bind(this, name),
       removeCriteria: boundedRemoveDatasheetCriteria.bind(this, name),
