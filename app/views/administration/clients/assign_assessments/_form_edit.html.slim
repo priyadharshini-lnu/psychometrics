@@ -4,28 +4,29 @@
                             remote: true,
                             authenticity_token: true do |f|
   .modal-body
-    = render_error_notification(resource)
-    .clearfix
-    .list-group-item
-      .row
-        .col-md-1
-        .col-md-8 Name
-        .col-md-3 Remove?
     #sortable.list-groups
       - @assessments_clients.each do |assessment_client|
         .list-group-item
-          = f.input_field :assessments_client_ids, as: :hidden, multiple: true, value: assessment_client.id
+          = f.input_field :assessments_client_ids,
+                          as: :hidden,
+                          multiple: true,
+                          value: assessment_client.id
           .row
             .col-md-1
-              i.fa.fa-bars.sortable-bar
+              .pvs
+                i.fa.fa-bars.sortable-bar
             .col-md-8
-              = assessment_client.assessment.name
+              .pvs = assessment_client.assessment.name
             .col-md-3
-              = f.input_field :remove_assessment_ids,
-                              as: :boolean,
-                              multiple: true,
-                              checked_value: assessment_client.assessment_id,
-                              unchecked_value: nil
+              .form-group
+                span.checkbox
+                  label
+                    = check_box_tag 'resource[remove_assessment_ids][]',
+                                    assessment_client.assessment_id,
+                                    f.object.remove_assessment_ids.include?(assessment_client.assessment_id)
+                    = t('.remove')
+    = f.input :apply_to_existing_users, as: :boolean, hint: t('.apply_to_existing_users_hint')
+    = f.input :remove_dependent_reports, as: :boolean, wrapper_class: 'hidden'
   .modal-footer
     .btn-group
       = f.button :submit,

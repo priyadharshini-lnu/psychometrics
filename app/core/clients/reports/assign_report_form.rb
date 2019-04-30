@@ -1,13 +1,16 @@
 # frozen_string_literal: true
 
 module Clients
-  module AssignReports
+  module Reports
     class AssignReportForm < Rectify::Form
+      include Virtus.model(:nullify_blank => true)
+
       # Fields
       attribute :report_family_id, Integer
       attribute :report_ids, Array[Integer]
       attribute :remove_report_ids, Array[Integer]
       attribute :user_access_report_ids, Array[Integer]
+      attribute :remove_user_access_report_ids, Array[Integer]
       attribute :apply_to_existing_users, Boolean
 
       #   VALIDATIONS
@@ -17,6 +20,11 @@ module Clients
       validate :report_family_enabled, if: -> { context.new_record }
       validate :reports_enabled, if: -> { report_ids.any? }
       validate :reports_linked_to_report_family, if: -> { report_family_id && report_ids.any? }
+
+      def initialize(opts={})
+        super
+        @remove_user_access_report_ids = [] if remove_user_access_report_ids.reject(&:blank?).blank?
+      end
 
       protected
 

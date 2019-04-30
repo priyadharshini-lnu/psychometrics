@@ -41,21 +41,27 @@ module Administration
       #
       def edit
         @assessments_clients = client.assessments_clients.includes(:assessment)
-        @_resource = EditAssessmentsClientForm.new
+        @_resource = ::Clients::Assessments::UpdateAssessmentForm.new
       end
 
       # Update assigned Assessments
       #
       def update
         @assessments_clients = client.assessments_clients.includes(:assessment)
-        @_resource = EditAssessmentsClientForm.
+        @_resource = ::Clients::Assessments::UpdateAssessmentForm.
                      from_params(params[:resource]).
                      with_context(client: client)
 
         respond_to do |format|
           format.js do
-            EditAssessmentsClient.call(resource, client) do
+            ::Clients::Assessments::UpdateAssessment.call(resource, client) do
               on(:invalid) { render :edit }
+              on(:confirm_remove_dependent_reports) do |remove_reports|
+                report_names = remove_reports.
+                                map { |report| report.decorate.display_name }.
+                                join(', ')
+                render :confirm_remove_dependent_reports, locals: { report_names: report_names }
+              end
             end
           end
         end

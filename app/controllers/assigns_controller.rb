@@ -29,19 +29,11 @@ class AssignsController < ApplicationController
   skip_before_action :verify_authenticity_token, only: %i[update]
 
   def index
-    @reports_ids = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.ids
-
-    @single_assigns = policy_scope(Assign).
-                      includes(:single_reports, original_assign: [:single_reports]).
-                      joining { original_assign.outer.membership.outer.client.outer }.
-                      joins('LEFT OUTER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id" AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
-                      order('assessments_clients.position ASC').
-                      preload(:assessment)
-
-    multiple_reports_ids = multiple_reports_ids(@reports_ids)
-    multiple_assigns_reports = multiple_assigns_reports(current_user, @current_project, multiple_reports_ids)
-
-    @multiple_reports = multiple_reports(multiple_assigns_reports)
+    @assigns = policy_scope(Assign).
+               preload(:assessment, original_assigns_reports: :report).
+               joining { original_assign.outer.membership.outer.client.outer }.
+               joins('LEFT OUTER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id" AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
+               order('assessments_clients.position ASC')
 
     @current_membership.set_user_invited_for_current_project
   end

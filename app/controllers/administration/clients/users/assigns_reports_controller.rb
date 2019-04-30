@@ -15,7 +15,7 @@ module Administration
                                     where(reports: { disabled: false }).
                                     references(:reports).
                                     distinct
-          @_resource = ::Clients::AssignReports::AssignReportForm.new
+          @_resource = ::Clients::Reports::AssignReportForm.new
         end
 
         def create
@@ -25,14 +25,14 @@ module Administration
                                     where(reports: { disabled: false }).
                                     references(:reports).
                                     distinct
-          @_resource = ::Clients::AssignReports::AssignReportForm.
+          @_resource = ::Clients::Reports::AssignReportForm.
                        from_params(params[:resource]).
                        with_context(client: client, client_tenancy: client.root)
           resource.apply_to_existing_users = false
 
           respond_to do |format|
             format.js do
-              ::Clients::AssignReports::AssignReport.call(resource, client, membership) do
+              ::Clients::Reports::AssignReportToMembership.call(resource, client, membership) do
                 on(:invalid) { render :new }
               end
             end
