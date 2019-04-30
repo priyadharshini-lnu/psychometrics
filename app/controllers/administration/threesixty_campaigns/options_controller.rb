@@ -12,6 +12,9 @@ module Administration
       end
 
       def update
+        # if threesixty_campaign.option.update(option: valid_options)
+        # else
+        # end
         render json: threesixty_campaign.option.participants
       end
 

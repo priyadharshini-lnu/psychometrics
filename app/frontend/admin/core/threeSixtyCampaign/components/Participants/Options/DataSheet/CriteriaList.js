@@ -15,7 +15,7 @@ export default function CriteriaList ({
   }
   return criterias.map((condition, index) => (
     <div style={{ marginBottom: '4px' }} key={index}>
-      <Criteria condition={condition} updateCriteria={() => updateCriteria(index)} />
+      <Criteria condition={condition} updateCriteria={(field, value) => updateCriteria(index, field, value)} />
       <span style={{ verticalAlign: 'middele' }}>
         <Icon type="minus-circle" onClick={() => removeCriteria(index)} style={{ fontSize: '18px' }} />
         <Icon type="plus-circle" onClick={addCriteria} style={{ marginLeft: '5px', fontSize: '18px' }} />
