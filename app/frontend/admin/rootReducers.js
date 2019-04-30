@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import subjects from './core/threeSixtyCampaign/subjects'
 import evaluators from './core/threeSixtyCampaign/evaluators'
 import managers from './core/threeSixtyCampaign/managers'
-import option from './core/threeSixtyCampaign/option'
+import participantOptions from './core/threeSixtyCampaign/participantOptions'
 import modals from './core/temp/modals'
 import autocomplete from './core/temp/autocomplete'
 import spinner from './core/temp/spinner'
@@ -12,7 +12,7 @@ export default combineReducers({
     subjects,
     evaluators,
     managers,
-    option,
+    participantOptions,
   }),
   temp: combineReducers({
     modals,

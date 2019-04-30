@@ -6,10 +6,10 @@ import {
   removeDatasheetCriteria,
   updateDatasheetCriteria,
   getParticipantOption,
-} from 'admin/core/threeSixtyCampaign/option/participants'
+} from 'admin/core/threeSixtyCampaign/participantOptions/'
 
 export default connect(
-  state => ({ participantOptions: getParticipantOption(state) }),
+  state => getParticipantOption(state),
   {
     fetchParticipationOptions,
     updateParticipationOptions,

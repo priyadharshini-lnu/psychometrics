@@ -10,7 +10,7 @@ export default function Options ({
   addDatasheetCriteria,
   removeDatasheetCriteria,
   updateDatasheetCriteria,
-  participantOptions,
+  options,
   match: {
     params: { campaignId },
   },
@@ -26,14 +26,14 @@ export default function Options ({
 
   function parametersForSwitch (name) {
     return {
-      value: participantOptions[name],
+      value: options[name],
       onOptionChanged: boundedUpdateParticipationOptions.bind(this, name),
     }
   }
 
   function parametersForDatasheet (name) {
     return {
-      criterias: participantOptions[name],
+      criterias: options[name],
       addCriteria: boundedAddDatasheetCriteria.bind(this, name),
       removeCriteria: boundedRemoveDatasheetCriteria.bind(this, name),
       updateCriteria: boundedUpdateDatasheetCriteria.bind(this, name),
@@ -122,7 +122,7 @@ export default function Options ({
               type="checkbox"
             >
               <Input
-                value={participantOptions.restrictedDomainName}
+                value={options.restrictedDomainName}
                 onChange={e => boundedUpdateParticipationOptions('restrictedDomainName', e.target.value)}
                 style={{ maxWidth: '240px' }}
                 placeholder="ex: gmail.com, yahoo.com"
