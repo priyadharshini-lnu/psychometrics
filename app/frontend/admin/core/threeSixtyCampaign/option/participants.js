@@ -20,12 +20,12 @@ export const fetchParticipationOptions = campaignId => ({
   },
 })
 
-const syncParticipationOptionsWithServer = (campaignId, body) => ({
+const syncParticipationOptionsWithServer = (campaignId, options) => ({
   type: SYNC_PARTICIPATION_OPTIONS,
   request: {
     method: 'put',
     url: `/administration/threesixty_campaigns/${campaignId}/options/`,
-    body,
+    body: { participants: options },
   },
 })
 
@@ -57,8 +57,8 @@ export const updateDatasheetCriteria = (campaignId, key, index, name, value) => 
 
 function* genSyncParticipationOptionsWithServer ({ payload: { campaignId } }) {
   yield delay(1000)
-  const body = yield select(getParticipantOption)
-  yield put(syncParticipationOptionsWithServer(campaignId, body))
+  const options = yield select(getParticipantOption)
+  yield put(syncParticipationOptionsWithServer(campaignId, options))
 }
 
 export const watchers = [
@@ -70,61 +70,61 @@ export const watchers = [
   takeLatest([`${FETCH_PARTICIPATION_OPTIONS}`], genHideSpinner),
 ]
 
-const DEFAULT = {
-  evaluator_can_decline_nomination: true,
-  email_subject_when_evaluators_declines_nomination: true,
-  manager_can_view_nominations: true,
-  manager_can_choose_evaluators: true,
+// const DEFAULT = {
+//   evaluator_can_decline_nomination: true,
+//   email_subject_when_evaluators_declines_nomination: true,
+//   manager_can_view_nominations: true,
+//   manager_can_choose_evaluators: true,
 
-  managers_approve_nominations: true,
-  email_managers_on_nomination_approval: true,
-  subjects_can_email_managers: true,
-  email_subjects_when_manager_nominates_them: true,
-  email_subject_when_manager_declines_nomination: true,
+//   managers_approve_nominations: true,
+//   email_managers_on_nomination_approval: true,
+//   subjects_can_email_managers: true,
+//   email_subjects_when_manager_nominates_them: true,
+//   email_subject_when_manager_declines_nomination: true,
 
-  manager_approves_evaluations: true,
+//   manager_approves_evaluations: true,
 
-  subject_can_evaluate_self: true,
-  limit_self_evaluation_by_criteria: true,
-  self_evaluation_criteria: [
-    { field: 'gender', operator: 'equal', value: '12' },
-    { field: 'grade', operator: 'is_same_as_subject' },
-  ],
+//   subject_can_evaluate_self: true,
+//   limit_self_evaluation_by_criteria: true,
+//   self_evaluation_criteria: [
+//     { field: 'gender', operator: 'equal', value: '12' },
+//     { field: 'grade', operator: 'is_same_as_subject' },
+//   ],
 
-  subject_can_opt_in_assessment: true,
-  restrict_subject_email_to_domail: true,
-  restricted_domain_name: 'gmail.com, mm.com',
+//   subject_can_opt_in_assessment: true,
+//   restrict_subject_email_to_domail: true,
+//   restricted_domain_name: 'gmail.com, mm.com',
 
-  subject_can_nominate_evaluators: true,
-  subject_can_nominate_anyone_not_in_assessment: true,
-  subject_can_nominate_anyone_in_assessment: true,
-  limit_nomination_by_subject_to_anyone_in_assessment: true,
-  limit_nomination_by_subject_to_anyone_criteria: [],
+//   subject_can_nominate_evaluators: true,
+//   subject_can_nominate_anyone_not_in_assessment: true,
+//   subject_can_nominate_anyone_in_assessment: true,
+//   limit_nomination_by_subject_to_anyone_in_assessment: true,
+//   limit_nomination_by_subject_to_anyone_criteria: [],
 
-  subject_can_nominate_anyone_from_datasheet: true,
-  limit_nomination_by_subject_from_datasheet: true,
-  limit_nomination_by_subject_from_datasheet_criteria: [],
+//   subject_can_nominate_anyone_from_datasheet: true,
+//   limit_nomination_by_subject_from_datasheet: true,
+//   limit_nomination_by_subject_from_datasheet_criteria: [],
 
-  subject_cannot_remove_nomination_set_by_manager_and_admin: true,
+//   subject_cannot_remove_nomination_set_by_manager_and_admin: true,
 
-  subject_can_select_relationship: true,
-  limit_relationship_that_subject_can_select: true,
-  subject_can_select_customer_relationship: true,
-  subject_can_select_direct_report_relationship: true,
-  subject_can_select_manager_relationship: true,
-  subject_can_select_peer_relationship: true,
-  subject_can_select_supplier_relationship: true,
+//   subject_can_select_relationship: true,
+//   limit_relationship_that_subject_can_select: true,
+//   subject_can_select_customer_relationship: true,
+//   subject_can_select_direct_report_relationship: true,
+//   subject_can_select_manager_relationship: true,
+//   subject_can_select_peer_relationship: true,
+//   subject_can_select_supplier_relationship: true,
 
-  subject_can_view_completion_status_of_evaluation: true,
-  subject_can_view_individual_evaluations: true,
-}
+//   subject_can_view_completion_status_of_evaluation: true,
+//   subject_can_view_individual_evaluations: true,
+// }
 
-export const defaultState = []
-export default function reducer (state = defaultState, { type, payload }) {
+export const defaultState = {}
+export default function reducer (state = defaultState, { type, payload, response }) {
   let criterias
   switch (type) {
     case FETCH_PARTICIPATION_OPTIONS:
-      return DEFAULT
+      return response
     case UPDATE_PARTICIPATION_OPTIONS:
       return { ...state, [payload.key]: payload.value }
     case ADD_DATASHEET_CRITERIA:

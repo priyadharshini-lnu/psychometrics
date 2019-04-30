@@ -45,12 +45,12 @@ export default function Options ({
       <OptionSection label="Evaluator Options">
         <ExpandableOption
           label="Allow evaluators to decline nomination"
-          {...parametersForSwitch('evaluator_can_decline_nomination')}
+          {...parametersForSwitch('evaluatorCanDeclineNomination')}
         >
           <ExpandableOption
             label="Email subject when a nomination is declined"
             type="checkbox"
-            {...parametersForSwitch('email_subject_when_evaluators_declines_nomination')}
+            {...parametersForSwitch('emailSubjectWhenEvaluatorsDeclinesNomination')}
           />
         </ExpandableOption>
       </OptionSection>
@@ -58,18 +58,18 @@ export default function Options ({
       <OptionSection label="Manager Options">
         <ExpandableOption
           label="Manager Can View Nominations"
-          {...parametersForSwitch('manager_can_view_nominations')}
+          {...parametersForSwitch('managerCanViewNominations')}
           actionable={<Button size="small">Default</Button>}
         />
         <ExpandableOption
           label="Manager May Choose Evaluators"
-          {...parametersForSwitch('manager_can_choose_evaluators')}
+          {...parametersForSwitch('managerCanChooseEvaluators')}
         />
-        <ExpandableOption label="Manager Approve Nominations" {...parametersForSwitch('managers_approve_nominations')}>
+        <ExpandableOption label="Manager Approve Nominations" {...parametersForSwitch('managersApproveNominations')}>
           <div>
             <ExpandableOption
               label="Email managers when a subject's nominations are ready for approval"
-              {...parametersForSwitch('email_managers_on_nomination_approval')}
+              {...parametersForSwitch('emailManagersOnNominationApproval')}
               type="checkbox"
               actionable={<Button size="small">Edit email</Button>}
             />
@@ -77,56 +77,53 @@ export default function Options ({
           <div>
             <ExpandableOption
               label="Allow subjects to email managers when their nominations are ready for approval"
-              {...parametersForSwitch('subjects_can_email_managers')}
+              {...parametersForSwitch('subjectsCanEmailManagers')}
               type="checkbox"
             />
           </div>
           <div>
             <ExpandableOption
               label="Email subject when a nomination is declined"
-              {...parametersForSwitch('email_subjects_when_manager_nominates_them')}
+              {...parametersForSwitch('emailSubjectsWhenManagerNominatesThem')}
               type="checkbox"
             />
           </div>
           <div>
             <ExpandableOption
               label="Email subject when a nomination is denied"
-              {...parametersForSwitch('email_subject_when_manager_declines_nomination')}
+              {...parametersForSwitch('emailSubjectWhenManagerDeclinesNomination')}
               type="checkbox"
             />
           </div>
         </ExpandableOption>
-        <ExpandableOption
-          label="Manager Approves Evaluations"
-          {...parametersForSwitch('manager_approves_evaluations')}
-        />
+        <ExpandableOption label="Manager Approves Evaluations" {...parametersForSwitch('managerApprovesEvaluations')} />
       </OptionSection>
 
       <OptionSection label="Subject Options">
-        <ExpandableOption label="Subject Self Evaluates" {...parametersForSwitch('subject_can_evaluate_self')}>
+        <ExpandableOption label="Subject Self Evaluates" {...parametersForSwitch('subjectCanEvaluateSelf')}>
           <ExpandableOption
             label="Limit self-evaluators by criteria"
-            {...parametersForSwitch('limit_self_evaluation_by_criteria')}
+            {...parametersForSwitch('limitSelfEvaluationByCriteria')}
             type="checkbox"
             actionable={<Button size="small">View 4 subjects</Button>}
           >
-            <CriteriaList {...parametersForDatasheet('self_evaluation_criteria')} />
+            <CriteriaList {...parametersForDatasheet('selfEvaluationCriteria')} />
           </ExpandableOption>
 
           <ExpandableOption
             label="Subjects can opt-in to this assessment"
-            {...parametersForSwitch('subject_can_opt_in_assessment')}
+            {...parametersForSwitch('subjectCanOptInAssessment')}
             type="checkbox"
             actionable={<Button size="small">Opt-In-Link</Button>}
           >
             <ExpandableOption
               label="Restrict subject email to domains:"
-              {...parametersForSwitch('restrict_subject_email_to_domail')}
+              {...parametersForSwitch('restrictSubjectEmailToDomail')}
               type="checkbox"
             >
               <Input
-                value={participantOptions.restricted_domain_name}
-                onChange={e => boundedUpdateParticipationOptions('restricted_domain_name', e.target.value)}
+                value={participantOptions.restrictedDomainName}
+                onChange={e => boundedUpdateParticipationOptions('restrictedDomainName', e.target.value)}
                 style={{ maxWidth: '240px' }}
                 placeholder="ex: gmail.com, yahoo.com"
               />
@@ -136,79 +133,79 @@ export default function Options ({
 
         <ExpandableOption
           label="Subject Nominates Evaluators"
-          {...parametersForSwitch('subject_can_nominate_evaluators')}
+          {...parametersForSwitch('subjectCanNominateEvaluators')}
           actionable={<Button size="small">Define Nomination requirement</Button>}
         >
           <ExpandableOption
             label="Anyone not currently in the assessment"
-            {...parametersForSwitch('subject_can_nominate_anyone_not_in_assessment')}
+            {...parametersForSwitch('subjectCanNominateAnyoneNotInAssessment')}
             type="checkbox"
           />
           <ExpandableOption
             label="Anyone in the assessment"
-            {...parametersForSwitch('subject_can_nominate_anyone_in_assessment')}
+            {...parametersForSwitch('subjectCanNominateAnyoneInAssessment')}
             type="checkbox"
           >
             <ExpandableOption
               label="Only show subjects who match the following criteria:"
-              {...parametersForSwitch('limit_nomination_by_subject_to_anyone_in_assessment')}
+              {...parametersForSwitch('limitNominationBySubjectToAnyoneInAssessment')}
               type="checkbox"
             >
-              <CriteriaList {...parametersForDatasheet('limit_nomination_by_subject_to_anyone_criteria')} />
+              <CriteriaList {...parametersForDatasheet('limitNominationBySubjectToAnyoneCriteria')} />
             </ExpandableOption>
           </ExpandableOption>
           <ExpandableOption
             label="Anyone in the DataSheet"
-            {...parametersForSwitch('subject_can_nominate_anyone_from_datasheet')}
+            {...parametersForSwitch('subjectCanNominateAnyoneFromDatasheet')}
             type="checkbox"
           >
             <ExpandableOption
               label="Limit search by criteria"
-              {...parametersForSwitch('limit_nomination_by_subject_from_datasheet')}
+              {...parametersForSwitch('limitNominationbySubjectFromDatasheet')}
               type="checkbox"
             >
-              <CriteriaList {...parametersForDatasheet('limit_nomination_by_subject_from_datasheet_criteria')} />
+              <CriteriaList {...parametersForDatasheet('limitNominationbySubjectFromDatasheetCriteria')} />
             </ExpandableOption>
           </ExpandableOption>
 
           <ExpandableOption
             label="Subjects cannot remove nominations set by managers or admins"
-            {...parametersForSwitch('subject_cannot_remove_nomination_set_by_manager_and_admin')}
+            {...parametersForSwitch('subjectCannotRemoveNominationSetByManagerAndAdmin')}
             type="checkbox"
           />
           <ExpandableOption
             label="Allow subjects to select relationships"
-            {...parametersForSwitch('subject_can_select_relationship')}
+            {...parametersForSwitch('subjectCanSelectRelationship')}
             type="checkbox"
           >
             <ExpandableOption
               label="Only allow relationships of specified types"
-              {...parametersForSwitch('limit_relationship_that_subject_can_select')}
+              {...parametersForSwitch('limitRelationshipThatSubjectCanSelect')}
               type="checkbox"
             >
               <ExpandableOption
                 label="Customer"
-                {...parametersForSwitch('subject_can_select_customer_relationship')}
+                {...parametersForSwitch('subjectCanSelectCustomerRelationship')}
                 type="checkbox"
               />
               <ExpandableOption
                 label="Direct Report"
-                {...parametersForSwitch('subject_can_select_direct_report_relationship')}
+                {...parametersForSwitch('subjectCanSelectDirectReportRelationship')}
                 type="checkbox"
               />
               <ExpandableOption
                 label="Manager"
-                {...parametersForSwitch('subject_can_select_manager_relationship')}
+                {...parametersForSwitch('subjectCanSelectManagerRelationship')}
                 type="checkbox"
               />
               <ExpandableOption
                 label="Peer"
-                {...parametersForSwitch('subject_can_select_peer_relationship')}
+                {...parametersForSwitch('subjectCanSelectPeerRelationship')}
                 type="checkbox"
               />
               <ExpandableOption
                 label="Supplier"
-                {...parametersForSwitch('subject_can_select_supplier_relationship')}
+                {...parametersForSwitch('subjectCanSelectSupplierRelationship')}
                 type="checkbox"
               />
             </ExpandableOption>
@@ -217,11 +214,11 @@ export default function Options ({
 
         <ExpandableOption
           label="Subjects can view completion status of evaluations"
-          {...parametersForSwitch('subject_can_view_completion_status_of_evaluation')}
+          {...parametersForSwitch('subjectCanViewCompletionStatusOfEvaluation')}
         >
           <ExpandableOption
             label="Allow subjects to view the individual evaluations"
-            {...parametersForSwitch('subject_can_view_individual_evaluations')}
+            {...parametersForSwitch('subjectCanViewIndividualEvaluations')}
             type="checkbox"
           />
         </ExpandableOption>

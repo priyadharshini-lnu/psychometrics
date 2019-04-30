@@ -39,7 +39,7 @@ const apiMiddleware = () => next => (action) => {
 
   next({ ...action, type: REQUEST })
 
-  return axios[method](buildUrl(request), body, buildOptions(request))
+  return axios[method](buildUrl(request), humps.decamelizeKeys(body), buildOptions(request))
     .then(({ data }) => next({ type: SUCCESS, response: humps.camelizeKeys(data), requestAction: action }))
     .catch((error) => {
       next({ type: FAILURE, errors: error.response.data.errors })

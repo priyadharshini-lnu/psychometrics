@@ -12,10 +12,13 @@ module Administration
       end
 
       def update
-        # if threesixty_campaign.option.update(option: valid_options)
-        # else
-        # end
-        render json: threesixty_campaign.option.participants
+        participant_options = ::Threesixty::Options::ParticipationOptionForm.from_params(params[:participants])
+        if participant_options.valid?
+          threesixty_campaign.option.update!(participants: participant_options.attributes)
+          render json: :ok
+        else
+          render json: { errors: form.errors.messages }, status: :bad_request
+        end
       end
 
       private
