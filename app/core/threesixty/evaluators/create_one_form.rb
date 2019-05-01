@@ -32,12 +32,16 @@ module Threesixty
         @relationship ||= ::Relationships::ByCampaign.new(context.campaign).query.where(name: relationship_name).first
       end
 
+      def subject
+        @subject ||= ::Threesixty::Subject.includes(:user).where(users: { email: subject_email }).first
+      end
+
       def subject_user
-        @subject_user ||= ::Threesixty::Subject.joins(:user).where(users: { email: subject_email }).first
+        @subject_user ||= subject&.user
       end
 
       def evaluator_user
-        @evaluator_user ||= ::Threesixty::Evaluator.joins(:user).where(users: { email: evaluator_email }).first
+        @evaluator_user ||= ::Threesixty::Evaluator.includes(:user).where(users: { email: evaluator_email }).first&.user
       end
     end
   end

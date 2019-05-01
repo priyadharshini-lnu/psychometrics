@@ -23,7 +23,7 @@ module Administration
       def create_all
         form = ::Threesixty::Evaluators::CreateAllForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
-          ::Threesixty::Evaluators::CreateAll.call!(form.subjects, threesixty_campaign)
+          ::Threesixty::Evaluators::CreateAll.call!(form.evaluators_with_relations, threesixty_campaign)
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: :bad_request

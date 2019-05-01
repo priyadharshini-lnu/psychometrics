@@ -1,4 +1,6 @@
+import { takeLatest, put } from 'redux-saga/effects'
 import { setIn } from 'utils/immutable'
+import { closeModal } from 'admin/core/temp/modals'
 
 export const CLEAR_FORM = 'threeSixty/evaluators/CLEAR_FORM'
 export const CREATE_ALL_EVALUATORS = 'threeSixty/evaluators/CREATE_ALL_EVALUATORS'
@@ -47,3 +49,20 @@ export default function reducer (state = defaultState, action) {
       return state
   }
 }
+
+function* genFetchEvaluators ({ requestAction }) {
+  yield put(fetchEvaluators(requestAction.campaignId))
+}
+
+function* genClearForm () {
+  yield put(clearForm({}))
+}
+function* genCloseModal () {
+  yield put(closeModal())
+}
+
+export const watchers = [
+  takeLatest(CREATE_ALL_EVALUATORS, genFetchEvaluators),
+  takeLatest(CREATE_ALL_EVALUATORS, genClearForm),
+  takeLatest(CREATE_ALL_EVALUATORS, genCloseModal),
+]

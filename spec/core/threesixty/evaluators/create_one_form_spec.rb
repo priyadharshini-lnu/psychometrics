@@ -12,8 +12,8 @@ describe Threesixty::Evaluators::CreateOneForm do
     form = described_class.new(subject_email: 'accc')
     form.with_context(campaign: campaign)
     form.validate
-    expect(form.errors.messages[:subject_email]).to include('is invalid')
-    expect(form.errors.messages[:evaluator_email]).to include('is invalid')
+    expect(form.errors.messages[:subject_email]).to include('Subject Email is invalid')
+    expect(form.errors.messages[:evaluator_email]).to include('Evaluator Email is invalid')
   end
 
   before do
@@ -23,7 +23,7 @@ describe Threesixty::Evaluators::CreateOneForm do
     form = described_class.new(relationship_name: 'manager')
     form.with_context(campaign: campaign)
     form.validate
-    expect(form.errors.messages[:relationship_name]).to include('is invalid')
+    expect(form.errors.messages[:relationship_name]).to include('Relationship is invalid')
   end
 
   before do
