@@ -80,8 +80,9 @@ module Threesixty
 
       def validate_data_stream_fields
         DATA_SHEET_CRITERIA_FIELD.each do |key|
-          criteria = public_send(key)
-          criteria.each do |criteria|
+          criteria_list = public_send(key)
+          criteria_list.each do |criteria|
+            validate_criteria_keys(key, criteria)
             validate_criteria_operator(key, criteria[:operator])
             validate_criteria_field(key, criteria[:field])
           end
@@ -89,7 +90,7 @@ module Threesixty
       end
 
       def validate_criteria_operator(criteria_key, operator)
-        unless ['equal', 'is_same_as_subject'].include?(operator)
+        if ['equal', 'is_same_as_subject'].exclude?(operator)
           errors.add(criteria_key, 'has invalid operator')
         end
       end
@@ -100,8 +101,10 @@ module Threesixty
         end
       end
 
-      def validate_criteria_keys(criteria)
-        # criter
+      def validate_criteria_keys(criteria_key, criteria)
+        if (criteria.keys - [:field, :operator, :value]).present?
+          errors.add(criteria_key, 'has invalid keys')
+        end
       end
     end
   end
