@@ -12,7 +12,7 @@ module Clients
         return broadcast(:invalid) if form.invalid?
 
         transaction do
-          assign_reports_to_membership(membership)
+          add_reports_to_membership(membership)
         end
 
         broadcast(:ok)
