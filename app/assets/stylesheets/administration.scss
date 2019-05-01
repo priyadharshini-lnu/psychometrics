@@ -1,28 +1,28 @@
 // Theme import
-@import "administration/theme-white";
+@import 'administration/theme-white';
 
-@import "jquery.fileupload";
-@import "jquery.fileupload-ui";
-@import "bootstrap-select";
-@import "bootstrap-colorpicker";
-@import "multiselect";
-@import "summernote";
-@import "ladda/ladda-themeless.min";
+@import 'jquery.fileupload';
+@import 'jquery.fileupload-ui';
+@import 'bootstrap-select';
+@import 'bootstrap-colorpicker';
+@import 'multiselect';
+@import 'summernote';
+@import 'ladda/ladda-themeless.min';
 
-@import "datatables/dataTables.bootstrap";
-@import "administration/dataTables.checkboxes";
+@import 'datatables/dataTables.bootstrap';
+@import 'administration/dataTables.checkboxes';
 
-@import "common/helper";
-@import "common/fonts";
-@import "common/rtl";
-@import "administration/overrides/reports-ui";
-@import "administration/overrides/stylesheet";
-@import "administration/overrides/responsive";
+@import 'common/helper';
+@import 'common/fonts';
+@import 'common/rtl';
+@import 'administration/overrides/reports-ui';
+@import 'administration/overrides/stylesheet';
+@import 'administration/overrides/responsive';
 
-@import "x-editable/dist/bootstrap3-editable/css/bootstrap-editable";
+@import 'x-editable/dist/bootstrap3-editable/css/bootstrap-editable';
 
-@import "./administration/*";
-@import "bootstrap-datetimepicker-3";
+@import './administration/*';
+@import 'bootstrap-datetimepicker-3';
 
-@import "psychometrics_vendor";
-@import "psychometrics_preview";
+@import 'psychometrics_vendor';
+@import 'psychometrics_preview';
