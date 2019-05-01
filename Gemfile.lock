@@ -449,6 +449,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
     netrc (0.11.0)
+    newrelic_rpm (6.3.0.355)
     nio4r (2.3.0)
     nokogiri (1.8.4)
       mini_portile2 (~> 2.3.0)
@@ -760,7 +761,6 @@ GEM
     unf (0.1.4)
       unf_ext
     unf_ext (0.0.7.5)
-    unicode-display_width (1.2.1)
     unicode-display_width (1.5.0)
     validates_timeliness (4.0.2)
       timeliness (~> 0.3.7)
@@ -868,6 +868,7 @@ DEPENDENCIES
   mini_magick (~> 4.5.1)
   money-rails (~> 1.7.0)
   mustache (~> 1.0.3)
+  newrelic_rpm (~> 6.3, >= 6.3.0.355)
   paranoia (~> 2.4)
   pg (~> 0.18.4)
   poltergeist (~> 1.14.0)
