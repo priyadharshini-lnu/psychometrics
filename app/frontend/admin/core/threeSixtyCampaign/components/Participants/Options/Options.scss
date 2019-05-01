@@ -1,0 +1,57 @@
+.optionContainer {
+  padding: 10px 10px 20px 20px;
+  max-width: 1159px;
+}
+
+.checkboxContained {
+  margin: 8px 0px 0px 26px;
+}
+
+.actionableContainer,
+.optionSectionContainer {
+  margin-left: 25px;
+}
+
+.optionLabel {
+  font-weight: bold;
+}
+
+.optionChildrenContainer {
+  margin-top: 5px;
+}
+
+.criteriaSelectList {
+  width: 160px !important;
+}
+
+.operatorSelectList {
+  @extend .criteriaSelectList;
+  margin: 0px 10px !important;
+}
+
+.criteriaValue {
+  @extend .criteriaSelectList;
+  margin-right: 10px !important;
+}
+
+.addCriteriaLink {
+  color: #1890ff;
+}
+
+.datasheetNotAvailableMethod {
+  font-size: 10px;
+  color: red;
+}
+
+.criteriaContainer {
+  margin-bottom: 4px;
+}
+
+.criteriaAddDeleteIcon {
+  font-size: 18px;
+}
+
+.addCriteriaIcon {
+  @extend .criteriaAddDeleteIcon;
+  font-size: 18px;
+}

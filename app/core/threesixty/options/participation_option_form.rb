@@ -103,7 +103,7 @@ module Threesixty
 
       def validate_criteria_keys(criteria_key, criteria)
         if (criteria.keys - [:field, :operator, :value]).present?
-          errors.add(criteria_key, 'has invalid keys')
+          errors.add(criteria_key, 'has invalid key')
         end
       end
     end
