@@ -78,7 +78,7 @@ module Clients
       # Adds the ability to view reports for existing users
       #
       def add_report_access_for_existing_users
-        return if form.user_access_report_ids.blank
+        return if form.user_access_report_ids.blank?
 
         AssignsReport.joins(assign: :membership).
                       where(assign: { memberships: { client_id: client.id } }).
