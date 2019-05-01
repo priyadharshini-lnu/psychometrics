@@ -3,6 +3,7 @@ import { Button } from 'antd'
 import OptionSection from './OptionSection'
 import ExpandableOption from './ExpandableOption'
 import CriteriaList from './DataSheet/CriteriaList'
+import css from './Options.scss'
 
 export default function Options ({
   fetchParticipationOptions,
@@ -43,7 +44,7 @@ export default function Options ({
   }
 
   return (
-    <div style={{ padding: '10px 10px 20px 20px', maxWidth: '1159px' }}>
+    <div className={css.optionContainer}>
       <OptionSection label="Evaluator Options">
         <ExpandableOption
           label="Allow evaluators to decline nomination"
@@ -58,11 +59,7 @@ export default function Options ({
       </OptionSection>
 
       <OptionSection label="Manager Options">
-        <ExpandableOption
-          label="Manager Can View Nominations"
-          {...parametersForSwitch('managerCanViewNominations')}
-          actionable={<Button size="small">Default</Button>}
-        />
+        <ExpandableOption label="Manager Can View Nominations" {...parametersForSwitch('managerCanViewNominations')} />
         <ExpandableOption
           label="Manager May Choose Evaluators"
           {...parametersForSwitch('managerCanChooseEvaluators')}

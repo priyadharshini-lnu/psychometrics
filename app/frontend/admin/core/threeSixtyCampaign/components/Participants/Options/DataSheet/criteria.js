@@ -1,5 +1,6 @@
 import React from 'react'
 import { Input, Select } from 'antd'
+import css from '../Options.scss'
 
 export default function Criteria ({ fields, condition: { field, operator, value }, updateCriteria }) {
   const valueAttr = field ? { value: field } : {}
@@ -9,7 +10,7 @@ export default function Criteria ({ fields, condition: { field, operator, value 
       <Select
         {...valueAttr}
         size="small"
-        style={{ width: '160px' }}
+        className={css.criteriaSelectList}
         placeholder="Select a datasheet field"
         onChange={(value) => {
           updateCriteria('field', value)
@@ -28,7 +29,7 @@ export default function Criteria ({ fields, condition: { field, operator, value 
       <Select
         value={operator}
         size="small"
-        style={{ margin: '0px 10px', width: '160px' }}
+        className={css.operatorSelectList}
         onChange={(value) => {
           updateCriteria('operator', value)
         }}
@@ -39,7 +40,7 @@ export default function Criteria ({ fields, condition: { field, operator, value 
       {operator === 'equal' ? (
         <Input
           value={value}
-          style={{ marginRight: '10px', width: '160px' }}
+          className={css.criteriaValue}
           size="small"
           onChange={(e) => {
             updateCriteria('value', e.target.value)
