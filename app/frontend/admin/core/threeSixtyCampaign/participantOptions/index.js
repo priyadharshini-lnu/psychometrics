@@ -76,28 +76,28 @@ function updateParticipationOptionToState (state, { key, value }) {
 
 function addDataSheetCriteriaToState (state, { key }) {
   const { options, datasheetFields } = state
-  const criterias = (options[key] || []).concat([{ operator: 'is_same_as_subject', field: datasheetFields[0] }])
-  return updateParticipationOptionToState(state, { key, value: criterias })
+  const criteria = (options[key] || []).concat([{ operator: 'is_same_as_subject', field: datasheetFields[0] }])
+  return updateParticipationOptionToState(state, { key, value: criteria })
 }
 
 function removeDataSheetCriteriaToState (state, { key, index }) {
   const { options } = state
-  const criterias = [...options[key]]
-  criterias.splice(index, 1)
-  return updateParticipationOptionToState(state, { key, value: criterias })
+  const criteria = [...options[key]]
+  criteria.splice(index, 1)
+  return updateParticipationOptionToState(state, { key, value: criteria })
 }
 
 function updateDataSheetCriteriaToState (state, {
   key, index, name, value,
 }) {
   const { options } = state
-  const criterias = options[key].map((criteria, i) => {
+  const criteria = options[key].map((criteria, i) => {
     if (i !== index) {
       return criteria
     }
     return { ...criteria, [name]: value }
   })
-  return updateParticipationOptionToState(state, { key, value: criterias })
+  return updateParticipationOptionToState(state, { key, value: criteria })
 }
 
 export const defaultState = { options: {}, datasheet_fields: [] }

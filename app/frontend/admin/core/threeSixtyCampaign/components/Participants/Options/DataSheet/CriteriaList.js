@@ -4,20 +4,20 @@ import _ from 'lodash'
 import Criteria from './Criteria'
 
 export default function CriteriaList ({
-  criterias, fields, addCriteria, removeCriteria, updateCriteria,
+  criteria, fields, addCriteria, removeCriteria, updateCriteria,
 }) {
   if (_.isEmpty(fields)) {
     return <div style={{ fontSize: '10px', color: 'red' }}>Datasheet not available for this project</div>
   }
 
-  if (_.isEmpty(criterias)) {
+  if (_.isEmpty(criteria)) {
     return (
       <div style={{ color: '#1890ff' }} onClick={addCriteria} role="button" tabIndex={0}>
-        Click here to add criterias
+        Click here to add criteria
       </div>
     )
   }
-  return criterias.map((condition, index) => (
+  return criteria.map((condition, index) => (
     <div style={{ marginBottom: '4px' }} key={index}>
       <Criteria
         fields={fields}

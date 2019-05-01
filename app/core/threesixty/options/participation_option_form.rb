@@ -1,7 +1,8 @@
+# frozen_string_literal: true
+
 module Threesixty
   module Options
     class ParticipationOptionForm < Rectify::Form
-
       ALL_BOOLEAN_FIELDS = %i(
         evaluator_can_decline_nomination
         email_subject_when_evaluators_declines_nomination
@@ -15,8 +16,6 @@ module Threesixty
         manager_approves_evaluations
         subject_can_evaluate_self
         limit_self_evaluation_by_criteria
-        subject_can_opt_in_assessment
-        restrict_subject_email_to_domail
         subject_can_nominate_evaluators
         subject_can_nominate_anyone_not_in_assessment
         subject_can_nominate_anyone_in_assessment
@@ -53,8 +52,6 @@ module Threesixty
       attribute :manager_approves_evaluations, Boolean, deafult: false
       attribute :subject_can_evaluate_self, Boolean, deafult: false
       attribute :limit_self_evaluation_by_criteria, Boolean, deafult: false
-      attribute :subject_can_opt_in_assessment, Boolean, deafult: false
-      attribute :restrict_subject_email_to_domail, Boolean, deafult: false
       attribute :subject_can_nominate_evaluators, Boolean, deafult: false
       attribute :subject_can_nominate_anyone_not_in_assessment, Boolean, deafult: false
       attribute :subject_can_nominate_anyone_in_assessment, Boolean, deafult: false
@@ -76,17 +73,15 @@ module Threesixty
       attribute :limit_nomination_by_subject_to_anyone_criteria, Array[Hash], default: []
       attribute :limit_nomination_by_subject_from_datasheet_criteria, Boolean, default: []
 
-      attribute :restricted_domain_name, String, deafult: false
-
       validates *ALL_BOOLEAN_FIELDS,
-        inclusion: { in: [ true, false ], message: "doesn't have valid value" },
+        inclusion: { in: [ true, false ], message: "doesn't have a valid value" },
         allow_nil: true
       validate :validate_data_stream_fields
 
       def validate_data_stream_fields
         DATA_SHEET_CRITERIA_FIELD.each do |key|
-          criterias = public_send(key)
-          criterias.each do |criteria|
+          criteria = public_send(key)
+          criteria.each do |criteria|
             validate_criteria_operator(key, criteria[:operator])
             validate_criteria_field(key, criteria[:field])
           end
@@ -100,16 +95,13 @@ module Threesixty
       end
 
       def validate_criteria_field(criteria_key, field)
+        if context.datasheet_column_names.exclude?(field)
+          errors.add(criteria_key, 'has invalid conditional field')
+        end
       end
 
-      def allowed_keys
-        ALL_BOOLEAN_FIELDS + DATA_SHEET_CRITERIA_FIELD
-      end
-
-      def valid_options
-        options = params[:options]
-        options.slice(**valid_option_keys)
-        scrub_datasheet_criteria_options(options)
+      def validate_criteria_keys(criteria)
+        # criter
       end
     end
   end

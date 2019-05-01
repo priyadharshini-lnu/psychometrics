@@ -8,4 +8,8 @@ class Datasheet < ApplicationRecord
   def normalize_columns
     columns.map { |k, v| { name: k, type: v } }
   end
+
+  def column_names
+    columns&.keys
+  end
 end

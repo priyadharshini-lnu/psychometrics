@@ -8,17 +8,21 @@ module Administration
       append_before_action :pundit_authorize
 
       def participation_options
-        datasheet_fields = threesixty_campaign.datasheet&.columns&.keys || []
-        render json: { options: threesixty_campaign.option.participants, datasheet_fields: datasheet_fields }
+        render json: {
+          options: threesixty_campaign.option.participants,
+          datasheet_fields: threesixty_campaign.datasheet_column_names
+        }
       end
 
       def update
-        participant_options = ::Threesixty::Options::ParticipationOptionForm.from_params(params[:participants])
+        participant_options = ::Threesixty::Options::ParticipationOptionForm.
+          from_params(params[:participants]).
+          with_context(datasheet_column_names: threesixty_campaign.datasheet_column_names)
         if participant_options.valid?
           threesixty_campaign.option.update!(participants: participant_options.attributes)
           render json: :ok
         else
-          render json: { errors: form.errors.messages }, status: :bad_request
+          render json: { errors: participant_options.errors.messages }, status: :bad_request
         end
       end
 

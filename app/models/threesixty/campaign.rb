@@ -25,5 +25,9 @@ module Threesixty
     def attribute_names
       super + [:factors, :type]
     end
+
+    def datasheet_column_names
+      datasheet&.column_names || []
+    end
   end
 end

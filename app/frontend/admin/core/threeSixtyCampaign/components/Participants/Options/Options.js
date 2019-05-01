@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react'
-import { Button, Input } from 'antd'
+import { Button } from 'antd'
 import OptionSection from './OptionSection'
 import ExpandableOption from './ExpandableOption'
 import CriteriaList from './DataSheet/CriteriaList'
@@ -35,7 +35,7 @@ export default function Options ({
   function parametersForDatasheet (name) {
     return {
       fields: datasheetFields,
-      criterias: options[name],
+      criteria: options[name],
       addCriteria: boundedAddDatasheetCriteria.bind(this, name),
       removeCriteria: boundedRemoveDatasheetCriteria.bind(this, name),
       updateCriteria: boundedUpdateDatasheetCriteria.bind(this, name),
@@ -110,26 +110,6 @@ export default function Options ({
             actionable={<Button size="small">View 4 subjects</Button>}
           >
             <CriteriaList {...parametersForDatasheet('selfEvaluationCriteria')} />
-          </ExpandableOption>
-
-          <ExpandableOption
-            label="Subjects can opt-in to this assessment"
-            {...parametersForSwitch('subjectCanOptInAssessment')}
-            type="checkbox"
-            actionable={<Button size="small">Opt-In-Link</Button>}
-          >
-            <ExpandableOption
-              label="Restrict subject email to domains:"
-              {...parametersForSwitch('restrictSubjectEmailToDomail')}
-              type="checkbox"
-            >
-              <Input
-                value={options.restrictedDomainName}
-                onChange={e => boundedUpdateParticipationOptions('restrictedDomainName', e.target.value)}
-                style={{ maxWidth: '240px' }}
-                placeholder="ex: gmail.com, yahoo.com"
-              />
-            </ExpandableOption>
           </ExpandableOption>
         </ExpandableOption>
 
