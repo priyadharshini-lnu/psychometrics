@@ -11,12 +11,15 @@ module Threesixty
     end
 
     def create
-      participant = @subject.participants.build(evaluator_params)
-      participant.campaign_id = @campaign.campaign_id
-      participant.project_id = @campaign.project.id
-      participant.save!
-
-      render json: participant.threesixty_evaluator, serializer: Threesixty::EndUser::NominantSerializer, include: '**'
+      if @subject.participants.find_by(evaluator_id: params[:evaluator_id])
+        render json: {error:  'already exists'}, status: 422
+      else
+        participant = @subject.participants.build(evaluator_params)
+        participant.campaign_id = @campaign.campaign_id
+        participant.project_id = @campaign.project.id
+        participant.save!
+        render json: participant.threesixty_evaluator, serializer: Threesixty::EndUser::NominantSerializer, include: '**'
+      end
     end
 
     def destroy

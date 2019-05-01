@@ -8,10 +8,11 @@ import InlineInput from './InlineInput'
 
 const { Column } = Table
 
-const prepareRowData = (requirements, evaluators) => {
+const prepareRowData = (requirements, evaluators, relationships) => {
   const { conditions } = requirements
   const rows = []
-  _.each(conditions, ({ name, value, predicate }) => {
+  _.each(conditions, ({ id, value, predicate }) => {
+    const { name } = _.find(relationships, { id })
     const count = (evaluators[name] && evaluators[name].length) || 0
     _.each(evaluators[name], (evaluator, i) => rows.push({
       rowSpan: i === 0 && count > 0 ? count + 1 : 0,
@@ -27,7 +28,7 @@ const prepareRowData = (requirements, evaluators) => {
       key: `${name}_link`,
       type: 'link',
       condition: `${predicate} ${value}`,
-      role: name,
+      role: id,
     })
   })
   return rows
@@ -49,9 +50,10 @@ export default function NominationForm (props) {
   const {
     nomination: { requirements, evaluators }, removeNomination,
     match: { params: { campaignId, id: nominationId } },
+    nomination: { relationships },
   } = props
 
-  const rows = prepareRowData(requirements, evaluators)
+  const rows = prepareRowData(requirements, evaluators, relationships)
 
   const ActionsMenu = evaluator => (
     <Menu onClick={() => removeNomination({ campaignId, nominationId, evaluator })}>

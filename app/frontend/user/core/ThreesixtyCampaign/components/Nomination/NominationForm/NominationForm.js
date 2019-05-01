@@ -12,6 +12,7 @@ export default function NominationForm (props) {
   const {
     subject, addNomination, searchEvaluators,
     match: { params: { campaignId, id: nominationId } },
+    nomination: { relationships },
     autocomplete: { users },
   } = props
   const [user, setUser] = useState(null)
@@ -19,18 +20,18 @@ export default function NominationForm (props) {
   const [hasErrors, setHasErrors] = useState({ user: false, role: false })
 
   const handleAdd = () => {
+    const errors = { user: false, role: false }
     if (user && role) {
       addNomination({
         campaignId, nominationId, user, role,
       })
-      setUser('')
-      setRole('')
+      setUser(null)
+      setRole(null)
     } else {
-      const errors = { user: false, role: false }
       if (!user) { errors.user = true }
       if (!role) { errors.role = true }
-      setHasErrors(errors)
     }
+    setHasErrors(errors)
   }
 
   return (
@@ -45,8 +46,8 @@ export default function NominationForm (props) {
       <div className="form">
         <Form layout="inline">
           <Form.Item
-            validateStatus={hasErrors.name ? 'error' : ''}
-            help={hasErrors.name ? 'Name is required' : ''}
+            validateStatus={hasErrors.user ? 'error' : ''}
+            help={hasErrors.user ? 'User is required' : ''}
           >
             <AutoComplete
               dataSource={users.map(user => ({
@@ -74,10 +75,7 @@ export default function NominationForm (props) {
               className="relationship-select"
             >
               <Option value="" disabled>Select Relationship</Option>
-              <Option value="Customer">Customer</Option>
-              <Option value="DirectReport">Direct Report</Option>
-              <Option value="Manager">Manager</Option>
-              <Option value="Peer">Peer</Option>
+              {relationships.map(role => <Option key={role.id} value={role.id}>{role.name}</Option>)}
             </Select>
           </Form.Item>
           <Form.Item>

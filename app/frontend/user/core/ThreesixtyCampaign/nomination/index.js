@@ -1,4 +1,5 @@
-import { setIn } from 'utils/immutable'
+import { updateIn, setIn } from 'utils/immutable'
+import { without } from 'lodash/fp'
 
 const FETCH_NOMINATION = 'threeSixty/managers/FETCH_NOMINATION'
 const REMOVE_NOMINATION = 'threeSixty/managers/REMOVE_NOMINATION'
@@ -27,7 +28,7 @@ export const addNomination = ({
     url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluations`,
     method: 'post',
     body: {
-      relationship_id: 2,
+      relationship_id: role,
       evaluator_id: user,
     },
   },
@@ -35,7 +36,7 @@ export const addNomination = ({
 
 const HANDLERS = {
   [FETCH_NOMINATION]: (state, action) => {
-    const evaluators = _.groupBy(action.response.evaluators, 'role')
+    const evaluators = _.groupBy(action.response.evaluators, 'role.name')
 
     return {
       ...state, ...action.response, evaluators,
@@ -43,25 +44,19 @@ const HANDLERS = {
   },
   [ADD_NOMINATION]: (state, action) => {
     const { role } = action.response
-    const list = _.clone(state.evaluators[role]) || []
-    list.push(action.response)
-    return setIn(state, `evaluators.${role}`, list)
+    return updateIn(state, ['evaluators', role.name], (list = []) => list.concat(action.response))
   },
   [REMOVE_NOMINATION]: (state, action) => {
     const { id, role } = action.requestAction.evaluator
-    const list = _.cloneDeep(state.evaluators)
-    _.remove(list[role], { id })
-    return {
-      ...state,
-      evaluators: list,
-    }
+    return setIn(state, ['evaluators', role.name], without(state.evaluators[role.name], { id }))
   },
 }
 
 const defaultState = {
-  subject: { name: 'Yourself' },
+  subject: {},
   requirements: {},
   evaluators: [],
+  relationships: [],
 }
 
 export default function reducer (state = defaultState, action) {

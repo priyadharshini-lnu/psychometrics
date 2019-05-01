@@ -5,9 +5,10 @@ module Threesixty::EndUser
     attributes :id, :is_subject, :role, :approval_status, :status
 
     has_one :user, serializer: UserSerializer
+    has_one :role, serializer: RelationshipSerializer
 
     def role
-      object.participant_role(current_user.id).name
+      object.participant_role(current_user.id)
     end
 
     def approval_status

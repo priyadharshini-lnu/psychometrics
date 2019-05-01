@@ -14,7 +14,7 @@ module Threesixty
     end
 
     def relationships
-      Relationship.all
+      Relationships::ByCampaign.new(object.campaign)
     end
 
     # TODO: replace mocked requirements with real
@@ -22,10 +22,10 @@ module Threesixty
       {
         subject_conditions: {},
         conditions: [
-          {type: 'relationship', name: 'Customer', predicate: 'at_least', value: 1},
-          {type: 'relationship', name: 'DirectReport', predicate: 'at_least', value: 2},
-          {type: 'relationship', name: 'Manager', predicate: 'at_least', value: 1},
-          {type: 'relationship', name: 'Peer', predicate: 'at_least', value: 2},
+          {type: 'relationship', id: 3, predicate: 'at_least', value: 1},
+          {type: 'relationship', id: 4, predicate: 'at_least', value: 2},
+          {type: 'relationship', id: 1, predicate: 'at_least', value: 1},
+          {type: 'relationship', id: 2, predicate: 'at_least', value: 2},
         ]
       }
     end

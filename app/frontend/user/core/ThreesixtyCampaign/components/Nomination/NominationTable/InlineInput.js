@@ -6,7 +6,7 @@ import userPresenter from 'presenters/userPresenter'
 
 export default function InlineInput ({
   title, role, addNomination, searchEvaluators, autocomplete: { users },
-  match: { params: { campaignId } },
+  match: { params: { campaignId, id: nominationId } },
 }) {
   const [edit, setEdit] = useState(false)
   const [user, setUser] = useState(null)
@@ -14,8 +14,11 @@ export default function InlineInput ({
 
   const handleAdd = () => {
     if (user) {
-      addNomination({ user, role })
+      addNomination({
+        campaignId, nominationId, user, role,
+      })
       setUser(null)
+      setEdit(false)
     } else {
       const errors = { user: false, role: false }
       if (!user) { errors.user = true }
@@ -23,14 +26,15 @@ export default function InlineInput ({
       setHasErrors(errors)
     }
   }
+
   return (
     <div>
       {edit
         ? (
           <Form layout="inline">
             <Form.Item
-              validateStatus={hasErrors.name ? 'error' : ''}
-              help={hasErrors.name ? 'Name is required' : ''}
+              validateStatus={hasErrors.user ? 'error' : ''}
+              help={hasErrors.user ? 'User is required' : ''}
             >
               <AutoComplete
                 dataSource={users.map(user => ({
