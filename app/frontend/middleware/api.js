@@ -22,6 +22,8 @@ const buildOptions = ({ options: options = {} }) => ({
   ...options,
   headers: {
     ...options.headers,
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
     'X-CSRF-Token': window.$('meta[name="csrf-token"]').attr('content'),
   },
 })
@@ -31,16 +33,21 @@ const apiMiddleware = () => next => (action) => {
 
   const {
     request,
-    request: { method: method = 'get', body },
+    request: { method: method = 'get', body = {} },
   } = action
   const REQUEST = `${action.type}_REQUEST`
   const SUCCESS = action.type
   const FAILURE = `${action.type}_FAILURE`
 
   next({ ...action, type: REQUEST })
-
-  return axios[method](buildUrl(request), body, buildOptions(request))
-    .then(({ data }) => next({ type: SUCCESS, response: humps.camelizeKeys(data), requestAction: action }))
+  return axios.request({
+    method,
+    url: buildUrl(request),
+    data: body,
+    ...buildOptions(request),
+    responseType: 'json',
+    withCredentials: true,
+  }).then(({ data }) => next({ type: SUCCESS, response: humps.camelizeKeys(data), requestAction: action }))
     .catch((error) => {
       next({ type: FAILURE, errors: error.response.data.errors })
     })

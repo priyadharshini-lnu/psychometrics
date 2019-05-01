@@ -456,7 +456,10 @@ Rails.application.routes.draw do
 
     scope module: :threesixty do
       resources :campaigns, only: %i(show) do
-        resources :nominations
+        post :search_evaluators
+        resources :nominations do
+          resources :evaluations
+        end
         resources :evaluations
         resources :reports
       end

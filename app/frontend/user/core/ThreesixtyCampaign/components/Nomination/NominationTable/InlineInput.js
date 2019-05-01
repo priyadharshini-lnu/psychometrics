@@ -1,21 +1,24 @@
 import React, { useState } from 'react'
 import {
-  Input, Button, Form,
+  Input, Button, Form, AutoComplete,
 } from 'antd'
+import userPresenter from 'presenters/userPresenter'
 
-
-export default function InlineInput ({ title, role, addNomination }) {
+export default function InlineInput ({
+  title, role, addNomination, searchEvaluators, autocomplete: { users },
+  match: { params: { campaignId } },
+}) {
   const [edit, setEdit] = useState(false)
-  const [name, setName] = useState('')
-  const [hasErrors, setHasErrors] = useState({ name: false })
+  const [user, setUser] = useState(null)
+  const [hasErrors, setHasErrors] = useState({ user: false })
 
   const handleAdd = () => {
-    if (name) {
-      addNomination({ name, role })
-      setName('')
+    if (user) {
+      addNomination({ user, role })
+      setUser(null)
     } else {
-      const errors = { name: false, role: false }
-      if (!name) { errors.name = true }
+      const errors = { user: false, role: false }
+      if (!user) { errors.user = true }
       if (!role) { errors.role = true }
       setHasErrors(errors)
     }
@@ -29,7 +32,17 @@ export default function InlineInput ({ title, role, addNomination }) {
               validateStatus={hasErrors.name ? 'error' : ''}
               help={hasErrors.name ? 'Name is required' : ''}
             >
-              <Input value={name} placeholder="type name or email..." onChange={({ currentTarget: { value } }) => setName(value)} />
+              <AutoComplete
+                dataSource={users.map(user => ({
+                  value: user.id,
+                  text: userPresenter.getFullNameWithEmail(user),
+                }))}
+                autoFocus
+                placeholder="type name or email..."
+                onSelect={userId => setUser(userId)}
+              >
+                <Input.Search style={{ width: 300 }} onSearch={value => searchEvaluators(campaignId, value)} />
+              </AutoComplete>
             </Form.Item>
             <Form.Item>
               <Button type="primary" onClick={handleAdd}>Add</Button>

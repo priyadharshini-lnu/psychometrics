@@ -10,7 +10,7 @@ const NominationItem = item => (
     <Link to={`/campaigns/${item.campaignId}/nominations/${item.id}`}>
       <Icon type="check-circle" theme="twoTone" twoToneColor={item.approved ? '#52c41a' : '#ccc'} />
       {' '}
-      {item.name}
+      {item.isSelf ? 'Yourself' : `${item.user.firstName} ${item.user.lastName}`}
     </Link>
   </List.Item>
 )
@@ -21,7 +21,7 @@ const CollapseItem = item => (
       <List
         size="large"
         bordered
-        dataSource={item.nominations}
+        dataSource={item.list}
         renderItem={NominationItem}
       />
     </Panel>
@@ -29,6 +29,7 @@ const CollapseItem = item => (
 )
 
 export default function EvaluatorsList ({ nominations }) {
+  console.log(nominations)
   return (
     <List
       className="nominations-list"

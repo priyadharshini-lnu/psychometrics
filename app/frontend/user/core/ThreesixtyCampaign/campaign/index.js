@@ -1,4 +1,4 @@
-import mockdata from './mockdata'
+import { setIn } from 'utils/immutable'
 
 const FETCH_CAMPAIGN = 'threeSixty/managers/FETCH_CAMPAIGN'
 
@@ -10,17 +10,54 @@ export const fetchCampaign = campaignId => ({
 })
 
 export const defaultState = {
-  nominations: [],
-  evaluations: [],
-  reports: [],
+  nominations: [
+    {
+      title: 'Set up nominations',
+      list: [],
+    },
+    {
+      title: 'Approve nominations',
+      list: [],
+    },
+  ],
+  evaluations: [
+    {
+      title: 'Evaluations',
+      evaluations: [
+      ],
+    },
+    {
+      title: 'Approve evaluations',
+      evaluations: [
+      ],
+    },
+  ],
+  reports: [{
+    title: 'Reports',
+    users: [
+    ],
+  },
+  {
+    title: 'Approve reports',
+    users: [
+    ],
+  }],
 }
 
 const HANDLERS = {
-  [FETCH_CAMPAIGN]: (state, action) => state, // do nothing action.data,
+  [FETCH_CAMPAIGN]: (state, action) => {
+    const lists = _.cloneDeep(state.nominations)
+    lists[0].list = action.response.nominations
+
+    return {
+      ...state,
+      nominations: lists,
+    }
+  },
 }
 
 // TODO: replace mockdata with defaultState
-export default function reducer (state = mockdata, action) {
+export default function reducer (state = defaultState, action) {
   const handler = HANDLERS[action.type]
   return handler ? handler(state, action) : state
 }

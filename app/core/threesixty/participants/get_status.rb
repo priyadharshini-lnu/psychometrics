@@ -9,7 +9,7 @@ module Threesixty
       def initialize(evaluator, subject, option, nomination_requirement)
         @evaluator = evaluator
         @subject = subject
-        @option = option
+        @option = option || Threesixty::Option.new
         @nomination_requirement = nomination_requirement
       end
 

@@ -1,30 +1,28 @@
 module Threesixty
   class CampaignsController < ApplicationController
     layout 'layouts/threesixty_campaign'
+    before_action :set_campaign
 
     def show
       respond_to do |format|
         format.html {}
         format.json do
-          campaign = Threesixty::Campaign.find(params[:id])
-          nominations = Threesixty::NominationsByUser.new(current_user).query
-          render json: campaign, serializer: Threesixty::CampaignSerializer, nominations: nominations, include: '**'
+          subjects = @campaign.subjects.where(user_id: current_user.id)
+          evaluators = @campaign.evaluators.where(user_id: current_user.id)
+          render json: @campaign, serializer: Threesixty::CampaignSerializer, subjects: subjects, evaluators: evaluators, include: '**'
         end
       end
 
     end
 
-    def nominations
-      render :show
+    def search_evaluators
+      render json: @campaign.evaluators.map(&:user), each_serializer: ::Projects::SearchUserSerializer
     end
 
-    def evaluators
-      render :show
-    end
+    private
 
-    def reports
-      render :show
+    def set_campaign
+      @campaign = Threesixty::Campaign.find(params[:campaign_id] || params[:id])
     end
-
   end
 end

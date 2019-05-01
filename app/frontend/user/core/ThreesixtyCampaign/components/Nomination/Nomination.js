@@ -7,6 +7,9 @@ const { Paragraph, Title } = Typography
 const { Content } = Layout
 
 export default function Nominations (props) {
+  useEffect(() => {
+    props.fetchNomination(props.match.params)
+  }, [])
   return (
     <Layout>
       <Content>

@@ -3,8 +3,8 @@
 module Threesixty
   class EvaluatorSerializer < ActiveModel::Serializer
     attributes :id, :status, :report_status, :is_subject, :evaluations, :evaluators
-
     has_one :user, serializer: UserSerializer
+
     def status
       Threesixty::Participants::GetStatus.call!(object, object.subject, @instance_options[:option], @instance_options[:nomination_requirement])
     end

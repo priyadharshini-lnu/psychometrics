@@ -1,48 +1,70 @@
-import mockdata from './mockdata'
+import { setIn } from 'utils/immutable'
 
 const FETCH_NOMINATION = 'threeSixty/managers/FETCH_NOMINATION'
 const REMOVE_NOMINATION = 'threeSixty/managers/REMOVE_NOMINATION'
 const ADD_NOMINATION = 'threeSixty/managers/ADD_NOMINATION'
 
-export const fetchNomination = campaignId => ({
+export const fetchNomination = ({ campaignId, id }) => ({
   type: FETCH_NOMINATION,
   request: {
-    url: `/campaigns/${campaignId}.json`,
+    url: `/campaigns/${campaignId}/nominations/${id}`,
   },
 })
 
-export const removeNomination = subject => ({ type: REMOVE_NOMINATION, subject })
-export const addNomination = ({ role, name }) => ({ type: ADD_NOMINATION, role, name })
-
-export const defaultState = {}
+export const removeNomination = ({ campaignId, nominationId, evaluator }) => ({
+  type: REMOVE_NOMINATION,
+  evaluator,
+  request: {
+    url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluations/${evaluator.user.id}`,
+    method: 'delete',
+  },
+})
+export const addNomination = ({
+  campaignId, nominationId, role, user,
+}) => ({
+  type: ADD_NOMINATION,
+  request: {
+    url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluations`,
+    method: 'post',
+    body: {
+      relationship_id: 2,
+      evaluator_id: user,
+    },
+  },
+})
 
 const HANDLERS = {
-  [FETCH_NOMINATION]: (state, action) => state, // do nothing action.data,
-  [ADD_NOMINATION]: (state, action) => {
-    const { name, role } = action
-    const list = _.clone(state.evaluators[role])
+  [FETCH_NOMINATION]: (state, action) => {
+    const evaluators = _.groupBy(action.response.evaluators, 'role')
 
-    list.subjects.push({
-      id: Date.now(), name, role, status: 'needs_approved',
-    })
     return {
-      ...state,
-      [role]: list,
+      ...state, ...action.response, evaluators,
     }
   },
+  [ADD_NOMINATION]: (state, action) => {
+    const { role } = action.response
+    const list = _.clone(state.evaluators[role]) || []
+    list.push(action.response)
+    return setIn(state, `evaluators.${role}`, list)
+  },
   [REMOVE_NOMINATION]: (state, action) => {
-    const { id, role } = action.subject
-    const list = _.clone(state.evaluators[role])
-    _.remove(list.subjects, { id })
+    const { id, role } = action.requestAction.evaluator
+    const list = _.cloneDeep(state.evaluators)
+    _.remove(list[role], { id })
     return {
       ...state,
-      [role]: list,
+      evaluators: list,
     }
   },
 }
 
-// TODO: replace mockdata with defaultState
-export default function reducer (state = mockdata, action) {
+const defaultState = {
+  subject: { name: 'Yourself' },
+  requirements: {},
+  evaluators: [],
+}
+
+export default function reducer (state = defaultState, action) {
   const handler = HANDLERS[action.type]
   return handler ? handler(state, action) : state
 }

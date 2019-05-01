@@ -9,6 +9,8 @@ module Threesixty
 
     enum type: %i[empty standard_360 previous_360]
 
+    delegate :subjects, :evaluators, :project, to: :campaign
+
     EMPTY = 'empty'
     STANDARD_360 = 'standard_360'
     PREVIOUS_360 = 'previous_360'
@@ -22,5 +24,6 @@ module Threesixty
     def attribute_names
       super + [:factors, :type]
     end
+
   end
 end

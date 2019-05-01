@@ -2,29 +2,32 @@ import React, { useEffect } from 'react'
 import {
   Table, Dropdown, Menu, Icon,
 } from 'antd'
+import userPresenter from 'presenters/userPresenter'
 import css from './NominationTable.scss'
 import InlineInput from './InlineInput'
 
 const { Column } = Table
 
-const prepareRowData = (roles) => {
+const prepareRowData = (requirements, evaluators) => {
+  const { conditions } = requirements
   const rows = []
-  _.each(roles, ({ title, subjects, condition }, role) => {
-    _.each(subjects, (subject, i) => rows.push({
-      rowSpan: i === 0 && subjects.length > 0 ? subjects.length + 1 : 0,
-      title: i === 0 ? title : null,
-      key: subject.id,
-      condition,
-      subject,
+  _.each(conditions, ({ name, value, predicate }) => {
+    const count = (evaluators[name] && evaluators[name].length) || 0
+    _.each(evaluators[name], (evaluator, i) => rows.push({
+      rowSpan: i === 0 && count > 0 ? count + 1 : 0,
+      title: i === 0 ? name : null,
+      key: evaluator.id,
+      condition: `${predicate} ${value}`,
+      evaluator,
     }))
     rows.push({
-      rowSpan: subjects.length > 0 ? 0 : 1,
-      title: subjects.length > 0 ? null : title,
-      name: `Add ${title}`,
-      key: `${role}_link`,
+      rowSpan: count > 0 ? 0 : 1,
+      title: count > 0 ? null : name,
+      name: `Add ${name}`,
+      key: `${name}_link`,
       type: 'link',
-      condition,
-      role,
+      condition: `${predicate} ${value}`,
+      role: name,
     })
   })
   return rows
@@ -43,12 +46,15 @@ const renderRequirementCell = value => ({
 })
 
 export default function NominationForm (props) {
-  const { nomination: { evaluators }, removeNomination, addNomination } = props
+  const {
+    nomination: { requirements, evaluators }, removeNomination,
+    match: { params: { campaignId, id: nominationId } },
+  } = props
 
-  const rows = prepareRowData(evaluators)
+  const rows = prepareRowData(requirements, evaluators)
 
-  const ActionsMenu = subject => (
-    <Menu onClick={() => removeNomination(subject)}>
+  const ActionsMenu = evaluator => (
+    <Menu onClick={() => removeNomination({ campaignId, nominationId, evaluator })}>
       <Menu.Item key="0">
         Remove
       </Menu.Item>
@@ -56,16 +62,16 @@ export default function NominationForm (props) {
   )
 
   const renderNameCell = ({
-    type, name, role, subject,
+    type, name, role, evaluator,
   }) => {
     if (type === 'link') {
-      return <InlineInput title={name} role={role} addNomination={addNomination} />
+      return <InlineInput title={name} role={role} {...props} />
     }
-    return { children: subject.name }
+    return { children: userPresenter.getFullName(evaluator.user) }
   }
 
-  const renderApprovalStatus = ({ subject }) => ({
-    children: subject && subject.status,
+  const renderApprovalStatus = ({ evaluator }) => ({
+    children: evaluator && evaluator.status,
   })
 
   return (
@@ -78,8 +84,8 @@ export default function NominationForm (props) {
 
         <Column
           key="action"
-          render={({ subject }) => (subject ? (
-            <Dropdown overlay={() => ActionsMenu(subject)} trigger={['click']}>
+          render={({ evaluator }) => (evaluator ? (
+            <Dropdown overlay={() => ActionsMenu(evaluator)} trigger={['click']}>
               <div className={css.actions}>
                 <Icon type="down" />
               </div>
