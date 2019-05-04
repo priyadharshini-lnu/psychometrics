@@ -47,7 +47,6 @@ class Assign < ApplicationRecord
   validates :membership, :assessment, presence: true
 
   validate :relevant_membership, if: -> { membership.present? }
-  validate :relevant_assessment, if: -> { assessment.present? }
   validate :relevant_reports, if: -> { report_ids.any? }
 
   enum status: %i(not_started in_progress completed)
@@ -221,13 +220,7 @@ class Assign < ApplicationRecord
   def relevant_membership
     errors.add(:membership) if membership.scope == :administration
   end
-
-  def relevant_assessment
-    # Skip validation if Client is Project and not end level
-    return if membership.client.project? && !membership.client.end_level?
-    errors.add(:assessment) if membership.client.assessment_ids.exclude?(assessment_id)
-  end
-
+  
   def relevant_reports
     errors.add(:reports) if (membership.client.report_ids & assessment.report_ids & report_ids).to_set != report_ids.to_set
   end

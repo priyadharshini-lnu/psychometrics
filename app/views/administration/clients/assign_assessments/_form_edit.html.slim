@@ -21,12 +21,12 @@
               .form-group
                 span.checkbox
                   label
-                    = check_box_tag 'resource[remove_assessment_ids][]',
+                    = check_box_tag 'resource[removing_assessment_ids][]',
                                     assessment_client.assessment_id,
-                                    f.object.remove_assessment_ids.include?(assessment_client.assessment_id)
+                                    f.object.removing_assessment_ids.include?(assessment_client.assessment_id)
                     = t('.remove')
-    = f.input :apply_to_existing_users, as: :boolean, hint: t('.apply_to_existing_users_hint')
-    = f.input :remove_dependent_reports, as: :boolean, wrapper_class: 'hidden'
+    = f.input :is_applying_to_existing_users, as: :boolean, hint: t('.apply_to_existing_users_hint')
+    = f.input :is_removing_dependent_reports, as: :boolean, wrapper_class: 'hidden'
   .modal-footer
     .btn-group
       = f.button :submit,

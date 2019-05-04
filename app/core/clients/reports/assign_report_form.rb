@@ -7,23 +7,23 @@ module Clients
 
       # Fields
       attribute :report_family_id, Integer
-      attribute :report_ids, Array[Integer]
-      attribute :remove_report_ids, Array[Integer]
-      attribute :user_access_report_ids, Array[Integer]
-      attribute :remove_user_access_report_ids, Array[Integer]
-      attribute :apply_to_existing_users, Boolean
+      attribute :adding_report_ids, Array[Integer]
+      attribute :removing_report_ids, Array[Integer]
+      attribute :adding_user_access_report_ids, Array[Integer]
+      attribute :removing_user_access_report_ids, Array[Integer]
+      attribute :is_applying_to_existing_users, Boolean
 
       #   VALIDATIONS
       #
       validates :report_family_id, presence: true
-      validates :report_ids, presence: true, if: -> { context.new_record }
+      validates :adding_report_ids, presence: true, if: -> { context.new_record }
       validate :report_family_enabled, if: -> { context.new_record }
-      validate :reports_enabled, if: -> { report_ids.any? }
-      validate :reports_linked_to_report_family, if: -> { report_family_id && report_ids.any? }
+      validate :reports_enabled, if: -> { adding_report_ids.any? }
+      validate :reports_linked_to_report_family, if: -> { report_family_id && adding_report_ids.any? }
 
       def initialize(opts={})
         super
-        @remove_user_access_report_ids = [] if remove_user_access_report_ids.reject(&:blank?).blank?
+        @removing_user_access_report_ids = [] if removing_user_access_report_ids.reject(&:blank?).blank?
       end
 
       protected
@@ -31,25 +31,25 @@ module Clients
       # Returns error if License with Report Family is disabled
       #
       def report_family_enabled
-        errors.add(:report_ids, :invalid) if ::ReportFamily.
-                                             joins(:licenses).
-                                             where(licenses: { disabled: true, client_id: context.client_tenancy.id }).
-                                             where(id: report_family_id).
-                                             exists?
+        errors.add(:adding_report_ids, :report_family_disabled) if ::ReportFamily.
+                                                                  joins(:licenses).
+                                                                  where(licenses: { disabled: true, client_id: context.client_tenancy.id }).
+                                                                  where(id: report_family_id).
+                                                                  exists?
       end
 
       # Returns error if there is at least one disabled Report
       #
       def reports_enabled
-        errors.add(:report_ids, :invalid) if ::Report.disabled.exists?(id: report_ids)
+        errors.add(:adding_report_ids, :reports_disabled) if ::Report.disabled.exists?(id: adding_report_ids)
       end
 
       # Returns error if there is a Report not from Report Family
       #
       def reports_linked_to_report_family
         report_family_report_ids = ReportFamily.find(report_family_id).report_ids.to_set
-        errors.add(:report_ids, :invalid) unless report_ids.to_set.subset?(report_family_report_ids)
-        errors.add(:remove_report_ids, :invalid) unless remove_report_ids.to_set.subset?(report_family_report_ids)
+        errors.add(:adding_report_ids, :not_linked_to_report_family) unless adding_report_ids.to_set.subset?(report_family_report_ids)
+        errors.add(:removing_report_ids, :not_linked_to_report_family) unless removing_report_ids.to_set.subset?(report_family_report_ids)
       end
     end
   end

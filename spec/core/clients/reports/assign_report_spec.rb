@@ -1,87 +1,116 @@
 require 'rails_helper'
 
 describe ::Clients::Reports::AssignReport do
-  let(:campaign) { create(:campaign, :with_reports) }
-  let(:report) { campaign.clients_reports.first.report }
-  let(:assessment) { campaign.assessments_clients.first.assessment }
-  let(:assessments) { campaign.assessments }
+  let(:campaign) { create(:campaign) }
+  let(:membership) { create(:membership, client: campaign) }
+  let(:reports) { create_list(:report, 2) }
+  let(:report) { reports.first }
+  let(:assessments) { report.assessments }
+  let(:assessment) { report.assessments.first }
   let(:report_family) { report.report_families.first }
-  let(:report_ids) { campaign.reports.ids }
-  let(:remove_report_ids) { [] }
+  let(:clients_report) { create(:clients_report, report: report, report_family: report_family, client: campaign) }
+  let(:assessments_clients) { report.assessments.each { |assessment| create(:assessments_client, assessment: assessment, client: campaign) }}
+  let(:adding_report_ids) { [] }
+  let(:removing_report_ids) { [] }
   let(:form) do
-    double(:form, invalid?: false,
-                  report_ids: report_ids,
-                  remove_report_ids: remove_report_ids,
-                  report_family_id: report_family.id,
-                  user_access_report_ids: [],
-                  apply_to_existing_users: false)
+    ::Clients::Reports::AssignReportForm.new(report_family_id: report_family.id,
+                                            adding_report_ids: adding_report_ids,
+                                            removing_report_ids: removing_report_ids,
+                                            adding_user_access_report_ids: [],
+                                            removing_user_access_report_ids: [],
+                                            is_applying_to_existing_users: false)
   end
-
+  before(:each) { allow(form).to receive(:invalid?).and_return(false) }
   subject { described_class.call(form, campaign) }
 
-  # context '#remove_reports_from_client'  do
-  #   it 'dont evoke if remove_report_ids is blank' do
-  #     expect_any_instance_of(described_class).not_to receive(:remove_reports_from_client)
-  #     subject
-  #   end
-  #   context 'passed remove_report_ids' do
-  #     let(:remove_report_ids) { [report.id] }
-  #     let(:new_report) { create(:report, assessment: assessment, assessments: [], report_families: [report_family]) }
-  #
-  #     it 'removes reports and assessments' do
-  #       expect { subject }.to change { campaign.clients_reports.count }.from(1).to(0)
-  #                         .and change { campaign.assessments_clients.count }.from(6).to(0)
-  #     end
-  #
-  #     it 'dont remove crossed assessments and owned assessmnents' do
-  #       create(:clients_report, client: campaign, report: new_report, report_family: report_family)
-  #       new_assessments_client = create(:assessments_client, client: campaign)
-  #
-  #       expect { subject }.to change { campaign.assessments_clients.count }.from(7).to(2)
-  #       expect(campaign.reload.assessments).to include(assessment)
-  #       expect(campaign.assessments).to include(new_assessments_client.assessment)
-  #     end
-  #
-  #     context 'Assigns and AssignsReports' do
-  #       let(:membership) { create(:membership, client: campaign) }
-  #       let(:not_started_assign) { create(:assign, assessment: assessments[0], membership: membership, status: 'not_started') }
-  #       let(:completed_assign) { create(:assign, assessment: assessments[1], membership: membership, status: 'completed') }
-  #       let(:assigns_report) { create(:assigns_report, assign: completed_assign, report: assessments[1].reports.first) }
-  #       let(:all_statuses_assigns) do
-  #         Assign.statuses.each.with_index do |(status, value), index|
-  #           create(:assign, assessment: assessments[index], membership: membership, status: status)
-  #         end
-  #       end
-  #
-  #
-  #       it 'remove not started assign and his assign on campaign level ' do
-  #         not_started_assign
-  #         expect { subject }.to change { Assign.count }.from(2).to(0)
-  #       end
-  #
-  #       it 'dont remove assigns with in_progress and completed statuses' do
-  #         all_statuses_assigns
-  #
-  #         expect { subject }.to change { Assign.count }.from(6).to(4)
-  #         expect(Assign.projects.pluck(:status)).to eq(['in_progress', 'completed'])
-  #       end
-  #
-  #       it 'removes all assigns_reports' do
-  #         assigns_report
-  #
-  #         expect { subject }.to change { AssignsReport.count }.from(1).to(0)
-  #       end
-  #     end
-  #
-  #     context 'remove and assign same time' do
-  #       let(:report_ids) { [new_report.id] }
-  #       let(:remove_report_ids) { [report.id] }
-  #
-  #       it 'dont remove crossed assessments' do
-  #         expect { subject }.to change { campaign.assessments_clients.count }.from(6).to(1)
-  #         expect(campaign.reload.assessments).to include(assessment)
-  #       end
-  #     end
-  #   end
-  # end
+  it 'dont evoke if is_applying_to_existing_users is false' do
+    expect_any_instance_of(described_class).not_to receive(:add_reports_to_existing_users)
+    expect_any_instance_of(described_class).not_to receive(:add_report_access_for_existing_users)
+    subject
+  end
+
+  it 'broadcast :invalid' do
+    allow(form).to receive(:invalid?).and_return(true)
+    expect(subject).to eq(invalid: [])
+  end
+
+  context '#add_reports_to_client' do
+    let(:adding_report_ids) { [report.id] }
+
+    it 'creates ClientsReport without user_access' do
+      expect { subject }.to change { campaign.reports.count }.from(0).to(1)
+      expect(campaign.reports.ids).to eq(adding_report_ids)
+      expect(campaign.clients_reports.first.user_access).to be_falsy
+    end
+    it 'creates AssessmentsClient' do
+      expect { subject }.to change { campaign.assessments.count }.from(0).to(report.assessments.count)
+      expect(campaign.assessments.ids.sort).to eq(report.assessments.ids.sort)
+    end
+    it 'adds user_access' do
+      form.adding_user_access_report_ids = [report.id]
+      subject
+      expect(campaign.clients_reports.first.user_access).to be_truthy
+    end
+
+    context 'Dont creates' do
+      before(:each) do
+        campaign.clients_reports.create(report_id: report.id, report_family_id: report_family.id)
+        report.assessment_ids.each do |assessment_id|
+          campaign.assessments_clients.create(assessment_id: assessment_id)
+        end
+      end
+
+      it 'ClientsReport' do
+        expect { subject }.not_to change { campaign.reports.count }
+      end
+
+      it 'AssessmentsClient' do
+        expect { subject }.not_to change { campaign.assessments.count }
+      end
+    end
+  end
+
+  context '#add_report_access_for_client' do
+    it do
+      clients_report
+      form.attributes = { adding_report_ids: [], adding_user_access_report_ids: [report.id] }
+      expect { subject }.to change { clients_report.reload.user_access }.from(false).to(true)
+    end
+  end
+
+  context '#add_reports_to_existing_users' do
+    let(:adding_report_ids) { [report.id] }
+    before(:each) do
+      membership
+      allow_any_instance_of(AssignsReport).to receive(:use_license).and_return(true)
+      form.is_applying_to_existing_users = true
+    end
+
+    it 'creates Assign' do
+      expect { subject }.to change { membership.assigns.count }.from(0).to(report.assessments.count)
+    end
+
+    it 'creates AssignsReport' do
+      expect { subject }.to change { membership.reports.ids.uniq }.from([]).to([report.id])
+      expect(membership.assigns.first.assigns_reports.first.user_access).to be_falsy
+    end
+
+    it 'adds user_access to report' do
+      form.adding_user_access_report_ids = [report.id]
+      subject
+      expect(membership.assigns.first.assigns_reports.first.user_access).to be_truthy
+    end
+  end
+
+  context '#add_report_access_for_existing_users' do
+    let(:assign) { create(:assign, membership: membership, assessment: assessment) }
+    let!(:assigns_report) { create(:assigns_report, :licensed, assign: assign, report: report, user_access: false) }
+
+    it do
+      form.attributes = { is_applying_to_existing_users: true,
+                          adding_report_ids: [],
+                          adding_user_access_report_ids: [report.id] }
+      expect { subject }.to change { assigns_report.reload.user_access }.from(false).to(true)
+    end
+  end
 end

@@ -1,5 +1,6 @@
 = simple_form_for(resource, as: :resource, url: { action: :update }, method: :put, remote: true) do |f|
   .modal-body
+    = render_error_notification(f.object)
     .form-inputs.clearfix
       .form-group
         = f.label :report_family_id
@@ -20,12 +21,12 @@
                 span.checkbox
                   label
                     - if resource.user_access_report_ids.include?(report.id)
-                      = hidden_field_tag "resource[remove_user_access_report_ids][#{report.id}]", report.id
-                      = check_box_tag "resource[remove_user_access_report_ids][#{report.id}]",
+                      = hidden_field_tag "resource[removing_user_access_report_ids][#{report.id}]", report.id
+                      = check_box_tag "resource[removing_user_access_report_ids][#{report.id}]",
                                       '',
                                       true
                     - else
-                      = check_box_tag "resource[user_access_report_ids][#{report.id}]",
+                      = check_box_tag "resource[adding_user_access_report_ids][#{report.id}]",
                                       report.id,
                                       false
                     = t('.user_access')
@@ -33,7 +34,7 @@
               .form-group
                 span.checkbox
                   label
-                    = check_box_tag "resource[remove_report_ids][#{report.id}]",
+                    = check_box_tag "resource[removing_report_ids][#{report.id}]",
                                     report.id,
                                     false
                     = t('.remove')
@@ -46,7 +47,7 @@
               .form-group
                 span.checkbox
                   label
-                    = check_box_tag "resource[report_ids][#{report.id}]",
+                    = check_box_tag "resource[adding_report_ids][#{report.id}]",
                                     report.id,
                                     resource.report_ids.include?(report.id)
                     = report.decorate.display_name
@@ -54,14 +55,13 @@
               .form-group
                 span.checkbox
                   label
-                    = check_box_tag "resource[user_access_report_ids][#{report.id}]",
+                    = check_box_tag "resource[adding_user_access_report_ids][#{report.id}]",
                                     report.id,
                                     resource.user_access_report_ids.include?(report.id)
                     = t('.user_access')
             td
       br
-      = f.input :apply_to_existing_users, as: :boolean, hint: t('.apply_to_existing_users_hint')
-    = f.error :report_ids
+      = f.input :is_applying_to_existing_users, as: :boolean, hint: t('.apply_to_existing_users_hint')
   .modal-footer
     .btn-group
       = button_tag t('administration.save'),

@@ -3,9 +3,9 @@ module Clients
     class UpdateAssessmentForm < Rectify::Form
       # Fields
       attribute :assessments_client_ids, Array[Integer]
-      attribute :remove_assessment_ids, Array[Integer]
-      attribute :apply_to_existing_users, Boolean
-      attribute :remove_dependent_reports, Boolean
+      attribute :removing_assessment_ids, Array[Integer]
+      attribute :is_applying_to_existing_users, Boolean
+      attribute :is_removing_dependent_reports, Boolean
     end
   end
 end

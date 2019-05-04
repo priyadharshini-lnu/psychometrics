@@ -28,7 +28,7 @@ module Administration
           @_resource = ::Clients::Reports::AssignReportForm.
                        from_params(params[:resource]).
                        with_context(client: client, client_tenancy: client.root)
-          resource.apply_to_existing_users = false
+          resource.is_applying_to_existing_users = false
 
           respond_to do |format|
             format.js do

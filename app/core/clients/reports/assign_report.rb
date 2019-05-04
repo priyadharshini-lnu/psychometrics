@@ -6,7 +6,7 @@ module Clients
       def initialize(form, client)
         @form = form
         @client = client
-        @add_reports = Report.includes(:assessments).where(id: form.report_ids)
+        @adding_reports = Report.includes(:assessments).where(id: form.adding_report_ids)
       end
 
       def call
@@ -16,35 +16,35 @@ module Clients
           add_reports_to_client
           add_report_access_for_client
           # Applies to all existing users
-          if form.apply_to_existing_users
+          if form.is_applying_to_existing_users
             add_reports_to_existing_users
             add_report_access_for_existing_users
           end
 
-          ::Clients::Reports::RemoveReport.call!(client, remove_report_ids: form.remove_report_ids,
-                                                         remove_user_access_report_ids: form.remove_user_access_report_ids,
-                                                         apply_to_existing_users: form.apply_to_existing_users)
+          ::Clients::Reports::RemoveReport.call!(client, removing_report_ids: form.removing_report_ids,
+                                                         removing_user_access_report_ids: form.removing_user_access_report_ids,
+                                                         is_applying_to_existing_users: form.is_applying_to_existing_users)
         end
 
         broadcast(:ok)
       rescue Errors::LicenseError => e
-        form.errors.add(:report_ids, e.message)
+        form.errors.add(:adding_report_ids, e.message)
         broadcast(:invalid)
       end
 
       private
 
-      attr_reader :form, :client, :add_reports
+      attr_reader :form, :client, :adding_reports
 
       # Builds ClientReport and AssessmentClient entities
       #
       def add_reports_to_client
-        add_reports.each do |report|
+        adding_reports.each do |report|
           # Creates ClientReport
           client_report = client.
                           clients_reports.
                           find_or_initialize_by(report_id: report.id, report_family_id: form.report_family_id)
-          client_report.user_access = form.user_access_report_ids.include?(report.id)
+          client_report.user_access = form.adding_user_access_report_ids.include?(report.id)
           client_report.save!
 
           # Creates AssessmentClient
@@ -57,20 +57,20 @@ module Clients
       # Adds the ability to view reports for users
       #
       def add_report_access_for_client
-        return if form.user_access_report_ids.blank?
+        return if form.adding_user_access_report_ids.blank?
 
         client.clients_reports.
-               where(report_id: form.user_access_report_ids).
+               where(report_id: form.adding_user_access_report_ids).
                update_all(user_access: true)
       end
 
       # Iterates all memberships and assigns reports
       #
       def add_reports_to_existing_users
-        return if add_reports.blank?
-
+        return if adding_reports.blank?
+        
         client.memberships.includes(:user).find_each do |membership|
-          # From ::Clients::AssignReports::AssignReportToMembership
+          # From ::Clients::Reports::AssignReportToMembership
           add_reports_to_membership(membership)
         end
       end
@@ -78,11 +78,11 @@ module Clients
       # Adds the ability to view reports for existing users
       #
       def add_report_access_for_existing_users
-        return if form.user_access_report_ids.blank?
+        return if form.adding_user_access_report_ids.blank?
 
         AssignsReport.joins(assign: :membership).
                       where(assign: { memberships: { client_id: client.id } }).
-                      where(report_id: form.user_access_report_ids).
+                      where(report_id: form.adding_user_access_report_ids).
                       update_all(user_access: true)
       end
     end
