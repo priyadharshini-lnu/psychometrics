@@ -12,11 +12,13 @@ export default function ParticipantModal ({
   current,
   closeModal,
   user,
+  onClose,
   fetchParticipants,
   fetchRelationships,
   match: {
     params: { campaignId },
   },
+  match,
 }) {
   if (current !== 'ParticipantModal') return null
 
@@ -24,27 +26,33 @@ export default function ParticipantModal ({
     fetchParticipants(campaignId, user.id)
     fetchRelationships(campaignId)
   }, [])
+
+  const onCloseModal = () => {
+    onClose()
+    closeModal()
+  }
+
   return (
     <Modal
       width={1200}
       title={<Header user={user} />}
       visible
-      onCancel={closeModal}
+      onCancel={onCloseModal}
       footer={[
-        <Button key="back" onClick={closeModal}>
+        <Button key="back" onClick={onCloseModal}>
           Close
         </Button>,
       ]}
     >
-      <Tabs defaultActiveKey="1">
+      <Tabs defaultActiveKey="2">
         <Tabs.TabPane tab="Relationships" key="1">
           Relationships
         </Tabs.TabPane>
         <Tabs.TabPane tab="Evaluators" key="2">
-          <EvaluatorList />
+          <EvaluatorList match={match} />
         </Tabs.TabPane>
         <Tabs.TabPane tab="Evaluations" key="3">
-          <EvaluationList />
+          <EvaluationList match={match} />
         </Tabs.TabPane>
       </Tabs>
     </Modal>

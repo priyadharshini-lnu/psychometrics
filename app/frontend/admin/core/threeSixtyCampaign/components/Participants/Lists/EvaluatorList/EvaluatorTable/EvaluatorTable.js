@@ -6,7 +6,7 @@ import css from './EvaluatorTable.scss'
 
 const { Column } = Table
 
-export default function EvaluatorTable ({ evaluators, openModal }) {
+export default function EvaluatorTable ({ evaluators, openModal, onCloseParticipantModal }) {
   return (
     <Table
       className="mtm"
@@ -16,7 +16,7 @@ export default function EvaluatorTable ({ evaluators, openModal }) {
       onRow={record => ({
         onClick: (e) => {
           if (['TR', 'TD'].includes(e.target.tagName)) {
-            openModal('ParticipantModal', record.user)
+            openModal('ParticipantModal', { user: record.user, onClose: onCloseParticipantModal })
           }
         },
       })}

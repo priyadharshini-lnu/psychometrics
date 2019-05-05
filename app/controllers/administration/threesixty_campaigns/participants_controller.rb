@@ -4,7 +4,7 @@ module Administration
   module ThreesixtyCampaigns
     class ParticipantsController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[show edit]
+      before_action :set_resource, only: %i[show update destroy]
       append_before_action :pundit_authorize
 
       def index
@@ -18,6 +18,25 @@ module Administration
           ::ParticipantSerializer.new(p).to_h
         end
         render json: participants
+      end
+
+      def update
+        resource.update(resource_params)
+        render json: resource
+      end
+
+      def destroy
+        evaluator = ::Threesixty::Evaluator.find_by!(user_id: resource.evaluator_id, campaign: threesixty_campaign.campaign)
+        subject = ::Threesixty::Subject.find_by!(user_id: resource.subject_id, campaign: threesixty_campaign.campaign)
+
+        resource.destroy!
+        evaluator.decrement!(:evaluations_count)
+        subject.decrement!(:evaluators_count)
+        render json: :ok
+      end
+
+      def resource_params
+        params.require(:participant).permit(:relationship_id, :manager_status, :evaluator_status)
       end
 
       private

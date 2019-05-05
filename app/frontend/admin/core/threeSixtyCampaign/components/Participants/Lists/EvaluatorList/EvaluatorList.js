@@ -32,7 +32,11 @@ export default function EvaluatorList ({
       </Row>
       <Row>
         <Col span={24}>
-          <EvaluatorTable openModal={openModal} evaluators={evaluators} />
+          <EvaluatorTable
+            openModal={openModal}
+            evaluators={evaluators}
+            onCloseParticipantModal={() => fetchEvaluators(campaignId)}
+          />
         </Col>
       </Row>
       <CreateEvaluatorModal match={match} />

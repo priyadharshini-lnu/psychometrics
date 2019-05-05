@@ -28,7 +28,11 @@ export default function ManagerList ({
       </Row>
       <Row>
         <Col span={24}>
-          <EvaluatorTable openModal={openModal} evaluators={managers} />
+          <EvaluatorTable
+            openModal={openModal}
+            evaluators={managers}
+            onCloseParticipantModal={() => fetchManagers(campaignId)}
+          />
         </Col>
       </Row>
     </>

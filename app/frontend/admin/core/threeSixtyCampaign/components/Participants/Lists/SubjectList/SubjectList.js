@@ -46,7 +46,7 @@ export default function SubjectList ({
             onRow={record => ({
               onClick: (e) => {
                 if (['TR', 'TD'].includes(e.target.tagName)) {
-                  openModal('ParticipantModal', record.user)
+                  openModal('ParticipantModal', { user: record.user, onClose: fetchSubjects })
                 }
               },
             })}

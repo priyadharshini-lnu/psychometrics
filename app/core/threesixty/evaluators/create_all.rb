@@ -38,6 +38,7 @@ module Threesixty
       def create_participant(evaluator, campaigns_user)
         ::Participant.create(
           evaluator: campaigns_user.user,
+          project_id: threesixty_campaign.campaign.project_id,
           campaign: threesixty_campaign.campaign,
           subject: evaluator[:subject_user],
           relationship: evaluator[:relationship]
