@@ -5,7 +5,7 @@ import { getId as getCurrentCampaignId } from '../currentThreeSixtyCampaignId'
 import { set as setDatasheetFields, get as getDatasheetField } from '../../project/datasheetFields'
 
 import {
-  syncParticipantOptionsWithServer,
+  syncWithServer,
   getParticipantOption,
   addDatasheetCriteria,
   FETCH_PARTICIPANT_OPTIONS,
@@ -16,11 +16,11 @@ import {
   ADD_DATASHEET_CRITERIA_WITH_DEFAULT_VALUE,
 } from './actions'
 
-function* genSyncParticipantOptionsWithServer () {
+function* gensyncWithServer () {
   yield delay(1000)
   const participantOption = yield select(getParticipantOption)
   const campaignId = yield select(getCurrentCampaignId)
-  yield put(syncParticipantOptionsWithServer(campaignId, participantOption))
+  yield put(syncWithServer(campaignId, participantOption))
 }
 
 function* genAddDatasheetCriteriaWithValue ({ payload: { key } }) {
@@ -31,7 +31,7 @@ function* genAddDatasheetCriteriaWithValue ({ payload: { key } }) {
 const watchers = [
   takeLatest(
     [UPDATE_PARTICIPANT_OPTIONS, ADD_DATASHEET_CRITERIA, REMOVE_DATASHEET_CRITERIA, UPDATE_DATASHEET_CRITERIA],
-    genSyncParticipantOptionsWithServer,
+    gensyncWithServer,
   ),
   takeLatest(FETCH_PARTICIPANT_OPTIONS, setDatasheetFields),
   takeEvery(ADD_DATASHEET_CRITERIA_WITH_DEFAULT_VALUE, genAddDatasheetCriteriaWithValue),

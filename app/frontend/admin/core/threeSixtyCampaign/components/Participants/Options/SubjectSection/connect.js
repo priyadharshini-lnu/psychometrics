@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import {
-  updateParticipantOptions,
+  update as updateParticipantOptions,
   addDatasheetCriteriaWithDefaultValue,
   removeDatasheetCriteria,
   updateDatasheetCriteria,

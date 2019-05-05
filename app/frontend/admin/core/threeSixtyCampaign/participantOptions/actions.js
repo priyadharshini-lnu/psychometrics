@@ -13,14 +13,14 @@ export const getSubjectOption = state => _.get(getParticipantOption(state), ['su
 export const getManagerOption = state => _.get(getParticipantOption(state), ['manager'])
 export const getEvaluatorOption = state => _.get(getParticipantOption(state), ['evaluator'])
 
-export const fetchParticipantOptions = campaignId => ({
+export const fetch = campaignId => ({
   type: FETCH_PARTICIPANT_OPTIONS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/options/participant_options`,
   },
 })
 
-export const syncParticipantOptionsWithServer = (campaignId, options) => ({
+export const syncWithServer = (campaignId, options) => ({
   type: SYNC_PARTICIPANT_OPTIONS,
   request: {
     method: 'put',
@@ -29,7 +29,7 @@ export const syncParticipantOptionsWithServer = (campaignId, options) => ({
   },
 })
 
-export const updateParticipantOptions = (key, value) => ({
+export const update = (key, value) => ({
   type: UPDATE_PARTICIPANT_OPTIONS,
   payload: { key, value },
 })

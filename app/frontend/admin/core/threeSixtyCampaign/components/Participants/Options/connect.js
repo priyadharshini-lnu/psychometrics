@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import {
-  fetchParticipantOptions,
+  fetch as fetchParticipantOptions,
   getParticipantOption,
 } from 'admin/core/threeSixtyCampaign/participantOptions/actions'
 import { getLodingState } from 'admin/core/temp/request'

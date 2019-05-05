@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import {
-  updateParticipantOptions,
+  update as updateParticipantOptions,
   getManagerOption,
 } from 'admin/core/threeSixtyCampaign/participantOptions/actions'
 
