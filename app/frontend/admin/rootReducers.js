@@ -5,7 +5,7 @@ import managers from './core/threeSixtyCampaign/managers'
 import participantOptions from './core/threeSixtyCampaign/participantOptions/reducers'
 import modals from './core/temp/modals'
 import autocomplete from './core/temp/autocomplete'
-import spinner from './core/temp/spinner'
+import request from './core/temp/request'
 import currentThreeSixtyCampaignId from './core/threeSixtyCampaign/currentThreeSixtyCampaignId'
 import datasheetFields from './core/project/datasheetFields'
 
@@ -23,6 +23,6 @@ export default combineReducers({
   temp: combineReducers({
     modals,
     autocomplete,
-    spinner,
+    request,
   }),
 })

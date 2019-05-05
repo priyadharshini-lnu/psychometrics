@@ -4,7 +4,7 @@ import SubjectSection from './SubjectSection'
 import ManagerSection from './ManagerSection'
 import EvaluatorSection from './EvaluatorSection'
 
-export default function Options ({
+function Options ({
   fetchParticipantOptions,
   setCurrentCampaignId,
   match: {
@@ -26,3 +26,5 @@ export default function Options ({
     </div>
   )
 }
+
+export default Options

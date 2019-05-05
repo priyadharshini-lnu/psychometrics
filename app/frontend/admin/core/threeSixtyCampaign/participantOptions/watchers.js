@@ -1,7 +1,6 @@
 import {
   takeLatest, takeEvery, put, select, delay,
 } from 'redux-saga/effects'
-import { genShowSpinner, genHideSpinner } from '../../temp/spinner'
 import { getId as getCurrentCampaignId } from '../currentThreeSixtyCampaignId'
 import { set as setDatasheetFields, get as getDatasheetField } from '../../project/datasheetFields'
 
@@ -34,8 +33,6 @@ const watchers = [
     [UPDATE_PARTICIPANT_OPTIONS, ADD_DATASHEET_CRITERIA, REMOVE_DATASHEET_CRITERIA, UPDATE_DATASHEET_CRITERIA],
     genSyncParticipantOptionsWithServer,
   ),
-  takeLatest(`${FETCH_PARTICIPANT_OPTIONS}_REQUEST`, genShowSpinner),
-  takeLatest(FETCH_PARTICIPANT_OPTIONS, genHideSpinner),
   takeLatest(FETCH_PARTICIPANT_OPTIONS, setDatasheetFields),
   takeEvery(ADD_DATASHEET_CRITERIA_WITH_DEFAULT_VALUE, genAddDatasheetCriteriaWithValue),
 ]

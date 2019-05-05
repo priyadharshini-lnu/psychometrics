@@ -1,4 +1,5 @@
+import withSkeleton from 'admin/core/hoc/withSkeleton'
 import Options from './Options'
 import connect from './connect'
 
-export default connect(Options)
+export default withSkeleton(connect(Options))

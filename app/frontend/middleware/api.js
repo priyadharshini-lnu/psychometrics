@@ -2,6 +2,7 @@ import axios from 'axios'
 import queryString from 'query-string'
 import humps from 'humps'
 import _ from 'lodash'
+import { LOADING, LOADING_COMPLETE } from 'admin/core/temp/request'
 
 const buildUrl = ({ method = 'get', url, body }) => {
   if (method !== 'get') return url
@@ -38,12 +39,14 @@ const apiMiddleware = () => next => (action) => {
   const FAILURE = `${action.type}_FAILURE`
 
   next({ ...action, type: REQUEST })
+  next({ type: LOADING })
 
   return axios[method](buildUrl(request), humps.decamelizeKeys(body), buildOptions(request))
     .then(({ data }) => next({ type: SUCCESS, response: humps.camelizeKeys(data), requestAction: action }))
     .catch((error) => {
       next({ type: FAILURE, errors: error.response.data.errors })
     })
+    .finally(() => next({ type: LOADING_COMPLETE }))
 }
 
 export default apiMiddleware

@@ -6,7 +6,6 @@ import RouteList from 'components/RouteList'
 import routes from '../routes'
 import Menu from './Menu'
 import settings from '../settings'
-import Spinner from './Spinner'
 
 export default function App () {
   return (
@@ -15,7 +14,6 @@ export default function App () {
         <Router>
           <Menu routes={routes} />
           <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-          <Spinner />
         </Router>
       </Provider>
     </div>
