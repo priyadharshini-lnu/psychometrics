@@ -190,7 +190,7 @@ Rails.application.routes.draw do
         end
 
         resource :options do
-          get :participation_options
+          get :participant_options
         end
 
         resources :managers

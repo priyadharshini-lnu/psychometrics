@@ -2,7 +2,7 @@
 
 module Threesixty
   module Options
-    class ParticipationOptionForm < Rectify::Form
+    class ParticipantOptionForm < Rectify::Form
       ALL_BOOLEAN_FIELDS = %i(
         evaluator_can_decline_nomination
         email_subject_when_evaluators_declines_nomination
@@ -81,29 +81,8 @@ module Threesixty
       def validate_data_stream_fields
         DATA_SHEET_CRITERIA_FIELD.each do |key|
           criteria_list = public_send(key)
-          criteria_list.each do |criteria|
-            validate_criteria_keys(key, criteria)
-            validate_criteria_operator(key, criteria[:operator])
-            validate_criteria_field(key, criteria[:field])
-          end
-        end
-      end
-
-      def validate_criteria_operator(criteria_key, operator)
-        if ['equal', 'is_same_as_subject'].exclude?(operator)
-          errors.add(criteria_key, 'has invalid operator')
-        end
-      end
-
-      def validate_criteria_field(criteria_key, field)
-        if context.datasheet_column_names.exclude?(field)
-          errors.add(criteria_key, 'has invalid conditional field')
-        end
-      end
-
-      def validate_criteria_keys(criteria_key, criteria)
-        if (criteria.keys - [:field, :operator, :value]).present?
-          errors.add(criteria_key, 'has invalid key')
+          form = DatsheetCriteriaForm.new(criteria_list: criteria_list).with_context(context)
+          form.errors.messages.values.first.each { |error| errors.add(key, error) } if form.invalid?
         end
       end
     end

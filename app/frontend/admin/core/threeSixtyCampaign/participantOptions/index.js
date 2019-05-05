@@ -3,25 +3,29 @@ import {
   takeLatest, put, select, delay,
 } from 'redux-saga/effects'
 import { genShowSpinner, genHideSpinner } from '../../temp/spinner'
+import { getId as getCurrentCampaignId } from '../currentThreeSixtyCampaignId'
 
-export const FETCH_PARTICIPATION_OPTIONS = 'threeSixty/option/participations/FETCH_PARTICIPATION_OPTIONS'
-export const UPDATE_PARTICIPATION_OPTIONS = 'threeSixty/option/participations/UPDATE_PARTICIPATION_OPTIONS'
-export const SYNC_PARTICIPATION_OPTIONS = 'threeSixty/option/participations/SYNC_PARTICIPATION_OPTIONS'
-export const ADD_DATASHEET_CRITERIA = 'threeSixty/option/participations/ADD_DATASHEET_CRITERIA'
-export const REMOVE_DATASHEET_CRITERIA = 'threeSixty/option/participations/REMOVE_DATASHEET_CRITERIA'
-export const UPDATE_DATASHEET_CRITERIA = 'threeSixty/option/participations/UPDATE_DATASHEET_CRITERIA'
+export const FETCH_PARTICIPANT_OPTIONS = 'threeSixty/option/participants/FETCH_PARTICIPANT_OPTIONS'
+export const UPDATE_PARTICIPANT_OPTIONS = 'threeSixty/option/participants/UPDATE_PARTICIPANT_OPTIONS'
+export const SYNC_PARTICIPANT_OPTIONS = 'threeSixty/option/participants/SYNC_PARTICIPANT_OPTIONS'
+export const ADD_DATASHEET_CRITERIA = 'threeSixty/option/participants/ADD_DATASHEET_CRITERIA'
+export const REMOVE_DATASHEET_CRITERIA = 'threeSixty/option/participants/REMOVE_DATASHEET_CRITERIA'
+export const UPDATE_DATASHEET_CRITERIA = 'threeSixty/option/participants/UPDATE_DATASHEET_CRITERIA'
 
 export const getParticipantOption = state => _.get(state, ['threeSixtyCampaign', 'participantOptions'])
+export const getSubjectOption = state => _.get(getParticipantOption(state), ['subject'])
+export const getManagerOption = state => _.get(getParticipantOption(state), ['manager'])
+export const getEvaluatorOption = state => _.get(getParticipantOption(state), ['evaluator'])
 
-export const fetchParticipationOptions = campaignId => ({
-  type: FETCH_PARTICIPATION_OPTIONS,
+export const fetchParticipantOptions = campaignId => ({
+  type: FETCH_PARTICIPANT_OPTIONS,
   request: {
-    url: `/administration/threesixty_campaigns/${campaignId}/options/participation_options`,
+    url: `/administration/threesixty_campaigns/${campaignId}/options/participant_options`,
   },
 })
 
-const syncParticipationOptionsWithServer = (campaignId, options) => ({
-  type: SYNC_PARTICIPATION_OPTIONS,
+const syncParticipantOptionsWithServer = (campaignId, options) => ({
+  type: SYNC_PARTICIPANT_OPTIONS,
   request: {
     method: 'put',
     url: `/administration/threesixty_campaigns/${campaignId}/options/`,
@@ -29,25 +33,24 @@ const syncParticipationOptionsWithServer = (campaignId, options) => ({
   },
 })
 
-export const updateParticipationOptions = (campaignId, key, value) => ({
-  type: UPDATE_PARTICIPATION_OPTIONS,
-  payload: { campaignId, key, value },
+export const updateParticipantOptions = (key, value) => ({
+  type: UPDATE_PARTICIPANT_OPTIONS,
+  payload: { key, value },
 })
 
-export const addDatasheetCriteria = (campaignId, key) => ({
+export const addDatasheetCriteria = key => ({
   type: ADD_DATASHEET_CRITERIA,
-  payload: { campaignId, key },
+  payload: { key },
 })
 
-export const removeDatasheetCriteria = (campaignId, key, index) => ({
+export const removeDatasheetCriteria = (key, index) => ({
   type: REMOVE_DATASHEET_CRITERIA,
-  payload: { campaignId, key, index },
+  payload: { key, index },
 })
 
-export const updateDatasheetCriteria = (campaignId, key, index, name, value) => ({
+export const updateDatasheetCriteria = (key, index, name, value) => ({
   type: UPDATE_DATASHEET_CRITERIA,
   payload: {
-    campaignId,
     key,
     index,
     name,
@@ -55,36 +58,37 @@ export const updateDatasheetCriteria = (campaignId, key, index, name, value) => 
   },
 })
 
-function* genSyncParticipationOptionsWithServer ({ payload: { campaignId } }) {
+function* genSyncParticipantOptionsWithServer () {
   yield delay(1000)
   const participantOption = yield select(getParticipantOption)
-  yield put(syncParticipationOptionsWithServer(campaignId, participantOption.options))
+  const campaignId = yield select(getCurrentCampaignId)
+  yield put(syncParticipantOptionsWithServer(campaignId, participantOption.options))
 }
 
 export const watchers = [
   takeLatest(
-    [UPDATE_PARTICIPATION_OPTIONS, ADD_DATASHEET_CRITERIA, REMOVE_DATASHEET_CRITERIA, UPDATE_DATASHEET_CRITERIA],
-    genSyncParticipationOptionsWithServer,
+    [UPDATE_PARTICIPANT_OPTIONS, ADD_DATASHEET_CRITERIA, REMOVE_DATASHEET_CRITERIA, UPDATE_DATASHEET_CRITERIA],
+    genSyncParticipantOptionsWithServer,
   ),
-  takeLatest(`${FETCH_PARTICIPATION_OPTIONS}_REQUEST`, genShowSpinner),
-  takeLatest([`${FETCH_PARTICIPATION_OPTIONS}`], genHideSpinner),
+  takeLatest(`${FETCH_PARTICIPANT_OPTIONS}_REQUEST`, genShowSpinner),
+  takeLatest([`${FETCH_PARTICIPANT_OPTIONS}`], genHideSpinner),
+  takeLatest(`${FETCH_PARTICIPANT_OPTIONS}`, genShowSpinner),
 ]
 
-function updateParticipationOptionToState (state, { key, value }) {
+function updateParticipantOptionToState (state, { key, value }) {
   return { ...state, options: { ...state.options, [key]: value } }
 }
 
 function addDataSheetCriteriaToState (state, { key }) {
   const { options, datasheetFields } = state
   const criteria = (options[key] || []).concat([{ operator: 'is_same_as_subject', field: datasheetFields[0] }])
-  return updateParticipationOptionToState(state, { key, value: criteria })
+  return updateParticipantOptionToState(state, { key, value: criteria })
 }
 
 function removeDataSheetCriteriaToState (state, { key, index }) {
   const { options } = state
-  const criteria = [...options[key]]
-  criteria.splice(index, 1)
-  return updateParticipationOptionToState(state, { key, value: criteria })
+  const criteria = options[key].map((_, i) => index === i)
+  return updateParticipantOptionToState(state, { key, value: criteria })
 }
 
 function updateDataSheetCriteriaToState (state, {
@@ -97,16 +101,16 @@ function updateDataSheetCriteriaToState (state, {
     }
     return { ...criteria, [name]: value }
   })
-  return updateParticipationOptionToState(state, { key, value: criteria })
+  return updateParticipantOptionToState(state, { key, value: criteria })
 }
 
-export const defaultState = { options: {}, datasheet_fields: [] }
+export const defaultState = { options: {}, datasheetFields: [] }
 export default function reducer (state = defaultState, { type, payload, response }) {
   switch (type) {
-    case FETCH_PARTICIPATION_OPTIONS:
+    case FETCH_PARTICIPANT_OPTIONS:
       return response
-    case UPDATE_PARTICIPATION_OPTIONS:
-      return updateParticipationOptionToState(state, payload)
+    case UPDATE_PARTICIPANT_OPTIONS:
+      return updateParticipantOptionToState(state, payload)
     case ADD_DATASHEET_CRITERIA:
       return addDataSheetCriteriaToState(state, payload)
     case REMOVE_DATASHEET_CRITERIA:

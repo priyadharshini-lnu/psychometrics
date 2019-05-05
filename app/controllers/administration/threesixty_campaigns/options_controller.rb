@@ -7,7 +7,7 @@ module Administration
       before_action :set_resource, only: %i[show edit]
       append_before_action :pundit_authorize
 
-      def participation_options
+      def participant_options
         render json: {
           options: threesixty_campaign.option.participants,
           datasheet_fields: threesixty_campaign.datasheet_column_names
@@ -15,7 +15,7 @@ module Administration
       end
 
       def update
-        participant_options = ::Threesixty::Options::ParticipationOptionForm.
+        participant_options = ::Threesixty::Options::ParticipantOptionForm.
           from_params(params[:participants]).
           with_context(datasheet_column_names: threesixty_campaign.datasheet_column_names)
         if participant_options.valid?

@@ -1,8 +1,8 @@
 import _ from 'lodash'
 import { put } from 'redux-saga/effects'
 
-const SHOW_SPINNER = 'modals/SHOW_SPINNER'
-const HIDE_SPINNER = 'modals/HIDE_SPINNER'
+const SHOW_SPINNER = 'spinner/SHOW_SPINNER'
+const HIDE_SPINNER = 'spinner/HIDE_SPINNER'
 export const defaultState = {
   visible: false,
 }

@@ -7,7 +7,6 @@ import routes from '../routes'
 import Menu from './Menu'
 import settings from '../settings'
 import Spinner from './Spinner'
-import { getSpinnerState } from '../../temp/spinner'
 
 export default function App () {
   return (
@@ -16,7 +15,7 @@ export default function App () {
         <Router>
           <Menu routes={routes} />
           <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
-          <Spinner active={getSpinnerState(store.getState())} />
+          <Spinner />
         </Router>
       </Provider>
     </div>

@@ -2,27 +2,24 @@ import React from 'react'
 import {
   Row, Col, Switch, Checkbox,
 } from 'antd'
+import classnames from 'classnames'
 import css from './Options.scss'
 
 export default function ExpandableOption ({
   label, value, onOptionChanged, actionable, children, type,
 }) {
-  function renderExapandableBlock () {
-    if (value && children) {
-      return <div className={type === 'checkbox' ? css.checkboxContained : {}}>{children}</div>
-    }
-    return null
+  const renderExpandableBlock = () => {
+    if (!value || !children) return null
+    return <div className={classnames({ [css.checkboxContainer]: type === 'checkbox' })}>{children}</div>
   }
 
-  function renderActionable () {
-    if (value && actionable) {
-      return <span className={css.actionableContainer}>{actionable}</span>
-    }
-    return null
+  const renderActionable = () => {
+    if (!value || !actionable) return null
+    return <span className={css.actionableContainer}>{actionable}</span>
   }
 
   return (
-    <div style={{ marginBottom: `${type === 'checkbox' ? '5px' : '20px'}` }}>
+    <div className={classnames({ mbs: type === 'checkbox', mbl: type !== 'checkbox' })}>
       <Row>
         <Col span={24}>
           <Row>
@@ -40,16 +37,16 @@ export default function ExpandableOption ({
               </Col>
             ) : null}
             <Col md={22} sm={21} xs={20}>
-              {type === 'checkbox' ? (
+              {type === 'checkbox' && (
                 <Checkbox
                   onChange={e => onOptionChanged(e.target.checked)}
                   checked={value}
-                  style={{ marginRight: '5px' }}
+                  className="mrs"
                 />
-              ) : null}
+              )}
               {label}
               {renderActionable()}
-              {renderExapandableBlock()}
+              {renderExpandableBlock()}
             </Col>
           </Row>
         </Col>

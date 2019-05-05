@@ -1,5 +1,4 @@
 import { createStore, applyMiddleware, compose } from 'redux'
-import thunk from 'redux-thunk'
 import logger from 'redux-logger'
 import api from 'middleware/api'
 import createSagaMiddleware from 'redux-saga'
@@ -19,7 +18,7 @@ if (__DEV__) {
 const store = createStore(
   rootReducers,
   initState,
-  composeEnhancers(applyMiddleware(api, sagaMiddleware, thunk, logger)),
+  composeEnhancers(applyMiddleware(api, sagaMiddleware, logger)),
 )
 
 sagaMiddleware.run(rootSagas)

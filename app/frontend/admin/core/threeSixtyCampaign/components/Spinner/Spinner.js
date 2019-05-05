@@ -1,5 +1,5 @@
 import React from 'react'
-import css from './index.scss'
+import css from './styles.scss'
 
 export default function Spinner ({ visible }) {
   if (visible) {
