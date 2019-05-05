@@ -4,6 +4,7 @@ import {
 } from 'redux-saga/effects'
 import { genShowSpinner, genHideSpinner } from '../../temp/spinner'
 import { getId as getCurrentCampaignId } from '../currentThreeSixtyCampaignId'
+import { set as setDatasheetFields } from '../../project/datasheetFields'
 
 export const FETCH_PARTICIPANT_OPTIONS = 'threeSixty/option/participants/FETCH_PARTICIPANT_OPTIONS'
 export const UPDATE_PARTICIPANT_OPTIONS = 'threeSixty/option/participants/UPDATE_PARTICIPANT_OPTIONS'
@@ -62,7 +63,7 @@ function* genSyncParticipantOptionsWithServer () {
   yield delay(1000)
   const participantOption = yield select(getParticipantOption)
   const campaignId = yield select(getCurrentCampaignId)
-  yield put(syncParticipantOptionsWithServer(campaignId, participantOption.options))
+  yield put(syncParticipantOptionsWithServer(campaignId, participantOption))
 }
 
 export const watchers = [
@@ -71,31 +72,28 @@ export const watchers = [
     genSyncParticipantOptionsWithServer,
   ),
   takeLatest(`${FETCH_PARTICIPANT_OPTIONS}_REQUEST`, genShowSpinner),
-  takeLatest([`${FETCH_PARTICIPANT_OPTIONS}`], genHideSpinner),
-  takeLatest(`${FETCH_PARTICIPANT_OPTIONS}`, genShowSpinner),
+  takeLatest(FETCH_PARTICIPANT_OPTIONS, genHideSpinner),
+  takeLatest(FETCH_PARTICIPANT_OPTIONS, setDatasheetFields),
 ]
 
 function updateParticipantOptionToState (state, { key, value }) {
-  return { ...state, options: { ...state.options, [key]: value } }
+  return { ...state, ...state, [key]: value }
 }
 
-function addDataSheetCriteriaToState (state, { key }) {
-  const { options, datasheetFields } = state
-  const criteria = (options[key] || []).concat([{ operator: 'is_same_as_subject', field: datasheetFields[0] }])
+function addDataSheetCriteriaToState (state, { key, value }) {
+  const criteria = (state[key] || []).concat([{ operator: 'is_same_as_subject' }])
   return updateParticipantOptionToState(state, { key, value: criteria })
 }
 
 function removeDataSheetCriteriaToState (state, { key, index }) {
-  const { options } = state
-  const criteria = options[key].map((_, i) => index === i)
+  const criteria = state[key].map((_, i) => index === i)
   return updateParticipantOptionToState(state, { key, value: criteria })
 }
 
 function updateDataSheetCriteriaToState (state, {
   key, index, name, value,
 }) {
-  const { options } = state
-  const criteria = options[key].map((criteria, i) => {
+  const criteria = state[key].map((criteria, i) => {
     if (i !== index) {
       return criteria
     }
@@ -104,11 +102,11 @@ function updateDataSheetCriteriaToState (state, {
   return updateParticipantOptionToState(state, { key, value: criteria })
 }
 
-export const defaultState = { options: {}, datasheetFields: [] }
+export const defaultState = {}
 export default function reducer (state = defaultState, { type, payload, response }) {
   switch (type) {
     case FETCH_PARTICIPANT_OPTIONS:
-      return response
+      return response.options
     case UPDATE_PARTICIPANT_OPTIONS:
       return updateParticipantOptionToState(state, payload)
     case ADD_DATASHEET_CRITERIA:

@@ -5,18 +5,16 @@ import {
   addDatasheetCriteria,
   removeDatasheetCriteria,
   updateDatasheetCriteria,
-  getParticipantOption,
+  getSubjectOption,
 } from 'admin/core/threeSixtyCampaign/participantOptions/'
-import { setId as setCurrentCampaignId } from '../../../currentThreeSixtyCampaignId'
 
 export default connect(
-  state => ({ options: getParticipantOption(state) }),
+  state => getSubjectOption(state),
   {
     fetchParticipantOptions,
     updateParticipantOptions,
     addDatasheetCriteria,
     removeDatasheetCriteria,
     updateDatasheetCriteria,
-    setCurrentCampaignId,
   },
 )

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input, Select } from 'antd'
-import css from '../Options.scss'
+import css from './styles.scss'
 
-export default function Criteria ({ fields, condition: { field, operator, value }, updateCriteria }) {
+export default function Criteria ({ datasheetFields, condition: { field, operator, value }, updateCriteria }) {
   const valueAttr = field ? { value: field } : {}
 
   function fieldSelectList () {
@@ -16,7 +16,7 @@ export default function Criteria ({ fields, condition: { field, operator, value 
           updateCriteria('field', value)
         }}
       >
-        {fields.map(name => (
+        {datasheetFields.map(name => (
           <Select.Option key={name}>{name}</Select.Option>
         ))}
       </Select>

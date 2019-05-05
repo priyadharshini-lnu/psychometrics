@@ -2,12 +2,12 @@ import React from 'react'
 import { Icon } from 'antd'
 import _ from 'lodash'
 import Criteria from './Criteria'
-import css from '../Options.scss'
+import css from './styles.scss'
 
 export default function CriteriaList ({
-  criteria, fields, addCriteria, removeCriteria, updateCriteria,
+  criteria, datasheetFields, addCriteria, removeCriteria, updateCriteria,
 }) {
-  if (_.isEmpty(fields)) {
+  if (_.isEmpty(datasheetFields)) {
     return <div className={css.datasheetNotAvailableMethod}>Datasheet not available for this project</div>
   }
 
@@ -21,7 +21,7 @@ export default function CriteriaList ({
   return criteria.map((condition, index) => (
     <div className={css.criteriaContainer} key={index}>
       <Criteria
-        fields={fields}
+        datasheetFields={datasheetFields}
         condition={condition}
         updateCriteria={(field, value) => updateCriteria(index, field, value)}
       />

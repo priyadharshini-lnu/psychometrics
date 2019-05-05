@@ -13,7 +13,6 @@ export default function Options ({
   updateDatasheetCriteria,
   setCurrentCampaignId,
   options,
-  datasheetFields,
   match: {
     params: { campaignId },
   },
@@ -22,11 +21,6 @@ export default function Options ({
     setCurrentCampaignId(campaignId)
     fetchParticipantOptions(campaignId)
   }, [])
-
-  // const updateParticipantOptions = updateParticipantOptions.bind(this, campaignId)
-  // const addDatasheetCriteria = addDatasheetCriteria.bind(this, campaignId)
-  // const removeDatasheetCriteria = removeDatasheetCriteria.bind(this, campaignId)
-  // const updateDatasheetCriteria = updateDatasheetCriteria.bind(this, campaignId)
 
   function parametersForSwitch (name) {
     return {
@@ -37,7 +31,6 @@ export default function Options ({
 
   function parametersForDatasheet (name) {
     return {
-      fields: datasheetFields,
       criteria: options[name],
       addCriteria: addDatasheetCriteria.bind(this, name),
       removeCriteria: removeDatasheetCriteria.bind(this, name),
