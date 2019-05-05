@@ -18,12 +18,12 @@ export default function ManagerSection ({
 
   return (
     <OptionSection label="Manager Options">
-      <ExpandableOption label="Manager Can View Nominations" {...parametersForSwitch('managerCanViewNominations')} />
+      <ExpandableOption label="Manager Can View Nominations" {...parametersForSwitch('canViewNominations')} />
       <ExpandableOption
         label="Manager May Choose Evaluators"
-        {...parametersForSwitch('managerCanChooseEvaluators')}
+        {...parametersForSwitch('canChooseEvaluators')}
       />
-      <ExpandableOption label="Manager Approve Nominations" {...parametersForSwitch('managersApproveNominations')}>
+      <ExpandableOption label="Manager Approve Nominations" {...parametersForSwitch('canApproveNominations')}>
         <div>
           <ExpandableOption
             label="Email managers when a subject's nominations are ready for approval"
@@ -54,7 +54,7 @@ export default function ManagerSection ({
           />
         </div>
       </ExpandableOption>
-      <ExpandableOption label="Manager Approves Evaluations" {...parametersForSwitch('managerApprovesEvaluations')} />
+      <ExpandableOption label="Manager Approves Evaluations" {...parametersForSwitch('canApprovesEvaluations')} />
     </OptionSection>
   )
 }

@@ -72,10 +72,10 @@ export default function SubjectSection ({
         >
           <ExpandableOption
             label="Limit search by criteria"
-            {...parametersForSwitch('limitNominationbySubjectFromDatasheet')}
+            {...parametersForSwitch('limitNominationBySubjectFromDatasheet')}
             type="checkbox"
           >
-            <CriteriaList {...parametersForDatasheet('limitNominationbySubjectFromDatasheetCriteria')} />
+            <CriteriaList {...parametersForDatasheet('limitNominationBySubjectFromDatasheetCriteria')} />
           </ExpandableOption>
         </ExpandableOption>
 

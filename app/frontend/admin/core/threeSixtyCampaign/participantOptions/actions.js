@@ -17,6 +17,7 @@ export const fetch = campaignId => ({
   type: FETCH_PARTICIPANT_OPTIONS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/options/participant_options`,
+    loader: true,
   },
 })
 

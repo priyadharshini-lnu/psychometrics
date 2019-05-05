@@ -32,21 +32,23 @@ const apiMiddleware = () => next => (action) => {
 
   const {
     request,
-    request: { method: method = 'get', body },
+    request: { method: method = 'get', body, loader },
   } = action
   const REQUEST = `${action.type}_REQUEST`
   const SUCCESS = action.type
   const FAILURE = `${action.type}_FAILURE`
 
   next({ ...action, type: REQUEST })
-  next({ type: LOADING })
+  if (loader) { next({ type: LOADING }) }
 
   return axios[method](buildUrl(request), humps.decamelizeKeys(body), buildOptions(request))
     .then(({ data }) => next({ type: SUCCESS, response: humps.camelizeKeys(data), requestAction: action }))
     .catch((error) => {
       next({ type: FAILURE, errors: error.response.data.errors })
     })
-    .finally(() => next({ type: LOADING_COMPLETE }))
+    .finally(() => {
+      if (loader) { next({ type: LOADING_COMPLETE }) }
+    })
 }
 
 export default apiMiddleware

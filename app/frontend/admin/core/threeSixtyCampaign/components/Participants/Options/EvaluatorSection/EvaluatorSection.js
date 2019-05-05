@@ -19,7 +19,7 @@ export default function ManagerSection ({
     <OptionSection label="Evaluator Options">
       <ExpandableOption
         label="Allow evaluators to decline nomination"
-        {...parametersForSwitch('evaluatorCanDeclineNomination')}
+        {...parametersForSwitch('canDeclineNomination')}
       >
         <ExpandableOption
           label="Email subject when a nomination is declined"
