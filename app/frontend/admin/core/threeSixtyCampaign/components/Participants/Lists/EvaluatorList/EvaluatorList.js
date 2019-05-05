@@ -8,7 +8,7 @@ import CreateEvaluatorModal from './CreateEvaluatorModal'
 export default function EvaluatorList ({
   fetchEvaluators,
   evaluators,
-
+  openModal,
   match: {
     params: { campaignId },
   },
@@ -32,7 +32,7 @@ export default function EvaluatorList ({
       </Row>
       <Row>
         <Col span={24}>
-          <EvaluatorTable evaluators={evaluators} />
+          <EvaluatorTable openModal={openModal} evaluators={evaluators} />
         </Col>
       </Row>
       <CreateEvaluatorModal match={match} />

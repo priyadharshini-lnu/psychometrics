@@ -6,6 +6,7 @@ import EvaluatorTable from '../EvaluatorList/EvaluatorTable/EvaluatorTable'
 export default function ManagerList ({
   fetchManagers,
   managers,
+  openModal,
   match: {
     params: { campaignId },
   },
@@ -27,7 +28,7 @@ export default function ManagerList ({
       </Row>
       <Row>
         <Col span={24}>
-          <EvaluatorTable evaluators={managers} />
+          <EvaluatorTable openModal={openModal} evaluators={managers} />
         </Col>
       </Row>
     </>
