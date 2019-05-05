@@ -1,4 +1,4 @@
 import connect from './connect'
-import SubjectOption from './SubjectSection'
+import SubjectSection from './SubjectSection'
 
-export default connect(SubjectOption)
+export default connect(SubjectSection)

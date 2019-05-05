@@ -4,10 +4,34 @@ import CriteriaList from 'admin/core/project/components/DataSheet'
 import OptionSection from '../OptionSection'
 import ExpandableOption from '../ExpandableOption'
 
-export default function SubjectSection ({ parametersForSwitch, parametersForDatasheet }) {
+export default function SubjectSection ({
+  options,
+  updateParticipantOptions,
+  addDatasheetCriteria,
+  removeDatasheetCriteria,
+  updateDatasheetCriteria,
+}) {
+  const OBJECT_KEY = 'subject'
+
+  function parametersForSwitch (name) {
+    return {
+      value: options[name],
+      onOptionChanged: updateParticipantOptions.bind(this, [OBJECT_KEY, name]),
+    }
+  }
+
+  function parametersForDatasheet (name) {
+    return {
+      criteria: options[name],
+      addCriteria: addDatasheetCriteria.bind(this, [OBJECT_KEY, name]),
+      removeCriteria: removeDatasheetCriteria.bind(this, [OBJECT_KEY, name]),
+      updateCriteria: updateDatasheetCriteria.bind(this, [OBJECT_KEY, name]),
+    }
+  }
+
   return (
     <OptionSection label="Subject Options">
-      <ExpandableOption label="Subject Self Evaluates" {...parametersForSwitch('subjectCanEvaluateSelf')}>
+      <ExpandableOption label="Subject Self Evaluates" {...parametersForSwitch('canEvaluateSelf')}>
         <ExpandableOption
           label="Limit self-evaluators by criteria"
           {...parametersForSwitch('limitSelfEvaluationByCriteria')}
@@ -20,17 +44,17 @@ export default function SubjectSection ({ parametersForSwitch, parametersForData
 
       <ExpandableOption
         label="Subject Nominates Evaluators"
-        {...parametersForSwitch('subjectCanNominateEvaluators')}
+        {...parametersForSwitch('canNominateEvaluators')}
         actionable={<Button size="small">Define Nomination requirement</Button>}
       >
         <ExpandableOption
           label="Anyone not currently in the assessment"
-          {...parametersForSwitch('subjectCanNominateAnyoneNotInAssessment')}
+          {...parametersForSwitch('canNominateAnyoneNotInAssessment')}
           type="checkbox"
         />
         <ExpandableOption
           label="Anyone in the assessment"
-          {...parametersForSwitch('subjectCanNominateAnyoneInAssessment')}
+          {...parametersForSwitch('canNominateAnyoneInAssessment')}
           type="checkbox"
         >
           <ExpandableOption
@@ -43,7 +67,7 @@ export default function SubjectSection ({ parametersForSwitch, parametersForData
         </ExpandableOption>
         <ExpandableOption
           label="Anyone in the DataSheet"
-          {...parametersForSwitch('subjectCanNominateAnyoneFromDatasheet')}
+          {...parametersForSwitch('canNominateAnyoneFromDatasheet')}
           type="checkbox"
         >
           <ExpandableOption
@@ -57,12 +81,12 @@ export default function SubjectSection ({ parametersForSwitch, parametersForData
 
         <ExpandableOption
           label="Subjects cannot remove nominations set by managers or admins"
-          {...parametersForSwitch('subjectCannotRemoveNominationSetByManagerAndAdmin')}
+          {...parametersForSwitch('cannotRemoveNominationSetByManagerAndAdmin')}
           type="checkbox"
         />
         <ExpandableOption
           label="Allow subjects to select relationships"
-          {...parametersForSwitch('subjectCanSelectRelationship')}
+          {...parametersForSwitch('canSelectRelationship')}
           type="checkbox"
         >
           <ExpandableOption
@@ -72,27 +96,27 @@ export default function SubjectSection ({ parametersForSwitch, parametersForData
           >
             <ExpandableOption
               label="Customer"
-              {...parametersForSwitch('subjectCanSelectCustomerRelationship')}
+              {...parametersForSwitch('canSelectCustomerRelationship')}
               type="checkbox"
             />
             <ExpandableOption
               label="Direct Report"
-              {...parametersForSwitch('subjectCanSelectDirectReportRelationship')}
+              {...parametersForSwitch('canSelectDirectReportRelationship')}
               type="checkbox"
             />
             <ExpandableOption
               label="Manager"
-              {...parametersForSwitch('subjectCanSelectManagerRelationship')}
+              {...parametersForSwitch('canSelectManagerRelationship')}
               type="checkbox"
             />
             <ExpandableOption
               label="Peer"
-              {...parametersForSwitch('subjectCanSelectPeerRelationship')}
+              {...parametersForSwitch('canSelectPeerRelationship')}
               type="checkbox"
             />
             <ExpandableOption
               label="Supplier"
-              {...parametersForSwitch('subjectCanSelectSupplierRelationship')}
+              {...parametersForSwitch('canSelectSupplierRelationship')}
               type="checkbox"
             />
           </ExpandableOption>
@@ -101,11 +125,11 @@ export default function SubjectSection ({ parametersForSwitch, parametersForData
 
       <ExpandableOption
         label="Subjects can view completion status of evaluations"
-        {...parametersForSwitch('subjectCanViewCompletionStatusOfEvaluation')}
+        {...parametersForSwitch('canViewCompletionStatusOfEvaluation')}
       >
         <ExpandableOption
           label="Allow subjects to view the individual evaluations"
-          {...parametersForSwitch('subjectCanViewIndividualEvaluations')}
+          {...parametersForSwitch('canViewIndividualEvaluations')}
           type="checkbox"
         />
       </ExpandableOption>

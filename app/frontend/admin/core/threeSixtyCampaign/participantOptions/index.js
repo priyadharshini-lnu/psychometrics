@@ -76,24 +76,26 @@ export const watchers = [
   takeLatest(FETCH_PARTICIPANT_OPTIONS, setDatasheetFields),
 ]
 
-function updateParticipantOptionToState (state, { key, value }) {
-  return { ...state, ...state, [key]: value }
+function updateParticipantOptionToState (state, { key: [parentKey, childKey], value }) {
+  let childValue = state[parentKey]
+  childValue = { ...childValue, [childKey]: value }
+  return { ...state, [parentKey]: childValue }
 }
 
-function addDataSheetCriteriaToState (state, { key, value }) {
-  const criteria = (state[key] || []).concat([{ operator: 'is_same_as_subject' }])
+function addDataSheetCriteriaToState (state, { key }) {
+  const criteria = (_.get(state, key) || []).concat([{ operator: 'is_same_as_subject' }])
   return updateParticipantOptionToState(state, { key, value: criteria })
 }
 
 function removeDataSheetCriteriaToState (state, { key, index }) {
-  const criteria = state[key].map((_, i) => index === i)
+  const criteria = _.filter(_.get(state, key), (_, i) => index !== i)
   return updateParticipantOptionToState(state, { key, value: criteria })
 }
 
 function updateDataSheetCriteriaToState (state, {
   key, index, name, value,
 }) {
-  const criteria = state[key].map((criteria, i) => {
+  const criteria = _.get(state, key).map((criteria, i) => {
     if (i !== index) {
       return criteria
     }
@@ -102,7 +104,7 @@ function updateDataSheetCriteriaToState (state, {
   return updateParticipantOptionToState(state, { key, value: criteria })
 }
 
-export const defaultState = {}
+export const defaultState = { subject: {}, manager: {}, evaluator: {} }
 export default function reducer (state = defaultState, { type, payload, response }) {
   switch (type) {
     case FETCH_PARTICIPANT_OPTIONS:
