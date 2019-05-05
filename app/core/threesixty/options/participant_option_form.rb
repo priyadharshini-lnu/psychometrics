@@ -17,19 +17,21 @@ module Threesixty
       end
 
       def validate_manager_fields
-        form = ManagerOptionForm.new(subject).with_context(context)
+        form = ManagerOptionForm.new(manager).with_context(context)
         add_errors_from_nested(:manager, form)
       end
 
       def validate_evaluator_fields
-        form = EvaluatorOptionForm.new(subject).with_context(context)
+        form = EvaluatorOptionForm.new(evaluator).with_context(context)
         add_errors_from_nested(:evaluator, form)
       end
 
       private
 
       def add_errors_from_nested(key, form)
-        form.errors.messages.values.first.each { |error| errors.add(key, error) } if form.invalid?
+        form.validate
+        form.errors.messages.values.first.each { |error|  errors.add(key, error) } if form.invalid?
+        public_send("#{key}=", form.attributes)
       end
     end
   end
