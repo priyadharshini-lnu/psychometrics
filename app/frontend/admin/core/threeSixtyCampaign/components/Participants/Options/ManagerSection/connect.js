@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import {
   updateParticipantOptions,
   getManagerOption,
-} from 'admin/core/threeSixtyCampaign/participantOptions/'
+} from 'admin/core/threeSixtyCampaign/participantOptions/actions'
 
 export default connect(
   state => ({ options: getManagerOption(state) }),

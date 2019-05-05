@@ -7,7 +7,7 @@ import ExpandableOption from '../ExpandableOption'
 export default function SubjectSection ({
   options,
   updateParticipantOptions,
-  addDatasheetCriteria,
+  addDatasheetCriteriaWithDefaultValue,
   removeDatasheetCriteria,
   updateDatasheetCriteria,
 }) {
@@ -23,7 +23,7 @@ export default function SubjectSection ({
   function parametersForDatasheet (name) {
     return {
       criteria: options[name],
-      addCriteria: addDatasheetCriteria.bind(this, [OBJECT_KEY, name]),
+      addCriteria: addDatasheetCriteriaWithDefaultValue.bind(this, [OBJECT_KEY, name]),
       removeCriteria: removeDatasheetCriteria.bind(this, [OBJECT_KEY, name]),
       updateCriteria: updateDatasheetCriteria.bind(this, [OBJECT_KEY, name]),
     }

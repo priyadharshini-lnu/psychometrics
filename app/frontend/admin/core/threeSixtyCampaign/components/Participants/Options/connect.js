@@ -1,22 +1,14 @@
 import { connect } from 'react-redux'
 import {
   fetchParticipantOptions,
-  updateParticipantOptions,
-  addDatasheetCriteria,
-  removeDatasheetCriteria,
-  updateDatasheetCriteria,
   getParticipantOption,
-} from 'admin/core/threeSixtyCampaign/participantOptions/'
+} from 'admin/core/threeSixtyCampaign/participantOptions/actions'
 import { setId as setCurrentCampaignId } from '../../../currentThreeSixtyCampaignId'
 
 export default connect(
   state => ({ options: getParticipantOption(state) }),
   {
     fetchParticipantOptions,
-    updateParticipantOptions,
-    addDatasheetCriteria,
-    removeDatasheetCriteria,
-    updateDatasheetCriteria,
     setCurrentCampaignId,
   },
 )

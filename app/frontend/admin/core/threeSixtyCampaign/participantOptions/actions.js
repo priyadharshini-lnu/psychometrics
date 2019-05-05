@@ -1,0 +1,60 @@
+import _ from 'lodash'
+
+export const FETCH_PARTICIPANT_OPTIONS = 'threeSixty/option/FETCH_PARTICIPANT_OPTIONS'
+export const UPDATE_PARTICIPANT_OPTIONS = 'threeSixty/option/UPDATE_PARTICIPANT_OPTIONS'
+export const SYNC_PARTICIPANT_OPTIONS = 'threeSixty/option/SYNC_PARTICIPANT_OPTIONS'
+export const ADD_DATASHEET_CRITERIA = 'threeSixty/option/ADD_DATASHEET_CRITERIA'
+export const ADD_DATASHEET_CRITERIA_WITH_DEFAULT_VALUE = 'threeSixty/option/ADD_DATASHEET_CRITERIA_WITH_DEFAULT_VALUE'
+export const REMOVE_DATASHEET_CRITERIA = 'threeSixty/option/participants/REMOVE_DATASHEET_CRITERIA'
+export const UPDATE_DATASHEET_CRITERIA = 'threeSixty/option/participants/UPDATE_DATASHEET_CRITERIA'
+
+export const getParticipantOption = state => _.get(state, ['threeSixtyCampaign', 'participantOptions'])
+export const getSubjectOption = state => _.get(getParticipantOption(state), ['subject'])
+export const getManagerOption = state => _.get(getParticipantOption(state), ['manager'])
+export const getEvaluatorOption = state => _.get(getParticipantOption(state), ['evaluator'])
+
+export const fetchParticipantOptions = campaignId => ({
+  type: FETCH_PARTICIPANT_OPTIONS,
+  request: {
+    url: `/administration/threesixty_campaigns/${campaignId}/options/participant_options`,
+  },
+})
+
+export const syncParticipantOptionsWithServer = (campaignId, options) => ({
+  type: SYNC_PARTICIPANT_OPTIONS,
+  request: {
+    method: 'put',
+    url: `/administration/threesixty_campaigns/${campaignId}/options/`,
+    body: { participants: options },
+  },
+})
+
+export const updateParticipantOptions = (key, value) => ({
+  type: UPDATE_PARTICIPANT_OPTIONS,
+  payload: { key, value },
+})
+
+export const addDatasheetCriteriaWithDefaultValue = key => ({
+  type: ADD_DATASHEET_CRITERIA_WITH_DEFAULT_VALUE,
+  payload: { key },
+})
+
+export const addDatasheetCriteria = (key, value) => ({
+  type: ADD_DATASHEET_CRITERIA,
+  payload: { key, value },
+})
+
+export const removeDatasheetCriteria = (key, index) => ({
+  type: REMOVE_DATASHEET_CRITERIA,
+  payload: { key, index },
+})
+
+export const updateDatasheetCriteria = (key, index, name, value) => ({
+  type: UPDATE_DATASHEET_CRITERIA,
+  payload: {
+    key,
+    index,
+    name,
+    value,
+  },
+})

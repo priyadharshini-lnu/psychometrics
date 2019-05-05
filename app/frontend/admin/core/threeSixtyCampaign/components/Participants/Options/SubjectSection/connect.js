@@ -1,17 +1,17 @@
 import { connect } from 'react-redux'
 import {
   updateParticipantOptions,
-  addDatasheetCriteria,
+  addDatasheetCriteriaWithDefaultValue,
   removeDatasheetCriteria,
   updateDatasheetCriteria,
   getSubjectOption,
-} from 'admin/core/threeSixtyCampaign/participantOptions/'
+} from 'admin/core/threeSixtyCampaign/participantOptions/actions'
 
 export default connect(
   state => ({ options: getSubjectOption(state) }),
   {
     updateParticipantOptions,
-    addDatasheetCriteria,
+    addDatasheetCriteriaWithDefaultValue,
     removeDatasheetCriteria,
     updateDatasheetCriteria,
   },
