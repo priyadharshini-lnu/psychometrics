@@ -9,7 +9,7 @@ module Threesixty
 
     enum type: %i[empty standard_360 previous_360]
 
-    delegate :subjects, :evaluators, :project, to: :campaign
+    delegate :subjects, :evaluators, :project, :participants, to: :campaign
 
     EMPTY = 'empty'
     STANDARD_360 = 'standard_360'

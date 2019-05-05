@@ -4,6 +4,7 @@ import {
   Menu, Dropdown, List, Collapse, Icon,
 } from 'antd'
 import './EvaluationsList.scss'
+import userPresenter from 'presenters/userPresenter'
 
 const { Panel } = Collapse
 
@@ -24,13 +25,13 @@ const EvaluationItem = item => (
         <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}`}>
           <Icon type="check-circle" theme="twoTone" twoToneColor={item.approved ? '#52c41a' : '#ccc'} />
           {' '}
-          {item.name}
+          {userPresenter.getFullName(item.user)}
         </Link>
       </div>
       {item.completed && (
         <Dropdown overlay={() => menu(item)} trigger={['click']}>
           <a className="ant-dropdown-link" href="#">
-            Actons
+            Actions
             {' '}
             <Icon type="down" className="menu-icon" />
           </a>
@@ -46,7 +47,7 @@ const CollapseItem = item => (
       <List
         size="large"
         bordered
-        dataSource={item.evaluations}
+        dataSource={item.list}
         renderItem={EvaluationItem}
       />
     </Panel>

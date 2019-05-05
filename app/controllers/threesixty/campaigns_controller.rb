@@ -8,8 +8,8 @@ module Threesixty
         format.html {}
         format.json do
           subjects = @campaign.subjects.where(user_id: current_user.id)
-          evaluators = @campaign.evaluators.where(user_id: current_user.id)
-          render json: @campaign, serializer: Threesixty::CampaignSerializer, subjects: subjects, evaluators: evaluators, include: '**'
+          participants = @campaign.participants.where(evaluator_id: current_user.id)
+          render json: @campaign, serializer: Threesixty::CampaignSerializer, subjects: subjects, evaluations: participants, include: '**'
         end
       end
 

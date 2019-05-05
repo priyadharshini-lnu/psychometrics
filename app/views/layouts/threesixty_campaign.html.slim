@@ -5,8 +5,23 @@ html
     meta content="IE=edge" http-equiv="X-UA-Compatible"
     meta content="width=device-width, initial-scale=1" name="viewport"
     title = Settings.project_name
+    javascript:
+      window.I18n = {
+        locale: 'en'
+      }
     = csrf_meta_tags
     = jquery_include_tag :google
     = render '//layouts/custom_styles'
+    = stylesheet_link_tag    'threesixty_dependencies', media: 'all'
+    - if Settings.react_dev.assessments
+      = javascript_include_tag 'http://localhost:3000/psychometrics_vendor.js'
+      = javascript_include_tag 'http://localhost:3000/psychometrics_pass_assessment.js'
+    - else
+      = javascript_include_tag :psychometrics_vendor
+      = javascript_include_tag :psychometrics_pass_assessment
+
+    = javascript_include_tag :psychometrics_reports_vendor
+    = javascript_include_tag :psychometrics_reports_threesixty_report
+
   body data-locale="#{I18n.locale}"
     = yield

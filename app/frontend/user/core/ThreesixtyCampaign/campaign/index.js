@@ -23,12 +23,12 @@ export const defaultState = {
   evaluations: [
     {
       title: 'Evaluations',
-      evaluations: [
+      list: [
       ],
     },
     {
       title: 'Approve evaluations',
-      evaluations: [
+      list: [
       ],
     },
   ],
@@ -46,13 +46,9 @@ export const defaultState = {
 
 const HANDLERS = {
   [FETCH_CAMPAIGN]: (state, action) => {
-    const lists = _.cloneDeep(state.nominations)
-    lists[0].list = action.response.nominations
-
-    return {
-      ...state,
-      nominations: lists,
-    }
+    let newState = setIn(state, ['nominations', 0, 'list'], action.response.nominations)
+    newState = setIn(newState, ['evaluations', 0, 'list'], action.response.evaluations)
+    return newState
   },
 }
 

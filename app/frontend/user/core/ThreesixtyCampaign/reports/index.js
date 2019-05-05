@@ -1,6 +1,6 @@
 const FETCH_REPORTS = 'threeSixty/managers/FETCH_REPORTS'
 
-export const fetchCampaign = campaignId => ({
+export const fetchReport = campaignId => ({
   type: FETCH_REPORTS,
   request: {
     url: `/campaigns/${campaignId}.json`,

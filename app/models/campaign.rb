@@ -6,6 +6,7 @@ class Campaign < ApplicationRecord
   has_many :relationships
   has_many :subjects, class_name: 'Threesixty::Subject'
   has_many :evaluators, class_name: 'Threesixty::Evaluator'
+  has_many :participants
 
   THREESIXTY = :threesixty
 

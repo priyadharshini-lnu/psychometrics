@@ -1,16 +1,24 @@
 const FETCH_EVALUATION = 'threeSixty/managers/FETCH_EVALUATION'
 
-export const fetchCampaign = campaignId => ({
+export const fetchEvaluation = (campaignId, evaluationId) => ({
   type: FETCH_EVALUATION,
   request: {
-    url: `/campaigns/${campaignId}.json`,
+    url: `/campaigns/${campaignId}/evaluations/${evaluationId}`,
   },
 })
 
-export const defaultState = {}
+export const defaultState = {
+  subject: {
+    user: {
+      firstName: 'Mocked',
+      lastName: 'User',
+    }
+  },
+  results: null
+}
 
 const HANDLERS = {
-  [FETCH_EVALUATION]: (state, action) => state, // do nothing action.data,
+  [FETCH_EVALUATION]: (state, action) => ({...state, results: action.response})
 }
 
 export default function reducer (state = defaultState, action) {

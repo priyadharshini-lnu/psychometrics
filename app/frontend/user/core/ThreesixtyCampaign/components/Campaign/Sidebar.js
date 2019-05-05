@@ -18,7 +18,7 @@ export default function Sidebar ({ history, match }) {
       <div className="content">
 
         <Progress
-          className="progress"
+          className="threesixty-progress"
           type="circle"
           percent={30}
           format={percent => (

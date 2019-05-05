@@ -1,18 +1,8 @@
-import React from 'react'
-import { Layout, Typography } from 'antd'
 
-const { Paragraph, Title } = Typography
-const { Content } = Layout
+import Reports from './Reports'
+import Sidebar from './Sidebar'
+import connect from './connect'
 
-export default function Evaluator () {
-  return (
-    <Layout>
-      <Content>
-        <div className="main-container">
-          Report page
-        </div>
-      </Content>
-    </Layout>
-  )
-}
-export { default as Sidebar } from './Sidebar'
+export default connect(Reports)
+
+export const ReportsSidebar = connect(Sidebar)
