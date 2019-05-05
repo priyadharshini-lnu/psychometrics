@@ -193,6 +193,7 @@ Rails.application.routes.draw do
         end
         resources :managers
         resources :relationships
+        resources :participants
       end
     end
 

@@ -9,7 +9,7 @@ module Administration
 
       def index
         option = threesixty_campaign.option || ::Threesixty::Option.new
-        subjects = policy_scope(::Threesixty::Subject).where(campaign_id: threesixty_campaign.campaign_id).order(id: :desc).map do |s|
+        subjects = policy_scope(::Threesixty::Subject).includes(:evaluator, :user).where(campaign_id: threesixty_campaign.campaign_id).order(id: :desc).map do |s|
           nomination_requirement = ::Threesixty::NominationRequirements::FindForSubject.call!(s)
           ::Threesixty::SubjectSerializer.new(s, option: option, nomination_requirement: nomination_requirement).to_h
         end
