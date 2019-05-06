@@ -38,18 +38,18 @@ describe ::Clients::Reports::AssignReport do
     let(:adding_report_ids) { [report.id] }
 
     it 'creates ClientsReport without user_access' do
-      expect { subject }.to change { campaign.reports.count }.from(0).to(1)
-      expect(campaign.reports.ids).to eq(adding_report_ids)
+      expect { subject }.to change { campaign.reports.count }.by(1)
+      expect(campaign.reports.ids).to include(*adding_report_ids)
       expect(campaign.clients_reports.first.user_access).to be_falsy
     end
     it 'creates AssessmentsClient' do
-      expect { subject }.to change { campaign.assessments.count }.from(0).to(report.assessments.count)
-      expect(campaign.assessments.ids.sort).to eq(report.assessments.ids.sort)
+      expect { subject }.to change { campaign.assessments.count }.by(6)
+      expect(campaign.assessments.reload.ids).to include(*report.assessments.ids)
     end
     it 'adds user_access' do
-      form.adding_user_access_report_ids = [report.id]
-      subject
-      expect(campaign.clients_reports.first.user_access).to be_truthy
+      clients_report = campaign.clients_reports.first
+      form.adding_user_access_report_ids = [clients_report.report_id]
+      expect { subject }.to change { clients_report.reload.user_access }.from(false).to(true)
     end
 
     context 'Dont creates' do
