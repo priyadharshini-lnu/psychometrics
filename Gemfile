@@ -192,7 +192,7 @@ group :test do
   gem 'faker', '~> 1.8.7'
   gem 'poltergeist', '~> 1.14.0'
   gem 'capybara-screenshot', '~> 1.0.14'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.141.59'
   gem 'shoulda', '~> 3.5.0'
   gem 'database_cleaner', '~> 1.7.0'
   gem 'simplecov', require: false

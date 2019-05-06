@@ -28,20 +28,25 @@ class Assign < ApplicationRecord
   belongs_to :project_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_one :original_assign, foreign_key: :project_assign_id, class_name: 'Assign'
   has_many :original_assigns, foreign_key: :project_assign_id, class_name: 'Assign'
-
   has_many :assigns_reports, inverse_of: :assign # on delete cascade
+  has_many :access_assigns_reports,
+           -> { where(user_access: true) },
+           foreign_key: :assign_id,
+           inverse_of: :assign,
+           class_name: 'AssignsReport'
+  has_many :original_assigns_reports,
+           -> { distinct },
+           through: :original_assigns,
+           source: :access_assigns_reports
   has_many :enabled_assigns_reports, -> { active }, class_name: 'AssignsReport'
   has_many :reports, through: :assigns_reports, dependent: :destroy
-
   has_many :multiple_reports, -> { multiple }, through: :assigns_reports, source: :report
-
   has_many :single_reports, -> { single }, through: :assigns_reports, source: :report
 
   validates_uniqueness_of :assessment_id, scope: [:membership_id], message: :not_uniqueness
   validates :membership, :assessment, presence: true
 
   validate :relevant_membership, if: -> { membership.present? }
-  validate :relevant_assessment, if: -> { assessment.present? }
   validate :relevant_reports, if: -> { report_ids.any? }
 
   enum status: %i(not_started in_progress completed)
@@ -50,6 +55,13 @@ class Assign < ApplicationRecord
   scope :mindmill, lambda {
     joins(:assessment).
       where.has { |assigns| assigns.assessment.type.eq(Assessment::TYPES[:mindmill]) }
+  }
+  scope :projects, ->  { where(project_assign_id: nil) }
+  scope :originals, ->  { where.not(project_assign_id: nil) }
+  scope :with_status, lambda { |status|
+    joining { project_assign.outer }.
+      where.has { |s| (s.project_assign.status == self.statuses[status]) |
+                      ((s.project_assign.id == nil) & (s.status == self.statuses[status])) }
   }
 
   attribute :user_access, :boolean, default: false
@@ -208,13 +220,7 @@ class Assign < ApplicationRecord
   def relevant_membership
     errors.add(:membership) if membership.scope == :administration
   end
-
-  def relevant_assessment
-    # Skip validation if Client is Project and not end level
-    return if membership.client.project? && !membership.client.end_level?
-    errors.add(:assessment) if membership.client.assessment_ids.exclude?(assessment_id)
-  end
-
+  
   def relevant_reports
     errors.add(:reports) if (membership.client.report_ids & assessment.report_ids & report_ids).to_set != report_ids.to_set
   end

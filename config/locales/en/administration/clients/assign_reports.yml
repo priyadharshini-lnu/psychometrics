@@ -9,6 +9,9 @@ en:
           access: 'Access'
         form_edit:
           <<: *FORM_NEW
+          added_reports: Already assigned Reports
+          new_reports: Add new Reports
+          remove: Remove
         form:
           <<: *FORM_NEW
         edit:

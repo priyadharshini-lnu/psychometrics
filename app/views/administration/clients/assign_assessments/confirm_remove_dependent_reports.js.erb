@@ -1,0 +1,7 @@
+var template = $('#mb-confirm-template').html();
+var rendered = $(Mustache.render(template, {title: "<%== t('.title') %>", body: "<%== t('.body', report_names: report_names) %>"}));
+$('#confirm-container').html(rendered.toggleClass('open'));
+rendered.find('.mb-confirm-yes').on('click', function(){
+  $('#resource_is_removing_dependent_reports').prop('checked', true);
+  $('#resource_is_removing_dependent_reports').closest('form').submit();
+});
