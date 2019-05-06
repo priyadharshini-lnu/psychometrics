@@ -1,11 +1,11 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Typography, Button, Row, Col,
+  Layout, Typography, Button, Row,
 } from 'antd'
 import data from './data.json'
 import './Reports.scss'
 
-const { Paragraph, Title } = Typography
+const { Title } = Typography
 const { Content } = Layout
 
 export default function Evaluator () {

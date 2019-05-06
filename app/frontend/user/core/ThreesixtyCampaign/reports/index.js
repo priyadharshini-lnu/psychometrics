@@ -10,7 +10,7 @@ export const fetchReport = campaignId => ({
 export const defaultState = {}
 
 const HANDLERS = {
-  [FETCH_REPORTS]: (state, action) => state, // do nothing action.data,
+  [FETCH_REPORTS]: state => state, // do nothing action.data,
 }
 
 export default function reducer (state = defaultState, action) {

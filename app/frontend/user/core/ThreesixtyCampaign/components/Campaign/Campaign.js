@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import React, { useEffect } from 'react'
 import { Layout, Typography } from 'antd'
 

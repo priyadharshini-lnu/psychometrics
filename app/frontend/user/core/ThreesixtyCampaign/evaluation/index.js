@@ -12,13 +12,13 @@ export const defaultState = {
     user: {
       firstName: 'Mocked',
       lastName: 'User',
-    }
+    },
   },
-  results: null
+  results: null,
 }
 
 const HANDLERS = {
-  [FETCH_EVALUATION]: (state, action) => ({...state, results: action.response})
+  [FETCH_EVALUATION]: (state, action) => ({ ...state, results: action.response }),
 }
 
 export default function reducer (state = defaultState, action) {
