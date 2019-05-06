@@ -43,8 +43,8 @@ module Administration
 
         assign_report_attributes = {
           report_family_id: @report_family.id,
-          report_ids: client.report_ids,
-          user_access_report_ids: client.clients_reports.where(user_access: true).pluck(:report_id)
+          adding_report_ids: client.report_ids,
+          adding_user_access_report_ids: client.clients_reports.where(user_access: true).pluck(:report_id)
         }
         @_resource = ::Clients::Reports::AssignReportForm.
                      new(assign_report_attributes).

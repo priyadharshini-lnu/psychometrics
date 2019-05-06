@@ -20,7 +20,7 @@
               .form-group
                 span.checkbox
                   label
-                    - if resource.user_access_report_ids.include?(report.id)
+                    - if resource.adding_user_access_report_ids.include?(report.id)
                       = hidden_field_tag "resource[removing_user_access_report_ids][#{report.id}]", report.id
                       = check_box_tag "resource[removing_user_access_report_ids][#{report.id}]",
                                       '',
@@ -49,7 +49,7 @@
                   label
                     = check_box_tag "resource[adding_report_ids][#{report.id}]",
                                     report.id,
-                                    resource.report_ids.include?(report.id)
+                                    resource.adding_report_ids.include?(report.id)
                     = report.decorate.display_name
             td
               .form-group
@@ -57,7 +57,7 @@
                   label
                     = check_box_tag "resource[adding_user_access_report_ids][#{report.id}]",
                                     report.id,
-                                    resource.user_access_report_ids.include?(report.id)
+                                    resource.adding_user_access_report_ids.include?(report.id)
                     = t('.user_access')
             td
       br
