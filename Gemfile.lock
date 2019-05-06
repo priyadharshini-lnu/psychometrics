@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git
-  revision: 9bc9d0c485894221d5ec090d34298a10accc8043
+  revision: 0c56b76201a774e6157c8113016311ea2e2b00f3
   branch: master
   specs:
     psychometrics-survey-ui (0.0.1)
@@ -185,8 +185,8 @@ GEM
     carrierwave-base64 (2.5.3)
       carrierwave (>= 0.8.0)
       mime-types (~> 3.0)
-    childprocess (0.5.9)
-      ffi (~> 1.0, >= 1.0.11)
+    childprocess (1.0.1)
+      rake (< 13.0)
     chronic (0.10.2)
     ckeditor (4.2.0)
       cocaine
@@ -677,10 +677,9 @@ GEM
       nokogiri (>= 1.4.0)
       nori (~> 2.4)
       wasabi (~> 3.4)
-    selenium-webdriver (3.0.5)
-      childprocess (~> 0.5)
-      rubyzip (~> 1.0)
-      websocket (~> 1.0)
+    selenium-webdriver (3.141.5926)
+      childprocess (>= 0.5, < 2.0)
+      rubyzip (~> 1.2, >= 1.2.2)
     sentry-raven (2.9.0)
       faraday (>= 0.7.6, < 1.0)
     shellany (0.0.1)
@@ -779,7 +778,6 @@ GEM
       activemodel (>= 5.0)
       debug_inspector
       railties (>= 5.0)
-    websocket (1.2.3)
     websocket-driver (0.6.5)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
@@ -919,7 +917,7 @@ DEPENDENCIES
   rubyXL
   sass-rails (~> 5.0)
   savon (~> 2.11.0)
-  selenium-webdriver (~> 3.0.5)
+  selenium-webdriver (~> 3.141.59)
   sentry-raven (~> 2.9.0)
   shoulda (~> 3.5.0)
   sidekiq (~> 5.1.3)

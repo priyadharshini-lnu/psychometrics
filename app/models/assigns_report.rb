@@ -29,6 +29,7 @@ class AssignsReport < ApplicationRecord
   scope :active, -> { joins(:report).where.not(reports: { disabled: true }) }
 
   before_create :use_license
+  # TODO: seems that this callback is redundant. Investigate
   after_commit ::Callbacks::Models::AssignsReports::UpdateOrRemoveReportsAccess.new
 
   mount_base64_uploader :external_report, FileUploader, file_name: proc { 'external_report' }

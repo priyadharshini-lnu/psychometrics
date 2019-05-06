@@ -1,7 +1,6 @@
-- reports = only_assigned_reports(assign.original_or_self, @reports_ids)
-- if reports.size == 1
-  - report = reports.first
-  - assigns_report = assign.original_or_self.assigns_reports.find_by(report: report)
+- if assign.original_assigns_reports.size == 1
+  - assigns_report = assign.original_assigns_reports.first
+  - report = assigns_report.report
   //// MINDMILL OR COMMON REPORT
   //
 
@@ -28,10 +27,10 @@
                                target: :_blank
   //
   //// END MINDMILL OR COMMON REPORT
-- elsif reports.size > 1
+- elsif assign.original_assigns_reports.size > 1
   = dropdown t('.results'), context: :info, button: { class: "#{'disabled' unless assign.completed?}" }
-    - reports.each do |report|
-      - assigns_report = assign.original_or_self.assigns_reports.find_by(report: report)
+    - assign.original_assigns_reports.each do |assigns_report|
+      - report = assigns_report.report
       = content_tag :li, class: "#{'processing disabled' if assigns_report.generating?}"
         // Don't use link_to helper
         // Because bh gem overwrites this helper for dropdown

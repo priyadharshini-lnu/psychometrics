@@ -1,0 +1,19 @@
+en:
+  activemodel:
+    models:
+      assign_report: 'Assign report Form'
+    attributes:
+      assign_report:
+        is_applying_to_existing_users: 'Apply these changes to existing users'
+        report_family_id: Report Bundle
+        adding_report_ids: Report(s)
+    errors:
+      models:
+        assign_report:
+          attributes:
+            adding_report_ids:
+              report_family_disabled: You selected disabled Report Bundle
+              reports_disabled: You selected disabled Report(s)
+              not_linked_to_report_family: You selected Reports which are not linked to selected Report Bundle
+            removing_report_ids:
+              not_linked_to_report_family: You selected Reports which are not linked to selected Report Bundle

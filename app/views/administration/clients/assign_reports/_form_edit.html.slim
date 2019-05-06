@@ -1,7 +1,6 @@
 = simple_form_for(resource, as: :resource, url: { action: :update }, method: :put, remote: true) do |f|
-  - @reports_assigned.each do |assigned_report|
-    = f.input_field :report_ids, value: assigned_report.id, as: :hidden, multiple: true
   .modal-body
+    = render_error_notification(f.object)
     .form-inputs.clearfix
       .form-group
         = f.label :report_family_id
@@ -10,35 +9,59 @@
       table.table#reports
         thead
           tr
-            th = t('.reports')
-            th = t('.access')
-        tr
-          td = f.input :report_ids,
-                       as: :check_boxes,
-                       collection: @reports_assigned,
-                       label: false,
-                       include_hidden: false,
-                       disabled: true
-          td = f.input :user_access_report_ids,
-                       as: :check_boxes,
-                       collection: @reports_assigned,
-                       label: false,
-                       include_hidden: false,
-                       label_method: proc { t('.user_access') }
-        tr
-          td = f.input :report_ids,
-                       as: :check_boxes,
-                       collection: @reports,
-                       include_hidden: false,
-                       label: false
-          td = f.input :user_access_report_ids,
-                       as: :check_boxes,
-                       collection: @reports,
-                       include_hidden: false,
-                       label: false,
-                       label_method: proc { t('.user_access') }
+            th colspan=3 = t('.added_reports')
+        - @reports_assigned.each_with_index do |report, i|
+          tr
+            td
+              .form-group
+                span.checkbox
+                  = report.decorate.display_name
+            td
+              .form-group
+                span.checkbox
+                  label
+                    - if resource.adding_user_access_report_ids.include?(report.id)
+                      = hidden_field_tag "resource[removing_user_access_report_ids][#{report.id}]", report.id
+                      = check_box_tag "resource[removing_user_access_report_ids][#{report.id}]",
+                                      '',
+                                      true
+                    - else
+                      = check_box_tag "resource[adding_user_access_report_ids][#{report.id}]",
+                                      report.id,
+                                      false
+                    = t('.user_access')
+            td
+              .form-group
+                span.checkbox
+                  label
+                    = check_box_tag "resource[removing_report_ids][#{report.id}]",
+                                    report.id,
+                                    false
+                    = t('.remove')
+        thead
+          tr
+            th colspan=3 = t('.new_reports')
+        - @reports.each do |report|
+          tr
+            td
+              .form-group
+                span.checkbox
+                  label
+                    = check_box_tag "resource[adding_report_ids][#{report.id}]",
+                                    report.id,
+                                    resource.adding_report_ids.include?(report.id)
+                    = report.decorate.display_name
+            td
+              .form-group
+                span.checkbox
+                  label
+                    = check_box_tag "resource[adding_user_access_report_ids][#{report.id}]",
+                                    report.id,
+                                    resource.adding_user_access_report_ids.include?(report.id)
+                    = t('.user_access')
+            td
       br
-      = f.input :apply_to_existing_users, as: :boolean, hint: t('.apply_to_existing_users_hint')
+      = f.input :is_applying_to_existing_users, as: :boolean, hint: t('.apply_to_existing_users_hint')
   .modal-footer
     .btn-group
       = button_tag t('administration.save'),
