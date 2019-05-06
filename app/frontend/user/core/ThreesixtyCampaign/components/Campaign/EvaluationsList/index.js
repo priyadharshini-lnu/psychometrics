@@ -25,7 +25,7 @@ const EvaluationItem = item => (
         <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}`}>
           <Icon type="check-circle" theme="twoTone" twoToneColor={item.approved ? '#52c41a' : '#ccc'} />
           {' '}
-          {userPresenter.getFullName(item.user)}
+          {item.isSelf ? 'Yourself' : userPresenter.getFullName(item.user)}
         </Link>
       </div>
       {item.completed && (

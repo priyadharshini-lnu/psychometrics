@@ -10,11 +10,12 @@ const { Option } = Select
 
 export default function NominationForm (props) {
   const {
-    subject, addNomination, searchEvaluators,
+    addNomination, searchEvaluators,
     match: { params: { campaignId, id: nominationId } },
-    nomination: { relationships },
+    nomination: { subject, relationships },
     autocomplete: { users },
   } = props
+
   const [user, setUser] = useState(null)
   const [role, setRole] = useState(null)
   const [hasErrors, setHasErrors] = useState({ user: false, role: false })
@@ -40,7 +41,7 @@ export default function NominationForm (props) {
         <div>
           Nominate Evaluators to
           {' '}
-          {subject.name}
+          {subject.isSelf ? 'Yourself' : userPresenter.getFullName(subject)}
         </div>
       </Title>
       <div className="form">

@@ -1,6 +1,6 @@
 module Threesixty
   class CampaignSerializer < ActiveModel::Serializer
-    class SubjectSerializer < ActiveModel::Serializer
+    class NomineeSerializer < ActiveModel::Serializer
       attributes :id, :is_self, :campaign_id
       has_one :user, serializer: UserSerializer
 
@@ -9,7 +9,7 @@ module Threesixty
       end
 
       def is_self
-        object.id == current_user.id
+        object.user_id == current_user.id
       end
     end
 
@@ -32,8 +32,18 @@ module Threesixty
 
     attributes :id, :reports
 
-    has_many :nominations, serializer: SubjectSerializer
+    has_many :nominations, serializer: NomineeSerializer
+    has_many :manager_nominations, serializer: NomineeSerializer
     has_many :evaluations, serializer: EvaluationSerializer
+    has_many :manager_evaluations, serializer: EvaluationSerializer
+
+    def manager_nominations
+      instance_options[:manager_subjects] || []
+    end
+
+    def manager_evaluations
+      instance_options[:manager_evaluations] || []
+    end
 
     def nominations
       instance_options[:subjects] || []

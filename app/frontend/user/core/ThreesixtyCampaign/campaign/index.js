@@ -47,7 +47,10 @@ export const defaultState = {
 const HANDLERS = {
   [FETCH_CAMPAIGN]: (state, action) => {
     let newState = setIn(state, ['nominations', 0, 'list'], action.response.nominations)
+    newState = setIn(newState, ['nominations', 1, 'list'], action.response.managerNominations)
     newState = setIn(newState, ['evaluations', 0, 'list'], action.response.evaluations)
+    newState = setIn(newState, ['evaluations', 1, 'list'], action.response.managerEvaluations)
+
     return newState
   },
 }

@@ -3,7 +3,6 @@ import {
   Table, Dropdown, Menu, Icon,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
-import statusPresenter from 'presenters/statusPresenter'
 import css from './NominationTable.scss'
 import InlineInput from './InlineInput'
 
@@ -74,11 +73,7 @@ export default function NominationForm (props) {
   }
 
   const renderApprovalStatus = ({ evaluator }) => ({
-    children: evaluator && statusPresenter.getApprovalStatus(evaluator.approvalStatus),
-  })
-
-  const renderStatus = ({ evaluator }) => ({
-    children: evaluator && statusPresenter.getStatus(evaluator.status),
+    children: evaluator && evaluator.status,
   })
 
   return (
@@ -87,7 +82,7 @@ export default function NominationForm (props) {
         <Column title="Requirements" key="title" render={renderRequirementCell} />
         <Column title="Name" key="name" render={renderNameCell} width="40%" />
         <Column title="Approval Status" render={renderApprovalStatus} key="status" />
-        <Column title="Evaluation Status" render={renderStatus} key="evaluatorStatus" />
+        <Column title="Evaluation Status" dataIndex="subject.evaluatorStatus" key="evaluatorStatus" />
 
         <Column
           key="action"
