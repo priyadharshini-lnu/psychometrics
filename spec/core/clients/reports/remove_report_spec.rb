@@ -25,7 +25,7 @@ describe ::Clients::Reports::RemoveReport do
       let(:new_report) { create(:report, assessment: assessment, assessments: [], report_families: [report_family]) }
 
       it 'removes reports and assessments' do
-        expect { subject }.to change { campaign.clients_reports.count }.from(1).to(0)
+        expect { subject }.to change { campaign.clients_reports.count }.by(-1)
         expect(campaign.assessments_clients.count).to eq(6)
       end
     end
