@@ -7,7 +7,16 @@ module Administration
         before_action :set_resource, only: %i[show edit update sidebar toggle_status copy archive]
         wrap_parameters :threesixty_campaign, include: ::Threesixty::Campaign.attribute_names
 
-        def show; end
+        def show
+          @init_state = {
+            project: {
+              datasheetFields: resource.datasheet_column_names
+            },
+            threeSixtyCampaign: {
+              id: resource.id
+            }
+          }
+        end
 
         def index
           @_filter_form = project.project_campaigns.search(params[:q])

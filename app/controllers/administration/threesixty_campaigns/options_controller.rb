@@ -8,10 +8,7 @@ module Administration
       append_before_action :pundit_authorize
 
       def participant_options
-        render json: {
-          options: threesixty_campaign.option.participants,
-          datasheet_fields: threesixty_campaign.datasheet_column_names
-        }
+        render json: threesixty_campaign.option.participants
       end
 
       def update

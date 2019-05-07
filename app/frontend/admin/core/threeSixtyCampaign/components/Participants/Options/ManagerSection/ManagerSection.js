@@ -9,12 +9,10 @@ export default function ManagerSection ({
 }) {
   const OBJECT_KEY = 'manager'
 
-  function parametersForSwitch (name) {
-    return {
-      value: options[name],
-      onOptionChanged: updateParticipantOptions.bind(this, [OBJECT_KEY, name]),
-    }
-  }
+  const parametersForSwitch = name => ({
+    value: options[name],
+    onOptionChanged: updateParticipantOptions([OBJECT_KEY, name]),
+  })
 
   return (
     <OptionSection label="Manager Options">

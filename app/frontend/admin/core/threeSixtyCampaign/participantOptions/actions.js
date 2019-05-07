@@ -8,11 +8,6 @@ export const ADD_DATASHEET_CRITERIA_WITH_DEFAULT_VALUE = 'threeSixty/option/ADD_
 export const REMOVE_DATASHEET_CRITERIA = 'threeSixty/option/participants/REMOVE_DATASHEET_CRITERIA'
 export const UPDATE_DATASHEET_CRITERIA = 'threeSixty/option/participants/UPDATE_DATASHEET_CRITERIA'
 
-export const getParticipantOption = state => _.get(state, ['threeSixtyCampaign', 'participantOptions'])
-export const getSubjectOption = state => _.get(getParticipantOption(state), ['subject'])
-export const getManagerOption = state => _.get(getParticipantOption(state), ['manager'])
-export const getEvaluatorOption = state => _.get(getParticipantOption(state), ['evaluator'])
-
 export const fetch = campaignId => ({
   type: FETCH_PARTICIPANT_OPTIONS,
   request: {

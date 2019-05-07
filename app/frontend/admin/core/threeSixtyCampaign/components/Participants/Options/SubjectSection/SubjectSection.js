@@ -13,19 +13,17 @@ export default function SubjectSection ({
 }) {
   const OBJECT_KEY = 'subject'
 
-  function parametersForSwitch (name) {
-    return {
-      value: options[name],
-      onOptionChanged: updateParticipantOptions.bind(this, [OBJECT_KEY, name]),
-    }
-  }
+  const parametersForSwitch = name => ({
+    value: options[name],
+    onOptionChanged: updateParticipantOptions([OBJECT_KEY, name]),
+  })
 
   function parametersForDatasheet (name) {
     return {
       criteria: options[name],
-      addCriteria: addDatasheetCriteriaWithDefaultValue.bind(this, [OBJECT_KEY, name]),
-      removeCriteria: removeDatasheetCriteria.bind(this, [OBJECT_KEY, name]),
-      updateCriteria: updateDatasheetCriteria.bind(this, [OBJECT_KEY, name]),
+      addCriteria: () => addDatasheetCriteriaWithDefaultValue([OBJECT_KEY, name]),
+      removeCriteria: removeDatasheetCriteria([OBJECT_KEY, name]),
+      updateCriteria: updateDatasheetCriteria([OBJECT_KEY, name]),
     }
   }
 

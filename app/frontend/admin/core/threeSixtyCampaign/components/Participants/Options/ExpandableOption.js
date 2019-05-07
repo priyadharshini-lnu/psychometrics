@@ -15,7 +15,7 @@ export default function ExpandableOption ({
 
   const renderActionable = () => {
     if (!value || !actionable) return null
-    return <span className={css.actionableContainer}>{actionable}</span>
+    return <span className="mlh">{actionable}</span>
   }
 
   return (

@@ -6,18 +6,16 @@ import EvaluatorSection from './EvaluatorSection'
 
 function Options ({
   fetchParticipantOptions,
-  setCurrentCampaignId,
   match: {
     params: { campaignId },
   },
 }) {
   useEffect(() => {
-    setCurrentCampaignId(campaignId)
     fetchParticipantOptions(campaignId)
   }, [])
 
   return (
-    <div className={css.optionContainer}>
+    <div className={css.container}>
       <EvaluatorSection />
 
       <ManagerSection />
