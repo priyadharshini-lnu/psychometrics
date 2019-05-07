@@ -1,5 +1,3 @@
-import _ from 'lodash'
-
 export const FETCH_PARTICIPANT_OPTIONS = 'threeSixty/option/FETCH_PARTICIPANT_OPTIONS'
 export const UPDATE_PARTICIPANT_OPTIONS = 'threeSixty/option/UPDATE_PARTICIPANT_OPTIONS'
 export const SYNC_PARTICIPANT_OPTIONS = 'threeSixty/option/SYNC_PARTICIPANT_OPTIONS'
