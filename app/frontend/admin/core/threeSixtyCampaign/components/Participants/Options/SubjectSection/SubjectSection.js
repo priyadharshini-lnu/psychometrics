@@ -1,6 +1,6 @@
 import React from 'react'
 import { Button } from 'antd'
-import CriteriaList from 'admin/core/project/components/DataSheet'
+import CriteriaList from 'admin/core/project/components/CriteriaList'
 import OptionSection from '../OptionSection'
 import ExpandableOption from '../ExpandableOption'
 
