@@ -19,22 +19,18 @@ module Threesixty
       end
 
       def create_campaigns_user(evaluator)
-        user = evaluator[:evaluator_user] || ::Users::Regular.find_by(
-          email: evaluator[:evaluator_email],
-          project: project,
-        ) || ::Users::Regular.create!(
-          first_name: evaluator[:evaluator_first_name],
-          last_name: evaluator[:evaluator_last_name],
-          email: evaluator[:evaluator_email],
-          project: project,
-          create_by_invite: true
-        )
+        user = evaluator[:evaluator_user] ||
+               ::Users::Regular.find_or_create_by(email: evaluator[:evaluator_email], project: project) do |user|
+                 user.first_name = evaluator[:evaluator_first_name]
+                 user.last_name = evaluator[:evaluator_last_name]
+                 user.create_by_invite = true
+               end
         CampaignsUser.find_or_create_by!(user: user, campaign: threesixty_campaign.campaign)
       end
 
       def create_evaluator(evaluator_attrs, campaigns_user)
         evaluator = ::Threesixty::Evaluator.find_or_create_by!(user: campaigns_user.user, campaign: threesixty_campaign.campaign)
-        # TODO (atanych): any idea with counter cache? We need to count only active_participants (check scope :active)
+        # TODO: (atanych): any idea with counter cache? We need to count only active_participants (check scope :active)
         evaluator.increment!(:evaluations_count)
         evaluator_attrs[:subject].increment!(:evaluators_count)
       end
