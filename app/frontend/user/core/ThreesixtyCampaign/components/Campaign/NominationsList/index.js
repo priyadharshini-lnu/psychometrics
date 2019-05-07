@@ -2,6 +2,7 @@ import React from 'react'
 import { List, Collapse, Icon } from 'antd'
 import { Link } from 'react-router-dom'
 import './NominationsList.scss'
+import connect from './connect'
 
 const { Panel } = Collapse
 
@@ -28,7 +29,7 @@ const CollapseItem = item => (
   </Collapse>
 )
 
-export default function EvaluatorsList ({ nominations }) {
+function EvaluatorsList ({ nominations }) {
   return (
     <List
       className="nominations-list"
@@ -40,3 +41,4 @@ export default function EvaluatorsList ({ nominations }) {
     />
   )
 }
+export default connect(EvaluatorsList)

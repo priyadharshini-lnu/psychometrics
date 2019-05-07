@@ -1,13 +1,13 @@
 # frozen_string_literal: true
 
 module Threesixty::EndUser
-  class NominantSerializer < ActiveModel::Serializer
-    attributes :id, :is_subject, :role, :approval_status, :status
+  class NomineeSerializer < ActiveModel::Serializer
+    attributes :id, :is_subject, :approval_status, :status
 
     has_one :user, serializer: UserSerializer
-    has_one :role, serializer: RelationshipSerializer
+    has_one :relationship, serializer: RelationshipSerializer
 
-    def role
+    def relationship
       object.participant_role(current_user.id)
     end
 

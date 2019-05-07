@@ -1,4 +1,4 @@
-const FETCH_REPORTS = 'threeSixty/managers/FETCH_REPORTS'
+const FETCH_REPORTS = 'threeSixty/report/FETCH_REPORTS'
 
 export const fetchReport = campaignId => ({
   type: FETCH_REPORTS,

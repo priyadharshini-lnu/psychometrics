@@ -1,6 +1,6 @@
 import { setIn } from 'utils/immutable'
 
-const FETCH_CAMPAIGN = 'threeSixty/managers/FETCH_CAMPAIGN'
+const FETCH_CAMPAIGN = 'threeSixty/campaign/FETCH_CAMPAIGN'
 
 export const fetchCampaign = campaignId => ({
   type: FETCH_CAMPAIGN,

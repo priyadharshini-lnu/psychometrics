@@ -24,7 +24,7 @@ const CollapseItem = item => (
   </Collapse>
 )
 
-export default function EvaluatorsList ({ reports }) {
+export default function ReportsList ({ reports }) {
   return (
     <List
       size="large"

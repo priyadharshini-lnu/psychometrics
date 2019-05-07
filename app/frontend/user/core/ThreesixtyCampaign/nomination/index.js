@@ -2,9 +2,9 @@ import _ from 'lodash'
 import { updateIn, setIn } from 'utils/immutable'
 import { without } from 'lodash/fp'
 
-const FETCH_NOMINATION = 'threeSixty/managers/FETCH_NOMINATION'
-const REMOVE_NOMINATION = 'threeSixty/managers/REMOVE_NOMINATION'
-const ADD_NOMINATION = 'threeSixty/managers/ADD_NOMINATION'
+const FETCH_NOMINATION = 'threeSixty/nomination/FETCH_NOMINATION'
+const REMOVE_NOMINATION = 'threeSixty/nomination/REMOVE_NOMINATION'
+const ADD_NOMINATION = 'threeSixty/nomination/ADD_NOMINATION'
 
 export const fetchNomination = ({ campaignId, id }) => ({
   type: FETCH_NOMINATION,
@@ -37,7 +37,7 @@ export const addNomination = ({
 
 const HANDLERS = {
   [FETCH_NOMINATION]: (state, action) => {
-    const evaluators = _.groupBy(action.response.evaluators, 'role.name')
+    const evaluators = _.groupBy(action.response.evaluators, 'relationship.name')
 
     return {
       ...state, ...action.response, evaluators,

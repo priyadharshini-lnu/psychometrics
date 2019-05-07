@@ -3,8 +3,9 @@ import { Link } from 'react-router-dom'
 import {
   Menu, Dropdown, List, Collapse, Icon,
 } from 'antd'
-import './EvaluationsList.scss'
 import userPresenter from 'presenters/userPresenter'
+import connect from './connect'
+import './EvaluationsList.scss'
 
 const { Panel } = Collapse
 
@@ -54,8 +55,7 @@ const CollapseItem = item => (
   </Collapse>
 )
 
-
-export default function EvaluationsList ({ evaluations }) {
+function EvaluationsList ({ evaluations }) {
   return (
     <List
       size="large"
@@ -67,3 +67,5 @@ export default function EvaluationsList ({ evaluations }) {
     />
   )
 }
+
+export default connect(EvaluationsList)

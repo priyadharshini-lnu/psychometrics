@@ -1,7 +1,7 @@
 module Threesixty
   class NominationSerializer < ActiveModel::Serializer
     attributes :id, :is_self, :requirements
-    has_many :evaluators, serializer: Threesixty::EndUser::NominantSerializer
+    has_many :evaluators, serializer: Threesixty::EndUser::NomineeSerializer
     has_many :relationships, serializer: RelationshipSerializer
     has_one :subject, serializer: UserSerializer
 

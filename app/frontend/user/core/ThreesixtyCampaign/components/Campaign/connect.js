@@ -1,9 +1,7 @@
 import { connect } from 'react-redux'
 import { fetchCampaign } from 'user/core/ThreesixtyCampaign/campaign'
 
-const mapStateToProps = state => ({
-  ...state.threeSixtyCampaign.campaign,
-})
+const mapStateToProps = () => ({})
 
 const mapDispatchToProps = {
   fetchCampaign,

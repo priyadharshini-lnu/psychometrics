@@ -1,5 +1,5 @@
 module Threesixty
-  class NominationsByUser < Rectify::Query
+  class EvaluationsByUser < Rectify::Query
     def initialize(campaign, current_user)
       @campaign = campaign
       @current_user = current_user
@@ -12,14 +12,13 @@ module Threesixty
                                .where.not(subject_id: current_user.id)
                                .pluck(:subject_id)
 
-      subjects = @campaign.subjects.where(user_id: current_user.id)
-                   .or(Subject.where(user_id: manager_ids))
-                   .includes(:user)
+      evaluations = @campaign.participants.includes(:evaluator)
+                      .where(evaluator_id: current_user.id)
 
-      manager_subjects = @campaign.subjects.includes(:user)
-                           .where(user_id: [manager_ids - [current_user.id]])
+      manager_evaluations = @campaign.participants.includes(:subject)
+                              .where(subject_id: manager_ids)
 
-      [subjects, manager_subjects]
+      [evaluations, manager_evaluations]
     end
 
     private
