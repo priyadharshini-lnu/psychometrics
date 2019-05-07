@@ -11,7 +11,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git
-  revision: fe00652415280ae7045d5d8c347edf9c635181b5
+  revision: fefc8731c924f79718590612f79ab1d6f83de479
   branch: master
   specs:
     psychometrics-reports-ui (0.0.1)
@@ -20,7 +20,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git
-  revision: 0c56b76201a774e6157c8113016311ea2e2b00f3
+  revision: 1c2b0d1f2bd048a37b31c2de590642de9683afe1
   branch: master
   specs:
     psychometrics-survey-ui (0.0.1)
