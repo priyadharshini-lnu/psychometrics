@@ -5,7 +5,7 @@ import {
 
 const { Sider } = Layout
 
-export default function Sidebar ({ history, match, nominations }) {
+export default function Sidebar ({ history, match }) {
   const goBack = () => {
     history.push(`/campaigns/${match.params.campaignId}`)
   }

@@ -3,24 +3,16 @@
 module Threesixty
   module Participants
     class GetApprovalStatus < BaseCommand
-      WAITING = 'need_approval'
-      APPROVED = 'approved'
-      DENIED = 'denied'
-
-      def initialize(evaluator, subject, option, nomination_requirement)
+      def initialize(evaluator, subject)
+        @campaign = evaluator.campaign
         @evaluator = evaluator
         @subject = subject
-        @option = option || Threesixty::Option.new
-        @nomination_requirement = nomination_requirement
       end
 
       def call
-        return broadcast :ok, WAITING
-
-        return broadcast :ok, APPROVED
-        return broadcast :ok, DENIED
-
-        broadcast :ok, WAITING
+        participant = @campaign.participants.find_by(evaluator_id: @evaluator.user_id, subject_id: @subject.user_id)
+        return broadcast :ok, participant.manager_status if participant
+        return broadcast :ok, :waiting
       end
 
       private

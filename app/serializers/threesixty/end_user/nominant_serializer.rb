@@ -12,7 +12,7 @@ module Threesixty::EndUser
     end
 
     def approval_status
-      Threesixty::Participants::GetApprovalStatus.call!(object, object.subject, @instance_options[:option], @instance_options[:nomination_requirement])
+      Threesixty::Participants::GetApprovalStatus.call!(object, object.subject)
     end
 
     def status

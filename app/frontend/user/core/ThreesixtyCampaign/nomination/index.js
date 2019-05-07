@@ -1,3 +1,4 @@
+import _ from 'lodash'
 import { updateIn, setIn } from 'utils/immutable'
 import { without } from 'lodash/fp'
 

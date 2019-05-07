@@ -53,7 +53,7 @@ export default function InlineInput ({
             </Form.Item>
           </Form>
         )
-        : <a className="add-link" onClick={() => setEdit(!edit)}>{title}</a>}
+        : <Button type="primary" className="add-link" onClick={() => setEdit(!edit)}>{title}</Button>}
     </div>
   )
 }

@@ -1,6 +1,6 @@
 const FETCH_REPORTS = 'threeSixty/managers/FETCH_REPORTS'
 
-export const fetchCampaign = campaignId => ({
+export const fetchReport = campaignId => ({
   type: FETCH_REPORTS,
   request: {
     url: `/campaigns/${campaignId}.json`,
@@ -10,7 +10,7 @@ export const fetchCampaign = campaignId => ({
 export const defaultState = {}
 
 const HANDLERS = {
-  [FETCH_REPORTS]: (state, action) => state, // do nothing action.data,
+  [FETCH_REPORTS]: state => state, // do nothing action.data,
 }
 
 export default function reducer (state = defaultState, action) {

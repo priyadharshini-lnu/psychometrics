@@ -8,6 +8,7 @@ class Participant < ApplicationRecord
   def threesixty_evaluator
     Threesixty::Evaluator.find_by(campaign_id: campaign_id, user_id: evaluator_id)
   end
+
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
   end

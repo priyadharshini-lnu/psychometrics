@@ -29,7 +29,6 @@ const CollapseItem = item => (
 )
 
 export default function EvaluatorsList ({ nominations }) {
-  console.log(nominations)
   return (
     <List
       className="nominations-list"

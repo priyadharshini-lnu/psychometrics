@@ -12,8 +12,8 @@ module Threesixty
     end
 
     def evaluators
-      ids = participants.map(&:evaluator_id)
-      Evaluator.where(user_id: ids)
+      ids = participants.where(campaign_id: campaign_id).map(&:evaluator_id)
+      Threesixty::Evaluator.where(user_id: ids)
     end
   end
 end
