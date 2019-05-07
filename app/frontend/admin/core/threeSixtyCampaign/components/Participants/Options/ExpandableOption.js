@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Row, Col, Switch, Checkbox,
 } from 'antd'
-import classnames from 'classnames'
+import cs from 'classnames'
 import css from './Options.scss'
 
 export default function ExpandableOption ({
@@ -10,7 +10,7 @@ export default function ExpandableOption ({
 }) {
   const renderExpandableBlock = () => {
     if (!value || !children) return null
-    return <div className={classnames({ [css.checkboxContainer]: type === 'checkbox' })}>{children}</div>
+    return <div className={cs({ [css.checkboxContainer]: type === 'checkbox' })}>{children}</div>
   }
 
   const renderActionable = () => {
@@ -19,7 +19,7 @@ export default function ExpandableOption ({
   }
 
   return (
-    <div className={classnames({ mbs: type === 'checkbox', mbl: type !== 'checkbox' })}>
+    <div className={cs({ mbs: type === 'checkbox', mbl: type !== 'checkbox' })}>
       <Row>
         <Col span={24}>
           <Row>
