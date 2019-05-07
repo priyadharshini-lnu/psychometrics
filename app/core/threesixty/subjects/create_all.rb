@@ -12,6 +12,7 @@ module Threesixty
       def call
         result = subjects.map do |_key, subject|
           campaigns_user = create_campaigns_user(subject)
+          create_membership(campaigns_user)
           create_subject(campaigns_user)
         end
         broadcast :ok, result
@@ -35,6 +36,10 @@ module Threesixty
       private
 
       attr_reader :subjects, :threesixty_campaign, :project
+
+      def create_membership(campaigns_user)
+        threesixty_campaign.project.memberships.create!(user_id: campaigns_user.user_id)
+      end
     end
   end
 end

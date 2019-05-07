@@ -53,7 +53,6 @@ module Administration
           redirect_url = root_url(domain: Settings.domain, subdomain: resource.project.try(:subdomain), spoof_token: spoof_token)
         end
         redirect_url ||= administration_root_path
-        byebug
         flash.now[:success] = t('.successfully', name: resource.user.decorate.display_name)
         redirect_to redirect_url
       end
