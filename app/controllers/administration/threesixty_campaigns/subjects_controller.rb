@@ -4,7 +4,7 @@ module Administration
   module ThreesixtyCampaigns
     class SubjectsController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[show edit]
+      before_action :set_resource, only: %i[show edit update spoof]
       append_before_action :pundit_authorize
 
       def index
@@ -24,6 +24,16 @@ module Administration
         render json: users
       end
 
+      def update
+        form = ::Threesixty::Subjects::UpdateForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
+        if form.valid?
+          resource.update(form)
+          render json: :ok
+        else
+          render json: { errors: form.errors.messages }, status: :bad_request
+        end
+      end
+
       def create_all
         form = ::Threesixty::Subjects::CreateAllForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
@@ -32,6 +42,20 @@ module Administration
         else
           render json: { errors: form.errors.messages }, status: :bad_request
         end
+      end
+
+      def spoof
+        if resource.user.is?(:superadmin, :project_admin)
+          sign_in(resource.user)
+        else
+          spoof_token = SecureRandom.urlsafe_base64(64)
+          resource.user.update_column(:spoof_token, spoof_token)
+          redirect_url = root_url(domain: Settings.domain, subdomain: resource.project.try(:subdomain), spoof_token: spoof_token)
+        end
+        redirect_url ||= administration_root_path
+        byebug
+        flash.now[:success] = t('.successfully', name: resource.user.decorate.display_name)
+        redirect_to redirect_url
       end
 
       private

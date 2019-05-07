@@ -1,10 +1,10 @@
 import React from 'react'
 import { Menu } from 'antd'
 
-const ActionsMenu = () => (
+const ActionsMenu = ({ subjectId, campaignId }) => (
   <Menu>
     <Menu.Item key="0">
-      <a href="nth">Login</a>
+      <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/spoof`}>Login</a>
     </Menu.Item>
     <Menu.Item key="1">
       <a href="nth">View Report</a>

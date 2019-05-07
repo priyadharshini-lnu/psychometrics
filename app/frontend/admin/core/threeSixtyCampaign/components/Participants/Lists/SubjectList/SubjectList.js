@@ -60,8 +60,8 @@ export default function SubjectList ({
 
             <Column
               key="action"
-              render={() => (
-                <Dropdown overlay={ActionsMenu} trigger={['click']}>
+              render={({ id }) => (
+                <Dropdown overlay={() => ActionsMenu({ subjectId: id, campaignId })} trigger={['click']}>
                   <div className={css.actions}>
                     <Icon type="ellipsis" />
                   </div>
