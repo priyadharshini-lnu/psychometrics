@@ -20,6 +20,7 @@ export default function Sidebar ({ history, match }) {
         <Progress
           className="threesixty-progress"
           type="circle"
+          strokeColor="#00B4AA"
           percent={30}
           format={percent => (
             <div>

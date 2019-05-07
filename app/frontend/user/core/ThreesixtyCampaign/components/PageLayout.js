@@ -6,7 +6,7 @@ export default function PageLayout ({ children }) {
   return (
     <Layout className="ant-layout">
       <Navigation />
-      <Layout hasSider>
+      <Layout hasSider style={{ marginTop: '16px' }}>
         {children}
       </Layout>
     </Layout>

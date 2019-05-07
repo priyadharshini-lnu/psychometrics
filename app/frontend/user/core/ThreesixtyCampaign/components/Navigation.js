@@ -4,12 +4,12 @@ import { Layout, Menu } from 'antd'
 
 export default function Navigation () {
   return (
-    <Layout.Header>
+    <Layout.Header style={{ background: '#fff' }}>
       <Route path="/campaigns/:id">
         {({ match }) => (
           <Menu
-            theme="dark"
             mode="horizontal"
+            theme="light"
             style={{ lineHeight: '64px' }}
           >
             <Menu.Item>
