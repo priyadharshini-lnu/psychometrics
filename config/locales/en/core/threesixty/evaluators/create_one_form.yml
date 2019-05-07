@@ -1,0 +1,16 @@
+en:
+  activemodel:
+    errors:
+      models:
+        create_one:
+          attributes:
+            relationship_name:
+              invalid: 'Relationship is invalid'
+              blank: "Relationship can't be blank"
+            subject_email:
+              invalid: 'Subject Email is invalid'
+              blank: "Subject Email can't be blank"
+            evaluator_email:
+              invalid: 'Evaluator Email is invalid'
+              blank: "Evaluator Email can't be blank"
+              already_exists: 'The subject with this evaluator are already connected'

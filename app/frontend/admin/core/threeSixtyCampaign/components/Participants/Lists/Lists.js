@@ -6,6 +6,7 @@ import settings from '../../../settings'
 import SubjectList from './SubjectList'
 import EvaluatorList from './EvaluatorList'
 import ManagerList from './ManagerList'
+import ParticipantModal from './ParticipantModal'
 
 const Lists = ({ history, routes }) => {
   const onChange = e => routeUtils.moveTo(history, settings.urlPrefix, e.target.value)
@@ -19,6 +20,7 @@ const Lists = ({ history, routes }) => {
       </Radio.Group>
       <Divider />
       <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+      <ParticipantModal />
     </div>
   )
 }

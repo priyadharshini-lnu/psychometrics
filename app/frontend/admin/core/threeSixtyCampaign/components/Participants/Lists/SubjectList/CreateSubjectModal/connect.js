@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import { closeModal } from 'admin/core/temp/modals'
-import { searchUsersInProject } from 'admin/core/temp/autocomplete'
+import { search } from 'admin/core/temp/autocomplete'
 import { createAll, fillSubjects } from 'admin/core/threeSixtyCampaign/subjects'
 
 export default connect(
@@ -12,14 +12,14 @@ export default connect(
     },
     temp: {
       modals: { current },
-      autocomplete: { users },
+      autocomplete: { users = [] },
     },
   }) => ({
-    errors, current, tempUsers: users, subjects: attrs,
+    errors, current, autocompletedUsers: users, subjects: attrs,
   }),
   {
     closeModal,
-    searchUsersInProject,
+    search,
     createAll,
     fillSubjects,
   },
