@@ -18,14 +18,12 @@ export default function SubjectSection ({
     onOptionChanged: updateParticipantOptions([OBJECT_KEY, name]),
   })
 
-  function parametersForDatasheet (name) {
-    return {
-      criteria: options[name],
-      addCriteria: () => addDatasheetCriteriaWithDefaultValue([OBJECT_KEY, name]),
-      removeCriteria: removeDatasheetCriteria([OBJECT_KEY, name]),
-      updateCriteria: updateDatasheetCriteria([OBJECT_KEY, name]),
-    }
-  }
+  const parametersForDatasheet = name => ({
+    criteria: options[name],
+    addCriteria: () => addDatasheetCriteriaWithDefaultValue([OBJECT_KEY, name]),
+    removeCriteria: removeDatasheetCriteria([OBJECT_KEY, name]),
+    updateCriteria: updateDatasheetCriteria([OBJECT_KEY, name]),
+  })
 
   return (
     <OptionSection label="Subject Options">

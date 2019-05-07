@@ -7,12 +7,12 @@
   margin: 0px 10px !important;
 }
 
-.criteriaValue {
+.value {
   @extend .criteriaSelectList;
   margin-right: 10px !important;
 }
 
-.addCriteriaLink {
+.addLink {
   color: #1890ff;
 }
 
@@ -21,15 +21,11 @@
   color: red;
 }
 
-.criteriaContainer {
-  margin-bottom: 4px;
-}
-
-.criteriaAddDeleteIcon {
+.addDeleteIcon {
   font-size: 18px;
 }
 
-.addCriteriaIcon {
-  @extend .criteriaAddDeleteIcon;
+.addIcon {
+  @extend .addDeleteIcon;
   margin-left: 3px
 }

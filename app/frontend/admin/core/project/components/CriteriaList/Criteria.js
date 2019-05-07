@@ -1,8 +1,11 @@
 import React from 'react'
-import { Input, Select } from 'antd'
+import { Input, Select, Icon } from 'antd'
 import css from './styles.scss'
 
-export default function Criteria ({ datasheetFields, condition: { field, operator, value }, updateCriteria }) {
+
+export default function Criteria ({
+  datasheetFields, condition: { field, operator, value }, updateCriteria, addCriteria, removeCriteria,
+}) {
   const valueAttr = field ? { value: field } : {}
 
   function fieldSelectList () {
@@ -40,13 +43,17 @@ export default function Criteria ({ datasheetFields, condition: { field, operato
       {operator === 'equal' ? (
         <Input
           value={value}
-          className={css.criteriaValue}
+          className={css.value}
           size="small"
           onChange={(e) => {
             updateCriteria('value', e.target.value)
           }}
         />
       ) : null}
+      <span>
+        <Icon type="minus-circle" onClick={removeCriteria} className={css.addDeleteIcon} />
+        <Icon type="plus-circle" onClick={addCriteria} className={css.addIcon} />
+      </span>
     </span>
   )
 }
