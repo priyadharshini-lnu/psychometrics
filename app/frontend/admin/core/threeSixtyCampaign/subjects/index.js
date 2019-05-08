@@ -7,6 +7,8 @@ const FILL_SUBJECTS = 'threeSixty/subjects/FILL_SUBJECTS'
 export const CREATE_ALL = 'threeSixty/subjects/CREATE_ALL'
 export const CREATE_ALL_FAILURE = 'threeSixty/subjects/CREATE_ALL_FAILURE'
 export const CLEAR_FORM = 'threeSixty/subjects/CLEAR_FORM'
+export const UPDATE = 'threeSixty/subjects/UPDATE'
+export const REMOVE = 'threeSixty/subjects/REMOVE'
 
 export const defaultState = {
   list: [],
@@ -34,6 +36,23 @@ export const createAll = (campaignId, subjects) => ({
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/create_all`,
     body: { subjects },
+  },
+})
+
+export const update = (campaignId, subjectId, data) => ({
+  type: UPDATE,
+  request: {
+    method: 'put',
+    url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}`,
+    body: data,
+  },
+})
+
+export const remove = (campaignId, subjectId) => ({
+  type: REMOVE,
+  request: {
+    method: 'delete',
+    url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}`,
   },
 })
 

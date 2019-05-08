@@ -13,6 +13,8 @@ const { Column } = Table
 
 export default function SubjectList ({
   fetchSubjects,
+  update,
+  remove,
   subjects,
   openModal,
   match: {
@@ -23,6 +25,9 @@ export default function SubjectList ({
   useEffect(() => {
     fetchSubjects(campaignId)
   }, [])
+
+  const updateSubject = (subjectId, data) => update(campaignId, subjectId, data)
+  const removeSubject = subjectId => remove(campaignId, subjectId)
 
   return (
     <>
@@ -61,7 +66,12 @@ export default function SubjectList ({
             <Column
               key="action"
               render={({ id }) => (
-                <Dropdown overlay={() => ActionsMenu({ subjectId: id, campaignId })} trigger={['click']}>
+                <Dropdown
+                  overlay={() => ActionsMenu({
+                    subjectId: id, campaignId, updateSubject, removeSubject,
+                  })}
+                  trigger={['click']}
+                >
                   <div className={css.actions}>
                     <Icon type="ellipsis" />
                   </div>

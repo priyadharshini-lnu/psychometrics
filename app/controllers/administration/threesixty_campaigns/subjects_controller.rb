@@ -4,7 +4,7 @@ module Administration
   module ThreesixtyCampaigns
     class SubjectsController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[show edit update spoof]
+      before_action :set_resource, only: %i[show edit update destroy spoof]
       append_before_action :pundit_authorize
 
       def index
@@ -32,6 +32,11 @@ module Administration
         else
           render json: { errors: form.errors.messages }, status: :bad_request
         end
+      end
+
+      def destroy
+        resource.destroy!
+        render json: :ok
       end
 
       def create_all

@@ -1,7 +1,9 @@
 import React from 'react'
 import { Menu } from 'antd'
 
-const ActionsMenu = ({ subjectId, campaignId }) => (
+const ActionsMenu = ({
+  subjectId, campaignId, updateSubject, removeSubject,
+}) => (
   <Menu>
     <Menu.Item key="0">
       <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/spoof`}>Login</a>
@@ -9,36 +11,81 @@ const ActionsMenu = ({ subjectId, campaignId }) => (
     <Menu.Item key="1">
       <a href="nth">View Report</a>
     </Menu.Item>
-    <Menu.Item key="2">
-      <a href="nth">View Responses Received</a>
-    </Menu.Item>
     <Menu.Divider />
     <Menu.Item key="3">
-      <a href="nth">Approve Report...</a>
+      <div
+        onClick={() => updateSubject(subjectId, { report_approval_status: 'approved' })}
+        role="button"
+        tabIndex={-1}
+      >
+        Approve Report...
+      </div>
     </Menu.Item>
     <Menu.Item key="4">
-      <a href="nth">Remove Report Approval...</a>
+      <div
+        onClick={() => updateSubject(subjectId, { report_approval_status: 'waiting' })}
+        role="button"
+        tabIndex={-1}
+      >
+        Remove Report Approval...
+      </div>
     </Menu.Item>
     <Menu.Divider />
     <Menu.Item key="5">
-      <a href="nth">Release Report...</a>
+      <div
+        onClick={() => updateSubject(subjectId, { report_release_status: 'release' })}
+        role="button"
+        tabIndex={-1}
+      >
+        Release Report..
+      </div>
     </Menu.Item>
     <Menu.Item key="6">
-      <a href="nth">Hold Report...</a>
+      <div
+        onClick={() => updateSubject(subjectId, { report_release_status: 'on_hold' })}
+        role="button"
+        tabIndex={-1}
+      >
+        Hold Report...
+      </div>
     </Menu.Item>
     <Menu.Item key="7">
-      <a href="nth">Remove Report Hold/Release...</a>
+      <div
+        onClick={() => updateSubject(subjectId, { report_release_status: 'waiting' })}
+        role="button"
+        tabIndex={-1}
+      >
+        Remove Report Hold/Release..
+      </div>
     </Menu.Item>
     <Menu.Divider />
     <Menu.Item key="8">
-      <a href="nth">Mark As Done...</a>
+      <div
+        onClick={() => updateSubject(subjectId, { evaluation_status: 'completed' })}
+        role="button"
+        tabIndex={-1}
+      >
+        Mark As Done...
+      </div>
     </Menu.Item>
     <Menu.Item key="9">
-      <a href="nth">Unmark As Done...</a>
+      <div
+        onClick={() => updateSubject(subjectId, { evaluation_status: 'in_progress' })}
+        role="button"
+        tabIndex={-1}
+      >
+        Unmark As Done...
+      </div>
     </Menu.Item>
     <Menu.Divider />
     <Menu.Item key="10">
-      <a href="nth">Remove From Project...</a>
+      <div
+        onClick={() => removeSubject(subjectId)}
+        role="button"
+        tabIndex={-1}
+      >
+        Remove From Project...
+      </div>
     </Menu.Item>
   </Menu>
 )
