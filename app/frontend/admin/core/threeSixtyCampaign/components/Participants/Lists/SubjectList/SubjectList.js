@@ -14,6 +14,7 @@ const { Column } = Table
 export default function SubjectList ({
   fetchSubjects,
   subjects,
+  openModal,
   match: {
     params: { campaignId },
   },
@@ -37,7 +38,19 @@ export default function SubjectList ({
       </Row>
       <Row>
         <Col span={24}>
-          <Table className="mtm" rowKey="id" dataSource={subjects} pagination={false}>
+          <Table
+            className="mtm"
+            rowKey="id"
+            dataSource={subjects}
+            pagination={false}
+            onRow={record => ({
+              onClick: (e) => {
+                if (['TR', 'TD'].includes(e.target.tagName)) {
+                  openModal('ParticipantModal', record.user)
+                }
+              },
+            })}
+          >
             <Column title="Name" key="fullName" render={({ user }) => userPresenter.getFullName(user)} />
             <Column title="Email" dataIndex="user.email" key="email" />
             <Column title="Evaluations Received" dataIndex="evaluators" key="received_evaluations" />

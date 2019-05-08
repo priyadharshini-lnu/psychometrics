@@ -12,4 +12,10 @@ class Participant < ApplicationRecord
   def threesixty_subject
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
   end
+
+  enum manager_status: %i[waiting approved denied], _prefix: :manager
+  enum evaluator_status: %i[waiting approved denied], _prefix: :evaluator
+
+  scope :active, -> { where.not(manager_status: :denied, evaluator_status: :denied) }
+
 end
