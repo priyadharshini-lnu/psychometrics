@@ -10,7 +10,7 @@ const withSkeleton = WrapedComponent => (props) => {
       <div className={cs({ hidden: loading })}>
         <WrapedComponent {...props} />
       </div>
-      {loading ? <Skeleton active size="large" /> : null}
+      {loading && <Skeleton active size="large" />}
     </div>
   )
 }

@@ -40,7 +40,7 @@ export default function Criteria ({
         <Select.Option key="is_same_as_subject">Is Same as Subject</Select.Option>
         <Select.Option key="equal">Is</Select.Option>
       </Select>
-      {operator === 'equal' ? (
+      {operator === 'equal' && (
         <Input
           value={value}
           className={css.value}
@@ -49,9 +49,9 @@ export default function Criteria ({
             updateCriteria('value', e.target.value)
           }}
         />
-      ) : null}
+      )}
       <span>
-        <Icon type="minus-circle" onClick={removeCriteria} className={css.addDeleteIcon} />
+        <Icon type="minus-circle" onClick={removeCriteria} className={css.deleteIcon} />
         <Icon type="plus-circle" onClick={addCriteria} className={css.addIcon} />
       </span>
     </span>
