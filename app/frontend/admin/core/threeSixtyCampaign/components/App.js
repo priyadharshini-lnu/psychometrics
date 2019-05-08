@@ -7,10 +7,10 @@ import routes from '../routes'
 import Menu from './Menu'
 import settings from '../settings'
 
-export default function App ({ initState }) {
+export default function App () {
   return (
     <div className="ms" style={{ background: 'white' }}>
-      <Provider store={store(initState)}>
+      <Provider store={store}>
         <Router>
           <Menu routes={routes} />
           <RouteList routes={routes} urlPrefix={settings.urlPrefix} />

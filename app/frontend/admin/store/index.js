@@ -16,12 +16,12 @@ if (__DEV__) {
   }
 }
 
-export default (defaultState = {}) => {
-  const store = createStore(
-    rootReducers,
-    _.merge(initState, defaultState),
-    composeEnhancers(applyMiddleware(api, sagaMiddleware, logger)),
-  )
-  sagaMiddleware.run(rootSagas)
-  return store
-}
+const __INITIAL_STATE__ = window.__INITIAL_STATE__ || {}
+
+const store = createStore(rootReducers, _.merge(
+  initState, __INITIAL_STATE__,
+), composeEnhancers(applyMiddleware(api, sagaMiddleware, logger)))
+
+sagaMiddleware.run(rootSagas)
+
+export default store

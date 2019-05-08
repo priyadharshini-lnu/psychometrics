@@ -128,7 +128,6 @@ gem 'whenever', '~> 0.9.7', require: false
 gem 'rectify', '~> 0.13.0'
 
 gem 'hashids', '~> 1.0.5'
-gem 'react-rails', '~> 1.10.0'
 gem 'bootstrap-slider-rails'
 
 gem 'money-rails', '~> 1.7.0'
