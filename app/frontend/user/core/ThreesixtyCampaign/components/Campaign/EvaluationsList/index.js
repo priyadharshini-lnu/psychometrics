@@ -5,7 +5,7 @@ import {
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import connect from './connect'
-import './EvaluationsList.scss'
+import './styles.scss'
 
 const { Panel } = Collapse
 
@@ -26,7 +26,7 @@ const EvaluationItem = item => (
         <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}`}>
           <Icon type="check-circle" theme="twoTone" twoToneColor={item.approved ? '#52c41a' : '#ccc'} />
           {' '}
-          {item.isSelf ? 'Yourself' : userPresenter.getFullName(item.user)}
+          {userPresenter.selfUserName(item)}
         </Link>
       </div>
       {item.completed && (

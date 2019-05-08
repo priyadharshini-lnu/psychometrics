@@ -5,7 +5,7 @@ import { Layout, Typography } from 'antd'
 import Nominations from './NominationsList'
 import Evaluations from './EvaluationsList'
 import Reports from './ReportsList'
-import './Campaign.scss'
+import './styles.scss'
 
 const { Paragraph, Title } = Typography
 const { Content } = Layout

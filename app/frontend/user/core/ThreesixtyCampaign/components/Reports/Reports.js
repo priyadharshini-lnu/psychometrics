@@ -3,7 +3,7 @@ import {
   Layout, Typography, Button, Row,
 } from 'antd'
 import data from './data.json'
-import './Reports.scss'
+import './styles.scss'
 
 const { Title } = Typography
 const { Content } = Layout

@@ -5,7 +5,7 @@ import {
 import userPresenter from 'presenters/userPresenter'
 
 export default function InlineInput ({
-  title, role, addNomination, searchEvaluators, autocomplete: { users },
+  title, relationship, addNomination, searchEvaluators, autocomplete: { users },
   match: { params: { campaignId, id: nominationId } },
 }) {
   const [edit, setEdit] = useState(false)
@@ -15,14 +15,14 @@ export default function InlineInput ({
   const handleAdd = () => {
     if (user) {
       addNomination({
-        campaignId, nominationId, user, role,
+        campaignId, nominationId, user, relationship,
       })
       setUser(null)
       setEdit(false)
     } else {
-      const errors = { user: false, role: false }
+      const errors = { user: false, relationship: false }
       if (!user) { errors.user = true }
-      if (!role) { errors.role = true }
+      if (!relationship) { errors.relationship = true }
       setHasErrors(errors)
     }
   }

@@ -9,9 +9,5 @@ module Threesixty
     def participant(subject_id)
       participants.where(subject_id: subject_id).first
     end
-
-    def participant_role(subject_id)
-      participants.where(subject_id: subject_id).includes(:relationship).first.relationship
-    end
   end
 end

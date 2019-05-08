@@ -4,7 +4,8 @@ import {
   Table, Dropdown, Menu, Icon,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
-import css from './NominationTable.scss'
+import statusPresenter from 'presenters/statusPresenter'
+import './styles.scss'
 import InlineInput from './InlineInput'
 
 const { Column } = Table
@@ -29,7 +30,7 @@ const prepareRowData = (requirements, evaluators, relationships) => {
       key: `${name}_link`,
       type: 'link',
       condition: `${predicate} ${value}`,
-      role: id,
+      relationship: id,
     })
   })
   return rows
@@ -65,33 +66,35 @@ export default function NominationForm (props) {
   )
 
   const renderNameCell = ({
-    type, name, role, evaluator,
+    type, name, relationship, evaluator,
   }) => {
     if (type === 'link') {
-      return <InlineInput title={name} role={role} {...props} />
+      return <InlineInput title={name} relationship={relationship} {...props} />
     }
-    return { children: userPresenter.getFullName(evaluator.user) }
+    return { children: userPresenter.getFullName(evaluator.evaluator) }
   }
 
   const renderApprovalStatus = ({ evaluator }) => ({
-    children: evaluator && evaluator.status,
+    children: evaluator && statusPresenter.getApprovalStatus(evaluator.approvalStatus),
+  })
+
+  const renderStatus = ({ evaluator }) => ({
+    children: evaluator && statusPresenter.getStatus(evaluator.status),
   })
 
   return (
     <div className="nominations-table">
-      <Table className="mtm" rowKey="id" dataSource={rows} pagination={false} bordered rowClassName="nomination-row">
+      <Table className="mtm" rowKey="key" dataSource={rows} pagination={false} bordered rowClassName="nomination-row">
         <Column title="Requirements" key="title" render={renderRequirementCell} />
         <Column title="Name" key="name" render={renderNameCell} width="40%" />
         <Column title="Approval Status" render={renderApprovalStatus} key="status" />
-        <Column title="Evaluation Status" dataIndex="subject.evaluatorStatus" key="evaluatorStatus" />
+        <Column title="Evaluation Status" dataIndex={renderStatus} key="evaluatorStatus" />
 
         <Column
           key="action"
           render={({ evaluator }) => (evaluator ? (
             <Dropdown overlay={() => ActionsMenu(evaluator)} trigger={['click']}>
-              <div className={css.actions}>
-                <Icon type="down" />
-              </div>
+              <div><Icon type="down" /></div>
             </Dropdown>
           ) : null)}
         />

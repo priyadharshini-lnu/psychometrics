@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import {
   Typography, Form, Icon, Input, Button, Select, Row, Col, AutoComplete,
 } from 'antd'
-import './NominationForm.scss'
+import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
 
 const { Title } = Typography
@@ -17,20 +17,20 @@ export default function NominationForm (props) {
   } = props
 
   const [user, setUser] = useState(null)
-  const [role, setRole] = useState(null)
-  const [hasErrors, setHasErrors] = useState({ user: false, role: false })
+  const [relationship, setRelationship] = useState(null)
+  const [hasErrors, setHasErrors] = useState({ user: false, relationship: false })
 
   const handleAdd = () => {
-    const errors = { user: false, role: false }
-    if (user && role) {
+    const errors = { user: false, relationship: false }
+    if (user && relationship) {
       addNomination({
-        campaignId, nominationId, user, role,
+        campaignId, nominationId, userId: user, relationshipId: relationship,
       })
       setUser(null)
-      setRole(null)
+      setRelationship(null)
     } else {
       if (!user) { errors.user = true }
-      if (!role) { errors.role = true }
+      if (!relationship) { errors.relationship = true }
     }
     setHasErrors(errors)
   }
@@ -66,17 +66,17 @@ export default function NominationForm (props) {
             as my
           </Form.Item>
           <Form.Item
-            validateStatus={hasErrors.role ? 'error' : ''}
-            help={hasErrors.role ? 'Role is required' : ''}
+            validateStatus={hasErrors.relationship ? 'error' : ''}
+            help={hasErrors.relationship ? 'Relationship is required' : ''}
           >
             <Select
-              value={role}
-              onChange={value => setRole(value)}
+              value={relationship}
+              onChange={value => setRelationship(value)}
               placeholder="Select Relationship"
               className="relationship-select"
             >
               <Option value="" disabled>Select Relationship</Option>
-              {relationships.map(role => <Option key={role.id} value={role.id}>{role.name}</Option>)}
+              {relationships.map(relation => <Option key={relation.id} value={relation.id}>{relation.name}</Option>)}
             </Select>
           </Form.Item>
           <Form.Item>

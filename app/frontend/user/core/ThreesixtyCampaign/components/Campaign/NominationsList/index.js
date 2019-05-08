@@ -1,7 +1,8 @@
 import React from 'react'
 import { List, Collapse, Icon } from 'antd'
 import { Link } from 'react-router-dom'
-import './NominationsList.scss'
+import userPresenter from 'presenters/userPresenter'
+import './styles.scss'
 import connect from './connect'
 
 const { Panel } = Collapse
@@ -11,7 +12,7 @@ const NominationItem = item => (
     <Link to={`/campaigns/${item.campaignId}/nominations/${item.id}`}>
       <Icon type="check-circle" theme="twoTone" twoToneColor={item.approved ? '#52c41a' : '#ccc'} />
       {' '}
-      {item.isSelf ? 'Yourself' : `${item.user.firstName} ${item.user.lastName}`}
+      {userPresenter.selfUserName(item)}
     </Link>
   </List.Item>
 )

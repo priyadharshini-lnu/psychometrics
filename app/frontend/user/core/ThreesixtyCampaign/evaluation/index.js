@@ -1,7 +1,7 @@
-const FETCH_EVALUATION = 'threeSixty/evaluation/FETCH_EVALUATION'
+const FETCH = 'threeSixty/evaluation/FETCH'
 
 export const fetchEvaluation = (campaignId, evaluationId) => ({
-  type: FETCH_EVALUATION,
+  type: FETCH,
   request: {
     url: `/campaigns/${campaignId}/evaluations/${evaluationId}`,
   },
@@ -18,7 +18,7 @@ export const defaultState = {
 }
 
 const HANDLERS = {
-  [FETCH_EVALUATION]: (state, action) => ({ ...state, results: action.response }),
+  [FETCH]: (state, action) => ({ ...state, results: action.response }),
 }
 
 export default function reducer (state = defaultState, action) {

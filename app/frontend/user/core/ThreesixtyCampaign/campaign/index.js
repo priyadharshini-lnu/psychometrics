@@ -1,9 +1,9 @@
 import { setIn } from 'utils/immutable'
 
-const FETCH_CAMPAIGN = 'threeSixty/campaign/FETCH_CAMPAIGN'
+const FETCH = 'threeSixty/campaign/FETCH'
 
 export const fetchCampaign = campaignId => ({
-  type: FETCH_CAMPAIGN,
+  type: FETCH,
   request: {
     url: `/campaigns/${campaignId}.json`,
   },
@@ -45,7 +45,7 @@ export const defaultState = {
 }
 
 const HANDLERS = {
-  [FETCH_CAMPAIGN]: (state, action) => {
+  [FETCH]: (state, action) => {
     let newState = setIn(state, ['nominations', 0, 'list'], action.response.nominations)
     newState = setIn(newState, ['nominations', 1, 'list'], action.response.managerNominations)
     newState = setIn(newState, ['evaluations', 0, 'list'], action.response.evaluations)
@@ -55,7 +55,6 @@ const HANDLERS = {
   },
 }
 
-// TODO: replace mockdata with defaultState
 export default function reducer (state = defaultState, action) {
   const handler = HANDLERS[action.type]
   return handler ? handler(state, action) : state

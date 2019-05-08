@@ -2,52 +2,53 @@ import _ from 'lodash'
 import { updateIn, setIn } from 'utils/immutable'
 import { without } from 'lodash/fp'
 
-const FETCH_NOMINATION = 'threeSixty/nomination/FETCH_NOMINATION'
-const REMOVE_NOMINATION = 'threeSixty/nomination/REMOVE_NOMINATION'
-const ADD_NOMINATION = 'threeSixty/nomination/ADD_NOMINATION'
+const FETCH = 'threeSixty/nomination/FETCH'
+const REMOVE = 'threeSixty/nomination/REMOVE'
+const ADD = 'threeSixty/nomination/ADD'
 
 export const fetchNomination = ({ campaignId, id }) => ({
-  type: FETCH_NOMINATION,
+  type: FETCH,
   request: {
     url: `/campaigns/${campaignId}/nominations/${id}`,
   },
 })
 
 export const removeNomination = ({ campaignId, nominationId, evaluator }) => ({
-  type: REMOVE_NOMINATION,
+  type: REMOVE,
   evaluator,
   request: {
     url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluations/${evaluator.user.id}`,
     method: 'delete',
   },
 })
+
 export const addNomination = ({
-  campaignId, nominationId, role, user,
+  campaignId, nominationId, relationshipId, userId,
 }) => ({
-  type: ADD_NOMINATION,
+  type: ADD,
   request: {
     url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluations`,
     method: 'post',
     body: {
-      relationship_id: role,
-      evaluator_id: user,
+      relationship_id: relationshipId,
+      evaluator_id: userId,
     },
   },
 })
 
 const HANDLERS = {
-  [FETCH_NOMINATION]: (state, action) => {
+  [FETCH]: (state, action) => {
     const evaluators = _.groupBy(action.response.evaluators, 'relationship.name')
 
     return {
       ...state, ...action.response, evaluators,
     }
   },
-  [ADD_NOMINATION]: (state, action) => {
+  [ADD]: (state, action) => {
     const { role } = action.response
     return updateIn(state, ['evaluators', role.name], (list = []) => list.concat(action.response))
   },
-  [REMOVE_NOMINATION]: (state, action) => {
+  [REMOVE]: (state, action) => {
     const { id, role } = action.requestAction.evaluator
     return setIn(state, ['evaluators', role.name], without(state.evaluators[role.name], { id }))
   },
