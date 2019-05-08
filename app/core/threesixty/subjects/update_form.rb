@@ -4,7 +4,7 @@ module Threesixty
   module Subjects
     class UpdateForm < Rectify::Form
       attribute :report_release_status, Integer
-      attribute :evaluation_completed, Boolean
+      attribute :evaluation_status, Integer
     end
   end
 end

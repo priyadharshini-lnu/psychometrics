@@ -2264,7 +2264,7 @@ CREATE TABLE public.threesixty_subjects (
     evaluators_count integer DEFAULT 0,
     completed_evaluators_count integer DEFAULT 0,
     report_release_status integer DEFAULT 0,
-    report_status integer DEFAULT 0
+    evaluation_status integer DEFAULT 0
 );
 
 

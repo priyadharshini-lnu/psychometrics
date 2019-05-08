@@ -27,7 +27,7 @@ module Administration
       def update
         form = ::Threesixty::Subjects::UpdateForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
-          resource.update(form)
+          resource.update!(form)
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: :bad_request
