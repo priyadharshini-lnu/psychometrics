@@ -89,7 +89,7 @@ class Membership < ApplicationRecord
         where.has { |m| m.client_id.eq(client_id) }
   }
   scope :join_user, lambda {
-    joining { user }.selecting { ['memberships.*', user.first_name, user.last_name, user.email, user.role.as('user_role'), user.is_anonym] }
+    joining { user }.selecting { ['memberships.*', user.disabled, user.first_name, user.last_name, user.email, user.role.as('user_role'), user.is_anonym] }
   }
   scope :hris_data_cont, lambda { |data|
     data = JSON.parse(data) if data.is_a?(String)
