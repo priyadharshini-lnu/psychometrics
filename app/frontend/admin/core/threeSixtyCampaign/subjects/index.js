@@ -1,6 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects'
-import { setIn } from 'utils/immutable'
+import { setIn, updateIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
+import _ from 'lodash'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
 const FILL_SUBJECTS = 'threeSixty/subjects/FILL_SUBJECTS'
@@ -50,6 +51,7 @@ export const update = (campaignId, subjectId, data) => ({
 
 export const remove = (campaignId, subjectId) => ({
   type: REMOVE,
+  id: subjectId,
   request: {
     method: 'delete',
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}`,
@@ -66,6 +68,12 @@ export default function reducer (state = defaultState, action) {
       return setIn(state, ['form', 'errors'], action.errors)
     case CLEAR_FORM:
       return { ...state, form: defaultState.form }
+    case UPDATE: {
+      const index = _.findIndex(state.list, subject => subject.id === action.response.id)
+      return updateIn(state, ['list', index], () => action.response)
+    }
+    case REMOVE:
+      return updateIn(state, 'list', subjects => subjects.filter(s => (s.id !== action.requestAction.id)))
     default:
       return state
   }

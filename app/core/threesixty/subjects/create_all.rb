@@ -38,7 +38,7 @@ module Threesixty
       attr_reader :subjects, :threesixty_campaign, :project
 
       def create_membership(campaigns_user)
-        threesixty_campaign.project.memberships.create!(user_id: campaigns_user.user_id)
+        threesixty_campaign.project.memberships.find_or_create_by!(user_id: campaigns_user.user_id)
       end
     end
   end
