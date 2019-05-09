@@ -20,6 +20,16 @@ module Administration
         render json: evaluators
       end
 
+      def create_all
+        form = ::Threesixty::Evaluators::CreateAllForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
+        if form.valid?
+          ::Threesixty::Evaluators::CreateAll.call!(form.evaluators_with_relations, threesixty_campaign)
+          render json: :ok
+        else
+          render json: { errors: form.errors.messages }, status: :bad_request
+        end
+      end
+
       private
 
       # Set model

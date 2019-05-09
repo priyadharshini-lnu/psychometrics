@@ -1570,8 +1570,8 @@ CREATE TABLE public.participants (
     project_id bigint,
     campaign_id bigint,
     relationship_id bigint,
-    manager_status integer,
-    evaluator_status integer,
+    manager_status integer DEFAULT 0,
+    evaluator_status integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     subject_id bigint,
@@ -5280,6 +5280,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190419104112'),
 ('20190419193357'),
 ('20190419202055'),
-('20190421102715');
+('20190421102715'),
+('20190501212516');
 
 

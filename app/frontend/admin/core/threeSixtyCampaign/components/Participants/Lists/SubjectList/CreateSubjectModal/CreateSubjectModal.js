@@ -1,12 +1,12 @@
-import React from 'react'
+import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Input, Divider, AutoComplete, Alert,
+  Modal, Button, Icon, Divider, Alert, Form, Form as AntForm,
 } from 'antd'
-import userPresenter from 'presenters/userPresenter'
 import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
 import spreadSheetUtils from 'utils/spreadSheet'
+import UserAutocomplete from '../../shared/UserAutocomplete'
 
 const tableFields = [
   {
@@ -23,11 +23,12 @@ const tableFields = [
   },
 ]
 
+const formItemLayout = { labelCol: { span: 3 }, wrapperCol: { span: 12 } }
+
 export default function CreateSubjectModal ({
   current,
   closeModal,
-  searchUsersInProject,
-  tempUsers,
+  autocompletedUsers,
   fillSubjects,
   createAll,
   errors,
@@ -37,6 +38,7 @@ export default function CreateSubjectModal ({
   },
 }) {
   if (current !== 'CreateSubjectModal') return null
+  const [autocompletedUser, setAutocompletedUser] = useState('')
 
   const handleOk = () => createAll(campaignId, _.pickBy(subjects, s => s.email || s.lastName || s.firstName))
 
@@ -61,17 +63,19 @@ export default function CreateSubjectModal ({
         </Button>,
       ]}
     >
-      <AutoComplete
-        dataSource={tempUsers.map(user => ({
-          value: JSON.stringify(user),
-          text: userPresenter.getFullNameWithEmail(user),
-        }))}
-        autoFocus
-        placeholder="Search User..."
-        onSelect={onSelect}
-      >
-        <Input.Search style={{ width: 300 }} onSearch={value => searchUsersInProject(clientId, projectId, value)} />
-      </AutoComplete>
+      <Form {...formItemLayout}>
+        <AntForm.Item label="Subject">
+          <UserAutocomplete
+            value={autocompletedUser}
+            onChange={setAutocompletedUser}
+            onSelect={onSelect}
+            source="users"
+            users={autocompletedUsers}
+            placeholder="Search Subject..."
+            url={`/administration/clients/${clientId}/projects/${projectId}/search_users`}
+          />
+        </AntForm.Item>
+      </Form>
       <Divider />
       <SpreadSheet entities={subjects} fields={tableFields} updateEntities={fillSubjects} />
       {errors && (

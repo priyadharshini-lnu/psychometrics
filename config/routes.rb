@@ -183,10 +183,13 @@ Rails.application.routes.draw do
         resources :subjects do
           collection do
             post :create_all
+            post :search
           end
         end
         resources :evaluators do
-
+          collection do
+            post :create_all
+          end
         end
 
         resource :options do
@@ -194,6 +197,8 @@ Rails.application.routes.draw do
         end
 
         resources :managers
+        resources :relationships
+        resources :participants
       end
     end
 

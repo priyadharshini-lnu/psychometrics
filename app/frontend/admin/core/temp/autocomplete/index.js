@@ -1,13 +1,13 @@
-const SEARCH_USERS_IN_PROJECT = 'temp/users/SEARCH_USERS_IN_PROJECT'
+const SEARCH = 'temp/users/SEARCH'
 export const defaultState = {
-  users: [],
 }
 
-export const searchUsersInProject = (clientId, projectId, q) => ({
-  type: SEARCH_USERS_IN_PROJECT,
+export const search = (url, source, q) => ({
+  type: SEARCH,
+  source,
   request: {
     method: 'post',
-    url: `/administration/clients/470/projects/${projectId}/search_users`,
+    url,
     body: {
       q,
     },
@@ -16,8 +16,8 @@ export const searchUsersInProject = (clientId, projectId, q) => ({
 
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
-    case SEARCH_USERS_IN_PROJECT:
-      return { ...state, users: action.response }
+    case SEARCH:
+      return { ...state, [action.requestAction.source]: action.response }
     default:
       return state
   }

@@ -11,6 +11,8 @@ const buildUrl = ({ method = 'get', url, body }) => {
     (res, v, k) => {
       if (_.isPlainObject(v)) {
         res[k] = JSON.stringify(v)
+      } else {
+        res[k] = v
       }
       return res
     },

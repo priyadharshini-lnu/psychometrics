@@ -8,6 +8,8 @@ import autocomplete from './core/temp/autocomplete'
 import request from './core/temp/request'
 import currentThreeSixtyCampaignId from './core/threeSixtyCampaign/currentThreeSixtyCampaignId'
 import datasheetFields from './core/project/datasheetFields'
+import participants from './core/threeSixtyCampaign/participants'
+import relationships from './core/threeSixtyCampaign/relationships'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -19,6 +21,8 @@ export default combineReducers({
   }),
   project: combineReducers({
     datasheetFields,
+    relationships,
+    participants,
   }),
   temp: combineReducers({
     modals,

@@ -1,12 +1,12 @@
-import React, { useState } from 'react'
+import React from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Input, Divider, AutoComplete, Alert,
+  Modal, Button, Icon, Divider, Alert,
 } from 'antd'
-import userPresenter from 'presenters/userPresenter'
 import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
 import spreadSheetUtils from 'utils/spreadSheet'
+import Form from './Form'
 
 const tableFields = [
   {
@@ -27,38 +27,47 @@ const tableFields = [
   },
   {
     name: 'Relationship',
-    key: 'relationship',
+    key: 'relationshipName',
   },
 ]
 export default function CreateEvaluatorModal ({
   current,
   closeModal,
-  searchUsersInProject,
-  tempUsers,
-  createAll,
+  fillEvaluators,
+  createAllEvaluators,
+  evaluators,
   errors,
+  match,
   match: {
-    params: { projectId, clientId, campaignId },
+    params: { campaignId },
   },
 }) {
   if (current !== 'CreateEvaluatorModal') return null
 
-  const [evaluators, updateEvaluators] = useState({})
-
-  const handleOk = () => createAll(campaignId, _.pickBy(evaluators, s => s.email || s.lastName || s.firstName))
-
-  const onSelect = (user) => {
-    const newEvaluators = setIn(
-      evaluators,
-      spreadSheetUtils.getFreeRowIndex(evaluators),
-      _.omit(JSON.parse(user), ['id']),
+  const handleOk = () => {
+    createAllEvaluators(
+      campaignId,
+      _.pickBy(
+        evaluators,
+        s => s.subjectEmail || s.evaluatorEmail || s.evaluatorLastName || s.evaluatorFirstName || s.relationshipName,
+      ),
     )
-    updateEvaluators(newEvaluators)
+  }
+
+  const onSubmitForm = (user) => {
+    const newEvaluators = setIn(evaluators, spreadSheetUtils.getFreeRowIndex(evaluators), {
+      subjectEmail: user.subject && user.subject.email,
+      evaluatorEmail: user.evaluator && user.evaluator.email,
+      evaluatorFirstName: user.evaluator && user.evaluator.firstName,
+      evaluatorLastName: user.evaluator && user.evaluator.lastName,
+      relationshipName: user.relationship.name,
+    })
+    fillEvaluators(newEvaluators)
   }
 
   return (
     <Modal
-      width={700}
+      width={900}
       title="Add evaluators"
       visible
       onCancel={closeModal}
@@ -72,19 +81,9 @@ export default function CreateEvaluatorModal ({
         </Button>,
       ]}
     >
-      <AutoComplete
-        dataSource={tempUsers.map(user => ({
-          value: JSON.stringify(user),
-          text: userPresenter.getFullNameWithEmail(user),
-        }))}
-        autoFocus
-        placeholder="Search Subject..."
-        onSelect={onSelect}
-      >
-        <Input.Search style={{ width: 300 }} onSearch={value => searchUsersInProject(clientId, projectId, value)} />
-      </AutoComplete>
+      <Form match={match} onSubmit={onSubmitForm} />
       <Divider />
-      <SpreadSheet fields={tableFields} entities={evaluators} updateEntities={updateEvaluators} />
+      <SpreadSheet fields={tableFields} entities={evaluators} updateEntities={fillEvaluators} />
       {errors && (
         <Alert
           style={{ whiteSpace: 'pre' }}
