@@ -8,7 +8,7 @@ import './styles.scss'
 const { Title } = Typography
 const { Content } = Layout
 
-export default function Evaluator () {
+export default function Report () {
   useEffect(() => {
     window.initReport('threesixty-report')
   }, [])

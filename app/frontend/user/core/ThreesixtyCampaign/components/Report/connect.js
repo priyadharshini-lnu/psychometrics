@@ -1,8 +1,7 @@
 import { connect } from 'react-redux'
-import { fetchReport } from 'user/core/ThreesixtyCampaign/reports'
+import { fetchReport } from 'user/core/ThreesixtyCampaign/report'
 
 const mapStateToProps = state => ({
-  evaluations: state.threeSixtyCampaign.campaign.evaluations,
   report: state.threeSixtyCampaign.report,
 })
 

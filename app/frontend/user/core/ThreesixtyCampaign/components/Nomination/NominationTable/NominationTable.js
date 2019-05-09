@@ -48,7 +48,7 @@ const renderRequirementCell = value => ({
   },
 })
 
-export default function NominationForm (props) {
+export default function NominationTable (props) {
   const {
     nomination: { requirements, evaluators }, removeNomination,
     match: { params: { campaignId, id: nominationId } },

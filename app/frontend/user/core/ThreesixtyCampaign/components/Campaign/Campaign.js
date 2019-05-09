@@ -2,9 +2,9 @@
 import React, { useEffect } from 'react'
 import { Layout, Typography } from 'antd'
 
-import Nominations from './NominationsList'
-import Evaluations from './EvaluationsList'
-import Reports from './ReportsList'
+import Nominations from './NominationList'
+import Evaluations from './EvaluationList'
+import Reports from './ReportList'
 import './styles.scss'
 
 const { Paragraph, Title } = Typography
@@ -14,6 +14,7 @@ export default function Campaign (props) {
   useEffect(() => {
     props.fetchCampaign(props.match.params.campaignId)
   }, [])
+
   return (
     <Layout>
       <Content>

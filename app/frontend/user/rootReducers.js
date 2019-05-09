@@ -2,7 +2,7 @@ import { combineReducers } from 'redux'
 import campaign from './core/ThreesixtyCampaign/campaign'
 import nomination from './core/ThreesixtyCampaign/nomination'
 import evaluation from './core/ThreesixtyCampaign/evaluation'
-import reports from './core/ThreesixtyCampaign/reports'
+import report from './core/ThreesixtyCampaign/report'
 import autocomplete from './core/temp/autocomplete'
 
 export default combineReducers({
@@ -10,7 +10,7 @@ export default combineReducers({
     campaign,
     nomination,
     evaluation,
-    reports,
+    report,
     temp: combineReducers({
       autocomplete,
     }),

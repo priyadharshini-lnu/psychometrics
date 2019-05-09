@@ -1,7 +1,7 @@
 import Campaign, { CampaignSidebar } from './components/Campaign'
 import Nomination, { NominationSidebar } from './components/Nomination'
 import Evaluation, { EvaluationSidebar } from './components/Evaluation'
-import Reports, { ReportsSidebar } from './components/Reports'
+import Report, { ReportSidebar } from './components/Report'
 
 const routes = [
   {
@@ -24,8 +24,8 @@ const routes = [
   },
   {
     path: '/campaigns/:campaignId/reports',
-    sidebar: ReportsSidebar,
-    main: Reports,
+    sidebar: ReportSidebar,
+    main: Report,
     exact: true,
   },
 ]
