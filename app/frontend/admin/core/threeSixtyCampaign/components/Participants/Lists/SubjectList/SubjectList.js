@@ -3,7 +3,6 @@ import {
   Table, Dropdown, Icon, Row, Col,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
-import _ from 'lodash'
 import css from './SubjectList.scss'
 import ActionsMenu from './ActionsMenu'
 import ToolsDropdown from '../ToolsDropdown'
