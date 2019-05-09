@@ -92,11 +92,11 @@ export default function NominationTable (props) {
 
         <Column
           key="action"
-          render={({ evaluator }) => (evaluator ? (
+          render={({ evaluator }) => (evaluator && (
             <Dropdown overlay={() => ActionsMenu(evaluator)} trigger={['click']}>
               <div><Icon type="down" /></div>
             </Dropdown>
-          ) : null)}
+          ))}
         />
       </Table>
 

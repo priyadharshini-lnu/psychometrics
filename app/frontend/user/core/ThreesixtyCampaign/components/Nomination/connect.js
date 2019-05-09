@@ -3,6 +3,7 @@ import {
   fetchNomination,
   removeNomination,
   addNomination,
+  updateForm,
 } from 'user/core/ThreesixtyCampaign/nomination'
 import { searchEvaluators } from 'user/core/temp/autocomplete'
 
@@ -16,6 +17,7 @@ const mapDispatchToProps = {
   removeNomination,
   addNomination,
   searchEvaluators,
+  updateForm,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import {
   Typography, Form, Icon, Input, Button, Select, Row, Col, AutoComplete,
 } from 'antd'
@@ -10,29 +10,16 @@ const { Option } = Select
 
 export default function NominationForm (props) {
   const {
-    addNomination, searchEvaluators,
+    addNomination, searchEvaluators, updateForm,
     match: { params: { campaignId, id: nominationId } },
-    nomination: { subject, relationships },
+    nomination: { subject, relationships, form },
     autocomplete: { users },
   } = props
 
-  const [user, setUser] = useState(null)
-  const [relationship, setRelationship] = useState(null)
-  const [hasErrors, setHasErrors] = useState({ user: false, relationship: false })
-
   const handleAdd = () => {
-    const errors = { user: false, relationship: false }
-    if (user && relationship) {
-      addNomination({
-        campaignId, nominationId, userId: user, relationshipId: relationship,
-      })
-      setUser(null)
-      setRelationship(null)
-    } else {
-      if (!user) { errors.user = true }
-      if (!relationship) { errors.relationship = true }
-    }
-    setHasErrors(errors)
+    addNomination({
+      campaignId, nominationId, ...form.attrs,
+    })
   }
 
   return (
@@ -47,8 +34,8 @@ export default function NominationForm (props) {
       <div className="form">
         <Form layout="inline">
           <Form.Item
-            validateStatus={hasErrors.user ? 'error' : ''}
-            help={hasErrors.user ? 'User is required' : ''}
+            validateStatus={form.errors.user ? 'error' : ''}
+            help={form.errors.user ? 'User is required' : ''}
           >
             <AutoComplete
               dataSource={users.map(user => ({
@@ -57,7 +44,7 @@ export default function NominationForm (props) {
               }))}
               autoFocus
               placeholder="type name or email..."
-              onSelect={userId => setUser(userId)}
+              onSelect={userId => updateForm({ ...form.attrs, userId })}
             >
               <Input.Search style={{ width: 300 }} onSearch={value => searchEvaluators(campaignId, value)} />
             </AutoComplete>
@@ -66,12 +53,12 @@ export default function NominationForm (props) {
             as my
           </Form.Item>
           <Form.Item
-            validateStatus={hasErrors.relationship ? 'error' : ''}
-            help={hasErrors.relationship ? 'Relationship is required' : ''}
+            validateStatus={form.errors.relationship ? 'error' : ''}
+            help={form.errors.relationship ? 'Relationship is required' : ''}
           >
             <Select
-              value={relationship}
-              onChange={value => setRelationship(value)}
+              value={form.attrs.relationshipId}
+              onChange={relationshipId => updateForm({ ...form.attrs, relationshipId })}
               placeholder="Select Relationship"
               className="relationship-select"
             >

@@ -11,8 +11,11 @@ module Threesixty
         participant = @subject.participants.build(evaluator_params)
         participant.campaign_id = @campaign.campaign_id
         participant.project_id = @campaign.project.id
-        participant.save!
-        render json: participant.threesixty_evaluator, serializer: Threesixty::EndUser::NominantSerializer, include: '**'
+        if participant.save
+          render json: participant, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
+        else
+          render json: participant.errors, status: 422
+        end
       end
     end
 
@@ -33,7 +36,7 @@ module Threesixty
     end
 
     def evaluator_params
-      params.require(:evaluation).permit(:evaluator_id, :relationship_id)
+      params.permit(:evaluator_id, :relationship_id)
     end
   end
 end

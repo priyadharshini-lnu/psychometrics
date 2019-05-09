@@ -15,7 +15,7 @@ export default function InlineInput ({
   const handleAdd = () => {
     if (user) {
       addNomination({
-        campaignId, nominationId, user, relationship,
+        campaignId, nominationId, userId: user, relationshipId: relationship,
       })
       setUser(null)
       setEdit(false)

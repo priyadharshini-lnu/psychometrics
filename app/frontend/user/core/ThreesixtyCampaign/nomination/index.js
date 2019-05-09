@@ -5,6 +5,7 @@ import { without } from 'lodash/fp'
 const FETCH = 'threeSixty/nomination/FETCH'
 const REMOVE = 'threeSixty/nomination/REMOVE'
 const ADD = 'threeSixty/nomination/ADD'
+const UPDATE_FORM = 'threeSixty/nomination/UPDATE_FORM'
 
 export const fetchNomination = ({ campaignId, id }) => ({
   type: FETCH,
@@ -17,7 +18,7 @@ export const removeNomination = ({ campaignId, nominationId, evaluator }) => ({
   type: REMOVE,
   evaluator,
   request: {
-    url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluations/${evaluator.user.id}`,
+    url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluators/${evaluator.evaluator.id}`,
     method: 'delete',
   },
 })
@@ -27,7 +28,7 @@ export const addNomination = ({
 }) => ({
   type: ADD,
   request: {
-    url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluations`,
+    url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluators`,
     method: 'post',
     body: {
       relationship_id: relationshipId,
@@ -35,6 +36,8 @@ export const addNomination = ({
     },
   },
 })
+
+export const updateForm = form => ({ type: UPDATE_FORM, form })
 
 const HANDLERS = {
   [FETCH]: (state, action) => {
@@ -45,13 +48,14 @@ const HANDLERS = {
     }
   },
   [ADD]: (state, action) => {
-    const { role } = action.response
-    return updateIn(state, ['evaluators', role.name], (list = []) => list.concat(action.response))
+    const { relationship } = action.response
+    return updateIn(state, ['evaluators', relationship.name], (list = []) => list.concat(action.response))
   },
   [REMOVE]: (state, action) => {
-    const { id, role } = action.requestAction.evaluator
-    return setIn(state, ['evaluators', role.name], without(state.evaluators[role.name], { id }))
+    const { id, relationship } = action.requestAction.evaluator
+    return setIn(state, ['evaluators', relationship.name], without(state.evaluators[relationship.name], { id }))
   },
+  [UPDATE_FORM]: (state, action) => setIn(state, ['form', 'attrs'], action.form),
 }
 
 const defaultState = {
@@ -59,6 +63,10 @@ const defaultState = {
   requirements: {},
   evaluators: [],
   relationships: [],
+  form: {
+    attrs: {},
+    errors: {},
+  },
 }
 
 export default function reducer (state = defaultState, action) {
