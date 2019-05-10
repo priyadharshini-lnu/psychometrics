@@ -49,17 +49,17 @@ export default function reducer (state = defaultState, action) {
   }
 }
 
-const participantsSelector = state => state.threeSixtyCampaign.participants
+const getParticipants = state => state.threeSixtyCampaign.participants
 const getUserId = state => state.temp.modals.data.user.id
 
 export const getUserEvaluators = createSelector(
-  participantsSelector,
+  getParticipants,
   getUserId,
   (participants, userId) => participants.filter(p => p.subject.id === userId).map(p => ({ ...p, user: p.evaluator })),
 )
 
 export const getUserSubjects = createSelector(
-  participantsSelector,
+  getParticipants,
   getUserId,
   (participants, userId) => participants.filter(p => p.evaluator.id === userId).map(p => ({ ...p, user: p.subject })),
 )
