@@ -1,0 +1,19 @@
+# frozen_string_literal: true
+# Participant serializer
+
+module Threesixty::EndUser
+  class NomineeSerializer < ActiveModel::Serializer
+    attributes :id, :approval_status, :status
+
+    has_one :evaluator, serializer: UserSerializer
+    has_one :relationship, serializer: RelationshipSerializer
+
+    def approval_status
+      object.manager_status
+    end
+
+    def status
+      Threesixty::Participants::GetStatus.call!(object.threesixty_evaluator, object.subject, @instance_options[:option], @instance_options[:nomination_requirement])
+    end
+  end
+end

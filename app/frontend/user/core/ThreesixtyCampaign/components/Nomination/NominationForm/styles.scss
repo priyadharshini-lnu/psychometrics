@@ -1,0 +1,19 @@
+:global {
+  .nominations-form {
+    .form {
+      padding: 16px 0;
+      .ant-form {
+        margin-bottom: 8px;
+      }
+
+      .relationship-select {
+        min-width: 200px;
+      }
+
+      .name-input {
+        min-width: 240px;
+      }
+    }
+
+  }
+}

@@ -25,6 +25,8 @@ const buildOptions = ({ options: options = {} }) => ({
   ...options,
   headers: {
     ...options.headers,
+    'Content-Type': 'application/json',
+    Accept: 'application/json',
     'X-CSRF-Token': window.$('meta[name="csrf-token"]').attr('content'),
   },
 })
@@ -34,7 +36,7 @@ const apiMiddleware = () => next => (action) => {
 
   const {
     request,
-    request: { method: method = 'get', body, loader },
+    request: { method: method = 'get', body = {}, loader },
   } = action
   const REQUEST = `${action.type}_REQUEST`
   const SUCCESS = action.type
@@ -43,10 +45,16 @@ const apiMiddleware = () => next => (action) => {
   next({ ...action, type: REQUEST })
   if (loader) { next({ type: LOADING }) }
 
-  return axios[method](buildUrl(request), humps.decamelizeKeys(body), buildOptions(request))
-    .then(({ data }) => next({ type: SUCCESS, response: humps.camelizeKeys(data), requestAction: action }))
+  return axios.request({
+    method,
+    url: buildUrl(request),
+    data: body,
+    ...buildOptions(request),
+    responseType: 'json',
+    withCredentials: true,
+  }).then(({ data }) => next({ type: SUCCESS, response: humps.camelizeKeys(data), requestAction: action }))
     .catch((error) => {
-      next({ type: FAILURE, errors: error.response.data.errors })
+      next({ type: FAILURE, errors: humps.camelizeKeys(error.response.data.errors) })
     })
     .finally(() => {
       if (loader) { next({ type: LOADING_COMPLETE }) }

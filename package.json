@@ -61,6 +61,8 @@
     "eslint-plugin-standard": "^4.0.0",
     "file-loader": "^3.0.1",
     "humps": "^2.0.1",
+    "less": "^3.9.0",
+    "less-loader": "^5.0.0",
     "lodash": "^4.17.11",
     "node-sass": "^4.11.0",
     "optimize-css-assets-webpack-plugin": "^5.0.1",
