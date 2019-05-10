@@ -191,6 +191,11 @@ Rails.application.routes.draw do
             post :create_all
           end
         end
+
+        resource :options do
+          get :participant_options
+        end
+
         resources :managers
         resources :relationships
         resources :participants

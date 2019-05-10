@@ -2,6 +2,7 @@ import axios from 'axios'
 import queryString from 'query-string'
 import humps from 'humps'
 import _ from 'lodash'
+import { LOADING, LOADING_COMPLETE } from 'admin/core/temp/request'
 
 const buildUrl = ({ method = 'get', url, body }) => {
   if (method !== 'get') return url
@@ -35,13 +36,15 @@ const apiMiddleware = () => next => (action) => {
 
   const {
     request,
-    request: { method: method = 'get', body = {} },
+    request: { method: method = 'get', body = {}, loader },
   } = action
   const REQUEST = `${action.type}_REQUEST`
   const SUCCESS = action.type
   const FAILURE = `${action.type}_FAILURE`
 
   next({ ...action, type: REQUEST })
+  if (loader) { next({ type: LOADING }) }
+
   return axios.request({
     method,
     url: buildUrl(request),
@@ -52,6 +55,9 @@ const apiMiddleware = () => next => (action) => {
   }).then(({ data }) => next({ type: SUCCESS, response: humps.camelizeKeys(data), requestAction: action }))
     .catch((error) => {
       next({ type: FAILURE, errors: error.response.data.errors })
+    })
+    .finally(() => {
+      if (loader) { next({ type: LOADING_COMPLETE }) }
     })
 }
 

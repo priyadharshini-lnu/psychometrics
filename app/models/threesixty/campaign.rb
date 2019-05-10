@@ -4,6 +4,8 @@ module Threesixty
     belongs_to :assessment
     belongs_to :report
     has_one :option, foreign_key: :threesixty_campaign_id
+    has_one :project, through: :campaign
+    has_one :datasheet, through: :project
 
     attr_accessor :factors, :type
 
@@ -25,5 +27,8 @@ module Threesixty
       super + [:factors, :type]
     end
 
+    def datasheet_column_names
+      datasheet&.column_names || []
+    end
   end
 end
