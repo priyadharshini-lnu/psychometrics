@@ -5,6 +5,7 @@ import { without } from 'lodash/fp'
 const FETCH = 'threeSixty/nomination/FETCH'
 const REMOVE = 'threeSixty/nomination/REMOVE'
 const ADD = 'threeSixty/nomination/ADD'
+const ADD_FAILURE = 'threeSixty/nomination/ADD_FAILURE'
 const UPDATE_FORM = 'threeSixty/nomination/UPDATE_FORM'
 
 export const fetchNomination = ({ campaignId, id }) => ({
@@ -49,8 +50,10 @@ const HANDLERS = {
   },
   [ADD]: (state, action) => {
     const { relationship } = action.response
-    return updateIn(state, ['evaluators', relationship.name], (list = []) => list.concat(action.response))
+    const newStore = updateIn(state, ['evaluators', relationship.name], (list = []) => list.concat(action.response))
+    return setIn(newStore, ['form'], { attrs: {}, errors: {} })
   },
+  [ADD_FAILURE]: (state, action) => setIn(state, ['form', 'errors'], action.errors),
   [REMOVE]: (state, action) => {
     const { id, relationship } = action.requestAction.evaluator
     return setIn(state, ['evaluators', relationship.name], without(state.evaluators[relationship.name], { id }))

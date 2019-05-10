@@ -5,17 +5,16 @@ module Threesixty
     before_action :set_subject
 
     def create
-      if @subject.participants.find_by(evaluator_id: params[:evaluator_id])
-        render json: {error:  'already exists'}, status: 422
-      else
+      form = ::Threesixty::Participants::CreateForm.from_params(params).with_context(subject: @subject)
+
+      if form.valid?
         participant = @subject.participants.build(evaluator_params)
         participant.campaign_id = @campaign.campaign_id
         participant.project_id = @campaign.project.id
-        if participant.save
-          render json: participant, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
-        else
-          render json: participant.errors, status: 422
-        end
+        participant.save
+        render json: participant, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
+      else
+        render json: { errors: form.error_mesages }, status: :bad_request
       end
     end
 
