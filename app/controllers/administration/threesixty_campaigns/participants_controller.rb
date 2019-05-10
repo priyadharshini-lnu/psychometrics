@@ -21,7 +21,7 @@ module Administration
       end
 
       def update
-        resource.update(resource_params)
+        resource.update!(resource_params)
         render json: resource
       end
 
