@@ -25,15 +25,15 @@ export const removeNomination = ({ campaignId, nominationId, evaluator }) => ({
 })
 
 export const addNomination = ({
-  campaignId, nominationId, relationshipId, userId,
+  campaignId, nominationId, relationshipId, userId: evaluatorId,
 }) => ({
   type: ADD,
   request: {
     url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluators`,
     method: 'post',
     body: {
-      relationship_id: relationshipId,
-      evaluator_id: userId,
+      relationshipId,
+      evaluatorId,
     },
   },
 })

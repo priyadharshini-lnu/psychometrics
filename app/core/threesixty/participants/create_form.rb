@@ -30,7 +30,7 @@ module Threesixty
       end
 
       def error_mesages
-        errors.keys.map.with_object({}) do |attribute, list|
+        errors.keys.each.with_object({}) do |attribute, list|
           list[attribute] = errors.full_messages_for(attribute)
           list
         end

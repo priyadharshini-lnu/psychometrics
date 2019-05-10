@@ -34,8 +34,8 @@ export default function NominationForm (props) {
       <div className="form">
         <Form layout="inline">
           <Form.Item
-            validateStatus={form.errors.evaluator_id ? 'error' : ''}
-            help={form.errors.evaluator_id && form.errors.evaluator_id}
+            validateStatus={form.errors.evaluatorId ? 'error' : ''}
+            help={form.errors.evaluatorId && form.errors.evaluatorId}
           >
             <AutoComplete
               dataSource={users.map(user => ({
@@ -53,8 +53,8 @@ export default function NominationForm (props) {
             as my
           </Form.Item>
           <Form.Item
-            validateStatus={form.errors.relationship_id ? 'error' : ''}
-            help={form.errors.relationship_id && form.errors.relationship_id}
+            validateStatus={form.errors.relationshipId ? 'error' : ''}
+            help={form.errors.relationshipId && form.errors.relationshipId}
           >
             <Select
               value={form.attrs.relationshipId}
