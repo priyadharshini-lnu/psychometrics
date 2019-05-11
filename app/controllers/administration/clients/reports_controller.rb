@@ -6,7 +6,7 @@ module Administration
       append_before_action :init_breadcrumbs
 
       def index
-        @_filter_form = client.reports.includes(:assessments).search(params[:q])
+        @_filter_form = client.clients_reports.includes(:report_family, report: :assessments).search(params[:q])
         @_resources = filter_form.result.page(params[:page])
 
         respond_to do |format|
@@ -15,23 +15,11 @@ module Administration
         end
       end
 
-      def new
-      end
-
-      def create
-        render :new unless client.update(client_params)
-      end
-
-      def destroy
-        @_resource = client.clients_reports.find_by(report_id: params[:id])
-        resource.destroy
+      def export
+        @report = Report.find(params[:report_id])
+        results = ::Exports::Reports::ReportDataExport.new(@report, client)
         respond_to do |format|
-          format.html do
-            redirect_back(
-              fallback_location: root_path, success: t('.successfully', name: resource.report.decorate.display_name)
-            )
-          end
-          format.js
+          format.xlsx { send_data results.to_xlsx.to_stream.read, filename: 'report_data.xlsx' }
         end
       end
 

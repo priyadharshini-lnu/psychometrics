@@ -3,17 +3,17 @@ require 'rails_helper'
 describe Queries::Reports::SubProjectLevel::BulkReportWithOptions do
   let(:query) { Queries::Reports::SubProjectLevel::BulkReportWithOptions }
 
-  let(:report_family1) { create(:report_family) }
-  let(:report_family2) { create(:report_family) }
+  let(:sub_campaign1) { create(:sub_campaign, :with_reports) }
+  let(:sub_campaign2) { create(:sub_campaign, :with_reports) }
 
-  let(:sub_campaign1) { create(:sub_campaign, report_families: [report_family1]) }
-  let(:sub_campaign2) { create(:sub_campaign, report_families: [report_family2]) }
+  let(:report_family1) { sub_campaign1.root.report_families.take }
+  let(:report_family2) { sub_campaign2.root.report_families.take }
 
-  let(:assessment1) { create(:assessment) }
-  let(:assessment2) { create(:assessment) }
+  let(:assessment1) { sub_campaign1.assessments.take }
+  let(:assessment2) { sub_campaign2.assessments.take }
 
-  let(:report1) { create(:report, assessment: assessment1, report_families: [report_family1]) }
-  let(:report2) { create(:report, assessment: assessment2, report_families: [report_family2]) }
+  let(:report1) { assessment1.reports.take }
+  let(:report2) { assessment2.reports.take }
 
   let!(:clients_report1) { create(:clients_report, client: sub_campaign1, report: report1) }
   let!(:clients_report2) { create(:clients_report, client: sub_campaign2, report: report2) }

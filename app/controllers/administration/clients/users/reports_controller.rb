@@ -18,7 +18,7 @@ module Administration
           # TODO: Not the correct way to send all users result to the browser, adding user_id condition until better way is found
           @results = Assign.
               completed.
-              includes(:membership, :user).
+              includes(:membership, :user, :assessment).
               where(memberships: { client_id: client.project.id, user_id: membership.user_id }, assessment_id: resource.assessment_ids).
               references(:membership).
               all
@@ -36,7 +36,7 @@ module Administration
             end
             format.pdf do
               add_cookie_for_file_download
-              pdf_file = Exports::Reports::Pdf::ReportExport.export(@current_user, resource, user, client, request.protocol.split(':').first, lang: user_locale)
+              pdf_file = ::Exports::Reports::Pdf::ReportExport.export(@current_user, resource, user, client, lang: user_locale)
               send_file pdf_file, type: 'application/pdf'
             end
           end

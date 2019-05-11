@@ -55,6 +55,9 @@ class Membership < ApplicationRecord
   has_many :clients_reports, through: :clients_assigns, source: :reports
   has_one :original_membership, foreign_key: :project_membership_id, class_name: 'Membership'
   has_one :hogan_credential
+  has_one :grants, class_name: 'MembershipGrant'
+  accepts_nested_attributes_for :grants
+
   has_many :privacy_consents
 
   has_many :reports_accesses
@@ -86,7 +89,7 @@ class Membership < ApplicationRecord
         where.has { |m| m.client_id.eq(client_id) }
   }
   scope :join_user, lambda {
-    joining { user }.selecting { ['memberships.*', user.first_name, user.last_name, user.email, user.role.as('user_role'), user.is_anonym] }
+    joining { user }.selecting { ['memberships.*', user.disabled, user.first_name, user.last_name, user.email, user.role.as('user_role'), user.is_anonym] }
   }
   scope :hris_data_cont, lambda { |data|
     data = JSON.parse(data) if data.is_a?(String)
@@ -128,6 +131,7 @@ class Membership < ApplicationRecord
   end
 
   # return true for new or overuse (:yti(:eti)) combinations
+  # TODO: remove it
   def excess_yti_eti?(report)
     return true if !report.yti_eti? || reports.empty?
     hash = reports.yti_eti.group(:type).count.transform_keys { |k| Report.types.key(k) }
@@ -156,6 +160,11 @@ class Membership < ApplicationRecord
   def accepted_privacy?
     # TODO (atanych): this logic will be broken when we add new types of consents
     privacy_consents.take.present?
+  end
+
+  def has_grant?(scope, grant)
+    return false unless grants
+    grants.has_grant?(scope, grant)
   end
 
   private
@@ -213,6 +222,8 @@ class Membership < ApplicationRecord
       communication.current_memberships_ids.include?(id)
     end
   end
+
+
 
   def client_admin_scope
     # user can be client admin only within one tenancy

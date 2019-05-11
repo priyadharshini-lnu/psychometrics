@@ -8,8 +8,9 @@ module Administration
     # true if it's not Mindmill report
     #   and user is Superadmin or user has grants
     def show?
-      return false if record.external_report?
-      super || @user.has_grant?(:reports, :view)
+      @record.hogan_report_setting.blank? &&
+        !@record.mindmill && 
+        (super || @user.has_grant?(:reports, :view))
     end
 
     def create?
@@ -23,20 +24,29 @@ module Administration
       create?
     end
 
+    def upload_data_sheet?
+      create?
+    end
+
     # Can open Websocket Channel for build Report (Reports, Modules and etc.)
     # true if it's not Mindmill report and user is Superadmin
     def open_channel?
-      !record.external_report? && @user.is?(:superadmin)
+      @user.is?(:superadmin)
     end
 
     # Can preview Report
     # true if it's not Mindmill report and user is Superadmin
     def preview?
-      return false if @record.external_report?
       return true if @user.is?(:superadmin)
       return true if (@user.is?(:client_admin) || @user.is?(:project_admin)) && @record.assessment.psychometric? &&
         @user.has_grant?(:assigns, :view)
       false
+    end
+
+    # Can export Report Data?
+    #
+    def export?
+      @user.is?(:superadmin)
     end
 
     def left_menu?
@@ -49,6 +59,13 @@ module Administration
 
     def toggle_status?
       edit?
+    end
+
+    # Can regenerate reports if Superadmin
+    #   and record is not external
+    #
+    def regenerate?
+      @user.is?(:superadmin) && !record.try(:external_report?)
     end
 
     class Scope < Scope

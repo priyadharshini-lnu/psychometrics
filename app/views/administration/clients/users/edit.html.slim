@@ -8,9 +8,6 @@
             a data-toggle="tab" href="#tab-first" role="tab" = t('.personal_data')
           li
             a data-toggle="tab" href="#tab-second" role="tab" = t('.hris_data')
-          - if current_user.is?(:superadmin) && resource.user.is?(:client_admin)
-            li
-              a data-toggle="tab" href="#tab-grants" role="tab" = t('.grants')
         .panel-body.tab-content
           #tab-first.tab-pane.active
             = f.simple_fields_for :user do |u|
@@ -28,11 +25,6 @@
                       input_html: {  data: { live_search: true } }
           #tab-second.tab-pane
             = render partial: 'edit_hris_data', locals: { f: f }
-          - if current_user.is?(:superadmin) && resource.user.is?(:client_admin)
-            #tab-grants.tab-pane
-              .col-md-5
-                = f.simple_fields_for :user do |u|
-                  = render partial: 'grants', locals: { u: u }
         .panel-footer
           .btn-group.pull-left
             - back_path = admins_administration_client_users_path(client) if f.object.scope == :administration

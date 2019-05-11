@@ -1,0 +1,16 @@
+- resource.clients_reports.includes(:report_family, :report).group_by(&:report_family).each do |report_family, reports|
+  div
+    - if report_family
+      strong.nowrap
+        = report_family.name
+        = link_to edit_administration_client_assign_reports_path(resource.id, report_family_id: report_family.id), class: 'mlm', remote: true
+          span.fa.fa-pencil
+      .clearfix
+    - reports.each do |report|
+      span.mrs.mbs data-toggle='tooltip' data-title=report&.report&.name
+        = report&.report&.decorate&.icon
+- if policy(:clients_report).create?
+  .add-icon-box.nowrap
+    = link_to new_administration_client_assign_reports_path(resource.id), remote: true
+      span.fa.fa-plus
+      =< t('.add_report')

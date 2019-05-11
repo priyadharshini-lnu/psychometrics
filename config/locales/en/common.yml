@@ -23,6 +23,8 @@ en:
   'yes': 'Yes'
   'no': 'No'
   'clear_filter': 'Clear Filter'
+  next: Next
+  loading: 'Processing...'
   languages:
     en: 'English'
     en-GB: 'English - UK'
@@ -108,3 +110,5 @@ en:
       menu: 'Menu'
   errors:
     error_500: Something went wrong. Contact your administrator.
+    try_again: Please try again
+    invalid_token: Something went wrong. Plese reload the page and try again.

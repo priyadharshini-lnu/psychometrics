@@ -1,0 +1,17 @@
+en:
+  administration:
+    clients:
+      assign_assessments:
+        form:
+          apply_to_existing_users_hint: '(If is not selected, changes will be applied only to new users)'
+        form_edit:
+          name: Assessment name
+          remove: Remove
+          apply_to_existing_users_hint: '(If is not selected, changes will be applied only to new users)'
+        confirm_remove_dependent_reports:
+          title: Are you sure want to remove <b>Assessments</b>?
+          body: 'Removing assessment(s) will also remove the following reports: %{report_names}'
+        new:
+          header: Add Assessments
+        edit:
+          header: Manage assigned Assessments

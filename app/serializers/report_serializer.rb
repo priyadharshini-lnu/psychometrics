@@ -13,7 +13,7 @@
 
 class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations, :props,
-             :dimension_ids, :completed_assessments
+             :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns
 
   has_many :pages, serializer: Reports::PageSerializer
   has_many :filters, serializer: Reports::FilterSerializer
@@ -78,5 +78,11 @@ class ReportSerializer < ActiveModel::Serializer
   def completed_assessments
     return object.assessment_ids unless @instance_options[:assigns]
     @instance_options[:assigns].select { |assign| assign.completed? }.map(&:assessment_id)
+  end
+
+  # Returns YAML rules for exporting data.
+  #
+  def data_configuration
+    object.data_configuration.to_yaml
   end
 end

@@ -4,26 +4,40 @@
       = f.error_notification
       .form-inputs.clearfix
         = f.input :name
-        = f.association :report_families, collection: policy_scope(ReportFamily).all, include_blank: false, input_html: { title: t('.select_family'), data: { live_search: true } }
         - if current_user.is?(:superadmin)
           = f.association :owner, collection: policy_scope(Client).enabled.roots, include_blank: t('administration.tte'), input_html: { data: { live_search: true } }
         = f.input :type, include_blank: false
-        = f.association :assessments, collection: assessments_options_for_select(policy_scope(Assessment), resource),
-          input_html: { multiple: true,
-            data: { live_search: true,
-              max_options: Report::MAX_ASSESSMENT_COUNT,
-              max_options_text: I18n.t('activerecord.errors.models.report.max_assessment_count', max: Report::MAX_ASSESSMENT_COUNT),
-              dynamic_selectable_url: url_for(action: :hogan_reports, assessment_id: '__id__'),
-              dynamic_selectable_target: '#resource_hogan_report_setting_attributes_hogan_report_id' } }
+        = f.association :assessments,
+                        collection: assessments_options_for_select(policy_scope(Assessment), resource),
+                        include_hidden: false,
+                        input_html: { multiple: true,
+                                      data: { live_search: true,
+                                              max_options: Report::MAX_ASSESSMENT_COUNT,
+                                              max_options_text: I18n.t('activerecord.errors.models.report.max_assessment_count', max: Report::MAX_ASSESSMENT_COUNT),
+                                              dynamic_selectable_url: url_for(action: :hogan_reports, assessment_ids: '__id__', hogan_report_id: f.object.hogan_report_setting&.hogan_report_id),
+                                              dynamic_selectable_target: '#resource_hogan_report_setting_attributes_hogan_report_id',
+                                              include_blank: t('.none_external') }}
         - if (resource.assigns_reports.any? || resource.clients_reports.any?) && resource.errors[:assessments].blank?
           span.help-block.text-danger.margin-top-minus-10
             = I18n.t('activerecord.errors.models.report.has_already_assigned')
-        = f.input :mindmill, wrapper_html: { class: 'hidden' }, disabled: true
+
+        = f.input :mindmill, as: :select,
+                             collection: [[t('.none_external'), false], [t('.load_mindmill_report'), true]],
+                             wrapper_html: { class: 'hidden' },
+                             input_html: {disabled: true},
+                             include_blank: false
 
         = f.simple_fields_for :hogan_report_setting do |hogan|
-          = hogan.input :hogan_report_id, as: :select, collection: [], input_html: { multiple: false },
-                                          wrapper_html: { class: 'resource_hogan hidden' }, disabled: true
-          = hogan.input :load_report, wrapper_html: { class: 'resource_hogan hidden' }, disabled: true
+          = hogan.input :hogan_report_id,
+                        as: :select,
+                        collection: [],
+                        input_html: { multiple: false },
+                        wrapper_html: { class: 'resource_hogan hidden' },
+                        disabled: true,
+                        include_hidden: false
+        = f.input :default_language,
+                  collection: I18n.available_locales.map { |locale| [t("languages.#{locale}"), locale] },
+                  include_blank: false
         = render partial: 'administration/administrator/shared/simple_design', locals: { f: f }
     .modal-footer
       .btn-group

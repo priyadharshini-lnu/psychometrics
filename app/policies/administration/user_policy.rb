@@ -59,14 +59,18 @@ class Administration::UserPolicy < Administration::BasePolicy
     @user.is?(:superadmin, :client_admin, :project_admin) && !@record.is_anonym?
   end
 
+
+  # @deprecated
   def manage_grants?
     @user.is?(:superadmin, :client_admin) && @record.scope == :administration
   end
 
+  # @deprecated
   def manage_grants_for_action?(resource, action)
     @user.is?(:superadmin) || @user.has_grant?(resource, action)
   end
 
+  # @deprecated
   def manage_grants_for_actions?(resource, actions)
     return true if @user.is?(:superadmin)
     (@user.grants || {}).key?(resource) && (@user.grants[resource] & actions).any?

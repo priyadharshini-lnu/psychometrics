@@ -14,6 +14,7 @@ en:
     edit: Edit
     new: New
     show: Show
+    hide: Hide
     actions: Actions
     created_by: Created By
     modified_by: Modified By
@@ -26,6 +27,8 @@ en:
     all: ' - All - '
     psychometrics: Psychometrics
     no_data_found: No data found
+    updated: Successfully updated
+    created: Successfully created
     genders:
       male: Male
       female: Female
@@ -59,7 +62,7 @@ en:
       client: Client Tenancy
       create: Create
       reports: Reports
-      report_families: Report Families
+      report_families: Report Bundles
       design: Design
       question_center: Question Center
       libraries: Media Library
@@ -69,6 +72,8 @@ en:
       projects: Projects
       campaigns: Campaigns
       sub_campaigns: Sub Campaigns
+      licenses: Licenses
+      datasheets: Datasheets
     breadcrumbs:
       <<: *NAVIGATION
     tte: TTE

@@ -31,6 +31,8 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-bootstrap-datetimepicker-3', '4.17.47'
   gem 'rails-assets-moment', '2.19.3'
   gem 'rails-assets-moment-timezone', '0.5.14'
+  gem 'rails-assets-Sortable', '1.6.0'
+  gem 'rails-assets-lodash'
 end
 
 ### Authentication and authorization
@@ -78,7 +80,7 @@ gem 'psychometrics-survey-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics
 
 ### XLS import
 gem 'rubyXL'
-gem 'file_validators',            '~> 2.1.0'
+gem 'file_validators',            '~> 2.3.0'
 
 # For import csv
 gem 'smarter_csv',                '~> 1.1.0'
@@ -91,7 +93,7 @@ gem 'ckeditor'
 ### dependencies for XLS export (via templates)
 gem 'axlsx', git: 'git@github.com:randym/axlsx', ref: 'c8ac844'
 gem 'axlsx_rails', '~> 0.4.0'
-gem 'roo', '~> 2.4.0'
+gem 'roo', '~> 2.8.2'
 
 gem 'i18n-tasks', '~> 0.9.5'
 
@@ -104,7 +106,7 @@ gem 'active_model_serializers', '~> 0.10.0'
 gem 'airbrake', '~> 5.0'
 
 # DSL for activerecord
-gem 'baby_squeel', '~> 1.0.1'
+gem 'baby_squeel', '~> 1.3.1'
 
 # Cloning ActiveRecord object
 gem 'amoeba', '~> 3.0.0'
@@ -125,7 +127,7 @@ gem 'chronic', '~> 0.10.2'
 gem 'whenever', '~> 0.9.7', require: false
 gem 'rectify', '~> 0.13.0'
 
-gem 'hashids', '~> 1.0.2'
+gem 'hashids', '~> 1.0.5'
 gem 'react-rails', '~> 1.10.0'
 gem 'bootstrap-slider-rails'
 
@@ -148,6 +150,8 @@ gem 'enum_help', '~> 0.0.17'
 gem 'date_validator', '~> 0.9.0'
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'js-routes', '~> 1.4.4'
+gem 'rswag', '~> 2.0.5'
+gem 'tty-progressbar', '~> 0.16.0', require: false
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
@@ -156,7 +160,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'hirb'
   gem 'awesome_print', '~> 1.8.0'
-  gem 'rspec-rails', '~> 3.5'
+  gem 'rspec-rails', '~> 3.8'
   gem 'factory_girl_rails', '~> 4.7.0'
   # A fake data generator
 end
@@ -179,6 +183,8 @@ group :development do
   gem 'capistrano-nc', '~> 0.2', require: false
   gem 'capistrano-npm', '~> 1.0', '>= 1.0.2'
   gem 'guard'
+  gem 'rubocop', require: false
+  gem 'meta_request'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
@@ -186,9 +192,12 @@ group :test do
   gem 'faker', '~> 1.8.7'
   gem 'poltergeist', '~> 1.14.0'
   gem 'capybara-screenshot', '~> 1.0.14'
-  gem 'selenium-webdriver'
+  gem 'selenium-webdriver', '~> 3.141.59'
   gem 'shoulda', '~> 3.5.0'
   gem 'database_cleaner', '~> 1.7.0'
   gem 'simplecov', require: false
-  gem 'rspec-retry', '~> 0.5.7'
+  gem 'rspec-retry', '~> 0.6.1'
+  gem 'wisper-rspec', '~> 1.1.0', require: false
+  gem 'timecop', '~> 0.9.1'
+  gem 'rails-controller-testing'
 end

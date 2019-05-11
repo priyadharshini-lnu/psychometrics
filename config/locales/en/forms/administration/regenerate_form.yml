@@ -1,0 +1,11 @@
+en:
+  activemodel:
+    models:
+      regenerate_reports: 'Regenerate Reports'
+    attributes:
+      regenerate_reports: &DEFAULT
+        report_ids: 'Reports'
+  simple_form:
+    placeholders:
+      regenerate_reports:
+        <<: *DEFAULT

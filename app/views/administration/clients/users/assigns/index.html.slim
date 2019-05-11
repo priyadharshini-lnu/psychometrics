@@ -5,10 +5,10 @@
         h3.panel-title = t('.title', name: membership.decorate.display_name)
         .pull-right
           .btn-group
-            - if policy(:assign).create?
-              = link_to({ action: :new }, remote: true, class: 'btn btn-default')
+            - if policy(:clients_report).create?
+              = link_to(new_administration_client_user_assigns_report_path(client.id, membership.id), remote: true, class: 'btn btn-default')
                 span.fa.fa-plus
-                = t('.add')
+                = t('.add_reports')
         = search_form_for(filter_form,
                 url: { action: :index },
                 html: { id: 'filter', class: 'list-filter' },

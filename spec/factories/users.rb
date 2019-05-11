@@ -29,7 +29,6 @@
 #  invitations_count      :integer          default(0)
 #  authentication_token   :string(30)
 #  is_anonym              :boolean          default(FALSE)
-#  grants                 :jsonb
 #
 
 FactoryGirl.define do
@@ -40,21 +39,20 @@ FactoryGirl.define do
     first_name 'test'
     last_name 'test'
     transient do
-      grants nil
       memberships_options [{}]
     end
 
-    factory :superadmin do
+    factory :superadmin, class: 'Users::SuperAdmin' do
       role User::SUPER_ADMIN_ROLE
       first_name 'super'
       last_name 'admin'
     end
 
     factory :client_admin, traits: [:with_membership_client_admin] do
-      grants User::DEFAULT_ADMIN_GRANTS
+      role User::ADMIN_ROLE
     end
     factory :project_admin, traits: [:with_membership_project_admin] do
-      grants User::DEFAULT_PROJECT_ADMIN_GRANTS
+      role User::ADMIN_ROLE
     end
     factory :manager, traits: [:with_membership_manager]
 
@@ -78,11 +76,5 @@ FactoryGirl.define do
       to_create {|instance| instance.save(validate: false)}
     end
 
-    after(:create) do |user, evaluator|
-      if evaluator.grants
-        user.grants = evaluator.grants
-        user.save!
-      end
-    end
   end
 end

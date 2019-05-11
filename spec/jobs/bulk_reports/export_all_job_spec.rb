@@ -15,7 +15,6 @@ describe BulkReports::ExportAllJob do
       report_ids: report_ids,
       start_date: start_date,
       end_date: end_date,
-      scheme: scheme,
       opts: opts
     }
   }

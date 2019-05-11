@@ -1,0 +1,39 @@
+= simple_form_for resource, as: :resource,
+                            url: { action: :update },
+                            method: :put,
+                            remote: true,
+                            authenticity_token: true do |f|
+  .modal-body
+    #sortable.list-groups
+      - @assessments_clients.each do |assessment_client|
+        .list-group-item
+          = f.input_field :assessments_client_ids,
+                          as: :hidden,
+                          multiple: true,
+                          value: assessment_client.id
+          .row
+            .col-md-1
+              .pvs
+                i.fa.fa-bars.sortable-bar
+            .col-md-8
+              .pvs = assessment_client.assessment.name
+            .col-md-3
+              .form-group
+                span.checkbox
+                  label
+                    = check_box_tag 'resource[removing_assessment_ids][]',
+                                    assessment_client.assessment_id,
+                                    f.object.removing_assessment_ids.include?(assessment_client.assessment_id)
+                    = t('.remove')
+    = f.input :is_applying_to_existing_users, as: :boolean, hint: t('.apply_to_existing_users_hint')
+    = f.input :is_removing_dependent_reports, as: :boolean, wrapper_class: 'hidden'
+  .modal-footer
+    .btn-group
+      = f.button :submit,
+                 t('administration.save'),
+                 class: 'btn-info',
+                 data: { loading_button: t('loading') }
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+javascript:
+  var el = document.getElementById('sortable');
+  var sortable = new Sortable(el, {})

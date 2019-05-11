@@ -9,11 +9,10 @@
     td = resource.number
     td
       - if resource.project_level?
-        = resource.decorate.reports_names
-        - if policy(:clients_report).create?
-          .add-icon-box
-            = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
-              span.fa.fa-plus
+        = render 'assign_assessments', resource: resource
+    td
+      - if resource.project_level?
+        = render 'assign_reports', resource: resource
     td = resource.assigned_memberships.size
     td = resource.completed_memberships.size
     td
@@ -28,7 +27,7 @@
       = resource.decorate.client_project_admins
       - if policy(:membership).create_project_admin?
         .add-icon-box
-          = link_to new_administration_client_project_admin_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
+          = link_to new_step_1_administration_client_project_admins_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_admin') }
             span.fa.fa-plus
     td = resource.decorate.url
     - if current_user.is?(:superadmin)

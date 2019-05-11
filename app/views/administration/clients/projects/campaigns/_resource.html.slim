@@ -18,11 +18,9 @@ tbody id=dom_id(resource)
       td
         = link_to resource.name, administration_client_users_path(resource)
       td
-        = resource.decorate.reports
-        - if policy(:clients_report).create?
-          .add-icon-box
-            = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
-              span.fa.fa-plus
+        = render '/administration/clients/projects/assign_assessments', resource: resource
+      td
+        = render '/administration/clients/projects/assign_reports', resource: resource
       td
         = link_to resource.end_memberships.size, administration_client_users_path(resource)
         - if policy(User).create?
@@ -31,3 +29,11 @@ tbody id=dom_id(resource)
               span.fa.fa-plus
       - if current_user.is?(:superadmin)
         td = resource.decorate.actual_usage
+      td.actions-cell
+        - if policy(resource).actions? && policy(:client).manage_campaign?
+          = link_to({ action: :edit, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') })
+            span.fa.fa-pencil
+          = link_to({ action: :copy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.copy') })
+            span.fa.fa-copy
+          = link_to({ action: :destroy, id: resource }, remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')})
+            span.fa.fa-times

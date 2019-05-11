@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: assigns
@@ -20,23 +22,18 @@
 #
 
 class AssignsController < ApplicationController
-  layout 'users_new'
-
-  before_action :set_assign, only: %i(pass update)
+  before_action :set_assign, only: %i[pass update]
   append_before_action :pundit_authorize
 
   # Skip CSRF
-  skip_before_action :verify_authenticity_token, only: %i(update)
+  skip_before_action :verify_authenticity_token, only: %i[update]
 
   def index
-    @reports_ids = Report.for_clients(@current_project.subtree_ids).enabled.available_to_view.distinct.ids
-    @single_assigns = policy_scope(Assign).preload(:assessment).
-      includes(:single_reports, original_assign: [:single_reports])
-
-    multiple_reports_ids =  multiple_reports_ids(@reports_ids)
-    multiple_assigns_reports = multiple_assigns_reports(current_user, @current_project, multiple_reports_ids)
-
-    @multiple_reports = multiple_reports(multiple_assigns_reports)
+    @assigns = policy_scope(Assign).
+               preload(:assessment, original_assigns_reports: :report).
+               joining { original_assign.outer.membership.outer.client.outer }.
+               joins('LEFT OUTER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id" AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
+               order('assessments_clients.position ASC')
 
     @current_membership.set_user_invited_for_current_project
   end
@@ -52,12 +49,9 @@ class AssignsController < ApplicationController
   end
 
   def update
-    @assign.assign_attributes(resource_params)
-    if @assign.completed?
-      @assign.calculate_scoring
-      @assign.completed_at = Time.now
-    end
-    @assign.save
+    @form = AssignForm.from_params(params[:resource])
+    UpdateAssign.call(@form, @assign, current_user)
+
     head :no_content
   end
 
@@ -74,13 +68,6 @@ class AssignsController < ApplicationController
     redirect_to(action: :index)
   end
 
-  def resource_params
-    results = params.require(:resource).fetch(:results, nil).try(:permit!)
-    embedded_data = params.require(:resource).fetch(:embedded_data, nil).try(:permit!)
-    norm_data = params.require(:resource).fetch(:norm, nil).try(:permit!)
-    params.require(:resource).permit(:step, :status).merge(results: results, embedded_data: embedded_data, norm_data: norm_data)
-  end
-
   # Authorisation user
   def pundit_authorize
     authorize @assign || Assign
@@ -93,9 +80,9 @@ class AssignsController < ApplicationController
   end
 
   def multiple_assigns_reports(user, project, report_ids)
-    AssignsReport.includes(assign: [:membership, :project_assign]).
-      where(assigns: { memberships: { user_id: user.id, client_id: project.subtree_ids } }).
-      where(report_id: report_ids)
+    AssignsReport.includes(assign: %i[membership project_assign]).
+                  where(assigns: { memberships: { user_id: user.id, client_id: project.subtree_ids } }).
+                  where(report_id: report_ids)
   end
 
   def multiple_reports_ids(reports_ids)

@@ -114,6 +114,21 @@ class FactorsNorm < ApplicationRecord
     end
   end
 
+  # Detects normed result based on scoring
+  def detect_normed_result(scoring = [])
+    # Calculates sum of value
+    sum_scoring = scoring.inject(0) { |sum, result| sum + result['value'].to_i }
+    # Calculates avg of value with 2 numbers after comma
+    avg_scoring = (sum_scoring / scoring.size.to_f).round(2)
+
+    prop = (props || []).detect { |n| n['score_from'].to_f <= avg_scoring && n['score_to'].to_f >= avg_scoring }
+
+    # Converts level to index
+    normed_result = LEVELS.index(prop&.dig('level'))
+    # +1 cause (Very Low = 1, Low = 2, Average = 3, High = 4, Very High = 5)
+    normed_result + 1 if normed_result
+  end
+
   private
 
   def score_from_less_than_score_to

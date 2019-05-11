@@ -1,6 +1,9 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
+  mount Rswag::Ui::Engine => '/api-docs'
+  mount Rswag::Api::Engine => '/api-docs'
   mount ActionCable.server => '/cable'
+
   # Administration panel
   #
   namespace :administration do
@@ -59,12 +62,18 @@ Rails.application.routes.draw do
           scope module: :users do
             resources :assigns, only: [:index, :new, :create, :destroy] do
               get :reports, on: :collection
+              put :reset, on: :member
             end
             resources :reports, only: [:destroy] do
               get :preview, on: :member
             end
-            resources :assigns_reports, only: %i[edit update destroy]
+            resources :assigns_reports, only: %i[new create destroy] do
+              put :regenerate, on: :member
+              put :toggle_user_access, on: :member
+            end
+            resources :assign_assessments, only: %i[new create]
           end
+
           member do
             patch :toggle_status
             get :sidebar
@@ -77,6 +86,12 @@ Rails.application.routes.draw do
             get :export_completion_status
             post :assign_multiple
           end
+
+          resources :api_keys, except: %i[destroy edit update show] do
+            member do
+              patch :toggle_status
+            end
+          end
         end
         resources :project_admins do
           member do
@@ -86,6 +101,8 @@ Rails.application.routes.draw do
             get :spoof
           end
           collection do
+            get :new_step_1
+            post :new_step_2
             post :assign_multiple
           end
         end
@@ -97,10 +114,19 @@ Rails.application.routes.draw do
             get :spoof
           end
           collection do
+            get :new_step_1
+            post :new_step_2
             post :assign_multiple
           end
         end
-        resources :reports, only: [:index, :destroy, :new, :create]
+        resources :reports, only: %i[index] do
+          get :export
+        end
+        namespace :reports do
+          resources :regenerates, only: %i[new create]
+        end
+        resource :assign_reports, only: %i[new create edit update]
+        resource :assign_assessments, only: %i[new create edit update]
         resources :statistics, only: [:index]
 
         resources :projects, concerns: :client_editable do
@@ -126,12 +152,17 @@ Rails.application.routes.draw do
         resources :campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
         resources :sub_campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
 
-        resource :licenses, only: [:show, :edit, :update]
+        resources :licenses, only: %i[index show new create edit update] do
+          patch :toggle_status, on: :member
+          get :overview, on: :collection
+        end
         resources :assessments, only: [:index, :destroy] do
           get :export_results
           get :export_normed_results
           get :export_hogan_results
         end
+        resources :datasheet_rows, except: %i[show edit update]
+
       end
     end
     ### END CLIENTS
@@ -264,6 +295,8 @@ Rails.application.routes.draw do
         get :sidebar
         patch :toggle_status
         get :preview
+        put :regenerate
+        post :upload_data_sheet
       end
       collection do
         get :hogan_reports
@@ -276,6 +309,9 @@ Rails.application.routes.draw do
     resources :report_families, except: [:show] do
       member do
         get :sidebar
+      end
+      scope module: :report_families do
+        resources :reports, only: %i[index destroy new create]
       end
     end
 
@@ -357,7 +393,10 @@ Rails.application.routes.draw do
              singular: :user,
              to: 'User',
              class_name: 'User',
-             controllers: { registrations: 'users/registrations', invitations: 'users/invitations', passwords: 'passwords' }
+             controllers: { registrations: 'users/registrations',
+                            sessions: 'users/sessions',
+                            invitations: 'users/invitations',
+                            passwords: 'passwords' }
   # Manager's panel
   #
   constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
@@ -406,9 +445,13 @@ Rails.application.routes.draw do
       end
     end
 
-    resources :reports, only: %i(show)
+    resources :reports, only: %i(show) do
+      get :export, on: :member
+    end
     resource :profiles, only: %i(update edit)
     get 'survey_instructions', to: 'home#survey_instructions'
+    get 'sso/:user_id/:sso_token', to: 'home#sso'
+    get 'assessment_completed', to: 'home#assessment_completed'
     root to: 'assigns#index'
   end
 
@@ -422,4 +465,26 @@ Rails.application.routes.draw do
   mount Sidekiq::Web, at: '/sidekiq'
 
   root to: 'administration/administrator/sessions#new'
+
+  constraints format: :json do
+    namespace :api do
+      namespace :v1 do
+        resources :projects, only: [] do
+          resources :users, only: %i[create update] do
+            post :sso, on: :member
+
+            resources :campaigns, only: [:index, :create]
+            resources :assessments, only: [:index]
+            resources :reports, only: [:index] do
+              get :results, on: :member
+              get :pdf, on: :member
+            end
+          end
+          resources :campaigns, only: [] do
+            post :duplicate, on: :member
+          end
+        end
+      end
+    end
+  end
 end

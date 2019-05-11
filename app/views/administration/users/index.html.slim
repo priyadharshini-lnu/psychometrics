@@ -6,9 +6,6 @@
         .pull-right
           .btn-group
             - if policy(resource_class).export?
-              = link_to({ action: :export, format: :csv }, target: :_blank, class: 'btn btn-default')
-                span.fa.fa-download
-                = t('.export')
             - if policy(resource_class).create_superadmin?
               = link_to({ action: :new }, remote: true, class: 'btn btn-default')
                 span.fa.fa-plus

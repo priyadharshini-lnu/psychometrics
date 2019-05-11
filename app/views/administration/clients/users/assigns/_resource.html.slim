@@ -1,39 +1,56 @@
 - assessment = resource.assessment
 tr id=dom_id(resource)
   td = resource.encode_id
-  td
+  td.nowrap
     span = membership.decorate.display_name
     span.mlm
       - if policy(resource).destroy?
-        = link_to({ action: :destroy, id: resource }, 
-                  remote: true, 
-                  class: 'btn btn-default btn-rounded btn-sm mrm', 
-                  method: :delete, 
-                  data: { confirm: resource.decorate.delete_confirmation, 
-                          toggle: 'tooltip', 
+        = link_to({ action: :destroy, id: resource },
+                  remote: true,
+                  class: 'btn btn-default btn-rounded btn-sm',
+                  method: :delete,
+                  data: { confirm: resource.decorate.delete_confirmation,
+                          toggle: 'tooltip',
                           title: t('.tooltips.delete') })
           span.fa.fa-times
+      - if policy(resource).reset?
+        = link_to({ action: :reset, id: resource },
+                  remote: true,
+                  class: 'btn btn-default btn-rounded btn-sm mlm',
+                  method: :put,
+                  data: { confirm: { title: t('.confirms.reset.title'),
+                                     body: t('.confirms.reset.body') },
+                          toggle: 'tooltip',
+                          title: t('.tooltips.reset') })
+          span.fa.fa-trash-o
   td = assessment.try(:name)
   td = assessment.try(:decorate).try(:category)
   td = resource.decorate.status
   td = resource.decorate.completed_at
-  td.text-center
+  td.nowrap.text-center
     - if policy(assessment).view_report?
-      - reports = filter_reports_by_type(resource.reports.enabled, resource.norm_type)
+      - assigns_reports = filter_assigns_reports_by_type(resource.enabled_assigns_reports, resource.norm_type)
       - if resource.decorate.completed?
-        - if reports.any?
-          - reports.each do |report|
+        - if assigns_reports.any?
+          - assigns_reports.each do |assigns_report|
+            - report = assigns_report.report
             - link_options = { class: 'btn btn-default btn-rounded btn-sm',
-                               data: { toggle: 'tooltip', title: report.name, assign_id: resource.id, report_id: report.id } }
+                               data: { toggle: 'tooltip',
+                                       title: report.name,
+                                       assign_id: resource.id,
+                                       report_id: report.id } }
             - if report.mindmill?
               = link_to resource.assign_with_result.mindmill_report.url, link_options
                 span.fa.fa-pie-chart
-            - elsif report.assessment.hogan?
-              - if report.hogan_report_setting&.load_report?
-                - url = resource.assigns_reports.find_by(report: report).external_report.url
-                - if url
-                  = link_to url, link_options
-                    span.fa.fa-pie-chart
+            - elsif report.assessment.hogan? && report.hogan_report_setting
+              - url = resource.assigns_reports.find_by(report: report).external_report.url
+              - if url
+                = link_to url, link_options
+                  span.fa.fa-pie-chart
+            // Render blank link if
+            - elsif assigns_report.generating?
+              .btn.btn-default.btn-rounded.btn-sm.disabled data-toggle='tooltip' data-title=t('.generating', name: report.name)
+                span.fa.fa-pie-chart
             - else
               = link_to [:preview, :administration, client, :user, :report, user_id: membership.user_id, id: report.id],
                         link_options
@@ -50,7 +67,43 @@ tr id=dom_id(resource)
         span = assigns_report.report.name
         span.mlm
           - if policy(assigns_report).update?
-            = link_to edit_administration_client_user_assigns_report_path(client, membership, assigns_report),
-              remote: true, class: 'btn btn-default btn-rounded btn-sm edit',
-              data: { toggle: 'tooltip', title: t('.tooltips.edit') }
-              span.fa.fa-pencil
+            - if assigns_report.user_access
+              = link_to toggle_user_access_administration_client_user_assigns_report_path(client, membership, assigns_report, format: :js),
+                        remote: true,
+                        class: 'btn btn-default btn-rounded btn-sm edit',
+                        method: :put,
+                        data: { confirm: { title: t('.confirms.assigns_report.remove_user_access.title', name: assigns_report.report.name),
+                                           body: t('.confirms.assigns_report.remove_user_access.body') },
+                                toggle: 'tooltip',
+                                title: t('.tooltips.assigns_report.remove_user_access') }
+                span.fa.fa-eye
+            - else
+              = link_to toggle_user_access_administration_client_user_assigns_report_path(client, membership, assigns_report, format: :js),
+                        remote: true,
+                        method: :put,
+                        class: 'btn btn-default btn-rounded btn-sm edit',
+                        data: { confirm: { title: t('.confirms.assigns_report.add_user_access.title', name: assigns_report.report.name),
+                                           body: t('.confirms.assigns_report.add_user_access.body') },
+                                toggle: 'tooltip',
+                                title: t('.tooltips.assigns_report.add_user_access') }
+                span.fa.fa-eye-slash
+          - if policy(assigns_report).destroy?
+            = link_to(administration_client_user_assigns_report_path(client, membership, assigns_report, format: :js),
+                      remote: true,
+                      class: 'btn btn-default btn-rounded btn-sm',
+                      method: :delete,
+                      data: { confirm: { title: t('.confirms.assigns_report.delete.title', name: assigns_report.report.name),
+                                         body: t('.confirms.assigns_report.delete.body') },
+                              toggle: 'tooltip',
+                              title: t('.tooltips.assigns_report.delete') })
+              span.fa.fa-times
+          - if policy(assigns_report).regenerate?
+            = link_to regenerate_administration_client_user_assigns_report_path(client, membership, assigns_report),
+                      remote: true,
+                      class: 'btn btn-default btn-rounded btn-sm mrm',
+                      method: :put,
+                      data: { toggle: 'tooltip',
+                              title: t('.tooltips.assigns_report.regenerate'),
+                              confirm: { title: t('.confirms.assigns_report.regenerate.title', name: assigns_report.report.name),
+                                         body: t('.confirms.assigns_report.regenerate.body') } }
+              span.fa.fa-refresh

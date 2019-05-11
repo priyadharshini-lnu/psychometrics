@@ -53,8 +53,7 @@ feature 'User Privileges', clean: false do
 
     context 'with privileges' do
       before(:all) do
-        @admin_user.grants = { norms: %w(view manage), dimensions: %w(view) }
-        @admin_user.save!
+        @admin_user.memberships.first.grants.update(data: @admin_user.memberships.first.grants.data.merge!({ norms: %w(view manage), dimensions: %w(view) }))
       end
       before { login_as admin_user }
       # TODO: fix

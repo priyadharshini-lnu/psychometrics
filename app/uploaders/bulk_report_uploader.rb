@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class BulkReportUploader < CarrierWave::Uploader::Base
   # Override the directory where uploaded files will be stored.
   # This is a sensible default for uploaders that are meant to be mounted:
@@ -7,6 +9,6 @@ class BulkReportUploader < CarrierWave::Uploader::Base
 
   # Add a white list of extensions which are allowed to be uploaded.
   def extension_whitelist
-    %w(zip)
+    %w[zip]
   end
 end

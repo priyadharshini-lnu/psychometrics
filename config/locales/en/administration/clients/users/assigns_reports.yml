@@ -13,6 +13,13 @@ en:
               download the results you should assign all assessments linked to the report.
           update:
             successfully: Successfully Updated
+          regenerate:
+            successfully: Successfully sent to regenerate
+          edit:
+            header: Add Reports
+          new:
+            header: Add Reports
+
     assigns_reports:
       edit:
         header: Edit report assignment

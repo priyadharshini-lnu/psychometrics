@@ -28,7 +28,7 @@ module Imports
     end
 
     def load_imported_items
-      datas = open_spreadsheet.parse
+      datas = open_spreadsheet.to_a
       header = datas.shift
 
       raise Roo::HeaderRowNotFoundError unless header.include?('Email')

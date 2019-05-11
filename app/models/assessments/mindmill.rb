@@ -1,7 +1,7 @@
 module Assessments
   class Mindmill < Assessment
     validates :name, presence: true, length: { maximum: 150, allow_blank: true }
-    validates :mindmill_id, presence: true, inclusion: { in: Settings.mindmill.map(&:id), allow_nil: true }
+    validates :mindmill_id, presence: true, inclusion: { in: Settings.providers.mindmill.assessments.map(&:id), allow_nil: true }
 
     before_create :init_default_state
 

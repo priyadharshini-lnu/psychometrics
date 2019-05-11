@@ -1,0 +1,7 @@
+$('#filter').trigger('reloadList');
+
+// Reinit all plugins
+$(document).trigger('initPlugins');
+
+// Notify message
+noty({text: 'Successfully updated', type: 'success'});

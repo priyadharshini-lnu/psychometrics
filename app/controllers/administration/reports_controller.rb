@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Administration
   class ReportsController < Administration::BaseController
     # Turn off normally auth
@@ -6,7 +8,7 @@ module Administration
     prepend_before_action :authenticate_user_from_token!
 
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: [:show, :edit, :update, :destroy, :copy, :toggle_status, :sidebar, :preview]
+    before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview regenerate upload_data_sheet]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
@@ -26,6 +28,11 @@ module Administration
       end
     end
 
+    def upload_data_sheet
+      @form = ::Datasheets::DatasheetForm.from_params(params)
+      render json: @form.parsed_file.first.map { |k, v| {name: k, type: v} }
+    end
+
     def show
       render layout: 'layouts/report'
     end
@@ -39,22 +46,28 @@ module Administration
     def create
       @_resource = resource_class.new(resource_params)
       resource.owner_id = current_user.project_admin_client_ids.first if current_user.is?(:client_admin)
+      # TODO (ivan) Move creating and updating to Command and Form
+      resource.hogan_report_setting&.delete if resource.hogan_report_setting&.hogan_report_id.blank?
 
       respond_to do |format|
         if resource.save
           format.js
         else
-          @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
+          resource.build_hogan_report_setting if resource.hogan_report_setting.blank?
           format.js { render :new }
         end
       end
     end
 
     def hogan_reports
-      assessment_id = params[:assessment_id].split(',').first
-      hogan_assessment_id = Assessment.hogan.find_by(id: assessment_id)&.hogan_assessment_setting&.hogan_assessment_id
-      @reports = hogan_assessment_id ? Settings.hogan.find { |s| s.assessment_id == hogan_assessment_id }.reports : []
-
+      assessment_ids = params[:assessment_ids].to_s.split(',').compact
+      hogan_assessment_ids = HoganAssessmentSetting.
+                             where(assessment_id: assessment_ids).
+                             pluck(:hogan_assessment_id).
+                             uniq
+      @reports = hogan_assessment_ids ?
+                   Settings.providers.hogan.reports.select { |report| report[:assessment_ids].to_set == hogan_assessment_ids.to_set } :
+                   []
       respond_to do |format|
         format.json
       end
@@ -63,7 +76,7 @@ module Administration
     # GET /administration/resources/1/edit
     def edit
       @_resource.build_hogan_report_setting if @_resource.hogan_report_setting.blank?
-      add_breadcrumb resource.decorate.display_name, { action: :edit, id: resource.id }
+      add_breadcrumb resource.decorate.display_name, action: :edit, id: resource.id
     end
 
     # PATCH/PUT /administration/resources/1
@@ -81,7 +94,7 @@ module Administration
     # DELETE /administration/resources/1
     def destroy
       begin
-      resource.destroy
+        resource.destroy
       rescue ActiveRecord::InvalidForeignKey
         resource.errors.add(:base, :has_dependent_relation)
       end
@@ -105,7 +118,7 @@ module Administration
         if @cloned_resource.save
           format.js
         else
-          format.js { render :error, locals: { message: t('.error', { name: resource.decorate.display_name }) } }
+          format.js { render :error, locals: { message: t('.error', name: resource.decorate.display_name) } }
         end
       end
     end
@@ -123,17 +136,23 @@ module Administration
     end
 
     def preview
-      add_breadcrumb resource.decorate.display_name, { action: :show, id: resource }
+      add_breadcrumb resource.decorate.display_name, action: :show, id: resource
       respond_to do |format|
         format.html
       end
     end
 
+    # Sends to re-generate Reports for all passed Assessments
+    #
+    def regenerate
+      ::Reports::BulkExportJob.perform_later([resource.id], current_user)
+    end
+
     private
 
     def init_breadcrumbs
-      add_breadcrumb I18n.t('administration.breadcrumbs.home'), [:administration, :root]
-      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), { action: :index }
+      add_breadcrumb I18n.t('administration.breadcrumbs.home'), %i[administration root]
+      add_breadcrumb I18n.t("administration.breadcrumbs.#{resource_class.model_name.plural}"), action: :index
     end
 
     # Set model
@@ -143,8 +162,8 @@ module Administration
 
     def resource_params
       report_params = params.require(:resource).permit(:name, :type, :owner_id, :mindmill, :icon, :icon_color, :props,
-                                                       :remove_icon, report_family_ids: [], assessment_ids: [],
-                                       hogan_report_setting_attributes: [:id, :hogan_report_id, :load_report])
+                                                       :remove_icon, :default_language, report_family_ids: [], assessment_ids: [],
+                                       hogan_report_setting_attributes: %i[id hogan_report_id])
       # FIXME: When the assessments dropdown is disabled on the form due to assignment conditions, assessment_ids are empty and causes errors
       # Does this need a better fix?
       report_params = report_params.except(:assessment_ids) if report_params.has_key?(:assessment_ids) && report_params[:assessment_ids].reject(&:empty?).empty?

@@ -1,15 +1,15 @@
 tr data-sidebar=url_for(sidebar_administration_client_campaign_path(client, resource)) id=dom_id(resource)
   td
-    - if resource.parent.campaign_level?
+    - if resource.project.campaign_level?
       = link_to resource.name, administration_client_users_path(resource)
     - else
       = link_to resource.name, administration_client_project_campaign_sub_campaigns_path(client, resource.parent_id, resource)
   td
-    = resource.decorate.reports
-    - if policy(:clients_report).create?
-      .add-icon-box
-        = link_to new_administration_client_report_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
-          span.fa.fa-plus
+    - if resource.project.campaign_level?
+      = render '/administration/clients/projects/assign_assessments', resource: resource
+  td
+    - if resource.project.campaign_level?
+      = render '/administration/clients/projects/assign_reports', resource: resource
   td = resource.assigned_memberships.size
   td = resource.completed_memberships.size
   td.text-center = resource.decorate.created_at

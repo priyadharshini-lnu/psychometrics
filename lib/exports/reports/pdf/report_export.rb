@@ -1,43 +1,38 @@
+# frozen_string_literal: true
+
 module Exports
   module Reports
     module Pdf
       class ReportExport
-        def self.export(current_user, report, user, client, protocol, opts = {})
-          output_dir = opts.delete(:output_dir) || Rails.root.join('tmp', 'reports')
-          output_dir = File.join(output_dir, user.email)
-          FileUtils.mkdir_p(output_dir)
-          filename = "#{user.email}_#{report.decorate.display_name}_#{Date.today.strftime('%F')}.pdf"
-          output = File.join(output_dir, filename)
-          # Generate valid url for parse report to pdf
-          url_params = {
-            host: Settings.domain,
-            user_token: current_user.authentication_token,
-            export: true,
-            lang: opts[:lang] || I18n.locale
-          }
-          url = if current_user.is?(:superadmin, :client_admin, :project_admin)
-                  Rails.application.routes.url_helpers.
-                    preview_administration_client_user_report_url(url_params.merge({
-                                                                                     client_id: client.id,
-                                                                                     user_id: user.id,
-                                                                                     id: report.id,
-                                                                                     port: Settings.port,
-                                                                                     protocol: protocol
-                                                                                    }))
-                else
-                  Rails.application.routes.url_helpers.
-                    report_url(report, url_params.merge({
-                                                          domain: Settings.domain,
-                                                          subdomain: client.subdomain,
-                                                          port: Settings.port,
-                                                          protocol: protocol
-                                                         }))
-                end
+        attr_accessor :output
+
+        def initialize(current_user, report, user, client, opts = {})
+          @current_user = current_user
+          @report = report
+          @user = user
+          @client = client
+          @opts = opts
+
+          make_path
+          build_url
+          generate_report
+        end
+
+        def self.export(current_user, report, user, client, _opts = {})
+          file = new(current_user, report, user, client, opts = {})
+          file.output
+        end
+
+        private
+
+        attr_reader :current_user, :report, :user, :client, :opts, :url
+
+        def generate_report
           args = {
             url: url,
             output: output,
-            pageWidth: report.props.try(:[], 'sizes').try(:[], 'width') || 850,
-            pageHeight: report.props.try(:[], 'sizes').try(:[], 'height') || 1100,
+            pageWidth: report.props&.dig('sizes', 'width') || 850,
+            pageHeight: report.props&.dig('sizes', 'height') || 1100,
             auth: Rails.application.secrets.http_auth
           }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
@@ -45,6 +40,64 @@ module Exports
           system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
 
           output
+        end
+
+        # Creates folder and file to the report
+        #
+        def make_path
+          dir = opts.delete(:output_dir) || Rails.root.join('tmp', 'reports')
+          dir = File.join(dir, user.email)
+          filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
+
+          FileUtils.mkdir_p(dir)
+          @output = File.join(dir, filename)
+        end
+
+        # Builds URL to report page
+        #
+        def build_url
+          # Generate valid url for parse report to pdf
+          params = {
+            host: Settings.domain,
+            user_token: current_user.authentication_token,
+            export: true,
+            lang: opts[:lang] || I18n.locale,
+            port: Settings.port,
+            protocol: Settings.protocol
+          }
+
+          @url = current_user.is?(:superadmin, :client_admin, :project_admin) ?
+            build_administration_url(params) :
+            build_user_url(params)
+        end
+
+        # Builds URL for Administration side
+        #
+        def build_administration_url(params = {})
+          params = params.merge(
+            client_id: client.id,
+            user_id: user.id,
+            id: report.id
+          )
+
+          Rails.application.
+            routes.
+            url_helpers.
+            preview_administration_client_user_report_url(params)
+        end
+
+        # Builds URL for End User side
+        #
+        def build_user_url(params = {})
+          params = params.merge(
+            domain: Settings.domain,
+            subdomain: client.subdomain
+          )
+
+          Rails.application.
+            routes.
+            url_helpers.
+            export_report_url(report, params)
         end
       end
     end

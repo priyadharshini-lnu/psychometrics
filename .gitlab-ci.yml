@@ -5,7 +5,7 @@ services:
   - redis:latest
 
 cache:
-  key: ${CI_COMMIT_REF_SLUG}
+  key: psychometrics-cache-key
   paths:
   - vendor/ruby
 
@@ -23,6 +23,7 @@ before_script:
   - ssh-keyscan 'github.com' >> ~/.ssh/known_hosts
   - ssh-keyscan 'gitlab.com' >> ~/.ssh/known_hosts
   - export RAILS_ENV=test
+  - export REDIS_HOST=redis
   - bundle install -j $(nproc) --path vendor  --without development # Install dependencies into ./vendor/ruby
   - sudo apt update && sudo apt install postgresql-client
   - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1

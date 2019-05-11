@@ -1,3 +1,6 @@
+# TODO: refactoring this class to use Commands and Form Object
+#   Command: Administration::Clients::CreateUser
+#   FormObject: Administration::Clients::UserForm
 module Imports
   class UserImport < Imports::BaseImport
     USER_ROLES_MAPS = {
@@ -13,13 +16,10 @@ module Imports
       last_name: Membership.human_attribute_name('last_name'),
       email: Membership.human_attribute_name('email'),
       password: Membership.human_attribute_name('password'),
-      role: Membership.human_attribute_name('role'),
       created_at: Membership.human_attribute_name('created_at'),
-      report_ids: Membership.human_attribute_name('report_ids'),
-      user_access: Membership.human_attribute_name('user_access')
     }.freeze
 
-    HEADER_IMPORT_KEYS = %i(first_name last_name password email role report_ids user_access).freeze
+    HEADER_IMPORT_KEYS = %i(first_name last_name password email).freeze
 
     # Authorisation flow
     #
@@ -28,7 +28,7 @@ module Imports
     include Administration::Policies
     ## Custom current user helper for Pundit
 
-    attr_accessor :client_id, :importer
+    attr_accessor :client_id, :importer, :client
     validates :client_id, :importer, presence: true
     validates :file, file_content_type: { allow: ['application/vnd.openxmlformats-officedocument.spreadsheetml.sheet',
                                                   'application/vnd.ms-excel',
@@ -50,25 +50,29 @@ module Imports
     def process!
       # Return error if form not valid
       return false unless valid?
-      imported_items = load_imported_items.compact
-      return false if imported_items.compact.size == 0
-      memberships = imported_items.map(&:first)
-      membership_user_access_ids = imported_items.map { |i| i.at(1)}
-      if memberships.map(&:valid?).all?
-        memberships.each(&:save!).each_with_index do |membership, index|
-          membership.user.invite!(importer, client_id)
-          set_user_access(membership_user_access_ids[index], membership)
-        end
+      memberships = load_imported_items.compact
+      return false if memberships.size == 0
 
-      else
-        memberships.each_with_index do |membership, index|
-          membership.user.errors.full_messages.each do |message|
-            errors.add(:base, I18n.t('administration.imports.errors.error', row: index + 2, error: message))
+      ActiveRecord::Base.transaction do
+        if memberships.map(&:valid?).all?
+          memberships.each(&:save!).each_with_index do |membership, index|
+            membership.user.invite!(importer, client_id)
+            apply_assigned_assessments(membership)
+            apply_reports(membership)
+          end
+        else
+          memberships.each_with_index do |membership, index|
+            membership.user.errors.full_messages.each do |message|
+              errors.add(:base, I18n.t('administration.imports.errors.error', row: index + 2, error: message))
+            end
           end
         end
       end
 
       errors.blank?
+    rescue Errors::LicenseError => e
+      errors.add(:base, e.message)
+      false
     end
 
     #
@@ -76,24 +80,22 @@ module Imports
     # Return array of new Users
     #
     def load_imported_items
-      client = policy_scope(::Client).find(client_id)
+      self.client = policy_scope(::Client).find(client_id)
       raise 'Invalid client' unless client
 
       # Parse header of xls/csv by strict rules
-      rows = open_spreadsheet.parse
+      rows = open_spreadsheet.to_a
       header = rows.shift
 
       rows.map do |row|
         attributes = HEADER_IMPORT_KEYS.inject({}) { |h, k| h.merge(k => row[header.index(HEADER_IMPORT_DATA[k])]) }
-        report_ids = attributes.delete(:report_ids).to_s.split(',').map(&:to_i)
-        user_access_ids = attributes.delete(:user_access).to_s.split(',').map(&:to_i)
 
         memberships_attributes = {
-          role: USER_ROLES_MAPS[attributes.delete(:role)],
+          role: Membership::MEMBER_ROLE,
           hris_data: {}
         }
 
-        user = User.find_or_initialize_by(email: attributes[:email].downcase)
+        user = Users::Regular.find_or_initialize_by(email: attributes[:email].downcase, project_id: client.project.id)
         next if user.is?(:superadmin)
 
         header.zip(row)[HEADER_IMPORT_DATA.size..-1]&.each_with_index do |z, i|
@@ -106,17 +108,7 @@ module Imports
         membership = user.memberships.find_or_initialize_by(client_id: client.id)
         membership.assign_attributes(memberships_attributes)
 
-        if report_ids
-          report_ids = client.report_ids & report_ids
-          reports_hash = Report.select(:id).where(id: report_ids).includes(:assessments).group_by(&:assessment_ids)
-          reports_hash.each do |assessment_ids, report_arr|
-            assessment_ids.each do |assessment_id|
-              assign = membership.assigns.find_or_initialize_by(assessment_id: assessment_id)
-              assign.report_ids = report_arr.map(&:id)
-            end
-          end
-        end
-        [membership, user_access_ids]
+        membership
       end
 
     rescue => e
@@ -140,23 +132,6 @@ module Imports
 
     private
 
-    def set_user_access(user_access_ids, membership)
-      report_ids = membership.reports.ids
-      assigns_reports = AssignsReport.joins(assign: :membership).where('memberships.id = ?', membership.id)
-
-      add_access_ids = report_ids & user_access_ids
-      update_assigns_reports(assigns_reports, add_access_ids, true)
-
-      remove_access_ids = report_ids - user_access_ids
-      update_assigns_reports(assigns_reports, remove_access_ids, false)
-    end
-
-    def update_assigns_reports(assigns_reports, report_ids, access)
-      assigns_reports.where(report_id: report_ids).each do |assigns_report|
-        assigns_report.update(user_access: access)
-      end
-    end
-
     def assign_password(user, attributes, memberships_attributes)
       password = attributes.delete(:password)
       @existing_users_whose_password_not_changed << user if user.encrypted_password.present? && password.present?
@@ -170,6 +145,23 @@ module Imports
       )
 
       memberships_attributes[:already_invited] = true
+    end
+
+    def apply_assigned_assessments(membership)
+      client.assessment_ids.each do |assessment_id|
+        membership.assigns.find_or_create_by!(assessment_id: assessment_id)
+      end
+    end
+
+    def apply_reports(membership)
+      client.clients_reports.includes(report: :assessments).each do |client_report|
+        client_report.report.assessments.each do |assessment|
+          assign = membership.assigns.find_or_create_by!(assessment_id: assessment.id)
+          assign_report = assign.assigns_reports.find_or_initialize_by(report_id: client_report.report_id)
+          assign_report.user_access = client_report.user_access
+          assign_report.save!
+        end
+      end
     end
   end
 end

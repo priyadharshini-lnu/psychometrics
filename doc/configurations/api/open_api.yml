@@ -1,0 +1,18 @@
+swagger: '2.0'
+info:
+  title: Psychometric API
+  description: It used for external systems
+  termsOfService: 'http://xxx.psy.io/terms/'
+#  contact:
+#    name: API Support
+#    url: 'http://www.psy.io/support'
+#    email: support@psy.io
+  version: 1.0.0
+host: 'lvh.me:3030'
+schemes:
+  - http
+  - https
+consumes:
+  - application/json
+produces:
+  - application/json

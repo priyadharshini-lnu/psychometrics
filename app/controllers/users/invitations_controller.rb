@@ -1,5 +1,6 @@
 module Users
   class InvitationsController < Devise::InvitationsController
+    layout 'devise'
     prepend_before_action :sign_out, :only => [:edit]
 
     def update

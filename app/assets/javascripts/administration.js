@@ -11,6 +11,7 @@
 //= require bootstrap-add-clear
 //= require summernote
 //= require jquery-serialize-object
+//= require Sortable.js
 
 //= require datatables
 //= require datatables/dataTables.bootstrap
@@ -62,5 +63,6 @@
 //= require moment
 //= require moment-timezone
 //= require bootstrap-datetimepicker-3
+//= require lodash
 
 //= require_tree ./administration

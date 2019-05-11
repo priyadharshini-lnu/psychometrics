@@ -25,18 +25,23 @@ module Features
 
       def create_project_admin(project, opts = {})
         visit administration_client_projects_path(project.tte)
-        find("#client_#{project.id} td .add-icon-box a[href='#{new_administration_client_project_admin_path(project)}']").click
-        find('label', text: t('administration.clients.project_admins.form.create_admin')).click
+        find("#client_#{project.id} td .add-icon-box a[href='#{new_step_1_administration_client_project_admins_path(project)}']").click
+        wait_for_ajax
+        within '.new_prepare_user' do
+          fill_in 'prepare_user_email', with: opts[:email]
+          click_on 'Next'
+        end
+        wait_for_ajax
         within '#new_resource' do
-          fill_in 'resource_user_attributes_email', with: opts[:email]
-          fill_in 'resource_user_attributes_first_name', with: opts[:first_name]
-          fill_in 'resource_user_attributes_last_name', with: opts[:last_name]
-          click_on t('administration.create')
+          fill_in 'resource_user_attributes_first_name', with: opts[:first_name] if opts[:first_name]
+          fill_in 'resource_user_attributes_last_name', with: opts[:last_name] if opts[:last_name]
+          click_on 'Create'
         end
         wait_for_ajax
         if block_given?
           yield
         else
+          wait_for_ajax
           admin_membership = Membership.last
           expect(page).to have_content t('administration.memberships.create.successfully', name: admin_membership.decorate.display_name)
           expect(page).to have_css("#client_#{project.id} td", text: admin_membership.decorate.display_name)
@@ -44,7 +49,7 @@ module Features
           expect(admin_membership.project?).to be true
           expect(admin_membership.client.project?).to be true
           expect(admin_membership.clients_memberships.any?).to be false
-          expect(admin_membership.user.grants).to eql(User::DEFAULT_PROJECT_ADMIN_GRANTS)
+          expect(admin_membership.grants.data).to eql(User::DEFAULT_PROJECT_ADMIN_GRANTS)
           admin_membership
         end
       end
@@ -87,9 +92,9 @@ module Features
         click_link(t('administration.clients.users.index.new'), href: "/administration/clients/#{client.id}/users/new")
         find('.modal-header').click
         within '#new_resource' do
-          fill_in 'resource_user_attributes_email', with: opts[:email]
-          fill_in 'resource_user_attributes_first_name', with: opts[:first_name]
-          fill_in 'resource_user_attributes_last_name', with: opts[:last_name]
+          fill_in 'resource_email', with: opts[:email]
+          fill_in 'resource_first_name', with: opts[:first_name]
+          fill_in 'resource_last_name', with: opts[:last_name]
           click_on t('administration.create')
         end
         wait_for_ajax

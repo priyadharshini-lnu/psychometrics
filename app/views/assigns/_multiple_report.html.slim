@@ -6,7 +6,18 @@ tr
     - if assign.completed?
       span = assign.assessment.name
     - else
-      = link_to assign.assessment.name, [:pass, assign]
+      - privacy_consent_data = { need_confirm: @current_project.privacy_consent && !@current_membership.accepted_privacy?, href: url_for([:pass, assign]) }
+      - if assign.assessment.mindmill?
+        - mindmill_data = { href: url_for([:pass, :mindmill, assign]) }
+        = link_to assign.assessment.name,
+                  '#',
+                  data: { mindmill: mindmill_data, privacy_consent: privacy_consent_data },
+                  class: 'mindmill_link'
+      - elsif assign.assessment.hogan?
+        = link_to assign.assessment.name, pass_hogan_assign_path(assign.id), remote: true, method: :put, data: { loading: true }
+        div id=dom_id(assign)
+      - else
+        = link_to assign.assessment.name, '#', data: { privacy_consent: privacy_consent_data }
   td.col-md-3.word-break-all = assign.assessment.decorate.timing
   td.col-md-3
     .progress
@@ -16,7 +27,13 @@ tr
   - if index.zero?
     td.text-center.col-md-3.vertical_middle *{ rowspan: report.assigns_reports.size * 2  - 1 }
       - if report.show?
-        = link_to t('.results'), report_path(assigns_report.report), class: 'btn btn-info'
+        - if assigns_report.generating?
+          a.btn.btn-warning.disabled = t('.processing')
+        - else
+          = link_to t('.results'),
+                    assigns_report.pdf.url,
+                    class: 'btn btn-info',
+                    target: :_blank
 tr
   td colspan=3
     .panel-collapse.collapse  id="#{dom_id(assign)}-#{report.report_id}"

@@ -1,22 +1,43 @@
-= simple_form_for(resource, as: :resource, url: { action: :update }, remote: true, html: { method: :put }) do |f|
+= simple_form_for(resource, as: :resource, url: { action: :create }, method: :post, remote: true) do |f|
   .modal-body
-    = render_error_notification resource
     .form-inputs.clearfix
-      = simple_fields_for resource.assign do |assign_form|
-        = assign_form.association :assessment, label: t('.assessment'), disabled: true
-      = f.association :report, disabled: true
-
-      = f.label t('.user_access.access'), class: 'resource_user_access'
-      = f.input :user_access, as: :boolean, label: t('.user_access.user')
-      - if resource.report.multiple?
-        p.text-danger = t('.multiple_report_message')
+      = f.input :report_family_id,
+                as: :select,
+                collection: @report_families,
+                class: 'form-control',
+                include_blank: true
+      table.table#reports
+        thead
+          tr
+            th = t('.reports')
+            th = t('.access')
+        - @report_families.each do |report_family|
+          tr class="reports_input #{'hidden' unless report_family.id == f.object.report_family_id}" id=dom_id(report_family)
+            td = f.input :adding_report_ids,
+                         as: :check_boxes,
+                         collection: report_family.reports,
+                         include_hidden: false,
+                         label: false
+            td = f.input :adding_user_access_report_ids,
+                         as: :check_boxes,
+                         collection: report_family.reports,
+                         include_hidden: false,
+                         label: false,
+                         label_method: proc { t('.user_access.access') }
+      br
   .modal-footer
-    - if policy(resource).destroy?
-      = link_to t('.detach'), administration_client_user_assigns_report_path(client, membership, resource),
-        remote: true,
-        method: :delete,
-        class: 'btn btn-danger pull-left',
-        data: { confirm: resource.report.decorate.detach_confirmation }
     .btn-group
-      = f.button :submit, t('administration.save'), class: 'btn-info'
-      a.btn.btn-default data-dismiss='modal' = t('administration.close')
+      = button_tag t('administration.save'),
+                   type: 'submit',
+                   class: 'btn btn-default btn-info',
+                   data: { loading_text: t('loading') }
+      a.btn.btn-default data-dismiss='modal' = t 'administration.close'
+javascript:
+  $(function(){
+    $('#resource_report_family_id').on('change', function () {
+      report_family_id = $(this).val();
+      $('.reports_input').addClass('hidden');
+      $('.reports_input :checkbox').prop('checked', false);
+      $('#report_family_' + report_family_id).removeClass('hidden');
+    });
+  })

@@ -9,10 +9,16 @@ require 'capybara/poltergeist'
 require 'capybara-screenshot/rspec'
 require 'selenium-webdriver'
 require 'features/helpers'
+require 'wisper/rspec/matchers'
+require 'rectify/rspec'
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
 ActiveRecord::Migration.maintain_test_schema!
 Psychometrics::Application.load_tasks
+# Needs for able to stub methods inside FactoryGirl
+FactoryGirl::SyntaxRunner.class_eval do
+  include RSpec::Mocks::ExampleMethods
+end
 
 Capybara.default_max_wait_time = 5
 Capybara.register_driver :poltergeist do |app|
@@ -48,18 +54,24 @@ Capybara.default_driver = :poltergeist
 Capybara.javascript_driver = :chrome
 
 RSpec.configure do |config|
+  config.color = true
   config.include Features::Helpers, type: :feature
   config.include AbstractController::Translation
   config.include FactoryGirl::Syntax::Methods
   config.include Warden::Test::Helpers
-
+  config.include Rectify::RSpec::Helpers
+  config.include(Wisper::RSpec::BroadcastMatcher)
   # Sign in helper for controller
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
   # config.filter_gems_from_backtrace("gem name")
+
+  config.before(:each) { Timecop.freeze(Time.local(2018, 9, 15, 9, 31, 42)) }
+  config.after(:each) { Timecop.return }
 
   config.before(:suite) do
     DatabaseCleaner.strategy = :deletion
@@ -85,6 +97,12 @@ RSpec.configure do |config|
     if ENV['CIRCLECI'] && example.example_group.include?(Capybara::DSL) && Capybara.page.current_url != '' && example.exception
       save_timestamped_screenshot(Capybara.page, example.metadata)
     end
+  end
+
+  [:controller, :view, :request].each do |type|
+    config.include ::Rails::Controller::Testing::TestProcess, :type => type
+    config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type
+    config.include ::Rails::Controller::Testing::Integration, :type => type
   end
 
   def save_timestamped_screenshot(page, meta)
