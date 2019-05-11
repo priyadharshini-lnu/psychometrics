@@ -7,7 +7,7 @@ class AddUsersResults < ActiveRecord::Migration[5.1]
       t.belongs_to :norm, foreign_key: { on_delete: :restrict }
       t.jsonb :answers
       t.jsonb :scoring
-      t.jsonb :step
+      t.integer :step, default: 0
       t.integer :status, default: 0
       t.jsonb :occupations
       t.timestamps

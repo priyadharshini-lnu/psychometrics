@@ -5,5 +5,5 @@ class UsersResult < ApplicationRecord
   belongs_to :evaluator, class_name: 'User'
   belongs_to :norm
   belongs_to :assessment
-  enum status: %i[not_started in_progress completed]
+  enum status: { not_started: 0, in_progress: 1, completed: 2 }
 end

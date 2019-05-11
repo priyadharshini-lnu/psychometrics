@@ -191,7 +191,8 @@ group :test do
   gem 'poltergeist', '~> 1.14.0'
   gem 'capybara-screenshot', '~> 1.0.14'
   gem 'selenium-webdriver'
-  gem 'shoulda', '~> 3.5.0'
+  gem 'shoulda-matchers', '~> 4.0.1'
+  gem 'rails-controller-testing', '~> 1.0.4'
   gem 'database_cleaner', '~> 1.7.0'
   gem 'simplecov', require: false
   gem 'rspec-retry', '~> 0.6.1'

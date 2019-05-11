@@ -2498,7 +2498,7 @@ CREATE TABLE public.users_results (
     norm_id bigint,
     answers jsonb,
     scoring jsonb,
-    step jsonb,
+    step integer DEFAULT 0,
     status integer DEFAULT 0,
     occupations jsonb,
     created_at timestamp without time zone NOT NULL,
