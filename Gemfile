@@ -150,7 +150,8 @@ gem 'enum_help', '~> 0.0.17'
 gem 'date_validator', '~> 0.9.0'
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'js-routes', '~> 1.4.4'
-gem 'rswag', '~> 2.0.5'
+gem 'rswag-api', '~> 2.0.5'
+gem 'rswag-ui', '~> 2.0.5'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
 group :development, :test do
@@ -162,7 +163,7 @@ group :development, :test do
   gem 'awesome_print', '~> 1.8.0'
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_girl_rails', '~> 4.7.0'
-  # A fake data generator
+  gem 'rswag-specs', '~> 2.0.5'
 end
 
 group :development do
