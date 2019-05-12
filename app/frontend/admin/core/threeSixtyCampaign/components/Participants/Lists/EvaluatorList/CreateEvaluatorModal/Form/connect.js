@@ -4,7 +4,7 @@ import { fetchRelationships } from 'admin/core/threeSixtyCampaign/relationships'
 
 export default connect(
   ({
-    threeSixtyCampaign: { relationships },
+    project: { relationships },
     temp: {
       autocomplete: { subjects = [], evaluators = [] },
     },
