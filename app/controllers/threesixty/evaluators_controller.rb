@@ -11,7 +11,9 @@ module Threesixty
         participant = @subject.participants.build(evaluator_params)
         participant.campaign_id = @campaign.campaign_id
         participant.project_id = @campaign.project.id
-        participant.save
+        participant.save!
+        participant.threesixty_subject.increment!(:evaluators_count)
+        participant.threesixty_evaluator.increment!(:evaluations_count)
         render json: participant, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
       else
         render json: { errors: form.error_mesages }, status: :bad_request
@@ -21,6 +23,8 @@ module Threesixty
     def destroy
       nomination = @subject.participants.find_by(evaluator_id: params[:id])
       nomination.destroy
+      nomination.threesixty_subject.decrement!(:evaluators_count)
+      nomination.threesixty_evaluator.decrement!(:evaluations_count)
       render json: nil
     end
 

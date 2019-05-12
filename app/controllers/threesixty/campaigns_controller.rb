@@ -8,7 +8,7 @@ module Threesixty
         format.html {}
         format.json do
           subjects = ::Threesixty::NominationsByUserQuery.new(@campaign, current_user)
-          evaluations, manager_evaluations = ::Threesixty::EvaluationsByUserQuery.new(@campaign, current_user)
+          evaluations = ::Threesixty::EvaluationsByUserQuery.new(@campaign, current_user)
 
           render json: @campaign, serializer: Threesixty::CampaignSerializer,
                  subjects: subjects, evaluations: evaluations,

@@ -42,29 +42,31 @@ const EvaluationItem = item => (
   </List.Item>
 )
 
-const CollapseItem = item => (
+const CollapseItem = ({ title, list }) => (
   <Collapse bordered={false} defaultActiveKey="panel">
-    <Panel header={<div className="panel-header">{item.title}</div>} key="panel">
+    <Panel header={<div className="panel-header">{title}</div>} key="panel">
       <List
         size="large"
         bordered
-        dataSource={item.list}
+        dataSource={list}
         renderItem={EvaluationItem}
       />
     </Panel>
   </Collapse>
 )
 
-function EvaluationsList ({ evaluations }) {
+function EvaluationsList ({ evaluations, options }) {
   return (
     <List
       size="large"
       className="evaluations-list"
       header={<div>Evaluations</div>}
       bordered
-      dataSource={evaluations}
-      renderItem={CollapseItem}
-    />
+    >
+      <CollapseItem key="evaluations" title="Evaluations" list={evaluations} />
+      {options.manager.canApprovesEvaluations
+        && <CollapseItem key="evaluations_approve" title="Approve evaluations" list={[]} />}
+    </List>
   )
 }
 

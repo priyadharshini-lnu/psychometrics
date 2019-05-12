@@ -1,7 +1,7 @@
 module Threesixty
   class CampaignSerializer < ActiveModel::Serializer
     class NomineeSerializer < ActiveModel::Serializer
-      attributes :id, :is_self, :campaign_id
+      attributes :id, :is_self, :campaign_id, :evaluators_count
       has_one :user, serializer: UserSerializer
 
       def campaign_id
@@ -30,10 +30,15 @@ module Threesixty
       end
     end
 
-    attributes :id, :reports, :option
+    attributes :id, :reports
 
     has_many :nominations, serializer: NomineeSerializer
     has_many :evaluations, serializer: EvaluationSerializer
+    has_one :options, serializer: CampaignOptionsSerializer
+
+    def options
+      object.option
+    end
 
     def nominations
       instance_options[:subjects] || []

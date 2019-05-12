@@ -1,12 +1,10 @@
 import React from 'react'
-import _ from 'lodash'
 import {
   Table, Dropdown, Menu, Icon,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import './styles.scss'
-import { createSelector } from 'reselect'
 import InlineInput from './InlineInput'
 
 const { Column } = Table
@@ -56,7 +54,14 @@ export default function NominationTable (props) {
 
   return (
     <div className="nominations-table">
-      <Table className="mtm" rowKey="key" dataSource={rowData} pagination={false} bordered rowClassName="nomination-row">
+      <Table
+        className="mtm"
+        rowKey="key"
+        dataSource={rowData}
+        pagination={false}
+        bordered
+        rowClassName="nomination-row"
+      >
         <Column title="Requirements" key="title" render={renderRequirementCell} />
         <Column title="Name" key="name" render={renderNameCell} width="40%" />
         <Column title="Approval Status" render={renderApprovalStatus} key="status" />

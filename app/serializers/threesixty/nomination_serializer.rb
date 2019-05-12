@@ -23,7 +23,6 @@ module Threesixty
         participant_options: object.campaign.threesixty_campaign.option.participants,
         subject_conditions: {},
         conditions: [
-          {type: 'relationship', id: 3, predicate: 'at_least', value: 1},
           {type: 'relationship', id: 4, predicate: 'at_least', value: 2},
           {type: 'relationship', id: 1, predicate: 'at_least', value: 1},
           {type: 'relationship', id: 2, predicate: 'at_least', value: 2},
