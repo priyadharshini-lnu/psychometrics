@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import css from './SubjectList.scss'
-import ActionsMenu from './ActionsMenu'
+import ActionsMenu from './ActionMenu'
 import ToolsDropdown from '../ToolsDropdown'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
 import CreateSubjectModal from './CreateSubjectModal'
@@ -25,52 +25,6 @@ export default function SubjectList ({
   useEffect(() => {
     fetchSubjects(campaignId)
   }, [])
-
-  const updateSubject = (subjectId, data, cofirmationMessage) => {
-    // eslint-disable-next-line no-alert
-    if (confirm(cofirmationMessage)) update(campaignId, subjectId, data)
-  }
-
-  const approveReport = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to approve report?'
-    updateSubject(subjectId, { report_approval_status: 'approved' }, confirmationMessage)
-  }
-
-  const removeReportApprove = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to remove report approval?'
-    updateSubject(subjectId, { report_approval_status: 'waiting' }, confirmationMessage)
-  }
-
-  const releaseReport = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to release report?'
-    updateSubject(subjectId, { report_release_status: 'released' }, confirmationMessage)
-  }
-
-  const holdReport = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to release report?'
-    updateSubject(subjectId, { report_release_status: 'on_hold' }, confirmationMessage)
-  }
-
-  const removeReleasedHoldStatus = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to remove Release/Hold status?'
-    updateSubject(subjectId, { report_release_status: 'waiting' }, confirmationMessage)
-  }
-
-  const markEvaluationAsComplete = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to mark evaluation as done?'
-    updateSubject(subjectId, { evaluation_status: 'completed' }, confirmationMessage)
-  }
-
-  const unmarkEvaluationAsComplete = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to unmark evaluation as done?'
-    updateSubject(subjectId, { evaluation_status: 'in_progress' }, confirmationMessage)
-  }
-
-  const removeSubject = (subjectId) => {
-    const cofirmationMessage = 'Are you sure you want to remove subject with email from campaign'
-    // eslint-disable-next-line no-alert
-    if (confirm(cofirmationMessage)) remove(campaignId, subjectId)
-  }
 
   return (
     <>
@@ -114,14 +68,8 @@ export default function SubjectList ({
                     subjectId: id,
                     email,
                     campaignId,
-                    approveReport,
-                    removeReportApprove,
-                    releaseReport,
-                    holdReport,
-                    removeReleasedHoldStatus,
-                    markEvaluationAsComplete,
-                    unmarkEvaluationAsComplete,
-                    removeSubject,
+                    update,
+                    remove,
                   })}
                   trigger={['click']}
                 >

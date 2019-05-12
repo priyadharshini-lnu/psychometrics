@@ -3,8 +3,8 @@
 module Threesixty
   module Campaigns
     class Create < BaseCommand
-      def initialize(subjects, campaign_params, threesixty_campaign_params)
-        @project = subjects
+      def initialize(project, campaign_params, threesixty_campaign_params)
+        @project = project
         @campaign_params = campaign_params
         @threesixty_campaign_params = threesixty_campaign_params
       end
