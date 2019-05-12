@@ -11,7 +11,6 @@ import { reset as resetCampaign, resetAllNominations } from 'admin/core/threeSix
 const menu = ({
   projectId, campaignId, resetCampaign, resetAllNominations,
 }) => {
-
   const resetCampaignWithMessage = (campaignId) => {
     message.success('Campaign reset is in progress. It will take some time to complete.')
     resetCampaign(campaignId)
