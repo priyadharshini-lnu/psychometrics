@@ -17,12 +17,12 @@ export default combineReducers({
     evaluators,
     managers,
     participantOptions,
+    participants,
     id: currentThreeSixtyCampaignId,
   }),
   project: combineReducers({
     datasheetFields,
     relationships,
-    participants,
   }),
   temp: combineReducers({
     modals,

@@ -9,5 +9,13 @@ module Administration
 
       false
     end
+
+    def update?
+      index?
+    end
+
+    def destroy?
+      index?
+    end
   end
 end

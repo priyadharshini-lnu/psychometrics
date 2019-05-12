@@ -14,7 +14,7 @@ class Participant < ApplicationRecord
   end
 
   enum manager_status: %i[waiting approved denied], _prefix: :manager
-  enum evaluator_status: %i[waiting approved denied], _prefix: :evaluator
+  enum evaluator_status: %i[waiting completed denied], _prefix: :evaluator
 
   scope :active, -> { where.not(manager_status: :denied, evaluator_status: :denied) }
 
