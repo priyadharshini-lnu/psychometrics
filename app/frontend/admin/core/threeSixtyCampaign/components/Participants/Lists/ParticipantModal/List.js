@@ -9,7 +9,7 @@ export default function List ({
   participants,
   relationships,
   update,
-  destroy,
+  remove,
   match: {
     params: { campaignId },
   },
@@ -18,7 +18,7 @@ export default function List ({
 
   const destroyParticipant = (id) => {
     /* eslint-disable */
-    if (confirm('Are you sure?')) destroy(campaignId, id)
+    if (confirm('Are you sure?')) remove(campaignId, id)
     /* eslint-enable */
   }
 

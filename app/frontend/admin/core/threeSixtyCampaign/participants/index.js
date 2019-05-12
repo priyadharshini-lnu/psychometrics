@@ -26,7 +26,7 @@ export const update = (campaignId, participantId, attrs) => ({
   },
 })
 
-export const destroy = (campaignId, participantId) => ({
+export const remove = (campaignId, participantId) => ({
   type: DESTROY,
   campaignId,
   id: participantId,
