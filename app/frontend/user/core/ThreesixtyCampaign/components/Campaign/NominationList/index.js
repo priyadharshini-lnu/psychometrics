@@ -31,13 +31,23 @@ const CollapseItem = item => (
 )
 
 function EvaluatorsList ({ nominations }) {
+  const data = [
+    {
+      title: 'Set up nominations',
+      list: nominations,
+    },
+    {
+      title: 'Approve nominations',
+      list: nominations,
+    },
+  ]
   return (
     <List
       className="nominations-list"
       size="large"
       header={<div>Nominations</div>}
       bordered
-      dataSource={nominations}
+      dataSource={data}
       renderItem={CollapseItem}
     />
   )

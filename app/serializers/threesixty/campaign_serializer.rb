@@ -30,20 +30,10 @@ module Threesixty
       end
     end
 
-    attributes :id, :reports
+    attributes :id, :reports, :option
 
     has_many :nominations, serializer: NomineeSerializer
-    has_many :manager_nominations, serializer: NomineeSerializer
     has_many :evaluations, serializer: EvaluationSerializer
-    has_many :manager_evaluations, serializer: EvaluationSerializer
-
-    def manager_nominations
-      instance_options[:manager_subjects] || []
-    end
-
-    def manager_evaluations
-      instance_options[:manager_evaluations] || []
-    end
 
     def nominations
       instance_options[:subjects] || []

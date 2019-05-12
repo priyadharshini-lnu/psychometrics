@@ -20,6 +20,7 @@ module Threesixty
     # TODO: replace mocked requirements with real
     def requirements
       {
+        participant_options: object.campaign.threesixty_campaign.option.participants,
         subject_conditions: {},
         conditions: [
           {type: 'relationship', id: 3, predicate: 'at_least', value: 1},
