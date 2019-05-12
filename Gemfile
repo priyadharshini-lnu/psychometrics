@@ -153,7 +153,6 @@ gem 'enum_help', '~> 0.0.17'
 gem 'date_validator', '~> 0.9.0'
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'js-routes', '~> 1.4.4'
-# swagger
 gem 'rswag-api', '~> 2.0.5'
 gem 'rswag-ui', '~> 2.0.5'
 gem 'tty-progressbar', '~> 0.16.0', require: false
