@@ -7,6 +7,12 @@ module Threesixty
     has_one :option, foreign_key: :threesixty_campaign_id
     has_one :project, through: :campaign
     has_one :datasheet, through: :project
+    has_many :nomination_requirements, foreign_key: :threesixty_campaign_id
+    has_many :subjects_releationships, through: :campaign
+    has_many :participants, through: :campaign
+    has_many :campaigns_users, through: :campaign
+    has_many :subjects, through: :campaign
+    has_many :evaluators, through: :campaign
 
     attr_accessor :factors, :type
 
