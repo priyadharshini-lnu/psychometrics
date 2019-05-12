@@ -55,7 +55,7 @@ const CollapseItem = ({ title, list }) => (
   </Collapse>
 )
 
-function EvaluationsList ({ evaluations, options }) {
+function EvaluationList ({ evaluations, approvalEvaluations, options }) {
   return (
     <List
       size="large"
@@ -65,9 +65,9 @@ function EvaluationsList ({ evaluations, options }) {
     >
       <CollapseItem key="evaluations" title="Evaluations" list={evaluations} />
       {options.manager.canApprovesEvaluations
-        && <CollapseItem key="evaluations_approve" title="Approve evaluations" list={[]} />}
+        && <CollapseItem key="evaluations_approve" title="Approve evaluations" list={approvalEvaluations} />}
     </List>
   )
 }
 
-export default connect(EvaluationsList)
+export default connect(EvaluationList)

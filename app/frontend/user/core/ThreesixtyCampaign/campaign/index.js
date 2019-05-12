@@ -14,7 +14,7 @@ export const defaultState = {
   evaluations: [],
   reports: [],
   options: {
-    relationships: {
+    participants: {
       manager: {},
       subject: {},
       evaluator: {},

@@ -30,7 +30,7 @@ const CollapseItem = ({ title, list }) => (
   </Collapse>
 )
 
-function EvaluatorsList ({ nominations, options }) {
+function NominationList ({ nominations, approvalNominations, options }) {
   return (
     <List
       className="nominations-list"
@@ -38,9 +38,10 @@ function EvaluatorsList ({ nominations, options }) {
       header={<div>Nominations</div>}
       bordered
     >
-      <CollapseItem title="Set up nominations" list={nominations} />
-      {options.manager.canApprovesEvaluations && <CollapseItem title="Approve nominations" list={[]} />}
+      <CollapseItem key="nominations" title="Set up nominations" list={nominations} />
+      {options.manager.canApproveNominations
+        && <CollapseItem key="approve_nominations" title="Approve nominations" list={approvalNominations} />}
     </List>
   )
 }
-export default connect(EvaluatorsList)
+export default connect(NominationList)

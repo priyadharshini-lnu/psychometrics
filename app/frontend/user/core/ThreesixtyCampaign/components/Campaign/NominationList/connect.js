@@ -1,8 +1,10 @@
 import { connect } from 'react-redux'
+import { getApprovalNominations } from 'user/core/ThreesixtyCampaign/campaign/selectors'
 
 const mapStateToProps = state => ({
   nominations: state.threeSixtyCampaign.campaign.nominations,
-  options: state.threeSixtyCampaign.campaign.options.relationships,
+  approvalNominations: getApprovalNominations(state.threeSixtyCampaign),
+  options: state.threeSixtyCampaign.campaign.options.participants,
 })
 
 const mapDispatchToProps = {}
