@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module UsersResults
-  class UpdateUsersResult < Base::BaseCommand
+  class UpdateUsersResult < BaseCommand
     def initialize(form, users_result, current_user)
       @form = form
       @users_result = users_result
@@ -33,7 +33,7 @@ module UsersResults
 
       # Calculates scoring and sets time of completion
       if users_result.completed?
-        users_result.attributes = ::UsersResults::CalculateScoring.call!(users_result)
+        users_result.scoring = ::UsersResults::CalculateScoring.call!(users_result)
         users_result.occupations = ::Assigns::CalculateOccupations.call!(users_result)
         users_result.completed_at = Time.now
       end

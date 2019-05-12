@@ -23,11 +23,11 @@ module UsersResults
   class CalculateScoring < BaseCommand
     def initialize(users_result)
       @users_result = users_result
-      @data = { scoring: {}, agile_scoring: {} }
+      @scoring = {}
     end
 
     def call
-      return broadcast(:ok, data) unless users_result.completed?
+      return broadcast(:ok, {}) unless users_result.completed?
 
       factors_scoring = FactorsScoring.where(assessment_id: users_result.assessment_id).joins(:factor).all
       factors_scoring_map = factors_scoring.group_by(&:factor_id)
@@ -35,30 +35,23 @@ module UsersResults
       questions_map = Question.where(id: questions_ids).all.group_by(&:id)
 
       factors_scoring_map.each do |factor_id, scoring_array|
-        data[:scoring][factor_id] = { results: [] }
-        data[:agile_scoring][factor_id] = { results: [] }
+        scoring[factor_id] = { results: [] }
         scoring_array.each do |question_scoring|
           question = questions_map[question_scoring.question_id].try(:first)
           scoring_class = "::Scoring::#{question.try(:type)}"
           result = results[question.try(:id).try(:to_s)]
           if result && question && !question_scoring.props.empty?
             scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)
-            # type 'PickGroupRank' is used for agile methodology
-            # for common scoring we need to skip this type
-            if question.try(:type) == 'PickGroupRank'
-              data[:agile_scoring][factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
-            else
-              data[:scoring][factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
-            end
+            scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
           end
         end
       end
 
-      broadcast :ok, data
+      broadcast :ok, scoring
     end
 
     private
 
-    attr_reader :users_result, :data
+    attr_reader :users_result, :scoring
   end
 end
