@@ -1,4 +1,4 @@
-import EvaluationList from './EvaluationList'
+import List from '../List'
 import connect from './connect'
 
-export default connect(EvaluationList)
+export default connect(List)

@@ -4,7 +4,7 @@ import {
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import css from './SubjectList.scss'
-import ActionsMenu from './ActionsMenu'
+import ActionsMenu from './ActionMenu'
 import ToolsDropdown from '../ToolsDropdown'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
 import CreateSubjectModal from './CreateSubjectModal'
@@ -13,6 +13,8 @@ const { Column } = Table
 
 export default function SubjectList ({
   fetchSubjects,
+  update,
+  remove,
   subjects,
   openModal,
   match: {
@@ -46,7 +48,7 @@ export default function SubjectList ({
             onRow={record => ({
               onClick: (e) => {
                 if (['TR', 'TD'].includes(e.target.tagName)) {
-                  openModal('ParticipantModal', record.user)
+                  openModal('ParticipantModal', { user: record.user, onClose: () => fetchSubjects(campaignId) })
                 }
               },
             })}
@@ -60,8 +62,17 @@ export default function SubjectList ({
 
             <Column
               key="action"
-              render={() => (
-                <Dropdown overlay={ActionsMenu} trigger={['click']}>
+              render={({ id, user: { email } }) => (
+                <Dropdown
+                  overlay={() => ActionsMenu({
+                    subjectId: id,
+                    email,
+                    campaignId,
+                    update,
+                    remove,
+                  })}
+                  trigger={['click']}
+                >
                   <div className={css.actions}>
                     <Icon type="ellipsis" />
                   </div>

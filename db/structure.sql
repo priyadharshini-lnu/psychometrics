@@ -1896,9 +1896,9 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     category integer DEFAULT 0
 );
@@ -2262,7 +2262,9 @@ CREATE TABLE public.threesixty_subjects (
     user_id bigint,
     report_approval_status integer DEFAULT 0,
     evaluators_count integer DEFAULT 0,
-    completed_evaluators_count integer DEFAULT 0
+    completed_evaluators_count integer DEFAULT 0,
+    report_release_status integer DEFAULT 0,
+    evaluation_status integer DEFAULT 0
 );
 
 
@@ -5281,6 +5283,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190419193357'),
 ('20190419202055'),
 ('20190421102715'),
-('20190501212516');
+('20190501212516'),
+('20190506131431');
 
 

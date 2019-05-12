@@ -3,6 +3,7 @@ module Threesixty
     belongs_to :campaign, class_name: '::Campaign'
     belongs_to :assessment
     belongs_to :report
+    has_one :project, through: :campaign
     has_one :option, foreign_key: :threesixty_campaign_id
     has_one :project, through: :campaign
     has_one :datasheet, through: :project

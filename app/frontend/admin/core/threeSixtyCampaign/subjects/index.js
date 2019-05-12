@@ -1,12 +1,15 @@
 import { takeLatest, put } from 'redux-saga/effects'
-import { setIn } from 'utils/immutable'
+import { setIn, updateIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
+import _ from 'lodash'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
 const FILL_SUBJECTS = 'threeSixty/subjects/FILL_SUBJECTS'
 export const CREATE_ALL = 'threeSixty/subjects/CREATE_ALL'
 export const CREATE_ALL_FAILURE = 'threeSixty/subjects/CREATE_ALL_FAILURE'
 export const CLEAR_FORM = 'threeSixty/subjects/CLEAR_FORM'
+export const UPDATE = 'threeSixty/subjects/UPDATE'
+export const REMOVE = 'threeSixty/subjects/REMOVE'
 
 export const defaultState = {
   list: [],
@@ -37,6 +40,24 @@ export const createAll = (campaignId, subjects) => ({
   },
 })
 
+export const update = (campaignId, subjectId, data) => ({
+  type: UPDATE,
+  request: {
+    method: 'put',
+    url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}`,
+    body: data,
+  },
+})
+
+export const remove = (campaignId, subjectId) => ({
+  type: REMOVE,
+  id: subjectId,
+  request: {
+    method: 'delete',
+    url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}`,
+  },
+})
+
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
     case FETCH_SUBJECTS:
@@ -47,6 +68,12 @@ export default function reducer (state = defaultState, action) {
       return setIn(state, ['form', 'errors'], action.errors)
     case CLEAR_FORM:
       return { ...state, form: defaultState.form }
+    case UPDATE: {
+      const index = _.findIndex(state.list, subject => subject.id === action.response.id)
+      return updateIn(state, ['list', index], () => action.response)
+    }
+    case REMOVE:
+      return updateIn(state, 'list', subjects => subjects.filter(s => (s.id !== action.requestAction.id)))
     default:
       return state
   }

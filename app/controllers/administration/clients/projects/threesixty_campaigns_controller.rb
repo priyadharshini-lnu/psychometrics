@@ -33,17 +33,7 @@ module Administration
         end
 
         def create
-          campaign = project.project_campaigns.build(campaign_params)
-          campaign.project_id = project.id
-          campaign.type = Campaign::THREESIXTY
-          threesixty = campaign.build_threesixty_campaign(threesixty_campaign_params)
-          if threesixty.assessment.present?
-            ::Threesixty::CreateFromAssessment.call(threesixty)
-          else
-            ::Threesixty::CreateEmptyCampaign.call(threesixty)
-          end
-          campaign.save
-          @_resource = campaign
+          @_resource = ::Threesixty::Campaigns::Create.call!(project, campaign_params, threesixty_campaign_params)
         end
 
         def assessments
