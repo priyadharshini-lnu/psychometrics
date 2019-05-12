@@ -5,5 +5,7 @@ import { fetchSubjects, update, remove } from 'admin/core/threeSixtyCampaign/sub
 
 export default connect(
   ({ threeSixtyCampaign: { subjects: { list } } }) => ({ subjects: list }),
-  { fetchSubjects, openModal, update, remove },
+  {
+    fetchSubjects, openModal, update, remove,
+  },
 )
