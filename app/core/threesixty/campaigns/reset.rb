@@ -17,7 +17,7 @@ module Threesixty
       end
 
       def call
-        ASSOCIATIONS_TO_REMOVE.each { |association| threesixty_campaign.public_send(association).each(&:destroy!) }
+        ASSOCIATIONS_TO_REMOVE.each { |association| threesixty_campaign.public_send(association).find_each(&:destroy!) }
       end
 
       private

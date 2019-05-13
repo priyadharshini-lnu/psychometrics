@@ -8,11 +8,7 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
   end
 
   def reset_nominations
-    resource.participants.each do |participant|
-      participant.threesixty_evaluator.decrement!(:evaluations_count)
-      participant.threesixty_subject.decrement!(:evaluators_count)
-      participant.destroy
-    end
+    ::Threesixty::ResetAllNominationsJob.perform_later(resource.id)
     render json: :ok
   end
 

@@ -12,6 +12,12 @@ const menu = ({
     resetCampaign(campaignId)
   }
 
+  const resetAllNominationsWithMessage = (campaignId) => {
+    message.success('Nominations reset is in progress. It will take some time to complete.')
+    resetAllNominations(campaignId)
+  }
+
+
   return (
     <Menu>
       <Menu.Item key="1">
@@ -28,7 +34,13 @@ const menu = ({
         </div>
       </Menu.Item>
       <Menu.Item key="6">
-        <div onClick={() => resetAllNominations(campaignId)} role="button" tabIndex={-1}>Reset All Nominations...</div>
+        <div
+          onClick={() => resetAllNominationsWithMessage(campaignId)}
+          role="button"
+          tabIndex={-1}
+        >
+          Reset All Nominations...
+        </div>
       </Menu.Item>
       <Menu.Divider />
 
