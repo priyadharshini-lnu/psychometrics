@@ -18,7 +18,7 @@ export default function SubjectList ({
   subjects,
   openModal,
   match: {
-    params: { campaignId, projectId },
+    params: { campaignId },
   },
   match,
 }) {
@@ -34,7 +34,7 @@ export default function SubjectList ({
           <span className="mlm">{`${subjects.length} Subjects`}</span>
         </Col>
         <Col span={6} offset={14} className="text-align-r">
-          <ToolsDropdown projectId={projectId} />
+          <ToolsDropdown />
           <CreateSubjectsDropdown />
         </Col>
       </Row>

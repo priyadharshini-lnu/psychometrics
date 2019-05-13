@@ -3,10 +3,6 @@ import {
   Button, Dropdown, Icon, Menu,
   message,
 } from 'antd'
-import { connect } from 'react-redux'
-import { withRouter } from 'react-router-dom'
-import { reset as resetCampaign, resetAllNominations } from 'admin/core/threeSixtyCampaign/actions'
-
 
 const menu = ({
   projectId, campaignId, resetCampaign, resetAllNominations,
@@ -15,7 +11,6 @@ const menu = ({
     message.success('Campaign reset is in progress. It will take some time to complete.')
     resetCampaign(campaignId)
   }
-
 
   return (
     <Menu>
@@ -45,8 +40,8 @@ const menu = ({
   )
 }
 
-function ToolsDropdown ({
-  projectId, resetCampaign, resetAllNominations, match: { params: { campaignId } },
+export default function ToolsDropdown ({
+  resetCampaign, resetAllNominations, match: { params: { campaignId, projectId } },
 }) {
   return (
     <Dropdown
@@ -64,8 +59,3 @@ function ToolsDropdown ({
     </Dropdown>
   )
 }
-
-export default connect(
-  null,
-  { resetCampaign, resetAllNominations },
-)(withRouter(ToolsDropdown))
