@@ -23,10 +23,6 @@ const menu = ({
       <Menu.Item key="1">
         <a href={`/administration/clients/${projectId}/datasheet_rows`}>Manage Data Sheets...</a>
       </Menu.Item>
-      <Menu.Item key="2">Manage Relationships...</Menu.Item>
-      <Menu.Divider />
-      <Menu.Item key="3">Download Participant List to CSV</Menu.Item>
-      <Menu.Item key="4">Download All Reports...</Menu.Item>
       <Menu.Divider />
       <Menu.Item key="5">
         <div onClick={() => resetCampaignWithMessage(campaignId)} role="button" tabIndex={-1}>
@@ -42,12 +38,6 @@ const menu = ({
           Reset All Nominations...
         </div>
       </Menu.Item>
-      <Menu.Divider />
-
-      <Menu.Item key="7">View Prepaid Info...</Menu.Item>
-      <Menu.Divider />
-
-      <Menu.Item key="8">Manage Previous Jobs...</Menu.Item>
     </Menu>
   )
 }
