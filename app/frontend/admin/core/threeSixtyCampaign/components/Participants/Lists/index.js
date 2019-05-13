@@ -1,3 +1,4 @@
 import Lists from './Lists'
+import connect from './connect'
 
-export default Lists
+export default connect(Lists)

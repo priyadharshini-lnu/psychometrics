@@ -9,10 +9,16 @@ import EvaluatorList from './EvaluatorList'
 import ManagerList from './ManagerList'
 import ParticipantModal from './ParticipantModal'
 
-const Lists = ({ history, routes }) => {
+const Lists = ({ history, routes, setSelectedTab }) => {
   const pathToTabName = path => _.last(path.split('/'))
 
-  const onChange = e => routeUtils.moveTo(history, settings.urlPrefix, `${e.target.value}`)
+  const onChange = (e) => {
+    const selectedTab = pathToTabName(e.target.value)
+    setSelectedTab(selectedTab)
+    routeUtils.moveTo(history, settings.urlPrefix, `${e.target.value}`)
+  }
+
+  setSelectedTab(pathToTabName(routeUtils.getActiveRoutePath(routes)))
 
   return (
     <div>
