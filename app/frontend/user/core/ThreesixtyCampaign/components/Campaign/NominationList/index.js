@@ -17,29 +17,31 @@ const NominationItem = item => (
   </List.Item>
 )
 
-const CollapseItem = item => (
+const CollapseItem = ({ title, list }) => (
   <Collapse bordered={false} accordion={false} defaultActiveKey="panel">
-    <Panel header={<div className="panel-header">{item.title}</div>} key="panel">
+    <Panel header={<div className="panel-header">{title}</div>} key="panel">
       <List
         size="large"
         bordered
-        dataSource={item.list}
+        dataSource={list}
         renderItem={NominationItem}
       />
     </Panel>
   </Collapse>
 )
 
-function EvaluatorsList ({ nominations }) {
+function NominationList ({ nominations, approvalNominations, options }) {
   return (
     <List
       className="nominations-list"
       size="large"
       header={<div>Nominations</div>}
       bordered
-      dataSource={nominations}
-      renderItem={CollapseItem}
-    />
+    >
+      <CollapseItem key="nominations" title="Set up nominations" list={nominations} />
+      {options.manager.canApproveNominations
+        && <CollapseItem key="approve_nominations" title="Approve nominations" list={approvalNominations} />}
+    </List>
   )
 }
-export default connect(EvaluatorsList)
+export default connect(NominationList)
