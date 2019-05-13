@@ -41,4 +41,5 @@ function* genReloadCurrentParticipantTab () {
 
 export const watchers = [
   takeEvery(RESET_NOMINATIONS, genReloadCurrentParticipantTab),
+  takeEvery(RESET, genReloadCurrentParticipantTab),
 ]

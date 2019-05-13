@@ -3,12 +3,12 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
   before_action :pundit_authorize
 
   def reset
-    ::Threesixty::ResetCampaignJob.perform_later(resource.id)
+    ::Threesixty::Campaigns::Reset.call(resource)
     render json: :ok
   end
 
   def reset_nominations
-    ::Threesixty::ResetAllNominationsJob.perform_later(resource.id)
+    ::Threesixty::Campaigns::ResetAllNominations.call(resource)
     render json: :ok
   end
 
