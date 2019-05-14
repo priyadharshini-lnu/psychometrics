@@ -23,7 +23,8 @@ const renderRequirementCell = value => ({
 
 export default function NominationTable (props) {
   const {
-    removeNomination, rowData,
+    removeNomination, updateStatus, rowData,
+    nomination: { isSelf, options },
     match: { params: { campaignId, id: nominationId } },
   } = props
 
@@ -31,6 +32,25 @@ export default function NominationTable (props) {
     <Menu onClick={() => removeNomination({ campaignId, nominationId, evaluator })}>
       <Menu.Item key="0">
         Remove
+      </Menu.Item>
+    </Menu>
+  )
+
+  const StatusMenu = evaluator => (
+    <Menu onClick={(e) => {
+      updateStatus({
+        campaignId, nominationId, evaluatorId: evaluator.id, status: e.key,
+      })
+    }}
+    >
+      <Menu.Item key="approved">
+        Approved
+      </Menu.Item>
+      <Menu.Item key="waiting">
+        Waiting
+      </Menu.Item>
+      <Menu.Item key="denied">
+        Denied
       </Menu.Item>
     </Menu>
   )
@@ -44,9 +64,25 @@ export default function NominationTable (props) {
     return { children: userPresenter.getFullName(evaluator.evaluator) }
   }
 
-  const renderApprovalStatus = ({ evaluator }) => ({
-    children: evaluator && statusPresenter.getApprovalStatus(evaluator.approvalStatus),
-  })
+  const renderApprovalStatus = ({ evaluator }) => {
+    if (!evaluator) { return null }
+    if (isSelf || !options.participants.manager.canApproveNominations) {
+      return { children: evaluator && statusPresenter.getApprovalStatus(evaluator.approvalStatus) }
+    }
+
+    return (
+      <Dropdown
+        trigger={['click']}
+        overlay={() => StatusMenu(evaluator)}
+      >
+        <div>
+          {evaluator.approvalStatus}
+          <Icon type="down" />
+        </div>
+      </Dropdown>
+
+    )
+  }
 
   const renderStatus = ({ evaluator }) => ({
     children: evaluator && statusPresenter.getStatus(evaluator.status),

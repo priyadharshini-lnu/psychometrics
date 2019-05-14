@@ -471,7 +471,9 @@ Rails.application.routes.draw do
       resources :campaigns, only: %i(show) do
         post :search_evaluators
         resources :nominations do
-          resources :evaluators
+          resources :evaluators do
+            put :update_status
+          end
         end
         resources :evaluations
         resources :reports

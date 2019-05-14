@@ -4,6 +4,7 @@ module Threesixty
     has_many :evaluators, serializer: Threesixty::EndUser::NomineeSerializer
     has_many :relationships, serializer: RelationshipSerializer
     has_one :subject, serializer: UserSerializer
+    has_one :options, serializer: CampaignOptionsSerializer
 
     def subject
       object.user
@@ -17,10 +18,13 @@ module Threesixty
       Relationships::ByCampaign.new(object.campaign)
     end
 
+    def options
+      object.campaign.threesixty_campaign.option
+    end
+
     # TODO: replace mocked requirements with real
     def requirements
       {
-        participant_options: object.campaign.threesixty_campaign.option.participants,
         subject_conditions: {},
         conditions: [
           {type: 'relationship', id: 4, predicate: 'at_least', value: 2},

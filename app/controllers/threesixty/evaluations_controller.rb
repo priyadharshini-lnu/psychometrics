@@ -8,10 +8,8 @@ module Threesixty
       respond_to do |format|
         format.html {render 'threesixty/campaigns/show'}
         format.json do
-          @assign = Assign.find_by(campaign_id: @participant.campaign_id,
-                                   subject_id: @participant.subject_id,
-                                   evaluator_id: @participant.evaluator_id)
-          render json: @assign, serializer: AssignSerializer, include: '**'
+          # TODO: upgrade to use new user assigns
+          render json: {}, include: '**'
         end
       end
     end

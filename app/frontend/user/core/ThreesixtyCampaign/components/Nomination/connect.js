@@ -4,6 +4,7 @@ import {
   removeNomination,
   addNomination,
   updateForm,
+  updateStatus,
 } from 'user/core/ThreesixtyCampaign/nomination'
 import { searchEvaluators } from 'user/core/temp/autocomplete'
 import { rowDataSelector } from 'user/core/ThreesixtyCampaign/nomination/selectors'
@@ -20,6 +21,7 @@ const mapDispatchToProps = {
   addNomination,
   searchEvaluators,
   updateForm,
+  updateStatus,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)
