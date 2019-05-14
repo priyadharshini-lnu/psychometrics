@@ -7,6 +7,6 @@ class AddUserAssessments < ActiveRecord::Migration[5.1]
       t.string :selected_locale
       t.timestamps
     end
-    add_index(:users_assessments, %i[user_id campaign_id assessment_id], unique: true)
+    add_index(:users_assessments, %i[user_id campaign_id assessment_id], unique: true, name: 'users_assessments_user_uniquesness_index')
   end
 end

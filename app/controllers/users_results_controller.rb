@@ -1,5 +1,5 @@
 class UsersResultsController < ApplicationController
-  append_before_action :pundit_authorize
+  # append_before_action :pundit_authorize
   skip_before_action :verify_authenticity_token
 
   def update

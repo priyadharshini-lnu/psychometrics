@@ -12,6 +12,8 @@ html
     = csrf_meta_tags
     = jquery_include_tag :google
     = render '//layouts/custom_styles'
+    = javascript_include_tag :threesixty
+
     = stylesheet_link_tag    'threesixty_dependencies', media: 'all'
     - if Settings.react_dev.assessments
       = javascript_include_tag 'http://localhost:3000/psychometrics_vendor.js'

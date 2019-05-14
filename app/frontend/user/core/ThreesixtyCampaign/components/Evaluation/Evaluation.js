@@ -6,30 +6,32 @@ import data from './data.json'
 const { Content } = Layout
 
 export default function Evaluation ({
-  subject, results, fetchEvaluation, match,
+  evaluation, fetchEvaluation, match,
 }) {
+  const { subject, loaded, id } = evaluation
   useEffect(() => {
-    if (results) {
-      window.renderPassAssessment('pass_ass')
+    if (loaded) {
+      window.renderPassAssessment('pass_assessment')
     }
-  }, [results])
+  }, [loaded])
 
   useEffect(() => {
     fetchEvaluation(match.params.campaignId, match.params.id)
   }, [])
-
   return (
     <Layout>
       <Content>
         <div className="main-container">
           Evaluate
           {' '}
-          {userPresenter.getFullName(subject.user)}
+          {userPresenter.getFullName(subject)}
           <div
-            id="pass_ass"
+            id="pass_assessment"
             data-type="pass_assessment"
+            data-is-threesixty="true"
+            data-results-url={`/users_results/${id}`}
             data-data={JSON.stringify(data)}
-            data-result={JSON.stringify(results)}
+            data-result={JSON.stringify(evaluation)}
           />
         </div>
       </Content>

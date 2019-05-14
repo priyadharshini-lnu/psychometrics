@@ -1,8 +1,10 @@
 module UsersResults
   class UpdatingForm < Rectify::Form
     attribute :status, Integer
-    attribute :results, Hash, default: nil
-    attribute :embedded_data, Hash, default: nil
-    attribute :norm_data, Hash, default: nil
+    attribute :answers, Hash, default: nil
+
+    # TODO: need to check why is needed for and complete implementation
+    # attribute :embedded_data, Hash, default: nil
+    # attribute :norm_data, Hash, default: nil
   end
 end
