@@ -17,18 +17,30 @@ describe Threesixty::Evaluators::CreateAll do
     create(:campaigns_user, user: user, campaign: campaign)
     create(:threesixty_subject, user: user, campaign: campaign)
   end
-
-  it '.call' do
-    params = [
+  let(:params) do
+    [
       { evaluator_email: 'dev.atanov@gmail.com', relationship_name: 'peer', subject: subject_1, relationship: relationship, subject_user: subject_1.user, subject_email: 'fedor@gmail.com' },
       { evaluator_email: 'dev.atanov@gmail.com', relationship_name: 'peer', subject: subject_2, relationship: relationship, subject_user: subject_2.user, subject_email: 'ivan@gmail.com'  }
     ]
-    participants = described_class.call!(params, threesixty_campaign)
+  end
+
+  subject { described_class.call!(params, threesixty_campaign) }
+
+  it '.call' do
+    participants = subject
 
     expect(participants.map { |s| s.evaluator.email }).to match_array(%w[dev.atanov@gmail.com dev.atanov@gmail.com])
     expect(participants.map { |s| s.subject.email }).to match_array(%w[ivan@gmail.com fedor@gmail.com])
     expect(participants.map { |s| s.relationship.name }).to match_array(%w[peer peer])
     expect(Threesixty::Evaluator.find_by(user_id: participants.first.evaluator_id).evaluations_count).to eq 2
     expect(Threesixty::Subject.find_by(user_id: participants.first.subject_id).evaluators_count).to eq 1
+  end
+
+  it 'creates UsersAssessment' do
+    expect { subject }.to change(UsersAssessment, :count).by(2)
+    users_assessments = UsersAssessment.includes(:user).all
+    expect(users_assessments.map(&:user).map(&:email)).to match_array(%w[dev.atanov@gmail.com dev.atanov@gmail.com])
+    expect(users_assessments.map(&:campaign_id).uniq).to eq([campaign.id])
+    expect(users_assessments.map(&:assessment_id).uniq).to eq([threesixty_campaign.assessment_id])
   end
 end

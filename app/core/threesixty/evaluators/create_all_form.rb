@@ -21,7 +21,10 @@ module Threesixty
         @evaluators_with_relations = evaluators.map do |_key, evaluator|
           form = CreateOneForm.new(evaluator).with_context(context)
           errors.add(:evaluators, form.errors.messages.values.first.first) if form.invalid?
-          evaluator.merge(subject: form.subject, subject_user: form.subject_user, evaluator_user: form.evaluator_user, relationship: form.relationship)
+          evaluator.merge(subject: form.subject,
+                          subject_user: form.subject_user,
+                          evaluator_user: form.evaluator_user,
+                          relationship: form.relationship)
         end
       end
     end

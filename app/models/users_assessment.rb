@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class UsersAssessment < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, inverse_of: :users_assessments
   belongs_to :assessment
   belongs_to :campaign
   has_many :users_results,
