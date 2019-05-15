@@ -15,7 +15,7 @@ const Lists = ({ history, routes, setSelectedTab }) => {
   const onChange = (e) => {
     const selectedTab = pathToTabName(e.target.value)
     setSelectedTab(selectedTab)
-    routeUtils.moveTo(history, settings.urlPrefix, `${e.target.value}`)
+    routeUtils.moveTo(history, settings.urlPrefix, e.target.value)
   }
 
   setSelectedTab(pathToTabName(routeUtils.getActiveRoutePath(routes)))

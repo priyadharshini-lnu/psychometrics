@@ -9,9 +9,6 @@ export const set = selectedTab => ({
   payload: { selectedTab },
 })
 
-export const reloadCurrentTab = () => ({
-})
-
 const defaultState = null
 export default function reducer (state = defaultState, { type, payload }) {
   switch (type) {
