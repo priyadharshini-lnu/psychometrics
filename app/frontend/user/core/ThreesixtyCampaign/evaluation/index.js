@@ -20,7 +20,9 @@ export const fetchEvaluation = (campaignId, evaluationId) => ({
 })
 
 export const defaultState = {
-  results: {},
+  results: {
+    subject: {},
+  },
   assessment: null,
   loaded: false,
 }

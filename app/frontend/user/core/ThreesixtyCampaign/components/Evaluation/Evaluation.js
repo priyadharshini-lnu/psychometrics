@@ -5,9 +5,9 @@ import userPresenter from 'presenters/userPresenter'
 const { Content } = Layout
 
 export default function Evaluation ({
-  evaluation, assessment, results, fetchAssessment, match,
+  evaluation: { loaded, assessment, results }, fetchAssessment, match,
 }) {
-  const { subject, loaded, id } = evaluation
+  const { subject, id } = results
   useEffect(() => {
     if (loaded) {
       window.renderPassAssessment('pass_assessment')
@@ -31,6 +31,7 @@ export default function Evaluation ({
             data-results-url={`/users_results/${id}`}
             data-data={JSON.stringify(assessment)}
             data-result={JSON.stringify(results)}
+            data-dashboard-url={`/campaigns/${match.params.campaignId}`}
           />
         </div>
       </Content>

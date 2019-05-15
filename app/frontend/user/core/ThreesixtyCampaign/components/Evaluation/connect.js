@@ -3,8 +3,6 @@ import { fetchEvaluation, fetchAssessment } from 'user/core/ThreesixtyCampaign/e
 
 const mapStateToProps = state => ({
   evaluation: state.threeSixtyCampaign.evaluation,
-  results: state.threeSixtyCampaign.evaluation.results,
-  assessment: state.threeSixtyCampaign.evaluation.assessment,
 })
 
 const mapDispatchToProps = {
