@@ -20,17 +20,13 @@ export const fetchEvaluation = (campaignId, evaluationId) => ({
 })
 
 export const defaultState = {
-  subject: {
-    user: {
-      firstName: 'Mocked',
-      lastName: 'User',
-    },
-  },
-  results: null,
+  results: {},
+  assessment: null,
+  loaded: false,
 }
 
 const HANDLERS = {
-  [FETCH]: (state, action) => ({ ...state, results: action.response }),
+  [FETCH]: (state, action) => ({ ...state, results: action.response, loaded: true }),
   [FETCH_ASSESSMENT]: (state, action) => ({ ...state, assessment: action.response }),
 }
 

@@ -482,6 +482,8 @@ Rails.application.routes.draw do
         resources :assessments, only: %i(index)
       end
     end
+    resources :users_results, only: %i[update]
+    resources :users_assessments, only: %i[show]
 
     namespace :mindmill do
       resources :assigns, only: [] do
