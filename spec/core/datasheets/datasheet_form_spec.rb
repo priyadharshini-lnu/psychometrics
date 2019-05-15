@@ -1,8 +1,6 @@
 require 'rails_helper'
 
-describe Datasheets::DatasheetForm do
-  it { should validate_presence_of(:file) }
-
+describe ::Datasheets::DatasheetForm do
   context 'Validation' do
     let(:file) { double('file', content_type: 'application/xlsx') }
     let(:form) { described_class.new({ file: file, parsed_file: parsed_file }) }
@@ -10,6 +8,11 @@ describe Datasheets::DatasheetForm do
     subject { form }
 
     context 'failure flow' do
+      it '#validate_presence_of' do
+        allow(form).to receive(:file).and_return(nil)
+        is_expected.to be_invalid
+        expect(form.errors.details[:file]).to include({ error: :blank })
+      end
       it '#has_email_column' do
         allow(form).to receive(:parsed_file).and_return([{ 'No Email Column' => true }])
         is_expected.to be_invalid

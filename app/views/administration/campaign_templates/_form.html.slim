@@ -3,7 +3,7 @@
     = f.error_notification
     .form-inputs.clearfix
       = f.input :name
-      = f.input :assessment_id, as: :select, collection: Assessment.where(category: Assessment.categories['360']).map { |a| [a.decorate.name, a.id] }
+      = f.input :assessment_id, as: :select, collection: Assessment.where(category: Assessment.categories['threesixty']).map { |a| [a.decorate.name, a.id] }
       #report_field.form-group
         = f.input :report_id, as: :select, collection: Report.all.map { |a| [a.decorate.name, a.id] }
 
