@@ -12,9 +12,8 @@ module Administration
         sql_user_id = params[:user_id]
         participants = policy_scope(::Participant).
                        includes(:subject, :evaluator, :relationship).
-                       where.has { (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id)) }.
-                       map { |p| ::ParticipantSerializer.new(p).to_h }
-        render json: participants
+                       where.has { (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id)) }
+        render json: participants, each_serializer: ParticipantSerializer
       end
 
       def update

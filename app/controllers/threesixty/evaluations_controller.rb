@@ -15,7 +15,7 @@ module Threesixty
                           create_with(status: :in_progress).
                           find_or_create_by(subject_id: @participant.subject_id)
 
-          render json: @users_result, serializer: UserResultSerializer,
+          render json: @users_result, serializer: UsersResultSerializer,
                  participant: @participant, campaign: @campaign, include: '**'
         end
       end
