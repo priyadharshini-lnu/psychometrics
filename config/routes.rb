@@ -203,6 +203,10 @@ Rails.application.routes.draw do
         resources :relationships
         resources :participants
       end
+      member do
+        delete 'reset'
+        delete 'reset_nominations'
+      end
     end
 
     ### ASSESSMENTS
@@ -479,6 +483,8 @@ Rails.application.routes.draw do
         resources :reports
       end
     end
+    resources :users_results, only: %i[update]
+    resources :users_assessments, only: %i[show]
 
     namespace :mindmill do
       resources :assigns, only: [] do

@@ -113,6 +113,8 @@ class User < ApplicationRecord
   has_many :client_admin_projects, through: :client_admin_clients, source: 'projects', class_name: 'Client'
   has_many :license_usages, inverse_of: :user
   has_many :api_keys, inverse_of: :user
+  has_many :users_assessments, inverse_of: :user
+  has_many :assessments, through: :users_assessments
 
   accepts_nested_attributes_for :memberships
 

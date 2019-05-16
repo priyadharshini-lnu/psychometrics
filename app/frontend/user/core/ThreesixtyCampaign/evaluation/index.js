@@ -8,17 +8,13 @@ export const fetchEvaluation = (campaignId, evaluationId) => ({
 })
 
 export const defaultState = {
-  subject: {
-    user: {
-      firstName: 'Mocked',
-      lastName: 'User',
-    },
-  },
-  results: null,
+  subject: {},
+  dataSheet: {},
+  loaded: false,
 }
 
 const HANDLERS = {
-  [FETCH]: (state, action) => ({ ...state, results: action.response }),
+  [FETCH]: (state, action) => ({ ...action.response, loaded: true }),
 }
 
 export default function reducer (state = defaultState, action) {

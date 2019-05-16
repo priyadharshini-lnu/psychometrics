@@ -10,6 +10,7 @@ import currentThreeSixtyCampaignId from './core/threeSixtyCampaign/currentThreeS
 import datasheetFields from './core/project/datasheetFields'
 import participants from './core/threeSixtyCampaign/participants'
 import relationships from './core/threeSixtyCampaign/relationships'
+import selectedParticipantTab from './core/threeSixtyCampaign/selectedParticipantTab'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -19,6 +20,7 @@ export default combineReducers({
     participantOptions,
     participants,
     id: currentThreeSixtyCampaignId,
+    selectedParticipantTab,
   }),
   project: combineReducers({
     datasheetFields,

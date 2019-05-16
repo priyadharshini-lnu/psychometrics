@@ -6,10 +6,17 @@ module Threesixty
 
     def show
       respond_to do |format|
-        format.html {render 'threesixty/campaigns/show'}
+        format.html { render 'threesixty/campaigns/show' }
         format.json do
-          # TODO: upgrade to use new user assigns
-          render json: {}, include: '**'
+          @users_assessment = UsersAssessment.find_by(campaign_id: @participant.campaign_id,
+                                                      user_id: @participant.evaluator_id)
+          @users_result = @users_assessment.
+                          users_results.
+                          create_with(status: :in_progress).
+                          find_or_create_by(subject_id: @participant.subject_id)
+
+          render json: @users_result, serializer: UsersResultSerializer,
+                 participant: @participant, campaign: @campaign, include: '**'
         end
       end
     end

@@ -2400,6 +2400,39 @@ CREATE TABLE public.users (
 
 
 --
+-- Name: users_assessments; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users_assessments (
+    id bigint NOT NULL,
+    assessment_id bigint,
+    user_id bigint,
+    campaign_id bigint,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: users_assessments_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.users_assessments_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_assessments_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.users_assessments_id_seq OWNED BY public.users_assessments.id;
+
+
+--
 -- Name: users_id_seq; Type: SEQUENCE; Schema: public; Owner: -
 --
 
@@ -2416,6 +2449,81 @@ CREATE SEQUENCE public.users_id_seq
 --
 
 ALTER SEQUENCE public.users_id_seq OWNED BY public.users.id;
+
+
+--
+-- Name: users_reports; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users_reports (
+    id bigint NOT NULL,
+    report_id bigint,
+    user_id bigint,
+    campaign_id bigint,
+    status integer DEFAULT 0,
+    pdf character varying,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: users_reports_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.users_reports_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_reports_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.users_reports_id_seq OWNED BY public.users_reports.id;
+
+
+--
+-- Name: users_results; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.users_results (
+    id bigint NOT NULL,
+    subject_id bigint,
+    evaluator_id bigint,
+    assessment_id bigint,
+    norm_id bigint,
+    answers jsonb,
+    scoring jsonb,
+    occupations jsonb,
+    step integer DEFAULT 0,
+    status integer DEFAULT 0,
+    completed_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: users_results_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.users_results_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: users_results_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.users_results_id_seq OWNED BY public.users_results.id;
 
 
 --
@@ -2864,6 +2972,27 @@ ALTER TABLE ONLY public.translations ALTER COLUMN id SET DEFAULT nextval('public
 --
 
 ALTER TABLE ONLY public.users ALTER COLUMN id SET DEFAULT nextval('public.users_id_seq'::regclass);
+
+
+--
+-- Name: users_assessments id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_assessments ALTER COLUMN id SET DEFAULT nextval('public.users_assessments_id_seq'::regclass);
+
+
+--
+-- Name: users_reports id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_reports ALTER COLUMN id SET DEFAULT nextval('public.users_reports_id_seq'::regclass);
+
+
+--
+-- Name: users_results id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_results ALTER COLUMN id SET DEFAULT nextval('public.users_results_id_seq'::regclass);
 
 
 --
@@ -3387,11 +3516,35 @@ ALTER TABLE ONLY public.translations
 
 
 --
+-- Name: users_assessments users_assessments_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_assessments
+    ADD CONSTRAINT users_assessments_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: users users_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users
     ADD CONSTRAINT users_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_reports users_reports_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_reports
+    ADD CONSTRAINT users_reports_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: users_results users_results_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_results
+    ADD CONSTRAINT users_results_pkey PRIMARY KEY (id);
 
 
 --
@@ -4277,6 +4430,27 @@ CREATE INDEX index_translations_on_translateable_type_and_translateable_id ON pu
 
 
 --
+-- Name: index_users_assessments_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_assessments_on_assessment_id ON public.users_assessments USING btree (assessment_id);
+
+
+--
+-- Name: index_users_assessments_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_assessments_on_campaign_id ON public.users_assessments USING btree (campaign_id);
+
+
+--
+-- Name: index_users_assessments_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_assessments_on_user_id ON public.users_assessments USING btree (user_id);
+
+
+--
 -- Name: index_users_on_authentication_token; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4340,6 +4514,55 @@ CREATE UNIQUE INDEX index_users_on_reset_password_token ON public.users USING bt
 
 
 --
+-- Name: index_users_reports_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_reports_on_campaign_id ON public.users_reports USING btree (campaign_id);
+
+
+--
+-- Name: index_users_reports_on_report_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_reports_on_report_id ON public.users_reports USING btree (report_id);
+
+
+--
+-- Name: index_users_reports_on_user_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_reports_on_user_id ON public.users_reports USING btree (user_id);
+
+
+--
+-- Name: index_users_results_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_results_on_assessment_id ON public.users_results USING btree (assessment_id);
+
+
+--
+-- Name: index_users_results_on_evaluator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_results_on_evaluator_id ON public.users_results USING btree (evaluator_id);
+
+
+--
+-- Name: index_users_results_on_norm_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_results_on_norm_id ON public.users_results USING btree (norm_id);
+
+
+--
+-- Name: index_users_results_on_subject_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_results_on_subject_id ON public.users_results USING btree (subject_id);
+
+
+--
 -- Name: threesixty_nomination_requirements_cam_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4395,11 +4618,35 @@ ALTER TABLE ONLY public.assessments_reports
 
 
 --
+-- Name: users_assessments fk_rails_11a087a70e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_assessments
+    ADD CONSTRAINT fk_rails_11a087a70e FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: licenses fk_rails_139c7e09c4; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.licenses
     ADD CONSTRAINT fk_rails_139c7e09c4 FOREIGN KEY (report_family_id) REFERENCES public.report_families(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: users_assessments fk_rails_15bb97bf96; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_assessments
+    ADD CONSTRAINT fk_rails_15bb97bf96 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: users_reports fk_rails_1a6f653d96; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_reports
+    ADD CONSTRAINT fk_rails_1a6f653d96 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
 --
@@ -4416,6 +4663,14 @@ ALTER TABLE ONLY public.assigns
 
 ALTER TABLE ONLY public.memberships
     ADD CONSTRAINT fk_rails_1e06b93eb5 FOREIGN KEY (project_membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: users_reports fk_rails_28ab0c4f85; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_reports
+    ADD CONSTRAINT fk_rails_28ab0c4f85 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
 
 
 --
@@ -4515,6 +4770,14 @@ ALTER TABLE ONLY public.ecommerce_orders
 
 
 --
+-- Name: users_results fk_rails_4eb165810a; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_results
+    ADD CONSTRAINT fk_rails_4eb165810a FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: clients fk_rails_5b49237ec1; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4568,6 +4831,14 @@ ALTER TABLE ONLY public.questions
 
 ALTER TABLE ONLY public.reports_accesses
     ADD CONSTRAINT fk_rails_74cd2e276f FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: users_results fk_rails_773500ba49; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_results
+    ADD CONSTRAINT fk_rails_773500ba49 FOREIGN KEY (evaluator_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
 --
@@ -4771,6 +5042,14 @@ ALTER TABLE ONLY public.threesixty_subjects_relationships
 
 
 --
+-- Name: users_assessments fk_rails_ab767322bc; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_assessments
+    ADD CONSTRAINT fk_rails_ab767322bc FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: ecommerce_purchase_invites fk_rails_acede09d2c; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4819,11 +5098,27 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
+-- Name: users_reports fk_rails_c02c547c00; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_reports
+    ADD CONSTRAINT fk_rails_c02c547c00 FOREIGN KEY (report_id) REFERENCES public.reports(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: assessments_clients fk_rails_cc339dda78; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.assessments_clients
     ADD CONSTRAINT fk_rails_cc339dda78 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: users_results fk_rails_ce283804a5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_results
+    ADD CONSTRAINT fk_rails_ce283804a5 FOREIGN KEY (norm_id) REFERENCES public.norms(id) ON DELETE RESTRICT;
 
 
 --
@@ -4920,6 +5215,14 @@ ALTER TABLE ONLY public.hogan_report_settings
 
 ALTER TABLE ONLY public.threesixty_subjects
     ADD CONSTRAINT fk_rails_d91185866e FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: users_results fk_rails_dc09b8ec60; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_results
+    ADD CONSTRAINT fk_rails_dc09b8ec60 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
 
 
 --
@@ -5284,6 +5587,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190419202055'),
 ('20190421102715'),
 ('20190501212516'),
-('20190506131431');
+('20190506131431'),
+('20190507165939'),
+('20190507170240'),
+('20190507170817');
 
 
