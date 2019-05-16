@@ -3,6 +3,7 @@ module Threesixty
     layout 'layouts/threesixty_campaign'
     before_action :set_campaign
     before_action :set_subject
+    before_action :set_nomination, only: [:destroy, :update_status]
 
     def create
       form = ::Threesixty::Participants::CreateForm.from_params(params).with_context(subject: @subject)
@@ -20,11 +21,15 @@ module Threesixty
       end
     end
 
+    def update_status
+      @nomination.update_attributes(manager_status: params[:status])
+      render json: @nomination, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
+    end
+
     def destroy
-      nomination = @subject.participants.find_by(evaluator_id: params[:id])
-      nomination.destroy
-      nomination.threesixty_subject.decrement!(:evaluators_count)
-      nomination.threesixty_evaluator.decrement!(:evaluations_count)
+      @nomination.destroy
+      @nomination.threesixty_subject.decrement!(:evaluators_count)
+      @nomination.threesixty_evaluator.decrement!(:evaluations_count)
       render json: nil
     end
 
@@ -36,6 +41,10 @@ module Threesixty
 
     def set_subject
       @subject = @campaign.subjects.find(params[:nomination_id])
+    end
+
+    def set_nomination
+      @nomination = @subject.participants.find_by(id: params[:evaluator_id] || params[:id])
     end
 
     def evaluator_params

@@ -64,7 +64,8 @@ function EvaluationList ({ evaluations, approvalEvaluations, options }) {
       bordered
     >
       <CollapseItem key="evaluations" title="Evaluations" list={evaluations} />
-      {options.manager.canApprovesEvaluations
+      {/* TODO: disabled for the demo, need to implement evaluation approvement */}
+      {false && options.manager.canApprovesEvaluations
         && <CollapseItem key="evaluations_approve" title="Approve evaluations" list={approvalEvaluations} />}
     </List>
   )

@@ -1,5 +1,5 @@
 import _ from 'lodash'
-import { updateIn, setIn } from 'utils/immutable'
+import { updateIn, setIn, getIn } from 'utils/immutable'
 import { without } from 'lodash/fp'
 
 const FETCH = 'threeSixty/nomination/FETCH'
@@ -7,6 +7,7 @@ const REMOVE = 'threeSixty/nomination/REMOVE'
 const ADD = 'threeSixty/nomination/ADD'
 const ADD_FAILURE = 'threeSixty/nomination/ADD_FAILURE'
 const UPDATE_FORM = 'threeSixty/nomination/UPDATE_FORM'
+const UPDATE_STATUS = 'threeSixty/nomination/UPDATE_STATUS'
 
 export const fetchNomination = ({ campaignId, id }) => ({
   type: FETCH,
@@ -38,6 +39,20 @@ export const addNomination = ({
   },
 })
 
+export const updateStatus = ({
+  campaignId, nominationId, evaluatorId, status,
+}) => ({
+  type: UPDATE_STATUS,
+  request: {
+    url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluators/${evaluatorId}/update_status`,
+    method: 'put',
+    body: {
+      status,
+    },
+  },
+})
+
+
 export const updateForm = form => ({ type: UPDATE_FORM, form })
 
 const HANDLERS = {
@@ -59,6 +74,11 @@ const HANDLERS = {
     return setIn(state, ['evaluators', relationship.name], without(state.evaluators[relationship.name], { id }))
   },
   [UPDATE_FORM]: (state, action) => setIn(state, ['form', 'attrs'], action.form),
+  [UPDATE_STATUS]: (state, action) => {
+    const { id, relationship } = action.response
+    const evaluators = getIn(state, ['evaluators', relationship.name])
+    return setIn(state, ['evaluators', relationship.name, _.findIndex(evaluators, { id })], action.response)
+  },
 }
 
 const defaultState = {
