@@ -1,14 +1,13 @@
 import React, { useEffect } from 'react'
 import { Layout } from 'antd'
 import userPresenter from 'presenters/userPresenter'
-import data from './data.json'
 
 const { Content } = Layout
 
 export default function Evaluation ({
-  evaluation, fetchEvaluation, match,
+  evaluation: { loaded, assessment, results }, fetchAssessment, match,
 }) {
-  const { subject, loaded, id } = evaluation
+  const { subject, id } = results
   useEffect(() => {
     if (loaded) {
       window.renderPassAssessment('pass_assessment')
@@ -16,7 +15,7 @@ export default function Evaluation ({
   }, [loaded])
 
   useEffect(() => {
-    fetchEvaluation(match.params.campaignId, match.params.id)
+    fetchAssessment(match.params.campaignId, match.params.id)
   }, [])
   return (
     <Layout>
@@ -30,8 +29,9 @@ export default function Evaluation ({
             data-type="pass_assessment"
             data-is-threesixty="true"
             data-results-url={`/users_results/${id}`}
-            data-data={JSON.stringify(data)}
-            data-result={JSON.stringify(evaluation)}
+            data-data={JSON.stringify(assessment)}
+            data-result={JSON.stringify(results)}
+            data-dashboard-url={`/campaigns/${match.params.campaignId}`}
           />
         </div>
       </Content>

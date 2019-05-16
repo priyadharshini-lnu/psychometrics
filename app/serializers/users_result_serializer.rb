@@ -27,7 +27,7 @@ class UsersResultSerializer < ActiveModel::Serializer
   def data_sheet
     row = DatasheetRow.
           joins(:datasheet).
-          find_by(datasheets: { project_id: campaign.project_id }, email: object.evaluator.email)
+          find_by(datasheets: { project_id: campaign.project.id }, email: object.evaluator.email)
     row&.data || {}
   end
 

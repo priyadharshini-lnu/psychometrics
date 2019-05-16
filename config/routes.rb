@@ -481,6 +481,7 @@ Rails.application.routes.draw do
         end
         resources :evaluations
         resources :reports
+        resources :assessments, only: %i(index)
       end
     end
     resources :users_results, only: %i[update]
