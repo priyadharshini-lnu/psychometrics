@@ -21,6 +21,11 @@ module Threesixty
       end
     end
 
+    def update_status
+      @participant.update_attributes(evaluator_status: params[:status])
+      render json: @participant, serializer: Threesixty::EndUser::EvaluationSerializer, include: '**'
+    end
+
     private
 
     def set_campaign
@@ -28,7 +33,7 @@ module Threesixty
     end
 
     def set_evaluation
-      @participant = @campaign.participants.find(params[:id])
+      @participant = @campaign.participants.find(params[:evaluation_id] || params[:id])
     end
   end
 end

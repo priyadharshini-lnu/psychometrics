@@ -11,7 +11,7 @@ module Threesixty
           evaluations = ::Threesixty::EvaluationsByUserQuery.new(@campaign, current_user)
 
           render json: @campaign, serializer: Threesixty::CampaignSerializer,
-                 subjects: subjects, evaluations: evaluations,
+                 subjects: subjects, evaluations: evaluations, reports: [],
                  include: '**'
         end
       end
