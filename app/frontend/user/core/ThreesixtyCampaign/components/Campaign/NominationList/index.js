@@ -39,7 +39,7 @@ function NominationList ({ nominations, approvalNominations, options }) {
       bordered
     >
       <CollapseItem key="nominations" title="Set up nominations" list={nominations} />
-      {options.manager.canApproveNominations
+      {options.manager.canApproveNominations && approvalNominations.length > 0
         && <CollapseItem key="approve_nominations" title="Approve nominations" list={approvalNominations} />}
     </List>
   )

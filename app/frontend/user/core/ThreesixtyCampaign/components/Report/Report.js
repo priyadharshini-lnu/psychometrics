@@ -2,16 +2,26 @@ import React, { useEffect } from 'react'
 import {
   Layout, Typography, Button, Row,
 } from 'antd'
-import data from './data.json'
 import './styles.scss'
+import userPresenter from 'presenters/userPresenter'
 
 const { Title } = Typography
 const { Content } = Layout
 
-export default function Report () {
+export default function Report ({
+  report: {
+    loaded, report, results, user,
+  }, match, fetchReport,
+}) {
   useEffect(() => {
-    window.initReport('threesixty-report')
+    fetchReport(match.params.campaignId, match.params.id)
   }, [])
+
+  useEffect(() => {
+    if (loaded) {
+      window.initReport('threesixty-report')
+    }
+  }, [loaded])
 
   return (
     <Layout>
@@ -21,7 +31,7 @@ export default function Report () {
             <Title level={4}>
               Report for
               {' '}
-              {'Subject Name'}
+              {userPresenter.getFullName(user)}
             </Title>
             <div>
               <Button type="primary">Deny</Button>
@@ -33,7 +43,9 @@ export default function Report () {
           </Row>
           <div
             id="threesixty-report"
-            data-data={JSON.stringify(data)}
+            data-data={JSON.stringify(report)}
+            data-results={JSON.stringify(results)}
+            data-user={JSON.stringify(user)}
           />
         </div>
       </Content>
