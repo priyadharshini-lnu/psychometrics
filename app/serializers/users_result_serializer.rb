@@ -7,6 +7,7 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   has_one :user, serializer: UserSerializer
   has_one :subject, serializer: UserSerializer
+  has_one :participant, serializer: Threesixty::EndUser::NomineeSerializer
 
   def is_self
     object.evaluator_id === object.subject_id
@@ -37,11 +38,11 @@ class UsersResultSerializer < ActiveModel::Serializer
     raise "Not supported hogan type #{type}"
   end
 
-  private
-
   def participant
     @participant ||= instance_options[:participant]
   end
+
+  private
 
   def campaign
     @campaing ||= instance_options[:campaign]
