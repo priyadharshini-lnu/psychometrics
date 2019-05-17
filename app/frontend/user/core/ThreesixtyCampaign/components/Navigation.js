@@ -1,12 +1,12 @@
 import React from 'react'
-import { Route, Link } from 'react-router-dom'
+import { Route } from 'react-router-dom'
 import { Layout, Menu } from 'antd'
 
 export default function Navigation () {
   return (
     <Layout.Header style={{ background: '#fff' }}>
       <Route path="/campaigns/:id">
-        {({ match }) => (
+        {() => (
           <Menu
             mode="horizontal"
             theme="light"
