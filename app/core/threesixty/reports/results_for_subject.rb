@@ -4,11 +4,11 @@ module Threesixty::Reports
   class ResultsForSubject < BaseCommand
     attr_reader :campaign, :project, :subject, :report, :locale
 
-    def initialize(campaign, users_result)
+    def initialize(campaign, users_report)
       @campaign = campaign
 
       @project = campaign.project
-      @subject = Threesixty::Subject.find_by(campaign_id: campaign.campaign.id, user_id: users_result.user_id)
+      @subject = Threesixty::Subject.find_by(campaign_id: campaign.campaign.id, user_id: users_report.user_id)
       @report = campaign.report
     end
 
@@ -22,11 +22,6 @@ module Threesixty::Reports
 
     def lookup_results
       participants = Threesixty::EvaluatorParticipantsBySubject.new(subject).query
-      participants_map = participants.index_by(&:evaluator_id)
-      data_sheet_map = DatasheetRow.
-        joins(:datasheet).
-        where(datasheets: { project_id: project.id }, email: participants.map(&:evaluator_email)).
-        index_by(&:email)
 
       UsersResult.completed.
         where(evaluator_id: participants.map(&:evaluator_id)).
