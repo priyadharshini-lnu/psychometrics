@@ -14,4 +14,8 @@
         .panel-group.assessments-holder id="assessments-multiple" role="tablist" aria-multiselectable="true"
           - @multiple_reports.each do |report|
             = render 'assigns_reports', report: report
+      - if @threesixty_projects
+        .panel-group.assessments-holder id="assessments-multiple" role="tablist" aria-multiselectable="true"
+          - @threesixty_projects.each do |campaign|
+            = render 'threesixty_campaign', campaign: campaign
 = render partial: '//assigns/modals/accept_privacy'

@@ -13,7 +13,7 @@ export default function Navigation () {
             style={{ lineHeight: '64px' }}
           >
             <Menu.Item>
-              <Link to={match.url}>My Projects</Link>
+              <a href="/">My Projects</a>
             </Menu.Item>
           </Menu>
         )}
