@@ -2,7 +2,7 @@ module Threesixty
   class ReportsController < ApplicationController
     layout 'layouts/threesixty_campaign'
     before_action :set_campaign
-    before_action :ser_users_report
+    before_action :set_users_report
 
     def index
       respond_to do |format|
@@ -23,7 +23,7 @@ module Threesixty
 
     private
 
-    def ser_users_report
+    def set_users_report
       @users_report = UsersReport.find_by!(id: params[:id], campaign_id: @campaign.campaign_id)
     end
 
