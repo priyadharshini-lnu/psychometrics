@@ -32,12 +32,32 @@ en:
         occupations: 'Occupations'
         your_potential_suitability: 'Your Potential Suitability'
       gap_assessment:
-        positive_gap: 'Positive Gap'
+        positive_gap: 'Positive Gaps'
         rank: 'Rank'
         item: 'Item'
         gap: 'Gap'
-        negative_gap: 'Negative Gap'
+        negative_gap: 'Negative Gaps'
         scoring_category: 'Scoring Category'
+      three_sixty_default:
+        statistic: 'Statistic'
+        value: 'Value'
+        factor:
+          min: Min Value
+          max: Max Value
+          sum: Sum
+          mean: Mean
+          weightedMean: Weighted Mean
+          variance: Variance
+          standardDeviation: Standard Deviation
+          totalResponses: Total Responses
+          items: Items
+      three_sixty_report_summary:
+        subject: 'Subject'
+        number_of_evaluators_invited: 'Number of evaluators invited'
+        number_of_evaluators_responded: 'Number of evaluators responded'
+        number_of_evaluators_received: 'Number of evaluators received'
+        total_evaluations: 'Total evaluations for this assessment'
+        number_by_filter_evaluations_received: "Number of %{filter} evaluations received"
       highest_lowest:
         highest_scores: 'Highest Scores'
         rank: 'Rank'
