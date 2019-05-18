@@ -76,7 +76,7 @@ export default function NominationTable (props) {
         overlay={() => StatusMenu(evaluator)}
       >
         <div>
-          {evaluator.approvalStatus}
+          {statusPresenter.getApprovalStatus(evaluator.approvalStatus)}
           <Icon type="down" />
         </div>
       </Dropdown>
@@ -85,7 +85,7 @@ export default function NominationTable (props) {
   }
 
   const renderStatus = ({ evaluator }) => ({
-    children: evaluator && statusPresenter.getStatus(evaluator.status),
+    children: evaluator && evaluator.evaluationStatus,
   })
 
   return (
@@ -101,7 +101,7 @@ export default function NominationTable (props) {
         <Column title="Requirements" key="title" render={renderRequirementCell} />
         <Column title="Name" key="name" render={renderNameCell} width="40%" />
         <Column title="Approval Status" render={renderApprovalStatus} key="status" />
-        <Column title="Evaluation Status" dataIndex={renderStatus} key="evaluatorStatus" />
+        <Column title="Evaluation Status" render={renderStatus} key="evaluatorStatus" />
 
         <Column
           key="action"

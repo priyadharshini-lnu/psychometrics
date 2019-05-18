@@ -479,7 +479,9 @@ Rails.application.routes.draw do
             put :update_status
           end
         end
-        resources :evaluations
+        resources :evaluations do
+          put :update_status
+        end
         resources :reports
         resources :assessments, only: %i(index)
       end

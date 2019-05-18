@@ -2,6 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects'
 
 const FETCH = 'threeSixty/evaluation/FETCH'
 const FETCH_ASSESSMENT = 'threeSixty/evaluation/FETCH_ASSESSMENT'
+const UPDATE_STATUS = 'threeSixty/evaluation/UPDATE_STATUS'
 
 export const fetchAssessment = (campaignId, evaluationId) => ({
   type: FETCH_ASSESSMENT,
@@ -19,9 +20,21 @@ export const fetchEvaluation = (campaignId, evaluationId) => ({
   },
 })
 
+export const updateStatus = (campaignId, evaluationId, status) => ({
+  type: UPDATE_STATUS,
+  request: {
+    url: `/campaigns/${campaignId}/evaluations/${evaluationId}/update_status`,
+    method: 'put',
+    body: {
+      status,
+    },
+  },
+})
+
 export const defaultState = {
   results: {
     subject: {},
+    participant: {},
   },
   assessment: null,
   loaded: false,
