@@ -14,6 +14,10 @@ module Administration
       index?
     end
 
+    def spoof?
+      index?
+    end
+
     def destroy?
       index?
     end

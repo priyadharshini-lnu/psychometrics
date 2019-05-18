@@ -185,9 +185,6 @@ Rails.application.routes.draw do
             post :create_all
             post :search
           end
-          member do
-            get :spoof
-          end
         end
         resources :evaluators do
           collection do
@@ -202,7 +199,11 @@ Rails.application.routes.draw do
 
         resources :managers
         resources :relationships
-        resources :participants
+        resources :participants do
+          member do
+            get :spoof
+          end
+        end
       end
       member do
         delete 'reset'
