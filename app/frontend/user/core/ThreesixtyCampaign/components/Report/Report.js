@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Typography, Button, Row,
+  Layout, Typography, Button, Row, Col,
 } from 'antd'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
@@ -10,11 +10,11 @@ const { Content } = Layout
 
 export default function Report ({
   report: {
-    loaded, report, results, user,
-  }, match, fetchReport,
+    loaded, report, results, user, approvalStatus,
+  }, match: { params }, fetchReport, updateStatus,
 }) {
   useEffect(() => {
-    fetchReport(match.params.campaignId, match.params.id)
+    fetchReport(params.campaignId, params.id)
   }, [])
 
   useEffect(() => {
@@ -22,6 +22,10 @@ export default function Report ({
       window.initReport('threesixty-report')
     }
   }, [loaded])
+
+  const handleStatusClick = (status) => {
+    updateStatus(params.campaignId, params.id, status)
+  }
 
   return (
     <Layout>
@@ -33,10 +37,16 @@ export default function Report ({
               {' '}
               {userPresenter.getFullName(user)}
             </Title>
-            <div>
-              <Button type="primary">Deny</Button>
-              <Button type="danger">Approve</Button>
-            </div>
+            <Col>
+              {approvalStatus !== 'waiting'
+                ? <div>{approvalStatus}</div>
+                : (
+                  <div>
+                    <Button onClick={() => handleStatusClick('approved')} type="primary">Approve</Button>
+                    <Button onClick={() => handleStatusClick('denied')} type="danger">Deny</Button>
+                  </div>
+                )}
+            </Col>
           </Row>
           <Row>
             <Button>Download</Button>

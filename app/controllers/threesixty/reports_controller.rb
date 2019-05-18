@@ -21,10 +21,16 @@ module Threesixty
       end
     end
 
+    def update_status
+      subject = @users_report.threesixty_subject
+      subject.update_attributes(report_approval_status: params[:status])
+      render json: { status: subject.report_approval_status }
+    end
+
     private
 
     def set_users_report
-      @users_report = UsersReport.find_by!(id: params[:id], campaign_id: @campaign.campaign_id)
+      @users_report = UsersReport.find_by!(id: params[:report_id] || params[:id], campaign_id: @campaign.campaign_id)
     end
 
     def set_campaign

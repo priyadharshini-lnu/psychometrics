@@ -1,6 +1,8 @@
 import humps from 'humps'
+import { setIn } from 'utils/immutable'
 
 const FETCH_REPORTS = 'threeSixty/report/FETCH_REPORTS'
+const UPDATE_STATUS = 'threeSixty/report/UPDATE_STATUS'
 
 export const fetchReport = (campaignId, id) => ({
   type: FETCH_REPORTS,
@@ -9,6 +11,19 @@ export const fetchReport = (campaignId, id) => ({
     camelize: false,
   },
 })
+
+
+export const updateStatus = (campaignId, id, status) => ({
+  type: UPDATE_STATUS,
+  request: {
+    url: `/campaigns/${campaignId}/reports/${id}/update_status`,
+    method: 'put',
+    body: {
+      status,
+    },
+  },
+})
+
 
 export const defaultState = {
   loaded: false,
@@ -24,6 +39,7 @@ const HANDLERS = {
     report: action.response.report,
     loaded: true,
   }),
+  [UPDATE_STATUS]: (state, action) => setIn(state, ['approvalStatus'], action.response.status),
 }
 
 export default function reducer (state = defaultState, action) {
