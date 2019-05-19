@@ -30,15 +30,10 @@ module BulkReports
       report = Report.find(item.id)
       {
         bulk_report: bulk_report,
-        current_user: params[:current_user],
         report: report,
         assign: Assign.find(item.assign_id),
         assigns_report: AssignsReport.find(item.assigns_report_id),
         user: User.find(item.user_id),
-        client: params[:client],
-        opts: {
-          lang: report.default_language
-        }
       }
     end
   end
