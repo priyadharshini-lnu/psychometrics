@@ -19,7 +19,7 @@ set :ssh_options, {
   forward_agent: true
 }
 
-set :sidekiq_queue, %w(mailers communication default)
+set :sidekiq_queue, %w(reports mailers communication default)
 
 # Default value for :pty is false
 set :pty, false
