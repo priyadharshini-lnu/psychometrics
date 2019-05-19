@@ -19,7 +19,7 @@ set :ssh_options, {
   forward_agent: true
 }
 
-set :sidekiq_queue, %w(mailers communication default)
+set :sidekiq_queue, %w(reports mailers communication default)
 
 # Default value for :pty is false
 set :pty, false
@@ -28,7 +28,7 @@ set :pty, false
 set :linked_files, fetch(:linked_files, []).push('config/database.yml', 'config/secrets.yml', 'config/application.yml')
 
 # Default value for linked_dirs is []
-set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'tmp/reports')
+set :linked_dirs, fetch(:linked_dirs, []).push('log', 'tmp/pids', 'tmp/cache', 'tmp/sockets', 'tmp/reports', 'tmp/bulk_reports')
 
 # Default value for default_env is {}
 # set :default_env, { path: "/opt/ruby/bin:$PATH" }
