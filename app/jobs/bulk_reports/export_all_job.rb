@@ -7,13 +7,18 @@ module BulkReports
       return if items.empty?
 
       bulk_report = ::BulkReport.create(user: params[:current_user])
-      FileUtils.rm_rf(bulk_report.input_dir) if File.directory?(bulk_report.input_dir)
+      input_dir = bulk_report.input_dir
+      # Removes input dir if for some reason it's was not deleted
+      FileUtils.rm_rf(input_dir) if File.directory?(bulk_report.input_dir)
+      # Creates a new empty folder for reports
+      FileUtils.mkdir_p(input_dir)
       items.each do |item|
         ::BulkReports::ExportJob.perform_now(job_params(bulk_report, item, params))
       end
       ::BulkReports::CompressJob.perform_now(bulk_report)
       BulkReportMailer.notify(bulk_report).deliver_later
-      FileUtils.rm_rf(bulk_report.input_dir)
+      # Removes input folder
+      FileUtils.rm_rf(input_dir)
     end
 
     private
