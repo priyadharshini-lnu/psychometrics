@@ -52,7 +52,7 @@ export default function Report ({
             {status === 'prepared'
               ? (
                 <Button>
-                  <a href={pdf.url} download target="_blank">
+                  <a href={pdf.url} download target="_blank" rel="noopener noreferrer">
                     Download
                   </a>
                 </Button>
