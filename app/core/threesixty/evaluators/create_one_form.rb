@@ -23,7 +23,7 @@ module Threesixty
       end
 
       def check_existing_evaluator_subject_relation
-        if ::Participant.where(relationship: relationship, subject: subject_user, evaluator: evaluator_user).exists?
+        if ::Participant.where(relationship: relationship, subject: subject_user, evaluator: evaluator_user, campaign: context.campaign).exists?
           errors.add(:evaluator_email, :already_exists)
         end
       end
