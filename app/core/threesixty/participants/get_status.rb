@@ -6,9 +6,10 @@ module Threesixty
       NOT_COMPLETED = 'not_completed'
       COMPLETED = 'completed'
 
-      def initialize(evaluator, subject, option, nomination_requirement)
+      def initialize(evaluator, subject, option, nomination_requirement, counters)
         @evaluator = evaluator
         @subject = subject
+        @counters = counters
         @option = option || Threesixty::Option.new
         @nomination_requirement = nomination_requirement
       end
@@ -30,7 +31,7 @@ module Threesixty
       def valid_nomination_requirements?
         return true unless nomination_requirement
 
-        field = option.participants['requires_approval'] ? :approved_evaluators_count : :completed_evaluators_count
+        field = option.participants.dig('manager', 'can_approves_evaluations') ? :approved_evaluators_count : :completed_evaluators_count
         subjects_relationship_map = subject.subjects_relationships.index_by(&:relationship_id)
 
         nomination_requirement.conditions.all? do |condition|
@@ -41,18 +42,14 @@ module Threesixty
       end
 
       def status_by_evaluator_data
-        return NOT_COMPLETED if evaluator.completed_evaluations_count < evaluator.evaluations_count
-
-        return COMPLETED unless option.participants['requires_approval']
-
-        return COMPLETED if option.participants['requires_approval'] && evaluator.approved_evaluations_count == evaluator.evaluations_count
+        return COMPLETED if counters[:completed_evaluations] == counters[:total_evaluations]
 
         NOT_COMPLETED
       end
 
       private
 
-      attr_reader :evaluator, :subject, :option, :nomination_requirement
+      attr_reader :evaluator, :subject, :option, :nomination_requirement, :counters
     end
   end
 end

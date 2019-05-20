@@ -8,10 +8,8 @@ module Administration
       append_before_action :pundit_authorize
 
       def index
-        subjects = policy_scope(::Threesixty::Subject).includes(:evaluator, :user).where(campaign_id: threesixty_campaign.campaign_id).order(id: :desc).map do |s|
-          serialize(s)
-        end
-
+        subjects = policy_scope(::Threesixty::Subject).includes(:evaluator, :user).where(campaign_id: threesixty_campaign.campaign_id).order(id: :desc).all
+        subjects = ::Threesixty::Subjects::Serialize.call!(subjects, threesixty_campaign)
         render json: subjects
       end
 
@@ -24,7 +22,7 @@ module Administration
 
       def update
         resource.update!(resource_params)
-        render json: serialize(resource)
+        render json: ::Threesixty::Subjects::Serialize.call!([resource], threesixty_campaign).first
       end
 
       def destroy
@@ -53,14 +51,6 @@ module Administration
         params.require(:subject).permit(:report_release_status, :report_approval_status, :evaluation_status)
       end
 
-      def serialize(subject)
-        nomination_requirement = ::Threesixty::NominationRequirements::FindForSubject.call!(subject)
-        ::Threesixty::SubjectSerializer.new(
-          subject,
-          option: threesixty_campaign.option,
-          nomination_requirement: nomination_requirement
-        ).to_h
-      end
     end
   end
 end
