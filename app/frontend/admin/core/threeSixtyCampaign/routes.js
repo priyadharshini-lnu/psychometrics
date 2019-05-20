@@ -1,6 +1,6 @@
 import Participants from './components/Participants'
 import Messages from './components/Messages'
-import Reports from './components/Reports/'
+import Reports from './components/Reports'
 
 const routes = [
   { redirect: true, from: '', to: '/participants/subjects' },
@@ -23,12 +23,12 @@ const routes = [
   },
   { path: '/messages', component: Messages },
   {
-    path: '/reports',
+    path: '/reports/options',
     component: Reports,
     routes: [
       { path: '/reports/options', component: Reports.Options },
-    ]
-   },
+    ],
+  },
 ]
 
 export default routes

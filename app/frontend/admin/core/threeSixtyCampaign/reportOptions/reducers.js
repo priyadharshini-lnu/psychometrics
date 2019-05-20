@@ -1,5 +1,4 @@
-import _ from 'lodash'
-import { setIn, updateIn } from 'utils/immutable'
+import { setIn } from 'utils/immutable'
 import {
   FETCH_REPORT_OPTIONS,
   UPDATE_REPORT_OPTIONS,

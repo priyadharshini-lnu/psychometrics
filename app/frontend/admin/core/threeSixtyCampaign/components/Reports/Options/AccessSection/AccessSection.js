@@ -4,7 +4,7 @@ import ExpandableOption from 'admin/core/threeSixtyCampaign/components/common/Op
 
 export default function SubjectSection ({
   options,
-  updateReportOptions
+  updateReportOptions,
 }) {
   const OBJECT_KEY = 'access'
 

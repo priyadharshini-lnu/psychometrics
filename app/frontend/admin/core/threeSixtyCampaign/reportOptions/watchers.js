@@ -20,7 +20,7 @@ const watchers = [
   takeLatest(
     [UPDATE_REPORT_OPTIONS],
     genSyncWithServer,
-  )
+  ),
 ]
 
 export default watchers

@@ -1,12 +1,13 @@
 import React, { useEffect } from 'react'
 import AccessSection from './AccessSection'
-import css from './style'
+import ReportAvailabilitySection from './ReportAvailabilitySection'
+import css from './style.scss'
 
 export default function Options ({
   fetchReportOptions,
   match: {
     params: { campaignId },
-  }
+  },
 }) {
   useEffect(() => {
     fetchReportOptions(campaignId)
@@ -15,6 +16,7 @@ export default function Options ({
   return (
     <div className={css.container}>
       <AccessSection />
+      <ReportAvailabilitySection />
     </div>
   )
 }

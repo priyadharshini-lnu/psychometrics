@@ -10,9 +10,9 @@ export default function Reports ({ history, routes }) {
   return (
     <div>
       <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
-        <Menu.Item key="/reports">Edit Subject Report</Menu.Item>
+        <Menu.Item disabled key="/reports">Edit Subject Report</Menu.Item>
         <Menu.Item key="/reports/options">Report Options</Menu.Item>
-        <Menu.Item key="/reports/my_reports">My Reports</Menu.Item>
+        <Menu.Item disabled key="/reports/my_reports">My Reports</Menu.Item>
       </Menu>
       <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
     </div>
