@@ -1,0 +1,18 @@
+.panel.panel-default.campaign
+  .panel-heading
+    table.table.table-responsive.table-borderless
+      thead
+        tr
+          th
+            | 360 Assessment
+      tbody
+        tr
+          td.col-md-4
+            a.collapsed> data-parent="#assessments-#{campaign.assessment.decorate.dashboard_category}" data-toggle="collapse" href="##{dom_id(campaign)}"
+              span.toggle-icon.glyphicon.glyphicon-chevron-right
+              span.toggle-icon.glyphicon.glyphicon-chevron-down
+            = link_to campaign.assessment.name, campaign_path(campaign)
+  .panel-collapse.collapse id=dom_id(campaign)
+    hr.divider
+    .panel-body
+      .well = campaign.assessment.decorate.description
