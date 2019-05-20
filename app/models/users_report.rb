@@ -3,6 +3,7 @@
 class UsersReport < ApplicationRecord
   belongs_to :user, inverse_of: :users_reports
   belongs_to :report
+  belongs_to :norm
   belongs_to :campaign
   mount_uploader :pdf, PdfUploader
 

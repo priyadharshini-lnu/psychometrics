@@ -6,7 +6,7 @@ module Threesixty
       NOT_COMPLETED = 'not_completed'
       COMPLETED = 'completed'
 
-      def initialize(evaluator, subject, option, nomination_requirement, counters)
+      def initialize(evaluator, subject, option, nomination_requirement, counters = {})
         @evaluator = evaluator
         @subject = subject
         @counters = counters

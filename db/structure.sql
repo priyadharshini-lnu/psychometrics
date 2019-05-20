@@ -1896,9 +1896,9 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     category integer DEFAULT 0
 );
@@ -2495,15 +2495,16 @@ CREATE TABLE public.users_results (
     subject_id bigint,
     evaluator_id bigint,
     assessment_id bigint,
-    norm_id bigint,
     answers jsonb,
     scoring jsonb,
     occupations jsonb,
+    embedded_data jsonb,
     step integer DEFAULT 0,
     status integer DEFAULT 0,
     completed_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    norm_id bigint
 );
 
 
@@ -5590,6 +5591,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190506131431'),
 ('20190507165939'),
 ('20190507170240'),
-('20190507170817');
+('20190507170817'),
+('20190520160715');
 
 
