@@ -16,9 +16,8 @@ module Administration
       end
 
       def update
-        _form = form
         if form.valid?
-          threesixty_campaign.option.update!(reports: _form.attributes)
+          threesixty_campaign.option.update!(option_params)
           render json: :ok
         else
           render json: { errors: participant_options.errors.messages }, status: :bad_request
@@ -33,13 +32,18 @@ module Administration
       end
 
       def form
-        if params[:participant_options]
-          ::Threesixty::Options::ParticipantOptionForm.
-            from_params(params[:participants]).
-            with_context(datasheet_column_names: threesixty_campaign.datasheet_column_names)
-        elsif params[:report_options]
-          ::Threesixty::Options::ReportOptionForm.from_params(params[:report_options])
-        end
+        @form ||=
+          if params[:participants]
+            ::Threesixty::Options::ParticipantOptionForm.
+              from_params(params[:participants]).
+              with_context(datasheet_column_names: threesixty_campaign.datasheet_column_names)
+          elsif params[:reports]
+            ::Threesixty::Options::ReportOptionForm.from_params(params[:reports])
+          end
+      end
+
+      def option_params
+        params.require(:option).permit(reports: {}, participants: {})
       end
     end
   end

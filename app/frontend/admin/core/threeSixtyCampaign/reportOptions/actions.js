@@ -16,7 +16,7 @@ export const syncWithServer = (campaignId, options) => ({
   request: {
     method: 'put',
     url: `/administration/threesixty_campaigns/${campaignId}/options/`,
-    body: { report_options: options },
+    body: { reports: options },
   },
 })
 
