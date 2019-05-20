@@ -2,7 +2,7 @@ require 'rails_helper'
 
 describe Threesixty::Participants::GetReportStatus do
   let(:subject) { create(:threesixty_subject) }
-  let(:option_which_requires_approval) { create(:threesixty_option, participants: { requires_approval: true }) }
+  let(:option_which_requires_approval) { create(:threesixty_option, participants: { "manager" =>  { "can_approves_evaluations" => true } }) }
   let(:option_which_does_not_require_approval) { create(:threesixty_option) }
 
   describe 'report approval status denied' do
