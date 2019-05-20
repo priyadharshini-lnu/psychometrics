@@ -3,13 +3,14 @@ import OptionSection from 'admin/core/threeSixtyCampaign/components/common/Optio
 import ExpandableOption from 'admin/core/threeSixtyCampaign/components/common/Options/Expandable'
 
 export default function SubjectSection ({
-  options
+  options,
+  updateReportOptions
 }) {
   const OBJECT_KEY = 'access'
 
   const parametersForSwitch = name => ({
     value: options[name],
-    // onOptionChanged: updateOptions([OBJECT_KEY, name]),
+    onOptionChanged: updateReportOptions([OBJECT_KEY, name]),
   })
 
   return (

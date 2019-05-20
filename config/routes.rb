@@ -197,6 +197,7 @@ Rails.application.routes.draw do
 
         resource :options do
           get :participant_options
+          get :report_options
         end
 
         resources :managers
