@@ -2,8 +2,7 @@ module Threesixty
   class UsersReportsQuery < Rectify::Query
     def initialize(campaign, subjects)
       @campaign = campaign
-      @options = campaign.option
-      @subjects = subjects
+      @user_ids = subjects.map(&:user_id)
     end
 
     def query
@@ -12,10 +11,6 @@ module Threesixty
 
     private
 
-    def user_ids
-      subjects.map(&:user_id)
-    end
-
-    attr_reader :subjects
+    attr_reader :subjects, :user_ids
   end
 end
