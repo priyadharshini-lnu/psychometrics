@@ -9,10 +9,11 @@ module Threesixty
         format.json do
           subjects = ::Threesixty::NominationsByUserQuery.new(@campaign, current_user)
           evaluations = ::Threesixty::EvaluationsByUserQuery.new(@campaign, current_user)
+          reports = ::Threesixty::UsersReportsQuery.new(@campaign, subjects)
 
           render json: @campaign, serializer: Threesixty::CampaignSerializer,
-                 subjects: subjects, evaluations: evaluations, reports: [],
-                 include: '**'
+                 subjects: subjects, evaluations: evaluations,
+                 reports: reports, include: '**'
         end
       end
 

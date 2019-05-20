@@ -23,7 +23,7 @@ const routes = [
     exact: true,
   },
   {
-    path: '/campaigns/:campaignId/reports',
+    path: '/campaigns/:campaignId/reports/:id',
     sidebar: ReportSidebar,
     main: Report,
     exact: true,

@@ -34,6 +34,7 @@ module Threesixty
 
     has_many :nominations, serializer: NomineeSerializer
     has_many :evaluations, serializer: EvaluationSerializer
+    has_many :reports, serializer: UsersReportSerializer
     has_one :options, serializer: CampaignOptionsSerializer
 
     def options
