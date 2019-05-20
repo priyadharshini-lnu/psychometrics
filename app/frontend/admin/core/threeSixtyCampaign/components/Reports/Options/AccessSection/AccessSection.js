@@ -2,7 +2,7 @@ import React from 'react'
 import OptionSection from 'admin/core/threeSixtyCampaign/components/common/Options/Section'
 import ExpandableOption from 'admin/core/threeSixtyCampaign/components/common/Options/Expandable'
 
-export default function SubjectSection ({
+export default function AccessSection ({
   options,
   updateReportOptions,
 }) {

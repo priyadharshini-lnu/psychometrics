@@ -9,7 +9,7 @@ const HANDLERS = {
   [UPDATE_REPORT_OPTIONS]: (state, { payload: { key, value } }) => setIn(state, key, value),
 }
 
-const defaultState = { access: {}, approval: {}, availiblity: {} }
+const defaultState = { access: {}, approval: {}, availability: {} }
 
 export default function reducer (state = defaultState, action) {
   const handler = HANDLERS[action.type]
