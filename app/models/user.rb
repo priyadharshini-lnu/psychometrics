@@ -115,6 +115,7 @@ class User < ApplicationRecord
   has_many :api_keys, inverse_of: :user
   has_many :users_assessments, inverse_of: :user
   has_many :assessments, through: :users_assessments
+  has_many :users_reports, inverse_of: :user
 
   accepts_nested_attributes_for :memberships
 

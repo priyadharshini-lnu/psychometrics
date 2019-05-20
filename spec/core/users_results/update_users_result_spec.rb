@@ -1,10 +1,11 @@
 require 'rails_helper'
 
 describe ::UsersResults::UpdateUsersResult do
-  let(:users_result)        { double('users_result') }
-  let(:current_user)  { double('user', id: 1) }
+  let(:users_result)  { double('users_result', subject: 'subject') }
+  let(:evaluator_user)  { double('user', id: 1) }
+  let(:threesixty_campaign)  { double('threesixty_campaign', id: 1) }
 
-  subject { described_class.call(form, users_result, current_user) }
+  subject { described_class.call(form, users_result, threesixty_campaign) }
 
   context 'form is invalid' do
     let(:form) { double('form', 'invalid?': true) }
@@ -19,27 +20,35 @@ describe ::UsersResults::UpdateUsersResult do
 
     it 'dont make transaction' do
       expect_any_instance_of(described_class).not_to receive(:update_users_result)
-      # expect_any_instance_of(described_class).not_to receive(:generate_report)
+      expect_any_instance_of(described_class).not_to receive(:generate_360_report)
       subject
     end
   end
 
-  context 'form is valid' do
-    let(:project)         { create(:project) }
-    let(:assessment)      { project.assessments.first }
-    let(:report)          { assessment.reports.first }
-    let!(:clients_report) { create(:clients_report, client: project, report: report) }
-    let(:membership)      { create(:membership, client: project) }
-    let(:current_user)    { membership.user }
-    let!(:users_result)   { create(:users_result, assessment: assessment, subject: current_user, evaluator: current_user, step: 3) }
-    let(:assigns_report)  { create(:assigns_report, :licensed, users_result: users_result, report: report) }
+  context '360 campaign' do
+    let(:threesixty_campaign) { create(:threesixty_campaign) }
+    let(:campaign)        { threesixty_campaign.campaign }
+    let(:project)         { campaign.project }
+    let(:assessment)      { threesixty_campaign.assessment }
+    let(:report)          { threesixty_campaign.report }
+    let(:subject_membership) { create(:membership, client: project) }
+    let(:subject_user)    { subject_membership.user }
+    let(:evaluator_membership) { create(:membership, client: project) }
+    let(:evaluator_user)  { evaluator_membership.user }
+    let!(:users_result)   { create(:users_result, assessment: assessment,
+                                                  subject: subject_user,
+                                                  evaluator: evaluator_user,
+                                                  step: 3) }
+    let(:users_report)    { create(:users_report, user: subject_user,
+                                                  campaign: campaign,
+                                                  report: report) }
     let(:form)            { double('form', 'invalid?': false, attributes: {}) }
 
     it { expect { subject }.to broadcast(:ok) }
     it { expect { subject }.not_to broadcast(:invalid) }
 
     context '#update_assign' do
-      after { described_class.call(form, users_result, current_user) }
+      after { described_class.call(form, users_result, threesixty_campaign) }
       subject { users_result }
 
       it { is_expected.to receive(:assign_attributes).with(form.attributes) }
@@ -57,16 +66,16 @@ describe ::UsersResults::UpdateUsersResult do
       end
     end
 
-    xcontext '#generate_report' do
+    context '#generate_report' do
       before { allow(users_result).to receive(:'completed?').and_return(true) }
-      subject { described_class.call(form, users_result, current_user) }
+      subject { described_class.call(form, users_result, threesixty_campaign) }
 
       context 'report is enabled' do
         it 'sets generating status' do
-          expect { subject }.to change { assigns_report.reload.generating? }.from(false).to(true)
+          expect { subject }.to change { users_report.reload.generating? }.from(false).to(true)
         end
         it 'sends to generate report' do
-          expect(::Reports::ExportJob).to receive(:perform_later).with(assigns_report, current_user)
+          expect(::UsersReports::GeneratePdfJob).to receive(:perform_later).with(users_report, subject_user)
           subject
         end
       end
@@ -75,10 +84,10 @@ describe ::UsersResults::UpdateUsersResult do
         before(:each) { report.update_column(:disabled, true) }
         it 'dont sets generating status' do
           subject
-          expect(assigns_report.reload.generating?).to be_falsy
+          expect(users_report.reload.generating?).to be_falsy
         end
         it 'dont sends to generate report' do
-          expect(::Reports::ExportJob).not_to receive(:perform_later).with(assigns_report, current_user)
+          expect(::UsersReports::GeneratePdfJob).not_to receive(:perform_later).with(users_report, subject_user)
           subject
         end
       end
