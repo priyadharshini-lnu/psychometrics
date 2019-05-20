@@ -6,7 +6,9 @@ import css from './EvaluatorTable.scss'
 
 const { Column } = Table
 
-export default function EvaluatorTable ({ evaluators, openModal, onCloseParticipantModal }) {
+export default function EvaluatorTable ({
+  evaluators, openModal, onCloseParticipantModal, campaignId,
+}) {
   return (
     <Table
       className="mtm"
@@ -35,8 +37,15 @@ export default function EvaluatorTable ({ evaluators, openModal, onCloseParticip
 
       <Column
         key="action"
-        render={() => (
-          <Dropdown overlay={ActionsMenu} trigger={['click']}>
+        render={({ user }) => (
+          <Dropdown
+            overlay={() => ActionsMenu({
+              user,
+              campaignId,
+            })
+            }
+            trigger={['click']}
+          >
             <div className={css.actions}>
               <Icon type="ellipsis" />
             </div>

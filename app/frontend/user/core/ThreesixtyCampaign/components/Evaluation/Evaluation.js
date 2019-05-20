@@ -53,7 +53,7 @@ export default function Evaluation ({
             id="pass_assessment"
             data-type="pass_assessment"
             data-is-threesixty="true"
-            data-results-url={`/users_results/${id}`}
+            data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
             data-data={JSON.stringify(assessment)}
             data-result={JSON.stringify(results)}
             data-dashboard-url={`/campaigns/${params.campaignId}`}

@@ -4,7 +4,7 @@ module Threesixty
 
     has_one :user, serializer: UserSerializer
     def status
-      Threesixty::Participants::GetStatus.call!(object.evaluator, object, @instance_options[:option], @instance_options[:nomination_requirement])
+      Threesixty::Participants::GetStatus.call!(object.evaluator, object, @instance_options[:option], @instance_options[:nomination_requirement], counters)
     end
 
     def report_status
@@ -14,11 +14,15 @@ module Threesixty
     def evaluations
       return nil unless object.evaluator
 
-      "#{object.evaluator.completed_evaluations_count} / #{object.evaluator.evaluations_count}"
+      "#{counters[:completed_evaluations]} / #{counters[:total_evaluations]}"
     end
 
     def evaluators
-      "#{object.completed_evaluators_count} / #{object.evaluators_count}"
+      "#{counters[:completed_evaluators]} / #{counters[:total_evaluators]}"
+    end
+
+    def counters
+      @instance_options[:counters][object.user_id]
     end
   end
 end

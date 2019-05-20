@@ -49,6 +49,7 @@ module Threesixty
     def copy_report(assessment)
       @report = assessment.reports.first.clone
       @report.owner_id = @campaign.campaign.project_id
+      @report.category = :threesixty
       @report.save!
     end
   end

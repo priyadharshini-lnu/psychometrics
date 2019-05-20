@@ -33,6 +33,7 @@ export default function EvaluatorList ({
       <Row>
         <Col span={24}>
           <EvaluatorTable
+            campaignId={campaignId}
             openModal={openModal}
             evaluators={evaluators}
             onCloseParticipantModal={() => fetchEvaluators(campaignId)}

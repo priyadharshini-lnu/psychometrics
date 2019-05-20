@@ -2,10 +2,7 @@ import React from 'react'
 import { Menu } from 'antd'
 
 const ActionsMenu = ({
-  subjectId,
-  campaignId,
-  update,
-  remove,
+  subjectId, campaignId, update, user, remove,
 }) => {
   const updateSubject = (subjectId, data, cofirmationMessage) => {
     // eslint-disable-next-line no-alert
@@ -56,7 +53,7 @@ const ActionsMenu = ({
   return (
     <Menu>
       <Menu.Item key="0">
-        <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/spoof`}>Login</a>
+        <a href={`/administration/threesixty_campaigns/${campaignId}/participants/${user.id}/spoof`}>Login</a>
       </Menu.Item>
       <Menu.Item key="1">
         <a href="nth">View Report</a>

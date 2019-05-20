@@ -13,7 +13,7 @@ module Threesixty
         campaign = project.project_campaigns.build(campaign_params)
         campaign.type = ::Campaign::THREESIXTY
         threesixty_campaign = campaign.build_threesixty_campaign(threesixty_campaign_params)
-        threesixty_campaign.build_option
+        threesixty_campaign.build_option(participants: Threesixty::Option::DEFAULT_PARTICIPANTS)
         if threesixty_campaign.assessment.present?
           ::Threesixty::CreateFromAssessment.call(threesixty_campaign)
         else
