@@ -4,6 +4,7 @@ class UsersReport < ApplicationRecord
   belongs_to :user
   belongs_to :report
   belongs_to :campaign
+  mount_uploader :pdf, PdfUploader
 
   def threesixty_subject
     campaign.subjects.find_by(user_id: user_id)

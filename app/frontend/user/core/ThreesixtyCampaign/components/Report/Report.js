@@ -10,7 +10,7 @@ const { Content } = Layout
 
 export default function Report ({
   report: {
-    loaded, report, results, user, approvalStatus,
+    loaded, report, results, user, approvalStatus, pdf, status,
   }, match: { params }, fetchReport, updateStatus,
 }) {
   useEffect(() => {
@@ -49,7 +49,15 @@ export default function Report ({
             </Col>
           </Row>
           <Row>
-            <Button>Download</Button>
+            {status === 'prepared'
+              ? (
+                <Button>
+                  <a href={pdf.url} download target="_blank">
+                    Download
+                  </a>
+                </Button>
+              )
+              : <div>{status}</div>}
           </Row>
           <div
             id="threesixty-report"
