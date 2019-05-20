@@ -10,6 +10,10 @@ module Administration
 
         false
       end
+
+      def report_options?
+        participant_options?
+      end
     end
   end
 end

@@ -22,7 +22,13 @@ const routes = [
     ],
   },
   { path: '/messages', component: Messages },
-  { path: '/reports', component: Reports },
+  {
+    path: '/reports/options',
+    component: Reports,
+    routes: [
+      { path: '/reports/options', component: Reports.Options },
+    ],
+  },
 ]
 
 export default routes
