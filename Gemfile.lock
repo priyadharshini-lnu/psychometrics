@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git
-  revision: fefc8731c924f79718590612f79ab1d6f83de479
+  revision: ca0a8d8068ab9f92f12120a0aed6752df2f530b7
   branch: master
   specs:
     psychometrics-reports-ui (0.0.1)
@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git
-  revision: 1c2b0d1f2bd048a37b31c2de590642de9683afe1
+  revision: c577ca613d89ba2a7a082e9e4dbd4324a9e2730e
   branch: master
   specs:
     psychometrics-survey-ui (0.0.1)
@@ -428,7 +428,7 @@ GEM
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
     nio4r (2.3.0)
-    nokogiri (1.10.2)
+    nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
     nori (2.6.0)
     notiffany (0.1.1)
@@ -574,7 +574,7 @@ GEM
       railties (>= 4.2.0, < 5.3)
     roo (2.8.2)
       nokogiri (~> 1)
-      rubyzip (~> 1.1, < 2.0.0)
+      rubyzip (>= 1.2.1, < 2.0.0)
     rspec-core (3.8.0)
       rspec-support (~> 3.8.0)
     rspec-expectations (3.8.2)
@@ -594,10 +594,6 @@ GEM
     rspec-retry (0.6.1)
       rspec-core (> 3.3)
     rspec-support (3.8.0)
-    rswag (2.0.5)
-      rswag-api (= 2.0.5)
-      rswag-specs (= 2.0.5)
-      rswag-ui (= 2.0.5)
     rswag-api (2.0.5)
       railties (>= 3.1, < 6.0)
     rswag-specs (2.0.5)
@@ -856,7 +852,9 @@ DEPENDENCIES
   roo (~> 2.8.2)
   rspec-rails (~> 3.8)
   rspec-retry (~> 0.6.1)
-  rswag (~> 2.0.5)
+  rswag-api (~> 2.0.5)
+  rswag-specs (~> 2.0.5)
+  rswag-ui (~> 2.0.5)
   rubocop
   rubyXL
   sass-rails (~> 5.0)
