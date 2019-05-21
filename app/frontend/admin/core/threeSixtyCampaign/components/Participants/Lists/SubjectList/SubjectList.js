@@ -17,6 +17,7 @@ export default function SubjectList ({
   remove,
   subjects,
   openModal,
+  removeUser,
   match: {
     params: { campaignId },
   },
@@ -62,7 +63,7 @@ export default function SubjectList ({
 
             <Column
               key="action"
-              render={({ id, user: { email }, user }) => (
+              render={({ id, user: { email, id: userId }, user }) => (
                 <Dropdown
                   overlay={() => ActionsMenu({
                     subjectId: id,
@@ -71,8 +72,8 @@ export default function SubjectList ({
                     campaignId,
                     update,
                     remove,
-                  })
-                  }
+                    removeUser,
+                  })}
                   trigger={['click']}
                 >
                   <div className={css.actions}>
