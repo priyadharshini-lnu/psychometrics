@@ -9,53 +9,56 @@ import './styles.scss'
 
 const { Panel } = Collapse
 
-const menu = item => (
-  <Menu>
-    <Menu.Item key="0">
-      <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}`}>
-        Edit Evaluation
-      </Link>
-    </Menu.Item>
-  </Menu>
-)
 
-const EvaluationItem = item => (
-  <List.Item>
-    <div className="evaluation-item">
-      <div>
-        <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}`}>
-          <Icon type="check-circle" theme="twoTone" twoToneColor={item.approved ? '#52c41a' : '#ccc'} />
-          {' '}
-          {userPresenter.selfUserName(item)}
-        </Link>
-      </div>
-      {item.completed && (
-        <Dropdown overlay={() => menu(item)} trigger={['click']}>
-          <a className="ant-dropdown-link" href="#">
-            Actions
+function EvaluationList ({
+  evaluations, approvalEvaluations, declineEvaluation, options,
+}) {
+  const menu = item => (
+    <Menu>
+      <Menu.Item key="0" onClick={() => declineEvaluation(item.campaignId, item.id)}>
+        Decline Invite
+      </Menu.Item>
+    </Menu>
+  )
+
+  const EvaluationItem = item => (
+    <List.Item>
+      <div className="evaluation-item">
+        <div>
+          <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}`}>
+            <Icon type="check-circle" theme="twoTone" twoToneColor={item.approved ? '#52c41a' : '#ccc'} />
             {' '}
-            <Icon type="down" className="menu-icon" />
-          </a>
-        </Dropdown>
-      )}
-    </div>
-  </List.Item>
-)
+            {userPresenter.selfUserName(item)}
+          </Link>
+        </div>
+        {options.evaluator.canDeclineNomination && (
+          item.evaluatorStatus === 'denied'
+          ? <div>Denied</div>
+          : <Dropdown overlay={() => menu(item)} trigger={['click']}>
+            <a className="ant-dropdown-link" href="#">
+              Actions
+              {' '}
+              <Icon type="down" className="menu-icon" />
+            </a>
+          </Dropdown>
+        )}
+      </div>
+    </List.Item>
+  )
 
-const CollapseItem = ({ title, list }) => (
-  <Collapse bordered={false} defaultActiveKey="panel">
-    <Panel header={<div className="panel-header">{title}</div>} key="panel">
-      <List
-        size="large"
-        bordered
-        dataSource={list}
-        renderItem={EvaluationItem}
-      />
-    </Panel>
-  </Collapse>
-)
+  const CollapseItem = ({ title, list }) => (
+    <Collapse bordered={false} defaultActiveKey="panel">
+      <Panel header={<div className="panel-header">{title}</div>} key="panel">
+        <List
+          size="large"
+          bordered
+          dataSource={list}
+          renderItem={EvaluationItem}
+        />
+      </Panel>
+    </Collapse>
+  )
 
-function EvaluationList ({ evaluations, approvalEvaluations, options }) {
   return (
     <List
       size="large"
