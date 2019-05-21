@@ -5,29 +5,30 @@ module Threesixty
     class ReportOptionForm < Rectify::Form
       attribute :access, Hash
       attribute :approval, Hash
-      attribute :availablity, Hash
+      attribute :availability, Hash
 
       validate :validate_access_fields
-      # validate :validate_approval_fields
-      # validate :validate_availiblity_fields
+      validate :validate_approval_fields
+      validate :validate_availiblity_fields
 
       def validate_access_fields
-        form = ReportAccessOptionForm.new(access).with_context(context)
-        add_errors_from_nested(:subject, form)
+        form = Reports::AccessOptionForm.new(access).with_context(context)
+        add_errors_from_nested(:access, form)
       end
 
       def validate_approval_fields
-        form = ApprovalOptionForm.new(approval).with_context(context)
-        add_errors_from_nested(:manager, form)
+        form = Reports::ApprovalOptionForm.new(approval).with_context(context)
+        add_errors_from_nested(:approval, form)
       end
 
       def validate_availiblity_fields
-        form = AvailablityOptionForm.new(availablity).with_context(context)
-        add_errors_from_nested(:evaluator, form)
+        form = Reports::AvailabilityOptionForm.new(availability).with_context(context)
+        add_errors_from_nested(:availability, form)
       end
 
       private
 
+      # TODO
       # We don't need this for now.
       def add_errors_from_nested(key, form)
         # form.validate

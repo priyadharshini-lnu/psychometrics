@@ -11,9 +11,9 @@ import { getReportOption } from './selectors'
 
 function* genSyncWithServer () {
   yield delay(1000)
-  const participantOption = yield select(getReportOption)
+  const reportOption = yield select(getReportOption)
   const campaignId = yield select(getCurrentCampaignId)
-  yield put(syncWithServer(campaignId, participantOption))
+  yield put(syncWithServer(campaignId, reportOption))
 }
 
 const watchers = [
