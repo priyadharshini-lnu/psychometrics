@@ -28,7 +28,7 @@ export default function NominationForm (props) {
         <div>
           Nominate Evaluators to
           {' '}
-          {subject.isSelf ? 'Yourself' : userPresenter.getFullName(subject)}
+          {subject.isSelf ? 'Yourself' : userPresenter.getFullNameWithEmail(subject)}
         </div>
       </Title>
       <div className="form">
