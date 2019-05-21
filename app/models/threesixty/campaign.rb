@@ -12,6 +12,7 @@ module Threesixty
     has_many :campaigns_users, through: :campaign
     has_many :subjects, through: :campaign
     has_many :evaluators, through: :campaign
+    has_many :users_assessments, dependent: :destroy
 
     attr_accessor :factors, :type
 
