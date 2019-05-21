@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { getApprovalEvaluations } from 'user/core/ThreesixtyCampaign/campaign/selectors'
+import { declineEvaluation } from 'user/core/ThreesixtyCampaign/campaign'
 
 const mapStateToProps = state => ({
   evaluations: state.threeSixtyCampaign.campaign.evaluations,
@@ -7,6 +8,8 @@ const mapStateToProps = state => ({
   options: state.threeSixtyCampaign.campaign.options.participants,
 })
 
-const mapDispatchToProps = {}
+const mapDispatchToProps = {
+  declineEvaluation,
+}
 
 export default connect(mapStateToProps, mapDispatchToProps)

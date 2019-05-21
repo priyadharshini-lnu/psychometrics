@@ -4,7 +4,7 @@ module Threesixty
     belongs_to :assessment
     belongs_to :report
     has_one :project, through: :campaign
-    has_one :option, foreign_key: :threesixty_campaign_id
+    has_one :option, foreign_key: :threesixty_campaign_id, dependent: :destroy
     has_one :datasheet, through: :project
     has_many :nomination_requirements, foreign_key: :threesixty_campaign_id
     has_many :subjects_releationships, through: :campaign
@@ -12,6 +12,7 @@ module Threesixty
     has_many :campaigns_users, through: :campaign
     has_many :subjects, through: :campaign
     has_many :evaluators, through: :campaign
+    has_many :users_assessments, dependent: :destroy
 
     attr_accessor :factors, :type
 

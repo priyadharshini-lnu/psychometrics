@@ -10,9 +10,9 @@ import './styles.scss'
 const { Paragraph, Title } = Typography
 const { Content } = Layout
 
-export default function Campaign (props) {
+export default function Campaign ({ match, reports, fetchCampaign }) {
   useEffect(() => {
-    props.fetchCampaign(props.match.params.campaignId)
+    fetchCampaign(match.params.campaignId)
   }, [])
 
   return (
@@ -35,9 +35,9 @@ export default function Campaign (props) {
           <Paragraph>
             Thank you for your participation!
           </Paragraph>
-          <div style={{ marginTop: '24px' }}><Nominations {...props} /></div>
-          <div style={{ marginTop: '24px' }}><Evaluations {...props} /></div>
-          <div style={{ marginTop: '24px' }}><Reports {...props} /></div>
+          <div style={{ marginTop: '24px' }}><Nominations /></div>
+          <div style={{ marginTop: '24px' }}><Evaluations /></div>
+          {reports.length > 0 && <div style={{ marginTop: '24px' }}><Reports /></div>}
         </div>
       </Content>
     </Layout>
