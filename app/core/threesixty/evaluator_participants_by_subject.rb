@@ -9,6 +9,7 @@ module Threesixty
       Participant.
         joins(:evaluator).
         selecting { ['*', 'users.email as evaluator_email'] }.
+        active.
         where(subject_id: subject.user_id).
         includes(:relationship)
     end
