@@ -33,14 +33,16 @@ function EvaluationList ({
         </div>
         {options.evaluator.canDeclineNomination && (
           item.evaluatorStatus === 'denied'
-          ? <div>Denied</div>
-          : <Dropdown overlay={() => menu(item)} trigger={['click']}>
-            <a className="ant-dropdown-link" href="#">
+            ? <div>Denied</div>
+            : (
+              <Dropdown overlay={() => menu(item)} trigger={['click']}>
+                <a className="ant-dropdown-link" href="#">
               Actions
-              {' '}
-              <Icon type="down" className="menu-icon" />
-            </a>
-          </Dropdown>
+                  {' '}
+                  <Icon type="down" className="menu-icon" />
+                </a>
+              </Dropdown>
+            )
         )}
       </div>
     </List.Item>

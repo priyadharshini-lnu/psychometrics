@@ -1,4 +1,5 @@
 import { merge, setIn } from 'utils/immutable'
+import _ from 'lodash'
 
 const FETCH = 'threeSixty/campaign/FETCH'
 const DECLINE_EVALUATION = 'threeSixty/campaign/DECLINE_EVALUATION'
@@ -34,10 +35,10 @@ export const defaultState = {
 
 const HANDLERS = {
   [FETCH]: (state, action) => merge(state, action.response),
-  [DECLINE_EVALUATION]: (state, {response}) => {
-    const index = _.findIndex(state.evaluations, {id: response.id})
+  [DECLINE_EVALUATION]: (state, { response }) => {
+    const index = _.findIndex(state.evaluations, { id: response.id })
     return setIn(state, ['evaluations', index, 'evaluatorStatus'], response.evaluatorStatus)
-  }
+  },
 }
 
 export default function reducer (state = defaultState, action) {

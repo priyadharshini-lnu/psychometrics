@@ -16,7 +16,13 @@ export default function EvaluatorTable ({
         title="Email"
         key="user_email"
         render={({ user }) => (
-          <a onClick={() => openModal('ParticipantModal', { user, onClose: onCloseParticipantModal })}>{user.email}</a>
+          <a
+            role="button"
+            tabIndex="0"
+            onClick={() => openModal('ParticipantModal', { user, onClose: onCloseParticipantModal })}
+          >
+            {user.email}
+          </a>
         )}
       />
       <Column title="Evaluations Received" dataIndex="evaluators" key="received_evaluations" />

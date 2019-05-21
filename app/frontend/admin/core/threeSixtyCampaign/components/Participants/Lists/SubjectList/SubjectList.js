@@ -46,7 +46,11 @@ export default function SubjectList ({
               title="Email"
               key="email"
               render={({ user }) => (
-                <a onClick={() => openModal('ParticipantModal', { user, onClose: () => fetchSubjects(campaignId) })}>
+                <a
+                  role="button"
+                  tabIndex="0"
+                  onClick={() => openModal('ParticipantModal', { user, onClose: () => fetchSubjects(campaignId) })}
+                >
                   {user.email}
                 </a>
               )}
