@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
+import statusPresenter from 'presenters/statusPresenter'
 
 const { Title } = Typography
 const { Content } = Layout
@@ -39,7 +40,7 @@ export default function Report ({
             </Title>
             <Col>
               {approvalStatus !== 'waiting'
-                ? <div>{approvalStatus}</div>
+                ? <div>{statusPresenter.getApprovalStatus(approvalStatus)}</div>
                 : (
                   <div>
                     <Button onClick={() => handleStatusClick('approved')} type="primary">Approve</Button>
@@ -57,7 +58,7 @@ export default function Report ({
                   </a>
                 </Button>
               )
-              : <div>{status}</div>}
+              : <div>{statusPresenter.getReportStatus(status)}</div>}
           </Row>
           <div
             id="threesixty-report"
