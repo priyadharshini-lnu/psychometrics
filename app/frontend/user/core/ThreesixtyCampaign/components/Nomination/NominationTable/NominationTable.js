@@ -61,7 +61,7 @@ export default function NominationTable (props) {
     if (type === 'link') {
       return <InlineInput title={name} relationship={relationship} {...props} />
     }
-    return { children: userPresenter.getFullName(evaluator.evaluator) }
+    return { children: userPresenter.getFullNameWithEmail(evaluator.evaluator) }
   }
 
   const renderApprovalStatus = ({ evaluator }) => {
