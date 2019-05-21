@@ -19,7 +19,7 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
 
   def remove_user
     user = User.find(params[:user_id])
-    Threesixty::RemoveUserFromCampaign.call(user, resource)
+    Threesixty::Campaigns::RemoveUser.call(user, resource)
 
     render json: :ok
   end

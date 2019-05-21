@@ -10,8 +10,8 @@ module Threesixty
 
       def call
         subject.users_reports.where(campaign_id: campaign.id).map &:destroy!
-        subject.evaluation_results.map &:destroy!
-        Threesixty::Participants::Remove.call!(subject.participants, campaign)
+        subject.evaluated_results.map &:destroy!
+        Threesixty::Participants::Remove.call!(subject.participants.where(campaign_id: campaign.id), campaign)
         subject.destroy!
       end
 
