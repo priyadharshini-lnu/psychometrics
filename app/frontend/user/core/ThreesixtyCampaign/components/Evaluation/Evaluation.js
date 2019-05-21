@@ -3,6 +3,7 @@ import {
   Layout, Row, Col, Button,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
+import statusPresenter from 'presenters/statusPresenter'
 
 const { Content } = Layout
 
@@ -39,7 +40,7 @@ export default function Evaluation ({
             </Col>
             <Col>
               {participant.evaluatorStatus !== 'waiting'
-                ? <div>{participant.evaluatorStatus}</div>
+                ? <div>{statusPresenter.getApprovalStatus(participant.evaluatorStatus)}</div>
                 : (
                   <div>
                     <Button onClick={() => handleStatusClick('approved')} type="primary">Approve</Button>
