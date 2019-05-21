@@ -9,20 +9,20 @@ module Threesixty
 
       validate :validate_access_fields
       validate :validate_approval_fields
-      validate :validate_availiblity_fields
+      validate :validate_availability_fields
 
       def validate_access_fields
-        form = Reports::AccessOptionForm.new(access).with_context(context)
+        form = Threesixty::Options::Reports::AccessOptionForm.new(access).with_context(context)
         add_errors_from_nested(:access, form)
       end
 
       def validate_approval_fields
-        form = Reports::ApprovalOptionForm.new(approval).with_context(context)
+        form = Threesixty::Options::Reports::ApprovalOptionForm.new(approval).with_context(context)
         add_errors_from_nested(:approval, form)
       end
 
-      def validate_availiblity_fields
-        form = Reports::AvailabilityOptionForm.new(availability).with_context(context)
+      def validate_availability_fields
+        form = Threesixty::Options::Reports::AvailabilityOptionForm.new(availability).with_context(context)
         add_errors_from_nested(:availability, form)
       end
 
