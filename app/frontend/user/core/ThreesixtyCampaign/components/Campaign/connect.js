@@ -1,7 +1,8 @@
 import { connect } from 'react-redux'
 import { fetchCampaign } from 'user/core/ThreesixtyCampaign/campaign'
 import {
-  getNominations, getEvaluations, getApprovalEvaluations, getApprovalNominations,
+  getNominations, getEvaluations, getApprovalEvaluations,
+  getApprovalNominations, getSubjectReport,
 } from 'user/core/ThreesixtyCampaign/campaign/selectors'
 
 const mapStateToProps = state => ({
@@ -9,7 +10,7 @@ const mapStateToProps = state => ({
                + getApprovalNominations(state.threeSixtyCampaign).length,
   evaluations: getEvaluations(state.threeSixtyCampaign).length
                + getApprovalEvaluations(state.threeSixtyCampaign).length,
-
+  subjectReport: getSubjectReport(state.threeSixtyCampaign),
 })
 
 const mapDispatchToProps = {

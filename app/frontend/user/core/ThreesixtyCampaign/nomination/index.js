@@ -1,6 +1,5 @@
 import _ from 'lodash'
 import { updateIn, setIn, getIn } from 'utils/immutable'
-import { without } from 'lodash/fp'
 
 const FETCH = 'threeSixty/nomination/FETCH'
 const REMOVE = 'threeSixty/nomination/REMOVE'
@@ -71,7 +70,8 @@ const HANDLERS = {
   [ADD_FAILURE]: (state, action) => setIn(state, ['form', 'errors'], action.errors),
   [REMOVE]: (state, action) => {
     const { id, relationship } = action.requestAction.evaluator
-    return setIn(state, ['evaluators', relationship.name], without(state.evaluators[relationship.name], { id }))
+    return setIn(state, ['evaluators', relationship.name],
+      _.filter(state.evaluators[relationship.name], e => e.id !== id))
   },
   [UPDATE_FORM]: (state, action) => setIn(state, ['form', 'attrs'], action.form),
   [UPDATE_STATUS]: (state, action) => {
