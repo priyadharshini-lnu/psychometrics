@@ -7,6 +7,6 @@ import { removeUser } from 'admin/core/threeSixtyCampaign/'
 export default connect(
   ({ threeSixtyCampaign: { subjects: { list } } }) => ({ subjects: list }),
   {
-    fetchSubjects, openModal, update, remove, removeUser
+    fetchSubjects, openModal, update, remove, removeUser,
   },
 )

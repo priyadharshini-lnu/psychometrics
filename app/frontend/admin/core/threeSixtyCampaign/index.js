@@ -31,7 +31,7 @@ export const removeUser = (campaignId, userId) => ({
     method: 'delete',
     url: `/administration/threesixty_campaigns/${campaignId}/remove_user`,
     body: {
-      userId
+      userId,
     },
   },
 })

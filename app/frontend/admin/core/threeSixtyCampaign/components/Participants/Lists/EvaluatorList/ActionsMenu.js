@@ -1,5 +1,5 @@
-import React from "react";
-import { Menu } from "antd";
+import React from 'react'
+import { Menu } from 'antd'
 
 const ActionsMenu = ({ user, campaignId, removeUser }) => (
   <Menu>
@@ -22,6 +22,6 @@ const ActionsMenu = ({ user, campaignId, removeUser }) => (
       </div>
     </Menu.Item>
   </Menu>
-);
+)
 
-export default ActionsMenu;
+export default ActionsMenu

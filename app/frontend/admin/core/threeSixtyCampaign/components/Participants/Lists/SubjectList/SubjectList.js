@@ -63,7 +63,7 @@ export default function SubjectList ({
 
             <Column
               key="action"
-              render={({ id, user: { email, id: userId }, user }) => (
+              render={({ id, user: { email }, user }) => (
                 <Dropdown
                   overlay={() => ActionsMenu({
                     subjectId: id,

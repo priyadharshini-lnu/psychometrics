@@ -1,5 +1,5 @@
-import React from "react";
-import { Menu } from "antd";
+import React from 'react'
+import { Menu } from 'antd'
 
 const ActionsMenu = ({
   subjectId,
@@ -7,86 +7,81 @@ const ActionsMenu = ({
   update,
   user,
   remove,
-  removeUser
+  removeUser,
 }) => {
   const updateSubject = (subjectId, data, cofirmationMessage) => {
     // eslint-disable-next-line no-alert
-    if (confirm(cofirmationMessage)) update(campaignId, subjectId, data);
-  };
+    if (confirm(cofirmationMessage)) update(campaignId, subjectId, data)
+  }
 
-  const approveReport = subjectId => {
-    const confirmationMessage = "Are you sure you want to approve report?";
+  const approveReport = (subjectId) => {
+    const confirmationMessage = 'Are you sure you want to approve report?'
     updateSubject(
       subjectId,
-      { report_approval_status: "approved" },
-      confirmationMessage
-    );
-  };
+      { report_approval_status: 'approved' },
+      confirmationMessage,
+    )
+  }
 
-  const removeReportApprove = subjectId => {
-    const confirmationMessage =
-      "Are you sure you want to remove report approval?";
+  const removeReportApprove = (subjectId) => {
+    const confirmationMessage = 'Are you sure you want to remove report approval?'
     updateSubject(
       subjectId,
-      { report_approval_status: "waiting" },
-      confirmationMessage
-    );
-  };
+      { report_approval_status: 'waiting' },
+      confirmationMessage,
+    )
+  }
 
-  const releaseReport = subjectId => {
-    const confirmationMessage = "Are you sure you want to release report?";
+  const releaseReport = (subjectId) => {
+    const confirmationMessage = 'Are you sure you want to release report?'
     updateSubject(
       subjectId,
-      { report_release_status: "released" },
-      confirmationMessage
-    );
-  };
+      { report_release_status: 'released' },
+      confirmationMessage,
+    )
+  }
 
-  const holdReport = subjectId => {
-    const confirmationMessage = "Are you sure you want to release report?";
+  const holdReport = (subjectId) => {
+    const confirmationMessage = 'Are you sure you want to release report?'
     updateSubject(
       subjectId,
-      { report_release_status: "on_hold" },
-      confirmationMessage
-    );
-  };
+      { report_release_status: 'on_hold' },
+      confirmationMessage,
+    )
+  }
 
-  const removeReleasedHoldStatus = subjectId => {
-    const confirmationMessage =
-      "Are you sure you want to remove Release/Hold status?";
+  const removeReleasedHoldStatus = (subjectId) => {
+    const confirmationMessage = 'Are you sure you want to remove Release/Hold status?'
     updateSubject(
       subjectId,
-      { report_release_status: "waiting" },
-      confirmationMessage
-    );
-  };
+      { report_release_status: 'waiting' },
+      confirmationMessage,
+    )
+  }
 
-  const markEvaluationAsComplete = subjectId => {
-    const confirmationMessage =
-      "Are you sure you want to mark evaluation as done?";
+  const markEvaluationAsComplete = (subjectId) => {
+    const confirmationMessage = 'Are you sure you want to mark evaluation as done?'
     updateSubject(
       subjectId,
-      { evaluation_status: "completed" },
-      confirmationMessage
-    );
-  };
+      { evaluation_status: 'completed' },
+      confirmationMessage,
+    )
+  }
 
-  const unmarkEvaluationAsComplete = subjectId => {
-    const confirmationMessage =
-      "Are you sure you want to unmark evaluation as done?";
+  const unmarkEvaluationAsComplete = (subjectId) => {
+    const confirmationMessage = 'Are you sure you want to unmark evaluation as done?'
     updateSubject(
       subjectId,
-      { evaluation_status: "in_progress" },
-      confirmationMessage
-    );
-  };
+      { evaluation_status: 'in_progress' },
+      confirmationMessage,
+    )
+  }
 
-  const removeSubject = subjectId => {
-    const cofirmationMessage =
-      "Are you sure you want to remove subject with email from campaign";
+  const removeSubject = (subjectId) => {
+    const cofirmationMessage = 'Are you sure you want to remove subject with email from campaign'
     // eslint-disable-next-line no-alert
-    if (confirm(cofirmationMessage)) remove(campaignId, subjectId);
-  };
+    if (confirm(cofirmationMessage)) remove(campaignId, subjectId)
+  }
 
   return (
     <Menu>
@@ -184,7 +179,7 @@ const ActionsMenu = ({
         </div>
       </Menu.Item>
     </Menu>
-  );
-};
+  )
+}
 
-export default ActionsMenu;
+export default ActionsMenu
