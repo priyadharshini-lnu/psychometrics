@@ -10,6 +10,7 @@ const mapStateToProps = state => ({
                + getApprovalNominations(state.threeSixtyCampaign).length,
   evaluations: getEvaluations(state.threeSixtyCampaign).length
                + getApprovalEvaluations(state.threeSixtyCampaign).length,
+  reports: state.threeSixtyCampaign.campaign.reports,
   subjectReport: getSubjectReport(state.threeSixtyCampaign),
 })
 
