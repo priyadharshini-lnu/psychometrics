@@ -4,12 +4,10 @@ class Campaign < ApplicationRecord
   belongs_to :project, class_name: "Client"
   has_one :threesixty_campaign, class_name: "Threesixty::Campaign", dependent: :destroy
   has_many :relationships
-  has_many :subjects, class_name: 'Threesixty::Subject'
-  has_many :evaluators, class_name: 'Threesixty::Evaluator'
-  has_many :participants
+  has_many :subjects, class_name: 'Threesixty::Subject', dependent: :destroy
+  has_many :evaluators, class_name: 'Threesixty::Evaluator', dependent: :destroy
+  has_many :participants, dependent: :destroy
   has_many :subjects_releationships, class_name: "Threesixty::SubjectsRelationship"
-  has_many :subjects,  class_name: "Threesixty::Subject"
-  has_many :evaluators, class_name: "Threesixty::Evaluator"
   has_many :campaigns_users
 
   THREESIXTY = :threesixty
