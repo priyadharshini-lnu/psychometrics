@@ -23,7 +23,7 @@ describe Threesixty::Evaluators::CreateOneForm do
     form = described_class.new(relationship_name: 'manager')
     form.with_context(campaign: campaign)
     form.validate
-    expect(form.errors.messages[:relationship_name]).to include('Relationship is invalid')
+    expect(form.errors.messages[:relationship_name]).to include('Relationship manager is invalid')
   end
 
   before do
@@ -39,6 +39,7 @@ describe Threesixty::Evaluators::CreateOneForm do
 
   before do
     create(:relationship, name: 'peer', type: :campaign, campaign: campaign)
+    create(:threesixty_subject, user: create(:user, email: 'aa@a.com', project_id: campaign.project_id), campaign: campaign)
   end
 
   it 'valid' do
