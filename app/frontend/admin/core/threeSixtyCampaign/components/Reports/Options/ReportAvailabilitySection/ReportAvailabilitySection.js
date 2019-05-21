@@ -15,8 +15,14 @@ export default function ReportAvailabilitySection ({
 
   return (
     <OptionSection label="Report Availability">
-      <ExpandableOption label="Email subject when report becomes available" {...parametersForSwitch('emailSubjectWhenReportAvailable')} />
-      <ExpandableOption label="Email subject's manager when report becomes available" {...parametersForSwitch('emailManagerWhenReportAvailable')} />
+      <ExpandableOption
+        label="Email subject when report becomes available"
+        {...parametersForSwitch('emailSubjectWhenReportAvailable')}
+      />
+      <ExpandableOption
+        label="Email subject's manager when report becomes available"
+        {...parametersForSwitch('emailManagerWhenReportAvailable')}
+      />
     </OptionSection>
   )
 }

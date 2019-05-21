@@ -16,7 +16,9 @@ export default function ApprovalSection ({
 
   return (
     <OptionSection label="Report Approval">
-      <ExpandableOption label="Manager approves reports" {...parametersForSwitch('managerApprovesReports')} >
+      <ExpandableOption
+        label="Manager approves reports"
+        {...parametersForSwitch('managerApprovesReports')}>
         <ExpandableOption
           label="Allow manager to view individual responses"
           {...parametersForSwitch('allowManagerViewIndividualResponses')}
@@ -29,7 +31,10 @@ export default function ApprovalSection ({
           actionable={<Button size="small">Edit email</Button>}
         />
       </ExpandableOption>
-      <ExpandableOption label="Administrator approves reports" {...parametersForSwitch('administratorApprovesReports')} />
+      <ExpandableOption
+        label="Administrator approves reports"
+        {...parametersForSwitch('administratorApprovesReports')}
+      />
     </OptionSection>
   )
 }
