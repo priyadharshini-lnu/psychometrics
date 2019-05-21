@@ -18,7 +18,8 @@ export default function ApprovalSection ({
     <OptionSection label="Report Approval">
       <ExpandableOption
         label="Manager approves reports"
-        {...parametersForSwitch('managerApprovesReports')}>
+        {...parametersForSwitch('managerApprovesReports')}
+      >
         <ExpandableOption
           label="Allow manager to view individual responses"
           {...parametersForSwitch('allowManagerViewIndividualResponses')}
