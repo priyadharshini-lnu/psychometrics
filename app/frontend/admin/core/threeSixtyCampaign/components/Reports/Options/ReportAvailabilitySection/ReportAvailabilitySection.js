@@ -1,17 +1,14 @@
 import React from 'react'
 import OptionSection from 'admin/core/threeSixtyCampaign/components/common/Options/Section'
 import ExpandableOption from 'admin/core/threeSixtyCampaign/components/common/Options/Expandable'
-import AvailabilityRequirement from '../AvailablityRequirement'
+import AvailabilityRequirement from '../AvailabilityRequirement'
 
-export default function ReportAvailabilitySection ({
-  options,
-  updateReportOptions,
-}) {
+export default function ReportAvailabilitySection({ options, updateReportOptions }) {
   const OBJECT_KEY = 'availability'
 
   const parametersForSwitch = name => ({
     value: options[name],
-    onOptionChanged: updateReportOptions([OBJECT_KEY, name]),
+    onOptionChanged: updateReportOptions([OBJECT_KEY, name])
   })
 
   return (

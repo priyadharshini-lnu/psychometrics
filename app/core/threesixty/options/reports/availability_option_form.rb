@@ -6,6 +6,7 @@ module Threesixty
       class AvailabilityOptionForm < Rectify::Form
         attribute :email_subject_when_report_available, Boolean
         attribute :email_manager_when_report_available, Boolean
+        attribute :conditions, Hash
       end
     end
   end
