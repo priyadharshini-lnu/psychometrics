@@ -6,7 +6,7 @@ import {
   ADD_NEW_LOGIC_SET_CONDITION,
   MOVE_CONDITION_TO_NEW_LOGIC_SET,
   REMOVE_AVAILABILITY_CONDITION,
-  UPDATE_AVAILABILITY_CONDITION
+  UPDATE_AVAILABILITY_CONDITION,
 } from './actions'
 
 const defaultCondition = { operator: 'and', type: 'evaluations', numberOfEvaluator: null, relationship: 'Manager' }
@@ -16,21 +16,21 @@ const HANDLERS = {
   [UPDATE_REPORT_OPTIONS]: (state, { payload: { key, value } }) => setIn(state, key, value),
   [ADD_AVAILABILITY_CONDITION]: (state, { payload: { index } }) =>
     updateIn(state, ['availability', 'conditions', index, 'conditions'], conditions =>
-      conditions.concat([defaultCondition])
+      conditions.concat([defaultCondition]),
     ),
   [ADD_NEW_LOGIC_SET_CONDITION]: (state, { payload: { operator } }) =>
     updateIn(state, ['availability', 'conditions'], conditions =>
       conditions.concat({
         operator: operator,
-        conditions: [{ ...defaultCondition, operator: 'if' }]
-      })
+        conditions: [{ ...defaultCondition, operator: 'if' }],
+      }),
     ),
   [MOVE_CONDITION_TO_NEW_LOGIC_SET]: (state, { payload: { parent_index, child_index } }) =>
     updateIn(state, ['availability', 'conditions'], conditions =>
       conditions.concat({
         operator: 'and',
-        conditions: [{ ...getIn(conditions, [parent_index, 'conditions', child_index]), operator: 'if' }]
-      })
+        conditions: [{ ...getIn(conditions, [parent_index, 'conditions', child_index]), operator: 'if' }],
+      }),
     ),
   [REMOVE_AVAILABILITY_CONDITION]: (state, { payload: { parent_index, child_index } }) => {
     const path = ['availability', 'conditions', parent_index, 'conditions']
@@ -50,9 +50,9 @@ const HANDLERS = {
     path = _.isNull(child_index) ? path : path.concat(['conditions', child_index])
     return updateIn(state, path, condition => ({
       ...condition,
-      [field]: value
+      [field]: value,
     }))
-  }
+  },
 }
 
 const defaultState = { access: {}, approval: {}, availability: { conditions: [] } }

@@ -11,7 +11,7 @@ export default function AvailabilityRequirement({
   removeAvailiblityCondition,
   updateAvailiblityCondition,
   addNewLogicSetCondition,
-  moveConditionToNextLogicSet
+  moveConditionToNextLogicSet,
 }) {
   if (_.isEmpty(conditions)) {
     return (

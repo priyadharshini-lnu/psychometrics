@@ -5,7 +5,7 @@ import {
   removeAvailiblityCondition,
   updateAvailiblityCondition,
   addNewLogicSetCondition,
-  moveConditionToNextLogicSet
+  moveConditionToNextLogicSet,
 } from 'admin/core/threeSixtyCampaign/reportOptions/actions'
 import { getAvailabilityConditions } from 'admin/core/threeSixtyCampaign/reportOptions/selectors'
 
@@ -16,6 +16,6 @@ export default connect(
     removeAvailiblityCondition,
     updateAvailiblityCondition,
     addNewLogicSetCondition,
-    moveConditionToNextLogicSet
-  }
+    moveConditionToNextLogicSet,
+  },
 )

@@ -8,7 +8,7 @@ export default function ReportAvailabilitySection({ options, updateReportOptions
 
   const parametersForSwitch = name => ({
     value: options[name],
-    onOptionChanged: updateReportOptions([OBJECT_KEY, name])
+    onOptionChanged: updateReportOptions([OBJECT_KEY, name]),
   })
 
   return (

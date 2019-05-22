@@ -11,8 +11,8 @@ export const fetch = campaignId => ({
   type: FETCH_REPORT_OPTIONS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/options/report_options`,
-    loader: true
-  }
+    loader: true,
+  },
 })
 
 export const syncWithServer = (campaignId, options) => ({
@@ -20,36 +20,36 @@ export const syncWithServer = (campaignId, options) => ({
   request: {
     method: 'put',
     url: `/administration/threesixty_campaigns/${campaignId}/options/`,
-    body: { reports: options }
-  }
+    body: { reports: options },
+  },
 })
 
 export const update = (key, value) => ({
   type: UPDATE_REPORT_OPTIONS,
-  payload: { key, value }
+  payload: { key, value },
 })
 
 export const addAvailiblityCondition = index => ({
   type: ADD_AVAILABILITY_CONDITION,
-  payload: { index }
+  payload: { index },
 })
 
 export const addNewLogicSetCondition = (operator = 'if') => ({
   type: ADD_NEW_LOGIC_SET_CONDITION,
-  payload: { operator }
+  payload: { operator },
 })
 
 export const moveConditionToNextLogicSet = (parent_index, child_index) => ({
   type: MOVE_CONDITION_TO_NEW_LOGIC_SET,
-  payload: { parent_index, child_index }
+  payload: { parent_index, child_index },
 })
 
 export const removeAvailiblityCondition = (parent_index, child_index) => ({
   type: REMOVE_AVAILABILITY_CONDITION,
-  payload: { parent_index, child_index }
+  payload: { parent_index, child_index },
 })
 
 export const updateAvailiblityCondition = (parent_index, child_index, field, value) => ({
   type: UPDATE_AVAILABILITY_CONDITION,
-  payload: { parent_index, child_index, field, value }
+  payload: { parent_index, child_index, field, value },
 })

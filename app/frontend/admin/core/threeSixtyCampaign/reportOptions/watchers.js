@@ -8,7 +8,7 @@ import {
   ADD_NEW_LOGIC_SET_CONDITION,
   MOVE_CONDITION_TO_NEW_LOGIC_SET,
   REMOVE_AVAILABILITY_CONDITION,
-  UPDATE_AVAILABILITY_CONDITION
+  UPDATE_AVAILABILITY_CONDITION,
 } from './actions'
 
 import { getReportOption } from './selectors'
@@ -28,10 +28,10 @@ const watchers = [
       ADD_NEW_LOGIC_SET_CONDITION,
       MOVE_CONDITION_TO_NEW_LOGIC_SET,
       REMOVE_AVAILABILITY_CONDITION,
-      UPDATE_AVAILABILITY_CONDITION
+      UPDATE_AVAILABILITY_CONDITION,
     ],
-    genSyncWithServer
-  )
+    genSyncWithServer,
+  ),
 ]
 
 export default watchers

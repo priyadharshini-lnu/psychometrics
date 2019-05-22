@@ -8,7 +8,7 @@ export default function Criteria({
   addAvailiblityCondition,
   updateAvailiblityCondition,
   removeAvailiblityCondition,
-  moveConditionToNextLogicSet
+  moveConditionToNextLogicSet,
 }) {
   return (
     <div style={{ display: 'inline-block' }} className="mbs">
