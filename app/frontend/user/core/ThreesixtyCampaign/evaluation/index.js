@@ -8,6 +8,7 @@ export const fetchAssessment = (campaignId, evaluationId) => ({
   type: FETCH_ASSESSMENT,
   request: {
     url: `/campaigns/${campaignId}/assessments`,
+    camelize: false,
   },
   campaignId,
   evaluationId,
@@ -17,6 +18,7 @@ export const fetchEvaluation = (campaignId, evaluationId) => ({
   type: FETCH,
   request: {
     url: `/campaigns/${campaignId}/evaluations/${evaluationId}`,
+    camelize: false,
   },
 })
 
