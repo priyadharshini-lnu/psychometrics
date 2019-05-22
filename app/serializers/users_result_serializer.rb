@@ -1,5 +1,5 @@
 class UsersResultSerializer < ActiveModel::Serializer
-  attributes :id, :status, :step, :answers, :scoring, :user_id, :assessment_id,
+  attributes :id, :status, :step, :answers, :results, :scoring, :user_id, :assessment_id,
              :data_sheet, :relationship, :norm_id, :embedded_data
              #:external_scoring,
 
@@ -8,6 +8,10 @@ class UsersResultSerializer < ActiveModel::Serializer
   has_one :user, serializer: UserSerializer
   has_one :subject, serializer: UserSerializer
   has_one :participant, serializer: Threesixty::EndUser::NomineeSerializer
+
+  def results
+    object.answers
+  end
 
   def is_self
     object.evaluator_id == object.subject_id
