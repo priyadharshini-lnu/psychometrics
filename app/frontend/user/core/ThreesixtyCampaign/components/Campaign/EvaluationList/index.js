@@ -31,7 +31,7 @@ function EvaluationList ({
             {userPresenter.selfUserName(item)}
           </Link>
         </div>
-        {options.evaluator.canDeclineNomination && (
+        {options.evaluator.canDeclineNomination && !item.isSelf && (
           item.evaluatorStatus === 'denied'
             ? <div>Denied</div>
             : (
