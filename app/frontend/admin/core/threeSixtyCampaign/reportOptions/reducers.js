@@ -18,6 +18,15 @@ const defaultCondition = {
   relationship: 'Manager',
 }
 
+function removeConditions (state, path, index) {
+  return updateIn(state, path, (conditions) => {
+    const newConditions = _.filter(conditions, (_, i) => i !== index)
+    return newConditions.map((condition, i) => (
+      i === 0 ? { ...condition, operator: 'if' } : condition
+    ))
+  })
+}
+
 const HANDLERS = {
   [FETCH_REPORT_OPTIONS]: (_, { response }) => response,
   [UPDATE_REPORT_OPTIONS]: (state, { payload: { key, value } }) => setIn(state, key, value),
@@ -43,15 +52,9 @@ const HANDLERS = {
     const path = ['availability', 'conditions', parentIndex, 'conditions']
     const conditions = getIn(state, path)
     if (conditions.length > 1) {
-      return updateIn(state, path, conditions => _.filter(conditions, (_, index) => index !== childIndex))
+      return removeConditions(state, path, childIndex)
     }
-    return updateIn(state, ['availability', 'conditions'], (conditions) => {
-      let newConditions = _.filter(conditions, (_, index) => index !== parentIndex)
-      newConditions = newConditions.map((condition, index) => (
-        index === 0 ? { ...condition, operator: 'if' } : condition
-      ))
-      return newConditions
-    })
+    return removeConditions(state, ['availability', 'conditions'], childIndex)
   },
   [UPDATE_AVAILABILITY_CONDITION]: (state, {
     payload: {
