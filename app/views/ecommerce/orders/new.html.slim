@@ -5,7 +5,7 @@
         #assessmentDashboard
           .contentTitleHeader
             i.glyphicon.glyphicon.glyphicon-shopping-cart.titleIcon.pull-left
-            p.contentTitle = t('.order')  
+            p.contentTitle = t('.order')
           .row
             .col-xs-12
               br
@@ -30,10 +30,10 @@
                       td = humanized_money_with_symbol(p.object.subtotal)
                       td
                         = p.simple_fields_for :invites do |i|
-                          = i.input :email, 
-                                    input_html: { class: 'col-sm-11', 
-                                                  value: i.options[:child_index].zero? ? current_user.email : '' }, 
-                                    label: "#{(i.options[:child_index] + 1)}.", 
+                          = i.input :email,
+                                    input_html: { class: 'col-sm-11',
+                                                  value: i.options[:childIndex].zero? ? current_user.email : '' },
+                                    label: "#{(i.options[:childIndex] + 1)}.",
                                     required: false
           .row
             .col-xs-12

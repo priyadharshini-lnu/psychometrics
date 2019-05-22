@@ -1,10 +1,12 @@
 import React from 'react'
 import { Input, Select, Icon } from 'antd'
-import css from './style.scss'
 import cs from 'classnames'
+import css from './style.scss'
 
-export default function Criteria({
-  condition: { operator, type, numberOfEvaluator, relationship },
+export default function Criteria ({
+  condition: {
+    operator, type, numberOfEvaluator, relationship,
+  },
   addAvailiblityCondition,
   updateAvailiblityCondition,
   removeAvailiblityCondition,
@@ -23,7 +25,7 @@ export default function Criteria({
         value={numberOfEvaluator}
         size="small"
         className={cs([css.inputElement, css.width80])}
-        onChange={e => {
+        onChange={(e) => {
           updateAvailiblityCondition('numberOfEvaluator', e.target.value)
         }}
       />
@@ -56,8 +58,10 @@ export default function Criteria({
   )
 }
 
-function Operator({ operator, updateAvailiblityCondition, removeAvailiblityCondition, moveConditionToNextLogicSet }) {
-  const handleOperatorChange = value => {
+function Operator ({
+  operator, updateAvailiblityCondition, removeAvailiblityCondition, moveConditionToNextLogicSet,
+}) {
+  const handleOperatorChange = (value) => {
     if (value === 'move_to_new_logic_set') {
       moveConditionToNextLogicSet()
       removeAvailiblityCondition()

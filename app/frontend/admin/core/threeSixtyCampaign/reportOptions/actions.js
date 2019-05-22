@@ -39,17 +39,22 @@ export const addNewLogicSetCondition = (operator = 'if') => ({
   payload: { operator },
 })
 
-export const moveConditionToNextLogicSet = (parent_index, child_index) => ({
+export const moveConditionToNextLogicSet = (parentIndex, childIndex) => ({
   type: MOVE_CONDITION_TO_NEW_LOGIC_SET,
-  payload: { parent_index, child_index },
+  payload: { parentIndex, childIndex },
 })
 
-export const removeAvailiblityCondition = (parent_index, child_index) => ({
+export const removeAvailiblityCondition = (parentIndex, childIndex) => ({
   type: REMOVE_AVAILABILITY_CONDITION,
-  payload: { parent_index, child_index },
+  payload: { parentIndex, childIndex },
 })
 
-export const updateAvailiblityCondition = (parent_index, child_index, field, value) => ({
+export const updateAvailiblityCondition = (parentIndex, childIndex, field, value) => ({
   type: UPDATE_AVAILABILITY_CONDITION,
-  payload: { parent_index, child_index, field, value },
+  payload: {
+    parentIndex,
+    childIndex,
+    field,
+    value,
+  },
 })
