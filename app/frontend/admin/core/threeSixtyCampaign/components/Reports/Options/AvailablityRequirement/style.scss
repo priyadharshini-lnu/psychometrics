@@ -1,0 +1,18 @@
+.inputElement {
+  width: 110px !important;
+  margin-right: 10px !important;
+}
+
+.operator {
+  font-weight: bold;
+  font-size: 16px;
+}
+
+.deleteIcon {
+  font-size: 18px;
+}
+
+.addIcon {
+  @extend .deleteIcon;
+  margin-left: 3px
+}
