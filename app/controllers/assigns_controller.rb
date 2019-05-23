@@ -47,7 +47,7 @@ class AssignsController < ApplicationController
     evaluator_campaigns = Threesixty::Evaluator.where(user_id: current_user.id).pluck(:campaign_id)
 
     campaigns = Campaign.where(id: subject_campaigns | evaluator_campaigns)
-    @threesixty_projects = campaigns.map(&:threesixty_campaign).uniq
+    @threesixty_projects = campaigns.map(&:threesixty_campaign)
 
     @current_membership.set_user_invited_for_current_project
   end
