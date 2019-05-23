@@ -42,9 +42,13 @@ class AssignsController < ApplicationController
     multiple_assigns_reports = multiple_assigns_reports(current_user, @current_project, multiple_reports_ids)
 
     @multiple_reports = multiple_reports(multiple_assigns_reports)
-    participants = Participant.where(subject_id: current_user.id)
-                              .or(Participant.where(evaluator_id: current_user.id)).uniq
-    @threesixty_projects = participants.map(&:campaign).map(&:threesixty_campaign).uniq
+
+    subject_campaigns = Threesixty::Subject.where(user_id: current_user.id).pluck(:campaign_id)
+    evaluator_campaigns = Threesixty::Evaluator.where(user_id: current_user.id).pluck(:campaign_id)
+
+    campaigns = Campaign.where(id: subject_campaigns | evaluator_campaigns)
+    @threesixty_projects = campaigns.map(&:threesixty_campaign).uniq
+
     @current_membership.set_user_invited_for_current_project
   end
 
