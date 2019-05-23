@@ -3,5 +3,6 @@ FactoryGirl.define do
     association :subject, factory: :user
     association :evaluator, factory: :user
     assessment
+    campaign
   end
 end
