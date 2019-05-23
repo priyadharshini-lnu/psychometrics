@@ -20,7 +20,9 @@ module Hogan
       return broadcast(:not_completed) if participant_report.report.blank?
 
       # Sets loaded report
-      assigns_reports_scope.update_all(external_report: "data:application/pdf;base64,#{participant_report.report}")
+      assigns_reports_scope.find_each do |assigns_report|
+        assigns_report.update(external_report: "data:application/pdf;base64,#{participant_report.report}")
+      end
 
       # Fetchs score and sets to AssignsReports
       participant_score = get_participant_score
