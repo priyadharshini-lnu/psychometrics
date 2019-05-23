@@ -186,6 +186,7 @@ group :development do
   gem 'guard'
   gem 'rubocop', require: false
   gem 'meta_request'
+  gem 'db-clone', :git => 'https://github.com/smshuja/db-clone.git', :branch => 'load-with-erb'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.

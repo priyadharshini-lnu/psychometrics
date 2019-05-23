@@ -43,6 +43,11 @@ class AssignSerializer < ActiveModel::Serializer
     object.encode_id
   end
 
+  def norm_data
+    object.norm_data[:name] = @instance_options[:norm] if @object.norm_data
+    object.norm_data
+  end
+
     # TODO (atanych): refactor within https://gitlab.com/tte-lighthouse/psychometrics/issues/59
   def external_scoring
     return {} if object.assessment.psychometric?
