@@ -5,6 +5,7 @@ class UsersReport < ApplicationRecord
   belongs_to :report
   belongs_to :norm
   belongs_to :campaign
+  has_one :project, through: :campaign
   mount_uploader :pdf, PdfUploader
 
   def threesixty_subject
