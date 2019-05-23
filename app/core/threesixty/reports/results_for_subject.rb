@@ -23,7 +23,7 @@ module Threesixty::Reports
     def lookup_results
       participants = Threesixty::EvaluatorParticipantsBySubject.new(subject).query
       UsersResult.completed.
-        where(evaluator_id: participants.map(&:evaluator_id)).
+        where(campaign_id: @campaign.campaign_id, evaluator_id: participants.map(&:evaluator_id)).
         includes(:evaluator, :assessment).
         map do |result|
           participant = participants.find_by(evaluator_id: result.evaluator_id)
