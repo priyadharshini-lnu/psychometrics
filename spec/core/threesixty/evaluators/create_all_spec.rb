@@ -35,12 +35,4 @@ describe Threesixty::Evaluators::CreateAll do
     expect(Threesixty::Evaluator.find_by(user_id: participants.first.evaluator_id).evaluations_count).to eq 2
     expect(Threesixty::Subject.find_by(user_id: participants.first.subject_id).evaluators_count).to eq 1
   end
-
-  it 'creates UsersAssessment' do
-    expect { subject }.to change(UsersAssessment, :count).by(2)
-    users_assessments = UsersAssessment.includes(:user).all
-    expect(users_assessments.map(&:user).map(&:email)).to match_array(%w[dev.atanov@gmail.com dev.atanov@gmail.com])
-    expect(users_assessments.map(&:campaign_id).uniq).to eq([campaign.id])
-    expect(users_assessments.map(&:assessment_id).uniq).to eq([threesixty_campaign.assessment_id])
-  end
 end
