@@ -43,7 +43,7 @@ class AssignsController < ApplicationController
 
     @multiple_reports = multiple_reports(multiple_assigns_reports)
     participants = Participant.where(subject_id: current_user.id)
-                                     .or(Participant.where(evaluator_id: current_user.id)).uniq
+                              .or(Participant.where(evaluator_id: current_user.id)).uniq
     @threesixty_projects = participants.map(&:campaign).map(&:threesixty_campaign).uniq
     @current_membership.set_user_invited_for_current_project
   end

@@ -8,12 +8,12 @@ module Threesixty
       respond_to do |format|
         format.html { render 'threesixty/campaigns/show' }
         format.json do
-          @users_assessment = UsersAssessment.find_by(campaign_id: @participant.campaign_id,
-                                                      user_id: @participant.evaluator_id)
-          @users_result = @users_assessment.
-                          users_results.
-                          create_with(status: :in_progress).
-                          find_or_create_by(subject_id: @participant.subject_id)
+          @users_result = UsersResult.find_or_create_by(campaign_id: @campaign.campaign_id,
+                                                        subject_id: @participant.subject_id,
+                                                        evaluator_id: @participant.evaluator_id) do |result|
+            result.assessment_id = @campaign.assessment_id
+            result.status = :in_progress
+          end
 
           render json: @users_result, serializer: UsersResultSerializer,
                  participant: @participant, campaign: @campaign, include: '**'

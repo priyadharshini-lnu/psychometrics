@@ -2504,7 +2504,8 @@ CREATE TABLE public.users_results (
     completed_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    norm_id bigint
+    norm_id bigint,
+    campaign_id bigint
 );
 
 
@@ -5592,6 +5593,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190507165939'),
 ('20190507170240'),
 ('20190507170817'),
-('20190520160715');
-
-
+('20190520160715'),
+('20190523104920');
