@@ -154,12 +154,25 @@ module Imports
     end
 
     def apply_reports(membership)
+      membership_with_result = membership.membership_with_result
+
       client.clients_reports.includes(report: :assessments).each do |client_report|
         client_report.report.assessments.each do |assessment|
           assign = membership.assigns.find_or_create_by!(assessment_id: assessment.id)
           assign_report = assign.assigns_reports.find_or_initialize_by(report_id: client_report.report_id)
           assign_report.user_access = client_report.user_access
           assign_report.save!
+
+          assign_with_result = assign.assign_with_result
+
+          # If is Hogan and membership already starts passing
+          if assessment.hogan? && membership_with_result.hogan_credential
+            Hogan::AssignAndLoadResultsJob.perform_later(assign_with_result, assign.reports.to_a, membership_with_result, client.project)
+            next
+          end
+
+          # Sends to generate PDF report
+          ::Reports::ExportJob.perform_later(assigns_report, membership.user) if assign_with_result.completed?
         end
       end
     end
