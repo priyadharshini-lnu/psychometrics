@@ -13,8 +13,9 @@ class Participant < ApplicationRecord
     Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
   end
 
-  enum manager_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager
-  enum evaluator_status: { waiting: 0, completed: 1, denied: 2 }, _prefix: :evaluator
+  enum manager_nomination_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_nomination
+  enum evaluator_nomination_status: { waiting: 0, completed: 1, denied: 2 }, _prefix: :evaluator_nomination
 
-  scope :active, -> { where.not(manager_status: :denied, evaluator_status: :denied) }
+  scope :active, -> { where.not(manager_nomination_status: :denied, evaluator_nomination_status: :denied) }
+
 end

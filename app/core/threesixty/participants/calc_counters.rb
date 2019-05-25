@@ -38,7 +38,7 @@ module Threesixty
         @completed_evaluations ||=
           if option.participants.dig('manager', 'can_approves_evaluations')
             Participant.select('count(id) as cache_counter, evaluator_id').
-              where(evaluator_id: user_ids, manager_status: :approved, campaign: campaign).
+              where(evaluator_id: user_ids, manager_nomination_status: :approved, campaign: campaign).
               group(:evaluator_id).
               index_by(&:evaluator_id)
           else
@@ -53,7 +53,7 @@ module Threesixty
         @completed_evaluators ||=
           if option.participants.dig('manager', 'can_approves_evaluations')
             Participant.select('count(id) as cache_counter, subject_id').
-              where(subject_id: user_ids, manager_status: :approved, campaign: campaign).
+              where(subject_id: user_ids, manager_nomination_status: :approved, campaign: campaign).
               group(:subject_id).
               index_by(&:subject_id)
           else

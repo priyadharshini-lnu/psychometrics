@@ -22,7 +22,7 @@ module Threesixty
     end
 
     def update_status
-      @participant.update_attributes(evaluator_status: params[:status])
+      @participant.update_attributes(evaluator_nomination_status: params[:status])
       render json: @participant, serializer: Threesixty::EndUser::EvaluationSerializer, include: '**'
     end
 

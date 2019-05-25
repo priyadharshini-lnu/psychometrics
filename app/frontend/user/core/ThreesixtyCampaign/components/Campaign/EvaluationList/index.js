@@ -32,7 +32,7 @@ function EvaluationList ({
           </Link>
         </div>
         {options.evaluator.canDeclineNomination && !item.isSelf && (
-          item.evaluatorStatus === 'denied'
+          item.evaluatorNominationStatus === 'denied'
             ? <div>Denied</div>
             : (
               <Dropdown overlay={() => menu(item)} trigger={['click']}>
