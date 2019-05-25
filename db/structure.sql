@@ -1570,12 +1570,13 @@ CREATE TABLE public.participants (
     project_id bigint,
     campaign_id bigint,
     relationship_id bigint,
-    manager_status integer DEFAULT 0,
-    evaluator_status integer DEFAULT 0,
+    manager_nomination_status integer DEFAULT 0,
+    evaluator_nomination_status integer DEFAULT 0,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     subject_id bigint,
-    evaluator_id bigint
+    evaluator_id bigint,
+    manager_evaluation_status integer DEFAULT 0
 );
 
 
@@ -4544,6 +4545,13 @@ CREATE INDEX index_users_results_on_assessment_id ON public.users_results USING 
 
 
 --
+-- Name: index_users_results_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_users_results_on_campaign_id ON public.users_results USING btree (campaign_id);
+
+
+--
 -- Name: index_users_results_on_evaluator_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5594,4 +5602,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190507170240'),
 ('20190507170817'),
 ('20190520160715'),
-('20190523104920');
+('20190523104920'),
+('20190525115528');
+
+

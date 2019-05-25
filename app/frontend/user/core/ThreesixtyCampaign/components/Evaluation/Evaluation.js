@@ -39,8 +39,8 @@ export default function Evaluation ({
               {userPresenter.getFullName(subject)}
             </Col>
             <Col>
-              {participant.evaluatorStatus !== 'waiting'
-                ? <div>{statusPresenter.getApprovalStatus(participant.evaluatorStatus)}</div>
+              {participant.evaluatorNominationStatus !== 'waiting'
+                ? <div>{statusPresenter.getApprovalStatus(participant.evaluatorNominationStatus)}</div>
                 : (
                   <div>
                     <Button onClick={() => handleStatusClick('approved')} type="primary">Approve</Button>

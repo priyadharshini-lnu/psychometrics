@@ -46,7 +46,7 @@ module Administration
       end
 
       def resource_params
-        params.require(:participant).permit(:relationship_id, :manager_status, :evaluator_status)
+        params.require(:participant).permit(:relationship_id, :manager_nomination_status, :evaluator_nomination_status)
       end
 
       private

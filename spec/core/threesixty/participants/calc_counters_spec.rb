@@ -8,12 +8,12 @@ describe Threesixty::Participants::CalcCounters do
     let(:option_which_requires_approval) { create(:threesixty_option, participants: { "manager" => { "can_approves_evaluations" => true} }) }
     before do
       campaign = option_which_requires_approval.threesixty_campaign.campaign
-      create(:participant, campaign: campaign, subject_id: subject_1.user_id, manager_status: :approved)
-      create(:participant, subject_id: subject_1.user_id, manager_status: :approved)
-      create(:participant, campaign: campaign, subject_id: subject_2.user_id, manager_status: :approved)
-      create(:participant, campaign: campaign, evaluator_id: subject_2.user_id, manager_status: :approved)
-      create(:participant, campaign: campaign, evaluator_id: subject_1.user_id, manager_status: :waiting)
-      create(:participant, campaign: campaign, subject_id: subject_1.user_id, manager_status: :waiting)
+      create(:participant, campaign: campaign, subject_id: subject_1.user_id, manager_nomination_status: :approved)
+      create(:participant, subject_id: subject_1.user_id, manager_nomination_status: :approved)
+      create(:participant, campaign: campaign, subject_id: subject_2.user_id, manager_nomination_status: :approved)
+      create(:participant, campaign: campaign, evaluator_id: subject_2.user_id, manager_nomination_status: :approved)
+      create(:participant, campaign: campaign, evaluator_id: subject_1.user_id, manager_nomination_status: :waiting)
+      create(:participant, campaign: campaign, subject_id: subject_1.user_id, manager_nomination_status: :waiting)
     end
     let(:subject) { create(:threesixty_subject, report_approval_status: :denied) }
 
@@ -29,12 +29,12 @@ describe Threesixty::Participants::CalcCounters do
     let(:option_which_does_not_require_approval) { create(:threesixty_option, participants: { "manager" => {} }) }
     before do
       campaign = option_which_does_not_require_approval.threesixty_campaign.campaign
-      create(:participant, campaign: campaign, subject_id: subject_1.user_id, manager_status: :approved)
-      create(:participant, subject_id: subject_1.user_id, manager_status: :approved)
-      create(:participant, campaign: campaign, subject_id: subject_2.user_id, manager_status: :approved)
-      create(:participant, campaign: campaign, evaluator_id: subject_2.user_id, manager_status: :approved)
-      create(:participant, campaign: campaign, evaluator_id: subject_1.user_id, manager_status: :waiting)
-      create(:participant, campaign: campaign, subject_id: subject_1.user_id, manager_status: :waiting)
+      create(:participant, campaign: campaign, subject_id: subject_1.user_id, manager_nomination_status: :approved)
+      create(:participant, subject_id: subject_1.user_id, manager_nomination_status: :approved)
+      create(:participant, campaign: campaign, subject_id: subject_2.user_id, manager_nomination_status: :approved)
+      create(:participant, campaign: campaign, evaluator_id: subject_2.user_id, manager_nomination_status: :approved)
+      create(:participant, campaign: campaign, evaluator_id: subject_1.user_id, manager_nomination_status: :waiting)
+      create(:participant, campaign: campaign, subject_id: subject_1.user_id, manager_nomination_status: :waiting)
       create(:users_result, subject_id: subject_1.user_id, status: :completed)
       create(:users_result, subject_id: subject_1.user_id, status: :completed)
     end

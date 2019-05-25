@@ -37,7 +37,7 @@ const HANDLERS = {
   [FETCH]: (state, action) => merge(state, action.response),
   [DECLINE_EVALUATION]: (state, { response }) => {
     const index = _.findIndex(state.evaluations, { id: response.id })
-    return setIn(state, ['evaluations', index, 'evaluatorStatus'], response.evaluatorStatus)
+    return setIn(state, ['evaluations', index, 'evaluatorNominationStatus'], response.evaluatorNominationStatus)
   },
 }
 
