@@ -21,7 +21,7 @@
 
 class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id, :relationship,
-             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet
+             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet, :selected_locale
 
   attribute :agile_scoring, if: -> { object.membership_id == @instance_options[:membership].try(:id) }
 
@@ -41,6 +41,19 @@ class AssignSerializer < ActiveModel::Serializer
 
   def hash_id
     object.encode_id
+  end
+
+  def selected_locale
+    locale = object.selected_locale || I18n.default_locale 
+    {
+      code: locale,
+      name: I18n.t("languages.#{locale}")
+    }
+  end
+
+  def norm_data
+    object.norm_data[:name] = @instance_options[:norm] if @object.norm_data
+    object.norm_data
   end
 
     # TODO (atanych): refactor within https://gitlab.com/tte-lighthouse/psychometrics/issues/59
