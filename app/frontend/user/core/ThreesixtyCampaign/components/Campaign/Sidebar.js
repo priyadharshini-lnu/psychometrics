@@ -4,7 +4,7 @@ import { Layout, Button, Progress } from 'antd'
 const { Sider } = Layout
 
 export default function Sidebar ({
-  history, match, evaluations, nominations, subjectReport,
+  history, match, evaluations, nominations, subjectReport, reports,
 }) {
   const goToReports = () => {
     history.push(`/campaigns/${match.params.campaignId}/reports/${subjectReport.id}`)
@@ -57,7 +57,10 @@ export default function Sidebar ({
         <div className="line-progress">
           <div className="label">
             <div className="caption">Reports</div>
-            <div className="value">1 of 2</div>
+            <div className="value">
+              {'1 of '}
+              {reports.length}
+            </div>
           </div>
           <Progress percent={50} showInfo={false} />
         </div>
