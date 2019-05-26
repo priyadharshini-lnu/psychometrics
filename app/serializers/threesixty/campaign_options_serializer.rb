@@ -1,6 +1,6 @@
 
 module Threesixty
   class CampaignOptionsSerializer < ActiveModel::Serializer
-    attributes :participants
+    attributes :participants, :reports
   end
 end
