@@ -2,7 +2,7 @@ module Threesixty
   class EvaluationsController < ApplicationController
     layout 'layouts/threesixty_campaign'
     before_action :set_campaign
-    before_action :set_evaluation
+    before_action :set_evaluation, except: [:deny]
 
     def show
       respond_to do |format|
@@ -21,8 +21,14 @@ module Threesixty
       end
     end
 
+    def deny
+      @participant = @campaign.participants.find_by!(evaluator_id: current_user.id, id: params[:evaluation_id] || params[:id])
+      @participant.update_attributes(evaluator_nomination_status: :denied)
+      render json: @participant, serializer: Threesixty::EndUser::EvaluationSerializer, include: '**'
+    end
+
     def update_status
-      @participant.update_attributes(evaluator_nomination_status: params[:status])
+      @participant.update_attributes(manager_nomination_status: params[:status])
       render json: @participant, serializer: Threesixty::EndUser::EvaluationSerializer, include: '**'
     end
 
