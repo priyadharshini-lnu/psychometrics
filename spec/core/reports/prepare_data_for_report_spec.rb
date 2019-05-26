@@ -22,7 +22,8 @@ describe Reports::PrepareDataForReport do
         subject: nil,
         membership: user.memberships.join_user.find_by(client_id: project.id),
         report: assessment.reports.first,
-        locale: 'en'
+        locale: 'en',
+        current_user: user
       }
 
       data = described_class.call!(args)
@@ -60,7 +61,8 @@ describe Reports::PrepareDataForReport do
         project: project,
         subject: subject,
         report: threesixty_campaign.report,
-        users_report: users_report
+        users_report: users_report,
+        current_user: evaluator_1
       }
       results = described_class.new(args).serialize_results
       expect(results[threesixty_campaign.assessment.id].map{|r| r[:relationship]}).to match_array %w[manager peer]
