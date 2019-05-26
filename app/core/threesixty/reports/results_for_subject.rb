@@ -2,10 +2,11 @@
 
 module Threesixty::Reports
   class ResultsForSubject < BaseCommand
-    attr_reader :campaign, :project, :subject, :report, :locale
+    attr_reader :campaign, :project, :subject, :report, :locale, :current_user
 
-    def initialize(campaign, users_report)
+    def initialize(campaign, users_report, current_user)
       @campaign = campaign
+      @current_user = current_user
 
       @project = campaign.project
       @subject = Threesixty::Subject.find_by(campaign_id: campaign.campaign.id, user_id: users_report.user_id)
@@ -27,7 +28,7 @@ module Threesixty::Reports
         includes(:evaluator, :assessment).
         map do |result|
           participant = participants.find_by(evaluator_id: result.evaluator_id)
-          ::UsersResultSerializer.new(result, campaign: campaign, participant: participant).to_h
+          ::UsersResultSerializer.new(result, campaign: campaign, participant: participant, current_user: current_user).to_h
       end
     end
   end

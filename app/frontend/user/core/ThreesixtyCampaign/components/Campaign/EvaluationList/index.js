@@ -26,7 +26,11 @@ function EvaluationList ({
       <div className="evaluation-item">
         <div>
           <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}`}>
-            <Icon type="check-circle" theme="twoTone" twoToneColor={item.approved ? '#52c41a' : '#ccc'} />
+            <Icon
+              type="check-circle"
+              theme="twoTone"
+              twoToneColor={item.evaluatorNominationStatus === 'completed' ? '#52c41a' : '#ccc'}
+            />
             {' '}
             {userPresenter.selfUserName(item)}
           </Link>
@@ -69,8 +73,7 @@ function EvaluationList ({
       bordered
     >
       <CollapseItem key="evaluations" title="Evaluations" list={evaluations} />
-      {/* TODO: disabled for the demo, need to implement evaluation approvement */}
-      {false && options.manager.canApprovesEvaluations
+      {options.manager.canApprovesEvaluations
         && <CollapseItem key="evaluations_approve" title="Approve evaluations" list={approvalEvaluations} />}
     </List>
   )

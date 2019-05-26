@@ -1,7 +1,6 @@
 class UsersResultSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :answers, :results, :scoring, :user_id, :assessment_id,
-             :data_sheet, :relationship, :norm_id, :embedded_data
-             #:external_scoring,
+             :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager
 
   attribute :relationship, if: -> { object.assessment.threesixty? }
 
@@ -15,6 +14,10 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   def is_self
     object.evaluator_id == object.subject_id
+  end
+
+  def as_manager
+    object.evaluator_id != current_user.id
   end
 
   def user
@@ -52,4 +55,7 @@ class UsersResultSerializer < ActiveModel::Serializer
     @campaing ||= instance_options[:campaign]
   end
 
+  def current_user
+    instance_options[:current_user]
+  end
 end

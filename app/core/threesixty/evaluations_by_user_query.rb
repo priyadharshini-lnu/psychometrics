@@ -8,17 +8,15 @@ module Threesixty
 
     def query
       scope = subject_evaluators_scope(@campaign.participants)
-
-      # TODO: hide managers evaluations until approving is not implemented
-      # scope = scope.or(@campaign.participants.where(subject_id: manager_ids).includes(:evaluator)) if manager_can_approve_evaluations?
-
+      scope = scope.or(@campaign.participants.where(subject_id: manager_ids)
+                                .includes(:evaluator)) if manager_can_approve_evaluations?
       scope
     end
 
     private
 
     def subject_evaluators_scope(scope)
-      evaluators = scope.where(evaluator_id: current_user.id).includes(:evaluator)
+      evaluators = scope.where(evaluator_id: current_user.id, manager_nomination_status: :approved).includes(:evaluator)
       evaluators = evaluators.where.not(subject_id: current_user.id) unless subject_evaluate_self?
       evaluators
     end
