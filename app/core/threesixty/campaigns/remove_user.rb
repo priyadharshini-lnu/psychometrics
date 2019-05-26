@@ -28,9 +28,9 @@ module Threesixty
 
       def remove_all_participants
         participants = Participant.
-          where(subject_id: user.id).
+          where(subject_id: user.id, campaign_id: campaign.id).
           or(
-            Participant.where(evaluator_id: user.id)
+            Participant.where(evaluator_id: user.id, campaign_id: campaign.id)
           )
         Threesixty::Participants::Remove.call!(participants, campaign)
       end
