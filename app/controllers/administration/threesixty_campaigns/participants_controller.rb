@@ -36,7 +36,7 @@ module Administration
       end
 
       def destroy
-        ::Threesixty::Participants::Remove.call!(resource, threesixty_campaign.campaign)
+        resource.destroy!
         render json: :ok
       end
 

@@ -32,7 +32,7 @@ module Threesixty
           or(
             Participant.where(evaluator_id: user.id, campaign_id: campaign.id)
           )
-        Threesixty::Participants::Remove.call!(participants, campaign)
+       participants.destroy_all
       end
     end
   end

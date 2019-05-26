@@ -21,11 +21,11 @@ describe Threesixty::Subjects::Remove do
     expect(UsersResult.find_by(id: users_result.id)).to be_nil
   end
 
-  it 'calls Threesixty::Participants::Remove with subjects participants' do
-    create(:participant, subject: subject.user, campaign: campaign)
-
-    expect(Threesixty::Participants::Remove).to receive(:call!).with(subject.participants, campaign)
+  it "removes subject's participant" do
+    participant = create(:participant, subject: subject.user, campaign: campaign)
     Threesixty::Subjects::Remove.call(subject, threesixty_campaign)
+
+    expect(Participant.find_by(id: participant.id)).to be_nil
   end
 
   it 'deletes subject' do
