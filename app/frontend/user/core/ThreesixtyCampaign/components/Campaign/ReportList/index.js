@@ -51,7 +51,8 @@ function ReportList ({ approvalReports, subjectReport }) {
         </div>
       )}
 
-      <CollapseItem key="approve_reports" title="Approve reports" list={approvalReports} />
+      {approvalReports.length > 0
+        && <CollapseItem key="approve_reports" title="Approve reports" list={approvalReports} />}
     </List>
   )
 }
