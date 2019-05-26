@@ -55,4 +55,11 @@ class UsersResultSerializer < ActiveModel::Serializer
     @campaing ||= instance_options[:campaign]
   end
 
+  def current_user
+    if instance_options[:current_user]
+      instance_options[:current_user]
+    else
+      super
+    end
+  end
 end
