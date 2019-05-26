@@ -4,7 +4,7 @@ module Administration
   module ThreesixtyCampaigns
     class SubjectsController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
-      before_action :set_resource, only: %i[show edit update destroy spoof]
+      before_action :set_resource, only: %i[show edit update destroy spoof preview_report]
       append_before_action :pundit_authorize
 
       def index
@@ -40,6 +40,21 @@ module Administration
         end
       end
 
+      def preview_report
+        user_report = UsersReport.find_by!(campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id)
+
+        @data = ::Reports::PrepareDataForReport.call!({
+          user_report: user_report,
+          locale: user_locale
+        })
+
+        respond_to do |format|
+          format.html do
+            render('shared/preview_report')
+          end
+        end
+      end
+
       private
 
       # Set model
@@ -50,7 +65,6 @@ module Administration
       def resource_params
         params.require(:subject).permit(:report_release_status, :report_approval_status, :evaluation_status)
       end
-
     end
   end
 end

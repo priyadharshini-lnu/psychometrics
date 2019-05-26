@@ -33,6 +33,7 @@ class Report < ApplicationRecord
   has_and_belongs_to_many :report_families
 
   has_many :pages, class_name: 'Reports::Page', dependent: :destroy
+  has_many :modules, through: :pages, dependent: :destroy
   has_many :filters, class_name: 'Reports::Filter', dependent: :destroy
   has_many :clients_reports # on delete cascade
   has_many :clients, through: :clients_reports

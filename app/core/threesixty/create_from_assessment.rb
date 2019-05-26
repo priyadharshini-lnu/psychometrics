@@ -16,9 +16,11 @@ module Threesixty
       copy_factors_and_map_scoring(source_assessment.dimension)
 
       @assessment.dimension_id = @dimension.id
-      @report.assessments_reports.destroy_all
-      @report.assessments << @assessment
-      @report.assessment_id = @assessment
+      @report.assessments_reports.update_all(assessment_id: @assessment.id)
+      @report.modules.update_all(assessment_id: @assessment.id)
+      @report.reload
+      @report.assessment_id = @assessment.id
+      @report.save!
       @campaign.assessment_id = @assessment.id
       @campaign.report_id = @report.id
 
@@ -47,6 +49,7 @@ module Threesixty
     end
 
     def copy_report(assessment)
+      # byebug
       @report = assessment.reports.first.clone
       @report.owner_id = @campaign.campaign.project_id
       @report.category = :threesixty
