@@ -124,4 +124,32 @@ describe Threesixty::Reports::ReleaseConditionResolver do
       evaluator_nomination_status: status
     )
   end
+
+  describe '.check_results' do
+    let(:resolver) { described_class.new(campaign, subject) }
+
+    it do
+      results = [{type: 'if', result: true}]
+      expect(resolver.check_results(results)).to be true
+    end
+
+    it do
+      results = [{type: 'if', result: true}, {type: 'or', result: false}, {type: 'or', result: true},  ]
+      expect(resolver.check_results(results)).to be true
+    end
+
+    it do
+      results = [{type: 'if', result: true}, {type: 'and', result: false}]
+      expect(resolver.check_results(results)).to be false
+    end
+
+    it do
+      results = [{type: 'if', result: true}, {type: 'and', result: true}]
+      expect(resolver.check_results(results)).to be true
+    end
+    it do
+      results = [{type: 'if', result: false}, {type: 'or', result: true}, {type: 'and', result: false},]
+      expect(resolver.check_results(results)).to be false
+    end
+  end
 end

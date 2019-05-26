@@ -30,13 +30,16 @@ module Threesixty
 
       def check_results(results)
         return results[0][:result] if results.size == 1
-        result = true
-        results.each do |res|
-          result = res[:result] if res[:type] == 'if'
-          result = result && res[:result] if res[:type] == 'and'
-          result = result || res[:result] if res[:type] == 'or'
+        results.reduce(true) do |result, res|
+          case res[:type]
+            when 'if'
+              res[:result]
+            when 'and'
+              result && res[:result]
+            when 'or'
+              result || res[:result]
+          end
         end
-        result
       end
 
       def resolve_condition(condition)
