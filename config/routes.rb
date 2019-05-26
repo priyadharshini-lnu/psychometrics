@@ -483,6 +483,7 @@ Rails.application.routes.draw do
         end
         resources :evaluations do
           put :update_status
+          put :deny
         end
         resources :reports do
           put :update_status

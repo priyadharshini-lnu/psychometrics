@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Button,
+  Layout, Row, Col, Button, Menu, Dropdown, Icon,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
@@ -9,8 +9,15 @@ const { Content } = Layout
 
 export default function Evaluation ({
   evaluation: {
-    loaded, assessment, results, results: { participant, as_manager: asManager },
-  }, fetchAssessment, updateStatus,
+    loaded, assessment, results,
+    results: {
+      as_manager: asManager,
+      participant: {
+        approval_status: approvalStatus,
+        evaluator_nomination_status: evaluatorNominationStatus,
+      },
+    },
+  }, fetchAssessment, updateStatus, denyEvaluation,
   match: { params },
 }) {
   const { subject, id } = results
@@ -28,6 +35,51 @@ export default function Evaluation ({
     updateStatus(params.campaignId, params.id, status)
   }
 
+  const handleDenyClick = () => {
+    denyEvaluation(params.campaignId, params.id)
+  }
+
+  const StatusMenu = () => (
+    <Menu onClick={(e) => {
+      handleStatusClick(e.key)
+    }}
+    >
+      <Menu.Item key="approved">
+        Approved
+      </Menu.Item>
+      <Menu.Item key="waiting">
+        Waiting
+      </Menu.Item>
+      <Menu.Item key="denied">
+        Denied
+      </Menu.Item>
+    </Menu>
+  )
+
+  const StatusDropdown = () => {
+    if (asManager) {
+      return (
+        <Dropdown
+          trigger={['click']}
+          overlay={StatusMenu}
+        >
+          <div>
+            {statusPresenter.getApprovalStatus(approvalStatus)}
+            <Icon type="down" />
+          </div>
+        </Dropdown>
+      )
+    }
+
+    return evaluatorNominationStatus === 'denied'
+      ? <div>{statusPresenter.getApprovalStatus(evaluatorNominationStatus)}</div>
+      : (
+        <div>
+          <Button onClick={() => handleDenyClick()} type="danger">Deny</Button>
+        </div>
+      )
+  }
+
   return (
     <Layout>
       <Content>
@@ -39,15 +91,7 @@ export default function Evaluation ({
               {userPresenter.getFullName(subject)}
             </Col>
             <Col>
-              {participant.evaluatorNominationStatus !== 'waiting'
-                ? <div>{statusPresenter.getApprovalStatus(participant.evaluatorNominationStatus)}</div>
-                : (
-                  <div>
-                    <Button onClick={() => handleStatusClick('approved')} type="primary">Approve</Button>
-                    <Button onClick={() => handleStatusClick('denied')} type="danger">Deny</Button>
-                  </div>
-                )}
-
+              <StatusDropdown />
             </Col>
           </Row>
           <div

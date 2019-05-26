@@ -1,6 +1,7 @@
 module Threesixty::EndUser
   class EvaluationSerializer < ActiveModel::Serializer
-    attributes :id, :is_self, :evaluator_id, :campaign_id, :evaluator_nomination_status, :as_manager
+    attributes :id, :is_self, :evaluator_id, :campaign_id, :as_manager,
+               :manager_nomination_status, :evaluator_nomination_status
     has_one :user, serializer: UserSerializer
 
     def user
