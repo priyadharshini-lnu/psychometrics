@@ -15,12 +15,10 @@ module Threesixty
       copy_dimension
       copy_factors_and_map_scoring(source_assessment.dimension)
 
-      @assessment.dimension_id = @dimension.id
+      @assessment.update!(dimension_id: @dimension.id)
       @report.assessments_reports.update_all(assessment_id: @assessment.id)
       @report.modules.update_all(assessment_id: @assessment.id)
-      @report.reload
-      @report.assessment_id = @assessment.id
-      @report.save!
+      @report.reload.update!(assessment_id: @assessment.id)
       @campaign.assessment_id = @assessment.id
       @campaign.report_id = @report.id
 
