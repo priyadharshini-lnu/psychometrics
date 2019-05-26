@@ -7,6 +7,7 @@ module Exports
         attr_accessor :output
 
         def initialize(current_user, report, user, client, opts = {})
+          @users_report = opts[:users_report]
           @current_user = current_user
           @report = report
           @user = user
@@ -18,14 +19,14 @@ module Exports
           generate_report
         end
 
-        def self.export(current_user, report, user, client, _opts = {})
-          file = new(current_user, report, user, client, opts = {})
+        def self.export(current_user, report, user, client, opts = {})
+          file = new(current_user, report, user, client, opts)
           file.output
         end
 
         private
 
-        attr_reader :current_user, :report, :user, :client, :opts, :url
+        attr_reader :current_user, :report, :user, :client, :opts, :url, :users_report
 
         def generate_report
           args = {
@@ -63,7 +64,8 @@ module Exports
             export: true,
             lang: opts[:lang] || I18n.locale,
             port: Settings.port,
-            protocol: Settings.protocol
+            protocol: Settings.protocol,
+            users_report_id: users_report ? users_report.id : nil
           }
 
           @url = current_user.is?(:superadmin, :client_admin, :project_admin) ?

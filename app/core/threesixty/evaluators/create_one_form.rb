@@ -15,15 +15,24 @@ module Threesixty
       validates :subject_email, presence: true
       validates :subject_email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
+      validate :check_subject
       validate :check_existing_relationship
       validate :check_existing_evaluator_subject_relation
 
+      def check_subject
+        errors.add(:subject_email, :not_exists, email: subject_email) unless Threesixty::Subject.joins(:user).exists?(
+          users: {
+            project_id: context.campaign.project_id, email: subject_email
+          }
+        )
+      end
+
       def check_existing_relationship
-        errors.add(:relationship_name, :invalid) unless relationship
+        errors.add(:relationship_name, :invalid, name: relationship_name) unless relationship
       end
 
       def check_existing_evaluator_subject_relation
-        if ::Participant.where(relationship: relationship, subject: subject_user, evaluator: evaluator_user).exists?
+        if ::Participant.where(relationship: relationship, subject: subject_user, evaluator: evaluator_user, campaign: context.campaign).exists?
           errors.add(:evaluator_email, :already_exists)
         end
       end

@@ -18,7 +18,7 @@ module Threesixty
         return broadcast :ok, DENIED if subject.report_denied?
         return broadcast :ok, INCOMPLETE unless Threesixty::Reports::IsAvailable.call!(subject)
 
-        return broadcast :ok, AVAILABLE unless option.participants['requires_approval']
+        return broadcast :ok, AVAILABLE unless option.participants.dig('manager', 'can_approves_evaluations')
         return broadcast :ok, APPROVED if subject.report_approved?
 
         broadcast :ok, INCOMPLETE

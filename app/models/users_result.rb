@@ -4,5 +4,6 @@ class UsersResult < ApplicationRecord
   belongs_to :subject, class_name: 'User'
   belongs_to :evaluator, class_name: 'User'
   belongs_to :assessment
+  belongs_to :campaign
   enum status: { not_started: 0, in_progress: 1, completed: 2 }
 end

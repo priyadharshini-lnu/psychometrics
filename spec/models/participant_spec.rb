@@ -7,6 +7,6 @@ RSpec.describe Participant, type: :model do
   it { should belong_to(:campaign) }
   it { should belong_to(:relationship) }
 
-  it { should define_enum_for(:manager_status).with_values(waiting: 0, approved: 1, denied: 2).with_prefix(:manager) }
-  it { should define_enum_for(:evaluator_status).with_values(waiting: 0, approved: 1, denied: 2).with_prefix(:evaluator) }
+  it { should define_enum_for(:manager_nomination_status).with_values(waiting: 0, approved: 1, denied: 2).with_prefix(:manager_nomination) }
+  it { should define_enum_for(:evaluator_nomination_status).with_values(waiting: 0, completed: 1, denied: 2).with_prefix(:evaluator_nomination) }
 end

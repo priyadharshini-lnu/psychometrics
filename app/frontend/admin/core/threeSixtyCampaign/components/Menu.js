@@ -17,7 +17,7 @@ const MyMenu = ({ history, routes }) => {
         <Icon type="mail" />
         Messages
       </Menu.Item>
-      <Menu.Item key="/reports">
+      <Menu.Item key="/reports/options">
         <Icon type="pie-chart" />
         Reports
       </Menu.Item>

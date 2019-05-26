@@ -36,7 +36,9 @@ const apiMiddleware = () => next => (action) => {
 
   const {
     request,
-    request: { method: method = 'get', body = {}, loader },
+    request: {
+      method: method = 'get', body = {}, loader, camelize = true,
+    },
   } = action
   const REQUEST = `${action.type}_REQUEST`
   const SUCCESS = action.type
@@ -52,13 +54,15 @@ const apiMiddleware = () => next => (action) => {
     ...buildOptions(request),
     responseType: 'json',
     withCredentials: true,
-  }).then(({ data }) => next({ type: SUCCESS, response: humps.camelizeKeys(data), requestAction: action }))
-    .catch((error) => {
-      next({ type: FAILURE, errors: humps.camelizeKeys(error.response.data.errors) })
-    })
-    .finally(() => {
-      if (loader) { next({ type: LOADING_COMPLETE }) }
-    })
+  }).then(({ data }) => next({
+    type: SUCCESS,
+    response: camelize ? humps.camelizeKeys(data) : data,
+    requestAction: action,
+  })).catch((error) => {
+    next({ type: FAILURE, errors: humps.camelizeKeys(error.response.data.errors) })
+  }).finally(() => {
+    if (loader) { next({ type: LOADING_COMPLETE }) }
+  })
 }
 
 export default apiMiddleware

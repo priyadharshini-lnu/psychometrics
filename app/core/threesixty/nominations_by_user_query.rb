@@ -8,7 +8,7 @@ module Threesixty
 
     def query
       scope = self_subject_scope(@campaign.subjects)
-      scope = scope.or(Subject.where(user_id: manager_ids).includes(:user)) if manager_can_manage_evaluations?
+      scope = scope.or(Subject.where(user_id: manager_ids, campaign_id: @campaign.campaign_id).includes(:user)) if manager_can_manage_evaluations?
 
       scope
     end

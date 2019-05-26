@@ -5,10 +5,11 @@ en:
         create_one:
           attributes:
             relationship_name:
-              invalid: 'Relationship is invalid'
+              invalid: 'Relationship %{name} is invalid'
               blank: "Relationship can't be blank"
             subject_email:
               invalid: 'Subject Email is invalid'
+              not_exists: 'Subject not found with email address %{email}'
               blank: "Subject Email can't be blank"
             evaluator_email:
               invalid: 'Evaluator Email is invalid'

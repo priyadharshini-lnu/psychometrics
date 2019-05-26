@@ -8,7 +8,9 @@ module Threesixty
 
     def query
       scope = subject_evaluators_scope(@campaign.participants)
-      scope = scope.or(@campaign.participants.where(subject_id: manager_ids).includes(:evaluator)) if manager_can_approve_evaluations?
+
+      # TODO: hide managers evaluations until approving is not implemented
+      # scope = scope.or(@campaign.participants.where(subject_id: manager_ids).includes(:evaluator)) if manager_can_approve_evaluations?
 
       scope
     end

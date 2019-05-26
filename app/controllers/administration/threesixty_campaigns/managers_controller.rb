@@ -13,10 +13,12 @@ module Administration
                      includes(:subject, :user).
                      joins(participants: :relationship).
                      where(campaign_id: threesixty_campaign.campaign_id, participants: { relationships: { name: 'Manager' }}).
-                     distinct.
-                     map do |m|
+                     distinct
+        counters = ::Threesixty::Participants::CalcCounters.call!(managers.map(&:user_id), threesixty_campaign)
+
+        managers = managers.map do |m|
           nomination_requirement = ::Threesixty::NominationRequirements::FindForSubject.call!(m.subject)
-          ::Threesixty::EvaluatorSerializer.new(m, option: option, nomination_requirement: nomination_requirement).to_h
+          ::Threesixty::EvaluatorSerializer.new(m, option: option, nomination_requirement: nomination_requirement, counters: counters).to_h
         end
         render json: managers
       end

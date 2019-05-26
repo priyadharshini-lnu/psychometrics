@@ -14,7 +14,6 @@ module Threesixty
           evaluator_user = fetch_or_create_evaluator_user(evaluator)
           create_campaigns_user(evaluator_user)
           create_evaluator(evaluator, evaluator_user)
-          create_users_assessment(evaluator_user)
           create_participant(evaluator, evaluator_user)
         end
         broadcast :ok, result
@@ -47,14 +46,6 @@ module Threesixty
           campaign: threesixty_campaign.campaign,
           subject: evaluator[:subject_user],
           relationship: evaluator[:relationship]
-        )
-      end
-
-      def create_users_assessment(evaluator_user)
-        ::UsersAssessment.create(
-          campaign_id: threesixty_campaign.campaign_id,
-          assessment_id: threesixty_campaign.assessment_id,
-          user_id: evaluator_user.id
         )
       end
 

@@ -1,11 +1,17 @@
 import React, { useEffect } from 'react'
-import { Layout } from 'antd'
+import {
+  Layout, Row, Col, Button,
+} from 'antd'
 import userPresenter from 'presenters/userPresenter'
+import statusPresenter from 'presenters/statusPresenter'
 
 const { Content } = Layout
 
 export default function Evaluation ({
-  evaluation: { loaded, assessment, results }, fetchAssessment, match,
+  evaluation: {
+    loaded, assessment, results, results: { participant },
+  }, fetchAssessment, updateStatus,
+  match: { params },
 }) {
   const { subject, id } = results
   useEffect(() => {
@@ -15,23 +21,43 @@ export default function Evaluation ({
   }, [loaded])
 
   useEffect(() => {
-    fetchAssessment(match.params.campaignId, match.params.id)
+    fetchAssessment(params.campaignId, params.id)
   }, [])
+
+  const handleStatusClick = (status) => {
+    updateStatus(params.campaignId, params.id, status)
+  }
+
   return (
     <Layout>
       <Content>
         <div className="main-container">
-          Evaluate
-          {' '}
-          {userPresenter.getFullName(subject)}
+          <Row type="flex" justify="space-between">
+            <Col>
+              Evaluate
+              {' '}
+              {userPresenter.getFullName(subject)}
+            </Col>
+            <Col>
+              {participant.evaluatorNominationStatus !== 'waiting'
+                ? <div>{statusPresenter.getApprovalStatus(participant.evaluatorNominationStatus)}</div>
+                : (
+                  <div>
+                    <Button onClick={() => handleStatusClick('approved')} type="primary">Approve</Button>
+                    <Button onClick={() => handleStatusClick('denied')} type="danger">Deny</Button>
+                  </div>
+                )}
+
+            </Col>
+          </Row>
           <div
             id="pass_assessment"
             data-type="pass_assessment"
             data-is-threesixty="true"
-            data-results-url={`/users_results/${id}`}
+            data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
             data-data={JSON.stringify(assessment)}
             data-result={JSON.stringify(results)}
-            data-dashboard-url={`/campaigns/${match.params.campaignId}`}
+            data-dashboard-url={`/campaigns/${params.campaignId}`}
           />
         </div>
       </Content>

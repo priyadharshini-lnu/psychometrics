@@ -21,6 +21,20 @@ module Administration
         render json: resource
       end
 
+      def spoof
+        user = User.find(params[:id])
+        if user.is?(:superadmin, :project_admin)
+          sign_in(user)
+        else
+          spoof_token = SecureRandom.urlsafe_base64(64)
+          user.update_column(:spoof_token, spoof_token)
+          redirect_url = root_url(domain: Settings.domain, subdomain: threesixty_campaign.project.try(:subdomain), spoof_token: spoof_token)
+        end
+        redirect_url ||= administration_root_path
+        flash.now[:success] = t('.successfully', name: user.decorate.display_name)
+        redirect_to redirect_url
+      end
+
       def destroy
         evaluator = ::Threesixty::Evaluator.find_by!(user_id: resource.evaluator_id, campaign: threesixty_campaign.campaign)
         subject = ::Threesixty::Subject.find_by!(user_id: resource.subject_id, campaign: threesixty_campaign.campaign)
@@ -32,7 +46,7 @@ module Administration
       end
 
       def resource_params
-        params.require(:participant).permit(:relationship_id, :manager_status, :evaluator_status)
+        params.require(:participant).permit(:relationship_id, :manager_nomination_status, :evaluator_nomination_status)
       end
 
       private

@@ -1,9 +1,16 @@
 # frozen_string_literal: true
 
 class UsersReport < ApplicationRecord
-  belongs_to :user
+  belongs_to :user, inverse_of: :users_reports
   belongs_to :report
+  belongs_to :norm
   belongs_to :campaign
+  has_one :project, through: :campaign
+  mount_uploader :pdf, PdfUploader
 
-  enum status: { not_prepared: 0, prepared: 1 }
+  def threesixty_subject
+    campaign.subjects.find_by(user_id: user_id)
+  end
+
+  enum status: { not_prepared: 0, generating: 1, failed: 2, prepared: 3 }
 end

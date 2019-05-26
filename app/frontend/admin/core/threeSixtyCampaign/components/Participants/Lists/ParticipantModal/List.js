@@ -43,27 +43,27 @@ export default function List ({
       />
       <Table.Column
         title="Approved"
-        key="managerStatus"
-        render={({ managerStatus, id }) => (
+        key="managerNominationStatus"
+        render={({ managerNominationStatus, id }) => (
           <StatusSelect
             availableStatuses={MANAGER_STATUSES}
             id={id}
-            name="managerStatus"
+            name="managerNominationStatus"
             onChange={updateParticipant}
-            managerStatus={managerStatus}
+            managerNominationStatus={managerNominationStatus}
           />
         )}
       />
       <Table.Column
         title="Complete"
-        key="evaluatorStatus"
-        render={({ evaluatorStatus, id }) => (
+        key="evaluatorNominationStatus"
+        render={({ evaluatorNominationStatus, id }) => (
           <StatusSelect
             availableStatuses={EVALUATOR_STATUSES}
             id={id}
-            name="evaluatorStatus"
+            name="evaluatorNominationStatus"
             onChange={updateParticipant}
-            managerStatus={evaluatorStatus}
+            managerNominationStatus={evaluatorNominationStatus}
           />
         )}
       />
@@ -89,9 +89,9 @@ const RelationSelect = ({
 )
 
 const StatusSelect = ({
-  availableStatuses, managerStatus, onChange, id, name,
+  availableStatuses, managerNominationStatus, onChange, id, name,
 }) => (
-  <Select style={{ width: '100%' }} value={managerStatus} onChange={v => onChange(id, { [name]: v })}>
+  <Select style={{ width: '100%' }} value={managerNominationStatus} onChange={v => onChange(id, { [name]: v })}>
     {availableStatuses.map(status => (
       <Select.Option key={status} value={status}>
         {status}

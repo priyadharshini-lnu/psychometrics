@@ -2,10 +2,11 @@
 
 module UsersResults
   class UpdateUsersResult < BaseCommand
-    def initialize(form, users_result, current_user)
+    def initialize(form, users_result, threesixty_campaign)
       @form = form
       @users_result = users_result
-      @current_user = current_user
+      @subject_user = users_result.subject
+      @threesixty_campaign = threesixty_campaign
     end
 
     def call
@@ -13,8 +14,7 @@ module UsersResults
 
       transaction do
         update_users_result
-        # TODO: Need to implement a different logic for generate report
-        # generate_report if users_result.completed?
+        generate_360_report if users_result.completed?
       end
 
       broadcast(:ok)
@@ -22,7 +22,7 @@ module UsersResults
 
     private
 
-    attr_reader :form, :users_result, :current_user
+    attr_reader :form, :users_result, :subject_user, :threesixty_campaign
 
     # Sets new data to the users_result
     #   and increases the step of users_result
@@ -43,6 +43,19 @@ module UsersResults
 
     # Sends to generate PDF report
     #
-    def generate_report; end
+    def generate_360_report
+      users_report = subject_user.
+                     users_reports.
+                     joins(:report).
+                     find_by(campaign_id: threesixty_campaign.campaign_id,
+                             report_id: threesixty_campaign.report_id,
+                             reports: { disabled: false })
+
+      return unless users_report
+
+      # Sets status to generating and sends to generate report
+      users_report.generating!
+      ::UsersReports::GeneratePdfJob.perform_later(users_report, subject_user)
+    end
   end
 end

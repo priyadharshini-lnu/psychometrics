@@ -11,34 +11,46 @@ module Threesixty
 
       def call
         result = subjects.map do |_key, subject|
-          campaigns_user = create_campaigns_user(subject)
-          create_membership(campaigns_user)
-          create_subject(campaigns_user)
+          subject_user = fetch_or_create_subject_user(subject)
+          create_campaigns_user(subject_user)
+          create_membership(subject_user)
+          create_users_report(subject_user)
+          create_subject(subject_user)
         end
         broadcast :ok, result
       end
 
-      def create_campaigns_user(subject)
-        user = user_map[subject[:email]] || ::Users::Regular.create!(subject.merge(project: project, create_by_invite: true))
+      def fetch_or_create_subject_user(subject)
+        project_users_indexed[subject[:email]] ||
+          ::Users::Regular.create!(subject.merge(project: project, create_by_invite: true))
+      end
+
+      def create_campaigns_user(user)
         CampaignsUser.find_or_create_by!(user: user, campaign: threesixty_campaign.campaign)
       end
 
-      def create_subject(campaigns_user)
-        ::Threesixty::Subject.find_or_create_by!(user: campaigns_user.user, campaign: threesixty_campaign.campaign)
-      end
-
-      def user_map
-        @user_map ||=
-          User.where(project_id: threesixty_campaign.campaign.project_id, email: subjects.map { |_, s| s[:email] }).
-          index_by(&:email)
+      def create_subject(user)
+        ::Threesixty::Subject.find_or_create_by!(user: user, campaign: threesixty_campaign.campaign)
       end
 
       private
 
       attr_reader :subjects, :threesixty_campaign, :project
 
-      def create_membership(campaigns_user)
-        threesixty_campaign.project.memberships.find_or_create_by!(user_id: campaigns_user.user_id)
+      def project_users_indexed
+        @project_users_indexed ||= User.
+                                   where(project_id: project.id, email: subjects.map { |_, s| s[:email] }).
+                                   index_by(&:email)
+      end
+
+      def create_users_report(user)
+        ::UsersReport.find_or_create_by(user: user,
+                                        report: threesixty_campaign.report,
+                                        campaign: threesixty_campaign.campaign)
+      end
+
+      def create_membership(user)
+        threesixty_campaign.project.memberships.find_or_create_by!(user_id: user.id)
       end
     end
   end

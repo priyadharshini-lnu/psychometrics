@@ -1,0 +1,2 @@
+class CampaignTemplateDecorator < BaseDecorator
+end

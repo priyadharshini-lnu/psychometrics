@@ -24,12 +24,13 @@ module Threesixty
 
     # TODO: replace mocked requirements with real
     def requirements
+      relationships = Relationships::ByCampaign.new(object.campaign).to_a
       {
         subject_conditions: {},
         conditions: [
-          {type: 'relationship', id: 4, predicate: 'at_least', value: 2},
-          {type: 'relationship', id: 1, predicate: 'at_least', value: 1},
-          {type: 'relationship', id: 2, predicate: 'at_least', value: 2},
+          {type: 'relationship', id: relationships[0].id, predicate: 'at_least', value: 2},
+          {type: 'relationship', id: relationships[1].id, predicate: 'at_least', value: 1},
+          {type: 'relationship', id: relationships[2].id, predicate: 'at_least', value: 2},
         ]
       }
     end

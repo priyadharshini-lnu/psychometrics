@@ -12,6 +12,12 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
     render json: :ok
   end
 
+  def destroy
+    resource.destroy!
+    resource.camppaign.destroy!
+    render json: :ok
+  end
+
   private
 
   def set_resource

@@ -185,9 +185,6 @@ Rails.application.routes.draw do
             post :create_all
             post :search
           end
-          member do
-            get :spoof
-          end
         end
         resources :evaluators do
           collection do
@@ -197,11 +194,16 @@ Rails.application.routes.draw do
 
         resource :options do
           get :participant_options
+          get :report_options
         end
 
         resources :managers
         resources :relationships
-        resources :participants
+        resources :participants do
+          member do
+            get :spoof
+          end
+        end
       end
       member do
         delete 'reset'
@@ -479,13 +481,16 @@ Rails.application.routes.draw do
             put :update_status
           end
         end
-        resources :evaluations
-        resources :reports
+        resources :evaluations do
+          put :update_status
+        end
+        resources :reports do
+          put :update_status
+        end
         resources :assessments, only: %i(index)
+        resources :users_results, only: %i[update]
       end
     end
-    resources :users_results, only: %i[update]
-    resources :users_assessments, only: %i[show]
 
     namespace :mindmill do
       resources :assigns, only: [] do

@@ -6,23 +6,25 @@ import css from './EvaluatorTable.scss'
 
 const { Column } = Table
 
-export default function EvaluatorTable ({ evaluators, openModal, onCloseParticipantModal }) {
+export default function EvaluatorTable ({
+  evaluators, openModal, onCloseParticipantModal, campaignId,
+}) {
   return (
-    <Table
-      className="mtm"
-      rowKey="id"
-      dataSource={evaluators}
-      pagination={false}
-      onRow={record => ({
-        onClick: (e) => {
-          if (['TR', 'TD'].includes(e.target.tagName)) {
-            openModal('ParticipantModal', { user: record.user, onClose: onCloseParticipantModal })
-          }
-        },
-      })}
-    >
+    <Table className="mtm" rowKey="id" dataSource={evaluators} pagination={false}>
       <Column title="Name" key="fullName" render={({ user }) => userPresenter.getFullName(user)} />
-      <Column title="Email" dataIndex="user.email" key="email" />
+      <Column
+        title="Email"
+        key="user_email"
+        render={({ user }) => (
+          <a
+            role="button"
+            tabIndex="0"
+            onClick={() => openModal('ParticipantModal', { user, onClose: onCloseParticipantModal })}
+          >
+            {user.email}
+          </a>
+        )}
+      />
       <Column title="Evaluations Received" dataIndex="evaluators" key="received_evaluations" />
       <Column title="Evaluations Completed" dataIndex="evaluations" key="completed_evaluations" />
       <Column title="Report Status" dataIndex="reportStatus" key="report_status" />
@@ -35,8 +37,15 @@ export default function EvaluatorTable ({ evaluators, openModal, onCloseParticip
 
       <Column
         key="action"
-        render={() => (
-          <Dropdown overlay={ActionsMenu} trigger={['click']}>
+        render={({ user }) => (
+          <Dropdown
+            overlay={() => ActionsMenu({
+              user,
+              campaignId,
+            })
+            }
+            trigger={['click']}
+          >
             <div className={css.actions}>
               <Icon type="ellipsis" />
             </div>
