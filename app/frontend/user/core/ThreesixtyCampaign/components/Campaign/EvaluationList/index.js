@@ -26,7 +26,11 @@ function EvaluationList ({
       <div className="evaluation-item">
         <div>
           <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}`}>
-            <Icon type="check-circle" theme="twoTone" twoToneColor={item.evaluatorNominationStatus === 'completed' ? '#52c41a' : '#ccc'} />
+            <Icon
+              type="check-circle"
+              theme="twoTone"
+              twoToneColor={item.evaluatorNominationStatus === 'completed' ? '#52c41a' : '#ccc'}
+            />
             {' '}
             {userPresenter.selfUserName(item)}
           </Link>

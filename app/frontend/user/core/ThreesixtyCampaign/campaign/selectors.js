@@ -27,3 +27,8 @@ export const getSubjectReport = createSelector(
   getReports,
   reports => _.find(reports, { isSelf: true }),
 )
+
+export const getApprovalReports = createSelector(
+  getReports,
+  reports => _.filter(reports, { isSelf: false }),
+)

@@ -7,30 +7,34 @@ import './styles.scss'
 
 const { Panel } = Collapse
 
-function ReportList ({ reports, subjectReport }) {
-  const ReportItem = item => (
-    <List.Item>
-      <Link to={`/campaigns/${subjectReport.campaignId}/reports/${item.id}`}>
-        <Icon type="check-circle" theme="twoTone" twoToneColor={item.approved ? '#52c41a' : '#ccc'} />
-        {' '}
-        {userPresenter.getFullNameWithEmail(item.user)}
-      </Link>
-    </List.Item>
-  )
+const ReportItem = item => (
+  <List.Item>
+    <Link to={`/campaigns/${item.campaignId}/reports/${item.id}`}>
+      <Icon
+        type="check-circle"
+        theme="twoTone"
+        twoToneColor={item.approval_status === 'approved' ? '#52c41a' : '#ccc'}
+      />
+      {' '}
+      {userPresenter.getFullNameWithEmail(item.user)}
+    </Link>
+  </List.Item>
+)
 
-  const CollapseItem = ({ title, list }) => (
-    <Collapse bordered={false}>
-      <Panel header={title} forceRender>
-        <List
-          size="large"
-          bordered
-          dataSource={list}
-          renderItem={ReportItem}
-        />
-      </Panel>
-    </Collapse>
-  )
+const CollapseItem = ({ title, list }) => (
+  <Collapse bordered={false}>
+    <Panel header={title} forceRender>
+      <List
+        size="large"
+        bordered
+        dataSource={list}
+        renderItem={ReportItem}
+      />
+    </Panel>
+  </Collapse>
+)
 
+function ReportList ({ approvalReports, subjectReport }) {
   return (
     <List
       className="report-list"
@@ -47,7 +51,7 @@ function ReportList ({ reports, subjectReport }) {
         </div>
       )}
 
-      <CollapseItem key="approve_reports" title="Approve reports" list={reports} />
+      <CollapseItem key="approve_reports" title="Approve reports" list={approvalReports} />
     </List>
   )
 }
