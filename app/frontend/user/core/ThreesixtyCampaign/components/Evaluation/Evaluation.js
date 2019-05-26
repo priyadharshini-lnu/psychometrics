@@ -9,7 +9,7 @@ const { Content } = Layout
 
 export default function Evaluation ({
   evaluation: {
-    loaded, assessment, results, results: { participant },
+    loaded, assessment, results, results: { participant, as_manager: asManager },
   }, fetchAssessment, updateStatus,
   match: { params },
 }) {
@@ -52,7 +52,7 @@ export default function Evaluation ({
           </Row>
           <div
             id="pass_assessment"
-            data-type="pass_assessment"
+            data-type={asManager ? 'view_results' : 'pass_assessment'}
             data-is-threesixty="true"
             data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
             data-data={JSON.stringify(assessment)}

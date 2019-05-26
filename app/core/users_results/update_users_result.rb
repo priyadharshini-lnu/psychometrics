@@ -6,6 +6,7 @@ module UsersResults
       @form = form
       @users_result = users_result
       @subject_user = users_result.subject
+      @evaluator_user = users_result.evaluator
       @threesixty_campaign = threesixty_campaign
     end
 
@@ -36,6 +37,8 @@ module UsersResults
         users_result.scoring = ::UsersResults::CalculateScoring.call!(users_result)
         users_result.occupations = ::Assigns::CalculateOccupations.call!(users_result)
         users_result.completed_at = Time.now
+        participant = @threesixty_campaign.participants.find_by(subject_id: @subject_user, evaluator_id: @evaluator_user)
+        participant.update_attributes(evaluator_nomination_status: :completed)
       end
 
       users_result.save!
