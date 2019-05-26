@@ -16,7 +16,8 @@ module Threesixty
           end
 
           render json: @users_result, serializer: UsersResultSerializer,
-                 participant: @participant, campaign: @campaign, include: '**'
+                 participant: @participant, campaign: @campaign,
+                 current_user: current_user, include: '**'
         end
       end
     end

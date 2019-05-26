@@ -56,10 +56,6 @@ class UsersResultSerializer < ActiveModel::Serializer
   end
 
   def current_user
-    if instance_options[:current_user]
-      instance_options[:current_user]
-    else
-      super
-    end
+    instance_options[:current_user]
   end
 end
