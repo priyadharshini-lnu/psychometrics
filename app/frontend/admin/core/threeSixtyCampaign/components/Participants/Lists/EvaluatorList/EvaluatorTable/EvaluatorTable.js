@@ -7,7 +7,11 @@ import css from './EvaluatorTable.scss'
 const { Column } = Table
 
 export default function EvaluatorTable ({
-  evaluators, openModal, onCloseParticipantModal, campaignId,
+  evaluators,
+  openModal,
+  onCloseParticipantModal,
+  campaignId,
+  removeUser,
 }) {
   return (
     <Table className="mtm" rowKey="id" dataSource={evaluators} pagination={false}>
@@ -28,10 +32,12 @@ export default function EvaluatorTable ({
       <Column title="Evaluations Received" dataIndex="evaluators" key="received_evaluations" />
       <Column title="Evaluations Completed" dataIndex="evaluations" key="completed_evaluations" />
       <Column title="Report Status" dataIndex="reportStatus" key="report_status" />
+
       <Column title="Status" dataIndex="status" key="status" />
       <Column
         title="Is Subject"
-        render={({ isSubject }) => isSubject && <Icon className="text-success" type="check" />}
+        render={({ isSubject }) => isSubject && <Icon className="text-success" type="check" />
+        }
         key="isSubject"
       />
 
@@ -42,6 +48,7 @@ export default function EvaluatorTable ({
             overlay={() => ActionsMenu({
               user,
               campaignId,
+              removeUser,
             })
             }
             trigger={['click']}

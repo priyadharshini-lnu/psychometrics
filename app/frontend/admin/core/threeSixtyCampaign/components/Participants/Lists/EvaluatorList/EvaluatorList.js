@@ -9,6 +9,7 @@ export default function EvaluatorList ({
   fetchEvaluators,
   evaluators,
   openModal,
+  removeUser,
   match: {
     params: { campaignId },
   },
@@ -37,6 +38,7 @@ export default function EvaluatorList ({
             openModal={openModal}
             evaluators={evaluators}
             onCloseParticipantModal={() => fetchEvaluators(campaignId)}
+            removeUser={removeUser}
           />
         </Col>
       </Row>

@@ -7,6 +7,7 @@ import { fetchManagers } from './managers'
 
 const RESET = 'threeSixty/RESET'
 const RESET_NOMINATIONS = 'threeSixty/RESET_NOMINATIONS'
+const REMOVE_USER = 'threeSixty/REMOVE_USER'
 
 export const reset = campaignId => ({
   type: RESET,
@@ -21,6 +22,17 @@ export const resetAllNominations = campaignId => ({
   request: {
     method: 'delete',
     url: `/administration/threesixty_campaigns/${campaignId}/reset_nominations`,
+  },
+})
+
+export const removeUser = (campaignId, userId) => ({
+  type: REMOVE_USER,
+  request: {
+    method: 'delete',
+    url: `/administration/threesixty_campaigns/${campaignId}/remove_user`,
+    body: {
+      userId,
+    },
   },
 })
 
@@ -42,4 +54,5 @@ function* genReloadCurrentParticipantTab () {
 export const watchers = [
   takeEvery(RESET_NOMINATIONS, genReloadCurrentParticipantTab),
   takeEvery(RESET, genReloadCurrentParticipantTab),
+  takeEvery(REMOVE_USER, genReloadCurrentParticipantTab),
 ]

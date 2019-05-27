@@ -15,6 +15,12 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
   def destroy
     resource.destroy!
     resource.camppaign.destroy!
+  end
+
+  def remove_user
+    user = User.find(params[:user_id])
+    Threesixty::Campaigns::RemoveUser.call(user, resource)
+
     render json: :ok
   end
 

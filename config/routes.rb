@@ -208,6 +208,7 @@ Rails.application.routes.draw do
       member do
         delete 'reset'
         delete 'reset_nominations'
+        delete 'remove_user'
       end
     end
 
@@ -483,6 +484,7 @@ Rails.application.routes.draw do
         end
         resources :evaluations do
           put :update_status
+          put :deny
         end
         resources :reports do
           put :update_status
