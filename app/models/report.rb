@@ -146,6 +146,10 @@ class Report < ApplicationRecord
     (data_configuration['sections'] || []).flat_map { |section| section['data'] || [] }
   end
 
+  def hogan?
+    hogan_report_setting.present?
+  end
+
   private
 
   def max_assessments_count

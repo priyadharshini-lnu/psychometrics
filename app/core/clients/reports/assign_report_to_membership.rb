@@ -41,9 +41,10 @@ module Clients
 
             # If is Hogan and membership already starts passing
             if assessment.hogan? && membership_with_result.hogan_credential
-              Hogan::AssignAndLoadResultsJob.perform_later(assign_with_result, assign.reports.to_a, membership_with_result, client.project)
-              next
+              Hogan::AssignAndLoadResultsJob.perform_later(assign_with_result, assign.reports.to_a.select(&:hogan?), membership_with_result, client.project)
             end
+
+            next if report.hogan?
 
             # Sends to generate PDF report
             ::Reports::ExportJob.perform_later(assigns_report, membership.user) if assign_with_result.completed?
