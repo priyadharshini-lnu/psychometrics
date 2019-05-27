@@ -9,7 +9,8 @@ module Threesixty
         @campaign = campaign
         @options = @campaign.option
         @subject = subject
-        @evaluations = @campaign.participants.where(subject_id: subject.user_id, evaluator_nomination_status: :completed)
+        @evaluations = @campaign.participants.evaluator_nomination_completed
+                                .where(subject_id: subject.user_id)
       end
 
       def call
@@ -20,7 +21,7 @@ module Threesixty
         results = conditions.map do |condition|
           if condition['conditions']
             second_results = condition['conditions'].map{ |cond| resolve_condition(cond) }
-            {type: condition['operator'], result: check_results(second_results)}
+            {operator: condition['operator'], result: check_results(second_results)}
           else
             resolve_condition(condition)
           end
@@ -31,7 +32,7 @@ module Threesixty
       def check_results(results)
         return results[0][:result] if results.size == 1
         results.reduce(true) do |result, res|
-          case res[:type]
+          case res[:operator]
             when 'if'
               res[:result]
             when 'and'
@@ -43,16 +44,18 @@ module Threesixty
       end
 
       def resolve_condition(condition)
-        type = condition['type']
         operator = condition['operator']
         relationship = condition['relationship']
         number_of_evaluator = condition['number_of_evaluator'].to_i
-        {type: operator, result: evaluators_by_relationship(relationship) >= number_of_evaluator}
+        {operator: operator, result: evaluators_by_relationship(relationship) >= number_of_evaluator}
+      end
+
+      def grouped_evaluators
+        @grouped_evaluators ||= @evaluations.joins(:relationship).group('relationships.name').count
       end
 
       def evaluators_by_relationship(relationship)
-        @evaluations.joins(:relationship).where(relationships: {name: relationship})
-                    .evaluator_nomination_completed.count
+        grouped_evaluators[relationship] || 0
       end
 
       private

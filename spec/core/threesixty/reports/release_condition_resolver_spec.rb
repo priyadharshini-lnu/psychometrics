@@ -13,6 +13,30 @@ describe Threesixty::Reports::ReleaseConditionResolver do
   let(:evaluator_1) { create(:threesixty_evaluator, campaign: campaign.campaign) }
   let(:evaluator_2) { create(:threesixty_evaluator, campaign: campaign.campaign) }
   let(:evaluator_3) { create(:threesixty_evaluator, campaign: campaign.campaign) }
+  let(:evaluator_4) { create(:threesixty_evaluator, campaign: campaign.campaign) }
+  describe '.call with multi AND conditions' do
+    before do
+      campaign.option = option
+      create_participant(campaign, subject, evaluator_1, manager)
+      create_participant(campaign, subject, evaluator_2, peer)
+
+      option.reports = {
+        "availability" => {
+          "conditions"=> []
+        }
+      }
+
+    end
+
+    it do
+      expect(described_class.call!(campaign, subject)).to be true
+    end
+
+    it do
+      resolver = described_class.new(campaign, subject)
+      expect(resolver.grouped_evaluators).to eq({'Manager' => 1, "Peer" => 1})
+    end
+  end
 
   describe '.call with multi AND conditions' do
     before do
@@ -22,16 +46,22 @@ describe Threesixty::Reports::ReleaseConditionResolver do
 
       option.reports = {
         "availability" => {
-          "conditions"=>
-            [
-              {
-                "operator"=>"if",
-                "conditions"=> [
-                  {"type"=>"evaluations", "operator"=>"if", "relationship"=>"Manager", "number_of_evaluator"=>"1"},
-                  {"type"=>"evaluations", "operator"=>"and", "relationship"=>"Peer", "number_of_evaluator"=>"2"}
-                ]
-              }
-            ],
+          "conditions"=> [
+            {
+              "operator"=>"if",
+              "conditions"=> [
+                {"type"=>"evaluations", "operator"=>"if", "relationship"=>"Manager", "number_of_evaluator"=>"1"},
+                {"type"=>"evaluations", "operator"=>"and", "relationship"=>"Peer", "number_of_evaluator"=>"2"}
+              ]
+            },
+            {
+              "operator" => "and",
+              "conditions"=> [
+                {"type"=>"evaluations", "operator"=>"if", "relationship"=>"Manager", "number_of_evaluator"=>"2"},
+                {"type"=>"evaluations", "operator"=>"or", "relationship"=>"Peer", "number_of_evaluator"=>"3"}
+              ]
+            }
+          ],
         }
       }
     end
@@ -42,6 +72,13 @@ describe Threesixty::Reports::ReleaseConditionResolver do
 
     it do
       create_participant(campaign, subject, evaluator_3, peer)
+      expect(described_class.call!(campaign, subject)).to be false
+    end
+
+
+    it do
+      create_participant(campaign, subject, evaluator_3, peer)
+      create_participant(campaign, subject, evaluator_4, peer)
       expect(described_class.call!(campaign, subject)).to be true
     end
   end
@@ -54,16 +91,15 @@ describe Threesixty::Reports::ReleaseConditionResolver do
 
       option.reports = {
         "availability" => {
-          "conditions"=>
-            [
-              {
-                "operator"=>"if",
-                "conditions"=> [
-                  {"type"=>"evaluations", "operator"=>"if", "relationship"=>"Manager", "number_of_evaluator"=>"2"},
-                  {"type"=>"evaluations", "operator"=>"or", "relationship"=>"Peer", "number_of_evaluator"=>"2"}
-                ]
-              }
-            ],
+          "conditions"=> [
+            {
+              "operator"=>"if",
+              "conditions"=> [
+                {"type"=>"evaluations", "operator"=>"if", "relationship"=>"Manager", "number_of_evaluator"=>"2"},
+                {"type"=>"evaluations", "operator"=>"or", "relationship"=>"Peer", "number_of_evaluator"=>"2"}
+              ]
+            }
+          ],
         }
       }
     end
@@ -88,7 +124,6 @@ describe Threesixty::Reports::ReleaseConditionResolver do
     before do
       campaign.option = option
       create_participant(campaign, subject, evaluator_1, manager)
-      create_participant(campaign, subject, evaluator_2, peer)
 
       option.reports = {
         "availability" => {
@@ -98,6 +133,7 @@ describe Threesixty::Reports::ReleaseConditionResolver do
                 "operator"=>"if",
                 "conditions"=> [
                   {"type"=>"evaluations", "operator"=>"if", "relationship"=>"Manager", "number_of_evaluator"=>"2"},
+                  {"type"=>"evaluations", "operator"=>"and", "relationship"=>"Peer", "number_of_evaluator"=>"1"},
                 ]
               }
             ],
@@ -110,7 +146,13 @@ describe Threesixty::Reports::ReleaseConditionResolver do
     end
 
     it do
-      create_participant(campaign, subject, evaluator_3, manager)
+      create_participant(campaign, subject, evaluator_2, manager)
+      expect(described_class.call!(campaign, subject)).to be false
+    end
+
+    it do
+      create_participant(campaign, subject, evaluator_2, manager)
+      create_participant(campaign, subject, evaluator_3, peer)
       expect(described_class.call!(campaign, subject)).to be true
     end
   end
@@ -129,26 +171,31 @@ describe Threesixty::Reports::ReleaseConditionResolver do
     let(:resolver) { described_class.new(campaign, subject) }
 
     it do
-      results = [{type: 'if', result: true}]
+      results = []
       expect(resolver.check_results(results)).to be true
     end
 
     it do
-      results = [{type: 'if', result: true}, {type: 'or', result: false}, {type: 'or', result: true},  ]
+      results = [{operator: 'if', result: true}]
       expect(resolver.check_results(results)).to be true
     end
 
     it do
-      results = [{type: 'if', result: true}, {type: 'and', result: false}]
+      results = [{operator: 'if', result: true}, {operator: 'or', result: false}, {operator: 'or', result: true},  ]
+      expect(resolver.check_results(results)).to be true
+    end
+
+    it do
+      results = [{operator: 'if', result: true}, {operator: 'and', result: false}]
       expect(resolver.check_results(results)).to be false
     end
 
     it do
-      results = [{type: 'if', result: true}, {type: 'and', result: true}]
+      results = [{operator: 'if', result: true}, {operator: 'and', result: true}]
       expect(resolver.check_results(results)).to be true
     end
     it do
-      results = [{type: 'if', result: false}, {type: 'or', result: true}, {type: 'and', result: false},]
+      results = [{operator: 'if', result: false}, {operator: 'or', result: true}, {operator: 'and', result: false},]
       expect(resolver.check_results(results)).to be false
     end
   end

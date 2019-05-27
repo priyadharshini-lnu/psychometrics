@@ -25,7 +25,7 @@ module Threesixty
       @subjects.select do |subject|
         if subject.user_id != current_user.id
           if manager_cannot_see_report_until_requirements_are_met?
-            subject.released?
+            subject.report_status_released?
           else
             true
           end
@@ -34,32 +34,34 @@ module Threesixty
     end
 
     def is_available?
-      return true if subject.released?
-      if options.reports['availability']['report_available_to_subject_on_criteria']
-        Threesixty::Reports::ReleaseConditionResolver.call!(@campaign, subject)
-      else
-        true
+      if subject.report_status_released? || !report_available_to_subject_on_criteria?
+        return true
       end
+      Threesixty::Reports::ReleaseConditionResolver.call!(@campaign, subject)
     end
 
     def self_can_access?
-      options.reports['access']['self_can_access']
+      options.reports.dig('access', 'self_can_access')
     end
 
     def manager_can_see_subject_report?
       manager_can_access? || manager_approves_reports?
     end
 
+    def report_available_to_subject_on_criteria?
+      options.reports.dig('availability', 'report_available_to_subject_on_criteria')
+    end
+
     def manager_can_access?
-      options.reports['access']['manager_can_access']
+      options.reports.dig('access', 'manager_can_access')
     end
 
     def manager_approves_reports?
-      options.reports['approval']['manager_approves_reports']
+      options.reports.dig('approval', 'manager_approves_reports')
     end
 
     def manager_cannot_see_report_until_requirements_are_met?
-      options.reports['access']['manager_cannot_see_report_until_requirements_are_met']
+      options.reports.dig('access', 'manager_cannot_see_report_until_requirements_are_met')
     end
 
     attr_reader :subject, :subjects, :options, :current_user
