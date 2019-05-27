@@ -28,7 +28,9 @@ module Hogan
 
     def load_results
       reports.each do |report|
-        Hogan::LoadResults.call!(assign_with_result, report, membership_with_result, project)
+        unless report.hogan_report_setting.nil?
+          Hogan::LoadResults.call!(assign_with_result, report, membership_with_result, project)
+        end
       end
     end
   end
