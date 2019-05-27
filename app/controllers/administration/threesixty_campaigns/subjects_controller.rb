@@ -26,7 +26,7 @@ module Administration
       end
 
       def destroy
-        resource.destroy!
+        ::Threesixty::Subjects::Remove.call!(resource, threesixty_campaign)
         render json: :ok
       end
 
@@ -45,7 +45,8 @@ module Administration
 
         @data = ::Reports::PrepareDataForReport.call!({
           users_report: user_report,
-          locale: user_locale
+          locale: user_locale,
+          current_user: current_user
         })
       end
 

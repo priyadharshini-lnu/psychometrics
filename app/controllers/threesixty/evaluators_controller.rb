@@ -22,7 +22,7 @@ module Threesixty
     end
 
     def update_status
-      @nomination.update_attributes(manager_status: params[:status])
+      @nomination.update_attributes(manager_nomination_status: params[:status])
       render json: @nomination, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
     end
 

@@ -14,7 +14,7 @@ module Threesixty
       respond_to do |format|
         format.html { render 'threesixty/campaigns/show' }
         format.json do
-          results = Threesixty::Reports::ResultsForSubject.call!(@users_report)
+          results = Threesixty::Reports::ResultsForSubject.call!(@users_report, current_user)
           render json: @users_report, report: @campaign.report,
                  results: results, include: '**'
         end

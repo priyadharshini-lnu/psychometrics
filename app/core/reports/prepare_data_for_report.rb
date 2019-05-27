@@ -2,15 +2,15 @@
 
 module Reports
   class PrepareDataForReport < BaseCommand
-    attr_reader :project, :subject, :membership, :users_report, :report, :locale, :evaluator
+    attr_reader :project, :membership, :users_report, :report, :locale, :evaluator, :current_user
 
     def initialize(args)
-
       @project     = args[:project]
       @membership  = args[:membership]
       @users_report = args[:users_report]
       @report      = args[:report] || @users_report.report
       @locale      = args[:locale]
+      @current_user = args[:current_user]
     end
 
     def call
@@ -26,7 +26,7 @@ module Reports
 
     def serialize_results
       if report.category_threesixty?
-        Threesixty::Reports::ResultsForSubject.call!(users_report)
+        Threesixty::Reports::ResultsForSubject.call!(users_report, current_user)
       else
         lookup_results.group_by { |result| result.object.assessment_id }
       end

@@ -1,8 +1,8 @@
 import { connect } from 'react-redux'
-import { getSubjectReport } from 'user/core/ThreesixtyCampaign/campaign/selectors'
+import { getSubjectReport, getApprovalReports } from 'user/core/ThreesixtyCampaign/campaign/selectors'
 
 const mapStateToProps = state => ({
-  reports: state.threeSixtyCampaign.campaign.reports,
+  approvalReports: getApprovalReports(state.threeSixtyCampaign),
   subjectReport: getSubjectReport(state.threeSixtyCampaign),
   options: state.threeSixtyCampaign.campaign.options.participants,
 })
