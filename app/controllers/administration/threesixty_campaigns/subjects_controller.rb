@@ -44,7 +44,7 @@ module Administration
         user_report = UsersReport.find_by!(campaign_id: threesixty_campaign.campaign_id, user_id: resource.user_id)
 
         @data = ::Reports::PrepareDataForReport.call!({
-          user_report: user_report,
+          users_report: user_report,
           locale: user_locale
         })
 

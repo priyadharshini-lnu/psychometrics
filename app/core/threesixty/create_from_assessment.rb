@@ -14,7 +14,7 @@ module Threesixty
 
       copy_dimension
       copy_factors_and_map_scoring(source_assessment.dimension)
-      RemapFactorForReportModules.call!(@report, @old_to_new_factor_mapping)
+      Threesixty::ReportsModules::RemapFactor.call!(@report, @old_to_new_factor_mapping)
 
       @assessment.update!(dimension_id: @dimension.id)
       @report.assessments_reports.update_all(assessment_id: @assessment.id)

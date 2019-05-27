@@ -2,14 +2,14 @@
 
 module Reports
   class PrepareDataForReport < BaseCommand
-    attr_reader :project, :subject, :membership, :user_report, :report, :locale, :evaluator
+    attr_reader :project, :subject, :membership, :users_report, :report, :locale, :evaluator
 
     def initialize(args)
 
       @project     = args[:project]
       @membership  = args[:membership]
-      @user_report = args[:user_report]
-      @report      = args[:report] || @user_report.report
+      @users_report = args[:users_report]
+      @report      = args[:report] || @users_report.report
       @locale      = args[:locale]
     end
 
@@ -17,7 +17,7 @@ module Reports
       translations = Translation.to_hash_for_report(report.id, report.assessment_ids, locale)
       available_translations = Translation.available_translation_for_report(report.id, report.assessment_ids)
       broadcast :ok,
-                user: Reports::UserSerializer.new(user_report&.user || membership.user).to_json,
+                user: Reports::UserSerializer.new(users_report&.user || membership.user).to_json,
                 results: serialize_results.to_json,
                 data: ReportSerializer.new(report).to_json(include: '**'),
                 locales: translations.to_json,
@@ -26,7 +26,7 @@ module Reports
 
     def serialize_results
       if report.category_threesixty?
-        Threesixty::Reports::ResultsForSubject.call!(user_report)
+        Threesixty::Reports::ResultsForSubject.call!(users_report)
       else
         lookup_results.group_by { |result| result.object.assessment_id }
       end
