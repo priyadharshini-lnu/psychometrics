@@ -81,8 +81,9 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   def normalize_hogan_type(type)
-    return 'Raw' if type == 'RAW'
-    return 'Percentile' if type == 'percentile'
+    # TODO (shuja): Add subscale
+    return 'RawScale' if type == 'RAW'
+    return 'PercentileScale' if type == 'percentile'
     raise "Not supported hogan type #{type}"
   end
 end
