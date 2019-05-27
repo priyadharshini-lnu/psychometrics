@@ -47,12 +47,6 @@ module Administration
           users_report: user_report,
           locale: user_locale
         })
-
-        respond_to do |format|
-          format.html do
-            render('shared/preview_report')
-          end
-        end
       end
 
       private
