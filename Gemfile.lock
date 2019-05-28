@@ -19,7 +19,7 @@ GIT
 
 GIT
   remote: git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git
-  revision: ef6b666df65f96f16ee1813b621bd22cf809b455
+  revision: a5412be92ce83e8322f5cc218792567763b6c423
   branch: master
   specs:
     psychometrics-reports-ui (0.0.1)
