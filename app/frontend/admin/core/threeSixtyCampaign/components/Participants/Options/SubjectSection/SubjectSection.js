@@ -3,6 +3,7 @@ import { Button } from 'antd'
 import CriteriaList from 'admin/core/project/components/CriteriaList'
 import OptionSection from 'admin/core/threeSixtyCampaign/components/common/Options/Section'
 import ExpandableOption from 'admin/core/threeSixtyCampaign/components/common/Options/Expandable'
+import NominationRequirementModal from './NominationRequirementModal'
 
 export default function SubjectSection ({
   options,
@@ -10,6 +11,7 @@ export default function SubjectSection ({
   addDatasheetCriteriaWithDefaultValue,
   removeDatasheetCriteria,
   updateDatasheetCriteria,
+  openNominationRequirementModal
 }) {
   const OBJECT_KEY = 'subject'
 
@@ -27,6 +29,7 @@ export default function SubjectSection ({
 
   return (
     <OptionSection label="Subject Options">
+      <NominationRequirementModal />
       <ExpandableOption label="Subject Self Evaluates" {...parametersForSwitch('canEvaluateSelf')}>
         <ExpandableOption
           label="Limit self-evaluators by criteria"
@@ -41,7 +44,7 @@ export default function SubjectSection ({
       <ExpandableOption
         label="Subject Nominates Evaluators"
         {...parametersForSwitch('canNominateEvaluators')}
-        actionable={<Button size="small">Define Nomination requirement</Button>}
+        actionable={<Button size="small" onClick={openNominationRequirementModal}>Define Nomination requirement</Button>}
       >
         <ExpandableOption
           label="Anyone not currently in the assessment"
