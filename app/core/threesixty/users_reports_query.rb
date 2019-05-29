@@ -1,8 +1,10 @@
 module Threesixty
   class UsersReportsQuery < Rectify::Query
-    def initialize(campaign, subjects)
+    def initialize(campaign, subjects, current_user)
       @campaign = campaign
-      @user_ids = subjects.map(&:user_id)
+      @user_ids = subjects.query.select do |subject|
+        subject.user_id != current_user.id || subject.report_approved?
+      end.map(&:user_id)
     end
 
     def query

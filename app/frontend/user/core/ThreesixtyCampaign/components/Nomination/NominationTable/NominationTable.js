@@ -101,7 +101,7 @@ export default function NominationTable (props) {
         <Column title="Requirements" key="title" render={renderRequirementCell} />
         <Column title="Name" key="name" render={renderNameCell} width="40%" />
         <Column title="Approval Status" render={renderApprovalStatus} key="status" />
-        <Column title="Evaluation Status" render={renderStatus} key="evaluatorStatus" />
+        <Column title="Evaluation Status" render={renderStatus} key="evaluatorNominationStatus" />
 
         <Column
           key="action"

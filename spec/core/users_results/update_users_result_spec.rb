@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ::UsersResults::UpdateUsersResult do
-  let(:users_result)  { double('users_result', subject: 'subject') }
+  let(:users_result)  { double('users_result', subject: 'subject', evaluator: 'evaluator') }
   let(:evaluator_user)  { double('user', id: 1) }
   let(:threesixty_campaign)  { double('threesixty_campaign', id: 1) }
 

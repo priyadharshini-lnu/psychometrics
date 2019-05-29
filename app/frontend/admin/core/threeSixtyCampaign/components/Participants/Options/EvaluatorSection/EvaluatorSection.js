@@ -1,6 +1,6 @@
 import React from 'react'
-import OptionSection from '../OptionSection'
-import ExpandableOption from '../ExpandableOption'
+import OptionSection from 'admin/core/threeSixtyCampaign/components/common/Options/Section'
+import ExpandableOption from 'admin/core/threeSixtyCampaign/components/common/Options/Expandable'
 
 export default function ManagerSection ({
   options,
