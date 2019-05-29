@@ -1,0 +1,64 @@
+.nameContainer {
+  border-bottom: 1px solid #bbb;
+
+  .name {
+    display: inline-block;
+    padding: 10px 24px;
+    display: inline-block;
+    width: 85%;
+  }
+
+  .menuIcon {
+    display: none;
+  }
+
+  &:not(.activeNameContainer):hover {
+    background-color: #eee;
+    cursor: pointer
+  }
+}
+
+.activeNameContainer {
+  background-color: #eee;
+
+  .menuIcon {
+    display: inline-block;
+    background-color: #ccc;
+    padding: 10px 0px;
+    width: 15%;
+    text-align: center;
+    vertical-align: top;
+    cursor: pointer;
+  }
+}
+
+.conditionTitle {
+  padding: 12px 20px;
+  border-top: 1px solid #eee;
+  border-bottom: 1px solid #eee;
+  font-weight: 600
+}
+
+.conditionsContainer {
+  padding: 10px 20px;
+}
+
+.addSubjectConditionLink{
+  color: #1890ff;
+  cursor: pointer;
+}
+
+.inputElement {
+  width: 120px !important;
+  margin-right: 10px !important;
+}
+
+.operator {
+  font-weight: bold;
+  font-size: 16px;
+  width: 85px !important;
+}
+
+.width80 {
+  width: 80px !important;
+}

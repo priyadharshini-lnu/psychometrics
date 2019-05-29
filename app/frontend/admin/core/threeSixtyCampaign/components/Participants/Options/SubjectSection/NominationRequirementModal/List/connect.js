@@ -1,16 +1,22 @@
 import { connect } from 'react-redux'
-import { closeModal } from 'admin/core/temp/modals'
 import {
   add as addNominationRequirement,
+  moveDown,
+  moveUp,
+  changeSelectedIndex
 } from 'admin/core/threeSixtyCampaign/nominationRequirements/index.js'
 
 export default connect(({
+    threeSixtyCampaign: { nominationRequirements },
     temp: { modals: { current } },
   }) => ({
     currentModal: current,
+    nominationRequirements,
   }),
   {
-    closeModal,
-    addNominationRequirement
+    addNominationRequirement,
+    moveDown,
+    moveUp,
+    changeSelectedIndex
   },
 )
