@@ -36,12 +36,7 @@ module Administration
       end
 
       def destroy
-        evaluator = ::Threesixty::Evaluator.find_by!(user_id: resource.evaluator_id, campaign: threesixty_campaign.campaign)
-        subject = ::Threesixty::Subject.find_by!(user_id: resource.subject_id, campaign: threesixty_campaign.campaign)
-
         resource.destroy!
-        evaluator.decrement!(:evaluations_count)
-        subject.decrement!(:evaluators_count)
         render json: :ok
       end
 

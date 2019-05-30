@@ -28,7 +28,7 @@ module Administration
 
           respond_to do |format|
             format.html do
-              render('_preview', layout: 'pdf') if params[:export]
+              render('shared/preview_report', layout: 'pdf') if params[:export]
             end
             format.pdf do
               add_cookie_for_file_download

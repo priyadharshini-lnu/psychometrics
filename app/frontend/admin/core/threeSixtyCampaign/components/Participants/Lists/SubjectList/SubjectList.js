@@ -17,6 +17,7 @@ export default function SubjectList ({
   remove,
   subjects,
   openModal,
+  removeUser,
   match: {
     params: { campaignId },
   },
@@ -71,8 +72,8 @@ export default function SubjectList ({
                     campaignId,
                     update,
                     remove,
-                  })
-                  }
+                    removeUser,
+                  })}
                   trigger={['click']}
                 >
                   <div className={css.actions}>

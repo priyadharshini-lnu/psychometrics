@@ -1,8 +1,8 @@
 import React from 'react'
 import { Button } from 'antd'
 import CriteriaList from 'admin/core/project/components/CriteriaList'
-import OptionSection from '../OptionSection'
-import ExpandableOption from '../ExpandableOption'
+import OptionSection from 'admin/core/threeSixtyCampaign/components/common/Options/Section'
+import ExpandableOption from 'admin/core/threeSixtyCampaign/components/common/Options/Expandable'
 
 export default function SubjectSection ({
   options,

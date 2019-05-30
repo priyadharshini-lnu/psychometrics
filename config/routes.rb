@@ -185,6 +185,9 @@ Rails.application.routes.draw do
             post :create_all
             post :search
           end
+          member do
+            get :preview_report
+          end
         end
         resources :evaluators do
           collection do
@@ -208,6 +211,7 @@ Rails.application.routes.draw do
       member do
         delete 'reset'
         delete 'reset_nominations'
+        delete 'remove_user'
       end
     end
 
