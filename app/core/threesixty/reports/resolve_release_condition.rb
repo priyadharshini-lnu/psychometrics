@@ -51,7 +51,7 @@ module Threesixty
       end
 
       def grouped_evaluators
-        @grouped_evaluators ||= @evaluations.joins(:relationship).group('relationships.name').count
+        @grouped_evaluators ||= @evaluations.joins(:relationship).group('relationships.id').count
       end
 
       def evaluators_by_relationship(relationship)

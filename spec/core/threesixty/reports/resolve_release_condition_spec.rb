@@ -34,7 +34,7 @@ describe Threesixty::Reports::ResolveReleaseCondition do
 
     it do
       resolver = described_class.new(campaign, subject)
-      expect(resolver.grouped_evaluators).to eq({'Manager' => 1, "Peer" => 1})
+      expect(resolver.grouped_evaluators).to eq({manager.id => 1, peer.id => 1})
     end
   end
 
@@ -50,15 +50,15 @@ describe Threesixty::Reports::ResolveReleaseCondition do
             {
               "operator"=>"if",
               "conditions"=> [
-                {"type"=>"evaluations", "operator"=>"if", "relationship"=>"Manager", "number_of_evaluator"=>"1"},
-                {"type"=>"evaluations", "operator"=>"and", "relationship"=>"Peer", "number_of_evaluator"=>"2"}
+                {"type"=>"evaluations", "operator"=>"if", "relationship"=>manager.id, "number_of_evaluator"=>"1"},
+                {"type"=>"evaluations", "operator"=>"and", "relationship"=>peer.id, "number_of_evaluator"=>"2"}
               ]
             },
             {
               "operator" => "and",
               "conditions"=> [
-                {"type"=>"evaluations", "operator"=>"if", "relationship"=>"Manager", "number_of_evaluator"=>"2"},
-                {"type"=>"evaluations", "operator"=>"or", "relationship"=>"Peer", "number_of_evaluator"=>"3"}
+                {"type"=>"evaluations", "operator"=>"if", "relationship"=>manager.id, "number_of_evaluator"=>"2"},
+                {"type"=>"evaluations", "operator"=>"or", "relationship"=>peer.id, "number_of_evaluator"=>"3"}
               ]
             }
           ],
@@ -95,8 +95,8 @@ describe Threesixty::Reports::ResolveReleaseCondition do
             {
               "operator"=>"if",
               "conditions"=> [
-                {"type"=>"evaluations", "operator"=>"if", "relationship"=>"Manager", "number_of_evaluator"=>"2"},
-                {"type"=>"evaluations", "operator"=>"or", "relationship"=>"Peer", "number_of_evaluator"=>"2"}
+                {"type"=>"evaluations", "operator"=>"if", "relationship"=>manager.id, "number_of_evaluator"=>"2"},
+                {"type"=>"evaluations", "operator"=>"or", "relationship"=>peer.id, "number_of_evaluator"=>"2"}
               ]
             }
           ],
@@ -132,8 +132,8 @@ describe Threesixty::Reports::ResolveReleaseCondition do
               {
                 "operator"=>"if",
                 "conditions"=> [
-                  {"type"=>"evaluations", "operator"=>"if", "relationship"=>"Manager", "number_of_evaluator"=>"2"},
-                  {"type"=>"evaluations", "operator"=>"and", "relationship"=>"Peer", "number_of_evaluator"=>"1"},
+                  {"type"=>"evaluations", "operator"=>"if", "relationship"=>manager.id, "number_of_evaluator"=>"2"},
+                  {"type"=>"evaluations", "operator"=>"and", "relationship"=>peer.id, "number_of_evaluator"=>"1"},
                 ]
               }
             ],
