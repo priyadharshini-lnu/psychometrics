@@ -29,7 +29,8 @@ module Exports
                                map { |a| scoring && factors_scoring["#{a['choice']}-#{a['scale']}"] || a['scale'] + 1 }.join(',')
             end
           end
-          parsed_result
+          required_size = header(question).size
+          Utility::Array.ensure_size(parsed_result, required_size)
         end
 
         # Parse HEADER data for XLSX
