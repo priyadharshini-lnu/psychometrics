@@ -38,6 +38,8 @@ en:
         gap: 'Gap'
         negative_gap: 'Negative Gaps'
         scoring_category: 'Scoring Category'
+        no_negative_gaps: 'There are no Negative Gaps'
+        no_positive_gaps: 'There are no Positive Gaps'
       three_sixty_default:
         statistic: 'Statistic'
         value: 'Value'
