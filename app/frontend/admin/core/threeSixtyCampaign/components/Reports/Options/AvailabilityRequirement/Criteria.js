@@ -46,7 +46,7 @@ export default function Criteria ({
         dropdownMatchSelectWidth={false}
         onChange={value => updateAvailiblityCondition('relationship', value)}
       >
-        {relationships.map((r) => (<Select.Option key={r.id} key={r.id}>{r.name}</Select.Option>))}
+        {relationships.map(r => (<Select.Option key={r.id} value={r.id}>{r.name}</Select.Option>))}
       </Select>
       <span>
         <Icon type="minus-circle" className={css.deleteIcon} onClick={removeAvailiblityCondition} />

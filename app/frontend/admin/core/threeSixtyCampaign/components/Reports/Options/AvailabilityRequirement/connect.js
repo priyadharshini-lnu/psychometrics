@@ -12,7 +12,7 @@ import { getRelationships } from 'admin/core/threeSixtyCampaign/relationships'
 export default connect(
   state => ({
     conditions: getAvailabilityConditions(state),
-    relationships: getRelationships(state)
+    relationships: getRelationships(state),
   }),
   {
     addAvailiblityCondition,
