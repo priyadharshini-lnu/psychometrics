@@ -11,7 +11,7 @@ const { Content } = Layout
 
 export default function Report ({
   report: {
-    loaded, report, results, user, approvalStatus, pdf, status,
+    loaded, report, results, user, campaign, approvalStatus, pdf, status,
   }, match: { params }, fetchReport, updateStatus,
 }) {
   useEffect(() => {
@@ -36,7 +36,7 @@ export default function Report ({
             <Title level={4}>
               Report for
               {' '}
-              {userPresenter.getFullName(user)}
+              {userPresenter.getFullNameWithEmail(user)}
             </Title>
             <Col>
               {approvalStatus !== 'waiting'
@@ -62,6 +62,7 @@ export default function Report ({
           </Row>
           <div
             id="threesixty-report"
+            data-campaign={JSON.stringify(campaign)}
             data-data={JSON.stringify(report)}
             data-results={JSON.stringify(results)}
             data-user={JSON.stringify(user)}

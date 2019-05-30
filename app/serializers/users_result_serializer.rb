@@ -1,6 +1,6 @@
 class UsersResultSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :answers, :results, :scoring, :user_id, :assessment_id,
-             :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager
+             :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager, :manager_evaluation_status
 
   attribute :relationship, if: -> { object.assessment.threesixty? }
 
@@ -26,6 +26,10 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   def user_id
     object.evaluator_id
+  end
+
+  def manager_evaluation_status
+    participant&.manager_evaluation_status
   end
 
   def relationship

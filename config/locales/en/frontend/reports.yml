@@ -38,6 +38,8 @@ en:
         gap: 'Gap'
         negative_gap: 'Negative Gaps'
         scoring_category: 'Scoring Category'
+        no_negative_gaps: 'There are no Negative Gaps'
+        no_positive_gaps: 'There are no Positive Gaps'
       three_sixty_default:
         statistic: 'Statistic'
         value: 'Value'
@@ -55,7 +57,7 @@ en:
         subject: 'Subject'
         number_of_evaluators_invited: 'Number of evaluators invited'
         number_of_evaluators_responded: 'Number of evaluators responded'
-        number_of_evaluators_received: 'Number of evaluators received'
+        number_of_evaluators_received: 'Number of evaluations received'
         total_evaluations: 'Total evaluations for this assessment'
         number_by_filter_evaluations_received: "Number of %{filter} evaluations received"
       highest_lowest:

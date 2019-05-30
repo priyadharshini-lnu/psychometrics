@@ -16,7 +16,7 @@ module Threesixty
         format.json do
           results = Threesixty::Reports::ResultsForSubject.call!(@users_report, current_user)
           render json: @users_report, report: @campaign.report,
-                 results: results, include: '**'
+                 results: results, threesixty_campaign: @campaign, include: '**'
         end
       end
     end

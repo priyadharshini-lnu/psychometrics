@@ -1,6 +1,8 @@
 class UsersReportSerializer < ActiveModel::Serializer
   attributes :id, :status, :campaign_id, :pdf, :is_self, :results, :approval_status
 
+  attribute :campaign, if: -> { instance_options[:threesixty_campaign] }
+
   has_one :user, serializer: UserSerializer
   has_one :report, serializer: ReportSerializer
 
@@ -14,6 +16,10 @@ class UsersReportSerializer < ActiveModel::Serializer
 
   def approval_status
     object.threesixty_subject&.report_approval_status
+  end
+
+  def campaign
+    Threesixty::CampaignDetailsSerializer.new(instance_options[:threesixty_campaign], users_report: object).to_h
   end
 
   def results
