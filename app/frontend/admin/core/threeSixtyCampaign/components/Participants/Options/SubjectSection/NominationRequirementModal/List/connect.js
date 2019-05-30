@@ -3,6 +3,7 @@ import {
   add as addNominationRequirement,
   moveDown,
   moveUp,
+  remove,
   changeSelectedIndex
 } from 'admin/core/threeSixtyCampaign/nominationRequirements/index.js'
 
@@ -17,6 +18,7 @@ export default connect(({
     addNominationRequirement,
     moveDown,
     moveUp,
+    remove,
     changeSelectedIndex
   },
 )

@@ -51,19 +51,19 @@ export const add = campaignId => ({
   payload: { campaignId }
 })
 
-export const remove = (campaignId, index) => ({
+export const remove = (index) => ({
   type: REMOVE_NOMINATION_REQUIREMENT,
-  payload: { campaignId, index }
+  payload: { index }
 })
 
-export const moveUp = (campaignId, index) => ({
+export const moveUp = (index) => ({
   type: MOVE_UP_NOMINATION_REQUIREMENT,
-  payload: { campaignId, index }
+  payload: { index }
 })
 
-export const moveDown = (campaignId, index) => ({
+export const moveDown = (index) => ({
   type: MOVE_DOWN_NOMINATION_REQUIREMENT,
-  payload: { campaignId, index }
+  payload: { index }
 })
 
 export const changeSelectedIndex = (index) => ({
@@ -107,7 +107,7 @@ export default function reducer (state = defaultState, { type, payload }) {
         conditions: []
       })}
     case REMOVE_NOMINATION_REQUIREMENT:
-      return { ...state, list: _.filter(state.list, (_, i) => payload.index !== i) }
+      return { ...state, selectedIndex: 0, list: _.filter(state.list, (_, i) => payload.index !== i) }
     case MOVE_UP_NOMINATION_REQUIREMENT:
       return { ...state, list: moveUpRequirement(state.list, payload.index) }
     case MOVE_DOWN_NOMINATION_REQUIREMENT:

@@ -9,6 +9,7 @@ import ConditionsContainer from './ConditionsContainer';
 export default function NominationRequirementModal ({
   currentModal,
   closeModal,
+  nominationsPresent,
   addNominationRequirement,
   match: {
     params: { campaignId },
@@ -43,10 +44,11 @@ export default function NominationRequirementModal ({
         <Col span={6} style={{borderRight: '1px solid #ccc', height: '500px'}}>
           <List />
         </Col>
-        <Col span={18}>
-          <ConditionsContainer />
-        </Col>
-      </Row>
+        {nominationsPresent &&
+          <Col span={18}>
+            <ConditionsContainer />
+          </Col>}
+        </Row>
     </Modal>
   )
 }

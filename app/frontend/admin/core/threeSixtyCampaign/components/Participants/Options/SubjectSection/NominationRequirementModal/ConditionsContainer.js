@@ -1,10 +1,6 @@
 import React from 'react'
 import _ from 'lodash'
-import {
-  Modal, Button, Icon, Row, Col, Dropdown, Menu
-} from 'antd'
 import css from './style'
-import cs from 'classnames'
 import SubjectConditions from './SubjectConditions'
 import Conditions from './conditions'
 

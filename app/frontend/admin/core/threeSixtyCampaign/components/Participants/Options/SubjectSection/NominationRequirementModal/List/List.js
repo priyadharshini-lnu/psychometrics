@@ -10,6 +10,7 @@ export default function List ({
   nominationRequirements: { selectedIndex, list },
   moveDown,
   moveUp,
+  remove,
   changeSelectedIndex,
   match: {
     params: { campaignId },
@@ -19,10 +20,13 @@ export default function List ({
   const handleMenuClick = _.curry((index, { key }) => {
     switch(key) {
       case 'moveUp':
-        moveUp(campaignId, index)
+        moveUp(index)
         break
       case 'moveDown':
-        moveDown(campaignId, index)
+        moveDown(index)
+        break
+      case 'delete':
+        remove(index)
         break
     }
   })
