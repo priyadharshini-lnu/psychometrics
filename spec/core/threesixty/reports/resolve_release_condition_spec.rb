@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Threesixty::Reports::ReleaseConditionResolver do
+describe Threesixty::Reports::ResolveReleaseCondition do
   let(:current_user) { create(:user, email: 'a@a.com') }
   let(:campaign) { create(:threesixty_campaign) }
   let(:option) { create(:threesixty_option, threesixty_campaign: campaign) }

@@ -2,7 +2,7 @@
 
 module Threesixty
   module Reports
-    class ReleaseConditionResolver < BaseCommand
+    class ResolveReleaseCondition < BaseCommand
       attr_reader :campaign, :subject, :options
 
       def initialize(campaign, subject)
