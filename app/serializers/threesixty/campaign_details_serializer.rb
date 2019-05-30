@@ -12,7 +12,7 @@ module Threesixty
       if object.option.participants.dig('manager', 'can_approves_evaluations')
         Participant.where(subject_id: user_id, manager_nomination_status: :approved, campaign_id: object.campaign_id).count
       else
-        UsersResult.where(subject_id: user_id, status: :completed).count
+        UsersResult.where(subject_id: user_id, status: :completed, assessment_id: object.assessment_id).count
       end
     end
 
