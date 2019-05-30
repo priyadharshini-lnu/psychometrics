@@ -15,9 +15,8 @@ module Threesixty
         format.html { render 'threesixty/campaigns/show' }
         format.json do
           results = Threesixty::Reports::ResultsForSubject.call!(@users_report, current_user)
-          campaign_details = CampaignDetailsSerializer.new(@campaign, users_report: @users_report).to_h
           render json: @users_report, report: @campaign.report,
-                 results: results, campaign_details: campaign_details, include: '**'
+                 results: results, threesixty_campaign: @campaign, include: '**'
         end
       end
     end
