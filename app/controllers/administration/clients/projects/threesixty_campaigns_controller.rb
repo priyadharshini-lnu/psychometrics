@@ -10,7 +10,8 @@ module Administration
         def show
           @init_state = {
             project: {
-              datasheetFields: resource.datasheet_column_names
+              datasheetFields: resource.datasheet_column_names,
+              relationships: ::Relationships::ByCampaign.new(resource.campaign).to_a
             },
             threeSixtyCampaign: {
               id: resource.id

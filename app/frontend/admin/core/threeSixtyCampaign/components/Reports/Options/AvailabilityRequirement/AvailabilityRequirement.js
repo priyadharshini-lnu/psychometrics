@@ -7,6 +7,7 @@ import css from './style.scss'
 
 export default function AvailabilityRequirement ({
   conditions,
+  relationships,
   addAvailiblityCondition,
   removeAvailiblityCondition,
   updateAvailiblityCondition,
@@ -39,6 +40,7 @@ export default function AvailabilityRequirement ({
               updateAvailiblityCondition={(field, value) => (
                 updateAvailiblityCondition(parentIndex, childIndex, field, value)
               )}
+              relationships={relationships}
               condition={condition}
             />
           </div>

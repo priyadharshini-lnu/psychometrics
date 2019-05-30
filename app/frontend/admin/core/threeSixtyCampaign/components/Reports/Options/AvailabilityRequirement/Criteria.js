@@ -7,6 +7,7 @@ export default function Criteria ({
   condition: {
     operator, type, numberOfEvaluator, relationship,
   },
+  relationships,
   addAvailiblityCondition,
   updateAvailiblityCondition,
   removeAvailiblityCondition,
@@ -45,10 +46,7 @@ export default function Criteria ({
         dropdownMatchSelectWidth={false}
         onChange={value => updateAvailiblityCondition('relationship', value)}
       >
-        <Select.Option key="Manager">Managers</Select.Option>
-        <Select.Option key="Direct Report">Direct Report</Select.Option>
-        <Select.Option key="Peers">Peers</Select.Option>
-        <Select.Option key="Self">Self</Select.Option>
+        {relationships.map((r) => (<Select.Option key={r.id} key={r.id}>{r.name}</Select.Option>))}
       </Select>
       <span>
         <Icon type="minus-circle" className={css.deleteIcon} onClick={removeAvailiblityCondition} />
