@@ -185,6 +185,9 @@ Rails.application.routes.draw do
             post :create_all
             post :search
           end
+          member do
+            get :preview_report
+          end
         end
         resources :evaluators do
           collection do

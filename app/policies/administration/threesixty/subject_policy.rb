@@ -26,6 +26,10 @@ module Administration
       def spoof?
         index?
       end
+
+      def preview_report?
+        index?
+      end
     end
   end
 end

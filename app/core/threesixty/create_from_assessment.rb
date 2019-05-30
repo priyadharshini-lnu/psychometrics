@@ -14,11 +14,12 @@ module Threesixty
 
       copy_dimension
       copy_factors_and_map_scoring(source_assessment.dimension)
+      Threesixty::ReportsModules::RemapFactor.call!(@report, @old_to_new_factor_mapping)
 
-      @assessment.dimension_id = @dimension.id
-      @report.assessments_reports.destroy_all
-      @report.assessments << @assessment
-      @report.assessment_id = @assessment
+      @assessment.update!(dimension_id: @dimension.id)
+      @report.assessments_reports.update_all(assessment_id: @assessment.id)
+      @report.modules.update_all(assessment_id: @assessment.id)
+      @report.reload.update!(assessment_id: @assessment.id)
       @campaign.assessment_id = @assessment.id
       @campaign.report_id = @report.id
 
@@ -34,11 +35,13 @@ module Threesixty
     end
 
     def copy_factors_and_map_scoring(source_dimension)
+      @old_to_new_factor_mapping = {}
       campaign_factors = @campaign.factors || []
       source_dimension.factors.where(id: campaign_factors).each do |factor|
         new_factor = factor.clone_and_save
         new_factor.dimension_id = @dimension.id
         new_factor.save!
+        @old_to_new_factor_mapping[factor.id] = new_factor
         @assessment.factors_scoring.where(factor_id: factor.id).update_all(factor_id: new_factor.id)
       end
 

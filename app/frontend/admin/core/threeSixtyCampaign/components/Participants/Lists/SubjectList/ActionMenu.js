@@ -95,7 +95,9 @@ const ActionsMenu = ({
         </a>
       </Menu.Item>
       <Menu.Item key="1">
-        <a href="nth">View Report</a>
+        <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/preview_report`}>
+          View Report
+        </a>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="3">
