@@ -37,7 +37,7 @@ module Threesixty
       if subject.report_status_released? || !report_available_to_subject_on_criteria?
         return true
       end
-      Threesixty::Reports::ReleaseConditionResolver.call!(@campaign, subject)
+      Threesixty::Reports::ResolveReleaseCondition.call!(@campaign, subject)
     end
 
     def self_can_access?
