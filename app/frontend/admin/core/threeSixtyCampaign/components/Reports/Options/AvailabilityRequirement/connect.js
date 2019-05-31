@@ -7,9 +7,13 @@ import {
   moveConditionToNextLogicSet,
 } from 'admin/core/threeSixtyCampaign/reportOptions/actions'
 import { getAvailabilityConditions } from 'admin/core/threeSixtyCampaign/reportOptions/selectors'
+import { getRelationships } from 'admin/core/threeSixtyCampaign/relationships'
 
 export default connect(
-  state => ({ conditions: getAvailabilityConditions(state) }),
+  state => ({
+    conditions: getAvailabilityConditions(state),
+    relationships: getRelationships(state),
+  }),
   {
     addAvailiblityCondition,
     removeAvailiblityCondition,

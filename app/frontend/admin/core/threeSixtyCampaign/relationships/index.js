@@ -1,6 +1,10 @@
+import _ from 'lodash'
+
 const FETCH_RELATIONSHIPS = 'threeSixty/relationships/FETCH_RELATIONSHIPS'
 
 export const defaultState = []
+
+export const getRelationships = state => _.get(state, ['project', 'relationships'])
 
 export const fetchRelationships = campaignId => ({
   type: FETCH_RELATIONSHIPS,

@@ -46,11 +46,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -4772,6 +4773,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -5292,11 +5295,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -10022,6 +10026,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -10542,11 +10548,12 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -15268,6 +15275,8 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -15788,11 +15797,12 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -20516,6 +20526,8 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -21036,11 +21048,12 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -25762,6 +25775,8 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -26282,11 +26297,12 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -31009,6 +31025,8 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -31529,11 +31547,12 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -36255,6 +36274,8 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -36775,11 +36796,12 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -41501,6 +41523,8 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -42021,11 +42045,12 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -46747,6 +46772,8 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -47267,11 +47294,12 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -51993,6 +52021,8 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -52513,11 +52543,12 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -57239,6 +57270,8 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "gap": "(es) Gap",
         "item": "(es) Item",
         "negative_gap": "(es) Negative Gap",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "(es) Positive Gap",
         "rank": "(es) Rank",
         "scoring_category": "(es) Scoring Category"
@@ -57759,11 +57792,12 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -62485,6 +62519,8 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -63005,11 +63041,12 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -67731,6 +67768,8 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -68251,11 +68290,12 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -72977,6 +73017,8 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -73497,11 +73539,12 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -78223,6 +78266,8 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -78743,11 +78788,12 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -83471,6 +83517,8 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -83991,11 +84039,12 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -88717,6 +88766,8 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -89237,11 +89288,12 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -93960,6 +94012,8 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -94480,11 +94534,12 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -99206,6 +99261,8 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -99726,11 +99783,12 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -104452,6 +104510,8 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -104972,11 +105032,12 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -109695,6 +109756,8 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -110215,11 +110278,12 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -114942,6 +115006,8 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -115462,11 +115528,12 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -120189,6 +120256,8 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -120709,11 +120778,12 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -125435,6 +125505,8 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -125955,11 +126027,12 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -130681,6 +130754,8 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -131201,11 +131276,12 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -135927,6 +136003,8 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -136447,11 +136525,12 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -141175,6 +141254,8 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -141695,11 +141776,12 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -146421,6 +146503,8 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -146941,11 +147025,12 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -151667,6 +151752,8 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -152187,11 +152274,12 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -156914,6 +157002,8 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -157434,11 +157524,12 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -162163,6 +162254,8 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -162683,11 +162776,12 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -167410,6 +167504,8 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -167930,11 +168026,12 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -172658,6 +172755,8 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -173178,11 +173277,12 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -177906,6 +178006,8 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -178426,11 +178528,12 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -183152,6 +183255,8 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -183672,11 +183777,12 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -188395,6 +188501,8 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -188915,11 +189023,12 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -193638,6 +193747,8 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -194158,11 +194269,12 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -198886,6 +198998,8 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -199406,11 +199520,12 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -204132,6 +204247,8 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -204652,11 +204769,12 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -209378,6 +209496,8 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -209898,11 +210018,12 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -214624,6 +214745,8 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -215144,11 +215267,12 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -219870,6 +219994,8 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -220390,11 +220516,12 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -225116,6 +225243,8 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -225636,11 +225765,12 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -230362,6 +230492,8 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "gap": "(es) Gap",
         "item": "(es) Item",
         "negative_gap": "(es) Negative Gap",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "(es) Positive Gap",
         "rank": "(es) Rank",
         "scoring_category": "(es) Scoring Category"
@@ -230882,11 +231014,12 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -235608,6 +235741,8 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -236128,11 +236263,12 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -240854,6 +240990,8 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -241374,11 +241512,12 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -246100,6 +246239,8 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -246620,11 +246761,12 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -251346,6 +251488,8 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -251866,11 +252010,12 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -256592,6 +256737,8 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -257112,11 +257259,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -261838,6 +261986,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -262358,11 +262508,12 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -267084,6 +267235,8 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -267604,11 +267757,12 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -272330,6 +272484,8 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -272850,11 +273006,12 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -277576,6 +277733,8 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"
@@ -278096,11 +278255,12 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
             },
             "relationship_name": {
               "blank": "Relationship can't be blank",
-              "invalid": "Relationship is invalid"
+              "invalid": "Relationship %{name} is invalid"
             },
             "subject_email": {
               "blank": "Subject Email can't be blank",
-              "invalid": "Subject Email is invalid"
+              "invalid": "Subject Email is invalid",
+              "not_exists": "Subject not found with email address %{email}"
             }
           }
         },
@@ -282822,6 +282982,8 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "gap": "Gap",
         "item": "Item",
         "negative_gap": "Negative Gaps",
+        "no_negative_gaps": "There are no Negative Gaps",
+        "no_positive_gaps": "There are no Positive Gaps",
         "positive_gap": "Positive Gaps",
         "rank": "Rank",
         "scoring_category": "Scoring Category"

@@ -1,6 +1,6 @@
 module Reports
   class AssessmentSerializer < ActiveModel::Serializer
-    attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :dimension_id, :factors
+    attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :dimension_id, :factors, :factor_scoring_counters
 
     has_many :blocks, serializer: BlockSerializer do
       object.blocks.
@@ -10,6 +10,14 @@ module Reports
           joining { template.outer }.
           includes(questions_ams: :comments).
           where.has { (template.disabled == false) | (template.id == nil) }
+    end
+
+    def factor_scoring_counters
+      FactorsScoring.select('count(id) as cache_counter, factor_id').
+        where(assessment_id: object.id).
+        group(:factor_id).
+        index_by(&:factor_id).
+        transform_values(&:cache_counter)
     end
 
     def factors
