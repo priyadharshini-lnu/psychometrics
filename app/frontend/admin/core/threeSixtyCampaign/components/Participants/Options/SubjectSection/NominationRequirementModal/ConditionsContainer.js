@@ -1,6 +1,5 @@
 import React from 'react'
-import _ from 'lodash'
-import css from './style'
+import css from './style.scss'
 import SubjectConditions from './SubjectConditions'
 import Conditions from './conditions'
 

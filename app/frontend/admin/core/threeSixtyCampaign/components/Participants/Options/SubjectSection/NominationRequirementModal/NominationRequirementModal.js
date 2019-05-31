@@ -1,19 +1,15 @@
 import React from 'react'
-import _ from 'lodash'
 import {
-  Modal, Button, Icon, Row, Col, Dropdown, Menu
+  Modal, Button, Icon, Row, Col,
 } from 'antd'
 import List from './List'
-import ConditionsContainer from './ConditionsContainer';
+import ConditionsContainer from './ConditionsContainer'
 
 export default function NominationRequirementModal ({
   currentModal,
   closeModal,
   nominationsPresent,
   addNominationRequirement,
-  match: {
-    params: { campaignId },
-  },
 }) {
   // if (currentModal !== 'NominationRequirement') return null
 
@@ -21,13 +17,13 @@ export default function NominationRequirementModal ({
 
   return (
     <Modal
-      width={900}
+      width={1000}
       title="Nomination Requirements"
-      bodyStyle={{padding: "0px"}}
+      bodyStyle={{ padding: '0px' }}
       visible
       onCancel={closeModal}
       footer={[
-        <Button key="add_requirement_set" type="primary" onClick={addNominationRequirement} style={{float: 'left'}}>
+        <Button key="add_requirement_set" type="primary" onClick={addNominationRequirement} style={{ float: 'left' }}>
           <Icon type="plus" />
           Add Requirement set
         </Button>,
@@ -41,14 +37,16 @@ export default function NominationRequirementModal ({
       ]}
     >
       <Row>
-        <Col span={6} style={{borderRight: '1px solid #ccc', height: '500px'}}>
+        <Col span={6} style={{ borderRight: '1px solid #ccc', height: '500px' }}>
           <List />
         </Col>
-        {nominationsPresent &&
+        {nominationsPresent
+          && (
           <Col span={18}>
             <ConditionsContainer />
-          </Col>}
-        </Row>
+          </Col>
+          )}
+      </Row>
     </Modal>
   )
 }

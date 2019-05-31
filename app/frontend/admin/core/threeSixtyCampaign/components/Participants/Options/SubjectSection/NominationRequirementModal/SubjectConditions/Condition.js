@@ -60,7 +60,7 @@ export default function Condition ({
 }
 
 function Operator ({
-  operator, update, remove, moveConditionToNextLogicSet,
+  operator, update, moveConditionToNextLogicSet,
 }) {
   const handleOperatorChange = (value) => {
     if (value === 'move_to_new_logic_set') {

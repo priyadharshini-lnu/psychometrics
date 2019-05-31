@@ -1,37 +1,47 @@
-import React from 'react'
+import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Icon, Dropdown, Menu
+  Icon, Dropdown, Menu, Input,
 } from 'antd'
-import css from '../style'
 import cs from 'classnames'
+import css from '../style.scss'
 
 export default function List ({
   nominationRequirements: { selectedIndex, list },
   moveDown,
   moveUp,
   remove,
+  rename,
+  copy,
   changeSelectedIndex,
-  match: {
-    params: { campaignId },
-  },
 }) {
+  const [renamingEnabled, setRenamingEnabled] = useState(false)
 
   const handleMenuClick = _.curry((index, { key }) => {
-    switch(key) {
+    switch (key) {
       case 'moveUp':
+        if (index === 0) { return }
         moveUp(index)
         break
       case 'moveDown':
+        if (index === list.length - 1) { return }
         moveDown(index)
         break
       case 'delete':
         remove(index)
         break
+      case 'rename':
+        setRenamingEnabled(true)
+        break
+      case 'copy':
+        copy()
+        break
+      default:
+        break
     }
   })
 
-  const menu = (handleMenuClick) => (
+  const menu = handleMenuClick => (
     <Menu onClick={handleMenuClick}>
       <Menu.Item key="moveUp">
         Move Up
@@ -49,26 +59,40 @@ export default function List ({
         Delete
       </Menu.Item>
     </Menu>
-  );
-
-  const handleNameClick = (index) => {
-    if (selectedIndex == index) {
-
-    } else {
-      changeSelectedIndex(index)
-    }
-  }
+  )
 
   return list.map((nominationRequirement, index) => {
+    const selected = selectedIndex === index
     return (
       <div
-        className={cs([css.nameContainer, { [css.activeNameContainer]: selectedIndex === index }])}
+        className={cs([
+          css.nameContainer,
+          { [css.activeNameContainer]: selectedIndex === index, [css.renamingEnabled]: selected && renamingEnabled },
+        ])}
         key={index}
-        onClick={() => handleNameClick(index)} >
-        <div className={css.name}>
-          {nominationRequirement.name}
+        role="button"
+        tabIndex={index}
+        onClick={() => selected || changeSelectedIndex(index)}
+      >
+        <div className={css.name} role="button" tabIndex={-1} onClick={() => selected && setRenamingEnabled(true)}>
+          {renamingEnabled && selected ? (
+            <Input
+              size="small"
+              value={nominationRequirement.name}
+              onBlur={() => setRenamingEnabled(false)}
+              onKeyPress={e => e.charCode === 13 && setRenamingEnabled(false)}
+              onChange={(e) => {
+                rename(e.target.value)
+              }}
+            />
+          ) : nominationRequirement.name}
         </div>
-        <Dropdown className='dropdown' overlay={() => menu(handleMenuClick(index))} placement="bottomLeft" trigger={['click']}>
+        <Dropdown
+          className="dropdown"
+          overlay={() => menu(handleMenuClick(index))}
+          placement="bottomLeft"
+          trigger={['click']}
+        >
           <div className={css.menuIcon}>
             <Icon type="caret-down" />
           </div>

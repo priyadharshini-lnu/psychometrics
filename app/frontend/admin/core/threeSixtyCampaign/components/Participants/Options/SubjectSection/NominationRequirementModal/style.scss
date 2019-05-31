@@ -18,6 +18,10 @@
   }
 }
 
+.nameContainer.renamingEnabled .name {
+  padding: 8px 24px;
+}
+
 .activeNameContainer {
   background-color: #eee;
 
@@ -61,4 +65,8 @@
 
 .width80 {
   width: 80px !important;
+}
+
+.deleteIcon {
+  margin-right: 3px;
 }

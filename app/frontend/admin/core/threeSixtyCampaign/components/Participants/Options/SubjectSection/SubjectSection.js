@@ -11,7 +11,7 @@ export default function SubjectSection ({
   addDatasheetCriteriaWithDefaultValue,
   removeDatasheetCriteria,
   updateDatasheetCriteria,
-  openNominationRequirementModal
+  openNominationRequirementModal,
 }) {
   const OBJECT_KEY = 'subject'
 
@@ -44,7 +44,9 @@ export default function SubjectSection ({
       <ExpandableOption
         label="Subject Nominates Evaluators"
         {...parametersForSwitch('canNominateEvaluators')}
-        actionable={<Button size="small" onClick={openNominationRequirementModal}>Define Nomination requirement</Button>}
+        actionable={
+          <Button size="small" onClick={openNominationRequirementModal}>Define Nomination requirement</Button>
+        }
       >
         <ExpandableOption
           label="Anyone not currently in the assessment"

@@ -4,21 +4,20 @@ import {
   remove,
   update,
   addNewLogicSetCondition,
-  moveConditionToNextLogicSet
+  moveConditionToNextLogicSet,
 } from 'admin/core/threeSixtyCampaign/nominationRequirements/subjectConditions'
 
 export default connect(({
-    project: { datasheetFields },
-    threeSixtyCampaign: { nominationRequirements: { list, selectedIndex } },
-  }) => ({
-    subjectConditions: list[selectedIndex].subjectConditions,
-    datasheetFields,
-  }),
-  {
-    add,
-    remove,
-    update,
-    addNewLogicSetCondition,
-    moveConditionToNextLogicSet
-  },
-)
+  project: { datasheetFields },
+  threeSixtyCampaign: { nominationRequirements: { list, selectedIndex } },
+}) => ({
+  subjectConditions: list[selectedIndex].subjectConditions,
+  datasheetFields,
+}),
+{
+  add,
+  remove,
+  update,
+  addNewLogicSetCondition,
+  moveConditionToNextLogicSet,
+})

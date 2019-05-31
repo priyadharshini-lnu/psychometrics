@@ -4,21 +4,24 @@ import {
   moveDown,
   moveUp,
   remove,
-  changeSelectedIndex
-} from 'admin/core/threeSixtyCampaign/nominationRequirements/index.js'
+  rename,
+  copy,
+  changeSelectedIndex,
+} from 'admin/core/threeSixtyCampaign/nominationRequirements'
 
 export default connect(({
-    threeSixtyCampaign: { nominationRequirements },
-    temp: { modals: { current } },
-  }) => ({
-    currentModal: current,
-    nominationRequirements,
-  }),
-  {
-    addNominationRequirement,
-    moveDown,
-    moveUp,
-    remove,
-    changeSelectedIndex
-  },
-)
+  threeSixtyCampaign: { nominationRequirements },
+  temp: { modals: { current } },
+}) => ({
+  currentModal: current,
+  nominationRequirements,
+}),
+{
+  addNominationRequirement,
+  moveDown,
+  moveUp,
+  remove,
+  rename,
+  copy,
+  changeSelectedIndex,
+})
