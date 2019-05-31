@@ -22,6 +22,7 @@ const MOVE_DOWN = 'threeSixty/nominationRequirement/MOVE_DOWN'
 const CHANGE_SELECTED_INDEX = 'threeSixty/nominationRequirement/CHANGE_SELECTED_INDEX'
 const RENAME_SELECTED_NOMINATION = 'threeSixty/nominationRequirement/RENAME'
 const COPY_SELECTED_NOMINATION = 'threeSixty/nominationRequirement/COPY'
+const SYNC_WITH_SERVER = 'threeSixty/nominationRequirement/SYNC_WITH_SERVER'
 
 export const defaultState = {
   list: [{
@@ -79,6 +80,14 @@ export const rename = name => ({
 
 export const copy = () => ({
   type: COPY_SELECTED_NOMINATION,
+})
+
+export const syncWithServer = (body) => ({
+  type: SYNC_WITH_SERVER,
+  request: {
+    type: 'put',
+    body
+  }
 })
 
 function move (nominationRequirements, index, offset) {

@@ -16,6 +16,7 @@ export default function List ({
   changeSelectedIndex,
 }) {
   const [renamingEnabled, setRenamingEnabled] = useState(false)
+  const [newName, setNewName] = useState(list[selectedIndex].name)
 
   const handleMenuClick = _.curry((index, { key }) => {
     switch (key) {
@@ -61,6 +62,15 @@ export default function List ({
     </Menu>
   )
 
+  const renameWithValidation =() => {
+    if (newName === '') {
+      setNewName(list[selectedIndex].name)
+    } else {
+      rename(newName)
+    }
+    setRenamingEnabled(false)
+  }
+
   return list.map((nominationRequirement, index) => {
     const selected = selectedIndex === index
     return (
@@ -78,14 +88,14 @@ export default function List ({
           {renamingEnabled && selected ? (
             <Input
               size="small"
-              value={nominationRequirement.name}
-              onBlur={() => setRenamingEnabled(false)}
-              onKeyPress={e => e.charCode === 13 && setRenamingEnabled(false)}
+              value={newName}
+              onBlur={() => renameWithValidation()}
+              onKeyPress={e => e.charCode === 13 && renameWithValidation()}
               onChange={(e) => {
-                rename(e.target.value)
+                setNewName(e.target.value)
               }}
             />
-          ) : nominationRequirement.name}
+          ) : _.truncate(nominationRequirement.name, { length: 24 })}
         </div>
         <Dropdown
           className="dropdown"

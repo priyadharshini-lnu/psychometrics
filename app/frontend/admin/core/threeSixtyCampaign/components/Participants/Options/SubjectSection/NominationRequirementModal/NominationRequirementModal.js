@@ -4,12 +4,15 @@ import {
 } from 'antd'
 import List from './List'
 import ConditionsContainer from './ConditionsContainer'
+import css from './style.scss'
+import cs from 'classnames'
 
 export default function NominationRequirementModal ({
   currentModal,
   closeModal,
   nominationsPresent,
   addNominationRequirement,
+  syncWithServer
 }) {
   // if (currentModal !== 'NominationRequirement') return null
 
@@ -30,19 +33,19 @@ export default function NominationRequirementModal ({
         <Button key="back" onClick={closeModal}>
           Cancel
         </Button>,
-        <Button key="submit" type="primary" onClick={handleSave}>
+        <Button key="submit" type="primary" onClick={syncWithServer}>
           <Icon type="check" />
           Save
         </Button>,
       ]}
     >
       <Row>
-        <Col span={6} style={{ borderRight: '1px solid #ccc', height: '500px' }}>
+        <Col span={6} className={cs([css.section, css.listSection])}>
           <List />
         </Col>
         {nominationsPresent
           && (
-          <Col span={18}>
+          <Col span={18} className={css.section}>
             <ConditionsContainer />
           </Col>
           )}

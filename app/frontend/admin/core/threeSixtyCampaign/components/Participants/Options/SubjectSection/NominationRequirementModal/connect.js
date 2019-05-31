@@ -3,6 +3,7 @@ import { connect } from 'react-redux'
 import { closeModal } from 'admin/core/temp/modals'
 import {
   add as addNominationRequirement,
+  syncWithServer
 } from 'admin/core/threeSixtyCampaign/nominationRequirements'
 
 export default connect(({
@@ -15,4 +16,5 @@ export default connect(({
 {
   closeModal,
   addNominationRequirement,
+  syncWithServer
 })

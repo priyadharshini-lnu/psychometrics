@@ -6,6 +6,7 @@
     padding: 10px 24px;
     display: inline-block;
     width: 85%;
+    word-break: break-all;
   }
 
   .menuIcon {
@@ -69,4 +70,13 @@
 
 .deleteIcon {
   margin-right: 3px;
+}
+
+.section {
+  height: 500px;
+  overflow-y: scroll;
+}
+
+.listSection {
+  border-right: 1px solid #ccc;
 }

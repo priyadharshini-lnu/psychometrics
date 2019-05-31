@@ -5,7 +5,7 @@ import Conditions from './conditions'
 
 export default function ConditionsContainer () {
   return (
-    <>
+    <div>
       <div>
         <div className={css.conditionTitle}>Subject Conditions</div>
         <div className={css.conditionsContainer}>
@@ -18,6 +18,6 @@ export default function ConditionsContainer () {
           <Conditions />
         </div>
       </div>
-    </>
+    </div>
   )
 }
