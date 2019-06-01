@@ -5,6 +5,7 @@ class UsersReportSerializer < ActiveModel::Serializer
 
   has_one :user, serializer: UserSerializer
   has_one :report, serializer: ReportSerializer
+  has_one :options, serializer: Threesixty::CampaignOptionsSerializer
 
   def campaign_id
     object.campaign.threesixty_campaign.id
@@ -26,10 +27,13 @@ class UsersReportSerializer < ActiveModel::Serializer
     @results ||= instance_options[:results]
   end
 
+  def options
+    @options ||= instance_options[:options]
+  end
+
   private
 
   def report
     @report ||= instance_options[:report]
   end
-
 end

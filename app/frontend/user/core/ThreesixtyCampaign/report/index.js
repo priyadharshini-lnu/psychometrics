@@ -28,6 +28,7 @@ export const updateStatus = (campaignId, id, status) => ({
 export const defaultState = {
   loaded: false,
   user: {},
+  options: {},
   report: {},
   results: {},
 }

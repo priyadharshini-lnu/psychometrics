@@ -4,7 +4,7 @@ import { getSubjectReport, getApprovalReports } from 'user/core/ThreesixtyCampai
 const mapStateToProps = state => ({
   approvalReports: getApprovalReports(state.threeSixtyCampaign),
   subjectReport: getSubjectReport(state.threeSixtyCampaign),
-  options: state.threeSixtyCampaign.campaign.options.participants,
+  options: state.threeSixtyCampaign.campaign.options.reports,
 })
 
 const mapDispatchToProps = {}
