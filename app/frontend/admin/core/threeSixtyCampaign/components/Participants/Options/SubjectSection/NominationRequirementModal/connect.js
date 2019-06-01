@@ -3,18 +3,22 @@ import { connect } from 'react-redux'
 import { closeModal } from 'admin/core/temp/modals'
 import {
   add as addNominationRequirement,
+  fetch as fetchNominationRequirements,
   syncWithServer
 } from 'admin/core/threeSixtyCampaign/nominationRequirements'
 
 export default connect(({
   temp: { modals: { current } },
+  project: { relationships },
   threeSixtyCampaign: { nominationRequirements: { list } },
 }) => ({
   currentModal: current,
   nominationsPresent: !_.isEmpty(list),
+  defaultSelectedRelationship: _.get(relationships, [0, 'id'])
 }),
 {
   closeModal,
   addNominationRequirement,
-  syncWithServer
+  syncWithServer,
+  fetchNominationRequirements
 })

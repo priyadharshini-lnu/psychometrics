@@ -15,6 +15,9 @@ export default function List ({
   copy,
   changeSelectedIndex,
 }) {
+
+  if (_.isEmpty(list)) { return null }
+
   const [renamingEnabled, setRenamingEnabled] = useState(false)
   const [newName, setNewName] = useState(list[selectedIndex].name)
 

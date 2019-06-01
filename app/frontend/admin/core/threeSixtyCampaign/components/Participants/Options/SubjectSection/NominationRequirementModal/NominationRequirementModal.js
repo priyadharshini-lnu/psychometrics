@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import {
   Modal, Button, Icon, Row, Col,
 } from 'antd'
@@ -11,10 +11,19 @@ export default function NominationRequirementModal ({
   currentModal,
   closeModal,
   nominationsPresent,
+  defaultSelectedRelationship,
   addNominationRequirement,
-  syncWithServer
+  syncWithServer,
+  fetchNominationRequirements,
+  match: {
+    params: { campaignId },
+  }
 }) {
   // if (currentModal !== 'NominationRequirement') return null
+
+  useEffect(() => {
+    fetchNominationRequirements(campaignId)
+  }, [])
 
   const handleSave = () => {}
 
@@ -26,7 +35,11 @@ export default function NominationRequirementModal ({
       visible
       onCancel={closeModal}
       footer={[
-        <Button key="add_requirement_set" type="primary" onClick={addNominationRequirement} style={{ float: 'left' }}>
+        <Button
+          key="add_requirement_set"
+          type="primary"
+          onClick={() => addNominationRequirement({ relationshipId: defaultSelectedRelationship })}
+          style={{ float: 'left' }}>
           <Icon type="plus" />
           Add Requirement set
         </Button>,

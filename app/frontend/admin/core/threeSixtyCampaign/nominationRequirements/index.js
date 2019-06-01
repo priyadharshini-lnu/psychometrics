@@ -41,16 +41,16 @@ export const defaultState = {
   selectedIndex: 0,
 }
 
-export const fetchNominationRequirements = campaignId => ({
+export const fetch = campaignId => ({
   type: FETCH,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/nomination_requirements`,
   },
 })
 
-export const add = campaignId => ({
+export const add = (payload) => ({
   type: ADD,
-  payload: { campaignId },
+  payload
 })
 
 export const remove = index => ({
@@ -110,10 +110,10 @@ function moveDownRequirement (nominationRequirements, index) {
   return move(nominationRequirements, index, -1)
 }
 
-export default function reducer (state = defaultState, { type, payload }) {
+export default function reducer (state = defaultState, { type, payload, response }) {
   switch (type) {
     case FETCH:
-      return defaultState
+      return { list: response, selectedIndex: 0 }
     case ADD: {
       const maxPosition = _.get(_.maxBy(state.list, 'position'), 'position', 0)
       return {
