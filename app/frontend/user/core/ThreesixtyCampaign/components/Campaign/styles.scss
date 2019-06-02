@@ -4,6 +4,12 @@
   .main-container {
     background: $white;
 
+    .page-header {
+      @media(max-width: $screen-lg) {
+        padding: 16px;
+      }
+    }
+
     .percentage {
       font-weight: bold;
       color: $dark-gray;
@@ -12,10 +18,19 @@
     .progress-wrapper {
       padding: 24px 0;
 
+      @media(max-width: $screen-lg) {
+        padding: 8px 0;
+      }
+
       .progress-column {
         flex: 1;
         padding-right: 64px;
         border-right: 1px solid $gray-color;
+
+        @media(max-width: $screen-lg) {
+          padding-right: 0;
+          border-right: none;
+        }
       }
     }
 
@@ -39,11 +54,19 @@
 
     .content.padding {
       padding-left: 32px;
+
+      @media(max-width: $screen-lg) {
+        padding-left: 0;
+      }
     }
 
     .progresses {
       display: flex;
       padding: 0 32px;
+
+      @media(max-width: $screen-lg) {
+        padding: 0;
+      }
 
       .mini-progress {
         flex: 1;
@@ -60,6 +83,10 @@
 
     .column-list {
       .ant-list-item {
+        &:first-child {
+          border-top: 1px solid #e8e8e8;
+        }
+
         margin-left: 24px;
         padding-left: 0;
       }
@@ -96,6 +123,8 @@
         .caption {
           flex: 1;
           padding: 0 8px;
+          font-weight: bold;
+          color: $black;
 
           .progress-bars {
             display: flex;
@@ -105,10 +134,15 @@
             }
 
             .value {
+              color: $dark-gray;
               margin-left: 8px;
               flex: 2;
             }
           }
+        }
+
+        .collapse-title {
+          color: $light-black;
         }
 
         .help {
@@ -145,7 +179,6 @@
     border-radius: 20px;
     border: 1.5px solid $main-color;
     font-size: 20px;
-    color: $main-color;
-
+    color: $light-black;
   }
 }

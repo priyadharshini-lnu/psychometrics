@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  Menu, Dropdown, List, Collapse, Icon, Progress,
+  Menu, Dropdown, List, Collapse, Icon, Progress, Modal,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import connect from './connect'
@@ -13,6 +13,8 @@ const { Panel } = Collapse
 function EvaluationList ({
   evaluations, approvalEvaluations, declineEvaluation, options,
 }) {
+  const [showHelp, setShowHelp] = useState(false)
+
   const menu = item => (
     <Menu>
       <Menu.Item key="0" onClick={() => declineEvaluation(item.campaignId, item.id)}>
@@ -77,19 +79,37 @@ function EvaluationList ({
                 strokeColor="#00B4AA"
               />
               <div className="value">1 of 3</div>
-
             </div>
           </div>
           <div className="help">
-            <Icon type="question-circle" className="help-icon" />
+            <Icon type="question-circle" className="help-icon" onClick={() => setShowHelp(true)} />
           </div>
         </div>
       )}
       bordered
     >
-      <CollapseItem key="evaluations" title="Evaluations" list={evaluations} />
+      <CollapseItem key="evaluations" title={<div className="collapse-title">Evaluations</div>} list={evaluations} />
       {options.manager.canApprovesEvaluations
-        && <CollapseItem key="evaluations_approve" title="Approve evaluations" list={approvalEvaluations} />}
+        && (
+        <CollapseItem
+          key="evaluations_approve"
+          title={<div className="collapse-title">Approve evaluations</div>}
+          list={approvalEvaluations}
+        />
+        )}
+      <Modal
+        title={(
+          <div className="help-modal-header">
+            <div className="letter-icon">E</div>
+            Evaluation help
+          </div>
+        )}
+        visible={showHelp}
+        onCancel={() => setShowHelp(false)}
+        footer={null}
+      >
+        <p>need contents...</p>
+      </Modal>
     </List>
   )
 }

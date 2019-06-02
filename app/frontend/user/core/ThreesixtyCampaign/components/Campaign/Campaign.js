@@ -24,6 +24,7 @@ export default function Campaign ({
       <Content>
         <div className="main-container">
           <PageHeader
+            className="page-header"
             onBack={() => history.push('/')}
             title={<div className="title-with-dash">Signify 360° Review - Apply Level</div>}
           >
@@ -72,7 +73,7 @@ export default function Campaign ({
                       />
                     </div>
                     <div className="mini-progress">
-                      <div className="progress-badge">E</div>
+                      <div className="letter-icon">E</div>
                       <Progress
                         className="progress-line"
                         percent={30}
@@ -82,7 +83,7 @@ export default function Campaign ({
                       />
                     </div>
                     <div className="mini-progress">
-                      <div className="progress-badge">R</div>
+                      <div className="letter-icon">R</div>
                       <Progress
                         className="progress-line"
                         percent={30}

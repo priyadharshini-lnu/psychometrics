@@ -1,5 +1,7 @@
-import React from 'react'
-import { List, Collapse, Icon } from 'antd'
+import React, { useState } from 'react'
+import {
+  List, Collapse, Icon, Modal, Progress,
+} from 'antd'
 import { Link } from 'react-router-dom'
 import userPresenter from 'presenters/userPresenter'
 import connect from './connect'
@@ -32,11 +34,31 @@ const CollapseItem = ({ title, list }) => (
 )
 
 function ReportList ({ approvalReports, subjectReport }) {
+  const [showHelp, setShowHelp] = useState(false)
   return (
     <List
       className="column-list report-list"
       size="large"
-      header={<div>Reports</div>}
+      header={(
+        <div className="header">
+          <div className="letter-icon">R</div>
+          <div className="caption">
+            Reports
+            <div className="progress-bars">
+              <Progress
+                className="progress-line"
+                percent={30}
+                showInfo={false}
+                strokeColor="#00B4AA"
+              />
+              <div className="value">1 of 3</div>
+            </div>
+          </div>
+          <div className="help">
+            <Icon type="question-circle" className="help-icon" onClick={() => setShowHelp(true)} />
+          </div>
+        </div>
+      )}
       bordered
     >
       {subjectReport && (
@@ -52,6 +74,19 @@ function ReportList ({ approvalReports, subjectReport }) {
 
       {approvalReports.length > 0
         && <CollapseItem key="approve_reports" title="Approve reports" list={approvalReports} />}
+      <Modal
+        title={(
+          <div className="help-modal-header">
+            <div className="letter-icon">R</div>
+            Reports help
+          </div>
+        )}
+        visible={showHelp}
+        onCancel={() => setShowHelp(false)}
+        footer={null}
+      >
+        <p>need contents...</p>
+      </Modal>
     </List>
   )
 }
