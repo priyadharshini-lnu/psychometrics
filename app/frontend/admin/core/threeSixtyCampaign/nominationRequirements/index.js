@@ -141,7 +141,7 @@ export default function reducer (state = defaultState, { type, payload, response
       )
     case COPY_SELECTED_NOMINATION: {
       const maxPosition = _.get(_.maxBy(state.list, 'position'), 'position', 0)
-      const selectedNomination = { ..._.get(state, ['list', state.selectedIndex]), position: maxPosition + 1 }
+      const selectedNomination = { ..._.get(state, ['list', state.selectedIndex]), position: maxPosition + 1, id: null }
       return updateIn(state, 'list', nominationRequirements => nominationRequirements.concat(selectedNomination))
     }
     case REMOVE:
