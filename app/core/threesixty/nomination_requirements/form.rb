@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Threesixty
   module NominationRequirements
     class Form < Rectify::Form

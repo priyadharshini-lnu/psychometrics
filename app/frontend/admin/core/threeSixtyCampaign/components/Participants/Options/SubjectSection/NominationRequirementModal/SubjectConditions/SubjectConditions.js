@@ -17,7 +17,7 @@ export default function SubjectCondtions ({
   if (_.isEmpty(subjectConditions)) {
     return (
       <div>
-Every subject will have these nomination requirements.
+        Every subject will have these nomination requirements.
         <span
           className={css.addSubjectConditionLink}
           onClick={() => addNewLogicSetCondition()}
