@@ -10,11 +10,9 @@ const { Panel } = Collapse
 const ReportItem = item => (
   <List.Item>
     <Link to={`/campaigns/${item.campaignId}/reports/${item.id}`}>
-      <Icon
-        type="check-circle"
-        theme="twoTone"
-        twoToneColor={item.approval_status === 'approved' ? '#52c41a' : '#ccc'}
-      />
+      {!item.approval_status
+        ? <Icon type="check-square" theme="filled" className="status-icon" />
+        : <div className="empty-square" />}
       {' '}
       {userPresenter.getFullNameWithEmail(item.user)}
     </Link>
@@ -22,11 +20,10 @@ const ReportItem = item => (
 )
 
 const CollapseItem = ({ title, list }) => (
-  <Collapse bordered={false}>
-    <Panel header={title} forceRender>
+  <Collapse bordered={false} accordion={false} defaultActiveKey="panel">
+    <Panel header={title} forceRender key="panel">
       <List
         size="large"
-        bordered
         dataSource={list}
         renderItem={ReportItem}
       />
@@ -37,7 +34,7 @@ const CollapseItem = ({ title, list }) => (
 function ReportList ({ approvalReports, subjectReport }) {
   return (
     <List
-      className="report-list"
+      className="column-list report-list"
       size="large"
       header={<div>Reports</div>}
       bordered
@@ -45,7 +42,9 @@ function ReportList ({ approvalReports, subjectReport }) {
       {subjectReport && (
         <div className="report-row">
           <Link to={`/campaigns/${subjectReport.campaignId}/reports/${subjectReport.id}`}>
-            <Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" />
+            {!subjectReport.approved
+              ? <Icon type="check-square" theme="filled" className="status-icon" />
+              : <div className="empty-square" />}
             {' View Report'}
           </Link>
         </div>
