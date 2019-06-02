@@ -3,7 +3,7 @@ import {
   add,
   remove,
   update,
-  addNewLogicSetCondition,
+  addNewLogicalSetCondition,
   moveConditionToNextLogicSet,
 } from 'admin/core/threeSixtyCampaign/nominationRequirements/subjectConditions'
 
@@ -18,6 +18,6 @@ export default connect(({
   add,
   remove,
   update,
-  addNewLogicSetCondition,
+  addNewLogicalSetCondition,
   moveConditionToNextLogicSet,
 })

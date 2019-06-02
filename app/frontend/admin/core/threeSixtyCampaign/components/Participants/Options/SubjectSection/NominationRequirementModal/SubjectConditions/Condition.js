@@ -2,6 +2,7 @@ import React from 'react'
 import { Input, Select, Icon } from 'antd'
 import cs from 'classnames'
 import css from '../style.scss'
+import NestedOperator from 'admin/core/threeSixtyCampaign/components/common/NestedOperator'
 
 export default function Condition ({
   datasheetFields,
@@ -15,7 +16,7 @@ export default function Condition ({
 }) {
   return (
     <div style={{ display: 'inline-block' }} className="mbs">
-      <Operator
+      <NestedOperator
         operator={operator}
         update={value => update('operator', value)}
         remove={remove}
@@ -56,32 +57,5 @@ export default function Condition ({
         <Icon type="plus-circle" className={css.addIcon} onClick={add} />
       </span>
     </div>
-  )
-}
-
-function Operator ({
-  operator, update, moveConditionToNextLogicSet,
-}) {
-  const handleOperatorChange = (value) => {
-    if (value === 'move_to_new_logic_set') {
-      moveConditionToNextLogicSet()
-    } else {
-      update(value)
-    }
-  }
-
-  if (operator === 'if') return null
-  return (
-    <Select
-      value={operator}
-      size="small"
-      dropdownMatchSelectWidth={false}
-      className={cs([css.inputElement, css.width80])}
-      onChange={handleOperatorChange}
-    >
-      <Select.Option key="and">And</Select.Option>
-      <Select.Option key="or">Or</Select.Option>
-      <Select.Option key="move_to_new_logic_set">Move to new logic set</Select.Option>
-    </Select>
   )
 }

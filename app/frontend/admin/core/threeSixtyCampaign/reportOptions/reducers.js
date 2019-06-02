@@ -2,77 +2,40 @@ import { getIn, setIn, updateIn } from 'utils/immutable'
 import _ from 'lodash'
 
 import {
-  FETCH_REPORT_OPTIONS,
-  UPDATE_REPORT_OPTIONS,
-  ADD_AVAILABILITY_CONDITION,
-  ADD_NEW_LOGIC_SET_CONDITION,
-  MOVE_CONDITION_TO_NEW_LOGIC_SET,
-  REMOVE_AVAILABILITY_CONDITION,
-  UPDATE_AVAILABILITY_CONDITION,
+  FETCH,
+  UPDATE,
 } from './actions'
 
-const defaultCondition = {
-  operator: 'and',
-  type: 'evaluations',
-  numberOfEvaluator: null,
-  relationship: 'Manager',
-}
-
-function removeConditions (state, path, index) {
-  return updateIn(state, path, (conditions) => {
-    const newConditions = _.filter(conditions, (_, i) => i !== index)
-    return newConditions.map((condition, i) => (
-      i === 0 ? { ...condition, operator: 'if' } : condition
-    ))
-  })
-}
-
-const HANDLERS = {
-  [FETCH_REPORT_OPTIONS]: (_, { response }) => response,
-  [UPDATE_REPORT_OPTIONS]: (state, { payload: { key, value } }) => setIn(state, key, value),
-  [ADD_AVAILABILITY_CONDITION]: (state, { payload: { index } }) => (
-    updateIn(state, ['availability', 'conditions', index, 'conditions'],
-      conditions => conditions.concat([defaultCondition]))
-  ),
-  [ADD_NEW_LOGIC_SET_CONDITION]: (state, { payload: { operator } }) => (
-    updateIn(state, ['availability', 'conditions'],
-      conditions => conditions.concat({
-        operator,
-        conditions: [{ ...defaultCondition, operator: 'if' }],
-      }))
-  ),
-  [MOVE_CONDITION_TO_NEW_LOGIC_SET]: (state, { payload: { parentIndex, childIndex } }) => (
-    updateIn(state, ['availability', 'conditions'],
-      conditions => conditions.concat({
-        operator: 'and',
-        conditions: [{ ...getIn(conditions, [parentIndex, 'conditions', childIndex]), operator: 'if' }],
-      }))
-  ),
-  [REMOVE_AVAILABILITY_CONDITION]: (state, { payload: { parentIndex, childIndex } }) => {
-    const path = ['availability', 'conditions', parentIndex, 'conditions']
-    const conditions = getIn(state, path)
-    if (conditions.length > 1) {
-      return removeConditions(state, path, childIndex)
-    }
-    return removeConditions(state, ['availability', 'conditions'], childIndex)
-  },
-  [UPDATE_AVAILABILITY_CONDITION]: (state, {
-    payload: {
-      parentIndex, childIndex, field, value,
-    },
-  }) => {
-    let path = ['availability', 'conditions', parentIndex]
-    path = _.isNull(childIndex) ? path : path.concat(['conditions', childIndex])
-    return updateIn(state, path, condition => ({
-      ...condition,
-      [field]: value,
-    }))
-  },
-}
+import availabilityConditionReducer, {
+  ADD as ADD_AVAILABILITY_CONDITION,
+  REMOVE as REMOVE_AVAILABILITY_CONDITION,
+  UPDATE as UPDATE_AVAILABILITY_CONDITION,
+  ADD_NEW_LOGIC_SET_CONDITION,
+  MOVE_CONDITION_TO_NEW_LOGIC_SET,
+} from './availabilityConditions'
 
 const defaultState = { access: {}, approval: {}, availability: { conditions: [] } }
 
-export default function reducer (state = defaultState, action) {
-  const handler = HANDLERS[action.type]
-  return handler ? handler(state, action) : state
+
+export default function reducer (state = defaultState, { type, payload, response }) {
+  switch (type) {
+    case FETCH:
+      return response
+    case UPDATE: {
+      const {key, value} = payload
+      return setIn(state, key, value)
+    }
+    case ADD_AVAILABILITY_CONDITION:
+    case UPDATE_AVAILABILITY_CONDITION:
+    case REMOVE_AVAILABILITY_CONDITION:
+    case ADD_NEW_LOGIC_SET_CONDITION:
+    case MOVE_CONDITION_TO_NEW_LOGIC_SET:
+      return updateIn(
+        state,
+        ['availability', 'conditions'],
+        subjectConditions => availabilityConditionReducer(subjectConditions, { type, payload }),
+      )
+    default:
+      return state
+  }
 }

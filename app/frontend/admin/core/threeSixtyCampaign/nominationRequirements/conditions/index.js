@@ -1,33 +1,33 @@
 import { updateIn } from 'utils/immutable'
 import _ from 'lodash'
 
-export const ADD_CONDITION = 'threeSixty/nominationRequirement/conditions/ADD'
-export const UPDATE_CONDITION = 'threeSixty/nominationRequirement/conditions/UPDATE'
-export const REMOVE_CONDITION = 'threeSixty/nominationRequirement/conditions/REMOVE'
+export const ADD = 'threeSixty/nominationRequirement/conditions/ADD'
+export const UPDATE = 'threeSixty/nominationRequirement/conditions/UPDATE'
+export const REMOVE = 'threeSixty/nominationRequirement/conditions/REMOVE'
 
 export const add = relationshipId => ({
-  type: ADD_CONDITION,
+  type: ADD,
   payload: { relationshipId },
 })
 
 export const remove = index => ({
-  type: REMOVE_CONDITION,
+  type: REMOVE,
   payload: { index },
 })
 
 export const update = (index, field, value) => ({
-  type: UPDATE_CONDITION,
+  type: UPDATE,
   payload: { index, field, value },
 })
 
 const HANDLERS = {
-  [ADD_CONDITION]: (state, { payload }) => (
+  [ADD]: (state, { payload }) => (
     state.concat([{ comparator: 'atleast', relationshipId: payload.relationshipId }])
   ),
-  [REMOVE_CONDITION]: (state, { payload: { index } }) => (
+  [REMOVE]: (state, { payload: { index } }) => (
     _.filter(state, (_, i) => index !== i)
   ),
-  [UPDATE_CONDITION]: (state, { payload: { index, field, value } }) => (
+  [UPDATE]: (state, { payload: { index, field, value } }) => (
     updateIn(state, index, condition => ({ ...condition, [field]: value }))
   ),
 }

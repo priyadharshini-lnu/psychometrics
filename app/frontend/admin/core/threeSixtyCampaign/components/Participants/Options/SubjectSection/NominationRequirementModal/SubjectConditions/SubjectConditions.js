@@ -11,7 +11,7 @@ export default function SubjectCondtions ({
   add,
   remove,
   update,
-  addNewLogicSetCondition,
+  addNewLogicalSetCondition,
   moveConditionToNextLogicSet,
 }) {
   if (_.isEmpty(subjectConditions)) {
@@ -20,7 +20,7 @@ export default function SubjectCondtions ({
         Every subject will have these nomination requirements.
         <span
           className={css.addSubjectConditionLink}
-          onClick={() => addNewLogicSetCondition()}
+          onClick={() => addNewLogicalSetCondition()}
           role="button"
           tabIndex={0}
         >
@@ -35,7 +35,7 @@ export default function SubjectCondtions ({
         {subjectConditions.length > 1 && (
         <Operator
           operator={subCondition.operator}
-          addNewLogicSetCondition={() => addNewLogicSetCondition('and')}
+          addNewLogicalSetCondition={() => addNewLogicalSetCondition('and')}
           update={value => update(parentIndex, null, 'operator', value)}
         />
         )}
@@ -58,10 +58,10 @@ export default function SubjectCondtions ({
   )
 }
 
-function Operator ({ operator, addNewLogicSetCondition, update }) {
+function Operator ({ operator, addNewLogicalSetCondition, update }) {
   const handleOperatorChange = (value) => {
     if (value === 'new_logic_set') {
-      addNewLogicSetCondition()
+      addNewLogicalSetCondition()
     } else {
       update(value)
     }

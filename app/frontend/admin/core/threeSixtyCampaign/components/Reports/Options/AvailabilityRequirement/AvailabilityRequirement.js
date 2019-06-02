@@ -11,12 +11,12 @@ export default function AvailabilityRequirement ({
   addAvailiblityCondition,
   removeAvailiblityCondition,
   updateAvailiblityCondition,
-  addNewLogicSetCondition,
+  addNewLogicalSetCondition,
   moveConditionToNextLogicSet,
 }) {
   if (_.isEmpty(conditions)) {
     return (
-      <div className={css.addLink} onClick={() => addNewLogicSetCondition()} role="button" tabIndex={0}>
+      <div className={css.addLink} onClick={() => addNewLogicalSetCondition()} role="button" tabIndex={0}>
         Add conditions
       </div>
     )
@@ -26,7 +26,7 @@ export default function AvailabilityRequirement ({
       {conditions.length > 1 && (
         <Operator
           operator={subCondition.operator}
-          addNewLogicSetCondition={addNewLogicSetCondition}
+          addNewLogicalSetCondition={addNewLogicalSetCondition}
           updateAvailiblityCondition={value => updateAvailiblityCondition(parentIndex, null, 'operator', value)}
         />
       )}
@@ -50,10 +50,10 @@ export default function AvailabilityRequirement ({
   ))
 }
 
-function Operator ({ operator, addNewLogicSetCondition, updateAvailiblityCondition }) {
+function Operator ({ operator, addNewLogicalSetCondition, updateAvailiblityCondition }) {
   const handleOperatorChange = (value) => {
     if (value === 'new_logic_set') {
-      addNewLogicSetCondition('and')
+      addNewLogicalSetCondition('and')
     } else {
       updateAvailiblityCondition(value)
     }
