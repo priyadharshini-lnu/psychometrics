@@ -9,6 +9,10 @@ module Administration
 
         false
       end
+
+      def update_or_create?
+        index?
+      end
     end
   end
 end

@@ -4,7 +4,7 @@ import { closeModal } from 'admin/core/temp/modals'
 import {
   add as addNominationRequirement,
   fetch as fetchNominationRequirements,
-  syncWithServer
+  syncWithServer,
 } from 'admin/core/threeSixtyCampaign/nominationRequirements'
 
 export default connect(({
@@ -13,12 +13,12 @@ export default connect(({
   threeSixtyCampaign: { nominationRequirements: { list } },
 }) => ({
   currentModal: current,
-  nominationsPresent: !_.isEmpty(list),
-  defaultSelectedRelationship: _.get(relationships, [0, 'id'])
+  nominationRequirements: list,
+  defaultSelectedRelationship: _.get(relationships, [0, 'id']),
 }),
 {
   closeModal,
   addNominationRequirement,
   syncWithServer,
-  fetchNominationRequirements
+  fetchNominationRequirements,
 })

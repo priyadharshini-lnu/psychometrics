@@ -9,6 +9,8 @@ export default function Conditions ({
   remove,
   update,
 }) {
+  const canRemove = conditions.length > 1
+
   return (
     <div className="mlm">
       {conditions.map((condition, index) => (
@@ -16,6 +18,7 @@ export default function Conditions ({
           <Condition
             relationships={relationships}
             condition={condition}
+            canRemove={canRemove}
             add={() => add(_.get(relationships, [0, 'id']))}
             remove={() => remove(index)}
             update={(field, value) => update(index, field, value)}

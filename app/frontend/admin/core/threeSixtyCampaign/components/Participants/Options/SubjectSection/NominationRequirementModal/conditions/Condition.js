@@ -6,10 +6,13 @@ import css from '../style.scss'
 export default function Condition ({
   relationships,
   condition: { comparator, relationshipId, value },
+  canRemove,
   add,
   remove,
   update,
 }) {
+  const handleRemove = () => canRemove && remove()
+
   return (
     <div className="mbs">
       <Select
@@ -44,7 +47,11 @@ export default function Condition ({
       </Select>
 
       <span>
-        <Icon type="minus-circle" className={css.deleteIcon} onClick={remove} />
+        <Icon
+          type="minus-circle"
+          onClick={handleRemove}
+          className={cs(css.deleteIcon, { [css.disabledIcon]: !canRemove })}
+        />
         <Icon type="plus-circle" className={css.addIcon} onClick={add} />
       </span>
     </div>

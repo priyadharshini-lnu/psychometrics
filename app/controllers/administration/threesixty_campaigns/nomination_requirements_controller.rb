@@ -15,6 +15,14 @@ module Administration
         )
       end
 
+      def update_or_create
+        ::Threesixty::NominationRequirements::UpdateOrCreateAll.call!(
+          threesixty_campaign,
+          params[:nomination_requirements]
+        )
+        render json: :ok
+      end
+
       private
 
       def set_resource_class

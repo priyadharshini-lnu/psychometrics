@@ -15,7 +15,6 @@ export default function List ({
   copy,
   changeSelectedIndex,
 }) {
-
   if (_.isEmpty(list)) { return null }
 
   const [renamingEnabled, setRenamingEnabled] = useState(false)
@@ -65,7 +64,12 @@ export default function List ({
     </Menu>
   )
 
-  const renameWithValidation =() => {
+  const setupForRenaming = () => {
+    setNewName(list[selectedIndex].name)
+    setRenamingEnabled(true)
+  }
+
+  const renameWithValidation = () => {
     if (newName === '') {
       setNewName(list[selectedIndex].name)
     } else {
@@ -87,7 +91,7 @@ export default function List ({
         tabIndex={index}
         onClick={() => selected || changeSelectedIndex(index)}
       >
-        <div className={css.name} role="button" tabIndex={-1} onClick={() => selected && setRenamingEnabled(true)}>
+        <div className={css.name} role="button" tabIndex={-1} onClick={() => selected && setupForRenaming()}>
           {renamingEnabled && selected ? (
             <Input
               size="small"

@@ -48,9 +48,9 @@ export const fetch = campaignId => ({
   },
 })
 
-export const add = (payload) => ({
+export const add = payload => ({
   type: ADD,
-  payload
+  payload,
 })
 
 export const remove = index => ({
@@ -82,12 +82,13 @@ export const copy = () => ({
   type: COPY_SELECTED_NOMINATION,
 })
 
-export const syncWithServer = (body) => ({
+export const syncWithServer = (campaignId, nominationRequirements) => ({
   type: SYNC_WITH_SERVER,
   request: {
-    type: 'put',
-    body
-  }
+    url: `/administration/threesixty_campaigns/${campaignId}/nomination_requirements/update_or_create`,
+    method: 'put',
+    body: { nominationRequirements },
+  },
 })
 
 function move (nominationRequirements, index, offset) {

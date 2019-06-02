@@ -2,30 +2,34 @@ import React, { useEffect } from 'react'
 import {
   Modal, Button, Icon, Row, Col,
 } from 'antd'
+import _ from 'lodash'
+import cs from 'classnames'
 import List from './List'
 import ConditionsContainer from './ConditionsContainer'
 import css from './style.scss'
-import cs from 'classnames'
 
 export default function NominationRequirementModal ({
   currentModal,
   closeModal,
-  nominationsPresent,
+  nominationRequirements,
   defaultSelectedRelationship,
   addNominationRequirement,
   syncWithServer,
   fetchNominationRequirements,
   match: {
     params: { campaignId },
-  }
+  },
 }) {
-  // if (currentModal !== 'NominationRequirement') return null
+  if (currentModal !== 'NominationRequirement') return null
 
   useEffect(() => {
     fetchNominationRequirements(campaignId)
   }, [])
 
-  const handleSave = () => {}
+  const handleSave = () => {
+    syncWithServer(campaignId, nominationRequirements)
+    closeModal()
+  }
 
   return (
     <Modal
@@ -39,14 +43,15 @@ export default function NominationRequirementModal ({
           key="add_requirement_set"
           type="primary"
           onClick={() => addNominationRequirement({ relationshipId: defaultSelectedRelationship })}
-          style={{ float: 'left' }}>
+          style={{ float: 'left' }}
+        >
           <Icon type="plus" />
           Add Requirement set
         </Button>,
         <Button key="back" onClick={closeModal}>
           Cancel
         </Button>,
-        <Button key="submit" type="primary" onClick={syncWithServer}>
+        <Button key="submit" type="primary" onClick={handleSave}>
           <Icon type="check" />
           Save
         </Button>,
@@ -56,12 +61,12 @@ export default function NominationRequirementModal ({
         <Col span={6} className={cs([css.section, css.listSection])}>
           <List />
         </Col>
-        {nominationsPresent
-          && (
-          <Col span={18} className={css.section}>
-            <ConditionsContainer />
-          </Col>
-          )}
+        {_.isEmpty(nominationRequirements)
+         || (
+         <Col span={18} className={css.section}>
+           <ConditionsContainer />
+         </Col>
+         )}
       </Row>
     </Modal>
   )
