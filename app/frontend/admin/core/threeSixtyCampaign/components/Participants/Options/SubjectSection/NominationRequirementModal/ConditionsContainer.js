@@ -1,7 +1,7 @@
 import React from 'react'
 import css from './style.scss'
 import SubjectConditions from './SubjectConditions'
-import Conditions from './conditions'
+import Conditions from './Conditions'
 
 export default function ConditionsContainer () {
   return (

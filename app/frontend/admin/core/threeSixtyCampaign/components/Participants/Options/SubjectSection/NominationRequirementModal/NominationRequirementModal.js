@@ -2,10 +2,8 @@ import React, { useEffect } from 'react'
 import {
   Modal, Button, Icon, Row, Col,
 } from 'antd'
-import _ from 'lodash'
 import cs from 'classnames'
-import List from './List'
-import ConditionsContainer from './ConditionsContainer'
+import List from './Tabs'
 import css from './style.scss'
 
 export default function NominationRequirementModal ({
@@ -58,15 +56,9 @@ export default function NominationRequirementModal ({
       ]}
     >
       <Row>
-        <Col span={6} className={cs([css.section, css.listSection])}>
+        <Col span={24} className={cs([css.section, css.listSection])}>
           <List />
         </Col>
-        {_.isEmpty(nominationRequirements)
-         || (
-         <Col span={18} className={css.section}>
-           <ConditionsContainer />
-         </Col>
-         )}
       </Row>
     </Modal>
   )
