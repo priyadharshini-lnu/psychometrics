@@ -7,7 +7,7 @@ import {
   rename,
   copy,
   changeSelectedIndex,
-} from 'admin/core/threeSixtyCampaign/nominationRequirements'
+} from 'admin/core/threeSixtyCampaign/nominationRequirements/actions'
 
 export default connect(({
   threeSixtyCampaign: { nominationRequirements },

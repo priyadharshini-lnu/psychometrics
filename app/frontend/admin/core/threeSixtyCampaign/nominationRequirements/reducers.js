@@ -1,5 +1,15 @@
 import { updateIn } from 'utils/immutable'
 import _ from 'lodash'
+import {
+  FETCH,
+  ADD,
+  REMOVE,
+  MOVE_UP,
+  MOVE_DOWN,
+  CHANGE_SELECTED_INDEX,
+  RENAME_SELECTED_NOMINATION,
+  COPY_SELECTED_NOMINATION,
+} from './actions'
 import subjectConditionReducer, {
   ADD_SUBJECT_CONDITION,
   UPDATE_SUBJECT_CONDITION,
@@ -14,82 +24,10 @@ import conditionsReducer, {
   REMOVE_CONDITION,
 } from './conditions'
 
-const FETCH = 'threeSixty/nominationRequirement/FETCH'
-const ADD = 'threeSixty/nominationRequirement/ADD'
-const REMOVE = 'threeSixty/nominationRequirement/REMOVE'
-const MOVE_UP = 'threeSixty/nominationRequirement/MOVE_UP'
-const MOVE_DOWN = 'threeSixty/nominationRequirement/MOVE_DOWN'
-const CHANGE_SELECTED_INDEX = 'threeSixty/nominationRequirement/CHANGE_SELECTED_INDEX'
-const RENAME_SELECTED_NOMINATION = 'threeSixty/nominationRequirement/RENAME'
-const COPY_SELECTED_NOMINATION = 'threeSixty/nominationRequirement/COPY'
-const SYNC_WITH_SERVER = 'threeSixty/nominationRequirement/SYNC_WITH_SERVER'
-
 export const defaultState = {
-  list: [{
-    id: 1,
-    position: 1,
-    name: 'Requirement1',
-    subjectConditions: [],
-    conditions: [
-      {
-        relationshipId: 1,
-        comparator: 'atleast',
-        value: 2,
-      },
-    ],
-  }],
+  list: [],
   selectedIndex: 0,
 }
-
-export const fetch = campaignId => ({
-  type: FETCH,
-  request: {
-    url: `/administration/threesixty_campaigns/${campaignId}/nomination_requirements`,
-  },
-})
-
-export const add = payload => ({
-  type: ADD,
-  payload,
-})
-
-export const remove = index => ({
-  type: REMOVE,
-  payload: { index },
-})
-
-export const moveUp = index => ({
-  type: MOVE_UP,
-  payload: { index },
-})
-
-export const moveDown = index => ({
-  type: MOVE_DOWN,
-  payload: { index },
-})
-
-export const changeSelectedIndex = index => ({
-  type: CHANGE_SELECTED_INDEX,
-  payload: { index },
-})
-
-export const rename = name => ({
-  type: RENAME_SELECTED_NOMINATION,
-  payload: { name },
-})
-
-export const copy = () => ({
-  type: COPY_SELECTED_NOMINATION,
-})
-
-export const syncWithServer = (campaignId, nominationRequirements) => ({
-  type: SYNC_WITH_SERVER,
-  request: {
-    url: `/administration/threesixty_campaigns/${campaignId}/nomination_requirements/update_or_create`,
-    method: 'put',
-    body: { nominationRequirements },
-  },
-})
 
 function move (nominationRequirements, index, offset) {
   const newNominationRequirements = nominationRequirements.map((nominationRequirement, i) => {

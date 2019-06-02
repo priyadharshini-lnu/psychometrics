@@ -5,7 +5,7 @@ import {
   add as addNominationRequirement,
   fetch as fetchNominationRequirements,
   syncWithServer,
-} from 'admin/core/threeSixtyCampaign/nominationRequirements'
+} from 'admin/core/threeSixtyCampaign/nominationRequirements/actions'
 
 export default connect(({
   temp: { modals: { current } },

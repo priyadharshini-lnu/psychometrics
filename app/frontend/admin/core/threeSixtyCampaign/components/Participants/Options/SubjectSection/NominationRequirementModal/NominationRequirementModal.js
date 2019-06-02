@@ -41,7 +41,7 @@ export default function NominationRequirementModal ({
           key="add_requirement_set"
           type="primary"
           onClick={() => addNominationRequirement({ relationshipId: defaultSelectedRelationship })}
-          style={{ float: 'left' }}
+          className={css.addButton}
         >
           <Icon type="plus" />
           Add Requirement set

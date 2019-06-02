@@ -1,40 +1,5 @@
-.nameContainer {
-  border-bottom: 1px solid #bbb;
-
-  .name {
-    display: inline-block;
-    padding: 10px 24px;
-    display: inline-block;
-    width: 85%;
-    word-break: break-all;
-  }
-
-  .menuIcon {
-    display: none;
-  }
-
-  &:not(.activeNameContainer):hover {
-    background-color: #eee;
-    cursor: pointer
-  }
-}
-
-.nameContainer.renamingEnabled .name {
-  padding: 8px 24px;
-}
-
-.activeNameContainer {
-  background-color: #eee;
-
-  .menuIcon {
-    display: inline-block;
-    background-color: #ccc;
-    padding: 10px 0px;
-    width: 15%;
-    text-align: center;
-    vertical-align: top;
-    cursor: pointer;
-  }
+.addButton {
+  float: left;
 }
 
 .conditionTitle {
