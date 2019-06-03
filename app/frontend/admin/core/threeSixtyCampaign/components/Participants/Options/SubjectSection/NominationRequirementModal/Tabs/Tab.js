@@ -3,6 +3,7 @@ import _ from 'lodash'
 import {
   Icon, Dropdown, Menu, Input,
 } from 'antd'
+import cs from 'classnames'
 import css from './style.scss'
 
 export default function Tab ({
@@ -76,20 +77,25 @@ export default function Tab ({
     setRenamingEnabled(false)
   }
 
+  const renamingInProgress = renamingEnabled && selected
+  if (!selected && renamingEnabled) { setRenamingEnabled(false) }
+
   return (
     <div>
       <div className={css.name} role="button" tabIndex={-1} onClick={() => selected && setupForRenaming()}>
-        {renamingEnabled && selected ? (
-          <Input
-            size="small"
-            value={newName}
-            onBlur={() => renameWithValidation()}
-            onKeyPress={e => e.charCode === 13 && renameWithValidation()}
-            onChange={(e) => {
-              setNewName(e.target.value)
-            }}
-          />
-        ) : list[index].name}
+        <Input
+          size="small"
+          value={newName}
+          onBlur={() => renameWithValidation()}
+          onKeyPress={e => e.charCode === 13 && renameWithValidation()}
+          onChange={(e) => {
+            setNewName(e.target.value)
+          }}
+          className={cs({ hidden: !renamingInProgress })}
+        />
+        <span className={cs({ hidden: renamingInProgress })}>
+          {list[index].name}
+        </span>
       </div>
       <div className={css.menu}>
         <Dropdown
