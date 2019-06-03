@@ -8,6 +8,7 @@ import ActionsMenu from './ActionMenu'
 import ToolsDropdown from '../ToolsDropdown'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
 import CreateSubjectModal from './CreateSubjectModal'
+import SubjectImportModal from './SubjectImportModal'
 
 const { Column } = Table
 
@@ -86,6 +87,7 @@ export default function SubjectList ({
         </Col>
       </Row>
       <CreateSubjectModal match={match} />
+      <SubjectImportModal />
     </>
   )
 }
