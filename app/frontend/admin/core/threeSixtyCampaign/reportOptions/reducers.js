@@ -1,5 +1,4 @@
-import { getIn, setIn, updateIn } from 'utils/immutable'
-import _ from 'lodash'
+import { setIn, updateIn } from 'utils/immutable'
 
 import {
   FETCH,
@@ -22,7 +21,7 @@ export default function reducer (state = defaultState, { type, payload, response
     case FETCH:
       return response
     case UPDATE: {
-      const {key, value} = payload
+      const { key, value } = payload
       return setIn(state, key, value)
     }
     case ADD_AVAILABILITY_CONDITION:

@@ -1,6 +1,4 @@
-import { getIn, updateIn } from 'utils/immutable'
-import _ from 'lodash'
-import nested_conditions from 'admin/core/common/nested_conditions'
+import nestedConditions from 'admin/core/common/nestedConditions'
 
 export const ADD = 'threeSixty/nominationRequirement/subjectConditions/ADD'
 export const UPDATE = 'threeSixty/nominationRequirement/subjectConditions/UPDATE'
@@ -10,22 +8,24 @@ export const ADD_NEW_LOGIC_SET_CONDITION = 'threeSixty/nominationRequirement/sub
 // eslint-disable-next-line max-len
 export const MOVE_CONDITION_TO_NEW_LOGIC_SET = 'threeSixty/nominationRequirement/subjectConditions/MOVE_CONDITION_TO_NEW_LOGIC_SET'
 
-const { actions, reducer } = nested_conditions({
+const { actions, reducer } = nestedConditions({
   actions: {
     add: ADD,
     remove: REMOVE,
     update: UPDATE,
     addNewLogicalSetCondition: ADD_NEW_LOGIC_SET_CONDITION,
-    moveConditionToNextLogicSet: MOVE_CONDITION_TO_NEW_LOGIC_SET
+    moveConditionToNextLogicSet: MOVE_CONDITION_TO_NEW_LOGIC_SET,
   },
   defaultCondition: {
     operator: 'and',
     field: 'Gender',
     value: null,
     comparator: 'equal',
-  }
+  },
 })
 
-export const { add, remove, update, addNewLogicalSetCondition, moveConditionToNextLogicSet } = actions;
+export const {
+  add, remove, update, addNewLogicalSetCondition, moveConditionToNextLogicSet,
+} = actions
 
 export default reducer

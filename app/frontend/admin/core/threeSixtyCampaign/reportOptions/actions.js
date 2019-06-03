@@ -23,4 +23,3 @@ export const update = (key, value) => ({
   type: UPDATE,
   payload: { key, value },
 })
-

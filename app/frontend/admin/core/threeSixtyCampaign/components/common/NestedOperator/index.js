@@ -1,7 +1,7 @@
 import React from 'react'
-import css from './style.scss'
 import cs from 'classnames'
-import { Input, Select, Icon } from 'antd'
+import { Select } from 'antd'
+import css from './style.scss'
 
 export default function Operator ({
   operator, update, moveConditionToNextLogicSet,

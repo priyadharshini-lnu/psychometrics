@@ -3,19 +3,21 @@ import { getIn, updateIn } from 'utils/immutable'
 import _ from 'lodash'
 
 export default ({ defaultCondition, actions }) => {
-  const removeConditions = (state, path, index) => {
-    return updateIn(state, path, (conditions) => {
-      const newConditions = _.filter(conditions, (_, i) => i !== index)
-      return newConditions.map((condition, i) => (
-        i === 0 ? { ...condition, operator: 'if' } : condition
-      ))
-    })
-  }
+  const removeConditions = (state, path, index) => updateIn(state, path, (conditions) => {
+    const newConditions = _.filter(conditions, (_, i) => i !== index)
+    return newConditions.map((condition, i) => (
+      i === 0 ? { ...condition, operator: 'if' } : condition
+    ))
+  })
 
   const HANDLERS = {
     [actions.add]: (state, { payload: { index, condition } }) => {
       const passedCondition = condition || {}
-      return updateIn(state, [index, 'conditions'], conditions => conditions.concat([{...defaultCondition, ...passedCondition}]))
+      return updateIn(
+        state,
+        [index, 'conditions'],
+        conditions => conditions.concat([{ ...defaultCondition, ...passedCondition }]),
+      )
     },
     [actions.remove]: (state, { payload: { parentIndex, childIndex } }) => {
       const path = [parentIndex, 'conditions']
@@ -76,11 +78,11 @@ export default ({ defaultCondition, actions }) => {
       moveConditionToNextLogicSet: (parentIndex, childIndex) => ({
         type: actions.moveConditionToNextLogicSet,
         payload: { parentIndex, childIndex },
-      })
+      }),
     },
     reducer: (state = {}, action) => {
       const handler = HANDLERS[action.type]
       return handler ? handler(state, action) : state
-    }
+    },
   }
 }

@@ -1,8 +1,8 @@
 import React from 'react'
 import { Input, Select, Icon } from 'antd'
 import cs from 'classnames'
-import css from './style.scss'
 import NestedOperator from 'admin/core/threeSixtyCampaign/components/common/NestedOperator'
+import css from './style.scss'
 
 export default function Criteria ({
   condition: {
@@ -55,4 +55,3 @@ export default function Criteria ({
     </div>
   )
 }
-
