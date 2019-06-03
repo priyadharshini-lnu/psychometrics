@@ -57,6 +57,21 @@ describe Threesixty::NominationRequirements::UpdateOrCreateAll do
     expect(expected_attributes).to eq(attributes2.except(:id))
   end
 
+  it 'deletes nomination_requirement that is not passed' do
+    nomination_requirements = create_list(:threesixty_nomination_requirement, 2, threesixty_campaign_id: threesixty_campaign.id)
+    attributes = {
+      id: nomination_requirements.first.id,
+      name: 'Requirement1',
+      position: 1,
+      conditions: [],
+      subject_conditions: []
+    }
+
+    described_class.call!(threesixty_campaign, [attributes])
+
+    expect(Threesixty::NominationRequirement.find_by(id: nomination_requirements.last.id)).to be_nil
+  end
+
   private
 
   def nomination_requirement_attributes(nomination_requirement)
