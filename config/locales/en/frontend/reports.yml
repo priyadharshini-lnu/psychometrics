@@ -40,6 +40,9 @@ en:
         scoring_category: 'Scoring Category'
         no_negative_gaps: 'There are no Negative Gaps'
         no_positive_gaps: 'There are no Positive Gaps'
+      single_value:
+        factor_name: "Scoring Category"
+        question_name: "Questions"
       three_sixty_default:
         statistic: 'Statistic'
         value: 'Value'
