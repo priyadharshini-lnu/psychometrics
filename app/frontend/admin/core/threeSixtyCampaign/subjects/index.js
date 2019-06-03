@@ -10,6 +10,7 @@ export const CREATE_ALL_FAILURE = 'threeSixty/subjects/CREATE_ALL_FAILURE'
 export const CLEAR_FORM = 'threeSixty/subjects/CLEAR_FORM'
 export const UPDATE = 'threeSixty/subjects/UPDATE'
 export const REMOVE = 'threeSixty/subjects/REMOVE'
+export const IMPORT = 'threeSixty/subjects/IMPORT'
 
 export const defaultState = {
   list: [],
@@ -55,6 +56,15 @@ export const remove = (campaignId, subjectId) => ({
   request: {
     method: 'delete',
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}`,
+  },
+})
+
+export const importFile = (campaignId, data) => ({
+  type: IMPORT,
+  request: {
+    method: 'post',
+    url: `/administration/threesixty_campaigns/${campaignId}/subjects/import`,
+    body: data,
   },
 })
 

@@ -50,7 +50,7 @@ const apiMiddleware = () => next => (action) => {
   return axios.request({
     method,
     url: buildUrl(request),
-    data: humps.decamelizeKeys(body),
+    data: body instanceof FormData ? body : humps.decamelizeKeys(body),
     ...buildOptions(request),
     responseType: 'json',
     withCredentials: true,

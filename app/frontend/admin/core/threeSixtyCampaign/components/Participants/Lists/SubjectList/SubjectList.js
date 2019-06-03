@@ -87,7 +87,7 @@ export default function SubjectList ({
         </Col>
       </Row>
       <CreateSubjectModal match={match} />
-      <SubjectImportModal />
+      <SubjectImportModal match={match} />
     </>
   )
 }

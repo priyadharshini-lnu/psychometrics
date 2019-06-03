@@ -50,6 +50,10 @@ module Administration
         })
       end
 
+      def import
+        byebug
+      end
+
       private
 
       # Set model

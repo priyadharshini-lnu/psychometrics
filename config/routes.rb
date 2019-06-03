@@ -184,6 +184,7 @@ Rails.application.routes.draw do
           collection do
             post :create_all
             post :search
+            post :import
           end
           member do
             get :preview_report
