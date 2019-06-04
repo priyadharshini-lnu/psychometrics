@@ -1,5 +1,6 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
+import { ASSIGN_TYPES } from 'constants/relationship'
 
 const FETCH_RELATIONSHIPS = 'threeSixty/relationships/FETCH_RELATIONSHIPS'
 
@@ -10,7 +11,7 @@ export const getDefaultRelationshipId = state => _.get(getRelationships(state), 
 
 export const getManualRelationships = createSelector(
   getRelationships,
-  relationships => relationships.filter(r => r.assignType === 'manual'),
+  relationships => relationships.filter(r => r.assignType === ASSIGN_TYPES.MANUAL),
 )
 
 export const fetchRelationships = campaignId => ({
