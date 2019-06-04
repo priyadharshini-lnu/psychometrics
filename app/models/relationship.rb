@@ -5,4 +5,5 @@ class Relationship < ApplicationRecord
 
   belongs_to :campaign
   enum type: { global: 0, campaign: 1 }
+  enum assign_type: { manual: 0, automatic: 1 }
 end

@@ -81,7 +81,7 @@ const RelationSelect = ({
     onChange={v => onChange(id, { relationshipId: v })}
   >
     {relationships.map(r => (
-      <Select.Option key={r.id} value={r.id}>
+      <Select.Option key={r.id} value={r.id} disabled={r.assignType === 'automatic'}>
         {r.name}
       </Select.Option>
     ))}
