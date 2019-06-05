@@ -1,19 +1,42 @@
+@import 'user/styles/variables';
+
 :global {
   .nominations-form {
     .form {
       padding: 16px 0;
-      .ant-form {
-        margin-bottom: 8px;
-      }
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
 
       .relationship-select {
         min-width: 200px;
       }
 
       .name-input {
-        min-width: 240px;
+        min-width: 200px;
+      }
+
+      form {
+        border: 1px solid $gray-color;
+        border-radius: 22px 6px 6px 22px;
+
+        .ant-form-item {
+          &:last-child {
+            margin-right: 8px;
+          }
+        }
       }
     }
 
+    .deny-button {
+      color: $white;
+      background-color: $red;
+    }
+    .divider {
+      width: 1px;
+      height: 34px;
+      margin: 0 8px;
+      background-color: $gray-color;
+    }
   }
 }

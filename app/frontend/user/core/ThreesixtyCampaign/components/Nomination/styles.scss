@@ -1,0 +1,22 @@
+@import 'user/styles/variables';
+
+:global {
+  .layout.ant-layout {
+    background: $white;
+  }
+
+  .fluid-container {
+    max-width: $screen-xl;
+    margin: 0 auto;
+  }
+
+  .nominations-container {
+    .content.padding {
+      padding-left: 32px;
+
+      @media(max-width: $screen-lg) {
+        padding-left: 0;
+      }
+    }
+  }
+}
