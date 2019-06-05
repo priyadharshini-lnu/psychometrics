@@ -1,7 +1,4 @@
 import React from 'react'
-import {
-  Table, Dropdown, Menu, Icon,
-} from 'antd'
 import './styles.scss'
 import RequirementTable from './RequirementTable/RequirementTable'
 

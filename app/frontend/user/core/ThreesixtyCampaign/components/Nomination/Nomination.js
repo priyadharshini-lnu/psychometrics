@@ -7,13 +7,14 @@ import NominationForm from './NominationForm/NominationForm'
 import NominationTable from './NominationTable/NominationTable'
 import './styles.scss'
 
-const { Paragraph, Title } = Typography
+const { Paragraph } = Typography
 const { Content } = Layout
 
 export default function Nominations (props) {
   useEffect(() => {
     props.fetchNomination(props.match.params)
   }, [])
+
   return (
     <Layout className="layout">
       <Content className="fluid-container">
@@ -26,7 +27,7 @@ export default function Nominations (props) {
               Back to tasks
             </div>
           )}
-          onBack={() => history.push(`/campaigns/${props.match.params.campaignId}`)}
+          onBack={() => props.history.push(`/campaigns/${props.match.params.campaignId}`)}
         >
           <div className="nominations-container">
             <div className="content padding">

@@ -5,7 +5,7 @@ import {
 import userPresenter from 'presenters/userPresenter'
 
 export default function InlineInput ({
-  title, relationship, addNomination, searchEvaluators, hideForm,
+  relationship, addNomination, searchEvaluators, hideForm,
   autocomplete: { users },
   match: { params: { campaignId, id: nominationId } },
 }) {

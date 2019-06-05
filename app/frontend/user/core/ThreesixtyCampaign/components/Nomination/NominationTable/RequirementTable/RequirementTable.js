@@ -83,7 +83,7 @@ export default function RequirementTable (props) {
         <Button
           size="small"
           type="primary"
-          onClick={e => updateStatus({
+          onClick={() => updateStatus({
             campaignId, nominationId, evaluatorId: evaluator.id, status: 'approved',
           })}
         >
@@ -93,7 +93,7 @@ export default function RequirementTable (props) {
           size="small"
           type="danger"
           className="deny-button"
-          onClick={e => updateStatus({
+          onClick={() => updateStatus({
             campaignId, nominationId, evaluatorId: evaluator.id, status: 'denied',
           })}
         >
@@ -117,6 +117,7 @@ export default function RequirementTable (props) {
     }
   }
 
+  // eslint-disable-next-line no-mixed-operators
   const rowData = evaluators && [...evaluators] || []
   if (showForm) {
     rowData.push({ id: 'form' })

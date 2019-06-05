@@ -72,7 +72,14 @@ export default function NominationForm (props) {
                   className="relationship-select"
                 >
                   <Option value="" disabled>Select Relationship</Option>
-                  {relationships.map(relation => <Option key={relation.id} value={relation.id}>{relation.name}</Option>)}
+                  {relationships.map(relation => (
+                    <Option
+                      key={relation.id}
+                      value={relation.id}
+                    >
+                      {relation.name}
+                    </Option>
+                  ))}
                 </Select>
               </Form.Item>
               <Form.Item>

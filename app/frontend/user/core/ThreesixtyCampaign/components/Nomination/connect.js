@@ -6,7 +6,7 @@ import {
   updateForm,
   updateStatus,
   showForm,
-  hideForm
+  hideForm,
 } from 'user/core/ThreesixtyCampaign/nomination'
 import { searchEvaluators } from 'user/core/temp/autocomplete'
 import { requirementsSelector } from 'user/core/ThreesixtyCampaign/nomination/selectors'
@@ -25,7 +25,7 @@ const mapDispatchToProps = {
   updateForm,
   updateStatus,
   showForm,
-  hideForm
+  hideForm,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

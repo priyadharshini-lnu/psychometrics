@@ -9,7 +9,6 @@ export const requirementsSelector = createSelector(
   getConditions, getEvaluators, getRelationships,
   (conditions, evaluators, relationships) => _.map(conditions, (condition) => {
     const { name } = _.find(relationships, { id: condition.id })
-    console.log(evaluators)
     return { condition, title: name, evaluators: evaluators[name] }
   }),
 )
