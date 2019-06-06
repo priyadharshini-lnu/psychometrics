@@ -2,17 +2,16 @@
 
 module Threesixty
   module NominationRequirements
-    class Save < BaseCommand
-      attr_reader :threesixty_campaign, :nomination_requirements
+    class SaveAll < BaseCommand
+      attr_reader :threesixty_campaign, :form
 
-      def initialize(threesixty_campaign, nomination_requirements)
+      def initialize(threesixty_campaign, form)
         @threesixty_campaign = threesixty_campaign
-        @nomination_requirements = nomination_requirements
+        @form = form
       end
 
       def call
-        ids = nomination_requirements.each_with_object([]) do |nomination_requirement, ids|
-          form = Threesixty::NominationRequirements::Form.from_params(nomination_requirement)
+        ids = form.nomination_requirements.each_with_object([]) do |form, ids|
           if form.persisted?
             nomination_requirement = threesixty_campaign.nomination_requirements.find(form.id)
             nomination_requirement.update!(form.attributes)

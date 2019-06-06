@@ -17,17 +17,17 @@ export const fetch = campaignId => ({
 
 export const add = payload => ({ type: ADD, payload })
 
-export const remove = index => ({ type: REMOVE, payload: { index }, })
+export const remove = index => ({ type: REMOVE, payload: { index } })
 
-export const moveUp = index => ({ type: MOVE_UP, payload: { index }, })
+export const moveUp = index => ({ type: MOVE_UP, payload: { index } })
 
-export const moveDown = index => ({ type: MOVE_DOWN, payload: { index }, })
+export const moveDown = index => ({ type: MOVE_DOWN, payload: { index } })
 
-export const changeSelectedIndex = index => ({ type: CHANGE_SELECTED_INDEX, payload: { index }, })
+export const changeSelectedIndex = index => ({ type: CHANGE_SELECTED_INDEX, payload: { index } })
 
-export const rename = name => ({ type: RENAME_SELECTED_NOMINATION, payload: { name }, })
+export const rename = name => ({ type: RENAME_SELECTED_NOMINATION, payload: { name } })
 
-export const copy = () => ({ type: COPY_SELECTED_NOMINATION, })
+export const copy = () => ({ type: COPY_SELECTED_NOMINATION })
 
 export const syncWithServer = (campaignId, nominationRequirements) => ({
   type: SYNC_WITH_SERVER,

@@ -18,7 +18,6 @@ const { actions, reducer } = nestedConditions({
   },
   defaultCondition: {
     operator: 'and',
-    field: 'Gender',
     value: null,
     comparator: 'equal',
   },

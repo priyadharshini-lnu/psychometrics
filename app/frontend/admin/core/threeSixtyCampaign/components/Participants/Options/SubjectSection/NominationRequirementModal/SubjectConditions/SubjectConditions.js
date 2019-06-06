@@ -20,7 +20,7 @@ export default function SubjectCondtions ({
         Every subject will have these nomination requirements.
         <span
           className={css.addSubjectConditionLink}
-          onClick={() => addNewLogicalSetCondition()}
+          onClick={() => addNewLogicalSetCondition({ field: datasheetFields[0] })}
           role="button"
           tabIndex={0}
         >
@@ -35,7 +35,7 @@ export default function SubjectCondtions ({
         {subjectConditions.length > 1 && (
         <Operator
           operator={subCondition.operator}
-          addNewLogicalSetCondition={() => addNewLogicalSetCondition('and')}
+          addNewLogicalSetCondition={() => addNewLogicalSetCondition({ field: datasheetFields[0], operator: 'and' })}
           update={value => update(parentIndex, null, 'operator', value)}
         />
         )}
@@ -45,7 +45,7 @@ export default function SubjectCondtions ({
               <Condition
                 datasheetFields={datasheetFields}
                 condition={condition}
-                add={() => add(parentIndex)}
+                add={() => add(parentIndex, { field: datasheetFields[0] })}
                 remove={() => remove(parentIndex, childIndex)}
                 update={(field, value) => update(parentIndex, childIndex, field, value)}
                 moveConditionToNextLogicSet={() => moveConditionToNextLogicSet(parentIndex, childIndex)}

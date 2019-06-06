@@ -2,7 +2,7 @@
 
 module Threesixty
   module NominationRequirements
-    class Form < Rectify::Form
+    class SaveForm < Rectify::Form
       attribute :name, String
       attribute :position, Integer
       attribute :conditions, Array

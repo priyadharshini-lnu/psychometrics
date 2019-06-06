@@ -4,7 +4,9 @@ import _ from 'lodash'
 
 export default ({
   defaultCondition,
-  actionTypes: { ADD, REMOVE, UPDATE, ADD_NEW_LOGIC_SET_CONDITION, MOVE_CONDITION_TO_NEW_LOGIC_SET }
+  actionTypes: {
+    ADD, REMOVE, UPDATE, ADD_NEW_LOGIC_SET_CONDITION, MOVE_CONDITION_TO_NEW_LOGIC_SET,
+  },
 }) => {
   const removeConditions = (state, path, index) => updateIn(state, path, (conditions) => {
     const newConditions = _.filter(conditions, (_, i) => i !== index)
@@ -42,12 +44,13 @@ export default ({
         [field]: value,
       }))
     },
-    [ADD_NEW_LOGIC_SET_CONDITION]: (state, { payload: { operator } }) => (
-      state.concat({
-        operator,
-        conditions: [{ ...defaultCondition, operator: 'if' }],
+    [ADD_NEW_LOGIC_SET_CONDITION]: (state, { payload: { condition } }) => {
+      const passedCondition = condition || {}
+      return state.concat({
+        operator: condition.operator || 'if',
+        conditions: [{ ...defaultCondition, ...passedCondition, operator: 'if' }],
       })
-    ),
+    },
     [MOVE_CONDITION_TO_NEW_LOGIC_SET]: (state, { payload: { parentIndex, childIndex } }) => {
       const conditionToMove = getIn(state, [parentIndex, 'conditions', childIndex])
       const newState = state.concat({
@@ -60,9 +63,9 @@ export default ({
 
   return {
     actions: {
-      add: index => ({
+      add: (index, condition) => ({
         type: ADD,
-        payload: { index },
+        payload: { index, condition },
       }),
       remove: (parentIndex, childIndex) => ({
         type: REMOVE,
@@ -74,9 +77,9 @@ export default ({
           parentIndex, childIndex, field, value,
         },
       }),
-      addNewLogicalSetCondition: (operator = 'if') => ({
+      addNewLogicalSetCondition: (condition = {}) => ({
         type: ADD_NEW_LOGIC_SET_CONDITION,
-        payload: { operator },
+        payload: { condition },
       }),
       moveConditionToNextLogicSet: (parentIndex, childIndex) => ({
         type: MOVE_CONDITION_TO_NEW_LOGIC_SET,

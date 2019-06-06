@@ -5,7 +5,7 @@ import Conditions from './Conditions'
 
 export default function ConditionsContainer () {
   return (
-    <div>
+    <div className={css.tabsContent}>
       <div>
         <div className={css.conditionTitle}>Subject Conditions</div>
         <div className={css.conditionsContainer}>

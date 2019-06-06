@@ -19,7 +19,6 @@ const { actions, reducer } = nestedConditions({
     operator: 'and',
     type: 'evaluations',
     numberOfEvaluator: null,
-    relationship: 'Manager',
   },
 })
 

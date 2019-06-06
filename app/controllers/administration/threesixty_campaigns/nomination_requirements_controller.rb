@@ -16,11 +16,13 @@ module Administration
       end
 
       def save
-        ::Threesixty::NominationRequirements::Save.call!(
-          threesixty_campaign,
-          params[:nomination_requirements]
-        )
-        render json: :ok
+        form = ::Threesixty::NominationRequirements::SaveAllForm.from_params(params)
+        if form.valid?
+          ::Threesixty::NominationRequirements::SaveAll.call!(threesixty_campaign, form)
+          render json: :ok
+        else
+          render json: :error, status: :bad_request
+        end
       end
 
       private
