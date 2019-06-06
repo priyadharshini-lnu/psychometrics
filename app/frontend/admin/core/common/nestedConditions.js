@@ -2,7 +2,10 @@
 import { getIn, updateIn } from 'utils/immutable'
 import _ from 'lodash'
 
-export default ({ defaultCondition, actions }) => {
+export default ({
+  defaultCondition,
+  actionTypes: { ADD, REMOVE, UPDATE, ADD_NEW_LOGIC_SET_CONDITION, MOVE_CONDITION_TO_NEW_LOGIC_SET }
+}) => {
   const removeConditions = (state, path, index) => updateIn(state, path, (conditions) => {
     const newConditions = _.filter(conditions, (_, i) => i !== index)
     return newConditions.map((condition, i) => (
@@ -11,15 +14,15 @@ export default ({ defaultCondition, actions }) => {
   })
 
   const HANDLERS = {
-    [actions.add]: (state, { payload: { index, condition } }) => {
+    [ADD]: (state, { payload: { index, condition } }) => {
       const passedCondition = condition || {}
       return updateIn(
         state,
         [index, 'conditions'],
-        conditions => conditions.concat([{ ...defaultCondition, ...passedCondition }]),
+        conditions => [...conditions, { ...defaultCondition, ...passedCondition }],
       )
     },
-    [actions.remove]: (state, { payload: { parentIndex, childIndex } }) => {
+    [REMOVE]: (state, { payload: { parentIndex, childIndex } }) => {
       const path = [parentIndex, 'conditions']
       const conditions = getIn(state, path)
       if (conditions.length > 1) {
@@ -27,25 +30,25 @@ export default ({ defaultCondition, actions }) => {
       }
       return removeConditions([state], 0, childIndex)[0]
     },
-    [actions.update]: (state, {
+    [UPDATE]: (state, {
       payload: {
         parentIndex, childIndex, field, value,
       },
     }) => {
       let path = [parentIndex]
-      path = _.isNull(childIndex) ? path : path.concat(['conditions', childIndex])
+      path = _.isNull(childIndex) ? path : [...path, 'conditions', childIndex]
       return updateIn(state, path, condition => ({
         ...condition,
         [field]: value,
       }))
     },
-    [actions.addNewLogicalSetCondition]: (state, { payload: { operator } }) => (
+    [ADD_NEW_LOGIC_SET_CONDITION]: (state, { payload: { operator } }) => (
       state.concat({
         operator,
         conditions: [{ ...defaultCondition, operator: 'if' }],
       })
     ),
-    [actions.moveConditionToNextLogicSet]: (state, { payload: { parentIndex, childIndex } }) => {
+    [MOVE_CONDITION_TO_NEW_LOGIC_SET]: (state, { payload: { parentIndex, childIndex } }) => {
       const conditionToMove = getIn(state, [parentIndex, 'conditions', childIndex])
       const newState = state.concat({
         operator: 'and',
@@ -58,25 +61,25 @@ export default ({ defaultCondition, actions }) => {
   return {
     actions: {
       add: index => ({
-        type: actions.add,
+        type: ADD,
         payload: { index },
       }),
       remove: (parentIndex, childIndex) => ({
-        type: actions.remove,
+        type: REMOVE,
         payload: { parentIndex, childIndex },
       }),
       update: (parentIndex, childIndex, field, value) => ({
-        type: actions.update,
+        type: UPDATE,
         payload: {
           parentIndex, childIndex, field, value,
         },
       }),
       addNewLogicalSetCondition: (operator = 'if') => ({
-        type: actions.addNewLogicalSetCondition,
+        type: ADD_NEW_LOGIC_SET_CONDITION,
         payload: { operator },
       }),
       moveConditionToNextLogicSet: (parentIndex, childIndex) => ({
-        type: actions.moveConditionToNextLogicSet,
+        type: MOVE_CONDITION_TO_NEW_LOGIC_SET,
         payload: { parentIndex, childIndex },
       }),
     },

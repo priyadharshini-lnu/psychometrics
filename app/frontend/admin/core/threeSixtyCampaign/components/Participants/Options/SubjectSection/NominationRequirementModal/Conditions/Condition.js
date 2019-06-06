@@ -22,7 +22,7 @@ export default function Condition ({
         dropdownMatchSelectWidth={false}
         onChange={value => update('comparator', value)}
       >
-        <Select.Option key="atleast">Atleast</Select.Option>
+        <Select.Option key="atleast">At least</Select.Option>
         <Select.Option key="exactly">Exactly</Select.Option>
         <Select.Option key="atmost">At Most</Select.Option>
       </Select>
@@ -40,7 +40,7 @@ export default function Condition ({
         value={relationshipId}
         size="small"
         dropdownMatchSelectWidth={false}
-        className={cs([css.inputElement])}
+        className={css.inputElement}
         onChange={value => update('relationshipId', value)}
       >
         {relationships.map(r => (<Select.Option key={r.id} value={r.id}>{r.name}</Select.Option>))}

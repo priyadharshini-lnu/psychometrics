@@ -15,8 +15,8 @@ module Administration
         )
       end
 
-      def update_or_create
-        ::Threesixty::NominationRequirements::UpdateOrCreateAll.call!(
+      def save
+        ::Threesixty::NominationRequirements::Save.call!(
           threesixty_campaign,
           params[:nomination_requirements]
         )

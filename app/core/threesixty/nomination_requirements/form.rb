@@ -7,6 +7,9 @@ module Threesixty
       attribute :position, Integer
       attribute :conditions, Array
       attribute :subject_conditions, Array
+
+      validates :name, presence: true
+      validates :position, presence: true
     end
   end
 end

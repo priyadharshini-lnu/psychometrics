@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Threesixty::NominationRequirements::UpdateOrCreateAll do
+describe Threesixty::NominationRequirements::Save do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
 
   it 'creates new nomination_requirements' do

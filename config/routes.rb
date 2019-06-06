@@ -209,7 +209,7 @@ Rails.application.routes.draw do
         end
         resources :nomination_requirements do
           collection do
-            put :update_or_create
+            put :save
           end
         end
       end

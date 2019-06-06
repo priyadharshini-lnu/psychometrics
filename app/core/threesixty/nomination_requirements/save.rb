@@ -2,7 +2,7 @@
 
 module Threesixty
   module NominationRequirements
-    class UpdateOrCreateAll < BaseCommand
+    class Save < BaseCommand
       attr_reader :threesixty_campaign, :nomination_requirements
 
       def initialize(threesixty_campaign, nomination_requirements)

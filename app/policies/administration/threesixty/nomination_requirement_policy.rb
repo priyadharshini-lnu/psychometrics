@@ -10,7 +10,7 @@ module Administration
         false
       end
 
-      def update_or_create?
+      def save?
         index?
       end
     end

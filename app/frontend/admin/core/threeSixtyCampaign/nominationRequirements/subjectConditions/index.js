@@ -9,12 +9,12 @@ export const ADD_NEW_LOGIC_SET_CONDITION = 'threeSixty/nominationRequirement/sub
 export const MOVE_CONDITION_TO_NEW_LOGIC_SET = 'threeSixty/nominationRequirement/subjectConditions/MOVE_CONDITION_TO_NEW_LOGIC_SET'
 
 const { actions, reducer } = nestedConditions({
-  actions: {
-    add: ADD,
-    remove: REMOVE,
-    update: UPDATE,
-    addNewLogicalSetCondition: ADD_NEW_LOGIC_SET_CONDITION,
-    moveConditionToNextLogicSet: MOVE_CONDITION_TO_NEW_LOGIC_SET,
+  actionTypes: {
+    ADD,
+    REMOVE,
+    UPDATE,
+    ADD_NEW_LOGIC_SET_CONDITION,
+    MOVE_CONDITION_TO_NEW_LOGIC_SET,
   },
   defaultCondition: {
     operator: 'and',
