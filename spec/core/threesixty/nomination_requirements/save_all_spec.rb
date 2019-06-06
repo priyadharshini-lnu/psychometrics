@@ -17,7 +17,8 @@ describe Threesixty::NominationRequirements::SaveAll do
       ]
     }
     attributes2 = { name: 'Requirement2', conditions: [], subject_conditions: [], position: 2 }
-    described_class.call!(threesixty_campaign, [attributes1, attributes2])
+    form  = Threesixty::NominationRequirements::SaveAllForm.from_params(nomination_requirements: [attributes1, attributes2])
+    described_class.call!(threesixty_campaign,form)
 
     expected_attributes = nomination_requirement_attributes(threesixty_campaign.reload.nomination_requirements.first)
     expect(expected_attributes).to eq(attributes1)
@@ -48,7 +49,8 @@ describe Threesixty::NominationRequirements::SaveAll do
       position: 2
     }
 
-    described_class.call!(threesixty_campaign, [attributes1, attributes2])
+    form  = Threesixty::NominationRequirements::SaveAllForm.from_params(nomination_requirements: [attributes1, attributes2])
+    described_class.call!(threesixty_campaign,form)
 
     expected_attributes = nomination_requirement_attributes(nomination_requirements.first.reload)
     expect(expected_attributes).to eq(attributes1.except(:id))
@@ -67,7 +69,8 @@ describe Threesixty::NominationRequirements::SaveAll do
       subject_conditions: []
     }
 
-    described_class.call!(threesixty_campaign, [attributes])
+    form  = Threesixty::NominationRequirements::SaveAllForm.from_params(nomination_requirements: [attributes])
+    described_class.call!(threesixty_campaign,form)
 
     expect(Threesixty::NominationRequirement.find_by(id: nomination_requirements.last.id)).to be_nil
   end

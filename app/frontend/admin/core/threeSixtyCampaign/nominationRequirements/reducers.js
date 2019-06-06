@@ -1,4 +1,4 @@
-import { updateIn } from 'utils/immutable'
+import { setIn, updateIn } from 'utils/immutable'
 import _ from 'lodash'
 import {
   FETCH,
@@ -73,11 +73,7 @@ export default function reducer (state = defaultState, { type, payload, response
       }
     }
     case RENAME_SELECTED_NOMINATION:
-      return updateIn(
-        state,
-        ['list', state.selectedIndex, 'name'],
-        () => payload.name,
-      )
+      return setIn(state, ['list', state.selectedIndex, 'name'], payload.name)
     case COPY_SELECTED_NOMINATION: {
       const maxPosition = _.get(_.maxBy(state.list, 'position'), 'position', 0)
       const selectedNomination = { ..._.get(state, ['list', state.selectedIndex]), position: maxPosition + 1, id: null }
