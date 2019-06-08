@@ -107,7 +107,7 @@ export default function NominationForm (props) {
             </Button>
           </Col>
           <Col>
-            <Button type="primary" className="deny-button">
+            <Button type="danger" className="deny-button">
               Deny All
             </Button>
           </Col>
