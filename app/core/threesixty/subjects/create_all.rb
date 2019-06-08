@@ -33,6 +33,7 @@ module Threesixty
         ::Participant.create!(
           evaluator: user,
           subject: user,
+          manager_nomination_status: :approved,
           relationship: self_relationship,
           project_id: threesixty_campaign.campaign.project_id,
           campaign: threesixty_campaign.campaign
