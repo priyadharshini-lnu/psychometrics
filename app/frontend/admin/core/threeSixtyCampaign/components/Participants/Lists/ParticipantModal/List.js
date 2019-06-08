@@ -67,7 +67,9 @@ export default function List ({
       />
       <Table.Column
         key="actions"
-        render={({ id, relationship }) => relationship.assignType === ASSIGN_TYPES.MANUAL && <Icon type="delete" onClick={() => destroyParticipant(id)} />
+        render={({ id, relationship }) => relationship.assignType === ASSIGN_TYPES.MANUAL && (
+        <Icon type="delete" onClick={() => destroyParticipant(id)} />
+        )
         }
       />
     </Table>
