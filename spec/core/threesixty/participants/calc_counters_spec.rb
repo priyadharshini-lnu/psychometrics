@@ -5,7 +5,7 @@ describe Threesixty::Participants::CalcCounters do
   let(:subject_2) { create(:threesixty_subject) }
 
   describe 'manager should approve evaluations' do
-    let(:option_which_requires_approval) { create(:threesixty_option, participants: { "manager" => { "can_approves_evaluations" => true} }) }
+    let(:option_which_requires_approval) { create(:threesixty_option, participants: { "manager" => { "can_approves_evaluations" => true}, "subject" => {"can_evaluate_self" => true} }) }
     before do
       campaign = option_which_requires_approval.threesixty_campaign.campaign
       create(:participant, campaign: campaign, subject_id: subject_1.user_id, manager_nomination_status: :approved)
@@ -26,7 +26,7 @@ describe Threesixty::Participants::CalcCounters do
   end
 
   describe 'manager should not approve evaluations' do
-    let(:option_which_does_not_require_approval) { create(:threesixty_option, participants: { "manager" => {} }) }
+    let(:option_which_does_not_require_approval) { create(:threesixty_option, participants: { "manager" => {}, "subject" => {"can_evaluate_self" => true} }) }
     before do
       campaign = option_which_does_not_require_approval.threesixty_campaign.campaign
       create(:participant, campaign: campaign, subject_id: subject_1.user_id, manager_nomination_status: :approved)
