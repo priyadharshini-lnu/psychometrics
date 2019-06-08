@@ -1,5 +1,7 @@
-import React from 'react'
-import { List, Collapse, Icon } from 'antd'
+import React, { useState } from 'react'
+import {
+  List, Collapse, Icon, Modal, Progress,
+} from 'antd'
 import { Link } from 'react-router-dom'
 import userPresenter from 'presenters/userPresenter'
 import connect from './connect'
@@ -10,11 +12,9 @@ const { Panel } = Collapse
 const ReportItem = item => (
   <List.Item>
     <Link to={`/campaigns/${item.campaignId}/reports/${item.id}`}>
-      <Icon
-        type="check-circle"
-        theme="twoTone"
-        twoToneColor={item.approval_status === 'approved' ? '#52c41a' : '#ccc'}
-      />
+      {!item.approval_status
+        ? <Icon type="check-square" theme="filled" className="status-icon" />
+        : <div className="empty-square" />}
       {' '}
       {userPresenter.getFullNameWithEmail(item.user)}
     </Link>
@@ -22,11 +22,10 @@ const ReportItem = item => (
 )
 
 const CollapseItem = ({ title, list }) => (
-  <Collapse bordered={false}>
-    <Panel header={title} forceRender>
+  <Collapse bordered={false} accordion={false} defaultActiveKey="panel">
+    <Panel header={title} forceRender key="panel">
       <List
         size="large"
-        bordered
         dataSource={list}
         renderItem={ReportItem}
       />
@@ -35,17 +34,39 @@ const CollapseItem = ({ title, list }) => (
 )
 
 function ReportList ({ approvalReports, subjectReport }) {
+  const [showHelp, setShowHelp] = useState(false)
   return (
     <List
-      className="report-list"
+      className="column-list report-list"
       size="large"
-      header={<div>Reports</div>}
+      header={(
+        <div className="header">
+          <div className="letter-icon">R</div>
+          <div className="caption">
+            Reports
+            <div className="progress-bars">
+              <Progress
+                className="progress-line"
+                percent={30}
+                showInfo={false}
+                strokeColor="#00B4AA"
+              />
+              <div className="value">1 of 3</div>
+            </div>
+          </div>
+          <div className="help">
+            <Icon type="question-circle" className="help-icon" onClick={() => setShowHelp(true)} />
+          </div>
+        </div>
+      )}
       bordered
     >
       {subjectReport && (
         <div className="report-row">
           <Link to={`/campaigns/${subjectReport.campaignId}/reports/${subjectReport.id}`}>
-            <Icon type="check-circle" theme="twoTone" twoToneColor="#52c41a" />
+            {!subjectReport.approved
+              ? <Icon type="check-square" theme="filled" className="status-icon" />
+              : <div className="empty-square" />}
             {' View Report'}
           </Link>
         </div>
@@ -53,6 +74,19 @@ function ReportList ({ approvalReports, subjectReport }) {
 
       {approvalReports.length > 0
         && <CollapseItem key="approve_reports" title="Approve reports" list={approvalReports} />}
+      <Modal
+        title={(
+          <div className="help-modal-header">
+            <div className="letter-icon">R</div>
+            Reports help
+          </div>
+        )}
+        visible={showHelp}
+        onCancel={() => setShowHelp(false)}
+        footer={null}
+      >
+        <p>need contents...</p>
+      </Modal>
     </List>
   )
 }

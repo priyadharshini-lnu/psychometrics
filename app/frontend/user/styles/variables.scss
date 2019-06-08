@@ -1,0 +1,33 @@
+$main-color: #00B4AA;
+$primary-color: $main-color;
+$info-color: $main-color;
+$processing-color: $main-color;
+$gray-color: #c8c8c8;
+$dark-gray: #9B9B9B;
+$normal-color: #d9d9d9;
+$white: #fff;
+$black: #333;
+$light-black: #555;
+
+$screen-xs: 480px;
+$screen-xs-min: $screen-xs;
+
+// Small screen / tablet
+$screen-sm: 576px;
+$screen-sm-min: $screen-sm;
+
+// Medium screen / desktop
+$screen-md: 768px;
+$screen-md-min: $screen-md;
+
+// Large screen / wide desktop
+$screen-lg: 992px;
+$screen-lg-min: $screen-lg;
+
+// Extra large screen / full hd
+$screen-xl: 1200px;
+$screen-xl-min: $screen-xl;
+
+// Extra extra large screen / large desktop
+$screen-xxl: 1600px;
+$screen-xxl-min: $screen-xxl;
