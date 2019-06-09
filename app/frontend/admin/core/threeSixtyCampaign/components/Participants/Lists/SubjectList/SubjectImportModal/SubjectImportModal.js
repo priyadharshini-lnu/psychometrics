@@ -1,19 +1,29 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Divider, Alert, Form, Form as AntForm,
+  Modal, Button, Icon, Alert,
 } from 'antd'
 
 export default function SubjectImportModal ({
   current,
   closeModal,
   importFile,
+  importInProgress,
+  errors,
   match: {
     params: { campaignId },
   },
 }) {
   if (current !== 'SubjectImportModal') return null
   const [file, setFile] = useState(null)
+
+  const importButtonIcon = () => {
+    if (importInProgress) {
+      return  <Icon type="loading" />
+    } else {
+      return <Icon type="import" />
+    }
+  }
 
   return (
     <Modal
@@ -26,12 +36,13 @@ export default function SubjectImportModal ({
           Cancel
         </Button>,
         <Button key="submit" type="primary"
+          disabled={importInProgress}
           onClick={() => {
             let data = new FormData();
             data.append('file', file);
             importFile(campaignId, data)}
           }>
-          <Icon type="import" />
+          {importButtonIcon()}
           Import
         </Button>,
       ]}
@@ -49,6 +60,19 @@ export default function SubjectImportModal ({
           <input type='file' onChange={(e) => setFile(e.target.files[0])} />
         </div>
       </div>
+      {errors && (
+        <Alert
+          style={{ whiteSpace: 'pre' }}
+          description={<ErrorMessage errors={errors} />}
+          type="error"
+          className="mtl"
+          showIcon
+        />
+      )}
     </Modal>
   )
+}
+
+function ErrorMessage ({ errors }) {
+  return <div>{_.values(errors).map(error => error.map((e, i) => <div key={i}>{e}</div>))}</div>
 }

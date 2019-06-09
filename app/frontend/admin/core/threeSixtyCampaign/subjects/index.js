@@ -2,6 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects'
 import { setIn, updateIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
 import _ from 'lodash'
+import { message } from 'antd';
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
 const FILL_SUBJECTS = 'threeSixty/subjects/FILL_SUBJECTS'
@@ -11,6 +12,7 @@ export const CLEAR_FORM = 'threeSixty/subjects/CLEAR_FORM'
 export const UPDATE = 'threeSixty/subjects/UPDATE'
 export const REMOVE = 'threeSixty/subjects/REMOVE'
 export const IMPORT = 'threeSixty/subjects/IMPORT'
+export const IMPORT_FAILURE = 'threeSixty/subjects/IMPORT_FAILURE'
 
 export const defaultState = {
   list: [],
@@ -18,6 +20,7 @@ export const defaultState = {
     attrs: [],
     errors: null,
   },
+  import: { errors: null },
   autocompleted: [],
 }
 
@@ -61,10 +64,12 @@ export const remove = (campaignId, subjectId) => ({
 
 export const importFile = (campaignId, data) => ({
   type: IMPORT,
+  campaignId,
   request: {
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/import`,
     body: data,
+    loader: true
   },
 })
 
@@ -84,6 +89,8 @@ export default function reducer (state = defaultState, action) {
     }
     case REMOVE:
       return updateIn(state, 'list', subjects => subjects.filter(s => (s.id !== action.requestAction.id)))
+    case IMPORT_FAILURE:
+      return setIn(state, ['import', 'errors'], action.errors)
     default:
       return state
   }
@@ -96,12 +103,18 @@ function* genFetchSubjects ({ requestAction }) {
 function* genClearForm () {
   yield put(clearForm({}))
 }
+
 function* genCloseModal () {
   yield put(closeModal())
 }
 
+function* genShowImportSuccessMessage () {
+  message.success('Subjects imported successfullt', 5);
+}
+
 export const watchers = [
-  takeLatest(CREATE_ALL, genFetchSubjects),
+  takeLatest([CREATE_ALL, IMPORT], genFetchSubjects),
   takeLatest(CREATE_ALL, genClearForm),
-  takeLatest(CREATE_ALL, genCloseModal),
+  takeLatest([CREATE_ALL, IMPORT], genCloseModal),
+  takeLatest([CREATE_ALL, IMPORT], genShowImportSuccessMessage),
 ]
