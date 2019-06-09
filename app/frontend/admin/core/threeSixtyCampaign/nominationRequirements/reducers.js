@@ -10,20 +10,8 @@ import {
   RENAME_SELECTED_NOMINATION,
   COPY_SELECTED_NOMINATION,
 } from './actions'
-
-import subjectConditionReducer, {
-  ADD as ADD_SUBJECT_CONDITION,
-  UPDATE as UPDATE_SUBJECT_CONDITION,
-  REMOVE as REMOVE_SUBJECT_CONDITION,
-  ADD_NEW_LOGIC_SET_CONDITION,
-  MOVE_CONDITION_TO_NEW_LOGIC_SET,
-} from './subjectConditions'
-
-import conditionsReducer, {
-  ADD as ADD_CONDITION,
-  UPDATE as UPDATE_CONDITION,
-  REMOVE as REMOVE_CONDITION,
-} from './conditions'
+import subjectConditionReducer from './subjectConditions'
+import conditionsReducer from './conditions'
 
 export const defaultState = {
   list: [],
@@ -50,63 +38,61 @@ function moveDownRequirement (nominationRequirements, index) {
   return move(nominationRequirements, index, -1)
 }
 
-export default function reducer (state = defaultState, { type, payload, response }) {
-  switch (type) {
-    case FETCH:
-      return { list: response, selectedIndex: 0 }
-    case ADD: {
-      const maxPosition = _.get(_.maxBy(state.list, 'position'), 'position', 0)
-      return {
-        ...state,
-        list: state.list.concat({
-          position: maxPosition + 1,
-          name: 'Default Requirement',
-          subjectConditions: [],
-          conditions: [
-            {
-              relationshipId: payload.relationshipId,
-              comparator: 'atleast',
-              value: 2,
-            },
-          ],
-        }),
-      }
+const innerReducers = {
+  subjectConditions: subjectConditionReducer,
+  conditions: conditionsReducer,
+}
+
+const HANDLERS = {
+  [FETCH]: (_, { response }) => ({ list: response, selectedIndex: 0 }),
+  [ADD]: (state, { payload: { relationshipId } }) => {
+    const maxPosition = _.get(_.maxBy(state.list, 'position'), 'position', 0)
+    return {
+      ...state,
+      list: state.list.concat({
+        position: maxPosition + 1,
+        name: 'Default Requirement',
+        subjectConditions: [],
+        conditions: [
+          {
+            relationshipId,
+            comparator: 'atleast',
+            value: 2,
+          },
+        ],
+      }),
     }
-    case RENAME_SELECTED_NOMINATION:
-      return setIn(state, ['list', state.selectedIndex, 'name'], payload.name)
-    case COPY_SELECTED_NOMINATION: {
-      const maxPosition = _.get(_.maxBy(state.list, 'position'), 'position', 0)
-      const selectedNomination = { ..._.get(state, ['list', state.selectedIndex]), position: maxPosition + 1, id: null }
-      return updateIn(state, 'list', nominationRequirements => nominationRequirements.concat(selectedNomination))
-    }
-    case REMOVE:
-      return { ...state, selectedIndex: 0, list: _.filter(state.list, (_, i) => payload.index !== i) }
-    case MOVE_UP: {
-      return { ...state, selectedIndex: state.selectedIndex - 1, list: moveUpRequirement(state.list, payload.index) }
-    }
-    case MOVE_DOWN:
-      return { ...state, selectedIndex: state.selectedIndex + 1, list: moveDownRequirement(state.list, payload.index) }
-    case CHANGE_SELECTED_INDEX:
-      return { ...state, selectedIndex: payload.index }
-    case ADD_SUBJECT_CONDITION:
-    case UPDATE_SUBJECT_CONDITION:
-    case REMOVE_SUBJECT_CONDITION:
-    case ADD_NEW_LOGIC_SET_CONDITION:
-    case MOVE_CONDITION_TO_NEW_LOGIC_SET:
-      return updateIn(
-        state,
-        ['list', state.selectedIndex, 'subjectConditions'],
-        subjectConditions => subjectConditionReducer(subjectConditions, { type, payload }),
-      )
-    case ADD_CONDITION:
-    case UPDATE_CONDITION:
-    case REMOVE_CONDITION:
-      return updateIn(
-        state,
-        ['list', state.selectedIndex, 'conditions'],
-        conditions => conditionsReducer(conditions, { type, payload }),
-      )
-    default:
-      return state
-  }
+  },
+  [RENAME_SELECTED_NOMINATION]: (state, { payload: { name } }) => (
+    setIn(state, ['list', state.selectedIndex, 'name'], name)
+  ),
+  [COPY_SELECTED_NOMINATION]: (state) => {
+    const maxPosition = _.get(_.maxBy(state.list, 'position'), 'position', 0)
+    const selectedNomination = { ..._.get(state, ['list', state.selectedIndex]), position: maxPosition + 1, id: null }
+    return updateIn(state, 'list', nominationRequirements => nominationRequirements.concat(selectedNomination))
+  },
+  [REMOVE]: (state, { payload: index }) => (
+    { ...state, selectedIndex: 0, list: _.filter(state.list, (_, i) => index !== i) }
+  ),
+  [MOVE_UP]: (state, { payload: { index } }) => (
+    { ...state, selectedIndex: state.selectedIndex - 1, list: moveUpRequirement(state.list, index) }
+  ),
+  [MOVE_DOWN]: (state, { payload: { index } }) => (
+    { ...state, selectedIndex: state.selectedIndex + 1, list: moveDownRequirement(state.list, index) }
+  ),
+  [CHANGE_SELECTED_INDEX]: (state, { payload: { index } }) => (
+    { ...state, selectedIndex: index }
+  ),
+}
+
+export default function reducer (state = defaultState, action) {
+  const stateFromInnerReducer = _.reduce(
+    innerReducers,
+    (state, reducer, branchName) => (
+      updateIn(state, ['list', state.selectedIndex, branchName], subState => reducer(subState, action))
+    ),
+    state,
+  )
+  const handler = HANDLERS[action.type]
+  return handler ? handler(state, action) : stateFromInnerReducer
 }
