@@ -11,6 +11,7 @@ const FETCH_EVALUATORS = 'threeSixty/evaluators/FETCH_EVALUATORS'
 
 export const defaultState = {
   list: [],
+  total: 0,
   form: {
     attrs: {},
     errors: null,

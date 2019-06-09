@@ -14,6 +14,7 @@ export const REMOVE = 'threeSixty/subjects/REMOVE'
 
 export const defaultState = {
   list: [],
+  total: 0,
   form: {
     attrs: {},
     errors: null,
