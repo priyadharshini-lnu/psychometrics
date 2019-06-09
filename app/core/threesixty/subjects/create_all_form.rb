@@ -3,21 +3,21 @@
 module Threesixty
   module Subjects
     class CreateAllForm < Rectify::Form
-      attribute :subjects, Hash
+      attribute :subjects, Array
 
       validate :no_duplicates
       validate :subject_fields
 
       def no_duplicates
-        if subjects.map { |_key, subject| subject[:email] }.uniq.size != subjects.size
+        if subjects.map { |subject| subject[:email] }.uniq.size != subjects.size
           errors.add(:subjects, :email_duplicated)
         end
       end
 
       def subject_fields
-        subjects.each do |_key, subject|
+        subjects.each_with_index do |subject, index|
           form = CreateOneForm.new(subject).with_context(context)
-          errors.add(:subjects, form.errors.messages.values.first.first) if form.invalid?
+          errors.add(:subjects, "[Row #{index + 1}] #{form.errors.messages.values.first.first}") if form.invalid?
         end
       end
     end

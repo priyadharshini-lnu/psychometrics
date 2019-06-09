@@ -51,7 +51,12 @@ module Administration
       end
 
       def import
-        byebug
+        form = ::Threesixty::Subjects::ImportFileForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
+        if form.valid?
+          validate_and_create_record_from_csv(form.file.path)
+        else
+          render json: { errors: form.errors.messages }, status: :bad_request
+        end
       end
 
       private
@@ -63,6 +68,20 @@ module Administration
 
       def resource_params
         params.require(:subject).permit(:report_release_status, :report_approval_status, :evaluation_status)
+      end
+
+      def validate_and_create_record_from_csv(file_path)
+        csv = CSV.read(file_path, 'r:bom|utf-8', headers: true)
+        subjects = csv.map { |row| row.to_h.symbolize_keys }
+        form = ::Threesixty::Subjects::CreateAllForm.new({ subjects: subjects }).
+          with_context(campaign: threesixty_campaign.campaign)
+
+        if form.valid?
+          ::Threesixty::Subjects::Import.call!(form.subjects, threesixty_campaign)
+          return render json: :ok
+        else
+          render json: { errors: form.errors.messages }, status: :bad_request
+        end
       end
     end
   end

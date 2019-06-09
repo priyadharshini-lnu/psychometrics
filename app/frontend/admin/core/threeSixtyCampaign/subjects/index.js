@@ -15,7 +15,7 @@ export const IMPORT = 'threeSixty/subjects/IMPORT'
 export const defaultState = {
   list: [],
   form: {
-    attrs: {},
+    attrs: [],
     errors: null,
   },
   autocompleted: [],

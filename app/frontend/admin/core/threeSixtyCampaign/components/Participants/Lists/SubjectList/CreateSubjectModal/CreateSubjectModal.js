@@ -40,7 +40,7 @@ export default function CreateSubjectModal ({
   if (current !== 'CreateSubjectModal') return null
   const [autocompletedUser, setAutocompletedUser] = useState('')
 
-  const handleOk = () => createAll(campaignId, _.pickBy(subjects, s => s.email || s.lastName || s.firstName))
+  const handleOk = () => createAll(campaignId, _.filter(subjects, s => s.email || s.lastName || s.firstName))
 
   const onSelect = (user) => {
     const newSubjects = setIn(subjects, spreadSheetUtils.getFreeRowIndex(subjects), _.omit(JSON.parse(user), ['id']))

@@ -12,7 +12,7 @@ export default function SubjectImportModal ({
     params: { campaignId },
   },
 }) {
-  // if (current !== 'SubjectImportModal') return null
+  if (current !== 'SubjectImportModal') return null
   const [file, setFile] = useState(null)
 
   return (
