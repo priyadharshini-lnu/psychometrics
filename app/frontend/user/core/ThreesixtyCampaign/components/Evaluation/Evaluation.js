@@ -1,9 +1,10 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Button, Menu, Dropdown, Icon,
+  Layout, Row, Col, Button, Menu, Dropdown, Icon, PageHeader,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
+import './styles.scss'
 
 const { Content } = Layout
 
@@ -19,6 +20,7 @@ export default function Evaluation ({
     },
   }, fetchAssessment, updateStatus, denyEvaluation,
   match: { params },
+  history,
 }) {
   const { subject, id } = results
   useEffect(() => {
@@ -75,7 +77,7 @@ export default function Evaluation ({
       ? <div>{statusPresenter.getApprovalStatus(evaluatorNominationStatus)}</div>
       : (
         <div>
-          <Button onClick={() => handleDenyClick()} type="danger">Deny</Button>
+          <Button className="deny-button" onClick={() => handleDenyClick()} type="danger">Deny</Button>
         </div>
       )
   }
@@ -83,27 +85,41 @@ export default function Evaluation ({
   return (
     <Layout>
       <Content className="fluid-container">
-        <div className="main-container">
-          <Row type="flex" justify="space-between">
-            <Col>
+        <PageHeader
+          className="page-header"
+          backIcon={(
+            <div>
+              <Icon type="arrow-left" />
+              {' '}
+              Back to tasks
+            </div>
+          )}
+          title={(
+            <div>
               Evaluate
               {' '}
-              {userPresenter.getFullName(subject)}
-            </Col>
-            <Col>
-              <StatusDropdown />
-            </Col>
-          </Row>
-          <div
-            id="pass_assessment"
-            data-type={asManager ? 'view_results' : 'pass_assessment'}
-            data-is-threesixty="true"
-            data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
-            data-data={JSON.stringify(assessment)}
-            data-result={JSON.stringify(results)}
-            data-dashboard-url={`/campaigns/${params.campaignId}`}
-          />
-        </div>
+              {userPresenter.getFullNameWithEmail(subject)}
+            </div>
+          )}
+          onBack={() => history.push(`/campaigns/${params.campaignId}`)}
+        >
+          <div className="evaluation-container">
+            <Row type="flex" justify="end">
+              <Col>
+                <StatusDropdown />
+              </Col>
+            </Row>
+            <div
+              id="pass_assessment"
+              data-type={asManager ? 'view_results' : 'pass_assessment'}
+              data-is-threesixty="true"
+              data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
+              data-data={JSON.stringify(assessment)}
+              data-result={JSON.stringify(results)}
+              data-dashboard-url={`/campaigns/${params.campaignId}`}
+            />
+          </div>
+        </PageHeader>
       </Content>
     </Layout>
   )
