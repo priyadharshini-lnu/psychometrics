@@ -1,11 +1,13 @@
 const PREDICATES = {
-  at_least: 'At least',
+  atleast: 'At least',
+  exactly: 'Exactly',
+  atmost: 'At most',
 }
 
 
 export default {
-  getCondition ({ predicate, value }) {
-    return `${PREDICATES[predicate]} ${value}`
+  getCondition ({ comparator, value }) {
+    return `${PREDICATES[comparator]} ${value}`
   },
 
 }
