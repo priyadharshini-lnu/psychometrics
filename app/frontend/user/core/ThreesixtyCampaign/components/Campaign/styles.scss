@@ -1,14 +1,26 @@
 @import 'user/styles/variables';
 
 :global {
+  .page-header {
+    @media(max-width: $screen-lg) {
+      padding: 16px;
+    }
+  }
+
+  .title-with-dash {
+    &:after {
+      content: '';
+      background-color: $main-color;
+      display: block;
+      width: 60px;
+      height: 3px;
+      border-radius: 3px;
+      margin-top: 8px
+    }
+  }
+
   .main-container {
     background: $white;
-
-    .page-header {
-      @media(max-width: $screen-lg) {
-        padding: 16px;
-      }
-    }
 
     .percentage {
       font-weight: bold;
@@ -40,17 +52,6 @@
       margin-top: 8px;
     }
 
-    .title-with-dash {
-      &:after {
-        content: '';
-        background-color: $main-color;
-        display: block;
-        width: 60px;
-        height: 3px;
-        border-radius: 3px;
-        margin-top: 8px
-      }
-    }
 
     .content.padding {
       padding-left: 32px;

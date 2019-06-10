@@ -5,13 +5,15 @@ import {
   addNomination,
   updateForm,
   updateStatus,
+  showForm,
+  hideForm,
 } from 'user/core/ThreesixtyCampaign/nomination'
 import { searchEvaluators } from 'user/core/temp/autocomplete'
-import { rowDataSelector } from 'user/core/ThreesixtyCampaign/nomination/selectors'
+import { requirementsSelector } from 'user/core/ThreesixtyCampaign/nomination/selectors'
 
 const mapStateToProps = state => ({
   nomination: state.threeSixtyCampaign.nomination,
-  rowData: rowDataSelector(state.threeSixtyCampaign),
+  requirements: requirementsSelector(state.threeSixtyCampaign),
   autocomplete: state.threeSixtyCampaign.temp.autocomplete,
 })
 
@@ -22,6 +24,8 @@ const mapDispatchToProps = {
   searchEvaluators,
   updateForm,
   updateStatus,
+  showForm,
+  hideForm,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

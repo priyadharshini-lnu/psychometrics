@@ -5,6 +5,8 @@ const FETCH = 'threeSixty/nomination/FETCH'
 const REMOVE = 'threeSixty/nomination/REMOVE'
 const ADD = 'threeSixty/nomination/ADD'
 const ADD_FAILURE = 'threeSixty/nomination/ADD_FAILURE'
+const SHOW_FORM = 'threeSixty/nomination/SHOW_FORM'
+const HIDE_FORM = 'threeSixty/nomination/HIDE_FORM'
 const UPDATE_FORM = 'threeSixty/nomination/UPDATE_FORM'
 const UPDATE_STATUS = 'threeSixty/nomination/UPDATE_STATUS'
 
@@ -14,6 +16,9 @@ export const fetchNomination = ({ campaignId, id }) => ({
     url: `/campaigns/${campaignId}/nominations/${id}`,
   },
 })
+
+export const showForm = () => ({ type: SHOW_FORM })
+export const hideForm = () => ({ type: HIDE_FORM })
 
 export const removeNomination = ({ campaignId, nominationId, evaluator }) => ({
   type: REMOVE,
@@ -79,6 +84,9 @@ const HANDLERS = {
     const evaluators = getIn(state, ['evaluators', relationship.name])
     return setIn(state, ['evaluators', relationship.name, _.findIndex(evaluators, { id })], action.response)
   },
+  [SHOW_FORM]: state => setIn(state, ['form', 'show'], true),
+  [HIDE_FORM]: state => setIn(state, ['form', 'show'], false),
+
 }
 
 const defaultState = {
