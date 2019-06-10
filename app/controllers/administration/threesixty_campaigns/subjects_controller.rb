@@ -50,7 +50,7 @@ module Administration
         })
       end
 
-      def donwload_example_import_file
+      def download_example_import_file
         send_file(
           "#{Rails.root}/public/example_csv/subject_import.csv",
           type: "text/csv"

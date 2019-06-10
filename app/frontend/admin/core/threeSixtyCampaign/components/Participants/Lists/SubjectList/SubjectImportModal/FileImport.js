@@ -1,10 +1,11 @@
 import React from 'react'
 import _ from 'lodash'
-import { Alert } from 'antd'
+import { Alert, Icon } from 'antd'
 
 export default function FileImport ({
   setFile,
-  errors
+  errors,
+  campaignId,
 }) {
   return (
     <div>
@@ -15,8 +16,17 @@ export default function FileImport ({
         <br />
         Duplicate entries will be updated with any changes or additional fields.
       </div>
-      <div className='mtl'>
-        <input type='file' onChange={(e) => setFile(e.target.files[0])} />
+      <div className="mtm" style={{ fontSize: '16px' }}>
+        <a
+          href={`/administration/threesixty_campaigns/${campaignId}/subjects/download_example_import_file`}
+          target="blank"
+        >
+          <Icon type="cloud-download" />
+          <span className="mls">Download Example csv</span>
+        </a>
+      </div>
+      <div className="mtl">
+        <input type="file" onChange={e => setFile(e.target.files[0])} />
       </div>
       {errors && (
         <Alert

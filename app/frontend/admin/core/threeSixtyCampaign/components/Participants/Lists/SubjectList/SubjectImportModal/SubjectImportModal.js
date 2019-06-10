@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Alert,
+  Modal, Button, Icon,
 } from 'antd'
 import UserList from 'admin/core/threeSixtyCampaign/components/UserList/UserList'
-import FileImport from './FileImport'
 import cs from 'classnames'
+import FileImport from './FileImport'
 
 export default function SubjectImportModal ({
   current,
@@ -24,10 +24,9 @@ export default function SubjectImportModal ({
 
   const importButtonIcon = () => {
     if (importInProgress) {
-      return  <Icon type="loading" />
-    } else {
-      return <Icon type="import" />
+      return <Icon type="loading" />
     }
+    return <Icon type="import" />
   }
 
   const handleOnCancel = () => {
@@ -39,13 +38,14 @@ export default function SubjectImportModal ({
 
   const modalBody = () => {
     if (showFileImport()) {
-      return <FileImport setFile={setFile} errors={errors} />
-    } else {
-      return <UserList dataSource={existingSubjectWhosePasswordNotChanged} />
+      return <FileImport setFile={setFile} errors={errors} campaignId={campaignId} />
     }
+    return <UserList dataSource={existingSubjectWhosePasswordNotChanged} />
   }
 
-  const modalTitle = () => (showFileImport() ? 'Import Subjects' : 'The list of users whose passwords will be not changed')
+  const modalTitle = () => (
+    showFileImport() ? 'Import Subjects' : 'The list of users whose passwords will be not changed'
+  )
 
   return (
     <Modal
@@ -57,14 +57,18 @@ export default function SubjectImportModal ({
         <Button key="back" onClick={handleOnCancel}>
           Cancel
         </Button>,
-        <Button key="submit" type="primary"
+        <Button
+          key="submit"
+          type="primary"
           disabled={importInProgress}
-          className={cs({hidden: !showFileImport()})}
+          className={cs({ hidden: !showFileImport() })}
           onClick={() => {
-            let data = new FormData();
-            data.append('file', file);
-            importFile(campaignId, data)}
-          }>
+            const data = new FormData()
+            data.append('file', file)
+            importFile(campaignId, data)
+          }
+          }
+        >
           {importButtonIcon()}
           Import
         </Button>,

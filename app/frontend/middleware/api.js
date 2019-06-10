@@ -45,7 +45,7 @@ const apiMiddleware = () => next => (action) => {
   const FAILURE = `${action.type}_FAILURE`
 
   next({ ...action, type: REQUEST })
-  if (loader) { next({ type: LOADING, payload: { name: SUCCESS }  }) }
+  if (loader) { next({ type: LOADING, payload: { name: SUCCESS } }) }
 
   return axios.request({
     method,

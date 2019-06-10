@@ -2,7 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects'
 import { setIn, updateIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
 import _ from 'lodash'
-import { message } from 'antd';
+import { message } from 'antd'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
 const FILL_SUBJECTS = 'threeSixty/subjects/FILL_SUBJECTS'
@@ -71,7 +71,7 @@ export const importFile = (campaignId, data) => ({
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/import`,
     body: data,
-    loader: true
+    loader: true,
   },
 })
 
@@ -96,7 +96,11 @@ export default function reducer (state = defaultState, action) {
     case IMPORT_FAILURE:
       return setIn(state, ['import', 'errors'], action.errors)
     case IMPORT:
-      return setIn(state, ['import', 'existingSubjectWhosePasswordNotChanged'], action.response.existingSubjectWhosePasswordNotChanged)
+      return setIn(
+        state,
+        ['import', 'existingSubjectWhosePasswordNotChanged'],
+        action.response.existingSubjectWhosePasswordNotChanged,
+      )
     case CLEAR_IMPORT_DATA:
       return setIn(state, ['import'], defaultState.import)
     default:
@@ -123,7 +127,7 @@ function* genCloseImportModal ({ response }) {
 }
 
 function* genShowImportSuccessMessage () {
-  message.success('Subjects imported successfullt', 5);
+  yield message.success('Subjects imported successfullt', 5)
 }
 
 export const watchers = [

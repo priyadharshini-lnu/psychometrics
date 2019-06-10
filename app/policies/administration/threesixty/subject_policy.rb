@@ -31,7 +31,7 @@ module Administration
         index?
       end
 
-      def donwload_example_import_file?
+      def download_example_import_file?
         index?
       end
     end

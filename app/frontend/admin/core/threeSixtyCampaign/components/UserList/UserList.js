@@ -1,5 +1,6 @@
 import React from 'react'
 import { Table } from 'antd'
+import _ from 'lodash'
 
 export default function UserList ({ dataSource }) {
   if (_.isEmpty(dataSource)) { return null }
@@ -20,8 +21,7 @@ export default function UserList ({ dataSource }) {
       dataIndex: 'email',
       key: 'email',
     },
-  ];
+  ]
 
   return <Table dataSource={dataSource} columns={columns} pagination={false} />
-
 }
