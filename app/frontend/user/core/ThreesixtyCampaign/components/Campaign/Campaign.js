@@ -21,7 +21,7 @@ export default function Campaign ({
 
   return (
     <Layout>
-      <Content>
+      <Content className="fluid-container">
         <div className="main-container">
           <PageHeader
             className="page-header"
