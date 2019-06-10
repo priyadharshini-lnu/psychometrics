@@ -2,7 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects'
 import { setIn, updateIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
 import _ from 'lodash'
-import params from '../settings'
+import settings from '../settings'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
 const FILL_SUBJECTS = 'threeSixty/subjects/FILL_SUBJECTS'
@@ -27,7 +27,7 @@ export const fetchSubjects = (campaignId, offset = 0) => ({
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/subjects`,
     body: {
-      limit: params.pageLimit,
+      limit: settings.pageLimit,
       offset,
     },
   },

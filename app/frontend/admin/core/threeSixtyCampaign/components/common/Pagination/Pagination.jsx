@@ -5,7 +5,7 @@ import { Link as RouterLink, withRouter } from 'react-router-dom'
 import queryString from 'query-string'
 import routeUtils from 'utils/routeUtils'
 import styles from './styles.scss'
-import params from '../../../settings.js'
+import settings from '../../../settings.js'
 
 function Link ({
   to, className, enable, children,
@@ -26,11 +26,11 @@ function Pagination ({ location, total, fetch }) {
   const next = { ...oldParams, page: currentPage + 1 }
   const prev = { ...oldParams, page: currentPage - 1 }
 
-  const clickNext = () => fetch((next.page - 1) * params.pageLimit)
-  const clickPrev = () => fetch((prev.page - 1) * params.pageLimit)
+  const clickNext = () => fetch((next.page - 1) * settings.pageLimit)
+  const clickPrev = () => fetch((prev.page - 1) * settings.pageLimit)
 
   const newerIsEnabled = prev.page > 0
-  const olderIsEnabled = total > params.pageLimit * currentPage
+  const olderIsEnabled = total > settings.pageLimit * currentPage
   return (
     <div className={styles.container}>
       <Link to={getPath(location, prev)} enable={newerIsEnabled}>

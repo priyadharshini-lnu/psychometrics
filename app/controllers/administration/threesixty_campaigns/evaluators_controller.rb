@@ -14,8 +14,7 @@ module Administration
           where(campaign_id: threesixty_campaign.campaign_id).
           order(id: :desc).
           limit(params[:limit]).
-          offset(params[:offset]).
-          all
+          offset(params[:offset])
         counters = ::Threesixty::Participants::CalcCounters.call!(evaluators.map(&:user_id), threesixty_campaign)
         total = policy_scope(::Threesixty::Evaluator).where(campaign_id: threesixty_campaign.campaign_id).count
 
