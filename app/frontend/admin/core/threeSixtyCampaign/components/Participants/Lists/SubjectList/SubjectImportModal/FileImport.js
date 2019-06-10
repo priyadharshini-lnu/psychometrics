@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import { Icon } from 'antd'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 
@@ -27,7 +26,7 @@ export default function FileImport ({
         </a>
       </div>
       <div className="mtl">
-        <input type="file" accept='text/csv' onChange={e => setFile(e.target.files[0])} />
+        <input type="file" accept="text/csv" onChange={e => setFile(e.target.files[0])} />
       </div>
       <ErrorAlertBox errors={errors} />
     </div>

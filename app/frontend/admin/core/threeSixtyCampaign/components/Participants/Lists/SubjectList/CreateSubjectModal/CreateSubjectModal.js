@@ -6,8 +6,8 @@ import {
 import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
 import spreadSheetUtils from 'utils/spreadSheet'
-import UserAutocomplete from '../../shared/UserAutocomplete'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
+import UserAutocomplete from '../../shared/UserAutocomplete'
 
 const tableFields = [
   {
