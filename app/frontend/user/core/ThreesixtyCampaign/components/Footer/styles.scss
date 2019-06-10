@@ -1,0 +1,16 @@
+:global {
+  footer.threesixty-footer {
+    background: #fff;
+    border-top: 1px solid #e8e8e8;
+    box-shadow: 0 0px 4px 1px rgba(0, 0, 0, 0.10);
+    padding: 0;
+
+    .footer-wrapper {
+      padding: 16px 24px;
+    }
+
+    .footer-logo {
+      max-height: 70px;
+    }
+  }
+}

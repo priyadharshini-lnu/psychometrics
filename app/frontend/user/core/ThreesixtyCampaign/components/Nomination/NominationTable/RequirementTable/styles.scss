@@ -1,0 +1,75 @@
+@import 'user/styles/variables';
+
+:global {
+  .requirement-table {
+    border: 1px solid $gray-color;
+    border-left: 3px solid $main-color;
+    border-radius: 4px;
+    overflow: hidden;
+    margin-top: 16px;
+    box-shadow: 0 0px 4px 1px rgba(0, 0, 0, 0.15);
+
+    th.column-header {
+      padding: 5px 16px;
+    }
+
+    .table-head-title {
+      color: $dark-gray;
+      font-weight: normal;
+
+      span {
+        color: $black;
+        font-weight: bold;
+        margin-right: 8px;
+      }
+    }
+
+    .evaluator-row {
+      &:nth-last-child(1) {
+        td {
+          border: 0;
+        }
+      }
+    }
+
+  }
+
+  .requirement {
+    &:nth-child(3n+1) {
+      .requirement-table {
+        border-left-color: $main-color;
+      }
+    }
+
+    &:nth-child(3n+2) {
+      .requirement-table {
+        border-left-color: #01837F;
+      }
+    }
+
+    &:nth-child(3n+3) {
+      .requirement-table {
+
+        border-left-color: #9ED8D7;
+      }
+    }
+
+    .approve-buttons {
+      button:nth-child(1) {
+        margin-right: 16px;
+      }
+    }
+
+    .deny-button {
+      background-color: $red;
+      color: $white;
+      border-color: $red;
+    }
+    .status-with-icon {
+      color: $dark-gray;
+      i {
+        margin-right: 8px;
+      }
+    }
+  }
+}

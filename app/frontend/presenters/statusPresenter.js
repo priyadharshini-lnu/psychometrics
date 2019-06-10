@@ -6,7 +6,7 @@ const APPROVAL_STATUSES = {
 
 const STATUSES = {
   completed: 'Completed',
-  not_completed: 'Not Completed',
+  not_completed: 'Waiting',
 }
 
 const REPORT_STATUSES = {

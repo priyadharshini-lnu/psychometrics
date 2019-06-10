@@ -1,6 +1,7 @@
 import React from 'react'
 import { Layout } from 'antd'
 import Navigation from './Navigation'
+import Footer from './Footer'
 
 const { Content } = Layout
 
@@ -11,6 +12,7 @@ export default function PageLayout ({ children }) {
       <Content>
         {children}
       </Content>
+      <Footer />
     </Layout>
   )
 }

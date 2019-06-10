@@ -45,7 +45,7 @@ module Threesixty
     end
 
     def set_nomination
-      @nomination = @subject.participants.find_by(id: params[:evaluator_id] || params[:id])
+      @nomination = @subject.participants.find_by(evaluator_id: params[:evaluator_id] || params[:id])
     end
 
     def evaluator_params
