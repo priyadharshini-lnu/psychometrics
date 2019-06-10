@@ -82,7 +82,7 @@ export default function Evaluation ({
 
   return (
     <Layout>
-      <Content>
+      <Content className="fluid-container">
         <div className="main-container">
           <Row type="flex" justify="space-between">
             <Col>

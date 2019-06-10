@@ -1,6 +1,10 @@
 @import 'user/styles/variables';
 
 :global {
+  section.ant-layout {
+    background: $white;
+  }
+
   .page-header {
     @media(max-width: $screen-lg) {
       padding: 16px;
