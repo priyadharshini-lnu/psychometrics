@@ -24,7 +24,7 @@ module Threesixty
       def fetch_or_create_subject_user(subject)
         if user = project_users_indexed[subject[:email]]
           user.update!(subject.except(:password))
-          @existing_subject_whose_password_not_changed << user
+          @existing_subject_whose_password_not_changed << user if subject[:password].present?
           user
         else
           ::Users::Regular.create!(subject.merge(project: project, create_by_invite: subject[:password].blank?))

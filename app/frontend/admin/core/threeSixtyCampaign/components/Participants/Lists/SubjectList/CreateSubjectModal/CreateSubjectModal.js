@@ -1,12 +1,13 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Divider, Alert, Form, Form as AntForm,
+  Modal, Button, Icon, Divider, Form, Form as AntForm,
 } from 'antd'
 import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
 import spreadSheetUtils from 'utils/spreadSheet'
 import UserAutocomplete from '../../shared/UserAutocomplete'
+import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 
 const tableFields = [
   {
@@ -78,19 +79,7 @@ export default function CreateSubjectModal ({
       </Form>
       <Divider />
       <SpreadSheet entities={subjects} fields={tableFields} updateEntities={fillSubjects} />
-      {errors && (
-        <Alert
-          style={{ whiteSpace: 'pre' }}
-          description={<ErrorMessage errors={errors} />}
-          type="error"
-          className="mtl"
-          showIcon
-        />
-      )}
+      <ErrorAlertBox errors={errors} />
     </Modal>
   )
-}
-
-function ErrorMessage ({ errors }) {
-  return <div>{_.values(errors).map(error => error.map((e, i) => <div key={i}>{e}</div>))}</div>
 }

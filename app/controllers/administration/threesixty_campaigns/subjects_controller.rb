@@ -60,7 +60,7 @@ module Administration
       def import
         form = ::Threesixty::Subjects::ImportFileForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
-          validate_and_create_record_from_csv(form.file.path)
+          validate_and_add_subjects_from_csv(form.file.path)
         else
           render json: { errors: form.errors.messages }, status: :bad_request
         end
@@ -77,7 +77,7 @@ module Administration
         params.require(:subject).permit(:report_release_status, :report_approval_status, :evaluation_status)
       end
 
-      def validate_and_create_record_from_csv(file_path)
+      def validate_and_add_subjects_from_csv(file_path)
         form = ::Threesixty::Subjects::CreateAllForm.new({ subjects: subjects_from_csv(file_path) }).
           with_context(campaign: threesixty_campaign.campaign, single_subject_form: ::Threesixty::Subjects::ImportOneForm)
 
