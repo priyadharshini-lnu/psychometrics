@@ -182,6 +182,7 @@ Rails.application.routes.draw do
       scope module: 'threesixty_campaigns' do
         resources :subjects do
           collection do
+            get :donwload_example_import_file
             post :create_all
             post :search
             post :import
