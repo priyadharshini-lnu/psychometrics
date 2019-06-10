@@ -13,6 +13,8 @@ export const UPDATE = 'threeSixty/subjects/UPDATE'
 export const REMOVE = 'threeSixty/subjects/REMOVE'
 export const IMPORT = 'threeSixty/subjects/IMPORT'
 export const IMPORT_FAILURE = 'threeSixty/subjects/IMPORT_FAILURE'
+export const IMPORT_SUCCESS = 'threeSixty/subjects/IMPORT_SUCCESS'
+export const CLEAR_IMPORT_DATA = 'threeSixty/subjects/CLEAR_IMPORT_DATA'
 
 export const defaultState = {
   list: [],
@@ -73,6 +75,8 @@ export const importFile = (campaignId, data) => ({
   },
 })
 
+export const clearImportData = () => ({ type: CLEAR_IMPORT_DATA })
+
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
     case FETCH_SUBJECTS:
@@ -91,6 +95,10 @@ export default function reducer (state = defaultState, action) {
       return updateIn(state, 'list', subjects => subjects.filter(s => (s.id !== action.requestAction.id)))
     case IMPORT_FAILURE:
       return setIn(state, ['import', 'errors'], action.errors)
+    case IMPORT:
+      return setIn(state, ['import', 'existingSubjectWhosePasswordNotChanged'], action.response.existingSubjectWhosePasswordNotChanged)
+    case CLEAR_IMPORT_DATA:
+      return setIn(state, ['import'], defaultState.import)
     default:
       return state
   }
@@ -108,6 +116,12 @@ function* genCloseModal () {
   yield put(closeModal())
 }
 
+function* genCloseImportModal ({ response }) {
+  if (_.isEmpty(response.existingSubjectWhosePasswordNotChanged)) {
+    yield put(closeModal())
+  }
+}
+
 function* genShowImportSuccessMessage () {
   message.success('Subjects imported successfullt', 5);
 }
@@ -115,6 +129,7 @@ function* genShowImportSuccessMessage () {
 export const watchers = [
   takeLatest([CREATE_ALL, IMPORT], genFetchSubjects),
   takeLatest(CREATE_ALL, genClearForm),
-  takeLatest([CREATE_ALL, IMPORT], genCloseModal),
+  takeLatest(CREATE_ALL, genCloseModal),
+  takeLatest(IMPORT, genCloseImportModal),
   takeLatest([CREATE_ALL, IMPORT], genShowImportSuccessMessage),
 ]

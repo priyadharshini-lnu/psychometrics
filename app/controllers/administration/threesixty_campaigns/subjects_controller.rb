@@ -78,17 +78,20 @@ module Administration
       end
 
       def validate_and_create_record_from_csv(file_path)
-        csv = CSV.read(file_path, 'r:bom|utf-8', headers: true)
-        subjects = csv.map { |row| row.to_h.symbolize_keys }
-        form = ::Threesixty::Subjects::CreateAllForm.new({ subjects: subjects }).
-          with_context(campaign: threesixty_campaign.campaign)
+        form = ::Threesixty::Subjects::CreateAllForm.new({ subjects: subjects_from_csv(file_path) }).
+          with_context(campaign: threesixty_campaign.campaign, single_subject_form: ::Threesixty::Subjects::ImportOneForm)
 
         if form.valid?
-          ::Threesixty::Subjects::Import.call!(form.subjects, threesixty_campaign)
-          return render json: :ok
+          result = ::Threesixty::Subjects::CreateAll.call!(form.subjects, threesixty_campaign)
+          return render json: result.slice(:existing_subject_whose_password_not_changed)
         else
           render json: { errors: form.errors.messages }, status: :bad_request
         end
+      end
+
+      def subjects_from_csv(file_path)
+        csv = CSV.read(file_path, 'r:bom|utf-8', headers: true)
+        subjects = csv.map { |row| row.to_h.symbolize_keys }
       end
     end
   end

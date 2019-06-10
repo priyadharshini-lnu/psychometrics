@@ -1,0 +1,12 @@
+en:
+  activemodel:
+    errors:
+      models:
+        import_one:
+          attributes:
+            email:
+              blank: "Email can't be blank"
+              invalid: 'Email is invalid'
+              already_exists: 'A subject with same email already exists'
+            password:
+              too_short: 'Password is too short'

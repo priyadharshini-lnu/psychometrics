@@ -6,7 +6,6 @@ module Threesixty
       attribute :first_name, String
       attribute :last_name, String
       attribute :email, String
-      attribute :password, String
 
       validates :email, presence: true
       validates :email, format: { with: URI::MailTo::EMAIL_REGEXP }

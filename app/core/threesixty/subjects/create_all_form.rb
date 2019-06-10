@@ -15,8 +15,9 @@ module Threesixty
       end
 
       def subject_fields
+        single_subject_form = context.single_subject_form || CreateOneForm
         subjects.each_with_index do |subject, index|
-          form = CreateOneForm.new(subject).with_context(context)
+          form = single_subject_form.new(subject).with_context(context)
           errors.add(:subjects, "[Row #{index + 1}] #{form.errors.messages.values.first.first}") if form.invalid?
         end
       end

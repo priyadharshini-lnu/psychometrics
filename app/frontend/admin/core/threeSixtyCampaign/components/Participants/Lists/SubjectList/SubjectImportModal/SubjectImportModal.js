@@ -3,13 +3,18 @@ import _ from 'lodash'
 import {
   Modal, Button, Icon, Alert,
 } from 'antd'
+import UserList from 'admin/core/threeSixtyCampaign/components/UserList/UserList'
+import FileImport from './FileImport'
+import cs from 'classnames'
 
 export default function SubjectImportModal ({
   current,
   closeModal,
   importFile,
   importInProgress,
+  clearImportData,
   errors,
+  existingSubjectWhosePasswordNotChanged,
   match: {
     params: { campaignId },
   },
@@ -25,18 +30,36 @@ export default function SubjectImportModal ({
     }
   }
 
+  const handleOnCancel = () => {
+    clearImportData()
+    closeModal()
+  }
+
+  const showFileImport = () => _.isEmpty(existingSubjectWhosePasswordNotChanged)
+
+  const modalBody = () => {
+    if (showFileImport()) {
+      return <FileImport setFile={setFile} errors={errors} />
+    } else {
+      return <UserList dataSource={existingSubjectWhosePasswordNotChanged} />
+    }
+  }
+
+  const modalTitle = () => (showFileImport() ? 'Import Subjects' : 'The list of users whose passwords will be not changed')
+
   return (
     <Modal
       width={700}
-      title="Import Subjects"
+      title={modalTitle()}
       visible
-      onCancel={closeModal}
+      onCancel={handleOnCancel}
       footer={[
-        <Button key="back" onClick={closeModal}>
+        <Button key="back" onClick={handleOnCancel}>
           Cancel
         </Button>,
         <Button key="submit" type="primary"
           disabled={importInProgress}
+          className={cs({hidden: !showFileImport()})}
           onClick={() => {
             let data = new FormData();
             data.append('file', file);
@@ -47,32 +70,7 @@ export default function SubjectImportModal ({
         </Button>,
       ]}
     >
-      <div>
-        <div>
-          Each row must have a first name, last name and an email. Any other fields are optional.
-          <br />
-          If no username or password are provided then the email will be used for the username and the password will be randomly generated.
-          <br />
-          Duplicate entries will be updated with any changes or additional fields.
-          The maximum file size is 100M.
-        </div>
-        <div className='mtl'>
-          <input type='file' onChange={(e) => setFile(e.target.files[0])} />
-        </div>
-      </div>
-      {errors && (
-        <Alert
-          style={{ whiteSpace: 'pre' }}
-          description={<ErrorMessage errors={errors} />}
-          type="error"
-          className="mtl"
-          showIcon
-        />
-      )}
+      {modalBody()}
     </Modal>
   )
-}
-
-function ErrorMessage ({ errors }) {
-  return <div>{_.values(errors).map(error => error.map((e, i) => <div key={i}>{e}</div>))}</div>
 }
