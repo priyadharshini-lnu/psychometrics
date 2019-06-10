@@ -44,7 +44,7 @@ export default function SubjectImportModal ({
   }
 
   const modalTitle = () => (
-    showFileImport() ? 'Import Subjects' : 'The list of users whose passwords will be not changed'
+    showFileImport() ? 'Import Subjects' : 'The list of users whose passwords were not changed'
   )
 
   return (
@@ -60,7 +60,7 @@ export default function SubjectImportModal ({
         <Button
           key="submit"
           type="primary"
-          disabled={importInProgress}
+          disabled={importInProgress || _.isNull(file)}
           className={cs({ hidden: !showFileImport() })}
           onClick={() => {
             const data = new FormData()

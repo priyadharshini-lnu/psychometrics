@@ -4,7 +4,15 @@ import { watchers as evaluators } from './core/threeSixtyCampaign/evaluators'
 import participantOptions from './core/threeSixtyCampaign/participantOptions/watchers'
 import reportOptions from './core/threeSixtyCampaign/reportOptions/watchers'
 import { watchers as threeSixtyCampaign } from './core/threeSixtyCampaign'
+import { watchers as subjectImportWatcher } from './core/threeSixtyCampaign/subjects/import'
 
 export default function* () {
-  yield all([...subjects, ...evaluators, ...participantOptions, ...reportOptions, ...threeSixtyCampaign])
+  yield all([
+    ...subjects,
+    ...subjectImportWatcher,
+    ...evaluators,
+    ...participantOptions,
+    ...reportOptions,
+    ...threeSixtyCampaign,
+  ])
 }

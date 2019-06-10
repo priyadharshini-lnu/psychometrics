@@ -9,4 +9,4 @@ en:
               invalid: 'Email is invalid'
               already_exists: 'A subject with same email already exists'
             password:
-              too_short: 'Password is too short'
+              too_short: 'Password is too short. Minimum 6 character required'

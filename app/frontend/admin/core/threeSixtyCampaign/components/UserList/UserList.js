@@ -23,5 +23,5 @@ export default function UserList ({ dataSource }) {
     },
   ]
 
-  return <Table dataSource={dataSource} columns={columns} pagination={false} />
+  return <Table rowKey="email" dataSource={dataSource} columns={columns} pagination={false} />
 }

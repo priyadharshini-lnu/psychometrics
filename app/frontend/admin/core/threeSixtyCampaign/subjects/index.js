@@ -2,7 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects'
 import { setIn, updateIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
 import _ from 'lodash'
-import { message } from 'antd'
+import importReducer from './import'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
 const FILL_SUBJECTS = 'threeSixty/subjects/FILL_SUBJECTS'
@@ -11,10 +11,6 @@ export const CREATE_ALL_FAILURE = 'threeSixty/subjects/CREATE_ALL_FAILURE'
 export const CLEAR_FORM = 'threeSixty/subjects/CLEAR_FORM'
 export const UPDATE = 'threeSixty/subjects/UPDATE'
 export const REMOVE = 'threeSixty/subjects/REMOVE'
-export const IMPORT = 'threeSixty/subjects/IMPORT'
-export const IMPORT_FAILURE = 'threeSixty/subjects/IMPORT_FAILURE'
-export const IMPORT_SUCCESS = 'threeSixty/subjects/IMPORT_SUCCESS'
-export const CLEAR_IMPORT_DATA = 'threeSixty/subjects/CLEAR_IMPORT_DATA'
 
 export const defaultState = {
   list: [],
@@ -22,7 +18,6 @@ export const defaultState = {
     attrs: [],
     errors: null,
   },
-  import: { errors: null },
   autocompleted: [],
 }
 
@@ -64,51 +59,30 @@ export const remove = (campaignId, subjectId) => ({
   },
 })
 
-export const importFile = (campaignId, data) => ({
-  type: IMPORT,
-  campaignId,
-  request: {
-    method: 'post',
-    url: `/administration/threesixty_campaigns/${campaignId}/subjects/import`,
-    body: data,
-    loader: true,
+const HANDLERS = {
+  [FETCH_SUBJECTS]: (state, { response }) => ({ ...state, list: response }),
+  [FILL_SUBJECTS]: (state, { subjects }) => setIn(state, ['form', 'attrs'], subjects),
+  [CREATE_ALL_FAILURE]: (state, { errors }) => setIn(state, ['form', 'errors'], errors),
+  [CLEAR_FORM]: state => ({ ...state, form: defaultState.form }),
+  [UPDATE]: (state, { response }) => {
+    const index = _.findIndex(state.list, subject => subject.id === response.id)
+    return updateIn(state, ['list', index], () => response)
   },
-})
-
-export const clearImportData = () => ({ type: CLEAR_IMPORT_DATA })
-
-export default function reducer (state = defaultState, action) {
-  switch (action.type) {
-    case FETCH_SUBJECTS:
-      return { ...state, list: action.response }
-    case FILL_SUBJECTS:
-      return setIn(state, ['form', 'attrs'], action.subjects)
-    case CREATE_ALL_FAILURE:
-      return setIn(state, ['form', 'errors'], action.errors)
-    case CLEAR_FORM:
-      return { ...state, form: defaultState.form }
-    case UPDATE: {
-      const index = _.findIndex(state.list, subject => subject.id === action.response.id)
-      return updateIn(state, ['list', index], () => action.response)
-    }
-    case REMOVE:
-      return updateIn(state, 'list', subjects => subjects.filter(s => (s.id !== action.requestAction.id)))
-    case IMPORT_FAILURE:
-      return setIn(state, ['import', 'errors'], action.errors)
-    case IMPORT:
-      return setIn(
-        state,
-        ['import', 'existingSubjectWhosePasswordNotChanged'],
-        action.response.existingSubjectWhosePasswordNotChanged,
-      )
-    case CLEAR_IMPORT_DATA:
-      return setIn(state, ['import'], defaultState.import)
-    default:
-      return state
-  }
+  [REMOVE]: (state, { requestAction }) => (
+    updateIn(state, 'list', subjects => subjects.filter(s => (s.id !== requestAction.id)))
+  ),
 }
 
-function* genFetchSubjects ({ requestAction }) {
+export default function reducer (state = defaultState, action) {
+  const stateFromInnerReducer = updateIn(
+    state, ['import'], state => importReducer(state, action),
+  )
+  const handler = HANDLERS[action.type]
+  return handler ? handler(state, action) : stateFromInnerReducer
+}
+
+
+export function* genFetchSubjects ({ requestAction }) {
   yield put(fetchSubjects(requestAction.campaignId))
 }
 
@@ -120,20 +94,8 @@ function* genCloseModal () {
   yield put(closeModal())
 }
 
-function* genCloseImportModal ({ response }) {
-  if (_.isEmpty(response.existingSubjectWhosePasswordNotChanged)) {
-    yield put(closeModal())
-  }
-}
-
-function* genShowImportSuccessMessage () {
-  yield message.success('Subjects imported successfullt', 5)
-}
-
 export const watchers = [
-  takeLatest([CREATE_ALL, IMPORT], genFetchSubjects),
+  takeLatest(CREATE_ALL, genFetchSubjects),
   takeLatest(CREATE_ALL, genClearForm),
   takeLatest(CREATE_ALL, genCloseModal),
-  takeLatest(IMPORT, genCloseImportModal),
-  takeLatest([CREATE_ALL, IMPORT], genShowImportSuccessMessage),
 ]
