@@ -49,7 +49,7 @@ const HANDLERS = {
     const maxPosition = _.get(_.maxBy(state.list, 'position'), 'position', 0)
     return {
       ...state,
-      list: state.list.concat({
+      list: [...state.list, {
         position: maxPosition + 1,
         name: 'Default Requirement',
         subjectConditions: [],
@@ -60,7 +60,7 @@ const HANDLERS = {
             value: 2,
           },
         ],
-      }),
+      }],
     }
   },
   [RENAME_SELECTED_NOMINATION]: (state, { payload: { name } }) => (
