@@ -11,12 +11,18 @@ export default function AvailabilityRequirement ({
   addAvailiblityCondition,
   removeAvailiblityCondition,
   updateAvailiblityCondition,
-  addNewLogicSetCondition,
+  addNewLogicalSetCondition,
   moveConditionToNextLogicSet,
 }) {
+  const defaultRelationshipId = relationships[0].id
   if (_.isEmpty(conditions)) {
     return (
-      <div className={css.addLink} onClick={() => addNewLogicSetCondition()} role="button" tabIndex={0}>
+      <div
+        className={css.addLink}
+        onClick={() => addNewLogicalSetCondition({ relationship: defaultRelationshipId })}
+        role="button"
+        tabIndex={0}
+      >
         Add conditions
       </div>
     )
@@ -26,7 +32,9 @@ export default function AvailabilityRequirement ({
       {conditions.length > 1 && (
         <Operator
           operator={subCondition.operator}
-          addNewLogicSetCondition={addNewLogicSetCondition}
+          addNewLogicalSetCondition={
+            () => addNewLogicalSetCondition({ operator: 'and', relationship: defaultRelationshipId })
+          }
           updateAvailiblityCondition={value => updateAvailiblityCondition(parentIndex, null, 'operator', value)}
         />
       )}
@@ -34,7 +42,9 @@ export default function AvailabilityRequirement ({
         {subCondition.conditions.map((condition, childIndex) => (
           <div key={childIndex}>
             <Criteria
-              addAvailiblityCondition={() => addAvailiblityCondition(parentIndex)}
+              addAvailiblityCondition={
+                () => addAvailiblityCondition(parentIndex, { relationship: defaultRelationshipId })
+              }
               moveConditionToNextLogicSet={() => moveConditionToNextLogicSet(parentIndex, childIndex)}
               removeAvailiblityCondition={() => removeAvailiblityCondition(parentIndex, childIndex)}
               updateAvailiblityCondition={(field, value) => (
@@ -50,10 +60,10 @@ export default function AvailabilityRequirement ({
   ))
 }
 
-function Operator ({ operator, addNewLogicSetCondition, updateAvailiblityCondition }) {
+function Operator ({ operator, addNewLogicalSetCondition, updateAvailiblityCondition }) {
   const handleOperatorChange = (value) => {
     if (value === 'new_logic_set') {
-      addNewLogicSetCondition('and')
+      addNewLogicalSetCondition()
     } else {
       updateAvailiblityCondition(value)
     }

@@ -207,6 +207,11 @@ Rails.application.routes.draw do
             get :spoof
           end
         end
+        resources :nomination_requirements do
+          collection do
+            put :save
+          end
+        end
       end
       member do
         delete 'reset'
