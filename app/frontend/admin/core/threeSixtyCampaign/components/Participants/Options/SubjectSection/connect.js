@@ -7,6 +7,7 @@ import {
   updateDatasheetCriteria,
 } from 'admin/core/threeSixtyCampaign/participantOptions/actions'
 import { getSubjectOption } from 'admin/core/threeSixtyCampaign/participantOptions/selectors'
+import { openModal } from 'admin/core/temp/modals'
 
 export default connect(
   state => ({ options: getSubjectOption(state) }),
@@ -16,6 +17,7 @@ export default connect(
     updateDatasheetCriteria: _.curry(
       (key, index, name, value) => dispatch(updateDatasheetCriteria(key, index, name, value)),
     ),
+    openNominationRequirementModal: () => dispatch(openModal('NominationRequirement')),
     addDatasheetCriteriaWithDefaultValue: key => dispatch(addDatasheetCriteriaWithDefaultValue(key)),
   }),
 )

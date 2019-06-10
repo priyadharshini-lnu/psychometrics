@@ -81,11 +81,10 @@ export default function Evaluation ({
         </div>
       )
   }
-  console.log(subject)
 
   return (
     <Layout>
-      <Content>
+      <Content className="fluid-container">
         <PageHeader
           className="page-header"
           backIcon={(

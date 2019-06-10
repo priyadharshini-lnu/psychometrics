@@ -1,11 +1,11 @@
 module Threesixty
   class UsersReportsQuery < Rectify::Query
-    def initialize(campaign, subjects, current_user)
+    def initialize(campaign, managed_subjects, current_user)
       @campaign = campaign
       @options = campaign.option
       @current_user = current_user
-      @subjects = subjects
-      @subject = subjects.query.find_by(user_id: current_user.id)
+      @subjects = managed_subjects
+      @subject = @campaign.subjects.find_by(user_id: current_user.id)
     end
 
     def query
@@ -34,6 +34,7 @@ module Threesixty
     end
 
     def is_available?
+      return false unless subject
       if subject.report_status_released? || !report_available_to_subject_on_criteria?
         return true
       end
