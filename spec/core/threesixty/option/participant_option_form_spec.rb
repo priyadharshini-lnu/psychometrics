@@ -13,11 +13,11 @@ describe Threesixty::Options::ParticipantOptionForm do
 
   it 'validates operator in criteria' do
     form = described_class.
-      new(subject: {self_evaluation_criteria: [{'operator': 'invalid_operator'}]}).
+      new(subject: {self_evaluation_criteria: [{'comparator': 'invalid_comparator'}]}).
       with_context(datasheet_column_names: [])
     form.validate
 
-    expect(form.errors.messages[:subject]).to include("has invalid operator")
+    expect(form.errors.messages[:subject]).to include("has invalid comparator")
   end
 
   it 'validates field in criteria' do
@@ -40,7 +40,7 @@ describe Threesixty::Options::ParticipantOptionForm do
 
   it 'returns valid? as true if all values passed are valid' do
     form = described_class.
-      new(subject: {self_evaluation_criteria: [{'field': 'valid_field', operator: 'equal', value: 'value'}]}).
+      new(subject: {self_evaluation_criteria: [{'field': 'valid_field', comparator: 'equal', value: 'value'}]}).
         with_context(datasheet_column_names: ['valid_field'])
 
     expect(form.valid?).to eq(true)

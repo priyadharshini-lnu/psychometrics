@@ -20,7 +20,7 @@ module Administration
           threesixty_campaign.option.update!(option_params)
           render json: :ok
         else
-          render json: { errors: participant_options.errors.messages }, status: :bad_request
+          render json: { errors: form.errors.messages }, status: :bad_request
         end
       end
 

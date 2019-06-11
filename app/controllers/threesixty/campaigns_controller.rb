@@ -19,10 +19,6 @@ module Threesixty
 
     end
 
-    def search_evaluators
-      render json: @campaign.evaluators.includes(:user).map(&:user), each_serializer: ::Projects::SearchUserSerializer
-    end
-
     private
 
     def set_campaign

@@ -43,7 +43,10 @@ export default function InlineInput ({
             placeholder="type name or email..."
             onSelect={userId => setUser(userId)}
           >
-            <Input.Search style={{ width: 300 }} onSearch={value => searchEvaluators(campaignId, value)} />
+            <Input.Search
+              style={{ width: 300 }}
+              onSearch={value => searchEvaluators(campaignId, nominationId, value)}
+            />
           </AutoComplete>
         </Form.Item>
         <Form.Item>
