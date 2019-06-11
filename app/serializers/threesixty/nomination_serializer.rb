@@ -24,10 +24,7 @@ module Threesixty
     end
 
     def requirements
-      object.campaign.threesixty_campaign.nomination_requirements.first
-
-      # TODO: replace mocked requirements with real
-      # Threesixty::NominationRequirements::FindForSubject.call!(object)
+      Threesixty::NominationRequirements::FindForSubject.call!(object, object.campaign.threesixty_campaign)
     end
   end
 end

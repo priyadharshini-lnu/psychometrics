@@ -14,33 +14,7 @@ module Threesixty
       end
 
       def call
-        broadcast :ok, resolve_conditions
-      end
-
-      def resolve_conditions
-        results = conditions.map do |condition|
-          if condition['conditions']
-            second_results = condition['conditions'].map{ |cond| resolve_condition(cond) }
-            {operator: condition['operator'], result: check_results(second_results)}
-          else
-            resolve_condition(condition)
-          end
-        end
-        check_results(results)
-      end
-
-      def check_results(results)
-        return results[0][:result] if results.size == 1
-        results.reduce(true) do |result, res|
-          case res[:operator]
-            when 'if'
-              res[:result]
-            when 'and'
-              result && res[:result]
-            when 'or'
-              result || res[:result]
-          end
-        end
+        broadcast :ok, Threesixty::NestedConditionResolver.call!(conditions, proc { |condition| resolve_condition(condition) })
       end
 
       def resolve_condition(condition)

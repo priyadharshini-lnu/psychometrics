@@ -3,6 +3,7 @@ class Campaign < ApplicationRecord
 
   belongs_to :project, class_name: "Client"
   has_one :threesixty_campaign, class_name: "Threesixty::Campaign", dependent: :destroy
+  has_one :datasheet, through: :project
   has_many :relationships, dependent: :destroy
   has_many :subjects, class_name: 'Threesixty::Subject', dependent: :destroy
   has_many :evaluators, class_name: 'Threesixty::Evaluator', dependent: :destroy
