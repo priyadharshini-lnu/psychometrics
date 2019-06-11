@@ -32,8 +32,7 @@ module Threesixty
     private
 
     def subject_can_manage_evaluations?
-      subject_opts = @options.participants['subject']
-      subject_opts['can_nominate_evaluators']
+      @options.participants.dig('subject', 'can_nominate_evaluators')
     end
 
     def manager_can_manage_evaluations?

@@ -30,13 +30,15 @@ module Threesixty
     end
 
     def subject_evaluate_self?
-      subject_opts = @options.participants['subject']
-      subject_opts['can_evaluate_self']
+      if @options.participants.dig('subject', 'limit_self_evaluation_by_criteria')
+        criteria = @options.participants.dig('subject', 'self_evaluation_criteria')
+        return Threesixty::Evaluators::ResolveEvaluatorCriteria.call!(@campaign, current_user, criteria, current_user) if criteria
+      end
+      @options.participants.dig('subject', 'can_evaluate_self')
     end
 
     def manager_can_approve_evaluations?
-      manager_opts = @options.participants['manager']
-      manager_opts['can_approves_evaluations']
+      @options.participants.dig('manager', 'can_approves_evaluations')
     end
 
     attr_reader :current_user

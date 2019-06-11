@@ -19,10 +19,6 @@ module Threesixty
 
     end
 
-    def search_evaluators
-      render json: Threesixty::Evaluators::SearchQuery.new(@campaign.campaign, params[:q]).query, each_serializer: ::Projects::SearchUserSerializer
-    end
-
     private
 
     def set_campaign

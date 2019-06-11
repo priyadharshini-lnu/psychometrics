@@ -55,7 +55,10 @@ export default function NominationForm (props) {
                   placeholder="type name or email..."
                   onSelect={userId => updateForm({ ...form.attrs, userId })}
                 >
-                  <Input.Search style={{ width: 240 }} onSearch={value => searchEvaluators(campaignId, value)} />
+                  <Input.Search
+                    style={{ width: 240 }}
+                    onSearch={value => searchEvaluators(campaignId, nominationId, value)}
+                  />
                 </AutoComplete>
               </Form.Item>
               <Form.Item>

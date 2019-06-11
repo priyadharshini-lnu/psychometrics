@@ -7,9 +7,21 @@ module Threesixty
 
       LIMIT = 3
 
-      def initialize(campaign, q)
+      def initialize(campaign, subject, q)
+        @subject = subject
         @campaign = campaign
+        @options = @campaign.option
         @q = "%#{q}%"
+      end
+
+      def query
+        users = super
+        if limit_nomination_by_subject_to_anyone_in_assessment?
+          users = uses.select do |user|
+            Threesixty::Evaluators::ResolveEvaluatorCriteria.call(campaign, user, criteria, subject)
+          end
+        end
+        users
       end
 
       def model
@@ -32,7 +44,15 @@ module Threesixty
 
       private
 
-      attr_reader :campaign, :q
+      def limit_nomination_by_subject_to_anyone_in_assessment?
+        @options.participants.dig('subject', 'limit_nomination_by_subject_to_anyone_in_assessment').present?
+      end
+
+      def criteria
+        @options.participants.dig('subject', 'limit_nomination_by_subject_to_anyone_criteria')
+      end
+
+      attr_reader :campaign, :q, :subject
     end
   end
 end
