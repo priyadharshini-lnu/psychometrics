@@ -14,8 +14,8 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
       create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 21, 'No.' => 2})
 
       @criteria = [
-        {"field"=>"No.", "value"=>"1", "operator"=>"equal"},
-        {"field"=>"Age", "operator"=>"is_same_as_subject"}
+        {"field"=>"No.", "value"=>"1", "comparator"=>"equal"},
+        {"field"=>"Age", "comparator"=>"is_same_as_subject"}
       ]
     end
 
@@ -30,8 +30,8 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
       create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
 
       @criteria = [
-        {"field"=>"No.", "value"=>"1", "operator"=>"equal"},
-        {"field"=>"Age", "operator"=>"is_same_as_subject"}
+        {"field"=>"No.", "value"=>"1", "comparator"=>"equal"},
+        {"field"=>"Age", "comparator"=>"is_same_as_subject"}
       ]
     end
 
@@ -46,7 +46,7 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
       create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 21, 'No.' => 2})
 
       @criteria = [
-        {"field"=>"Age", "operator"=>"is_same_as_subject"}
+        {"field"=>"Age", "comparator"=>"is_same_as_subject"}
       ]
     end
 
@@ -62,7 +62,7 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
       create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
 
       @criteria = [
-        {"field"=>"Age", "operator"=>"is_same_as_subject"}
+        {"field"=>"Age", "comparator"=>"is_same_as_subject"}
       ]
     end
 
@@ -77,7 +77,7 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
       create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
 
       @criteria = [
-        {"field"=>"No.", "value"=>"1", "operator"=>"equal"},
+        {"field"=>"No.", "value"=>"1", "comparator"=>"equal"},
       ]
     end
 
@@ -92,7 +92,7 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
       create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
 
       @criteria = [
-        {"field"=>"No.", "value"=>"2", "operator"=>"equal"},
+        {"field"=>"No.", "value"=>"2", "comparator"=>"equal"},
       ]
     end
 
@@ -104,7 +104,7 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
   describe '.call check condition without datasheets' do
     before do
       @criteria = [
-        {"field"=>"No.", "value"=>"2", "operator"=>"equal"},
+        {"field"=>"No.", "value"=>"2", "comparator"=>"equal"},
       ]
     end
 
@@ -118,7 +118,7 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
       create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
 
       @criteria = [
-        {"field"=>"No.", "value"=>"2", "operator"=>"equal"},
+        {"field"=>"No.", "value"=>"2", "comparator"=>"equal"},
       ]
     end
 
@@ -132,7 +132,7 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
       create(:datasheet_row, datasheet: datasheet, email: user.email, data: {'Age' => 21, 'No.' => 1})
 
       @criteria = [
-        {"field"=>"No.", "value"=>"2", "operator"=>"equal"},
+        {"field"=>"No.", "value"=>"2", "comparator"=>"equal"},
       ]
     end
 
