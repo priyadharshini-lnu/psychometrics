@@ -30,7 +30,16 @@ module Threesixty
       end
 
       def create_subject(user)
-        ::Threesixty::Subject.find_or_create_by!(user: user, campaign: threesixty_campaign.campaign)
+        ::Participant.create!(
+          evaluator: user,
+          subject: user,
+          manager_nomination_status: :approved,
+          relationship: self_relationship,
+          project_id: threesixty_campaign.campaign.project_id,
+          campaign: threesixty_campaign.campaign
+        )
+        ::Threesixty::Evaluator.find_or_create_by!(user: user, campaign: threesixty_campaign.campaign)
+        ::Threesixty::Subject.create!(user: user, campaign: threesixty_campaign.campaign)
       end
 
       private
@@ -51,6 +60,10 @@ module Threesixty
 
       def create_membership(user)
         threesixty_campaign.project.memberships.find_or_create_by!(user_id: user.id)
+      end
+
+      def self_relationship
+        @self_relationship ||= Relationship.self_relationship
       end
     end
   end

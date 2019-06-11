@@ -25,8 +25,8 @@ describe ReportSerializer do
     it do
       relationships = described_class.new(report).relationships
       expect(relationships).to match_array [
-        { id: 1001, type: 'global', name: 'manager' },
-        { id: 1002, type: 'campaign', name: 'peer' }
+        { id: 1001, type: 'global', name: 'manager', assign_type: 'manual' },
+        { id: 1002, type: 'campaign', name: 'peer', assign_type: 'manual' }
       ]
     end
   end

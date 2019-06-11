@@ -2,6 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects'
 import { setIn, updateIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
 import _ from 'lodash'
+import settings from '../settings'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
 const FILL_SUBJECTS = 'threeSixty/subjects/FILL_SUBJECTS'
@@ -13,6 +14,7 @@ export const REMOVE = 'threeSixty/subjects/REMOVE'
 
 export const defaultState = {
   list: [],
+  total: 0,
   form: {
     attrs: {},
     errors: null,
@@ -20,10 +22,14 @@ export const defaultState = {
   autocompleted: [],
 }
 
-export const fetchSubjects = campaignId => ({
+export const fetchSubjects = (campaignId, offset = 0) => ({
   type: FETCH_SUBJECTS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/subjects`,
+    body: {
+      limit: settings.pageLimit,
+      offset,
+    },
   },
 })
 
@@ -61,7 +67,7 @@ export const remove = (campaignId, subjectId) => ({
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
     case FETCH_SUBJECTS:
-      return { ...state, list: action.response }
+      return { ...state, list: action.response.subjects, total: action.response.total }
     case FILL_SUBJECTS:
       return setIn(state, ['form', 'attrs'], action.subjects)
     case CREATE_ALL_FAILURE:

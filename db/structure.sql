@@ -1817,7 +1817,8 @@ CREATE TABLE public.relationships (
     name character varying,
     type integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    assign_type integer DEFAULT 0
 );
 
 
@@ -1897,9 +1898,9 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     category integer DEFAULT 0
 );
@@ -2411,7 +2412,6 @@ CREATE TABLE public.users_assessments (
     assessment_id bigint,
     user_id bigint,
     campaign_id bigint,
-    selected_locale character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -4583,13 +4583,6 @@ CREATE INDEX threesixty_nomination_requirements_cam_id ON public.threesixty_nomi
 
 
 --
--- Name: users_assessments_user_uniquesness_index; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX users_assessments_user_uniquesness_index ON public.users_assessments USING btree (user_id, campaign_id, assessment_id);
-
-
---
 -- Name: communications fk_rails_03e5799fcb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5614,6 +5607,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190520160715'),
 ('20190523104920'),
 ('20190525115528'),
-('20190601163131');
+('20190601163131'),
+('20190604121645');
 
 

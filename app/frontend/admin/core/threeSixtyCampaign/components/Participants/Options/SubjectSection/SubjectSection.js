@@ -31,14 +31,14 @@ export default function SubjectSection ({
     <OptionSection label="Subject Options">
       <NominationRequirementModal />
       <ExpandableOption label="Subject Self Evaluates" {...parametersForSwitch('canEvaluateSelf')}>
-        <ExpandableOption
-          label="Limit self-evaluators by criteria"
-          {...parametersForSwitch('limitSelfEvaluationByCriteria')}
-          type="checkbox"
-          actionable={<Button size="small">View 4 subjects</Button>}
-        >
-          <CriteriaList {...parametersForDatasheet('selfEvaluationCriteria')} />
-        </ExpandableOption>
+        {/* <ExpandableOption */}
+        {/* label="Limit self-evaluators by criteria" */}
+        {/* {...parametersForSwitch('limitSelfEvaluationByCriteria')} */}
+        {/* type="checkbox" */}
+        {/* actionable={<Button size="small">View 4 subjects</Button>} */}
+        {/* > */}
+        {/* <CriteriaList {...parametersForDatasheet('selfEvaluationCriteria')} /> */}
+        {/* </ExpandableOption> */}
       </ExpandableOption>
 
       <ExpandableOption

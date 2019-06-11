@@ -1,6 +1,7 @@
 import { takeLatest, put } from 'redux-saga/effects'
 import { setIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
+import settings from '../settings'
 
 export const CLEAR_FORM = 'threeSixty/evaluators/CLEAR_FORM'
 export const CREATE_ALL_EVALUATORS = 'threeSixty/evaluators/CREATE_ALL_EVALUATORS'
@@ -10,6 +11,7 @@ const FETCH_EVALUATORS = 'threeSixty/evaluators/FETCH_EVALUATORS'
 
 export const defaultState = {
   list: [],
+  total: 0,
   form: {
     attrs: {},
     errors: null,
@@ -28,17 +30,21 @@ export const createAllEvaluators = (campaignId, evaluators) => ({
 export const fillEvaluators = evaluators => ({ type: FILL_EVALUATORS, evaluators })
 export const clearForm = () => ({ type: CLEAR_FORM })
 
-export const fetchEvaluators = campaignId => ({
+export const fetchEvaluators = (campaignId, offset) => ({
   type: FETCH_EVALUATORS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/evaluators`,
+    body: {
+      limit: settings.pageLimit,
+      offset,
+    },
   },
 })
 
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
     case FETCH_EVALUATORS:
-      return { ...state, list: action.response }
+      return { ...state, list: action.response.evaluators, total: action.response.total }
     case FILL_EVALUATORS:
       return setIn(state, ['form', 'attrs'], action.evaluators)
     case CLEAR_FORM:

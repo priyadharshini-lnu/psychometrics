@@ -5,8 +5,12 @@ import { fetchSubjects, update, remove } from 'admin/core/threeSixtyCampaign/sub
 import { removeUser } from 'admin/core/threeSixtyCampaign/'
 
 export default connect(
-  ({ threeSixtyCampaign: { subjects: { list } } }) => ({ subjects: list }),
-  {
-    fetchSubjects, openModal, update, remove, removeUser,
-  },
+  ({ threeSixtyCampaign: { subjects: { list, total } } }) => ({ subjects: list, total }),
+  dispatch => ({
+    fetchSubjects: (campaignId, offset) => dispatch(fetchSubjects(campaignId, offset)),
+    openModal: (name, data) => dispatch(openModal(name, data)),
+    update: (campaignId, subjectId, data) => dispatch(update(campaignId, subjectId, data)),
+    remove: (campaignId, subjectId) => dispatch(remove(campaignId, subjectId)),
+    removeUser: (campaignId, userId) => dispatch(removeUser(campaignId, userId)),
+  }),
 )
