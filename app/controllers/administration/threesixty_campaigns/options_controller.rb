@@ -11,6 +11,10 @@ module Administration
         render json: threesixty_campaign.option.participants
       end
 
+      def message_options
+        render json: threesixty_campaign.option.messages
+      end
+
       def report_options
         render json: threesixty_campaign.option.reports
       end
@@ -33,17 +37,20 @@ module Administration
 
       def form
         @form ||=
-          if params[:participants]
+          case
+          when params[:participants]
             ::Threesixty::Options::ParticipantOptionForm.
               from_params(params[:participants]).
               with_context(datasheet_column_names: threesixty_campaign.datasheet_column_names)
-          elsif params[:reports]
+          when params[:reports]
             ::Threesixty::Options::ReportOptionForm.from_params(params[:reports])
+          when params[:messages]
+            ::Threesixty::Options::MessageOptionForm.from_params(params[:messages])
           end
       end
 
       def option_params
-        params.require(:option).permit(reports: {}, participants: {})
+        params.require(:option).permit(reports: {}, participants: {}, messages: {})
       end
     end
   end
