@@ -15,7 +15,7 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
 
       @criteria = [
         {"field"=>"No.", "value"=>"1", "operator"=>"equal"},
-        {"field"=>"Age", "value"=>"21", "operator"=>"is_same_as_subject"}
+        {"field"=>"Age", "operator"=>"is_same_as_subject"}
       ]
     end
 
@@ -31,7 +31,7 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
 
       @criteria = [
         {"field"=>"No.", "value"=>"1", "operator"=>"equal"},
-        {"field"=>"Age", "value"=>"21", "operator"=>"is_same_as_subject"}
+        {"field"=>"Age", "operator"=>"is_same_as_subject"}
       ]
     end
 
@@ -40,6 +40,36 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
     end
   end
 
+  describe '.call check same as subject condition' do
+    before do
+      create(:datasheet_row, datasheet: datasheet, email: user.email, data: {'Age' => 21, 'No.' => 1})
+      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 21, 'No.' => 2})
+
+      @criteria = [
+        {"field"=>"Age", "operator"=>"is_same_as_subject"}
+      ]
+    end
+
+    it do
+      expect(described_class.call!(campaign, user, @criteria, subject)).to be true
+    end
+  end
+
+
+  describe '.call check same as subject falsy condition' do
+    before do
+      create(:datasheet_row, datasheet: datasheet, email: user.email, data: {'Age' => 21, 'No.' => 1})
+      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
+
+      @criteria = [
+        {"field"=>"Age", "operator"=>"is_same_as_subject"}
+      ]
+    end
+
+    it do
+      expect(described_class.call!(campaign, user, @criteria, subject)).to be false
+    end
+  end
 
   describe '.call check single condition' do
     before do
@@ -53,6 +83,61 @@ describe Threesixty::Evaluators::ResolveEvaluatorCriteria do
 
     it do
       expect(described_class.call!(campaign, user, @criteria, subject)).to be true
+    end
+  end
+
+  describe '.call check falsy single condition' do
+    before do
+      create(:datasheet_row, datasheet: datasheet, email: user.email, data: {'Age' => 21, 'No.' => 1})
+      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
+
+      @criteria = [
+        {"field"=>"No.", "value"=>"2", "operator"=>"equal"},
+      ]
+    end
+
+    it do
+      expect(described_class.call!(campaign, user, @criteria, subject)).to be false
+    end
+  end
+
+  describe '.call check condition without datasheets' do
+    before do
+      @criteria = [
+        {"field"=>"No.", "value"=>"2", "operator"=>"equal"},
+      ]
+    end
+
+    it do
+      expect(described_class.call!(campaign, user, @criteria, subject)).to be false
+    end
+  end
+
+  describe '.call check condition without evaluator datasheets' do
+    before do
+      create(:datasheet_row, datasheet: datasheet, email: subject.email, data: {'Age' => 20, 'No.' => 2})
+
+      @criteria = [
+        {"field"=>"No.", "value"=>"2", "operator"=>"equal"},
+      ]
+    end
+
+    it do
+      expect(described_class.call!(campaign, user, @criteria, subject)).to be false
+    end
+  end
+
+  describe '.call check condition without subject datasheets' do
+    before do
+      create(:datasheet_row, datasheet: datasheet, email: user.email, data: {'Age' => 21, 'No.' => 1})
+
+      @criteria = [
+        {"field"=>"No.", "value"=>"2", "operator"=>"equal"},
+      ]
+    end
+
+    it do
+      expect(described_class.call!(campaign, user, @criteria, subject)).to be false
     end
   end
 

@@ -2,7 +2,7 @@
 
 module Threesixty
   module Evaluators
-    class SearchQuery < Rectify::Form
+    class SearchQuery < Rectify::Query
       include Rectify::SqlQuery
 
       LIMIT = 3

@@ -12,17 +12,24 @@ module Threesixty
       end
 
       def call
-        data_sheet = get_data_sheet(@user)
-        subject_data_sheet = get_data_sheet(@subject)
+        broadcast :ok, resolve_criteria
+      end
+
+      def resolve_criteria
+        data_sheet = get_data_sheet(@user)&.data
+        subject_data_sheet = get_data_sheet(@subject)&.data
+
+        return false unless data_sheet
 
         result = criteria.all? do |condition|
           value = data_sheet[condition['field']].to_s
-          subject_value = subject_data_sheet[condition['field']].to_s
-
           next value == condition['value'] if condition['operator'] == 'equal'
+          subject_value = subject_data_sheet[condition['field']].to_s
+          next false unless subject_data_sheet
           next value == subject_value if condition['operator'] == 'is_same_as_subject'
         end
-        broadcast :ok, result
+
+        result
       end
 
       private
@@ -30,10 +37,7 @@ module Threesixty
       attr_reader :campaign, :criteria
 
       def get_data_sheet(user)
-        row = DatasheetRow.
-              joins(:datasheet).
-              find_by(datasheets: { project_id: campaign.project.id }, email: user.email)
-        row&.data || {}
+        campaign.datasheet&.rows&.find_by(email: user.email)
       end
 
     end
