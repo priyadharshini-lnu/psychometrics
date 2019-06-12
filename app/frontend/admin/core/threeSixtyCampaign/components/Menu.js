@@ -13,7 +13,7 @@ const MyMenu = ({ history, routes }) => {
         <Icon type="user" />
         Participants
       </Menu.Item>
-      <Menu.Item key="/messages">
+      <Menu.Item key="/messages/options">
         <Icon type="mail" />
         Messages
       </Menu.Item>

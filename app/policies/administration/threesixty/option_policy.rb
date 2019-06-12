@@ -14,6 +14,10 @@ module Administration
       def report_options?
         participant_options?
       end
+
+      def message_options?
+        participant_options?
+      end
     end
   end
 end
