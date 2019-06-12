@@ -15,18 +15,13 @@ module Threesixty
 
     def resolve_conditions
       results = conditions.map do |condition|
-        if condition['conditions']
-          second_results = condition['conditions'].map{ |cond| resolve_condition(cond) }
-          {operator: condition['operator'], result: check_results(second_results)}
-        else
-          resolve_condition(condition)
-        end
+        second_results = condition['conditions'].map{ |cond| resolve_condition(cond) }
+        {operator: condition['operator'], result: check_results(second_results)}
       end
       check_results(results)
     end
 
     def check_results(results)
-      return results[0][:result] if results.size == 1
       results.reduce(true) do |result, res|
         case res[:operator]
           when 'if'

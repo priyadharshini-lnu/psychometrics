@@ -20,7 +20,7 @@ module Threesixty
 
       def resolve_condition(condition)
         field = condition['field']
-        value = condition['value']
+        value = condition['value']&.downcase
         value_from_datasheet = datasheet_row_data[field].to_s.downcase
         result = if condition['comparator'] == 'equal'
           value_from_datasheet == value.downcase
@@ -34,7 +34,7 @@ module Threesixty
       private
 
       def datasheet_row_data
-        @_datasheet_row_data ||= threesixty_campaign.datasheet&.
+        @datasheet_row_data ||= threesixty_campaign.datasheet&.
           rows&.
           find_by(email: subject.user.email)
           &.data
