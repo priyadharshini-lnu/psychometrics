@@ -1,6 +1,7 @@
 import React from 'react'
 import { Icon, Select, Table } from 'antd'
 import userPresenter from 'presenters/userPresenter'
+import { ASSIGN_TYPES } from 'constants/relationship'
 
 const MANAGER_STATUSES = ['waiting', 'approved', 'denied']
 const EVALUATOR_STATUSES = ['waiting', 'completed', 'denied']
@@ -24,11 +25,7 @@ export default function List ({
 
   return (
     <Table className="mtm" rowKey="id" dataSource={participants} pagination={false}>
-      <Table.Column
-        title="Email"
-        key="fullName"
-        render={({ user }) => userPresenter.getFullNameWithEmail(user)}
-      />
+      <Table.Column title="Email" key="fullName" render={({ user }) => userPresenter.getFullNameWithEmail(user)} />
       <Table.Column
         title="Relationship"
         key="relationshipname"
@@ -44,8 +41,9 @@ export default function List ({
       <Table.Column
         title="Approved"
         key="managerNominationStatus"
-        render={({ managerNominationStatus, id }) => (
+        render={({ managerNominationStatus, id, relationship }) => (
           <StatusSelect
+            disabled={relationship.assignType === ASSIGN_TYPES.AUTOMATIC}
             availableStatuses={MANAGER_STATUSES}
             id={id}
             name="managerNominationStatus"
@@ -67,7 +65,13 @@ export default function List ({
           />
         )}
       />
-      <Table.Column key="actions" render={({ id }) => <Icon type="delete" onClick={() => destroyParticipant(id)} />} />
+      <Table.Column
+        key="actions"
+        render={({ id, relationship }) => relationship.assignType === ASSIGN_TYPES.MANUAL && (
+        <Icon type="delete" onClick={() => destroyParticipant(id)} />
+        )
+        }
+      />
     </Table>
   )
 }
@@ -76,12 +80,13 @@ const RelationSelect = ({
   relationships, currentRelationship, onChange, id,
 }) => (
   <Select
+    disabled={currentRelationship && currentRelationship.assignType === ASSIGN_TYPES.AUTOMATIC}
     style={{ width: '100%' }}
     value={currentRelationship && currentRelationship.id}
     onChange={v => onChange(id, { relationshipId: v })}
   >
     {relationships.map(r => (
-      <Select.Option key={r.id} value={r.id}>
+      <Select.Option key={r.id} value={r.id} disabled={r.assignType === ASSIGN_TYPES.AUTOMATIC}>
         {r.name}
       </Select.Option>
     ))}
@@ -89,9 +94,14 @@ const RelationSelect = ({
 )
 
 const StatusSelect = ({
-  availableStatuses, managerNominationStatus, onChange, id, name,
+  availableStatuses, managerNominationStatus, onChange, id, name, disabled,
 }) => (
-  <Select style={{ width: '100%' }} value={managerNominationStatus} onChange={v => onChange(id, { [name]: v })}>
+  <Select
+    disabled={disabled}
+    style={{ width: '100%' }}
+    value={managerNominationStatus}
+    onChange={v => onChange(id, { [name]: v })}
+  >
     {availableStatuses.map(status => (
       <Select.Option key={status} value={status}>
         {status}

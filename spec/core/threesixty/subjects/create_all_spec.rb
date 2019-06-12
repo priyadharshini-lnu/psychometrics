@@ -11,6 +11,7 @@ describe Threesixty::Subjects::CreateAll do
     user = create(:user, project: project, email: 'fedor@gmail.com')
     create(:campaigns_user, user: user, campaign: campaign)
     create(:threesixty_subject, user: user, campaign: campaign)
+    create(:relationship, name: 'Self')
   end
 
   describe '.call' do
@@ -42,6 +43,14 @@ describe Threesixty::Subjects::CreateAll do
       result = described_class.call!([{ email: 'daniel@cc.com', password: 'new_password' }], threesixty_campaign)
 
       expect(user.reload.valid_password?('old_password')).to eq(true)
+    end
+
+    it do
+      result = described_class.call!([{ email: 'dev.atanov@gmail.com' }, { email: 'fedor@gmail.com' }], threesixty_campaign)
+      participants = Participant.all
+      expect(result[:subjects].map { |s| s.user.email }).to match_array(%w[fedor@gmail.com dev.atanov@gmail.com])
+      expect(participants.map { |s| s.evaluator.email }).to match_array(%w[fedor@gmail.com dev.atanov@gmail.com])
+      expect(participants.map { |s| s.subject.email }).to match_array(%w[fedor@gmail.com dev.atanov@gmail.com])
     end
   end
 end

@@ -17,14 +17,6 @@ export default function App () {
               key={i}
               path={route.path}
               exact={route.exact}
-              component={route.sidebar}
-            />
-          ))}
-          {routes.map((route, i) => (
-            <Route
-              key={i}
-              path={route.path}
-              exact={route.exact}
               component={route.main}
             />
           ))}

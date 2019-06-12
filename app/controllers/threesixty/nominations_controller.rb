@@ -13,6 +13,10 @@ module Threesixty
       end
     end
 
+    def search_evaluators
+      render json: Threesixty::Evaluators::SearchQuery.new(@campaign.campaign, @subject, params[:q]).query, each_serializer: ::Projects::SearchUserSerializer
+    end
+
     private
 
     def set_campaign
@@ -20,7 +24,7 @@ module Threesixty
     end
 
     def set_subject
-      @subject = @campaign.subjects.find(params[:id])
+      @subject = @campaign.subjects.find(params[:nomination_id] || params[:id])
     end
   end
 end

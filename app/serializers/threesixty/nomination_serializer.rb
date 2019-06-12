@@ -1,10 +1,11 @@
 module Threesixty
   class NominationSerializer < ActiveModel::Serializer
-    attributes :id, :is_self, :requirements
+    attributes :id, :is_self
     has_many :evaluators, serializer: Threesixty::EndUser::NomineeSerializer
     has_many :relationships, serializer: RelationshipSerializer
     has_one :subject, serializer: UserSerializer
     has_one :options, serializer: CampaignOptionsSerializer
+    has_one :requirements, serializer: Threesixty::EndUser::NominationRequirementSerializer
 
     def subject
       object.user
@@ -22,17 +23,11 @@ module Threesixty
       object.campaign.threesixty_campaign.option
     end
 
-    # TODO: replace mocked requirements with real
     def requirements
-      relationships = Relationships::ByCampaign.new(object.campaign).to_a
-      {
-        subject_conditions: {},
-        conditions: [
-          {type: 'relationship', id: relationships[0].id, predicate: 'at_least', value: 2},
-          {type: 'relationship', id: relationships[1].id, predicate: 'at_least', value: 1},
-          {type: 'relationship', id: relationships[2].id, predicate: 'at_least', value: 2},
-        ]
-      }
+      object.campaign.threesixty_campaign.nomination_requirements.first
+
+      # TODO: replace mocked requirements with real
+      # Threesixty::NominationRequirements::FindForSubject.call!(object)
     end
   end
 end

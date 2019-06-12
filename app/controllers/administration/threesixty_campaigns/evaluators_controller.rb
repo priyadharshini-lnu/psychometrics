@@ -9,13 +9,20 @@ module Administration
 
       def index
         option = threesixty_campaign.option
-        evaluators = policy_scope(::Threesixty::Evaluator).includes(:subject, :user).where(campaign_id: threesixty_campaign.campaign_id)
+        evaluators = policy_scope(::Threesixty::Evaluator).
+          includes(:subject, :user).
+          where(campaign_id: threesixty_campaign.campaign_id).
+          order(id: :desc).
+          limit(params[:limit]).
+          offset(params[:offset])
         counters = ::Threesixty::Participants::CalcCounters.call!(evaluators.map(&:user_id), threesixty_campaign)
+        total = policy_scope(::Threesixty::Evaluator).where(campaign_id: threesixty_campaign.campaign_id).count
+
         evaluators = evaluators.map do |e|
           nomination_requirement = ::Threesixty::NominationRequirements::FindForSubject.call!(e.subject)
           ::Threesixty::EvaluatorSerializer.new(e, option: option, nomination_requirement: nomination_requirement, counters: counters).to_h
         end
-        render json: evaluators
+        render json: { evaluators: evaluators, total: total }
       end
 
       def create_all

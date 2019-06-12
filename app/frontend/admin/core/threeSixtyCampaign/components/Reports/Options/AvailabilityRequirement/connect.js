@@ -1,11 +1,13 @@
 import { connect } from 'react-redux'
+
 import {
-  addAvailiblityCondition,
-  removeAvailiblityCondition,
-  updateAvailiblityCondition,
-  addNewLogicSetCondition,
+  add as addAvailiblityCondition,
+  update as updateAvailiblityCondition,
+  remove as removeAvailiblityCondition,
+  addNewLogicalSetCondition,
   moveConditionToNextLogicSet,
-} from 'admin/core/threeSixtyCampaign/reportOptions/actions'
+} from 'admin/core/threeSixtyCampaign/reportOptions/availabilityConditions'
+
 import { getAvailabilityConditions } from 'admin/core/threeSixtyCampaign/reportOptions/selectors'
 import { getRelationships } from 'admin/core/threeSixtyCampaign/relationships'
 
@@ -18,7 +20,7 @@ export default connect(
     addAvailiblityCondition,
     removeAvailiblityCondition,
     updateAvailiblityCondition,
-    addNewLogicSetCondition,
+    addNewLogicalSetCondition,
     moveConditionToNextLogicSet,
   },
 )

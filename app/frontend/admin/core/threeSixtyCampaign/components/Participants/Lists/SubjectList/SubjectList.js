@@ -1,14 +1,17 @@
 import React, { useEffect } from 'react'
+import _ from 'lodash'
 import {
   Table, Dropdown, Icon, Row, Col,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
+import routeUtils from 'utils/routeUtils'
 import css from './SubjectList.scss'
 import ActionsMenu from './ActionMenu'
 import ToolsDropdown from '../ToolsDropdown'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
 import CreateSubjectModal from './CreateSubjectModal'
 import SubjectImportModal from './SubjectImportModal'
+import Pagination from '../../../common/Pagination/Pagination'
 
 const { Column } = Table
 
@@ -19,21 +22,25 @@ export default function SubjectList ({
   subjects,
   openModal,
   removeUser,
+  total,
   match: {
     params: { campaignId },
   },
   match,
 }) {
+  const offset = routeUtils.getCurrentOffset()
+
   useEffect(() => {
-    fetchSubjects(campaignId)
+    fetchSubjects(campaignId, offset)
   }, [])
 
+  const curriedFetchSubjects = _.curry(fetchSubjects)
   return (
     <>
       <Row>
         <Col span={4} className="pls">
           <Icon type="user" />
-          <span className="mlm">{`${subjects.length} Subjects`}</span>
+          <span className="mlm">{`${total} Subjects`}</span>
         </Col>
         <Col span={6} offset={14} className="text-align-r">
           <ToolsDropdown />
@@ -51,7 +58,11 @@ export default function SubjectList ({
                 <a
                   role="button"
                   tabIndex="0"
-                  onClick={() => openModal('ParticipantModal', { user, onClose: () => fetchSubjects(campaignId) })}
+                  onClick={() => openModal('ParticipantModal', {
+                    user,
+                    onClose: () => fetchSubjects(campaignId, offset),
+                  })
+                  }
                 >
                   {user.email}
                 </a>
@@ -74,7 +85,8 @@ export default function SubjectList ({
                     update,
                     remove,
                     removeUser,
-                  })}
+                  })
+                  }
                   trigger={['click']}
                 >
                   <div className={css.actions}>
@@ -84,6 +96,9 @@ export default function SubjectList ({
               )}
             />
           </Table>
+          <div className="pm">
+            <Pagination total={total} fetch={curriedFetchSubjects(campaignId)} />
+          </div>
         </Col>
       </Row>
       <CreateSubjectModal match={match} />

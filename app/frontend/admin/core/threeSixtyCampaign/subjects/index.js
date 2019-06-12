@@ -3,6 +3,7 @@ import { setIn, updateIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
 import _ from 'lodash'
 import importReducer from './import'
+import settings from '../settings'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
 const FILL_SUBJECTS = 'threeSixty/subjects/FILL_SUBJECTS'
@@ -14,6 +15,7 @@ export const REMOVE = 'threeSixty/subjects/REMOVE'
 
 export const defaultState = {
   list: [],
+  total: 0,
   form: {
     attrs: [],
     errors: null,
@@ -21,10 +23,14 @@ export const defaultState = {
   autocompleted: [],
 }
 
-export const fetchSubjects = campaignId => ({
+export const fetchSubjects = (campaignId, offset = 0) => ({
   type: FETCH_SUBJECTS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/subjects`,
+    body: {
+      limit: settings.pageLimit,
+      offset,
+    },
   },
 })
 
@@ -60,7 +66,7 @@ export const remove = (campaignId, subjectId) => ({
 })
 
 const HANDLERS = {
-  [FETCH_SUBJECTS]: (state, { response }) => ({ ...state, list: response }),
+  [FETCH_SUBJECTS]: (state, { response: { subjects, total } }) => ({ ...state, list: subjects, total: total }),
   [FILL_SUBJECTS]: (state, { subjects }) => setIn(state, ['form', 'attrs'], subjects),
   [CREATE_ALL_FAILURE]: (state, { errors }) => setIn(state, ['form', 'errors'], errors),
   [CLEAR_FORM]: state => ({ ...state, form: defaultState.form }),
@@ -80,7 +86,6 @@ export default function reducer (state = defaultState, action) {
   const handler = HANDLERS[action.type]
   return handler ? handler(state, action) : stateFromInnerReducer
 }
-
 
 export function* genFetchSubjects ({ requestAction }) {
   yield put(fetchSubjects(requestAction.campaignId))

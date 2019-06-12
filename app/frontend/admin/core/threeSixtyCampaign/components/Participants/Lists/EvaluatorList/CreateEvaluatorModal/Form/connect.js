@@ -1,17 +1,17 @@
 import { connect } from 'react-redux'
 import { fillEvaluators } from 'admin/core/threeSixtyCampaign/evaluators'
-import { fetchRelationships } from 'admin/core/threeSixtyCampaign/relationships'
+import { fetchRelationships, getManualRelationships } from 'admin/core/threeSixtyCampaign/relationships'
 
 export default connect(
   ({
-    project: { relationships },
+    project,
     temp: {
       autocomplete: { subjects = [], evaluators = [] },
     },
   }) => ({
     autocompletedSubjects: subjects,
     autocompletedEvaluators: evaluators,
-    relationships,
+    relationships: getManualRelationships({ project }),
   }),
   {
     fillEvaluators,

@@ -11,8 +11,11 @@ const { Option } = Select
 export default function NominationForm (props) {
   const {
     addNomination, searchEvaluators, updateForm,
+    showForm, hideForm,
     match: { params: { campaignId, id: nominationId } },
-    nomination: { subject, relationships, form },
+    nomination: {
+      subject, relationships, form, form: { show },
+    },
     autocomplete: { users },
   } = props
 
@@ -31,61 +34,89 @@ export default function NominationForm (props) {
           {subject.isSelf ? 'Yourself' : userPresenter.getFullNameWithEmail(subject)}
         </div>
       </Title>
+
       <div className="form">
-        <Form layout="inline">
-          <Form.Item
-            validateStatus={form.errors.evaluatorId ? 'error' : ''}
-            help={form.errors.evaluatorId && form.errors.evaluatorId}
-          >
-            <AutoComplete
-              dataSource={users.map(user => ({
-                value: user.id,
-                text: userPresenter.getFullNameWithEmail(user),
-              }))}
-              autoFocus
-              placeholder="type name or email..."
-              onSelect={userId => updateForm({ ...form.attrs, userId })}
-            >
-              <Input.Search style={{ width: 300 }} onSearch={value => searchEvaluators(campaignId, value)} />
-            </AutoComplete>
-          </Form.Item>
-          <Form.Item>
-            as my
-          </Form.Item>
-          <Form.Item
-            validateStatus={form.errors.relationshipId ? 'error' : ''}
-            help={form.errors.relationshipId && form.errors.relationshipId}
-          >
-            <Select
-              value={form.attrs.relationshipId}
-              onChange={relationshipId => updateForm({ ...form.attrs, relationshipId })}
-              placeholder="Select Relationship"
-              className="relationship-select"
-            >
-              <Option value="" disabled>Select Relationship</Option>
-              {relationships.map(relation => <Option key={relation.id} value={relation.id}>{relation.name}</Option>)}
-            </Select>
-          </Form.Item>
-          <Form.Item>
-            <Button onClick={handleAdd} type="primary" htmlType="submit">
-              Nominate Evaluator
-            </Button>
-          </Form.Item>
-        </Form>
-        <Row type="flex" justify="end" gutter={16}>
+        {show
+          ? (
+            <Form layout="inline">
+              <Form.Item>
+                <Button type="primary" shape="circle" icon="close" size="large" onClick={hideForm} />
+              </Form.Item>
+              <Form.Item
+                validateStatus={form.errors.evaluatorId ? 'error' : ''}
+                help={form.errors.evaluatorId && form.errors.evaluatorId}
+              >
+                <AutoComplete
+                  dataSource={users.map(user => ({
+                    value: user.id,
+                    text: userPresenter.getFullNameWithEmail(user),
+                  }))}
+                  autoFocus
+                  placeholder="type name or email..."
+                  onSelect={userId => updateForm({ ...form.attrs, userId })}
+                >
+                  <Input.Search
+                    style={{ width: 240 }}
+                    onSearch={value => searchEvaluators(campaignId, nominationId, value)}
+                  />
+                </AutoComplete>
+              </Form.Item>
+              <Form.Item>
+                as my
+              </Form.Item>
+              <Form.Item
+                validateStatus={form.errors.relationshipId ? 'error' : ''}
+                help={form.errors.relationshipId && form.errors.relationshipId}
+              >
+                <Select
+                  value={form.attrs.relationshipId}
+                  onChange={relationshipId => updateForm({ ...form.attrs, relationshipId })}
+                  placeholder="Select Relationship"
+                  className="relationship-select"
+                >
+                  <Option value="" disabled>Select Relationship</Option>
+                  {relationships.map(relation => (
+                    <Option
+                      key={relation.id}
+                      value={relation.id}
+                    >
+                      {relation.name}
+                    </Option>
+                  ))}
+                </Select>
+              </Form.Item>
+              <Form.Item>
+                <Button onClick={handleAdd} type="primary">
+                  Nominate
+                </Button>
+              </Form.Item>
+            </Form>
+          )
+          : (
+            <Button type="primary" shape="circle" icon="plus" size="large" onClick={showForm} />
+          )}
+        <Row type="flex" justify="end" gutter={8}>
+
           <Col>
-            <Button type="primary" htmlType="submit">
-              Email Approval Request
+            <Button type="link">
+              <Icon type="team" />
+              Remind All
+            </Button>
+          </Col>
+          <div className="divider" />
+          <Col>
+            <Button type="primary">
+              Approve All
             </Button>
           </Col>
           <Col>
-            <Button type="primary" htmlType="submit">
-              <Icon type="mail" />
-              Remind All
+            <Button type="danger" className="deny-button">
+              Deny All
             </Button>
           </Col>
         </Row>
       </div>
+
     </div>
   )
 }

@@ -9,7 +9,7 @@ module Threesixty
         format.json do
           subjects = ::Threesixty::NominationsByUserQuery.new(@campaign, current_user)
           evaluations = ::Threesixty::EvaluationsByUserQuery.new(@campaign, current_user)
-          reports = ::Threesixty::UsersReportsQuery.new(@campaign, subjects, current_user)
+          reports = ::Threesixty::UsersReportsQuery.new(@campaign, subjects.query, current_user)
 
           render json: @campaign, serializer: Threesixty::CampaignSerializer,
                  subjects: subjects, evaluations: evaluations,
@@ -17,10 +17,6 @@ module Threesixty
         end
       end
 
-    end
-
-    def search_evaluators
-      render json: @campaign.evaluators.includes(:user).map(&:user), each_serializer: ::Projects::SearchUserSerializer
     end
 
     private

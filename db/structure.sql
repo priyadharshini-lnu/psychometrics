@@ -1817,7 +1817,8 @@ CREATE TABLE public.relationships (
     name character varying,
     type integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    assign_type integer DEFAULT 0
 );
 
 
@@ -2194,7 +2195,9 @@ CREATE TABLE public.threesixty_nomination_requirements (
     subject_conditions jsonb DEFAULT '[]'::jsonb,
     conditions jsonb DEFAULT '[]'::jsonb,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    "position" integer NOT NULL,
+    name character varying NOT NULL
 );
 
 
@@ -5603,6 +5606,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190507170817'),
 ('20190520160715'),
 ('20190523104920'),
-('20190525115528');
+('20190525115528'),
+('20190601163131'),
+('20190604121645');
 
 

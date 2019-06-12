@@ -4,7 +4,7 @@ import css from './styles.scss'
 
 
 export default function Criteria ({
-  datasheetFields, condition: { field, operator, value }, updateCriteria, addCriteria, removeCriteria,
+  datasheetFields, condition: { field, comparator, value }, updateCriteria, addCriteria, removeCriteria,
 }) {
   const valueAttr = field ? { value: field } : {}
 
@@ -30,17 +30,17 @@ export default function Criteria ({
     <span>
       {fieldSelectList()}
       <Select
-        value={operator}
+        value={comparator}
         size="small"
         className={css.operatorSelectList}
         onChange={(value) => {
-          updateCriteria('operator', value)
+          updateCriteria('comparator', value)
         }}
       >
         <Select.Option key="is_same_as_subject">Is Same as Subject</Select.Option>
         <Select.Option key="equal">Is</Select.Option>
       </Select>
-      {operator === 'equal' && (
+      {comparator === 'equal' && (
         <Input
           value={value}
           className={css.value}

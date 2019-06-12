@@ -1,5 +1,7 @@
-import React from 'react'
-import { List, Collapse, Icon } from 'antd'
+import React, { useState } from 'react'
+import {
+  List, Collapse, Icon, Progress, Modal,
+} from 'antd'
 import { Link } from 'react-router-dom'
 import userPresenter from 'presenters/userPresenter'
 import './styles.scss'
@@ -8,9 +10,11 @@ import connect from './connect'
 const { Panel } = Collapse
 
 const NominationItem = item => (
-  <List.Item>
-    <Link to={`/campaigns/${item.campaignId}/nominations/${item.id}`}>
-      <Icon type="check-circle" theme="twoTone" twoToneColor={item.approved ? '#52c41a' : '#ccc'} />
+  <List.Item className="list-item">
+    <Link to={`/campaigns/${item.campaignId}/nominations/${item.id}`} style={{ display: 'flex', alignItems: 'center' }}>
+      {!item.approved
+        ? <Icon type="check-square" theme="filled" className="status-icon" />
+        : <div className="empty-square" />}
       {' '}
       {userPresenter.selfUserName(item)}
     </Link>
@@ -22,7 +26,6 @@ const CollapseItem = ({ title, list }) => (
     <Panel header={<div className="panel-header">{title}</div>} key="panel">
       <List
         size="large"
-        bordered
         dataSource={list}
         renderItem={NominationItem}
       />
@@ -31,16 +34,49 @@ const CollapseItem = ({ title, list }) => (
 )
 
 function NominationList ({ nominations, approvalNominations, options }) {
+  const [showHelp, setShowHelp] = useState(false)
   return (
     <List
-      className="nominations-list"
+      className="nominations-list column-list"
       size="large"
-      header={<div>Nominations</div>}
+      header={(
+        <div className="header">
+          <div className="letter-icon">N</div>
+          <div className="caption">
+            Nominations
+            <div className="progress-bars">
+              <Progress
+                className="progress-line"
+                percent={30}
+                showInfo={false}
+                strokeColor="#00B4AA"
+              />
+              <div className="value">1 of 3</div>
+            </div>
+          </div>
+          <div className="help">
+            <Icon type="question-circle" className="help-icon" onClick={() => setShowHelp(true)} />
+          </div>
+        </div>
+      )}
       bordered
     >
       <CollapseItem key="nominations" title="Set up nominations" list={nominations} />
       {options.manager.canApproveNominations && approvalNominations.length > 0
         && <CollapseItem key="approve_nominations" title="Approve nominations" list={approvalNominations} />}
+      <Modal
+        title={(
+          <div className="help-modal-header">
+            <div className="letter-icon">N</div>
+            Nominations help
+          </div>
+        )}
+        visible={showHelp}
+        onCancel={() => setShowHelp(false)}
+        footer={null}
+      >
+        <p>need contents...</p>
+      </Modal>
     </List>
   )
 }

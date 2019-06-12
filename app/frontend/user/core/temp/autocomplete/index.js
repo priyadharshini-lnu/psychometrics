@@ -3,11 +3,11 @@ export const defaultState = {
   users: [],
 }
 
-export const searchEvaluators = (campaignId, q) => ({
+export const searchEvaluators = (campaignId, nominationId, q) => ({
   type: SEARCH_EVALUATORS,
   request: {
     method: 'post',
-    url: `/campaigns/${campaignId}/search_evaluators`,
+    url: `/campaigns/${campaignId}/nominations/${nominationId}/search_evaluators`,
     body: {
       q,
     },

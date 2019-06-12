@@ -10,14 +10,14 @@ module Threesixty
       def validate_data_sheet_criteria
         criteria_list.each do |criteria|
           validate_criteria_keys(criteria)
-          validate_criteria_operator(criteria[:operator])
+          validate_criteria_comparator(criteria[:comparator])
           validate_criteria_field(criteria[:field])
         end
       end
 
-      def validate_criteria_operator(operator)
-        if ['equal', 'is_same_as_subject'].exclude?(operator)
-          errors.add(:criteria_list, 'has invalid operator')
+      def validate_criteria_comparator(comparator)
+        if ['equal', 'is_same_as_subject'].exclude?(comparator)
+          errors.add(:criteria_list, 'has invalid comparator')
         end
       end
 
@@ -28,7 +28,7 @@ module Threesixty
       end
 
       def validate_criteria_keys(criteria)
-        if (criteria.keys - [:field, :operator, :value]).present?
+        if (criteria.keys - [:field, :comparator, :value]).present?
           errors.add(:criteria_list, 'has invalid key')
         end
       end

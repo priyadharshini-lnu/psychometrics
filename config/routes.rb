@@ -209,6 +209,11 @@ Rails.application.routes.draw do
             get :spoof
           end
         end
+        resources :nomination_requirements do
+          collection do
+            put :save
+          end
+        end
       end
       member do
         delete 'reset'
@@ -481,8 +486,8 @@ Rails.application.routes.draw do
 
     scope module: :threesixty do
       resources :campaigns, only: %i(show) do
-        post :search_evaluators
         resources :nominations do
+          post :search_evaluators
           resources :evaluators do
             put :update_status
           end
