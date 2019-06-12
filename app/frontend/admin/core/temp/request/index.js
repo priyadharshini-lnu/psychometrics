@@ -7,13 +7,13 @@ export const loading = () => ({ type: LOADING, name })
 export const loadingComplete = () => ({ type: LOADING_COMPLETE, name })
 export const getLodingState = state => _.get(state, ['temp', 'request', 'loading'])
 
-const defaultState = { loading: false }
-export default function reducer (state = defaultState, { type }) {
+const defaultState = { loading: false, name: null }
+export default function reducer (state = defaultState, { type, payload }) {
   switch (type) {
     case LOADING:
-      return { loading: true }
+      return { loading: true, name: payload.name }
     case LOADING_COMPLETE:
-      return { loading: false }
+      return defaultState
     default:
       return state
   }

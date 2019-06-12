@@ -1,11 +1,12 @@
 import React from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Divider, Alert,
+  Modal, Button, Icon, Divider,
 } from 'antd'
 import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
 import spreadSheetUtils from 'utils/spreadSheet'
+import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 import Form from './Form'
 
 const tableFields = [
@@ -84,19 +85,7 @@ export default function CreateEvaluatorModal ({
       <Form match={match} onSubmit={onSubmitForm} />
       <Divider />
       <SpreadSheet fields={tableFields} entities={evaluators} updateEntities={fillEvaluators} />
-      {errors && (
-        <Alert
-          style={{ whiteSpace: 'pre' }}
-          description={<ErrorMessage errors={errors} />}
-          type="error"
-          className="mtl"
-          showIcon
-        />
-      )}
+      <ErrorAlertBox errors={errors} />
     </Modal>
   )
-}
-
-function ErrorMessage ({ errors }) {
-  return <div>{_.values(errors).map(error => error.map((e, i) => <div key={i}>{e}</div>))}</div>
 }

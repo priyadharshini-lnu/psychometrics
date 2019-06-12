@@ -1,11 +1,12 @@
 import React, { useState } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Divider, Alert, Form, Form as AntForm,
+  Modal, Button, Icon, Divider, Form, Form as AntForm,
 } from 'antd'
 import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
 import spreadSheetUtils from 'utils/spreadSheet'
+import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 import UserAutocomplete from '../../shared/UserAutocomplete'
 
 const tableFields = [
@@ -40,7 +41,7 @@ export default function CreateSubjectModal ({
   if (current !== 'CreateSubjectModal') return null
   const [autocompletedUser, setAutocompletedUser] = useState('')
 
-  const handleOk = () => createAll(campaignId, _.pickBy(subjects, s => s.email || s.lastName || s.firstName))
+  const handleOk = () => createAll(campaignId, _.filter(subjects, s => s.email || s.lastName || s.firstName))
 
   const onSelect = (user) => {
     const newSubjects = setIn(subjects, spreadSheetUtils.getFreeRowIndex(subjects), _.omit(JSON.parse(user), ['id']))
@@ -78,19 +79,7 @@ export default function CreateSubjectModal ({
       </Form>
       <Divider />
       <SpreadSheet entities={subjects} fields={tableFields} updateEntities={fillSubjects} />
-      {errors && (
-        <Alert
-          style={{ whiteSpace: 'pre' }}
-          description={<ErrorMessage errors={errors} />}
-          type="error"
-          className="mtl"
-          showIcon
-        />
-      )}
+      <ErrorAlertBox errors={errors} />
     </Modal>
   )
-}
-
-function ErrorMessage ({ errors }) {
-  return <div>{_.values(errors).map(error => error.map((e, i) => <div key={i}>{e}</div>))}</div>
 }

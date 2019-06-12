@@ -2,6 +2,7 @@ import { takeLatest, put } from 'redux-saga/effects'
 import { setIn, updateIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
 import _ from 'lodash'
+import importReducer from './import'
 import settings from '../settings'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
@@ -16,7 +17,7 @@ export const defaultState = {
   list: [],
   total: 0,
   form: {
-    attrs: {},
+    attrs: [],
     errors: null,
   },
   autocompleted: [],
@@ -64,34 +65,36 @@ export const remove = (campaignId, subjectId) => ({
   },
 })
 
-export default function reducer (state = defaultState, action) {
-  switch (action.type) {
-    case FETCH_SUBJECTS:
-      return { ...state, list: action.response.subjects, total: action.response.total }
-    case FILL_SUBJECTS:
-      return setIn(state, ['form', 'attrs'], action.subjects)
-    case CREATE_ALL_FAILURE:
-      return setIn(state, ['form', 'errors'], action.errors)
-    case CLEAR_FORM:
-      return { ...state, form: defaultState.form }
-    case UPDATE: {
-      const index = _.findIndex(state.list, subject => subject.id === action.response.id)
-      return updateIn(state, ['list', index], () => action.response)
-    }
-    case REMOVE:
-      return updateIn(state, 'list', subjects => subjects.filter(s => (s.id !== action.requestAction.id)))
-    default:
-      return state
-  }
+const HANDLERS = {
+  [FETCH_SUBJECTS]: (state, { response: { subjects, total } }) => ({ ...state, list: subjects, total }),
+  [FILL_SUBJECTS]: (state, { subjects }) => setIn(state, ['form', 'attrs'], subjects),
+  [CREATE_ALL_FAILURE]: (state, { errors }) => setIn(state, ['form', 'errors'], errors),
+  [CLEAR_FORM]: state => ({ ...state, form: defaultState.form }),
+  [UPDATE]: (state, { response }) => {
+    const index = _.findIndex(state.list, subject => subject.id === response.id)
+    return updateIn(state, ['list', index], () => response)
+  },
+  [REMOVE]: (state, { requestAction }) => (
+    updateIn(state, 'list', subjects => subjects.filter(s => (s.id !== requestAction.id)))
+  ),
 }
 
-function* genFetchSubjects ({ requestAction }) {
+export default function reducer (state = defaultState, action) {
+  const stateFromInnerReducer = updateIn(
+    state, ['import'], state => importReducer(state, action),
+  )
+  const handler = HANDLERS[action.type]
+  return handler ? handler(state, action) : stateFromInnerReducer
+}
+
+export function* genFetchSubjects ({ requestAction }) {
   yield put(fetchSubjects(requestAction.campaignId))
 }
 
 function* genClearForm () {
   yield put(clearForm({}))
 }
+
 function* genCloseModal () {
   yield put(closeModal())
 }

@@ -56,6 +56,22 @@ module Administration
         })
       end
 
+      def download_example_import_file
+        send_file(
+          "#{Rails.root}/public/example_csv/subject_import.csv",
+          type: "text/csv"
+        )
+      end
+
+      def import
+        form = ::Threesixty::Subjects::ImportFileForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
+        if form.valid?
+          validate_and_add_subjects_from_csv(form.file.path)
+        else
+          render json: { errors: form.errors.messages }, status: :bad_request
+        end
+      end
+
       private
 
       # Set model
@@ -65,6 +81,23 @@ module Administration
 
       def resource_params
         params.require(:subject).permit(:report_release_status, :report_approval_status, :evaluation_status)
+      end
+
+      def validate_and_add_subjects_from_csv(file_path)
+        form = ::Threesixty::Subjects::CreateAllForm.new({ subjects: subjects_from_csv(file_path) }).
+          with_context(campaign: threesixty_campaign.campaign, single_subject_form: ::Threesixty::Subjects::ImportOneForm)
+
+        if form.valid?
+          result = ::Threesixty::Subjects::CreateAll.call!(form.subjects, threesixty_campaign)
+          return render json: result.slice(:existing_subjects_whose_password_not_changed)
+        else
+          render json: { errors: form.errors.messages }, status: :bad_request
+        end
+      end
+
+      def subjects_from_csv(file_path)
+        csv = CSV.read(file_path, 'r:bom|utf-8', headers: true)
+        subjects = csv.map { |row| row.to_h.symbolize_keys }
       end
     end
   end

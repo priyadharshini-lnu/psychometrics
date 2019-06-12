@@ -9,7 +9,7 @@ const CreateSubjectsDropdown = ({ openModal }) => {
       <Menu.Item onClick={() => openModal('CreateSubjectModal')} key="1">
         Add Subjects...
       </Menu.Item>
-      <Menu.Item key="2">Import Subjects...</Menu.Item>
+      <Menu.Item key="2" onClick={() => openModal('SubjectImportModal')}>Import Subjects...</Menu.Item>
     </Menu>
   )
 

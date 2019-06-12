@@ -45,12 +45,12 @@ const apiMiddleware = () => next => (action) => {
   const FAILURE = `${action.type}_FAILURE`
 
   next({ ...action, type: REQUEST })
-  if (loader) { next({ type: LOADING }) }
+  if (loader) { next({ type: LOADING, payload: { name: SUCCESS } }) }
 
   return axios.request({
     method,
     url: buildUrl(request),
-    data: humps.decamelizeKeys(body),
+    data: body instanceof FormData ? body : humps.decamelizeKeys(body),
     ...buildOptions(request),
     responseType: 'json',
     withCredentials: true,

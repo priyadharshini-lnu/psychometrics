@@ -10,6 +10,7 @@ import ActionsMenu from './ActionMenu'
 import ToolsDropdown from '../ToolsDropdown'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
 import CreateSubjectModal from './CreateSubjectModal'
+import SubjectImportModal from './SubjectImportModal'
 import Pagination from '../../../common/Pagination/Pagination'
 
 const { Column } = Table
@@ -101,6 +102,7 @@ export default function SubjectList ({
         </Col>
       </Row>
       <CreateSubjectModal match={match} />
+      <SubjectImportModal match={match} />
     </>
   )
 }

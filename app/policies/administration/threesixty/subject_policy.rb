@@ -30,6 +30,10 @@ module Administration
       def preview_report?
         index?
       end
+
+      def download_example_import_file?
+        index?
+      end
     end
   end
 end

@@ -2,12 +2,14 @@ en:
   activemodel:
     errors:
       models:
-        create_one:
+        import_one:
           attributes:
             email:
               blank: "Email can't be blank"
               invalid: 'Email is invalid'
               already_exists: 'A subject with same email already exists'
+            password:
+              too_short: 'Password is too short. Minimum 6 character required'
             first_name:
               blank: "First name can't be blank"
             last_name:
