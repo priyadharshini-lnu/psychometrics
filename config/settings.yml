@@ -274,8 +274,28 @@ providers:
         language_id: en
         assessment_ids:
           - HPI
+      - id: EcHPILFPML
+        name: HPI Potential Report
+        norm_id: Global
+        language_id: en
+        assessment_ids:
+          - HPI
+      - id: EcHPIHDSMVPIFR
+        name: Flash Report
+        norm_id: Global
+        language_id: en
+        assessment_ids:
+          - HPI
+          - HDS
+          - MVPI
       - id: EcHDSDML
         name: HDS Data Report
+        norm_id: Global
+        language_id: en
+        assessment_ids:
+          - HDS
+      - id: EcHDSLFCML
+        name: HDS Challenge Report
         norm_id: Global
         language_id: en
         assessment_ids:
