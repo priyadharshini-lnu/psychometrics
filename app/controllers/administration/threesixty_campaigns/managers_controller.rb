@@ -25,7 +25,7 @@ module Administration
                 count
 
         managers = managers.map do |m|
-          nomination_requirement = ::Threesixty::NominationRequirements::FindForSubject.call!(m.subject)
+          nomination_requirement = ::Threesixty::NominationRequirements::FindForSubject.call!(m.subject, threesixty_campaign)
           ::Threesixty::EvaluatorSerializer.new(m, option: option, nomination_requirement: nomination_requirement, counters: counters).to_h
         end
         render json: { managers: managers, total: total }
