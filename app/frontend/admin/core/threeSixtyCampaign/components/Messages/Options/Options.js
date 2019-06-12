@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react'
-import _ from 'lodash'
 import OptionSection from 'admin/core/threeSixtyCampaign/components/common/Options/Section'
 import Option from 'admin/core/threeSixtyCampaign/components/common/Options/Expandable'
 
@@ -19,7 +18,7 @@ function Options ({
 
   const parametersForSwitch = name => ({
     value: options[name],
-    onOptionChanged: (value) => update(name, value),
+    onOptionChanged: value => update(name, value),
   })
 
   return (

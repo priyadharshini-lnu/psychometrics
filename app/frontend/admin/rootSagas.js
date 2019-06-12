@@ -13,6 +13,6 @@ export default function* () {
     ...participantOptions,
     ...reportOptions,
     ...threeSixtyCampaign,
-    ...messageOptionWatchers
+    ...messageOptionWatchers,
   ])
 }

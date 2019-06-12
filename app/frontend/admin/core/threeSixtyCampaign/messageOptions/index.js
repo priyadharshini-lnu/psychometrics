@@ -8,9 +8,9 @@ export const FETCH = 'threeSixty/messageOptions/messageFETCH'
 export const UPDATE = 'threeSixty/messageOptions/UPDATE'
 export const SYNC_WITH_SERVER = 'threeSixty/messageOptions/SYNC_WITH_SERVER'
 
-export const getMessageOption = (state) => _.get(state, ['threeSixtyCampaign', 'messageOptions'])
+export const getMessageOption = state => _.get(state, ['threeSixtyCampaign', 'messageOptions'])
 
-export const fetch = (campaignId) => ({
+export const fetch = campaignId => ({
   type: FETCH,
   campaignId,
   request: {
@@ -53,5 +53,5 @@ function* genSyncWithServer () {
 }
 
 export const watchers = [
-  takeLatest(UPDATE, genSyncWithServer)
+  takeLatest(UPDATE, genSyncWithServer),
 ]

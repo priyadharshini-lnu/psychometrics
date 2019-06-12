@@ -25,8 +25,8 @@ const routes = [
     path: '/messages/options',
     component: Messages,
     routes: [
-      { path: '/messages/options', component: Messages.Options }
-    ]
+      { path: '/messages/options', component: Messages.Options },
+    ],
   },
   {
     path: '/reports/options',
