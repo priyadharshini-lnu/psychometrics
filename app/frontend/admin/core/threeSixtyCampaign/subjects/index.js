@@ -66,7 +66,7 @@ export const remove = (campaignId, subjectId) => ({
 })
 
 const HANDLERS = {
-  [FETCH_SUBJECTS]: (state, { response: { subjects, total } }) => ({ ...state, list: subjects, total: total }),
+  [FETCH_SUBJECTS]: (state, { response: { subjects, total } }) => ({ ...state, list: subjects, total }),
   [FILL_SUBJECTS]: (state, { subjects }) => setIn(state, ['form', 'attrs'], subjects),
   [CREATE_ALL_FAILURE]: (state, { errors }) => setIn(state, ['form', 'errors'], errors),
   [CLEAR_FORM]: state => ({ ...state, form: defaultState.form }),
