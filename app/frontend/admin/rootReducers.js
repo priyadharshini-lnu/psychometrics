@@ -13,6 +13,7 @@ import participants from './core/threeSixtyCampaign/participants'
 import relationships from './core/threeSixtyCampaign/relationships'
 import selectedParticipantTab from './core/threeSixtyCampaign/selectedParticipantTab'
 import nominationRequirements from './core/threeSixtyCampaign/nominationRequirements/reducers'
+import messageOptions from './core/threeSixtyCampaign/messageOptions'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -25,6 +26,7 @@ export default combineReducers({
     id: currentThreeSixtyCampaignId,
     selectedParticipantTab,
     nominationRequirements,
+    messageOptions,
   }),
   project: combineReducers({
     datasheetFields,
