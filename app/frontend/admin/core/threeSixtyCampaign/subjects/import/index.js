@@ -50,7 +50,7 @@ function* genCloseImportModal ({ response }) {
 }
 
 function* genShowImportSuccessMessage () {
-  yield message.success('Subjects imported successfullt', 5)
+  yield message.success('Subjects imported successfully', 5)
 }
 
 export const watchers = [

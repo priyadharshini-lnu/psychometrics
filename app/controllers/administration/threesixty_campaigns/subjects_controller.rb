@@ -83,7 +83,7 @@ module Administration
 
         if form.valid?
           result = ::Threesixty::Subjects::CreateAll.call!(form.subjects, threesixty_campaign)
-          return render json: result.slice(:existing_subject_whose_password_not_changed)
+          return render json: result.slice(:existing_subjects_whose_password_not_changed)
         else
           render json: { errors: form.errors.messages }, status: :bad_request
         end
