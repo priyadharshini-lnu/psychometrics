@@ -21,7 +21,7 @@ module Builders
         begin
           @scoring_list.each do |scoring|
             factors_scoring_attributes = scoring.slice(:factor_id, :question_id, :props).merge({ assessment_id: @assessment.id })
-            factors_scoring = FactorsScoring.find_or_initialize_by(id: scoring[:id])
+            factors_scoring = FactorsScoring.find_or_initialize_by(factor_id: scoring[:factor_id], question_id: scoring[:question_id], assessment_id: @assessment.id)
             factors_scoring.update(factors_scoring_attributes)
           end
         rescue => e
