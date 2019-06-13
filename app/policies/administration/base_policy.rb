@@ -69,6 +69,7 @@ module Administration
 
       # scope - could be array [:administration, Model]
       def resolve
+        puts "============================ #{scope}"
         [scope].flatten.last
       end
     end
