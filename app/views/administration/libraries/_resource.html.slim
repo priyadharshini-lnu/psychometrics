@@ -1,7 +1,7 @@
 tr id=dom_id(resource)
   td.text-center
     - if resource.image?
-      = image_tag resource.file.thumb.url, alt: resource.name
+      = image_tag resource.file.url(:thumb), alt: resource.name, class: 'thumb'
     - else
       i class="icon #{resource.decorate.icon}" style="font-size: 30px;"
   td

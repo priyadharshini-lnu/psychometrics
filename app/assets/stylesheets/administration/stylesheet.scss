@@ -219,3 +219,7 @@ body {
 .encrypted:before {
   content: '****************************************************************';
 }
+.thumb {
+  max-width: 50px;
+  height: auto;
+}
