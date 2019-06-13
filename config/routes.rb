@@ -203,6 +203,8 @@ Rails.application.routes.draw do
           get :message_options
         end
 
+        resources :email_templates
+
         resources :managers
         resources :relationships
         resources :participants do

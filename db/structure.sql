@@ -1898,9 +1898,9 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     category integer DEFAULT 0
 );
@@ -2148,6 +2148,43 @@ CREATE SEQUENCE public.threesixty_campaigns_id_seq
 --
 
 ALTER SEQUENCE public.threesixty_campaigns_id_seq OWNED BY public.threesixty_campaigns.id;
+
+
+--
+-- Name: threesixty_email_templates; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.threesixty_email_templates (
+    id bigint NOT NULL,
+    threesixty_campaign_id bigint,
+    category integer,
+    name character varying NOT NULL,
+    "from" character varying NOT NULL,
+    reply_to_email character varying NOT NULL,
+    content text,
+    subject text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: threesixty_email_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.threesixty_email_templates_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: threesixty_email_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.threesixty_email_templates_id_seq OWNED BY public.threesixty_email_templates.id;
 
 
 --
@@ -2412,6 +2449,7 @@ CREATE TABLE public.users_assessments (
     assessment_id bigint,
     user_id bigint,
     campaign_id bigint,
+    selected_locale character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -2929,6 +2967,13 @@ ALTER TABLE ONLY public.tasks ALTER COLUMN id SET DEFAULT nextval('public.tasks_
 --
 
 ALTER TABLE ONLY public.threesixty_campaigns ALTER COLUMN id SET DEFAULT nextval('public.threesixty_campaigns_id_seq'::regclass);
+
+
+--
+-- Name: threesixty_email_templates id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_templates ALTER COLUMN id SET DEFAULT nextval('public.threesixty_email_templates_id_seq'::regclass);
 
 
 --
@@ -3471,6 +3516,14 @@ ALTER TABLE ONLY public.tasks
 
 ALTER TABLE ONLY public.threesixty_campaigns
     ADD CONSTRAINT threesixty_campaigns_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: threesixty_email_templates threesixty_email_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_templates
+    ADD CONSTRAINT threesixty_email_templates_pkey PRIMARY KEY (id);
 
 
 --
@@ -4576,10 +4629,24 @@ CREATE INDEX index_users_results_on_subject_id ON public.users_results USING btr
 
 
 --
+-- Name: threesixty_email_template_cam_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX threesixty_email_template_cam_id ON public.threesixty_email_templates USING btree (threesixty_campaign_id);
+
+
+--
 -- Name: threesixty_nomination_requirements_cam_id; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE INDEX threesixty_nomination_requirements_cam_id ON public.threesixty_nomination_requirements USING btree (threesixty_campaign_id);
+
+
+--
+-- Name: users_assessments_user_uniquesness_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_assessments_user_uniquesness_index ON public.users_assessments USING btree (user_id, campaign_id, assessment_id);
 
 
 --
@@ -4964,6 +5031,14 @@ ALTER TABLE ONLY public.communications
 
 ALTER TABLE ONLY public.norms
     ADD CONSTRAINT fk_rails_922fac4f2e FOREIGN KEY (created_by) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: threesixty_email_templates fk_rails_93d2d461ed; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_templates
+    ADD CONSTRAINT fk_rails_93d2d461ed FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE RESTRICT;
 
 
 --
@@ -5608,6 +5683,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190523104920'),
 ('20190525115528'),
 ('20190601163131'),
-('20190604121645');
+('20190604121645'),
+('20190612100829');
 
 

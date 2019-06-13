@@ -10,7 +10,7 @@ export default function Messages ({ history, routes }) {
   return (
     <div>
       <Menu onSelect={onSelect} selectedKeys={[routeUtils.getActiveRoutePath(routes)]} mode="horizontal">
-        <Menu.Item disabled key="/messages/email">Email Messages</Menu.Item>
+        <Menu.Item key="/messages/email">Email Messages</Menu.Item>
         <Menu.Item disabled key="/messages/instruction">Instructon Messages</Menu.Item>
         <Menu.Item key="/messages/options">Options</Menu.Item>
       </Menu>
