@@ -14,6 +14,7 @@ import relationships from './core/threeSixtyCampaign/relationships'
 import selectedParticipantTab from './core/threeSixtyCampaign/selectedParticipantTab'
 import nominationRequirements from './core/threeSixtyCampaign/nominationRequirements/reducers'
 import messageOptions from './core/threeSixtyCampaign/messageOptions'
+import emailTemplates from './core/threeSixtyCampaign/emailTemplates'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -27,6 +28,7 @@ export default combineReducers({
     selectedParticipantTab,
     nominationRequirements,
     messageOptions,
+    emailTemplates,
   }),
   project: combineReducers({
     datasheetFields,

@@ -1,0 +1,86 @@
+import React, { useEffect } from 'react'
+import Editor from 'admin/core/threeSixtyCampaign/components/common/Editor'
+import {
+  Menu, Input, Row, Col, Button,
+} from 'antd'
+import _ from 'lodash'
+import routeUtils from 'utils/routeUtils'
+import cs from 'classnames'
+import settings from '../../../settings'
+import css from './style.scss'
+import { save } from '../../../emailTemplates'
+
+function Emails ({
+  emailTemplates: { list, selectedId },
+  fetch,
+  update,
+  save,
+  changeSelected,
+  history,
+  match: {
+    params: { campaignId, id },
+  },
+}) {
+  const changeTemplate = (templateId) => {
+    routeUtils.moveTo(history, settings.urlPrefix, `/messages/email/${templateId}`)
+    changeSelected(templateId)
+  }
+
+  useEffect(() => {
+    fetch(campaignId, { selectedId: id })
+      .then(({ response }) => {
+        if (_.isUndefined(id)) {
+          changeTemplate(response[0].id)
+        } else if (!_.isEmpty(response)) {
+          changeSelected(parseInt(id, 10))
+        }
+      })
+  }, [])
+
+  const selectedTemplate = _.find(list, ({ id }) => id == selectedId)
+  if (_.isUndefined(selectedTemplate)) { return null }
+
+  const groupedTemplates = _.groupBy(list, 'category')
+
+  const renderMenu = () => (
+    _.map(groupedTemplates, (emailTemplates, category) => (
+      <Menu.ItemGroup key={category} title={category}>
+        {_.map(emailTemplates, emailTemplate => (<Menu.Item key={emailTemplate.id}>{emailTemplate.name}</Menu.Item>))}
+      </Menu.ItemGroup>
+    ))
+  )
+
+  return (
+    <Row style={{ minWidth: '900px' }}>
+      <Col xs={8} lg={7} xl={4}>
+        <Menu
+          selectedKeys={[selectedId.toString()]}
+          onClick={({ key }) => changeTemplate(key)}
+          style={{ width: 256, height: 700 }}
+          defaultSelectedKeys={['1']}
+          defaultOpenKeys={['sub1']}
+          mode="inline"
+        >
+          {renderMenu()}
+        </Menu>
+      </Col>
+      <Col xs={16} lg={16} xl={18}>
+        <div style={{ padding: '10px' }}>
+          <Input
+            addonBefore="From"
+            value={selectedTemplate.from}
+            className={cs(['mbm', css.smallWidthInput])}
+            onChange={(e) => { update('from', e.target.value) }}
+          />
+
+          <Input addonBefore="Reply To Email" value={selectedTemplate.replyToEmail} className={cs(['mbm', css.smallWidthInput])} />
+          <Input addonBefore="Subject" value={selectedTemplate.subject} className="mbm" />
+          <Editor content={selectedTemplate.content} />
+          <Button type="primary" size="large" className="mtm" onClick={() => save(campaignId, selectedTemplate)}>Save</Button>
+        </div>
+      </Col>
+    </Row>
+  )
+}
+
+export default Emails
