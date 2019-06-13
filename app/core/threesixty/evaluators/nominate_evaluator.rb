@@ -14,11 +14,7 @@ module Threesixty
       end
 
       def call
-        user = if can_nominate_anyone?
-          find_or_create_evaluator_user
-        else
-          ::Users::Regular.find_by(email: params[:evaluator_email])
-        end
+        user = user_by_options
 
         return broadcast :invalid, [{user: "can not be processed"}] unless user && user.persisted?
 
@@ -35,6 +31,16 @@ module Threesixty
         end
       end
 
+      def user_by_options
+        if can_nominate_anyone?
+          find_or_create_evaluator_user
+        elsif can_nominate_anyone_from_datasheet?
+          find_or_cretate_from_datasheet
+        else
+          ::Users::Regular.find_by(email: params[:evaluator_email])
+        end
+      end
+
       def user_exists?
         ::Users::Regular.exists?(email: params[:evaluator_email], project: project)
       end
@@ -47,8 +53,22 @@ module Threesixty
         end
       end
 
-      def create_evaluator_user
-        ::Users::Regular.create_with(first_name: '', last_name: '', create_by_invite: true).
+      def find_or_cretate_from_datasheet
+        check_evaluator_and_create(::Users::Regular.find_by(email: params[:evaluator_email], project: project))
+      end
+
+      def check_evaluator_and_create evaluator = nil
+        evaluator ||= OpenStruct.new(email: params[:evaluator_email])
+        user_datasheet = threesixty_campaign.datasheet&.rows&.find_by(email: evaluator.email)
+        return nil unless user_datasheet
+        if limit_nomination_by_subject_from_datasheet?
+          return nil unless Threesixty::Evaluators::ResolveEvaluatorCriteria.call!(threesixty_campaign, evaluator, datasheet_criteria, subject.user)
+        end
+        create_evaluator_user
+      end
+
+      def create_evaluator_user first_name = '', last_name = ''
+        ::Users::Regular.create_with(first_name: first_name, last_name: last_name, create_by_invite: true).
                          find_or_create_by(email: params[:evaluator_email], project: project)
       end
 
@@ -74,6 +94,18 @@ module Threesixty
 
       def can_nominate_anyone?
         @options.participants.dig('subject', 'can_nominate_anyone_not_in_assessment')
+      end
+
+      def can_nominate_anyone_from_datasheet?
+        @options.participants.dig('subject', 'can_nominate_anyone_from_datasheet')
+      end
+
+      def limit_nomination_by_subject_from_datasheet?
+        @options.participants.dig('subject', 'limit_nomination_by_subject_from_datasheet')
+      end
+
+      def datasheet_criteria
+        @options.participants.dig('subject', 'limit_nomination_by_subject_from_datasheet_criteria')
       end
     end
   end
