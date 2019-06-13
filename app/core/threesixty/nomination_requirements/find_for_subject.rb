@@ -11,7 +11,6 @@ module Threesixty
       end
 
       def call
-        return broadcast :ok, nil if datasheet_row_data.nil?
         nomination_requirement = nomination_requirements.find do |n|
           Threesixty::NestedConditionResolver.call!(n.subject_conditions, proc { |condition| resolve_condition(condition) })
         end
@@ -37,7 +36,7 @@ module Threesixty
         @datasheet_row_data ||= threesixty_campaign.datasheet&.
           rows&.
           find_by(email: subject.user.email)
-          &.data
+          &.data || {}
       end
 
       def nomination_requirements

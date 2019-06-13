@@ -48,12 +48,12 @@ export default function NominationForm (props) {
               >
                 <AutoComplete
                   dataSource={users.map(user => ({
-                    value: user.id,
+                    value: user.email,
                     text: userPresenter.getFullNameWithEmail(user),
                   }))}
                   autoFocus
                   placeholder="type name or email..."
-                  onSelect={userId => updateForm({ ...form.attrs, userId })}
+                  onSelect={email => updateForm({ ...form.attrs, email })}
                 >
                   <Input.Search
                     style={{ width: 240 }}

@@ -3,21 +3,26 @@
 module Threesixty
   module Participants
     class CreateForm < Rectify::Form
-      attribute :evaluator_id, Integer
+      attribute :evaluator_email, Integer
       attribute :relationship_id, Integer
 
-      validates :evaluator_id, :relationship_id, presence: true
+      validates :relationship_id, presence: true
 
       validate :check_subject_exists
+      validate :check_evaluator_exists
       validate :check_existing_participant
 
       def check_subject_exists
         errors.add(:subject, 'is required') unless subject
       end
 
+      def check_evaluator_exists
+        errors.add(:evaluator, 'is required') unless evaluator
+      end
+
       def check_existing_participant
-        if subject.participants.find_by(evaluator_id: evaluator_id)
-          errors.add(:evaluator_id, 'already exists')
+        if subject && subject.participants.find_by(evaluator_id: evaluator.user_id)
+          errors.add(:evaluator, 'already exists')
         end
       end
 
@@ -25,8 +30,8 @@ module Threesixty
         @subject ||= context.subject
       end
 
-      def campaign
-        @campaign ||= context.campaign
+      def evaluator
+        @evaluator ||= context.evaluator
       end
 
       def error_mesages
