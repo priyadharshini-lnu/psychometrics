@@ -53,6 +53,7 @@ export default function NominationForm (props) {
                   }))}
                   autoFocus
                   placeholder="type name or email..."
+                  onChange={email => updateForm({ ...form.attrs, email })}
                   onSelect={email => updateForm({ ...form.attrs, email })}
                 >
                   <Input.Search
