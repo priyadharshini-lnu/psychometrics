@@ -12,7 +12,7 @@ module Scoring
           scoring += object['value'] * percent if object
         end
       end
-      scoring / choices
+      { value: scoring / choices, options: [] }
     end
   end
 end

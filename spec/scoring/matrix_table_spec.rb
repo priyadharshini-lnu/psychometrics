@@ -8,19 +8,19 @@ RSpec.describe Scoring::MatrixTable do
     context 'when scoring: 1,2,3|3,2,1|1,2,3' do
       context 'when answer: s1c1, s2c2, s2c3' do
         it 'returns 1.3333' do
-          result = matrix_table.calculate(Question.new, {'answers' => [{'scale' => 0, 'choice' => 0, 'value' => true}, {'scale' => 1, 'choice' => 1, 'value' => true}, {'scale' => 1, 'choice' => 2, 'value' => true}]}, template_data)
+          result = matrix_table.calculate(Question.new, {'answers' => [{'scale' => 0, 'choice' => 0, 'value' => true}, {'scale' => 1, 'choice' => 1, 'value' => true}, {'scale' => 1, 'choice' => 2, 'value' => true}]}, template_data)[:value]
           expect(result).to eq(5/3.to_f)
         end
       end
       context 'when no answer' do
         it 'returns nil' do
-          result = matrix_table.calculate(Question.new, {'answers' => []}, template_data)
+          result = matrix_table.calculate(Question.new, {'answers' => []}, template_data)[:value]
           expect(result).to be_nil
         end
       end
       context 'when answer: {\'scale\' => 0, \'choice\' => 0, \'value\' => false}' do
         it 'returns nil' do
-          result = matrix_table.calculate(Question.new, {'answers' => [{'scale' => 1, 'choice' => 1, 'value' => false}]}, template_data)
+          result = matrix_table.calculate(Question.new, {'answers' => [{'scale' => 1, 'choice' => 1, 'value' => false}]}, template_data)[:value]
           expect(result).to be_nil
         end
       end

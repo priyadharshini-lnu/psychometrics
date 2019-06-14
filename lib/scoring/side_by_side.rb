@@ -14,8 +14,9 @@ module Scoring
           end
         end
       end
-      return values.sum.to_f / values.size unless values.empty?
-      nil
+
+      value = values.empty? ? nil : values.sum.to_f / values.size
+      { value: value, options: [] }
     end
   end
 end
