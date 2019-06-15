@@ -1,0 +1,277 @@
+@import 'user/styles/variables';
+
+:global {
+  .campaigns-list {
+    .page-header {
+      min-height: 550px;
+    }
+
+    .controls {
+      margin-top: 24px
+    }
+
+    .cards {
+      margin-top: 24px;
+    }
+
+    .card {
+      margin-left: 16px;
+      width: 20%;
+      flex: 1;
+
+      &:nth-child(1) {
+        margin-left: 0;
+      }
+
+      .cover {
+        position: relative;
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+
+        img {
+          width: 100%;
+          max-height: 100%;
+        }
+
+        .card-progress {
+          position: absolute;
+          bottom: -13px;
+          width: 90%;
+          margin: 0 auto;
+          padding: 2px 8px;
+          background: #fff;
+          border-radius: 16px;
+        }
+      }
+
+      .card-body {
+        padding: 8px;
+        margin-top: 16px;
+      }
+
+      .card-content {
+        display: flex;
+        flex-direction: column;
+
+        .card-title {
+          font-weight: bold;
+          height: 60px;
+        }
+
+        .info-line {
+          font-size: 12px;
+          padding: 16px 0;
+          color: $gray-color;
+          font-weight: bold;
+          display: flex;
+
+          .info-block {
+            margin-right: 12px;
+
+            i {
+              font-size: 13px;
+              margin-right: 5px;
+            }
+          }
+        }
+
+        .divider {
+          align-self: flex-end;
+          width: 90%;
+          height: 1px;
+          background: $normal-color;
+        }
+
+        .button {
+          padding-top: 8px;
+          color: $main-color;
+        }
+      }
+    }
+
+  }
+
+  .page-header {
+    @media(max-width: $screen-lg) {
+      padding: 16px;
+    }
+  }
+
+  .title-with-dash {
+    &:after {
+      content: '';
+      background-color: $main-color;
+      font-weight: normal;
+      display: block;
+      width: 60px;
+      height: 3px;
+      border-radius: 3px;
+      margin-top: 8px
+    }
+  }
+
+  .main-container {
+    background: $white;
+
+    .percentage {
+      font-weight: bold;
+      color: $dark-gray;
+    }
+
+    .progress-wrapper {
+      padding: 24px 0;
+
+      @media(max-width: $screen-lg) {
+        padding: 8px 0;
+      }
+
+      .progress-column {
+        flex: 1;
+        padding-right: 64px;
+        border-right: 1px solid $gray-color;
+
+        @media(max-width: $screen-lg) {
+          padding-right: 0;
+          border-right: none;
+        }
+      }
+    }
+
+    .progress-label {
+      font-weight: bold;
+      color: $dark-gray;
+      margin-top: 8px;
+    }
+
+
+    .content.padding {
+      padding-left: 32px;
+
+      @media(max-width: $screen-lg) {
+        padding-left: 0;
+      }
+    }
+
+    .progresses {
+      display: flex;
+      padding: 0 32px;
+
+      @media(max-width: $screen-lg) {
+        padding: 0;
+      }
+
+      .mini-progress {
+        flex: 1;
+        display: flex;
+        align-items: center;
+
+        .progress-line {
+          flex: 1;
+          margin: 0 8px;
+        }
+      }
+    }
+
+
+    .column-list {
+      .ant-list-item {
+        &:first-child {
+          border-top: 1px solid #e8e8e8;
+        }
+
+        margin-left: 24px;
+        padding-left: 0;
+      }
+
+      .list-item {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .actions-btn {}
+      }
+
+      .status-icon {
+        font-size: 20px;
+        margin-right: 8px;
+        border-radius: 6px;
+        overflow: hidden;
+      }
+
+      .empty-square {
+        min-width: 20px;
+        min-height: 20px;
+        max-width: 20px;
+        max-height: 20px;
+        margin-right: 8px;
+        border: 2px solid $gray-color;
+        border-radius: 4px;
+      }
+
+      .header {
+        display: flex;
+        align-items: center;
+
+        .caption {
+          flex: 1;
+          padding: 0 8px;
+          font-weight: bold;
+          color: $black;
+
+          .progress-bars {
+            display: flex;
+
+            .progress-line {
+              flex: 3;
+            }
+
+            .value {
+              color: $dark-gray;
+              margin-left: 8px;
+              flex: 2;
+            }
+          }
+        }
+
+        .collapse-title {
+          color: $light-black;
+        }
+
+        .help {
+          .help-icon {
+            font-size: 24px;
+            color: $gray-color;
+            cursor: pointer;
+            transition: 0.4s;
+
+            &:hover {
+              color: #999;
+            }
+          }
+        }
+      }
+    }
+  }
+
+  .help-modal-header {
+    display: flex;
+    align-items: center;
+
+    .letter-icon {
+      margin-right: 8px;
+    }
+  }
+
+  .letter-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 40px;
+    height: 40px;
+    border-radius: 20px;
+    border: 1.5px solid $main-color;
+    font-size: 20px;
+    color: $light-black;
+  }
+}

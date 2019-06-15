@@ -1,7 +1,11 @@
 module Threesixty
   class CampaignsController < ApplicationController
     layout 'layouts/threesixty_campaign'
-    before_action :set_campaign
+    before_action :set_campaign, only: [:show]
+
+    def index
+      render :show
+    end
 
     def show
       respond_to do |format|
