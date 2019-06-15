@@ -3,21 +3,19 @@
 module Threesixty
   module Participants
     class CreateForm < Rectify::Form
-      attribute :evaluator_id, Integer
+      attribute :evaluator_email, Integer
       attribute :relationship_id, Integer
 
-      validates :evaluator_id, :relationship_id, presence: true
+      validates :relationship_id, :evaluator_email, presence: true
 
-      validate :check_subject_exists
-      validate :check_existing_participant
+      validate :check_for_valid_user
+      validate :check_existing_participant, if: -> { user.present? }
 
-      def check_subject_exists
-        errors.add(:subject, 'is required') unless subject
-      end
+      attr_reader :user
 
       def check_existing_participant
-        if subject.participants.find_by(evaluator_id: evaluator_id)
-          errors.add(:evaluator_id, 'already exists')
+        if subject && subject.participants.find_by(evaluator_id: user.id)
+          errors.add(:evaluator, 'already exists')
         end
       end
 
@@ -25,16 +23,76 @@ module Threesixty
         @subject ||= context.subject
       end
 
-      def campaign
-        @campaign ||= context.campaign
+      def threesixty_campaign
+        @threesixty_campaign ||= context.threesixty_campaign
       end
 
-      def error_mesages
+      def options
+        @options ||= threesixty_campaign.option
+      end
+
+      def error_messages
         errors.keys.each.with_object({}) do |attribute, list|
           list[attribute] = errors.full_messages_for(attribute)
           list
         end
       end
+
+      def check_for_valid_user
+        if can_nominate_anyone?
+          find_evaluator_user
+        elsif can_nominate_anyone_from_datasheet?
+          find_from_datasheet
+        else
+          @user = ::Users::Regular.find_by(email: evaluator_email)
+          can_not_be_processed! unless @user
+        end
+      end
+
+      def find_evaluator_user
+        @user = ::Users::Regular.find_by(email: evaluator_email, project: threesixty_campaign.project)
+      end
+
+      def find_from_datasheet
+        check_datasheet_criteria(find_evaluator_user)
+      end
+
+      def check_datasheet_criteria(evaluator = nil)
+        evaluator ||= OpenStruct.new(email: evaluator_email)
+        user_datasheet = threesixty_campaign.datasheet&.rows&.find_by(email: evaluator.email)
+
+        return can_not_be_processed! unless user_datasheet
+
+        if limit_nomination_by_subject_from_datasheet?
+          unless Threesixty::Evaluators::ResolveEvaluatorCriteria.call!(threesixty_campaign,
+                                                                        evaluator, datasheet_criteria, subject.user)
+            can_not_be_processed!
+          end
+        end
+      end
+
+      def can_not_be_processed!
+        errors.add(:evaluator, 'can not be processed')
+      end
+
+      private
+
+      def can_nominate_anyone?
+        options.participants.dig('subject', 'can_nominate_anyone_not_in_assessment')
+      end
+
+      def can_nominate_anyone_from_datasheet?
+        options.participants.dig('subject', 'can_nominate_anyone_from_datasheet')
+      end
+
+      def limit_nomination_by_subject_from_datasheet?
+        options.participants.dig('subject', 'limit_nomination_by_subject_from_datasheet')
+      end
+
+      def datasheet_criteria
+        options.participants.dig('subject', 'limit_nomination_by_subject_from_datasheet_criteria')
+      end
+
     end
   end
 end

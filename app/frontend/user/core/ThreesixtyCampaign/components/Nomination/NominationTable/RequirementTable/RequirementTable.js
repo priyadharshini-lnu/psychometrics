@@ -46,11 +46,12 @@ export default function RequirementTable (props) {
         children: userPresenter.getFullNameWithEmail(value.evaluator),
       }
     }
+
     return {
       children: <InlineInput
         title={title}
         match={match}
-        relationship={condition.id}
+        relationship={condition.relationshipId}
         {...props}
         hideForm={() => { setShowForm(false) }}
       />,

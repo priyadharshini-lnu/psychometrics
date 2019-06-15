@@ -30,7 +30,7 @@ export const removeNomination = ({ campaignId, nominationId, evaluator }) => ({
 })
 
 export const addNomination = ({
-  campaignId, nominationId, relationshipId, userId: evaluatorId,
+  campaignId, nominationId, relationshipId, email: evaluatorEmail,
 }) => ({
   type: ADD,
   request: {
@@ -38,7 +38,7 @@ export const addNomination = ({
     method: 'post',
     body: {
       relationshipId,
-      evaluatorId,
+      evaluatorEmail,
     },
   },
 })
