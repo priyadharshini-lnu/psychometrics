@@ -11,10 +11,11 @@ module UsersResults
     def call
       return broadcast(:ok, []) unless users_result.completed?
 
-      questions = Question.where(assessment_id: users_result.assessment_id, type: AVAILABLE_TYPES)
+      questions = Question.where(assessment_id: users_result.assessment_id, type: AVAILABLE_TYPES).all
 
       factors_scoring_map = FactorsScoring.
         where(assessment_id: users_result.assessment_id, question_id: questions.map(&:id)).
+        where('json_array_length(props) > 0').
         group_by(&:question_id)
 
       question_scoring =
@@ -22,13 +23,13 @@ module UsersResults
           scoring_class = "::Scoring::#{question.type}"
           result = users_result.answers[question.id.to_s]
           factor_scoring = factors_scoring_map[question.id].try(:first)
-
-          value =
+          value_obj =
             if result && factor_scoring && !factor_scoring.props.empty?
               scoring_class.constantize.new.calculate(question, result, factor_scoring.props)
+            else
+              {}
             end
-
-          value ? { question_id: question.id, value: value, options: [] } : nil
+          value_obj[:value] ? { question_id: question.id, value: value_obj[:value], options: value_obj[:options] } : nil
         end
       broadcast :ok, question_scoring.compact
     end

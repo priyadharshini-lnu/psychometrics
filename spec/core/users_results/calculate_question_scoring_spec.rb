@@ -65,6 +65,14 @@ describe ::UsersResults::CalculateQuestionScoring do
   end
 
   it '.call' do
-    expect(subject).to eq([{ "question_id": 17_157, "value": 1.6666666666666667, "options": [] }, { "question_id": 17_156, "value": 2.0, "options": [] }])
+    expect(subject).to eq([{
+      "question_id": 17_157, "value": 1.6666666666666667, "options": [
+        { choice: 0, value: 1 }, { choice: 0, value: 2 }, { choice: 0, value: 2 }
+      ]
+    }, {
+      "question_id": 17_156, "value": 2.0, "options": [
+        { choice: 0, value: 3 }, { choice: 1, value: 2 }, { choice: 2, value: 1 }
+      ]
+    }])
   end
 end
