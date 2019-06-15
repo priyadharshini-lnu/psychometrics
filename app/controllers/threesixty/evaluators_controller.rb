@@ -6,18 +6,13 @@ module Threesixty
     before_action :set_nomination, only: [:update_status]
 
     def create
-      form = ::Threesixty::Participants::CreateForm.from_params(params).with_context(subject: @subject)
-
+      form = ::Threesixty::Participants::CreateForm.from_params(params).
+              with_context(subject: @subject, threesixty_campaign: @campaign)
       if form.valid?
-        participant = @subject.participants.build(evaluator_params)
-        participant.campaign_id = @campaign.campaign_id
-        participant.project_id = @campaign.project.id
-        participant.save!
-        participant.threesixty_subject.increment!(:evaluators_count)
-        participant.threesixty_evaluator.increment!(:evaluations_count)
-        render json: participant, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
+        result = ::Threesixty::Evaluators::NominateEvaluator.call!(@campaign, @subject, params, form.user)
+        render json: result, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
       else
-        render json: { errors: form.error_mesages }, status: :bad_request
+        render json: { errors: form.error_messages }, status: :bad_request
       end
     end
 

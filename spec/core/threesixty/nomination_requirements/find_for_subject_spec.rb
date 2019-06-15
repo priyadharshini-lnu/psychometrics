@@ -21,10 +21,10 @@ describe Threesixty::NominationRequirements::FindForSubject do
     expect(described_class.call!(subject, campaign)).to eq(nil)
   end
 
-  it 'returns nill when there are no datasheet rows present for the user' do
+  it 'returns nomination with empty condition when there are no datasheet rows present for the user' do
     nomination_requirement = create(:threesixty_nomination_requirement, threesixty_campaign_id: campaign.id, subject_conditions: [])
 
-    expect(described_class.call!(subject, campaign)).to eq(nil)
+    expect(described_class.call!(subject, campaign)).to eq(nomination_requirement)
   end
 
 
