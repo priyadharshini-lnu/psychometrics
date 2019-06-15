@@ -43,6 +43,11 @@ en:
       single_value:
         factor_name: "Scoring Category"
         question_name: "Questions"
+      single_value_cluster:
+        questions: "Questions"
+        developmental_rating: "Developmental Rating"
+        competency: "Competency"
+        description: "Description"
       three_sixty_default:
         statistic: 'Statistic'
         value: 'Value'
