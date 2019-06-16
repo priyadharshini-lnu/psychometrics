@@ -59,7 +59,9 @@ const apiMiddleware = () => next => (action) => {
     response: camelize ? humps.camelizeKeys(data) : data,
     requestAction: action,
   })).catch((error) => {
-    next({ type: FAILURE, errors: humps.camelizeKeys(error.response.data.errors) })
+    const errors = humps.camelizeKeys(error.response.data.errors)
+    next({ type: FAILURE, errors: humps.camelizeKeys(errors) })
+    throw (errors)
   }).finally(() => {
     if (loader) { next({ type: LOADING_COMPLETE }) }
   })
