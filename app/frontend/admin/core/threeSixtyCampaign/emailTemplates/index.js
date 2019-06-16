@@ -1,9 +1,6 @@
 import _ from 'lodash'
 import { updateIn } from 'utils/immutable'
-<<<<<<< HEAD
 import reminderRulesReducer from './reminderRules'
-=======
->>>>>>> Backed fo email template
 
 export const get = state => _.get(state, ['threeSixtyCampaign', 'emailTemplates'])
 
@@ -27,11 +24,8 @@ export const fetch = campaignId => ({
   },
 })
 
-<<<<<<< HEAD
-=======
 export const update = (key, value) => ({ type: UPDATE, payload: { key, value } })
 
->>>>>>> Backed fo email template
 export const save = (campaignId, emailTemplate) => ({
   type: SAVE,
   request: {
@@ -44,7 +38,6 @@ export const save = (campaignId, emailTemplate) => ({
 
 const HANDLERS = {
   [FETCH]: (state, { response }) => ({ ...state, list: response }),
-<<<<<<< HEAD
   [UPDATE]: (state, { payload: { id, key, value } }) => updateIn(
     state,
     'list',
@@ -53,17 +46,6 @@ const HANDLERS = {
       return { ...emailTemplate, [key]: value }
     }),
   ),
-=======
-  [UPDATE]: (state, { payload: { key, value } }) => updateIn(
-    state,
-    'list',
-    list => _.map(list, (emailTemplate) => {
-      if (emailTemplate.id !== state.selectedId) { return emailTemplate }
-      return { ...emailTemplate, [key]: value }
-    }),
-  ),
-  [CHANGE_SELECTED]: (state, { payload: { id } }) => ({ ...state, selectedId: id }),
->>>>>>> Backed fo email template
 }
 
 export default function reducer (state = defaultState, action) {
