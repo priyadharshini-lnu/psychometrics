@@ -10,19 +10,6 @@ module Administration
 
         false
       end
-
-      class Scope
-        def initialize(user, scope)
-          @user = user
-          @scope = [scope].flatten.last
-        end
-
-        # scope - could be array [:administration, Model]
-        def resolve
-          puts "============================ #{scope}"
-          [scope].flatten.last
-        end
-      end
     end
   end
 end

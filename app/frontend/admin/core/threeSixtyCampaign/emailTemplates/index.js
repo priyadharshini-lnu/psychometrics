@@ -1,9 +1,5 @@
-
-import {
-  takeLatest, put, select, delay,
-} from 'redux-saga/effects'
 import _ from 'lodash'
-import { get as getCurrentCampaignId } from '../currentThreeSixtyCampaignId'
+import { updateIn } from 'utils/immutable'
 
 export const getEmailTemplates = state => _.get(state, ['threeSixtyCampaign', 'emailTemplates'])
 
@@ -28,12 +24,12 @@ export const fetch = (campaignId, { selectedId }) => ({
 
 export const update = (key, value) => ({ type: UPDATE, payload: { key, value } })
 
-export const save = (campaignId, emailTemplates) => ({
+export const save = (campaignId, emailTemplate) => ({
   type: SAVE,
   request: {
     method: 'put',
     url: `/administration/threesixty_campaigns/${campaignId}/email_templates/${emailTemplate.id}`,
-    body: { emailTemplates },
+    body: { emailTemplate },
   },
 })
 
@@ -44,10 +40,14 @@ export const changeSelected = id => ({
 
 const HANDLERS = {
   [FETCH]: (state, { response }) => ({ ...state, list: response }),
-  [UPDATE]: (state, { payload: { key, value } }) => _.map(state, (emailTemplate) => {
-    if (emailTemplate.id !== state.selectedId) { return emailTemplate }
-    return { ...emailTemplate, [key]: value }
-  }),
+  [UPDATE]: (state, { payload: { key, value } }) => updateIn(
+    state,
+    'list',
+    list => _.map(list, (emailTemplate) => {
+      if (emailTemplate.id !== state.selectedId) { return emailTemplate }
+      return { ...emailTemplate, [key]: value }
+    }),
+  ),
   [CHANGE_SELECTED]: (state, { payload: { id } }) => ({ ...state, selectedId: id }),
 }
 
