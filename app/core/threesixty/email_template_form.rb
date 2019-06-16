@@ -8,5 +8,6 @@ module Threesixty
     attribute :content, String
 
     validates :from, :reply_to_email, presence: true
+    validates :reply_to_email, format: { with: URI::MailTo::EMAIL_REGEXP }
   end
 end

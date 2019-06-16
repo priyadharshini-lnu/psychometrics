@@ -33,7 +33,7 @@ function Editor ({
         buttonsVisible: 2,
       },
     },
-    height: 300,
+    height: 280,
   }
 
   return (

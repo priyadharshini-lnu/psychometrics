@@ -15,7 +15,6 @@ module Administration
       def update
         form = ::Threesixty::EmailTemplateForm.from_params(params[:email_template])
         if form.valid?
-          byebug
           resource.update!(form.attributes)
           render json: :ok
         else
