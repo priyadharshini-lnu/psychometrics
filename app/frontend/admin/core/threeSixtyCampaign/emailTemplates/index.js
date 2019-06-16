@@ -1,7 +1,13 @@
 import _ from 'lodash'
 import { updateIn } from 'utils/immutable'
 
-export const getEmailTemplates = state => _.get(state, ['threeSixtyCampaign', 'emailTemplates'])
+export const get = state => _.get(state, ['threeSixtyCampaign', 'emailTemplates'])
+export const getSelectedId = state => _.get(state, ['threeSixtyCampaign', 'emailTemplates', 'selectedId'])
+export const getSelected = state => {
+  const selectedId = getSelectedId(state)
+  return _.find(get(state).list, ({ id }) => id === selectedId)
+}
+export const getReminderRules = state => _.get(getSelected(state), 'meta', 'reminderRules')
 
 const defaultState = {
   list: [],

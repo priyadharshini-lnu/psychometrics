@@ -3,12 +3,12 @@ import {
   fetch,
   update,
   save,
-  get as getEmailTemplates,
+  getReminderRules,
   changeSelected,
 } from 'admin/core/threeSixtyCampaign/emailTemplates'
 
 export default connect(
-  state => ({ emailTemplates: getEmailTemplates(state) }),
+  state => ({ rules: getReminderRules(state) }),
   {
     fetch,
     update,
