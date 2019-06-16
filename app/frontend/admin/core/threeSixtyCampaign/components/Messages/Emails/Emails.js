@@ -1,11 +1,12 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import Editor from 'admin/core/threeSixtyCampaign/components/common/Editor'
 import {
-  Menu, Input, Row, Col, Button,
+  Menu, Input, Row, Col, Button, message,
 } from 'antd'
 import _ from 'lodash'
 import routeUtils from 'utils/routeUtils'
 import cs from 'classnames'
+import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 import settings from '../../../settings'
 import css from './style.scss'
 
@@ -36,6 +37,8 @@ function Emails ({
       })
   }, [])
 
+  const [errors, setErrors] = useState(null)
+
   const selectedTemplate = _.find(list, ({ id }) => id === selectedId)
   if (_.isUndefined(selectedTemplate)) { return null }
 
@@ -49,8 +52,19 @@ function Emails ({
     ))
   )
 
+  const saveTemplate = () => {
+    save(campaignId, selectedTemplate)
+      .then(() => {
+        setErrors(null)
+        message.success('Template saved successfully', 5)
+      })
+      .catch((errors) => {
+        setErrors(errors)
+      })
+  }
+
   return (
-    <Row style={{ minWidth: '900px', maxWidth: "1400px" }}>
+    <Row style={{ minWidth: '900px', maxWidth: '1400px' }}>
       <Col xs={8} lg={7} xl={6}>
         <Menu
           selectedKeys={[selectedId.toString()]}
@@ -65,6 +79,7 @@ function Emails ({
       </Col>
       <Col xs={16} lg={16} xl={16}>
         <div style={{ padding: '10px' }}>
+          <ErrorAlertBox errors={errors} className="mtl mbl" />
           <Input
             addonBefore="From"
             value={selectedTemplate.from}
@@ -92,7 +107,7 @@ function Emails ({
             type="primary"
             size="large"
             className="mtm"
-            onClick={() => save(campaignId, selectedTemplate)}
+            onClick={saveTemplate}
           >
               Save
           </Button>
