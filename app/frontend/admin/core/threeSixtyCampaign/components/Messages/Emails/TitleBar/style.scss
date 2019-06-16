@@ -1,0 +1,20 @@
+.container {
+  background-color: #eee;
+  padding: 10px 20px;
+
+  .titleContainer {
+    display: inline-block;
+
+    .title {
+      font-weight: bold;
+    }
+  }
+
+  .buttonContainer {
+    float: right;
+
+    .button {
+      display: inline-block;
+    }
+  }
+}

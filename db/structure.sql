@@ -2163,6 +2163,8 @@ CREATE TABLE public.threesixty_email_templates (
     reply_to_email character varying NOT NULL,
     content text,
     subject text,
+    schedulable boolean DEFAULT true,
+    meta jsonb DEFAULT '{}'::jsonb,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

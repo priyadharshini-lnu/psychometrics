@@ -1,4 +1,14 @@
-.smallWidthInput {
-  width: 500px !important;
-  display: block !important;
+.container {
+  min-width: 900px;
+
+  .content {
+    padding: 16px;
+  }
+
+  .smallWidthInput {
+    width: 500px !important;
+    display: block !important;
+  }
+
 }
+

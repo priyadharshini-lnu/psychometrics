@@ -8,6 +8,8 @@ class CreateThreesixtyEmailTemplates < ActiveRecord::Migration[5.1]
       t.string :reply_to_email, null: false
       t.text :content
       t.text :subject
+      t.boolean :schedulable, default: true
+      t.jsonb :meta, default: {}
 
       t.timestamps
     end

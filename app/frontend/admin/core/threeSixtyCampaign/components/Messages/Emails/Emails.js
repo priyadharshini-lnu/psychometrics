@@ -7,8 +7,11 @@ import _ from 'lodash'
 import routeUtils from 'utils/routeUtils'
 import cs from 'classnames'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
+import TitleBar from './TitleBar'
 import settings from '../../../settings'
 import css from './style.scss'
+import TemplateMenu from './TemplateMenu'
+import FooterBar from  './FooterBar'
 
 export default function Emails ({
   emailTemplates: { list, selectedId },
@@ -54,13 +57,13 @@ export default function Emails ({
   }
 
   return (
-    <Row style={{ minWidth: '900px' }}>
+    <Row className={css.container}>
       <Col xs={8} lg={7} xl={5}>
-        <TabMenu emailTemplates={list} selectedId={selectedId} />
+        <TemplateMenu emailTemplates={list} selectedId={selectedId} />
       </Col>
       <Col xs={16} lg={17} xl={19}>
-      <TitleBar selectedTemplate={selectedTemplate} />
-        <div style={{ padding: '16px' }}>
+        <TitleBar selectedTemplate={selectedTemplate} />
+        <div className={css.content}>
           <ErrorAlertBox errors={errors} className="mtl mbl" />
           <Input
             addonBefore="From"
@@ -84,78 +87,19 @@ export default function Emails ({
           />
 
           <Editor content={selectedTemplate.content} handleContentChange={(value) => { update('content', value) }} />
-
-          <Button
-            type="primary"
-            size="large"
-            className="mtm"
-            onClick={saveTemplate}
-          >
-            Save
-          </Button>
-          <FooterBar selectedTemplate={selectedTemplate} />
         </div>
+        <FooterBar selectedTemplate={selectedTemplate} />
+
+        <Button
+          type="primary"
+          size="large"
+          className="mtm mll"
+          onClick={saveTemplate}
+        >
+          <Icon type="save" />
+          Save
+        </Button>
       </Col>
     </Row>
   )
 }
-
-const TitleBar = ({ selectedTemplate }) => {
-  const menu = (
-    <Menu onClick={() => {}}>
-      <Menu.Item key="schedule_email">
-        Schedule Email
-      </Menu.Item>
-      <Menu.Item key="schedule_test_email">
-        Schedule Test Email
-      </Menu.Item>
-    </Menu>
-  )
-
-  return (
-    <div style={{backgroundColor: '#eee', padding: '10px 20px'}}>
-      <div style={{display: 'inline-block'}}>
-        <div style={{fontWeight: 'bold'}}>{selectedTemplate.name}</div>
-        <div>Description</div>
-      </div>
-      <div style={{float: 'right'}}>
-        <Button type="primary" size="large" style={{display: 'inline-block'}}>
-          <Icon type="schedule" />
-          Schedule Email
-        </Button>
-        <Dropdown
-          className="dropdown"
-          overlay={menu}
-          placement="bottomLeft"
-          trigger={['click']}
-        >
-          <Icon type="caret-down" />
-        </Dropdown>
-      </div>
-    </div>
-  )
-}
-
-const FooterBar = () => {
-  return (
-    <div>
-      Footer
-    </div>
-  )
-}
-
-
-const TabMenu = ({emailTemplates, selectedId}) => (
-  <Menu
-    selectedKeys={[selectedId.toString()]}
-    onClick={({ key }) => changeTemplate(key)}
-    style={{ height: 700 }}
-    mode="inline"
-  >
-    {_.map(_.groupBy(emailTemplates, 'category'), (emailTemplates, category) => (
-      <Menu.ItemGroup key={category} title={_.capitalize(category)}>
-        {_.map(emailTemplates, emailTemplate => (<Menu.Item key={emailTemplate.id}>{emailTemplate.name}</Menu.Item>))}
-      </Menu.ItemGroup>
-    ))}
-  </Menu>
-)
