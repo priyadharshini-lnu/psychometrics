@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Editor from 'admin/core/threeSixtyCampaign/components/common/Editor'
 import {
-  Menu, Input, Row, Col, Button, message,
+  Menu, Input, Row, Col, Button, Empty, Icon, Dropdown, message,
 } from 'antd'
 import _ from 'lodash'
 import routeUtils from 'utils/routeUtils'
@@ -10,7 +10,7 @@ import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/Error
 import settings from '../../../settings'
 import css from './style.scss'
 
-function Emails ({
+export default function Emails ({
   emailTemplates: { list, selectedId },
   fetch,
   update,
@@ -29,7 +29,7 @@ function Emails ({
   useEffect(() => {
     fetch(campaignId, { selectedId: id })
       .then(({ response }) => {
-        if (_.isUndefined(id)) {
+        if (_.isUndefined(id) && !_.isEmpty(response)) {
           changeTemplate(response[0].id)
         } else if (!_.isEmpty(response)) {
           changeSelected(parseInt(id, 10))
@@ -40,17 +40,7 @@ function Emails ({
   const [errors, setErrors] = useState(null)
 
   const selectedTemplate = _.find(list, ({ id }) => id === selectedId)
-  if (_.isUndefined(selectedTemplate)) { return null }
-
-  const groupedTemplates = _.groupBy(list, 'category')
-
-  const renderMenu = () => (
-    _.map(groupedTemplates, (emailTemplates, category) => (
-      <Menu.ItemGroup key={category} title={_.capitalize(category)}>
-        {_.map(emailTemplates, emailTemplate => (<Menu.Item key={emailTemplate.id}>{emailTemplate.name}</Menu.Item>))}
-      </Menu.ItemGroup>
-    ))
-  )
+  if (_.isUndefined(selectedTemplate)) { return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> }
 
   const saveTemplate = () => {
     save(campaignId, selectedTemplate)
@@ -64,21 +54,13 @@ function Emails ({
   }
 
   return (
-    <Row style={{ minWidth: '900px', maxWidth: '1400px' }}>
-      <Col xs={8} lg={7} xl={6}>
-        <Menu
-          selectedKeys={[selectedId.toString()]}
-          onClick={({ key }) => changeTemplate(key)}
-          style={{ width: 256, height: 700 }}
-          defaultSelectedKeys={['1']}
-          defaultOpenKeys={['sub1']}
-          mode="inline"
-        >
-          {renderMenu()}
-        </Menu>
+    <Row style={{ minWidth: '900px' }}>
+      <Col xs={8} lg={7} xl={5}>
+        <TabMenu emailTemplates={list} selectedId={selectedId} />
       </Col>
-      <Col xs={16} lg={16} xl={16}>
-        <div style={{ padding: '10px' }}>
+      <Col xs={16} lg={17} xl={19}>
+      <TitleBar selectedTemplate={selectedTemplate} />
+        <div style={{ padding: '16px' }}>
           <ErrorAlertBox errors={errors} className="mtl mbl" />
           <Input
             addonBefore="From"
@@ -109,12 +91,71 @@ function Emails ({
             className="mtm"
             onClick={saveTemplate}
           >
-              Save
+            Save
           </Button>
+          <FooterBar selectedTemplate={selectedTemplate} />
         </div>
       </Col>
     </Row>
   )
 }
 
-export default Emails
+const TitleBar = ({ selectedTemplate }) => {
+  const menu = (
+    <Menu onClick={() => {}}>
+      <Menu.Item key="schedule_email">
+        Schedule Email
+      </Menu.Item>
+      <Menu.Item key="schedule_test_email">
+        Schedule Test Email
+      </Menu.Item>
+    </Menu>
+  )
+
+  return (
+    <div style={{backgroundColor: '#eee', padding: '10px 20px'}}>
+      <div style={{display: 'inline-block'}}>
+        <div style={{fontWeight: 'bold'}}>{selectedTemplate.name}</div>
+        <div>Description</div>
+      </div>
+      <div style={{float: 'right'}}>
+        <Button type="primary" size="large" style={{display: 'inline-block'}}>
+          <Icon type="schedule" />
+          Schedule Email
+        </Button>
+        <Dropdown
+          className="dropdown"
+          overlay={menu}
+          placement="bottomLeft"
+          trigger={['click']}
+        >
+          <Icon type="caret-down" />
+        </Dropdown>
+      </div>
+    </div>
+  )
+}
+
+const FooterBar = () => {
+  return (
+    <div>
+      Footer
+    </div>
+  )
+}
+
+
+const TabMenu = ({emailTemplates, selectedId}) => (
+  <Menu
+    selectedKeys={[selectedId.toString()]}
+    onClick={({ key }) => changeTemplate(key)}
+    style={{ height: 700 }}
+    mode="inline"
+  >
+    {_.map(_.groupBy(emailTemplates, 'category'), (emailTemplates, category) => (
+      <Menu.ItemGroup key={category} title={_.capitalize(category)}>
+        {_.map(emailTemplates, emailTemplate => (<Menu.Item key={emailTemplate.id}>{emailTemplate.name}</Menu.Item>))}
+      </Menu.ItemGroup>
+    ))}
+  </Menu>
+)
