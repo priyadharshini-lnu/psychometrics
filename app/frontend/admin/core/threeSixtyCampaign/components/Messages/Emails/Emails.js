@@ -8,7 +8,6 @@ import routeUtils from 'utils/routeUtils'
 import cs from 'classnames'
 import settings from '../../../settings'
 import css from './style.scss'
-import { save } from '../../../emailTemplates'
 
 function Emails ({
   emailTemplates: { list, selectedId },
@@ -37,22 +36,22 @@ function Emails ({
       })
   }, [])
 
-  const selectedTemplate = _.find(list, ({ id }) => id == selectedId)
+  const selectedTemplate = _.find(list, ({ id }) => id === selectedId)
   if (_.isUndefined(selectedTemplate)) { return null }
 
   const groupedTemplates = _.groupBy(list, 'category')
 
   const renderMenu = () => (
     _.map(groupedTemplates, (emailTemplates, category) => (
-      <Menu.ItemGroup key={category} title={category}>
+      <Menu.ItemGroup key={category} title={_.capitalize(category)}>
         {_.map(emailTemplates, emailTemplate => (<Menu.Item key={emailTemplate.id}>{emailTemplate.name}</Menu.Item>))}
       </Menu.ItemGroup>
     ))
   )
 
   return (
-    <Row style={{ minWidth: '900px' }}>
-      <Col xs={8} lg={7} xl={4}>
+    <Row style={{ minWidth: '900px', maxWidth: "1400px" }}>
+      <Col xs={8} lg={7} xl={6}>
         <Menu
           selectedKeys={[selectedId.toString()]}
           onClick={({ key }) => changeTemplate(key)}
@@ -64,7 +63,7 @@ function Emails ({
           {renderMenu()}
         </Menu>
       </Col>
-      <Col xs={16} lg={16} xl={18}>
+      <Col xs={16} lg={16} xl={16}>
         <div style={{ padding: '10px' }}>
           <Input
             addonBefore="From"
@@ -73,10 +72,30 @@ function Emails ({
             onChange={(e) => { update('from', e.target.value) }}
           />
 
-          <Input addonBefore="Reply To Email" value={selectedTemplate.replyToEmail} className={cs(['mbm', css.smallWidthInput])} />
-          <Input addonBefore="Subject" value={selectedTemplate.subject} className="mbm" />
-          <Editor content={selectedTemplate.content} />
-          <Button type="primary" size="large" className="mtm" onClick={() => save(campaignId, selectedTemplate)}>Save</Button>
+          <Input
+            addonBefore="Reply To Email"
+            value={selectedTemplate.replyToEmail}
+            className={cs(['mbm', css.smallWidthInput])}
+            onChange={(e) => { update('replyToEmail', e.target.value) }}
+          />
+
+          <Input
+            addonBefore="Subject"
+            value={selectedTemplate.subject}
+            className="mbm"
+            onChange={(e) => { update('subject', e.target.value) }}
+          />
+
+          <Editor content={selectedTemplate.content} handleContentChange={(value) => { update('content', value) }} />
+
+          <Button
+            type="primary"
+            size="large"
+            className="mtm"
+            onClick={() => save(campaignId, selectedTemplate)}
+          >
+              Save
+          </Button>
         </div>
       </Col>
     </Row>
