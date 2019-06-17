@@ -41,7 +41,7 @@ module UsersResults
           scoring_class = "::Scoring::#{question.try(:type)}"
           result = users_result.answers[question.try(:id).try(:to_s)]
           if result && question && !question_scoring.props.empty?
-            scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)
+            scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)[:value]
             scoring[factor_id][:results] << { question_id: question.id, value: scoring_point } if scoring_point
           end
         end

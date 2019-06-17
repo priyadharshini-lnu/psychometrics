@@ -11,13 +11,15 @@ module Scoring
           end
         end
       end
-      response.map do |r|
-        if r.length > 0
-          r.sum.to_f / r.size
-        else
-          0
+      values =
+        response.map do |r|
+          if r.length > 0
+            r.sum.to_f / r.size
+          else
+            0
+          end
         end
-      end
+      { value: values, options: [] }
     end
   end
 end
