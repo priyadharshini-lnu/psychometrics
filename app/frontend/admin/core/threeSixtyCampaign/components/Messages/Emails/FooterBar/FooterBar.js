@@ -20,8 +20,12 @@ export default function ({ emailTemplate, addReminderRule, removeAllReminderRule
   return (
     <div className={css.container}>
       <div className={css.titleContainer}>
-        <div className={css.title}>{`${emailTemplate.name} Rules`}</div>
-        <div>Specify rules for automatically scheduling when an invitation is scheduled</div>
+        <div className={css.title}>
+          {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.rule_name`)}
+        </div>
+        <div>
+          {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.rule_description`)}
+        </div>
       </div>
       <div className={css.switchContainer}>
         <Switch checked={reminderRulesExists} onChange={handleSwitchChange} />

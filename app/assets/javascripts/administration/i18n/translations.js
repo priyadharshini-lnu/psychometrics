@@ -3510,6 +3510,33 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -8793,6 +8820,33 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -14080,6 +14134,33 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -19363,6 +19444,33 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -24648,6 +24756,33 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -29931,6 +30066,33 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -35215,6 +35377,33 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -40498,6 +40687,33 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -45781,6 +45997,33 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -51064,6 +51307,33 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -56347,6 +56617,33 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -61630,6 +61927,33 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -66913,6 +67237,33 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -72196,6 +72547,33 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -77479,6 +77857,33 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -82762,6 +83167,33 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -88047,6 +88479,33 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -93330,6 +93789,33 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -98610,6 +99096,33 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -103893,6 +104406,33 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -109176,6 +109716,33 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -114456,6 +115023,33 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -119740,6 +120334,33 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -125024,6 +125645,33 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -130307,6 +130955,33 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -135590,6 +136265,33 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -140873,6 +141575,33 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -146158,6 +146887,33 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -151441,6 +152197,33 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -156724,6 +157507,33 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -162008,6 +162818,33 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -167294,6 +168131,33 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -172578,6 +173442,33 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -177863,6 +178754,33 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -183148,6 +184066,33 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -188431,6 +189376,33 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -193711,6 +194683,33 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -198991,6 +199990,33 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -204276,6 +205302,33 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -209559,6 +210612,33 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -214842,6 +215922,33 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -220125,6 +221232,33 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -225408,6 +226542,33 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -230691,6 +231852,33 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -235974,6 +237162,33 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -241257,6 +242472,33 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -246540,6 +247782,33 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -251823,6 +253092,33 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -257106,6 +258402,33 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -262389,6 +263712,33 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -267672,6 +269022,33 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -272955,6 +274332,33 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -278238,6 +279642,33 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -283521,6 +284952,33 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
