@@ -25,7 +25,11 @@ module UsersResults
           factor_scoring = factors_scoring_map[question.id].try(:first)
           value_obj =
             if result && factor_scoring && !factor_scoring.props.empty?
-              scoring_class.constantize.new.calculate(question, result, factor_scoring.props)
+              begin
+                scoring_class.constantize.new.calculate(question, result, factor_scoring.props)
+              rescue NameError => e
+                raise "Scoring class is not implemented for question type #{question.type}. Check lib/scoring for details"
+              end
             else
               {}
             end
