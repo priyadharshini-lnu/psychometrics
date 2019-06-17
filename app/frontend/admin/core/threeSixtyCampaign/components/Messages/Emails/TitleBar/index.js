@@ -1,17 +1,18 @@
 import React from 'react'
 import {
-  Menu, Button, Icon, Dropdown, Row, Col
+  Menu, Button, Icon, Dropdown, Row, Col,
 } from 'antd'
+import I18n from 'admin/core/common/I18n'
 import css from './style.scss'
 
 export default function ({ emailTemplate }) {
   const menu = (
     <Menu onClick={() => {}}>
       <Menu.Item key="schedule_email">
-      {I18n.t('administration.threesixty_campaigns.email_templates.schedule_email')}
+        {I18n.t('administration.threesixty_campaigns.email_templates.schedule_email')}
       </Menu.Item>
       <Menu.Item key="schedule_test_email">
-      {I18n.t('administration.threesixty_campaigns.email_templates.send_test_email')}
+        {I18n.t('administration.threesixty_campaigns.email_templates.send_test_email')}
       </Menu.Item>
     </Menu>
   )
@@ -43,7 +44,7 @@ export default function ({ emailTemplate }) {
                 <Icon type="caret-down" />
               </Dropdown>
             </div>
-            )}
+          )}
         </Col>
       </Row>
     </div>
