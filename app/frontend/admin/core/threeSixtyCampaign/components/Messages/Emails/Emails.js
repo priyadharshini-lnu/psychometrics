@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import Editor from 'admin/core/threeSixtyCampaign/components/common/Editor'
 import {
-  Menu, Input, Row, Col, Button, Empty, Icon, Dropdown, message,
+  Input, Row, Col, Button, Empty, Icon, message,
 } from 'antd'
 import _ from 'lodash'
 import routeUtils from 'utils/routeUtils'
@@ -11,7 +11,7 @@ import TitleBar from './TitleBar'
 import settings from '../../../settings'
 import css from './style.scss'
 import TemplateMenu from './TemplateMenu'
-import FooterBar from  './FooterBar'
+import FooterBar from './FooterBar'
 
 export default function Emails ({
   emailTemplates: { list, selectedId },
@@ -59,7 +59,7 @@ export default function Emails ({
   return (
     <Row className={css.container}>
       <Col xs={8} lg={7} xl={5}>
-        <TemplateMenu emailTemplates={list} selectedId={selectedId} />
+        <TemplateMenu emailTemplates={list} selectedId={selectedId} changeTemplate={changeTemplate} />
       </Col>
       <Col xs={16} lg={17} xl={19}>
         <TitleBar selectedTemplate={selectedTemplate} />
@@ -88,7 +88,7 @@ export default function Emails ({
 
           <Editor content={selectedTemplate.content} handleContentChange={(value) => { update('content', value) }} />
         </div>
-        <FooterBar selectedTemplate={selectedTemplate} />
+        <FooterBar />
 
         <Button
           type="primary"

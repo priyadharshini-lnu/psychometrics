@@ -2,7 +2,7 @@ import React from 'react'
 import _ from 'lodash'
 import { Menu } from 'antd'
 
-export default function ({ emailTemplates, selectedId }) {
+export default function ({ emailTemplates, selectedId, changeTemplate }) {
   const groupedTemplate = _.groupBy(emailTemplates, 'category')
 
   return (
