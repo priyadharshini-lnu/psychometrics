@@ -24,8 +24,6 @@ export const fetch = campaignId => ({
   },
 })
 
-export const update = (key, value) => ({ type: UPDATE, payload: { key, value } })
-
 export const save = (campaignId, emailTemplate) => ({
   type: SAVE,
   request: {
