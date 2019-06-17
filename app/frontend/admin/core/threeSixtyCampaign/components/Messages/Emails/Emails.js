@@ -62,25 +62,25 @@ export default function Emails ({
         <TemplateMenu emailTemplates={list} selectedId={selectedId} changeTemplate={changeTemplate} />
       </Col>
       <Col xs={16} lg={17} xl={19}>
-        <TitleBar selectedTemplate={selectedTemplate} />
+        <TitleBar emailTemplate={selectedTemplate} />
         <div className={css.content}>
           <ErrorAlertBox errors={errors} className="mtl mbl" />
           <Input
-            addonBefore="From"
+            addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
             value={selectedTemplate.from}
             className={cs(['mbm', css.smallWidthInput])}
             onChange={(e) => { update('from', e.target.value) }}
           />
 
           <Input
-            addonBefore="Reply To Email"
+            addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.reply_to_email')}
             value={selectedTemplate.replyToEmail}
             className={cs(['mbm', css.smallWidthInput])}
             onChange={(e) => { update('replyToEmail', e.target.value) }}
           />
 
           <Input
-            addonBefore="Subject"
+            addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
             value={selectedTemplate.subject}
             className="mbm"
             onChange={(e) => { update('subject', e.target.value) }}

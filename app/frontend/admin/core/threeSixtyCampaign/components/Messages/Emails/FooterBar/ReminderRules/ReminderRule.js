@@ -16,7 +16,7 @@ export default function ({
           update('days', value)
         }}
       />
-      days, repeated
+      {I18n.t('administration.threesixty_campaigns.email_templates.days_repeated')}
       <InputNumber
         size="small"
         className={css.inputField}
@@ -26,7 +26,7 @@ export default function ({
           update('times', value)
         }}
       />
-      times.
+      {I18n.t('administration.threesixty_campaigns.email_templates.times')}
       <span>
         <Icon type="minus-circle" onClick={remove} className={css.deleteIcon} />
         <Icon type="plus-circle" onClick={add} className={css.addIcon} />
