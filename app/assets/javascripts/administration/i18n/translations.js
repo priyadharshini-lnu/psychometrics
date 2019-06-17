@@ -44,6 +44,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -68,6 +74,24 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -3486,6 +3510,33 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -4839,7 +4890,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -5293,6 +5344,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -5317,6 +5374,24 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -8735,6 +8810,33 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -10092,7 +10194,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -10546,6 +10648,12 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -10570,6 +10678,24 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -13988,6 +14114,33 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -15341,7 +15494,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -15795,6 +15948,12 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -15819,6 +15978,24 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -19237,6 +19414,33 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -20592,7 +20796,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -21046,6 +21250,12 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -21070,6 +21280,24 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -24488,6 +24716,33 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -25841,7 +26096,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -26295,6 +26550,12 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -26319,6 +26580,24 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -29737,6 +30016,33 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -31091,7 +31397,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -31545,6 +31851,12 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -31569,6 +31881,24 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -34987,6 +35317,33 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -36340,7 +36697,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -36794,6 +37151,12 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -36818,6 +37181,24 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -40236,6 +40617,33 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -41589,7 +41997,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -42043,6 +42451,12 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -42067,6 +42481,24 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -45485,6 +45917,33 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -46838,7 +47297,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -47292,6 +47751,12 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -47316,6 +47781,24 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -50734,6 +51217,33 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -52087,7 +52597,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -52541,6 +53051,12 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -52565,6 +53081,24 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -55983,6 +56517,33 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -57336,7 +57897,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -57790,6 +58351,12 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -57814,6 +58381,24 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -61232,6 +61817,33 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -62585,7 +63197,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -63039,6 +63651,12 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -63063,6 +63681,24 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -66481,6 +67117,33 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -67834,7 +68497,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -68288,6 +68951,12 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -68312,6 +68981,24 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -71730,6 +72417,33 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -73083,7 +73797,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -73537,6 +74251,12 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -73561,6 +74281,24 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -76979,6 +77717,33 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -78332,7 +79097,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -78786,6 +79551,12 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -78810,6 +79581,24 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -82228,6 +83017,33 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -83583,7 +84399,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -84037,6 +84853,12 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -84061,6 +84883,24 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -87479,6 +88319,33 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -88832,7 +89699,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -89286,6 +90153,12 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -89310,6 +90183,24 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -92728,6 +93619,33 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -94078,7 +94996,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -94532,6 +95450,12 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -94556,6 +95480,24 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -97974,6 +98916,33 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -99327,7 +100296,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -99781,6 +100750,12 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -99805,6 +100780,24 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -103223,6 +104216,33 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -104576,7 +105596,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -105030,6 +106050,12 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -105054,6 +106080,24 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -108472,6 +109516,33 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -109822,7 +110893,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -110276,6 +111347,12 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -110300,6 +111377,24 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -113718,6 +114813,33 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -115072,7 +116194,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -115526,6 +116648,12 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -115550,6 +116678,24 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -118968,6 +120114,33 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -120322,7 +121495,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -120776,6 +121949,12 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -120800,6 +121979,24 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -124218,6 +125415,33 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -125571,7 +126795,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -126025,6 +127249,12 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -126049,6 +127279,24 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -129467,6 +130715,33 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -130820,7 +132095,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -131274,6 +132549,12 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -131298,6 +132579,24 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -134716,6 +136015,33 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -136069,7 +137395,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -136523,6 +137849,12 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -136547,6 +137879,24 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -139965,6 +141315,33 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -141320,7 +142697,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -141774,6 +143151,12 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -141798,6 +143181,24 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -145216,6 +146617,33 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -146569,7 +147997,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -147023,6 +148451,12 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -147047,6 +148481,24 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -150465,6 +151917,33 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -151818,7 +153297,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -152272,6 +153751,12 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -152296,6 +153781,24 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -155714,6 +157217,33 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -157068,7 +158598,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -157522,6 +159052,12 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -157546,6 +159082,24 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -160964,6 +162518,33 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -162320,7 +163901,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -162774,6 +164355,12 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -162798,6 +164385,24 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -166216,6 +167821,33 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -167570,7 +169202,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -168024,6 +169656,12 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -168048,6 +169686,24 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -171466,6 +173122,33 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -172821,7 +174504,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -173275,6 +174958,12 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -173299,6 +174988,24 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -176717,6 +178424,33 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -178072,7 +179806,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -178526,6 +180260,12 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -178550,6 +180290,24 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -181968,6 +183726,33 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -183321,7 +185106,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -183775,6 +185560,12 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -183799,6 +185590,24 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -187217,6 +189026,33 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -188567,7 +190403,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -189021,6 +190857,12 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -189045,6 +190887,24 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -192463,6 +194323,33 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -193813,7 +195700,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -194267,6 +196154,12 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -194291,6 +196184,24 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -197709,6 +199620,33 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -199064,7 +201002,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -199518,6 +201456,12 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -199542,6 +201486,24 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -202960,6 +204922,33 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -204313,7 +206302,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -204767,6 +206756,12 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -204791,6 +206786,24 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -208209,6 +210222,33 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -209562,7 +211602,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -210016,6 +212056,12 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -210040,6 +212086,24 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -213458,6 +215522,33 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -214811,7 +216902,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -215265,6 +217356,12 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -215289,6 +217386,24 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -218707,6 +220822,33 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -220060,7 +222202,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -220514,6 +222656,12 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -220538,6 +222686,24 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -223956,6 +226122,33 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -225309,7 +227502,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -225763,6 +227956,12 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -225787,6 +227986,24 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -229205,6 +231422,33 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -230558,7 +232802,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -231012,6 +233256,12 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -231036,6 +233286,24 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -234454,6 +236722,33 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -235807,7 +238102,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -236261,6 +238556,12 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -236285,6 +238586,24 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -239703,6 +242022,33 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -241056,7 +243402,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -241510,6 +243856,12 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -241534,6 +243886,24 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -244952,6 +247322,33 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -246305,7 +248702,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -246759,6 +249156,12 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -246783,6 +249186,24 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -250201,6 +252622,33 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -251554,7 +254002,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -252008,6 +254456,12 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -252032,6 +254486,24 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -255450,6 +257922,33 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -256803,7 +259302,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -257257,6 +259756,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -257281,6 +259786,24 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -260699,6 +263222,33 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -262052,7 +264602,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -262506,6 +265056,12 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -262530,6 +265086,24 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -265948,6 +268522,33 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -267301,7 +269902,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -267755,6 +270356,12 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -267779,6 +270386,24 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -271197,6 +273822,33 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -272550,7 +275202,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -273004,6 +275656,12 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -273028,6 +275686,24 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -276446,6 +279122,33 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -277799,7 +280502,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"
@@ -278253,6 +280956,12 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
             "relationship_name": {
               "blank": "Relationship can't be blank",
               "invalid": "Relationship %{name} is invalid"
@@ -278277,6 +280986,24 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "import_one": {
+          "attributes": {
+            "email": {
+              "already_exists": "A subject with same email already exists",
+              "blank": "Email can't be blank",
+              "invalid": "Email is invalid"
+            },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
             }
           }
         }
@@ -281695,6 +284422,33 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
       }
     },
     "tenancies": "Tenancies",
+    "threesixty_campaigns": {
+      "email_templates": {
+        "categories": {
+          "approvals": "Approvals",
+          "invitations": "Invitations",
+          "reminders": "Reminders",
+          "remoprt_ready": "Report Ready"
+        },
+        "days_repeated": "days, repeated",
+        "from": "From",
+        "reply_to_email": "Reply to email",
+        "schedule_email": "Schedule Email",
+        "send_test_email": "Send Test Email",
+        "subject": "Subject",
+        "subject_invite": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder"
+        },
+        "subject_reminder": {
+          "description": "Message sent to each participant to remind them to participate in the assessment",
+          "name": "Subject Reminder",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
+        "times": "times"
+      }
+    },
     "translations": {
       "assessments": {
         "new": {
@@ -283048,7 +285802,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
       "three_sixty_report_summary": {
         "number_by_filter_evaluations_received": "Number of %{filter} evaluations received",
         "number_of_evaluators_invited": "Number of evaluators invited",
-        "number_of_evaluators_received": "Number of evaluators received",
+        "number_of_evaluators_received": "Number of evaluations received",
         "number_of_evaluators_responded": "Number of evaluators responded",
         "subject": "Subject",
         "total_evaluations": "Total evaluations for this assessment"

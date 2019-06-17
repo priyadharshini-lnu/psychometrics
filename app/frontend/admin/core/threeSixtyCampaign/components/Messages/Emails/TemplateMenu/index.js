@@ -13,8 +13,12 @@ export default function ({ emailTemplates, selectedId, changeTemplate }) {
       mode="inline"
     >
       {_.map(groupedTemplate, (emailTemplates, category) => (
-        <Menu.ItemGroup key={category} title={_.capitalize(category)}>
-          {_.map(emailTemplates, emailTemplate => (<Menu.Item key={emailTemplate.id}>{emailTemplate.name}</Menu.Item>))}
+        <Menu.ItemGroup key={category} title={I18n.t(`administration.threesixty_campaigns.email_templates.categories.${category}`)}>
+          {_.map(emailTemplates, emailTemplate => (
+            <Menu.Item key={emailTemplate.id}>
+              {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.name`)}
+            </Menu.Item>
+            ))}
         </Menu.ItemGroup>
       ))}
     </Menu>

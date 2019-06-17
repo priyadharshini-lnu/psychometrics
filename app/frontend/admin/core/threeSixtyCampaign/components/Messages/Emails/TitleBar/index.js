@@ -1,43 +1,51 @@
 import React from 'react'
 import {
-  Menu, Button, Icon, Dropdown,
+  Menu, Button, Icon, Dropdown, Row, Col
 } from 'antd'
 import css from './style.scss'
 
-export default function ({ selectedTemplate }) {
+export default function ({ emailTemplate }) {
   const menu = (
     <Menu onClick={() => {}}>
       <Menu.Item key="schedule_email">
-        Schedule Email
+      {I18n.t('administration.threesixty_campaigns.email_templates.schedule_email')}
       </Menu.Item>
       <Menu.Item key="schedule_test_email">
-        Send Test Email
+      {I18n.t('administration.threesixty_campaigns.email_templates.send_test_email')}
       </Menu.Item>
     </Menu>
   )
 
   return (
     <div className={css.container}>
-      <div className={css.titleContainer}>
-        <div className={css.title}>{selectedTemplate.name}</div>
-        <div>Description</div>
-      </div>
-      {selectedTemplate.schedulable && (
-      <div className={css.buttonContainer}>
-        <Button type="primary" size="large" className={css.button}>
-          <Icon type="schedule" />
-          Schedule Email
-        </Button>
-        <Dropdown
-          className="dropdown"
-          overlay={menu}
-          placement="bottomLeft"
-          trigger={['click']}
-        >
-          <Icon type="caret-down" />
-        </Dropdown>
-      </div>
-      )}
+      <Row className={css.titleContainer}>
+        <Col md={14} lg={16} xl={18}>
+          <div className={css.title}>
+            {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.name`)}
+          </div>
+          <div>
+            {I18n.t(`administration.threesixty_campaigns.email_templates.${emailTemplate.name}.description`)}
+          </div>
+        </Col>
+        <Col md={10} lg={8} xl={6}>
+          {emailTemplate.schedulable && (
+            <div className={css.buttonContainer}>
+              <Button type="primary" size="large" className={css.button}>
+                <Icon type="schedule" />
+                {I18n.t('administration.threesixty_campaigns.email_templates.schedule_email')}
+              </Button>
+              <Dropdown
+                className="dropdown"
+                overlay={menu}
+                placement="bottomLeft"
+                trigger={['click']}
+              >
+                <Icon type="caret-down" />
+              </Dropdown>
+            </div>
+            )}
+        </Col>
+      </Row>
     </div>
   )
 }
