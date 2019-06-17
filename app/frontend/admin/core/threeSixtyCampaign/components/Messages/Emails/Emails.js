@@ -27,7 +27,7 @@ export default function Emails ({
 }) {
   const changeTemplate = (templateId) => {
     routeUtils.moveTo(history, settings.urlPrefix, `/messages/email/${templateId}`)
-    changeSelected(templateId)
+    changeSelected(parseInt(templateId, 10))
   }
 
   useEffect(() => {
