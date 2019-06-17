@@ -15,9 +15,14 @@ en:
         high_school_entry_roles: 'High School Entry Roles'
         diploma_qualification: 'Diploma Qualification'
         bachelors_or_masters_qualification: 'Bachelors or Masters Qualification'
-        key_career_tracks_within: 'Key Career Tracks Within {{occupation}}'
+        key_career_tracks_within: 'Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.'
         work_environment: 'Work Environment'
         your_suitability: Your Suitability
+        career_sub_tracks: Career Sub-tracks
+        career_strengths_and_results: Career Strengths and Your Results
+        strength_low: Developmental Strength
+        strength_moderate: Potential Strength
+        strength_high: Signature Strength
       potential_career_short:
         key: 'key'
         your_scores: 'Your Scores'
