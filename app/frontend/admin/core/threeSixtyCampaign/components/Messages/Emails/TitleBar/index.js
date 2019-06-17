@@ -2,7 +2,7 @@ import React from 'react'
 import {
   Menu, Button, Icon, Dropdown,
 } from 'antd'
-import css from './style'
+import css from './style.scss'
 
 export default function ({ selectedTemplate }) {
   const menu = (
@@ -22,7 +22,8 @@ export default function ({ selectedTemplate }) {
         <div className={css.title}>{selectedTemplate.name}</div>
         <div>Description</div>
       </div>
-      {selectedTemplate.schedulable && <div className={css.buttonContainer}>
+      {selectedTemplate.schedulable && (
+      <div className={css.buttonContainer}>
         <Button type="primary" size="large" className={css.button}>
           <Icon type="schedule" />
           Schedule Email
@@ -35,7 +36,8 @@ export default function ({ selectedTemplate }) {
         >
           <Icon type="caret-down" />
         </Dropdown>
-      </div>}
+      </div>
+      )}
     </div>
   )
 }

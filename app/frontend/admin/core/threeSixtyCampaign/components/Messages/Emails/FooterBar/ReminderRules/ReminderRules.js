@@ -2,18 +2,20 @@ import React from 'react'
 import _ from 'lodash'
 import ReminderRule from './ReminderRule'
 
-export default function({ rules, add, remove, update }) {
-  console.log(rules)
-  return(
+export default function ({
+  rules, add, remove, update,
+}) {
+  return (
     <div>
-      {_.map(rules, (rule, index) => {
-        return <ReminderRule
+      {_.map(rules, (rule, index) => (
+        <ReminderRule
           key={index}
           rule={rule}
           add={add}
           remove={() => remove(index)}
-          update={(field, value) => update(index, field, value)} />
-      })}
+          update={(field, value) => update(index, field, value)}
+        />
+      ))}
     </div>
   )
 }

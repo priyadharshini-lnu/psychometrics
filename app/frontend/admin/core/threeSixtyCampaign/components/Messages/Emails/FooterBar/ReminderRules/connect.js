@@ -1,18 +1,16 @@
 import { connect } from 'react-redux'
 import {
-  fetch,
+  add,
   update,
-  save,
+  remove,
   getReminderRules,
-  changeSelected,
-} from 'admin/core/threeSixtyCampaign/emailTemplates'
+} from 'admin/core/threeSixtyCampaign/emailTemplates/reminderRules'
 
 export default connect(
   state => ({ rules: getReminderRules(state) }),
   {
-    fetch,
+    add,
     update,
-    save,
-    changeSelected,
+    remove,
   },
 )

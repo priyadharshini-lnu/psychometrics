@@ -1,13 +1,31 @@
 import React from 'react'
-import { Input, Icon } from 'antd'
-import css from './style'
+import { InputNumber, Icon } from 'antd'
+import css from './style.scss'
 
-export default function({ rule, add, remove, update }) {
+export default function ({
+  rule, add, remove, update,
+}) {
   return (
     <div>
-      <Input size='small' className={css.inputField}></Input>
+      <InputNumber
+        size="small"
+        className={css.inputField}
+        min={1}
+        value={rule.days}
+        onChange={(value) => {
+          update('days', value)
+        }}
+      />
       days, repeated
-      <Input size='small' className={css.inputField}></Input>
+      <InputNumber
+        size="small"
+        className={css.inputField}
+        min={1}
+        value={rule.times}
+        onChange={(value) => {
+          update('times', value)
+        }}
+      />
       times.
       <span>
         <Icon type="minus-circle" onClick={remove} className={css.deleteIcon} />

@@ -6,7 +6,6 @@ import reportOptions from './core/threeSixtyCampaign/reportOptions/watchers'
 import { watchers as threeSixtyCampaign } from './core/threeSixtyCampaign'
 import { watchers as subjectImportWatcher } from './core/threeSixtyCampaign/subjects/import'
 import { watchers as messageOptionWatchers } from './core/threeSixtyCampaign/messageOptions'
-import { watchers as emailTemplates } from './core/threeSixtyCampaign/emailTemplates'
 
 export default function* () {
   yield all([
@@ -17,6 +16,5 @@ export default function* () {
     ...reportOptions,
     ...threeSixtyCampaign,
     ...messageOptionWatchers,
-    ...emailTemplates,
   ])
 }
