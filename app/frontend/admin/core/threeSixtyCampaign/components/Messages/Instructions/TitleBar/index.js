@@ -2,10 +2,9 @@ import React from 'react'
 import {
   Switch, Row, Col,
 } from 'antd'
-import I18n from 'admin/core/common/I18n'
 import css from './style.scss'
 
-export default function ({ instructionTemplate, toggleEnabled }) {
+export default function TitleBar ({ instructionTemplate, toggleEnabled }) {
   return (
     <div className={css.container}>
       <Row className={css.titleContainer}>
