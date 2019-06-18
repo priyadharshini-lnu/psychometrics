@@ -1,9 +1,8 @@
 import React from 'react'
 import _ from 'lodash'
 import { Menu } from 'antd'
-import I18n from 'admin/core/common/I18n'
 
-export default function ({ emailTemplates, selectedId, changeTemplate }) {
+export default function TemplateMenu ({ emailTemplates, selectedId, changeTemplate }) {
   const groupedTemplate = _.groupBy(emailTemplates, 'category')
 
   return (
