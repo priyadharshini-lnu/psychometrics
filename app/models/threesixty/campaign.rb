@@ -14,6 +14,7 @@ module Threesixty
     has_many :evaluators, through: :campaign
     has_many :users_assessments, dependent: :destroy
     has_many :email_templates, foreign_key: :threesixty_campaign_id
+    has_many :instruction_templates, foreign_key: :threesixty_campaign_id
 
     attr_accessor :factors, :type
 

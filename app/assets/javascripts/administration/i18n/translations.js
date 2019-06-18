@@ -3512,6 +3512,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -3519,14 +3527,36 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -3534,7 +3564,33 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -8812,6 +8868,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -8819,14 +8883,36 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -8834,7 +8920,33 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -14116,6 +14228,14 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -14123,14 +14243,36 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -14138,7 +14280,33 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -19416,6 +19584,14 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -19423,14 +19599,36 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -19438,7 +19636,33 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -24718,6 +24942,14 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -24725,14 +24957,36 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -24740,7 +24994,33 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -30018,6 +30298,14 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -30025,14 +30313,36 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -30040,7 +30350,33 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -35319,6 +35655,14 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -35326,14 +35670,36 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -35341,7 +35707,33 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -40619,6 +41011,14 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -40626,14 +41026,36 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -40641,7 +41063,33 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -45919,6 +46367,14 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -45926,14 +46382,36 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -45941,7 +46419,33 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -51219,6 +51723,14 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -51226,14 +51738,36 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -51241,7 +51775,33 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -56519,6 +57079,14 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -56526,14 +57094,36 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -56541,7 +57131,33 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -61819,6 +62435,14 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -61826,14 +62450,36 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -61841,7 +62487,33 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -67119,6 +67791,14 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -67126,14 +67806,36 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -67141,7 +67843,33 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -72419,6 +73147,14 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -72426,14 +73162,36 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -72441,7 +73199,33 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -77719,6 +78503,14 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -77726,14 +78518,36 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -77741,7 +78555,33 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -83019,6 +83859,14 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -83026,14 +83874,36 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -83041,7 +83911,33 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -88321,6 +89217,14 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -88328,14 +89232,36 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -88343,7 +89269,33 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -93621,6 +94573,14 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -93628,14 +94588,36 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -93643,7 +94625,33 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -98918,6 +99926,14 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -98925,14 +99941,36 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -98940,7 +99978,33 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -104218,6 +105282,14 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -104225,14 +105297,36 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -104240,7 +105334,33 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -109518,6 +110638,14 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -109525,14 +110653,36 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -109540,7 +110690,33 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -114815,6 +115991,14 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -114822,14 +116006,36 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -114837,7 +116043,33 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -120116,6 +121348,14 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -120123,14 +121363,36 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -120138,7 +121400,33 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -125417,6 +126705,14 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -125424,14 +126720,36 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -125439,7 +126757,33 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -130717,6 +132061,14 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -130724,14 +132076,36 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -130739,7 +132113,33 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -136017,6 +137417,14 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -136024,14 +137432,36 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -136039,7 +137469,33 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -141317,6 +142773,14 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -141324,14 +142788,36 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -141339,7 +142825,33 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -146619,6 +148131,14 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -146626,14 +148146,36 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -146641,7 +148183,33 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -151919,6 +153487,14 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -151926,14 +153502,36 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -151941,7 +153539,33 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -157219,6 +158843,14 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -157226,14 +158858,36 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -157241,7 +158895,33 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -162520,6 +164200,14 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -162527,14 +164215,36 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -162542,7 +164252,33 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -167823,6 +169559,14 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -167830,14 +169574,36 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -167845,7 +169611,33 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -173124,6 +174916,14 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -173131,14 +174931,36 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -173146,7 +174968,33 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -178426,6 +180274,14 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -178433,14 +180289,36 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -178448,7 +180326,33 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -183728,6 +185632,14 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -183735,14 +185647,36 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -183750,7 +185684,33 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -189028,6 +190988,14 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -189035,14 +191003,36 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -189050,7 +191040,33 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -194325,6 +196341,14 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -194332,14 +196356,36 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -194347,7 +196393,33 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -199622,6 +201694,14 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -199629,14 +201709,36 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -199644,7 +201746,33 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -204924,6 +207052,14 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -204931,14 +207067,36 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -204946,7 +207104,33 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -210224,6 +212408,14 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -210231,14 +212423,36 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -210246,7 +212460,33 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -215524,6 +217764,14 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -215531,14 +217779,36 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -215546,7 +217816,33 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -220824,6 +223120,14 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -220831,14 +223135,36 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -220846,7 +223172,33 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -226124,6 +228476,14 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -226131,14 +228491,36 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -226146,7 +228528,33 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -231424,6 +233832,14 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -231431,14 +233847,36 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -231446,7 +233884,33 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -236724,6 +239188,14 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -236731,14 +239203,36 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -236746,7 +239240,33 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -242024,6 +244544,14 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -242031,14 +244559,36 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -242046,7 +244596,33 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -247324,6 +249900,14 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -247331,14 +249915,36 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -247346,7 +249952,33 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -252624,6 +255256,14 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -252631,14 +255271,36 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -252646,7 +255308,33 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -257924,6 +260612,14 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -257931,14 +260627,36 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -257946,7 +260664,33 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -263224,6 +265968,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -263231,14 +265983,36 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -263246,7 +266020,33 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -268524,6 +271324,14 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -268531,14 +271339,36 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -268546,7 +271376,33 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -273824,6 +276680,14 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -273831,14 +276695,36 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -273846,7 +276732,33 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -279124,6 +282036,14 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -279131,14 +282051,36 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -279146,7 +282088,33 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -284424,6 +287392,14 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
     "tenancies": "Tenancies",
     "threesixty_campaigns": {
       "email_templates": {
+        "approve_nomination": {
+          "description": "This message is sent to a manager when a nomination, made by a direct report, needs to be approved",
+          "name": "Approve Nomination"
+        },
+        "approve_report": {
+          "description": "This message is sent to a subject's manager to notify them that the subjects report is ready for approval",
+          "name": "Approve Report"
+        },
         "categories": {
           "approvals": "Approvals",
           "invitations": "Invitations",
@@ -284431,14 +287407,36 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "remoprt_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
+        "evaluator_invite": {
+          "description": "This message will be sent to all participants that are evaluators",
+          "name": "Evaluator Invite"
+        },
+        "evaluator_reminder": {
+          "description": "This message will be sent to remind evaluators to complete pending evaluations",
+          "name": "Evaluator Reminder Rules",
+          "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
+          "rule_name": "Subject Reminder Rules"
+        },
         "from": "From",
+        "manager_report_ready": {
+          "description": "This message is sent to a subject's manager once the subject's report is ready",
+          "name": "Manager Report Ready"
+        },
+        "nomination_denied": {
+          "description": "This message is sent to subjects when a nomination is denied",
+          "name": "Nomination Denied"
+        },
         "reply_to_email": "Reply to email",
+        "request_approval": {
+          "description": "This message is sent to managers when a subject requests approval",
+          "name": "Request Approval"
+        },
         "schedule_email": "Schedule Email",
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder"
+          "name": "Subject Invite Reminder"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -284446,7 +287444,33 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
           "rule_name": "Subject Reminder Rules"
         },
+        "subject_report_ready": {
+          "description": "This message is sent to a subject once their report is ready",
+          "name": "Subject Report Ready"
+        },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {

@@ -204,6 +204,7 @@ Rails.application.routes.draw do
         end
 
         resources :email_templates
+        resources :instruction_templates
 
         resources :managers
         resources :relationships

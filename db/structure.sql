@@ -2225,6 +2225,40 @@ ALTER SEQUENCE public.threesixty_evaluators_id_seq OWNED BY public.threesixty_ev
 
 
 --
+-- Name: threesixty_instruction_templates; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.threesixty_instruction_templates (
+    id bigint NOT NULL,
+    threesixty_campaign_id bigint,
+    name character varying NOT NULL,
+    content text,
+    enabled boolean DEFAULT true,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: threesixty_instruction_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.threesixty_instruction_templates_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: threesixty_instruction_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.threesixty_instruction_templates_id_seq OWNED BY public.threesixty_instruction_templates.id;
+
+
+--
 -- Name: threesixty_nomination_requirements; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2986,6 +3020,13 @@ ALTER TABLE ONLY public.threesixty_evaluators ALTER COLUMN id SET DEFAULT nextva
 
 
 --
+-- Name: threesixty_instruction_templates id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_instruction_templates ALTER COLUMN id SET DEFAULT nextval('public.threesixty_instruction_templates_id_seq'::regclass);
+
+
+--
 -- Name: threesixty_nomination_requirements id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3534,6 +3575,14 @@ ALTER TABLE ONLY public.threesixty_email_templates
 
 ALTER TABLE ONLY public.threesixty_evaluators
     ADD CONSTRAINT threesixty_evaluators_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: threesixty_instruction_templates threesixty_instruction_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_instruction_templates
+    ADD CONSTRAINT threesixty_instruction_templates_pkey PRIMARY KEY (id);
 
 
 --
@@ -4638,6 +4687,13 @@ CREATE INDEX threesixty_email_template_cam_id ON public.threesixty_email_templat
 
 
 --
+-- Name: threesixty_instruction_templates_cam_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX threesixty_instruction_templates_cam_id ON public.threesixty_instruction_templates USING btree (threesixty_campaign_id);
+
+
+--
 -- Name: threesixty_nomination_requirements_cam_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4809,6 +4865,14 @@ ALTER TABLE ONLY public.reports_accesses
 
 ALTER TABLE ONLY public.libraries
     ADD CONSTRAINT fk_rails_3c26848d46 FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: threesixty_instruction_templates fk_rails_3e304e0709; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_instruction_templates
+    ADD CONSTRAINT fk_rails_3e304e0709 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE RESTRICT;
 
 
 --
@@ -5686,6 +5750,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190525115528'),
 ('20190601163131'),
 ('20190604121645'),
-('20190612100829');
+('20190612100829'),
+('20190617125849');
 
 
