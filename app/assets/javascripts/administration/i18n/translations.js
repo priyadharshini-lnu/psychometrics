@@ -3524,7 +3524,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -3575,7 +3575,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -8880,7 +8880,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -8931,7 +8931,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -14240,7 +14240,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -14291,7 +14291,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -19596,7 +19596,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -19647,7 +19647,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -24954,7 +24954,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -25005,7 +25005,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -30310,7 +30310,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -30361,7 +30361,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -35667,7 +35667,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -35718,7 +35718,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -41023,7 +41023,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -41074,7 +41074,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -46379,7 +46379,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -46430,7 +46430,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -51735,7 +51735,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -51786,7 +51786,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -57091,7 +57091,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -57142,7 +57142,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -62447,7 +62447,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -62498,7 +62498,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -67803,7 +67803,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -67854,7 +67854,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -73159,7 +73159,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -73210,7 +73210,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -78515,7 +78515,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -78566,7 +78566,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -83871,7 +83871,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -83922,7 +83922,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -89229,7 +89229,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -89280,7 +89280,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -94585,7 +94585,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -94636,7 +94636,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -99938,7 +99938,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -99989,7 +99989,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -105294,7 +105294,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -105345,7 +105345,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -110650,7 +110650,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -110701,7 +110701,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -116003,7 +116003,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -116054,7 +116054,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -121360,7 +121360,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -121411,7 +121411,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -126717,7 +126717,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -126768,7 +126768,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -132073,7 +132073,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -132124,7 +132124,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -137429,7 +137429,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -137480,7 +137480,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -142785,7 +142785,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -142836,7 +142836,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -148143,7 +148143,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -148194,7 +148194,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -153499,7 +153499,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -153550,7 +153550,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -158855,7 +158855,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -158906,7 +158906,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -164212,7 +164212,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -164263,7 +164263,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -169571,7 +169571,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -169622,7 +169622,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -174928,7 +174928,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -174979,7 +174979,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -180286,7 +180286,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -180337,7 +180337,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -185644,7 +185644,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -185695,7 +185695,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -191000,7 +191000,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -191051,7 +191051,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -196353,7 +196353,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -196404,7 +196404,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -201706,7 +201706,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -201757,7 +201757,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -207064,7 +207064,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -207115,7 +207115,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -212420,7 +212420,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -212471,7 +212471,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -217776,7 +217776,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -217827,7 +217827,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -223132,7 +223132,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -223183,7 +223183,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -228488,7 +228488,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -228539,7 +228539,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -233844,7 +233844,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -233895,7 +233895,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -239200,7 +239200,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -239251,7 +239251,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -244556,7 +244556,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -244607,7 +244607,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -249912,7 +249912,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -249963,7 +249963,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -255268,7 +255268,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -255319,7 +255319,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -260624,7 +260624,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -260675,7 +260675,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -265980,7 +265980,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -266031,7 +266031,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -271336,7 +271336,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -271387,7 +271387,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -276692,7 +276692,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -276743,7 +276743,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -282048,7 +282048,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -282099,7 +282099,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -287404,7 +287404,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "approvals": "Approvals",
           "invitations": "Invitations",
           "reminders": "Reminders",
-          "remoprt_ready": "Report Ready"
+          "report_ready": "Report Ready"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -287455,7 +287455,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },

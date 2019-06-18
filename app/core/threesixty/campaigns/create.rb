@@ -21,12 +21,18 @@ module Threesixty
           ::Threesixty::CreateEmptyCampaign.call(threesixty_campaign)
         end
         campaign.save!
+        load_templates(threesixty_campaign)
         broadcast :ok, campaign
       end
 
       private
 
       attr_reader :project, :campaign_params, :threesixty_campaign_params
+
+      def load_templates(threesixty_campaign)
+        Threesixty::EmailTemplates::Load.call(threesixty_campaign)
+        Threesixty::InstructionTemplates::Load.call(threesixty_campaign)
+      end
     end
   end
 end

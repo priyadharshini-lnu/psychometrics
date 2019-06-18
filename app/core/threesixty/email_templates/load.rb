@@ -3,20 +3,20 @@
 module Threesixty
   module EmailTemplates
     class Load < BaseCommand
-      def initialize(campaign)
-        @campaign = campaign
+      def initialize(threesixty_campaign)
+        @threesixty_campaign = threesixty_campaign
       end
 
       def call
         email_templates = read_yaml.map do |attributes|
-          campaign.email_templates.new(attributes)
+          threesixty_campaign.email_templates.new(attributes)
         end
         ::Threesixty::EmailTemplate.import(email_templates)
       end
 
       private
 
-      attr_reader :campaign
+      attr_reader :threesixty_campaign
 
       def read_yaml
         YAML.load(ERB.new(File.read("#{Rails.root}/config/threesixty/email_templates.yml")).result)

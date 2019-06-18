@@ -39,7 +39,7 @@ en:
         categories:
           invitations: 'Invitations'
           reminders: 'Reminders'
-          remoprt_ready: 'Report Ready'
+          report_ready: 'Report Ready'
           approvals: 'Approvals'
         from: 'From'
         reply_to_email: 'Reply to email'
