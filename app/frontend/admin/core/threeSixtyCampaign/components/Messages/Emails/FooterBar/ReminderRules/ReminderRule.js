@@ -1,9 +1,8 @@
 import React from 'react'
 import { InputNumber, Icon } from 'antd'
-import I18n from 'admin/core/common/I18n'
 import css from './style.scss'
 
-export default function ({
+export default function ReminderRule ({
   rule, add, remove, update,
 }) {
   return (

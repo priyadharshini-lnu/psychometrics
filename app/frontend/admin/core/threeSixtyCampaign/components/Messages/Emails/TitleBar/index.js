@@ -2,10 +2,9 @@ import React from 'react'
 import {
   Menu, Button, Icon, Dropdown, Row, Col,
 } from 'antd'
-import I18n from 'admin/core/common/I18n'
 import css from './style.scss'
 
-export default function ({ emailTemplate }) {
+export default function TitleBar ({ emailTemplate }) {
   const menu = (
     <Menu onClick={() => {}}>
       <Menu.Item key="schedule_email">
