@@ -5,7 +5,7 @@ const FETCH = 'threeSixty/campaignList/FETCH'
 export const fetchCampaigns = () => ({
   type: FETCH,
   request: {
-    url: '/campaigns.json',
+    url: '/campaigns',
   },
 })
 

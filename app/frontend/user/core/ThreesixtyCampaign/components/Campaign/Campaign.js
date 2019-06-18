@@ -25,7 +25,7 @@ export default function Campaign ({
         <div className="main-container">
           <PageHeader
             className="page-header"
-            onBack={() => history.push('/')}
+            onBack={() => history.push('/campaigns')}
             title={<div className="title-with-dash">Signify 360° Review - Apply Level</div>}
           >
             <div className="content padding">

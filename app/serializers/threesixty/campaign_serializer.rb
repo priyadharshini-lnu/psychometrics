@@ -13,12 +13,16 @@ module Threesixty
       end
     end
 
-    attributes :id, :reports
+    attributes :id, :reports, :type
 
     has_many :nominations, serializer: NomineeSerializer
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
     has_many :reports, serializer: UsersReportSerializer
     has_one :options, serializer: CampaignOptionsSerializer
+
+    def type
+      ::Campaign::THREESIXTY
+    end
 
     def options
       object.option

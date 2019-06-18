@@ -37,7 +37,7 @@ module Threesixty
         nomination_requirement.conditions.all? do |condition|
           subjects_relationship = subjects_relationship_map[condition['relationship_id']]
           # TODO: (atanych): update this logic after nomination requirements implementation
-          condition['value'] <= (subjects_relationship&.public_send(field) || 0)
+          condition['value'] <= (subjects_relationship&.public_send(field) || 0).to_s
         end
       end
 
