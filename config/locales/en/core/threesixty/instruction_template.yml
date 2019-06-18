@@ -8,7 +8,7 @@ en:
         evaluator_welcome:
           name: 'Evaluator welcome'
           description: 'This message will override the "Welcome Message" and be displayed to participants who are currently participating as evaluators only.'
-        evaluator_self:
+        evaluate_self:
           name: 'Evaluator Self'
           description: 'This message will be displayed to subjects when they begin their self-evaluation'
         invite_evaluators:
