@@ -24,9 +24,7 @@ export default function SendTestEmailModal ({
         setErrors(null)
         message.success('Test email sent successfully', 5)
       })
-      .catch((errors) => {
-        setErrors(errors)
-      })
+      .catch(setErrors)
   }
 
   return (
