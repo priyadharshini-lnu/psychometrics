@@ -26,7 +26,7 @@ export default function Emails ({
   useEffect(() => {
     fetch(campaignId)
       .then(({ response }) => {
-        if (_.isUndefined(selectedId)) {
+        if (!selectedId) {
           routeUtils.moveTo(history, settings.urlPrefix, `/messages/email/${response[0].id}`)
         }
       })

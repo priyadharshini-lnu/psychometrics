@@ -1,13 +1,13 @@
 import React from 'react'
 import { Switch } from 'antd'
-import _ from 'lodash'
+import { REMINDERS } from 'constants/emailTemplateCategory'
 import css from './style.scss'
 import ReminderRules from './ReminderRules'
 
 export default function FooterBar ({ emailTemplate, addReminderRule, removeAllReminderRules }) {
-  if (emailTemplate.category !== 'reminders') { return null }
+  if (emailTemplate.category !== REMINDERS) { return null }
 
-  const reminderRulesExists = !_.isEmpty(emailTemplate.meta.reminderRules)
+  const reminderRulesExists = emailTemplate.meta.reminderRules && !emailTemplate.meta.reminderRules.length
 
   const handleSwitchChange = (checked) => {
     if (checked) {
