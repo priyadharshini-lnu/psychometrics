@@ -17,15 +17,24 @@ class FileUploader < CarrierWave::Uploader::Base
     process resize_to_fit: [50, 50]
   end
 
+  def url(version = nil)
+    is_svg? ? super() : super(version)
+  end
+
   # Add a white list of extensions which are allowed to be uploaded.
   # For images you might use something like this:
   def extension_whitelist
-    %w(jpg jpeg gif png mp3 mp4 wma avi pdf)
+    %w(jpg jpeg gif png mp3 mp4 wma avi pdf svg)
   end
 
   protected
 
   def image?(new_file)
-    new_file.extension.in?(%w(jpg jpeg gif png))
+    new_file.extension.downcase.in?(%w(jpg jpeg gif png))
   end
+
+  def is_svg?
+    file && file.extension == 'svg'
+  end
+
 end
