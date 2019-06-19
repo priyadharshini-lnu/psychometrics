@@ -4422,6 +4422,13 @@ CREATE INDEX index_threesixty_campaigns_on_report_id ON public.threesixty_campai
 
 
 --
+-- Name: index_threesixty_email_templates_campaign_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_threesixty_email_templates_campaign_name ON public.threesixty_email_templates USING btree (threesixty_campaign_id, name);
+
+
+--
 -- Name: index_threesixty_evaluators_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
