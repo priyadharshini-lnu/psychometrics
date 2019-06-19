@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Editor from 'admin/core/threeSixtyCampaign/components/common/Editor'
+import Editor from 'components/Editor'
 import {
   Input, Row, Col, Button, Empty, Icon, message,
 } from 'antd'
@@ -14,35 +14,28 @@ import TemplateMenu from './TemplateMenu'
 import FooterBar from './FooterBar'
 
 export default function Emails ({
-  emailTemplates: { list, selectedId },
+  emailTemplates: { list },
   fetch,
   update,
   save,
-  changeSelected,
   history,
   match: {
-    params: { campaignId, id },
+    params: { campaignId, id: selectedId },
   },
 }) {
-  const changeTemplate = (templateId) => {
-    routeUtils.moveTo(history, settings.urlPrefix, `/messages/email/${templateId}`)
-    changeSelected(parseInt(templateId, 10))
-  }
-
   useEffect(() => {
-    fetch(campaignId, { selectedId: id })
+    fetch(campaignId)
       .then(({ response }) => {
-        if (_.isUndefined(id) && !_.isEmpty(response)) {
-          changeTemplate(response[0].id)
-        } else if (!_.isEmpty(response)) {
-          changeSelected(parseInt(id, 10))
+        if (_.isUndefined(selectedId)) {
+          routeUtils.moveTo(history, settings.urlPrefix, `/messages/email/${response[0].id}`)
         }
       })
   }, [])
 
   const [errors, setErrors] = useState(null)
 
-  const selectedTemplate = _.find(list, ({ id }) => id === selectedId)
+  const selectedTemplate = _.find(list, ({ id }) => id === parseInt(selectedId, 10))
+
   if (_.isUndefined(selectedTemplate)) { return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> }
 
   const saveTemplate = () => {
@@ -59,7 +52,7 @@ export default function Emails ({
   return (
     <Row className={css.container}>
       <Col xs={8} lg={7} xl={5}>
-        <TemplateMenu emailTemplates={list} selectedId={selectedId} changeTemplate={changeTemplate} />
+        <TemplateMenu emailTemplates={list} selectedId={selectedTemplate.id} />
       </Col>
       <Col xs={16} lg={17} xl={19}>
         <TitleBar emailTemplate={selectedTemplate} />
@@ -69,26 +62,29 @@ export default function Emails ({
             addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
             value={selectedTemplate.from}
             className={cs(['mbm', css.smallWidthInput])}
-            onChange={(e) => { update('from', e.target.value) }}
+            onChange={(e) => { update(selectedTemplate.id, 'from', e.target.value) }}
           />
 
           <Input
             addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.reply_to_email')}
             value={selectedTemplate.replyToEmail}
             className={cs(['mbm', css.smallWidthInput])}
-            onChange={(e) => { update('replyToEmail', e.target.value) }}
+            onChange={(e) => { update(selectedTemplate.id, 'replyToEmail', e.target.value) }}
           />
 
           <Input
             addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
             value={selectedTemplate.subject}
             className="mbm"
-            onChange={(e) => { update('subject', e.target.value) }}
+            onChange={(e) => { update(selectedTemplate.id, 'subject', e.target.value) }}
           />
-
-          <Editor content={selectedTemplate.content} handleContentChange={(value) => { update('content', value) }} />
+          <Editor
+            content={selectedTemplate.content}
+            handleContentChange={(value) => { update(selectedTemplate.id, 'content', value) }}
+          />
         </div>
-        <FooterBar />
+
+        <FooterBar emailTemplate={selectedTemplate} />
 
         <Button
           type="primary"

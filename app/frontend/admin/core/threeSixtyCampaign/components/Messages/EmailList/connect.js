@@ -4,7 +4,6 @@ import {
   update,
   save,
   get as getEmailTemplates,
-  changeSelected,
 } from 'admin/core/threeSixtyCampaign/emailTemplates'
 
 export default connect(
@@ -13,6 +12,5 @@ export default connect(
     fetch,
     update,
     save,
-    changeSelected,
   },
 )

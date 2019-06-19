@@ -1,18 +1,20 @@
 import _ from 'lodash'
 import { updateIn } from 'utils/immutable'
-import { getSelected } from '../index'
-
-export const getReminderRules = state => _.get(getSelected(state), ['meta', 'reminderRules'])
 
 export const ADD = 'threeSixty/emailTemplates/reminderRules/ADD'
 export const UPDATE = 'threeSixty/emailTemplates/reminderRules/UPDATE'
 export const REMOVE = 'threeSixty/emailTemplates/reminderRules/REMOVE'
 export const REMOVE_ALL = 'threeSixty/emailTemplates/reminderRules/REMOVE_ALL'
 
-export const add = () => ({ type: ADD })
-export const update = (index, field, value) => ({ type: UPDATE, payload: { index, field, value } })
-export const remove = index => ({ type: REMOVE, payload: { index } })
-export const removeAll = () => ({ type: REMOVE_ALL })
+export const add = emailTemplateId => ({ type: ADD, payload: { emailTemplateId } })
+export const update = (emailTemplateId, index, field, value) => ({
+  type: UPDATE,
+  payload: {
+    emailTemplateId, index, field, value,
+  },
+})
+export const remove = (emailTemplateId, index) => ({ type: REMOVE, payload: { emailTemplateId, index } })
+export const removeAll = emailTemplateId => ({ type: REMOVE_ALL, payload: { emailTemplateId } })
 
 const defaultState = []
 const HANDLERS = {

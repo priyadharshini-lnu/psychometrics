@@ -1,5 +1,5 @@
 import withSkeleton from 'admin/core/hoc/withSkeleton'
-import Emails from './Emails'
+import EmailList from './EmailList'
 import connect from './connect'
 
-export default withSkeleton(connect(Emails))
+export default withSkeleton(connect(EmailList))

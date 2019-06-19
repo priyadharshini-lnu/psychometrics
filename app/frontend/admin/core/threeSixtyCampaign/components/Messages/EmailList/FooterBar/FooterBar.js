@@ -11,9 +11,9 @@ export default function FooterBar ({ emailTemplate, addReminderRule, removeAllRe
 
   const handleSwitchChange = (checked) => {
     if (checked) {
-      addReminderRule()
+      addReminderRule(emailTemplate.id)
     } else {
-      removeAllReminderRules()
+      removeAllReminderRules(emailTemplate.id)
     }
   }
 
@@ -30,7 +30,7 @@ export default function FooterBar ({ emailTemplate, addReminderRule, removeAllRe
       <div className={css.switchContainer}>
         <Switch checked={reminderRulesExists} onChange={handleSwitchChange} />
       </div>
-      <ReminderRules />
+      <ReminderRules rules={emailTemplate.meta.reminderRules} selectedEmailTemplateId={emailTemplate.id} />
     </div>
   )
 }

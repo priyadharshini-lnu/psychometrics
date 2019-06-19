@@ -1,14 +1,17 @@
 import React from 'react'
 import _ from 'lodash'
 import { Menu } from 'antd'
+import routeUtils from 'utils/routeUtils'
+import settings from 'admin/core/threeSixtyCampaign/settings'
+import { withRouter } from 'react-router-dom'
 
-export default function TemplateMenu ({ emailTemplates, selectedId, changeTemplate }) {
+function TemplateMenu ({ history, emailTemplates, selectedId }) {
   const groupedTemplate = _.groupBy(emailTemplates, 'category')
 
   return (
     <Menu
       selectedKeys={[selectedId.toString()]}
-      onClick={({ key }) => changeTemplate(key)}
+      onClick={({ key }) => routeUtils.moveTo(history, settings.urlPrefix, `/messages/email/${key}`)}
       style={{ height: 700 }}
       mode="inline"
     >
@@ -27,3 +30,5 @@ export default function TemplateMenu ({ emailTemplates, selectedId, changeTempla
     </Menu>
   )
 }
+
+export default withRouter(TemplateMenu)

@@ -1,8 +1,8 @@
 import Messages from './Messages'
 import Options from './Options'
-import Emails from './Emails'
+import EmailList from './EmailList'
 
 Messages.Options = Options
-Messages.Emails = Emails
+Messages.EmailList = EmailList
 
 export default Messages

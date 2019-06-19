@@ -3,11 +3,6 @@ import { updateIn } from 'utils/immutable'
 import reminderRulesReducer from './reminderRules'
 
 export const get = state => _.get(state, ['threeSixtyCampaign', 'emailTemplates'])
-export const getSelectedId = state => _.get(state, ['threeSixtyCampaign', 'emailTemplates', 'selectedId'])
-export const getSelected = (state) => {
-  const selectedId = getSelectedId(state)
-  return _.find(get(state).list, ({ id }) => id === selectedId)
-}
 
 const defaultState = {
   list: [],
@@ -18,13 +13,11 @@ export const UPDATE = 'threeSixty/emailTemplates/UPDATE'
 export const SAVE = 'threeSixty/emailTemplates/SAVE'
 export const CHANGE_SELECTED = 'threeSixty/emailTemplates/CHANGE_SELECTED'
 
-export const update = (key, value) => ({ type: UPDATE, payload: { key, value } })
-export const changeSelected = id => ({ type: CHANGE_SELECTED, payload: { id } })
+export const update = (id, key, value) => ({ type: UPDATE, payload: { id, key, value } })
 
-export const fetch = (campaignId, { selectedId }) => ({
+export const fetch = campaignId => ({
   type: FETCH,
   campaignId,
-  selectedId,
   request: {
     method: 'get',
     url: `/administration/threesixty_campaigns/${campaignId}/email_templates`,
@@ -43,19 +36,18 @@ export const save = (campaignId, emailTemplate) => ({
 
 const HANDLERS = {
   [FETCH]: (state, { response }) => ({ ...state, list: response }),
-  [UPDATE]: (state, { payload: { key, value } }) => updateIn(
+  [UPDATE]: (state, { payload: { id, key, value } }) => updateIn(
     state,
     'list',
     list => _.map(list, (emailTemplate) => {
-      if (emailTemplate.id !== state.selectedId) { return emailTemplate }
+      if (emailTemplate.id !== id) { return emailTemplate }
       return { ...emailTemplate, [key]: value }
     }),
   ),
-  [CHANGE_SELECTED]: (state, { payload: { id } }) => ({ ...state, selectedId: id }),
 }
 
 export default function reducer (state = defaultState, action) {
-  const index = _.findIndex(state.list, ({ id }) => id === state.selectedId)
+  const index = _.findIndex(state.list, ({ id }) => id === _.get(action, ['payload', 'emailTemplateId']))
   const stateFromInnerReducer = updateIn(
     state, ['list', index, 'meta', 'reminderRules'], state => reminderRulesReducer(state, action),
   )
