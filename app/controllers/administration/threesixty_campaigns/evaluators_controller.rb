@@ -19,7 +19,7 @@ module Administration
         total = policy_scope(::Threesixty::Evaluator).where(campaign_id: threesixty_campaign.campaign_id).count
 
         evaluators = evaluators.map do |e|
-          nomination_requirement = ::Threesixty::NominationRequirements::FindForSubject.call!(e.subject, threesixty_campaign)
+          nomination_requirement = e.subject ? ::Threesixty::NominationRequirements::FindForSubject.call!(e.subject, threesixty_campaign) : nil
           ::Threesixty::EvaluatorSerializer.new(e, option: option, nomination_requirement: nomination_requirement, counters: counters).to_h
         end
         render json: { evaluators: evaluators, total: total }
