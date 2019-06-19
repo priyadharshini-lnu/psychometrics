@@ -12,6 +12,8 @@ export const FETCH = 'threeSixty/emailTemplates/FETCH'
 export const UPDATE = 'threeSixty/emailTemplates/UPDATE'
 export const SAVE = 'threeSixty/emailTemplates/SAVE'
 export const CHANGE_SELECTED = 'threeSixty/emailTemplates/CHANGE_SELECTED'
+export const SEND_TEST_EMAIL = 'threeSixty/emailTemplates/SEND_TEST_EMAIL'
+
 
 export const update = (id, key, value) => ({ type: UPDATE, payload: { id, key, value } })
 
@@ -33,6 +35,14 @@ export const save = (campaignId, emailTemplate) => ({
   },
 })
 
+export const sendTestEmail = (campaignId, id, toEmail) => ({
+  type: SEND_TEST_EMAIL,
+  request: {
+    method: 'get',
+    url: `/administration/threesixty_campaigns/${campaignId}/email_templates/${id}/send_test_email`,
+    body: { toEmail },
+  },
+})
 
 const HANDLERS = {
   [FETCH]: (state, { response }) => ({ ...state, list: response }),
