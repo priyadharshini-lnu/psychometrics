@@ -26,7 +26,7 @@ export default function Emails ({
   useEffect(() => {
     fetch(campaignId)
       .then(({ response }) => {
-        if (!selectedId) {
+        if (_.isUndefined(selectedId)) {
           routeUtils.moveTo(history, settings.urlPrefix, `/messages/email/${response[0].id}`)
         }
       })
@@ -44,7 +44,9 @@ export default function Emails ({
         setErrors(null)
         message.success('Template saved successfully', 5)
       })
-      .catch(setErrors)
+      .catch((errors) => {
+        setErrors(errors)
+      })
   }
 
   return (

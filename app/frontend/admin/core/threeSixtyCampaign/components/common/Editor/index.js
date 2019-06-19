@@ -6,7 +6,7 @@ import 'froala-editor/css/froala_editor.pkgd.min.css'
 import 'froala-editor/js/froala_editor.pkgd.min'
 import 'froala-editor/js/plugins.pkgd.min'
 
-import './froala_commands'
+import './froalaCommands'
 import FroalaEditor from 'react-froala-wysiwyg'
 
 function Editor ({
