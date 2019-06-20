@@ -11,7 +11,7 @@ import settings from '../../../settings'
 import css from './style.scss'
 import TemplateMenu from './TemplateMenu'
 
-export default function Instructions ({
+export default function InstructionList ({
   instructionTemplates: { list, selectedId },
   fetch,
   update,

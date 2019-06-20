@@ -1,10 +1,10 @@
 import Messages from './Messages'
 import Options from './Options'
 import EmailList from './EmailList'
-import Instructions from './Instructions'
+import InstructionList from './InstructionList'
 
 Messages.Options = Options
 Messages.EmailList = EmailList
-Messages.Instructions = Instructions
+Messages.InstructionList = InstructionList
 
 export default Messages
