@@ -203,7 +203,11 @@ Rails.application.routes.draw do
           get :message_options
         end
 
-        resources :email_templates
+        resources :email_templates do
+          member do
+            get :send_test_email
+          end
+        end
 
         resources :managers
         resources :relationships

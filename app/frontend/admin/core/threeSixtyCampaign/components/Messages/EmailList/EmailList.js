@@ -12,13 +12,16 @@ import settings from '../../../settings'
 import css from './style.scss'
 import TemplateMenu from './TemplateMenu'
 import FooterBar from './FooterBar'
+import SentTestEmailModal from './SendTestEmailModal'
 
 export default function Emails ({
   emailTemplates: { list },
   fetch,
   update,
   save,
+  openModal,
   history,
+  match,
   match: {
     params: { campaignId, id: selectedId },
   },
@@ -53,7 +56,7 @@ export default function Emails ({
         <TemplateMenu emailTemplates={list} selectedId={selectedTemplate.id} />
       </Col>
       <Col xs={16} lg={17} xl={19}>
-        <TitleBar emailTemplate={selectedTemplate} />
+        <TitleBar emailTemplate={selectedTemplate} openModal={openModal} />
         <div className={css.content}>
           <ErrorAlertBox errors={errors} className="mtl mbl" />
           <Input
@@ -94,6 +97,7 @@ export default function Emails ({
           Save
         </Button>
       </Col>
+      <SentTestEmailModal match={match} />
     </Row>
   )
 }
