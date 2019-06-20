@@ -1,11 +1,11 @@
 import React from 'react'
 import { Switch } from 'antd'
-import { REMINDERS } from 'constants/emailTemplateCategory'
+import { CATEGORIES } from 'constants/emailTemplate'
 import css from './style.scss'
 import ReminderRules from './ReminderRules'
 
 export default function FooterBar ({ emailTemplate, addReminderRule, removeAllReminderRules }) {
-  if (emailTemplate.category !== REMINDERS) { return null }
+  if (emailTemplate.category !== CATEGORIES.REMINDERS) { return null }
 
   const reminderRulesExists = emailTemplate.meta.reminderRules && !emailTemplate.meta.reminderRules.length
 
