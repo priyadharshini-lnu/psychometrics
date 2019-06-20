@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import Editor from 'admin/core/threeSixtyCampaign/components/common/Editor'
+import Editor from 'components/Editor'
 import {
   Row, Col, Button, Empty, Icon, message,
 } from 'antd'
