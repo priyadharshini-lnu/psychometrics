@@ -44,9 +44,7 @@ export default function Emails ({
         setErrors(null)
         message.success('Template saved successfully', 5)
       })
-      .catch((errors) => {
-        setErrors(errors)
-      })
+      .catch(setErrors)
   }
 
   return (
