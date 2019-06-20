@@ -4,7 +4,6 @@ import {
   update,
   save,
   get as getInstructionTemplates,
-  changeSelected,
 } from 'admin/core/threeSixtyCampaign/instructionTemplates'
 
 export default connect(
@@ -13,6 +12,5 @@ export default connect(
     fetch,
     update,
     save,
-    changeSelected,
   },
 )

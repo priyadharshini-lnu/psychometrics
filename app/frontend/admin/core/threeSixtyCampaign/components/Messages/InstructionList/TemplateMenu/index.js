@@ -1,12 +1,14 @@
 import React from 'react'
 import _ from 'lodash'
 import { Menu } from 'antd'
+import routeUtils from 'utils/routeUtils'
+import settings from 'admin/core/threeSixtyCampaign/settings'
 
-export default function TemplateMenu ({ instructionTemplates, selectedId, changeTemplate }) {
+export default function TemplateMenu ({ history, instructionTemplates, selectedId }) {
   return (
     <Menu
       selectedKeys={[selectedId.toString()]}
-      onClick={({ key }) => changeTemplate(key)}
+      onClick={({ key }) => routeUtils.moveTo(history, settings.urlPrefix, `/messages/instructions/${key}`)}
       style={{ height: 700 }}
       mode="inline"
     >

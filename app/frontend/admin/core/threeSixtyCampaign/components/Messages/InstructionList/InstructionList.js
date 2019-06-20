@@ -12,36 +12,28 @@ import css from './style.scss'
 import TemplateMenu from './TemplateMenu'
 
 export default function InstructionList ({
-  instructionTemplates: { list, selectedId },
+  instructionTemplates: { list },
   fetch,
   update,
   save,
-  changeSelected,
   history,
   match: {
-    params: { campaignId, id },
+    params: { campaignId, id: selectedId },
   },
 }) {
-  const changeTemplate = (templateId) => {
-    routeUtils.moveTo(history, settings.urlPrefix, `/messages/instructions/${templateId}`)
-    changeSelected(parseInt(templateId, 10))
-  }
-
   useEffect(() => {
-    fetch(campaignId, { selectedId: id })
+    fetch(campaignId)
       .then(({ response }) => {
-        if (_.isUndefined(id) && !_.isEmpty(response)) {
-          changeTemplate(response[0].id)
-        } else if (!_.isEmpty(response)) {
-          changeSelected(parseInt(id, 10))
+        if (!selectedId) {
+          routeUtils.moveTo(history, settings.urlPrefix, `/messages/instructions/${response[0].id}`)
         }
       })
   }, [])
 
   const [errors, setErrors] = useState(null)
 
-  const selectedTemplate = _.find(list, ({ id }) => id === selectedId)
-  if (_.isUndefined(selectedTemplate)) { return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> }
+  const selectedTemplate = _.find(list, ({ id }) => id === parseInt(selectedId, 10))
+  if (!selectedTemplate) { return <Empty image={Empty.PRESENTED_IMAGE_SIMPLE} /> }
 
   const saveTemplate = () => {
     save(campaignId, selectedTemplate)
@@ -49,26 +41,24 @@ export default function InstructionList ({
         setErrors(null)
         message.success('Template saved successfully', 5)
       })
-      .catch((errors) => {
-        setErrors(errors)
-      })
+      .catch(setErrors)
   }
 
   return (
     <Row className={css.container}>
       <Col xs={8} lg={7} xl={5}>
-        <TemplateMenu instructionTemplates={list} selectedId={selectedId} changeTemplate={changeTemplate} />
+        <TemplateMenu history={history} instructionTemplates={list} selectedId={selectedId} />
       </Col>
       <Col xs={16} lg={17} xl={19}>
         <TitleBar
           instructionTemplate={selectedTemplate}
-          toggleEnabled={() => { update('enabled', !selectedTemplate.enabled) }}
+          toggleEnabled={() => { update(selectedTemplate.id, 'enabled', !selectedTemplate.enabled) }}
         />
         <div className={css.content}>
           <ErrorAlertBox errors={errors} className="mtl mbl" />
           <Editor
             content={selectedTemplate.content}
-            handleContentChange={(value) => { update('content', value) }}
+            handleContentChange={(value) => { update(selectedTemplate.id, 'content', value) }}
           />
         </div>
 
