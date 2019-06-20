@@ -1,0 +1,80 @@
+- name: 'subject_invite'
+  category: 'invitations'
+  from: <%= I18n.t('mailer.from') %>
+  reply_to_email: <%= "no-reply@#{Settings.domain}" %>
+  subject: '360 Degree Assessment at Signify - Invitation to Participate'
+  schedulable: true
+  content: '<p>Subject Invite</p>'
+
+- name: 'evaluator_invite'
+  category: 'invitations'
+  from: <%= I18n.t('mailer.from') %>
+  reply_to_email: <%= "no-reply@#{Settings.domain}" %>
+  subject: '360 Degree Assessment at Signify - Invitation to Participate'
+  schedulable: true
+  content: '<p>Evaluator Invite</p>'
+
+- name: 'subject_reminder'
+  category: 'reminders'
+  from: <%= I18n.t('mailer.from') %>
+  reply_to_email: <%= "no-reply@#{Settings.domain}" %>
+  subject: '360 Degree Assessment at Signify - Invitation to Participate'
+  schedulable: true
+  content: '<p>Subject Reminder</p>'
+
+- name: 'evaluator_reminder'
+  category: 'reminders'
+  from: <%= I18n.t('mailer.from') %>
+  reply_to_email: <%= "no-reply@#{Settings.domain}" %>
+  subject: '360 Degree Assessment at Signify - Reminder'
+  schedulable: true
+  content: '<p>Evaluator Reminder</p>'
+
+- name: 'subject_report_ready'
+  category: 'report_ready'
+  from: <%= I18n.t('mailer.from') %>
+  reply_to_email: <%= "no-reply@#{Settings.domain}" %>
+  subject: '360 Degree Assessment at Signify - Your Report is Ready'
+  schedulable: false
+  content: '<p>Subject Report Ready</p>'
+
+- name: 'manager_report_ready'
+  category: 'report_ready'
+  from: <%= I18n.t('mailer.from') %>
+  reply_to_email: <%= "no-reply@#{Settings.domain}" %>
+  subject: '360 Degree Assessment at Signify - Report Ready for Your Direct Report'
+  schedulable: false
+  content: '<p>Manager Report Ready</p>'
+
+- name: 'approve_report'
+  category: 'approvals'
+  from: <%= I18n.t('mailer.from') %>
+  reply_to_email: <%= "no-reply@#{Settings.domain}" %>
+  subject: '360 Degree Assessment at Signify - Nominations Ready for Your Approval'
+  schedulable: false
+  content: '<p>Approve Report</p>'
+
+- name: 'approve_nomination'
+  category: 'approvals'
+  from: <%= I18n.t('mailer.from') %>
+  reply_to_email: <%= "no-reply@#{Settings.domain}" %>
+  subject: '360 Degree Assessment at Signify - Nominations Ready for Your Approval'
+  schedulable: false
+  content: '<p>Approve Nomination</p>'
+
+- name: 'nomination_denied'
+  category: 'approvals'
+  from: <%= I18n.t('mailer.from') %>
+  reply_to_email: <%= "no-reply@#{Settings.domain}" %>
+  subject: '360 Degree Assessment at Signify - Nominations Ready for Your Approval'
+  schedulable: false
+  content: '<p>Nomination Declined</p>'
+
+
+- name: 'request_approval'
+  category: 'approvals'
+  from: <%= I18n.t('mailer.from') %>
+  reply_to_email: <%= "no-reply@#{Settings.domain}" %>
+  subject: 'Approval requested for nominations'
+  schedulable: false
+  content: '<p>Request Approval</p>'
