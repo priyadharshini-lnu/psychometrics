@@ -7,7 +7,7 @@ import css from './style.scss'
 export default function TitleBar ({ emailTemplate, openModal }) {
   const menu = (
     <Menu onClick={({ key }) => openModal(key)}>
-      <Menu.Item key="schedule_email">
+      <Menu.Item key="ScheduleEmailModal">
         {I18n.t('administration.threesixty_campaigns.email_templates.schedule_email')}
       </Menu.Item>
       <Menu.Item key="SendTestEmailModal">
