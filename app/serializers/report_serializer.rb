@@ -57,7 +57,7 @@ class ReportSerializer < ActiveModel::Serializer
     return [] unless @instance_options[:membership]
 
     assigns = Assign.includes(:membership).joins(:membership).
-      where(assessment_id: object.assessment_ids, memberships: { client_id: @instance_options[:membership].client_id })
+      where(assessment_id: object.assessment_ids, memberships: { client_id: @instance_options[:membership].client_id, user_id: @instance_options[:membership].user_id })
 
     assigns.group_by(&:assessment_id).transform_values do |group|
       group.map { |assign| AssignShortSerializer.new(assign, membership: @instance_options[:membership]) }
@@ -85,4 +85,5 @@ class ReportSerializer < ActiveModel::Serializer
   def data_configuration
     object.data_configuration.to_yaml
   end
+
 end

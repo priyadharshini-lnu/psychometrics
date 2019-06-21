@@ -194,14 +194,14 @@ group :development do
   gem 'rubocop', require: false
   gem 'meta_request'
   gem 'i18n-tasks', '~> 0.9.5'
+  gem 'db-clone', :git => 'https://github.com/smshuja/db-clone.git', :branch => 'load-with-erb'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 2.13'
   gem 'faker', '~> 1.8.7'
-  gem 'poltergeist', '~> 1.14.0'
   gem 'capybara-screenshot', '~> 1.0.14'
-  gem 'selenium-webdriver', '~> 3.141.59'
+  gem 'selenium-webdriver', '~> 3.141.0'
   gem 'shoulda', '~> 3.5.0'
   gem 'database_cleaner', '~> 1.7.0'
   gem 'simplecov', require: false
@@ -211,4 +211,5 @@ group :test do
   gem 'rswag-specs', '~> 2.0.5'
   gem 'coveralls', require: false
   gem 'rails-controller-testing'
+  gem 'webdrivers'
 end

@@ -10,7 +10,9 @@ module Exports
         # TO:
         #   [12, ...]
         def self.result(answers, _question, _scoring = false)
-          (answers || []).map { |a| a['value'] }
+          answers = (answers || []).map { |a| a['value'] }
+          required_size = header(question).size
+          Utility::Array.ensure_size(answers, required_size)
         end
 
         # Parse HEADER data for XLSX

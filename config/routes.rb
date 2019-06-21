@@ -399,7 +399,7 @@ Rails.application.routes.draw do
                             passwords: 'passwords' }
   # Manager's panel
   #
-  constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
+  constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
     namespace :managers do
       resources :dashboard, only: [:index]
       resources :assigns, only: [:index]

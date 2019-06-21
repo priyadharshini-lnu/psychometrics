@@ -3195,6 +3195,13 @@ CREATE INDEX index_factors_scoring_on_factor_id ON public.factors_scoring USING 
 
 
 --
+-- Name: index_factors_scoring_on_factor_question_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_factors_scoring_on_factor_question_assessment_id ON public.factors_scoring USING btree (factor_id, question_id, assessment_id);
+
+
+--
 -- Name: index_factors_scoring_on_question_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4310,6 +4317,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190221202711'),
 ('20190303082715'),
 ('20190304063803'),
-('20190315160908');
+('20190315160908'),
+('20190612132144');
 
 

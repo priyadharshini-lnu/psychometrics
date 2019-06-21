@@ -11,7 +11,7 @@
                              onclick: "window.open(this.href, this.target, 'width=980,height=700');return false;"
   - elsif report.assessment.hogan? && report.hogan_report_setting
     - if assign.completed?
-      - if assigns_report&.external_report.present?
+      - if assigns_report&.external_report&.url.present?
         = link_to t('.results'), assigns_report.external_report.url,
           target: 'windowMindmill',
           class: "btn btn-info #{'disabled' if !assign.completed?}",
