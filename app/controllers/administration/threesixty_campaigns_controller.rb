@@ -7,6 +7,13 @@ class Administration::ThreesixtyCampaignsController < Administration::BaseContro
     render json: :ok
   end
 
+  def export_completion_status
+    results = Threesixty::Campaigns::ExportCompletionStatus.call!(resource)
+    respond_to do |format|
+      format.xlsx { send_data results.to_stream.read, filename: "completion_status_export_campaign_#{resource.id}.xlsx" }
+    end
+  end
+
   def reset_nominations
     ::Threesixty::Campaigns::ResetAllNominations.call(resource)
     render json: :ok

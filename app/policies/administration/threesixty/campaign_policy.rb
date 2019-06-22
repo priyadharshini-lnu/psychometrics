@@ -18,6 +18,10 @@ module Administration::Threesixty
       super_admins_or_admins?
     end
 
+    def export_completion_status?
+      super_admins_or_admins?
+    end
+
     def remove_user?
       super_admins_or_admins?
     end
