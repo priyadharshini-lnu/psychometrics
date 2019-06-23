@@ -190,6 +190,10 @@ Rails.application.routes.draw do
           member do
             get :preview_report
           end
+
+          resource :reports, only: [:show] do
+            get :download, on: :member
+          end
         end
         resources :evaluators do
           collection do
@@ -506,6 +510,7 @@ Rails.application.routes.draw do
         end
         resources :reports do
           put :update_status
+          get :download, on: :member
         end
         resources :assessments, only: %i(index)
         resources :users_results, only: %i[update]

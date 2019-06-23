@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Typography, Button, Row, Col, PageHeader, Icon,
+  Layout, Typography, Button, Row, Col, PageHeader, Icon, message,
 } from 'antd'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
@@ -12,7 +12,7 @@ const { Content } = Layout
 export default function Report ({
   report: {
     loaded, report, results, user, campaign, approvalStatus, pdf, status,
-  }, match: { params }, fetchReport, updateStatus,
+  }, match: { params }, fetchReport, updateStatus, downloadReport,
   history,
 }) {
   useEffect(() => {
@@ -27,6 +27,15 @@ export default function Report ({
 
   const handleStatusClick = (status) => {
     updateStatus(params.campaignId, params.id, status)
+  }
+
+  const requestDownloadReport = (campaignId, usersReportId) => {
+    downloadReport(campaignId, usersReportId)
+      .then(({response}) => {
+        if(response.success) {
+          message.success('Report is generating. We will let you know when the report is ready.', 3)
+        }
+      })
   }
 
   return (
@@ -62,15 +71,11 @@ export default function Report ({
               </Col>
             </Row>
             <Row>
-              {status === 'prepared'
-                ? (
-                  <Button>
-                    <a href={pdf.url} download target="_blank" rel="noopener noreferrer">
-                      Download
-                    </a>
-                  </Button>
-                )
-                : <div>{statusPresenter.getReportStatus(status)}</div>}
+              {
+                <Button onClick={() => requestDownloadReport(params.campaignId, params.id)}>
+                  Download report
+                </Button>
+              }
             </Row>
             <div
               id="threesixty-report"

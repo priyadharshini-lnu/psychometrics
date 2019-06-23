@@ -3,6 +3,7 @@ import { setIn } from 'utils/immutable'
 
 const FETCH_REPORTS = 'threeSixty/report/FETCH_REPORTS'
 const UPDATE_STATUS = 'threeSixty/report/UPDATE_STATUS'
+const DOWNLOAD_REPORT = 'threeSixty/report/DOWNLOAD_REPORT'
 
 export const fetchReport = (campaignId, id) => ({
   type: FETCH_REPORTS,
@@ -24,6 +25,12 @@ export const updateStatus = (campaignId, id, status) => ({
   },
 })
 
+export const downloadReport = (campaignId, id) => ({
+  type: DOWNLOAD_REPORT,
+  request: {
+    url: `/campaigns/${campaignId}/reports/${id}/download`,
+  },
+})
 
 export const defaultState = {
   loaded: false,

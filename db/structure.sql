@@ -2614,7 +2614,6 @@ CREATE TABLE public.users_results (
     answers jsonb,
     scoring jsonb,
     occupations jsonb,
-    embedded_data jsonb,
     step integer DEFAULT 0,
     status integer DEFAULT 0,
     completed_at timestamp without time zone,

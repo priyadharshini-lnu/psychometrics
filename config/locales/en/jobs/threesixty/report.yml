@@ -1,0 +1,7 @@
+en:
+  jobs:
+    threesixty:
+      reports:
+        download:
+          message: Report is ready
+          description: "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>"
