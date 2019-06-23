@@ -4,13 +4,13 @@ import {
 } from 'antd'
 import css from './style.scss'
 
-export default function TitleBar ({ emailTemplate }) {
+export default function TitleBar ({ emailTemplate, openModal }) {
   const menu = (
-    <Menu onClick={() => {}}>
+    <Menu onClick={({ key }) => openModal(key)}>
       <Menu.Item key="schedule_email">
         {I18n.t('administration.threesixty_campaigns.email_templates.schedule_email')}
       </Menu.Item>
-      <Menu.Item key="schedule_test_email">
+      <Menu.Item key="SendTestEmailModal">
         {I18n.t('administration.threesixty_campaigns.email_templates.send_test_email')}
       </Menu.Item>
     </Menu>
@@ -30,7 +30,12 @@ export default function TitleBar ({ emailTemplate }) {
         <Col md={10} lg={8} xl={6}>
           {emailTemplate.schedulable && (
             <div className={css.buttonContainer}>
-              <Button type="primary" size="large" className={css.button}>
+              <Button
+                type="primary"
+                size="large"
+                className={css.button}
+                onClick={() => openModal('SendTestEmailModal')}
+              >
                 <Icon type="schedule" />
                 {I18n.t('administration.threesixty_campaigns.email_templates.schedule_email')}
               </Button>
