@@ -35,7 +35,7 @@ class AssignsController < ApplicationController
                joins('LEFT OUTER JOIN "assessments_clients" ON "assessments_clients"."client_id" = "clients"."id" AND "assessments_clients"."assessment_id" = "assigns"."assessment_id"').
                order('assessments_clients.position ASC')
 
-    @current_membership.set_user_invited_for_current_project
+    @current_membership.set_user_invited_for_current_project unless session[:spoofed]
   end
 
   def pass
