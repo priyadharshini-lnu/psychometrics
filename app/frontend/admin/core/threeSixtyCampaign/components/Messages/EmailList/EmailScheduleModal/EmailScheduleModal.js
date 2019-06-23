@@ -1,0 +1,91 @@
+import React, { useState, useEffect } from 'react'
+import _ from 'lodash'
+import {
+  Modal, Button, Icon, Input,
+} from 'antd'
+import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
+import Editor from 'components/Editor'
+import cs from 'classnames'
+import TitleBar from './TitleBar'
+import style from './style.scss'
+
+export default function EmailScheduleModal ({
+  emailSchedules,
+  emailSchedules: { list, selectedId },
+  current,
+  fetchSchedulableTemplate,
+  create,
+  update,
+  changeSelected,
+  closeModal,
+  selectedEmailTemplateId,
+  match: {
+    params: { campaignId },
+  },
+}) {
+  if (current !== 'ScheduleEmailModal') return null
+
+  useEffect(() => {
+    fetchSchedulableTemplate(campaignId, { selectedEmailTemplateId })
+  }, [])
+
+  const [errors, setErrors] = useState(null)
+  const selectedEmailSchedule = _.find(list, ({ id }) => id === selectedId)
+
+  if (!selectedEmailSchedule) { return null }
+
+  const handleCreate = () => {
+    create(campaignId, selectedEmailSchedule)
+      .then(() => {})
+      .catch(setErrors)
+  }
+
+  return (
+    <Modal
+      width={800}
+      title="Schedule Email"
+      visible
+      onCancel={closeModal}
+      bodyStyle={{ padding: '0px' }}
+      footer={[
+        <Button key="back" onClick={closeModal}>
+          Cancel
+        </Button>,
+        <Button key="submit" type="primary" onClick={handleCreate}>
+          <Icon type="check" />
+          Schedule
+        </Button>,
+      ]}
+    >
+      <TitleBar emailSchedules={emailSchedules} changeSelected={changeSelected} />
+      <div className={style.content}>
+        {/* <RecipientCriteria /> */}
+        <Input
+          addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
+          value={selectedEmailSchedule.from}
+          className={cs(['mbm', style.smallWidthInput])}
+          onChange={(e) => { update('from', e.target.value) }}
+        />
+
+        <Input
+          addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.reply_to_email')}
+          value={selectedEmailSchedule.replyToEmail}
+          className={cs(['mbm', style.smallWidthInput])}
+          onChange={(e) => { update('replyToEmail', e.target.value) }}
+        />
+
+        <Input
+          addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
+          value={selectedEmailSchedule.subject}
+          className="mbm"
+          onChange={(e) => { update('subject', e.target.value) }}
+        />
+        <Editor
+          content={selectedEmailSchedule.content}
+          handleContentChange={(value) => { update('content', value) }}
+        />
+        <ErrorAlertBox errors={errors} />
+      </div>
+    </Modal>
+  )
+}

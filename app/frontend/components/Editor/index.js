@@ -16,7 +16,8 @@ function Editor ({
   const config = {
     iconsTemplate: 'font_awesome',
     imageUpload: false,
-    pluginsEnabled: ['image', 'link', 'fontFamily', 'fontSize', 'paragraphFormat', 'align', 'quote', 'table'],
+    pluginsEnabled: ['image', 'link', 'fontFamily', 'fontSize', 'colors',
+      'paragraphFormat', 'align', 'quote', 'table'],
     toolbarButtons: [
       'fontFamily', 'fontSize', 'textColor',
       'bold', 'italic', 'underline', 'strikeThrough', 'subscript', 'superscript',
