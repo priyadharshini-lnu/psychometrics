@@ -16,6 +16,7 @@ import nominationRequirements from './core/threeSixtyCampaign/nominationRequirem
 import messageOptions from './core/threeSixtyCampaign/messageOptions'
 import emailTemplates from './core/threeSixtyCampaign/emailTemplates'
 import emailSchedules from './core/threeSixtyCampaign/emailSchedules'
+import instructionTemplates from './core/threeSixtyCampaign/instructionTemplates'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -31,6 +32,7 @@ export default combineReducers({
     messageOptions,
     emailTemplates,
     emailSchedules,
+    instructionTemplates,
   }),
   project: combineReducers({
     datasheetFields,
