@@ -88,6 +88,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -3586,7 +3594,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -5462,6 +5470,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -8963,7 +8979,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -10843,6 +10859,14 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -14344,7 +14368,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -16220,6 +16244,14 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -19721,7 +19753,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -21599,6 +21631,14 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -25100,7 +25140,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -26976,6 +27016,14 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -30477,7 +30525,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -32354,6 +32402,14 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -35855,7 +35911,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -37731,6 +37787,14 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -41232,7 +41296,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -43108,6 +43172,14 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -46609,7 +46681,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -48485,6 +48557,14 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -51986,7 +52066,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -53862,6 +53942,14 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -57363,7 +57451,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -59239,6 +59327,14 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -62740,7 +62836,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -64616,6 +64712,14 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -68117,7 +68221,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -69993,6 +70097,14 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -73494,7 +73606,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -75370,6 +75482,14 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -78871,7 +78991,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -80747,6 +80867,14 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -84248,7 +84376,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -86126,6 +86254,14 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -89627,7 +89763,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -91503,6 +91639,14 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -95004,7 +95148,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -96877,6 +97021,14 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -100378,7 +100530,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -102254,6 +102406,14 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -105755,7 +105915,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -107631,6 +107791,14 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -111132,7 +111300,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -113005,6 +113173,14 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -116506,7 +116682,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -118383,6 +118559,14 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -121884,7 +122068,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -123761,6 +123945,14 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -127262,7 +127454,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -129138,6 +129330,14 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -132639,7 +132839,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -134515,6 +134715,14 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -138016,7 +138224,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -139892,6 +140100,14 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -143393,7 +143609,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -145271,6 +145487,14 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -148772,7 +148996,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -150648,6 +150872,14 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -154149,7 +154381,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -156025,6 +156257,14 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -159526,7 +159766,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -161403,6 +161643,14 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -164904,7 +165152,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -166783,6 +167031,14 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -170284,7 +170540,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -172161,6 +172417,14 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -175662,7 +175926,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -177543,6 +177807,14 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -181041,7 +181313,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -182919,6 +183191,14 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -186420,7 +186700,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -188296,6 +188576,14 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -191797,7 +192085,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -193670,6 +193958,14 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -197171,7 +197467,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -199044,6 +199340,14 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -202545,7 +202849,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -204423,6 +204727,14 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -207924,7 +208236,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -209800,6 +210112,14 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -213301,7 +213621,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -215180,6 +215500,14 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -218678,7 +219006,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -220557,6 +220885,14 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -224055,7 +224391,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -225934,6 +226270,14 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -229432,7 +229776,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -231308,6 +231652,14 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
             "reply_to_email": {
               "blank": "Reply to email field can't be blank",
               "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -234809,7 +235161,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -236688,6 +237040,14 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -240186,7 +240546,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -242065,6 +242425,14 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -245563,7 +245931,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -247442,6 +247810,14 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -250940,7 +251316,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -252819,6 +253195,14 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -256317,7 +256701,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -258196,6 +258580,14 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -261694,7 +262086,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -263573,6 +263965,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -267071,7 +267471,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -268950,6 +269350,14 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -272448,7 +272856,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -274327,6 +274735,14 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -277825,7 +278241,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -279704,6 +280120,14 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -283202,7 +283626,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
@@ -285081,6 +285505,14 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
             }
           }
         },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -288579,7 +289011,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "description": "This message will be displayed when participants are evaluating others from inside the portal",
           "name": "Evaluate Others"
         },
-        "evaluator_self": {
+        "evaluate_self": {
           "description": "This message will be displayed to subjects when they begin their self-evaluation",
           "name": "Evaluator Self"
         },
