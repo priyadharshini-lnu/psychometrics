@@ -13,5 +13,8 @@ class CreateThreesixtyEmailTemplates < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+
+    add_index :threesixty_email_templates, [:threesixty_campaign_id, :name], unique: true,
+      name: :index_threesixty_email_templates_campaign_name
   end
 end

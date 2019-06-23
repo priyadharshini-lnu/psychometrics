@@ -124,7 +124,7 @@ class Assign < ApplicationRecord
         scoring_class = "Scoring::#{question.try(:type)}"
         result = results[question.try(:id).try(:to_s)]
         if result && question && !question_scoring.props.empty?
-          scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)
+          scoring_point = scoring_class.constantize.new.calculate(question, result, question_scoring.props)[:value]
           # type 'PickGroupRank' is used for agile methodology
           # for common scoring we need to skip this type
           if question.try(:type) == 'PickGroupRank'

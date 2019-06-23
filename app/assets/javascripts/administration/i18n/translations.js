@@ -77,6 +77,25 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             }
           }
         },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -4923,6 +4942,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -5430,6 +5459,25 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -10283,6 +10331,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -10790,6 +10848,25 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -15639,6 +15716,16 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -16146,6 +16233,25 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -20997,6 +21103,16 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -21504,6 +21620,25 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -26353,6 +26488,16 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -26860,6 +27005,25 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -31710,6 +31874,16 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -32217,6 +32391,25 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -37066,6 +37259,16 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -37573,6 +37776,25 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -42422,6 +42644,16 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -42929,6 +43161,25 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -47778,6 +48029,16 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -48285,6 +48546,25 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -53134,6 +53414,16 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -53641,6 +53931,25 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -58490,6 +58799,16 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "strengths": "(es) strengths",
         "your_scores": "(es) Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -58997,6 +59316,25 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -63846,6 +64184,16 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -64353,6 +64701,25 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -69202,6 +69569,16 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -69709,6 +70086,25 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -74558,6 +74954,16 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -75065,6 +75471,25 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -79914,6 +80339,16 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -80421,6 +80856,25 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -85272,6 +85726,16 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -85779,6 +86243,25 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -90628,6 +91111,16 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -91135,6 +91628,25 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -95981,6 +96493,16 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -96488,6 +97010,25 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -101337,6 +101878,16 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -101844,6 +102395,25 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -106693,6 +107263,16 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -107200,6 +107780,25 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -112046,6 +112645,16 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -112553,6 +113162,25 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -117403,6 +118031,16 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -117910,6 +118548,25 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -122760,6 +123417,16 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -123267,6 +123934,25 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -128116,6 +128802,16 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -128623,6 +129319,25 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -133472,6 +134187,16 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -133979,6 +134704,25 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -138828,6 +139572,16 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -139335,6 +140089,25 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -144186,6 +144959,16 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -144693,6 +145476,25 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -149542,6 +150344,16 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -150049,6 +150861,25 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -154898,6 +155729,16 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -155405,6 +156246,25 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -160255,6 +161115,16 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -160762,6 +161632,25 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -165614,6 +166503,16 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -166121,6 +167020,25 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -170971,6 +171889,16 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -171478,6 +172406,25 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -176329,6 +177276,16 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -176836,6 +177793,25 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -181687,6 +182663,16 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -182194,6 +183180,25 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -187043,6 +188048,16 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -187550,6 +188565,25 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -192396,6 +193430,16 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -192903,6 +193947,25 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -197749,6 +198812,16 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -198256,6 +199329,25 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -203107,6 +204199,16 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -203614,6 +204716,25 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -208463,6 +209584,16 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -208970,6 +210101,25 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -213819,6 +214969,16 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -214326,6 +215486,25 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -219174,6 +220353,16 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -219685,6 +220874,25 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
             }
           }
         },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -224530,6 +225738,16 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -225041,6 +226259,25 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
             }
           }
         },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -229887,6 +231124,16 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "strengths": "strengths",
         "your_scores": "Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -230394,6 +231641,25 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -235243,6 +236509,16 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "strengths": "(es) strengths",
         "your_scores": "(es) Your Scores"
       },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
+      },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
         "possible_roles": "Possible Roles",
@@ -235750,6 +237026,25 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "attributes": {
             "remove_assessment_ids": {
               "invalid": "You can't remove Assessments that depend on an assigned Reports"
+            }
+          }
+        },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
             }
           }
         },
@@ -240598,6 +241893,16 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -241109,6 +242414,25 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
             }
           }
         },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -245954,6 +247278,16 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -246465,6 +247799,25 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
             }
           }
         },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -251310,6 +252663,16 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -251821,6 +253184,25 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
             }
           }
         },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -256666,6 +258048,16 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -257177,6 +258569,25 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
             }
           }
         },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -262022,6 +263433,16 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -262533,6 +263954,25 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             }
           }
         },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -267378,6 +268818,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -267889,6 +269339,25 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
             }
           }
         },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -272734,6 +274203,16 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -273245,6 +274724,25 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
             }
           }
         },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -278090,6 +279588,16 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -278601,6 +280109,25 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
             }
           }
         },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -283446,6 +284973,16 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",
@@ -283957,6 +285494,25 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
             }
           }
         },
+        "email_template": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
+        "email_template_test_mail": {
+          "attributes": {
+            "to_email": {
+              "blank": "Email field can't be blank",
+              "invalid": "Email is invalid"
+            }
+          }
+        },
         "import_one": {
           "attributes": {
             "email": {
@@ -288802,6 +290358,16 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "key": "key",
         "strengths": "strengths",
         "your_scores": "Your Scores"
+      },
+      "single_value": {
+        "factor_name": "Scoring Category",
+        "question_name": "Questions"
+      },
+      "single_value_cluster": {
+        "competency": "Competency",
+        "description": "Description",
+        "developmental_rating": "Developmental Rating",
+        "questions": "Questions"
       },
       "strength_clusters": {
         "index_sub_factors_considered": "Thriving Index sub-factors that have been considered to provide your final score for the %{workstyle} work environment",

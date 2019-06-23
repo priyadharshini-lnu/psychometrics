@@ -8,5 +8,8 @@ class CreateThreesixtyInstructionTemplates < ActiveRecord::Migration[5.1]
 
       t.timestamps
     end
+
+    add_index :threesixty_instruction_templates, [:threesixty_campaign_id, :name], unique: true,
+      name: :index_threesixty_instruction_templates_campaign_name
   end
 end
