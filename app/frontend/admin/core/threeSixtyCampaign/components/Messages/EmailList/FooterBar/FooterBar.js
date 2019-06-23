@@ -7,7 +7,7 @@ import ReminderRules from './ReminderRules'
 export default function FooterBar ({ emailTemplate, addReminderRule, removeAllReminderRules }) {
   if (emailTemplate.category !== CATEGORIES.REMINDERS) { return null }
 
-  const reminderRulesExists = emailTemplate.meta.reminderRules && !emailTemplate.meta.reminderRules.length
+  const reminderRulesExists = emailTemplate.meta.reminderRules && emailTemplate.meta.reminderRules.length
 
   const handleSwitchChange = (checked) => {
     if (checked) {

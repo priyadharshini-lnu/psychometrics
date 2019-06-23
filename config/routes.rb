@@ -208,6 +208,7 @@ Rails.application.routes.draw do
             get :send_test_email
           end
         end
+        resources :instruction_templates
 
         resources :managers
         resources :relationships

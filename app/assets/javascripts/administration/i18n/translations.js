@@ -3580,6 +3580,28 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -8935,6 +8957,28 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -14294,6 +14338,28 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -19649,6 +19715,28 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -25006,6 +25094,28 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -30361,6 +30471,28 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -35717,6 +35849,28 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -41072,6 +41226,28 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -46427,6 +46603,28 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -51782,6 +51980,28 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -57137,6 +57357,28 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -62492,6 +62734,28 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -67847,6 +68111,28 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -73202,6 +73488,28 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -78557,6 +78865,28 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -83912,6 +84242,28 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -89269,6 +89621,28 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -94624,6 +94998,28 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -99976,6 +100372,28 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -105331,6 +105749,28 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -110686,6 +111126,28 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -116038,6 +116500,28 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -121394,6 +121878,28 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -126750,6 +127256,28 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -132105,6 +132633,28 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -137460,6 +138010,28 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -142815,6 +143387,28 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -148172,6 +148766,28 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -153527,6 +154143,28 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -158882,6 +159520,28 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -164238,6 +164898,28 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -169596,6 +170278,28 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -174952,6 +175656,28 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -180309,6 +181035,28 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -185666,6 +186414,28 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -191021,6 +191791,28 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -196373,6 +197165,28 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -201725,6 +202539,28 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -207082,6 +207918,28 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -212437,6 +213295,28 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -217792,6 +218672,28 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -223147,6 +224049,28 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -228502,6 +229426,28 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -233857,6 +234803,28 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -239212,6 +240180,28 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -244567,6 +245557,28 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -249922,6 +250934,28 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -255277,6 +256311,28 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -260632,6 +261688,28 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -265987,6 +267065,28 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -271342,6 +272442,28 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -276697,6 +277819,28 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -282052,6 +283196,28 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
@@ -287407,6 +288573,28 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "name": "Subject Report Ready"
         },
         "times": "times"
+      },
+      "instruction_templates": {
+        "evaluate_others": {
+          "description": "This message will be displayed when participants are evaluating others from inside the portal",
+          "name": "Evaluate Others"
+        },
+        "evaluator_self": {
+          "description": "This message will be displayed to subjects when they begin their self-evaluation",
+          "name": "Evaluator Self"
+        },
+        "evaluator_welcome": {
+          "description": "This message will override the \"Welcome Message\" and be displayed to participants who are currently participating as evaluators only.",
+          "name": "Evaluator welcome"
+        },
+        "invite_evaluators": {
+          "description": "This message will be displayed to subjects when they begin nominating evaluators",
+          "name": "Invite Evaluators"
+        },
+        "welcome_message": {
+          "description": "This message will be displayed to subjects when they log in to begin the assessment or view their task list",
+          "name": "Welcome Message"
+        }
       }
     },
     "translations": {
