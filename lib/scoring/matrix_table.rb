@@ -4,8 +4,9 @@ module Scoring
     def calculate(_question, result, scoring_template)
       values = []
       options = []
+
       result['answers'].each do |answer|
-        if answer['value']
+        if answer['value'] && (result.dig('not_applicable', answer['choice'].to_s) != true)
           object = scoring_template.detect { |template| template['scale'] == answer['scale'] && template['choice'] == answer['choice'] }
           if object
             values << object['value']
