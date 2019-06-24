@@ -1,13 +1,14 @@
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Input,
+  Modal, Button, Icon, Input, Select, Menu, Dropdown,
 } from 'antd'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 import Editor from 'components/Editor'
 import cs from 'classnames'
 import TitleBar from './TitleBar'
 import style from './style.scss'
+import ScheduledDateField from './ScheduledDateField'
 
 export default function EmailScheduleModal ({
   emailSchedules,
@@ -59,7 +60,14 @@ export default function EmailScheduleModal ({
     >
       <TitleBar emailSchedules={emailSchedules} changeSelected={changeSelected} />
       <div className={style.content}>
+        <ErrorAlertBox errors={errors} className="mbl" />
         {/* <RecipientCriteria /> */}
+
+        <ScheduledDateField
+          scheduledDate={selectedEmailSchedule.scheduledDate}
+          updateScheduleDate={value => update('scheduledDate', value)}
+        />
+
         <Input
           addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
           value={selectedEmailSchedule.from}
@@ -84,7 +92,6 @@ export default function EmailScheduleModal ({
           content={selectedEmailSchedule.content}
           handleContentChange={(value) => { update('content', value) }}
         />
-        <ErrorAlertBox errors={errors} />
       </div>
     </Modal>
   )

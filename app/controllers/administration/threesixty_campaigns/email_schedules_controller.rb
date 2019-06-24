@@ -10,7 +10,7 @@ module Administration
       def create
         form = ::Threesixty::EmailScheduleForm.from_params(params[:email_schedule])
         if form.valid?
-          ::Threesixty::EmailSchedule .create!(form.attributes)
+          ::Threesixty::EmailSchedule.create!(form.attributes)
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: :bad_request
@@ -27,7 +27,7 @@ module Administration
             reply_to_email: 'no1@cc.com',
             subject: 'Subject1',
             content: 'Content1',
-            scheduled_date: Date.today,
+            scheduled_date: Time.now,
           },
           {
             id: 2,
@@ -36,7 +36,7 @@ module Administration
             reply_to_email: 'no2@cc.com',
             subject: 'Subject2',
             content: 'Content2',
-            scheduled_date: Date.today,
+            scheduled_date: Time.now,
             recipient_criteria: [
               {
                 field: 'Name or Email',

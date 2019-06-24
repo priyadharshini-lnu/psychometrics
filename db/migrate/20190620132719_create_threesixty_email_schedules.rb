@@ -7,9 +7,9 @@ class CreateThreesixtyEmailSchedules < ActiveRecord::Migration[5.1]
       t.text :subject
       t.string :reply_to_email
       t.text :content
-      t.time :scheduled_date
+      t.datetime :scheduled_date
       t.jsonb :recipient_criteria
-      t.time :delivered_at
+      t.datetime :delivered_at
 
       t.timestamps
     end

@@ -33,7 +33,8 @@
     "__DEV__": true,
     "__PROD__": true,
     "location": true,
-    "I18n": true
+    "I18n": true,
+    "moment": true
   },
   "settings": {
     "import/resolver": {
