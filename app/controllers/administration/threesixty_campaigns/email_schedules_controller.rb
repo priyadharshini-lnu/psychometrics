@@ -18,7 +18,14 @@ module Administration
       end
 
       def schedulable_templates
-        render json: threesixty_campaign.email_templates.where(category: ['invitations', 'reminders'])
+        email_schedules = threesixty_campaign.email_templates.where(category: ['invitations', 'reminders']).to_a
+        email_schedules.prepend({
+          id: 'custom_message',
+          name: 'custom_message',
+          from: current_user.full_name,
+          reply_to_email: current_user.email
+        })
+        render json: email_schedules
       end
 
       private

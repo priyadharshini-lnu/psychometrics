@@ -36,6 +36,9 @@ en:
         request_approval:
           name: 'Request Approval'
           description: 'This message is sent to managers when a subject requests approval'
+        custom_message:
+          name: 'Custom Message'
+          description: 'This message can be sent to anyone participating in the assessment'
         categories:
           invitations: 'Invitations'
           reminders: 'Reminders'
