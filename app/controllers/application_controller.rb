@@ -34,7 +34,13 @@ class ApplicationController < ::BaseController
 
   def authenticate_user!
     Users::AuthenticateUser.call(params) do
-      on(:ok) { |user| sign_in(user) }
+      on(:ok) do |user, found_by|
+        if found_by == :spoof
+          request.env['warden'].request.env['devise.skip_trackable'] = 1
+          session[:spoofed] = true if found_by == :spoof
+        end
+        sign_in(user)
+      end
       on(:invalid_sso_token) { |url| redirect_to(url) && return if url }
     end
     super
