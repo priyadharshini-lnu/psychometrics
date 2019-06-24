@@ -18,43 +18,7 @@ module Administration
       end
 
       def schedulable_templates
-        # render json: threesixty_campaign.email_schedules
-        render json: [
-          {
-            id: 1,
-            name: 'subject_invite',
-            from: 'The Talent Enterprise1',
-            reply_to_email: 'no1@cc.com',
-            subject: 'Subject1',
-            content: 'Content1',
-            scheduled_date: Time.now,
-          },
-          {
-            id: 2,
-            name: 'evaluator_invite',
-            from: 'The Talent Enterprise2',
-            reply_to_email: 'no2@cc.com',
-            subject: 'Subject2',
-            content: 'Content2',
-            scheduled_date: Time.now,
-            recipient_criteria: [
-              {
-                field: 'Name or Email',
-                comparator: 'starts_with',
-                value: 'rohan',
-              },
-              {
-                comparator: 'has_relationship',
-                value: 'Peer',
-              },
-              {
-                field: 'datasheet.gender',
-                comparator: 'equal',
-                value: 'male',
-              },
-            ],
-          },
-        ]
+        render json: threesixty_campaign.email_templates.where(category: ['invitations', 'reminders'])
       end
 
       private

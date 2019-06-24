@@ -3,6 +3,7 @@ import { updateIn } from 'utils/immutable'
 
 export const ADD = 'threeSixty/emailSchedule/recipientCriteria/ADD'
 export const UPDATE = 'threeSixty/emailSchedule/recipientCriteria/UPDATE'
+export const MERGE = 'threeSixty/emailSchedule/recipientCriteria/MERGE'
 export const REMOVE = 'threeSixty/emailSchedule/recipientCriteria/REMOVE'
 
 export const add = () => ({ type: ADD })
@@ -12,15 +13,26 @@ export const update = (index, field, value) => ({
     index, field, value,
   },
 })
-export const remove = (emailScheduleId, index) => ({ type: REMOVE, payload: { emailScheduleId, index } })
+export const merge = (index, attributes) => ({
+  type: MERGE,
+  payload: {
+    index, attributes,
+  },
+})
+export const remove = index => ({ type: REMOVE, payload: { index } })
 
 const defaultState = []
 const HANDLERS = {
-  [ADD]: state => ([...state, { field: 'Name or Email', comparator: 'starts_with', value: null }]),
+  [ADD]: state => ([...state, { field: 'name_or_email', comparator: 'equal', value: null }]),
   [UPDATE]: (state, { payload: { index, field, value } }) => updateIn(
     state,
     index,
     recipientCriteria => ({ ...recipientCriteria, [field]: value }),
+  ),
+  [MERGE]: (state, { payload: { index, attributes } }) => updateIn(
+    state,
+    index,
+    recipientCriteria => ({ ...recipientCriteria, ...attributes }),
   ),
   [REMOVE]: (state, { payload: { index } }) => _.filter(state, (_, i) => index !== i),
 }

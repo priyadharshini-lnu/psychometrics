@@ -54,8 +54,9 @@ const HANDLERS = {
 }
 
 export default function reducer (state = defaultState, action) {
+  const index = _.findIndex(state.list, ({ id }) => id === state.selectedId)
   const stateFromInnerReducer = updateIn(
-    state, ['list', state.selectedId, 'recipientCriteria'], state => recipientCriteria(state, action),
+    state, ['list', index, 'recipientCriteria'], state => recipientCriteria(state, action),
   )
 
   const handler = HANDLERS[action.type]
