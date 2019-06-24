@@ -13,7 +13,7 @@ module Exports
           factors_scoring = question.detect_specified_scoring.
                             inject({}) { |sum, s| sum[s['index']] = s['value']; sum }
           required_size = question.props['choices'].to_i
-          answers = (answers || []).map { |a| (scoring && factors_scoring[a['index']] || 1) * a['value'] }
+          answers = (answers || []).map { |a| a['value'].is_a?(Numeric) ? (scoring && factors_scoring[a['index']] || 1) * a['value'] : '' }
           Utility::Array.ensure_size(answers, required_size)
         end
 
