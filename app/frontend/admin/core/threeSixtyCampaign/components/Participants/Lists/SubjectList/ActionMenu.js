@@ -86,8 +86,8 @@ const ActionsMenu = ({
 
   const requestDownloadReport = (campaignId, subjectId) => {
     downloadReport(campaignId, subjectId)
-      .then(({response}) => {
-        if(response.success) {
+      .then(({ response }) => {
+        if (response.success) {
           message.success('Report is generating. We will let you know when the report is ready.', 3)
         }
       })
@@ -111,7 +111,7 @@ const ActionsMenu = ({
       </Menu.Item>
       <Menu.Item key="2">
         <div
-          onClick={() => requestDownloadReport(campaignId, subjectId) }
+          onClick={() => requestDownloadReport(campaignId, subjectId)}
           role="button"
           tabIndex={-1}
         >

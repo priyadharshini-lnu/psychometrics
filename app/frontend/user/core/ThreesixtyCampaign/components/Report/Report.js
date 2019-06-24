@@ -11,7 +11,7 @@ const { Content } = Layout
 
 export default function Report ({
   report: {
-    loaded, report, results, user, campaign, approvalStatus, pdf, status,
+    loaded, report, results, user, campaign, approvalStatus,
   }, match: { params }, fetchReport, updateStatus, downloadReport,
   history,
 }) {
@@ -31,8 +31,8 @@ export default function Report ({
 
   const requestDownloadReport = (campaignId, usersReportId) => {
     downloadReport(campaignId, usersReportId)
-      .then(({response}) => {
-        if(response.success) {
+      .then(({ response }) => {
+        if (response.success) {
           message.success('Report is generating. We will let you know when the report is ready.', 3)
         }
       })
