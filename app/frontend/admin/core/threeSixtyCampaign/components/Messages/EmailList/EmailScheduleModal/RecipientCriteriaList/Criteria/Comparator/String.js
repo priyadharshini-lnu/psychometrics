@@ -1,5 +1,4 @@
 import React from 'react'
-import _ from 'lodash'
 import { Select, Input } from 'antd'
 import style from '../style.scss'
 
