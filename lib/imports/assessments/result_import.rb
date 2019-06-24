@@ -175,11 +175,11 @@ module Imports
       end
 
       def parse_date(date, index)
-        return nil unless date
+        return nil unless date.present?
         return date if date.is_a?(Date) || date.is_a?(Time)
         DateTime.strptime(date.to_s, '%D %r')
       rescue
-        errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + SKIP_ROWS, error: 'Invalid Date'))
+        errors.add(:base, I18n.t('administration.imports.errors.result.error', row: index + SKIP_ROWS, error: 'Invalid Date :' + date.to_s))
       end
     end
   end
