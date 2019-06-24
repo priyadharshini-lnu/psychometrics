@@ -42,9 +42,10 @@ export default function ScheduledDateField ({ scheduledDate, updateScheduleDate 
   return (
     <Input.Group compact>
       <DatePicker
-        showTime
+        showTime={{ format: 'hh:mm a' }}
+        format="MMMM Do YYYY, hh:mm a"
         value={date}
-        onChange={(date) => { updateScheduleDate(date.format()) }}
+        onChange={date => updateScheduleDate(date && date.format())}
         className={style.datePicker}
         placeholder="Scheduled date"
       />
