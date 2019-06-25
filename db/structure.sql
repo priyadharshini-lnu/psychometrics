@@ -2614,6 +2614,7 @@ CREATE TABLE public.users_results (
     answers jsonb,
     scoring jsonb,
     occupations jsonb,
+    embedded_data jsonb,
     step integer DEFAULT 0,
     status integer DEFAULT 0,
     completed_at timestamp without time zone,
@@ -5836,5 +5837,3 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190613190324'),
 ('20190617125849'),
 ('20190620132719');
-
-
