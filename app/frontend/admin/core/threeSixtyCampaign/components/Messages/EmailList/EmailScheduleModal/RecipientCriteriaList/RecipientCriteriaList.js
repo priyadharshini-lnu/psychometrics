@@ -12,7 +12,7 @@ export default function RecipientCriteriaList ({
       {_.isEmpty(recipientCriteria) && (
         <Select defaultValue="everyone" onChange={() => add()}>
           <Select.Option key="everyone">Everyone</Select.Option>
-          <Select.Option key="participants">Participats By Criteria...</Select.Option>
+          <Select.Option key="participants">Participants By Criteria...</Select.Option>
         </Select>
       )}
       {!_.isEmpty(recipientCriteria) && (

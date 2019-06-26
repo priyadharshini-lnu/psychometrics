@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import _ from 'lodash'
 import {
-  Modal, Button, Icon, Input,
+  Modal, Button, Icon, Input, message,
 } from 'antd'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 import Editor from 'components/Editor'
@@ -37,8 +37,15 @@ export default function EmailScheduleModal ({
 
   const handleCreate = () => {
     create(campaignId, selectedEmailSchedule)
-      .then(() => {})
+      .then(() => {
+        setErrors(null)
+        message.success('Email scheduled successfully', 5)
+      })
       .catch(setErrors)
+  }
+
+  const handleInputChange = ({ target: { name, value } }) => {
+    update(name, value)
   }
 
   return (
@@ -71,21 +78,24 @@ export default function EmailScheduleModal ({
           addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.from')}
           value={selectedEmailSchedule.from}
           className={cs(['mbm', style.smallWidthInput])}
-          onChange={(e) => { update('from', e.target.value) }}
+          name="from"
+          onChange={handleInputChange}
         />
 
         <Input
           addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.reply_to_email')}
           value={selectedEmailSchedule.replyToEmail}
           className={cs(['mbm', style.smallWidthInput])}
-          onChange={(e) => { update('replyToEmail', e.target.value) }}
+          name="replyToEmail"
+          onChange={handleInputChange}
         />
 
         <Input
           addonBefore={I18n.t('administration.threesixty_campaigns.email_templates.subject')}
           value={selectedEmailSchedule.subject}
           className="mbm"
-          onChange={(e) => { update('subject', e.target.value) }}
+          name="subject"
+          onChange={handleInputChange}
         />
         <Editor
           content={selectedEmailSchedule.content}

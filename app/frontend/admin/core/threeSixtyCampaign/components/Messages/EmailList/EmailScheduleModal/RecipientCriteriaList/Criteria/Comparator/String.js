@@ -2,7 +2,7 @@ import React from 'react'
 import { Select, Input } from 'antd'
 import style from '../style.scss'
 
-export default function StringComparator ({ comparator, value, update }) {
+export default function String ({ comparator, value, update }) {
   return (
     <div>
       <Select size="small" value={comparator} onChange={value => update('comparator', value)}>

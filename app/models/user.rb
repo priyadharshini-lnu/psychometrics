@@ -134,10 +134,6 @@ class User < ApplicationRecord
   validates :role, inclusion: { in: ::User::USER_ROLES.values }, presence: true, allow_nil: true
   validate :validate_grants
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
-
   # We won't set password, we will send inviting
   def password_required?
     return false if new_record? && create_by_invite
