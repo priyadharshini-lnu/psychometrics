@@ -18,7 +18,7 @@ module Administration
       end
 
       def schedulable_templates
-        email_schedules = threesixty_campaign.email_templates.where(category: ['invitations', 'reminders']).to_a
+        email_schedules = threesixty_campaign.email_templates.where(category: [:invitations, :reminders]).to_a
         email_schedules.prepend({
           id: 'custom_message',
           name: 'custom_message',

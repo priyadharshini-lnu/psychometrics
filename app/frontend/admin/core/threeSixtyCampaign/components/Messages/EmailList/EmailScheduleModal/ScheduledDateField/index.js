@@ -50,7 +50,7 @@ export default function ScheduledDateField ({ scheduledDate, updateScheduleDate 
         placeholder="Scheduled date"
       />
       <Dropdown overlay={menu} placement="bottomLeft" trigger={['click']}>
-        <Button style={{ width: '45px' }}>
+        <Button className={style.scheduleDateDropdownButton}>
           <Icon type="caret-down" />
         </Button>
       </Dropdown>
