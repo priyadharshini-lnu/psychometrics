@@ -28,6 +28,8 @@
 //= require js-routes
 //= require views/assigns/_assign
 
+//= require cable
+
 ///// Translations
 //= require i18n
 //= require i18n/translations
