@@ -45,7 +45,7 @@ export default function SendTestEmailModal ({
     >
       <div className="mbl">
         <Alert
-          message="Test emails do not include login information or pipeed text."
+          message="Test emails do not include login information or piped text."
           type="info"
           size="small"
           showIcon
