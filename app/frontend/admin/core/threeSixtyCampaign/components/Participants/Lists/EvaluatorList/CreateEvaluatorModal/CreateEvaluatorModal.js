@@ -48,7 +48,7 @@ export default function CreateEvaluatorModal ({
   const handleOk = () => {
     createAllEvaluators(
       campaignId,
-      _.pickBy(
+      _.filter(
         evaluators,
         s => s.subjectEmail || s.evaluatorEmail || s.evaluatorLastName || s.evaluatorFirstName || s.relationshipName,
       ),

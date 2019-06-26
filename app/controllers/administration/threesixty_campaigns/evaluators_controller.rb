@@ -26,10 +26,21 @@ module Administration
       end
 
       def create_all
-        form = ::Threesixty::Evaluators::CreateAllForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
+        validate_and_add_evalutors(params)
+      end
+
+      def download_example_import_file
+        send_file(
+          "#{Rails.root}/public/example_csv/evaluator_import.csv",
+          type: "text/csv"
+        )
+      end
+
+      def import
+        form = ::Threesixty::Evaluators::ImportFileForm.from_params(params).with_context(campaign: threesixty_campaign.campaign)
         if form.valid?
-          ::Threesixty::Evaluators::CreateAll.call!(form.evaluators_with_relations, threesixty_campaign)
-          render json: :ok
+          evaluators = evalutors_from_csv(form.file.path)
+          validate_and_add_evalutors({evaluators: evaluators })
         else
           render json: { errors: form.errors.messages }, status: :bad_request
         end
@@ -40,6 +51,22 @@ module Administration
       # Set model
       def set_resource_class
         @_resource_class ||= ::Threesixty::Evaluator
+      end
+
+      def validate_and_add_evalutors(evaluators)
+        form = ::Threesixty::Evaluators::CreateAllForm.from_params(evaluators).
+          with_context(campaign: threesixty_campaign.campaign)
+        if form.valid?
+          ::Threesixty::Evaluators::CreateAll.call!(form.evaluators_with_relations, threesixty_campaign)
+          render json: :ok
+        else
+          render json: { errors: form.errors.messages }, status: :bad_request
+        end
+      end
+
+      def evalutors_from_csv(file_path)
+        csv = CSV.read(file_path, 'r:bom|utf-8', headers: true)
+        subjects = csv.map { |row| row.to_h.symbolize_keys }
       end
     end
   end

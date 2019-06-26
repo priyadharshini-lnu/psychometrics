@@ -9,11 +9,8 @@ module Threesixty
       attribute :relationship_name, String
       attribute :subject_email, String
 
-      validates :evaluator_email, presence: true
-      validates :evaluator_email, format: { with: URI::MailTo::EMAIL_REGEXP }
-
-      validates :subject_email, presence: true
-      validates :subject_email, format: { with: URI::MailTo::EMAIL_REGEXP }
+      validates :evaluator_email, :subject_email, format: { with: URI::MailTo::EMAIL_REGEXP }
+      validates :evaluator_email, :subject_email, :evaluator_first_name, :evaluator_last_name, presence: true
 
       validate :check_subject
       validate :check_existing_relationship
