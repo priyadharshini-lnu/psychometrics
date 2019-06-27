@@ -13,6 +13,7 @@ import css from './style.scss'
 import TemplateMenu from './TemplateMenu'
 import FooterBar from './FooterBar'
 import SentTestEmailModal from './SendTestEmailModal'
+import EmailScheduleModal from './EmailScheduleModal'
 
 export default function Emails ({
   emailTemplates: { list },
@@ -98,6 +99,7 @@ export default function Emails ({
         </Button>
       </Col>
       <SentTestEmailModal match={match} />
+      <EmailScheduleModal match={match} />
     </Row>
   )
 }

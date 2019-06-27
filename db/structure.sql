@@ -2159,11 +2159,12 @@ CREATE TABLE public.threesixty_email_schedules (
     threesixty_campaign_id bigint,
     name character varying,
     "from" character varying,
+    subject text,
     reply_to_email character varying,
     content text,
-    scheduled_date time without time zone,
+    scheduled_date timestamp without time zone,
     recipient_criteria jsonb,
-    delivered_at time without time zone,
+    delivered_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );

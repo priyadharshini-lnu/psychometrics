@@ -214,6 +214,12 @@ Rails.application.routes.draw do
         end
         resources :instruction_templates
 
+        resources :email_schedules do
+          collection do
+            get :schedulable_templates
+          end
+        end
+
         resources :managers
         resources :relationships
         resources :participants do

@@ -15,6 +15,7 @@ import selectedParticipantTab from './core/threeSixtyCampaign/selectedParticipan
 import nominationRequirements from './core/threeSixtyCampaign/nominationRequirements/reducers'
 import messageOptions from './core/threeSixtyCampaign/messageOptions'
 import emailTemplates from './core/threeSixtyCampaign/emailTemplates'
+import emailSchedules from './core/threeSixtyCampaign/emailSchedules'
 import instructionTemplates from './core/threeSixtyCampaign/instructionTemplates'
 
 export default combineReducers({
@@ -30,6 +31,7 @@ export default combineReducers({
     nominationRequirements,
     messageOptions,
     emailTemplates,
+    emailSchedules,
     instructionTemplates,
   }),
   project: combineReducers({
