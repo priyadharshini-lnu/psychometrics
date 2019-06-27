@@ -8,6 +8,7 @@ cache:
   key: psychometrics-cache-key
   paths:
   - vendor/
+  - node_modules/
 
 before_script:
   # install ssh-agent

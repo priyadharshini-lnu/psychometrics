@@ -12,7 +12,7 @@ gem 'jquery-rails',               '~> 4.1.1'
 gem 'jquery-rails-cdn',           '~> 1.1.2'
 gem 'jbuilder',                   '~> 2.6.4'
 gem "barnes",                     '~> 0.0.7'
-gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355'
+gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355', group: 'production'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '1.12'
