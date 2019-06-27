@@ -19,7 +19,7 @@ class Participant < ApplicationRecord
 
   scope :active, -> { where.not(manager_nomination_status: :denied, evaluator_nomination_status: :denied) }
   scope :actual_by_options, lambda { |options|
-    where('subject_id != evaluator_id') unless options.participants.dig("subject", "can_evaluate_self")
+    where('participants.subject_id != participants.evaluator_id') unless options.participants.dig("subject", "can_evaluate_self")
   }
 
 end

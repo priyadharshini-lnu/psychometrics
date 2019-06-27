@@ -228,6 +228,7 @@ Rails.application.routes.draw do
         end
       end
       member do
+        get 'export_completion_status'
         delete 'reset'
         delete 'reset_nominations'
         delete 'remove_user'
