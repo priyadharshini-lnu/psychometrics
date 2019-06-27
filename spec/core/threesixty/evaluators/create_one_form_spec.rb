@@ -43,7 +43,13 @@ describe Threesixty::Evaluators::CreateOneForm do
   end
 
   it 'valid' do
-    form = described_class.new(subject_email: 'aa@a.com', evaluator_email: 'b@b.com', relationship_name: 'peer')
+    form = described_class.new(
+      subject_email: 'aa@a.com',
+      evaluator_email: 'b@b.com',
+      evaluator_first_name: 'John',
+      evaluator_last_name: 'Smith',
+      relationship_name: 'peer'
+    )
     form.with_context(campaign: campaign)
     form.valid?
     expect(form.valid?).to eq(true)
