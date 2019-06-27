@@ -75,6 +75,8 @@ module Exports
         #
         def build_administration_url(params = {})
           params = params.merge(
+            domain: Settings.domain,
+            subdomain: Settings.subdomain,
             client_id: client.id,
             user_id: user.id,
             id: report.id
