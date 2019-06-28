@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ::Clients::Assessments::UpdateAssessment do
-  let(:campaign) { create(:campaign, :with_reports) }
+  let(:campaign) { create(:campaign_base, :with_reports) }
   let(:membership) { create(:membership, client: campaign) }
   let(:assessments_client_ids) { campaign.assessments_clients.ids }
   let(:assessments_client) { campaign.assessments_clients.first }

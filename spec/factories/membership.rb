@@ -56,7 +56,7 @@ FactoryGirl.define do
     end
 
     trait :for_campaign do
-      client factory: :campaign
+      client factory: :campaign_base
     end
   end
 end

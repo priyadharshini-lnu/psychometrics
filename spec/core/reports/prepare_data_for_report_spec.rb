@@ -11,7 +11,6 @@ describe Reports::PrepareDataForReport do
     let(:user) { create(:user, email: 'a@a.com') }
     let!(:membership) { create(:membership, user: user, client: project) }
     before do
-      allow_any_instance_of(Assign).to receive(:relevant_assessment).and_return(true)
       create(:assign, membership: membership, assessment: assessment)
     end
 

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ::Clients::Reports::AssignReport do
-  let(:campaign) { create(:campaign) }
+  let(:campaign) { create(:campaign_base) }
   let(:membership) { create(:membership, client: campaign) }
   let(:reports) { create_list(:report, 2) }
   let(:report) { reports.first }

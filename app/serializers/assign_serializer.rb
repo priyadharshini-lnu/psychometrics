@@ -31,6 +31,11 @@ class AssignSerializer < ActiveModel::Serializer
     object.evaluator_id || object.membership.user_id
   end
 
+  # TODO (atanych): Do we still need this?
+  def hris
+    {}
+  end
+
   def relationship
     participant =
       # For multi assigns we should pass participant map in order to avoid N+1 queries
