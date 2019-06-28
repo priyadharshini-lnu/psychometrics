@@ -18,17 +18,24 @@ function ReportsForm () {
   }
 
   this.onResourceAssessmentChange = function(event) {
-    var toggleVisibility = function(option, name) {
-      if(option.data(name)) {
-        $('#reports_form .resource_' + name).removeClass('hidden').find(":input").removeAttr('disabled').removeClass('disabled')
+    var toggleVisibility = function(options, name) {
+      var allSameType = _.every(options, function(option) {
+        return $(option).data(name)
+      });
+
+      $resource = $('#reports_form .resource_' + name)
+
+      if(allSameType && !_.isEmpty(options)) {
+        $resource.removeClass('hidden').find(":input").removeAttr('disabled').removeClass('disabled')
       } else {
-        $('#reports_form .resource_' + name).addClass('hidden').find(":input").attr('disabled')
+        $resource.addClass('hidden').find(":input").attr('disabled')
       }
     }
 
-    var option = $('option:selected', this);
-    toggleVisibility(option, 'mindmill');
-    toggleVisibility(option, 'hogan');
+    var options = $('option:selected', this);
+
+    toggleVisibility(options, 'mindmill');
+    toggleVisibility(options, 'hogan');
   }
 }
 

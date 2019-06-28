@@ -2,26 +2,39 @@ I18n.translations || (I18n.translations = {});
 I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -67,13 +80,6 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -124,12 +130,17 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -434,6 +445,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -1037,11 +1049,20 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -1059,13 +1080,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -1500,6 +1518,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -1771,6 +1796,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -1891,6 +1923,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -2176,6 +2210,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -2195,6 +2232,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -2208,7 +2249,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -2217,25 +2259,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -2315,6 +2345,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -2578,6 +2610,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -3310,6 +3343,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -3640,6 +3675,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -4278,6 +4314,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -4346,6 +4383,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -4540,6 +4578,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -4940,13 +4988,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -5367,7 +5420,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -5384,6 +5438,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -5402,26 +5457,39 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
 I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -5467,13 +5535,6 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -5524,12 +5585,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -5834,6 +5900,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -6437,11 +6504,20 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -6459,13 +6535,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -6900,6 +6973,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -7171,6 +7251,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -7291,6 +7378,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -7576,6 +7665,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -7595,6 +7687,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -7608,7 +7704,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -7617,25 +7714,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -7715,6 +7800,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -7978,6 +8065,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -8710,6 +8798,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -9040,6 +9130,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -9678,6 +9769,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -9750,6 +9842,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -9944,6 +10037,16 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -10344,13 +10447,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -10771,26 +10879,28 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
   "validations": {
-    "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
-    "date": "Your response must be a valid date (dd/mm/yyyy)",
-    "each_group_contains": "Each group needs to contain not less than %{min} and not more than %{max} items",
-    "email": "Your response must be a valid email",
-    "issue": "Issue",
-    "least": "Please answer at least %{min} choice(s).",
-    "least_hotspot": "Please answer at least %{min} choice(s).",
-    "max_length": "Your response must be no more than %{max} characters.",
-    "min_length": "Your response must be at least %{min} characters.",
-    "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
-    "must_select": "Please select from %{min} to %{max} choices",
-    "number": "Your response must be a number",
-    "range": "Please answer at least %{min} and no more than %{max} choice(s).",
-    "text": "Your response must not contain a numbers",
-    "title": "Sorry, you cannot continue until you correct the following:"
+    "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
+    "date": "(dd/mm/yyyy) يجب أن يتم إدخال تاريخ صحيح",
+    "each_group_contains": "يجب أن تحتوي كل مجموعة على  %{min} عنصر كحد أدنى ولا تزيد عن %{max} كحد أقصى",
+    "email": "البريد الإلكتروني غير صحيح",
+    "issue": " الخطأ",
+    "least": "الرجاء اختيار %{min} خيارات كحد أدنى.",
+    "least_hotspot": "الرجاء اختيار %{min} خيارات كحد أدنى.",
+    "max_length": " يجب ألا تتجاوز إجابتك %{max} حرفًا.",
+    "min_length": "يجب أن تتكون إجابتك من  %{min} حرفًا كحد أدنى. ",
+    "must_rank_between": " يرجى وضع قيمة من %{min} إلى %{max} لكل عنصر. لا يجب أن تتكرر القيم.",
+    "must_select": "الرجاء اختيار من  %{min} إلى %{max} من الاختيارات",
+    "number": "يجب أن تحتوي الإجابة على أرقام",
+    "please_answer_question": "الرجاء الإجابة على هذا السؤال",
+    "range": "الرجاء الإجابة عن  %{min} كحد أدنى و  %{max} كحد أقصى من الخيارات. ",
+    "text": "يجب ألا تحتوي إجابتك على أرقام",
+    "title": " عذرًا، لا يمكنك المتابعة حتى تقوم بتصحيح ما يلي: "
   },
   "views": {
     "pagination": {
@@ -10806,26 +10916,39 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
 I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -10871,13 +10994,6 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -10928,12 +11044,17 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -11238,6 +11359,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -11841,11 +11963,20 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -11863,13 +11994,10 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -12304,6 +12432,13 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -12575,6 +12710,13 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -12695,6 +12837,8 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -12980,6 +13124,9 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -12999,6 +13146,10 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -13012,7 +13163,8 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -13021,25 +13173,13 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -13119,6 +13259,8 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -13382,6 +13524,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -14114,6 +14257,8 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -14444,6 +14589,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -15082,6 +15228,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -15150,6 +15297,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -15344,6 +15492,16 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -15744,13 +15902,18 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -16171,7 +16334,8 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -16188,6 +16352,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -16206,26 +16371,39 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
 I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -16271,13 +16449,6 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -16328,12 +16499,17 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -16638,6 +16814,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -17241,11 +17418,20 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -17263,13 +17449,10 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -17704,6 +17887,13 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -17975,6 +18165,13 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -18095,6 +18292,8 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -18380,6 +18579,9 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -18399,6 +18601,10 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -18412,7 +18618,8 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -18421,25 +18628,13 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -18519,6 +18714,8 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -18782,6 +18979,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -19514,6 +19712,8 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -19844,6 +20044,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -20482,6 +20683,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -20552,6 +20754,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -20746,6 +20949,16 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -21146,13 +21359,18 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -21573,7 +21791,8 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -21590,6 +21809,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -21608,26 +21828,39 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
 I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -21673,13 +21906,6 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -21730,12 +21956,17 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -22040,6 +22271,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -22643,11 +22875,20 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -22665,13 +22906,10 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -23106,6 +23344,13 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -23377,6 +23622,13 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -23497,6 +23749,8 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -23782,6 +24036,9 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -23801,6 +24058,10 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -23814,7 +24075,8 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -23823,25 +24085,13 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -23921,6 +24171,8 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -24184,6 +24436,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -24916,6 +25169,8 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -25246,6 +25501,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -25884,6 +26140,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "ha de ser posterior a %{date}",
@@ -25952,6 +26209,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -26146,6 +26404,16 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -26546,13 +26814,18 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -26973,7 +27246,8 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -26990,6 +27264,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -27008,26 +27283,39 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
 I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -27073,13 +27361,6 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -27130,12 +27411,17 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -27440,6 +27726,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -28043,11 +28330,20 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -28065,13 +28361,10 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -28506,6 +28799,13 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -28777,6 +29077,13 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -28897,6 +29204,8 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -29182,6 +29491,9 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -29201,6 +29513,10 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -29214,7 +29530,8 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -29223,25 +29540,13 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -29321,6 +29626,8 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -29584,6 +29891,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -30316,6 +30624,8 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -30646,6 +30956,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -31284,6 +31595,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -31353,6 +31665,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -31547,6 +31860,16 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -31947,13 +32270,18 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -32374,7 +32702,8 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -32391,6 +32720,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -32409,26 +32739,39 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
 I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -32474,13 +32817,6 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -32531,12 +32867,17 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -32841,6 +33182,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -33444,11 +33786,20 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -33466,13 +33817,10 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -33907,6 +34255,13 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -34178,6 +34533,13 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -34298,6 +34660,8 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -34583,6 +34947,9 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -34602,6 +34969,10 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -34615,7 +34986,8 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -34624,25 +34996,13 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -34722,6 +35082,8 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -34985,6 +35347,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -35717,6 +36080,8 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -36047,6 +36412,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -36685,6 +37051,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -36753,6 +37120,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -36947,6 +37315,16 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -37347,13 +37725,18 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -37774,7 +38157,8 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -37791,6 +38175,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -37809,26 +38194,39 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
 I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -37874,13 +38272,6 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -37931,12 +38322,17 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -38241,6 +38637,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -38844,11 +39241,20 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -38866,13 +39272,10 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -39307,6 +39710,13 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -39578,6 +39988,13 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -39698,6 +40115,8 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -39983,6 +40402,9 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -40002,6 +40424,10 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -40015,7 +40441,8 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -40024,25 +40451,13 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -40122,6 +40537,8 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -40385,6 +40802,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -41117,6 +41535,8 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -41447,6 +41867,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -42085,6 +42506,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "muss nach %{date} sein",
@@ -42153,6 +42575,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -42347,6 +42770,16 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -42747,13 +43180,18 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -43174,7 +43612,8 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -43191,6 +43630,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -43209,26 +43649,39 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
 I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -43274,13 +43727,6 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -43331,12 +43777,17 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -43641,6 +44092,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -44244,11 +44696,20 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -44266,13 +44727,10 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -44707,6 +45165,13 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -44978,6 +45443,13 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -45098,6 +45570,8 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -45383,6 +45857,9 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -45402,6 +45879,10 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -45415,7 +45896,8 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -45424,25 +45906,13 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -45522,6 +45992,8 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -45785,6 +46257,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -46517,6 +46990,8 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -46847,6 +47322,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -47485,6 +47961,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -47553,6 +48030,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -47747,6 +48225,16 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -48147,13 +48635,18 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -48574,7 +49067,8 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -48591,6 +49085,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -48609,26 +49104,39 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
 I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -48674,13 +49182,6 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -48731,12 +49232,17 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -49041,6 +49547,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -49644,11 +50151,20 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -49666,13 +50182,10 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -50107,6 +50620,13 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -50378,6 +50898,13 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -50498,6 +51025,8 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -50783,6 +51312,9 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -50802,6 +51334,10 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -50815,7 +51351,8 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -50824,25 +51361,13 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -50922,6 +51447,8 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -51185,6 +51712,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -51917,6 +52445,8 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -52247,6 +52777,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -52885,6 +53416,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -52953,6 +53485,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -53147,6 +53680,16 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -53547,13 +54090,18 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -53974,7 +54522,8 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -53991,6 +54540,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -54009,26 +54559,39 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
 I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -54074,13 +54637,6 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -54131,12 +54687,17 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -54441,6 +55002,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -55044,11 +55606,20 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -55066,13 +55637,10 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -55507,6 +56075,13 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -55778,6 +56353,13 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -55898,6 +56480,8 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -56183,6 +56767,9 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -56202,6 +56789,10 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -56215,7 +56806,8 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -56224,25 +56816,13 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -56322,6 +56902,8 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -56585,6 +57167,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -57317,6 +57900,8 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -57647,6 +58232,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -58285,6 +58871,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "tiene que ser posterior a %{date}",
@@ -58353,6 +58940,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -58547,6 +59135,16 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -58947,6 +59545,8 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "(es) Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "(es) Detailed Career Guide",
         "diploma_qualification": "(es) Diploma Qualification",
         "education_level": "(es) Education Level",
@@ -58954,6 +59554,9 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "key_career_tracks_within": "(es) Key Career Tracks Within",
         "potential_areas_of_study": "(es) Potential Areas of Study",
         "potential_roles": "(es) Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -59374,7 +59977,8 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -59391,6 +59995,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "(es) Sorry, you cannot continue until you correct the following:"
@@ -59409,26 +60014,39 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
 I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -59474,13 +60092,6 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -59531,12 +60142,17 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -59841,6 +60457,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -60444,11 +61061,20 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -60466,13 +61092,10 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -60907,6 +61530,13 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -61178,6 +61808,13 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -61298,6 +61935,8 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -61583,6 +62222,9 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -61602,6 +62244,10 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -61615,7 +62261,8 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -61624,25 +62271,13 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -61722,6 +62357,8 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -61985,6 +62622,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -62717,6 +63355,8 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -63047,6 +63687,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -63685,6 +64326,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -63753,6 +64395,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -63947,6 +64590,16 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -64347,13 +65000,18 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -64774,7 +65432,8 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -64791,6 +65450,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -64809,26 +65469,39 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
 I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -64874,13 +65547,6 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -64931,12 +65597,17 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -65241,6 +65912,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -65844,11 +66516,20 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -65866,13 +66547,10 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -66307,6 +66985,13 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -66578,6 +67263,13 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -66698,6 +67390,8 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -66983,6 +67677,9 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -67002,6 +67699,10 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -67015,7 +67716,8 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -67024,25 +67726,13 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -67122,6 +67812,8 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -67385,6 +68077,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -68117,6 +68810,8 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -68447,6 +69142,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -69085,6 +69781,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -69153,6 +69850,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -69347,6 +70045,16 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -69747,13 +70455,18 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -70174,7 +70887,8 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -70191,6 +70905,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -70209,26 +70924,39 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
 I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -70274,13 +71002,6 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -70331,12 +71052,17 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -70641,6 +71367,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -71244,11 +71971,20 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -71266,13 +72002,10 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -71707,6 +72440,13 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -71978,6 +72718,13 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -72098,6 +72845,8 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -72383,6 +73132,9 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -72402,6 +73154,10 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -72415,7 +73171,8 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -72424,25 +73181,13 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -72522,6 +73267,8 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -72785,6 +73532,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -73517,6 +74265,8 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -73847,6 +74597,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -74485,6 +75236,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "doit être après %{date}",
@@ -74553,6 +75305,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -74747,6 +75500,16 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -75147,13 +75910,18 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -75574,7 +76342,8 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -75591,6 +76360,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -75609,26 +76379,39 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
 I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -75674,13 +76457,6 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -75731,12 +76507,17 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -76041,6 +76822,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -76644,11 +77426,20 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -76666,13 +77457,10 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -77107,6 +77895,13 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -77378,6 +78173,13 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -77498,6 +78300,8 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -77783,6 +78587,9 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -77802,6 +78609,10 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -77815,7 +78626,8 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -77824,25 +78636,13 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -77922,6 +78722,8 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -78185,6 +78987,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -78917,6 +79720,8 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -79247,6 +80052,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -79885,6 +80691,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -79953,6 +80760,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -80147,6 +80955,16 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -80547,13 +81365,18 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -80974,7 +81797,8 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -80991,6 +81815,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -81009,26 +81834,39 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
 I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -81074,13 +81912,6 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -81131,12 +81962,17 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -81441,6 +82277,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -82044,11 +82881,20 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -82066,13 +82912,10 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -82507,6 +83350,13 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -82778,6 +83628,13 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -82898,6 +83755,8 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -83183,6 +84042,9 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -83202,6 +84064,10 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -83215,7 +84081,8 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -83224,25 +84091,13 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -83322,6 +84177,8 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -83585,6 +84442,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -84317,6 +85175,8 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -84647,6 +85507,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -85285,6 +86146,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -85355,6 +86217,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -85549,6 +86412,16 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -85949,13 +86822,18 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -86376,7 +87254,8 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -86393,6 +87272,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -86411,26 +87291,39 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
 I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -86476,13 +87369,6 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -86533,12 +87419,17 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -86843,6 +87734,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -87446,11 +88338,20 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -87468,13 +88369,10 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -87909,6 +88807,13 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -88180,6 +89085,13 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -88300,6 +89212,8 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -88585,6 +89499,9 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -88604,6 +89521,10 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -88617,7 +89538,8 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -88626,25 +89548,13 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -88724,6 +89634,8 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -88987,6 +89899,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -89719,6 +90632,8 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -90049,6 +90964,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -90687,6 +91603,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -90755,6 +91672,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -90949,6 +91867,16 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -91349,13 +92277,18 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -91776,7 +92709,8 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -91793,6 +92727,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -91811,26 +92746,39 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
 I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -91876,13 +92824,6 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -91933,12 +92874,17 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -92243,6 +93189,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -92846,11 +93793,20 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -92868,13 +93824,10 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -93309,6 +94262,13 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -93580,6 +94540,13 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -93700,6 +94667,8 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -93985,6 +94954,9 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -94004,6 +94976,10 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -94017,7 +94993,8 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -94026,25 +95003,13 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -94124,6 +95089,8 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -94387,6 +95354,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -95119,6 +96087,8 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -95449,6 +96419,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -96087,6 +97058,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -96152,6 +97124,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -96346,6 +97319,16 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -96746,13 +97729,18 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -97173,7 +98161,8 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -97190,6 +98179,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -97208,26 +98198,39 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
 I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -97273,13 +98276,6 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -97330,12 +98326,17 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -97640,6 +98641,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -98243,11 +99245,20 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -98265,13 +99276,10 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -98706,6 +99714,13 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -98977,6 +99992,13 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -99097,6 +100119,8 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -99382,6 +100406,9 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -99401,6 +100428,10 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -99414,7 +100445,8 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -99423,25 +100455,13 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -99521,6 +100541,8 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -99784,6 +100806,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -100516,6 +101539,8 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -100846,6 +101871,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -101484,6 +102510,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "deve essere successiva a %{date}",
@@ -101552,6 +102579,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -101746,6 +102774,16 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -102146,13 +103184,18 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -102573,7 +103616,8 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -102590,6 +103634,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -102608,26 +103653,39 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
 I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -102673,13 +103731,6 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -102730,12 +103781,17 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -103040,6 +104096,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -103643,11 +104700,20 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -103665,13 +104731,10 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -104106,6 +105169,13 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -104377,6 +105447,13 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -104497,6 +105574,8 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -104782,6 +105861,9 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -104801,6 +105883,10 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -104814,7 +105900,8 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -104823,25 +105910,13 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -104921,6 +105996,8 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -105184,6 +106261,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -105916,6 +106994,8 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -106246,6 +107326,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -106884,6 +107965,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "は%{date}より後に設定してください",
@@ -106952,6 +108034,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -107146,6 +108229,16 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -107546,13 +108639,18 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -107973,7 +109071,8 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -107990,6 +109089,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -108008,26 +109108,39 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
 I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -108073,13 +109186,6 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -108130,12 +109236,17 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -108440,6 +109551,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -109043,11 +110155,20 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -109065,13 +110186,10 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -109506,6 +110624,13 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -109777,6 +110902,13 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -109897,6 +111029,8 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -110182,6 +111316,9 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -110201,6 +111338,10 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -110214,7 +111355,8 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -110223,25 +111365,13 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -110321,6 +111451,8 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -110584,6 +111716,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -111316,6 +112449,8 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -111646,6 +112781,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -112284,6 +113420,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -112349,6 +113486,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -112543,6 +113681,16 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -112943,13 +114091,18 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -113370,7 +114523,8 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -113387,6 +114541,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -113405,26 +114560,39 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
 I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -113470,13 +114638,6 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -113527,12 +114688,17 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -113837,6 +115003,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -114440,11 +115607,20 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -114462,13 +115638,10 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -114903,6 +116076,13 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -115174,6 +116354,13 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -115294,6 +116481,8 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -115579,6 +116768,9 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -115598,6 +116790,10 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -115611,7 +116807,8 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -115620,25 +116817,13 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -115718,6 +116903,8 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -115981,6 +117168,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -116713,6 +117901,8 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -117043,6 +118233,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -117681,6 +118872,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -117750,6 +118942,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -117944,6 +119137,16 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -118344,13 +119547,18 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -118771,7 +119979,8 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -118788,6 +119997,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -118806,26 +120016,39 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
 I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -118871,13 +120094,6 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -118928,12 +120144,17 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -119238,6 +120459,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -119841,11 +121063,20 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -119863,13 +121094,10 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -120304,6 +121532,13 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -120575,6 +121810,13 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -120695,6 +121937,8 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -120980,6 +122224,9 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -120999,6 +122246,10 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -121012,7 +122263,8 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -121021,25 +122273,13 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -121119,6 +122359,8 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -121382,6 +122624,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -122114,6 +123357,8 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -122444,6 +123689,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -123082,6 +124328,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -123151,6 +124398,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -123345,6 +124593,16 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -123745,13 +125003,18 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -124172,7 +125435,8 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -124189,6 +125453,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -124207,26 +125472,39 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
 I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -124272,13 +125550,6 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -124329,12 +125600,17 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -124639,6 +125915,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -125242,11 +126519,20 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -125264,13 +126550,10 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -125705,6 +126988,13 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -125976,6 +127266,13 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -126096,6 +127393,8 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -126381,6 +127680,9 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -126400,6 +127702,10 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -126413,7 +127719,8 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -126422,25 +127729,13 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -126520,6 +127815,8 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -126783,6 +128080,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -127515,6 +128813,8 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -127845,6 +129145,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -128483,6 +129784,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -128551,6 +129853,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -128745,6 +130048,16 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -129145,13 +130458,18 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -129572,7 +130890,8 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -129589,6 +130908,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -129607,26 +130927,39 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
 I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -129672,13 +131005,6 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -129729,12 +131055,17 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -130039,6 +131370,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -130642,11 +131974,20 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -130664,13 +132005,10 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -131105,6 +132443,13 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -131376,6 +132721,13 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -131496,6 +132848,8 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -131781,6 +133135,9 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -131800,6 +133157,10 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -131813,7 +133174,8 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -131822,25 +133184,13 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -131920,6 +133270,8 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -132183,6 +133535,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -132915,6 +134268,8 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -133245,6 +134600,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -133883,6 +135239,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "moet na %{date} liggen",
@@ -133951,6 +135308,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -134145,6 +135503,16 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -134545,13 +135913,18 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -134972,7 +136345,8 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -134989,6 +136363,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -135007,26 +136382,39 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
 I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -135072,13 +136460,6 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -135129,12 +136510,17 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -135439,6 +136825,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -136042,11 +137429,20 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -136064,13 +137460,10 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -136505,6 +137898,13 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -136776,6 +138176,13 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -136896,6 +138303,8 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -137181,6 +138590,9 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -137200,6 +138612,10 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -137213,7 +138629,8 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -137222,25 +138639,13 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -137320,6 +138725,8 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -137583,6 +138990,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -138315,6 +139723,8 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -138645,6 +140055,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -139283,6 +140694,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -139351,6 +140763,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -139545,6 +140958,16 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -139945,13 +141368,18 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -140372,7 +141800,8 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -140389,6 +141818,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -140407,26 +141837,39 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
 I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -140472,13 +141915,6 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -140529,12 +141965,17 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -140839,6 +142280,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -141442,11 +142884,20 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -141464,13 +142915,10 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -141905,6 +143353,13 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -142176,6 +143631,13 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -142296,6 +143758,8 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -142581,6 +144045,9 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -142600,6 +144067,10 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -142613,7 +144084,8 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -142622,25 +144094,13 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -142720,6 +144180,8 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -142983,6 +144445,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -143715,6 +145178,8 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -144045,6 +145510,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -144683,6 +146149,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "musi być po %{date}",
@@ -144753,6 +146220,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -144947,6 +146415,16 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -145347,13 +146825,18 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -145774,7 +147257,8 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -145791,6 +147275,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -145809,26 +147294,39 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
 I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -145874,13 +147372,6 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -145931,12 +147422,17 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -146241,6 +147737,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -146844,11 +148341,20 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -146866,13 +148372,10 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -147307,6 +148810,13 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -147578,6 +149088,13 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -147698,6 +149215,8 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -147983,6 +149502,9 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -148002,6 +149524,10 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -148015,7 +149541,8 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -148024,25 +149551,13 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -148122,6 +149637,8 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -148385,6 +149902,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -149117,6 +150635,8 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -149447,6 +150967,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -150085,6 +151606,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "deve ser após %{date}",
@@ -150153,6 +151675,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -150347,6 +151870,16 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -150747,13 +152280,18 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -151174,7 +152712,8 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -151191,6 +152730,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -151209,26 +152749,39 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
 I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -151274,13 +152827,6 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -151331,12 +152877,17 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -151641,6 +153192,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -152244,11 +153796,20 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -152266,13 +153827,10 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -152707,6 +154265,13 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -152978,6 +154543,13 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -153098,6 +154670,8 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -153383,6 +154957,9 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -153402,6 +154979,10 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -153415,7 +154996,8 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -153424,25 +155006,13 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -153522,6 +155092,8 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -153785,6 +155357,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -154517,6 +156090,8 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -154847,6 +156422,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -155485,6 +157061,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -155553,6 +157130,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -155747,6 +157325,16 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -156147,13 +157735,18 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -156574,7 +158167,8 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -156591,6 +158185,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -156609,26 +158204,39 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
 I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -156674,13 +158282,6 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -156731,12 +158332,17 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -157041,6 +158647,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -157644,11 +159251,20 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -157666,13 +159282,10 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -158107,6 +159720,13 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -158378,6 +159998,13 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -158498,6 +160125,8 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -158783,6 +160412,9 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -158802,6 +160434,10 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -158815,7 +160451,8 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -158824,25 +160461,13 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -158922,6 +160547,8 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -159185,6 +160812,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -159917,6 +161545,8 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -160247,6 +161877,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -160885,6 +162516,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -160954,6 +162586,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -161148,6 +162781,16 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -161548,13 +163191,18 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -161975,7 +163623,8 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -161992,6 +163641,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -162010,26 +163660,39 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
 I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -162075,13 +163738,6 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -162132,12 +163788,17 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -162442,6 +164103,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -163045,11 +164707,20 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -163067,13 +164738,10 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -163508,6 +165176,13 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -163779,6 +165454,13 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -163899,6 +165581,8 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -164184,6 +165868,9 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -164203,6 +165890,10 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -164216,7 +165907,8 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -164225,25 +165917,13 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -164323,6 +166003,8 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -164586,6 +166268,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -165318,6 +167001,8 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -165648,6 +167333,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -166286,6 +167972,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "должна быть позднее чем %{date}",
@@ -166356,6 +168043,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -166551,6 +168239,16 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -166951,13 +168649,18 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -167378,7 +169081,8 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -167395,6 +169099,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -167413,26 +169118,39 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
 I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -167478,13 +169196,6 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -167535,12 +169246,17 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -167845,6 +169561,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -168448,11 +170165,20 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -168470,13 +170196,10 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -168911,6 +170634,13 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -169182,6 +170912,13 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -169302,6 +171039,8 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -169587,6 +171326,9 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -169606,6 +171348,10 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -169619,7 +171365,8 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -169628,25 +171375,13 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -169726,6 +171461,8 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -169989,6 +171726,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -170721,6 +172459,8 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -171051,6 +172791,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -171689,6 +173430,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -171758,6 +173500,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -171952,6 +173695,16 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -172352,13 +174105,18 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -172779,7 +174537,8 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -172796,6 +174555,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -172814,26 +174574,39 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
 I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -172879,13 +174652,6 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -172936,12 +174702,17 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -173246,6 +175017,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -173849,11 +175621,20 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -173871,13 +175652,10 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -174312,6 +176090,13 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -174583,6 +176368,13 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -174703,6 +176495,8 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -174988,6 +176782,9 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -175007,6 +176804,10 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -175020,7 +176821,8 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -175029,25 +176831,13 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -175127,6 +176917,8 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -175390,6 +177182,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -176122,6 +177915,8 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -176452,6 +178247,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -177090,6 +178886,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -177160,6 +178957,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -177354,6 +179152,16 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -177754,13 +179562,18 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -178181,7 +179994,8 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -178198,6 +180012,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -178216,26 +180031,39 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
 I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -178281,13 +180109,6 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -178338,12 +180159,17 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -178648,6 +180474,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -179251,11 +181078,20 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -179273,13 +181109,10 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -179714,6 +181547,13 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -179985,6 +181825,13 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -180105,6 +181952,8 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -180390,6 +182239,9 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -180409,6 +182261,10 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -180422,7 +182278,8 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -180431,25 +182288,13 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -180529,6 +182374,8 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -180792,6 +182639,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -181524,6 +183372,8 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -181854,6 +183704,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -182492,6 +184343,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -182562,6 +184414,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -182756,6 +184609,16 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -183156,13 +185019,18 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -183583,7 +185451,8 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -183600,6 +185469,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -183618,26 +185488,39 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
 I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -183683,13 +185566,6 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -183740,12 +185616,17 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -184050,6 +185931,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -184653,11 +186535,20 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -184675,13 +186566,10 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -185116,6 +187004,13 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -185387,6 +187282,13 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -185507,6 +187409,8 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -185792,6 +187696,9 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -185811,6 +187718,10 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -185824,7 +187735,8 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -185833,25 +187745,13 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -185931,6 +187831,8 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -186194,6 +188096,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -186926,6 +188829,8 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -187256,6 +189161,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -187894,6 +189800,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -187962,6 +189869,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -188156,6 +190064,16 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -188556,13 +190474,18 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -188983,7 +190906,8 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -189000,6 +190924,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -189018,26 +190943,39 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
 I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -189083,13 +191021,6 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -189140,12 +191071,17 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -189450,6 +191386,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -190053,11 +191990,20 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -190075,13 +192021,10 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -190516,6 +192459,13 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -190787,6 +192737,13 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -190907,6 +192864,8 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -191192,6 +193151,9 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -191211,6 +193173,10 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -191224,7 +193190,8 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -191233,25 +193200,13 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -191331,6 +193286,8 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -191594,6 +193551,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -192326,6 +194284,8 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -192656,6 +194616,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -193294,6 +195255,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -193359,6 +195321,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -193553,6 +195516,16 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -193953,13 +195926,18 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -194380,7 +196358,8 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -194397,6 +196376,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -194415,26 +196395,39 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
 I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -194480,13 +196473,6 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -194537,12 +196523,17 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -194847,6 +196838,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -195450,11 +197442,20 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -195472,13 +197473,10 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -195913,6 +197911,13 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -196184,6 +198189,13 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -196304,6 +198316,8 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -196589,6 +198603,9 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -196608,6 +198625,10 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -196621,7 +198642,8 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -196630,25 +198652,13 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -196728,6 +198738,8 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -196991,6 +199003,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -197723,6 +199736,8 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -198053,6 +200068,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -198691,6 +200707,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "%{date} den ileri bir tarih olmalı",
@@ -198756,6 +200773,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -198950,6 +200968,16 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -199350,13 +201378,18 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -199777,7 +201810,8 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -199794,6 +201828,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -199812,26 +201847,39 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
 I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -199877,13 +201925,6 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -199934,12 +201975,17 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -200244,6 +202290,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -200847,11 +202894,20 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -200869,13 +202925,10 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -201310,6 +203363,13 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -201581,6 +203641,13 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -201701,6 +203768,8 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -201986,6 +204055,9 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -202005,6 +204077,10 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -202018,7 +204094,8 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -202027,25 +204104,13 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -202125,6 +204190,8 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -202388,6 +204455,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -203120,6 +205188,8 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -203450,6 +205520,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -204088,6 +206159,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -204158,6 +206230,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -204352,6 +206425,16 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -204752,13 +206835,18 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -205179,7 +207267,8 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -205196,6 +207285,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -205214,26 +207304,39 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
 I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -205279,13 +207382,6 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -205336,12 +207432,17 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -205646,6 +207747,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -206249,11 +208351,20 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -206271,13 +208382,10 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -206712,6 +208820,13 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -206983,6 +209098,13 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -207103,6 +209225,8 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -207388,6 +209512,9 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -207407,6 +209534,10 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -207420,7 +209551,8 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -207429,25 +209561,13 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -207527,6 +209647,8 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -207790,6 +209912,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -208522,6 +210645,8 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -208852,6 +210977,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -209490,6 +211616,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -209558,6 +211685,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -209752,6 +211880,16 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -210152,13 +212290,18 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -210579,7 +212722,8 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -210596,6 +212740,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -210614,26 +212759,39 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
 I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -210679,13 +212837,6 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -210736,12 +212887,17 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -211046,6 +213202,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -211649,11 +213806,20 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -211671,13 +213837,10 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -212112,6 +214275,13 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -212383,6 +214553,13 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -212503,6 +214680,8 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -212788,6 +214967,9 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -212807,6 +214989,10 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -212820,7 +215006,8 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -212829,25 +215016,13 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -212927,6 +215102,8 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -213190,6 +215367,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -213922,6 +216100,8 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -214252,6 +216432,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -214890,6 +217071,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -214958,6 +217140,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -215152,6 +217335,16 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -215552,13 +217745,18 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -215979,7 +218177,8 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -215996,6 +218195,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -216014,26 +218214,39 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
 I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -216079,13 +218292,6 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -216136,12 +218342,17 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -216446,6 +218657,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -217049,11 +219261,20 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -217071,13 +219292,10 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -217512,6 +219730,13 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -217783,6 +220008,13 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -217903,6 +220135,8 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -218188,6 +220422,9 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -218207,6 +220444,10 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -218220,7 +220461,8 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -218229,25 +220471,13 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -218327,6 +220557,8 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -218590,6 +220822,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -219322,6 +221555,8 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -219652,6 +221887,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -220290,6 +222526,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -220358,6 +222595,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -220552,6 +222790,16 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -220952,13 +223200,18 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -221379,7 +223632,8 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -221396,6 +223650,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -221414,26 +223669,39 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
 I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -221479,13 +223747,6 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -221536,12 +223797,17 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -221846,6 +224112,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -222449,11 +224716,20 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -222471,13 +224747,10 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -222912,6 +225185,13 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -223183,6 +225463,13 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -223303,6 +225590,8 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -223588,6 +225877,9 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -223607,6 +225899,10 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -223620,7 +225916,8 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -223629,25 +225926,13 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -223727,6 +226012,8 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -223990,6 +226277,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -224722,6 +227010,8 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -225052,6 +227342,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -225690,6 +227981,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -225758,6 +228050,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -225952,6 +228245,16 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -226352,13 +228655,18 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -226779,7 +229087,8 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -226796,6 +229105,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -226814,26 +229124,39 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
 I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -226879,13 +229202,6 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -226936,12 +229252,17 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -227246,6 +229567,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -227849,11 +230171,20 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -227871,13 +230202,10 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -228312,6 +230640,13 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -228583,6 +230918,13 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -228703,6 +231045,8 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -228988,6 +231332,9 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -229007,6 +231354,10 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -229020,7 +231371,8 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -229029,25 +231381,13 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -229127,6 +231467,8 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -229390,6 +231732,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -230122,6 +232465,8 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -230452,6 +232797,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -231090,6 +233436,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -231158,6 +233505,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -231352,6 +233700,16 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -231752,13 +234110,18 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -232179,7 +234542,8 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -232196,6 +234560,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -232214,26 +234579,39 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
 I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -232279,13 +234657,6 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -232336,12 +234707,17 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -232646,6 +235022,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -233249,11 +235626,20 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -233271,13 +235657,10 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -233712,6 +236095,13 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -233983,6 +236373,13 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -234103,6 +236500,8 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -234388,6 +236787,9 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -234407,6 +236809,10 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -234420,7 +236826,8 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -234429,25 +236836,13 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -234527,6 +236922,8 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -234790,6 +237187,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -235522,6 +237920,8 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -235852,6 +238252,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -236490,6 +238891,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "tiene que ser posterior a %{date}",
@@ -236558,6 +238960,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -236752,6 +239155,16 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -237152,6 +239565,8 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "(es) Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "(es) Detailed Career Guide",
         "diploma_qualification": "(es) Diploma Qualification",
         "education_level": "(es) Education Level",
@@ -237159,6 +239574,9 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "key_career_tracks_within": "(es) Key Career Tracks Within",
         "potential_areas_of_study": "(es) Potential Areas of Study",
         "potential_roles": "(es) Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -237579,7 +239997,8 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -237596,6 +240015,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "(es) Sorry, you cannot continue until you correct the following:"
@@ -237614,26 +240034,39 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
 I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -237679,13 +240112,6 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -237736,12 +240162,17 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -238046,6 +240477,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -238649,11 +241081,20 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -238671,13 +241112,10 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -239112,6 +241550,13 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -239383,6 +241828,13 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -239503,6 +241955,8 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -239788,6 +242242,9 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -239807,6 +242264,10 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -239820,7 +242281,8 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -239829,25 +242291,13 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -239927,6 +242377,8 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -240190,6 +242642,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -240922,6 +243375,8 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -241252,6 +243707,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -241890,6 +244346,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -241958,6 +244415,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -242152,6 +244610,16 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -242552,13 +245020,18 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -242979,7 +245452,8 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -242996,6 +245470,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -243014,26 +245489,39 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
 I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -243079,13 +245567,6 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -243136,12 +245617,17 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -243446,6 +245932,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -244049,11 +246536,20 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -244071,13 +246567,10 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -244512,6 +247005,13 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -244783,6 +247283,13 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -244903,6 +247410,8 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -245188,6 +247697,9 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -245207,6 +247719,10 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -245220,7 +247736,8 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -245229,25 +247746,13 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -245327,6 +247832,8 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -245590,6 +248097,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -246322,6 +248830,8 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -246652,6 +249162,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -247290,6 +249801,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -247358,6 +249870,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -247552,6 +250065,16 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -247952,13 +250475,18 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -248379,7 +250907,8 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -248396,6 +250925,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -248414,26 +250944,39 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
 I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -248479,13 +251022,6 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -248536,12 +251072,17 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -248846,6 +251387,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -249449,11 +251991,20 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -249471,13 +252022,10 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -249912,6 +252460,13 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -250183,6 +252738,13 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -250303,6 +252865,8 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -250588,6 +253152,9 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -250607,6 +253174,10 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -250620,7 +253191,8 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -250629,25 +253201,13 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -250727,6 +253287,8 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -250990,6 +253552,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -251722,6 +254285,8 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -252052,6 +254617,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -252690,6 +255256,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -252758,6 +255325,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -252952,6 +255520,16 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -253352,13 +255930,18 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -253779,7 +256362,8 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -253796,6 +256380,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -253814,26 +256399,39 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
 I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -253879,13 +256477,6 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -253936,12 +256527,17 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -254246,6 +256842,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -254849,11 +257446,20 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -254871,13 +257477,10 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -255312,6 +257915,13 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -255583,6 +258193,13 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -255703,6 +258320,8 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -255988,6 +258607,9 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -256007,6 +258629,10 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -256020,7 +258646,8 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -256029,25 +258656,13 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -256127,6 +258742,8 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -256390,6 +259007,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -257122,6 +259740,8 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -257452,6 +260072,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -258090,6 +260711,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -258158,6 +260780,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -258352,6 +260975,16 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -258752,13 +261385,18 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -259179,7 +261817,8 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -259196,6 +261835,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -259214,26 +261854,39 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
 I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -259279,13 +261932,6 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -259336,12 +261982,17 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -259646,6 +262297,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -260249,11 +262901,20 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -260271,13 +262932,10 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -260712,6 +263370,13 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -260983,6 +263648,13 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -261103,6 +263775,8 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -261388,6 +264062,9 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -261407,6 +264084,10 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -261420,7 +264101,8 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -261429,25 +264111,13 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -261527,6 +264197,8 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -261790,6 +264462,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -262522,6 +265195,8 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -262852,6 +265527,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -263490,6 +266166,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -263558,6 +266235,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -263752,6 +266430,16 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -264152,13 +266840,18 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -264579,7 +267272,8 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -264596,6 +267290,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -264614,26 +267309,39 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
 I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -264679,13 +267387,6 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -264736,12 +267437,17 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -265046,6 +267752,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -265649,11 +268356,20 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -265671,13 +268387,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -266112,6 +268825,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -266383,6 +269103,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -266503,6 +269230,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -266788,6 +269517,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -266807,6 +269539,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -266820,7 +269556,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -266829,25 +269566,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -266927,6 +269652,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -267190,6 +269917,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -267922,6 +270650,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -268252,6 +270982,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -268890,6 +271621,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -268958,6 +271690,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -269152,6 +271885,16 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -269552,13 +272295,18 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -269979,7 +272727,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -269996,6 +272745,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -270014,26 +272764,39 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
 I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -270079,13 +272842,6 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -270136,12 +272892,17 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -270446,6 +273207,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -271049,11 +273811,20 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -271071,13 +273842,10 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -271512,6 +274280,13 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -271783,6 +274558,13 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -271903,6 +274685,8 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -272188,6 +274972,9 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -272207,6 +274994,10 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -272220,7 +275011,8 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -272229,25 +275021,13 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -272327,6 +275107,8 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -272590,6 +275372,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -273322,6 +276105,8 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -273652,6 +276437,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -274290,6 +277076,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -274358,6 +277145,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -274552,6 +277340,16 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -274952,13 +277750,18 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -275379,7 +278182,8 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -275396,6 +278200,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -275414,26 +278219,39 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
 I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -275479,13 +278297,6 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -275536,12 +278347,17 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -275846,6 +278662,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -276449,11 +279266,20 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -276471,13 +279297,10 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -276912,6 +279735,13 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -277183,6 +280013,13 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -277303,6 +280140,8 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -277588,6 +280427,9 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -277607,6 +280449,10 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -277620,7 +280466,8 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -277629,25 +280476,13 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -277727,6 +280562,8 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -277990,6 +280827,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -278722,6 +281560,8 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -279052,6 +281892,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -279690,6 +282531,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -279758,6 +282600,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -279952,6 +282795,16 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -280352,13 +283205,18 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -280779,7 +283637,8 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -280796,6 +283655,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -280814,26 +283674,39 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
 I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -280879,13 +283752,6 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -280936,12 +283802,17 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -281246,6 +284117,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -281849,11 +284721,20 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -281871,13 +284752,10 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -282312,6 +285190,13 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -282583,6 +285468,13 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -282703,6 +285595,8 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -282988,6 +285882,9 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -283007,6 +285904,10 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -283020,7 +285921,8 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -283029,25 +285931,13 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -283127,6 +286017,8 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -283390,6 +286282,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -284122,6 +287015,8 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -284452,6 +287347,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -285090,6 +287986,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -285158,6 +288055,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -285352,6 +288250,16 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -285752,13 +288660,18 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -286179,7 +289092,8 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -286196,6 +289110,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"
@@ -286214,26 +289129,39 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
 I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
   "activemodel": {
     "attributes": {
-      "assign_reports": {
-        "apply_to_existing_users": "Apply these changes to existing users",
+      "assign_report": {
+        "adding_report_ids": "Report(s)",
+        "is_applying_to_existing_users": "Apply these changes to existing users",
         "report_family_id": "Report Bundle"
       },
       "datasheet": {
         "file": "File (.xlsx)"
       },
-      "edit_assessments_client": {
-        "remove_assessment_ids": ""
-      },
       "new_assessments_client": {
-        "apply_to_existing_users": "Apply these changes to existing users",
-        "assessment_ids": "Assessments"
+        "assessment_ids": "Assessments",
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       },
       "regenerate_reports": {
         "report_ids": "Reports"
+      },
+      "update_assessment": {
+        "is_applying_to_existing_users": "Apply these changes to existing users"
       }
     },
     "errors": {
       "models": {
+        "assign_report": {
+          "attributes": {
+            "adding_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle",
+              "report_family_disabled": "You selected disabled Report Bundle",
+              "reports_disabled": "You selected disabled Report(s)"
+            },
+            "removing_report_ids": {
+              "not_linked_to_report_family": "You selected Reports which are not linked to selected Report Bundle"
+            }
+          }
+        },
         "create_all": {
           "attributes": {
             "evaluators": {
@@ -286279,13 +289207,6 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
-            }
-          }
-        },
-        "edit_assessments_client": {
-          "attributes": {
-            "remove_assessment_ids": {
-              "invalid": "You can't remove Assessments that depend on an assigned Reports"
             }
           }
         },
@@ -286336,12 +289257,17 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
               "too_short": "Password is too short. Minimum 6 character required"
             }
           }
+        },
+        "update_assessment": {
+          "attributes": null
         }
       }
     },
     "models": {
+      "assign_report": "Assign report Form",
       "datasheet": "Datasheet Form",
-      "regenerate_reports": "Regenerate Reports"
+      "regenerate_reports": "Regenerate Reports",
+      "update_assessment": "Update assessment Form"
     }
   },
   "activerecord": {
@@ -286646,6 +289572,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "overuse": "License %{name} ssis overused"
         },
         "report": {
+          "assessments_not_hogan": "All Assessments must be Hogan type",
           "has_already_assigned": "Assessment can’t be changed since it is already assigned to the user or applicable level",
           "has_dependent_relation": "This report is assinged on users",
           "max_assessment_count": "You have reached the limit of %{max} assessments",
@@ -287249,11 +290176,20 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         }
       },
       "assign_assessments": {
+        "confirm_remove_dependent_reports": {
+          "body": "Removing assessment(s) will also remove the following reports: %{report_names}",
+          "title": "Are you sure want to remove <b>Assessments</b>?"
+        },
         "edit": {
           "header": "Manage assigned Assessments"
         },
         "form": {
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)"
+        },
+        "form_edit": {
+          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "name": "Assessment name",
+          "remove": "Remove"
         },
         "new": {
           "header": "Add Assessments"
@@ -287271,13 +290207,10 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         },
         "form_edit": {
           "access": "Access",
+          "added_reports": "Already assigned Reports",
           "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-          "reports": "Reports",
-          "user_access": "User Access"
-        },
-        "form_new": {
-          "access": "Access",
-          "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
+          "new_reports": "Add new Reports",
+          "remove": "Remove",
           "reports": "Reports",
           "user_access": "User Access"
         },
@@ -287712,6 +290645,13 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "archive": {
           "successfully": "Project %{name} was successfully archived."
         },
+        "assign_assessments": {
+          "add_assessment": "Add Assessment",
+          "assessments": "Assessments"
+        },
+        "assign_reports": {
+          "add_report": "Add Report"
+        },
         "campaigns": {
           "archive": {
             "successfully": "Campaign %{name} was successfully archived."
@@ -287983,6 +290923,13 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
             "disable": "Archive",
             "enable": "Unarchive"
           },
+          "completion_statuses": {
+            "approved": "Approved",
+            "completed": "Completed",
+            "denied": "Denied",
+            "in_progress": "In Progress",
+            "not_started": "Not Started"
+          },
           "copy": {
             "error": "Client Tenancy %{name} was not copied.",
             "successfully": "Client Tenancy %{name} was successfully copied."
@@ -288103,6 +291050,8 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "header": "Edit Report Name"
         },
         "form": {
+          "load_mindmill_report": "Load from Mindmill",
+          "none_external": "None - Use report builder",
           "select_family": "Select Report Bundle",
           "types": {
             "common": "Any",
@@ -288388,6 +291337,9 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "new": {
             "header": "Assign Assessment and Reports"
           },
+          "reset": {
+            "successfully": "Result data was successfully reseted"
+          },
           "resource": {
             "confirms": {
               "assigns_report": {
@@ -288407,6 +291359,10 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
                   "body": "<p>Are you sure you want to remove user access to this report?</p>",
                   "title": "Remove user access to <strong>%{name}</strong> ?"
                 }
+              },
+              "reset": {
+                "body": "<p>Are you sure you want to reset result?</p>",
+                "title": "Reset <strong>Result</strong> ?"
               }
             },
             "generating": "Report \"%{name}\" is generating",
@@ -288420,7 +291376,8 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
                 "regenerate": "Regenerate report file",
                 "remove_user_access": "Remove user access"
               },
-              "delete": "Detach Assessment"
+              "delete": "Detach Assessment",
+              "reset": "Reset result"
             }
           }
         },
@@ -288429,25 +291386,13 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
             "header": "Add Reports"
           },
           "form": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
             "assessment": "Assessment",
             "detach": "Detach",
             "multiple_report_message": "The report has data from multiple assessments. To provide an access to the user to download the results you should assign all assessments linked to the report.",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_edit": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
-          },
-          "form_new": {
-            "access": "Access",
-            "apply_to_existing_users_hint": "(If is not selected, changes will be applied only to new users)",
-            "reports": "Reports",
-            "user_access": "User Access"
+            "user_access": {
+              "access": "Reports access",
+              "user": "User"
+            }
           },
           "new": {
             "header": "Add Reports"
@@ -288527,6 +291472,8 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
             "header": "Edit Report Name"
           },
           "form": {
+            "load_mindmill_report": "Load from Mindmill",
+            "none_external": "None - Use report builder",
             "select_family": "Select Report Bundle",
             "types": {
               "common": "Any",
@@ -288790,6 +291737,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
     },
     "copy": "Copy",
     "create": "Create",
+    "created": "Successfully created",
     "created_by": "Created By",
     "dimensions": {
       "copy": {
@@ -289522,6 +292470,8 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "header": "Edit Report Name"
       },
       "form": {
+        "load_mindmill_report": "Load from Mindmill",
+        "none_external": "None - Use report builder",
         "select_family": "Select Report Bundle",
         "types": {
           "common": "Any",
@@ -289852,6 +292802,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
     "tte": "TTE",
     "uniq_id": "Uniq ID",
     "update": "Update",
+    "updated": "Successfully updated",
     "users": {
       "create": {
         "successfully": "User %{name} was successfully created."
@@ -290490,6 +293441,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
     "connection_refused": "Oops! Failed to connect to the Web Console middleware.\nPlease make sure a rails development server is running.\n",
     "error_500": "Something went wrong. Contact your administrator.",
     "format": "%{attribute} %{message}",
+    "invalid_token": "Something went wrong. Plese reload the page and try again.",
     "messages": {
       "accepted": "must be accepted",
       "after": "must be after %{date}",
@@ -290558,6 +293510,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "other": "is the wrong length (should be %{count} characters)"
       }
     },
+    "try_again": "Please try again",
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
@@ -290752,6 +293705,16 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
     },
     "new": {
       "header": "Invite Form"
+    }
+  },
+  "jobs": {
+    "threesixty": {
+      "reports": {
+        "download": {
+          "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "message": "Report is ready"
+        }
+      }
     }
   },
   "languages": {
@@ -291152,13 +294115,18 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
       },
       "potential_career_full": {
         "bachelors_or_masters_qualification": "Bachelors or Masters Qualification",
+        "career_strengths_and_results": "Career Strengths and Your Results",
+        "career_sub_tracks": "Career Sub-tracks",
         "detailed_career_guide": "Detailed Career Guide",
         "diploma_qualification": "Diploma Qualification",
         "education_level": "Education Level",
         "high_school_entry_roles": "High School Entry Roles",
-        "key_career_tracks_within": "Key Career Tracks Within {{occupation}}",
+        "key_career_tracks_within": "Below is a list of potential job roles for each of the career tracks. Remember this list is indicative only, and not exhaustive. Do know that roles in italics require higher levels of education and / or experience.",
         "potential_areas_of_study": "Potential Areas of Study",
         "potential_roles": "Potential Roles",
+        "strength_high": "Signature Strength",
+        "strength_low": "Developmental Strength",
+        "strength_moderate": "Potential Strength",
         "work_environment": "Work Environment",
         "your_suitability": "Your Suitability"
       },
@@ -291579,7 +294547,8 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
       },
       "iso8601_without_seconds_and_timezone": "%Y-%m-%dT%H:%M",
       "long": "%B %d, %Y %H:%M",
-      "short": "%d %b %Y / %H:%M"
+      "short": "%d %b %Y / %H:%M",
+      "short_date": "%-d %b %Y"
     },
     "pm": "pm"
   },
@@ -291596,6 +294565,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
     "must_rank_between": "Please assign a value from %{min} to %{max} for each item. Values may not be repeated.",
     "must_select": "Please select from %{min} to %{max} choices",
     "number": "Your response must be a number",
+    "please_answer_question": "Please answer this question",
     "range": "Please answer at least %{min} and no more than %{max} choice(s).",
     "text": "Your response must not contain a numbers",
     "title": "Sorry, you cannot continue until you correct the following:"

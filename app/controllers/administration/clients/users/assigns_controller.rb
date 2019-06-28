@@ -5,7 +5,7 @@ module Administration
         include Administration::Clients
         prepend_before_action :set_resource_class
         before_action :set_membership
-        before_action :set_resource, only: [:destroy]
+        before_action :set_resource, only: [:destroy, :reset]
         append_before_action :pundit_authorize, :init_breadcrumbs
 
         def index
@@ -59,6 +59,10 @@ module Administration
           end
         end
 
+        def reset
+          Assigns::Reset.call(resource)
+        end
+
         def reports
           @_resources = client.reports.joins(:assessments_reports).
             where(assessments_reports: { assessment_id:  params[:assessment_id] }).distinct
@@ -66,6 +70,10 @@ module Administration
           respond_to do |format|
             format.json
           end
+        end
+
+        def i18n
+          'clients.users.assigns'
         end
 
         private

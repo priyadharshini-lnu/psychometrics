@@ -2,9 +2,9 @@
   .row.dashboard-holder
     .col-xs-12.col-md-8.col-md-offset-2
       h1.welcomeText Welcome to your dashboard, #{current_user.decorate.first_name}!
-      - if @single_assigns.blank? && @multiple_assigns_reports.blank?
+      - if @assigns.blank?
         p = t('administration.no_data_found')
-      - if @single_assigns.present?
+      - else
         .panel-group.assessments-holder id="assessments-1" role="tablist" aria-multiselectable="true"
           - @single_assigns.each do |assign|
             - if show_single_assign?(assign)

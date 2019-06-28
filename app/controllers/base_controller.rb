@@ -9,6 +9,7 @@ class BaseController < ActionController::Base
   before_action :detect_mobile
 
   rescue_from Rack::Timeout::RequestTimeoutException, with: :timeout
+  rescue_from ActionController::InvalidAuthenticityToken, :with => :handle_invalid_authenticity_token
 
   private
 
@@ -23,5 +24,15 @@ class BaseController < ActionController::Base
 
   def remove_cookie_for_file_download
     cookies.delete(:fileDownload)
+  end
+
+  def handle_invalid_authenticity_token
+    respond_to do |f|
+      f.html do
+        flash[:notice] = t('errors.try_again')
+        redirect_back(fallback_location: root_path)
+      end
+      f.js { render(:error, locals: { message: t('errors.invalid_token') }) }
+    end
   end
 end

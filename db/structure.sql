@@ -5,6 +5,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -1898,9 +1899,9 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     category integer DEFAULT 0
 );
@@ -2524,7 +2525,6 @@ CREATE TABLE public.users_assessments (
     assessment_id bigint,
     user_id bigint,
     campaign_id bigint,
-    selected_locale character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -4147,6 +4147,13 @@ CREATE INDEX index_factors_scoring_on_factor_id ON public.factors_scoring USING 
 
 
 --
+-- Name: index_factors_scoring_on_factor_question_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_factors_scoring_on_factor_question_assessment_id ON public.factors_scoring USING btree (factor_id, question_id, assessment_id);
+
+
+--
 -- Name: index_factors_scoring_on_question_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4525,13 +4532,6 @@ CREATE INDEX index_threesixty_campaigns_on_report_id ON public.threesixty_campai
 
 
 --
--- Name: index_threesixty_email_templates_campaign_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_threesixty_email_templates_campaign_name ON public.threesixty_email_templates USING btree (threesixty_campaign_id, name);
-
-
---
 -- Name: index_threesixty_evaluators_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4774,13 +4774,6 @@ CREATE INDEX threesixty_instruction_templates_cam_id ON public.threesixty_instru
 --
 
 CREATE INDEX threesixty_nomination_requirements_cam_id ON public.threesixty_nomination_requirements USING btree (threesixty_campaign_id);
-
-
---
--- Name: users_assessments_user_uniquesness_index; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX users_assessments_user_uniquesness_index ON public.users_assessments USING btree (user_id, campaign_id, assessment_id);
 
 
 --
@@ -5835,6 +5828,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190601163131'),
 ('20190604121645'),
 ('20190612100829'),
+('20190612132144'),
 ('20190613190324'),
 ('20190617125849'),
 ('20190620132719');
+
+

@@ -35,7 +35,7 @@ module Hogan
         assessment: assign.assessment,
         reports: assign.reports
       }
-      result = ::Services::Hogan::AssignAssessmentAndReports.call!(assessment_params: assessment_params)
+      ::Services::Hogan::AssignAssessmentAndReports.call!(assessment_params: assessment_params)
     end
 
   end

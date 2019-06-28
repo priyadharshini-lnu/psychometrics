@@ -41,14 +41,10 @@ describe Exports::Reports::Pdf::BulkReportExport do
         let(:export_params) do
           {
             bulk_report: bulk_report,
-            current_user: current_user,
             report: report,
             assign: assign,
             assigns_report: assigns_report,
             user: user,
-            client: client,
-            scheme: scheme,
-            opts: opts
           }
         end
 

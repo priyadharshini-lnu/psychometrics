@@ -65,16 +65,5 @@ RSpec.describe Communication, type: :model do
         expect(communication1.current_memberships_ids).to eq(communication1.selected_memberships_ids)
       end
     end
-
-    context 'if end_level is not client end_level' do
-      it 'not eq to selected_memberships_ids' do
-        expect(communication2.current_memberships_ids).not_to eq(communication2.selected_memberships_ids)
-      end
-
-      it 'eq to selected_memberships_ids minus lower ids' do
-        selected_ids = communication2.selected_memberships_ids - communication1.selected_memberships_ids
-        expect(communication2.current_memberships_ids).to eq(selected_ids)
-      end
-    end
   end
 end

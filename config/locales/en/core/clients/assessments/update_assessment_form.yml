@@ -1,0 +1,11 @@
+en:
+  activemodel:
+    models:
+      update_assessment: 'Update assessment Form'
+    attributes:
+      update_assessment:
+        is_applying_to_existing_users: 'Apply these changes to existing users'
+    errors:
+      models:
+        update_assessment:
+          attributes:

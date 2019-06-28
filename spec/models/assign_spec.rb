@@ -1,24 +1,26 @@
 require 'rails_helper'
 
 RSpec.describe Assign, type: :model do
-  let!(:membership) { create(:membership) }
-  let!(:report) { membership.client.reports.first }
-  let!(:license) { create(:license, client: membership.client.root, used_number: 0, report_family: report.report_families.take) }
+  context 'Scopes' do
+    context '.with_status' do
+      let(:campaign) { create(:campaign_base, :with_reports) }
+      let(:report) { campaign.clients_reports.first.report }
+      let(:assessment) { campaign.assessments_clients.first.assessment }
+      let(:membership) { create(:membership, client: campaign) }
+      let!(:assign) { create(:assign, assessment: assessment, membership: membership, status: 'not_started') }
+      let(:membership_project) { create(:membership, client: campaign.project) }
+      let!(:assign_project) { create(:assign, assessment: assessment, membership: membership_project, status: 'in_progress') }
 
-  describe '#threesixty?' do
-    let(:assign) { create(:assign, assessment: create(:assessment, category: :threesixty)) }
-    before do
-      allow_any_instance_of(Assign).to receive(:relevant_assessment).and_return(true)
+      it 'returns by project assign status' do
+        assign.project_assign.update_attribute(:status, described_class.statuses[:completed])
+        base_query = described_class.joins(:membership).where(memberships: { client_id: campaign.id })
+        expect(base_query.with_status(:completed).to_a).to include(assign)
+      end
+
+      it 'returns by original assign status' do
+        base_query = described_class.joins(:membership).where(memberships: { client_id: campaign.project.id })
+        expect(base_query.with_status(:in_progress).to_a).to include(assign_project)
+      end
     end
-
-    it { expect(assign.threesixty?).to eq true }
-  end
-
-  describe '#threesixty_subject' do
-    let(:campaign) { create(:campaign) }
-    let(:subject) { create(:user) }
-    let(:assign) { create(:assign, campaign: campaign, subject: subject) }
-    let!(:threesixty_subject) {  create(:threesixty_subject, campaign: campaign, user: subject) }
-    it { expect(assign.threesixty_subject.id).to eq threesixty_subject.id }
   end
 end

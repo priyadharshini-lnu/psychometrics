@@ -32,6 +32,7 @@ source 'https://rails-assets.org' do
   gem 'rails-assets-moment', '2.19.3'
   gem 'rails-assets-moment-timezone', '0.5.14'
   gem 'rails-assets-Sortable', '1.6.0'
+  gem 'rails-assets-lodash'
 end
 
 ### Authentication and authorization
@@ -150,7 +151,9 @@ gem 'enum_help', '~> 0.0.17'
 gem 'date_validator', '~> 0.9.0'
 gem 'attr_encrypted', '~> 3.1.0'
 gem 'js-routes', '~> 1.4.4'
-gem 'rswag', '~> 2.0.5'
+gem 'rswag-api', '~> 2.0.5'
+gem 'rswag-ui', '~> 2.0.5'
+gem 'tty-progressbar', '~> 0.16.0', require: false
 
 gem 'activerecord-import', '~> 1.0.2'
 
@@ -163,7 +166,7 @@ group :development, :test do
   gem 'awesome_print', '~> 1.8.0'
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_girl_rails', '~> 4.7.0'
-  # A fake data generator
+  gem 'rswag-specs', '~> 2.0.5'
 end
 
 group :development do
@@ -186,19 +189,20 @@ group :development do
   gem 'guard'
   gem 'rubocop', '~> 0.67.2', require: false
   gem 'meta_request'
+  gem 'db-clone', :git => 'https://github.com/smshuja/db-clone.git', :branch => 'load-with-erb'
 end
 group :test do
   # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
   gem 'capybara', '~> 2.13'
   gem 'faker', '~> 1.8.7'
-  gem 'poltergeist', '~> 1.14.0'
   gem 'capybara-screenshot', '~> 1.0.14'
-  gem 'selenium-webdriver'
-  gem 'shoulda-matchers', '~> 4.0.1'
   gem 'rails-controller-testing', '~> 1.0.4'
+  gem 'selenium-webdriver', '~> 3.141.0'
+  gem 'shoulda-matchers', '~> 4.0.1'
   gem 'database_cleaner', '~> 1.7.0'
   gem 'simplecov', require: false
   gem 'rspec-retry', '~> 0.6.1'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'timecop', '~> 0.9.1'
+  gem 'webdrivers'
 end

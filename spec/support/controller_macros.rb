@@ -7,9 +7,14 @@ module ControllerMacros
   end
 
   def login_superadmin
+    let(:controller_superadmin) { FactoryGirl.create(:superadmin) }
     before(:each) do
       @request.env['devise.mapping'] = Devise.mappings[:administration]
-      sign_in FactoryGirl.create(:superadmin)
+      sign_in controller_superadmin
+    end
+    after(:each) do
+      @request.env.delete('devise.mapping')
+      sign_out controller_superadmin
     end
   end
 

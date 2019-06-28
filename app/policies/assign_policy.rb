@@ -30,7 +30,7 @@ class AssignPolicy < BasePolicy
       scope.
         where(membership_id: @user[:current_membership].id).
         joins(:assessment).
-        where.has { |assign| assign.assessment.disabled.not_eq(true) }
+        where.not(assessments: { disabled: true })
     end
   end
 end

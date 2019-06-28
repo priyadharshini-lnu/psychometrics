@@ -13,17 +13,17 @@
             th = t('.access')
         - @report_families.each do |report_family|
           tr class="reports_input #{'hidden' unless report_family.id == f.object.report_family_id}" id=dom_id(report_family)
-            td = f.input :report_ids,
+            td = f.input :adding_report_ids,
                          as: :check_boxes,
                          collection: report_family.reports,
                          include_hidden: false,
                          label: false
-            td = f.input :user_access_report_ids,
+            td = f.input :adding_user_access_report_ids,
                          as: :check_boxes,
                          collection: report_family.reports,
                          include_hidden: false,
                          label: false,
-                         label_method: proc { t('.user_access') }
+                         label_method: proc { t('.user_access.access') }
       br
   .modal-footer
     .btn-group
