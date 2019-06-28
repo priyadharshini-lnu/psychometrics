@@ -83,6 +83,17 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -3580,6 +3591,10 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -5520,6 +5535,17 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -9020,6 +9046,10 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -10964,6 +10994,17 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -14464,6 +14505,10 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -16404,6 +16449,17 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -19904,6 +19960,10 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -21846,6 +21906,17 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -25346,6 +25417,10 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -27286,6 +27361,17 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -30786,6 +30872,10 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -32727,6 +32817,17 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -36227,6 +36328,10 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -38167,6 +38272,17 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -41667,6 +41783,10 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -43607,6 +43727,17 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -47107,6 +47238,10 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -49047,6 +49182,17 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -52547,6 +52693,10 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -54487,6 +54637,17 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -57987,6 +58148,10 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -59927,6 +60092,17 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -63427,6 +63603,10 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -65367,6 +65547,17 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -68867,6 +69058,10 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -70807,6 +71002,17 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -74307,6 +74513,10 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -76247,6 +76457,17 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -79747,6 +79968,10 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -81687,6 +81912,17 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -85187,6 +85423,10 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -87129,6 +87369,17 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -90629,6 +90880,10 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -92569,6 +92824,17 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -96069,6 +96335,10 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -98006,6 +98276,17 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -101506,6 +101787,10 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -103446,6 +103731,17 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -106946,6 +107242,10 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -108886,6 +109186,17 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -112386,6 +112697,10 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -114323,6 +114638,17 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -117823,6 +118149,10 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -119764,6 +120094,17 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -123264,6 +123605,10 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -125205,6 +125550,17 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -128705,6 +129061,10 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -130645,6 +131005,17 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -134145,6 +134516,10 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -136085,6 +136460,17 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -139585,6 +139971,10 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -141525,6 +141915,17 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -145025,6 +145426,10 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -146967,6 +147372,17 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -150467,6 +150883,10 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -152407,6 +152827,17 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -155907,6 +156338,10 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -157847,6 +158282,17 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -161347,6 +161793,10 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -163288,6 +163738,17 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -166788,6 +167249,10 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -168731,6 +169196,17 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -172231,6 +172707,10 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -174172,6 +174652,17 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -177671,6 +178162,10 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -179617,6 +180112,17 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -183114,6 +183620,10 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -185056,6 +185566,17 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -188556,6 +189077,10 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -190496,6 +191021,17 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -193996,6 +194532,10 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -195933,6 +196473,17 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -199433,6 +199984,10 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -201370,6 +201925,17 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -204870,6 +205436,10 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -206812,6 +207382,17 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -210312,6 +210893,10 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -212252,6 +212837,17 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -215752,6 +216348,10 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -217692,6 +218292,17 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -221191,6 +221802,10 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -223135,6 +223750,17 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -226631,6 +227257,10 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -228575,6 +229205,17 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -232072,6 +232713,10 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -234012,6 +234657,17 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -237512,6 +238168,10 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
           "reminders": "Reminders",
           "report_ready": "Report Ready"
         },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
+        },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
           "description": "This message will be sent to all participants that are evaluators",
@@ -239452,6 +240112,17 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
               "email_duplicate": "There are duplicates in Email column",
               "invalid_format": "Invalid format (.xlsx)",
               "no_email_column": "File does not contain Email column"
+            }
+          }
+        },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
             }
           }
         },
@@ -242951,6 +243622,10 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -244895,6 +245570,17 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -248391,6 +249077,10 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -250335,6 +251025,17 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -253831,6 +254532,10 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -255775,6 +256480,17 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -259271,6 +259987,10 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -261215,6 +261935,17 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -264711,6 +265442,10 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -266655,6 +267390,17 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -270151,6 +270897,10 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -272095,6 +272845,17 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -275591,6 +276352,10 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -277535,6 +278300,17 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -281031,6 +281807,10 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -282975,6 +283755,17 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -286471,6 +287262,10 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
@@ -288415,6 +289210,17 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
             }
           }
         },
+        "email_schedule": {
+          "attributes": {
+            "from": {
+              "blank": "From field can't be blank"
+            },
+            "reply_to_email": {
+              "blank": "Reply to email field can't be blank",
+              "invalid": "Reply to email is invalid"
+            }
+          }
+        },
         "email_template": {
           "attributes": {
             "from": {
@@ -291911,6 +292717,10 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
           "invitations": "Invitations",
           "reminders": "Reminders",
           "report_ready": "Report Ready"
+        },
+        "custom_message": {
+          "description": "This message can be sent to anyone participating in the assessment",
+          "name": "Custom Message"
         },
         "days_repeated": "days, repeated",
         "evaluator_invite": {
