@@ -5,6 +5,8 @@ module Threesixty
     module Branches
       module SubjectFields
         class Meta < RecipientFields::Meta
+          protected
+
           def user
             context[:subject]
           end

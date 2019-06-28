@@ -9,8 +9,10 @@ module Threesixty
             method_name = possible_fields[path.second]
             return broadcast :ok, '' unless method_name
 
-            broadcast :ok, public_send(method_name)
+            broadcast :ok, send(method_name)
           end
+
+          protected
 
           def possible_fields
             {

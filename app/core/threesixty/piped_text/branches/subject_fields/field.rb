@@ -5,6 +5,8 @@ module Threesixty
     module Branches
       module SubjectFields
         class Field < RecipientFields::Field
+          protected
+
           def possible_fields
             {
               'Name' => :full_name,

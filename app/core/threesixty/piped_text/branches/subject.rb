@@ -5,9 +5,8 @@ module Threesixty
     module Branches
       class Subject < BaseBranch
         def call
-          class_name = BaseUtils.safe_constantize("Threesixty::PipedText::Branches::SubjectFields::#{path.first}")
-          result = class_name ? class_name.call!(path, params, context) : ''
-          broadcast :ok, result
+          class_name = "Threesixty::PipedText::Branches::SubjectFields::#{path.first}".safe_constantize
+          broadcast :ok, class_name&.call!(path, params, context)
         end
       end
     end

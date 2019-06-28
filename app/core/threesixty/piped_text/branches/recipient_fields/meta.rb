@@ -14,6 +14,8 @@ module Threesixty
             broadcast :ok, row.data[path.second]
           end
 
+          protected
+
           def user
             context[:recipient]
           end

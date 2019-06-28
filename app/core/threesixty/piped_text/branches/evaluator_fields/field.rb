@@ -5,6 +5,8 @@ module Threesixty
     module Branches
       module EvaluatorFields
         class Field < RecipientFields::Field
+          protected
+
           def user
             context[:evaluator]
           end

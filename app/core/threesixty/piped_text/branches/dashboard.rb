@@ -7,9 +7,8 @@ module Threesixty
         def call
           return broadcast :ok, '' unless path.second
 
-          class_name = BaseUtils.safe_constantize("Threesixty::PipedText::Branches::DashboardFields::#{path.second}")
-          result = class_name ? class_name.call!(path, params, context) : ''
-          broadcast :ok, result
+          class_name = "Threesixty::PipedText::Branches::DashboardFields::#{path.second}".safe_constantize
+          broadcast :ok, class_name&.call!(path, params, context)
         end
       end
     end
