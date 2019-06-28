@@ -10,14 +10,10 @@ module Exports
             items.each do |item|
               export_params = {
                 bulk_report: bulk_report,
-                current_user: params[:current_user],
                 report: Report.find(item.id),
                 assign: Assign.find(item.assign_id),
                 assigns_report: AssignsReport.find(item.assigns_report_id),
                 user: User.find(item.user_id),
-                client: params[:client],
-                scheme: params[:scheme],
-                opts: params[:opts] || {}
               }
               ::BulkReports::ExportJob.perform_later(export_params)
             end

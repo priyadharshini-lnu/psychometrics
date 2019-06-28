@@ -1,4 +1,6 @@
 FactoryGirl.define do
-  factory :assessment_client do
+  factory :assessments_client do
+    assessment
+    client
   end
 end

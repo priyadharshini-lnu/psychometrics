@@ -13,10 +13,10 @@
       = f.input :bachelors_or_masters_qualification, as: :text
       = f.input :work_environment, as: :text
       = f.input :color
-      = f.input :icon, hint: f.object.icon.present? ? f.input(:remove_icon, as: :boolean) + image_tag(f.object.icon.url(:factors_icon)) : content_tag(:span, t('.no_icon'))
-      = f.input :alternative_icon, hint: f.object.alternative_icon.present? ? f.input(:remove_alternative_icon, as: :boolean) + image_tag(f.object.alternative_icon.url(:factors_icon)) : content_tag(:span, t('.no_icon'))
-      = f.input :indicative_roles_image, hint: f.object.indicative_roles_image.present? ? f.input(:remove_indicative_roles_image, as: :boolean) + image_tag(f.object.indicative_roles_image.url(:factors_icon)) : content_tag(:span, t('.no_icon'))
-      = f.input :key_career_tracks_image, hint: f.object.key_career_tracks_image.present? ? f.input(:remove_key_career_tracks_image, as: :boolean) + image_tag(f.object.key_career_tracks_image.url(:factors_icon)) : content_tag(:span, t('.no_icon'))
+      = f.input :icon, hint: f.object.icon.present? ? f.input(:remove_icon, as: :boolean) + image_tag(f.object.icon.url(:factors_icon), class: 'thumb') : content_tag(:span, t('.no_icon'))
+      = f.input :alternative_icon, hint: f.object.alternative_icon.present? ? f.input(:remove_alternative_icon, as: :boolean) + image_tag(f.object.alternative_icon.url(:factors_icon), class: 'thumb') : content_tag(:span, t('.no_icon'))
+      = f.input :indicative_roles_image, hint: f.object.indicative_roles_image.present? ? f.input(:remove_indicative_roles_image, as: :boolean) + image_tag(f.object.indicative_roles_image.url(:factors_icon), class: 'thumb') : content_tag(:span, t('.no_icon'))
+      = f.input :key_career_tracks_image, hint: f.object.key_career_tracks_image.present? ? f.input(:remove_key_career_tracks_image, as: :boolean) + image_tag(f.object.key_career_tracks_image.url(:factors_icon), class: 'thumb') : content_tag(:span, t('.no_icon'))
   .modal-footer
     .btn-group
       = f.button :submit, resource.new_record? ? t('administration.create') : t('administration.update'), class: 'btn-info'

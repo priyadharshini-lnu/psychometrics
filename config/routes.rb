@@ -62,6 +62,7 @@ Rails.application.routes.draw do
           scope module: :users do
             resources :assigns, only: [:index, :new, :create, :destroy] do
               get :reports, on: :collection
+              put :reset, on: :member
             end
             resources :reports, only: [:destroy] do
               get :preview, on: :member
@@ -468,7 +469,7 @@ Rails.application.routes.draw do
                             passwords: 'passwords' }
   # Manager's panel
   #
-  constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
+  constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
     namespace :managers do
       resources :dashboard, only: [:index]
       resources :assigns, only: [:index]

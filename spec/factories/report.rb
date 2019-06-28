@@ -26,7 +26,7 @@ FactoryGirl.define do
     assessments { build_list(:assessment, Report::MAX_ASSESSMENT_COUNT - 1) }
 
     after(:build) do |report, _evaluator|
-      report.assessments << report.assessment
+      report.assessments << report.assessment unless report.assessments.include?(report.assessment)
     end
   end
 end

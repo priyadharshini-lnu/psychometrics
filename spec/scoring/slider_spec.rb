@@ -26,6 +26,13 @@ RSpec.describe Scoring::TextEntry do
             expect(result).to eq(0)
           end
         end
+        context 'when scoring is reversed, answer: #1 - 100, #2, #3 - 200' do
+          it 'returns 4/9' do
+            reverse_template_data = [{'index' => 0, 'value' => 2, 'reverse' => true}, {'index' => 1, 'value' => 3, 'reverse' => true}, {'index' => 2, 'value' => 4, 'reverse' => true}]
+            result = slider.calculate(question, {'answers' => [{'index' => 0, 'value' => 100}, {'index' => 1, 'value' => 200}, {'index' => 2, 'value' => 200}]}, reverse_template_data)
+            expect(result.round(10)).to eq((4 / 9.to_f).round(10))
+          end
+        end
       end
     end
   end

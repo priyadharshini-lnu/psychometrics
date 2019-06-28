@@ -50,7 +50,7 @@ module Services
             assessment_id: context.assessment.hogan_assessment_setting.hogan_assessment_id,
             report_id: report.hogan_report_setting.hogan_report_id,
             participant_id: context.membership.hogan_credential.participant_id
-          )
+          ) if report.hogan?
         end
       end
     end

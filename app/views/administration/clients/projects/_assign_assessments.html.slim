@@ -1,0 +1,8 @@
+strong.nowrap
+  = t('.assessments')
+  = link_to edit_administration_client_assign_assessments_path(resource.id), class: 'mlm', remote: true
+    span.fa.fa-pencil
+div
+  - resource.assessments.each do |assessment|
+    span.mrs.mbs data-toggle='tooltip' data-title=assessment.name
+      = assessment.decorate.icon

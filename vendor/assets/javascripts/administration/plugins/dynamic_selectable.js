@@ -66,7 +66,8 @@ DynamicSelectable = (function() {
   DynamicSelectable.prototype.clearTarget = function() {
     var content = '';
     if (this.include_blank) {
-      content = '<option></option>';
+      title = typeof(this.include_blank) == 'string' ? this.include_blank : ''
+      content = '<option title="' + title + '"></option>';
     }
     return this.$targetSelect.html(content);
   };

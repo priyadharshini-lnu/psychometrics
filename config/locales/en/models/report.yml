@@ -16,6 +16,7 @@ en:
           max_assessment_count: You have reached the limit of %{max} assessments
           min_assessment_count: The minimum number of assessments is %{min}
           has_already_assigned: Assessment can’t be changed since it is already assigned to the user or applicable level
+          assessments_not_hogan: All Assessments must be Hogan type
   simple_form:
     placeholders:
       report:

@@ -16,7 +16,7 @@ module Imports
                                                     'application/octet-stream',
                                                     'text/plain'] }
 
-      AVAILABLE_TRANSLATEABLE_TYPES = %w(reports/filter factor occupation reports/module).freeze
+      AVAILABLE_TRANSLATEABLE_TYPES = %w(reports/filter factor occupation reports/module external/factor).freeze
 
       def process!
         # Return error if form not valid
@@ -47,7 +47,7 @@ module Imports
       #
       def load_imported_items
         # Parse header of xls/csv by strict rules
-        rows = open_spreadsheet.parse
+        rows = open_spreadsheet.to_a
         header = rows.shift
 
         collect_translations = Hash.new
