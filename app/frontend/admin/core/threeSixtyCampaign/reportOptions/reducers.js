@@ -1,16 +1,13 @@
 import { setIn, updateIn } from 'utils/immutable'
 
-import {
-  FETCH,
-  UPDATE,
-} from './actions'
+import { FETCH, UPDATE } from './actions'
 import availabilityConditionsReducer from './availabilityConditions'
 
 const defaultState = { access: {}, approval: {}, availability: { conditions: [] } }
 
 const HANDLERS = {
   [FETCH]: (_, { response }) => response,
-  [UPDATE]: (state, { key, value }) => setIn(state, key, value),
+  [UPDATE]: (state, { payload: { key, value } }) => setIn(state, key, value),
 }
 
 export default function reducer (state = defaultState, action) {
