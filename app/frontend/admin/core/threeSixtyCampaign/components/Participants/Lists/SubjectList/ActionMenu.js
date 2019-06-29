@@ -43,7 +43,7 @@ const ActionsMenu = ({
   }
 
   const holdReport = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to release report?'
+    const confirmationMessage = 'Are you sure you want to hold report?'
     updateSubject(
       subjectId,
       { report_release_status: 'on_hold' },
