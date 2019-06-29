@@ -5,8 +5,6 @@ require 'rails_helper'
 describe Threesixty::Participants::GetStatus do
   let(:subject) { create(:threesixty_subject) }
   let(:evaluator) { create(:threesixty_evaluator, user_id: subject.user_id) }
-  let(:option_which_requires_approval) { create(:threesixty_option, participants: { "manager" =>  { "can_approves_evaluations" => true } }) }
-  let(:option_which_does_not_require_approval) { create(:threesixty_option) }
   let(:manager_relationship) { create(:relationship, name: 'manager') }
   let(:peer_relationship) { create(:relationship, name: 'peer') }
   let(:nomination_requirement) do
@@ -16,56 +14,33 @@ describe Threesixty::Participants::GetStatus do
            ])
   end
 
-  describe 'evaluator does not have related subject' do
-    describe 'completed_evaluations_count < evaluations_count' do
-      let(:evaluator) { create(:threesixty_evaluator, completed_evaluations_count: 1, evaluations_count: 2) }
-      let(:counters) { { total_evaluations: 2, completed_evaluations: 1 } }
-      it { expect(described_class.call!(evaluator, nil, option_which_requires_approval, nil, counters)).to eq 'not_completed' }
-    end
-    describe 'without approval requiring' do
-      let(:evaluator) { create(:threesixty_evaluator, completed_evaluations_count: 2, evaluations_count: 2) }
-
-      it { expect(described_class.call!(evaluator, nil, option_which_does_not_require_approval, nil, {})).to eq 'completed' }
-    end
+  it 'nomination requirements are valid and evaluations are completed' do
+    expect(described_class.call!(
+             evaluator,
+             subject,
+             nomination_requirement,
+             { completed_evaluations: 4, total_evaluations: 4 },
+             manager_relationship.id => 4, peer_relationship.id => 5
+           )).to eq 'completed'
   end
 
-  describe '#valid_nomination_requirements?' do
+  it 'nomination requirements are not valid and evaluations are completed' do
+    expect(described_class.call!(
+             evaluator,
+             subject,
+             nomination_requirement,
+             { completed_evaluations: 4, total_evaluations: 4 },
+             manager_relationship.id => 3, peer_relationship.id => 5
+           )).to eq 'not_completed'
+  end
 
-    describe 'nomination_requirement does not exist' do
-      it do
-        expect(described_class.new(evaluator, evaluator.subject, nil, nil, {}).valid_nomination_requirements?).to eq true
-      end
-    end
-
-    describe 'requires_approval = true and nomination requirements are not matched' do
-      before do
-        create(:threesixty_subjects_relationship, relationship: manager_relationship, subject: subject.user, completed_evaluators_count: 5, approved_evaluators_count: 4)
-        create(:threesixty_subjects_relationship, relationship: peer_relationship, subject: subject.user, completed_evaluators_count: 5, approved_evaluators_count: 4)
-      end
-      it do
-        expect(described_class.new(evaluator, evaluator.subject, option_which_requires_approval, nomination_requirement, {}).valid_nomination_requirements?).to eq false
-      end
-    end
-
-
-    describe 'requires_approval = true and nomination requirements are matched' do
-      before do
-        create(:threesixty_subjects_relationship, relationship: manager_relationship, subject: subject.user, completed_evaluators_count: 5, approved_evaluators_count: 5)
-        create(:threesixty_subjects_relationship, relationship: peer_relationship, subject: subject.user, completed_evaluators_count: 5, approved_evaluators_count: 5)
-      end
-      it do
-        expect(described_class.new(evaluator, evaluator.subject, option_which_requires_approval, nomination_requirement, {}).valid_nomination_requirements?).to eq true
-      end
-    end
-
-    describe 'requires_approval = false and nomination requirements are matched' do
-      before do
-        create(:threesixty_subjects_relationship, relationship: manager_relationship, subject: subject.user, completed_evaluators_count: 5, approved_evaluators_count: 4)
-        create(:threesixty_subjects_relationship, relationship: peer_relationship, subject: subject.user, completed_evaluators_count: 5, approved_evaluators_count: 4)
-      end
-      it do
-        expect(described_class.new(evaluator, evaluator.subject, option_which_does_not_require_approval, nomination_requirement, {}).valid_nomination_requirements?).to eq true
-      end
-    end
+  it 'nomination requirements are valid and evaluations are not completed' do
+    expect(described_class.call!(
+             evaluator,
+             subject,
+             nomination_requirement,
+             { completed_evaluations: 3, total_evaluations: 4 },
+             manager_relationship.id => 4, peer_relationship.id => 5
+           )).to eq 'not_completed'
   end
 end
