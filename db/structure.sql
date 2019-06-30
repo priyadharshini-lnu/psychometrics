@@ -2405,41 +2405,6 @@ ALTER SEQUENCE public.threesixty_subjects_id_seq OWNED BY public.threesixty_subj
 
 
 --
--- Name: threesixty_subjects_relationships; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.threesixty_subjects_relationships (
-    id bigint NOT NULL,
-    campaign_id bigint,
-    subject_id bigint,
-    relationship_id bigint,
-    completed_evaluators_count integer DEFAULT 0,
-    approved_evaluators_count integer DEFAULT 0,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: threesixty_subjects_relationships_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.threesixty_subjects_relationships_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: threesixty_subjects_relationships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.threesixty_subjects_relationships_id_seq OWNED BY public.threesixty_subjects_relationships.id;
-
-
---
 -- Name: translations; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -3095,13 +3060,6 @@ ALTER TABLE ONLY public.threesixty_subjects ALTER COLUMN id SET DEFAULT nextval(
 
 
 --
--- Name: threesixty_subjects_relationships id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.threesixty_subjects_relationships ALTER COLUMN id SET DEFAULT nextval('public.threesixty_subjects_relationships_id_seq'::regclass);
-
-
---
 -- Name: translations id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -3662,14 +3620,6 @@ ALTER TABLE ONLY public.threesixty_options
 
 ALTER TABLE ONLY public.threesixty_subjects
     ADD CONSTRAINT threesixty_subjects_pkey PRIMARY KEY (id);
-
-
---
--- Name: threesixty_subjects_relationships threesixty_subjects_relationships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.threesixty_subjects_relationships
-    ADD CONSTRAINT threesixty_subjects_relationships_pkey PRIMARY KEY (id);
 
 
 --
@@ -4574,27 +4524,6 @@ CREATE INDEX index_threesixty_subjects_on_user_id ON public.threesixty_subjects 
 
 
 --
--- Name: index_threesixty_subjects_relationships_on_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_threesixty_subjects_relationships_on_campaign_id ON public.threesixty_subjects_relationships USING btree (campaign_id);
-
-
---
--- Name: index_threesixty_subjects_relationships_on_relationship_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_threesixty_subjects_relationships_on_relationship_id ON public.threesixty_subjects_relationships USING btree (relationship_id);
-
-
---
--- Name: index_threesixty_subjects_relationships_on_subject_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_threesixty_subjects_relationships_on_subject_id ON public.threesixty_subjects_relationships USING btree (subject_id);
-
-
---
 -- Name: index_translations_on_resource_type_and_resource_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5073,14 +5002,6 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
--- Name: threesixty_subjects_relationships fk_rails_7c9b18d465; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.threesixty_subjects_relationships
-    ADD CONSTRAINT fk_rails_7c9b18d465 FOREIGN KEY (relationship_id) REFERENCES public.relationships(id) ON DELETE RESTRICT;
-
-
---
 -- Name: reports_modules fk_rails_7d52ca6463; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5110,14 +5031,6 @@ ALTER TABLE ONLY public.assigns
 
 ALTER TABLE ONLY public.tasks
     ADD CONSTRAINT fk_rails_877a66d795 FOREIGN KEY (owner_id) REFERENCES public.memberships(id);
-
-
---
--- Name: threesixty_subjects_relationships fk_rails_88d5501028; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.threesixty_subjects_relationships
-    ADD CONSTRAINT fk_rails_88d5501028 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
 
 
 --
@@ -5254,14 +5167,6 @@ ALTER TABLE ONLY public.participants
 
 ALTER TABLE ONLY public.assessments_clients
     ADD CONSTRAINT fk_rails_a7b4e42c48 FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
-
-
---
--- Name: threesixty_subjects_relationships fk_rails_a892ac1dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.threesixty_subjects_relationships
-    ADD CONSTRAINT fk_rails_a892ac1dd0 FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
 --
@@ -5831,6 +5736,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190612132144'),
 ('20190613190324'),
 ('20190617125849'),
-('20190620132719');
+('20190620132719'),
+('20190630092817');
 
 

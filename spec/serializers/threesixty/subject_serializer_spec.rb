@@ -54,11 +54,6 @@ describe Threesixty::SubjectSerializer do
       }
     end
 
-    before do
-      create(:threesixty_subjects_relationship, relationship: manager_relationship, subject: subject.user, approved_evaluators_count: 5)
-      create(:threesixty_subjects_relationship, relationship: peer_relationship, subject: subject.user, approved_evaluators_count: 5)
-    end
-
     it do
       result = described_class.new(subject, option: option, nomination_requirement: nomination_requirement, counters: counters).to_hash
       expect(result[:evaluators]).to eq '5 / 5'
