@@ -26,6 +26,7 @@ module Threesixty
       end
 
       def call
+        return broadcast :ok, nil unless subject
         return broadcast :ok, ON_HOLD if subject.report_status_on_hold?
         return broadcast :ok, APPROVED if manager_can_approve_evaluations? && subject.report_approved?
 
