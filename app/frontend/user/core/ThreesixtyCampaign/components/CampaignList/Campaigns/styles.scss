@@ -16,9 +16,39 @@
       display: flex;
       align-items: center;
       flex-direction: column;
+      height: 120px;
+      background: $normal-color;
+
+
+      .caption {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 12px;
+
+        .title {
+          margin-left: 5px;
+          font-weight: bold;
+          color: #646464;
+        }
+
+        .icon {
+          background: #646464;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          fill: #fff;
+
+          svg {
+            margin-left: -2px;
+          }
+        }
+      }
 
       img {
-        width: 100%;
         max-height: 100%;
       }
 
@@ -32,10 +62,34 @@
         border-radius: 16px;
         color: $gray-color;
       }
+
+
+      &.threesixty {
+        background: #246479;
+
+        .caption .title {
+          color: #fff;
+        }
+
+        .icon {
+          background: #fff;
+
+          svg {
+            fill: #246479;
+          }
+        }
+      }
+
+    }
+
+    .service {
+      position: absolute;
+      top: 16px;
+      right: 16px;
     }
 
     .card-body {
-      padding: 8px;
+      padding: 12px;
       margin-top: 16px;
     }
 
@@ -57,6 +111,10 @@
 
         .info-block {
           margin-right: 12px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          flex: 1;
 
           i {
             font-size: 13px;
@@ -74,7 +132,20 @@
 
       .button {
         padding-top: 8px;
-        color: $main-color;
+
+        .icon {
+          font-size: 20px;
+        }
+
+        a {
+          color: $main-dark;
+          display: flex;
+          align-items: center;
+
+          svg {
+            margin-right: 8px;
+          }
+        }
       }
     }
   }

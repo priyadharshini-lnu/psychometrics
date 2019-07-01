@@ -1,10 +1,9 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, PageHeader, Icon, Card, Progress,
+  Layout, Row, Col, PageHeader, Icon,
   Input, Dropdown, Menu,
 } from 'antd'
-import _ from 'lodash'
 import Campaigns from './Campaigns'
 import './styles.scss'
 
@@ -59,7 +58,6 @@ export default function CampaignList ({ campaigns, fetchCampaigns }) {
             <Row type="flex" justify="start" className="cards">
               {campaigns.map((campaign) => {
                 const Component = Campaigns[campaign.type]
-                console.log(campaign.type)
                 return <Component key={campaign.id} campaign={campaign} />
               })}
             </Row>

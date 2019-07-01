@@ -2,7 +2,7 @@ module EndUser
   class AssignSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :status, :step, :type, :completion_percent, :url, :assigned_reports,
-               :assessment_name
+               :assessment_name, :questions_count, :timing, :mindmill, :hogan
 
     def url
       pass_assign_path(object)
@@ -30,13 +30,28 @@ module EndUser
       raise "Not supported hogan type #{type}"
     end
 
+    def mindmill
+      object.assessment.mindmill?
+    end
+
+    def hogan
+      object.assessment.hogan?
+    end
+
     def completion_percent
       object.assessment.decorate.completion_percent
     end
 
+    def questions_count
+      object.assessment.questions.count
+    end
+
+    def timing
+      object.assessment.timing
+    end
+
     def assigned_reports
       filtered_reports = object.single_reports.select { |report| reports_ids.include?(report.id) && ReportPolicy.new(report).show? }
-      binding.pry
       reports = filter_reports_by_type(filtered_reports, object.norm_type)
       reports.map { |report| ::EndUser::ReportSerializer.new(reportn, assign: assign).to_h }
     end
