@@ -23,6 +23,11 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
+  config.public_file_server.headers = {
+    # 'Access-Control-Allow-Origin' => '*',  # only for debugging
+    'Access-Control-Allow-Origin' => "#{Settings.protocol}://#{Settings.asset_host}",
+    'Access-Control-Request-Method' => %w{GET OPTIONS}.join(",")
+  } if Settings.asset_host.present?
 
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = Uglifier.new output: { comments: :none }
@@ -35,7 +40,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host =  Rails.application.secrets.asset_host
+  config.action_controller.asset_host =  Settings.asset_host
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache

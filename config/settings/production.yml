@@ -2,5 +2,7 @@ domain: <%= ENV["APP_DOMAIN"] || 'tte-lighthouse.com' %> # psychometrics.co.uk
 subdomain: <%= ENV["APP_SUB_DOMAIN"] %> # subdomain
 port: 
 protocol: <%= ENV["APP_PROTOCOL"] || 'http' %>
+asset_host: <%= ENV["ASSET_HOST"] %>
+file_host: <%= ENV["FILE_HOST"] %>
 assigns:
   mindmill_prefix: <%= ENV["MINDMILL_PREFIX"] || 'TTESTAG' %> # set 'TTEPROD' in production environment variables
