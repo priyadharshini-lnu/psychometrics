@@ -9,9 +9,11 @@ module Threesixty
       end
 
       def call
+        return true unless nomination_requirement
+
         result =
           nomination_requirement.conditions.all? do |condition|
-            condition['value'] <= (counters[condition['relationship_id']] || 0)
+            condition['value'].nil? || condition['value'] <= (counters[condition['relationship_id']] || 0)
           end
         broadcast :ok, result
       end

@@ -20,24 +20,17 @@ module Administration
           evaluators.map(&:user_id),
           threesixty_campaign
         )
-        datasheet_row_map = threesixty_campaign.datasheet&.rows.where(email: evaluators.map { |e| e.user.email }).index_by(&:email)
-        nomination_requirements = threesixty_campaign.nomination_requirements.order(:position)
+        nomination_requirement_by_user_id = ::Threesixty::NominationRequirements::FindForUsers.call!(
+          evaluators.map(&:user),
+          threesixty_campaign
+        )
         total = policy_scope(::Threesixty::Evaluator).where(campaign_id: threesixty_campaign.campaign_id).count
 
         evaluators = evaluators.map do |e|
-          nomination_requirement =
-            if e.subject
-              ::Threesixty::NominationRequirements::FindForSubject.call!(
-                e.subject,
-                threesixty_campaign,
-                datasheet_row_map,
-                nomination_requirements
-              )
-            end
           ::Threesixty::EvaluatorSerializer.new(
             e,
             option: option,
-            nomination_requirement: nomination_requirement,
+            nomination_requirement: nomination_requirement_by_user_id[e.user_id],
             counters: counters,
             subject_evaluator_counters: subject_evaluator_counters
           ).to_h

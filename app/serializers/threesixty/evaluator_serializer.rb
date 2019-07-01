@@ -7,7 +7,6 @@ module Threesixty
 
     def status
       Threesixty::Participants::GetStatus.call!(
-        object,
         object.subject,
         @instance_options[:nomination_requirement],
         counters,

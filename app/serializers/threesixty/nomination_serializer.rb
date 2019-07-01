@@ -24,7 +24,7 @@ module Threesixty
     end
 
     def requirements
-      Threesixty::NominationRequirements::FindForSubject.call!(object, object.campaign.threesixty_campaign)
+      Threesixty::NominationRequirements::FindForUsers.call!(object.user, object.campaign.threesixty_campaign)[object.user_id]
     end
   end
 end

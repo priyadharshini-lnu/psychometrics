@@ -16,7 +16,6 @@ describe Threesixty::Participants::GetStatus do
 
   it 'nomination requirements are valid and evaluations are completed' do
     expect(described_class.call!(
-             evaluator,
              subject,
              nomination_requirement,
              { completed_evaluations: 4, total_evaluations: 4 },
@@ -26,7 +25,6 @@ describe Threesixty::Participants::GetStatus do
 
   it 'nomination requirements are not valid and evaluations are completed' do
     expect(described_class.call!(
-             evaluator,
              subject,
              nomination_requirement,
              { completed_evaluations: 4, total_evaluations: 4 },
@@ -36,7 +34,6 @@ describe Threesixty::Participants::GetStatus do
 
   it 'nomination requirements are valid and evaluations are not completed' do
     expect(described_class.call!(
-             evaluator,
              subject,
              nomination_requirement,
              { completed_evaluations: 3, total_evaluations: 4 },
