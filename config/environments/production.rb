@@ -24,7 +24,7 @@ Rails.application.configure do
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
   config.action_dispatch.default_headers.merge!({
-    'Access-Control-Allow-Origin' => "#{Settings.protocol}://#{Settings.asset_host}",
+    'Access-Control-Allow-Origin' => "*",
     'Access-Control-Request-Method' => 'GET, OPTIONS',
     'Access-Control-Allow-Headers' => '*'
   }) if Settings.asset_host.present?
