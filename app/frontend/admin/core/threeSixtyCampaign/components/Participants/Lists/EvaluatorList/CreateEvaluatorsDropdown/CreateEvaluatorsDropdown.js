@@ -9,7 +9,7 @@ const CreateEvaluatorsDropdown = ({ openModal }) => {
       <Menu.Item onClick={() => openModal('CreateEvaluatorModal')} key="1">
         Add Evaluators...
       </Menu.Item>
-      <Menu.Item key="2">Import Evaluators...</Menu.Item>
+      <Menu.Item key="2" onClick={() => openModal('EvaluatorImportModal')}>Import Evaluators...</Menu.Item>
     </Menu>
   )
 

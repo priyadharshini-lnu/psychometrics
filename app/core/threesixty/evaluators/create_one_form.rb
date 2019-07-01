@@ -9,22 +9,15 @@ module Threesixty
       attribute :relationship_name, String
       attribute :subject_email, String
 
-      validates :evaluator_email, presence: true
-      validates :evaluator_email, format: { with: URI::MailTo::EMAIL_REGEXP }
-
-      validates :subject_email, presence: true
-      validates :subject_email, format: { with: URI::MailTo::EMAIL_REGEXP }
+      validates :evaluator_email, :subject_email, format: { with: URI::MailTo::EMAIL_REGEXP }
+      validates :evaluator_email, :subject_email, :evaluator_first_name, :evaluator_last_name, presence: true
 
       validate :check_subject
       validate :check_existing_relationship
       validate :check_existing_evaluator_subject_relation
 
       def check_subject
-        errors.add(:subject_email, :not_exists, email: subject_email) unless Threesixty::Subject.joins(:user).exists?(
-          users: {
-            project_id: context.campaign.project_id, email: subject_email
-          }
-        )
+        errors.add(:subject_email, :not_exists, email: subject_email) unless subject
       end
 
       def check_existing_relationship
@@ -42,7 +35,7 @@ module Threesixty
       end
 
       def subject
-        @subject ||= ::Threesixty::Subject.includes(:user).where(users: { email: subject_email }).first
+        @subject ||= ::Threesixty::Subject.includes(:user).find_by(campaign_id: context.campaign.id, users: { email: subject_email })
       end
 
       def subject_user

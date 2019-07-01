@@ -198,6 +198,8 @@ Rails.application.routes.draw do
         end
         resources :evaluators do
           collection do
+            get :download_example_import_file
+            post :import
             post :create_all
           end
         end

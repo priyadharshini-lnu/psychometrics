@@ -8,12 +8,13 @@ export const CREATE_ALL_EVALUATORS = 'threeSixty/evaluators/CREATE_ALL_EVALUATOR
 export const CREATE_ALL_EVALUATORS_FAILURE = 'threeSixty/evaluators/CREATE_ALL_EVALUATORS_FAILURE'
 const FILL_EVALUATORS = 'threeSixty/evaluators/FILL_EVALUATORS'
 const FETCH_EVALUATORS = 'threeSixty/evaluators/FETCH_EVALUATORS'
+export const IMPORT = 'threeSixty/evaluators/IMPORT'
 
 export const defaultState = {
   list: [],
   total: 0,
   form: {
-    attrs: {},
+    attrs: [],
     errors: null,
   },
 }
@@ -41,6 +42,17 @@ export const fetchEvaluators = (campaignId, offset) => ({
   },
 })
 
+export const importFile = (campaignId, data) => ({
+  type: IMPORT,
+  campaignId,
+  request: {
+    method: 'post',
+    url: `/administration/threesixty_campaigns/${campaignId}/evaluators/import`,
+    body: data,
+    loader: true,
+  },
+})
+
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
     case FETCH_EVALUATORS:
@@ -56,7 +68,7 @@ export default function reducer (state = defaultState, action) {
   }
 }
 
-function* genFetchEvaluators ({ requestAction }) {
+export function* genFetchEvaluators ({ requestAction }) {
   yield put(fetchEvaluators(requestAction.campaignId))
 }
 
@@ -71,4 +83,6 @@ export const watchers = [
   takeLatest(CREATE_ALL_EVALUATORS, genFetchEvaluators),
   takeLatest(CREATE_ALL_EVALUATORS, genClearForm),
   takeLatest(CREATE_ALL_EVALUATORS, genCloseModal),
+  takeLatest(IMPORT, genFetchEvaluators),
+  takeLatest(IMPORT, genCloseModal),
 ]

@@ -14,6 +14,10 @@ module Administration
       def create_all?
         index?
       end
+
+      def download_example_import_file?
+        index?
+      end
     end
   end
 end

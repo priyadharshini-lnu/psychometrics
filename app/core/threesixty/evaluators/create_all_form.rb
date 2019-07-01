@@ -4,13 +4,13 @@ module Threesixty
   module Evaluators
     class CreateAllForm < Rectify::Form
       attr_reader :evaluators_with_relations
-      attribute :evaluators, Hash
+      attribute :evaluators, Array
 
       validate :no_duplicates
       validate :evaluator_fields
 
       def no_duplicates
-        if evaluators.map do |_key, evaluator|
+        if evaluators.map do |evaluator|
           "#{evaluator[:subject_email]}/#{evaluator[:evaluator_email]}"
         end.uniq.size != evaluators.size
           errors.add(:evaluators, :email_duplicated)
@@ -18,9 +18,9 @@ module Threesixty
       end
 
       def evaluator_fields
-        @evaluators_with_relations = evaluators.map do |_key, evaluator|
+        @evaluators_with_relations = evaluators.map.with_index do |evaluator, index|
           form = CreateOneForm.new(evaluator).with_context(context)
-          errors.add(:evaluators, form.errors.messages.values.first.first) if form.invalid?
+          errors.add(:evaluators, "[Row #{index + 1}] #{form.errors.messages.values.first.first}") if form.invalid?
           evaluator.merge(subject: form.subject,
                           subject_user: form.subject_user,
                           evaluator_user: form.evaluator_user,
