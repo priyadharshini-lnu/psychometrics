@@ -28,6 +28,9 @@ Rails.application.configure do
     'Access-Control-Request-Method' => 'GET, OPTIONS',
     'Access-Control-Allow-Headers' => '*'
   }) if Settings.asset_host.present?
+  config.public_file_server.headers = {
+    'Access-Control-Allow-Origin' => '*'
+  } if Settings.asset_host.present?
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = Uglifier.new output: { comments: :none }
   config.logger = Syslog::Logger.new 'psychometrics'
