@@ -5,6 +5,7 @@ module Threesixty
     class GetStatus < BaseCommand
       NOT_COMPLETED = 'not_completed'
       COMPLETED = 'completed'
+      DONE = 'done'
 
       def initialize(subject, nomination_requirement, counters = {}, subject_evaluator_counters = {})
         @subject = subject
@@ -14,7 +15,9 @@ module Threesixty
       end
 
       def call
-        if valid_nomination_requirement? && all_evaluations_completed?
+        if subject.evaluation_status_completed?
+          broadcast :ok, DONE
+        elsif valid_nomination_requirement? && all_evaluations_completed?
           broadcast :ok, COMPLETED
         else
           broadcast :ok, NOT_COMPLETED

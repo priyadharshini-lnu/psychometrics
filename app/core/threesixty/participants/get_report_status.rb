@@ -10,6 +10,7 @@
 # Or if Admin approves the report (even if report availability conditions are not meet)
 # Or if Admin Releases the report (even if report availability conditions are not meet)
 #
+
 module Threesixty
   module Participants
     class GetReportStatus < BaseCommand
@@ -18,6 +19,7 @@ module Threesixty
       AVAILABLE = 'available'
       APPROVED = 'approved'
       ON_HOLD = 'on_hold'
+      NOT_AVAILABLE = 'not_availabled'
 
       def initialize(subject, option, subject_evaluator_counters)
         @subject = subject
@@ -27,6 +29,7 @@ module Threesixty
 
       def call
         return broadcast :ok, nil unless subject
+        return broadcast :ok, NOT_AVAILABLE if subject_cannot_access_report?
         return broadcast :ok, ON_HOLD if subject.report_status_on_hold?
         return broadcast :ok, APPROVED if manager_can_approve_evaluations? && subject.report_approved?
 
@@ -43,6 +46,10 @@ module Threesixty
 
       def manager_can_approve_evaluations?
         !!option.participants.dig('manager', 'can_approves_evaluations')
+      end
+
+      def subject_cannot_access_report?
+        option.reports.dig('access', 'self_can_access')
       end
     end
   end
