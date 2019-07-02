@@ -28,6 +28,7 @@ module Administration
 
       def update
         resource.update!(resource_params)
+        send_subject_report_ready_email
         render json: ::Threesixty::Subjects::Serialize.call!([resource], threesixty_campaign).first
       end
 
@@ -98,6 +99,11 @@ module Administration
       def subjects_from_csv(file_path)
         csv = CSV.read(file_path, 'r:bom|utf-8', headers: true)
         subjects = csv.map { |row| row.to_h.symbolize_keys }
+      end
+
+      def send_subject_report_ready_email
+        return unless Threesixty::Subjects::IsReportViewable.call(threesixty_campaign, resource)
+        Threesixty::SubjectReportReadyMailer.send(resource).deliver_later
       end
     end
   end
