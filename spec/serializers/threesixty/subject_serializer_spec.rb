@@ -54,16 +54,11 @@ describe Threesixty::SubjectSerializer do
       }
     end
 
-    before do
-      create(:threesixty_subjects_relationship, relationship: manager_relationship, subject: subject.user, approved_evaluators_count: 5)
-      create(:threesixty_subjects_relationship, relationship: peer_relationship, subject: subject.user, approved_evaluators_count: 5)
-    end
-
     it do
       result = described_class.new(subject, option: option, nomination_requirement: nomination_requirement, counters: counters).to_hash
       expect(result[:evaluators]).to eq '5 / 5'
-      expect(result[:report_status]).to eq 'denied'
-      expect(result[:status]).to eq 'completed'
+      expect(result[:report_status]).to eq 'incomplete'
+      expect(result[:status]).to eq 'not_completed'
       expect(result[:evaluations]).to eq nil
       expect(result[:user][:email]).to eq 'dustin@poirier.com'
     end

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Threesixty::NominationRequirements::FindForSubject do
+describe Threesixty::NominationRequirements::FindForUsers do
   let(:current_user) { create(:user, email: 'daniel@cc.com') }
   let(:campaign) { create(:threesixty_campaign) }
   let(:subject) { create(:threesixty_subject, campaign: campaign.campaign, user: current_user) }
@@ -12,19 +12,19 @@ describe Threesixty::NominationRequirements::FindForSubject do
     create(:datasheet_row, datasheet: datasheet, email: current_user.email)
     nomination_requirement = create(:threesixty_nomination_requirement, threesixty_campaign_id: campaign.id, subject_conditions: [])
 
-    expect(described_class.call!(subject, campaign)).to eq(nomination_requirement)
+    expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nomination_requirement)
   end
 
   it 'returns nill when there are no nomination_requirements' do
     create(:datasheet_row, datasheet: datasheet, email: current_user.email)
 
-    expect(described_class.call!(subject, campaign)).to eq(nil)
+    expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nil)
   end
 
   it 'returns nomination with empty condition when there are no datasheet rows present for the user' do
     nomination_requirement = create(:threesixty_nomination_requirement, threesixty_campaign_id: campaign.id, subject_conditions: [])
 
-    expect(described_class.call!(subject, campaign)).to eq(nomination_requirement)
+    expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nomination_requirement)
   end
 
 
@@ -57,7 +57,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Rank" => "General"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(@nomination_requirement)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(@nomination_requirement)
     end
 
     it do
@@ -67,7 +67,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Rank" => "Major"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(@nomination_requirement)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(@nomination_requirement)
     end
 
 
@@ -78,7 +78,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Rank" => "Major"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(nil)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nil)
     end
 
     it do
@@ -88,7 +88,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Rank" => "Major"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(nil)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nil)
     end
 
     it do
@@ -98,7 +98,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Rank" => "Sergeant"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(nil)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nil)
     end
   end
 
@@ -133,7 +133,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Rank" => "Sergeant"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(@nomination_requirement)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(@nomination_requirement)
     end
 
     it do
@@ -143,7 +143,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Rank" => "Major"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(@nomination_requirement)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(@nomination_requirement)
     end
 
     it do
@@ -153,7 +153,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Rank" => "Sergeant"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(nil)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nil)
     end
 
     it do
@@ -163,7 +163,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Rank" => "Sergeant"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(nil)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nil)
     end
   end
 
@@ -189,7 +189,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Age" => "20"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(@nomination_requirement)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(@nomination_requirement)
     end
 
     it do
@@ -198,7 +198,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Age" => "21"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(nil)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nil)
     end
 
     it do
@@ -207,7 +207,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Age" => "20"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(nil)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(nil)
     end
   end
 
@@ -243,7 +243,7 @@ describe Threesixty::NominationRequirements::FindForSubject do
         "Age" => "20"
       })
 
-      expect(described_class.call!(subject, campaign)).to eq(@nomination_requirement2)
+      expect(described_class.call!(subject.user, campaign)[subject.user_id]).to eq(@nomination_requirement2)
     end
   end
 end

@@ -10,17 +10,30 @@ module Administration
       def index
         option = threesixty_campaign.option
         evaluators = policy_scope(::Threesixty::Evaluator).
-          includes(:subject, :user).
-          where(campaign_id: threesixty_campaign.campaign_id).
-          order(id: :desc).
-          limit(params[:limit]).
-          offset(params[:offset])
+                     includes(:user, subject: :user).
+                     where(campaign_id: threesixty_campaign.campaign_id).
+                     order(id: :desc).
+                     limit(params[:limit]).
+                     offset(params[:offset])
         counters = ::Threesixty::Participants::CalcCounters.call!(evaluators.map(&:user_id), threesixty_campaign)
+        subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
+          evaluators.map(&:user_id),
+          threesixty_campaign
+        )
+        nomination_requirement_by_user_id = ::Threesixty::NominationRequirements::FindForUsers.call!(
+          evaluators.map(&:user),
+          threesixty_campaign
+        )
         total = policy_scope(::Threesixty::Evaluator).where(campaign_id: threesixty_campaign.campaign_id).count
 
         evaluators = evaluators.map do |e|
-          nomination_requirement = e.subject ? ::Threesixty::NominationRequirements::FindForSubject.call!(e.subject, threesixty_campaign) : nil
-          ::Threesixty::EvaluatorSerializer.new(e, option: option, nomination_requirement: nomination_requirement, counters: counters).to_h
+          ::Threesixty::EvaluatorSerializer.new(
+            e,
+            option: option,
+            nomination_requirement: nomination_requirement_by_user_id[e.user_id],
+            counters: counters,
+            subject_evaluator_counters: subject_evaluator_counters
+          ).to_h
         end
         render json: { evaluators: evaluators, total: total }
       end

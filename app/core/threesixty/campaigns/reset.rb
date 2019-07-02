@@ -5,7 +5,6 @@ module Threesixty
     class Reset < BaseCommand
       ASSOCIATIONS_TO_REMOVE = %i(
         nomination_requirements
-        subjects_releationships
         participants
         campaigns_users
         subjects
