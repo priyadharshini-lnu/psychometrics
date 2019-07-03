@@ -5,9 +5,9 @@ module Threesixty
     module Branches
       class Dashboard < BaseBranch
         def call
-          return broadcast :ok, '' unless path.second
+          return broadcast :ok, '' unless path.first
 
-          class_name = "Threesixty::PipedText::Branches::DashboardFields::#{path.second}".safe_constantize
+          class_name = "Threesixty::PipedText::Branches::DashboardFields::#{path.first}".safe_constantize
           broadcast :ok, class_name&.call!(path, params, context)
         end
       end

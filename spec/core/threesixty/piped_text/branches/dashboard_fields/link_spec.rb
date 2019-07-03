@@ -7,7 +7,7 @@ describe Threesixty::PipedText::Branches::DashboardFields::Link do
     let(:user) { create(:user, project: create(:project)) }
 
     it do
-      response = described_class.call!(%w[ThreeSixty Link], { 'text' => 'Join the assessment' }, recipient: user, threesixty_campaign: 'ddd')
+      response = described_class.call!(%w[Link], { 'text' => 'Join the assessment' }, recipient: user, threesixty_campaign: 'ddd')
       expect(response).to match(/Join the assessment/)
       expect(response).to match(/<a href=/)
     end
