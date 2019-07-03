@@ -2,16 +2,29 @@
 
 module Threesixty
   module Reports
-    # TODO (atanych): should be added:
-    # subject.report_approved? || subject.report_status_released?
     class IsAvailable < BaseCommand
-      def initialize(subject, option, subject_evaluator_counters)
+      def initialize(campaign, subject)
+        @campaign = campaign
+        @options = @campaign.option
         @subject = subject
-        @option = option
-        @subject_evaluator_counters = subject_evaluator_counters
       end
 
-      def call; end
+      def call
+        if @subject.report_approved? || @subject.report_status_released? || !report_available_to_subject_on_criteria?
+          return broadcast :ok, true
+        end
+        broadcast :ok, ResolveReleaseCondition.call!(@campaign, @subject)
+      end
+
+      private
+
+      def report_available_to_subject_on_criteria?
+        @options.reports.dig('availability', 'report_available_to_subject_on_criteria')
+      end
+
+      def approved_by_admin?
+
+      end
     end
   end
 end

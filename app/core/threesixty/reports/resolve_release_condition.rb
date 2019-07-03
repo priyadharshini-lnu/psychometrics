@@ -9,8 +9,8 @@ module Threesixty
         @campaign = campaign
         @options = @campaign.option
         @subject = subject
-        @evaluations = @campaign.participants.evaluator_nomination_completed
-                                .where(subject_id: subject.user_id)
+        result = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([@subject.user_id], campaign, [:completed])
+        @completed_evaluations = result[@subject.user_id][:completed]
       end
 
       def call
@@ -24,12 +24,8 @@ module Threesixty
         {operator: operator, result: evaluators_by_relationship(relationship) >= number_of_evaluator}
       end
 
-      def grouped_evaluators
-        @grouped_evaluators ||= @evaluations.joins(:relationship).group('relationships.id').count
-      end
-
       def evaluators_by_relationship(relationship)
-        grouped_evaluators[relationship] || 0
+        @completed_evaluations[relationship] || 0
       end
 
       private

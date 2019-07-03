@@ -35,10 +35,7 @@ module Threesixty
 
     def is_available?
       return false unless subject
-      if subject.report_status_released? || !report_available_to_subject_on_criteria?
-        return true
-      end
-      Threesixty::Reports::ResolveReleaseCondition.call!(@campaign, subject)
+      Threesixty::Reports::IsAvailable.call!(@campaign, subject)
     end
 
     def self_can_access?
@@ -47,10 +44,6 @@ module Threesixty
 
     def manager_can_see_subject_report?
       manager_can_access? || manager_approves_reports?
-    end
-
-    def report_available_to_subject_on_criteria?
-      options.reports.dig('availability', 'report_available_to_subject_on_criteria')
     end
 
     def manager_can_access?

@@ -2,7 +2,7 @@
 #
 # Returns the following format
 # {
-#   <subject_id>: {
+#   <user_id>: {
 #     all: { <relationship_id>: <counter>, <relationship_id>: <counter> },
 #     completed: { <relationship_id>: <counter>, <relationship_id>: <counter> }
 #   }
