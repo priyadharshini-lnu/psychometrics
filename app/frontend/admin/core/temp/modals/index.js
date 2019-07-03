@@ -1,9 +1,13 @@
+import _ from 'lodash'
+
 const OPEN_MODAL = 'modals/OPEN_MODAL'
 const CLOSE_MODAL = 'modals/CLOSE_MODAL'
 export const defaultState = {
   current: null,
   data: {},
 }
+
+export const getCurrent = state => _.get(state, ['temp', 'modals', 'current'])
 
 export const openModal = (name, data) => ({ type: OPEN_MODAL, name, data })
 export const closeModal = () => ({ type: CLOSE_MODAL })
