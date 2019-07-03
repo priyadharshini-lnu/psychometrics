@@ -53,5 +53,10 @@ describe Threesixty::PipedText::Perform do
       response = described_class.call!('{{s://Field/FirstName}} ss', subject: user, threesixty_campaign: 'ddd')
       expect(response).to eq('Vasiliy ss')
     end
+
+    it 'multiple piped text' do
+      response = described_class.call!('{{s://Field/FirstName}} vs {{p://Field/Email}}', recipient: user, subject: user, threesixty_campaign: 'ddd')
+      expect(response).to eq('Vasiliy vs vasja@gmail.com')
+    end
   end
 end
