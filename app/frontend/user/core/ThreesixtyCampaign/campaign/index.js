@@ -24,6 +24,7 @@ export const defaultState = {
   nominations: [],
   evaluations: [],
   reports: [],
+  instructions: [],
   options: {
     participants: {
       manager: {},

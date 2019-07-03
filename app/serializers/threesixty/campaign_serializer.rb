@@ -19,6 +19,11 @@ module Threesixty
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
     has_many :reports, serializer: UsersReportSerializer
     has_one :options, serializer: CampaignOptionsSerializer
+    has_many :instructions, serializer: InstructionTemplateSerializer
+
+    def instructions
+      object.instruction_templates
+    end
 
     def options
       object.option

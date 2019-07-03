@@ -6,6 +6,7 @@ module Threesixty
     has_one :subject, serializer: UserSerializer
     has_one :options, serializer: CampaignOptionsSerializer
     has_one :requirements, serializer: Threesixty::EndUser::NominationRequirementSerializer
+    has_many :instructions, serializer: InstructionTemplateSerializer
 
     def subject
       object.user
@@ -25,6 +26,10 @@ module Threesixty
 
     def requirements
       Threesixty::NominationRequirements::FindForUsers.call!(object.user, object.campaign.threesixty_campaign)[object.user_id]
+    end
+
+    def instructions
+      object.campaign.threesixty_campaign.instruction_templates
     end
   end
 end
