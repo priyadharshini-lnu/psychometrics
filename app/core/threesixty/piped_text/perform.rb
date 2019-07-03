@@ -51,7 +51,7 @@ module Threesixty
       end
 
       def lookup_branch(path)
-        branch_key = path.scan(/(\w+):/).first&.first
+        branch_key = path.scan(/^(\w+):/).first&.first
         return nil unless branch_key
 
         BRANCHES.find { |branch| branch[:key] == branch_key }
