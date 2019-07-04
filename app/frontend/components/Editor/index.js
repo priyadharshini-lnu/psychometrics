@@ -44,13 +44,13 @@ const config = {
   height: 220,
 }
 
-function Editor ({ content, handleContentChange }) {
+function Editor ({ content, handleContentChange, type }) {
   const ref = React.createRef()
 
   return (
     <div>
       <FroalaEditor ref={ref} tag="textarea" config={config} model={content} onModelChange={handleContentChange} />
-      <PipedTextModal editorRef={ref} />
+      <PipedTextModal editorRef={ref} type={type} />
     </div>
   )
 }

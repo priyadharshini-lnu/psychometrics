@@ -5,7 +5,9 @@ import {
 import FIELDS from './fields'
 import types from './types'
 
-export default function PipedTextModal ({ closeModal, datasheetFields, editorRef }) {
+export default function PipedTextModal ({
+  closeModal, datasheetFields, editorRef, type,
+}) {
   useEffect(() => editorRef.current.editor.selection.save(), [])
 
   const close = () => {
@@ -17,6 +19,8 @@ export default function PipedTextModal ({ closeModal, datasheetFields, editorRef
     close()
     editorRef.current.editor.html.insert(value)
   }
+
+  const getFields = () => FIELDS.filter(field => field.supportedTypes.includes(type))
 
   return (
     <Modal
@@ -32,7 +36,7 @@ export default function PipedTextModal ({ closeModal, datasheetFields, editorRef
     >
       <List
         grid={{ gutter: 16, column: 2 }}
-        dataSource={FIELDS}
+        dataSource={getFields()}
         renderItem={item => (
           <List.Item>
             <Card title={item.branch}>

@@ -1,6 +1,21 @@
 const FIELDS = [
   {
     branch: 'Recipient',
+    supportedTypes: [
+      'subject_invite',
+      'subject_reminder',
+      'subject_report_ready',
+      'manager_report_ready',
+      'approve_report',
+      'approve_nomination',
+      'nomination_denied',
+      'request_approval',
+      'welcome_message',
+      'evaluator_welcome',
+      'evaluate_self',
+      'invite_evaluators',
+      'evaluate_others',
+    ],
     fields: [
       {
         name: 'Full Name',
@@ -32,6 +47,11 @@ const FIELDS = [
   },
   {
     branch: 'Evaluator',
+    supportedTypes: [
+      'evaluator_invite',
+      'evaluator_reminder',
+      'evaluator_welcome',
+    ],
     fields: [
       {
         name: 'Full Name',
@@ -63,6 +83,18 @@ const FIELDS = [
   },
   {
     branch: 'Subject',
+    supportedTypes: [
+      'evaluator_invite',
+      'evaluator_reminder',
+      'manager_report_ready',
+      'approve_report',
+      'approve_nomination',
+      'nomination_denied',
+      'request_approval',
+      'welcome_message',
+      'evaluator_welcome',
+      'evaluate_self',
+    ],
     fields: [
       {
         name: 'Full Name',
@@ -99,6 +131,18 @@ const FIELDS = [
   },
   {
     branch: 'Dashboard',
+    supportedTypes: [
+      'subject_invite',
+      'evaluator_invite',
+      'subject_reminder',
+      'evaluator_reminder',
+      'subject_report_ready',
+      'manager_report_ready',
+      'approve_report',
+      'approve_nomination',
+      'nomination_denied',
+      'request_approval',
+    ],
     fields: [
       {
         name: 'Link',
