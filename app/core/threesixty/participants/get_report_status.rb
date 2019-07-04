@@ -19,7 +19,7 @@ module Threesixty
       AVAILABLE = 'available'
       APPROVED = 'approved'
       ON_HOLD = 'on_hold'
-      NOT_AVAILABLE = 'not_availabled'
+      NOT_AVAILABLE = 'not_available'
 
       def initialize(subject, option, subject_evaluator_counters)
         @subject = subject
@@ -48,7 +48,7 @@ module Threesixty
         !!option.participants.dig('manager', 'can_approves_evaluations')
       end
 
-      def subject_cannot_access_report?
+      def subject_cannot_access_report?
         option.reports.dig('access', 'self_can_access')
       end
     end

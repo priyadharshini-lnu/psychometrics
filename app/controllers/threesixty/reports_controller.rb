@@ -35,7 +35,8 @@ module Threesixty
 
     def update_status
       subject = @users_report.threesixty_subject
-      subject.update_attributes(report_approval_status: params[:status])
+      subject.update!(report_approval_status: params[:status])
+      Threesixty::Emails::Sender.send_subject_report_ready_email(threesixty_campaign, subject)
       render json: { status: subject.report_approval_status }
     end
 
