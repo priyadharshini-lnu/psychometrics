@@ -114,10 +114,10 @@ class Report < ApplicationRecord
     [Report::YTI_TYPE, Report::ETI_TYPE].include? type
   end
 
-  # Returns true if Report has at least one external assessment (Mindmill, Hogan)
+  # Returns true if Report is external pdf from mindmill or hogan
   #
   def external_report?
-    assessments.external.exists?
+    mindmill? || hogan?
   end
 
   # Returns true if Report has 2 or more assessments
