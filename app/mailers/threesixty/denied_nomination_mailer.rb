@@ -3,7 +3,7 @@
 module Threesixty
   class DeniedNominationMailer < ApplicationMailer
     def send(subject)
-      email_template = EmailTemplate.find_by(name: 'debied_nomination')
+      email_template = EmailTemplate.find_by(name: 'denied_nomination')
       mail(
           from: "#{email_template.from} <no-reply@#{Settings.domain}>",
           to: subject.email,

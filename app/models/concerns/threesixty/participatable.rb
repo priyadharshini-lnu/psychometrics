@@ -11,6 +11,8 @@ module Threesixty
       has_many :users_reports, through: :user
       has_many :evaluated_results, through: :user
       has_many :evaluation_results, through: :user
+
+      delegate :email, to: :user
     end
   end
 end

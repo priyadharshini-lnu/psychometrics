@@ -13,7 +13,7 @@ module Threesixty::EndUser
     end
 
     def evaluation_status
-      Threesixty::Participants::GetStatus.call!(object.subject, @instance_options[:option], @instance_options[:nomination_requirement])
+      Threesixty::Participants::GetStatus.call!(object.threesixty_subject, @instance_options[:option], @instance_options[:nomination_requirement])
     end
   end
 end
