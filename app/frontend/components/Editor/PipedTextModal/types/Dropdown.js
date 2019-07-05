@@ -16,7 +16,7 @@ const Dropdown = ({ field, context, insert }) => (
     <a className="ant-dropdown-link" href="#">
       {field.name}
       {' '}
-      <Icon type="down" />
+      <Icon type="caret-down" theme="filled" />
     </a>
   </AntDropdown>
 )
