@@ -34,7 +34,7 @@ export default function TitleBar ({ emailTemplate, openModal }) {
                 type="primary"
                 size="large"
                 className={css.button}
-                onClick={() => openModal('ScheduleEmailModal', { selectedEmailTemplateId: emailTemplate.id })}
+                onClick={() => openModal('EmailScheduleModal', { selectedEmailTemplateId: emailTemplate.id })}
               >
                 <Icon type="schedule" />
                 {I18n.t('administration.threesixty_campaigns.email_templates.schedule_email')}

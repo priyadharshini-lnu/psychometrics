@@ -9,7 +9,6 @@ import EvaluatorList from './EvaluatorList'
 import EvaluationList from './EvaluationList'
 
 export default function ParticipantModal ({
-  current,
   closeModal,
   user,
   onClose,
@@ -20,8 +19,6 @@ export default function ParticipantModal ({
   },
   match,
 }) {
-  if (current !== 'ParticipantModal') return null
-
   useEffect(() => {
     fetchParticipants(campaignId, user.id)
     fetchRelationships(campaignId)
