@@ -6,18 +6,18 @@ import FIELDS from './fields'
 import types from './types'
 
 export default function PipedTextModal ({
-  closeModal, datasheetFields, editorRef, type,
+  closeModal, datasheetFields, data: { editorRef, type },
 }) {
-  useEffect(() => editorRef.current.editor.selection.save(), [])
+  useEffect(() => editorRef.selection.save(), [])
 
   const close = () => {
-    closeModal()
-    editorRef.current.editor.selection.restore()
+    closeModal('PipedTextModal')
+    editorRef.selection.restore()
   }
 
   const insert = (value) => {
     close()
-    editorRef.current.editor.html.insert(value)
+    editorRef.html.insert(value)
   }
 
   const getFields = () => FIELDS.filter(field => field.supportedTypes.includes(type))

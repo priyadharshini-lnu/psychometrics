@@ -1,7 +1,8 @@
 import React from 'react'
+import _ from 'lodash'
 
 const manageModal = Component => ({ current, ...rest }) => {
-  if (!Component.name.includes(current)) return null
+  if (!_.some(current, c => Component.name.includes(c))) return null
   return <Component {...rest} />
 }
 
