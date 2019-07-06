@@ -18,19 +18,21 @@ export default function EmailScheduleModal ({
   update,
   changeSelected,
   closeModal,
-  selectedEmailTemplateId,
+  data,
   match: {
     params: { campaignId },
   },
 }) {
   useEffect(() => {
-    fetchSchedulableTemplate(campaignId, { selectedEmailTemplateId })
+    fetchSchedulableTemplate(campaignId, { selectedEmailTemplateId: data.selectedEmailTemplateId })
   }, [])
 
   const [errors, setErrors] = useState(null)
   const selectedEmailSchedule = _.find(list, ({ id }) => id === selectedId)
 
-  if (!selectedEmailSchedule) { return null }
+  if (!selectedEmailSchedule) {
+    return null
+  }
 
   const handleCreate = () => {
     create(campaignId, selectedEmailSchedule)
@@ -97,7 +99,9 @@ export default function EmailScheduleModal ({
         <Editor
           type={selectedEmailSchedule.name}
           content={selectedEmailSchedule.content}
-          handleContentChange={(value) => { update('content', value) }}
+          handleContentChange={(value) => {
+            update('content', value)
+          }}
         />
       </div>
     </Modal>

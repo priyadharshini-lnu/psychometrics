@@ -16,7 +16,11 @@ export const closeModal = name => ({ type: CLOSE_MODAL, name })
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
     case OPEN_MODAL:
-      return { ...state, current: [...state.current, action.name], data: action.data || {} }
+      return {
+        ...state,
+        current: [...state.current, action.name],
+        data: { ...state.data, [action.name]: action.data || {} },
+      }
     case CLOSE_MODAL:
       return {
         ...state,
