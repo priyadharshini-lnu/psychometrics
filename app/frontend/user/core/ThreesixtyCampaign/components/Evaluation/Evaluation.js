@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {
   Layout, Row, Col, Button, Menu, Dropdown, Icon, PageHeader,
 } from 'antd'
+import qs from 'query-string'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import './styles.scss'
@@ -30,7 +31,8 @@ export default function Evaluation ({
   }, [loaded])
 
   useEffect(() => {
-    fetchAssessment(params.campaignId, params.id)
+    const { edit } = qs.parse(location.search)
+    fetchAssessment(params.campaignId, params.id, edit)
   }, [])
 
   const handleStatusClick = (status) => {

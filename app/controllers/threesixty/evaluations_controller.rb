@@ -14,6 +14,10 @@ module Threesixty
             result.assessment_id = @campaign.assessment_id
             result.status = :in_progress
           end
+          if params[:edit] == 't'
+            @users_result.step = 0
+            @users_result.status = :in_progress
+          end
 
           render json: @users_result, serializer: UsersResultSerializer,
                  participant: @participant, campaign: @campaign,
