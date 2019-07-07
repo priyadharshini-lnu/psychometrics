@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 
 import 'froala-editor/css/froala_style.min.css'
 import 'froala-editor/css/froala_editor.pkgd.min.css'
@@ -44,10 +44,15 @@ function Editor ({ content, handleContentChange, type }) {
     saveParams: { type },
     height: 220,
   }
+  const ref = React.createRef()
+
+  useEffect(() => {
+    ref.current.editor.opts.saveParams = { type }
+  }, [type])
 
   return (
     <div>
-      <FroalaEditor tag="textarea" config={config} model={content} onModelChange={handleContentChange} />
+      <FroalaEditor ref={ref} tag="textarea" config={config} model={content} onModelChange={handleContentChange} />
     </div>
   )
 }

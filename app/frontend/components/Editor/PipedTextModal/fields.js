@@ -143,7 +143,7 @@ const FIELDS = [
       'approve_nomination',
       'nomination_denied',
       'request_approval',
-      'custom_message'
+      'custom_message',
     ],
     fields: [
       {
