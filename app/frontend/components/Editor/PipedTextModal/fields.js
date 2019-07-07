@@ -15,6 +15,7 @@ const FIELDS = [
       'evaluate_self',
       'invite_evaluators',
       'evaluate_others',
+      'custom_message',
     ],
     fields: [
       {
@@ -142,6 +143,7 @@ const FIELDS = [
       'approve_nomination',
       'nomination_denied',
       'request_approval',
+      'custom_message'
     ],
     fields: [
       {
