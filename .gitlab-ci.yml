@@ -1,4 +1,4 @@
-image: circleci/ruby:2.5.1-node-browsers
+image: registry.gitlab.com/tte-lighthouse/psychometrics
 
 services:
   - postgres:latest
@@ -7,7 +7,8 @@ services:
 cache:
   key: psychometrics-cache-key
   paths:
-  - vendor/ruby
+  - vendor/
+  - node_modules/
 
 before_script:
   # install ssh-agent
@@ -29,14 +30,18 @@ before_script:
   - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
   - sudo chmod 0655 /usr/local/bin/phantomjs
   - npm install
+  - export REDIS_URL=redis://redis:6379/1
 
 test:
   script:
   - bundle config github.https true
   - cp config/database.ci.yml config/database.yml
-  - cp config/secrets.ci.yml config/secrets.yml
+  # - cp config/secrets.ci.yml config/secrets.yml
   - cp config/application.sample.yml  config/application.yml
   - bundle exec rake db:create
   - bundle exec rake db:structure:load
   - bundle exec rspec
   - pkill Xvfb
+  artifacts:
+    paths:
+    - coverage

@@ -1,1 +1,1 @@
-Redis.current = Redis.new(host: ENV.fetch('REDIS_HOST', '127.0.0.1'), port: 6379)
+Redis.current = Redis.new(url: ENV.fetch('REDIS_URL', 'redis://localhost:6379/1'))

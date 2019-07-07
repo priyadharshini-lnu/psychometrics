@@ -1,13 +1,5 @@
 GIT
-  remote: git@github.com:ctran/annotate_models.git
-  revision: 89bce57f2888babd9a620ae7772b5df02ee97516
-  specs:
-    annotate (2.7.3)
-      activerecord (>= 3.2, < 6.0)
-      rake (>= 10.4, < 13.0)
-
-GIT
-  remote: git@github.com:randym/axlsx
+  remote: http://github.com/randym/axlsx.git
   revision: c8ac844572b25fda358cc01d2104720c4c42f450
   ref: c8ac844
   specs:
@@ -18,7 +10,15 @@ GIT
       rubyzip (>= 1.2.1)
 
 GIT
-  remote: git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git
+  remote: https://github.com/smshuja/db-clone.git
+  revision: 943be3e6c7d94bea084a7982eb86b0e459f427e7
+  branch: load-with-erb
+  specs:
+    db-clone (2.2.0)
+      cli-ui (~> 1.2.1)
+
+GIT
+  remote: https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git
   revision: ee9aa4cedd82e4cc097ed1f2c63dc360d9d3b0e7
   branch: master
   specs:
@@ -27,21 +27,13 @@ GIT
       thor (>= 0.14, < 2.0)
 
 GIT
-  remote: git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git
+  remote: https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git
   revision: 47117a5639480fa167783aa9b11b4f0d8339ea88
   branch: master
   specs:
     psychometrics-survey-ui (0.0.1)
       railties (~> 5.0)
       thor (>= 0.14, < 2.0)
-
-GIT
-  remote: https://github.com/smshuja/db-clone.git
-  revision: 943be3e6c7d94bea084a7982eb86b0e459f427e7
-  branch: load-with-erb
-  specs:
-    db-clone (2.2.0)
-      cli-ui (~> 1.2.1)
 
 GEM
   remote: https://rubygems.org/
@@ -100,9 +92,6 @@ GEM
       activerecord (>= 3.0)
     addressable (2.6.0)
       public_suffix (>= 2.0.2, < 4.0)
-    airbrake (5.4.5)
-      airbrake-ruby (~> 1.4)
-    airbrake-ruby (1.4.6)
     airbrussh (1.3.0)
       sshkit (>= 1.6.1, != 1.7.0)
     akami (1.3.1)
@@ -112,6 +101,9 @@ GEM
       activerecord (>= 3.2.6)
     ancestry (3.0.0)
       activerecord (>= 3.2.0)
+    annotate (2.7.4)
+      activerecord (>= 3.2, < 6.0)
+      rake (>= 10.4, < 13.0)
     arel (8.0.0)
     ast (2.3.0)
     attr_encrypted (3.1.0)
@@ -134,7 +126,11 @@ GEM
       activerecord (>= 4.2.0)
       join_dependency (~> 0.1.2)
       polyamorous (~> 1.3)
+    barnes (0.0.7)
+      multi_json (~> 1)
+      statsd-ruby (~> 1.1)
     bcrypt (3.1.11)
+    benchmark-ips (2.7.2)
     bh (1.3.6)
       actionpack
       activesupport
@@ -225,6 +221,12 @@ GEM
       activesupport (>= 3.0)
       deep_merge (~> 1.0, >= 1.0.1)
     connection_pool (2.2.1)
+    coveralls (0.7.1)
+      multi_json (~> 1.3)
+      rest-client
+      simplecov (>= 0.7)
+      term-ansicolor
+      thor
     crass (1.0.4)
     database_cleaner (1.7.0)
     date_validator (0.9.0)
@@ -242,6 +244,14 @@ GEM
     deep_cloneable (2.2.1)
       activerecord (>= 3.1.0, < 5.2.0)
     deep_merge (1.1.1)
+    derailed_benchmarks (1.3.5)
+      benchmark-ips (~> 2)
+      get_process_mem (~> 0)
+      heapy (~> 0)
+      memory_profiler (~> 0)
+      rack (>= 1)
+      rake (> 10, < 13)
+      thor (~> 0.19)
     descendants_tracker (0.0.4)
       thread_safe (~> 0.3, >= 0.3.1)
     devise (4.4.3)
@@ -262,6 +272,8 @@ GEM
       representable (>= 2.4.0, <= 3.1.0)
       uber (< 0.2.0)
     docile (1.1.5)
+    domain_name (0.5.20180417)
+      unf (>= 0.0.5, < 1.0.0)
     draper (3.0.0)
       actionpack (~> 5.0)
       activemodel (~> 5.0)
@@ -307,6 +319,8 @@ GEM
       railties (>= 3.0.0)
     faker (1.8.7)
       i18n (>= 0.7)
+    faraday (0.15.4)
+      multipart-post (>= 1.2, < 3)
     ffi (1.10.0)
     figaro (1.1.1)
       thor (~> 0.14)
@@ -333,6 +347,7 @@ GEM
     font-awesome-rails (4.7.0.4)
       railties (>= 3.2, < 6.0)
     formatador (0.2.5)
+    get_process_mem (0.2.3)
     globalid (0.4.1)
       activesupport (>= 4.2.0)
     guard (2.14.0)
@@ -347,9 +362,12 @@ GEM
     gyoku (1.3.1)
       builder (>= 2.1.2)
     hashids (1.0.5)
+    heapy (0.1.4)
     highline (1.7.8)
     hirb (0.7.3)
     htmlentities (4.3.4)
+    http-cookie (1.0.3)
+      domain_name (~> 0.5)
     httpi (2.4.3)
       rack
       socksify
@@ -407,6 +425,7 @@ GEM
     lumberjack (1.0.10)
     mail (2.7.0)
       mini_mime (>= 0.1.1)
+    memory_profiler (0.9.13)
     meta_request (0.6.0)
       callsite (~> 0.0, >= 0.0.11)
       rack-contrib (>= 1.1, < 3)
@@ -431,11 +450,14 @@ GEM
       money (~> 6.7)
       railties (>= 3.0)
     multi_json (1.13.1)
+    multipart-post (2.0.0)
     mustache (1.0.3)
     nenv (0.3.0)
     net-scp (1.2.1)
       net-ssh (>= 2.6.5)
     net-ssh (4.2.0)
+    netrc (0.11.0)
+    newrelic_rpm (6.3.0.355)
     nio4r (2.3.0)
     nokogiri (1.10.3)
       mini_portile2 (~> 2.4.0)
@@ -463,7 +485,7 @@ GEM
     pry-rails (0.3.4)
       pry (>= 0.9.10)
     public_suffix (3.0.3)
-    puma (3.9.0)
+    puma (3.12.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.7)
@@ -566,6 +588,22 @@ GEM
       virtus (~> 1.0.5)
       wisper (>= 1.6.1)
     redis (4.0.1)
+    redis-actionpack (5.0.2)
+      actionpack (>= 4.0, < 6)
+      redis-rack (>= 1, < 3)
+      redis-store (>= 1.1.0, < 2)
+    redis-activesupport (5.0.7)
+      activesupport (>= 3, < 6)
+      redis-store (>= 1.3, < 2)
+    redis-rack (2.0.5)
+      rack (>= 1.5, < 3)
+      redis-store (>= 1.2, < 2)
+    redis-rails (5.0.2)
+      redis-actionpack (>= 5.0, < 6)
+      redis-activesupport (>= 5.0, < 6)
+      redis-store (>= 1.2, < 2)
+    redis-store (1.6.0)
+      redis (>= 2.2, < 5)
     reform (2.2.4)
       disposable (>= 0.4.1)
       representable (>= 2.4.0, < 3.1.0)
@@ -581,6 +619,10 @@ GEM
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
+    rest-client (2.0.2)
+      http-cookie (>= 1.0.2, < 2.0)
+      mime-types (>= 1.16, < 4.0)
+      netrc (~> 0.8)
     roo (2.8.2)
       nokogiri (~> 1)
       rubyzip (>= 1.2.1, < 2.0.0)
@@ -642,6 +684,8 @@ GEM
     selenium-webdriver (3.141.0)
       childprocess (~> 0.5)
       rubyzip (~> 1.2, >= 1.2.2)
+    sentry-raven (2.9.0)
+      faraday (>= 0.7.6, < 1.0)
     shellany (0.0.1)
     shoulda (3.5.0)
       shoulda-context (~> 1.0, >= 1.0.1)
@@ -689,8 +733,12 @@ GEM
       net-ssh (>= 2.8.0)
     sshkit-interactive (0.2.3)
       sshkit (~> 1.12)
+    stackprof (0.2.12)
+    statsd-ruby (1.4.0)
     strings-ansi (0.1.0)
     temple (0.7.7)
+    term-ansicolor (1.7.1)
+      tins (~> 1.0)
     terminal-notifier (2.0.0)
     terminal-table (1.8.0)
       unicode-display_width (~> 1.1, >= 1.1.1)
@@ -700,6 +748,7 @@ GEM
     tilt (2.0.5)
     timecop (0.9.1)
     timeliness (0.3.8)
+    tins (1.20.2)
     tty-cursor (0.6.1)
     tty-progressbar (0.16.0)
       strings-ansi (~> 0.1.0)
@@ -712,6 +761,9 @@ GEM
     uber (0.1.0)
     uglifier (3.0.2)
       execjs (>= 0.3.0, < 3)
+    unf (0.1.4)
+      unf_ext
+    unf_ext (0.0.7.5)
     unicode-display_width (1.5.0)
     validates_timeliness (4.0.2)
       timeliness (~> 0.3.7)
@@ -752,15 +804,15 @@ DEPENDENCIES
   active_model_serializers (~> 0.10.0)
   activemodel-serializers-xml
   acts_as_list (~> 0.8.1)
-  airbrake (~> 5.0)
   amoeba (~> 3.0.0)
   ancestry
-  annotate (~> 2.7.0)!
+  annotate (~> 2.7.0)
   attr_encrypted (~> 3.1.0)
   awesome_print (~> 1.8.0)
   axlsx!
   axlsx_rails (~> 0.4.0)
   baby_squeel (~> 1.3.1)
+  barnes (~> 0.0.7)
   bh (~> 1.3)
   bootstrap-kaminari-views (~> 0.0.5)
   bootstrap-sass (~> 3.3.6)
@@ -786,11 +838,13 @@ DEPENDENCIES
   cocoon (= 1.2.9)
   coffee-rails (~> 4.2)
   config (~> 1.2.1)
+  coveralls
   database_cleaner (~> 1.7.0)
   date_validator (~> 0.9.0)
   db-clone!
   debugger2
   deep_cloneable (~> 2.2.1)
+  derailed_benchmarks
   devise (~> 4.4.3)
   devise-i18n (~> 1.1.0)
   devise_invitable (~> 1.6.0)
@@ -821,6 +875,7 @@ DEPENDENCIES
   mini_magick (~> 4.5.1)
   money-rails (~> 1.7.0)
   mustache (~> 1.0.3)
+  newrelic_rpm (~> 6.3, >= 6.3.0.355)
   paranoia (~> 2.4)
   pg (~> 0.18.4)
   pry-byebug
@@ -857,6 +912,7 @@ DEPENDENCIES
   react-rails (~> 1.10.0)
   rectify (~> 0.13.0)
   redis
+  redis-rails (~> 5.0.2)
   reform-rails (~> 0.1.7)
   remotipart (~> 1.2)
   roo (~> 2.8.2)
@@ -870,6 +926,7 @@ DEPENDENCIES
   sass-rails (~> 5.0)
   savon (~> 2.11.0)
   selenium-webdriver (~> 3.141.0)
+  sentry-raven (~> 2.9.0)
   shoulda (~> 3.5.0)
   sidekiq (~> 5.1.3)
   simple_form (= 3.5.1)
@@ -878,6 +935,7 @@ DEPENDENCIES
   smarter_csv (~> 1.1.0)
   spring
   spring-watcher-listen (~> 2.0.0)
+  stackprof
   timecop (~> 0.9.1)
   tty-progressbar (~> 0.16.0)
   uglifier (>= 1.3.0)
@@ -887,6 +945,9 @@ DEPENDENCIES
   webdrivers
   whenever (~> 0.9.7)
   wisper-rspec (~> 1.1.0)
+
+RUBY VERSION
+   ruby 2.5.1p57
 
 BUNDLED WITH
    1.17.3
