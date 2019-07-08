@@ -1,10 +1,9 @@
 import React from 'react'
 import {
-  Typography, Form, Icon, Input, Button, Select, Row, Col, AutoComplete,
+  Typography, Form, Icon, Input, Button, Select, Row, Col, AutoComplete, message,
 } from 'antd'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
-import { message } from 'antd'
 
 const { Title } = Typography
 const { Option } = Select
@@ -28,12 +27,12 @@ export default function NominationForm (props) {
 
   const handleRequestApproval = () => {
     requestApproval(campaignId, nominationId)
-      .then(() => message.info("Mail for approving nomination has been sent to managers") )
+      .then(() => message.info('Mail for approving nomination has been sent to managers'))
   }
 
   const handleSendEvaluatorReminder = () => {
     sendEvaluatorReminder(campaignId, nominationId)
-      .then(() => message.info("Reminders sent to evaluators who haven't completed the evaluation") )
+      .then(() => message.info("Reminders sent to evaluators who haven't completed the evaluation"))
   }
 
   return (
@@ -107,21 +106,23 @@ export default function NominationForm (props) {
           : (
             <Button type="primary" shape="circle" icon="plus" size="large" onClick={showForm} />
           )}
-          {console.log(subject)}
         <Row type="flex" justify="end" gutter={8}>
-          {isSelf && canSendRequestApprovalEmail && <Col>
+          {isSelf && canSendRequestApprovalEmail && (
+          <Col>
             <Button type="link" onClick={handleRequestApproval}>
               <Icon type="team" />
               Email Approval Request
             </Button>
-          </Col>}
+          </Col>
+          )}
           <Col>
             <Button type="link" onClick={handleSendEvaluatorReminder}>
               <Icon type="team" />
               Remind All
             </Button>
           </Col>
-          {isSelf || <>
+          {isSelf || (
+          <>
             <div className="divider" />
             <Col>
               <Button type="primary">
@@ -133,7 +134,8 @@ export default function NominationForm (props) {
                 Deny All
               </Button>
             </Col>
-          </>}
+          </>
+          )}
         </Row>
       </div>
 
