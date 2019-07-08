@@ -2,6 +2,7 @@ import React from 'react'
 import { Menu } from 'antd'
 import routeUtils from 'utils/routeUtils'
 import RouteList from 'components/RouteList'
+import PipedTextModal from 'components/Editor/PipedTextModal'
 import settings from '../../settings'
 
 export default function Messages ({ history, routes }) {
@@ -15,6 +16,7 @@ export default function Messages ({ history, routes }) {
         <Menu.Item key="/messages/options">Options</Menu.Item>
       </Menu>
       <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
+      <PipedTextModal />
     </div>
   )
 }

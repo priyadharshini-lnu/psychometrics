@@ -10,13 +10,13 @@ import {
 export default connect(
   ({
     temp: {
-      modals: { current, data: { selectedEmailTemplateId } },
+      modals: { current, data },
     },
     threeSixtyCampaign: { emailSchedules },
   }) => ({
     current,
     emailSchedules,
-    selectedEmailTemplateId,
+    data: data.EmailScheduleModal,
   }),
   {
     fetchSchedulableTemplate,

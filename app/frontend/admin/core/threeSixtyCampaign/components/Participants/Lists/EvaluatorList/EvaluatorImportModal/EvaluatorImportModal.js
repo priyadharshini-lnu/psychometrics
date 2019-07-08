@@ -5,7 +5,6 @@ import {
 import FileImport from './FileImport'
 
 export default function EvaluatorImportModal ({
-  current,
   closeModal,
   importFile,
   importInProgress,
@@ -13,8 +12,6 @@ export default function EvaluatorImportModal ({
     params: { campaignId },
   },
 }) {
-  if (current !== 'EvaluatorImportModal') return null
-
   const [file, setFile] = useState(null)
   const [errors, setErrors] = useState(null)
 
