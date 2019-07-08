@@ -3,7 +3,7 @@
 module Threesixty
   class ApproveNominationMailer < ApplicationMailer
     def send_email(manager)
-      email_template = EmailTemplate.find_by(name: 'approve_nomination')
+      email_template = EmailTemplate.find_by!(name: 'approve_nomination')
       mail(
           from: "#{email_template.from} <no-reply@#{Settings.domain}>",
           to: manager.email,

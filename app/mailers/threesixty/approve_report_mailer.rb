@@ -1,10 +1,9 @@
-
 # frozen_string_literal: true
 
 module Threesixty
-  class RequestNominationApprovalMailer < ApplicationMailer
+  class ApproveReportMailer < ApplicationMailer
     def send_email(manager)
-      email_template = EmailTemplate.find_by!(name: 'request_approval')
+      email_template = EmailTemplate.find_by!(name: 'approve_report')
       mail(
           from: "#{email_template.from} <no-reply@#{Settings.domain}>",
           to: manager.email,

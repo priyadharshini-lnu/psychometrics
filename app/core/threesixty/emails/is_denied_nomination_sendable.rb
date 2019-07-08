@@ -10,7 +10,7 @@ module Threesixty
       end
 
       def call
-        boradcast :ok, inform_subject_when_nomination_is_denied?
+        broadcast :ok, inform_subject_when_nomination_is_denied?
       end
 
       private
