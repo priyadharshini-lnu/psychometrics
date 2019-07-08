@@ -36,9 +36,15 @@ module Threesixty
 
 
       def self.send_request_approval_email_to_managers(threesixty_campaign, subject)
-        return unless Threesixty::Emails::IsRequestApprovalSendable.call(threesixty_campaign)
+        return unless Threesixty::Emails::IsRequestApprovalSendable.call!(threesixty_campaign)
         Threesixty::Subjects::GetManagers.new(subject).query.includes(:user).each do |manager|
           Threesixty::RequestNominationApprovalMailer.send_email(manager).deliver_later
+        end
+      end
+
+      def self.send_evaluator_reminder_emails_for_subject(threesixty_campaign, subject)
+        Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations.new(threesixty_campaign, subject).each do |evaluator|
+          Threesixty::EvaluatorReminderMailer.send_email(evaluator).deliver_later
         end
       end
     end
