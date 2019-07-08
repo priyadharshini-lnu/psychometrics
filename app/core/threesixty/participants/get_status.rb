@@ -15,7 +15,7 @@ module Threesixty
       end
 
       def call
-        if subject.evaluation_status_completed?
+        if subject&.evaluation_status_completed?
           broadcast :ok, DONE
         elsif valid_nomination_requirement? && all_evaluations_completed?
           broadcast :ok, COMPLETED

@@ -3,7 +3,7 @@
 
 module Threesixty
   class RequestNominationApprovalMailer < ApplicationMailer
-    def send(manager)
+    def send_email(manager)
       email_template = EmailTemplate.find_by(name: 'request_approval')
       mail(
           from: "#{email_template.from} <no-reply@#{Settings.domain}>",

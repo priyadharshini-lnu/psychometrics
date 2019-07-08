@@ -5,9 +5,22 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
-SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
+
+--
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
 
 --
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
@@ -2167,7 +2180,8 @@ CREATE TABLE public.threesixty_email_schedules (
     recipient_criteria jsonb,
     delivered_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    recipient_emails jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -5738,4 +5752,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190617125849'),
 ('20190620132719'),
 ('20190630092817'),
-('20190703092738');
+('20190703092738'),
+('20190706094201');
+
+
