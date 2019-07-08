@@ -17,6 +17,16 @@ module Threesixty
       render json: Threesixty::Evaluators::SearchQuery.new(@campaign.campaign, @subject, params[:q]).query, each_serializer: ::Projects::SearchUserSerializer
     end
 
+    def request_approval
+      Threesixty::Emails::Sender.send_request_approval_email_to_managers(@campaign, @subject)
+      render json: :ok
+    end
+
+    def send_evaluator_reminders
+      Threesixty::Emails::Sender.send_evaluator_reminder_emails_for_subject(@campaign, @subject)
+      render json: :ok
+    end
+
     private
 
     def set_campaign

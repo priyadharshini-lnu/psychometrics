@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
+import { message } from 'antd'
 
 const { Title } = Typography
 const { Option } = Select
@@ -11,10 +12,10 @@ const { Option } = Select
 export default function NominationForm (props) {
   const {
     addNomination, searchEvaluators, updateForm,
-    showForm, hideForm,
+    showForm, hideForm, requestApproval, sendEvaluatorReminder,
     match: { params: { campaignId, id: nominationId } },
     nomination: {
-      subject, relationships, form, form: { show },
+      isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail,
     },
     autocomplete: { users },
   } = props
@@ -25,13 +26,23 @@ export default function NominationForm (props) {
     })
   }
 
+  const handleRequestApproval = () => {
+    requestApproval(campaignId, nominationId)
+      .then(() => message.info("Mail for approving nomination has been sent to managers") )
+  }
+
+  const handleSendEvaluatorReminder = () => {
+    sendEvaluatorReminder(campaignId, nominationId)
+      .then(() => message.info("Reminders sent to evaluators who haven't completed the evaluation") )
+  }
+
   return (
     <div className="nominations-form">
       <Title level={4}>
         <div>
           Nominate Evaluators to
           {' '}
-          {subject.isSelf ? 'Yourself' : userPresenter.getFullNameWithEmail(subject)}
+          {isSelf ? 'Yourself' : userPresenter.getFullNameWithEmail(subject)}
         </div>
       </Title>
 
@@ -96,25 +107,33 @@ export default function NominationForm (props) {
           : (
             <Button type="primary" shape="circle" icon="plus" size="large" onClick={showForm} />
           )}
+          {console.log(subject)}
         <Row type="flex" justify="end" gutter={8}>
-
+          {isSelf && canSendRequestApprovalEmail && <Col>
+            <Button type="link" onClick={handleRequestApproval}>
+              <Icon type="team" />
+              Email Approval Request
+            </Button>
+          </Col>}
           <Col>
-            <Button type="link">
+            <Button type="link" onClick={handleSendEvaluatorReminder}>
               <Icon type="team" />
               Remind All
             </Button>
           </Col>
-          <div className="divider" />
-          <Col>
-            <Button type="primary">
-              Approve All
-            </Button>
-          </Col>
-          <Col>
-            <Button type="danger" className="deny-button">
-              Deny All
-            </Button>
-          </Col>
+          {isSelf || <>
+            <div className="divider" />
+            <Col>
+              <Button type="primary">
+                Approve All
+              </Button>
+            </Col>
+            <Col>
+              <Button type="danger" className="deny-button">
+                Deny All
+              </Button>
+            </Col>
+          </>}
         </Row>
       </div>
 

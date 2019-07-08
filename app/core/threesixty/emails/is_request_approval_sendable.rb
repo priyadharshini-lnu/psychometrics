@@ -10,7 +10,7 @@ module Threesixty
       end
 
       def call
-        boradcast :ok, can_request_approval_from_manager?
+        broadcast :ok, can_request_approval_from_manager?
       end
 
       private

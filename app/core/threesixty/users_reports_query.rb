@@ -36,10 +36,14 @@ module Threesixty
     def is_available?
       return false unless subject
       subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
-        subject.evaluators.map(&:evaluator_id),
+        [subject.user_id],
         @campaign
       )
-      Threesixty::Reports::IsAvailable.call!(subject, @campaign.option, subject_evaluator_counters)
+      Threesixty::Reports::IsAvailable.call!(
+        subject,
+        @campaign.option,
+        subject_evaluator_counters.dig(subject.user_id, :completed)
+      )
     end
 
     def self_can_access?
