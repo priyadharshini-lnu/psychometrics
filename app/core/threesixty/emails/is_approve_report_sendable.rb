@@ -2,10 +2,10 @@
 
 module Threesixty
   module Emails
-    class IsApproveReportSendable < Basecommand
+    class IsApproveReportSendable < BaseCommand
       attr_reader :threesixty_campaign
 
-      def initailize(threesixty_campaign)
+      def initialize(threesixty_campaign)
         @threesixty_campaign = threesixty_campaign
       end
 
@@ -27,8 +27,8 @@ module Threesixty
 
       def inform_manager_report_approval?
         option = threesixty_campaign.option.reports
-        option.dig(:approval, :manager_approves_reports) &&
-        option.dig(:approval, :email_manager_when_report_ready_for_approval)
+        option.dig("approval", "manager_approves_reports") &&
+        option.dig("approval", "email_manager_when_report_ready_for_approval")
       end
     end
   end

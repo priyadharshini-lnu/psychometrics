@@ -2,10 +2,10 @@
 
 module Threesixty
   module Emails
-    class IsRequestApprovalSendable < Basecommand
+    class IsRequestApprovalSendable < BaseCommand
       attr_reader :threesixty_campaign
 
-      def initailize(threesixty_campaign)
+      def initialize(threesixty_campaign)
         @threesixty_campaign = threesixty_campaign
       end
 
@@ -17,9 +17,9 @@ module Threesixty
 
       def can_request_approval_from_manager?
         option = threesixty_campaign.option.participants
-        option.dig(:subject ,:can_nominate_evaluators) &&
-        option.dig(:manager, :can_approve_nominations) &&
-        option.dig(:manager, :subjects_can_email_managers)
+        option.dig("subject", "can_nominate_evaluators") &&
+        option.dig("manager", "can_approve_nominations") &&
+        option.dig("manager", "subjects_can_email_managers")
       end
     end
   end

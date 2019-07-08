@@ -2,7 +2,7 @@
 
 module Threesixty
   class ManagerReportReadyMailer < ApplicationMailer
-    def send(manager)
+    def send_email(manager)
       email_template = EmailTemplate.find_by(name: 'manager_report_ready')
       mail(
           from: "#{email_template.from} <no-reply@#{Settings.domain}>",
