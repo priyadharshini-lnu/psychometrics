@@ -16,10 +16,10 @@ module Threesixty
           [subject.user_id],
           threesixty_campaign
         )
-        status = Threesixty::Participants::GetReportStatus.call(
+        status = Threesixty::Participants::GetReportStatus.call!(
           subject,
           threesixty_campaign.option,
-          subject_evaluator_counters[subject.user_id]
+          subject_evaluator_counters.dig(subject.user_id, :completed)
         )
         broadcast :ok, status == Threesixty::Participants::GetReportStatus::AVAILABLE
       end

@@ -20,7 +20,7 @@ module Threesixty
         broadcast :ok, Threesixty::Reports::ResolveReleaseCondition.call!(
           subject,
           threesixty_campaign.option,
-          subject_evaluator_counters[subject.user_id]
+          subject_evaluator_counters.dig(subject.user_id, :completed)
         )
       end
 

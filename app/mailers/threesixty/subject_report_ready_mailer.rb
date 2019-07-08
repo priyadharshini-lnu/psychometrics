@@ -3,7 +3,7 @@
 module Threesixty
   class SubjectReportReadyMailer < ApplicationMailer
     def send_email(subject)
-      email_template = EmailTemplate.find_by(name: 'subject_report_ready')
+      email_template = EmailTemplate.find_by!(name: 'subject_report_ready')
       mail(
           from: "#{email_template.from} <no-reply@#{Settings.domain}>",
           to: subject.email,

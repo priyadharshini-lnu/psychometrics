@@ -20,7 +20,7 @@ module Threesixty
     def update_status
       @nomination.update(manager_nomination_status: params[:status])
       if @nomination.manager_nomination_denied?
-        Threesixty::Emails::Sender.send_nomination_denied_email_to_subject(@campaign)
+        Threesixty::Emails::Sender.send_nomination_denied_email_to_subject(@campaign, @subject)
       end
       render json: @nomination, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
     end

@@ -10,21 +10,21 @@ module Threesixty
 
       def self.send_subject_report_ready_email_to_managers(threesixty_campaign, subject)
         return unless Threesixty::Emails::IsManagerReportReadySendable.call!(threesixty_campaign, subject)
-        Threesixty::Subjects::GetManagers.new(subject).includes(user).each do |manager|
+        Threesixty::Subjects::GetManagers.new(subject).query.includes(:user).each do |manager|
           Threesixty::ManagerReportReadyMailer.send_email(manager).deliver_later
         end
       end
 
       def self.send_approve_report_email_to_managers(threesixty_campaign, subject)
-        return unless Threesixty::Emails::IsApproveReportSendable.call!(threesixty_campaign)
-        Threesixty::Subjects::GetManagers.new(subject).includes(user).each do |manager|
-          Threesixty::ManagerReportReadyMailer.send_email(manager).deliver_later
+        return unless Threesixty::Emails::IsApproveReportSendable.call!(threesixty_campaign, subject)
+        Threesixty::Subjects::GetManagers.new(subject).query.includes(:user).each do |manager|
+          Threesixty::ApproveReportMailer.send_email(manager).deliver_later
         end
       end
 
       def self.send_nomination_approval_email_to_managers(threesixty_campaign, subject)
         return unless Threesixty::Emails::IsAppoveNominationSendable.call!(threesixty_campaign)
-        Threesixty::Subjects::GetManagers.new(subject).each do |manager|
+        Threesixty::Subjects::GetManagers.new(subject).query.includes(:user).each do |manager|
           Threesixty::ApproveNominationMailer.send_email(manager).deliver_later
         end
       end
@@ -37,7 +37,7 @@ module Threesixty
 
       def self.send_request_approval_email_to_managers(threesixty_campaign, subject)
         return unless Threesixty::Emails::IsRequestApprovalSendable.call(threesixty_campaign)
-        Threesixty::Subjects::GetManagers.new(subject).each do |manager|
+        Threesixty::Subjects::GetManagers.new(subject).query.includes(:user).each do |manager|
           Threesixty::RequestNominationApprovalMailer.send_email(manager).deliver_later
         end
       end
