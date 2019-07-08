@@ -25,8 +25,27 @@ describe ::UsersResults::UpdateUsersResult do
     end
   end
 
+  it "calls method for sending required mails" do
+      form = double('form', 'invalid?': false)
+      threesixty_subject = double()
+      allow_any_instance_of(described_class).to receive(:update_users_result)
+      allow_any_instance_of(described_class).to receive(:generate_360_report)
+      allow(users_result).to receive(:'completed?').and_return(true)
+      allow(users_result).to receive(:threesixty_subject).and_return(threesixty_subject)
+
+      expect(Threesixty::Emails::Sender).to receive(:send_subject_report_ready_email).
+        with(threesixty_campaign, threesixty_subject)
+      expect(Threesixty::Emails::Sender).to receive(:send_subject_report_ready_email_to_managers).
+        with(threesixty_campaign, threesixty_subject)
+      expect(Threesixty::Emails::Sender).to receive(:send_approve_report_email_to_managers).
+        with(threesixty_campaign, threesixty_subject)
+
+      described_class.call(form, users_result, threesixty_campaign)
+  end
+
   context '360 campaign' do
     let(:threesixty_campaign) { create(:threesixty_campaign) }
+    let!(:option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }
     let(:campaign)        { threesixty_campaign.campaign }
     let(:project)         { campaign.project }
     let(:assessment)      { threesixty_campaign.assessment }
