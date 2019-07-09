@@ -4,6 +4,10 @@ services:
   - postgres:latest
   - redis:latest
 
+stages:
+  - test
+  - deploy
+
 cache:
   key: psychometrics-cache-key
   paths:
@@ -33,6 +37,7 @@ before_script:
   - export REDIS_URL=redis://redis:6379/1
 
 test:
+  stage: test
   script:
   - bundle config github.https true
   - cp config/database.ci.yml config/database.yml
@@ -45,3 +50,18 @@ test:
   artifacts:
     paths:
     - coverage
+
+deploy:
+  before_script: 
+    - echo "Deploying to heroku"
+  stage: deploy
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - gem install dpl
+  - dpl --provider=heroku --app=tte-lighthouse-staging --api-key=$HEROKU_STAGING_API_KEY
+  environment:
+    name: Heroku Staging
+    url: https://staging.tte-lighthouse.com
+  when: manual
+  only:
+  - master  
