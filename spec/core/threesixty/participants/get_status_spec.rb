@@ -40,4 +40,15 @@ describe Threesixty::Participants::GetStatus do
              manager_relationship.id => 4, peer_relationship.id => 5
            )).to eq 'not_completed'
   end
+
+  it 'subject evaluation status is completed' do
+    allow(subject).to receive(:evaluation_status_completed?).and_return(true)
+
+    expect(described_class.call!(
+      subject,
+      nomination_requirement,
+      { completed_evaluations: 3, total_evaluations: 4 },
+      manager_relationship.id => 4, peer_relationship.id => 5
+    )).to eq 'done'
+  end
 end
