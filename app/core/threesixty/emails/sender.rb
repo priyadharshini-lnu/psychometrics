@@ -5,46 +5,46 @@ module Threesixty
     module Sender
       def self.send_subject_report_ready_email(threesixty_campaign, subject)
         return unless Threesixty::Emails::IsSubjectReportReadySendable.call!(threesixty_campaign, subject)
-        Threesixty::SubjectReportReadyMailer.send_email(subject).deliver_later
+        Threesixty::SubjectReportReadyMailer.send_email(threesixty_campaign, subject).deliver_later
       end
 
       def self.send_subject_report_ready_email_to_managers(threesixty_campaign, subject)
         return unless Threesixty::Emails::IsManagerReportReadySendable.call!(threesixty_campaign, subject)
         Threesixty::Subjects::GetManagers.new(subject).query.includes(:user).each do |manager|
-          Threesixty::ManagerReportReadyMailer.send_email(manager).deliver_later
+          Threesixty::ManagerReportReadyMailer.send_email(threesixty_campaign, manager, subject).deliver_later
         end
       end
 
       def self.send_approve_report_email_to_managers(threesixty_campaign, subject)
         return unless Threesixty::Emails::IsApproveReportSendable.call!(threesixty_campaign, subject)
         Threesixty::Subjects::GetManagers.new(subject).query.includes(:user).each do |manager|
-          Threesixty::ApproveReportMailer.send_email(manager).deliver_later
+          Threesixty::ApproveReportMailer.send_email(threesixty_campaign, manager, subject).deliver_later
         end
       end
 
       def self.send_nomination_approval_email_to_managers(threesixty_campaign, subject)
         return unless Threesixty::Emails::IsAppoveNominationSendable.call!(threesixty_campaign)
         Threesixty::Subjects::GetManagers.new(subject).query.includes(:user).each do |manager|
-          Threesixty::ApproveNominationMailer.send_email(manager).deliver_later
+          Threesixty::ApproveNominationMailer.send_email(threesixty_campaign, manager, subject).deliver_later
         end
       end
 
-      def self.send_nomination_denied_email_to_subject(threesixty_campaign, subject)
+      def self.send_nomination_denied_email_to_subject(threesixty_campaign, subject, evaluator)
         return unless Threesixty::Emails::IsDeniedNominationSendable.call!(threesixty_campaign)
-        Threesixty::DeniedNominationMailer.send_email(subject).deliver_later
+        Threesixty::DeniedNominationMailer.send_email(threesixty_campaign, subject, evaluator).deliver_later
       end
 
 
       def self.send_request_approval_email_to_managers(threesixty_campaign, subject)
         return unless Threesixty::Emails::IsRequestApprovalSendable.call!(threesixty_campaign)
         Threesixty::Subjects::GetManagers.new(subject).query.includes(:user).each do |manager|
-          Threesixty::RequestNominationApprovalMailer.send_email(manager).deliver_later
+          Threesixty::RequestNominationApprovalMailer.send_email(threesixty_campaign, manager, subject).deliver_later
         end
       end
 
       def self.send_evaluator_reminder_emails_for_subject(threesixty_campaign, subject)
         Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations.new(threesixty_campaign, subject).each do |evaluator|
-          Threesixty::EvaluatorReminderMailer.send_email(evaluator).deliver_later
+          Threesixty::EvaluatorReminderMailer.send_email(threesixty_campaign, evaluator, subject).deliver_later
         end
       end
     end
