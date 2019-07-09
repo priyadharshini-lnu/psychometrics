@@ -52,9 +52,10 @@ test:
     - coverage
 
 deploy:
-  before_script: 
-    - echo "Deploying to heroku"
   stage: deploy
+  before_script:
+  - echo "Deploying to heroku"
+  script:
   - apt-get update -qy
   - apt-get install -y ruby-dev
   - gem install dpl
