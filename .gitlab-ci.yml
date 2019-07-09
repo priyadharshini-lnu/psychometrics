@@ -1,20 +1,19 @@
-image: registry.gitlab.com/tte-lighthouse/psychometrics
+stages:
+- test_and_deploy
 
-services:
+
+test:
+  stage: test_and_deploy
+  image: registry.gitlab.com/tte-lighthouse/psychometrics
+  services:
   - postgres:latest
   - redis:latest
-
-stages:
-  - test
-  - deploy
-
-cache:
-  key: psychometrics-cache-key
-  paths:
-  - vendor/
-  - node_modules/
-
-before_script:
+  cache:
+    key: psychometrics-cache-key
+    paths:
+    - vendor/
+    - node_modules/
+  before_script:
   # install ssh-agent
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
   # run ssh-agent
@@ -35,9 +34,6 @@ before_script:
   - sudo chmod 0655 /usr/local/bin/phantomjs
   - npm install
   - export REDIS_URL=redis://redis:6379/1
-
-test:
-  stage: test
   script:
   - bundle config github.https true
   - cp config/database.ci.yml config/database.yml
@@ -52,10 +48,7 @@ test:
     - tmp/capybara
 
 deploy:
-  stage: deploy
-  cache: {}
-  before_script:
-  - echo "Deploying to heroku"
+  stage: test_and_deploy
   script:
   - sudo apt-get update -qy
   - sudo apt-get install -y ruby-dev
