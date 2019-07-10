@@ -6,11 +6,8 @@ module Administration
 
       def update
         scoring = ::Builders::ScoringBuilder.new(@assessment, params.require(:scoring), current_user)
-        if scoring.save
-          render json: { data: ::Assessments::AssessmentSerializer.new(@assessment).to_hash(include: '**') }
-        else
-          render json: { error: true }, status: 400
-        end
+        scoring.save!
+        render json: { data: ::Assessments::AssessmentSerializer.new(@assessment).to_hash(include: '**') }
       end
 
       private

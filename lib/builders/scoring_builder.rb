@@ -8,28 +8,30 @@ module Builders
       current_user
     end
 
-    attr_accessor :current_user, :scoring_list, :assessment
+    attr_accessor :current_user, :scoring_list, :assessment, :factor_scoring_map
 
     def initialize(assessment, scoring, current_user)
       @current_user = current_user
       @assessment = assessment
       @scoring_list = scoring.map(&:permit!)
+      @factor_scoring_map = FactorsScoring.where(assessment: assessment).index_by { |fs| [fs.factor_id, fs.question_id] }
     end
 
-    def save
+    def save!
       ActiveRecord::Base.transaction do
-        begin
-          @scoring_list.each do |scoring|
-            factors_scoring_attributes = scoring.slice(:factor_id, :question_id, :props).merge({ assessment_id: @assessment.id })
-            factors_scoring = FactorsScoring.find_or_initialize_by(factor_id: scoring[:factor_id], question_id: scoring[:question_id], assessment_id: @assessment.id)
-            factors_scoring.update(factors_scoring_attributes)
-          end
-        rescue => e
-          Rails.logger.info(e)
-          return false
+        @scoring_list.each do |scoring|
+          existing_scoring = factor_scoring_map[[scoring[:factor_id], scoring[:question_id]]]
+          next if existing_scoring && existing_scoring.props == scoring[:props].map(&:to_h)
+          next if scoring[:props].empty? && !existing_scoring
+
+          factors_scoring = existing_scoring || FactorsScoring.new(
+            factor_id: scoring[:factor_id],
+            question_id: scoring[:question_id],
+            assessment_id: assessment.id
+          )
+          factors_scoring.update!(props: scoring[:props])
         end
       end
-      true
     end
   end
 end
