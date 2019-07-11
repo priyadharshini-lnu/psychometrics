@@ -30,6 +30,8 @@ module Administration
           )
           @translations = Translation.to_hash_for_report(resource.id, resource.assessment_ids, user_locale)
           @available_translations = Translation.available_translation_for_report(resource.id, resource.assessment_ids)
+          @assigns_report = @assign.original_or_self.assigns_reports.where(report_id: resource.id, generating: false)
+            .where.not(pdf: nil).first if user_locale == resource.default_language
           respond_to do |format|
             format.html do
               render('_preview', layout: 'pdf') if params[:export]
