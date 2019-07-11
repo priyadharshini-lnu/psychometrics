@@ -1,4 +1,6 @@
 project_name: Psychometrics
+domain: 'lvh.me'
+port: '3030'
 timezone: Abu Dhabi
 timezone_tip: ' (GST)'
 react_dev:

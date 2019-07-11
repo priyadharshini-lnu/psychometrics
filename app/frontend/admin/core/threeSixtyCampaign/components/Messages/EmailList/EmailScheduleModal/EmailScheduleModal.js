@@ -9,6 +9,7 @@ import cs from 'classnames'
 import TitleBar from './TitleBar'
 import style from './style.scss'
 import ScheduledDateField from './ScheduledDateField'
+import RecipientCriteriaList from './RecipientCriteriaList'
 
 export default function EmailScheduleModal ({
   emailSchedules,
@@ -67,6 +68,7 @@ export default function EmailScheduleModal ({
       <TitleBar emailSchedules={emailSchedules} changeSelected={changeSelected} />
       <div className={style.content}>
         <ErrorAlertBox errors={errors} className="mbl" />
+        <RecipientCriteriaList recipientCriteria={selectedEmailSchedule.recipientCriteria} />
 
         <ScheduledDateField
           scheduledDate={selectedEmailSchedule.scheduledDate}

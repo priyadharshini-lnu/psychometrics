@@ -9,10 +9,14 @@ export default function DatasheetComparator ({
     merge({ subField: datasheetFields[0], comparator: 'equal' })
   }, [])
 
-
   return (
     <div>
-      <Select size="small" value={subField} onChange={value => update('subField', value)}>
+      <Select
+        dropdownMatchSelectWidth={false}
+        size="small"
+        value={subField}
+        onChange={value => update('subField', value)}
+      >
         {datasheetFields.map(name => (
           <Select.Option key={name}>{name}</Select.Option>
         ))}

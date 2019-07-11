@@ -8,9 +8,11 @@ export default function RecipientCriteriaList ({
 }) {
   return (
     <div className="mbm">
-      <div><b>To:</b></div>
+      <div>
+        <b>To:</b>
+      </div>
       {_.isEmpty(recipientCriteria) && (
-        <Select defaultValue="everyone" onChange={() => add()}>
+        <Select defaultValue="everyone" dropdownMatchSelectWidth={false} onChange={() => add()}>
           <Select.Option key="everyone">Everyone</Select.Option>
           <Select.Option key="participants">Participants By Criteria...</Select.Option>
         </Select>
