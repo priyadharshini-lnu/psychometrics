@@ -61,7 +61,7 @@ module Exports
             host: Settings.domain,
             user_token: current_user.authentication_token,
             export: true,
-            lang: opts[:lang] || I18n.locale,
+            lang: opts[:lang] || report.default_language || I18n.locale,
             port: Settings.port,
             protocol: Settings.protocol
           }
