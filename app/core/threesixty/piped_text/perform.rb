@@ -27,10 +27,16 @@ module Threesixty
           name: 'dashboard',
           class_name: 'Threesixty::PipedText::Branches::Dashboard',
           required_context: %i[threesixty_campaign recipient]
+        },
+        {
+          key: 'd',
+          name: 'date',
+          class_name: 'Threesixty::PipedText::Branches::DateTime',
+          required_context: []
         }
       ].freeze
 
-      def initialize(body, context)
+      def initialize(body, context = {})
         @body = body
         @context = context
       end
@@ -42,7 +48,7 @@ module Threesixty
             branch = lookup_branch(match)
             if valid_branch?(branch)
               path, params = match.scan(%r{//(.*)}).first&.first&.split('?')
-              branch[:class_name].constantize.call!(path&.split('/'), Rack::Utils.parse_nested_query(params), context)
+              branch[:class_name].constantize.call!(path&.split('/'), Rack::Utils.parse_nested_query(params ? URI.encode(params) : ''), context)
             else
               ''
             end
