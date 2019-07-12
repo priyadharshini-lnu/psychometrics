@@ -8,6 +8,7 @@ import RelationshipComparator from './Comparator/Relationship'
 import NominationRequirementComparator from './Comparator/NominationRequirement'
 import SelfEvaluationComparator from './Comparator/SelfEvaluation'
 import EvaluationComparator from './Comparator/Evaluation'
+import NumberComparator from './Comparator/Number'
 import TaskComparator from './Comparator/Task'
 import ManagerTaskComparator from './Comparator/ManagerTask'
 
@@ -42,6 +43,8 @@ export default function RecipientCriteriaList ({
         return <SelfEvaluationComparator {...props} />
       case 'evaluations':
         return <EvaluationComparator {...props} />
+      case 'evaluations_received':
+        return <NumberComparator {...props} />
       case 'tasks':
         return <TaskComparator {...props} />
       case 'manager_tasks':

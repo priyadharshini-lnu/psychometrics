@@ -15,6 +15,7 @@ module Threesixty
     has_many :email_templates, foreign_key: :threesixty_campaign_id
     has_many :email_schedules, foreign_key: :threesixty_campaign_id
     has_many :instruction_templates, foreign_key: :threesixty_campaign_id
+    has_many :users_results, through: :campaign
 
     attr_accessor :factors, :type
 

@@ -39,6 +39,7 @@ export default function EmailScheduleModal ({
     create(campaignId, selectedEmailSchedule)
       .then(() => {
         setErrors(null)
+        // closeModal()
         message.success('Email scheduled successfully', 5)
       })
       .catch(setErrors)

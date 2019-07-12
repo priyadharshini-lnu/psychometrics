@@ -8,7 +8,7 @@ module Threesixty
     attribute :reply_to_email, String
     attribute :subject, String
     attribute :content, String
-    attribute :recipient_criteria, Hash
+    attribute :recipient_criteria, Array
     attribute :scheduled_date, DateTime
 
     validates :from, :reply_to_email, presence: true
