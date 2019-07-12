@@ -10,7 +10,7 @@ module Threesixty
               with_context(subject: @subject, threesixty_campaign: @campaign)
       if form.valid?
         result = ::Threesixty::Evaluators::NominateEvaluator.call!(@campaign, @subject, params, form.user)
-        Threesixty::Emails::Sender.send_nomination_approval_email_to_managers(@campaign, @subject)
+        Threesixty::Emails::Send.call!('approve_nomination', threesixty_campaign: @campaign, subject: @subject)
         render json: result, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
       else
         render json: { errors: form.error_messages }, status: :bad_request
@@ -20,7 +20,12 @@ module Threesixty
     def update_status
       @nomination.update(manager_nomination_status: params[:status])
       if @nomination.manager_nomination_denied?
-        Threesixty::Emails::Sender.send_nomination_denied_email_to_subject(@campaign, @subject, @nomination.threesixty_evaluator)
+        Threesixty::Emails::Send.call!(
+          'nomination_denied',
+          threesixty_campaign: @campaign,
+          subject: @subject,
+          evaluator: @nomination.threesixty_evaluator
+        )
       end
       render json: @nomination, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
     end

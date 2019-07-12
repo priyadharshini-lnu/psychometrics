@@ -10,8 +10,7 @@ module Administration
       def create
         form = ::Threesixty::EmailScheduleForm.from_params(params[:email_schedule])
         if form.valid?
-          email_schedule = ::Threesixty::EmailSchedule.create!(form.attributes)
-          Threesixty::SendScheduleEmailJob.perform if email_schedule.scheduled_date <= Time.now
+          ::Threesixty::EmailSchedule.create!(form.attributes)
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: :bad_request

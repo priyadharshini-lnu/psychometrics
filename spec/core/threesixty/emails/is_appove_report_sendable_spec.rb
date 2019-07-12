@@ -23,19 +23,19 @@ describe Threesixty::Emails::IsApproveReportSendable do
     it 'returns false if report is already approved' do
       allow(subject).to receive(:report_approved?).and_return(true)
 
-      expect(described_class.call!(threesixty_campaign, subject)).to eq false
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq false
     end
 
     it 'returns false if report availiablity conditions are not meet' do
       allow(Threesixty::Reports::ResolveReleaseCondition).to receive(:call!).and_return(false)
 
-      expect(described_class.call!(threesixty_campaign, subject)).to eq false
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq false
     end
 
     it 'returns true if report availiablity conditions are meet' do
       allow(Threesixty::Reports::ResolveReleaseCondition).to receive(:call!).and_return(true)
 
-      expect(described_class.call!(threesixty_campaign, subject)).to eq true
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq true
     end
 
   end
@@ -53,7 +53,7 @@ describe Threesixty::Emails::IsApproveReportSendable do
     end
 
     it 'returns false' do
-      expect(described_class.call!(threesixty_campaign, subject)).to eq false
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq false
     end
   end
 end

@@ -27,13 +27,13 @@ describe Threesixty::Emails::IsSubjectReportReadySendable do
     it 'returns false if report is not available' do
       allow(Threesixty::Participants::GetReportStatus).to receive(:call!).and_return('not_available')
 
-      expect(described_class.call!(threesixty_campaign, subject)).to eq false
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq false
     end
 
     it 'returns true if report is available' do
       allow(Threesixty::Participants::GetReportStatus).to receive(:call!).and_return('available')
 
-      expect(described_class.call!(threesixty_campaign, subject)).to eq true
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq true
     end
 
   end
@@ -64,7 +64,7 @@ describe Threesixty::Emails::IsSubjectReportReadySendable do
         }
       )
 
-      expect(described_class.call!(threesixty_campaign, subject)).to eq false
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq false
     end
 
     it do
@@ -81,7 +81,7 @@ describe Threesixty::Emails::IsSubjectReportReadySendable do
         }
       )
 
-      expect(described_class.call!(threesixty_campaign, subject)).to eq false
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq false
     end
   end
 end
