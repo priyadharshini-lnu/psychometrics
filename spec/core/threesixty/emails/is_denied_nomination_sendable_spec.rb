@@ -15,7 +15,7 @@ describe Threesixty::Emails::IsDeniedNominationSendable do
         }
       )
 
-      expect(described_class.call!(threesixty_campaign)).to eq true
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign)).to eq true
     end
   end
 
@@ -29,7 +29,7 @@ describe Threesixty::Emails::IsDeniedNominationSendable do
         }
       )
 
-      expect(described_class.call!(threesixty_campaign)).to eq false
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign)).to eq false
     end
 
     it do
@@ -41,7 +41,7 @@ describe Threesixty::Emails::IsDeniedNominationSendable do
         }
       )
 
-      expect(described_class.call!(threesixty_campaign)).to eq false
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign)).to eq false
     end
   end
 end

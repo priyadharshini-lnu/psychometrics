@@ -28,7 +28,7 @@ module Administration
 
       def update
         resource.update!(resource_params)
-        Threesixty::Emails::Sender.send_subject_report_ready_email(threesixty_campaign, subject)
+        Threesixty::Emails::Send.call!('subject_report_ready', threesixty_campaign: threesixty_campaign, subject: subject)
         render json: ::Threesixty::Subjects::Serialize.call!([resource], threesixty_campaign).first
       end
 

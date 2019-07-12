@@ -69,9 +69,9 @@ module UsersResults
 
     def send_necessary_emails
       subject = users_result.threesixty_subject
-      Threesixty::Emails::Sender.send_subject_report_ready_email(threesixty_campaign, subject)
-      Threesixty::Emails::Sender.send_subject_report_ready_email_to_managers(threesixty_campaign, subject)
-      Threesixty::Emails::Sender.send_approve_report_email_to_managers(threesixty_campaign, subject)
+      Threesixty::Emails::Send.call!('subject_report_ready', threesixty_campaign: threesixty_campaign, subject: subject)
+      Threesixty::Emails::Send.call!('manager_report_ready', threesixty_campaign: threesixty_campaign, subject: subject)
+      Threesixty::Emails::Send.call!('approve_report', threesixty_campaign: threesixty_campaign, subject: subject)
     end
   end
 end

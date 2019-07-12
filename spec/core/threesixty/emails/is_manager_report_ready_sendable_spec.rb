@@ -27,13 +27,13 @@ describe Threesixty::Emails::IsManagerReportReadySendable do
     it 'returns false if report availiablity conditions are not meet' do
       allow(Threesixty::Reports::ResolveReleaseCondition).to receive(:call!).and_return(false)
 
-      expect(described_class.call!(threesixty_campaign, subject)).to eq false
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq false
     end
 
     it 'returns true if report availiablity conditions are meet' do
       allow(Threesixty::Reports::ResolveReleaseCondition).to receive(:call!).and_return(true)
 
-      expect(described_class.call!(threesixty_campaign, subject)).to eq true
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq true
     end
 
   end
@@ -53,7 +53,7 @@ describe Threesixty::Emails::IsManagerReportReadySendable do
         }
       )
 
-      expect(described_class.call!(threesixty_campaign, subject)).to eq false
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq false
     end
 
     it do
@@ -70,7 +70,7 @@ describe Threesixty::Emails::IsManagerReportReadySendable do
         }
       )
 
-      expect(described_class.call!(threesixty_campaign, subject)).to eq false
+      expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq false
     end
   end
 end
