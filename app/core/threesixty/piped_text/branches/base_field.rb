@@ -4,7 +4,7 @@ module Threesixty
   module PipedText
     module Branches
       class BaseField < BaseCommand
-        def initialize(path, params, context)
+        def initialize(path, params, context = {})
           @path = path
           @params = params
           @context = context

@@ -76,7 +76,7 @@ gem 'annotate', '~> 2.7.0', git: 'git@github.com:ctran/annotate_models.git'
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
-gem 'psychometrics-reports-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git', ref: 'c6b507c8b5e52485c55ecf4fa5196613a3ededb6'
+gem 'psychometrics-reports-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git', ref: '8f27ca3ac4954b1430ffa45c040b818199a914bd'
 gem 'psychometrics-survey-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git', ref: 'e3f0d9bc7ab8fbc9cbdf2e6759dadc7e33f946f4'
 
 ### XLS import
