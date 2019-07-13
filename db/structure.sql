@@ -2618,8 +2618,7 @@ CREATE TABLE public.users_results (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
-    campaign_id bigint,
-    question_scoring jsonb DEFAULT '[]'::jsonb
+    campaign_id bigint
 );
 
 
@@ -5829,6 +5828,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190620132719'),
 ('20190630092817'),
 ('20190703092738'),
-('20190710140100');
+('20190710140100'),
+('20190713155551');
 
 
