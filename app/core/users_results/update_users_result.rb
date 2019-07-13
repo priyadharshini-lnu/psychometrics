@@ -34,8 +34,8 @@ module UsersResults
 
       # Calculates scoring and sets time of completion
       if users_result.completed?
+        users_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(users_result)
         users_result.scoring = ::UsersResults::CalculateScoring.call!(users_result)
-        users_result.question_scoring = ::UsersResults::CalculateQuestionScoring.call!(users_result)
         users_result.occupations = ::Assigns::CalculateOccupations.call!(users_result)
         users_result.completed_at = Time.now
         if (users_result.campaign.threesixty?)
