@@ -58,5 +58,22 @@ describe Threesixty::PipedText::Perform do
       response = described_class.call!('{{s://Field/FirstName}} vs {{p://Field/Email}}', recipient: user, subject: user, threesixty_campaign: 'ddd')
       expect(response).to eq('Vasiliy vs vasja@gmail.com')
     end
+
+    it do
+      response = described_class.call!('{{d://Current?f=%-d/%-m/%Y}}')
+      expect(response).to eq(Time.now.strftime('%-d/%-m/%Y'))
+    end
+
+    it 'empty if error occure' do
+      response = described_class.call!('{{d://Current?f=%--}}')
+      expect{response.call}.to raise_error(Exception)
+      expect(response).to eq(Time.now.strftime(''))
+    end
+
+    it do
+      response = described_class.call!('{{d://Other/+1d?f=%-d/%-m/%Y}}')
+      time = Time.now+1.day
+      expect(response).to eq(time.strftime('%-d/%-m/%Y'))
+    end
   end
 end

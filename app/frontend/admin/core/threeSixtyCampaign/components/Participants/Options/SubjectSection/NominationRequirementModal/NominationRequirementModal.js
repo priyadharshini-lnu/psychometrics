@@ -7,7 +7,6 @@ import List from './Tabs'
 import css from './style.scss'
 
 export default function NominationRequirementModal ({
-  currentModal,
   closeModal,
   nominationRequirements,
   defaultSelectedRelationship,
@@ -18,8 +17,6 @@ export default function NominationRequirementModal ({
     params: { campaignId },
   },
 }) {
-  if (currentModal !== 'NominationRequirement') return null
-
   useEffect(() => {
     fetchNominationRequirements(campaignId)
   }, [])

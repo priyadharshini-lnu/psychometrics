@@ -5,15 +5,12 @@ import {
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
 
 export default function SendTestEmailModal ({
-  current,
   closeModal,
   sendTestEmail,
   match: {
     params: { campaignId, id },
   },
 }) {
-  if (current !== 'SendTestEmailModal') return null
-
   const [email, setEmail] = useState(null)
   const [errors, setErrors] = useState(null)
 

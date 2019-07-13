@@ -81,6 +81,7 @@ export default function Emails ({
             onChange={(e) => { update(selectedTemplate.id, 'subject', e.target.value) }}
           />
           <Editor
+            type={selectedTemplate.name}
             content={selectedTemplate.content}
             handleContentChange={(value) => { update(selectedTemplate.id, 'content', value) }}
           />

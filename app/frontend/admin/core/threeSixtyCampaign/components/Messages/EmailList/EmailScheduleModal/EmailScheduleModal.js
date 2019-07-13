@@ -13,27 +13,26 @@ import ScheduledDateField from './ScheduledDateField'
 export default function EmailScheduleModal ({
   emailSchedules,
   emailSchedules: { list, selectedId },
-  current,
   fetchSchedulableTemplate,
   create,
   update,
   changeSelected,
   closeModal,
-  selectedEmailTemplateId,
+  data,
   match: {
     params: { campaignId },
   },
 }) {
-  if (current !== 'ScheduleEmailModal') return null
-
   useEffect(() => {
-    fetchSchedulableTemplate(campaignId, { selectedEmailTemplateId })
+    fetchSchedulableTemplate(campaignId, { selectedEmailTemplateId: data.selectedEmailTemplateId })
   }, [])
 
   const [errors, setErrors] = useState(null)
   const selectedEmailSchedule = _.find(list, ({ id }) => id === selectedId)
 
-  if (!selectedEmailSchedule) { return null }
+  if (!selectedEmailSchedule) {
+    return null
+  }
 
   const handleCreate = () => {
     create(campaignId, selectedEmailSchedule)
@@ -98,8 +97,11 @@ export default function EmailScheduleModal ({
           onChange={handleInputChange}
         />
         <Editor
+          type={selectedEmailSchedule.name}
           content={selectedEmailSchedule.content}
-          handleContentChange={(value) => { update('content', value) }}
+          handleContentChange={(value) => {
+            update('content', value)
+          }}
         />
       </div>
     </Modal>

@@ -57,6 +57,7 @@ export default function InstructionList ({
         <div className={css.content}>
           <ErrorAlertBox errors={errors} className="mtl mbl" />
           <Editor
+            type={selectedTemplate.name}
             content={selectedTemplate.content}
             handleContentChange={(value) => { update(selectedTemplate.id, 'content', value) }}
           />

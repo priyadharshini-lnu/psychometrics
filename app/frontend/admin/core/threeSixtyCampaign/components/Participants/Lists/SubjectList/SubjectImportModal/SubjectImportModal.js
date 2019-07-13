@@ -8,7 +8,6 @@ import cs from 'classnames'
 import FileImport from './FileImport'
 
 export default function SubjectImportModal ({
-  current,
   closeModal,
   importFile,
   importInProgress,
@@ -19,7 +18,6 @@ export default function SubjectImportModal ({
     params: { campaignId },
   },
 }) {
-  if (current !== 'SubjectImportModal') return null
   const [file, setFile] = useState(null)
 
   const importButtonIcon = () => {

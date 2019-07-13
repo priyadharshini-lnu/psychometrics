@@ -1,1 +1,2 @@
 import './rtlLtr'
+import './pipedText'
