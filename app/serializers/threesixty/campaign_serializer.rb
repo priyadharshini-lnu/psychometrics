@@ -13,16 +13,21 @@ module Threesixty
       end
     end
 
-    attributes :id, :reports
+    attributes :id, :reports, :instructions
 
     has_many :nominations, serializer: NomineeSerializer
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
     has_many :reports, serializer: UsersReportSerializer
     has_one :options, serializer: CampaignOptionsSerializer
-    has_many :instructions, serializer: InstructionTemplateSerializer
 
     def instructions
-      object.instruction_templates
+      object.instruction_templates.map do |instruction|
+        {
+          name: instruction.name,
+          content: Threesixty::PipedText::Perform.call!(instruction.content,
+                      threesixty_campaign: object.campaign.threesixty_campaign)
+        }
+      end
     end
 
     def options
