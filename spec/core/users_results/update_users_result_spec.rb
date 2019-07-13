@@ -33,12 +33,12 @@ describe ::UsersResults::UpdateUsersResult do
       allow(users_result).to receive(:'completed?').and_return(true)
       allow(users_result).to receive(:threesixty_subject).and_return(threesixty_subject)
 
-      expect(Threesixty::Emails::Sender).to receive(:send_subject_report_ready_email).
-        with(threesixty_campaign, threesixty_subject)
-      expect(Threesixty::Emails::Sender).to receive(:send_subject_report_ready_email_to_managers).
-        with(threesixty_campaign, threesixty_subject)
-      expect(Threesixty::Emails::Sender).to receive(:send_approve_report_email_to_managers).
-        with(threesixty_campaign, threesixty_subject)
+      expect(Threesixty::Emails::Send).to receive(:call!).
+        with('subject_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+      expect(Threesixty::Emails::Send).to receive(:call!).
+        with('manager_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+      expect(Threesixty::Emails::Send).to receive(:call!).
+        with('approve_report', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
 
       described_class.call(form, users_result, threesixty_campaign)
   end

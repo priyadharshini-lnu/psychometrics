@@ -47,8 +47,7 @@ module Threesixty
 
       def call
         config = CONFIG.find { |c| c[:template_name] == type }
-        return if config[:condition_class].nil? || !config[:condition_class].constantize.call!(context)
-
+        return unless config[:condition_class].nil? || config[:condition_class].constantize.call!(context)
 
         email_template = context[:threesixty_campaign].email_templates.find_by!(name: type)
 
@@ -61,7 +60,8 @@ module Threesixty
           ).compact
 
           body = Threesixty::PipedText::Perform.call!(email_template.content, context_for_pipe_text)
-          email_schedule_attributes = email_template.slice(:subject, :from, :reply_to_email, :threesixty_campaign_id).
+          email_schedule_attributes = email_template.
+            slice(:name, :subject, :from, :reply_to_email, :threesixty_campaign_id).
             merge(
               content: body,
               recipient_emails: [user.email],
@@ -82,7 +82,9 @@ module Threesixty
         if config[:recipient] == 'manager'
           Threesixty::Subjects::GetManagers.new(context[:subject]).query.includes(:user)
         elsif config[:recipient] == 'evaluators_with_pending_evaluations'
-          Threesixty::GetEvaluatorsWithPendingEvaluations.new(threesixty_campaign, context[:subject])
+          Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations.new(
+            context[:threesixty_campaign], context[:subject]
+          )
         end
       end
     end
