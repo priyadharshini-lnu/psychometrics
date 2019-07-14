@@ -5,8 +5,6 @@ import RelationshipRow from './RelationshipRow'
 
 export default function ManageRelationshipsModal ({
   closeModal,
-  user,
-  onClose,
   relationships,
   fetchWithUsage,
   create,

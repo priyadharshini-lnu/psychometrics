@@ -3,7 +3,9 @@ import { Icon, Input } from 'antd'
 import { GLOBAL } from 'constants/relationship'
 import style from './style.scss'
 
-export default function RelationshipRow ({ relationship, create, campaignId, remove, update }) {
+export default function RelationshipRow ({
+  relationship, create, campaignId, remove, update,
+}) {
   return (
     <tr>
       <td className="ps">

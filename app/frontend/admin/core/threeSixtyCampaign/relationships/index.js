@@ -32,7 +32,7 @@ export const create = (campaignId, attrs) => ({
   request: {
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/relationships`,
-    body: attrs
+    body: attrs,
   },
 })
 
@@ -40,9 +40,10 @@ export const remove = (campaignId, relationshipId) => ({
   type: REMOVE,
   request: {
     method: 'delete',
-    url: `/administration/threesixty_campaigns/${campaignId}/relationships/${relationshipId}`
+    url: `/administration/threesixty_campaigns/${campaignId}/relationships/${relationshipId}`,
   },
 })
+
 export const update = (campaignId, relationshipId, attrs) => ({
   type: UPDATE,
   id: relationshipId,
@@ -50,7 +51,7 @@ export const update = (campaignId, relationshipId, attrs) => ({
     method: 'put',
     debounce: 150,
     url: `/administration/threesixty_campaigns/${campaignId}/relationships/${relationshipId}`,
-    body: attrs
+    body: attrs,
   },
 })
 
@@ -75,7 +76,7 @@ export default function reducer (state = defaultState, action) {
     case UPDATE_REQUEST:
       return state.map((r) => {
         if (r.id !== action.id) return r
-        return { ...r, ...action.request.body}
+        return { ...r, ...action.request.body }
       })
     default:
       return state

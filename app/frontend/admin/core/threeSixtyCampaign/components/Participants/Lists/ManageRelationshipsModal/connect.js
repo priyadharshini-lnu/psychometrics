@@ -1,7 +1,9 @@
 import { connect } from 'react-redux'
 import { fetchAllByUserId as fetchParticipants } from 'admin/core/threeSixtyCampaign/participants'
 import { closeModal } from 'admin/core/temp/modals'
-import { fetchWithUsage, create, remove, update } from 'admin/core/threeSixtyCampaign/relationships'
+import {
+  fetchWithUsage, create, remove, update,
+} from 'admin/core/threeSixtyCampaign/relationships'
 
 export default connect(
   ({
@@ -10,5 +12,7 @@ export default connect(
       modals: { current },
     },
   }) => ({ relationships, current }),
-  { fetchParticipants, fetchWithUsage, closeModal, create, remove, update },
+  {
+    fetchParticipants, fetchWithUsage, closeModal, create, remove, update,
+  },
 )
