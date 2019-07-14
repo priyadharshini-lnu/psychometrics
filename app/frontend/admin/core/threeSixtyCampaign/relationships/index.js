@@ -48,6 +48,7 @@ export const update = (campaignId, relationshipId, attrs) => ({
   id: relationshipId,
   request: {
     method: 'put',
+    debounce: 150,
     url: `/administration/threesixty_campaigns/${campaignId}/relationships/${relationshipId}`,
     body: attrs
   },
