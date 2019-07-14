@@ -10,7 +10,7 @@ import './styles.scss'
 const { Content } = Layout
 const { Search } = Input
 
-export default function CampaignList ({ campaigns, fetchCampaigns }) {
+export default function CampaignList ({ campaigns, fetchCampaigns, downloadReport }) {
   useEffect(() => {
     fetchCampaigns()
   }, [])
@@ -58,7 +58,7 @@ export default function CampaignList ({ campaigns, fetchCampaigns }) {
             <Row type="flex" justify="start" className="cards">
               {campaigns.map((campaign) => {
                 const Component = Campaigns[campaign.type]
-                return <Component key={campaign.id} campaign={campaign} />
+                return <Component key={campaign.id} campaign={campaign} downloadReport={downloadReport} />
               })}
             </Row>
           </PageHeader>

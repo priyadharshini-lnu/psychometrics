@@ -1,4 +1,5 @@
 import { connect } from 'react-redux'
+import { downloadReport } from 'user/core/ThreesixtyCampaign/report'
 import { fetchCampaigns } from '../../campaignList'
 
 const mapStateToProps = state => ({
@@ -8,6 +9,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchCampaigns,
+  downloadReport,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

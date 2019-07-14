@@ -1,13 +1,28 @@
+/* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable max-len */
 import React from 'react'
 import {
-  Row, Col, Icon, Card, Progress,
+  Row, Col, Icon, Card, Progress, Dropdown, Menu,
 } from 'antd'
 import './styles.scss'
 import mindmill from './mindmill.png'
 import hogan from './hogan.png'
 
-const renderButtonContent = ({ url, status }) => {
+const StatusMenu = reports => (
+  <Menu>
+    {reports.map(report => (
+      <Menu.Item key={report.id}>
+        <a href={`${report.pdf_url}`} target="_blank">
+          <Icon type="download" />
+          {' '}
+          {report.name}
+        </a>
+      </Menu.Item>
+    ))}
+  </Menu>
+)
+
+const renderButtonContent = ({ url, status, assignedReports }) => {
   if (status === 'in_progress') {
     return (
       <a href={url}>
@@ -36,13 +51,28 @@ const renderButtonContent = ({ url, status }) => {
   }
 
   if (status === 'completed') {
-    return (
-      <a href={url}>
-        <Icon type="download" />
-        {' '}
-        Download Report
-      </a>
-    )
+    if (assignedReports.length > 1) {
+      return (
+        <Dropdown
+          trigger={['click']}
+          overlay={() => StatusMenu(assignedReports)}
+        >
+          <div>
+            <Icon type="download" />
+            {' '}
+            Download Report
+          </div>
+        </Dropdown>
+      )
+    } if (assignedReports.length === 1) {
+      return (
+        <a href={`${url}.pdf`} target="_blank">
+          <Icon type="download" />
+          {' '}
+          Download Report
+        </a>
+      )
+    }
   }
   return (
     <a href={url}>
