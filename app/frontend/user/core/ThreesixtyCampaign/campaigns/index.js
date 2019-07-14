@@ -1,5 +1,3 @@
-import { setIn } from 'utils/immutable'
-
 const FETCH = 'threeSixty/campaignList/FETCH'
 
 export const fetchCampaigns = () => ({
@@ -9,12 +7,10 @@ export const fetchCampaigns = () => ({
   },
 })
 
-export const defaultState = {
-  campaigns: [],
-}
+export const defaultState = []
 
 const HANDLERS = {
-  [FETCH]: (state, action) => setIn(state, ['campaigns'], action.response),
+  [FETCH]: (_, action) => action.response,
 }
 
 export default function reducer (state = defaultState, action) {

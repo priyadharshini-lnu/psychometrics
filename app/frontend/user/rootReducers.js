@@ -1,6 +1,6 @@
 import { combineReducers } from 'redux'
 import campaign from './core/ThreesixtyCampaign/campaign'
-import campaignList from './core/ThreesixtyCampaign/campaignList'
+import campaigns from './core/ThreesixtyCampaign/campaigns'
 import nomination from './core/ThreesixtyCampaign/nomination'
 import evaluation from './core/ThreesixtyCampaign/evaluation'
 import report from './core/ThreesixtyCampaign/report'
@@ -13,7 +13,7 @@ export default combineReducers({
     nomination,
     evaluation,
     report,
-    campaignList,
+    campaigns,
     temp: combineReducers({
       currentUser,
       autocomplete,

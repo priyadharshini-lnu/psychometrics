@@ -8,6 +8,8 @@ import './styles.scss'
 import mindmill from './mindmill.png'
 import hogan from './hogan.png'
 
+const IN_PROGRESS = 'in_progress'
+
 const StatusMenu = reports => (
   <Menu>
     {reports.map(report => (
@@ -23,7 +25,7 @@ const StatusMenu = reports => (
 )
 
 const renderButtonContent = ({ url, status, assignedReports }) => {
-  if (status === 'in_progress') {
+  if (status === IN_PROGRESS) {
     return (
       <a href={url}>
         <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
