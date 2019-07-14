@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'rails_helper'
 require 'swagger_helper'
 
 describe 'Reports' do

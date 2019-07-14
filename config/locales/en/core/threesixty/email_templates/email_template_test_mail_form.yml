@@ -1,0 +1,9 @@
+en:
+  activemodel:
+    errors:
+      models:
+        email_template_test_mail:
+          attributes:
+            to_email:
+              blank: "Email field can't be blank"
+              invalid: 'Email is invalid'

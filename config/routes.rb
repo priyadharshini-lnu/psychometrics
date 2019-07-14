@@ -62,6 +62,7 @@ Rails.application.routes.draw do
           scope module: :users do
             resources :assigns, only: [:index, :new, :create, :destroy] do
               get :reports, on: :collection
+              put :reset, on: :member
             end
             resources :reports, only: [:destroy] do
               get :preview, on: :member
@@ -190,9 +191,15 @@ Rails.application.routes.draw do
           member do
             get :preview_report
           end
+
+          resource :reports, only: [:show] do
+            get :download, on: :member
+          end
         end
         resources :evaluators do
           collection do
+            get :download_example_import_file
+            post :import
             post :create_all
           end
         end
@@ -201,6 +208,19 @@ Rails.application.routes.draw do
           get :participant_options
           get :report_options
           get :message_options
+        end
+
+        resources :email_templates do
+          member do
+            get :send_test_email
+          end
+        end
+        resources :instruction_templates
+
+        resources :email_schedules do
+          collection do
+            get :schedulable_templates
+          end
         end
 
         resources :managers
@@ -217,6 +237,7 @@ Rails.application.routes.draw do
         end
       end
       member do
+        get 'export_completion_status'
         delete 'reset'
         delete 'reset_nominations'
         delete 'remove_user'
@@ -456,7 +477,7 @@ Rails.application.routes.draw do
                             passwords: 'passwords' }
   # Manager's panel
   #
-  constraints(subdomain: /^(?!(www|#{Settings.subdomain})$)(.+)$/i) do
+  constraints(subdomain: /^(?!(#{Settings.subdomain})$)(.+)$/i) do
     namespace :managers do
       resources :dashboard, only: [:index]
       resources :assigns, only: [:index]
@@ -499,6 +520,7 @@ Rails.application.routes.draw do
         end
         resources :reports do
           put :update_status
+          get :download, on: :member
         end
         resources :assessments, only: %i(index)
         resources :users_results, only: %i[update]

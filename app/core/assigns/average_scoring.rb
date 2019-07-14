@@ -1,7 +1,7 @@
 module Assigns
   class AverageScoring < BaseCommand
     def initialize(scoring, factor)
-      @scoring = scoring
+      @scoring = scoring.with_indifferent_access
       @factor = factor
     end
 

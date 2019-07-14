@@ -11,13 +11,6 @@ describe Threesixty::Campaigns::Reset do
       expect(::Threesixty::NominationRequirement.where(id: nomination_requirements.map(&:id))).to_not exist
     end
 
-    it 'deletes associated subjects_requirements' do
-      subjects_relationships = create_list(:threesixty_subjects_relationship, 2, campaign: threesixty_campaign.campaign)
-      ::Threesixty::Campaigns::Reset.call!(threesixty_campaign)
-
-      expect(::Threesixty::SubjectsRelationship.where(id: subjects_relationships.map(&:id))).to_not exist
-    end
-
     it 'deletes associated participants' do
       participants = create_list(:participant, 2, campaign: threesixty_campaign.campaign)
       ::Threesixty::Campaigns::Reset.call!(threesixty_campaign)

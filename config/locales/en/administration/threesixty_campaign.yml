@@ -99,3 +99,9 @@ en:
               title: Statistics
               all_assessments: All assessments
               assessment_type: Assessment type
+          completion_statuses:
+            not_started: Not Started
+            in_progress: In Progress
+            approved: Approved
+            denied: Denied
+            completed: Completed

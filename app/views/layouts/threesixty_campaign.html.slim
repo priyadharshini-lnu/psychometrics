@@ -29,3 +29,5 @@ html
 
   body data-locale="#{I18n.locale}"
     = yield
+    #notification-center-container
+    = javascript_pack_tag 'notificationCenter'    

@@ -37,6 +37,11 @@ en:
             export: Export
         header:
           actions: Actions
+        assign_assessments:
+          assessments: Assessments
+          add_assessment: Add Assessment
+        assign_reports:
+          add_report: Add Report
         resource:
           assessments: Assessments
           add_assessment: Add Assessment

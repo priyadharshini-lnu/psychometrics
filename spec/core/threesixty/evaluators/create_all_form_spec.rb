@@ -7,10 +7,10 @@ describe Threesixty::Evaluators::CreateAllForm do
   let(:campaign) { create(:campaign, project: project) }
   describe '.call' do
     it 'duplicated subject+evaluator emails' do
-      evaluators = {
-        "0": { subject_email: 'a@a.com', evaluator_email: 'b@b.com' },
-        "1": { subject_email: 'a@a.com', evaluator_email: 'b@b.com' }
-      }
+      evaluators = [
+        { subject_email: 'a@a.com', evaluator_email: 'b@b.com' },
+        { subject_email: 'a@a.com', evaluator_email: 'b@b.com' }
+      ]
       form = described_class.new(evaluators: evaluators)
       form.with_context(campaign: campaign)
       form.validate

@@ -7,11 +7,11 @@
         = f.input :type, as: :select, collection: Assessment::TYPES.map { |key, value| [t("activerecord.attributes.assessment.types.#{key}"), value] },
                          include_blank: false,
                          wrapper_html: { class: 'common mindmill hogan' }
-        = f.input :mindmill_id, collection: Settings.mindmill.map { |m| [m[:name], m[:id]] },
+        = f.input :mindmill_id, collection: Settings.providers.mindmill.assessments.map { |m| [m[:name], m[:id]] },
                                 include_blank: false,
                                 wrapper_html: { class: 'mindmill' }
         = f.simple_fields_for :hogan_assessment_setting do |hogan|
-          = hogan.input :hogan_assessment_id, collection: Settings.hogan.map { |h| [h[:name], h[:assessment_id]] },
+          = hogan.input :hogan_assessment_id, collection: Settings.providers.hogan.assessments.map { |h| [h[:name], h[:id]] },
                                               include_blank: false,
                                               wrapper_html: { class: 'hogan' }
         = f.input :name, wrapper_html: { class: 'common mindmill hogan' }

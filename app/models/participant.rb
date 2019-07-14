@@ -15,11 +15,11 @@ class Participant < ApplicationRecord
 
   enum manager_nomination_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_nomination
   enum evaluator_nomination_status: { waiting: 0, completed: 1, denied: 2 }, _prefix: :evaluator_nomination
-  enum manager_evaluation_status: { waiting: 0, completed: 1, denied: 2 }, _prefix: :manager_evaluation
+  enum manager_evaluation_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_evaluation
 
   scope :active, -> { where.not(manager_nomination_status: :denied, evaluator_nomination_status: :denied) }
   scope :actual_by_options, lambda { |options|
-    where('subject_id != evaluator_id') unless options.participants.dig("subject", "can_evaluate_self")
+    where('participants.subject_id != participants.evaluator_id') unless options.participants.dig("subject", "can_evaluate_self")
   }
 
 end

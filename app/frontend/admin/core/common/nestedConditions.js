@@ -30,7 +30,7 @@ export default ({
       if (conditions.length > 1) {
         return removeConditions(state, path, childIndex)
       }
-      return removeConditions([state], 0, childIndex)[0]
+      return removeConditions([state], 0, parentIndex)[0]
     },
     [UPDATE]: (state, {
       payload: {

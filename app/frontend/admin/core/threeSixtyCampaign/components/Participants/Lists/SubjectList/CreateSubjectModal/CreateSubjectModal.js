@@ -27,7 +27,6 @@ const tableFields = [
 const formItemLayout = { labelCol: { span: 3 }, wrapperCol: { span: 12 } }
 
 export default function CreateSubjectModal ({
-  current,
   closeModal,
   autocompletedUsers,
   fillSubjects,
@@ -38,7 +37,6 @@ export default function CreateSubjectModal ({
     params: { projectId, clientId, campaignId },
   },
 }) {
-  if (current !== 'CreateSubjectModal') return null
   const [autocompletedUser, setAutocompletedUser] = useState('')
 
   const handleOk = () => createAll(campaignId, _.filter(subjects, s => s.email || s.lastName || s.firstName))

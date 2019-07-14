@@ -12,7 +12,11 @@ const HANDLERS = {
   [FETCH_PARTICIPANT_OPTIONS]: (_, { response }) => response,
   [UPDATE_PARTICIPANT_OPTIONS]: (state, { payload: { key, value } }) => setIn(state, key, value),
   [ADD_DATASHEET_CRITERIA]: (state, { payload: { key, value } }) => (
-    updateIn(state, key, criteriaList => criteriaList.concat([{ field: value, comparator: 'is_same_as_subject' }]))
+    updateIn(
+      state,
+      key,
+      criteriaList => (criteriaList || []).concat([{ field: value, comparator: 'is_same_as_subject' }]),
+    )
   ),
   [REMOVE_DATASHEET_CRITERIA]: (state, { payload: { key, index } }) => (
     updateIn(state, key, criteriaList => _.filter(criteriaList, (_, i) => index !== i))

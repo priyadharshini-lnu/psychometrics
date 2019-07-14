@@ -14,6 +14,7 @@ describe Threesixty::Reports::ResolveReleaseCondition do
   let(:evaluator_2) { create(:threesixty_evaluator, campaign: campaign.campaign) }
   let(:evaluator_3) { create(:threesixty_evaluator, campaign: campaign.campaign) }
   let(:evaluator_4) { create(:threesixty_evaluator, campaign: campaign.campaign) }
+
   describe '.call with multi AND conditions' do
     before do
       campaign.option = option
@@ -25,16 +26,11 @@ describe Threesixty::Reports::ResolveReleaseCondition do
           "conditions"=> []
         }
       }
-
     end
 
     it do
-      expect(described_class.call!(campaign, subject)).to be true
-    end
-
-    it do
-      resolver = described_class.new(campaign, subject)
-      expect(resolver.grouped_evaluators).to eq({manager.id => 1, peer.id => 1})
+      @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
+      expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be true
     end
   end
 
@@ -67,19 +63,22 @@ describe Threesixty::Reports::ResolveReleaseCondition do
     end
 
     it do
-      expect(described_class.call!(campaign, subject)).to be false
+      @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
+      expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be false
     end
 
     it do
       create_participant(campaign, subject, evaluator_3, peer)
-      expect(described_class.call!(campaign, subject)).to be false
+      @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
+      expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be false
     end
 
 
     it do
       create_participant(campaign, subject, evaluator_3, peer)
       create_participant(campaign, subject, evaluator_4, peer)
-      expect(described_class.call!(campaign, subject)).to be true
+      @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
+      expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be true
     end
   end
 
@@ -96,7 +95,7 @@ describe Threesixty::Reports::ResolveReleaseCondition do
               "operator"=>"if",
               "conditions"=> [
                 {"type"=>"evaluations", "operator"=>"if", "relationship"=>manager.id, "number_of_evaluator"=>"2"},
-                {"type"=>"evaluations", "operator"=>"or", "relationship"=>peer.id, "number_of_evaluator"=>"2"}
+                {"type"=>"evaluations", "operator"=>"and", "relationship"=>peer.id, "number_of_evaluator"=>"2"}
               ]
             }
           ],
@@ -105,18 +104,21 @@ describe Threesixty::Reports::ResolveReleaseCondition do
     end
 
     it do
-      expect(described_class.call!(campaign, subject)).to be false
+      @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
+      expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be false
     end
 
     it do
-      create_participant(campaign, subject, evaluator_2, peer)
-      expect(described_class.call!(campaign, subject)).to be false
-    end
-
-    it do
-      create_participant(campaign, subject, evaluator_2, peer)
       create_participant(campaign, subject, evaluator_3, peer)
-      expect(described_class.call!(campaign, subject)).to be true
+      @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
+      expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be false
+    end
+
+    it do
+      create_participant(campaign, subject, evaluator_3, manager)
+      create_participant(campaign, subject, evaluator_4, peer)
+      @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
+      expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be true
     end
   end
 
@@ -142,18 +144,21 @@ describe Threesixty::Reports::ResolveReleaseCondition do
     end
 
     it do
-      expect(described_class.call!(campaign, subject)).to be false
+      @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
+      expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be false
     end
 
     it do
       create_participant(campaign, subject, evaluator_2, manager)
-      expect(described_class.call!(campaign, subject)).to be false
+      @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
+      expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be false
     end
 
     it do
       create_participant(campaign, subject, evaluator_2, manager)
       create_participant(campaign, subject, evaluator_3, peer)
-      expect(described_class.call!(campaign, subject)).to be true
+      @counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!([subject.user_id], campaign, [:completed])
+      expect(described_class.call!(subject, campaign.option, @counters[subject.user_id][:completed])).to be true
     end
   end
 
@@ -163,7 +168,9 @@ describe Threesixty::Reports::ResolveReleaseCondition do
       subject: subject.user,
       evaluator: evaluator.user,
       relationship: relation,
-      evaluator_nomination_status: status
+      evaluator_nomination_status: status,
+      manager_evaluation_status: :approved,
     )
+    create(:users_result, campaign: threesixty_campaign.campaign, evaluator: evaluator.user, status: :completed, subject: subject.user)
   end
 end

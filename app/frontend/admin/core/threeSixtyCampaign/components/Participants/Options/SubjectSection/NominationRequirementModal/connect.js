@@ -12,7 +12,7 @@ export default connect(({
   project: { relationships },
   threeSixtyCampaign: { nominationRequirements: { list } },
 }) => ({
-  currentModal: current,
+  current,
   nominationRequirements: list,
   defaultSelectedRelationship: _.get(relationships, [0, 'id']),
 }),

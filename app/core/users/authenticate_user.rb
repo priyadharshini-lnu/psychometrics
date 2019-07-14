@@ -13,18 +13,20 @@ module Users
       if params[SPOOF_KEY]
         authenticate_by_spoof
         return broadcast :invalid_spoof_token unless user
+        found_by = :spoof
       end
 
       # Tries auth by SSO token
       if params[SSO_KEY]
         authenticate_by_sso
         return broadcast(:invalid_sso_token, invalid_sso_redirect_url) unless user
+        found_by = :sso
       end
 
       # Exit if no params with token
       return broadcast :not_authenticated unless user
 
-      broadcast(:ok, user)
+      broadcast(:ok, user, found_by)
     end
 
     private

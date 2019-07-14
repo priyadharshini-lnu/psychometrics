@@ -21,8 +21,8 @@
 
 class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
-             :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
-             :relationship, :type
+             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
+             :relationship, :selected_locale, :type
 
   attribute :relationship, if: -> { object.assessment.threesixty? }
 
@@ -34,6 +34,11 @@ class AssignSerializer < ActiveModel::Serializer
 
   def user_id
     object.evaluator_id || object.membership.user_id
+  end
+
+  # TODO (atanych): Do we still need this?
+  def hris
+    {}
   end
 
   def relationship
@@ -50,6 +55,19 @@ class AssignSerializer < ActiveModel::Serializer
 
   def hash_id
     object.encode_id
+  end
+
+  def selected_locale
+    locale = object.selected_locale || I18n.default_locale
+    {
+      code: locale,
+      name: I18n.t("languages.#{locale}")
+    }
+  end
+
+  def norm_data
+    object.norm_data[:name] = @instance_options[:norm] if @object.norm_data
+    object.norm_data
   end
 
     # TODO (atanych): refactor within https://gitlab.com/tte-lighthouse/psychometrics/issues/59
@@ -83,8 +101,9 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   def normalize_hogan_type(type)
-    return 'Raw' if type == 'RAW'
-    return 'Percentile' if type == 'percentile'
+    # TODO (shuja): Add subscale
+    return 'RawScale' if type == 'RAW'
+    return 'PercentileScale' if type == 'percentile'
     raise "Not supported hogan type #{type}"
   end
 end

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Menu } from 'antd'
+import { Menu, message } from 'antd'
 
 const ActionsMenu = ({
   subjectId,
@@ -8,6 +8,7 @@ const ActionsMenu = ({
   user,
   remove,
   removeUser,
+  downloadReport,
 }) => {
   const updateSubject = (subjectId, data, cofirmationMessage) => {
     // eslint-disable-next-line no-alert
@@ -42,7 +43,7 @@ const ActionsMenu = ({
   }
 
   const holdReport = (subjectId) => {
-    const confirmationMessage = 'Are you sure you want to release report?'
+    const confirmationMessage = 'Are you sure you want to hold report?'
     updateSubject(
       subjectId,
       { report_release_status: 'on_hold' },
@@ -83,6 +84,15 @@ const ActionsMenu = ({
     if (confirm(cofirmationMessage)) remove(campaignId, subjectId)
   }
 
+  const requestDownloadReport = (campaignId, subjectId) => {
+    downloadReport(campaignId, subjectId)
+      .then(({ response }) => {
+        if (response.success) {
+          message.success('Report is generating. We will let you know when the report is ready.', 3)
+        }
+      })
+  }
+
   return (
     <Menu>
       <Menu.Item key="0">
@@ -95,9 +105,18 @@ const ActionsMenu = ({
         </a>
       </Menu.Item>
       <Menu.Item key="1">
-        <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/preview_report`}>
+        <a href={`/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports`}>
           View Report
         </a>
+      </Menu.Item>
+      <Menu.Item key="2">
+        <div
+          onClick={() => requestDownloadReport(campaignId, subjectId)}
+          role="button"
+          tabIndex={-1}
+        >
+          Download Report
+        </div>
       </Menu.Item>
       <Menu.Divider />
       <Menu.Item key="3">

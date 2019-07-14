@@ -10,13 +10,22 @@ module Threesixty
 
       def call
         counters = Threesixty::Participants::CalcCounters.call!(subjects.map(&:user_id), threesixty_campaign)
+        subject_evaluator_counters = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
+          subjects.map(&:user_id),
+          threesixty_campaign
+        )
+
+        nomination_requirement_by_user_id = ::Threesixty::NominationRequirements::FindForUsers.call!(
+          subjects.map(&:user),
+          threesixty_campaign
+        )
         result = subjects.map do |subject|
-          nomination_requirement = ::Threesixty::NominationRequirements::FindForSubject.call!(subject, threesixty_campaign)
           ::Threesixty::SubjectSerializer.new(
             subject,
             option: threesixty_campaign.option,
             counters: counters,
-            nomination_requirement: nomination_requirement
+            nomination_requirement: nomination_requirement_by_user_id[subject.user_id],
+            subject_evaluator_counters: subject_evaluator_counters
           ).to_h
         end
         broadcast :ok, result

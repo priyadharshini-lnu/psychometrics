@@ -22,6 +22,7 @@ export default function SubjectList ({
   subjects,
   openModal,
   removeUser,
+  downloadReport,
   total,
   match: {
     params: { campaignId },
@@ -85,6 +86,7 @@ export default function SubjectList ({
                     update,
                     remove,
                     removeUser,
+                    downloadReport,
                   })
                   }
                   trigger={['click']}

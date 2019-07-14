@@ -7,6 +7,7 @@ import EvaluatorTable from './EvaluatorTable/EvaluatorTable'
 import CreateEvaluatorsDropdown from './CreateEvaluatorsDropdown'
 import CreateEvaluatorModal from './CreateEvaluatorModal'
 import Pagination from '../../../common/Pagination/Pagination'
+import EvaluatorImportModal from './EvaluatorImportModal'
 
 export default function EvaluatorList ({
   fetchEvaluators,
@@ -54,6 +55,7 @@ export default function EvaluatorList ({
         </Col>
       </Row>
       <CreateEvaluatorModal match={match} />
+      <EvaluatorImportModal match={match} />
     </>
   )
 }

@@ -125,13 +125,13 @@ module Features
       end
 
       def follow_superadmin_invitation
-        page.driver.browser.clear_cookies
+        page.driver.browser.manage.delete_all_cookies
         # the same as user invitation
         #follow_user_invitation
       end
 
       def follow_admin_invitation
-        page.driver.browser.clear_cookies
+        page.driver.browser.manage.delete_all_cookies
         # the same as user invitation
         #follow_user_invitation
       end

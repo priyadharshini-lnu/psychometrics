@@ -26,7 +26,8 @@ module Exports
               parsed_result << (answer.try(:[], 'value') ? 'On' : 'Off')
             end
           end
-          parsed_result
+          required_size = header(question).size
+          Utility::Array.ensure_size(parsed_result, required_size)
         end
 
         # Parse HEADER data for XLSX
