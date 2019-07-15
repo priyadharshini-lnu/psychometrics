@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Threesixty
-  module ParticipatableByCriteria < Base
-    class ByNominationRequirement
+  module ParticipatableByCriteria
+    class ByNominationRequirement < Base
       private
 
       def user_matches_criteria?(user)

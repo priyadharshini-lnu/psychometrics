@@ -16,6 +16,12 @@ module Threesixty
           user_matches_criteria?(participatable.user)
         end
       end
+
+      private
+
+      def user_ids
+        @user_ids ||= participatables.map(&:user_ids)
+      end
     end
   end
 end

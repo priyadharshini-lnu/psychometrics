@@ -1,14 +1,8 @@
 # frozen_string_literal: true
 
 module Threesixty
-  module ParticipatableByCriteria < BaseCommand
-    class ByDatasheetFields
-      def call!
-        participatables.select do |participatable|
-          user_matches_criteria?(participatable.user)
-        end
-      end
-
+  module ParticipatableByCriteria
+    class ByDatasheetFields < Base
       private
 
       def user_matches_criteria?(user)

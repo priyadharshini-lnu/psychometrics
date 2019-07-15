@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Threesixty
-  module ParticipatableByCriteria < Base
-    class BySelfEvaluation
+  module ParticipatableByCriteria
+    class BySelfEvaluation  < Base
       private
 
       def user_matches_criteria?(user)

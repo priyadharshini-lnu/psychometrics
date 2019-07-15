@@ -15,7 +15,7 @@ export default function Evaluation ({ value, update, merge }) {
         <Select.Option key="completed" value="completed">
           Has completed evaluations
         </Select.Option>
-        <Select.Option key="completed_need_approval" value="completed_need_approval">
+        <Select.Option key="needs_approval" value="needs_approval">
           Has evaluations that need approval
         </Select.Option>
       </Select>
