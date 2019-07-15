@@ -1,11 +1,17 @@
 import React from 'react'
-import { Icon, Input } from 'antd'
+import { Icon, Input, message } from 'antd'
 import { GLOBAL } from 'constants/relationship'
 import style from './style.scss'
 
 export default function RelationshipRow ({
   relationship, create, campaignId, remove, update,
 }) {
+  const removeRelationship = () => {
+    remove(campaignId, relationship.id).catch(({ relationship }) => {
+      message.error(relationship[0], 5)
+    })
+  }
+
   return (
     <tr>
       <td className="ps">
@@ -21,7 +27,7 @@ export default function RelationshipRow ({
       </td>
       <td className="pls">
         {relationship.type !== GLOBAL && (
-          <Icon key="1" type="minus-circle" onClick={() => remove(campaignId, relationship.id)} className="mls" />
+          <Icon key="1" type="minus-circle" onClick={removeRelationship} className="mls" />
         )}
         <Icon key="2" type="plus-circle" onClick={() => create(campaignId, {})} className="mls" />
       </td>

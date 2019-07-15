@@ -23,8 +23,13 @@ module Administration
       end
 
       def destroy
-        relationship.destroy!
-        render json: params[:id]
+        form = ::Threesixty::Relationships::DestroyForm.from_params(params)
+        if form.valid?
+          relationship.destroy!
+          render json: params[:id]
+        else
+          render json: { errors: form.errors.messages }, status: :bad_request
+        end
       end
 
       def update
