@@ -507,7 +507,7 @@ Rails.application.routes.draw do
     end
 
     scope module: :threesixty do
-      resources :campaigns, only: %i(show) do
+      resources :campaigns, only: %i(show index) do
         resources :nominations do
           post :search_evaluators
           resources :evaluators do
