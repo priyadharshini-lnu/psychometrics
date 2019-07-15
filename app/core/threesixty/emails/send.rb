@@ -20,7 +20,7 @@ module Threesixty
           recipient: 'manager'
         },
         {
-          condition_class: 'Threesixty::Emails::IsAppoveNominationSendable',
+          condition_class: 'Threesixty::Emails::IsApproveNominationSendable',
           template_name: 'approve_nomination',
           recipient: 'manager'
         },
@@ -53,13 +53,13 @@ module Threesixty
 
         lookup_recipients(config).each do |recipient|
           user = recipient.user
-          context_for_pipe_text = context.merge(
+          context_for_piped_text = context.merge(
             recipient: user,
             subject: context[:subject]&.user,
-            evaluator: context[:evalautor]&.user
+            evaluator: context[:evaluator]&.user
           ).compact
 
-          body = Threesixty::PipedText::Perform.call!(email_template.content, context_for_pipe_text)
+          body = Threesixty::PipedText::Perform.call!(email_template.content, context_for_piped_text)
           email_schedule_attributes = email_template.
             slice(:name, :subject, :from, :reply_to_email, :threesixty_campaign_id).
             merge(
