@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Threesixty::Emails::IsAppoveNominationSendable do
+describe Threesixty::Emails::IsApproveNominationSendable do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
 
   describe 'valid threesixty options for mail' do
