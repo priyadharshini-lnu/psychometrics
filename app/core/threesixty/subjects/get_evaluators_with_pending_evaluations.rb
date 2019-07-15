@@ -3,7 +3,7 @@
 module Threesixty
   module Subjects
     class GetEvaluatorsWithPendingEvaluations < Rectify::Query
-      attr_reader :threesixty_campaign, :subject, :option
+      private_attr_reader :threesixty_campaign, :subject, :option
 
       def initialize(threesixty_campaign, subject)
         @threesixty_campaign = threesixty_campaign

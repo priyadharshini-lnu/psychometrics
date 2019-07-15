@@ -2,7 +2,7 @@
 
 module Threesixty
   module Emails
-    class IsAppoveNominationSendable < Base
+    class IsApproveNominationSendable < Base
       def call
         broadcast :ok, inform_manager_about_nomination?
       end
