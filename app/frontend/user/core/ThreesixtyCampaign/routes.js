@@ -1,9 +1,15 @@
 import Campaign from './components/Campaign'
+import CampaignList from './components/CampaignList'
 import Nomination, { NominationSidebar } from './components/Nomination'
 import Evaluation, { EvaluationSidebar } from './components/Evaluation'
 import Report, { ReportSidebar } from './components/Report'
 
 const routes = [
+  {
+    path: '/campaigns',
+    main: CampaignList,
+    exact: true,
+  },
   {
     path: '/campaigns/:campaignId',
     main: Campaign,

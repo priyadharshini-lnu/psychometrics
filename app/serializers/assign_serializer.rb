@@ -20,12 +20,17 @@
 #
 
 class AssignSerializer < ActiveModel::Serializer
-  attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id, :relationship,
-             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet, :selected_locale
+  attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
+             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
+             :relationship, :selected_locale, :type
 
   attribute :relationship, if: -> { object.assessment.threesixty? }
 
   has_one :user, serializer: UserSerializer
+
+  def type
+    'single_assign'
+  end
 
   def user_id
     object.evaluator_id || object.membership.user_id
