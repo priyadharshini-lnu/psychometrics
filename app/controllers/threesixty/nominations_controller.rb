@@ -18,12 +18,12 @@ module Threesixty
     end
 
     def request_approval
-      Threesixty::Emails::Send.call!('request_approval', threesixty_campaign: @campaign, subject: @subject)
+      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::REQUEST_APPROVAL, threesixty_campaign: @campaign, subject: @subject)
       render json: :ok
     end
 
     def send_evaluator_reminders
-      Threesixty::Emails::Send.call!('evaluator_reminder', threesixty_campaign: @campaign, subject: @subject)
+      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::EVALUATOR_REMINDER, threesixty_campaign: @campaign, subject: @subject)
       render json: :ok
     end
 

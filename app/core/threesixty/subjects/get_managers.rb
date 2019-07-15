@@ -3,7 +3,7 @@
 module Threesixty
   module Subjects
     class GetManagers < Rectify::Query
-      attr_reader :subject
+      private_attr_reader :subject
 
       def initialize(subject)
         @subject = subject

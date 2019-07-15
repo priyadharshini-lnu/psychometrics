@@ -35,7 +35,7 @@ describe Threesixty::PipedText::Perform do
     let(:user) { create(:user, project: create(:project), first_name: 'Vasiliy', last_name: 'Pupkin', email: 'vasja@gmail.com') }
 
     it do
-      response = described_class.call!('{{dash://ThreeSixty/Url?v=444&c=de}} ss', recipient: user, threesixty_campaign: 'ddd')
+      response = described_class.call!('{{dash://Url?v=444&c=de}} ss', recipient: user, threesixty_campaign: 'ddd')
       expect(response).to match(%r{/users/invitation/accept})
     end
 

@@ -3,39 +3,41 @@
 module Threesixty
   module Emails
     class Send < BaseCommand
+      private_attr_reader :type, :context
+
       CONFIG = [
         {
           condition_class: 'Threesixty::Emails::IsSubjectReportReadySendable',
-          template_name: 'subject_report_ready',
+          template_name: Threesixty::Emails::Name::SUBJECT_REPORT_READY,
           recipient: 'subject'
         },
         {
           condition_class: 'Threesixty::Emails::IsManagerReportReadySendable',
-          template_name: 'manager_report_ready',
+          template_name: Threesixty::Emails::Name::MANAGER_REPORT_READY,
           recipient: 'manager'
         },
         {
           condition_class: 'Threesixty::Emails::IsApproveReportSendable',
-          template_name: 'approve_report',
+          template_name: Threesixty::Emails::Name::APPROVE_REPORT,
           recipient: 'manager'
         },
         {
           condition_class: 'Threesixty::Emails::IsApproveNominationSendable',
-          template_name: 'approve_nomination',
+          template_name: Threesixty::Emails::Name::APPROVE_NOMINATION,
           recipient: 'manager'
         },
         {
           condition_class: 'Threesixty::Emails::IsDeniedNominationSendable',
-          template_name: 'nomination_denied',
+          template_name: Threesixty::Emails::Name::NOMINATION_DENIED,
           recipient: 'manager'
         },
         {
           condition_class: 'Threesixty::Emails::IsRequestApprovalSendable',
-          template_name: 'request_approval',
+          template_name: Threesixty::Emails::Name::REQUEST_APPROVAL,
           recipient: 'manager'
         },
         {
-          template_name: 'evaluator_reminder',
+          template_name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
           recipient: 'evaluators_with_pending_evaluations'
         }
       ].freeze
@@ -51,7 +53,7 @@ module Threesixty
 
         email_template = context[:threesixty_campaign].email_templates.find_by!(name: type)
 
-        lookup_recipients(config).each do |recipient|
+        Threesixty::Emails::GetRecipients.call!(config[:recipient], context).each do |recipient|
           user = recipient.user
           context_for_piped_text = context.merge(
             recipient: user,
@@ -72,21 +74,10 @@ module Threesixty
         end
       end
 
-      private
-
-      attr_reader :type, :context
-
       def lookup_recipients(config)
-        return [context[:subject]] if config[:recipient] == 'subject'
-
-        if config[:recipient] == 'manager'
-          Threesixty::Subjects::GetManagers.new(context[:subject]).query.includes(:user)
-        elsif config[:recipient] == 'evaluators_with_pending_evaluations'
-          Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations.new(
-            context[:threesixty_campaign], context[:subject]
-          )
-        end
+        Threesixty::Emails::GetRecipients.call!(config[:recipient], context)
       end
     end
   end
 end
+

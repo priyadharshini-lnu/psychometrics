@@ -3,13 +3,11 @@
 module Threesixty
   module Emails
     class Base < BaseCommand
+      private_attr_reader :context
+
       def initialize(context)
         @context = context
       end
-
-      private
-
-      attr_reader :context
     end
   end
 end
