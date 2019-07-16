@@ -7,26 +7,31 @@ module Threesixty
 
       def user_matches_criteria?(user)
         criteria_list.all? do |criteria|
-          Threesixty::Participants::GetStatus.call!(user.id)
+          if criteria['value'] == 'not_approved_all_nominations'
+            manager_nomination_approval_pending.include?(user.id)
+          elsif criteria['value'] == 'not_approved_all_reports'
+            managers_evaluation_approval_pending.include?(user.id)
+          end
         end
       end
 
-      def subject_evaluator_counters
-        @subject_evaluator_counters ||= subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
-          user_ids,
-          threesixty_campaign
-        )
+      def managers_evaluation_approval_pending
+        managers
+          .where(manager_evaluation_status: :waiting)
+          .pluck(:evaluator_id)
       end
 
-      def nomination_requirement_by_user_id
-        @nomination_requirement_by_user_id ||= ::Threesixty::NominationRequirements::FindForUsers.call!(
-          evaluators.map(&:user),
-          threesixty_campaign
-        )
+      def manager_nomination_approval_pending
+        managers
+          .where(manager_nomination_status: :waiting)
+          .pluck(:evaluator_id)
       end
 
-      def evaluations_received
-        @evaluations_received ||= Threesixty::Subjects::GetEvaluationsReceived.call!(threesixty_campaign, user_ids)
+      def managers
+        threesixty_campaign
+          .participants
+          .joins(:relationship)
+          .where(evaluator_id: user_ids, relationships: { name: 'Manager' })
       end
     end
   end
