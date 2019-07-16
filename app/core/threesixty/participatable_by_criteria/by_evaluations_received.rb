@@ -12,7 +12,7 @@ module Threesixty
       end
 
       def evaluations_received
-        @evaluations_received || =Threesixty::Subjects::GetEvaluationsReceived.call!(threesixty_campaign, user_ids)
+        @evaluations_received ||= Threesixty::Subjects::GetEvaluationsReceived.call!(threesixty_campaign, user_ids)
       end
     end
   end
