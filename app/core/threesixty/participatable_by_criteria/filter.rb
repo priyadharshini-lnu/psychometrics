@@ -35,7 +35,23 @@ module Threesixty
         {
           field_types: ['evaluations_received'],
           class_name: Participatable::ByEvaluationsReceived
-        }
+        },
+        {
+          field_types: ['subject_datasheet'],
+          class_name: Participatable::BySubjectDatasheetFields
+        },
+        {
+          field_types: ['evaluator_type'],
+          class_name: Participatable::ByEvaluatorType
+        },
+        {
+          field_types: ['tasks'],
+          class_name: Participatable::ByTasks
+        },
+        {
+          field_types: ['manager_tasks'],
+          class_name: Participatable::ByManagerTasks
+        },
       ]
 
 

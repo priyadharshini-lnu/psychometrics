@@ -4,7 +4,7 @@ import { Select } from 'antd'
 import Criteria from './Criteria'
 
 export default function RecipientCriteriaList ({
-  recipientCriteria, add, update, remove, merge,
+  emailName, recipientCriteria, add, update, remove, merge,
 }) {
   return (
     <div className="mbm">
@@ -21,6 +21,7 @@ export default function RecipientCriteriaList ({
         <div className="mbs">
           {recipientCriteria.map((criteria, index) => (
             <Criteria
+              emailName={emailName}
               key={index}
               criteria={criteria}
               add={add}
