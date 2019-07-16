@@ -17,7 +17,7 @@ module Threesixty
           group(:subject_id).
           select('subject_id, array_agg(relationship_id) as relationship_ids').
           each_with_object({}) do |participant, acc|
-            acc[participant.subject_id] = acc[participant.relationship_ids]
+            acc[participant.subject_id] = participant.relationship_ids
           end
       end
     end
