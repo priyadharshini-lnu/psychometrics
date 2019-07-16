@@ -2,7 +2,9 @@ import React from 'react'
 import { Select, Input } from 'antd'
 import style from '../style.scss'
 
-export default function Number ({ comparator, value, update }) {
+export default function Number ({
+  comparator, value, update,
+}) {
   return (
     <div>
       <Select

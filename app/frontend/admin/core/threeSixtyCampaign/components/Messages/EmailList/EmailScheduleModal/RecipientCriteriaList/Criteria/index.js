@@ -65,10 +65,6 @@ export default function RecipientCriteriaList ({
     }
   }
 
-  console.log(evaluatorEmail())
-
-  console.log(emailName)
-
   return (
     <div className="mbm">
       <div>
@@ -80,17 +76,17 @@ export default function RecipientCriteriaList ({
           <Select.Option key="has_relationship">Has Relationship</Select.Option>
           <Select.Option key="self_evaluations">Self Evaluations</Select.Option>
           {evaluatorEmail() || [
-              <Select.Option key="nomination_requirements">Nomination Requirements</Select.Option>,
-              <Select.Option key="evaluations">Evaluations</Select.Option>,
-              <Select.Option key="evaluations_received">Evaluations Received</Select.Option>,
-              <Select.Option key="tasks">Tasks</Select.Option>,
-              <Select.Option key="manager_tasks">Manager Tasks</Select.Option>,
-            ]
+            <Select.Option key="nomination_requirements">Nomination Requirements</Select.Option>,
+            <Select.Option key="evaluations">Evaluations</Select.Option>,
+            <Select.Option key="evaluations_received">Evaluations Received</Select.Option>,
+            <Select.Option key="tasks">Tasks</Select.Option>,
+            <Select.Option key="manager_tasks">Manager Tasks</Select.Option>,
+          ]
           }
           {evaluatorEmail() && [
-              <Select.Option key="subject_datasheet">Subject Metadata</Select.Option>,
-              <Select.Option key="evaluator_type">External Participants</Select.Option>,
-            ]
+            <Select.Option key="subject_datasheet">Subject Metadata</Select.Option>,
+            <Select.Option key="evaluator_type">External Participants</Select.Option>,
+          ]
           }
         </Select>
         <div className={cs(['mls', style.comparatorContainer])}>{renderComparator()}</div>

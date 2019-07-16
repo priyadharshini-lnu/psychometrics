@@ -69,7 +69,10 @@ export default function EmailScheduleModal ({
       <TitleBar emailSchedules={emailSchedules} changeSelected={changeSelected} />
       <div className={style.content}>
         <ErrorAlertBox errors={errors} className="mbl" />
-        <RecipientCriteriaList emailName={selectedEmailSchedule.name} recipientCriteria={selectedEmailSchedule.recipientCriteria} />
+        <RecipientCriteriaList
+          emailName={selectedEmailSchedule.name}
+          recipientCriteria={selectedEmailSchedule.recipientCriteria}
+        />
 
         <ScheduledDateField
           scheduledDate={selectedEmailSchedule.scheduledDate}
