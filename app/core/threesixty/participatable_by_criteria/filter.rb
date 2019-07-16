@@ -27,6 +27,14 @@ module Threesixty
         {
           field_types: ['self_evaluations'],
           class_name: Participatable::BySelfEvaluation
+        },
+        {
+          field_types: ['evaluations'],
+          class_name: Participatable::ByEvaluations
+        },
+        {
+          field_types: ['evaluations_received'],
+          class_name: Participatable::ByEvaluationsReceived
         }
       ]
 
