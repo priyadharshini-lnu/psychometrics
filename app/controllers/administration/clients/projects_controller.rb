@@ -26,7 +26,7 @@ module Administration
       end
 
       def search_users
-        users = ::Projects::UsersQuery.new(@resource, params[:q]).to_a.map do |user|
+        users = ::Projects::UsersQuery.new(resource, params[:q]).to_a.map do |user|
           ::Projects::SearchUserSerializer.new(user).to_h
         end
         render json: users
@@ -63,10 +63,6 @@ module Administration
         params.require(:resource).permit(:name, :subdomain, :logo, :background, :background_color,
                                          :remove_background, :remove_logo, :applicable_level, :number,
                                          :privacy_consent)
-      end
-
-      def set_resource
-        @resource = resource_class.find(params[:id])
       end
     end
   end
