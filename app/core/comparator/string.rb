@@ -1,15 +1,17 @@
 # frozen_string_literal: true
 
 module Comparator
-  class String
+  class String < BaseCommand
+    attr_reader :lhs, :rhs, :comparator
+
     def initialize(lhs, rhs, comparator)
-      @lhs = lhs
-      @rhs = rhs
+      @lhs = lhs.downcase
+      @rhs = rhs.downcase
       @comparator = comparator
     end
 
     def call
-      case comparator
+      result = case comparator
       when 'starts_with'
         lhs.starts_with?(rhs)
       when 'equal'
@@ -17,6 +19,8 @@ module Comparator
       when 'not_equal'
         lhs != rhs
       end
+
+      broadcast :ok, result
     end
   end
 end

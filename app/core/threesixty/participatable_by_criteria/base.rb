@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
 module Threesixty
-  module ParticipatableByCriteria < BaseCommand
-    class Base
+  module ParticipatableByCriteria
+    class Base < BaseCommand
       attr_reader :threesixty_campaign, :participatables, :criteria_list
 
       def initialize(threesixty_campaign, participatables, criteria_list)
@@ -12,9 +12,7 @@ module Threesixty
       end
 
       def call
-        participatables.select do |participatable|
-          user_matches_criteria?(participatable.user)
-        end
+        broadcast :ok, participatables.select { |participatable| user_matches_criteria?(participatable.user) }
       end
 
       private
