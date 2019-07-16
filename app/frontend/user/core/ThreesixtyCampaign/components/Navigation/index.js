@@ -20,7 +20,7 @@ export default function Navigation () {
             overflowedIndicator={<Icon type="menu" />}
           >
             <Menu.Item>
-              <a href="/">My Projects</a>
+              <a href="/">{I18n.t('threesixty.my_projects')}</a>
             </Menu.Item>
 
             <SubMenu

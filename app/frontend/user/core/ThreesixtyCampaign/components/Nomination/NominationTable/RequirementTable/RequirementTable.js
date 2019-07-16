@@ -134,7 +134,7 @@ export default function RequirementTable (props) {
       >
         <Column
           width="50%"
-          className="column-header"
+          className="column-header condition-header"
           title={(
             <div className="table-head-title">
               <span>{title}</span>
@@ -146,13 +146,13 @@ export default function RequirementTable (props) {
         />
         <Column
           className="column-header"
-          title={<div className="table-head-title">Evaluation</div>}
+          title={<div className="table-head-title">{I18n.t('threesixty.evaluation')}</div>}
           render={renderStatus}
           key="evaluatorNominationStatus"
         />
         <Column
           className="column-header"
-          title={<div className="table-head-title">Nomination</div>}
+          title={<div className="table-head-title">{I18n.t('threesixty.nomination')}</div>}
           render={renderApprovalStatus}
           key="status"
         />
@@ -174,7 +174,7 @@ export default function RequirementTable (props) {
         <Button type="link" onClick={() => setShowForm(true)} disabled={showForm}>
           <Icon type="plus" />
           {' '}
-          Add
+          {I18n.t('threesixty.and')}
           {' '}
           {title}
         </Button>

@@ -18,7 +18,7 @@ function EvaluationList ({
   const menu = item => (
     <Menu>
       <Menu.Item key="0" onClick={() => declineEvaluation(item.campaignId, item.id)}>
-        Decline Invite
+        {I18n.t('threesixty.decline_invite')}
       </Menu.Item>
     </Menu>
   )
@@ -37,7 +37,7 @@ function EvaluationList ({
         </div>
         {options.evaluator.canDeclineNomination && !item.isSelf && (
           item.evaluatorNominationStatus === 'denied'
-            ? <div>Denied</div>
+            ? <div>{I18n.t('threesixty.denied')}</div>
             : (
               <Dropdown overlay={() => menu(item)} trigger={['click']}>
                 <a className="ant-dropdown-link actions-btn" href="#">
@@ -70,7 +70,7 @@ function EvaluationList ({
         <div className="header">
           <div className="letter-icon">E</div>
           <div className="caption">
-            Evaluations
+            {I18n.t('threesixty.evaluations')}
             <div className="progress-bars">
               <Progress
                 className="progress-line"
@@ -88,12 +88,16 @@ function EvaluationList ({
       )}
       bordered
     >
-      <CollapseItem key="evaluations" title={<div className="collapse-title">Evaluations</div>} list={evaluations} />
+      <CollapseItem
+        key="evaluations"
+        title={<div className="collapse-title">{I18n.t('threesixty.evaluations')}</div>}
+        list={evaluations}
+      />
       {options.manager.canApprovesEvaluations
         && (
         <CollapseItem
           key="evaluations_approve"
-          title={<div className="collapse-title">Approve evaluations</div>}
+          title={<div className="collapse-title">{I18n.t('threesixty.approve_evaluations')}</div>}
           list={approvalEvaluations}
         />
         )}
