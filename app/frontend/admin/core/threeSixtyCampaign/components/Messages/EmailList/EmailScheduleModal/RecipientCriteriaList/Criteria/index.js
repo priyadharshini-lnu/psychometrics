@@ -44,7 +44,7 @@ export default function RecipientCriteriaList ({
       case 'datasheet':
       case 'subject_datasheet':
         return <DatasheetComparator {...props} />
-      case 'has_relationship':
+      case 'relationship':
         return <RelationshipComparator {...props} />
       case 'nomination_requirements':
         return <NominationRequirementComparator {...props} />
@@ -73,7 +73,7 @@ export default function RecipientCriteriaList ({
           <Select.Option key="last_name">Last name</Select.Option>
           <Select.Option key="first_name">First name</Select.Option>
           <Select.Option key="datasheet">Metadata</Select.Option>
-          <Select.Option key="has_relationship">Has Relationship</Select.Option>
+          <Select.Option key="relationship">Has Relationship</Select.Option>
           <Select.Option key="self_evaluations">Self Evaluations</Select.Option>
           {evaluatorEmail() || [
             <Select.Option key="nomination_requirements">Nomination Requirements</Select.Option>,

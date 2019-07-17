@@ -14,11 +14,16 @@ module Threesixty
       def participatable_relationships
         @participatable_relationships ||= threesixty_campaign.
           participants.
-          group(:subject_id).
-          select('subject_id, array_agg(relationship_id) as relationship_ids').
+          group(id_column).
+          where("#{id_column}" => user_ids).
+          select("#{id_column}, array_agg(relationship_id) as relationship_ids").
           each_with_object({}) do |participant, acc|
             acc[participant.subject_id] = participant.relationship_ids
           end
+      end
+
+      def id_column
+        "#{participatable_types}_id"
       end
     end
   end

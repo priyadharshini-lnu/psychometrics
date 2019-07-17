@@ -7,11 +7,11 @@ module Threesixty
 
       def user_matches_criteria?(user)
         criteria_list.all? do |criteria|
-          has_subject_matchin_datasheet_criteria?(user, criteria)
+          has_subject_matching_datasheet_criteria?(user, criteria)
         end
       end
 
-      def has_subject_matchin_datasheet_criteria?(user, criteria)
+      def has_subject_matching_datasheet_criteria?(user, criteria)
         return false unless subject_emails = evaluators_subjects[user.id]
 
         subject_emails.any? do |subject_email|

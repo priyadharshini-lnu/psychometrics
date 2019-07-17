@@ -3,7 +3,7 @@
 module Threesixty
   module ParticipatableByCriteria < BaseCommand
     class Filter
-      CRITERIA_FIELD_RESOLVER = [
+      CRITERIA_RESOLVER = [
         {
           field_types: ['name_or_email', 'first_name', 'last_name'],
           class_name: ParticipatableByCriteria::ByUserFields
@@ -13,16 +13,12 @@ module Threesixty
           class_name: Participatable::ByDatasheetField
         },
         {
-          field_types: ['has_relationship'],
+          field_types: ['relationship'],
           class_name: Participatable::ByRelationship
         },
         {
           field_types: ['nomination_requirements'],
           class_name: Participatable::ByNominationRequirement
-        },
-        {
-          field_types: ['has_relationship'],
-          class_name: Participatable::ByRelationship
         },
         {
           field_types: ['self_evaluations'],
@@ -63,9 +59,14 @@ module Threesixty
       end
 
       def call!
-        CRITERIA_FIELD_RESOLVER.each do |resolver|
+        CRITERIA_RESOLVER.each do |resolver|
           valid_criteria = criteria_list.select { |c| resolver[:field_types].include?(c['field']) }
-          @participatables = resolver[:class_name].call!(threesixty_campaign, @participatables, valid_criteria)
+          @participatables = resolver[:class_name].call!(
+            threesixty_campaign: threesixty_campaign,
+            participatable_type: participatable_type,
+            participatables: @participatables,
+            criteria_list: valid_criteria,
+          )
         end
         @participatables
       end

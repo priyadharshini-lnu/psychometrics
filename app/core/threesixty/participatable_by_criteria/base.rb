@@ -3,12 +3,13 @@
 module Threesixty
   module ParticipatableByCriteria
     class Base < BaseCommand
-      attr_reader :threesixty_campaign, :participatables, :criteria_list
+      attr_reader :threesixty_campaign, :participatables, :criteria_list, :participatable_type
 
-      def initialize(threesixty_campaign, participatables, criteria_list)
-        @threesixty_campaign =threesixty_campaign
-        @participatables = participatables
-        @criteria_list = criteria_list
+      def initialize(options)
+        @threesixty_campaign = options[:threesixty_campaign]
+        @participatables = options[:participatables]
+        @criteria_list = options[:criteria_list]
+        @participatable_type = options[:participatable_type]
       end
 
       def call

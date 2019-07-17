@@ -14,7 +14,11 @@ describe Threesixty::ParticipatableByCriteria::ByUserFields do
 
     participatables = [subject_with_matching_email, subject_with_matching_name, subject_without_matching_email, subject_without_matching_name]
     criteria_list = [{ 'field' => 'name_or_email', 'comparator' => 'starts_with', 'value' => 'James' }]
-    results = described_class.call!(threesixty_campaign, participatables, criteria_list)
+    results = described_class.call!(
+      threesixty_campaign: threesixty_campaign,
+      participatables: participatables,
+      criteria_list: criteria_list
+    )
 
     expect(results).to match_array([subject_with_matching_email, subject_with_matching_name])
   end
@@ -25,7 +29,11 @@ describe Threesixty::ParticipatableByCriteria::ByUserFields do
 
     participatables = [subject_with_matching_first_name, subject_without_matching_first_name]
     criteria_list = [{ 'field' => 'first_name', 'comparator' => 'equal', 'value' => 'James' }]
-    results = described_class.call!(threesixty_campaign, participatables, criteria_list)
+    results = described_class.call!(
+      threesixty_campaign: threesixty_campaign,
+      participatables: participatables,
+      criteria_list: criteria_list
+    )
 
     expect(results).to match_array([subject_with_matching_first_name])
   end
@@ -36,7 +44,11 @@ describe Threesixty::ParticipatableByCriteria::ByUserFields do
 
     participatables = [subject_with_matching_last_name, subject_without_matching_last_name]
     criteria_list = [{ 'field' => 'last_name', 'comparator' => 'equal', 'value' => 'Smith' }]
-    results = described_class.call!(threesixty_campaign, participatables, criteria_list)
+    results = described_class.call!(
+      threesixty_campaign: threesixty_campaign,
+      participatables: participatables,
+      criteria_list: criteria_list
+    )
 
     expect(results).to match_array([subject_with_matching_last_name])
   end
@@ -47,7 +59,11 @@ describe Threesixty::ParticipatableByCriteria::ByUserFields do
 
     participatables = [subject_with_matching_last_name, subject_without_matching_last_name]
     criteria_list = [{ 'field' => 'last_name', 'comparator' => 'not_equal', 'value' => 'Smith' }]
-    results = described_class.call!(threesixty_campaign, participatables, criteria_list)
+    results = described_class.call!(
+      threesixty_campaign: threesixty_campaign,
+      participatables: participatables,
+      criteria_list: criteria_list
+    )
 
     expect(results).to match_array([subject_without_matching_last_name])
   end
@@ -62,7 +78,11 @@ describe Threesixty::ParticipatableByCriteria::ByUserFields do
       { 'field' => 'first_name', 'comparator' => 'equal', 'value' => 'Smith' },
       { 'field' => 'email', 'comparator' => 'equal', 'value' => 'smith@cc.com' }
     ]
-    results = described_class.call!(threesixty_campaign, participatables, criteria_list)
+    results = described_class.call!(
+      threesixty_campaign: threesixty_campaign,
+      participatables: participatables,
+      criteria_list: criteria_list
+    )
 
     expect(results).to match_array([subject_with_matching_details])
   end
