@@ -12,7 +12,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "approve_reports": "Approve Reports",
     "page_title": "Signify 360° Review - Apply Level",
     "approved": "Approved",
-    "dinied": "Denied",
+    "denied": "Denied",
     "waiting": "Waiting",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
@@ -20,6 +20,16 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "nomination": "Nomination",
     "and": "And",
     "or": "Or",
+    "language": "Language",
+    "remind_all": "Remind All",
+    "approve_all": "Approve All",
+    "deny_all": "Deny All",
+    "nominate": "Nominate",
+    "select_relationship":"Select Relationship",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "add": "Add",
+    "cancel": "Cancel",
+    "back_to_tasks": "Back to tasks",
   },
   "reports": {
     "modules": {
@@ -151,7 +161,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
 });
 I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "threesixty": {
-
+    "evaluation": "arabic evaluation"
   },
   "reports": {
     "modules": {

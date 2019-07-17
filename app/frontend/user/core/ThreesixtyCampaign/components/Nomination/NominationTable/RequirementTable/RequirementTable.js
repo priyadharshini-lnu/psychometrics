@@ -29,13 +29,13 @@ export default function RequirementTable (props) {
     }}
     >
       <Menu.Item key="approved">
-        Approved
+        {I18n.t('threesixty.approved')}
       </Menu.Item>
       <Menu.Item key="waiting">
-        Waiting
+        {I18n.t('threesixty.waiting')}
       </Menu.Item>
       <Menu.Item key="denied">
-        Denied
+        {I18n.t('threesixty.denied')}
       </Menu.Item>
     </Menu>
   )
