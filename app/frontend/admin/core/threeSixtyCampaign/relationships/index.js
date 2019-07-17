@@ -49,7 +49,7 @@ export const update = (campaignId, relationshipId, attrs) => ({
   id: relationshipId,
   request: {
     method: 'put',
-    debounce: 150,
+    debounce: 300,
     url: `/administration/threesixty_campaigns/${campaignId}/relationships/${relationshipId}`,
     body: attrs,
   },
@@ -66,7 +66,6 @@ export const fetchWithUsage = campaignId => ({
 export default function reducer (state = defaultState, action) {
   switch (action.type) {
     case FETCH_RELATIONSHIPS:
-      return action.response
     case FETCH_WITH_USAGE:
       return action.response
     case CREATE:

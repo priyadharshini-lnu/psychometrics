@@ -13,7 +13,7 @@ module Administration
 
       def fetch_with_usage
         relationships = ::Relationships::ByCampaign.new(threesixty_campaign.campaign)
-        counters = Participant.
+        counters = threesixty_campaign.participants.
                    select('count(id) as cache_counter, relationship_id').
                    actual_by_options(threesixty_campaign.option).
                    group(:relationship_id).
