@@ -12,20 +12,21 @@ module Threesixty
 
       def call
         nomination_requirement = Threesixty::NominationRequirements::FindForUsers.call!(
-          threesixty_campaign,
-          user
+          user,
+          threesixty_campaign
         )[user.id]
 
-        braodcast :ok, true unless nomination_requirement
+        return broadcast :ok, true unless nomination_requirement
 
         subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
           [user.id],
-          threesixty_campaign
+          threesixty_campaign,
+          [:all]
         )
 
-        braodcast :ok, Threesixty::NominationRequirements::IsValid.call!(
+        broadcast :ok, Threesixty::NominationRequirements::IsValid.call!(
           nomination_requirement,
-          subject_evaluator_counters.dig(user.id, :completed)
+          subject_evaluator_counters.dig(user.id, :all)
         )
       end
     end
