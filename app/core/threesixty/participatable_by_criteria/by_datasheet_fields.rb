@@ -6,7 +6,7 @@ module Threesixty
       private
 
       def user_matches_criteria?(user)
-        criteria_list.all? do |criteria|
+        criteria_list.any? do |criteria|
           if datasheet_row = datasheet_rows[user.email]
             datasheet_row.data[criteria['sub_field']]&.downcase == criteria['value']&.downcase
           end

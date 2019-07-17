@@ -6,7 +6,7 @@ module Threesixty
       private
 
       def user_matches_criteria?(user)
-        criteria_list.all? do |criteria|
+        criteria_list.any? do |criteria|
           has_subject_matching_datasheet_criteria?(user, criteria)
         end
       end

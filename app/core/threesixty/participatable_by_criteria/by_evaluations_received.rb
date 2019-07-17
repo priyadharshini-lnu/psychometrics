@@ -6,7 +6,7 @@ module Threesixty
       private
 
       def user_matches_criteria?(user)
-        criteria_list.all? do |criteria|
+        criteria_list.any? do |criteria|
           Comparator::Number.call!(evaluations_received[user.id], criteria['value'], criteria['comparator'])
         end
       end

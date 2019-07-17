@@ -86,4 +86,24 @@ describe Threesixty::ParticipatableByCriteria::ByUserFields do
 
     expect(results).to match_array([subject_with_matching_details])
   end
+
+  it 'or condition is used for same field criteria' do
+    subject_with_matching_email1 = create(:threesixty_subject, user: create(:user, email: 'james@cc.com'))
+    subject_with_matching_email2 = create(:threesixty_subject, user: create(:user, email: 'andrew@cc.com'))
+
+    subject_without_matching_email = create(:threesixty_subject, user: create(:user, email: 'cole@cc.com'))
+
+    participatables = [subject_with_matching_email1, subject_with_matching_email2, subject_without_matching_email]
+    criteria_list = [
+      { 'field' => 'name_or_email', 'comparator' => 'equal', 'value' => 'james@cc.com' },
+      { 'field' => 'name_or_email', 'comparator' => 'equal', 'value' => 'andrew@cc.com' },
+    ]
+    results = described_class.call!(
+      threesixty_campaign: threesixty_campaign,
+      participatables: participatables,
+      criteria_list: criteria_list
+    )
+
+    expect(results).to match_array([subject_with_matching_email1, subject_with_matching_email2])
+  end
 end

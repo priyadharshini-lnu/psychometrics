@@ -6,7 +6,7 @@ module Threesixty
       private
 
       def user_matches_criteria?(user)
-        criteria_list.all? do |criteria|
+        criteria_list.any? do |criteria|
           if criteria['value'] == 'completed'
             users_results.include?(user.id)
           elsif criteria['value'] == 'not_completed'
@@ -19,7 +19,8 @@ module Threesixty
         @users_results ||= threesixty_campaign.
         users_results.
           completed.
-          where("subject_id = evaluator_id")
+          where("subject_id = evaluator_id").
+          where(subject_id: user_ids).
           .pluck(:subject_id)
           .to_set
       end

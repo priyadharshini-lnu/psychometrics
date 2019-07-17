@@ -6,7 +6,7 @@ module Threesixty
       private
 
       def user_matches_criteria?(user)
-        criteria_list.all? do |criteria|
+        criteria_list.any? do |criteria|
           participatable_relationships[user.id].include?(criteria['value'])
         end
       end
@@ -18,12 +18,12 @@ module Threesixty
           where("#{id_column}" => user_ids).
           select("#{id_column}, array_agg(relationship_id) as relationship_ids").
           each_with_object({}) do |participant, acc|
-            acc[participant.subject_id] = participant.relationship_ids
+            acc[participant.public_send(id_column)] = participant.relationship_ids
           end
       end
 
       def id_column
-        "#{participatable_types}_id"
+        "#{participatable_type}_id"
       end
     end
   end

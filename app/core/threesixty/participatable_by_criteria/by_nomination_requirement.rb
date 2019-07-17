@@ -6,7 +6,7 @@ module Threesixty
       private
 
       def user_matches_criteria?(user)
-        criteria_list.all? do |criteria|
+        criteria_list.any? do |criteria|
           nomination_requirement_completed = Threesixty::Subjects::IsNominationRequirementComplete.call!(
             threesixty_campaign,
             user

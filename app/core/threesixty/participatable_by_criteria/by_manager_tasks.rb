@@ -6,7 +6,7 @@ module Threesixty
       private
 
       def user_matches_criteria?(user)
-        criteria_list.all? do |criteria|
+        criteria_list.any? do |criteria|
           if criteria['value'] == 'not_approved_all_nominations'
             manager_nomination_approval_pending.include?(user.id)
           elsif criteria['value'] == 'not_approved_all_reports'
