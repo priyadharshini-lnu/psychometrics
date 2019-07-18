@@ -21,8 +21,8 @@ module Threesixty
           completed.
           where("subject_id = evaluator_id").
           where(subject_id: user_ids).
-          .pluck(:subject_id)
-          .to_set
+          pluck(:subject_id).
+          to_set
       end
     end
   end

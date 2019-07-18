@@ -14,15 +14,14 @@ module Threesixty
           participants.
           active.
           actual_by_options(option).
-          where(evaluator_id: user_ids)
+          where(evaluator_id: user_ids).
+          group(:evaluator_id).
+          select('evaluator_id, count(id) as total_evaluations_count')
         if option.participants.dig('manager', 'can_approve_nominations')
           participants = participants.where(manager_nomination_status: :approved)
         end
 
-        broadcast :ok, participants.
-          group(:evaluator_id).
-          select('evaluator_id, count(id) as total_evaluations_count').
-          index_by(&:evaluator_id)
+        broadcast :ok, participants.index_by(&:evaluator_id)
       end
 
       private

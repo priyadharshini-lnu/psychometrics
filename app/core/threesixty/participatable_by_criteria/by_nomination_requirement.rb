@@ -7,6 +7,8 @@ module Threesixty
 
       def user_matches_criteria?(user)
         criteria_list.any? do |criteria|
+          return criteria['value'] == 'completed' if participatable_type == :evaluator
+
           nomination_requirement_completed = Threesixty::Subjects::IsNominationRequirementComplete.call!(
             threesixty_campaign,
             user
