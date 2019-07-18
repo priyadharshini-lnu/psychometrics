@@ -101,7 +101,7 @@ export default function Campaign ({
                 <Nominations />
               </Col>
               <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
-                <Evaluations />
+                <Evaluations history={history} />
               </Col>
               <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
                 <Reports />
