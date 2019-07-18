@@ -11,7 +11,7 @@ const { Content } = Layout
 
 export default function Evaluation ({
   evaluation: {
-    loaded, assessment, results,
+    loaded, error, assessment, results,
     results: {
       as_manager: asManager,
       participant: {
@@ -25,7 +25,7 @@ export default function Evaluation ({
 }) {
   const { subject, id } = results
   useEffect(() => {
-    if (loaded) {
+    if (loaded && !error) {
       window.renderPassAssessment('pass_assessment')
     }
   }, [loaded])
@@ -111,15 +111,17 @@ export default function Evaluation ({
                 <StatusDropdown />
               </Col>
             </Row>
-            <div
-              id="pass_assessment"
-              data-type={asManager ? 'view_results' : 'pass_assessment'}
-              data-is-threesixty="true"
-              data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
-              data-data={JSON.stringify(assessment)}
-              data-result={JSON.stringify(results)}
-              data-dashboard-url={`/campaigns/${params.campaignId}`}
-            />
+            {!error && (
+              <div
+                id="pass_assessment"
+                data-type={asManager ? 'view_results' : 'pass_assessment'}
+                data-is-threesixty="true"
+                data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
+                data-data={JSON.stringify(assessment)}
+                data-result={JSON.stringify(results)}
+                data-dashboard-url={`/campaigns/${params.campaignId}`}
+              />
+            )}
           </div>
         </PageHeader>
       </Content>

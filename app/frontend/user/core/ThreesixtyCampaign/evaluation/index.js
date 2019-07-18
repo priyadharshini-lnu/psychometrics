@@ -2,6 +2,8 @@ import { takeLatest, put } from 'redux-saga/effects'
 import { setIn } from 'utils/immutable'
 
 const FETCH = 'threeSixty/evaluation/FETCH'
+const FETCH_FAILURE = 'threeSixty/evaluation/FETCH_FAILURE'
+
 const FETCH_ASSESSMENT = 'threeSixty/evaluation/FETCH_ASSESSMENT'
 const UPDATE_STATUS = 'threeSixty/evaluation/UPDATE_STATUS'
 const DENY_EVALUATION = 'threeSixty/evaluation/DENY_EVALUATION'
@@ -53,10 +55,12 @@ export const defaultState = {
   },
   assessment: null,
   loaded: false,
+  error: false,
 }
 
 const HANDLERS = {
   [FETCH]: (state, action) => ({ ...state, results: action.response, loaded: true }),
+  [FETCH_FAILURE]: state => ({ ...state, loaded: true, error: true }),
   [FETCH_ASSESSMENT]: (state, action) => ({ ...state, assessment: action.response }),
   [DENY_EVALUATION]: (state, action) => setIn(state,
     ['results', 'participant', 'evaluator_nomination_status'],

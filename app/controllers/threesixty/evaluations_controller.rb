@@ -14,7 +14,9 @@ module Threesixty
             result.assessment_id = @campaign.assessment_id
             result.status = :in_progress
           end
-          if params[:edit] == 't'
+
+          if params[:edit] == 'true'
+            render(json: {error: '403'}, status: 403) && return unless policy([:threesixty, @participant]).edit?
             @users_result.step = 0
             @users_result.status = :in_progress
           end

@@ -22,7 +22,7 @@ function EvaluationList ({
       </Menu.Item>
       {item.evaluatorNominationStatus === 'completed' && (
         <Menu.Item key="1">
-          <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=t`} style={{ display: 'flex' }}>
+          <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=true`} style={{ display: 'flex' }}>
             Edit Evaluation
           </Link>
         </Menu.Item>
