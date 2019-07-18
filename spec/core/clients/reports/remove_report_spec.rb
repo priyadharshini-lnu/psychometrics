@@ -26,7 +26,7 @@ describe ::Clients::Reports::RemoveReport do
 
       it 'removes reports and assessments' do
         expect { subject }.to change { campaign.clients_reports.count }.by(-1)
-        expect(campaign.assessments_clients.count).to eq(6)
+        expect(campaign.assessments_clients.count).to eq(10)
       end
     end
   end
