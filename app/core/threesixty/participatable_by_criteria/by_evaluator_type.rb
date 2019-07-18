@@ -8,13 +8,11 @@ module Threesixty
 
       private
 
-      def user_matches_criteria?(user)
-        criteria_list.any? do |criteria|
-          if criteria['value'] == EXTERNAL
-            !user_is_subject?(user)
-          elsif criteria['value'] == NOT_EXTERNAL
-            user_is_subject?(user)
-          end
+      def user_matches_criteria?(user, criteria)
+        if criteria['value'] == EXTERNAL
+          !user_is_subject?(user)
+        elsif criteria['value'] == NOT_EXTERNAL
+          user_is_subject?(user)
         end
       end
 
@@ -23,7 +21,7 @@ module Threesixty
       end
 
       def subject_ids
-        @subject_ids = threesixty_campaign.subjects.pluck(:user_id)
+        @subject_ids = threesixty_campaign.subjects.pluck(:user_id).to_set
       end
     end
   end

@@ -5,10 +5,8 @@ module Threesixty
     class ByEvaluationsReceived < Base
       private
 
-      def user_matches_criteria?(user)
-        criteria_list.any? do |criteria|
-          Comparator::Number.call!(evaluations_received[user.id], criteria['value'], criteria['comparator'])
-        end
+      def user_matches_criteria?(user, criteria)
+        Comparator::Number.call!(evaluations_received[user.id], criteria['value'], criteria['comparator'])
       end
 
       def evaluations_received

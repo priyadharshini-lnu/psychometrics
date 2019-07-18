@@ -6,7 +6,7 @@ module Threesixty
       private
 
       # TODO: need implementation
-      def user_matches_criteria?(user)
+      def user_matches_criteria?(user, criteria)
         true
       end
     end

@@ -5,11 +5,9 @@ module Threesixty
     class ByDatasheetFields < Base
       private
 
-      def user_matches_criteria?(user)
-        criteria_list.any? do |criteria|
-          if datasheet_row = datasheet_rows[user.email]
-            datasheet_row.data[criteria['sub_field']]&.downcase == criteria['value']&.downcase
-          end
+      def user_matches_criteria?(user, criteria)
+        if datasheet_row = datasheet_rows[user.email]
+          datasheet_row.data[criteria['sub_field']]&.downcase == criteria['value']&.downcase
         end
       end
 

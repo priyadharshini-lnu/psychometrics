@@ -5,13 +5,11 @@ module Threesixty
     class ByManagerTasks < Base
       private
 
-      def user_matches_criteria?(user)
-        criteria_list.any? do |criteria|
-          if criteria['value'] == 'not_approved_all_nominations'
-            manager_nomination_approval_pending.include?(user.id)
-          elsif criteria['value'] == 'not_approved_all_reports'
-            managers_evaluation_approval_pending.include?(user.id)
-          end
+      def user_matches_criteria?(user, criteria)
+        if criteria['value'] == 'not_approved_all_nominations'
+          manager_nomination_approval_pending.include?(user.id)
+        elsif criteria['value'] == 'not_approved_all_reports'
+          managers_evaluation_approval_pending.include?(user.id)
         end
       end
 
@@ -28,10 +26,11 @@ module Threesixty
       end
 
       def managers
-        threesixty_campaign
-          .participants
-          .joins(:relationship)
-          .where(evaluator_id: user_ids, relationships: { name: 'Manager' })
+        threesixty_campaign.
+          participants.
+          actual_by_options(threesixty_campaign.option).
+          joins(:relationship).
+          where(evaluator_id: user_ids, relationships: { name: 'Manager' })
       end
     end
   end

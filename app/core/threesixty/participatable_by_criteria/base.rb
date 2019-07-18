@@ -13,7 +13,13 @@ module Threesixty
       end
 
       def call
-        broadcast :ok, participatables.select { |participatable| user_matches_criteria?(participatable.user) }
+        filtered_participatables = participatables.select do |participatable|
+          criteria_list.any? do |criteria|
+            user_matches_criteria?(participatable.user, criteria)
+          end
+        end
+
+        broadcast :ok, filtered_participatables
       end
 
       private

@@ -6,7 +6,7 @@ describe Threesixty::ParticipatableByCriteria::BySelfEvaluation do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
   let(:threesixty_subjects) { create_list(:threesixty_subject, 3, campaign: threesixty_campaign.campaign) }
 
-  context 'completed criteria'
+  context 'completed criteria' do
     it 'returns participatables who have completed self evaluation' do
       threesixty_subjects[0..1].each do |threesixty_subject|
         create(
@@ -44,7 +44,7 @@ describe Threesixty::ParticipatableByCriteria::BySelfEvaluation do
         criteria_list: criteria_list
       )
 
-      expect(results).to eq []
+      expect(results).to eq([])
     end
   end
 

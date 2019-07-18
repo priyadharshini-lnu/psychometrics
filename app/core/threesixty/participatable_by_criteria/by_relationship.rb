@@ -5,15 +5,14 @@ module Threesixty
     class ByRelationship < Base
       private
 
-      def user_matches_criteria?(user)
-        criteria_list.any? do |criteria|
-          participatable_relationships[user.id].include?(criteria['value'])
-        end
+      def user_matches_criteria?(user, criteria)
+        participatable_relationships[user.id].include?(criteria['value'])
       end
 
       def participatable_relationships
         @participatable_relationships ||= threesixty_campaign.
           participants.
+          actual_by_options(threesixty_campaign.option).
           group(id_column).
           where("#{id_column}" => user_ids).
           select("#{id_column}, array_agg(relationship_id) as relationship_ids").

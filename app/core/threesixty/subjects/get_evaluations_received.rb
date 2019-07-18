@@ -12,8 +12,8 @@ module Threesixty
 
       def call
         evaluations_recieved_by_relationship = Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
-          threesixty_campaign,
           user_ids,
+          threesixty_campaign,
           [:completed]
         )
 

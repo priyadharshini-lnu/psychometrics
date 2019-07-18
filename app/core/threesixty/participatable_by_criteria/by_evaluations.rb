@@ -9,10 +9,8 @@ module Threesixty
 
       private
 
-      def user_matches_criteria?(user)
-        criteria_list.any? do |criteria|
-          evaluation_state[user.id]&.include?(criteria['value'])
-        end
+      def user_matches_criteria?(user, criteria)
+        evaluation_state[user.id]&.include?(criteria['value'])
       end
 
       def evaluation_state

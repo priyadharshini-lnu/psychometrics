@@ -5,13 +5,7 @@ module Threesixty
     class BySubjectDatasheetFields < Base
       private
 
-      def user_matches_criteria?(user)
-        criteria_list.any? do |criteria|
-          has_subject_matching_datasheet_criteria?(user, criteria)
-        end
-      end
-
-      def has_subject_matching_datasheet_criteria?(user, criteria)
+      def user_matches_criteria?(user, criteria)
         return false unless subject_emails = evaluators_subjects[user.id]
 
         subject_emails.any? do |subject_email|
@@ -32,6 +26,7 @@ module Threesixty
       def evaluators_subjects
         @evaluators_subject ||= threesixty_campaign
           .participants.
+          actual_by_options(threesixty_campaign.option).
           where(evaluator_id: user_ids).
           joins("LEFT JOIN users ON users.id = participants.subject_id").
           group(:evaluator_id).

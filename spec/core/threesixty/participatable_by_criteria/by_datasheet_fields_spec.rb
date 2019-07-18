@@ -55,6 +55,6 @@ describe Threesixty::ParticipatableByCriteria::ByDatasheetFields do
       criteria_list: criteria_list
     )
 
-    expect(results).to match_array([threesixty_subjects[0]])
+    expect(results).to match_array(threesixty_subjects)
   end
 end

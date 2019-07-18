@@ -5,13 +5,11 @@ module Threesixty
     class BySelfEvaluation  < Base
       private
 
-      def user_matches_criteria?(user)
-        criteria_list.any? do |criteria|
-          if criteria['value'] == 'completed'
-            users_results.include?(user.id)
-          elsif criteria['value'] == 'not_completed'
-            users_results.exclude?(user.id)
-          end
+      def user_matches_criteria?(user, criteria)
+        if criteria['value'] == 'completed'
+          users_results.include?(user.id)
+        elsif criteria['value'] == 'not_completed'
+          users_results.exclude?(user.id)
         end
       end
 
