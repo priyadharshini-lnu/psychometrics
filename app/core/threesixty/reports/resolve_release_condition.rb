@@ -5,12 +5,10 @@ module Threesixty
     class ResolveReleaseCondition < BaseCommand
       attr_reader :campaign, :subject, :options
 
-      def initialize(campaign, subject)
-        @campaign = campaign
-        @options = @campaign.option
+      def initialize(subject, options, subject_evaluator_counters)
+        @options = options
         @subject = subject
-        @evaluations = @campaign.participants.evaluator_nomination_completed
-                                .where(subject_id: subject.user_id)
+        @subject_evaluator_counters = subject_evaluator_counters
       end
 
       def call
@@ -24,12 +22,8 @@ module Threesixty
         {operator: operator, result: evaluators_by_relationship(relationship) >= number_of_evaluator}
       end
 
-      def grouped_evaluators
-        @grouped_evaluators ||= @evaluations.joins(:relationship).group('relationships.id').count
-      end
-
       def evaluators_by_relationship(relationship)
-        grouped_evaluators[relationship] || 0
+        @subject_evaluator_counters[relationship] || 0
       end
 
       private

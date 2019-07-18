@@ -5,7 +5,7 @@
         tr
           th
             | Assessment
-          th
+          th.hidden-xs
             | Duration
           th
             | Progress
@@ -32,7 +32,7 @@
                 div id=dom_id(assign)
               - else
                 = link_to assign.assessment.name, '#', data: { privacy_consent: privacy_consent_data }
-          td.col-md-3.word-break-all = assign.assessment.decorate.timing
+          td.col-md-3.word-break-all.hidden-xs = assign.assessment.decorate.timing
           td.col-md-3
             .progress
               - percent = assign.assessment.decorate.completion_percent

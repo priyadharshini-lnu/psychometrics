@@ -15,3 +15,7 @@ en:
               invalid: 'Evaluator Email is invalid'
               blank: "Evaluator Email can't be blank"
               already_exists: 'The subject with this evaluator are already connected'
+            evaluator_first_name:
+             blank: "Evaluator first name can't be blank"
+            evaluator_last_name:
+             blank: "Evaluator last name can't be blank"

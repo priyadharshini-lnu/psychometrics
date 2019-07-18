@@ -1,4 +1,5 @@
 json.array!(@reports) do |report|
-  json.name "#{report.report_name} - #{report.report_id}"
-  json.id report.report_id
+  json.name "#{report.name} - #{report.id}"
+  json.id report.id
+  json.selected params[:hogan_report_id] == report.id
 end

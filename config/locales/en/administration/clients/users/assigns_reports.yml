@@ -15,6 +15,11 @@ en:
             successfully: Successfully Updated
           regenerate:
             successfully: Successfully sent to regenerate
+          edit:
+            header: Add Reports
+          new:
+            header: Add Reports
+
     assigns_reports:
       edit:
         header: Edit report assignment

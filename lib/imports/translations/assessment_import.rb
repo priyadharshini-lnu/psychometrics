@@ -44,7 +44,7 @@ module Imports
       #
       def load_imported_items
         # Parse header of xls/csv by strict rules
-        rows = open_spreadsheet.parse
+        rows = open_spreadsheet.to_a
         header = rows.shift
         collect_translations = {}
         rows.each do |row|

@@ -8,7 +8,7 @@ module Assessments
     end
 
     def scoring
-      object.factors_scoring.where(assessment_id: @instance_options[:assessment_id])
+      @instance_options[:factor_scoring] || []
     end
   end
 end

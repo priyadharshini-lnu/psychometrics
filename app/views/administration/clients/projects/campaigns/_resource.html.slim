@@ -18,37 +18,9 @@ tbody id=dom_id(resource)
       td
         = link_to resource.name, administration_client_users_path(resource)
       td
-        - if resource.project_level?
-          strong.nowrap
-            = t('.assessments')
-            = link_to edit_administration_client_assign_assessments_path(resource.id), class: 'mlm', remote: true
-              span.fa.fa-pencil
-          div
-            - resource.assessments.each do |assessment|
-              span.mrm data-toggle='tooltip' data-title=assessment.name
-                = assessment.decorate.icon
-          - if policy(:clients_report).create?
-            .add-icon-box.nowrap
-              = link_to new_administration_client_assign_assessments_path(client_id: resource.id), remote: true
-                span.fa.fa-plus
-                =< t('.add_assessment')
+        = render '/administration/clients/projects/assign_assessments', resource: resource
       td
-        - if resource.project_level?
-          - resource.clients_reports.includes(:report_family, :report).group_by(&:report_family).each do |report_family, reports|
-            div
-              - if report_family
-                strong.nowrap
-                  = report_family.name
-                  = link_to edit_administration_client_assign_reports_path(resource.id, report_family_id: report_family.id), class: 'mlm', remote: true
-                    span.fa.fa-pencil
-                .clearfix
-              - reports.each do |report|
-                span.mrm data-toggle='tooltip' data-title=report&.report&.name
-                  = report&.report&.decorate&.icon
-          .add-icon-box.nowrap
-            = link_to new_administration_client_assign_reports_path(resource.id), remote: true
-              span.fa.fa-plus
-              =< t('.add_report')
+        = render '/administration/clients/projects/assign_reports', resource: resource
       td
         = link_to resource.end_memberships.size, administration_client_users_path(resource)
         - if policy(User).create?

@@ -9,7 +9,7 @@ module Administration
       def index
         option = threesixty_campaign.option || ::Threesixty::Option.new
         managers = policy_scope(::Threesixty::Evaluator).
-                   includes(:subject, :user).
+                   includes(:user, subject: :user).
                    joins(participants: :relationship).
                    where(campaign_id: threesixty_campaign.campaign_id, participants: { relationships: { name: 'Manager' } }).
                    order(id: :desc).
@@ -18,6 +18,14 @@ module Administration
                    offset(params[:offset])
 
         counters = ::Threesixty::Participants::CalcCounters.call!(managers.map(&:user_id), threesixty_campaign)
+        subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
+          managers.map(&:user_id),
+          threesixty_campaign
+        )
+        nomination_requirement_by_user_id = ::Threesixty::NominationRequirements::FindForUsers.call!(
+          managers.map(&:user),
+          threesixty_campaign
+        )
         total = policy_scope(::Threesixty::Evaluator).
                 where(campaign_id: threesixty_campaign.campaign_id, participants: { relationships: { name: 'Manager' } }).
                 distinct(:user_id).
@@ -25,8 +33,13 @@ module Administration
                 count
 
         managers = managers.map do |m|
-          nomination_requirement = ::Threesixty::NominationRequirements::FindForSubject.call!(m.subject, threesixty_campaign)
-          ::Threesixty::EvaluatorSerializer.new(m, option: option, nomination_requirement: nomination_requirement, counters: counters).to_h
+          ::Threesixty::EvaluatorSerializer.new(
+            m,
+            option: option,
+            nomination_requirement: nomination_requirement_by_user_id[m.user_id],
+            counters: counters,
+            subject_evaluator_counters: subject_evaluator_counters
+          ).to_h
         end
         render json: { managers: managers, total: total }
       end

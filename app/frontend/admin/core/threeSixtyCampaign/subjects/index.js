@@ -12,6 +12,7 @@ export const CREATE_ALL_FAILURE = 'threeSixty/subjects/CREATE_ALL_FAILURE'
 export const CLEAR_FORM = 'threeSixty/subjects/CLEAR_FORM'
 export const UPDATE = 'threeSixty/subjects/UPDATE'
 export const REMOVE = 'threeSixty/subjects/REMOVE'
+export const DOWNLOAD_REPORT = 'threeSixty/subjects/DOWNLOAD_REPORT'
 
 export const defaultState = {
   list: [],
@@ -53,6 +54,13 @@ export const update = (campaignId, subjectId, data) => ({
     method: 'put',
     url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}`,
     body: data,
+  },
+})
+
+export const downloadReport = (campaignId, subjectId) => ({
+  type: DOWNLOAD_REPORT,
+  request: {
+    url: `/administration/threesixty_campaigns/${campaignId}/subjects/${subjectId}/reports/download`,
   },
 })
 

@@ -27,6 +27,8 @@ en:
     all: ' - All - '
     psychometrics: Psychometrics
     no_data_found: No data found
+    updated: Successfully updated
+    created: Successfully created
     genders:
       male: Male
       female: Female

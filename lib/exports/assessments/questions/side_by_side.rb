@@ -39,7 +39,8 @@ module Exports
                                end
             end
           end
-          parsed_result
+          required_size = header(question).size
+          Utility::Array.ensure_size(parsed_result, required_size)
         end
 
         # Parse HEADER data for XLSX

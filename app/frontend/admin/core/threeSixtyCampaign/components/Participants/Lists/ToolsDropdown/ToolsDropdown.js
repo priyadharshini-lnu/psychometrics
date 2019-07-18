@@ -11,6 +11,12 @@ const menu = ({
       <a href={`/administration/clients/${projectId}/datasheet_rows`}>Manage Data Sheets...</a>
     </Menu.Item>
     <Menu.Divider />
+    <Menu.Item key="4">
+      <a href={`/administration/threesixty_campaigns/${campaignId}/export_completion_status.xlsx`} download>
+          Export Completion Status
+      </a>
+    </Menu.Item>
+    <Menu.Divider />
     <Menu.Item key="5">
       <div onClick={() => resetCampaign(campaignId)} role="button" tabIndex={-1}>
           Reset All Participants...

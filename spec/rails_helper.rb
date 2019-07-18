@@ -5,12 +5,13 @@ abort('The Rails environment is running in production mode!') if Rails.env.produ
 require 'spec_helper'
 require 'rspec/rails'
 require 'capybara/rspec'
-require 'capybara/poltergeist'
 require 'capybara-screenshot/rspec'
 require 'selenium-webdriver'
 require 'features/helpers'
 require 'wisper/rspec/matchers'
 require 'rectify/rspec'
+require 'capybara_config'
+
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
 Shoulda::Matchers.configure do |config|
@@ -27,39 +28,6 @@ FactoryGirl::SyntaxRunner.class_eval do
   include RSpec::Mocks::ExampleMethods
 end
 
-Capybara.default_max_wait_time = 5
-Capybara.register_driver :poltergeist do |app|
-  options = {
-      js_errors: false,
-      timeout: 120,
-      phantomjs_options: ['--load-images=no', '--disk-cache=false', '--web-security=false'],
-      inspector: true,
-      window_size: [1366, 768]
-  }
-  Capybara::Poltergeist::Driver.new(app, options)
-end
-
-Capybara.register_driver :chrome do |app|
-  # optional
-  client = Selenium::WebDriver::Remote::Http::Default.new
-  client.read_timeout = 120
-  profile = Selenium::WebDriver::Chrome::Profile.new
-  profile['download.default_directory'] = DownloadHelpers::PATH.to_s
-  Capybara::Selenium::Driver.new(app, browser: :chrome, http_client: client, profile: profile)
-end
-
-Capybara::Screenshot.register_driver(:chrome) do |driver, path|
-  driver.browser.save_screenshot(path)
-end
-
-Capybara.configure do |c|
-  c.app_host = "http://lvh.me:#{Settings.port}"
-  c.server_port = Settings.port
-end
-
-Capybara.default_driver = :poltergeist
-Capybara.javascript_driver = :chrome
-
 RSpec.configure do |config|
   config.color = true
   config.include Features::Helpers, type: :feature
@@ -71,6 +39,7 @@ RSpec.configure do |config|
   # Sign in helper for controller
   config.include Devise::Test::ControllerHelpers, type: :controller
   config.extend ControllerMacros, type: :controller
+  config.include Devise::Test::IntegrationHelpers, type: :request
 
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
@@ -103,6 +72,12 @@ RSpec.configure do |config|
     if ENV['CIRCLECI'] && example.example_group.include?(Capybara::DSL) && Capybara.page.current_url != '' && example.exception
       save_timestamped_screenshot(Capybara.page, example.metadata)
     end
+  end
+
+  [:controller, :view, :request].each do |type|
+    config.include ::Rails::Controller::Testing::TestProcess, :type => type
+    config.include ::Rails::Controller::Testing::TemplateAssertions, :type => type
+    config.include ::Rails::Controller::Testing::Integration, :type => type
   end
 
   def save_timestamped_screenshot(page, meta)

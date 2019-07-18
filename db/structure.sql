@@ -5,6 +5,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -1763,6 +1764,37 @@ ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
 
 
 --
+-- Name: question_recoding; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.question_recoding (
+    id bigint NOT NULL,
+    assessment_id bigint,
+    question_id bigint,
+    props jsonb
+);
+
+
+--
+-- Name: question_recoding_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.question_recoding_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: question_recoding_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.question_recoding_id_seq OWNED BY public.question_recoding.id;
+
+
+--
 -- Name: questions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2151,6 +2183,84 @@ ALTER SEQUENCE public.threesixty_campaigns_id_seq OWNED BY public.threesixty_cam
 
 
 --
+-- Name: threesixty_email_schedules; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.threesixty_email_schedules (
+    id bigint NOT NULL,
+    threesixty_campaign_id bigint,
+    name character varying,
+    "from" character varying,
+    subject text,
+    reply_to_email character varying,
+    content text,
+    scheduled_date timestamp without time zone,
+    recipient_criteria jsonb,
+    delivered_at timestamp without time zone,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: threesixty_email_schedules_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.threesixty_email_schedules_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: threesixty_email_schedules_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.threesixty_email_schedules_id_seq OWNED BY public.threesixty_email_schedules.id;
+
+
+--
+-- Name: threesixty_email_templates; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.threesixty_email_templates (
+    id bigint NOT NULL,
+    threesixty_campaign_id bigint,
+    category integer,
+    name character varying NOT NULL,
+    "from" character varying NOT NULL,
+    reply_to_email character varying NOT NULL,
+    content text,
+    subject text,
+    schedulable boolean DEFAULT true,
+    meta jsonb DEFAULT '{}'::jsonb,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: threesixty_email_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.threesixty_email_templates_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: threesixty_email_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.threesixty_email_templates_id_seq OWNED BY public.threesixty_email_templates.id;
+
+
+--
 -- Name: threesixty_evaluators; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2183,6 +2293,40 @@ CREATE SEQUENCE public.threesixty_evaluators_id_seq
 --
 
 ALTER SEQUENCE public.threesixty_evaluators_id_seq OWNED BY public.threesixty_evaluators.id;
+
+
+--
+-- Name: threesixty_instruction_templates; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.threesixty_instruction_templates (
+    id bigint NOT NULL,
+    threesixty_campaign_id bigint,
+    name character varying NOT NULL,
+    content text,
+    enabled boolean DEFAULT true,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL
+);
+
+
+--
+-- Name: threesixty_instruction_templates_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.threesixty_instruction_templates_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: threesixty_instruction_templates_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.threesixty_instruction_templates_id_seq OWNED BY public.threesixty_instruction_templates.id;
 
 
 --
@@ -2289,41 +2433,6 @@ CREATE SEQUENCE public.threesixty_subjects_id_seq
 --
 
 ALTER SEQUENCE public.threesixty_subjects_id_seq OWNED BY public.threesixty_subjects.id;
-
-
---
--- Name: threesixty_subjects_relationships; Type: TABLE; Schema: public; Owner: -
---
-
-CREATE TABLE public.threesixty_subjects_relationships (
-    id bigint NOT NULL,
-    campaign_id bigint,
-    subject_id bigint,
-    relationship_id bigint,
-    completed_evaluators_count integer DEFAULT 0,
-    approved_evaluators_count integer DEFAULT 0,
-    created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
-);
-
-
---
--- Name: threesixty_subjects_relationships_id_seq; Type: SEQUENCE; Schema: public; Owner: -
---
-
-CREATE SEQUENCE public.threesixty_subjects_relationships_id_seq
-    START WITH 1
-    INCREMENT BY 1
-    NO MINVALUE
-    NO MAXVALUE
-    CACHE 1;
-
-
---
--- Name: threesixty_subjects_relationships_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
---
-
-ALTER SEQUENCE public.threesixty_subjects_relationships_id_seq OWNED BY public.threesixty_subjects_relationships.id;
 
 
 --
@@ -2509,8 +2618,7 @@ CREATE TABLE public.users_results (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
-    campaign_id bigint,
-    question_scoring jsonb DEFAULT '[]'::jsonb
+    campaign_id bigint
 );
 
 
@@ -2863,6 +2971,13 @@ ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.pro
 
 
 --
+-- Name: question_recoding id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.question_recoding ALTER COLUMN id SET DEFAULT nextval('public.question_recoding_id_seq'::regclass);
+
+
+--
 -- Name: questions id; Type: DEFAULT; Schema: public; Owner: -
 --
 
@@ -2933,10 +3048,31 @@ ALTER TABLE ONLY public.threesixty_campaigns ALTER COLUMN id SET DEFAULT nextval
 
 
 --
+-- Name: threesixty_email_schedules id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_schedules ALTER COLUMN id SET DEFAULT nextval('public.threesixty_email_schedules_id_seq'::regclass);
+
+
+--
+-- Name: threesixty_email_templates id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_templates ALTER COLUMN id SET DEFAULT nextval('public.threesixty_email_templates_id_seq'::regclass);
+
+
+--
 -- Name: threesixty_evaluators id; Type: DEFAULT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.threesixty_evaluators ALTER COLUMN id SET DEFAULT nextval('public.threesixty_evaluators_id_seq'::regclass);
+
+
+--
+-- Name: threesixty_instruction_templates id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_instruction_templates ALTER COLUMN id SET DEFAULT nextval('public.threesixty_instruction_templates_id_seq'::regclass);
 
 
 --
@@ -2958,13 +3094,6 @@ ALTER TABLE ONLY public.threesixty_options ALTER COLUMN id SET DEFAULT nextval('
 --
 
 ALTER TABLE ONLY public.threesixty_subjects ALTER COLUMN id SET DEFAULT nextval('public.threesixty_subjects_id_seq'::regclass);
-
-
---
--- Name: threesixty_subjects_relationships id; Type: DEFAULT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.threesixty_subjects_relationships ALTER COLUMN id SET DEFAULT nextval('public.threesixty_subjects_relationships_id_seq'::regclass);
 
 
 --
@@ -3387,6 +3516,14 @@ ALTER TABLE ONLY public.products
 
 
 --
+-- Name: question_recoding question_recoding_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.question_recoding
+    ADD CONSTRAINT question_recoding_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: questions questions_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -3475,11 +3612,35 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 
 --
+-- Name: threesixty_email_schedules threesixty_email_schedules_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_schedules
+    ADD CONSTRAINT threesixty_email_schedules_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: threesixty_email_templates threesixty_email_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_templates
+    ADD CONSTRAINT threesixty_email_templates_pkey PRIMARY KEY (id);
+
+
+--
 -- Name: threesixty_evaluators threesixty_evaluators_pkey; Type: CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.threesixty_evaluators
     ADD CONSTRAINT threesixty_evaluators_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: threesixty_instruction_templates threesixty_instruction_templates_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_instruction_templates
+    ADD CONSTRAINT threesixty_instruction_templates_pkey PRIMARY KEY (id);
 
 
 --
@@ -3504,14 +3665,6 @@ ALTER TABLE ONLY public.threesixty_options
 
 ALTER TABLE ONLY public.threesixty_subjects
     ADD CONSTRAINT threesixty_subjects_pkey PRIMARY KEY (id);
-
-
---
--- Name: threesixty_subjects_relationships threesixty_subjects_relationships_pkey; Type: CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.threesixty_subjects_relationships
-    ADD CONSTRAINT threesixty_subjects_relationships_pkey PRIMARY KEY (id);
 
 
 --
@@ -3989,6 +4142,13 @@ CREATE INDEX index_factors_scoring_on_factor_id ON public.factors_scoring USING 
 
 
 --
+-- Name: index_factors_scoring_on_factor_question_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_factors_scoring_on_factor_question_assessment_id ON public.factors_scoring USING btree (factor_id, question_id, assessment_id);
+
+
+--
 -- Name: index_factors_scoring_on_question_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4178,6 +4338,13 @@ CREATE INDEX index_participants_on_subject_id ON public.participants USING btree
 
 
 --
+-- Name: index_participants_on_subject_id_and_evaluator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_participants_on_subject_id_and_evaluator_id ON public.participants USING btree (subject_id, evaluator_id);
+
+
+--
 -- Name: index_privacy_consents_on_membership_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4210,6 +4377,20 @@ CREATE INDEX index_product_reports_on_product_id ON public.product_reports USING
 --
 
 CREATE INDEX index_product_reports_on_report_id ON public.product_reports USING btree (report_id);
+
+
+--
+-- Name: index_question_recoding_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_question_recoding_on_assessment_id ON public.question_recoding USING btree (assessment_id);
+
+
+--
+-- Name: index_question_recoding_on_question_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_question_recoding_on_question_id ON public.question_recoding USING btree (question_id);
 
 
 --
@@ -4381,6 +4562,13 @@ CREATE INDEX index_threesixty_evaluators_on_user_id ON public.threesixty_evaluat
 
 
 --
+-- Name: index_threesixty_instruction_templates_campaign_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_threesixty_instruction_templates_campaign_name ON public.threesixty_instruction_templates USING btree (threesixty_campaign_id, name);
+
+
+--
 -- Name: index_threesixty_options_on_threesixty_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4399,27 +4587,6 @@ CREATE INDEX index_threesixty_subjects_on_campaign_id ON public.threesixty_subje
 --
 
 CREATE INDEX index_threesixty_subjects_on_user_id ON public.threesixty_subjects USING btree (user_id);
-
-
---
--- Name: index_threesixty_subjects_relationships_on_campaign_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_threesixty_subjects_relationships_on_campaign_id ON public.threesixty_subjects_relationships USING btree (campaign_id);
-
-
---
--- Name: index_threesixty_subjects_relationships_on_relationship_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_threesixty_subjects_relationships_on_relationship_id ON public.threesixty_subjects_relationships USING btree (relationship_id);
-
-
---
--- Name: index_threesixty_subjects_relationships_on_subject_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_threesixty_subjects_relationships_on_subject_id ON public.threesixty_subjects_relationships USING btree (subject_id);
 
 
 --
@@ -4574,6 +4741,34 @@ CREATE INDEX index_users_results_on_norm_id ON public.users_results USING btree 
 --
 
 CREATE INDEX index_users_results_on_subject_id ON public.users_results USING btree (subject_id);
+
+
+--
+-- Name: index_users_results_on_subject_id_and_evaluator_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_users_results_on_subject_id_and_evaluator_id ON public.users_results USING btree (subject_id, evaluator_id);
+
+
+--
+-- Name: threesixty_email_schedule_cam_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX threesixty_email_schedule_cam_id ON public.threesixty_email_schedules USING btree (threesixty_campaign_id);
+
+
+--
+-- Name: threesixty_email_template_cam_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX threesixty_email_template_cam_id ON public.threesixty_email_templates USING btree (threesixty_campaign_id);
+
+
+--
+-- Name: threesixty_instruction_templates_cam_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX threesixty_instruction_templates_cam_id ON public.threesixty_instruction_templates USING btree (threesixty_campaign_id);
 
 
 --
@@ -4744,6 +4939,14 @@ ALTER TABLE ONLY public.libraries
 
 
 --
+-- Name: threesixty_instruction_templates fk_rails_3e304e0709; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_instruction_templates
+    ADD CONSTRAINT fk_rails_3e304e0709 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE RESTRICT;
+
+
+--
 -- Name: communications fk_rails_41c5e93ac9; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4872,14 +5075,6 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
--- Name: threesixty_subjects_relationships fk_rails_7c9b18d465; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.threesixty_subjects_relationships
-    ADD CONSTRAINT fk_rails_7c9b18d465 FOREIGN KEY (relationship_id) REFERENCES public.relationships(id) ON DELETE RESTRICT;
-
-
---
 -- Name: reports_modules fk_rails_7d52ca6463; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4909,14 +5104,6 @@ ALTER TABLE ONLY public.assigns
 
 ALTER TABLE ONLY public.tasks
     ADD CONSTRAINT fk_rails_877a66d795 FOREIGN KEY (owner_id) REFERENCES public.memberships(id);
-
-
---
--- Name: threesixty_subjects_relationships fk_rails_88d5501028; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.threesixty_subjects_relationships
-    ADD CONSTRAINT fk_rails_88d5501028 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
 
 
 --
@@ -4965,6 +5152,14 @@ ALTER TABLE ONLY public.communications
 
 ALTER TABLE ONLY public.norms
     ADD CONSTRAINT fk_rails_922fac4f2e FOREIGN KEY (created_by) REFERENCES public.users(id) ON DELETE SET NULL;
+
+
+--
+-- Name: threesixty_email_templates fk_rails_93d2d461ed; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_templates
+    ADD CONSTRAINT fk_rails_93d2d461ed FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE RESTRICT;
 
 
 --
@@ -5048,19 +5243,19 @@ ALTER TABLE ONLY public.assessments_clients
 
 
 --
--- Name: threesixty_subjects_relationships fk_rails_a892ac1dd0; Type: FK CONSTRAINT; Schema: public; Owner: -
---
-
-ALTER TABLE ONLY public.threesixty_subjects_relationships
-    ADD CONSTRAINT fk_rails_a892ac1dd0 FOREIGN KEY (subject_id) REFERENCES public.users(id) ON DELETE RESTRICT;
-
-
---
 -- Name: users_assessments fk_rails_ab767322bc; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
 ALTER TABLE ONLY public.users_assessments
     ADD CONSTRAINT fk_rails_ab767322bc FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: threesixty_email_schedules fk_rails_ac81b040c5; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_email_schedules
+    ADD CONSTRAINT fk_rails_ac81b040c5 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE RESTRICT;
 
 
 --
@@ -5085,6 +5280,14 @@ ALTER TABLE ONLY public.dimensions
 
 ALTER TABLE ONLY public.threesixty_evaluators
     ADD CONSTRAINT fk_rails_b0d68ad21e FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: question_recoding fk_rails_b15be6b218; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.question_recoding
+    ADD CONSTRAINT fk_rails_b15be6b218 FOREIGN KEY (question_id) REFERENCES public.questions(id) ON DELETE CASCADE;
 
 
 --
@@ -5157,6 +5360,14 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 ALTER TABLE ONLY public.hogan_assessment_settings
     ADD CONSTRAINT fk_rails_d0f7b433a7 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: question_recoding fk_rails_d1991e6723; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.question_recoding
+    ADD CONSTRAINT fk_rails_d1991e6723 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -5610,6 +5821,14 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190525115528'),
 ('20190601163131'),
 ('20190604121645'),
-('20190613190324');
+('20190612100829'),
+('20190612132144'),
+('20190613190324'),
+('20190617125849'),
+('20190620132719'),
+('20190630092817'),
+('20190703092738'),
+('20190710140100'),
+('20190713155551');
 
 

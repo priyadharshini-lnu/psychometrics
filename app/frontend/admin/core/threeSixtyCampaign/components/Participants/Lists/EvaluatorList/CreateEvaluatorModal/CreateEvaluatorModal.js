@@ -32,7 +32,6 @@ const tableFields = [
   },
 ]
 export default function CreateEvaluatorModal ({
-  current,
   closeModal,
   fillEvaluators,
   createAllEvaluators,
@@ -43,12 +42,10 @@ export default function CreateEvaluatorModal ({
     params: { campaignId },
   },
 }) {
-  if (current !== 'CreateEvaluatorModal') return null
-
   const handleOk = () => {
     createAllEvaluators(
       campaignId,
-      _.pickBy(
+      _.filter(
         evaluators,
         s => s.subjectEmail || s.evaluatorEmail || s.evaluatorLastName || s.evaluatorFirstName || s.relationshipName,
       ),

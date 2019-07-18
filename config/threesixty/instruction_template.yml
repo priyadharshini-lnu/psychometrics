@@ -1,0 +1,19 @@
+- name: 'welcome_message'
+  enabled: true
+  content: '<p>Welcome Message</p>'
+
+- name: 'evaluator_welcome'
+  enabled: true
+  content: '<p>Evalutor Welcome</p>'
+
+- name: 'evaluate_self'
+  enabled: true
+  content: '<p>Evalute self</p>'
+
+- name: 'invite_evaluators'
+  enabled: true
+  content: '<p>Invite Evaluators</p>'
+
+- name: 'evaluate_others'
+  enabled: true
+  content: '<p>Evaluate Others</p>'
