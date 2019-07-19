@@ -15,7 +15,7 @@ describe Threesixty::ParticipatableByCriteria::ByNominationRequirement do
       allow(Threesixty::Subjects::IsNominationRequirementComplete).to receive(:call!).
         with(threesixty_campaign, threesixty_subjects[2].user).and_return(false)
 
-      criteria_list = [{ 'field' => 'nomination_requirement', 'value' => 'completed'}]
+      criteria_list = [{ 'field' => 'nomination_requirement', 'value' => 'completed' }]
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
         participatables: threesixty_subjects,
@@ -35,7 +35,7 @@ describe Threesixty::ParticipatableByCriteria::ByNominationRequirement do
       allow(Threesixty::Subjects::IsNominationRequirementComplete).to receive(:call!).
         with(threesixty_campaign, threesixty_subjects[2].user).and_return(false)
 
-      criteria_list = [{ 'field' => 'nomination_requirement', 'value' => 'not_completed'}]
+      criteria_list = [{ 'field' => 'nomination_requirement', 'value' => 'not_completed' }]
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
         participatables: threesixty_subjects,

@@ -30,7 +30,7 @@ module Threesixty
           participants.
           actual_by_options(threesixty_campaign.option).
           joins(:relationship).
-          where(evaluator_id: user_ids, relationships: { name: 'Manager' })
+          where(evaluator_id: user_ids, relationships: { name: 'Manager', type: :global })
       end
     end
   end

@@ -18,7 +18,7 @@ describe Threesixty::ParticipatableByCriteria::BySelfEvaluation do
         )
       end
 
-      criteria_list = [{ 'field' => 'self_evaluations', 'value' => 'completed'}]
+      criteria_list = [{ 'field' => 'self_evaluations', 'value' => 'completed' }]
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
         participatables: threesixty_subjects,
@@ -37,7 +37,7 @@ describe Threesixty::ParticipatableByCriteria::BySelfEvaluation do
         status: :in_progress
       )
 
-      criteria_list = [{ 'field' => 'self_evaluations', 'value' => 'completed'}]
+      criteria_list = [{ 'field' => 'self_evaluations', 'value' => 'completed' }]
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
         participatables: threesixty_subjects,
@@ -58,7 +58,7 @@ describe Threesixty::ParticipatableByCriteria::BySelfEvaluation do
         status: :completed
       )
 
-      criteria_list = [{ 'field' => 'self_evaluations', 'value' => 'not_completed'}]
+      criteria_list = [{ 'field' => 'self_evaluations', 'value' => 'not_completed' }]
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
         participatables: threesixty_subjects,

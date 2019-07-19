@@ -42,7 +42,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluationsReceived do
   end
 
   it 'returns participatables who have received evaluation which is equal to the criteria value' do
-    criteria_list = [{ 'field' => 'evaluations_received', 'comparator' => 'equal', 'value' => '2'}]
+    criteria_list = [{ 'field' => 'evaluations_received', 'comparator' => 'equal', 'value' => '2' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
       participatables: threesixty_subjects,
@@ -53,7 +53,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluationsReceived do
   end
 
   it 'returns participatables who have received evaluation which is less than to the criteria value' do
-    criteria_list = [{ 'field' => 'evaluations_received', 'comparator' => 'less_than', 'value' => '2'}]
+    criteria_list = [{ 'field' => 'evaluations_received', 'comparator' => 'less_than', 'value' => '2' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
       participatables: threesixty_subjects,
@@ -64,7 +64,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluationsReceived do
   end
 
   it 'returns participatables who have received evaluation which is more than than to the criteria value' do
-    criteria_list = [{ 'field' => 'evaluations_received', 'comparator' => 'more_than', 'value' => '1'}]
+    criteria_list = [{ 'field' => 'evaluations_received', 'comparator' => 'more_than', 'value' => '1' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
       participatables: threesixty_subjects,
@@ -75,7 +75,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluationsReceived do
   end
 
   it 'returns participatables who have received evaluation which is not equal to the criteria value' do
-    criteria_list = [{ 'field' => 'evaluations_received', 'comparator' => 'not_equal', 'value' => '1'}]
+    criteria_list = [{ 'field' => 'evaluations_received', 'comparator' => 'not_equal', 'value' => '1' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
       participatables: threesixty_subjects,
