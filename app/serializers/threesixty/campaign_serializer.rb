@@ -18,6 +18,7 @@ module Threesixty
 
     has_many :nominations, serializer: NomineeSerializer
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
+    has_many :managed_subjects, serializer: Threesixty::EndUser::ManagedSubjectSerializer
     has_many :reports, serializer: UsersReportSerializer
     has_one :options, serializer: CampaignOptionsSerializer
 
@@ -52,6 +53,10 @@ module Threesixty
 
     def nominations
       instance_options[:subjects] || []
+    end
+
+    def managed_subjects
+      instance_options[:managed_subjects] || []
     end
 
     def evaluations
