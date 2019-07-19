@@ -20,6 +20,13 @@ function EvaluationList ({
       <Menu.Item key="0" onClick={() => declineEvaluation(item.campaignId, item.id)}>
         Decline Invite
       </Menu.Item>
+      {item.evaluatorNominationStatus === 'completed' && (
+        <Menu.Item key="1">
+          <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=true`} style={{ display: 'flex' }}>
+            Edit Evaluation
+          </Link>
+        </Menu.Item>
+      )}
     </Menu>
   )
 
@@ -28,7 +35,7 @@ function EvaluationList ({
       <div className="evaluation-item list-item">
         <div>
           <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}`} style={{ display: 'flex' }}>
-            {!item.evaluatorNominationStatus === 'completed'
+            {item.evaluatorNominationStatus !== 'completed'
               ? <Icon type="check-square" theme="filled" className="status-icon" />
               : <div className="empty-square" />}
             {' '}

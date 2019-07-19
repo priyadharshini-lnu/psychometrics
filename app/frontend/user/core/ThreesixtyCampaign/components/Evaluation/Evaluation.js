@@ -2,6 +2,7 @@ import React, { useEffect } from 'react'
 import {
   Layout, Row, Col, Button, Menu, Dropdown, Icon, PageHeader,
 } from 'antd'
+import qs from 'query-string'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import './styles.scss'
@@ -10,7 +11,7 @@ const { Content } = Layout
 
 export default function Evaluation ({
   evaluation: {
-    loaded, assessment, results,
+    loaded, error, assessment, results,
     results: {
       as_manager: asManager,
       participant: {
@@ -24,13 +25,14 @@ export default function Evaluation ({
 }) {
   const { subject, id } = results
   useEffect(() => {
-    if (loaded) {
+    if (loaded && !error) {
       window.renderPassAssessment('pass_assessment')
     }
   }, [loaded])
 
   useEffect(() => {
-    fetchAssessment(params.campaignId, params.id)
+    const { edit } = qs.parse(location.search)
+    fetchAssessment(params.campaignId, params.id, edit)
   }, [])
 
   const handleStatusClick = (status) => {
@@ -109,15 +111,17 @@ export default function Evaluation ({
                 <StatusDropdown />
               </Col>
             </Row>
-            <div
-              id="pass_assessment"
-              data-type={asManager ? 'view_results' : 'pass_assessment'}
-              data-is-threesixty="true"
-              data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
-              data-data={JSON.stringify(assessment)}
-              data-result={JSON.stringify(results)}
-              data-dashboard-url={`/campaigns/${params.campaignId}`}
-            />
+            {!error && (
+              <div
+                id="pass_assessment"
+                data-type={asManager ? 'view_results' : 'pass_assessment'}
+                data-is-threesixty="true"
+                data-results-url={`/campaigns/${params.campaignId}/users_results/${id}`}
+                data-data={JSON.stringify(assessment)}
+                data-result={JSON.stringify(results)}
+                data-dashboard-url={`/campaigns/${params.campaignId}`}
+              />
+            )}
           </div>
         </PageHeader>
       </Content>
