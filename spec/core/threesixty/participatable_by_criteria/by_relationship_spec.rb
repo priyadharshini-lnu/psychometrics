@@ -4,6 +4,13 @@ require 'rails_helper'
 
 describe Threesixty::ParticipatableByCriteria::ByRelationship do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
+  let!(:threesixty_option) do
+    create(
+      :threesixty_option,
+      threesixty_campaign: threesixty_campaign,
+      participants: { 'subject' => { 'can_evaluate_self' => true } }
+    )
+  end
 
   it 'returns subjects matching relationship' do
     threesixty_subjects = create_list(:threesixty_subject, 3)

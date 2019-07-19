@@ -6,7 +6,7 @@ module Threesixty
       private
 
       def user_matches_criteria?(user, criteria)
-        participatable_relationships[user.id].include?(criteria['value'])
+        participatable_relationships[user.id]&.include?(criteria['value'])
       end
 
       def participatable_relationships
