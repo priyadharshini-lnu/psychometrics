@@ -9,9 +9,19 @@ describe Threesixty::Participants::GetTotalEvaluations do
   it 'returns total evaluations count' do
     create(:threesixty_option, threesixty_campaign: threesixty_campaign)
     threesixty_evaluators.each do |threesixty_evaluator|
-      create(:participant, evaluator_id: threesixty_evaluator.user_id)
+      create(
+        :participant,
+        campaign: threesixty_campaign.campaign,
+        evaluator_id: threesixty_evaluator.user_id,
+        subject_id: create(:user).id
+      )
     end
-    create(:participant, evaluator_id: threesixty_evaluators[0].user_id)
+    create(
+      :participant,
+      campaign: threesixty_campaign.campaign,
+      evaluator_id: threesixty_evaluators[0].user_id,
+      subject_id: create(:user).id
+    )
 
     results = described_class.call!(threesixty_campaign, threesixty_evaluators.map(&:user_id))
 
@@ -26,9 +36,21 @@ describe Threesixty::Participants::GetTotalEvaluations do
       participants: { 'manager' => { 'can_approve_nominations' => true } }
     )
     threesixty_evaluators.each do |threesixty_evaluator|
-      create(:participant, evaluator_id: threesixty_evaluator.user_id)
+      create(
+        :participant,
+        campaign: threesixty_campaign.campaign,
+        evaluator_id: threesixty_evaluator.user_id,
+        subject_id: create(:user).id,
+        manager_nomination_status: :approved
+      )
     end
-    create(:participant, evaluator_id: threesixty_evaluators[0].user_id, manager_nomination_status: :approved)
+    create(
+      :participant,
+      campaign: threesixty_campaign.campaign,
+      evaluator_id: threesixty_evaluators[0].user_id,
+      subject_id: create(:user).id,
+      manager_nomination_status: :waiting
+    )
 
     results = described_class.call!(threesixty_campaign, threesixty_evaluators.map(&:user_id))
 
