@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+import { getUserId } from 'admin/core/temp/modals'
 
 export const FETCH_ALL_BY_USER_ID = 'threeSixty/participants/FETCH_ALL_BY_USER_ID'
 export const UPDATE = 'threeSixty/participants/UPDATE'
@@ -50,7 +51,6 @@ export default function reducer (state = defaultState, action) {
 }
 
 const getParticipants = state => state.threeSixtyCampaign.participants
-const getUserId = state => state.temp.modals.data.user.id
 
 export const getUserEvaluators = createSelector(
   getParticipants,

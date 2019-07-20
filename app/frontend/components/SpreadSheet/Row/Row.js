@@ -1,29 +1,29 @@
 import React from 'react'
-import _ from 'lodash'
+import types from './types'
 
 export default function Row ({
-  isLast, addRow, updateEntity, index, fields, entity,
+  isLast, addRow, updateEntity, index, fields, entity, context,
 }) {
-  const onKeyDown = (key, index) => {
-    if (key === 'Tab' && isLast && index === _.size(fields) - 1) addRow()
-  }
-
-  const onChange = ({ currentTarget }) => {
-    updateEntity([index, currentTarget.name], currentTarget.value)
-  }
-
   return (
     <tr>
-      {fields.map((field, index) => (
-        <td key={field.key}>
-          <input
-            onKeyDown={({ key }) => onKeyDown(key, index)}
-            name={field.key}
-            value={entity[field.key] || ''}
-            onChange={onChange}
-          />
-        </td>
-      ))}
+      {fields.map((field, number) => {
+        const Component = types[field.type || 'Input']
+        return (
+          <td key={field.key}>
+            <Component
+              context={context}
+              field={field}
+              number={number}
+              index={index}
+              entity={entity}
+              fields={fields}
+              addRow={addRow}
+              isLast={isLast}
+              updateEntity={updateEntity}
+            />
+          </td>
+        )
+      })}
     </tr>
   )
 }
