@@ -43,7 +43,7 @@ module Administration
         relationship = Relationship.create!(campaign_id: threesixty_campaign.campaign_id, type: :campaign)
         render json: relationship,
                serializer: RelationshipWithUsageSerializer,
-               counters: calc_counters_for_relationship(relationship)
+               counters: {}
       end
 
       private
