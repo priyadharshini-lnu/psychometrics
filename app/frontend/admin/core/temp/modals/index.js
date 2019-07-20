@@ -9,6 +9,10 @@ export const defaultState = {
 
 export const getCurrent = state => _.get(state, ['temp', 'modals', 'current'])
 export const getData = state => _.get(state, ['temp', 'modals', 'data'])
+export const getUserId = (state) => {
+  const { user } = _.find(getData(state) || {}, d => d.user) || { user: {} }
+  return user.id
+}
 
 export const openModal = (name, data) => ({ type: OPEN_MODAL, name, data })
 export const closeModal = name => ({ type: CLOSE_MODAL, name })
