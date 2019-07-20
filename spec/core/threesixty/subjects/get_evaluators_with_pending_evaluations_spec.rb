@@ -66,7 +66,7 @@ describe Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations do
         threesixty_campaign: @threesixty_campaign,
         participants: { "manager" => { "can_approve_nominations" => true } }
       )
-      actual_result = described_class.new(@threesixty_campaign, @subject).to_a
+      actual_result = described_class.new(threesixty_campaign: @threesixty_campaign, subject: @subject).to_a
 
       expect(actual_result.length).to eq(2)
       expect(actual_result).to match_array(@evaluators[1..2])
@@ -80,7 +80,7 @@ describe Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations do
         threesixty_campaign: @threesixty_campaign,
         participants: { "manager" => { "can_approve_nominations" => false } }
       )
-      actual_result = described_class.new(@threesixty_campaign, @subject).to_a
+      actual_result = described_class.new(threesixty_campaign: @threesixty_campaign, subject: @subject).to_a
 
       expect(actual_result.length).to eq(3)
       expect(actual_result).to match_array(@evaluators[1..3])

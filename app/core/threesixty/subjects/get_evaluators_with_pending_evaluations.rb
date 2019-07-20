@@ -5,10 +5,10 @@ module Threesixty
     class GetEvaluatorsWithPendingEvaluations < Rectify::Query
       private_attr_reader :threesixty_campaign, :subject, :option
 
-      def initialize(threesixty_campaign, subject)
-        @threesixty_campaign = threesixty_campaign
+      def initialize(options)
+        @threesixty_campaign = options[:threesixty_campaign]
+        @subject = options[:subject]
         @option = threesixty_campaign.option
-        @subject = subject
       end
 
       def query

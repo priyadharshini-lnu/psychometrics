@@ -46,7 +46,7 @@ describe Threesixty::Subjects::GetManagers do
   end
 
   it 'gets all managers for a subject from the same campaign' do
-    actual_managers = described_class.new(@subject).to_a
+    actual_managers = described_class.new(subject: @subject).to_a
 
     expect(actual_managers.length).to eq(2)
     expect(actual_managers).to match_array(@manager_evaluators)

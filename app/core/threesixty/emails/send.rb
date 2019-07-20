@@ -7,38 +7,37 @@ module Threesixty
 
       CONFIG = [
         {
-          condition_class: 'Threesixty::Emails::IsSubjectReportReadySendable',
-          template_name: Threesixty::Emails::Name::SUBJECT_REPORT_READY,
-          recipient: 'subject'
+          condition_class: Threesixty::Emails::IsSubjectReportReadySendable,
+          template_name: Threesixty::Emails::Name::SUBJECT_REPORT_READY
         },
         {
-          condition_class: 'Threesixty::Emails::IsManagerReportReadySendable',
+          condition_class: Threesixty::Emails::IsManagerReportReadySendable,
           template_name: Threesixty::Emails::Name::MANAGER_REPORT_READY,
-          recipient: 'manager'
+          recipient_class: Threesixty::Subjects::GetManagers
         },
         {
-          condition_class: 'Threesixty::Emails::IsApproveReportSendable',
+          condition_class: Threesixty::Emails::IsApproveReportSendable,
           template_name: Threesixty::Emails::Name::APPROVE_REPORT,
-          recipient: 'manager'
+          recipient_class: Threesixty::Subjects::GetManagers
         },
         {
-          condition_class: 'Threesixty::Emails::IsApproveNominationSendable',
+          condition_class: Threesixty::Emails::IsApproveNominationSendable,
           template_name: Threesixty::Emails::Name::APPROVE_NOMINATION,
-          recipient: 'manager'
+          recipient_class: Threesixty::Subjects::GetManagers
         },
         {
-          condition_class: 'Threesixty::Emails::IsDeniedNominationSendable',
+          condition_class: Threesixty::Emails::IsDeniedNominationSendable,
           template_name: Threesixty::Emails::Name::NOMINATION_DENIED,
-          recipient: 'manager'
+          recipient_class: Threesixty::Subjects::GetManagers
         },
         {
-          condition_class: 'Threesixty::Emails::IsRequestApprovalSendable',
+          condition_class: Threesixty::Emails::IsRequestApprovalSendable,
           template_name: Threesixty::Emails::Name::REQUEST_APPROVAL,
-          recipient: 'manager'
+          recipient_class: Threesixty::Subjects::GetManagers
         },
         {
           template_name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
-          recipient: 'evaluators_with_pending_evaluations'
+          recipient_class: Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations
         }
       ].freeze
 
@@ -49,11 +48,12 @@ module Threesixty
 
       def call
         config = CONFIG.find { |c| c[:template_name] == type }
-        return unless config[:condition_class].nil? || config[:condition_class].constantize.call!(context)
+        return unless config[:condition_class].nil? || config[:condition_class].call!(context)
 
         email_template = context[:threesixty_campaign].email_templates.find_by!(name: type)
+        recipients = config[:recipient_class] ? config[:recipient_class].new(context).query.includes(:user) : [context[:subject]]
 
-        Threesixty::Emails::GetRecipients.call!(config[:recipient], context).each do |recipient|
+        recipients.each do |recipient|
           user = recipient.user
           context_for_piped_text = context.merge(
             recipient: user,
@@ -72,10 +72,6 @@ module Threesixty
 
           Threesixty::EmailSchedule.create!(email_schedule_attributes)
         end
-      end
-
-      def lookup_recipients(config)
-        Threesixty::Emails::GetRecipients.call!(config[:recipient], context)
       end
     end
   end
