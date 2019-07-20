@@ -13,7 +13,7 @@ module Assessments
     end
 
     def factors
-      object.dimension.all_factors.map do |factor|
+      object.dimension.all_factors.includes(:factors_scoring).where(factors_scoring: { assessment: object }).map do |factor|
         Assessments::FactorSerializer.new(factor, assessment_id: object.id).to_hash
       end
     end
