@@ -12,10 +12,10 @@ describe Threesixty::Campaigns::Reset do
     end
 
     it 'deletes associated participants' do
-      participants = create_list(:participant, 2, campaign: threesixty_campaign.campaign)
+      participants = create_list(:threesixty_participant, 2, campaign: threesixty_campaign.campaign)
       ::Threesixty::Campaigns::Reset.call!(threesixty_campaign)
 
-      expect(Participant.where(id: participants.map(&:id))).to_not exist
+      expect(Threesixty::Participant.where(id: participants.map(&:id))).to_not exist
     end
 
     it 'deletes associated campaigns_users' do

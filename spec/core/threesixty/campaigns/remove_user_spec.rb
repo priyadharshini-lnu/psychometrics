@@ -56,17 +56,17 @@ describe Threesixty::Campaigns::RemoveUser do
 
   it 'deletes participant record where user is a subject' do
     evaluator = create(:threesixty_evaluator, campaign: campaign)
-    participant = create(:participant, subject: user, evaluator: evaluator.user, campaign: campaign)
+    participant = create(:threesixty_participant, subject: user, evaluator: evaluator.user, campaign: campaign)
     Threesixty::Campaigns::RemoveUser.call(user, threesixty_campaign)
 
-    expect(Participant.find_by(id: participant.id)).to be_nil
+    expect(Threesixty::Participant.find_by(id: participant.id)).to be_nil
   end
 
   it 'deletes participant record where user is a evaluator' do
     evaluator = create(:threesixty_evaluator, campaign: campaign)
-    participant= create(:participant, subject: user, evaluator: evaluator.user, campaign: campaign)
+    participant= create(:threesixty_participant, subject: user, evaluator: evaluator.user, campaign: campaign)
     Threesixty::Campaigns::RemoveUser.call(evaluator.user, threesixty_campaign)
 
-    expect(Participant.find_by(id: participant.id)).to be_nil
+    expect(Threesixty::Participant.find_by(id: participant.id)).to be_nil
   end
 end

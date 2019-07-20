@@ -9,9 +9,9 @@ describe Threesixty::EvaluatorParticipantsBySubject do
     let(:evaluator_3) { create(:user) }
 
     before do
-      create(:participant, subject: subject.user, evaluator: evaluator_1)
-      create(:participant, subject: subject.user, evaluator: evaluator_2)
-      create(:participant, evaluator: evaluator_3)
+      create(:threesixty_participant, subject: subject.user, evaluator: evaluator_1)
+      create(:threesixty_participant, subject: subject.user, evaluator: evaluator_2)
+      create(:threesixty_participant, evaluator: evaluator_3)
     end
 
     it do

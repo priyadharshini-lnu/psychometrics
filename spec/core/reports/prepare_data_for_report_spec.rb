@@ -47,9 +47,9 @@ describe Reports::PrepareDataForReport do
 
     before do
       allow_any_instance_of(Report).to receive(:category_threesixty?).and_return(true)
-      create(:participant, campaign: threesixty_campaign.campaign, subject: subject.user, evaluator: evaluator_1, relationship: manager)
-      create(:participant, campaign: threesixty_campaign.campaign, subject: subject.user, evaluator: evaluator_2, relationship: peer)
-      create(:participant, campaign: threesixty_campaign.campaign, evaluator: evaluator_3, relationship: customer)
+      create(:threesixty_participant, campaign: threesixty_campaign.campaign, subject: subject.user, evaluator: evaluator_1, relationship: manager)
+      create(:threesixty_participant, campaign: threesixty_campaign.campaign, subject: subject.user, evaluator: evaluator_2, relationship: peer)
+      create(:threesixty_participant, campaign: threesixty_campaign.campaign, evaluator: evaluator_3, relationship: customer)
       create_users_result(threesixty_campaign, subject, evaluator_1)
       create_users_result(threesixty_campaign, subject, evaluator_2)
       create_users_result(threesixty_campaign, subject, evaluator_3)

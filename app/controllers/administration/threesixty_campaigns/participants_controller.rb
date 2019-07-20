@@ -10,11 +10,11 @@ module Administration
       def index
         sql_campaign_id = threesixty_campaign.campaign_id
         sql_user_id = params[:user_id]
-        participants = policy_scope(::Participant).
+        participants = policy_scope(::Threesixty::Participant).
                        includes(:subject, :evaluator, :relationship).
                        actual_by_options(threesixty_campaign.option).
                        where.has { (campaign_id == sql_campaign_id) & ((subject_id == sql_user_id) | (evaluator_id == sql_user_id)) }
-        render json: participants, each_serializer: ParticipantSerializer
+        render json: participants, each_serializer: ::Threesixty::ParticipantSerializer
       end
 
       def update
@@ -49,7 +49,7 @@ module Administration
 
       # Set model
       def set_resource_class
-        @_resource_class ||= ::Participant
+        @_resource_class ||= ::Threesixty::Participant
       end
     end
   end
