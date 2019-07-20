@@ -107,7 +107,7 @@ class Report < ApplicationRecord
   scope :multiple, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) > 1') }
   scope :single, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) = 1') }
   scope :yti_eti, -> { where(type: [YTI_TYPE, ETI_TYPE]) }
-  scope :not_external, -> { where(provider: PROVIDERS[:internal]) }
+  scope :not_external, -> { where(provider: :internal) }
 
   # Copy report with nested resources
   #
