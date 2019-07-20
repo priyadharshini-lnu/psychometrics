@@ -1,7 +1,12 @@
 function ReportsForm () {
+  var providerReportDisabled = {
+    mindmill: false,
+    hogan: false
+  }
   this.init = function() {
     this.startListening()
     $(document).on('change', '#reports_form #resource_assessment_ids', this.onResourceAssessmentChange);
+    $(document).on('change', '#reports_form #resource_hogan_report_setting_attributes_hogan_report_id', this.onResourceHoganReportSettingChange);
   }
 
   this.startListening = function() {
@@ -24,11 +29,16 @@ function ReportsForm () {
       });
 
       $resource = $('#reports_form .resource_' + name)
+      $destroy = $('#reports_form .resource_'+name+'.destroy')
 
       if(allSameType && !_.isEmpty(options)) {
         $resource.removeClass('hidden').find(":input").removeAttr('disabled').removeClass('disabled')
+        $destroy.find(":input").attr('disabled', 'disabled')
+        providerReportDisabled[name] = false
       } else {
-        $resource.addClass('hidden').find(":input").attr('disabled')
+        $resource.addClass('hidden').find(":input").attr('disabled', 'disabled')
+        $destroy.find(":input").removeAttr('disabled')
+        providerReportDisabled[name] = true
       }
     }
 
@@ -36,6 +46,15 @@ function ReportsForm () {
 
     toggleVisibility(options, 'mindmill');
     toggleVisibility(options, 'hogan');
+  }
+
+  this.onResourceHoganReportSettingChange = function(event) {
+    $destroy = $('#reports_form .resource_hogan.destroy')
+    if(event.target.selectedIndex === 0 || providerReportDisabled['hogan']) {
+      $destroy.find(":input").removeAttr('disabled')
+    } else {
+      $destroy.find(":input").attr('disabled', 'disabled')
+    }
   }
 }
 
