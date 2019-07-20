@@ -4,6 +4,7 @@ import humps from 'humps'
 import _ from 'lodash'
 import { LOADING, LOADING_COMPLETE } from 'admin/core/temp/request'
 
+const debounceTimers = {}
 const buildUrl = ({ method = 'get', url, body }) => {
   if (method !== 'get') return url
   const normalizedBody = _.transform(
@@ -45,26 +46,40 @@ const apiMiddleware = () => next => (action) => {
   const FAILURE = `${action.type}_FAILURE`
 
   next({ ...action, type: REQUEST })
-  if (loader) { next({ type: LOADING, payload: { name: SUCCESS } }) }
+  if (loader) {
+    next({ type: LOADING, payload: { name: SUCCESS } })
+  }
 
-  return axios.request({
-    method,
-    url: buildUrl(request),
-    data: body instanceof FormData ? body : humps.decamelizeKeys(body),
-    ...buildOptions(request),
-    responseType: 'json',
-    withCredentials: true,
-  }).then(({ data }) => next({
-    type: SUCCESS,
-    response: camelize ? humps.camelizeKeys(data) : data,
-    requestAction: action,
-  })).catch((error) => {
-    const errors = humps.camelizeKeys(error.response.data.errors)
-    next({ type: FAILURE, errors: humps.camelizeKeys(errors) })
-    throw (errors)
-  }).finally(() => {
-    if (loader) { next({ type: LOADING_COMPLETE }) }
-  })
+  const processApi = () => axios
+    .request({
+      method,
+      url: buildUrl(request),
+      data: body instanceof FormData ? body : humps.decamelizeKeys(body),
+      ...buildOptions(request),
+      responseType: 'json',
+      withCredentials: true,
+    })
+    .then(({ data }) => next({
+      type: SUCCESS,
+      response: camelize ? humps.camelizeKeys(data) : data,
+      requestAction: action,
+    }))
+    .catch((error) => {
+      const errors = humps.camelizeKeys(error.response.data.errors)
+      next({ type: FAILURE, errors: humps.camelizeKeys(errors) })
+      throw errors
+    })
+    .finally(() => {
+      if (loader) {
+        next({ type: LOADING_COMPLETE })
+      }
+    })
+
+  if (!request.debounce) return processApi()
+
+  if (debounceTimers[action.type]) clearTimeout(debounceTimers[action.type])
+  debounceTimers[action.type] = setTimeout(processApi, request.debounce)
+  return debounceTimers[action.type]
 }
 
 export default apiMiddleware

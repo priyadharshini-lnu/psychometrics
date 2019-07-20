@@ -149,12 +149,12 @@ const FIELDS = [
       {
         name: 'Link',
         type: 'link',
-        value: '{{dash://ThreeSixty/Link?d=Join the assessment}}',
+        value: '{{dash:/Link?d=Join the assessment}}',
       },
       {
         name: 'Url',
         type: 'link',
-        value: '{{dash://ThreeSixty/URL}}',
+        value: '{{dash:/Url}}',
       },
     ],
   },
