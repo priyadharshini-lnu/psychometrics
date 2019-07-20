@@ -3,7 +3,7 @@ module Administration
   module Policies
     extend ActiveSupport::Concern
 
-    def authorize(record, query = nil)
+    def authorize(record, query = nil, extra = {})
       record = define_scope(record)
       super
     end
@@ -18,7 +18,7 @@ module Administration
       super
     end
 
-    def policy(record)
+    def policy(record, extra = {})
       record = define_scope(record)
       super
     end

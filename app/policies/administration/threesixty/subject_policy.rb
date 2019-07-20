@@ -2,19 +2,7 @@
 
 module Administration
   module Threesixty
-    class SubjectPolicy < Administration::BasePolicy
-      def index?
-        # TODO (atanych): check campaign_id
-        return true if @user.is?(:superadmin)
-        return true if @user.is?(:client_admin, :project_admin) && @user.has_grant?(:clients, :manage)
-
-        false
-      end
-
-      def update?
-        index?
-      end
-
+    class SubjectPolicy < BasePolicy
       def create_all?
         index?
       end

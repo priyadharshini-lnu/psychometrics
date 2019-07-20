@@ -2,24 +2,9 @@
 
 module Administration
   module Threesixty
-    class RelationshipPolicy < Administration::BasePolicy
+    class RelationshipPolicy < BasePolicy
+
       def fetch_with_usage?
-        create?
-      end
-
-      def create?
-        # TODO (atanych): check campaign_id
-        return true if @user.is?(:superadmin)
-        return true if @user.is?(:client_admin, :project_admin) && @user.has_grant?(:clients, :manage)
-
-        false
-      end
-
-      def destroy?
-        create?
-      end
-
-      def update?
         create?
       end
 
