@@ -48,8 +48,8 @@ module Exports
         def make_path
           dir = opts.delete(:output_dir) || Rails.root.join('tmp', 'reports')
           dir = File.join(dir, user.email)
-          filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Date.today.strftime('%F')}.pdf"
-
+          filename = "#{user.email}_#{report.decorate.display_name.parameterize}.pdf"
+          File.delete(filename) if File.exists?(filename)
           FileUtils.mkdir_p(dir)
           @output = File.join(dir, filename)
         end
@@ -62,7 +62,7 @@ module Exports
             host: Settings.domain,
             user_token: current_user.authentication_token,
             export: true,
-            lang: opts[:lang] || I18n.locale,
+            lang: opts[:lang] || report.default_language || I18n.locale,
             port: Settings.port,
             protocol: Settings.protocol,
             users_report_id: users_report ? users_report.id : nil
@@ -77,6 +77,8 @@ module Exports
         #
         def build_administration_url(params = {})
           params = params.merge(
+            domain: Settings.domain,
+            subdomain: Settings.subdomain,
             client_id: client.id,
             user_id: user.id,
             id: report.id

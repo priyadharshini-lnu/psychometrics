@@ -7,9 +7,16 @@
         .pull-right
           .btn-group
             - if policy(resource).preview?
-              = link_to({ action: :preview, format: :pdf, lang: lang_param, export: true }, data: { behavior: 'export-pdf'})
-                button class="btn btn-default ladda-button" type="button" data-style="zoom-out" data-spinner-color="#000000"
-                  span.fa.fa-file-pdf-o
-                  = t('.export_pdf')
+              - if @assigns_report
+                = link_to(@assigns_report.pdf.url)
+                  button class="btn btn-default ladda-button" type="button"
+                    span.fa.fa-file-pdf-o
+                    = t('.download')
+              - else
+                = link_to({ action: :preview, format: :pdf, lang: lang_param, export: true }, data: { behavior: 'export-pdf'})
+                  button class="btn btn-default ladda-button" type="button" data-style="zoom-out" data-spinner-color="#000000"
+                    span.fa.fa-file-pdf-o
+                    = t('.export_pdf')
+            
       .panel-body
         = render partial: 'shared/preview_report'

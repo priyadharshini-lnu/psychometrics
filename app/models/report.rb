@@ -21,7 +21,13 @@ class Report < ApplicationRecord
     ETI_TYPE = 'eti'.freeze
   ].freeze
 
-  MAX_ASSESSMENT_COUNT = 6
+  PROVIDERS = {
+    internal: 0,
+    mindmill: 1,
+    hogan: 2
+  }.freeze
+
+  MAX_ASSESSMENT_COUNT = 10
   MIN_ASSESSMENT_COUNT = 1
 
   self.inheritance_column = :_type_disabled
@@ -51,7 +57,7 @@ class Report < ApplicationRecord
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
 
   has_one :hogan_report_setting
-  accepts_nested_attributes_for :hogan_report_setting
+  accepts_nested_attributes_for :hogan_report_setting, allow_destroy: true
 
   #   VALIDATIONS
   #
@@ -64,11 +70,12 @@ class Report < ApplicationRecord
   #   CALLBACKS
   #
   before_validation :set_assessment
-  before_save :delete_hogan_report_setting
+  before_save :delete_hogan_report_setting, :set_provider
   after_create ::Callbacks::Models::Reports::CreateFactorsAliases.new
 
   enum type: TYPES
   enum category: { common: 0, threesixty: 1 }, _prefix: :category
+  enum provider: PROVIDERS, _prefix: :provider
   store :extra, accessors: [:icon_color], coder: JsonSerializer
 
   mount_uploader :icon, ImageUploader
@@ -102,7 +109,7 @@ class Report < ApplicationRecord
   scope :multiple, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) > 1') }
   scope :single, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) = 1') }
   scope :yti_eti, -> { where(type: [YTI_TYPE, ETI_TYPE]) }
-  scope :not_external, -> { joins(:assessments).where(assessments: { type: Assessment::TYPES[:common] }) }
+  scope :not_external, -> { where(provider: :internal) }
 
   # Copy report with nested resources
   #
@@ -116,10 +123,10 @@ class Report < ApplicationRecord
     [Report::YTI_TYPE, Report::ETI_TYPE].include? type
   end
 
-  # Returns true if Report has at least one external assessment (Mindmill, Hogan)
+  # Returns true if Report is external pdf from mindmill or hogan
   #
   def external_report?
-    assessments.external.exists?
+    !provider_internal?
   end
 
   # Returns true if Report has 2 or more assessments
@@ -188,5 +195,15 @@ class Report < ApplicationRecord
 
   def all_assessments_hogan
     errors.add(:base, :assessments_not_hogan) unless assessments.all?(&:hogan?)
+  end
+
+  def set_provider
+    if hogan?
+      self.provider = PROVIDERS[:hogan]
+    elsif mindmill?
+      self.provider = PROVIDERS[:mindmill]
+    else
+      self.provider = PROVIDERS[:internal]
+    end
   end
 end
