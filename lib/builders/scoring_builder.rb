@@ -37,7 +37,7 @@ module Builders
           factor_id: scoring[:factor_id],
           question_id: scoring[:question_id],
           assessment_id: assessment.id,
-          props: scoring[:props]
+          props: scoring[:props].map(&:to_h)
         }
         rows << factors_scoring
       end
@@ -57,13 +57,14 @@ module Builders
         question_recoding = {
           question_id: recoding[:question_id],
           assessment_id: assessment.id,
-          props: recoding[:props]
+          props: recoding[:props].map(&:to_h)
         }
-        #TODO: Remove this by fixing duplicate scoring on frontend
-        rows.uniq!(&:question_id)
-        QuestionRecoding.import rows, on_duplicate_key_update: {conflict_target: [:question_id, :assessment_id], columns: [:props]}
-        QuestionRecoding.where("props::text = '[]'").delete_all
+        rows << question_recoding
       end
+      #TODO: Remove this by fixing duplicate scoring on frontend
+      rows.uniq!(&:question_id)
+      QuestionRecoding.import rows, on_duplicate_key_update: {conflict_target: [:question_id, :assessment_id], columns: [:props]}
+      QuestionRecoding.where("props::text = '[]'").delete_all
     end
   end
 end

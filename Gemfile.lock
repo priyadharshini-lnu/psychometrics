@@ -19,8 +19,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git
-  revision: d6270fad7de8f553e4b90eaa786ab678234af95a
-  branch: master
+  revision: 8f27ca3ac4954b1430ffa45c040b818199a914bd
+  ref: 8f27ca3ac4954b1430ffa45c040b818199a914bd
   specs:
     psychometrics-reports-ui (0.0.1)
       railties (~> 5.0)
@@ -28,8 +28,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git
-  revision: 47117a5639480fa167783aa9b11b4f0d8339ea88
-  branch: master
+  revision: db98dd19b93073869934bc315d41e9ebf33472d5
+  ref: db98dd19b93073869934bc315d41e9ebf33472d5
   specs:
     psychometrics-survey-ui (0.0.1)
       railties (~> 5.0)
@@ -372,7 +372,7 @@ GEM
       builder (>= 2.1.2)
     hashids (1.0.5)
     heapy (0.1.4)
-    highline (1.7.8)
+    highline (2.0.2)
     hirb (0.7.3)
     htmlentities (4.3.4)
     http-cookie (1.0.3)
