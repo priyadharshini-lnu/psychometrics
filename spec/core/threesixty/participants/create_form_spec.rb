@@ -69,7 +69,7 @@ describe Threesixty::Participants::CreateForm do
     end
 
     it 'should be invalid by uniquesness for existed user' do
-      create(:participant, campaign: campaign.campaign, evaluator_id: user.id, subject_id: subject.user_id)
+      create(:threesixty_participant, campaign: campaign.campaign, evaluator_id: user.id, subject_id: subject.user_id)
       form = described_class.from_params({ evaluator_email: user.email, relationship_id: peer.id }).with_context(threesixty_campaign: campaign, subject: subject)
       expect(form.valid?).to be false
       expect(form.user).to eq(user)
@@ -129,7 +129,7 @@ describe Threesixty::Participants::CreateForm do
 
     it 'should be invalid by uniquesness for existed user' do
       create(:datasheet_row, datasheet: datasheet, email: user.email, data: { 'Age' => 55, 'No.' => 1 })
-      create(:participant, campaign: campaign.campaign, evaluator_id: user.id, subject_id: subject.user_id)
+      create(:threesixty_participant, campaign: campaign.campaign, evaluator_id: user.id, subject_id: subject.user_id)
       form = described_class.from_params({ evaluator_email: user.email, relationship_id: peer.id }).with_context(threesixty_campaign: campaign, subject: subject)
       expect(form.valid?).to be false
       expect(form.user).to eq(user)

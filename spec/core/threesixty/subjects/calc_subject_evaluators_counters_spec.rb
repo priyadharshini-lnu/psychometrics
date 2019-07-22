@@ -18,12 +18,12 @@ describe Threesixty::Subjects::CalcSubjectEvaluatorsCounters do
   let(:evaluator_user_1) { create(:user, project: project) }
 
   before do
-    create(:participant, campaign: campaign, relationship: relationship_manager, project: project, subject: subject_1.user)
-    create(:participant, campaign: campaign, manager_evaluation_status: :approved, relationship: relationship_manager, project: project, subject: subject_2.user)
-    create(:participant, campaign: campaign, manager_evaluation_status: :approved, relationship: relationship_peer, project: project, subject: subject_1.user)
-    create(:participant, campaign: campaign, manager_evaluation_status: :approved, relationship: relationship_peer, project: project, subject: subject_2.user)
-    create(:participant, campaign: campaign, manager_evaluation_status: :approved, relationship: relationship_peer, evaluator: evaluator_user_1, project: project, subject: subject_1.user)
-    create(:participant, campaign: campaign, manager_evaluation_status: :approved, relationship: relationship_peer, evaluator: evaluator_user_1, project: project, subject: subject_2.user, manager_nomination_status: :denied)
+    create(:threesixty_participant, campaign: campaign, relationship: relationship_manager, project: project, subject: subject_1.user)
+    create(:threesixty_participant, campaign: campaign, manager_evaluation_status: :approved, relationship: relationship_manager, project: project, subject: subject_2.user)
+    create(:threesixty_participant, campaign: campaign, manager_evaluation_status: :approved, relationship: relationship_peer, project: project, subject: subject_1.user)
+    create(:threesixty_participant, campaign: campaign, manager_evaluation_status: :approved, relationship: relationship_peer, project: project, subject: subject_2.user)
+    create(:threesixty_participant, campaign: campaign, manager_evaluation_status: :approved, relationship: relationship_peer, evaluator: evaluator_user_1, project: project, subject: subject_1.user)
+    create(:threesixty_participant, campaign: campaign, manager_evaluation_status: :approved, relationship: relationship_peer, evaluator: evaluator_user_1, project: project, subject: subject_2.user, manager_nomination_status: :denied)
     create(:users_result, evaluator: evaluator_user_1, status: :completed, subject: subject_1.user)
   end
 

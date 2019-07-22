@@ -21,7 +21,7 @@ module Threesixty
     end
 
     def evaluations
-      return nil unless object.evaluator
+      return nil unless object.self_evaluator
 
       "#{counters[:completed_evaluations]} / #{counters[:total_evaluations]}"
     end

@@ -7,7 +7,7 @@ module Threesixty
 
     def status
       Threesixty::Participants::GetStatus.call!(
-        object.subject,
+        object.self_subject,
         @instance_options[:nomination_requirement],
         counters,
         @instance_options[:subject_evaluator_counters]&.dig(object.user_id, :all) || {}
@@ -16,7 +16,7 @@ module Threesixty
 
     def report_status
       Threesixty::Participants::GetReportStatus.call!(
-        object.subject,
+        object.self_subject,
         @instance_options[:option],
         @instance_options[:subject_evaluator_counters]&.dig(object.user_id, :completed) || {}
       )
@@ -27,13 +27,13 @@ module Threesixty
     end
 
     def evaluators
-      return nil unless object.subject
+      return nil unless object.self_subject
 
       "#{counters[:completed_evaluators]} / #{counters[:total_evaluators]}"
     end
 
     def is_subject
-      !!object.subject
+      !!object.self_subject
     end
 
     def counters
