@@ -24,8 +24,12 @@ module Threesixty
 
       private
 
+      def users
+        @users ||= participatables.map(&:user)
+      end
+
       def user_ids
-        @user_ids ||= participatables.map(&:user_id)
+        @user_ids ||= users.map(&:id)
       end
     end
   end

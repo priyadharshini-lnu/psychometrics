@@ -48,6 +48,10 @@ module Threesixty
           field_types: ['manager_tasks'],
           class_name: ParticipatableByCriteria::ByManagerTasks
         },
+        {
+          field_types: ['subject_status'],
+          class_name: ParticipatableByCriteria::BySubjectStatus
+        },
       ]
 
 

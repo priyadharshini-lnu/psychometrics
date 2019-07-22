@@ -34,7 +34,11 @@ describe Threesixty::ParticipatableByCriteria::Filter do
         { 'field' => 'relationship', 'value' => manager_relationship.id }
       ]
 
-      results = described_class.call!(threesixty_campaign, :subject, criteria_list)
+      results = described_class.call!(
+        threesixty_campaign: threesixty_campaign,
+        participatable_types: :subject,
+        criteria_list: criteria_list
+      )
 
       expect(results).to match_array(@threesixty_subjects[0..1])
     end
@@ -68,7 +72,11 @@ describe Threesixty::ParticipatableByCriteria::Filter do
         { 'field' => 'relationship', 'value' => manager_relationship.id }
       ]
 
-      results = described_class.call!(threesixty_campaign, :evaluator, criteria_list)
+      results = described_class.call!(
+        threesixty_campaign: threesixty_campaign,
+        participatable_types: :evaluator,
+        criteria_list: criteria_list
+      )
 
       expect(results).to match_array(@threesixty_evaluators[0..1])
     end
