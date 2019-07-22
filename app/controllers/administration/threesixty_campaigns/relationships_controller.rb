@@ -49,7 +49,7 @@ module Administration
       private
 
       def calc_counters_for_relationship(relationship)
-        Participant.
+        Threesixty::Participant.
           select('count(id) as cache_counter, relationship_id').
           actual_by_options(threesixty_campaign.option).
           where(relationship_id: relationship.id).

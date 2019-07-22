@@ -6,7 +6,7 @@ module Threesixty
 
     def query
       # TODO (atanych): should be used statuses
-      Participant.
+      Threesixty::Participant.
         joins(:evaluator).
         selecting { ['*', 'users.email as evaluator_email'] }.
         active.

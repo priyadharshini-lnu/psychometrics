@@ -34,11 +34,11 @@ describe Threesixty::Campaigns::ResetAllNominations do
     end
 
     it 'deletes participants records' do
-      expect(Participant.where(id: @participants.map(&:id))).to_not exist
+      expect(Threesixty::Participant.where(id: @participants.map(&:id))).to_not exist
     end
   end
 
   def create_participant subject, evaluator, campaign
-    create(:participant, subject: subject, evaluator: evaluator, campaign: campaign)
+    create(:threesixty_participant, subject: subject, evaluator: evaluator, campaign: campaign)
   end
 end

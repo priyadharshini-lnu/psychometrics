@@ -47,7 +47,7 @@ class AssignSerializer < ActiveModel::Serializer
       if @instance_options[:participants_map]
         @instance_options[:participants_map][object.evaluator_id]
       else
-        Participant.find_by(evaluator_id: object.evaluator_id, subject_id: object.subject_id)
+        Threesixty::Participant.find_by(evaluator_id: object.evaluator_id, subject_id: object.subject_id)
       end
 
     participant&.relationship&.name

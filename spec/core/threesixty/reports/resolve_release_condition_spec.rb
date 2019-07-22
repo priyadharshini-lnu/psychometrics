@@ -163,7 +163,7 @@ describe Threesixty::Reports::ResolveReleaseCondition do
   end
 
   def create_participant(threesixty_campaign, subject, evaluator, relation, status = :completed)
-    create(:participant,
+    create(:threesixty_participant,
       campaign: threesixty_campaign.campaign,
       subject: subject.user,
       evaluator: evaluator.user,

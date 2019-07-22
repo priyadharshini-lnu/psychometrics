@@ -10,7 +10,7 @@ module Administration
       def index
         option = threesixty_campaign.option
         evaluators = policy_scope(::Threesixty::Evaluator).
-                     includes(:user, subject: :user).
+                     includes(:user, self_subject: :user).
                      where(campaign_id: threesixty_campaign.campaign_id).
                      order(id: :desc).
                      limit(params[:limit]).
