@@ -31,5 +31,17 @@ RSpec.describe Scoring::MultipleChoice do
         end
       end
     end
+
+    context 'with not applicable option' do
+      it 'returns 2' do
+        result = multiple_choice.calculate(Question.new, {'answers' => [{'index' => 0, 'value' => true}], 'not_applicable' => false}, template_data)[:value]
+        expect(result).to eq(2)
+      end
+
+      it 'returns nil' do
+        result = multiple_choice.calculate(Question.new, {'answers' => [{'index' => 0, 'value' => true}], 'not_applicable' => true}, template_data)[:value]
+        expect(result).to be_nil
+      end
+    end
   end
 end

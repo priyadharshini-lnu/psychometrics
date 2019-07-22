@@ -25,7 +25,7 @@ export default function Campaign ({
         <div className="main-container">
           <PageHeader
             className="page-header"
-            onBack={() => history.push('/')}
+            onBack={() => history.push('/campaigns')}
             title={<div className="title-with-dash">Signify 360° Review - Apply Level</div>}
           >
             <div className="content padding">
@@ -101,7 +101,7 @@ export default function Campaign ({
                 <Nominations />
               </Col>
               <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
-                <Evaluations />
+                <Evaluations history={history} />
               </Col>
               <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
                 <Reports />

@@ -8,6 +8,10 @@ module Administration
       def threesixty_campaign
         @threesixty_campaign ||= ::Threesixty::Campaign.find_by(id: params[:threesixty_campaign_id])
       end
+
+      def pundit_authorize
+        authorize(resource || resource_class, nil, threesixty_campaign: threesixty_campaign)
+      end
     end
   end
 end

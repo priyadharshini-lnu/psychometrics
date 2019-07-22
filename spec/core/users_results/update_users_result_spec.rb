@@ -57,6 +57,7 @@ describe ::UsersResults::UpdateUsersResult do
     let!(:users_result)   { create(:users_result, assessment: assessment,
                                                   subject: subject_user,
                                                   evaluator: evaluator_user,
+                                                  answers: {},
                                                   step: 3) }
     let(:users_report)    { create(:users_report, user: subject_user,
                                                   campaign: campaign,
@@ -79,6 +80,7 @@ describe ::UsersResults::UpdateUsersResult do
           allow(users_result).to receive(:'completed?').and_return(true)
         end
 
+        it { expect(::UsersResults::ExpandAnswersByRecoding).to receive(:call!).with(subject) }
         it { expect(::UsersResults::CalculateScoring).to receive(:call!).with(subject) }
         it { expect(::Assigns::CalculateOccupations).to receive(:call!).with(subject) }
         it { is_expected.to receive(:'completed_at=').with(Time.now) }

@@ -1,9 +1,10 @@
 module Administration
   module Clients
     module Projects
-      class ThreesixtyCampaignsController < Administration::Clients::CampaignsController
+      class ThreesixtyCampaignsController < Administration::ThreesixtyCampaigns::BaseController
         include Administration::Clients
         before_action :ensure_project
+        prepend_before_action :set_resource_class
         before_action :set_resource, only: %i[show edit update sidebar toggle_status copy archive]
         wrap_parameters :threesixty_campaign, include: ::Threesixty::Campaign.attribute_names
 
@@ -80,6 +81,10 @@ module Administration
 
         def set_resource_class
           @_resource_class ||= ::Threesixty::Campaign
+        end
+
+        def threesixty_campaign
+          @threesixty_campaign ||= ::Threesixty::Campaign.find_by(id: params[:id])
         end
 
         def init_breadcrumbs

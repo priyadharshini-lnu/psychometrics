@@ -8,8 +8,6 @@ module Threesixty
 
     def query
       scope = subject_evaluators_scope(@campaign.participants)
-      scope = scope.or(@campaign.participants.where(subject_id: manager_ids)
-                                .includes(:evaluator)) if manager_can_approve_evaluations?
       scope
     end
 
@@ -23,7 +21,7 @@ module Threesixty
 
     def manager_ids
       @campaign.participants.joins(:relationship)
-        .where(relationships: {name: 'Manager'})
+        .where(relationships: { name: 'Manager', type: :global })
         .where(evaluator_id: current_user.id)
         .where.not(subject_id: current_user.id)
         .pluck(:subject_id)

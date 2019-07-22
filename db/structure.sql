@@ -1777,6 +1777,37 @@ ALTER SEQUENCE public.products_id_seq OWNED BY public.products.id;
 
 
 --
+-- Name: question_recoding; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.question_recoding (
+    id bigint NOT NULL,
+    assessment_id bigint,
+    question_id bigint,
+    props jsonb
+);
+
+
+--
+-- Name: question_recoding_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.question_recoding_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: question_recoding_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.question_recoding_id_seq OWNED BY public.question_recoding.id;
+
+
+--
 -- Name: questions; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2601,8 +2632,7 @@ CREATE TABLE public.users_results (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     norm_id bigint,
-    campaign_id bigint,
-    question_scoring jsonb DEFAULT '[]'::jsonb
+    campaign_id bigint
 );
 
 
@@ -2952,6 +2982,13 @@ ALTER TABLE ONLY public.product_reports ALTER COLUMN id SET DEFAULT nextval('pub
 --
 
 ALTER TABLE ONLY public.products ALTER COLUMN id SET DEFAULT nextval('public.products_id_seq'::regclass);
+
+
+--
+-- Name: question_recoding id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.question_recoding ALTER COLUMN id SET DEFAULT nextval('public.question_recoding_id_seq'::regclass);
 
 
 --
@@ -3490,6 +3527,14 @@ ALTER TABLE ONLY public.product_reports
 
 ALTER TABLE ONLY public.products
     ADD CONSTRAINT products_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: question_recoding question_recoding_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.question_recoding
+    ADD CONSTRAINT question_recoding_pkey PRIMARY KEY (id);
 
 
 --
@@ -4339,6 +4384,20 @@ CREATE INDEX index_product_reports_on_product_id ON public.product_reports USING
 --
 
 CREATE INDEX index_product_reports_on_report_id ON public.product_reports USING btree (report_id);
+
+
+--
+-- Name: index_question_recoding_on_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_question_recoding_on_assessment_id ON public.question_recoding USING btree (assessment_id);
+
+
+--
+-- Name: index_question_recoding_on_question_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_question_recoding_on_question_id ON public.question_recoding USING btree (question_id);
 
 
 --
@@ -5224,6 +5283,14 @@ ALTER TABLE ONLY public.threesixty_evaluators
 
 
 --
+-- Name: question_recoding fk_rails_b15be6b218; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.question_recoding
+    ADD CONSTRAINT fk_rails_b15be6b218 FOREIGN KEY (question_id) REFERENCES public.questions(id) ON DELETE CASCADE;
+
+
+--
 -- Name: norms fk_rails_b3f9f037c2; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5293,6 +5360,14 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 ALTER TABLE ONLY public.hogan_assessment_settings
     ADD CONSTRAINT fk_rails_d0f7b433a7 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: question_recoding fk_rails_d1991e6723; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.question_recoding
+    ADD CONSTRAINT fk_rails_d1991e6723 FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
 
 
 --
@@ -5753,6 +5828,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190620132719'),
 ('20190630092817'),
 ('20190703092738'),
-('20190706094201');
+('20190706094201'),
+('20190710140100'),
+('20190713155551');
 
 

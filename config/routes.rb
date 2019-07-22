@@ -224,7 +224,12 @@ Rails.application.routes.draw do
         end
 
         resources :managers
-        resources :relationships
+        resources :relationships do
+          collection do
+            get :fetch_with_usage
+          end
+        end
+
         resources :participants do
           member do
             get :spoof
@@ -507,7 +512,7 @@ Rails.application.routes.draw do
     end
 
     scope module: :threesixty do
-      resources :campaigns, only: %i(show) do
+      resources :campaigns, only: %i(show index) do
         resources :nominations do
           post :search_evaluators
           get :request_approval

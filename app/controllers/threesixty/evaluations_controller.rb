@@ -15,6 +15,12 @@ module Threesixty
             result.status = :in_progress
           end
 
+          if params[:edit] == 'true'
+            render(json: {error: '403'}, status: 403) && return unless policy([:threesixty, @participant]).edit?
+            @users_result.step = 0
+            @users_result.status = :in_progress
+          end
+
           render json: @users_result, serializer: UsersResultSerializer,
                  participant: @participant, campaign: @campaign,
                  current_user: current_user, include: '**'
