@@ -19,6 +19,6 @@ export default function* () {
     ...threeSixtyCampaign,
     ...messageOptionWatchers,
     ...emailScheduleWatchers,
-    ...recipientCriteriaWatchers
+    ...recipientCriteriaWatchers,
   ])
 }

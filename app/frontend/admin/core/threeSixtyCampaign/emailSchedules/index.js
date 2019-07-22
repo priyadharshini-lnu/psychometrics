@@ -1,7 +1,8 @@
 import _ from 'lodash'
 import { updateIn } from 'utils/immutable'
-import { takeLatest, put } from 'redux-saga/effects'
-import recipientCriteria, { FETCH_RECIPIENT_BY_CRITERIA, genFecthRecipientsByCriteria } from './recipientCriteria'
+import { takeLatest, put, select } from 'redux-saga/effects'
+import { get as getCurrentCampaignId } from 'admin/core/threeSixtyCampaign/currentThreeSixtyCampaignId'
+import recipientCriteria from './recipientCriteria'
 
 const defaultState = {
   list: [],
@@ -13,6 +14,7 @@ export const FETCH = 'threeSixty/emailSchedules/FETCH'
 export const UPDATE = 'threeSixty/emailSchedules/UPDATE'
 export const CREATE = 'threeSixty/emailSchedules/CREATE'
 export const CHANGE_SELECTED = 'threeSixty/emailSchedules/CHANGE_SELECTED'
+export const FETCH_RECIPIENT_BY_CRITERIA = 'threeSixty/emailSchedules/FETCH_RECIPIENT_BY_CRITERIA'
 
 export const update = (key, value) => ({ type: UPDATE, payload: { key, value } })
 export const changeSelected = id => ({ type: CHANGE_SELECTED, payload: { id } })
@@ -27,6 +29,19 @@ export const fetchSchedulableTemplate = (campaignId, { selectedEmailTemplateId }
   },
 })
 
+export const fecthRecipientsByCriteria = (campaignId, emailSchedule) => ({
+  type: FETCH_RECIPIENT_BY_CRITERIA,
+  campaignId,
+  request: {
+    method: 'post',
+    url: `/administration/threesixty_campaigns/${campaignId}/email_schedules/receipient_by_criteria`,
+    body: {
+      emailName: emailSchedule.name,
+      recipientCriteria: emailSchedule.recipientCriteria,
+    },
+  },
+})
+
 export const create = (campaignId, emailSchedule) => ({
   type: CREATE,
   request: {
@@ -38,6 +53,17 @@ export const create = (campaignId, emailSchedule) => ({
 
 function* genChangeSelectedId ({ requestAction: { selectedEmailTemplateId } }) {
   yield put(changeSelected(selectedEmailTemplateId))
+}
+
+export function* genFecthRecipientsByCriteria (options = {}) {
+  const emailSchedule = yield select((state) => {
+    const emailSchedules = get(state)
+    const selectedId = _.get(options, ['requestAction', 'selectedEmailTemplateId'], emailSchedules.selectedId)
+    return _.find(emailSchedules.list, ({ id }) => id === selectedId)
+  })
+  const campaignId = yield select(getCurrentCampaignId)
+
+  yield put(fecthRecipientsByCriteria(campaignId, emailSchedule))
 }
 
 const HANDLERS = {
