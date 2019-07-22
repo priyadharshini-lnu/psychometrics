@@ -7,6 +7,10 @@ import {
   changeSelected,
 } from 'admin/core/threeSixtyCampaign/emailSchedules'
 
+import {
+  fecthRecipientsByCriteria
+} from 'admin/core/threeSixtyCampaign/emailSchedules/recipientCriteria'
+
 export default connect(
   ({
     temp: {
@@ -20,6 +24,7 @@ export default connect(
   }),
   {
     fetchSchedulableTemplate,
+    fecthRecipientsByCriteria,
     create,
     update,
     changeSelected,

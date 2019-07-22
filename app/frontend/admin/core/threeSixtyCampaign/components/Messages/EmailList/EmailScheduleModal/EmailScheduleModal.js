@@ -15,6 +15,7 @@ export default function EmailScheduleModal ({
   emailSchedules,
   emailSchedules: { list, selectedId },
   fetchSchedulableTemplate,
+  fecthRecipientsByCriteria,
   create,
   update,
   changeSelected,
@@ -24,12 +25,13 @@ export default function EmailScheduleModal ({
     params: { campaignId },
   },
 }) {
-  useEffect(() => {
-    fetchSchedulableTemplate(campaignId, { selectedEmailTemplateId: data.selectedEmailTemplateId })
-  }, [])
 
   const [errors, setErrors] = useState(null)
   const selectedEmailSchedule = _.find(list, ({ id }) => id === selectedId)
+
+  useEffect(() => {
+    fetchSchedulableTemplate(campaignId, { selectedEmailTemplateId: data.selectedEmailTemplateId })
+  }, [])
 
   if (!selectedEmailSchedule) {
     return null

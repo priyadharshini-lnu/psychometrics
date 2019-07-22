@@ -51,10 +51,11 @@ module Threesixty
       ]
 
 
-      def initialize(threesixty_campaign, participatable_types, criteria_list)
-        @threesixty_campaign = threesixty_campaign
-        @participatable_types = Array.wrap(participatable_types)
-        @criteria_list = criteria_list
+      def initialize(options)
+        @threesixty_campaign = options[:threesixty_campaign]
+        @participatable_types = Array.wrap(options[:participatable_types])
+        @participatables = options[:participatables]
+        @criteria_list = options[:criteria_list]
       end
 
       def call
@@ -70,7 +71,7 @@ module Threesixty
       attr_reader :threesixty_campaign, :participatable_types, :criteria_list
 
       def get_participantables_by_filter(participatable_type)
-        participatables = set_participatables(participatable_type)
+        participatables = @participatables || set_participatables(participatable_type)
         CRITERIA_RESOLVER.each do |resolver|
           valid_criteria = criteria_list.select { |c| resolver[:field_types].include?(c['field']) }
           next if valid_criteria.empty?

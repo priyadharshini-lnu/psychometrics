@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { updateIn } from 'utils/immutable'
 import { takeLatest, put } from 'redux-saga/effects'
-import recipientCriteria from './recipientCriteria'
+import recipientCriteria, { FETCH_RECIPIENT_BY_CRITERIA, genFecthRecipientsByCriteria } from './recipientCriteria'
 
 const defaultState = {
   list: [],
@@ -42,6 +42,7 @@ function* genChangeSelectedId ({ requestAction: { selectedEmailTemplateId } }) {
 
 const HANDLERS = {
   [FETCH]: (state, { response }) => ({ ...state, list: response }),
+  [FETCH_RECIPIENT_BY_CRITERIA]: (state, { response }) => ({ ...state, recipients: response }),
   [UPDATE]: (state, { payload: { key, value } }) => updateIn(
     state,
     'list',
@@ -65,4 +66,5 @@ export default function reducer (state = defaultState, action) {
 
 export const watchers = [
   takeLatest(FETCH, genChangeSelectedId),
+  takeLatest([FETCH, CHANGE_SELECTED], genFecthRecipientsByCriteria),
 ]

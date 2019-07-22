@@ -6,6 +6,10 @@ module Administration
       def schedulable_templates?
         update?
       end
+
+      def receipient_by_criteria?
+        update?
+      end
     end
   end
 end
