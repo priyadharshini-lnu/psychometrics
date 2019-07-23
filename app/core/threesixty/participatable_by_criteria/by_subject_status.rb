@@ -4,7 +4,7 @@ module Threesixty
   module ParticipatableByCriteria
     class BySubjectStatus < Base
       def call
-        participatables.select do |subject|
+        results = participatables.select do |subject|
           criteria_list.any? do |criteria|
             status = Threesixty::Participants::GetStatus.call!(
               subject,
@@ -15,6 +15,8 @@ module Threesixty
             status == criteria['value']
           end
         end
+
+        broadcast :ok, results
       end
 
       private

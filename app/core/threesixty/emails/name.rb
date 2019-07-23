@@ -12,7 +12,7 @@ module Threesixty
       EVALUATOR_REMINDER = 'evaluator_reminder'
       SUBJECT_INVITE = 'subject_invite'
       SUBJECT_REMINDER = 'subject_reminder'
-      CUSTOME_MESSAGE = 'custom_message'
+      CUSTOM_MESSAGE = 'custom_message'
     end
   end
 end

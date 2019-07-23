@@ -35,6 +35,7 @@ export const fecthRecipientsByCriteria = (campaignId, emailSchedule) => ({
   request: {
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/email_schedules/receipient_by_criteria`,
+    debounce: 500,
     body: {
       emailName: emailSchedule.name,
       recipientCriteria: emailSchedule.recipientCriteria,
@@ -42,12 +43,12 @@ export const fecthRecipientsByCriteria = (campaignId, emailSchedule) => ({
   },
 })
 
-export const create = (campaignId, emailSchedule) => ({
+export const create = (campaignId, emailSchedule, recipientEmails) => ({
   type: CREATE,
   request: {
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/email_schedules/`,
-    body: { emailSchedule },
+    body: { ...emailSchedule, recipientEmails },
   },
 })
 

@@ -10,6 +10,7 @@ module Threesixty
     attribute :content, String
     attribute :recipient_criteria, Array
     attribute :scheduled_date, DateTime
+    attribute :recipient_emails, Array
 
     validates :from, :reply_to_email, presence: true
     validates :reply_to_email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
