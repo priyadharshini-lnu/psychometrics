@@ -35,6 +35,10 @@
                         wrapper_html: { class: 'resource_hogan hidden' },
                         disabled: true,
                         include_hidden: false
+          = hogan.input :_destroy,
+                        as: :hidden,
+                        wrapper_html: { class: 'resource_hogan destroy' },
+                        :input_html => { :value => 1 }
         = f.input :default_language,
                   collection: I18n.available_locales.map { |locale| [t("languages.#{locale}"), locale] },
                   include_blank: false

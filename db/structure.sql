@@ -1896,7 +1896,8 @@ CREATE TABLE public.reports (
     default_language character varying DEFAULT 'en'::character varying,
     props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    category integer DEFAULT 0
+    category integer DEFAULT 0,
+    provider integer
 );
 
 
@@ -4345,6 +4346,13 @@ CREATE INDEX index_question_recoding_on_assessment_id ON public.question_recodin
 
 
 --
+-- Name: index_question_recoding_on_question_assessment_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_question_recoding_on_question_assessment_id ON public.question_recoding USING btree (question_id, assessment_id);
+
+
+--
 -- Name: index_question_recoding_on_question_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5830,6 +5838,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190703092738'),
 ('20190710140100'),
 ('20190713155551'),
-('20190720204116');
+('20190717131104'),
+('20190720204116'),
+('20190721163707'),
+('20190721170324');
 
 

@@ -7,8 +7,8 @@ module Administration
       def update
         scoring = ::Builders::ScoringBuilder.new(
           @assessment,
-          params.require(:scoring),
-          params.require(:question_recoding),
+          params[:scoring],
+          params[:question_recoding],
           current_user
         )
         scoring.save!

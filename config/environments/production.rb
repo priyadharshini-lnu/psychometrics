@@ -23,7 +23,14 @@ Rails.application.configure do
   # Disable serving static files from the `/public` folder by default since
   # Apache or NGINX already handles this.
   config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present?
-
+  config.action_dispatch.default_headers.merge!({
+    'Access-Control-Allow-Origin' => "*",
+    'Access-Control-Request-Method' => 'GET, OPTIONS',
+    'Access-Control-Allow-Headers' => '*'
+  }) if Settings.asset_host.present?
+  config.public_file_server.headers = {
+    'Access-Control-Allow-Origin' => '*'
+  } if Settings.asset_host.present?
   # Compress JavaScripts and CSS.
   config.assets.js_compressor = Uglifier.new output: { comments: :none }
   config.logger = Syslog::Logger.new 'psychometrics'
@@ -35,7 +42,7 @@ Rails.application.configure do
   # `config.assets.precompile` and `config.assets.version` have moved to config/initializers/assets.rb
 
   # Enable serving of images, stylesheets, and JavaScripts from an asset server.
-  config.action_controller.asset_host =  Rails.application.secrets.asset_host
+  config.action_controller.asset_host =  Settings.asset_host
 
   # Specifies the header that your server uses for sending files.
   # config.action_dispatch.x_sendfile_header = 'X-Sendfile' # for Apache
@@ -47,7 +54,7 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://example.com', /http:\/\/example.*/ ]
 
   # Force all access to the app over SSL, use Strict-Transport-Security, and use secure cookies.
-  # config.force_ssl = true
+  config.force_ssl = Settings.protocol == 'https'
 
   # Use the lowest log level to ensure availability of diagnostic information
   # when problems arise.
@@ -57,7 +64,7 @@ Rails.application.configure do
   config.log_tags = [:request_id]
 
   # Use a different cache store in production.
-  # config.cache_store = :mem_cache_store
+  config.cache_store = :redis_store if ENV['REDIS_URL']
 
   # Use a real queuing backend for Active Job (and separate queues per environment)
   # config.active_job.queue_adapter     = :resque
@@ -73,7 +80,7 @@ Rails.application.configure do
       password: ENV['MAIL_PASSWORD'],
       domain: ENV['MAIL_DOMAIN'],
       address: ENV['MAIL_ADDRESS'],
-      port: 587,
+      port: ENV.fetch('MAIL_PORT', 587),
       authentication: :plain,
       enable_starttls_auto: true
   }
