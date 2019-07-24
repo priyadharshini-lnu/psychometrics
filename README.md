@@ -25,6 +25,7 @@ prevent bundle secure warnings with
 2. `$> cp config/application.sample.yml config/application.yml`
 3. `$> cp config/secrets.yml.sample config/secrets.yml`
 4. `$> cp config/database.yml.example config/database.yml`
+5. `$> cp config/settings/development.yml.example config/settings/development.yml`
 
 > Uncomment and set values for `ENCRYPTED_KEY`, `SECRET_KEY_BASE` and `SECRET_TOKEN_FOR_GENERATE` in `application.yml`.
 
