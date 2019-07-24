@@ -11,7 +11,7 @@ describe Threesixty::ParticipatableByCriteria::ByManagerTasks do
   context 'not_approved_all_nominations criteria' do
     it 'returns participatables who have not approved all nominations' do
       create(
-        :participant,
+        :threesixty_participant,
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subjects[0].user_id,
         evaluator_id: threesixty_subjects[1].user_id,
@@ -19,7 +19,7 @@ describe Threesixty::ParticipatableByCriteria::ByManagerTasks do
         manager_nomination_status: :waiting
       )
       create(
-        :participant,
+        :threesixty_participant,
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subjects[1].user_id,
         evaluator_id: threesixty_subjects[2].user_id,
@@ -41,7 +41,7 @@ describe Threesixty::ParticipatableByCriteria::ByManagerTasks do
   context 'not_approved_all_reports criteria' do
     it 'returns participatables who have not approved all reports' do
       create(
-        :participant,
+        :threesixty_participant,
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subjects[0].user_id,
         evaluator_id: threesixty_subjects[1].user_id,
@@ -49,7 +49,7 @@ describe Threesixty::ParticipatableByCriteria::ByManagerTasks do
         manager_evaluation_status: :waiting
       )
       create(
-        :participant,
+        :threesixty_participant,
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subjects[1].user_id,
         evaluator_id: threesixty_subjects[2].user_id,

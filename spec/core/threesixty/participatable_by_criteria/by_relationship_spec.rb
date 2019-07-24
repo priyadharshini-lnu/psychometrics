@@ -17,19 +17,19 @@ describe Threesixty::ParticipatableByCriteria::ByRelationship do
     manager_relationship = create(:relationship, name: 'Manager')
     peer_relationship = create(:relationship, name: 'Peer')
     create(
-      :participant,
+      :threesixty_participant,
       campaign_id: threesixty_campaign.campaign_id,
       relationship: manager_relationship,
       subject: threesixty_subjects[0].user
     )
     create(
-      :participant,
+      :threesixty_participant,
       campaign_id: threesixty_campaign.campaign_id,
       relationship: manager_relationship,
       subject: threesixty_subjects[1].user
     )
     create(
-      :participant,
+      :threesixty_participant,
       campaign_id: threesixty_campaign.campaign_id,
       relationship: peer_relationship,
       subject: threesixty_subjects[2].user
@@ -51,19 +51,19 @@ describe Threesixty::ParticipatableByCriteria::ByRelationship do
     manager_relationship = create(:relationship, name: 'Manager')
     peer_relationship = create(:relationship, name: 'Peer')
     create(
-      :participant,
+      :threesixty_participant,
       campaign_id: threesixty_campaign.campaign_id,
       relationship: manager_relationship,
       evaluator: threesixty_evaluators[0].user
     )
     create(
-      :participant,
+      :threesixty_participant,
       campaign_id: threesixty_campaign.campaign_id,
       relationship: manager_relationship,
       evaluator: threesixty_evaluators[1].user
     )
     create(
-      :participant,
+      :threesixty_participant,
       campaign_id: threesixty_campaign.campaign_id,
       relationship: peer_relationship,
       evaluator: threesixty_evaluators[2].user

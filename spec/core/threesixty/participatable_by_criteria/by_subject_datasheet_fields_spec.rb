@@ -12,7 +12,7 @@ describe Threesixty::ParticipatableByCriteria::BySubjectDatasheetFields do
   it 'returns evaluators who have subject with matching datasheet criteria' do
     3.times do |index|
       create(
-        :participant,
+        :threesixty_participant,
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subjects[index].user_id,
         evaluator_id: threesixty_evaluators[index].user_id

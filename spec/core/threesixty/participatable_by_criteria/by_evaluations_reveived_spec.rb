@@ -17,14 +17,14 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluationsReceived do
   before do
     threesixty_subjects[0..1].each do |threesixty_subject|
       create(
-        :participant,
+        :threesixty_participant,
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subject.user_id,
         evaluator_id: threesixty_subject.user_id,
         manager_evaluation_status: :approved
       )
       create(
-        :participant,
+        :threesixty_participant,
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subject.user_id,
         evaluator_id: threesixty_evaluator.user_id,
@@ -33,7 +33,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluationsReceived do
     end
 
     create(
-      :participant,
+      :threesixty_participant,
       campaign_id: threesixty_campaign.campaign_id,
       subject_id: threesixty_subjects[2].user_id,
       evaluator_id: threesixty_evaluator.user_id,

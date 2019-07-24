@@ -16,7 +16,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluations do
   it 'returns participatables who have completed all the evaluations' do
     threesixty_subjects.each do |threesixty_subject|
       create(
-        :participant,
+        :threesixty_participant,
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subject.user_id,
         evaluator_id: threesixty_subject.user_id
@@ -46,7 +46,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluations do
   it "returns participatables who had not completed all evaluations" do
     threesixty_subjects.each do |threesixty_subject|
       create(
-        :participant,
+        :threesixty_participant,
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subject.user_id,
         evaluator_id: threesixty_subject.user_id
@@ -74,7 +74,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluations do
   it "returns participatables who have completed all evaluations but are waiting for approval" do
     threesixty_subjects[0..1].each do |threesixty_subject|
       create(
-        :participant,
+        :threesixty_participant,
         campaign_id: threesixty_campaign.campaign_id,
         subject_id: threesixty_subject.user_id,
         evaluator_id: threesixty_subject.user_id,
@@ -91,7 +91,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluations do
     end
 
     create(
-      :participant,
+      :threesixty_participant,
       campaign_id: threesixty_campaign.campaign_id,
       subject_id: threesixty_subjects[2].user_id,
       evaluator_id: threesixty_subjects[2].user_id,

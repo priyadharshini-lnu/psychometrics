@@ -22,7 +22,7 @@ describe Threesixty::ParticipatableByCriteria::Filter do
       manager_relationship = create(:relationship, name: 'Manager')
       @threesixty_subjects[0..1].each do |threesixty_subject|
         create(
-          :participant,
+          :threesixty_participant,
           campaign_id: threesixty_campaign.campaign_id,
           relationship: manager_relationship,
           subject: threesixty_subject.user
@@ -60,7 +60,7 @@ describe Threesixty::ParticipatableByCriteria::Filter do
       manager_relationship = create(:relationship, name: 'Manager')
       @threesixty_evaluators[0..1].each do |threesixty_evaluator|
         create(
-          :participant,
+          :threesixty_participant,
           campaign_id: threesixty_campaign.campaign_id,
           relationship: manager_relationship,
           evaluator: threesixty_evaluator.user

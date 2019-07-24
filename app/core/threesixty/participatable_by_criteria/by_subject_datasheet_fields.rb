@@ -28,7 +28,7 @@ module Threesixty
           .participants.
           actual_by_options(threesixty_campaign.option).
           where(evaluator_id: user_ids).
-          joins("LEFT JOIN users ON users.id = participants.subject_id").
+          joins("LEFT JOIN users ON users.id = threesixty_participants.subject_id").
           group(:evaluator_id).
           select('evaluator_id, array_agg(users.email) as subject_emails').
           each_with_object({}) do |participant, acc|
