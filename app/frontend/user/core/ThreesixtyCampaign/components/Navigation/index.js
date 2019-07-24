@@ -4,11 +4,14 @@ import {
   Layout, Menu, Icon,
 } from 'antd'
 import './styles.scss'
-// import logo from 'user/assets/logo.png'
+import connect from './connect'
 
 const { SubMenu } = Menu
 
-export default function Navigation () {
+function Navigation ({ logout }) {
+  const onLogout = () => {
+    logout().then(() => location.reload())
+  }
   return (
     <Layout.Header className="threesixty-navigation" mode="horizontal">
       <Route path="/campaigns/:id">
@@ -31,9 +34,7 @@ export default function Navigation () {
                 </span>
               )}
             >
-              <Menu.Item key="setting:1">Profile</Menu.Item>
-              <Menu.Divider />
-              <Menu.Item key="setting:4">Logout</Menu.Item>
+              <Menu.Item key="logout" onClick={onLogout}>Logout</Menu.Item>
             </SubMenu>
             <Menu.Item key="app" className="align-right">
               <Icon type="zhihu" />
@@ -49,3 +50,5 @@ export default function Navigation () {
     </Layout.Header>
   )
 }
+
+export default connect(Navigation)

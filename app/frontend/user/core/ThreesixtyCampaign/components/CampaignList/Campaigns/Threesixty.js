@@ -31,7 +31,7 @@ export default function Threesixty ({ campaign }) {
                   </g>
                 </svg>
               </div>
-              <div className="title">Assesment</div>
+              <div className="title">360 Assesment</div>
             </div>
             {campaign.mindmill && <img className="service" src={mindmill} alt="" />}
             {campaign.hogan && <img className="service" src={hogan} alt="" />}
@@ -42,7 +42,7 @@ export default function Threesixty ({ campaign }) {
         <div className="card-body">
           <div className="card-content">
             <div className="card-title">
-              Thriving Index Assessment
+              {campaign.assessmentName}
             </div>
             <Row type="flex" className="info-line">
               <Col className="info-block">
