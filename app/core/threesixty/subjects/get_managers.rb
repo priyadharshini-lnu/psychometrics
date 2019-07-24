@@ -12,7 +12,7 @@ module Threesixty
       def query
         Threesixty::Evaluator.
           joins(participants: :relationship).
-          where(campaign_id: subject.campaign_id, participants: { subject_id: subject.user_id, relationships: { name: 'Manager' } })
+          where(campaign_id: subject.campaign_id, threesixty_participants: { subject_id: subject.user_id }, relationships: { name: 'Manager' })
       end
     end
   end

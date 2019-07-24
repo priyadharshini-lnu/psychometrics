@@ -9,14 +9,14 @@ describe Threesixty::Subjects::GetManagers do
     manager_relationship = create(:relationship, name: 'Manager')
     @manager_evaluators = create_list(:threesixty_evaluator, 2, campaign_id: threesixty_campaign.campaign_id)
     create(
-      :participant,
+      :threesixty_participant,
       subject_id: @subject.user_id,
       campaign_id: threesixty_campaign.campaign_id,
       relationship: manager_relationship,
       evaluator: @manager_evaluators[0].user
     )
     create(
-      :participant,
+      :threesixty_participant,
       subject_id: @subject.user_id,
       campaign_id: threesixty_campaign.campaign_id,
       relationship: manager_relationship,
@@ -26,7 +26,7 @@ describe Threesixty::Subjects::GetManagers do
     # Subjects manager in different campaign
     manager_evaluator_different_campaign = create(:threesixty_evaluator, campaign: create(:campaign))
     create(
-      :participant,
+      :threesixty_participant,
       subject_id: @subject.user_id,
       campaign_id: threesixty_campaign.campaign_id,
       relationship: manager_relationship,
@@ -37,7 +37,7 @@ describe Threesixty::Subjects::GetManagers do
     peer_relationship = create(:relationship, name: 'Peer')
     peer_evaluator = create(:threesixty_evaluator, campaign_id: threesixty_campaign.campaign_id)
     create(
-      :participant,
+      :threesixty_participant,
       subject_id: @subject.user_id,
       campaign_id: threesixty_campaign.campaign_id,
       relationship: peer_relationship,

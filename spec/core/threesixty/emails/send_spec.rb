@@ -45,7 +45,7 @@ describe Threesixty::Emails::Send do
     manager_evaluators = create_list(:threesixty_evaluator, 2, campaign_id: threesixty_campaign.campaign_id)
     manager_evaluators.each do |manager|
       create(
-        :participant,
+        :threesixty_participant,
         subject_id: threesixty_subject.user_id,
         campaign_id: threesixty_campaign.campaign_id,
         relationship: manager_relationship,
@@ -68,7 +68,7 @@ describe Threesixty::Emails::Send do
     evaluators = create_list(:threesixty_evaluator, 2, campaign_id: threesixty_campaign.campaign_id)
     evaluators.each do |evaluator|
       create(
-        :participant,
+        :threesixty_participant,
         subject_id: threesixty_subject.user_id,
         campaign_id: threesixty_campaign.campaign_id,
         evaluator: evaluator.user

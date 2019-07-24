@@ -10,7 +10,7 @@ describe Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations do
 
     # Approved participant with completed evaluation
     create(
-      :participant,
+      :threesixty_participant,
       subject_id: @subject.user_id,
       campaign_id: @threesixty_campaign.campaign_id,
       evaluator_id: @evaluators[0].user_id,
@@ -26,7 +26,7 @@ describe Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations do
 
     # Approved participant with no evaluation
     create(
-      :participant,
+      :threesixty_participant,
       subject_id: @subject.user_id,
       campaign_id: @threesixty_campaign.campaign_id,
       evaluator_id: @evaluators[1].user_id,
@@ -35,7 +35,7 @@ describe Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations do
 
     # Approved participant with incompleted evaluation
     create(
-      :participant,
+      :threesixty_participant,
       subject_id: @subject.user_id,
       campaign_id: @threesixty_campaign.campaign_id,
       evaluator_id: @evaluators[2].user_id,
@@ -51,7 +51,7 @@ describe Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations do
 
     # Participant in waiting state with no evaluation
     create(
-      :participant,
+      :threesixty_participant,
       subject_id: @subject.user_id,
       campaign_id: @threesixty_campaign.campaign_id,
       evaluator: @evaluators[3].user,
