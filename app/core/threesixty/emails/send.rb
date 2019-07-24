@@ -8,36 +8,47 @@ module Threesixty
       CONFIG = [
         {
           condition_class: Threesixty::Emails::IsSubjectReportReadySendable,
-          template_name: Threesixty::Emails::Name::SUBJECT_REPORT_READY
+          template_name: Threesixty::Emails::Name::SUBJECT_REPORT_READY,
+          recipient_type: :subject
         },
         {
           condition_class: Threesixty::Emails::IsManagerReportReadySendable,
           template_name: Threesixty::Emails::Name::MANAGER_REPORT_READY,
-          recipient_class: Threesixty::Subjects::GetManagers
+          recipient_class: Threesixty::Subjects::GetManagers,
+          recipient_type: :evaluator
         },
         {
           condition_class: Threesixty::Emails::IsApproveReportSendable,
           template_name: Threesixty::Emails::Name::APPROVE_REPORT,
-          recipient_class: Threesixty::Subjects::GetManagers
+          recipient_class: Threesixty::Subjects::GetManagers,
+          recipient_type: :evaluator
         },
         {
           condition_class: Threesixty::Emails::IsApproveNominationSendable,
           template_name: Threesixty::Emails::Name::APPROVE_NOMINATION,
-          recipient_class: Threesixty::Subjects::GetManagers
+          recipient_class: Threesixty::Subjects::GetManagers,
+          recipient_type: :evaluator
         },
         {
           condition_class: Threesixty::Emails::IsDeniedNominationSendable,
           template_name: Threesixty::Emails::Name::NOMINATION_DENIED,
-          recipient_class: Threesixty::Subjects::GetManagers
+          recipient_class: Threesixty::Subjects::GetManagers,
+          recipient_type: :evaluator
         },
         {
           condition_class: Threesixty::Emails::IsRequestApprovalSendable,
           template_name: Threesixty::Emails::Name::REQUEST_APPROVAL,
-          recipient_class: Threesixty::Subjects::GetManagers
+          recipient_class: Threesixty::Subjects::GetManagers,
+          recipient_type: :evaluator
         },
         {
           template_name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
           recipient_class: Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations
+          recipient_type: :evaluator
+        },
+        {
+          template_name: Threesixty::Emails::Name::SUBJECT_REMINDER,
+          recipient_type: :subject
         }
       ].freeze
 
@@ -53,27 +64,22 @@ module Threesixty
         email_template = context[:threesixty_campaign].email_templates.find_by!(name: type)
         recipients = config[:recipient_class] ? config[:recipient_class].new(context).query.includes(:user) : [context[:subject]]
 
-        recipients.each do |recipient|
-          user = recipient.user
-          context_for_piped_text = context.merge(
-            recipient: user,
-            subject: context[:subject]&.user,
-            evaluator: context[:evaluator]&.user
-          ).compact
+        meta = {
+          subject_ids: context[:subject_ids] || [context[:subject]&.user_id],
+          evaluator_ids: context[:evaluator_ids] || [context[:evaluator]&.user_id],
+          recipeint_type: config[:recipient_type]
+        }
 
-          body = Threesixty::PipedText::Perform.call!(email_template.content, context_for_piped_text)
-          email_schedule_attributes = email_template.
-            slice(:name, :subject, :from, :reply_to_email, :threesixty_campaign_id).
-            merge(
-              content: body,
-              recipient_emails: [user.email],
-              scheduled_date: 10.seconds.from_now
-            )
+        email_schedule_attributes = email_template.
+          slice(:name, :subject, :from, :reply_to_email, :content, :threesixty_campaign_id).
+          merge(
+            recipient_ids: recipients.map(&:user_id),
+            meta: meta,
+            scheduled_date: 10.seconds.from_now
+          )
 
-          Threesixty::EmailSchedule.create!(email_schedule_attributes)
-        end
+        Threesixty::EmailSchedule.create!(email_schedule_attributes)
       end
     end
   end
 end
-
