@@ -515,6 +515,8 @@ Rails.application.routes.draw do
       resources :campaigns, only: %i(show index) do
         resources :nominations do
           post :search_evaluators
+          get :request_approval
+          get :send_evaluator_reminders
           resources :evaluators do
             put :update_status
           end

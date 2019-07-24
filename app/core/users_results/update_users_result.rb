@@ -15,7 +15,10 @@ module UsersResults
 
       transaction do
         update_users_result
-        generate_360_report if users_result.completed?
+        if users_result.completed?
+          generate_360_report
+          send_necessary_emails
+        end
       end
 
       broadcast(:ok)
@@ -62,6 +65,13 @@ module UsersResults
       # Sets status to generating and sends to generate report
       users_report.generating!
       ::UsersReports::GeneratePdfJob.perform_later(users_report, subject_user)
+    end
+
+    def send_necessary_emails
+      subject = users_result.threesixty_subject
+      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::SUBJECT_REPORT_READY, threesixty_campaign: threesixty_campaign, subject: subject)
+      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::MANAGER_REPORT_READY, threesixty_campaign: threesixty_campaign, subject: subject)
+      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::APPROVE_REPORT, threesixty_campaign: threesixty_campaign, subject: subject)
     end
   end
 end

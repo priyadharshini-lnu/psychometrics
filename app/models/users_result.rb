@@ -11,6 +11,10 @@ class UsersResult < ApplicationRecord
     where('subject_id != evaluator_id') unless options.participants.dig("subject", "can_evaluate_self")
   }
 
+  def threesixty_subject
+    Threesixty::Subject.find_by(campaign_id: campaign_id, user_id: subject_id)
+  end
+
   class << self
     def encode_id(id)
       hashids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.assign_id)
