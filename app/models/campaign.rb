@@ -7,7 +7,7 @@ class Campaign < ApplicationRecord
   has_many :relationships, dependent: :destroy
   has_many :subjects, class_name: 'Threesixty::Subject', dependent: :destroy
   has_many :evaluators, class_name: 'Threesixty::Evaluator', dependent: :destroy
-  has_many :participants, dependent: :destroy
+  has_many :participants, class_name: 'Threesixty::Participant', dependent: :destroy
   has_many :users_assessments, dependent: :destroy
   has_many :users_reports, dependent: :destroy
   has_many :campaigns_users, dependent: :destroy

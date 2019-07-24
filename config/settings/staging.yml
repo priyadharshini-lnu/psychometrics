@@ -1,6 +1,6 @@
-domain: staging.tte-lighthouse.com # psychometrics.co.uk
-subdomain: staging # subdomain
+domain: <%= ENV["APP_DOMAIN"] || 'staging.tte-lighthouse.com' %> # psychometrics.co.uk
+subdomain: <%= ENV["APP_SUB_DOMAIN"] || 'staging' %> # subdomain
 port: 80
-protocol: 'http'
+protocol: <%= ENV["APP_PROTOCOL"] || 'http' %>
 assigns:
-  mindmill_prefix: TTESTAG
+  mindmill_prefix: <%= ENV["MINDMILL_PREFIX"] || 'TTESTAG' %>

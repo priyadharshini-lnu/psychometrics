@@ -43,7 +43,7 @@ describe ::Clients::Reports::AssignReport do
       expect(campaign.clients_reports.first.user_access).to be_falsy
     end
     it 'creates AssessmentsClient' do
-      expect { subject }.to change { campaign.assessments.count }.by(6)
+      expect { subject }.to change { campaign.assessments.count }.by(10)
       expect(campaign.assessments.reload.ids).to include(*report.assessments.ids)
     end
     it 'adds user_access' do

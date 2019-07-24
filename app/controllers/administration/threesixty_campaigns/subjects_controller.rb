@@ -9,7 +9,7 @@ module Administration
 
       def index
         subjects = policy_scope(::Threesixty::Subject).
-          includes(:evaluator, :user).
+          includes(:self_evaluator, :user).
           where(campaign_id: threesixty_campaign.campaign_id).
           order(id: :desc).
           limit(params[:limit]).
