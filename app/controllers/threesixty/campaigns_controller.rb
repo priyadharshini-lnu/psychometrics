@@ -1,6 +1,7 @@
 module Threesixty
   class CampaignsController < ApplicationController
     layout 'layouts/threesixty_campaign'
+    before_action :set_locale
     before_action :set_campaign, only: [:show]
 
     def index
@@ -47,6 +48,11 @@ module Threesixty
         end
       end
 
+    end
+
+    def change_locale
+      cookies[:locale] = params[:locale] if I18n.available_locales.include?(params[:locale]&.to_sym)
+      set_locale
     end
 
     private
