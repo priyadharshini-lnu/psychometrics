@@ -7,7 +7,7 @@ class ApplicationController < ::BaseController
   before_action :set_client_by_subdomain
   append_before_action :set_membership, if: :user_signed_in?
   after_action :allow_iframe, if: proc { params['display'] == 'iframe' }
-
+  before_action :set_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # Sets particular layout in depends of conditions
@@ -96,5 +96,9 @@ class ApplicationController < ::BaseController
 
   def user_not_authorized
     render plain: 'You does not have access to this page', status: 403
+  end
+
+  def set_locale
+    I18n.locale = cookies[:locale] || I18n.default_locale
   end
 end

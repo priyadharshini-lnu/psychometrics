@@ -43,7 +43,7 @@ function NominationList ({ nominations, approvalNominations, options }) {
         <div className="header">
           <div className="letter-icon">N</div>
           <div className="caption">
-            Nominations
+            {I18n.t('threesixty.nominations')}
             <div className="progress-bars">
               <Progress
                 className="progress-line"
@@ -61,9 +61,15 @@ function NominationList ({ nominations, approvalNominations, options }) {
       )}
       bordered
     >
-      <CollapseItem key="nominations" title="Set up nominations" list={nominations} />
+      <CollapseItem key="nominations" title={I18n.t('threesixty.setup_nominations')} list={nominations} />
       {options.manager.canApproveNominations && approvalNominations.length > 0
-        && <CollapseItem key="approve_nominations" title="Approve nominations" list={approvalNominations} />}
+        && (
+        <CollapseItem
+          key="approve_nominations"
+          title={I18n.t('threesixty.approve_nominations')}
+          list={approvalNominations}
+        />
+        )}
       <Modal
         title={(
           <div className="help-modal-header">
