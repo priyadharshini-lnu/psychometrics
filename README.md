@@ -20,11 +20,11 @@ prevent bundle secure warnings with
 
 # Local Setup
 
-0. Create a Gemset (optional) `$> rvm gemset create teddy`
+0. Create a Gemset (optional) `$> rvm gemset create tte-psychometrics`
 1. `$> bundle install`
 2. `$> cp config/application.sample.yml config/application.yml`
-3. `$> cp config/secrets.sample.yml config/secrets.yml`
-4. `$> cp config/database.sample.yml config/data.yml`
+3. `$> cp config/secrets.yml.sample config/secrets.yml`
+4. `$> cp config/database.yml.example config/database.yml`
 
 > Uncomment and set values for `ENCRYPTED_KEY`, `SECRET_KEY_BASE` and `SECRET_TOKEN_FOR_GENERATE` in `application.yml`.
 
