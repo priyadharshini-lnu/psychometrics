@@ -27,10 +27,10 @@ module Threesixty
       attr_reader :user, :campaign
 
       def remove_all_participants
-        participants = Participant.
+        participants = Threesixty::Participant.
           where(subject_id: user.id, campaign_id: campaign.id).
           or(
-            Participant.where(evaluator_id: user.id, campaign_id: campaign.id)
+            Threesixty::Participant.where(evaluator_id: user.id, campaign_id: campaign.id)
           )
        participants.destroy_all
       end

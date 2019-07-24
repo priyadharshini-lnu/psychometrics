@@ -173,7 +173,7 @@ module Imports
           next if client_report.report.hogan?
 
           # Sends to generate PDF report
-          ::Reports::ExportJob.perform_later(assigns_report, membership.user) if assign_with_result.completed?
+          ::Reports::ExportJob.perform_later(assign_report, membership.user) if assign_with_result.completed?
         end
       end
     end

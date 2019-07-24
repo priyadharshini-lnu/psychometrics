@@ -4,6 +4,10 @@ import { closeModal } from 'admin/core/temp/modals'
 import { fetchRelationships } from 'admin/core/threeSixtyCampaign/relationships'
 
 export default connect(
-  ({ temp: { modals: { data, current } } }) => ({ user: data.user, current, onClose: data.onClose }),
+  ({
+    temp: {
+      modals: { data, current },
+    },
+  }) => ({ ...data.ParticipantModal, current }),
   { fetchParticipants, fetchRelationships, closeModal },
 )

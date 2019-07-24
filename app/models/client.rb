@@ -105,7 +105,9 @@ class Client < ApplicationRecord
     project.validates :subdomain, presence: true, length: { maximum: 200 }, uniqueness: true
     project.validate :subdomain_format_validation
   end
-  validate :relevant_reports, if: -> { report_ids.any? && end_level? }
+  # disabled this validation as it was causing error while saving sub-campaign
+  # TODO: Needs to be investigated
+  # validate :relevant_reports, if: -> { report_ids.any? && end_level? }
   validate :allowed_data, if: -> { operator }
 
   before_validation :ensure_subdomain, if: :retail?

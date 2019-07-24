@@ -4,11 +4,14 @@ import {
 } from 'antd'
 
 const menu = ({
-  projectId, campaignId, resetCampaign, resetAllNominations,
+  projectId, campaignId, resetCampaign, resetAllNominations, openModal,
 }) => (
   <Menu>
     <Menu.Item key="1">
       <a href={`/administration/clients/${projectId}/datasheet_rows`}>Manage Data Sheets...</a>
+    </Menu.Item>
+    <Menu.Item key="2">
+      <a onClick={() => openModal('ManageRelationshipsModal')} role="button" tabIndex={-1}>Manage Relationships...</a>
     </Menu.Item>
     <Menu.Divider />
     <Menu.Item key="4">
@@ -35,12 +38,12 @@ const menu = ({
 )
 
 export default function ToolsDropdown ({
-  resetCampaign, resetAllNominations, match: { params: { campaignId, projectId } },
+  resetCampaign, resetAllNominations, openModal, match: { params: { campaignId, projectId } },
 }) {
   return (
     <Dropdown
       overlay={menu({
-        projectId, campaignId, resetCampaign, resetAllNominations,
+        projectId, campaignId, resetCampaign, resetAllNominations, openModal,
       })}
       className="mrm"
       trigger={['click']}

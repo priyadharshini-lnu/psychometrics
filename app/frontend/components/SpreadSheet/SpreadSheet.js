@@ -5,7 +5,9 @@ import Row from './Row'
 import css from './styles.scss'
 
 const MIN_ROW_SIZE = 3
-const SpreadSheet = ({ entities, updateEntities, fields }) => {
+const SpreadSheet = ({
+  entities, updateEntities, fields, context,
+}) => {
   const [rowSize, setRowSize] = useState(MIN_ROW_SIZE)
 
   useEffect(() => {
@@ -31,6 +33,7 @@ const SpreadSheet = ({ entities, updateEntities, fields }) => {
         {_.times(rowSize, index => (
           <Row
             index={index}
+            context={context}
             fields={fields}
             updateEntity={updateEntity}
             entity={entities[index] || {}}

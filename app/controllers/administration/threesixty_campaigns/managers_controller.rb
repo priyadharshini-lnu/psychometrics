@@ -9,9 +9,9 @@ module Administration
       def index
         option = threesixty_campaign.option || ::Threesixty::Option.new
         managers = policy_scope(::Threesixty::Evaluator).
-                   includes(:user, subject: :user).
+                   includes(:user, self_subject: :user).
                    joins(participants: :relationship).
-                   where(campaign_id: threesixty_campaign.campaign_id, participants: { relationships: { name: 'Manager' } }).
+                   where(campaign_id: threesixty_campaign.campaign_id, participants: { relationships: { name: 'Manager', type: :global } }).
                    order(id: :desc).
                    distinct(:user_id).
                    limit(params[:limit]).
@@ -27,7 +27,7 @@ module Administration
           threesixty_campaign
         )
         total = policy_scope(::Threesixty::Evaluator).
-                where(campaign_id: threesixty_campaign.campaign_id, participants: { relationships: { name: 'Manager' } }).
+                where(campaign_id: threesixty_campaign.campaign_id, participants: { relationships: { name: 'Manager', type: :global } }).
                 distinct(:user_id).
                 joins(participants: :relationship).
                 count

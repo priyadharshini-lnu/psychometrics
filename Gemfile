@@ -1,4 +1,5 @@
 source 'https://rubygems.org'
+ruby "2.5.1"
 gem 'bundler',                    '>= 1.8.4'
 
 gem 'rails',                      '~> 5.1.6'
@@ -10,6 +11,8 @@ gem 'coffee-rails',               '~> 4.2'
 gem 'jquery-rails',               '~> 4.1.1'
 gem 'jquery-rails-cdn',           '~> 1.1.2'
 gem 'jbuilder',                   '~> 2.6.4'
+gem "barnes",                     '~> 0.0.7'
+gem 'newrelic_rpm', '~> 6.3', '>= 6.3.0.355', group: 'production'
 
 source 'https://rails-assets.org' do
   gem 'rails-assets-jquery', '1.12'
@@ -69,15 +72,13 @@ gem 'i18n-js',                    '~> 3.0.0.rc3'
 ### Decorator
 gem 'activemodel-serializers-xml'
 gem 'draper',                     '~> 3.0.0'
-### Generate schema in each model
-gem 'annotate', '~> 2.7.0', git: 'git@github.com:ctran/annotate_models.git'
-
+gem 'annotate', '~> 2.7.0'
 ### For organisation ENV variable
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
-gem 'psychometrics-reports-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics-reports-ui.git', ref: '8f27ca3ac4954b1430ffa45c040b818199a914bd'
-gem 'psychometrics-survey-ui', git: 'git@gitlab.com:tte-lighthouse/psychometrics-survey-ui.git', ref: 'e3f0d9bc7ab8fbc9cbdf2e6759dadc7e33f946f4'
+gem 'psychometrics-reports-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git', ref: '8f27ca3ac4954b1430ffa45c040b818199a914bd'
+gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', ref: 'db98dd19b93073869934bc315d41e9ebf33472d5'
 
 ### XLS import
 gem 'rubyXL'
@@ -88,15 +89,14 @@ gem 'smarter_csv',                '~> 1.1.0'
 # For unpoad file as Ajax
 gem 'jquery-fileupload-rails',    '~> 0.4.6'
 gem 'redis'
-
+gem 'redis-rails',                '~> 5.0.2'
 gem 'ckeditor'
 
 ### dependencies for XLS export (via templates)
-gem 'axlsx', git: 'git@github.com:randym/axlsx', ref: 'c8ac844'
+gem 'axlsx', git: 'http://github.com/randym/axlsx.git', ref: 'c8ac844'
 gem 'axlsx_rails', '~> 0.4.0'
 gem 'roo', '~> 2.8.2'
 
-gem 'i18n-tasks', '~> 0.9.25'
 
 ### manage position field. For move_up|down does 2 selects and 3 updates. Can be better.
 gem 'acts_as_list', '~> 0.8.1'
@@ -104,7 +104,10 @@ gem 'acts_as_list', '~> 0.8.1'
 ### add fake destroying logic for models
 gem 'paranoia', '~> 2.4'
 gem 'active_model_serializers', '~> 0.10.0'
-gem 'airbrake', '~> 5.0'
+
+# Error tracking
+gem 'sentry-raven', '~> 2.9.0'
+
 
 # DSL for activerecord
 gem 'baby_squeel', '~> 1.3.1'
@@ -166,7 +169,11 @@ group :development, :test do
   gem 'awesome_print', '~> 1.8.0'
   gem 'rspec-rails', '~> 3.8'
   gem 'factory_girl_rails', '~> 4.7.0'
+  # A fake data generator
+  ### Generate schema in each model
   gem 'rswag-specs', '~> 2.0.5'
+  gem 'derailed_benchmarks'
+  gem 'stackprof'
 end
 
 group :development do
@@ -189,6 +196,7 @@ group :development do
   gem 'guard'
   gem 'rubocop', '~> 0.67.2', require: false
   gem 'meta_request'
+  gem 'i18n-tasks', '~> 0.9.25'
   gem 'db-clone', :git => 'https://github.com/smshuja/db-clone.git', :branch => 'load-with-erb'
 end
 group :test do
@@ -204,5 +212,7 @@ group :test do
   gem 'rspec-retry', '~> 0.6.1'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'timecop', '~> 0.9.1'
+  gem 'rswag-specs', '~> 2.0.5'
+  gem 'coveralls', require: false
   gem 'webdrivers'
 end

@@ -36,7 +36,7 @@ module Threesixty
       end
 
       def create_subject(user)
-        ::Participant.create!(
+        ::Threesixty::Participant.create!(
           evaluator: user,
           subject: user,
           manager_nomination_status: :approved,

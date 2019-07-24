@@ -4,6 +4,7 @@ import { fillEvaluators, createAllEvaluators } from 'admin/core/threeSixtyCampai
 
 export default connect(
   ({
+    project: { relationships },
     threeSixtyCampaign: {
       evaluators: {
         form: { attrs, errors },
@@ -19,6 +20,7 @@ export default connect(
     autocompletedSubjects: subjects,
     autocompletedEvaluators: evaluators,
     evaluators: attrs,
+    relationships,
   }),
   {
     closeModal,

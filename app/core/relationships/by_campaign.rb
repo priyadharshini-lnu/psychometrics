@@ -5,7 +5,7 @@ module Relationships
     end
 
     def query
-      Relationship.where(type: :global).or(campaign.relationships)
+      Relationship.where(type: :global).or(campaign.relationships).order(id: :asc)
     end
 
     private
