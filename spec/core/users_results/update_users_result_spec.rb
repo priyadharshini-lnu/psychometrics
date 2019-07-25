@@ -25,8 +25,27 @@ describe ::UsersResults::UpdateUsersResult do
     end
   end
 
+  it "calls method for sending required mails" do
+      form = double('form', 'invalid?': false)
+      threesixty_subject = double()
+      allow_any_instance_of(described_class).to receive(:update_users_result)
+      allow_any_instance_of(described_class).to receive(:generate_360_report)
+      allow(users_result).to receive(:'completed?').and_return(true)
+      allow(users_result).to receive(:threesixty_subject).and_return(threesixty_subject)
+
+      expect(Threesixty::Emails::Send).to receive(:call!).
+        with('subject_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+      expect(Threesixty::Emails::Send).to receive(:call!).
+        with('manager_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+      expect(Threesixty::Emails::Send).to receive(:call!).
+        with('approve_report', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
+
+      described_class.call(form, users_result, threesixty_campaign)
+  end
+
   context '360 campaign' do
     let(:threesixty_campaign) { create(:threesixty_campaign) }
+    let!(:option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }
     let(:campaign)        { threesixty_campaign.campaign }
     let(:project)         { campaign.project }
     let(:assessment)      { threesixty_campaign.assessment }
@@ -38,6 +57,7 @@ describe ::UsersResults::UpdateUsersResult do
     let!(:users_result)   { create(:users_result, assessment: assessment,
                                                   subject: subject_user,
                                                   evaluator: evaluator_user,
+                                                  answers: {},
                                                   step: 3) }
     let(:users_report)    { create(:users_report, user: subject_user,
                                                   campaign: campaign,
@@ -60,6 +80,7 @@ describe ::UsersResults::UpdateUsersResult do
           allow(users_result).to receive(:'completed?').and_return(true)
         end
 
+        it { expect(::UsersResults::ExpandAnswersByRecoding).to receive(:call!).with(subject) }
         it { expect(::UsersResults::CalculateScoring).to receive(:call!).with(subject) }
         it { expect(::Assigns::CalculateOccupations).to receive(:call!).with(subject) }
         it { is_expected.to receive(:'completed_at=').with(Time.now) }

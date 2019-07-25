@@ -1,6 +1,6 @@
 import React from 'react'
 import {
-  Typography, Form, Icon, Input, Button, Select, Row, Col, AutoComplete,
+  Typography, Form, Icon, Input, Button, Select, Row, Col, AutoComplete, message,
 } from 'antd'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
@@ -11,10 +11,10 @@ const { Option } = Select
 export default function NominationForm (props) {
   const {
     addNomination, searchEvaluators, updateForm,
-    showForm, hideForm,
+    showForm, hideForm, requestApproval, sendEvaluatorReminder,
     match: { params: { campaignId, id: nominationId } },
     nomination: {
-      subject, relationships, form, form: { show },
+      isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail,
     },
     autocomplete: { users },
   } = props
@@ -25,13 +25,23 @@ export default function NominationForm (props) {
     })
   }
 
+  const handleRequestApproval = () => {
+    requestApproval(campaignId, nominationId)
+      .then(() => message.info('Mail for approving nomination has been sent to managers'))
+  }
+
+  const handleSendEvaluatorReminder = () => {
+    sendEvaluatorReminder(campaignId, nominationId)
+      .then(() => message.info("Reminders sent to evaluators who haven't completed the evaluation"))
+  }
+
   return (
     <div className="nominations-form">
       <Title level={4}>
         <div>
-          Nominate Evaluators to
+          {I18n.t('threesixty.nominate_evaluators')}
           {' '}
-          {subject.isSelf ? 'Yourself' : userPresenter.getFullNameWithEmail(subject)}
+          {isSelf ? 'Yourself' : userPresenter.getFullNameWithEmail(subject)}
         </div>
       </Title>
 
@@ -52,7 +62,7 @@ export default function NominationForm (props) {
                     text: userPresenter.getFullNameWithEmail(user),
                   }))}
                   autoFocus
-                  placeholder="type name or email..."
+                  placeholder={I18n.t('threesixty.user_name_input_placeholder')}
                   onChange={email => updateForm({ ...form.attrs, email })}
                   onSelect={email => updateForm({ ...form.attrs, email })}
                 >
@@ -63,7 +73,7 @@ export default function NominationForm (props) {
                 </AutoComplete>
               </Form.Item>
               <Form.Item>
-                as my
+                {I18n.t('threesixty.as_my')}
               </Form.Item>
               <Form.Item
                 validateStatus={form.errors.relationshipId ? 'error' : ''}
@@ -72,10 +82,10 @@ export default function NominationForm (props) {
                 <Select
                   value={form.attrs.relationshipId}
                   onChange={relationshipId => updateForm({ ...form.attrs, relationshipId })}
-                  placeholder="Select Relationship"
+                  placeholder={I18n.t('threesixty.select_relationnship')}
                   className="relationship-select"
                 >
-                  <Option value="" disabled>Select Relationship</Option>
+                  <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
                   {relationships.map(relation => (
                     <Option
                       key={relation.id}
@@ -88,7 +98,7 @@ export default function NominationForm (props) {
               </Form.Item>
               <Form.Item>
                 <Button onClick={handleAdd} type="primary">
-                  Nominate
+                  {I18n.t('threesixty.nominate')}
                 </Button>
               </Form.Item>
             </Form>
@@ -97,24 +107,35 @@ export default function NominationForm (props) {
             <Button type="primary" shape="circle" icon="plus" size="large" onClick={showForm} />
           )}
         <Row type="flex" justify="end" gutter={8}>
-
+          {isSelf && canSendRequestApprovalEmail && (
           <Col>
-            <Button type="link">
+            <Button type="link" onClick={handleRequestApproval}>
               <Icon type="team" />
-              Remind All
+              {I18n.t('threesixty.email_approve_request')}
             </Button>
           </Col>
-          <div className="divider" />
+          )}
           <Col>
-            <Button type="primary">
-              Approve All
+            <Button type="primary" onClick={handleSendEvaluatorReminder}>
+              <Icon type="team" />
+              {I18n.t('threesixty.remind_all')}
             </Button>
           </Col>
-          <Col>
-            <Button type="danger" className="deny-button">
-              Deny All
-            </Button>
-          </Col>
+          {isSelf || (
+          <>
+            <div className="divider" />
+            <Col>
+              <Button type="primary">
+                {I18n.t('threesixty.approve_all')}
+              </Button>
+            </Col>
+            <Col>
+              <Button type="danger" className="deny-button">
+                {I18n.t('threesixty.deny_all')}
+              </Button>
+            </Col>
+          </>
+          )}
         </Row>
       </div>
 

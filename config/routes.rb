@@ -224,7 +224,12 @@ Rails.application.routes.draw do
         end
 
         resources :managers
-        resources :relationships
+        resources :relationships do
+          collection do
+            get :fetch_with_usage
+          end
+        end
+
         resources :participants do
           member do
             get :spoof
@@ -507,9 +512,11 @@ Rails.application.routes.draw do
     end
 
     scope module: :threesixty do
-      resources :campaigns, only: %i(show) do
+      resources :campaigns, only: %i(show index) do
         resources :nominations do
           post :search_evaluators
+          get :request_approval
+          get :send_evaluator_reminders
           resources :evaluators do
             put :update_status
           end
@@ -524,6 +531,9 @@ Rails.application.routes.draw do
         end
         resources :assessments, only: %i(index)
         resources :users_results, only: %i[update]
+        collection do
+          post :change_locale
+        end
       end
     end
 
@@ -552,7 +562,7 @@ Rails.application.routes.draw do
     get 'survey_instructions', to: 'home#survey_instructions'
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'assessment_completed', to: 'home#assessment_completed'
-    root to: 'assigns#index'
+    root to: 'threesixty/campaigns#index'
   end
 
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|

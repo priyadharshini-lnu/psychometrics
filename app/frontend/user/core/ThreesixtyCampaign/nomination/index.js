@@ -9,6 +9,8 @@ const SHOW_FORM = 'threeSixty/nomination/SHOW_FORM'
 const HIDE_FORM = 'threeSixty/nomination/HIDE_FORM'
 const UPDATE_FORM = 'threeSixty/nomination/UPDATE_FORM'
 const UPDATE_STATUS = 'threeSixty/nomination/UPDATE_STATUS'
+const REQUEST_APPROVAL = 'threeSixty/nomination/REQUEST_APPROVAL'
+const SEND_EVALUATOR_REMINDER = 'threeSixty/nomination/SEND_EVALUATOR_REMINDER'
 
 export const fetchNomination = ({ campaignId, id }) => ({
   type: FETCH,
@@ -53,6 +55,22 @@ export const updateStatus = ({
     body: {
       status,
     },
+  },
+})
+
+export const requestApproval = (campaignId, nominationId) => ({
+  type: REQUEST_APPROVAL,
+  request: {
+    url: `/campaigns/${campaignId}/nominations/${nominationId}/request_approval`,
+    method: 'get',
+  },
+})
+
+export const sendEvaluatorReminder = (campaignId, nominationId) => ({
+  type: SEND_EVALUATOR_REMINDER,
+  request: {
+    url: `/campaigns/${campaignId}/nominations/${nominationId}/send_evaluator_reminders`,
+    method: 'get',
   },
 })
 

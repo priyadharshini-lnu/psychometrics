@@ -28,8 +28,8 @@ export default function Campaign ({
         <div className="main-container">
           <PageHeader
             className="page-header"
-            onBack={() => history.push('/')}
-            title={<div className="title-with-dash">Signify 360° Review - Apply Level</div>}
+            onBack={() => history.push('/campaigns')}
+            title={<div className="title-with-dash">{I18n.t('threesixty.page_title')}</div>}
           >
             <div className="content padding">
               {welcomeMessage ? (
@@ -67,7 +67,7 @@ export default function Campaign ({
                         <div className="percentage">{`${percent}%`}</div>
                       )}
                     />
-                    <div className="progress-label">Total progress</div>
+                    <div className="progress-label">{I18n.t('threesixty.total_progress')}</div>
                   </div>
                 </Col>
                 <Col xs={{ span: 32 }} lg={{ span: 8 }}>
@@ -106,12 +106,12 @@ export default function Campaign ({
                 </Col>
               </Row>
             </div>
-            <Row gutter={16}>
+            <Row type="flex" gutter={16} className="task_cards">
               <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
                 <Nominations />
               </Col>
               <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
-                <Evaluations />
+                <Evaluations history={history} />
               </Col>
               <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
                 <Reports />

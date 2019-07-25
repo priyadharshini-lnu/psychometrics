@@ -42,7 +42,7 @@ module Threesixty
       attr_reader :user_ids, :option, :campaign, :types
 
       def all
-        @all ||= Participant.select('count(id) as cache_counter, subject_id, relationship_id').
+        @all ||= Threesixty::Participant.select('count(id) as cache_counter, subject_id, relationship_id').
                  active.actual_by_options(option).
                  where(subject_id: user_ids, campaign: campaign).
                  group(:subject_id, :relationship_id).group_by(&:subject_id)
@@ -51,7 +51,7 @@ module Threesixty
       def completed
         @completed ||=
           if option.participants.dig('manager', 'can_approves_evaluations')
-            Participant.select('count(id) as cache_counter, subject_id, relationship_id').active.
+            Threesixty::Participant.select('count(id) as cache_counter, subject_id, relationship_id').active.
               where(subject_id: user_ids, manager_evaluation_status: :approved, campaign: campaign).
               group(:subject_id, :relationship_id).
               group_by(&:subject_id)
@@ -60,17 +60,17 @@ module Threesixty
               user_ids: user_ids,
               campaign_id: campaign.id,
               user_result_status: UsersResult.statuses[:completed],
-              manager_nomination_status: Participant.manager_nomination_statuses[:denied],
-              evaluator_nomination_status: Participant.evaluator_nomination_statuses[:denied],
+              manager_nomination_status: Threesixty::Participant.manager_nomination_statuses[:denied],
+              evaluator_nomination_status: Threesixty::Participant.evaluator_nomination_statuses[:denied],
             }
-            Participant.find_by_sql([sql, params]).group_by(&:subject_id)
+            Threesixty::Participant.find_by_sql([sql, params]).group_by(&:subject_id)
           end
       end
 
       def sql
         <<-SQL.strip_heredoc
         SELECT count(participants.id) as cache_counter, participants.subject_id, relationship_id
-        FROM participants
+        FROM threesixty_participants as participants
         LEFT JOIN users_results ur on ur.subject_id = participants.subject_id and ur.evaluator_id = participants.evaluator_id
         WHERE participants.subject_id in (:user_ids) AND participants.campaign_id = :campaign_id AND ur.status = :user_result_status
         AND manager_nomination_status != :manager_nomination_status AND evaluator_nomination_status != :evaluator_nomination_status

@@ -23,6 +23,7 @@ export const declineEvaluation = (campaignId, evaluationId) => ({
 export const defaultState = {
   nominations: [],
   evaluations: [],
+  managedSubjects: [],
   reports: [],
   instructions: [],
   options: {

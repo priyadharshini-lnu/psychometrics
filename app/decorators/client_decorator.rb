@@ -45,7 +45,7 @@ class ClientDecorator < BaseDecorator
     if object.prime_project?
       object.root.available_reports.distinct
     else
-      object.project.reports.distinct
+      object.reports.distinct
     end
   end
 

@@ -1,14 +1,28 @@
 import React from 'react'
 import { Route } from 'react-router-dom'
 import {
-  Layout, Menu, Icon,
+  Layout, Menu, Icon, Dropdown,
 } from 'antd'
 import './styles.scss'
-// import logo from 'user/assets/logo.png'
+import connect from './connect'
 
 const { SubMenu } = Menu
 
-export default function Navigation () {
+function Navigation ({ changeLocale, logout }) {
+  const onLogout = () => {
+    logout().then(() => location.reload())
+  }
+  const langMenu = () => (
+    <Menu onClick={({ key }) => { changeLocale(key).then(() => location.reload()) }}>
+      <Menu.Item key="en">
+        English
+      </Menu.Item>
+      <Menu.Item key="ar">
+        Arabic
+      </Menu.Item>
+    </Menu>
+  )
+
   return (
     <Layout.Header className="threesixty-navigation" mode="horizontal">
       <Route path="/campaigns/:id">
@@ -20,7 +34,7 @@ export default function Navigation () {
             overflowedIndicator={<Icon type="menu" />}
           >
             <Menu.Item>
-              <a href="/">My Projects</a>
+              <a href="/">{I18n.t('threesixty.my_projects')}</a>
             </Menu.Item>
 
             <SubMenu
@@ -31,13 +45,15 @@ export default function Navigation () {
                 </span>
               )}
             >
-              <Menu.Item key="setting:1">Profile</Menu.Item>
-              <Menu.Divider />
-              <Menu.Item key="setting:4">Logout</Menu.Item>
+              <Menu.Item key="logout" onClick={onLogout}>Logout</Menu.Item>
             </SubMenu>
             <Menu.Item key="app" className="align-right">
-              <Icon type="zhihu" />
-              Language
+              <Dropdown overlay={() => langMenu()} trigger={['click']}>
+                <a>
+                  <Icon type="zhihu" />
+                  {I18n.t('threesixty.language')}
+                </a>
+              </Dropdown>
             </Menu.Item>
             <Menu.Item key="mail" className="align-right">
               <Icon type="question-circle" />
@@ -49,3 +65,5 @@ export default function Navigation () {
     </Layout.Header>
   )
 }
+
+export default connect(Navigation)

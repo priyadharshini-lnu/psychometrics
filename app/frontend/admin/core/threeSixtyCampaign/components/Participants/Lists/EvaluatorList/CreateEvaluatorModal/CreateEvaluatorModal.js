@@ -29,8 +29,11 @@ const tableFields = [
   {
     name: 'Relationship',
     key: 'relationshipName',
+    type: 'Dropdown',
+    values: ({ relationships }) => relationships.map(r => ({ key: r.id, value: r.name })),
   },
 ]
+
 export default function CreateEvaluatorModal ({
   closeModal,
   fillEvaluators,
@@ -38,6 +41,7 @@ export default function CreateEvaluatorModal ({
   evaluators,
   errors,
   match,
+  relationships,
   match: {
     params: { campaignId },
   },
@@ -81,7 +85,12 @@ export default function CreateEvaluatorModal ({
     >
       <Form match={match} onSubmit={onSubmitForm} />
       <Divider />
-      <SpreadSheet fields={tableFields} entities={evaluators} updateEntities={fillEvaluators} />
+      <SpreadSheet
+        fields={tableFields}
+        entities={evaluators}
+        updateEntities={fillEvaluators}
+        context={{ relationships }}
+      />
       <ErrorAlertBox errors={errors} />
     </Modal>
   )

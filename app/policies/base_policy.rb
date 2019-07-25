@@ -1,5 +1,5 @@
 class BasePolicy
-  def initialize(context, record)
+  def initialize(context, record, extra = {})
     @current_user   = context[:current_user]
     @current_client = context[:current_client]
     @current_project = context[:current_project]

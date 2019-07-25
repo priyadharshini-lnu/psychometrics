@@ -7,7 +7,7 @@ describe Threesixty::Reports::ResolveReleaseCondition do
   let(:campaign) { create(:threesixty_campaign) }
   let(:option) { create(:threesixty_option, threesixty_campaign: campaign) }
   let(:subject) { create(:threesixty_subject, campaign: campaign.campaign, user: current_user) }
-  let(:manager) { create(:relationship, name: 'Manager') }
+  let(:manager) { create(:relationship, name: 'Manager', type: :global) }
   let(:peer) { create(:relationship, name: 'Peer') }
 
   let(:evaluator_1) { create(:threesixty_evaluator, campaign: campaign.campaign) }
@@ -163,7 +163,7 @@ describe Threesixty::Reports::ResolveReleaseCondition do
   end
 
   def create_participant(threesixty_campaign, subject, evaluator, relation, status = :completed)
-    create(:participant,
+    create(:threesixty_participant,
       campaign: threesixty_campaign.campaign,
       subject: subject.user,
       evaluator: evaluator.user,

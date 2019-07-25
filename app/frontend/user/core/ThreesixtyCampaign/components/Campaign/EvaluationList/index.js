@@ -11,15 +11,35 @@ const { Panel } = Collapse
 
 
 function EvaluationList ({
-  evaluations, approvalEvaluations, declineEvaluation, options,
+  evaluations, managedSubjects, declineEvaluation, options, history,
 }) {
   const [showHelp, setShowHelp] = useState(false)
 
   const menu = item => (
     <Menu>
       <Menu.Item key="0" onClick={() => declineEvaluation(item.campaignId, item.id)}>
-        Decline Invite
+        {I18n.t('threesixty.decline_invite')}
       </Menu.Item>
+      {item.evaluatorNominationStatus === 'completed' && (
+        <Menu.Item key="1">
+          <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=true`} style={{ display: 'flex' }}>
+            Edit Evaluation
+          </Link>
+        </Menu.Item>
+      )}
+    </Menu>
+  )
+
+  const evaluatorsList = subject => (
+    <Menu>
+      {subject.evaluators.map(evaluator => (
+        <Menu.Item
+          key={evaluator.id}
+          onClick={() => history.push(`/campaigns/${subject.campaignId}/evaluations/${evaluator.id}`)}
+        >
+          {userPresenter.getFullNameWithEmail(evaluator.user)}
+        </Menu.Item>
+      ))}
     </Menu>
   )
 
@@ -28,7 +48,7 @@ function EvaluationList ({
       <div className="evaluation-item list-item">
         <div>
           <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}`} style={{ display: 'flex' }}>
-            {!item.evaluatorNominationStatus === 'completed'
+            {item.evaluatorNominationStatus !== 'completed'
               ? <Icon type="check-square" theme="filled" className="status-icon" />
               : <div className="empty-square" />}
             {' '}
@@ -37,7 +57,7 @@ function EvaluationList ({
         </div>
         {options.evaluator.canDeclineNomination && !item.isSelf && (
           item.evaluatorNominationStatus === 'denied'
-            ? <div>Denied</div>
+            ? <div>{I18n.t('threesixty.denied')}</div>
             : (
               <Dropdown overlay={() => menu(item)} trigger={['click']}>
                 <a className="ant-dropdown-link actions-btn" href="#">
@@ -46,6 +66,21 @@ function EvaluationList ({
               </Dropdown>
             )
         )}
+      </div>
+    </List.Item>
+  )
+
+  const SubjectItem = item => (
+    <List.Item>
+      <div className="evaluation-item list-item">
+        <div>
+          <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']}>
+            <a className="ant-dropdown-link actions-btn" href="#">
+              {userPresenter.selfUserName(item)}
+              <Icon type="down" className="menu-icon" />
+            </a>
+          </Dropdown>
+        </div>
       </div>
     </List.Item>
   )
@@ -62,6 +97,18 @@ function EvaluationList ({
     </Collapse>
   )
 
+  const ManagedList = ({ title, list }) => (
+    <Collapse bordered={false} defaultActiveKey="panel">
+      <Panel header={<div className="panel-header">{title}</div>} key="panel">
+        <List
+          size="large"
+          dataSource={list}
+          renderItem={SubjectItem}
+        />
+      </Panel>
+    </Collapse>
+  )
+
   return (
     <List
       size="large"
@@ -70,7 +117,7 @@ function EvaluationList ({
         <div className="header">
           <div className="letter-icon">E</div>
           <div className="caption">
-            Evaluations
+            {I18n.t('threesixty.evaluations')}
             <div className="progress-bars">
               <Progress
                 className="progress-line"
@@ -88,13 +135,17 @@ function EvaluationList ({
       )}
       bordered
     >
-      <CollapseItem key="evaluations" title={<div className="collapse-title">Evaluations</div>} list={evaluations} />
-      {options.manager.canApprovesEvaluations
+      <CollapseItem
+        key="evaluations"
+        title={<div className="collapse-title">{I18n.t('threesixty.evaluations')}</div>}
+        list={evaluations}
+      />
+      {options.manager.canApprovesEvaluations && managedSubjects.length > 0
         && (
-        <CollapseItem
+        <ManagedList
           key="evaluations_approve"
-          title={<div className="collapse-title">Approve evaluations</div>}
-          list={approvalEvaluations}
+          title={<div className="collapse-title">{I18n.t('threesixty.approve_evaluations')}</div>}
+          list={managedSubjects}
         />
         )}
       <Modal

@@ -5,8 +5,8 @@ require 'rails_helper'
 describe Threesixty::NominationRequirements::IsValid do
   let(:conditions) do
     [
-      { 'value' => 2, 'comparator' => 'atleast', 'relationship_id' => 5 },
-      { 'value' => 3, 'comparator' => 'atleast', 'relationship_id' => 6 }
+      { 'value' => '2', 'comparator' => 'atleast', 'relationship_id' => 5 },
+      { 'value' => '3', 'comparator' => 'atleast', 'relationship_id' => 6 }
     ]
   end
 

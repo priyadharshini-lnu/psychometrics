@@ -3,6 +3,7 @@
 
 module Threesixty
   class EmailScheduleForm < Rectify::Form
+    attribute :name, String
     attribute :from, String
     attribute :reply_to_email, String
     attribute :subject, String

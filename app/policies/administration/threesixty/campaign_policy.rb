@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration::Threesixty
-  class CampaignPolicy < Administration::CampaignPolicy
+  class CampaignPolicy < BasePolicy
     def assessments?
       super_admins_or_admins?
     end
@@ -24,12 +24,6 @@ module Administration::Threesixty
 
     def remove_user?
       super_admins_or_admins?
-    end
-
-    private
-
-    def super_admins_or_admins?
-      @user.is?(:superadmin) || (@user.is?(:client_admin) && @user.has_grant?(:clients, :manage))
     end
   end
 end

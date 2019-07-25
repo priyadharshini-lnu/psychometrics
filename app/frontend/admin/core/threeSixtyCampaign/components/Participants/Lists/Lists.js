@@ -8,6 +8,7 @@ import SubjectList from './SubjectList'
 import EvaluatorList from './EvaluatorList'
 import ManagerList from './ManagerList'
 import ParticipantModal from './ParticipantModal'
+import ManageRelationshipsModal from './ManageRelationshipsModal'
 
 const Lists = ({ history, routes, setSelectedTab }) => {
   const pathToTabName = path => _.last(path.split('/'))
@@ -30,6 +31,7 @@ const Lists = ({ history, routes, setSelectedTab }) => {
       <Divider />
       <RouteList routes={routes} urlPrefix={settings.urlPrefix} />
       <ParticipantModal />
+      <ManageRelationshipsModal />
     </div>
   )
 }

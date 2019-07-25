@@ -7,7 +7,12 @@ describe Threesixty::SubjectSerializer do
     let(:user) { create(:user, email: 'dustin@poirier.com') }
     let(:project) { create(:project) }
     let(:campaign) { create(:campaign, project: project) }
-    let(:option) { create(:threesixty_option, participants: { 'manager' => { 'can_approves_evaluations' => true } }) }
+    let(:option) do
+      create(:threesixty_option,
+        participants: { "manager" =>  { "can_approves_evaluations" => true } },
+        reports: { "access" =>  { "self_can_access" => true } }
+      )
+    end
     let(:subject) do
       create(:threesixty_subject, user: user, campaign: campaign)
     end
@@ -35,7 +40,12 @@ describe Threesixty::SubjectSerializer do
     let(:user) { create(:user, email: 'dustin@poirier.com') }
     let(:project) { create(:project) }
     let(:campaign) { create(:campaign, project: project) }
-    let(:option) { create(:threesixty_option, participants: { 'manager' => { 'can_approves_evaluations' => true } }) }
+    let(:option) do
+      create(:threesixty_option,
+        participants: { "manager" =>  { "can_approves_evaluations" => true } },
+        reports: { "access" =>  { "self_can_access" => true } }
+      )
+    end
     let(:subject) do
       create(:threesixty_subject, user: user, campaign: campaign, report_approval_status: 2)
     end
@@ -44,8 +54,8 @@ describe Threesixty::SubjectSerializer do
     let(:peer_relationship) { create(:relationship, name: 'peer') }
     let(:nomination_requirement) do
       create(:threesixty_nomination_requirement, conditions: [
-               { 'relationship_id' => manager_relationship.id, 'value' => 4 },
-               { 'relationship_id' => peer_relationship.id, 'value' => 5 }
+               { 'relationship_id' => manager_relationship.id, 'value' => '4' },
+               { 'relationship_id' => peer_relationship.id, 'value' => '5' }
              ])
     end
     let(:counters) do

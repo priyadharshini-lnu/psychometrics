@@ -27,7 +27,7 @@ describe Threesixty::Evaluators::CreateOneForm do
   end
 
   before do
-    create(:participant, campaign: campaign, subject_id: create(:user, email: 'a@a.com'), evaluator_id: create(:user, email: 'b@b.com'))
+    create(:threesixty_participant, campaign: campaign, subject_id: create(:user, email: 'a@a.com'), evaluator_id: create(:user, email: 'b@b.com'))
   end
 
   it 'existing subject+evaluator connection' do

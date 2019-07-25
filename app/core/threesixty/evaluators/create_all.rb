@@ -40,7 +40,7 @@ module Threesixty
       end
 
       def create_participant(evaluator, evaluator_user)
-        ::Participant.create(
+        ::Threesixty::Participant.create(
           evaluator: evaluator_user,
           project_id: threesixty_campaign.campaign.project_id,
           campaign: threesixty_campaign.campaign,

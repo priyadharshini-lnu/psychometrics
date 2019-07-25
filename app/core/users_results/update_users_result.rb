@@ -15,7 +15,10 @@ module UsersResults
 
       transaction do
         update_users_result
-        generate_360_report if users_result.completed?
+        if users_result.completed?
+          generate_360_report
+          send_necessary_emails
+        end
       end
 
       broadcast(:ok)
@@ -34,8 +37,8 @@ module UsersResults
 
       # Calculates scoring and sets time of completion
       if users_result.completed?
+        users_result.answers = ::UsersResults::ExpandAnswersByRecoding.call!(users_result)
         users_result.scoring = ::UsersResults::CalculateScoring.call!(users_result)
-        users_result.question_scoring = ::UsersResults::CalculateQuestionScoring.call!(users_result)
         users_result.occupations = ::Assigns::CalculateOccupations.call!(users_result)
         users_result.completed_at = Time.now
         if (users_result.campaign.threesixty?)
@@ -62,6 +65,13 @@ module UsersResults
       # Sets status to generating and sends to generate report
       users_report.generating!
       ::UsersReports::GeneratePdfJob.perform_later(users_report, subject_user)
+    end
+
+    def send_necessary_emails
+      subject = users_result.threesixty_subject
+      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::SUBJECT_REPORT_READY, threesixty_campaign: threesixty_campaign, subject: subject)
+      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::MANAGER_REPORT_READY, threesixty_campaign: threesixty_campaign, subject: subject)
+      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::APPROVE_REPORT, threesixty_campaign: threesixty_campaign, subject: subject)
     end
   end
 end

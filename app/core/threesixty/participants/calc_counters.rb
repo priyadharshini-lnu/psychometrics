@@ -25,19 +25,19 @@ module Threesixty
       attr_reader :user_ids, :option, :campaign
 
       def total_evaluators
-        @total_evaluators ||= Participant.select('count(id) as cache_counter, subject_id').active.actual_by_options(option).where(subject_id: user_ids, campaign: campaign).
+        @total_evaluators ||= Threesixty::Participant.select('count(id) as cache_counter, subject_id').active.actual_by_options(option).where(subject_id: user_ids, campaign: campaign).
           group(:subject_id).index_by(&:subject_id)
       end
 
       def total_evaluations
-        @total_evaluations ||= Participant.select('count(id) as cache_counter, evaluator_id').
+        @total_evaluations ||= Threesixty::Participant.select('count(id) as cache_counter, evaluator_id').
           active.actual_by_options(option).where(evaluator_id: user_ids, campaign: campaign).group(:evaluator_id).index_by(&:evaluator_id)
       end
 
       def completed_evaluations
         @completed_evaluations ||=
           if option.participants.dig('manager', 'can_approves_evaluations')
-            Participant.select('count(id) as cache_counter, evaluator_id').active.actual_by_options(option).
+            Threesixty::Participant.select('count(id) as cache_counter, evaluator_id').active.actual_by_options(option).
               where(evaluator_id: user_ids, manager_evaluation_status: :approved, campaign: campaign).
               group(:evaluator_id).
               index_by(&:evaluator_id)
@@ -52,7 +52,7 @@ module Threesixty
       def completed_evaluators
         @completed_evaluators ||=
           if option.participants.dig('manager', 'can_approves_evaluations')
-            Participant.select('count(id) as cache_counter, subject_id').active.actual_by_options(option).
+            Threesixty::Participant.select('count(id) as cache_counter, subject_id').active.actual_by_options(option).
               where(subject_id: user_ids, manager_evaluation_status: :approved, campaign: campaign).
               group(:subject_id).
               index_by(&:subject_id)

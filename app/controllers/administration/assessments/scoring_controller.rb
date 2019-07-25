@@ -5,12 +5,14 @@ module Administration
       append_before_action :pundit_authorize
 
       def update
-        scoring = ::Builders::ScoringBuilder.new(@assessment, params.require(:scoring), current_user)
-        if scoring.save
-          render json: { data: ::Assessments::AssessmentSerializer.new(@assessment).to_hash(include: '**') }
-        else
-          render json: { error: true }, status: 400
-        end
+        scoring = ::Builders::ScoringBuilder.new(
+          @assessment,
+          params[:scoring],
+          params[:question_recoding],
+          current_user
+        )
+        scoring.save!
+        render json: { data: ::Assessments::AssessmentSerializer.new(@assessment).to_hash(include: '**') }
       end
 
       private

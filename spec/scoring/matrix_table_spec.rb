@@ -25,5 +25,18 @@ RSpec.describe Scoring::MatrixTable do
         end
       end
     end
+
+    context 'with not applicable option' do
+      context 'when answer: s1c1, no applicable, s2c3' do
+        it 'returns nil' do
+          result = matrix_table.calculate(Question.new, {'answers' => [{'scale' => 0, 'choice' => 0, 'value' => true}, {'scale' => 1, 'choice' => 2, 'value' => true}], 'not_applicable' => {'1' => true}}, template_data)[:value]
+          expect(result).to eq(3/2.0)
+        end
+      end
+      it 'returns nil' do
+        result = matrix_table.calculate(Question.new, {'answers' => [],'not_applicable' => {'0' => true, '1' => true, '2' => true}}, template_data)[:value]
+        expect(result).to be_nil
+      end
+    end
   end
 end

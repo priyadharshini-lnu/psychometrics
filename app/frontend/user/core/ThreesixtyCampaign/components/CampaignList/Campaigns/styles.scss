@@ -1,0 +1,172 @@
+@import 'user/styles/variables';
+
+:global {
+  .cards .card {
+    margin-left: 16px;
+    max-width: 20%;
+    flex: 1;
+
+    &:nth-child(1) {
+      margin-left: 0;
+    }
+
+    .cover {
+      position: relative;
+      display: flex;
+      align-items: center;
+      flex-direction: column;
+      height: 120px;
+      background: $normal-color;
+
+
+      .caption {
+        display: flex;
+        align-items: center;
+        width: 100%;
+        padding: 12px;
+
+        .title {
+          margin-left: 5px;
+          font-weight: bold;
+          color: #646464;
+        }
+
+        .icon {
+          background: #646464;
+          width: 36px;
+          height: 36px;
+          border-radius: 50%;
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          fill: #fff;
+
+          svg {
+            margin-left: -2px;
+          }
+        }
+      }
+
+      img {
+        max-height: 100%;
+      }
+
+      .card-progress {
+        position: absolute;
+        bottom: -13px;
+        width: 90%;
+        margin: 0 auto;
+        padding: 2px 8px;
+        background: #fff;
+        border-radius: 16px;
+        color: $gray-color;
+      }
+
+
+      &.threesixty {
+        background: #246479;
+
+        .caption .title {
+          color: #fff;
+        }
+
+        .icon {
+          background: #fff;
+
+          svg {
+            fill: #246479;
+          }
+        }
+      }
+
+    }
+
+    .service {
+      position: absolute;
+      top: 16px;
+      right: 16px;
+    }
+
+    .card-body {
+      padding: 12px;
+      margin-top: 16px;
+    }
+
+    .card-content {
+      display: flex;
+      flex-direction: column;
+
+      .card-title {
+        font-weight: bold;
+        height: 60px;
+      }
+
+      .info-line {
+        font-size: 12px;
+        padding: 16px 0;
+        color: $gray-color;
+        font-weight: bold;
+        display: flex;
+
+        .info-block {
+          margin-right: 12px;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          white-space: nowrap;
+          flex: 1;
+
+          i {
+            font-size: 13px;
+            margin-right: 5px;
+          }
+        }
+      }
+
+      .divider {
+        align-self: flex-end;
+        width: 90%;
+        height: 1px;
+        background: $normal-color;
+      }
+
+      .button {
+        padding-top: 8px;
+
+        .icon {
+          font-size: 20px;
+        }
+
+        a {
+          color: $main-dark;
+          display: flex;
+          align-items: center;
+
+          svg {
+            margin-right: 8px;
+          }
+        }
+      }
+    }
+  }
+
+  .rtl {
+    .cards .card {
+      margin-left: 0;
+      margin-right: 16px;
+      max-width: 20%;
+      flex: 1;
+
+      &:nth-child(1) {
+        margin-right: 0;
+      }
+    }
+
+    .button {
+      svg {
+        margin-left: 8px;
+        margin-right: 0;
+      }
+    }
+  }
+
+}

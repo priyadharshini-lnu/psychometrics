@@ -22,10 +22,10 @@ describe Threesixty::Subjects::Remove do
   end
 
   it "removes subject's participant" do
-    participant = create(:participant, subject: subject.user, campaign: campaign)
+    participant = create(:threesixty_participant, subject: subject.user, campaign: campaign)
     Threesixty::Subjects::Remove.call(subject, threesixty_campaign)
 
-    expect(Participant.find_by(id: participant.id)).to be_nil
+    expect(Threesixty::Participant.find_by(id: participant.id)).to be_nil
   end
 
   it 'deletes subject' do

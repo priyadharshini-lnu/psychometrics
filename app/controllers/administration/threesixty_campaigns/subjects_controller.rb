@@ -9,7 +9,7 @@ module Administration
 
       def index
         subjects = policy_scope(::Threesixty::Subject).
-          includes(:evaluator, :user).
+          includes(:self_evaluator, :user).
           where(campaign_id: threesixty_campaign.campaign_id).
           order(id: :desc).
           limit(params[:limit]).
@@ -28,6 +28,7 @@ module Administration
 
       def update
         resource.update!(resource_params)
+        Threesixty::Emails::Send.call!(Threesixty::Emails::Name::SUBJECT_REPORT_READY, threesixty_campaign: threesixty_campaign, subject: subject)
         render json: ::Threesixty::Subjects::Serialize.call!([resource], threesixty_campaign).first
       end
 
