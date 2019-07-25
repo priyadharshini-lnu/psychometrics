@@ -8,7 +8,10 @@ import connect from './connect'
 
 const { SubMenu } = Menu
 
-function Navigation ({ changeLocale }) {
+function Navigation ({ changeLocale, logout }) {
+  const onLogout = () => {
+    logout().then(() => location.reload())
+  }
   const langMenu = () => (
     <Menu onClick={({ key }) => { changeLocale(key).then(() => location.reload()) }}>
       <Menu.Item key="en">
@@ -42,9 +45,7 @@ function Navigation ({ changeLocale }) {
                 </span>
               )}
             >
-              <Menu.Item key="setting:1">Profile</Menu.Item>
-              <Menu.Divider />
-              <Menu.Item key="setting:4">Logout</Menu.Item>
+              <Menu.Item key="logout" onClick={onLogout}>Logout</Menu.Item>
             </SubMenu>
             <Menu.Item key="app" className="align-right">
               <Dropdown overlay={() => langMenu()} trigger={['click']}>
@@ -64,4 +65,5 @@ function Navigation ({ changeLocale }) {
     </Layout.Header>
   )
 }
+
 export default connect(Navigation)

@@ -17,7 +17,7 @@ module Threesixty
     end
 
     def relationships
-      Relationships::ByCampaign.new(object.campaign)
+      ::Relationships::ByCampaign.new(object.campaign)
     end
 
     def options
@@ -25,7 +25,7 @@ module Threesixty
     end
 
     def can_send_request_approval_email
-      Threesixty::Emails::IsRequestApprovalSendable.call!(object.campaign.threesixty_campaign)
+      Threesixty::Emails::IsRequestApprovalSendable.call!(threesixty_campaign: object.campaign.threesixty_campaign)
     end
 
     def requirements

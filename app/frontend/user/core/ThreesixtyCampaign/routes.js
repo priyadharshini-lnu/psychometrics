@@ -6,6 +6,11 @@ import Report, { ReportSidebar } from './components/Report'
 
 const routes = [
   {
+    path: '/',
+    main: CampaignList,
+    exact: true,
+  },
+  {
     path: '/campaigns',
     main: CampaignList,
     exact: true,

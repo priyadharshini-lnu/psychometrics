@@ -62,7 +62,7 @@ export default function NominationForm (props) {
                     text: userPresenter.getFullNameWithEmail(user),
                   }))}
                   autoFocus
-                  placeholder="type name or email..."
+                  placeholder={I18n.t('threesixty.user_name_input_placeholder')}
                   onChange={email => updateForm({ ...form.attrs, email })}
                   onSelect={email => updateForm({ ...form.attrs, email })}
                 >
@@ -73,7 +73,7 @@ export default function NominationForm (props) {
                 </AutoComplete>
               </Form.Item>
               <Form.Item>
-                as my
+                {I18n.t('threesixty.as_my')}
               </Form.Item>
               <Form.Item
                 validateStatus={form.errors.relationshipId ? 'error' : ''}
@@ -82,7 +82,7 @@ export default function NominationForm (props) {
                 <Select
                   value={form.attrs.relationshipId}
                   onChange={relationshipId => updateForm({ ...form.attrs, relationshipId })}
-                  placeholder="Select Relationship"
+                  placeholder={I18n.t('threesixty.select_relationnship')}
                   className="relationship-select"
                 >
                   <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
@@ -111,14 +111,14 @@ export default function NominationForm (props) {
           <Col>
             <Button type="link" onClick={handleRequestApproval}>
               <Icon type="team" />
-              Email Approval Request
+              {I18n.t('threesixty.email_approve_request')}
             </Button>
           </Col>
           )}
           <Col>
             <Button type="primary" onClick={handleSendEvaluatorReminder}>
               <Icon type="team" />
-              Remind All
+              {I18n.t('threesixty.remind_all')}
             </Button>
           </Col>
           {isSelf || (

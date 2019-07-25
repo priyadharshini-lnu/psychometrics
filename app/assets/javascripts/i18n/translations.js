@@ -22,6 +22,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "or": "Or",
     "language": "Language",
     "remind_all": "Remind All",
+    "email_approve_request": "Email Approval Request",
     "approve_all": "Approve All",
     "deny_all": "Deny All",
     "nominate": "Nominate",
@@ -30,6 +31,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "add": "Add",
     "cancel": "Cancel",
     "back_to_tasks": "Back to tasks",
+    "select_relationnship": "Select Relationship",
+    "user_name_input_placeholder": "type name or email...",
+    "as_my": "as my"
   },
   "reports": {
     "modules": {
