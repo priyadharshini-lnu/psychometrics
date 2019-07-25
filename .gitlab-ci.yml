@@ -12,7 +12,7 @@ test:
     key: psychometrics-cache-key
     paths:
     - vendor/
-    - node_modules/
+    # - node_modules/
   before_script:
   # install ssh-agent
   - 'which ssh-agent || ( apt-get update -y && apt-get install openssh-client -y )'
