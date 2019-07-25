@@ -24,7 +24,7 @@ export default function Nominations (props) {
             <div>
               <Icon type="arrow-left" />
               {' '}
-              Back to tasks
+              {I18n.t('threesixty.back_to_tasks')}
             </div>
           )}
           onBack={() => props.history.push(`/campaigns/${props.match.params.campaignId}`)}

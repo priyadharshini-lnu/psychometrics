@@ -12,8 +12,12 @@ describe Threesixty::EvaluatorSerializer do
     let!(:evaluator_with_subject) do
       create(:threesixty_evaluator, user: dustin, campaign: campaign, completed_evaluations_count: 3, evaluations_count: 5)
     end
-    let(:option) { create(:threesixty_option, participants: { 'manager' => { 'can_approves_evaluations' => true } }) }
-
+    let!(:option) do
+      create(:threesixty_option,
+        participants: { "manager" =>  { "can_approves_evaluations" => true } },
+        reports: { "access" =>  { "self_can_access" => true } }
+      )
+    end
     let!(:evaluator) do
       create(:threesixty_evaluator, user: create(:user), campaign: campaign, completed_evaluations_count: 3, evaluations_count: 5)
     end

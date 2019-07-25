@@ -73,7 +73,7 @@ function ReportList ({ approvalReports, subjectReport }) {
       )}
 
       {approvalReports.length > 0
-        && <CollapseItem key="approve_reports" title="Approve reports" list={approvalReports} />}
+        && <CollapseItem key="approve_reports" title={I18n.t('threesixty.approve_reports')} list={approvalReports} />}
       <Modal
         title={(
           <div className="help-modal-header">

@@ -515,6 +515,8 @@ Rails.application.routes.draw do
       resources :campaigns, only: %i(show index) do
         resources :nominations do
           post :search_evaluators
+          get :request_approval
+          get :send_evaluator_reminders
           resources :evaluators do
             put :update_status
           end
@@ -529,6 +531,9 @@ Rails.application.routes.draw do
         end
         resources :assessments, only: %i(index)
         resources :users_results, only: %i[update]
+        collection do
+          post :change_locale
+        end
       end
     end
 

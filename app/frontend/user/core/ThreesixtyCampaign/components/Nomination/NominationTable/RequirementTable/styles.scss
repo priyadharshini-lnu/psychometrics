@@ -1,6 +1,10 @@
 @import 'user/styles/variables';
 
 :global {
+
+  .rtl .condition-header {
+    text-align: right;
+  }
   .requirement-table {
     border: 1px solid $gray-color;
     border-left: 3px solid $main-color;
