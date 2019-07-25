@@ -35,4 +35,11 @@ describe Threesixty::Evaluators::CreateAll do
     expect(Threesixty::Evaluator.find_by(user_id: participants.first.evaluator_id).evaluations_count).to eq 2
     expect(Threesixty::Subject.find_by(user_id: participants.first.subject_id).evaluators_count).to eq 1
   end
+
+  it 'creates membership for evaluator' do
+    subject.each do |participant|
+      membership_exits = threesixty_campaign.project.memberships.exists?(user_id: participant.evaluator_id)
+      expect(membership_exits).to eq(true)
+    end
+  end
 end

@@ -14,6 +14,7 @@ module Threesixty
           evaluator_user = fetch_or_create_evaluator_user(evaluator)
           create_campaigns_user(evaluator_user)
           create_evaluator(evaluator, evaluator_user)
+          create_membership(evaluator_user)
           create_participant(evaluator, evaluator_user)
         end
         broadcast :ok, result
@@ -52,6 +53,10 @@ module Threesixty
       private
 
       attr_reader :evaluators, :threesixty_campaign, :project
+
+      def create_membership(user)
+        threesixty_campaign.project.memberships.find_or_create_by!(user_id: user.id)
+      end
     end
   end
 end
