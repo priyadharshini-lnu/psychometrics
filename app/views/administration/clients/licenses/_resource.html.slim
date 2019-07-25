@@ -7,6 +7,7 @@ tr id=dom_id(resource)
               data: { confirm: resource.decorate.toggle_status_confirmation }
       = resource.decorate.status
   td = resource.decorate.display_name
+  td = resource.type
   td = resource.decorate.used_number(client)
   - if current_user.is?(:superadmin) && client.root?
     td = resource.decorate.used_overuse_number

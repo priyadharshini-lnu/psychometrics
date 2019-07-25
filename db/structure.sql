@@ -5,6 +5,7 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
 
@@ -20,20 +21,6 @@ CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
 --
 
 COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings';
-
-
---
--- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
-
-
---
--- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
 
 
 --
@@ -1292,7 +1279,10 @@ CREATE TABLE public.license_usages (
     license_id integer,
     assigns_report_id integer,
     client_id integer NOT NULL,
-    user_id bigint
+    user_id bigint,
+    extras jsonb DEFAULT '{}'::jsonb NOT NULL,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    campaign_id bigint
 );
 
 
@@ -1330,7 +1320,8 @@ CREATE TABLE public.licenses (
     end_date date NOT NULL,
     start_date date NOT NULL,
     report_family_id integer NOT NULL,
-    disabled boolean DEFAULT false
+    disabled boolean DEFAULT false,
+    type integer DEFAULT 0
 );
 
 
@@ -1905,9 +1896,9 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     category integer DEFAULT 0,
     provider integer
@@ -2536,7 +2527,6 @@ CREATE TABLE public.users_assessments (
     assessment_id bigint,
     user_id bigint,
     campaign_id bigint,
-    selected_locale character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -4207,6 +4197,13 @@ CREATE INDEX index_license_usages_on_assigns_report_id ON public.license_usages 
 
 
 --
+-- Name: index_license_usages_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_campaign_id ON public.license_usages USING btree (campaign_id);
+
+
+--
 -- Name: index_license_usages_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4529,13 +4526,6 @@ CREATE INDEX index_threesixty_campaigns_on_report_id ON public.threesixty_campai
 
 
 --
--- Name: index_threesixty_email_templates_campaign_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_threesixty_email_templates_campaign_name ON public.threesixty_email_templates USING btree (threesixty_campaign_id, name);
-
-
---
 -- Name: index_threesixty_evaluators_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4809,13 +4799,6 @@ CREATE INDEX threesixty_nomination_requirements_cam_id ON public.threesixty_nomi
 
 
 --
--- Name: users_assessments_user_uniquesness_index; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX users_assessments_user_uniquesness_index ON public.users_assessments USING btree (user_id, campaign_id, assessment_id);
-
-
---
 -- Name: communications fk_rails_03e5799fcb; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -4909,6 +4892,14 @@ ALTER TABLE ONLY public.assigns
 
 ALTER TABLE ONLY public.memberships
     ADD CONSTRAINT fk_rails_1e06b93eb5 FOREIGN KEY (project_membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: license_usages fk_rails_2397339a92; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_2397339a92 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE SET NULL;
 
 
 --
@@ -5871,6 +5862,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190717131104'),
 ('20190720204116'),
 ('20190721163707'),
-('20190721170324');
+('20190721170324'),
+('20190724063809'),
+('20190724064016');
 
 

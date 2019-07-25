@@ -2,7 +2,7 @@
   table.table
     thead
       tr
-        th style='text-align: right;' = t('.report_family')
+        th style='text-align: right;' = t('.name')
         th = t('.used_license_number')
         - if current_user.is?(:superadmin) && client.root?
           th = t('.used_license_overuse_number')
@@ -11,7 +11,7 @@
         - if current_user.is?(:superadmin)
           th = t('.end_date')
     tbody
-      - resource.licenses.each do |license|
+      - resource.licenses.active.each do |license|
         tr
           td align='right' = license.decorate.display_name
           td = license.decorate.used_number(client)
