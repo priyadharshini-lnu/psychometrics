@@ -8,7 +8,7 @@ describe Threesixty::Subjects::IsNominationRequirementComplete do
   let!(:threesixty_subject) { create(:threesixty_subject, campaign: threesixty_campaign.campaign) }
 
   it 'returns true if there are no matching nomination criteria' do
-    result = described_class.call!(threesixty_campaign, threesixty_subject.user)
+    result = described_class.call!(threesixty_campaign, threesixty_subject.user)[threesixty_subject.user_id]
 
     expect(result).to eq(true)
   end
@@ -21,13 +21,13 @@ describe Threesixty::Subjects::IsNominationRequirementComplete do
       conditions: [{ 'value' => 1, 'comparator' => 'equal', 'relationship_id' => manager_relationship.id }]
     )
     create(
-      :participant,
+      :threesixty_participant,
       subject_id: threesixty_subject.user_id,
       campaign_id: threesixty_campaign.campaign_id,
       relationship: manager_relationship
     )
 
-    result = described_class.call!(threesixty_campaign, threesixty_subject.user)
+    result = described_class.call!(threesixty_campaign, threesixty_subject.user)[threesixty_subject.user_id]
 
     expect(result).to eq(true)
   end
@@ -40,13 +40,13 @@ describe Threesixty::Subjects::IsNominationRequirementComplete do
       conditions: [{ 'value' => 2, 'comparator' => 'equal', 'relationship_id' => manager_relationship.id }]
     )
     create(
-      :participant,
+      :threesixty_participant,
       subject_id: threesixty_subject.user_id,
       campaign_id: threesixty_campaign.campaign_id,
       relationship: manager_relationship,
     )
 
-    result = described_class.call!(threesixty_campaign, threesixty_subject.user)
+    result = described_class.call!(threesixty_campaign, threesixty_subject.user)[threesixty_subject.user_id]
 
     expect(result).to eq(false)
   end

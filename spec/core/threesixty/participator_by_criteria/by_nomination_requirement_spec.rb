@@ -5,9 +5,17 @@ require 'rails_helper'
 describe Threesixty::ParticipatorByCriteria::ByNominationRequirement do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
   let(:threesixty_subjects) { create_list(:threesixty_subject, 3) }
+  let(:users) { threesixty_subjects.map(&:user) }
 
   context 'completed criteria' do
     it 'returns subjects with nomination completed criteria' do
+      allow(Threesixty::Subjects::IsNominationRequirementComplete).to receive(:call!).
+      with(threesixty_campaign, users).
+      and_return({
+        users[0].id => true,
+        users[1].id => true
+      })
+
       allow(Threesixty::Subjects::IsNominationRequirementComplete).to receive(:call!).
         with(threesixty_campaign, threesixty_subjects[0].user).and_return(true)
       allow(Threesixty::Subjects::IsNominationRequirementComplete).to receive(:call!).
@@ -29,11 +37,12 @@ describe Threesixty::ParticipatorByCriteria::ByNominationRequirement do
   context 'not_completed criteria' do
     it 'returns subjects with nomination not completed criteria' do
       allow(Threesixty::Subjects::IsNominationRequirementComplete).to receive(:call!).
-        with(threesixty_campaign, threesixty_subjects[0].user).and_return(true)
-      allow(Threesixty::Subjects::IsNominationRequirementComplete).to receive(:call!).
-        with(threesixty_campaign, threesixty_subjects[1].user).and_return(false)
-      allow(Threesixty::Subjects::IsNominationRequirementComplete).to receive(:call!).
-        with(threesixty_campaign, threesixty_subjects[2].user).and_return(false)
+        with(threesixty_campaign, users).
+        and_return({
+          users[0].id => true,
+          users[1].id => false,
+          users[2].id => false,
+        })
 
       criteria_list = [{ 'field' => 'nomination_requirement', 'value' => 'not_completed' }]
       results = described_class.call!(

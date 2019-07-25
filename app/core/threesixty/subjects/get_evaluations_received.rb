@@ -3,7 +3,7 @@
 module Threesixty
   module Subjects
     class GetEvaluationsReceived < BaseCommand
-      attr_reader :threesixty_campaign, :user_ids
+      private_attr_reader :threesixty_campaign, :user_ids
 
       def initialize(threesixty_campaign, user_ids)
         @threesixty_campaign = threesixty_campaign

@@ -3,30 +3,40 @@
 module Threesixty
   module Subjects
     class IsNominationRequirementComplete < BaseCommand
-      attr_reader :threesixty_campaign, :user
+      attr_reader :threesixty_campaign, :users
 
-      def initialize(threesixty_campaign, user)
+      def initialize(threesixty_campaign, users)
         @threesixty_campaign = threesixty_campaign
-        @user = user
+        @users = Array.wrap(users)
       end
 
       def call
-        nomination_requirement = Threesixty::NominationRequirements::FindForUsers.call!(
-          user,
-          threesixty_campaign
-        )[user.id]
+        results = users.each_with_object({}) do |user, acc|
+          next acc[user.id] = true unless nomination_requirement_by_user_id[user.id]
 
-        return broadcast :ok, true unless nomination_requirement
+          acc[user.id] = Threesixty::NominationRequirements::IsValid.call!(
+            nomination_requirement_by_user_id[user.id],
+            subject_evaluator_counters.dig(user.id, :all)
+          )
+        end
 
-        subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
-          [user.id],
+        broadcast :ok, results
+      end
+
+      private
+
+      def subject_evaluator_counters
+        @subject_evaluator_counters ||= ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
+          users.map(&:id),
           threesixty_campaign,
           [:all]
         )
+      end
 
-        broadcast :ok, Threesixty::NominationRequirements::IsValid.call!(
-          nomination_requirement,
-          subject_evaluator_counters.dig(user.id, :all)
+      def nomination_requirement_by_user_id
+        @nomination_requirement_by_user_id ||= ::Threesixty::NominationRequirements::FindForUsers.call!(
+          users,
+          threesixty_campaign
         )
       end
     end

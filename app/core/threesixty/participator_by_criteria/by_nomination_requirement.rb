@@ -8,16 +8,16 @@ module Threesixty
       def user_matches_criteria?(user, criteria)
         return criteria['value'] == 'completed' if participator_type == :evaluator
 
-        nomination_requirement_completed = Threesixty::Subjects::IsNominationRequirementComplete.call!(
-          threesixty_campaign,
-          user
-        )
+        return nomination_requirements_complete[user.id] if criteria['value'] == 'completed'
 
-        if criteria['value'] == 'completed'
-          nomination_requirement_completed
-        elsif criteria['value'] == 'not_completed'
-          !nomination_requirement_completed
-        end
+        return !nomination_requirements_complete[user.id] if criteria['value'] == 'not_completed'
+      end
+
+      def nomination_requirements_complete
+        @nomination_requirements_complete ||= Threesixty::Subjects::IsNominationRequirementComplete.call!(
+          threesixty_campaign,
+          users
+        )
       end
     end
   end

@@ -63,7 +63,7 @@ module Threesixty
 
       def call
         participators = participator_types.each_with_object([]) do |participator_type, acc|
-          acc << get_participantables_by_filter(participator_type)
+          acc << get_participators_by_filter(participator_type)
         end.flatten.uniq
 
         broadcast :ok, participators
@@ -73,7 +73,7 @@ module Threesixty
 
       private_attr_reader :threesixty_campaign, :participator_types, :criteria_list
 
-      def get_participantables_by_filter(participator_type)
+      def get_participators_by_filter(participator_type)
         participators = @participators || get_participators(participator_type)
         CRITERIA_RESOLVER.each do |resolver|
           valid_criteria = criteria_list.select { |c| resolver[:field_types].include?(c['field']) }
