@@ -562,7 +562,7 @@ Rails.application.routes.draw do
     get 'survey_instructions', to: 'home#survey_instructions'
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'assessment_completed', to: 'home#assessment_completed'
-    root to: 'assigns#index'
+    root to: 'threesixty/campaigns#index'
   end
 
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|
