@@ -51,12 +51,10 @@ const ViewParticipantButton = ({ recipientsCount, recipientType, openModal }) =>
 
   if (recipientsCount === 0) {
     return (
-      <Button className="mlm" type="primary" size="small" disabled="true">
+      <Button className="mlm" type="primary" size="small" disabled>
         No
-        {' '}
         {pluralize.plural(recipientType)}
-        {' '}
-for this criteria
+        for this criteria
       </Button>
     )
   }

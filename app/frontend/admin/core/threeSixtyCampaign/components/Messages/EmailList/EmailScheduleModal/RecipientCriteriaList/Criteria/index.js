@@ -3,6 +3,7 @@ import { Select, Icon } from 'antd'
 import _ from 'lodash'
 import cs from 'classnames'
 import { NAME } from 'constants/emailTemplate'
+import { TYPES } from 'constants/emailCriteria'
 import style from './style.scss'
 import StringComparator from './Comparator/String'
 import DatasheetComparator from './Comparator/Datasheet'
@@ -11,12 +12,11 @@ import NominationRequirementComparator from './Comparator/NominationRequirement'
 import SelfEvaluationComparator from './Comparator/SelfEvaluation'
 import EvaluationComparator from './Comparator/Evaluation'
 import EvaluatorTypeComparator from './Comparator/EvaluatorType'
-
 import NumberComparator from './Comparator/Number'
 import TaskComparator from './Comparator/Task'
 import ManagerTaskComparator from './Comparator/ManagerTask'
 
-export default function RecipientCriteriaList ({
+export default function Criteria ({
   emailName,
   criteria: {
     field, subField, comparator, value,
@@ -37,28 +37,28 @@ export default function RecipientCriteriaList ({
       value,
     }
     switch (field) {
-      case 'name_or_email':
-      case 'first_name':
-      case 'last_name':
+      case TYPES.NAME_OR_EMAIL:
+      case TYPES.FIRST_NAME:
+      case TYPES.LAST_NAME:
         return <StringComparator {...props} />
-      case 'datasheet':
-      case 'subject_datasheet':
+      case TYPES.DATASHEET:
+      case TYPES.SUBJECT_DATASHEET:
         return <DatasheetComparator {...props} />
-      case 'relationship':
+      case TYPES.RELATIONSHIP:
         return <RelationshipComparator {...props} />
-      case 'nomination_requirements':
+      case TYPES.NOMINATION_REQUIREMENTS:
         return <NominationRequirementComparator {...props} />
-      case 'self_evaluations':
+      case TYPES.SELF_EVALUATIONS:
         return <SelfEvaluationComparator {...props} />
-      case 'evaluations':
+      case TYPES.EVALUATIONS:
         return <EvaluationComparator {...props} />
-      case 'evaluations_received':
+      case TYPES.EVALUATIONS_RECEIVED:
         return <NumberComparator {...props} />
-      case 'tasks':
+      case TYPES.TASKS:
         return <TaskComparator {...props} />
-      case 'manager_tasks':
+      case TYPES.MANAGER_TASKS:
         return <ManagerTaskComparator {...props} />
-      case 'evaluator_type':
+      case TYPES.EVALUATOR_TYPE:
         return <EvaluatorTypeComparator {...props} />
       default:
         return null
@@ -69,23 +69,23 @@ export default function RecipientCriteriaList ({
     <div className="mbm">
       <div>
         <Select dropdownMatchSelectWidth={false} size="small" value={field} onChange={value => update('field', value)}>
-          <Select.Option key="name_or_email">Name or Email</Select.Option>
-          <Select.Option key="last_name">Last name</Select.Option>
-          <Select.Option key="first_name">First name</Select.Option>
-          <Select.Option key="datasheet">Metadata</Select.Option>
-          <Select.Option key="relationship">Has Relationship</Select.Option>
-          <Select.Option key="self_evaluations">Self Evaluations</Select.Option>
+          <Select.Option key={TYPES.NAME_OR_EMAIL}>Name or Email</Select.Option>
+          <Select.Option key={TYPES.LAST_NAME}>Last name</Select.Option>
+          <Select.Option key={TYPES.FIRST_NAME}>First name</Select.Option>
+          <Select.Option key={TYPES.DATASHEET}>Metadata</Select.Option>
+          <Select.Option key={TYPES.RELATIONSHIP}>Has Relationship</Select.Option>
+          <Select.Option key={TYPES.SELF_EVALUATIONS}>Self Evaluations</Select.Option>
           {evaluatorEmail() || [
-            <Select.Option key="nomination_requirements">Nomination Requirements</Select.Option>,
-            <Select.Option key="evaluations">Evaluations</Select.Option>,
-            <Select.Option key="evaluations_received">Evaluations Received</Select.Option>,
-            <Select.Option key="tasks">Tasks</Select.Option>,
-            <Select.Option key="manager_tasks">Manager Tasks</Select.Option>,
+            <Select.Option key={TYPES.NOMINATION_REQUIREMENTS}>Nomination Requirements</Select.Option>,
+            <Select.Option key={TYPES.EVALUATIONS}>Evaluations</Select.Option>,
+            <Select.Option key={TYPES.EVALUATIONS_RECEIVED}>Evaluations Received</Select.Option>,
+            <Select.Option key={TYPES.TASKS}>Tasks</Select.Option>,
+            <Select.Option key={TYPES.MANAGER_TASKS}>Manager Tasks</Select.Option>,
           ]
           }
           {evaluatorEmail() && [
-            <Select.Option key="subject_datasheet">Subject Metadata</Select.Option>,
-            <Select.Option key="evaluator_type">External Participants</Select.Option>,
+            <Select.Option key={TYPES.SUBJECT_DATASHEET}>Subject Metadata</Select.Option>,
+            <Select.Option key={TYPES.EVALUATOR_TYPE}>External Participants</Select.Option>,
           ]
           }
         </Select>

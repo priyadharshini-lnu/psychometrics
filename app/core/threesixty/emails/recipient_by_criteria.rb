@@ -14,8 +14,8 @@ module Threesixty
       def call
         if recipient_criteria.blank?
           results = []
-          results + threesixty_campaign.subjects.to_a  if participator_types.include?(:subject)
-          results + threesixty_campaign.evaluators.to_a  if participator_types.include?(:evaluator)
+          results = results + threesixty_campaign.subjects.to_a  if participator_types.include?(:subject)
+          results = results + threesixty_campaign.evaluators.to_a  if participator_types.include?(:evaluator)
         else
           results = ::Threesixty::ParticipatorByCriteria::Filter.call!(
             threesixty_campaign: threesixty_campaign,
