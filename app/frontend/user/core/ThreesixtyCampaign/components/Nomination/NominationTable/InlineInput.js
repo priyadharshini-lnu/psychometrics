@@ -51,8 +51,8 @@ export default function InlineInput ({
           </AutoComplete>
         </Form.Item>
         <Form.Item>
-          <Button type="primary" onClick={handleAdd}>Add</Button>
-          <Button type="default" onClick={hideForm}>Cancel</Button>
+          <Button type="primary" onClick={handleAdd}>{I18n.t('threesixty.add')}</Button>
+          <Button type="default" onClick={hideForm}>{I18n.t('threesixty.cancel')}</Button>
         </Form.Item>
       </Form>
     </div>

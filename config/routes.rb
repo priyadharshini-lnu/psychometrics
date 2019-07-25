@@ -532,6 +532,9 @@ Rails.application.routes.draw do
         end
         resources :assessments, only: %i(index)
         resources :users_results, only: %i[update]
+        collection do
+          post :change_locale
+        end
       end
     end
 

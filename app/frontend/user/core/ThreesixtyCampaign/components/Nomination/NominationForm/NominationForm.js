@@ -39,7 +39,7 @@ export default function NominationForm (props) {
     <div className="nominations-form">
       <Title level={4}>
         <div>
-          Nominate Evaluators to
+          {I18n.t('threesixty.nominate_evaluators')}
           {' '}
           {isSelf ? 'Yourself' : userPresenter.getFullNameWithEmail(subject)}
         </div>
@@ -85,7 +85,7 @@ export default function NominationForm (props) {
                   placeholder="Select Relationship"
                   className="relationship-select"
                 >
-                  <Option value="" disabled>Select Relationship</Option>
+                  <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
                   {relationships.map(relation => (
                     <Option
                       key={relation.id}
@@ -98,7 +98,7 @@ export default function NominationForm (props) {
               </Form.Item>
               <Form.Item>
                 <Button onClick={handleAdd} type="primary">
-                  Nominate
+                  {I18n.t('threesixty.nominate')}
                 </Button>
               </Form.Item>
             </Form>
@@ -116,7 +116,7 @@ export default function NominationForm (props) {
           </Col>
           )}
           <Col>
-            <Button type="link" onClick={handleSendEvaluatorReminder}>
+            <Button type="primary" onClick={handleSendEvaluatorReminder}>
               <Icon type="team" />
               Remind All
             </Button>
@@ -126,12 +126,12 @@ export default function NominationForm (props) {
             <div className="divider" />
             <Col>
               <Button type="primary">
-                Approve All
+                {I18n.t('threesixty.approve_all')}
               </Button>
             </Col>
             <Col>
               <Button type="danger" className="deny-button">
-                Deny All
+                {I18n.t('threesixty.deny_all')}
               </Button>
             </Col>
           </>
