@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
 module Threesixty
-  module ParticipatableByCriteria
+  module ParticipatorByCriteria
     class BySubjectStatus < Base
       def call
-        results = participatables.select do |subject|
+        results = participators.select do |subject|
           criteria_list.any? do |criteria|
             status = Threesixty::Participants::GetStatus.call!(
               subject,

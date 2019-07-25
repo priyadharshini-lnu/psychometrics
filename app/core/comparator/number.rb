@@ -2,7 +2,7 @@
 
 module Comparator
   class Number < BaseCommand
-    attr_reader :lhs, :rhs, :comparator
+    private_attr_reader :lhs, :rhs, :comparator
 
     def initialize(lhs, rhs, comparator)
       @lhs = lhs.to_i

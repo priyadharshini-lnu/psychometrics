@@ -220,7 +220,7 @@ Rails.application.routes.draw do
         resources :email_schedules do
           collection do
             get :schedulable_templates
-            post :receipient_by_criteria
+            post :recipient_by_criteria
           end
         end
 

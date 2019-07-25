@@ -2,12 +2,12 @@
 
 require 'rails_helper'
 
-describe Threesixty::ParticipatableByCriteria::BySelfEvaluation do
+describe Threesixty::ParticipatorByCriteria::BySelfEvaluation do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
   let(:threesixty_subjects) { create_list(:threesixty_subject, 3, campaign: threesixty_campaign.campaign) }
 
   context 'completed criteria' do
-    it 'returns participatables who have completed self evaluation' do
+    it 'returns participators who have completed self evaluation' do
       threesixty_subjects[0..1].each do |threesixty_subject|
         create(
           :users_result,
@@ -21,7 +21,7 @@ describe Threesixty::ParticipatableByCriteria::BySelfEvaluation do
       criteria_list = [{ 'field' => 'self_evaluations', 'value' => 'completed' }]
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
-        participatables: threesixty_subjects,
+        participators: threesixty_subjects,
         criteria_list: criteria_list
       )
 
@@ -40,7 +40,7 @@ describe Threesixty::ParticipatableByCriteria::BySelfEvaluation do
       criteria_list = [{ 'field' => 'self_evaluations', 'value' => 'completed' }]
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
-        participatables: threesixty_subjects,
+        participators: threesixty_subjects,
         criteria_list: criteria_list
       )
 
@@ -49,7 +49,7 @@ describe Threesixty::ParticipatableByCriteria::BySelfEvaluation do
   end
 
   context 'not_completed criteria' do
-    it "returns participatables who haven't completed self evaluation" do
+    it "returns participators who haven't completed self evaluation" do
       create(
         :users_result,
         campaign: threesixty_campaign.campaign,
@@ -61,7 +61,7 @@ describe Threesixty::ParticipatableByCriteria::BySelfEvaluation do
       criteria_list = [{ 'field' => 'self_evaluations', 'value' => 'not_completed' }]
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
-        participatables: threesixty_subjects,
+        participators: threesixty_subjects,
         criteria_list: criteria_list
       )
 

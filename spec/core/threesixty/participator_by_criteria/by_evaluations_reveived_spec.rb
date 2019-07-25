@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Threesixty::ParticipatableByCriteria::ByEvaluationsReceived do
+describe Threesixty::ParticipatorByCriteria::ByEvaluationsReceived do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
   let!(:threesixty_option) do
     create(
@@ -41,44 +41,44 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluationsReceived do
     )
   end
 
-  it 'returns participatables who have received evaluation which is equal to the criteria value' do
+  it 'returns participators who have received evaluation which is equal to the criteria value' do
     criteria_list = [{ 'field' => 'evaluations_received', 'comparator' => 'equal', 'value' => '2' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
-      participatables: threesixty_subjects,
+      participators: threesixty_subjects,
       criteria_list: criteria_list
     )
 
     expect(results).to match_array(threesixty_subjects[0..1])
   end
 
-  it 'returns participatables who have received evaluation which is less than to the criteria value' do
+  it 'returns participators who have received evaluation which is less than to the criteria value' do
     criteria_list = [{ 'field' => 'evaluations_received', 'comparator' => 'less_than', 'value' => '2' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
-      participatables: threesixty_subjects,
+      participators: threesixty_subjects,
       criteria_list: criteria_list
     )
 
     expect(results).to match_array([threesixty_subjects[2]])
   end
 
-  it 'returns participatables who have received evaluation which is more than than to the criteria value' do
+  it 'returns participators who have received evaluation which is more than than to the criteria value' do
     criteria_list = [{ 'field' => 'evaluations_received', 'comparator' => 'more_than', 'value' => '1' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
-      participatables: threesixty_subjects,
+      participators: threesixty_subjects,
       criteria_list: criteria_list
     )
 
     expect(results).to match_array(threesixty_subjects[0..1])
   end
 
-  it 'returns participatables who have received evaluation which is not equal to the criteria value' do
+  it 'returns participators who have received evaluation which is not equal to the criteria value' do
     criteria_list = [{ 'field' => 'evaluations_received', 'comparator' => 'not_equal', 'value' => '1' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
-      participatables: threesixty_subjects,
+      participators: threesixty_subjects,
       criteria_list: criteria_list
     )
 

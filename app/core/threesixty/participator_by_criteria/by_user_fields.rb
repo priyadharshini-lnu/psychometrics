@@ -1,16 +1,16 @@
 # frozen_string_literal: true
 
 module Threesixty
-  module ParticipatableByCriteria
+  module ParticipatorByCriteria
     class ByUserFields < Base
       def call
-        filtered_participatables = participatables.select do |participatable|
-          criteria_list.group_by { |criteria| criteria['field'] }.all? do |criteria_name, grouped_criteria_list|
-            user_matches_criteria?(participatable.user, grouped_criteria_list)
+        filtered_participators = participators.select do |participator|
+          criteria_list.group_by { |criteria| criteria['field'] }.all? do |_criteria_name, grouped_criteria_list|
+            user_matches_criteria?(participator.user, grouped_criteria_list)
           end
         end
 
-        broadcast :ok, filtered_participatables
+        broadcast :ok, filtered_participators
       end
 
       private
@@ -28,4 +28,3 @@ module Threesixty
     end
   end
 end
-

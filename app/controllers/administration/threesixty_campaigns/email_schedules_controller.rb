@@ -28,7 +28,7 @@ module Administration
         render json: email_schedules
       end
 
-      def receipient_by_criteria
+      def recipient_by_criteria
         users = ::Threesixty::Emails::RecipientByCriteria.call!(
           threesixty_campaign: threesixty_campaign,
           email_name: params[:email_name],

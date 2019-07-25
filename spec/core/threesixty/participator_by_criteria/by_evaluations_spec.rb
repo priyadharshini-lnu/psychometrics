@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Threesixty::ParticipatableByCriteria::ByEvaluations do
+describe Threesixty::ParticipatorByCriteria::ByEvaluations do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
   let!(:threesixty_option) do
     create(
@@ -13,7 +13,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluations do
   end
   let(:threesixty_subjects) { create_list(:threesixty_subject, 3, campaign: threesixty_campaign.campaign) }
 
-  it 'returns participatables who have completed all the evaluations' do
+  it 'returns participators who have completed all the evaluations' do
     threesixty_subjects.each do |threesixty_subject|
       create(
         :threesixty_participant,
@@ -36,14 +36,14 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluations do
     criteria_list = [{ 'field' => 'evaluations', 'value' => 'completed' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
-      participatables: threesixty_subjects,
+      participators: threesixty_subjects,
       criteria_list: criteria_list
     )
 
     expect(results).to match_array(threesixty_subjects[0..1])
   end
 
-  it "returns participatables who had not completed all evaluations" do
+  it "returns participators who had not completed all evaluations" do
     threesixty_subjects.each do |threesixty_subject|
       create(
         :threesixty_participant,
@@ -64,14 +64,14 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluations do
     criteria_list = [{ 'field' => 'evaluations', 'value' => 'not_completed' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
-      participatables: threesixty_subjects,
+      participators: threesixty_subjects,
       criteria_list: criteria_list
     )
 
     expect(results).to match_array(threesixty_subjects[1..2])
   end
 
-  it "returns participatables who have completed all evaluations but are waiting for approval" do
+  it "returns participators who have completed all evaluations but are waiting for approval" do
     threesixty_subjects[0..1].each do |threesixty_subject|
       create(
         :threesixty_participant,
@@ -108,7 +108,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluations do
     criteria_list = [{ 'field' => 'evaluations', 'value' => 'needs_approval' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
-      participatables: threesixty_subjects,
+      participators: threesixty_subjects,
       criteria_list: criteria_list
     )
 

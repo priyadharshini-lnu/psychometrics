@@ -7,7 +7,7 @@ module Administration
         update?
       end
 
-      def receipient_by_criteria?
+      def recipient_by_criteria?
         update?
       end
     end

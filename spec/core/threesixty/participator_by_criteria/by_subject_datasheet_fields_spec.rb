@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Threesixty::ParticipatableByCriteria::BySubjectDatasheetFields do
+describe Threesixty::ParticipatorByCriteria::BySubjectDatasheetFields do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
   let!(:threesixty_option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }
   let(:threesixty_evaluators) { create_list(:threesixty_evaluator, 3) }
@@ -41,7 +41,7 @@ describe Threesixty::ParticipatableByCriteria::BySubjectDatasheetFields do
     criteria_list = [{ 'field' => 'subject_datasheet', 'sub_field' => 'gender', 'value' => 'M' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
-      participatables: threesixty_evaluators,
+      participators: threesixty_evaluators,
       criteria_list: criteria_list
     )
 

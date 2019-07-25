@@ -3,6 +3,8 @@
 module Threesixty
   module Participants
     class GetTotalEvaluations < BaseCommand
+      private_attr_reader :user_ids, :option, :threesixty_campaign
+
       def initialize(threesixty_campaign, user_ids)
         @threesixty_campaign = threesixty_campaign
         @user_ids = user_ids
@@ -23,10 +25,6 @@ module Threesixty
 
         broadcast :ok, participants.index_by(&:evaluator_id)
       end
-
-      private
-
-      attr_reader :user_ids, :option, :threesixty_campaign
     end
   end
 end

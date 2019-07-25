@@ -27,8 +27,8 @@ describe Threesixty::Emails::RecipientByCriteria do
   end
 
   context 'recipient_criteria is present' do
-    it 'calls Threesixty::ParticipatableByCriteria::Filter' do
-      expect(Threesixty::ParticipatableByCriteria::Filter).to receive(:call!).and_return([threesixty_subject, threesixty_evaluator])
+    it 'calls Threesixty::ParticipatorByCriteria::Filter' do
+      expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).and_return([threesixty_subject, threesixty_evaluator])
 
       described_class.call!(
         threesixty_campaign: threesixty_campaign,
@@ -41,10 +41,10 @@ describe Threesixty::Emails::RecipientByCriteria do
   context 'adds default criteria' do
     it 'adds default criteria for subject_reminder email' do
       default_recipient_criteria = { 'field' => 'subject_status', 'value' => Threesixty::Participants::GetStatus::NOT_COMPLETED }
-      expect(Threesixty::ParticipatableByCriteria::Filter).to receive(:call!).
+      expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).
         with(
           threesixty_campaign: threesixty_campaign,
-          participatable_types: [:subject],
+          participator_types: [:subject],
           criteria_list: [default_recipient_criteria]
         ).and_return([threesixty_subject, threesixty_evaluator])
 
@@ -56,10 +56,10 @@ describe Threesixty::Emails::RecipientByCriteria do
 
     it 'adds default criteria for evaluator_reminder email' do
       default_recipient_criteria = { 'field' => 'evaluations', 'value' => 'not_completed' }
-      expect(Threesixty::ParticipatableByCriteria::Filter).to receive(:call!).
+      expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).
         with(
           threesixty_campaign: threesixty_campaign,
-          participatable_types: [:evaluator],
+          participator_types: [:evaluator],
           criteria_list: [default_recipient_criteria]
         ).and_return([threesixty_subject, threesixty_evaluator])
 

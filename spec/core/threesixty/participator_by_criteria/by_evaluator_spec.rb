@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Threesixty::ParticipatableByCriteria::ByEvaluatorType do
+describe Threesixty::ParticipatorByCriteria::ByEvaluatorType do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
   let(:threesixty_evaluators) { create_list(:threesixty_evaluator, 3, campaign: threesixty_campaign.campaign) }
 
@@ -13,7 +13,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluatorType do
       criteria_list = [{ 'field' => 'evaluator_type', 'value' => 'external' }]
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
-        participatables: threesixty_evaluators,
+        participators: threesixty_evaluators,
         criteria_list: criteria_list
       )
 
@@ -30,7 +30,7 @@ describe Threesixty::ParticipatableByCriteria::ByEvaluatorType do
       criteria_list = [{ 'field' => 'evaluator_type', 'value' => 'not_external' }]
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
-        participatables: threesixty_evaluators,
+        participators: threesixty_evaluators,
         criteria_list: criteria_list
       )
 

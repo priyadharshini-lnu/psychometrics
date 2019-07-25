@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Threesixty::ParticipatableByCriteria::ByRelationship do
+describe Threesixty::ParticipatorByCriteria::ByRelationship do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
   let!(:threesixty_option) do
     create(
@@ -38,9 +38,9 @@ describe Threesixty::ParticipatableByCriteria::ByRelationship do
     criteria_list = [{ 'field' => 'relationship', 'value' => manager_relationship.id }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
-      participatables: threesixty_subjects,
+      participators: threesixty_subjects,
       criteria_list: criteria_list,
-      participatable_type: :subject
+      participator_type: :subject
     )
 
     expect(results).to match_array(threesixty_subjects[0..1])
@@ -72,9 +72,9 @@ describe Threesixty::ParticipatableByCriteria::ByRelationship do
     criteria_list = [{ 'field' => 'relationship', 'value' => manager_relationship.id }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
-      participatables: threesixty_evaluators,
+      participators: threesixty_evaluators,
       criteria_list: criteria_list,
-      participatable_type: :evaluator
+      participator_type: :evaluator
     )
 
     expect(results).to match_array(threesixty_evaluators[0..1])

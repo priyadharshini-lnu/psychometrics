@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Threesixty
-  module ParticipatableByCriteria
+  module ParticipatorByCriteria
     class ByEvaluatorType < Base
       EXTERNAL = 'external'
       NOT_EXTERNAL = 'not_external'
@@ -9,11 +9,9 @@ module Threesixty
       private
 
       def user_matches_criteria?(user, criteria)
-        if criteria['value'] == EXTERNAL
-          !user_is_subject?(user)
-        elsif criteria['value'] == NOT_EXTERNAL
-          user_is_subject?(user)
-        end
+        return criteria['value'] == NOT_EXTERNAL if user_is_subject?(user)
+
+        criteria['value'] == EXTERNAL
       end
 
       def user_is_subject?(user)

@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Threesixty::ParticipatableByCriteria::ByNominationRequirement do
+describe Threesixty::ParticipatorByCriteria::ByNominationRequirement do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
   let(:threesixty_subjects) { create_list(:threesixty_subject, 3) }
 
@@ -18,7 +18,7 @@ describe Threesixty::ParticipatableByCriteria::ByNominationRequirement do
       criteria_list = [{ 'field' => 'nomination_requirement', 'value' => 'completed' }]
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
-        participatables: threesixty_subjects,
+        participators: threesixty_subjects,
         criteria_list: criteria_list
       )
 
@@ -38,7 +38,7 @@ describe Threesixty::ParticipatableByCriteria::ByNominationRequirement do
       criteria_list = [{ 'field' => 'nomination_requirement', 'value' => 'not_completed' }]
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
-        participatables: threesixty_subjects,
+        participators: threesixty_subjects,
         criteria_list: criteria_list
       )
 

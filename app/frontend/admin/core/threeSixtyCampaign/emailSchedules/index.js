@@ -34,7 +34,7 @@ export const fecthRecipientsByCriteria = (campaignId, emailSchedule) => ({
   campaignId,
   request: {
     method: 'post',
-    url: `/administration/threesixty_campaigns/${campaignId}/email_schedules/receipient_by_criteria`,
+    url: `/administration/threesixty_campaigns/${campaignId}/email_schedules/recipient_by_criteria`,
     debounce: 500,
     body: {
       emailName: emailSchedule.name,

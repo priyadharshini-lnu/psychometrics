@@ -2,7 +2,7 @@
 
 require 'rails_helper'
 
-describe Threesixty::ParticipatableByCriteria::Filter do
+describe Threesixty::ParticipatorByCriteria::Filter do
   let!(:threesixty_campaign) { create(:threesixty_campaign) }
   let!(:threesixty_option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }
 
@@ -36,7 +36,7 @@ describe Threesixty::ParticipatableByCriteria::Filter do
 
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
-        participatable_types: :subject,
+        participator_types: :subject,
         criteria_list: criteria_list
       )
 
@@ -74,7 +74,7 @@ describe Threesixty::ParticipatableByCriteria::Filter do
 
       results = described_class.call!(
         threesixty_campaign: threesixty_campaign,
-        participatable_types: :evaluator,
+        participator_types: :evaluator,
         criteria_list: criteria_list
       )
 
