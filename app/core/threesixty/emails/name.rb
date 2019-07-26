@@ -9,7 +9,11 @@ module Threesixty
       APPROVE_NOMINATION = 'approve_nomination'
       NOMINATION_DENIED = 'nomination_denied'
       REQUEST_APPROVAL = 'request_approval'
+      EVALUATOR_INVITE = 'evaluator_invite'
       EVALUATOR_REMINDER = 'evaluator_reminder'
+      SUBJECT_INVITE = 'subject_invite'
+      SUBJECT_REMINDER = 'subject_reminder'
+      CUSTOM_MESSAGE = 'custom_message'
     end
   end
 end

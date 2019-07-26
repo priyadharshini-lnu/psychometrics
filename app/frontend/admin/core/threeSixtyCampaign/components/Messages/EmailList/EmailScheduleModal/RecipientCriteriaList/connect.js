@@ -1,4 +1,6 @@
 import { connect } from 'react-redux'
+import { openModal } from 'admin/core/temp/modals'
+
 import {
   add,
   update,
@@ -13,5 +15,6 @@ export default connect(
     update,
     remove,
     merge,
+    openModal,
   },
 )

@@ -28,6 +28,16 @@ module Administration
         render json: email_schedules
       end
 
+      def recipient_by_criteria
+        users = ::Threesixty::Emails::RecipientByCriteria.call!(
+          threesixty_campaign: threesixty_campaign,
+          email_name: params[:email_name],
+          recipient_criteria: params[:recipient_criteria]
+        )
+
+        render json: users, each_serializer: UserSerializer
+      end
+
       private
 
       def set_resource_class
