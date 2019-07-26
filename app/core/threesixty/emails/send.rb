@@ -62,23 +62,27 @@ module Threesixty
         return unless config[:condition_class].nil? || config[:condition_class].call!(context)
 
         email_template = context[:threesixty_campaign].email_templates.find_by!(name: type)
-        recipients = config[:recipient_class] ? config[:recipient_class].new(context).query.includes(:user) : [context[:subject]]
 
         meta = {
           subject_ids: context[:subject_ids] || [context[:subject]&.user_id],
-          evaluator_ids: context[:evaluator_ids] || [context[:evaluator]&.user_id],
-          recipeint_type: config[:recipient_type]
+          evaluator_ids: [context[:evaluator]&.user_id]
         }
 
         email_schedule_attributes = email_template.
           slice(:name, :subject, :from, :reply_to_email, :content, :threesixty_campaign_id).
           merge(
-            recipient_ids: recipients.map(&:user_id),
+            recipient_ids: get_recipients(config).map(&:user_id),
             meta: meta,
             scheduled_date: 10.seconds.from_now
           )
 
         Threesixty::EmailSchedule.create!(email_schedule_attributes)
+      end
+
+      def get_recipients(config)
+        return context[:recipients] if context[:recipients]
+
+        config[:recipient_class] ? config[:recipient_class].new(context).query.includes(:user) : [context[:subject]]
       end
     end
   end

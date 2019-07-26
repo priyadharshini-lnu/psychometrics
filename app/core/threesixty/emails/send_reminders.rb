@@ -2,7 +2,7 @@
 
 module Threesixty
   module Emails
-    class ProcessReminders < BaseCommand
+    class SendReminders < BaseCommand
       def initialize(threesixty_campaign)
         @threesixty_campaign = threesixty_campaign
       end
@@ -11,29 +11,31 @@ module Threesixty
         threesixty_campaign.email_templates.reminders.each do |email_template|
           next unless reminder_rules = email_template.meta["reminder_rules"].presence
 
+          times = 0
           reminder_rules.each do |rule|
-            handle_reminder_rule(email_template, rule)
+            next if rule.days.nil? || rule.times.nil?
+
+            times += rule['times']
+            handle_reminder_rule(email_template, times, rule.days)
           end
         end
       end
 
       private
 
-      def handle_reminder_rule(email_template, rule)
-        return if rule.days.nil? == rule.times.nil?
-
+      def handle_reminder_rule(email_template, times, days)
         participators_for_reminders(email_template).each do |participator|
           reminder_history = reminder_histories["#{participator.user_id}-#{email_template.name}"]
-          if reminder_history.nil? || user_eligible_for_reminder?(rule, reminder_history)
+          if reminder_history.nil? || user_eligible_for_reminder?(times, days, reminder_history)
             send_email(email_template, participator)
           end
         end
       end
 
-      def user_eligible_for_reminder?(rule, reminder_history)
+      def user_eligible_for_reminder?(times, days, reminder_history)
         return if reminder_history.sent_count >= rule.times
 
-        Date.today == reminder_history.last_sent_at.advance(date: rule.days)
+        Date.today == reminder_history.last_sent_at.to_date.advance(days: rule.days)
       end
 
       def reminder_histories
