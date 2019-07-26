@@ -3,7 +3,7 @@ module Administration
     class ProjectsController < Administration::ClientsController
       include Administration::Clients
       before_action :ensure_client
-      before_action :set_resource, only: %i[search_users]
+      before_action :set_resource, only: %i[search_users show edit update destroy sidebar toggle_status copy archive]
 
       def index
         @_filter_form = policy_scope(resource_class)
