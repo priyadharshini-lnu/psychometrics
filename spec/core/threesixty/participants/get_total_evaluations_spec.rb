@@ -10,14 +10,14 @@ describe Threesixty::Participants::GetTotalEvaluations do
     create(:threesixty_option, threesixty_campaign: threesixty_campaign)
     threesixty_evaluators.each do |threesixty_evaluator|
       create(
-        :participant,
+        :threesixty_participant,
         campaign: threesixty_campaign.campaign,
         evaluator_id: threesixty_evaluator.user_id,
         subject_id: create(:user).id
       )
     end
     create(
-      :participant,
+      :threesixty_participant,
       campaign: threesixty_campaign.campaign,
       evaluator_id: threesixty_evaluators[0].user_id,
       subject_id: create(:user).id
@@ -37,7 +37,7 @@ describe Threesixty::Participants::GetTotalEvaluations do
     )
     threesixty_evaluators.each do |threesixty_evaluator|
       create(
-        :participant,
+        :threesixty_participant,
         campaign: threesixty_campaign.campaign,
         evaluator_id: threesixty_evaluator.user_id,
         subject_id: create(:user).id,
@@ -45,7 +45,7 @@ describe Threesixty::Participants::GetTotalEvaluations do
       )
     end
     create(
-      :participant,
+      :threesixty_participant,
       campaign: threesixty_campaign.campaign,
       evaluator_id: threesixty_evaluators[0].user_id,
       subject_id: create(:user).id,
