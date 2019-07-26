@@ -71,7 +71,7 @@ module Threesixty
         email_schedule_attributes = email_template.
           slice(:name, :subject, :from, :reply_to_email, :content, :threesixty_campaign_id).
           merge(
-            recipient_ids: get_recipients(config).map(&:user_id),
+            recipient_ids: get_recipient_ids(config),
             meta: meta,
             scheduled_date: 10.seconds.from_now
           )
@@ -79,10 +79,11 @@ module Threesixty
         Threesixty::EmailSchedule.create!(email_schedule_attributes)
       end
 
-      def get_recipients(config)
-        return context[:recipients] if context[:recipients]
+      def get_recipient_ids(config)
+        return context[:recipient_ids] if context[:recipient_ids]
 
-        config[:recipient_class] ? config[:recipient_class].new(context).query.includes(:user) : [context[:subject]]
+        recipients = config[:recipient_class] ? config[:recipient_class].new(context).query.includes(:user) : [context[:subject]]
+        recipients.map(&:user_id)
       end
     end
   end
