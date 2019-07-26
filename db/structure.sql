@@ -9,6 +9,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -20,20 +34,6 @@ CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
 --
 
 COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings';
-
-
---
--- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
-
-
---
--- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
 
 
 --
@@ -1905,9 +1905,9 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     category integer DEFAULT 0,
     provider integer
@@ -2175,7 +2175,8 @@ CREATE TABLE public.threesixty_email_schedules (
     delivered_at timestamp without time zone,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    recipient_emails jsonb DEFAULT '[]'::jsonb
+    recipient_ids jsonb DEFAULT '[]'::jsonb,
+    meta jsonb DEFAULT '{}'::jsonb
 );
 
 
@@ -2414,6 +2415,39 @@ ALTER SEQUENCE public.threesixty_participants_id_seq OWNED BY public.threesixty_
 
 
 --
+-- Name: threesixty_reminder_histories; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.threesixty_reminder_histories (
+    id bigint NOT NULL,
+    threesixty_campaign_id bigint,
+    user_id bigint,
+    email_name character varying,
+    sent_count integer DEFAULT 0,
+    last_sent_at timestamp without time zone
+);
+
+
+--
+-- Name: threesixty_reminder_histories_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.threesixty_reminder_histories_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: threesixty_reminder_histories_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.threesixty_reminder_histories_id_seq OWNED BY public.threesixty_reminder_histories.id;
+
+
+--
 -- Name: threesixty_subjects; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -2536,7 +2570,6 @@ CREATE TABLE public.users_assessments (
     assessment_id bigint,
     user_id bigint,
     campaign_id bigint,
-    selected_locale character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -3103,6 +3136,13 @@ ALTER TABLE ONLY public.threesixty_options ALTER COLUMN id SET DEFAULT nextval('
 --
 
 ALTER TABLE ONLY public.threesixty_participants ALTER COLUMN id SET DEFAULT nextval('public.threesixty_participants_id_seq'::regclass);
+
+
+--
+-- Name: threesixty_reminder_histories id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_reminder_histories ALTER COLUMN id SET DEFAULT nextval('public.threesixty_reminder_histories_id_seq'::regclass);
 
 
 --
@@ -3673,6 +3713,14 @@ ALTER TABLE ONLY public.threesixty_options
 
 ALTER TABLE ONLY public.threesixty_participants
     ADD CONSTRAINT threesixty_participants_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: threesixty_reminder_histories threesixty_reminder_histories_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_reminder_histories
+    ADD CONSTRAINT threesixty_reminder_histories_pkey PRIMARY KEY (id);
 
 
 --
@@ -4529,13 +4577,6 @@ CREATE INDEX index_threesixty_campaigns_on_report_id ON public.threesixty_campai
 
 
 --
--- Name: index_threesixty_email_templates_campaign_name; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_threesixty_email_templates_campaign_name ON public.threesixty_email_templates USING btree (threesixty_campaign_id, name);
-
-
---
 -- Name: index_threesixty_evaluators_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4599,10 +4640,10 @@ CREATE INDEX index_threesixty_participants_on_subject_id ON public.threesixty_pa
 
 
 --
--- Name: index_threesixty_participants_on_subject_id_and_evaluator_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_threesixty_reminder_histories_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_threesixty_participants_on_subject_id_and_evaluator_id ON public.threesixty_participants USING btree (subject_id, evaluator_id);
+CREATE INDEX index_threesixty_reminder_histories_on_user_id ON public.threesixty_reminder_histories USING btree (user_id);
 
 
 --
@@ -4774,13 +4815,6 @@ CREATE INDEX index_users_results_on_subject_id ON public.users_results USING btr
 
 
 --
--- Name: index_users_results_on_subject_id_and_evaluator_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX index_users_results_on_subject_id_and_evaluator_id ON public.users_results USING btree (subject_id, evaluator_id);
-
-
---
 -- Name: threesixty_email_schedule_cam_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4809,10 +4843,10 @@ CREATE INDEX threesixty_nomination_requirements_cam_id ON public.threesixty_nomi
 
 
 --
--- Name: users_assessments_user_uniquesness_index; Type: INDEX; Schema: public; Owner: -
+-- Name: threesixty_reminder_histories_cam_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX users_assessments_user_uniquesness_index ON public.users_assessments USING btree (user_id, campaign_id, assessment_id);
+CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_histories USING btree (threesixty_campaign_id);
 
 
 --
@@ -4957,6 +4991,14 @@ ALTER TABLE ONLY public.ecommerce_purchases
 
 ALTER TABLE ONLY public.memberships
     ADD CONSTRAINT fk_rails_385eeb68ea FOREIGN KEY (client_id) REFERENCES public.clients(id) ON DELETE CASCADE;
+
+
+--
+-- Name: threesixty_reminder_histories fk_rails_38fa0fe639; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_reminder_histories
+    ADD CONSTRAINT fk_rails_38fa0fe639 FOREIGN KEY (threesixty_campaign_id) REFERENCES public.threesixty_campaigns(id) ON DELETE RESTRICT;
 
 
 --
@@ -5269,6 +5311,14 @@ ALTER TABLE ONLY public.threesixty_campaigns
 
 ALTER TABLE ONLY public.threesixty_participants
     ADD CONSTRAINT fk_rails_a0f5b5ec09 FOREIGN KEY (relationship_id) REFERENCES public.relationships(id) ON DELETE RESTRICT;
+
+
+--
+-- Name: threesixty_reminder_histories fk_rails_a2f976ebf2; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.threesixty_reminder_histories
+    ADD CONSTRAINT fk_rails_a2f976ebf2 FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
 --
@@ -5871,6 +5921,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190717131104'),
 ('20190720204116'),
 ('20190721163707'),
-('20190721170324');
+('20190721170324'),
+('20190726083527'),
+('20190726090828');
 
 

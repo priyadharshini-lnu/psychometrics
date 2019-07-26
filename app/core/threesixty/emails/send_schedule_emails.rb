@@ -4,9 +4,11 @@ module Threesixty
   module Emails
     class SendScheduleEmails < BaseCommand
       def call
-        Threesixty::ScheduleEmail.where(delivered_at: nil).where("scheduled_date <= ?", Time.now).
+        Threesixty::EmailSchedule.where(delivered_at: nil).where("scheduled_date <= ?", Time.now).
           find_each do |schedule_email|
             Threesixty::Emails::SendSingleScheduleEmail.call!(schedule_email)
+            rescue => exception
+            Raven.capture_exception(exception)
           end
       end
     end

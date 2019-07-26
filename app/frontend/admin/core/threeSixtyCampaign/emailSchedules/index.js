@@ -43,12 +43,12 @@ export const fecthRecipientsByCriteria = (campaignId, emailSchedule) => ({
   },
 })
 
-export const create = (campaignId, emailSchedule, recipientEmails) => ({
+export const create = (campaignId, emailSchedule, recipientIds) => ({
   type: CREATE,
   request: {
     method: 'post',
     url: `/administration/threesixty_campaigns/${campaignId}/email_schedules/`,
-    body: { ...emailSchedule, recipientEmails },
+    body: { ...emailSchedule, recipientIds },
   },
 })
 

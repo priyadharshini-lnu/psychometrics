@@ -2,7 +2,7 @@
 
 module Threesixty
   class ScheduleEmailMailer < ApplicationMailer
-    def send_email(schedule_email, content, context)
+    def send_email(schedule_email, context)
       body = Threesixty::PipedText::Perform.call!(schedule_email.content, context)
       mail(
           from: "#{schedule_email.from} <no-reply@#{Settings.domain}>",

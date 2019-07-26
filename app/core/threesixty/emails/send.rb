@@ -43,7 +43,7 @@ module Threesixty
         },
         {
           template_name: Threesixty::Emails::Name::EVALUATOR_REMINDER,
-          recipient_class: Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations
+          recipient_class: Threesixty::Subjects::GetEvaluatorsWithPendingEvaluations,
           recipient_type: :evaluator
         },
         {
