@@ -43,6 +43,8 @@ function Editor ({ content, handleContentChange, type }) {
     ],
     saveParams: { type },
     height: 220,
+    key: '7MD3aC3A2C4B4D4A2xROKLJKYHROLDXDRE1b1YYGRi1Bd1C4F4B3H3G3A15A13A12C4C4==',
+    attribution: false,
   }
   const ref = React.createRef()
 
