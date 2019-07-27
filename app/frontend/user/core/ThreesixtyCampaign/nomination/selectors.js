@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { createSelector } from 'reselect'
 
-export const getConditions = state => state.nomination.requirements.conditions
+export const getConditions = state => state.nomination.requirements.conditions || []
 export const getEvaluators = state => state.nomination.evaluators
 export const getRelationships = state => state.nomination.relationships
 

@@ -80,9 +80,10 @@ export const updateForm = form => ({ type: UPDATE_FORM, form })
 const HANDLERS = {
   [FETCH]: (state, action) => {
     const evaluators = _.groupBy(action.response.evaluators, 'relationship.name')
+    const requirements = action.response.requirements || {}
 
     return {
-      ...state, ...action.response, evaluators,
+      ...state, ...action.response, requirements, evaluators,
     }
   },
   [ADD]: (state, action) => {
