@@ -13,7 +13,7 @@ describe Threesixty::NominationRequirements::SaveAll do
         { comparator: 'atleast', relationship_id: 2 }
       ],
       subject_conditions: [
-        { operator: 'if', conditions: [{ comparator: 'equal', field: 'Gender', value: 'Male'}] }
+        { operator: 'if', conditions: [{ comparator: 'equal', field: 'Gender', value: 'Male' }] }
       ]
     }
     attributes2 = { name: 'Requirement2', conditions: [], subject_conditions: [], position: 2 }
@@ -37,7 +37,7 @@ describe Threesixty::NominationRequirements::SaveAll do
         { comparator: 'atleast', relationship_id: 2 }
       ],
       subject_conditions: [
-        { operator: 'if', conditions: [{ comparator: 'equal', field: 'Gender', value: 'Male'}] }
+        { operator: 'if', conditions: [{ comparator: 'equal', field: 'Gender', value: 'Male' }] }
       ]
     }
 

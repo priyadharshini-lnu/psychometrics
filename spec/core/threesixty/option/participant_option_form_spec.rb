@@ -13,7 +13,7 @@ describe Threesixty::Options::ParticipantOptionForm do
 
   it 'validates operator in criteria' do
     form = described_class.
-      new(subject: {self_evaluation_criteria: [{'comparator': 'invalid_comparator'}]}).
+      new(subject: {self_evaluation_criteria: [{'comparator': 'invalid_comparator' }]}).
       with_context(datasheet_column_names: [])
     form.validate
 
@@ -22,7 +22,7 @@ describe Threesixty::Options::ParticipantOptionForm do
 
   it 'validates field in criteria' do
     form = described_class.
-      new(subject: {self_evaluation_criteria: [{'field': 'invalid_field'}]}).
+      new(subject: {self_evaluation_criteria: [{'field': 'invalid_field' }]}).
       with_context(datasheet_column_names: ['valid_field'])
     form.validate
 
@@ -31,7 +31,7 @@ describe Threesixty::Options::ParticipantOptionForm do
 
   it 'adds error when wrong criteria key is passed' do
     form = described_class.
-      new(subject: {self_evaluation_criteria: [{'invalid_field_name': 'value'}]}).
+      new(subject: {self_evaluation_criteria: [{'invalid_field_name': 'value' }]}).
       with_context(datasheet_column_names: [])
     form.validate
 
@@ -40,7 +40,7 @@ describe Threesixty::Options::ParticipantOptionForm do
 
   it 'returns valid? as true if all values passed are valid' do
     form = described_class.
-      new(subject: {self_evaluation_criteria: [{'field': 'valid_field', comparator: 'equal', value: 'value'}]}).
+      new(subject: {self_evaluation_criteria: [{'field': 'valid_field', comparator: 'equal', value: 'value' }]}).
         with_context(datasheet_column_names: ['valid_field'])
 
     expect(form.valid?).to eq(true)

@@ -1,6 +1,6 @@
 module Threesixty
   class Subject < ApplicationRecord
-    include Threesixty::Participatable
+    include Threesixty::Participator
 
     has_many :participants, foreign_key: :subject_id, primary_key: :user_id
     belongs_to :self_evaluator, foreign_key: :user_id, primary_key: :user_id, inverse_of: :self_subject, class_name: 'Threesixty::Evaluator'

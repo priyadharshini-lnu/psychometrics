@@ -1,5 +1,7 @@
 import _ from 'lodash'
 import { updateIn } from 'utils/immutable'
+import { takeLatest } from 'redux-saga/effects'
+import { genFecthRecipientsByCriteria } from '../index'
 
 export const ADD = 'threeSixty/emailSchedule/recipientCriteria/ADD'
 export const UPDATE = 'threeSixty/emailSchedule/recipientCriteria/UPDATE'
@@ -41,3 +43,7 @@ export default function reducer (state = defaultState, action) {
   const handler = HANDLERS[action.type]
   return handler ? handler(state, action) : state
 }
+
+export const watchers = [
+  takeLatest([ADD, UPDATE, MERGE, REMOVE], genFecthRecipientsByCriteria),
+]

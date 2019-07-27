@@ -1,5 +1,5 @@
 module Threesixty
-  module Participatable
+  module Participator
     extend ActiveSupport::Concern
 
     included do
