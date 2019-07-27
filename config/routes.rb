@@ -165,6 +165,7 @@ Rails.application.routes.draw do
         resources :sub_campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
 
         resources :licenses, only: %i[index show new create edit update] do
+          resources :license_usages, only: [:index]
           patch :toggle_status, on: :member
           get :overview, on: :collection
         end
