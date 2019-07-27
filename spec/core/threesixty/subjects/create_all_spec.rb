@@ -8,6 +8,8 @@ describe Threesixty::Subjects::CreateAll do
   let(:threesixty_campaign) { create(:threesixty_campaign, campaign: campaign) }
 
   before do
+    allow(Licenses::CreateThreesixtySubject).to receive(:use).and_return(true)
+
     user = create(:user, project: project, email: 'fedor@gmail.com')
     create(:campaigns_user, user: user, campaign: campaign)
     create(:threesixty_subject, user: user, campaign: campaign)
