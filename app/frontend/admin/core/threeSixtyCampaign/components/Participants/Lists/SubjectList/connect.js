@@ -1,5 +1,6 @@
 import { connect } from 'react-redux'
 import { openModal } from 'admin/core/temp/modals'
+import routeUtils from 'utils/routeUtils'
 
 import {
   fetchSubjects, update, remove, downloadReport,
@@ -11,10 +12,7 @@ export default connect(
     threeSixtyCampaign: {
       subjects: { list, total },
     },
-    temp: {
-      pagination: { page },
-    },
-  }) => ({ subjects: list, total, page }),
+  }) => ({ subjects: list, total, page: routeUtils.getPage() }),
   dispatch => ({
     fetchSubjects: (campaignId, offset) => dispatch(fetchSubjects(campaignId, offset)),
     openModal: (name, data) => dispatch(openModal(name, data)),

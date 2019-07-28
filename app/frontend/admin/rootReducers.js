@@ -6,7 +6,6 @@ import participantOptions from './core/threeSixtyCampaign/participantOptions/red
 import reportOptions from './core/threeSixtyCampaign/reportOptions/reducers'
 import modals from './core/temp/modals'
 import autocomplete from './core/temp/autocomplete'
-import pagination from './core/temp/pagination'
 import request from './core/temp/request'
 import currentThreeSixtyCampaignId from './core/threeSixtyCampaign/currentThreeSixtyCampaignId'
 import datasheetFields from './core/project/datasheetFields'
@@ -42,7 +41,6 @@ export default combineReducers({
   temp: combineReducers({
     modals,
     autocomplete,
-    pagination,
     request,
   }),
 })
