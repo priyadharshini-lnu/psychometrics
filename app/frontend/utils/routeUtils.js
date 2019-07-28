@@ -21,6 +21,9 @@ const routeUtils = {
   getCurrentOffset () {
     return (this.getCurrentPage() - 1) * settings.pageLimit
   },
+  getPage () {
+    return parseInt(queryString.parse(location.search).page, 10) || 1
+  },
 }
 
 export default routeUtils

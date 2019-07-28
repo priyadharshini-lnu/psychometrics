@@ -6,7 +6,7 @@ import ToolsDropdown from '../ToolsDropdown'
 import EvaluatorTable from './EvaluatorTable/EvaluatorTable'
 import CreateEvaluatorsDropdown from './CreateEvaluatorsDropdown'
 import CreateEvaluatorModal from './CreateEvaluatorModal'
-import Pagination from '../../../common/Pagination/Pagination'
+import Pagination from '../../../common/Pagination'
 import EvaluatorImportModal from './EvaluatorImportModal'
 
 export default function EvaluatorList ({
@@ -15,6 +15,7 @@ export default function EvaluatorList ({
   openModal,
   removeUser,
   total,
+  page,
   match: {
     params: { campaignId },
   },
@@ -23,8 +24,8 @@ export default function EvaluatorList ({
   const offset = routeUtils.getCurrentOffset()
 
   useEffect(() => {
-    fetchEvaluators(campaignId, offset)
-  }, [])
+    fetchEvaluators(campaignId, page)
+  }, [page])
 
   const curriedFetchEvaluators = _.curry(fetchEvaluators)
 
@@ -50,7 +51,7 @@ export default function EvaluatorList ({
             removeUser={removeUser}
           />
           <div className="pm">
-            <Pagination total={total} fetch={curriedFetchEvaluators(campaignId)} />
+            <Pagination total={total} fetch={curriedFetchEvaluators(campaignId)} path="/participants/evaluators" />
           </div>
         </Col>
       </Row>

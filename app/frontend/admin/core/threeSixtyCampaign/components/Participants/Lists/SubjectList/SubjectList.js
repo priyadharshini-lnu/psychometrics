@@ -11,7 +11,7 @@ import ToolsDropdown from '../ToolsDropdown'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
 import CreateSubjectModal from './CreateSubjectModal'
 import SubjectImportModal from './SubjectImportModal'
-import Pagination from '../../../common/Pagination/Pagination'
+import Pagination from '../../../common/Pagination'
 
 const { Column } = Table
 
@@ -24,6 +24,7 @@ export default function SubjectList ({
   removeUser,
   downloadReport,
   total,
+  page,
   match: {
     params: { campaignId },
   },
@@ -32,9 +33,8 @@ export default function SubjectList ({
   const offset = routeUtils.getCurrentOffset()
 
   useEffect(() => {
-    fetchSubjects(campaignId, offset)
-  }, [])
-
+    fetchSubjects(campaignId, page)
+  }, [page])
   const curriedFetchSubjects = _.curry(fetchSubjects)
   return (
     <>
@@ -99,7 +99,7 @@ export default function SubjectList ({
             />
           </Table>
           <div className="pm">
-            <Pagination total={total} fetch={curriedFetchSubjects(campaignId)} />
+            <Pagination total={total} fetch={curriedFetchSubjects(campaignId)} path="/participants/subjects" />
           </div>
         </Col>
       </Row>
