@@ -13,8 +13,7 @@ module Administration
                      includes(:user, self_subject: :user).
                      where(campaign_id: threesixty_campaign.campaign_id).
                      order(id: :desc).
-                     limit(params[:limit]).
-                     offset(params[:offset])
+                     page(params[:page])
         counters = ::Threesixty::Participants::CalcCounters.call!(evaluators.map(&:user_id), threesixty_campaign)
         subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
           evaluators.map(&:user_id),

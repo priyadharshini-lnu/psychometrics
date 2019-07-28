@@ -1,15 +1,12 @@
-import settings from '../settings'
-
 const FETCH_MANAGERS = 'threeSixty/managers/FETCH_MANAGERS'
 export const defaultState = { list: [], total: 0 }
 
-export const fetchManagers = (campaignId, offset) => ({
+export const fetchManagers = (campaignId, page) => ({
   type: FETCH_MANAGERS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/managers`,
     body: {
-      limit: settings.pageLimit,
-      offset,
+      page,
     },
   },
 })

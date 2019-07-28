@@ -12,8 +12,8 @@ module Administration
           includes(:self_evaluator, :user).
           where(campaign_id: threesixty_campaign.campaign_id).
           order(id: :desc).
-          limit(params[:limit]).
-          offset(params[:offset])
+          page(params[:page])
+
         subjects = ::Threesixty::Subjects::Serialize.call!(subjects, threesixty_campaign)
         total = policy_scope(::Threesixty::Subject).where(campaign_id: threesixty_campaign.campaign_id).count
         render json: { subjects: subjects, total: total }

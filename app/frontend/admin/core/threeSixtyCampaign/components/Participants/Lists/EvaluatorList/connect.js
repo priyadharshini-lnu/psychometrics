@@ -8,7 +8,10 @@ export default connect(
     threeSixtyCampaign: {
       evaluators: { list, total },
     },
-  }) => ({ evaluators: list, total }),
+    temp: {
+      pagination: { page },
+    },
+  }) => ({ evaluators: list, total, page }),
   dispatch => ({
     fetchEvaluators: (campaignId, offset) => dispatch(fetchEvaluators(campaignId, offset)),
     openModal: (name, data) => dispatch(openModal(name, data)),

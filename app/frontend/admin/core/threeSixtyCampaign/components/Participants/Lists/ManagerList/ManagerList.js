@@ -1,25 +1,23 @@
 import _ from 'lodash'
 import React, { useEffect } from 'react'
 import { Col, Icon, Row } from 'antd'
-import routeUtils from 'utils/routeUtils'
 import ToolsDropdown from '../ToolsDropdown'
 import EvaluatorTable from '../EvaluatorList/EvaluatorTable/EvaluatorTable'
-import Pagination from '../../../common/Pagination/Pagination'
+import Pagination from '../../../common/Pagination'
 
 export default function ManagerList ({
   fetchManagers,
   managers,
   openModal,
   total,
+  page,
   match: {
     params: { campaignId },
   },
 }) {
-  const offset = routeUtils.getCurrentOffset()
-
   useEffect(() => {
-    fetchManagers(campaignId, offset)
-  }, [])
+    fetchManagers(campaignId, page)
+  }, [page])
 
   const curriedFetchManagers = _.curry(fetchManagers)
 
@@ -40,10 +38,10 @@ export default function ManagerList ({
             campaignId={campaignId}
             openModal={openModal}
             evaluators={managers}
-            onCloseParticipantModal={() => fetchManagers(campaignId, offset)}
+            onCloseParticipantModal={() => fetchManagers(campaignId, page)}
           />
           <div className="pm">
-            <Pagination total={total} fetch={curriedFetchManagers(campaignId)} />
+            <Pagination total={total} fetch={curriedFetchManagers(campaignId)} path="/participants/managers" />
           </div>
         </Col>
       </Row>

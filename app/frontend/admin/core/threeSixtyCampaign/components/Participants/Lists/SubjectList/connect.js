@@ -7,7 +7,14 @@ import {
 import { removeUser } from 'admin/core/threeSixtyCampaign/'
 
 export default connect(
-  ({ threeSixtyCampaign: { subjects: { list, total } } }) => ({ subjects: list, total }),
+  ({
+    threeSixtyCampaign: {
+      subjects: { list, total },
+    },
+    temp: {
+      pagination: { page },
+    },
+  }) => ({ subjects: list, total, page }),
   dispatch => ({
     fetchSubjects: (campaignId, offset) => dispatch(fetchSubjects(campaignId, offset)),
     openModal: (name, data) => dispatch(openModal(name, data)),
