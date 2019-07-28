@@ -113,6 +113,7 @@ const defaultState = {
   requirements: {},
   evaluators: [],
   relationships: [],
+  instructions: [],
   form: {
     attrs: {},
     errors: {},

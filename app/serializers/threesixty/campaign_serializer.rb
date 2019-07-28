@@ -14,13 +14,23 @@ module Threesixty
     end
 
     attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
-               :mindmill, :hogan
+               :mindmill, :hogan, :instructions
 
     has_many :nominations, serializer: NomineeSerializer
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
     has_many :managed_subjects, serializer: Threesixty::EndUser::ManagedSubjectSerializer
     has_many :reports, serializer: UsersReportSerializer
     has_one :options, serializer: CampaignOptionsSerializer
+
+    def instructions
+      object.instruction_templates.map do |instruction|
+        {
+          name: instruction.name,
+          content: Threesixty::PipedText::Perform.call!(instruction.content,
+                      threesixty_campaign: object.campaign.threesixty_campaign)
+        }
+      end
+    end
 
     def type
       ::Campaign::THREESIXTY

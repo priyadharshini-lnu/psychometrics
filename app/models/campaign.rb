@@ -12,6 +12,7 @@ class Campaign < ApplicationRecord
   has_many :users_assessments, dependent: :destroy
   has_many :users_reports, dependent: :destroy
   has_many :campaigns_users, dependent: :destroy
+  has_many :instruction_templates, -> { enabled }
   has_many :users_results, dependent: :destroy
 
   delegate :client, to: :project

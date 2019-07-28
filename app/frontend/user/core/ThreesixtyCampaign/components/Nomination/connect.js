@@ -15,6 +15,7 @@ import { requirementsSelector } from 'user/core/ThreesixtyCampaign/nomination/se
 
 const mapStateToProps = state => ({
   nomination: state.threeSixtyCampaign.nomination,
+  instructions: state.threeSixtyCampaign.nomination.instructions,
   requirements: requirementsSelector(state.threeSixtyCampaign),
   autocomplete: state.threeSixtyCampaign.temp.autocomplete,
 })

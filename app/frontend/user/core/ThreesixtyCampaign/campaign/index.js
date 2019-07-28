@@ -25,6 +25,7 @@ export const defaultState = {
   evaluations: [],
   managedSubjects: [],
   reports: [],
+  instructions: [],
   options: {
     participants: {
       manager: {},
