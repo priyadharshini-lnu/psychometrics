@@ -39,11 +39,17 @@ module Threesixty
         [subject.user_id],
         @campaign
       )
-      Threesixty::Reports::IsAvailable.call!(
+      valid_statuses = [
+        Threesixty::Participants::GetReportStatus::APPROVED,
+        Threesixty::Participants::GetReportStatus::AVAILABLE,
+      ]
+      status = Threesixty::Participants::GetReportStatus.call!(
         subject,
-        @campaign.option,
-        subject_evaluator_counters.dig(subject.user_id, :completed)
+        @options,
+        subject_evaluator_counters
       )
+
+      valid_statuses.include?(status)
     end
 
     def self_can_access?
