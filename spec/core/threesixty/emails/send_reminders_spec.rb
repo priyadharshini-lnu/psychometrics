@@ -18,12 +18,12 @@ describe Threesixty::Emails::SendReminders do
     )
     non_reminder_email_template = create(:threesixty_email_template, category: :invitations)
 
-    expect(Threesixty::Emails::SendSingleReminder).to receive(:call!)
-      .with(reminder_email_templates[0])
-    expect(Threesixty::Emails::SendSingleReminder).to receive(:call!)
-      .with(reminder_email_templates[1])
-    expect(Threesixty::Emails::SendSingleReminder).to_not receive(:call!)
-      .with(non_reminder_email_template)
+    expect(Threesixty::Emails::SendSingleReminder).to receive(:call!).
+      with(reminder_email_templates[0])
+    expect(Threesixty::Emails::SendSingleReminder).to receive(:call!).
+      with(reminder_email_templates[1])
+    expect(Threesixty::Emails::SendSingleReminder).to_not receive(:call!).
+      with(non_reminder_email_template)
 
     described_class.call!
   end

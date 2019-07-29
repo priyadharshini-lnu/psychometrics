@@ -7,12 +7,9 @@ module Threesixty
 
       def call
         Threesixty::EmailTemplate.reminders.each do |email_template|
-          begin
-            Threesixty::Emails::SendSingleReminder.call!(email_template)
-          rescue => exception
-            byebug
-            Raven.capture_exception(exception)
-          end
+          Threesixty::Emails::SendSingleReminder.call!(email_template)
+        rescue => e
+          Raven.capture_exception(e)
         end
       end
     end

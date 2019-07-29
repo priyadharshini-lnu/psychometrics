@@ -43,15 +43,16 @@ module Threesixty
 
       def reminder_histories
         @reminder_histories ||= threesixty_campaign.
-          reminder_histories.
-          each_with_object({}) do |reminder_history, acc|
-            acc["#{reminder_history.user_id}-#{reminder_history.email_name}"] = reminder_history
-          end
+                                reminder_histories.
+                                each_with_object({}) do |reminder_history, acc|
+          acc["#{reminder_history.user_id}-#{reminder_history.email_name}"] = reminder_history
+        end
       end
 
       def users_for_reminders
         @users_for_reminders ||= {}
         return @users_for_reminders[email_name] if @users_for_reminders[email_name]
+
         @users_for_reminders[email_name] ||= Threesixty::Emails::RecipientByCriteria.call!(
           threesixty_campaign: threesixty_campaign,
           email_name: email_name
@@ -77,10 +78,10 @@ module Threesixty
 
       def subject_with_incomplete_evaluation(user)
         evaluation_completed_for_subject = user.
-          evaluation_results.
-          completed.
-          actual_by_options(threesixty_campaign.option).
-          pluck(:subject_id)
+                                           evaluation_results.
+                                           completed.
+                                           actual_by_options(threesixty_campaign.option).
+                                           pluck(:subject_id)
 
         all_subject_ids = threesixty_campaign.participants.where(evaluator_id: user.id).pluck(:subject_id)
         all_subject_ids - evaluation_completed_for_subject

@@ -2,7 +2,7 @@
 
 module Threesixty
   module Emails
-    class SendSingleScheduleEmail < BaseCommand
+    class SendSingleScheduledEmail < BaseCommand
       private_attr_reader :schedule_email, :threesixty_campaign
 
       def initialize(schedule_email)
@@ -11,6 +11,8 @@ module Threesixty
       end
 
       def call
+        return if schedule_email.scheduled_date.nil? || schedule_email.scheduled_date > Time.now
+
         User.where(id: schedule_email.recipient_ids).each do |recipient|
           send_email(recipient)
         end
@@ -20,9 +22,9 @@ module Threesixty
       private
 
       def send_email(recipient)
-        recipient_type = get_recipient_type(schedule_email.name)
-        context = { :recipient => recipient, threesixty_campaign: threesixty_campaign }
-        context.merge!({ recipient_type => recipient }) if recipient_type
+        recipient_type = get_recipient_type
+        context = { recipient: recipient, threesixty_campaign: threesixty_campaign }
+        context[recipient_type] = recipient if recipient_type
 
         other_participator = recipient_type == :subject ? :evaluator : :subject
 
@@ -37,7 +39,7 @@ module Threesixty
         create_or_update_reminder_history(recipient)
       end
 
-      def get_recipient_type(email_name)
+      def get_recipient_type
         config = Threesixty::Emails::Send::CONFIG.find { |c| c[:template_name] == schedule_email[:name] }
         config&.dig(:recipient_type)
       end
