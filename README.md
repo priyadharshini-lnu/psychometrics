@@ -22,7 +22,9 @@ prevent bundle secure warnings with
 
 # Local Setup
 
-0. Create a Gemset (optional) `$> rvm gemset create tte-psychometrics`
+0. Create a Gemset (optional)
+> RVM: `$> rvm gemset create tte-psychometrics`
+> rbenv: install [rbenv-gemset plugin](https://github.com/jf/rbenv-gemset) then in the project directory run `$> rbenv gemset create [version] [gemset]`
 1. `$> bundle install`
 2. `$> cp config/application.sample.yml config/application.yml`
 3. `$> cp config/database.yml.example config/database.yml`
@@ -35,6 +37,8 @@ prevent bundle secure warnings with
 5. Create databases `$> bundle exec rake db:create`
 
 > Ask for a DB dump to load in the local database from a team member. Follow instructions from [here](https://gist.github.com/rohanpujaris/f0bb37c293fefe89f39a9c840248e53a) to load data.
+
+6. `$> npm install`
 
 # Run the application locally
 
