@@ -12,6 +12,8 @@ Rails version: 5.1.6
 
 Bundler version: 1.15.2
 
+Node version: 10.0.0
+
 Database: PostgresSql
 
 prevent bundle secure warnings with
@@ -23,9 +25,8 @@ prevent bundle secure warnings with
 0. Create a Gemset (optional) `$> rvm gemset create tte-psychometrics`
 1. `$> bundle install`
 2. `$> cp config/application.sample.yml config/application.yml`
-3. `$> cp config/secrets.yml.sample config/secrets.yml`
-4. `$> cp config/database.yml.example config/database.yml`
-5. `$> cp config/settings/development.yml.example config/settings/development.yml`
+3. `$> cp config/database.yml.example config/database.yml`
+4. `$> cp config/settings/development.yml.example config/settings/development.yml`
 
 > Uncomment and set values for `ENCRYPTED_KEY`, `SECRET_KEY_BASE` and `SECRET_TOKEN_FOR_GENERATE` in `application.yml`.
 
