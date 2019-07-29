@@ -1,5 +1,10 @@
 module Threesixty
   class UsersReportsQuery < Rectify::Query
+    AVAILABLE_STATUSES = [
+      Threesixty::Participants::GetReportStatus::APPROVED,
+      Threesixty::Participants::GetReportStatus::AVAILABLE,
+    ].freeze
+
     def initialize(campaign, managed_subjects, current_user)
       @campaign = campaign
       @options = campaign.option
@@ -39,17 +44,13 @@ module Threesixty
         [subject.user_id],
         @campaign
       )
-      valid_statuses = [
-        Threesixty::Participants::GetReportStatus::APPROVED,
-        Threesixty::Participants::GetReportStatus::AVAILABLE,
-      ]
       status = Threesixty::Participants::GetReportStatus.call!(
         subject,
         @options,
         subject_evaluator_counters
       )
 
-      valid_statuses.include?(status)
+      AVAILABLE_STATUSES.include?(status)
     end
 
     def self_can_access?
