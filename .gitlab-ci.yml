@@ -67,3 +67,17 @@ deploy:
   when: manual
   only:
   - master
+
+deploy_review:
+  stage: test_and_deploy
+  script:
+  - apt-get update -qy
+  - apt-get install -y ruby-dev
+  - gem install dpl
+  - dpl --provider=heroku --app=tte-lighthouse --api-key=$HEROKU_STAGING_API_KEY
+  environment:
+    name: Heroku Staging
+    url: https://review.tte-lighthouse.com
+  when: manual
+  only:
+  - develop-360

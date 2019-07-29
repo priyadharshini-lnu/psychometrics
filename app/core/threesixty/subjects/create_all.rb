@@ -11,14 +11,17 @@ module Threesixty
       end
 
       def call
-        result = subjects.map do |subject|
-          subject_user = fetch_or_create_subject_user(subject)
-          create_campaigns_user(subject_user)
-          create_membership(subject_user)
-          create_users_report(subject_user)
-          create_subject(subject_user)
+        transaction do
+          result = subjects.map do |subject|
+            subject_user = fetch_or_create_subject_user(subject)
+            create_campaigns_user(subject_user)
+            create_membership(subject_user)
+            create_users_report(subject_user)
+            create_subject(subject_user)
+          end
+
+          broadcast :ok, subjects: result, existing_subjects_whose_password_not_changed: @existing_subjects_whose_password_not_changed
         end
-        broadcast :ok, { subjects: result, existing_subjects_whose_password_not_changed: @existing_subjects_whose_password_not_changed }
       end
 
       def fetch_or_create_subject_user(subject)
@@ -36,6 +39,8 @@ module Threesixty
       end
 
       def create_subject(user)
+        # TODO (atanych): I doubt that good way, but current licenses absolutely are not intended for threesixty
+        AssignsReport::LICENSES[Assessment::THREESIXTY].use(user: user, campaign: threesixty_campaign.campaign)
         ::Threesixty::Participant.create!(
           evaluator: user,
           subject: user,

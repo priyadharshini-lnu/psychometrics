@@ -1292,7 +1292,10 @@ CREATE TABLE public.license_usages (
     license_id integer,
     assigns_report_id integer,
     client_id integer NOT NULL,
-    user_id bigint
+    user_id bigint,
+    extras jsonb DEFAULT '{}'::jsonb NOT NULL,
+    created_at timestamp without time zone DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    campaign_id bigint
 );
 
 
@@ -1330,7 +1333,8 @@ CREATE TABLE public.licenses (
     end_date date NOT NULL,
     start_date date NOT NULL,
     report_family_id integer NOT NULL,
-    disabled boolean DEFAULT false
+    disabled boolean DEFAULT false,
+    type integer DEFAULT 0
 );
 
 
@@ -4255,6 +4259,13 @@ CREATE INDEX index_license_usages_on_assigns_report_id ON public.license_usages 
 
 
 --
+-- Name: index_license_usages_on_campaign_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_license_usages_on_campaign_id ON public.license_usages USING btree (campaign_id);
+
+
+--
 -- Name: index_license_usages_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4943,6 +4954,14 @@ ALTER TABLE ONLY public.assigns
 
 ALTER TABLE ONLY public.memberships
     ADD CONSTRAINT fk_rails_1e06b93eb5 FOREIGN KEY (project_membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: license_usages fk_rails_2397339a92; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.license_usages
+    ADD CONSTRAINT fk_rails_2397339a92 FOREIGN KEY (campaign_id) REFERENCES public.campaigns(id) ON DELETE SET NULL;
 
 
 --
@@ -5922,6 +5941,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190720204116'),
 ('20190721163707'),
 ('20190721170324'),
+('20190724063809'),
+('20190724064016'),
 ('20190726083527'),
 ('20190726090828');
 

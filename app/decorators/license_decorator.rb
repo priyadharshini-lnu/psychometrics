@@ -1,5 +1,7 @@
 class LicenseDecorator < BaseDecorator
   def display_name
+    return object.type if object.type_threesixty?
+
     object.report_family.decorate.display_name
   end
 

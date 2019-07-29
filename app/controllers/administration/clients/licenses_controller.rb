@@ -59,7 +59,7 @@ module Administration
 
       def resource_params
         params.require(:resource).permit(:number, :overuse_number, :report_family_id,
-                                         :start_date, :end_date, :disabled)
+                                         :start_date, :end_date, :disabled, :type)
       end
 
       def init_breadcrumbs

@@ -43,7 +43,7 @@ module Licenses
     end
 
     def fetch_licenses
-      client.licenses.available.with_report_family(report.report_family_ids).order(end_date: :asc)
+      client.licenses.available.with_report_family(report.report_family_ids).where(type: :common).order(end_date: :asc)
     end
   end
 end

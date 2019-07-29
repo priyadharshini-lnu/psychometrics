@@ -1,6 +1,6 @@
 const settings = {
   urlPrefix: '/administration/clients/:clientId/projects/:projectId/threesixty_campaigns/:campaignId',
-  pageLimit: 20,
+  pageLimit: 25,
 }
 
 export default settings
