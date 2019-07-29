@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class SendRemindersEmailJob < ApplicationJob
+  class SendRemindersJob < ApplicationJob
     queue_as :default
 
     def perform
