@@ -1,7 +1,7 @@
 import _ from 'lodash'
 import { updateIn } from 'utils/immutable'
 import { takeLatest, put, select } from 'redux-saga/effects'
-import { get as getCurrentCampaignId } from 'admin/core/threeSixtyCampaign/currentThreeSixtyCampaignId'
+import { getCurrentCampaignId } from 'admin/core/threeSixtyCampaign/campaignDetails'
 import recipientCriteria from './recipientCriteria'
 
 const defaultState = {

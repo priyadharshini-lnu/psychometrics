@@ -16,7 +16,7 @@ module Administration
               relationships: ::Relationships::ByCampaign.new(resource.campaign).to_a
             },
             threeSixtyCampaign: {
-              id: resource.id
+              campaignDetails: { id: resource.id, reportId: resource.report_id }
             }
           }
         end
