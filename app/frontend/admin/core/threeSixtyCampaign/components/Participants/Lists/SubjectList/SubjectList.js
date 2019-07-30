@@ -44,7 +44,7 @@ export default function SubjectList ({
           <span className="mlm">{`${total} Subjects`}</span>
         </Col>
         <Col>
-          <div className='float-r'>
+          <div className="float-r">
             <ToolsDropdown />
             <CreateSubjectsDropdown />
           </div>
