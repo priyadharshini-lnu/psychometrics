@@ -6,6 +6,7 @@ module Administration
         before_action :ensure_project
         prepend_before_action :set_resource_class
         before_action :set_resource, only: %i[show edit update sidebar toggle_status copy archive]
+        before_action :init_breadcrumbs
         wrap_parameters :threesixty_campaign, include: ::Threesixty::Campaign.attribute_names
 
         def show
@@ -91,6 +92,11 @@ module Administration
           client_root_breadcrumb
           add_breadcrumb client.decorate.display_name, [:administration, client, :projects]
           add_breadcrumb project.decorate.display_name, administration_client_project_campaigns_path(client, project)
+          add_breadcrumb(
+            t('administration.clients.projects.threesixty_campaigns.index.title'),
+            administration_client_project_threesixty_campaigns_path(client, project)
+          )
+          add_breadcrumb resource.campaign.name, { action: :show } if params[:action] == 'show'
         end
       end
     end
