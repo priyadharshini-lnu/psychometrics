@@ -43,9 +43,11 @@ export default function SubjectList ({
           <Icon type="user" />
           <span className="mlm">{`${total} Subjects`}</span>
         </Col>
-        <Col span={6} offset={14} className="text-align-r">
-          <ToolsDropdown />
-          <CreateSubjectsDropdown />
+        <Col>
+          <div className='float-r'>
+            <ToolsDropdown />
+            <CreateSubjectsDropdown />
+          </div>
         </Col>
       </Row>
       <Row>
