@@ -13,7 +13,7 @@ function Editor ({ content, handleContentChange, type }) {
   const config = {
     iconsTemplate: 'font_awesome',
     imageUpload: false,
-    pluginsEnabled: ['image', 'link', 'fontFamily', 'fontSize', 'colors', 'paragraphFormat', 'align', 'quote', 'table'],
+    pluginsEnabled: ['image', 'link', 'fontFamily', 'lists', 'fontSize', 'colors', 'paragraphFormat', 'align', 'quote', 'table'],
     toolbarButtons: [
       'pipedText',
       'fontFamily',
@@ -25,6 +25,8 @@ function Editor ({ content, handleContentChange, type }) {
       'strikeThrough',
       'subscript',
       'superscript',
+      'formatOL',
+      'formatUL',
       'rightToLeft',
       'leftToRight',
       'paragraphFormat',
