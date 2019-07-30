@@ -14,12 +14,12 @@
 module Threesixty
   module Participants
     class GetReportStatus < BaseCommand
-      INCOMPLETE = 'incomplete'
-      DENIED = 'denied'
-      AVAILABLE = 'available'
-      APPROVED = 'approved'
-      ON_HOLD = 'on_hold'
-      NOT_AVAILABLE = 'not_available'
+      INCOMPLETE = 'Incomplete'
+      DENIED = 'Denied'
+      AVAILABLE = 'Available'
+      APPROVED = 'Approved'
+      ON_HOLD = 'On Hold'
+      NOT_AVAILABLE = 'Not Available'
 
       def initialize(subject, option, subject_evaluator_counters)
         @subject = subject
