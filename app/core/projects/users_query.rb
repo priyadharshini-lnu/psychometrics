@@ -2,7 +2,7 @@ module Projects
   class UsersQuery < Rectify::Query
     include Rectify::SqlQuery
 
-    LIMIT = 3
+    LIMIT = 5
 
     def initialize(project, q)
       @project = project
