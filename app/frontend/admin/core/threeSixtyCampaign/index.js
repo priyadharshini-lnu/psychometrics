@@ -1,6 +1,6 @@
 import { takeEvery, put, select } from 'redux-saga/effects'
 import { get as getSelectedTab } from './selectedParticipantTab'
-import { get as getCampaignId } from './currentThreeSixtyCampaignId'
+import { getCurrentCampaignId } from './campaignDetails'
 import { fetchSubjects } from './subjects'
 import { fetchEvaluators } from './evaluators'
 import { fetchManagers } from './managers'
