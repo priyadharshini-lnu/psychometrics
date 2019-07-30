@@ -13,7 +13,18 @@ function Editor ({ content, handleContentChange, type }) {
   const config = {
     iconsTemplate: 'font_awesome',
     imageUpload: false,
-    pluginsEnabled: ['image', 'link', 'fontFamily', 'lists', 'fontSize', 'colors', 'paragraphFormat', 'align', 'quote', 'table'],
+    pluginsEnabled: [
+      'image',
+      'link',
+      'fontFamily',
+      'lists',
+      'fontSize',
+      'colors',
+      'paragraphFormat',
+      'align',
+      'quote',
+      'table',
+    ],
     toolbarButtons: [
       'pipedText',
       'fontFamily',
