@@ -33,7 +33,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "back_to_tasks": "Back to tasks",
     "select_relationnship": "Select Relationship",
     "user_name_input_placeholder": "type name or email...",
-    "as_my": "as my"
+    "as_my": "as my",
   },
   "reports": {
     "modules": {

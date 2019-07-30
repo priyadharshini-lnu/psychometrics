@@ -1,7 +1,9 @@
 const CHANGE_LOCALE = 'temp/users/CHANGE_LOCALE'
+const LOGOUT = 'temp/users/LOGOUT'
 export const defaultState = null
 
 export const logout = () => ({
+  type: LOGOUT,
   request: {
     method: 'delete',
     url: '/users/sign_out',
