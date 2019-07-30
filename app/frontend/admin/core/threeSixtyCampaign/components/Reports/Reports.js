@@ -6,7 +6,7 @@ import settings from '../../settings'
 
 export default function Reports ({ history, routes, reportId }) {
   const onSelect = ({ key }) => {
-    if (key == 'report_builder') {
+    if (key === 'report_builder') {
       window.location.pathname = `administration/reports/${reportId}`
     } else {
       routeUtils.moveTo(history, settings.urlPrefix, key)

@@ -3,5 +3,5 @@ import { getCurrentReportId } from 'admin/core/threeSixtyCampaign/campaignDetail
 
 export default connect(
   state => ({ reportId: getCurrentReportId(state) }),
-  null
+  null,
 )

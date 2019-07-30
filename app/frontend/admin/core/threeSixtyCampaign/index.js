@@ -38,7 +38,7 @@ export const removeUser = (campaignId, userId) => ({
 
 function* genReloadCurrentParticipantTab () {
   const selectedTab = yield select(getSelectedTab)
-  const campaignId = yield select(getCampaignId)
+  const campaignId = yield select(getCurrentCampaignId)
   switch (selectedTab) {
     case 'subjects':
       return yield put(fetchSubjects(campaignId))
