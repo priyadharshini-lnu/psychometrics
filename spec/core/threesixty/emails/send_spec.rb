@@ -39,7 +39,7 @@ describe Threesixty::Emails::Send do
     end
   end
 
-  it "creates multiple email_schedules records when recipeint is manager" do
+  it "creates email_schedules record with multiple recipients when recipeint is manager" do
     create(:threesixty_email_template, threesixty_campaign: threesixty_campaign, name: 'manager_report_ready')
     manager_relationship = create(:relationship, name: 'Manager')
     manager_evaluators = create_list(:threesixty_evaluator, 2, campaign_id: threesixty_campaign.campaign_id)
@@ -56,13 +56,13 @@ describe Threesixty::Emails::Send do
 
     expect {
       Threesixty::Emails::Send.call!('manager_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
-    }.to change { Threesixty::EmailSchedule.count }.by(2)
+    }.to change { Threesixty::EmailSchedule.count }.by(1)
 
-    recipient_emails = Threesixty::EmailSchedule.where(name: "manager_report_ready").pluck(:recipient_emails).flatten
-    expect(manager_evaluators.map(&:email)).to match_array(recipient_emails)
+    recipient_ids = Threesixty::EmailSchedule.find_by(name: "manager_report_ready").recipient_ids
+    expect(manager_evaluators.map(&:user_id)).to match_array(recipient_ids)
   end
 
-  it "creates multiple email_schedules records when recipeint is evaluators_with_pending_evaluations" do
+  it "creates email_schedules record with multiple recipients when recipeint is evaluators_with_pending_evaluations" do
     create(:threesixty_email_template, threesixty_campaign: threesixty_campaign, name: 'evaluator_reminder')
     create(:threesixty_option, threesixty_campaign: threesixty_campaign)
     evaluators = create_list(:threesixty_evaluator, 2, campaign_id: threesixty_campaign.campaign_id)
@@ -77,13 +77,13 @@ describe Threesixty::Emails::Send do
 
     expect {
       Threesixty::Emails::Send.call!('evaluator_reminder', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
-    }.to change { Threesixty::EmailSchedule.count }.by(2)
+    }.to change { Threesixty::EmailSchedule.count }.by(1)
 
-    recipient_emails = Threesixty::EmailSchedule.where(name: "evaluator_reminder").pluck(:recipient_emails).flatten
-    expect(evaluators.map(&:email)).to match_array(recipient_emails)
+    recipient_ids = Threesixty::EmailSchedule.find_by(name: "evaluator_reminder").recipient_ids
+    expect(evaluators.map(&:user_id)).to match_array(recipient_ids)
   end
 
-  it "it substitutes pipetext with the value that need to be sent via email" do
+  it "adds subject_ids in meta of email_schedule record" do
     create(
       :threesixty_email_template,
       threesixty_campaign: threesixty_campaign,
@@ -95,6 +95,6 @@ describe Threesixty::Emails::Send do
     Threesixty::Emails::Send.call!('subject_report_ready', threesixty_campaign: threesixty_campaign, subject: threesixty_subject)
 
     email_schedule = Threesixty::EmailSchedule.find_by(name: 'subject_report_ready')
-    expect(email_schedule.content).to eq("Email: #{threesixty_subject.email}")
+    expect(email_schedule.meta['subject_ids']).to match([threesixty_subject.user_id])
   end
 end
