@@ -71,8 +71,13 @@ export default function SubjectList ({
             />
             <Column title="Evaluations Received" dataIndex="evaluators" key="received_evaluations" />
             <Column title="Evaluations Completed" dataIndex="evaluations" key="completed_evaluations" />
-            <Column title="Report Status" dataIndex="reportStatus" key="report_status" />
-            <Column title="Status" dataIndex="status" key="status" />
+
+            <Column
+              title="Report Status"
+              key="report_status"
+              render={({ reportStatus }) => I18n.t(`reports.statuses.${reportStatus}`)} />
+
+            <Column title="Status" key="status" render={({ status }) => I18n.t(`subjects.statuses.${status}`)} />
 
             <Column
               key="action"

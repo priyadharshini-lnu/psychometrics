@@ -4,11 +4,6 @@ const APPROVAL_STATUSES = {
   denied: 'Denied',
 }
 
-const STATUSES = {
-  completed: 'Completed',
-  not_completed: 'Waiting',
-}
-
 const REPORT_STATUSES = {
   not_prepared: 'Not Ready',
   generating: 'Generating',
@@ -21,7 +16,7 @@ export default {
     return APPROVAL_STATUSES[status] || APPROVAL_STATUSES.waiting
   },
   getStatus (status) {
-    return STATUSES[status] || STATUSES.not_completed
+    return  I18n.t(`subjects.statuses.${status}`)
   },
   getReportStatus (status) {
     return REPORT_STATUSES[status] || REPORT_STATUSES.not_prepared
