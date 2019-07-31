@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
@@ -11,7 +12,7 @@ const { Panel } = Collapse
 
 
 function EvaluationList ({
-  evaluations, managedSubjects, declineEvaluation, options, history, helpContent,
+  evaluations, managedSubjects, declineEvaluation, options, history,
 }) {
   const [showHelp, setShowHelp] = useState(false)
 
@@ -159,7 +160,7 @@ function EvaluationList ({
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        {helpContent && helpContent.evaluation}
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.help.evaluation') }} />
       </Modal>
     </List>
   )

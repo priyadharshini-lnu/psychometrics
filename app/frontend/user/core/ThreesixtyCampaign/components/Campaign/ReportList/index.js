@@ -33,7 +33,7 @@ const CollapseItem = ({ title, list }) => (
   </Collapse>
 )
 
-function ReportList ({ approvalReports, subjectReport, helpContent }) {
+function ReportList ({ approvalReports, subjectReport }) {
   const [showHelp, setShowHelp] = useState(false)
   return (
     <List
@@ -85,7 +85,7 @@ function ReportList ({ approvalReports, subjectReport, helpContent }) {
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        {helpContent && helpContent.report}
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.help.report') }} />
       </Modal>
     </List>
   )

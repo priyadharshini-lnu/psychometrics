@@ -5,7 +5,6 @@ const mapStateToProps = state => ({
   nominations: state.threeSixtyCampaign.campaign.nominations,
   approvalNominations: getApprovalNominations(state.threeSixtyCampaign),
   options: state.threeSixtyCampaign.campaign.options.participants,
-  helpContent: state.threeSixtyCampaign.campaign.helpContent,
 })
 
 const mapDispatchToProps = {}

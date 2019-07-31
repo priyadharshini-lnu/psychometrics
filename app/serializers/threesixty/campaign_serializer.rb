@@ -14,7 +14,7 @@ module Threesixty
     end
 
     attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
-               :mindmill, :hogan, :instructions, :help_content
+               :mindmill, :hogan, :instructions
 
     has_many :nominations, serializer: NomineeSerializer
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
@@ -30,14 +30,6 @@ module Threesixty
                       threesixty_campaign: object.campaign.threesixty_campaign)
         }
       end
-    end
-
-    def help_content
-      {
-        nomination: I18n.t('threesixty.help.nomination'),
-        evaluation: I18n.t('threesixty.help.evaluation'),
-        report: I18n.t('threesixty.help.report')
-      }
     end
 
     def type
