@@ -38,7 +38,7 @@ test:
   - bundle config github.https true
   - cp config/database.ci.yml config/database.yml
   # - cp config/secrets.ci.yml config/secrets.yml
-  - cp config/application.sample.yml  config/application.yml
+  - cp config/application.yml.sample  config/application.yml
   - bundle exec rake db:create
   - bundle exec rake db:structure:load
   - bundle exec rspec
@@ -60,4 +60,4 @@ deploy:
     url: https://staging.tte-lighthouse.com
   when: manual
   only:
-  - master  
+  - master
