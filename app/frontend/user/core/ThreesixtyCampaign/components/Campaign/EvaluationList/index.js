@@ -11,7 +11,7 @@ const { Panel } = Collapse
 
 
 function EvaluationList ({
-  evaluations, managedSubjects, declineEvaluation, options, history,
+  evaluations, managedSubjects, declineEvaluation, options, history, helpContent,
 }) {
   const [showHelp, setShowHelp] = useState(false)
 
@@ -159,7 +159,7 @@ function EvaluationList ({
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <p>need contents...</p>
+        {helpContent && helpContent.evaluation}
       </Modal>
     </List>
   )

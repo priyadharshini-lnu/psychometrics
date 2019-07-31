@@ -33,7 +33,9 @@ const CollapseItem = ({ title, list }) => (
   </Collapse>
 )
 
-function NominationList ({ nominations, approvalNominations, options }) {
+function NominationList ({
+  nominations, approvalNominations, options, helpContent,
+}) {
   const [showHelp, setShowHelp] = useState(false)
   return (
     <List
@@ -81,7 +83,7 @@ function NominationList ({ nominations, approvalNominations, options }) {
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <p>need contents...</p>
+        {helpContent && helpContent.nomination}
       </Modal>
     </List>
   )

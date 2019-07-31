@@ -5,6 +5,7 @@ const mapStateToProps = state => ({
   approvalReports: getApprovalReports(state.threeSixtyCampaign),
   subjectReport: getSubjectReport(state.threeSixtyCampaign),
   options: state.threeSixtyCampaign.campaign.options.reports,
+  helpContent: state.threeSixtyCampaign.campaign.helpContent,
 })
 
 const mapDispatchToProps = {}
