@@ -23,10 +23,6 @@ describe BulkReports::ExportAllJob do
   let(:bulk_report) { double('bulk_report', input_dir: input_dir) }
 
   describe '#perform' do
-    before do
-      FileUtils.rm_rf(input_dir)
-    end
-
     context 'project level' do
       let(:client) { double('client', project?: true, id: 1) }
       let(:query) { ::Queries::Reports::ProjectLevel::BulkReportWithOptions }
@@ -48,7 +44,7 @@ describe BulkReports::ExportAllJob do
           expect(BulkReports::ExportJob).to receive(:perform_now).with(job_params)
           expect(BulkReports::CompressJob).to receive(:perform_now).with(bulk_report)
           expect(BulkReportMailer).to receive_message_chain(:notify, :deliver_later)
-          expect(FileUtils).to receive(:rm_rf).with(input_dir)
+          expect(FileUtils).to receive(:rm_rf).with(input_dir).at_least(:once)
           described_class.perform_now(params)
         end
       end
