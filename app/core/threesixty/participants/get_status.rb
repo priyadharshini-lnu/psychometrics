@@ -3,9 +3,9 @@
 module Threesixty
   module Participants
     class GetStatus < BaseCommand
-      NOT_COMPLETED = 'Not Completed'
-      COMPLETED = 'Completed'
-      DONE = 'Done'
+      NOT_COMPLETED = 'not_completed'
+      COMPLETED = 'completed'
+      DONE = 'done'
 
       def initialize(subject, nomination_requirement, counters = {}, subject_evaluator_counters = {})
         @subject = subject

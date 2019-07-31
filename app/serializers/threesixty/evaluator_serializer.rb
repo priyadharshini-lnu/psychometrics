@@ -6,20 +6,22 @@ module Threesixty
     has_one :user, serializer: UserSerializer
 
     def status
-      Threesixty::Participants::GetStatus.call!(
+      result = Threesixty::Participants::GetStatus.call!(
         object.self_subject,
         @instance_options[:nomination_requirement],
         counters,
         @instance_options[:subject_evaluator_counters]&.dig(object.user_id, :all) || {}
       )
+      I18n.t("subjects.statuses.#{result}")
     end
 
     def report_status
-      Threesixty::Participants::GetReportStatus.call!(
+      result = Threesixty::Participants::GetReportStatus.call!(
         object.self_subject,
         @instance_options[:option],
         @instance_options[:subject_evaluator_counters]&.dig(object.user_id, :completed) || {}
       )
+      I18n.t("reports.statuses.#{result}")
     end
 
     def evaluations

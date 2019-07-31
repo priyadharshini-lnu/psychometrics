@@ -1,0 +1,6 @@
+en:
+  subjects:
+    statuses:
+      not_completed: "Not Completed"
+      completed: "Completed"
+      done: "Done"
