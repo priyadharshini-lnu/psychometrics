@@ -58,7 +58,7 @@ jobs:
       # Prepare application environment variables
       - run:
           name: Copy application.yml
-          command: cp config/application.sample.yml config/application.yml
+          command: cp config/application.yml.sample config/application.yml
 
       # Database setup
       - run:
