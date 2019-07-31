@@ -23,6 +23,10 @@ describe BulkReports::ExportAllJob do
   let(:bulk_report) { double('bulk_report', input_dir: input_dir) }
 
   describe '#perform' do
+    before do
+      FileUtils.rm_rf(input_dir)
+    end
+
     context 'project level' do
       let(:client) { double('client', project?: true, id: 1) }
       let(:query) { ::Queries::Reports::ProjectLevel::BulkReportWithOptions }
