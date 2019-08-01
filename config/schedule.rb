@@ -9,3 +9,7 @@ end
 every 1.minutes do
   rake 'schedule_email:proccess'
 end
+
+every :day, at: '10:00 am' do
+  rake 'reminders:proccess'
+end

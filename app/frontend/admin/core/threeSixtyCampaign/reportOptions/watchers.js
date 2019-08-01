@@ -1,7 +1,7 @@
 import {
   takeLatest, put, select, delay,
 } from 'redux-saga/effects'
-import { get as getCurrentCampaignId } from '../currentThreeSixtyCampaignId'
+import { getCurrentCampaignId } from '../campaignDetails'
 
 import {
   syncWithServer,

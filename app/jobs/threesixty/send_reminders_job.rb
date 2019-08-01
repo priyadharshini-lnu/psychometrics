@@ -1,11 +1,11 @@
 # frozen_string_literal: true
 
 module Threesixty
-  class SendScheduleEmailJob < ApplicationJob
+  class SendRemindersJob < ApplicationJob
     queue_as :default
 
     def perform
-      Threesixty::SendScheduleEmails.call!
+      Threesixty::Emails::SendReminders.call!
     end
   end
 end
