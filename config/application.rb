@@ -16,7 +16,8 @@ module Psychometrics
     # Load all translates inside folders
     #
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
-    config.i18n.available_locales = %i(en ar)
+    config.i18n.available_locales = %i(en ar bg bs ca cn cs cy da de el en-GB eo es es-ES et fa fr gu he hi hr hu id it ja km ko
+                                       lt lv mk mn ms my nl no pl pt-BR pt ro ru sk sl sr sv sw ta th tr uk ur vi zh zh-TW)
     config.i18n.default_locale = :en
     config.i18n.locale = :en
     config.i18n.fallbacks = [:en]
