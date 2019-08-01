@@ -20,7 +20,7 @@ describe Threesixty::Participants::GetStatus do
              nomination_requirement,
              { completed_evaluations: 4, total_evaluations: 4 },
              manager_relationship.id => 4, peer_relationship.id => 5
-           )).to eq 'completed'
+           )).to eq Threesixty::Participants::GetStatus::COMPLETED
   end
 
   it 'nomination requirements are not valid and evaluations are completed' do
@@ -29,7 +29,7 @@ describe Threesixty::Participants::GetStatus do
              nomination_requirement,
              { completed_evaluations: 4, total_evaluations: 4 },
              manager_relationship.id => 3, peer_relationship.id => 5
-           )).to eq 'not_completed'
+           )).to eq Threesixty::Participants::GetStatus::NOT_COMPLETED
   end
 
   it 'nomination requirements are valid and evaluations are not completed' do
@@ -38,7 +38,7 @@ describe Threesixty::Participants::GetStatus do
              nomination_requirement,
              { completed_evaluations: 3, total_evaluations: 4 },
              manager_relationship.id => 4, peer_relationship.id => 5
-           )).to eq 'not_completed'
+           )).to eq Threesixty::Participants::GetStatus::NOT_COMPLETED
   end
 
   it 'subject evaluation status is completed' do
@@ -49,6 +49,6 @@ describe Threesixty::Participants::GetStatus do
       nomination_requirement,
       { completed_evaluations: 3, total_evaluations: 4 },
       manager_relationship.id => 4, peer_relationship.id => 5
-    )).to eq 'done'
+    )).to eq Threesixty::Participants::GetStatus::DONE
   end
 end
