@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { useState } from 'react'
 import {
   List, Collapse, Icon, Progress, Modal,
@@ -33,7 +34,9 @@ const CollapseItem = ({ title, list }) => (
   </Collapse>
 )
 
-function NominationList ({ nominations, approvalNominations, options }) {
+function NominationList ({
+  nominations, approvalNominations, options,
+}) {
   const [showHelp, setShowHelp] = useState(false)
   return (
     <List
@@ -81,7 +84,7 @@ function NominationList ({ nominations, approvalNominations, options }) {
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <p>need contents...</p>
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.help.nomination') }} />
       </Modal>
     </List>
   )

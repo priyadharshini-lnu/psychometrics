@@ -20,7 +20,7 @@ translations:
     pretty_print: true
   - file: "app/assets/javascripts/i18n/translations.js"
     pretty_print: true
-    only: ['*.validations.*', '*.reports.*']
+    only: ['*.validations.*', '*.reports.*', '*.threesixty.*', '*.helps.*']
 fallbacks: true
 
 # If you're running an old version, you can use something

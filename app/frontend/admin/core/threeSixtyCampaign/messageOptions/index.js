@@ -2,7 +2,7 @@ import {
   takeLatest, put, select, delay,
 } from 'redux-saga/effects'
 import _ from 'lodash'
-import { get as getCurrentCampaignId } from '../currentThreeSixtyCampaignId'
+import { getCurrentCampaignId } from '../campaignDetails'
 
 export const FETCH = 'threeSixty/messageOptions/messageFETCH'
 export const UPDATE = 'threeSixty/messageOptions/UPDATE'

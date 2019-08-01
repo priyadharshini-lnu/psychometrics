@@ -38,7 +38,7 @@ export default function EmailScheduleModal ({
   }
 
   const handleCreate = () => {
-    create(campaignId, selectedEmailSchedule, _.map(recipients, r => r.email))
+    create(campaignId, selectedEmailSchedule, _.map(recipients, r => r.id))
       .then(() => {
         setErrors(null)
         closeModal()
