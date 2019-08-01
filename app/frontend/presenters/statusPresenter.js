@@ -16,7 +16,7 @@ export default {
     return APPROVAL_STATUSES[status] || APPROVAL_STATUSES.waiting
   },
   getStatus (status) {
-    return  I18n.t(`subjects.statuses.${status}`)
+    return I18n.t(`subjects.statuses.${status}`)
   },
   getReportStatus (status) {
     return REPORT_STATUSES[status] || REPORT_STATUSES.not_prepared

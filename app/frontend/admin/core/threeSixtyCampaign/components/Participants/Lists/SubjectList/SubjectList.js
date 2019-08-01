@@ -77,7 +77,8 @@ export default function SubjectList ({
             <Column
               title="Report Status"
               key="report_status"
-              render={({ reportStatus }) => I18n.t(`reports.statuses.${reportStatus}`)} />
+              render={({ reportStatus }) => I18n.t(`reports.statuses.${reportStatus}`)}
+            />
 
             <Column title="Status" key="status" render={({ status }) => I18n.t(`subjects.statuses.${status}`)} />
 
