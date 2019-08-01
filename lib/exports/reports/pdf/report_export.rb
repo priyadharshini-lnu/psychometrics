@@ -36,8 +36,8 @@ module Exports
             auth: Rails.application.secrets.http_auth
           }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
-          Rails.logger.info "phantomjs #{Rails.root.join('lib/raster.js')} #{args}"
-          system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
+          Rails.logger.info "$(cd #{Rails.root.to_s} && npm run export_pdf -- #{args})"
+          system("$(cd #{Rails.root.to_s} && npm run export_pdf -- #{args})")
 
           output
         end
