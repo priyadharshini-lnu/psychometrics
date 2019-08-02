@@ -3,7 +3,7 @@ en:
     threesixty_campaigns:
       email_templates:
         subject_invite:
-          name: 'Subject Invite Reminder'
+          name: 'Subject Invite'
           description: 'This message will be sent to remind evaluators to complete pending evaluations'
         evaluator_invite:
           name: 'Evaluator Invite'

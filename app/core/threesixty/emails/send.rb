@@ -49,6 +49,10 @@ module Threesixty
         {
           template_name: Threesixty::Emails::Name::SUBJECT_REMINDER,
           recipient_type: :subject
+        },
+        {
+          template_name: Threesixty::Emails::Name::EVALUATOR_INVITE,
+          recipient_type: :evaluator
         }
       ].freeze
 
