@@ -86,8 +86,9 @@ module Threesixty
       def get_recipient_ids(config)
         return context[:recipient_ids] if context[:recipient_ids]
 
-        recipients = config[:recipient_class] ? config[:recipient_class].new(context).query.includes(:user) : [context[:subject]]
-        recipients.map(&:user_id)
+        return config[:recipient_class].new(context).query.map(&:user_id) if config[:recipient_class]
+
+        context[config[:recipient_type]].user_id
       end
     end
   end

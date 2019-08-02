@@ -15,10 +15,11 @@ module Threesixty
           Threesixty::Emails::Send.call!(
             Threesixty::Emails::Name::APPROVE_NOMINATION,
             threesixty_campaign: @campaign,
-            subject: @subject
+            subject: @subject,
+            evaluator: result.threesixty_evaluator
           )
         else
-          send_evaluator_invite_email(@nomination.threesixty_evaluator)
+          send_evaluator_invite_email(result.threesixty_evaluator)
         end
         render json: result, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
       else
