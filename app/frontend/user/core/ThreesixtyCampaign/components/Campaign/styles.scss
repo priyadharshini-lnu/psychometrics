@@ -175,6 +175,21 @@
     }
   }
 
+  .help-modal-body {
+    h2 {
+      font-size: 24px;
+      font-weight: bold;
+    }
+
+    h3 {
+      font-size: 20px;
+    }
+
+    ol {
+      padding-left: 16px;
+    }
+  }
+
   .letter-icon {
     display: flex;
     justify-content: center;
@@ -187,7 +202,5 @@
     color: $light-black;
   }
 
-  .task_cards {
-
-  }
+  .task_cards {}
 }

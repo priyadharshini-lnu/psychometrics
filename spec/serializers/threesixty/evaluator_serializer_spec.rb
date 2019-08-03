@@ -39,8 +39,8 @@ describe Threesixty::EvaluatorSerializer do
       expect(result[:user][:email]).to eq 'dustin@poirier.com'
       expect(result[:evaluators]).to eq '4 / 5'
       expect(result[:evaluations]).to eq '3 / 5'
-      expect(result[:status]).to eq 'not_completed'
-      expect(result[:report_status]).to eq 'incomplete'
+      expect(result[:status]).to eq Threesixty::Participants::GetStatus::NOT_COMPLETED
+      expect(result[:report_status]).to eq Threesixty::Participants::GetReportStatus::INCOMPLETE
     end
 
     it do
