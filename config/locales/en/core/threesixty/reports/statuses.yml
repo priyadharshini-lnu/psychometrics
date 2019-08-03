@@ -1,0 +1,9 @@
+en:
+  reports:
+    statuses:
+      incomplete: "Incomplete"
+      denied: "Denied"
+      available: "Available"
+      approved: "Approved"
+      on_hold: "On hold"
+      not_available: "Not available"

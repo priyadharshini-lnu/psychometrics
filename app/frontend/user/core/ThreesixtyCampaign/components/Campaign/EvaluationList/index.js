@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
@@ -159,7 +160,7 @@ function EvaluationList ({
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <p>need contents...</p>
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.help.evaluation') }} />
       </Modal>
     </List>
   )
