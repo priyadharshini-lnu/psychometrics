@@ -561,6 +561,8 @@ Rails.application.routes.draw do
       get :export, on: :member
     end
     resource :profiles, only: %i(update edit)
+    patch 'users/update_details', to: 'users#update_details'
+
     get 'survey_instructions', to: 'home#survey_instructions'
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'assessment_completed', to: 'home#assessment_completed'
