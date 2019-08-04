@@ -3643,7 +3643,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -9171,7 +9171,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -14703,7 +14703,7 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -20231,7 +20231,7 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -25761,7 +25761,7 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -31289,7 +31289,7 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -36818,7 +36818,7 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -42346,7 +42346,7 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -47874,7 +47874,7 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -53402,7 +53402,7 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -58930,7 +58930,7 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -64458,7 +64458,7 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -69986,7 +69986,7 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -75514,7 +75514,7 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -81042,7 +81042,7 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -86570,7 +86570,7 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -92100,7 +92100,7 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -97628,7 +97628,7 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -103153,7 +103153,7 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -108681,7 +108681,7 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -114209,7 +114209,7 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -119734,7 +119734,7 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -125263,7 +125263,7 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -130792,7 +130792,7 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -136320,7 +136320,7 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -141848,7 +141848,7 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -147376,7 +147376,7 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -152906,7 +152906,7 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -158434,7 +158434,7 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -163962,7 +163962,7 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -169491,7 +169491,7 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -175022,7 +175022,7 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -180551,7 +180551,7 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -186081,7 +186081,7 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -191611,7 +191611,7 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -197139,7 +197139,7 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -202664,7 +202664,7 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -208189,7 +208189,7 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -213719,7 +213719,7 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -219247,7 +219247,7 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -224775,7 +224775,7 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -230303,7 +230303,7 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -235831,7 +235831,7 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -241359,7 +241359,7 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -246887,7 +246887,7 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -252415,7 +252415,7 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -257943,7 +257943,7 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -263471,7 +263471,7 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -268999,7 +268999,7 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -274527,7 +274527,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -280055,7 +280055,7 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -285583,7 +285583,7 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -291111,7 +291111,7 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -296639,7 +296639,7 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "subject": "Subject",
         "subject_invite": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
