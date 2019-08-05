@@ -207,6 +207,9 @@ GEM
     carrierwave-base64 (2.5.3)
       carrierwave (>= 0.8.0)
       mime-types (~> 3.0)
+    carrierwave_direct (2.1.0)
+      carrierwave (>= 1.0.0)
+      fog-aws
     childprocess (0.9.0)
       ffi (~> 1.0, >= 1.0.11)
     chronic (0.10.2)
@@ -496,7 +499,7 @@ GEM
       pry (>= 0.9.10)
     psych (3.1.0)
     public_suffix (3.0.3)
-    puma (3.12.0)
+    puma (3.12.1)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.7)
@@ -850,6 +853,7 @@ DEPENDENCIES
   capybara-screenshot (~> 1.0.14)
   carrierwave (~> 1.2.2)
   carrierwave-base64 (~> 2.5.3)
+  carrierwave_direct
   chronic (~> 0.10.2)
   ckeditor
   cocoon (= 1.2.9)

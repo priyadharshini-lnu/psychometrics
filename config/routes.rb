@@ -532,13 +532,18 @@ Rails.application.routes.draw do
           get :download, on: :member
         end
         resources :assessments, only: %i(index)
-        resources :users_results, only: %i[update]
+        resources :users_results, only: %i[update] do
+          member do
+            get :upload_media_url
+            put :upload_callback
+            post :upload_media_dev unless Rails.env.production?
+          end
+        end
         collection do
           post :change_locale
         end
       end
     end
-
     namespace :mindmill do
       resources :assigns, only: [] do
         member do
