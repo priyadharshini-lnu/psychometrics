@@ -4,7 +4,7 @@ en:
       email_templates:
         subject_invite:
           name: 'Subject Invite'
-          description: 'This message will be sent to remind evaluators to complete pending evaluations'
+          description: 'This message will be sent to invite subjects to participate in the assessment'
         evaluator_invite:
           name: 'Evaluator Invite'
           description: 'This message will be sent to all participants that are evaluators'
@@ -14,9 +14,9 @@ en:
           rule_name: 'Subject Reminder Rules'
           rule_description: 'Specify rules for automatically scheduling when an invitation is scheduled'
         evaluator_reminder:
-          name: 'Evaluator Reminder Rules'
+          name: 'Evaluator Reminder'
           description: 'This message will be sent to remind evaluators to complete pending evaluations'
-          rule_name: 'Subject Reminder Rules'
+          rule_name: 'Evaluator Reminder Rules'
           rule_description: 'Specify rules for automatically scheduling when an invitation is scheduled'
         subject_report_ready:
           name: 'Subject Report Ready'
