@@ -63,6 +63,7 @@ describe Threesixty::Evaluators::CreateAll do
     create(
       :threesixty_participant,
       subject_id: subject_1.user_id,
+      campaign_id:  threesixty_campaign.campaign_id,
       evaluator_id: evaluator.user_id
     )
 

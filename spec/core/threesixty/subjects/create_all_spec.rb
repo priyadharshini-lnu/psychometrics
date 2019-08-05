@@ -31,7 +31,7 @@ describe Threesixty::Subjects::CreateAll do
       expect(user.reload.first_name).to eq('Dan')
     end
 
-    it "doesn't create new subject record when" do
+    it "doesn't create new subject record when subject exists" do
       user = create(:user, project: threesixty_campaign.project, email: 'daniel@cc.com', first_name: 'Daniel')
       create(:threesixty_subject, user: user, campaign: threesixty_campaign.campaign)
 
@@ -45,6 +45,7 @@ describe Threesixty::Subjects::CreateAll do
       subject = create(:threesixty_subject, user: user, campaign: threesixty_campaign.campaign)
       create(
         :threesixty_participant,
+        campaign_id:  threesixty_campaign.campaign_id,
         subject_id: subject.user_id,
         evaluator_id: subject.user_id
       )
