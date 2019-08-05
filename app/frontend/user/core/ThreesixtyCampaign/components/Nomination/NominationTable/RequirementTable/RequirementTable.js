@@ -13,8 +13,8 @@ const { Column } = Table
 export default function RequirementTable (props) {
   const {
     removeNomination, updateStatus,
-    isSelf, match,
-    nomination: { options },
+    match,
+    nomination: { isSelf, options },
     requirement: { condition, title, evaluators },
     match: { params: { campaignId, id: nominationId } },
   } = props
