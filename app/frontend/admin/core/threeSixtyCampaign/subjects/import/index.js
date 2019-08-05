@@ -30,8 +30,8 @@ const HANDLERS = {
   [IMPORT]: (state, { response }) => (
     setIn(
       state,
-      ['existingSubjectWhosePasswordNotChanged'],
-      response.existingSubjectWhosePasswordNotChanged,
+      ['existingSubjectsWhosePasswordNotChanged'],
+      response.existingSubjectsWhosePasswordNotChanged,
     )
   ),
   [CLEAR_IMPORT_DATA]: () => defaultState,
@@ -44,7 +44,7 @@ export default function reducer (state = defaultState, action) {
 }
 
 function* genCloseImportModal ({ response }) {
-  if (_.isEmpty(response.existingSubjectWhosePasswordNotChanged)) {
+  if (_.isEmpty(response.existingSubjectsWhosePasswordNotChanged)) {
     yield put(closeModal())
   }
 }

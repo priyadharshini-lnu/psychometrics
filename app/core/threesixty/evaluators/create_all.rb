@@ -41,13 +41,12 @@ module Threesixty
       end
 
       def create_participant(evaluator, evaluator_user)
-        ::Threesixty::Participant.create(
-          evaluator: evaluator_user,
-          project_id: threesixty_campaign.campaign.project_id,
-          campaign: threesixty_campaign.campaign,
-          subject: evaluator[:subject_user],
-          relationship: evaluator[:relationship]
-        )
+        ::Threesixty::Participant.find_or_create_by!(evaluator: evaluator_user, subject: evaluator[:subject_user]) do |participant|
+          participant.manager_nomination_status = :approved
+          participant.relationship = evaluator[:relationship]
+          participant.project_id = threesixty_campaign.campaign.project_id
+          participant.campaign = threesixty_campaign.campaign
+        end
       end
 
       private
