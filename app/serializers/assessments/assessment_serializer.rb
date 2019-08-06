@@ -13,7 +13,7 @@ module Assessments
     end
 
     def factors
-      factors_scoring = object.factors_scoring.index_by(&:id)
+      factors_scoring = object.factors_scoring.group_by(&:factor_id)
       object.dimension.all_factors.map do |factor|
         Assessments::FactorSerializer.new(factor, assessment_id: object.id, factors_scoring: factors_scoring[factor.id] || []).to_hash
       end
