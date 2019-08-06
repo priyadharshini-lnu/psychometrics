@@ -1,5 +1,5 @@
 class MediaResponseUploader < CarrierWave::Uploader::Base
-  if true #Rails.env.production?
+  if Rails.env.production?
     include CarrierWaveDirect::Uploader
   end
 

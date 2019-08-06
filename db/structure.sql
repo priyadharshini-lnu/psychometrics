@@ -1354,7 +1354,8 @@ CREATE TABLE public.media_responses (
     question_id bigint,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    users_result_id integer
+    users_result_id integer,
+    assign_id integer
 );
 
 
