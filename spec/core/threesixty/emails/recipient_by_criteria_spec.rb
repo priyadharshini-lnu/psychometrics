@@ -76,7 +76,7 @@ describe Threesixty::Emails::RecipientByCriteria do
     end
 
     it 'adds default criteria for evaluator_invite email' do
-      default_recipient_criteria = [{"field"=>"have_apart_from_self_evaluation"}]
+      default_recipient_criteria = [{ "field" => "atleast_one_non_self_evalaution" }]
       expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).
         with(
           threesixty_campaign: threesixty_campaign,
@@ -92,7 +92,7 @@ describe Threesixty::Emails::RecipientByCriteria do
 
     it 'adds default criteria for evaluator_reminder email' do
       default_recipient_criteria = [
-        {"field"=>"have_apart_from_self_evaluation"},
+        {"field"=>"atleast_one_non_self_evalaution"},
         { 'field' => 'evaluations', 'value' => 'not_completed', 'exclude_self_evaluations' => true }
       ]
       expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).
