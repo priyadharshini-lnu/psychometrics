@@ -11,54 +11,54 @@ import hogan from './hogan.png'
 export default function Threesixty ({ campaign }) {
   return (
     <Col className="card">
-      <Card
-        bodyStyle={{ padding: 0 }}
-        hoverable
-        cover={(
-          <div className="cover threesixty">
-            <div className="caption">
-              <div className="icon">
-                <svg width="17px" height="21px" viewBox="0 0 17 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
-                  <defs />
-                  <g id="Desktop" stroke="none" strokeWidth="1">
-                    <g id="Assesments-2_03" transform="translate(-127.000000, -265.000000)">
-                      <g id="Assessment-1" transform="translate(103.000000, 243.000000)">
-                        <g id="Group-3" transform="translate(24.000000, 22.000000)">
-                          <path d="M13.9908046,1.72759387 C13.6901243,-0.19956143 11.2870748,-0.645733286 10.397795,1.06132194 L0,21 L2.67182735,21 L11.8804598,3.34166108 L13.4412855,13.343418 L10.8316678,13.3417118 C10.8061459,13.3485366 10.7822191,13.3425649 10.7566972,13.3425649 C10.1369927,13.3425649 9.63532723,13.8800185 9.63532723,14.5420249 C9.63532723,15.2048845 10.1369927,15.7423381 10.7566972,15.7423381 C10.7822191,15.7423381 10.8061459,15.7363664 10.8316678,15.7346602 L13.8145437,15.7423381 L14.636031,21 L17,21 L13.9908046,1.72759387 Z" id="Fill-1" />
+      <Link to={`/campaigns/${campaign.id}`}>
+        <Card
+          bodyStyle={{ padding: 0 }}
+          hoverable
+          cover={(
+            <div className="cover threesixty">
+              <div className="caption">
+                <div className="icon">
+                  <svg width="17px" height="21px" viewBox="0 0 17 21" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
+                    <defs />
+                    <g id="Desktop" stroke="none" strokeWidth="1">
+                      <g id="Assesments-2_03" transform="translate(-127.000000, -265.000000)">
+                        <g id="Assessment-1" transform="translate(103.000000, 243.000000)">
+                          <g id="Group-3" transform="translate(24.000000, 22.000000)">
+                            <path d="M13.9908046,1.72759387 C13.6901243,-0.19956143 11.2870748,-0.645733286 10.397795,1.06132194 L0,21 L2.67182735,21 L11.8804598,3.34166108 L13.4412855,13.343418 L10.8316678,13.3417118 C10.8061459,13.3485366 10.7822191,13.3425649 10.7566972,13.3425649 C10.1369927,13.3425649 9.63532723,13.8800185 9.63532723,14.5420249 C9.63532723,15.2048845 10.1369927,15.7423381 10.7566972,15.7423381 C10.7822191,15.7423381 10.8061459,15.7363664 10.8316678,15.7346602 L13.8145437,15.7423381 L14.636031,21 L17,21 L13.9908046,1.72759387 Z" id="Fill-1" />
+                          </g>
                         </g>
                       </g>
                     </g>
-                  </g>
-                </svg>
+                  </svg>
+                </div>
+                <div className="title">360 Assesment</div>
               </div>
-              <div className="title">360 Assesment</div>
+              {campaign.mindmill && <img className="service" src={mindmill} alt="" />}
+              {campaign.hogan && <img className="service" src={hogan} alt="" />}
+              <div className="card-progress"><Progress percent={30} strokeColor="#246479" /></div>
             </div>
-            {campaign.mindmill && <img className="service" src={mindmill} alt="" />}
-            {campaign.hogan && <img className="service" src={hogan} alt="" />}
-            <div className="card-progress"><Progress percent={30} strokeColor="#246479" /></div>
-          </div>
-        )}
-      >
-        <div className="card-body">
-          <div className="card-content">
-            <div className="card-title">
-              {campaign.assessmentName}
-            </div>
-            <Row type="flex" className="info-line">
-              <Col className="info-block">
-                <Icon type="clock-circle" />
-                {' '}
-                {campaign.timing}
-              </Col>
-              <Col className="info-block">
-                <Icon type="question-circle" />
-                {' '}
-                {campaign.questionsCount}
-              </Col>
-            </Row>
-            <div className="divider" />
-            <div className="button">
-              <Link to={`/campaigns/${campaign.id}`}>
+          )}
+        >
+          <div className="card-body">
+            <div className="card-content">
+              <div className="card-title">
+                {campaign.assessmentName}
+              </div>
+              <Row type="flex" className="info-line">
+                <Col className="info-block">
+                  <Icon type="clock-circle" />
+                  {' '}
+                  {campaign.timing}
+                </Col>
+                <Col className="info-block">
+                  <Icon type="question-circle" />
+                  {' '}
+                  {campaign.questionsCount}
+                </Col>
+              </Row>
+              <div className="divider" />
+              <div className="button">
                 <svg width="17px" height="17px" viewBox="0 0 17 17" version="1.1" xmlns="http://www.w3.org/2000/svg" xlink="http://www.w3.org/1999/xlink">
                   <defs>
                     <polygon id="path-1" points="0 0.8341 17 0.8341 17 3 0 3" />
@@ -83,12 +83,12 @@ export default function Threesixty ({ campaign }) {
                   </g>
                 </svg>
                 {' '}
-                Details
-              </Link>
+                <span className="card-detail-txt mls">Details</span>
+              </div>
             </div>
           </div>
-        </div>
-      </Card>
+        </Card>
+      </Link>
     </Col>
   )
 }

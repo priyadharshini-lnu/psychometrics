@@ -27,20 +27,12 @@ export default function ManagerSection ({
             label="Email managers when a subject's nominations are ready for approval"
             {...parametersForSwitch('emailManagersOnNominationApproval')}
             type="checkbox"
-            actionable={<Button size="small">Edit email</Button>}
           />
         </div>
         <div>
           <ExpandableOption
             label="Allow subjects to email managers when their nominations are ready for approval"
             {...parametersForSwitch('subjectsCanEmailManagers')}
-            type="checkbox"
-          />
-        </div>
-        <div>
-          <ExpandableOption
-            label="Email subject when a nomination is declined"
-            {...parametersForSwitch('emailSubjectsWhenManagerNominatesThem')}
             type="checkbox"
           />
         </div>
