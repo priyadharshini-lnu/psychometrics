@@ -2,7 +2,7 @@
 
 module Threesixty
   module ParticipatorByCriteria
-    class ByHavingApartFromSelfEvaluation < Base
+    class ByAtleastOneNonSelfEvaluation < Base
       def user_matches_criteria?(user, _)
         evaluation_count = evaluations_count[user.id]
         evaluation_count && evaluation_count.count > 0

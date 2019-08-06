@@ -14,7 +14,27 @@ describe Threesixty::Emails::RecipientByCriteria do
       expect(results).to match_array([threesixty_subject.user])
     end
 
-    it 'sends all evalautors if it is an email for evaluators' do
+    it "doesn't sends evaluators that has no evaluation apart from self" do
+      create(
+        :threesixty_participant,
+        campaign: threesixty_campaign.campaign,
+        evaluator_id: threesixty_evaluator.user_id,
+        subject_id: threesixty_evaluator.user_id
+      )
+
+      results = described_class.call!(threesixty_campaign: threesixty_campaign, email_name: ::Threesixty::Emails::Name::EVALUATOR_INVITE)
+
+      expect(results).to be_blank
+    end
+
+    it 'sends evaluators that has atleast on evaluation apart from self' do
+      create(
+        :threesixty_participant,
+        campaign: threesixty_campaign.campaign,
+        evaluator_id: threesixty_evaluator.user_id,
+        subject_id: threesixty_subject.user_id
+      )
+
       results = described_class.call!(threesixty_campaign: threesixty_campaign, email_name: ::Threesixty::Emails::Name::EVALUATOR_INVITE)
 
       expect(results).to match_array([threesixty_evaluator.user])
@@ -73,7 +93,7 @@ describe Threesixty::Emails::RecipientByCriteria do
     it 'adds default criteria for evaluator_reminder email' do
       default_recipient_criteria = [
         {"field"=>"have_apart_from_self_evaluation"},
-        { 'field' => 'evaluations', 'value' => 'not_completed' }
+        { 'field' => 'evaluations', 'value' => 'not_completed', 'exclude_self_evaluations' => true }
       ]
       expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).
         with(

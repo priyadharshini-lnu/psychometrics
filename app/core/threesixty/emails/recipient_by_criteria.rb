@@ -43,7 +43,7 @@ module Threesixty
 
       def add_default_criteria_for_evaluator_email(recipient_criteria)
         if evaluator_email?
-          recipient_criteria << { 'field' => 'have_apart_from_self_evaluation' }
+          recipient_criteria << { 'field' => 'atleast_one_non_self_evalaution' }
         end
         if email_name == ::Threesixty::Emails::Name::EVALUATOR_REMINDER
           recipient_criteria << { 'field' => 'evaluations', 'value' => 'not_completed', 'exclude_self_evaluations' => true }
