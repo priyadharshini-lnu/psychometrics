@@ -8,7 +8,7 @@ module UsersResults
     end
 
     def call
-      media = MediaResponse.create(
+      media = MediaResponse.find_or_create_by(
         question_id: question_id,
         users_result_id: users_result.id,
       )
