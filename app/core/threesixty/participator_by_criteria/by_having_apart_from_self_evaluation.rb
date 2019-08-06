@@ -4,11 +4,8 @@ module Threesixty
   module ParticipatorByCriteria
     class ByHavingApartFromSelfEvaluation < Base
       def user_matches_criteria?(user, _)
-        unless evaluation_count = evaluations_count[user.id] && evaluation_count.count > 0
-          return broadcast :ok, false
-        end
-
-        broadcast :ok, results
+        evaluation_count = evaluations_count[user.id]
+        evaluation_count && evaluation_count.count > 0
       end
 
       private
@@ -16,7 +13,8 @@ module Threesixty
       def evaluations_count
         return @evaluators_with_subject_ids if @evaluators_with_subject_ids
 
-        participants = ::Threesixty::Participant.
+        participants = threesixty_campaign.
+          participants.
           where(evaluator_id: user_ids).
           where("subject_id != evaluator_id").
           group(:evaluator_id).

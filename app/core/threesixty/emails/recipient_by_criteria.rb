@@ -46,7 +46,7 @@ module Threesixty
           recipient_criteria << { 'field' => 'have_apart_from_self_evaluation' }
         end
         if email_name == ::Threesixty::Emails::Name::EVALUATOR_REMINDER
-          recipient_criteria << { 'field' => 'evaluations', 'value' => 'not_completed' }
+          recipient_criteria << { 'field' => 'evaluations', 'value' => 'not_completed', 'exclude_self_evaluations' => true }
         end
         recipient_criteria
       end
