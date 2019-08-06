@@ -4826,6 +4826,13 @@ CREATE INDEX index_users_results_on_subject_id ON public.users_results USING btr
 
 
 --
+-- Name: participants_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX participants_subject_evaluator_campaign ON public.threesixty_participants USING btree (subject_id, evaluator_id, campaign_id);
+
+
+--
 -- Name: threesixty_email_schedule_cam_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4858,6 +4865,13 @@ CREATE INDEX threesixty_nomination_requirements_cam_id ON public.threesixty_nomi
 --
 
 CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_histories USING btree (threesixty_campaign_id);
+
+
+--
+-- Name: users_results_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_results_subject_evaluator_campaign ON public.users_results USING btree (subject_id, evaluator_id, campaign_id);
 
 
 --
@@ -5944,6 +5958,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190724063809'),
 ('20190724064016'),
 ('20190726083527'),
-('20190726090828');
+('20190726090828'),
+('20190805173213');
 
 
