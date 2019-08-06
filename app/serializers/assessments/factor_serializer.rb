@@ -8,7 +8,7 @@ module Assessments
     end
 
     def scoring
-      object.factors_scoring
+      @instance_options[:factors_scoring]
     end
   end
 end
