@@ -51,6 +51,10 @@ module Threesixty
         {
           field_types: %w[subject_status],
           class_name: ParticipatorByCriteria::BySubjectStatus
+        },
+        {
+          field_types: %w[have_apart_from_self_evaluation],
+          class_name: ByHavingApartFromSelfEvaluation
         }
       ].freeze
 

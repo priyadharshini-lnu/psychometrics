@@ -30,13 +30,32 @@ module Threesixty
       private
 
       def add_default_criteria(recipient_criteria)
+        recipient_criteria = add_default_criteria_for_subject_email(recipient_criteria)
+        add_default_criteria_for_evaluator_email(recipient_criteria)
+      end
+
+      def add_default_criteria_for_subject_email(recipient_criteria)
         if email_name == ::Threesixty::Emails::Name::SUBJECT_REMINDER
           recipient_criteria << { 'field' => 'subject_status', 'value' => Threesixty::Participants::GetStatus::NOT_COMPLETED }
+        end
+        recipient_criteria
+      end
+
+      def add_default_criteria_for_evaluator_email(recipient_criteria)
+        if evaluator_email?
+          recipient_criteria << { 'field' => 'have_apart_from_self_evaluation' }
         end
         if email_name == ::Threesixty::Emails::Name::EVALUATOR_REMINDER
           recipient_criteria << { 'field' => 'evaluations', 'value' => 'not_completed' }
         end
         recipient_criteria
+      end
+
+      def evaluator_email?
+        [
+          ::Threesixty::Emails::Name::EVALUATOR_INVITE,
+          ::Threesixty::Emails::Name::EVALUATOR_REMINDER
+        ].include?(email_name)
       end
 
       def participator_types

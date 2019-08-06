@@ -3,6 +3,7 @@ require 'rails_helper'
 
 describe Threesixty::Emails::RecipientByCriteria do
   let(:threesixty_campaign) { create(:threesixty_campaign) }
+  let!(:threesixty_option) { create(:threesixty_option, threesixty_campaign: threesixty_campaign) }
   let!(:threesixty_subject) { create(:threesixty_subject, campaign: threesixty_campaign.campaign) }
   let!(:threesixty_evaluator) { create(:threesixty_evaluator, campaign: threesixty_campaign.campaign) }
 
@@ -54,13 +55,31 @@ describe Threesixty::Emails::RecipientByCriteria do
       )
     end
 
-    it 'adds default criteria for evaluator_reminder email' do
-      default_recipient_criteria = { 'field' => 'evaluations', 'value' => 'not_completed' }
+    it 'adds default criteria for evaluator_invite email' do
+      default_recipient_criteria = [{"field"=>"have_apart_from_self_evaluation"}]
       expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).
         with(
           threesixty_campaign: threesixty_campaign,
           participator_types: [:evaluator],
-          criteria_list: [default_recipient_criteria]
+          criteria_list: default_recipient_criteria
+        ).and_return([threesixty_subject, threesixty_evaluator])
+
+      described_class.call!(
+        threesixty_campaign: threesixty_campaign,
+        email_name: ::Threesixty::Emails::Name::EVALUATOR_INVITE,
+      )
+    end
+
+    it 'adds default criteria for evaluator_reminder email' do
+      default_recipient_criteria = [
+        {"field"=>"have_apart_from_self_evaluation"},
+        { 'field' => 'evaluations', 'value' => 'not_completed' }
+      ]
+      expect(Threesixty::ParticipatorByCriteria::Filter).to receive(:call!).
+        with(
+          threesixty_campaign: threesixty_campaign,
+          participator_types: [:evaluator],
+          criteria_list: default_recipient_criteria
         ).and_return([threesixty_subject, threesixty_evaluator])
 
       described_class.call!(
