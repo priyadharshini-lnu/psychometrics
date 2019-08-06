@@ -511,6 +511,11 @@ Rails.application.routes.draw do
     resources :assigns, only: %i(index update) do
       get :pass, on: :member
       post :accept_privacy, on: :collection
+      member do
+        get :upload_media_url
+        put :upload_callback
+        post :upload_media_dev
+      end
     end
 
     scope module: :threesixty do
@@ -536,7 +541,7 @@ Rails.application.routes.draw do
           member do
             get :upload_media_url
             put :upload_callback
-            post :upload_media_dev unless Rails.env.production?
+            post :upload_media_dev
           end
         end
         collection do
