@@ -13,8 +13,9 @@ module Assessments
     end
 
     def factors
-      object.dimension.all_factors.includes(:factors_scoring).where(factors_scoring: { assessment: object }).map do |factor|
-        Assessments::FactorSerializer.new(factor, assessment_id: object.id).to_hash
+      factors_scoring = object.factors_scoring.index_by(&:id)
+      object.dimension.all_factors.map do |factor|
+        Assessments::FactorSerializer.new(factor, assessment_id: object.id, factors_scoring: factors_scoring[factor.id] || []).to_hash
       end
     end
   end
