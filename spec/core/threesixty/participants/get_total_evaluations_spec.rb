@@ -57,4 +57,32 @@ describe Threesixty::Participants::GetTotalEvaluations do
     expect(results[threesixty_evaluators[0].user_id].total_evaluations_count).to eq(1)
     expect(results[threesixty_evaluators[1].user_id].total_evaluations_count).to eq(1)
   end
+
+  it 'ignores self evaluation count when exclude_self_evaluations is set' do
+    create(:threesixty_option, threesixty_campaign: threesixty_campaign)
+    threesixty_evaluators.each do |threesixty_evaluator|
+      create(
+        :threesixty_participant,
+        campaign: threesixty_campaign.campaign,
+        evaluator_id: threesixty_evaluator.user_id,
+        subject_id: create(:user).id
+      )
+    end
+    create(
+      :threesixty_participant,
+      campaign: threesixty_campaign.campaign,
+      evaluator_id: threesixty_evaluators[0].user_id,
+      subject_id: threesixty_evaluators[0].user_id
+    )
+
+    results = described_class.call!(
+      threesixty_campaign,
+      threesixty_evaluators.map(&:user_id),
+      exclude_self_evaluations: true
+    )
+
+    threesixty_evaluators.each do |threesixty_evaluator|
+      expect(results[threesixty_evaluator.user_id].total_evaluations_count).to eq(1)
+    end
+  end
 end
