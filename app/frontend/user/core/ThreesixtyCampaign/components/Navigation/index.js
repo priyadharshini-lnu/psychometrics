@@ -9,7 +9,7 @@ import EditProfileModal from '../EditProfileModal'
 
 const { SubMenu } = Menu
 
-function Navigation ({ changeLocale, logout }) {
+function Navigation ({ changeLocale, logout, logo }) {
   const [editProfileModalOpen, setEditProfileModal] = useState(false)
 
   const onLogout = () => {
@@ -39,7 +39,9 @@ function Navigation ({ changeLocale, logout }) {
           >
             <Menu.Item>
               <a href="/">
-                <Icon type="home" />
+                {logo
+                  ? <img src={logo} alt="logo" className="logo" />
+                  : <Icon type="home" />}
               </a>
             </Menu.Item>
 
