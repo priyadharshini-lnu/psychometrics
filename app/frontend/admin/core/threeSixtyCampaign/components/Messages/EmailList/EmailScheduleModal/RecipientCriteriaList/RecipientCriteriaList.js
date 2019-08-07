@@ -53,7 +53,9 @@ const ViewParticipantButton = ({ recipientsCount, recipientType, openModal }) =>
     return (
       <Button className="mlm" type="primary" size="small" disabled>
         No
+        &nbsp;
         {pluralize.plural(recipientType)}
+        &nbsp;
         for this criteria
       </Button>
     )
