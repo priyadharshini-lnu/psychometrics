@@ -11,7 +11,7 @@ import ToolsDropdown from '../ToolsDropdown'
 import CreateSubjectsDropdown from './CreateSubjectsDropdown'
 import CreateSubjectModal from './CreateSubjectModal'
 import SubjectImportModal from './SubjectImportModal'
-import Pagination from '../../../common/Pagination/Pagination'
+import Pagination from '../../../common/Pagination'
 
 const { Column } = Table
 
@@ -24,6 +24,7 @@ export default function SubjectList ({
   removeUser,
   downloadReport,
   total,
+  page,
   match: {
     params: { campaignId },
   },
@@ -32,9 +33,8 @@ export default function SubjectList ({
   const offset = routeUtils.getCurrentOffset()
 
   useEffect(() => {
-    fetchSubjects(campaignId, offset)
-  }, [])
-
+    fetchSubjects(campaignId, page)
+  }, [page])
   const curriedFetchSubjects = _.curry(fetchSubjects)
   return (
     <>
@@ -43,9 +43,11 @@ export default function SubjectList ({
           <Icon type="user" />
           <span className="mlm">{`${total} Subjects`}</span>
         </Col>
-        <Col span={6} offset={14} className="text-align-r">
-          <ToolsDropdown />
-          <CreateSubjectsDropdown />
+        <Col>
+          <div className="float-r">
+            <ToolsDropdown />
+            <CreateSubjectsDropdown />
+          </div>
         </Col>
       </Row>
       <Row>
@@ -71,8 +73,14 @@ export default function SubjectList ({
             />
             <Column title="Evaluations Received" dataIndex="evaluators" key="received_evaluations" />
             <Column title="Evaluations Completed" dataIndex="evaluations" key="completed_evaluations" />
-            <Column title="Report Status" dataIndex="reportStatus" key="report_status" />
-            <Column title="Status" dataIndex="status" key="status" />
+
+            <Column
+              title="Report Status"
+              key="report_status"
+              render={({ reportStatus }) => I18n.t(`reports.statuses.${reportStatus}`)}
+            />
+
+            <Column title="Status" key="status" render={({ status }) => I18n.t(`subjects.statuses.${status}`)} />
 
             <Column
               key="action"
@@ -99,7 +107,7 @@ export default function SubjectList ({
             />
           </Table>
           <div className="pm">
-            <Pagination total={total} fetch={curriedFetchSubjects(campaignId)} />
+            <Pagination total={total} fetch={curriedFetchSubjects(campaignId)} path="/participants/subjects" />
           </div>
         </Col>
       </Row>

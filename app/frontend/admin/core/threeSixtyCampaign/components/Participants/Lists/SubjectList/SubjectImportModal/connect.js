@@ -5,12 +5,12 @@ import { IMPORT, importFile, clearImportData } from 'admin/core/threeSixtyCampai
 export default connect(
   ({
     temp: { modals: { current }, request: { loading, name: requestName } },
-    threeSixtyCampaign: { subjects: { import: { errors, existingSubjectWhosePasswordNotChanged } } },
+    threeSixtyCampaign: { subjects: { import: { errors, existingSubjectsWhosePasswordNotChanged } } },
   }) => ({
     current,
     importInProgress: requestName === IMPORT && loading,
     errors,
-    existingSubjectWhosePasswordNotChanged,
+    existingSubjectsWhosePasswordNotChanged,
   }),
   {
     closeModal,

@@ -3,7 +3,6 @@ import { setIn, updateIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
 import _ from 'lodash'
 import importReducer from './import'
-import settings from '../settings'
 
 const FETCH_SUBJECTS = 'threeSixty/subjects/FETCH_SUBJECTS'
 const FILL_SUBJECTS = 'threeSixty/subjects/FILL_SUBJECTS'
@@ -24,13 +23,12 @@ export const defaultState = {
   autocompleted: [],
 }
 
-export const fetchSubjects = (campaignId, offset = 0) => ({
+export const fetchSubjects = (campaignId, page) => ({
   type: FETCH_SUBJECTS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/subjects`,
     body: {
-      limit: settings.pageLimit,
-      offset,
+      page,
     },
   },
 })

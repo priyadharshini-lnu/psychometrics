@@ -10,7 +10,8 @@ module Administration
       def create
         form = ::Threesixty::EmailScheduleForm.from_params(params[:email_schedule])
         if form.valid?
-          ::Threesixty::EmailSchedule.create!(form.attributes)
+          email_schedule = threesixty_campaign.email_schedules.create!(form.attributes)
+          ::Threesixty::Emails::SendSingleScheduledEmail.call!(email_schedule)
           render json: :ok
         else
           render json: { errors: form.errors.messages }, status: :bad_request
@@ -23,6 +24,7 @@ module Administration
           id: 'custom_message',
           name: 'custom_message',
           from: current_user.decorate.display_name,
+          content: '',
           reply_to_email: current_user.email
         })
         render json: email_schedules

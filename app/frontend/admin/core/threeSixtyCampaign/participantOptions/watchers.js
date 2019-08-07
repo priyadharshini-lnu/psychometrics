@@ -1,7 +1,7 @@
 import {
   takeLatest, takeEvery, put, select, delay,
 } from 'redux-saga/effects'
-import { get as getCurrentCampaignId } from '../currentThreeSixtyCampaignId'
+import { getCurrentCampaignId } from '../campaignDetails'
 import { get as getDatasheetField } from '../../project/datasheetFields'
 
 import {

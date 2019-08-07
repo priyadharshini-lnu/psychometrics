@@ -7,7 +7,6 @@ import reportOptions from './core/threeSixtyCampaign/reportOptions/reducers'
 import modals from './core/temp/modals'
 import autocomplete from './core/temp/autocomplete'
 import request from './core/temp/request'
-import currentThreeSixtyCampaignId from './core/threeSixtyCampaign/currentThreeSixtyCampaignId'
 import datasheetFields from './core/project/datasheetFields'
 import participants from './core/threeSixtyCampaign/participants'
 import relationships from './core/threeSixtyCampaign/relationships'
@@ -17,6 +16,7 @@ import messageOptions from './core/threeSixtyCampaign/messageOptions'
 import emailTemplates from './core/threeSixtyCampaign/emailTemplates'
 import emailSchedules from './core/threeSixtyCampaign/emailSchedules'
 import instructionTemplates from './core/threeSixtyCampaign/instructionTemplates'
+import campaignDetails from './core/threeSixtyCampaign/campaignDetails'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -26,7 +26,7 @@ export default combineReducers({
     participantOptions,
     reportOptions,
     participants,
-    id: currentThreeSixtyCampaignId,
+    campaignDetails,
     selectedParticipantTab,
     nominationRequirements,
     messageOptions,

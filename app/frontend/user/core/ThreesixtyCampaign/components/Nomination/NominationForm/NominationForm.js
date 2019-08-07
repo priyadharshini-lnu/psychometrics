@@ -14,7 +14,7 @@ export default function NominationForm (props) {
     showForm, hideForm, requestApproval, sendEvaluatorReminder,
     match: { params: { campaignId, id: nominationId } },
     nomination: {
-      isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail,
+      isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail, options,
     },
     autocomplete: { users },
   } = props
@@ -115,12 +115,14 @@ export default function NominationForm (props) {
             </Button>
           </Col>
           )}
+          {options.messages.subjectCanSendReminder && (
           <Col>
             <Button type="primary" onClick={handleSendEvaluatorReminder}>
               <Icon type="team" />
               {I18n.t('threesixty.remind_all')}
             </Button>
           </Col>
+          )}
           {isSelf || (
           <>
             <div className="divider" />

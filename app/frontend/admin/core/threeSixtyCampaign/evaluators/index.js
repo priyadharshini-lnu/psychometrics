@@ -1,7 +1,6 @@
 import { takeLatest, put } from 'redux-saga/effects'
 import { setIn } from 'utils/immutable'
 import { closeModal } from 'admin/core/temp/modals'
-import settings from '../settings'
 
 export const CLEAR_FORM = 'threeSixty/evaluators/CLEAR_FORM'
 export const CREATE_ALL_EVALUATORS = 'threeSixty/evaluators/CREATE_ALL_EVALUATORS'
@@ -31,13 +30,12 @@ export const createAllEvaluators = (campaignId, evaluators) => ({
 export const fillEvaluators = evaluators => ({ type: FILL_EVALUATORS, evaluators })
 export const clearForm = () => ({ type: CLEAR_FORM })
 
-export const fetchEvaluators = (campaignId, offset) => ({
+export const fetchEvaluators = (campaignId, page) => ({
   type: FETCH_EVALUATORS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/evaluators`,
     body: {
-      limit: settings.pageLimit,
-      offset,
+      page,
     },
   },
 })

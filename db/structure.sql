@@ -9,6 +9,20 @@ SET client_min_messages = warning;
 SET row_security = off;
 
 --
+-- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
+
+
+--
+-- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
+
+
+--
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
 --
 
@@ -4709,10 +4723,10 @@ CREATE INDEX index_threesixty_participants_on_subject_id ON public.threesixty_pa
 
 
 --
--- Name: index_threesixty_participants_on_subject_id_and_evaluator_id; Type: INDEX; Schema: public; Owner: -
+-- Name: index_threesixty_reminder_histories_on_user_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_threesixty_participants_on_subject_id_and_evaluator_id ON public.threesixty_participants USING btree (subject_id, evaluator_id);
+CREATE INDEX index_threesixty_reminder_histories_on_user_id ON public.threesixty_reminder_histories USING btree (user_id);
 
 
 --
@@ -4891,10 +4905,10 @@ CREATE INDEX index_users_results_on_subject_id ON public.users_results USING btr
 
 
 --
--- Name: index_users_results_on_subject_id_and_evaluator_id; Type: INDEX; Schema: public; Owner: -
+-- Name: participants_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_users_results_on_subject_id_and_evaluator_id ON public.users_results USING btree (subject_id, evaluator_id);
+CREATE UNIQUE INDEX participants_subject_evaluator_campaign ON public.threesixty_participants USING btree (subject_id, evaluator_id, campaign_id);
 
 
 --
@@ -4944,6 +4958,10 @@ CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_
 --
 
 CREATE UNIQUE INDEX users_assessments_user_uniquesness_index ON public.users_assessments USING btree (user_id, campaign_id, assessment_id);
+-- Name: users_results_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_results_subject_evaluator_campaign ON public.users_results USING btree (subject_id, evaluator_id, campaign_id);
 
 
 --
@@ -6041,6 +6059,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190726083527'),
 ('20190726090828'),
 ('20190728141145'),
-('20190804195715');
-
-
+('20190804195715'),
+('20190805173213');

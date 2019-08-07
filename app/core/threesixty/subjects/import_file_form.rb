@@ -6,7 +6,7 @@ module Threesixty
       attribute :file, ActionDispatch::Http::UploadedFile
       attribute :subjects, Array
 
-      validates :file, file_content_type: { allow: ['text/csv'] }
+      validates :file, csv_file: true
     end
   end
 end

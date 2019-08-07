@@ -14,8 +14,7 @@ module Administration
                    where(campaign_id: threesixty_campaign.campaign_id, participants: { relationships: { name: 'Manager', type: :global } }).
                    order(id: :desc).
                    distinct(:user_id).
-                   limit(params[:limit]).
-                   offset(params[:offset])
+                   page(params[:page])
 
         counters = ::Threesixty::Participants::CalcCounters.call!(managers.map(&:user_id), threesixty_campaign)
         subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(

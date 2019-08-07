@@ -76,7 +76,7 @@ deploy_review:
   - gem install dpl
   - dpl --provider=heroku --app=tte-lighthouse --api-key=$HEROKU_STAGING_API_KEY
   environment:
-    name: Heroku Staging
+    name: Heroku Review
     url: https://review.tte-lighthouse.com
   when: manual
   only:

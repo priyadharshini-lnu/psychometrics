@@ -13,7 +13,7 @@ export default function SubjectImportModal ({
   importInProgress,
   clearImportData,
   errors,
-  existingSubjectWhosePasswordNotChanged,
+  existingSubjectsWhosePasswordNotChanged,
   match: {
     params: { campaignId },
   },
@@ -32,13 +32,13 @@ export default function SubjectImportModal ({
     closeModal()
   }
 
-  const showFileImport = () => _.isEmpty(existingSubjectWhosePasswordNotChanged)
+  const showFileImport = () => _.isEmpty(existingSubjectsWhosePasswordNotChanged)
 
   const modalBody = () => {
     if (showFileImport()) {
       return <FileImport setFile={setFile} errors={errors} campaignId={campaignId} />
     }
-    return <UserList dataSource={existingSubjectWhosePasswordNotChanged} />
+    return <UserList dataSource={existingSubjectsWhosePasswordNotChanged} />
   }
 
   const modalTitle = () => (

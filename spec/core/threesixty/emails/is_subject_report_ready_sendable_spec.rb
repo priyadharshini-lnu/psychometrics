@@ -25,13 +25,15 @@ describe Threesixty::Emails::IsSubjectReportReadySendable do
     end
 
     it 'returns false if report is not available' do
-      allow(Threesixty::Participants::GetReportStatus).to receive(:call!).and_return('not_available')
+      allow(Threesixty::Participants::GetReportStatus).to receive(:call!).
+        and_return(Threesixty::Participants::GetReportStatus::NOT_AVAILABLE)
 
       expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq false
     end
 
     it 'returns true if report is available' do
-      allow(Threesixty::Participants::GetReportStatus).to receive(:call!).and_return('available')
+      allow(Threesixty::Participants::GetReportStatus).to receive(:call!).
+        and_return(Threesixty::Participants::GetReportStatus::AVAILABLE)
 
       expect(described_class.call!(threesixty_campaign: threesixty_campaign, subject: subject)).to eq true
     end

@@ -85,7 +85,7 @@ function ReportList ({ approvalReports, subjectReport }) {
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <p>need contents...</p>
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.help.report') }} />
       </Modal>
     </List>
   )

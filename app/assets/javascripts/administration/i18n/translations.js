@@ -57,6 +57,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -120,6 +126,19 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -1327,6 +1346,18 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -3602,9 +3633,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -3624,8 +3655,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -5052,6 +5083,14 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -5395,12 +5434,59 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -5512,6 +5598,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -5575,6 +5667,19 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -6782,6 +6887,18 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -9057,9 +9174,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -9079,8 +9196,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -10511,6 +10628,14 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -10854,12 +10979,59 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -10971,6 +11143,12 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -11034,6 +11212,19 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -12241,6 +12432,18 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -14516,9 +14719,9 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -14538,8 +14741,8 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -15966,6 +16169,14 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -16309,12 +16520,59 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -16426,6 +16684,12 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -16489,6 +16753,19 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -17696,6 +17973,18 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -19971,9 +20260,9 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -19993,8 +20282,8 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -21423,6 +21712,14 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -21766,12 +22063,59 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -21883,6 +22227,12 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -21946,6 +22296,19 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -23153,6 +23516,18 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -25428,9 +25803,9 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -25450,8 +25825,8 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -26878,6 +27253,14 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -27221,12 +27604,59 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -27338,6 +27768,12 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -27401,6 +27837,19 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -28608,6 +29057,18 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -30883,9 +31344,9 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -30905,8 +31366,8 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -32334,6 +32795,14 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -32677,12 +33146,59 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -32794,6 +33310,12 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -32857,6 +33379,19 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -34064,6 +34599,18 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -36339,9 +36886,9 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -36361,8 +36908,8 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -37789,6 +38336,14 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -38132,12 +38687,59 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -38249,6 +38851,12 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -38312,6 +38920,19 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -39519,6 +40140,18 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -41794,9 +42427,9 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -41816,8 +42449,8 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -43244,6 +43877,14 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -43587,12 +44228,59 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -43704,6 +44392,12 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -43767,6 +44461,19 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -44974,6 +45681,18 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -47249,9 +47968,9 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -47271,8 +47990,8 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -48699,6 +49418,14 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -49042,12 +49769,59 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -49159,6 +49933,12 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -49222,6 +50002,19 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -50429,6 +51222,18 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -52704,9 +53509,9 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -52726,8 +53531,8 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -54154,6 +54959,14 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -54497,12 +55310,59 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -54614,6 +55474,12 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -54677,6 +55543,19 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -55884,6 +56763,18 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -58159,9 +59050,9 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -58181,8 +59072,8 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -59609,6 +60500,14 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -59952,12 +60851,59 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -60069,6 +61015,12 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -60132,6 +61084,19 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -61339,6 +62304,18 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -63614,9 +64591,9 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -63636,8 +64613,8 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -65064,6 +66041,14 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -65407,12 +66392,59 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -65524,6 +66556,12 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -65587,6 +66625,19 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -66794,6 +67845,18 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -69069,9 +70132,9 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -69091,8 +70154,8 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -70519,6 +71582,14 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -70862,12 +71933,59 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -70979,6 +72097,12 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -71042,6 +72166,19 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -72249,6 +73386,18 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -74524,9 +75673,9 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -74546,8 +75695,8 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -75974,6 +77123,14 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -76317,12 +77474,59 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -76434,6 +77638,12 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -76497,6 +77707,19 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -77704,6 +78927,18 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -79979,9 +81214,9 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -80001,8 +81236,8 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -81429,6 +82664,14 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -81772,12 +83015,59 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -81889,6 +83179,12 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -81952,6 +83248,19 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -83159,6 +84468,18 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -85434,9 +86755,9 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -85456,8 +86777,8 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -86886,6 +88207,14 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -87229,12 +88558,59 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -87346,6 +88722,12 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -87409,6 +88791,19 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -88616,6 +90011,18 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -90891,9 +92298,9 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -90913,8 +92320,8 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -92341,6 +93748,14 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -92684,12 +94099,59 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -92801,6 +94263,12 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -92864,6 +94332,19 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -94071,6 +95552,18 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -96346,9 +97839,9 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -96368,8 +97861,8 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -97793,6 +99286,14 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -98136,12 +99637,59 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -98253,6 +99801,12 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -98316,6 +99870,19 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -99523,6 +101090,18 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -101798,9 +103377,9 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -101820,8 +103399,8 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -103248,6 +104827,14 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -103591,12 +105178,59 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -103708,6 +105342,12 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -103771,6 +105411,19 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -104978,6 +106631,18 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -107253,9 +108918,9 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -107275,8 +108940,8 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -108703,6 +110368,14 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -109046,12 +110719,59 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -109163,6 +110883,12 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -109226,6 +110952,19 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -110433,6 +112172,18 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -112708,9 +114459,9 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -112730,8 +114481,8 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -114155,6 +115906,14 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -114498,12 +116257,59 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -114615,6 +116421,12 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -114678,6 +116490,19 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -115885,6 +117710,18 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -118160,9 +119997,9 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -118182,8 +120019,8 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -119611,6 +121448,14 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -119954,12 +121799,59 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -120071,6 +121963,12 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -120134,6 +122032,19 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -121341,6 +123252,18 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -123616,9 +125539,9 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -123638,8 +125561,8 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -125067,6 +126990,14 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -125410,12 +127341,59 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -125527,6 +127505,12 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -125590,6 +127574,19 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -126797,6 +128794,18 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -129072,9 +131081,9 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -129094,8 +131103,8 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -130522,6 +132531,14 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -130865,12 +132882,59 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -130982,6 +133046,12 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -131045,6 +133115,19 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -132252,6 +134335,18 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -134527,9 +136622,9 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -134549,8 +136644,8 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -135977,6 +138072,14 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -136320,12 +138423,59 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -136437,6 +138587,12 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -136500,6 +138656,19 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -137707,6 +139876,18 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -139982,9 +142163,9 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -140004,8 +142185,8 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -141432,6 +143613,14 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -141775,12 +143964,59 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -141892,6 +144128,12 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -141955,6 +144197,19 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -143162,6 +145417,18 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -145437,9 +147704,9 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -145459,8 +147726,8 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -146889,6 +149156,14 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -147232,12 +149507,59 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -147349,6 +149671,12 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -147412,6 +149740,19 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -148619,6 +150960,18 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -150894,9 +153247,9 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -150916,8 +153269,8 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -152344,6 +154697,14 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -152687,12 +155048,59 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -152804,6 +155212,12 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -152867,6 +155281,19 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -154074,6 +156501,18 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -156349,9 +158788,9 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -156371,8 +158810,8 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -157799,6 +160238,14 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -158142,12 +160589,59 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -158259,6 +160753,12 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -158322,6 +160822,19 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -159529,6 +162042,18 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -161804,9 +164329,9 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -161826,8 +164351,8 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -163255,6 +165780,14 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -163598,12 +166131,59 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -163715,6 +166295,12 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -163778,6 +166364,19 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -164985,6 +167584,18 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -167260,9 +169871,9 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -167282,8 +169893,8 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -168713,6 +171324,14 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -169056,12 +171675,59 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -169173,6 +171839,12 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -169236,6 +171908,19 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -170443,6 +173128,18 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -172718,9 +175415,9 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -172740,8 +175437,8 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -174169,6 +176866,14 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -174512,12 +177217,59 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -174629,6 +177381,12 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -174692,6 +177450,19 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -175899,6 +178670,18 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -178174,9 +180957,9 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -178196,8 +180979,8 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -179626,6 +182409,14 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -179969,12 +182760,59 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -180086,6 +182924,12 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -180149,6 +182993,19 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -181356,6 +184213,18 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -183631,9 +186500,9 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -183653,8 +186522,8 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -185083,6 +187952,14 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -185426,12 +188303,59 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -185543,6 +188467,12 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -185606,6 +188536,19 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -186813,6 +189756,18 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -189088,9 +192043,9 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -189110,8 +192065,8 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -190538,6 +193493,14 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -190881,12 +193844,59 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -190998,6 +194008,12 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -191061,6 +194077,19 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -192268,6 +195297,18 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -194543,9 +197584,9 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -194565,8 +197606,8 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -195990,6 +199031,14 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -196333,12 +199382,59 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -196450,6 +199546,12 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -196513,6 +199615,19 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -197720,6 +200835,18 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -199995,9 +203122,9 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -200017,8 +203144,8 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -201442,6 +204569,14 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -201785,12 +204920,59 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -201902,6 +205084,12 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -201965,6 +205153,19 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -203172,6 +206373,18 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -205447,9 +208660,9 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -205469,8 +208682,8 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -206899,6 +210112,14 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -207242,12 +210463,59 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -207359,6 +210627,12 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -207422,6 +210696,19 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -208629,6 +211916,18 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -210904,9 +214203,9 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -210926,8 +214225,8 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -212354,6 +215653,14 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -212697,12 +216004,59 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -212814,6 +216168,12 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -212877,6 +216237,19 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -214084,6 +217457,18 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -216359,9 +219744,9 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -216381,8 +219766,8 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -217809,6 +221194,14 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -218152,12 +221545,59 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -218269,6 +221709,12 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -218332,6 +221778,19 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -219539,6 +222998,18 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -221814,9 +225285,9 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -221836,8 +225307,8 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -223264,6 +226735,14 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -223607,12 +227086,59 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -223724,6 +227250,12 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -223787,6 +227319,19 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -224994,6 +228539,18 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -227269,9 +230826,9 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -227291,8 +230848,8 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -228719,6 +232276,14 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -229062,12 +232627,59 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -229179,6 +232791,12 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -229242,6 +232860,19 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -230449,6 +234080,18 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -232724,9 +236367,9 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -232746,8 +236389,8 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -234174,6 +237817,14 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -234517,12 +238168,59 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -234634,6 +238332,12 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -234697,6 +238401,19 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -235905,6 +239622,18 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
       "license": {
         "header": "%{name} - Edit license"
       },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
+      },
       "licenses": {
         "create": {
           "successfully": "License was successfully created."
@@ -238179,9 +241908,9 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -238201,8 +241930,8 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -239629,6 +243358,14 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -239972,12 +243709,59 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -240089,6 +243873,12 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -240152,6 +243942,19 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -241359,6 +245162,18 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -243634,9 +247449,9 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -243656,8 +247471,8 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -245084,6 +248899,14 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -245427,12 +249250,59 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -245544,6 +249414,12 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -245607,6 +249483,19 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -246814,6 +250703,18 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -249089,9 +252990,9 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -249111,8 +253012,8 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -250539,6 +254440,14 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -250882,12 +254791,59 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -250999,6 +254955,12 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -251062,6 +255024,19 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -252269,6 +256244,18 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -254544,9 +258531,9 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -254566,8 +258553,8 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -255994,6 +259981,14 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -256337,12 +260332,59 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -256454,6 +260496,12 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -256517,6 +260565,19 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -257724,6 +261785,18 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -259999,9 +264072,9 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -260021,8 +264094,8 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -261449,6 +265522,14 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -261792,12 +265873,59 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -261909,6 +266037,12 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -261972,6 +266106,19 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -263179,6 +267326,18 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -265454,9 +269613,9 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -265476,8 +269635,8 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -266904,6 +271063,14 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -267247,12 +271414,59 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -267364,6 +271578,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -267427,6 +271647,19 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -268634,6 +272867,18 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -270909,9 +275154,9 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -270931,8 +275176,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -272359,6 +276604,14 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -272702,12 +276955,59 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -272819,6 +277119,12 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -272882,6 +277188,19 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -274089,6 +278408,18 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -276364,9 +280695,9 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -276386,8 +280717,8 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -277814,6 +282145,14 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -278157,12 +282496,59 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -278274,6 +282660,12 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -278337,6 +282729,19 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -279544,6 +283949,18 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -281819,9 +286236,9 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -281841,8 +286258,8 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -283269,6 +287686,14 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -283612,12 +288037,59 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -283729,6 +288201,12 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -283792,6 +288270,19 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -284999,6 +289490,18 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -287274,9 +291777,9 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -287296,8 +291799,8 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -288724,6 +293227,14 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -289067,12 +293578,59 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
@@ -289184,6 +293742,12 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
               "blank": "Evaluator Email can't be blank",
               "invalid": "Evaluator Email is invalid"
             },
+            "evaluator_first_name": {
+              "blank": "Evaluator first name can't be blank"
+            },
+            "evaluator_last_name": {
+              "blank": "Evaluator last name can't be blank"
+            },
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -289247,6 +293811,19 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
               "blank": "Email can't be blank",
               "invalid": "Email is invalid"
             },
+            "first_name": {
+              "blank": "First name can't be blank"
+            },
+            "last_name": {
+              "blank": "Last name can't be blank"
+            },
+            "password": {
+              "too_short": "Password is too short. Minimum 6 character required"
+            }
+          }
+        },
+        "profile": {
+          "attributes": {
             "first_name": {
               "blank": "First name can't be blank"
             },
@@ -290454,6 +295031,18 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
       },
       "license": {
         "header": "%{name} - Edit license"
+      },
+      "license_usages": {
+        "index": {
+          "title": "Usage Details"
+        },
+        "list": {
+          "campaign_name": "Campaign Name",
+          "created_at": "Date",
+          "id": "Usage ID",
+          "subject_email": "Subject Email",
+          "subject_name": "Subject Name"
+        }
       },
       "licenses": {
         "create": {
@@ -292729,9 +297318,9 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         },
         "evaluator_reminder": {
           "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Evaluator Reminder Rules",
+          "name": "Evaluator Reminder",
           "rule_description": "Specify rules for automatically scheduling when an invitation is scheduled",
-          "rule_name": "Subject Reminder Rules"
+          "rule_name": "Evaluator Reminder Rules"
         },
         "from": "From",
         "manager_report_ready": {
@@ -292751,8 +297340,8 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
         "send_test_email": "Send Test Email",
         "subject": "Subject",
         "subject_invite": {
-          "description": "This message will be sent to remind evaluators to complete pending evaluations",
-          "name": "Subject Invite Reminder"
+          "description": "This message will be sent to invite subjects to participate in the assessment",
+          "name": "Subject Invite"
         },
         "subject_reminder": {
           "description": "Message sent to each participant to remind them to participate in the assessment",
@@ -294179,6 +298768,14 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
     "show": {
       "export_pdf": "Export to PDF",
       "header": "Report"
+    },
+    "statuses": {
+      "approved": "Approved",
+      "available": "Available",
+      "denied": "Denied",
+      "incomplete": "Incomplete",
+      "not_available": "Not available",
+      "on_hold": "On hold"
     }
   },
   "simple_form": {
@@ -294522,12 +299119,59 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
     },
     "yes": "Yes"
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "support": {
     "array": {
       "last_word_connector": ", and ",
       "two_words_connector": " and ",
       "words_connector": ", "
     }
+  },
+  "threesixty": {
+    "add": "Add",
+    "and": "And",
+    "approve_all": "Approve All",
+    "approve_evaluations": "Approve Evaluations",
+    "approve_nominations": "Approve Nominations",
+    "approve_reports": "Approve Reports",
+    "approved": "Approved",
+    "as_my": "as my",
+    "back_to_tasks": "Back to tasks",
+    "cancel": "Cancel",
+    "decline": "Decline",
+    "decline_invite": "Decline Invite",
+    "denied": "Denied",
+    "deny_all": "Deny All",
+    "email_approve_request": "Email Approval Request",
+    "evaluation": "Evaluation",
+    "evaluations": "Evaluations",
+    "help": {
+      "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
+      "nomination": "<h2>Nominations</h2> <p>You either need to nominate people to evaluate you, nominate people to evaluate your direct reports, or approve your direct reports’ nominations.</p> <h3>SET UP NOMINATIONS</h3> <p>Sometimes, you will be asked to nominate coworkers you want to evaluate you.</p><ol> <li><p>To nominate an evaluator, type their name or email to find them. Then define their relationship to you. Click <b>Nominate Evaluator</b>  when finished.</p></li> <li><p>If your manager is responsible for approving your nominations, remind them by clicking  <b>Email Approval Request</b> This option will not appear for everyone.</p></li> <li><p>Review the Approval and Evaluation status of your nominations.</p></li> <li><p>Remove a nomination by clicking the dropdown arrow and selecting <b>Remove</b>. This will not delete the data, but it will remove it from your report, and your evaluator won’t be able to retake this assessment.</p></li> </ol> <p>If you are a manager, you may also be asked to nominate evaluators for your direct reports. In that case, the process will look the same.</p> <h3>APPROVE NOMINATIONS</h3> <p>If you are a manager, you may be asked to approve the people your direct reports nominated to evaluate them. These evaluators will not be able to evaluate your direct report until you approve. Any email notifications set up will also not go out until the manager has approved a nomination.</p> <p>Approval technically takes place on the same screen where you’d set up your direct reports’ nominations, if you had that task.</p>​ <ol> <li><p>Click <b>Approve All</b>  to approve all nominations on the page.</p></li> <li><p>Click <b>Deny All</b>  to deny all nominations on the page.</p></li> <li><p>Click the dropdown next to a particular nomination to approve or deny just that nomination. <b>Waiting</b> means you haven’t made a decision yet.</p></li> </ol>",
+      "report": "<h2>Report</h2> <p>There can be two different sections under Report.</p> <h3>VIEW REPORT</h3> <p>Here, you can view any reports you have access to. For most people, this is just their own.</p> <ol> <li><p>Change whose report you’re viewing.</p></li> <li><p>Determine if you are viewing the report as a subject or manager.</p></li> <li><p>Click the arrow to download your report. If you click the dropdown menu, you can also select <b>Download All Reports</b>  to download all the reports you have access to. All downloads are in PDF format.</p></li> <li><p>Click the email icon to send a copy of the report to the email associated with your login.</p></li> </ol> <h3>APPROVE REPORTS</h3> <p>If you are a manager, you may be asked to approve reports. Your direct report will not see their report until you approve it.</p> <p>On this page, you can switch between subject and manager views, download, and email these reports just as your would your own, with a few differences.</p> <ol> <li><p>Navigate between direct reports.</p></li> <li><p><b>Deny</b>  the report release.</p></li> <li><p>Approve the report for release.</p></li> </ol>"
+    },
+    "language": "Language",
+    "my_projects": "My Projects",
+    "nominate": "Nominate",
+    "nominate_evaluators": "Nominate Evaluators to",
+    "nomination": "Nomination",
+    "nominations": "Nominations",
+    "or": "Or",
+    "page_title": "Signify 360° Review - Apply Level",
+    "remind_all": "Remind All",
+    "reports": "Reports",
+    "select_relationnship": "Select Relationship",
+    "select_relationship": "Select Relationship",
+    "setup_nominations": "Set up nominations",
+    "total_progress": "Total progress",
+    "user_name_input_placeholder": "type name or email...",
+    "waiting": "Waiting"
   },
   "time": {
     "am": "am",
