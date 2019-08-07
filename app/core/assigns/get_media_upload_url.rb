@@ -16,15 +16,15 @@ module Assigns
       data = if Rails.env.production?
         uploader = media.asset
 
-        uploader.success_action_redirect = '/' # unused but need for work
+        uploader.success_action_status = '200'
         {
-          media_id: @media.id,
+          media_id: media.id,
           env: 'prod',
           url: uploader.direct_fog_url,
           key: uploader.key,
           acl: uploader.acl,
           policy: uploader.policy,
-          success_action_redirect: uploader.success_action_redirect,
+          success_action_status: uploader.success_action_status,
           'x-amz-algorithm': uploader.algorithm,
           "x-amz-credential": uploader.credential,
           "x-amz-date": uploader.date,
