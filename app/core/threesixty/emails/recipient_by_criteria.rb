@@ -3,6 +3,16 @@
 module Threesixty
   module Emails
     class RecipientByCriteria < BaseCommand
+      EVALUATOR_EMAILS = [
+        ::Threesixty::Emails::Name::EVALUATOR_INVITE,
+        ::Threesixty::Emails::Name::EVALUATOR_REMINDER
+      ]
+
+      SUBJECT_EMAILS = [
+        ::Threesixty::Emails::Name::SUBJECT_REMINDER,
+        ::Threesixty::Emails::Name::SUBJECT_INVITE
+      ]
+
       private_attr_reader :threesixty_campaign, :email_name, :recipient_criteria
 
       def initialize(options)
@@ -42,7 +52,7 @@ module Threesixty
       end
 
       def add_default_criteria_for_evaluator_email(recipient_criteria)
-        if evaluator_email?
+        if EVALUATOR_EMAILS.include?(email_name)
           recipient_criteria << { 'field' => 'atleast_one_non_self_evalaution' }
         end
         if email_name == ::Threesixty::Emails::Name::EVALUATOR_REMINDER
@@ -51,16 +61,9 @@ module Threesixty
         recipient_criteria
       end
 
-      def evaluator_email?
-        [
-          ::Threesixty::Emails::Name::EVALUATOR_INVITE,
-          ::Threesixty::Emails::Name::EVALUATOR_REMINDER
-        ].include?(email_name)
-      end
-
       def participator_types
         return [:subject, :evaluator] if email_name == ::Threesixty::Emails::Name::CUSTOM_MESSAGE
-        return [:subject] if [::Threesixty::Emails::Name::SUBJECT_REMINDER, ::Threesixty::Emails::Name::SUBJECT_INVITE].include?(email_name)
+        return [:subject] if SUBJECT_EMAILS.include?(email_name)
         [:evaluator]
       end
     end
