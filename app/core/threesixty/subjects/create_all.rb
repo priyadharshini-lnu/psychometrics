@@ -40,17 +40,18 @@ module Threesixty
 
       def create_subject(user)
         # TODO (atanych): I doubt that good way, but current licenses absolutely are not intended for threesixty
-        AssignsReport::LICENSES[Assessment::THREESIXTY].use(user: user, campaign: threesixty_campaign.campaign)
-        ::Threesixty::Participant.create!(
-          evaluator: user,
-          subject: user,
-          manager_nomination_status: :approved,
-          relationship: self_relationship,
-          project_id: threesixty_campaign.campaign.project_id,
-          campaign: threesixty_campaign.campaign
-        )
+        subject_exisits = threesixty_campaign.subjects.exists?(user: user)
+        unless subject_exisits
+          AssignsReport::LICENSES[Assessment::THREESIXTY].use(user: user, campaign: threesixty_campaign.campaign)
+          ::Threesixty::Subject.create!(user: user, campaign: threesixty_campaign.campaign)
+        end
+        threesixty_campaign.participants.find_or_create_by!(evaluator: user, subject: user) do |participant|
+          participant.manager_nomination_status = :approved
+          participant.relationship = self_relationship
+          participant.project_id = threesixty_campaign.campaign.project_id
+        end
+
         ::Threesixty::Evaluator.find_or_create_by!(user: user, campaign: threesixty_campaign.campaign)
-        ::Threesixty::Subject.create!(user: user, campaign: threesixty_campaign.campaign)
       end
 
       private

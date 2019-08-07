@@ -3,7 +3,7 @@
 module Threesixty
   module Options
     class MessageOptionForm < Rectify::Form
-      attribute :subject_can_sendReminder, Boolean
+      attribute :subject_can_send_reminder, Boolean
       attribute :send_invite_to_new_evaluator, Boolean
     end
   end

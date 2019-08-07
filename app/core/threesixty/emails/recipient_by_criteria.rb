@@ -3,6 +3,16 @@
 module Threesixty
   module Emails
     class RecipientByCriteria < BaseCommand
+      EVALUATOR_EMAILS = [
+        ::Threesixty::Emails::Name::EVALUATOR_INVITE,
+        ::Threesixty::Emails::Name::EVALUATOR_REMINDER
+      ]
+
+      SUBJECT_EMAILS = [
+        ::Threesixty::Emails::Name::SUBJECT_REMINDER,
+        ::Threesixty::Emails::Name::SUBJECT_INVITE
+      ]
+
       private_attr_reader :threesixty_campaign, :email_name, :recipient_criteria
 
       def initialize(options)
@@ -30,18 +40,30 @@ module Threesixty
       private
 
       def add_default_criteria(recipient_criteria)
+        recipient_criteria = add_default_criteria_for_subject_email(recipient_criteria)
+        add_default_criteria_for_evaluator_email(recipient_criteria)
+      end
+
+      def add_default_criteria_for_subject_email(recipient_criteria)
         if email_name == ::Threesixty::Emails::Name::SUBJECT_REMINDER
           recipient_criteria << { 'field' => 'subject_status', 'value' => Threesixty::Participants::GetStatus::NOT_COMPLETED }
         end
+        recipient_criteria
+      end
+
+      def add_default_criteria_for_evaluator_email(recipient_criteria)
+        if EVALUATOR_EMAILS.include?(email_name)
+          recipient_criteria << { 'field' => 'atleast_one_non_self_evalaution' }
+        end
         if email_name == ::Threesixty::Emails::Name::EVALUATOR_REMINDER
-          recipient_criteria << { 'field' => 'evaluations', 'value' => 'not_completed' }
+          recipient_criteria << { 'field' => 'evaluations', 'value' => 'not_completed', 'exclude_self_evaluations' => true }
         end
         recipient_criteria
       end
 
       def participator_types
         return [:subject, :evaluator] if email_name == ::Threesixty::Emails::Name::CUSTOM_MESSAGE
-        return [:subject] if [::Threesixty::Emails::Name::SUBJECT_REMINDER, ::Threesixty::Emails::Name::SUBJECT_INVITE].include?(email_name)
+        return [:subject] if SUBJECT_EMAILS.include?(email_name)
         [:evaluator]
       end
     end

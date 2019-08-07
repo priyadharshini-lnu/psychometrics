@@ -1,17 +1,21 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route } from 'react-router-dom'
 import {
   Layout, Menu, Icon, Dropdown,
 } from 'antd'
 import './styles.scss'
 import connect from './connect'
+import EditProfileModal from '../EditProfileModal'
 
 const { SubMenu } = Menu
 
 function Navigation ({ changeLocale, logout }) {
+  const [editProfileModalOpen, setEditProfileModal] = useState(false)
+
   const onLogout = () => {
     logout().then(() => location.reload())
   }
+
   const langMenu = () => (
     <Menu onClick={({ key }) => { changeLocale(key).then(() => location.reload()) }}>
       <Menu.Item key="en">
@@ -47,6 +51,7 @@ function Navigation ({ changeLocale, logout }) {
                 </span>
               )}
             >
+              <Menu.Item key="profile" onClick={() => { setEditProfileModal(true) }}>Profile</Menu.Item>
               <Menu.Item key="logout" onClick={onLogout}>Logout</Menu.Item>
             </SubMenu>
             <Menu.Item key="app" className="align-right">
@@ -64,6 +69,7 @@ function Navigation ({ changeLocale, logout }) {
           </Menu>
         )}
       </Route>
+      {editProfileModalOpen && <EditProfileModal closeModal={() => setEditProfileModal(false)} />}
     </Layout.Header>
   )
 }

@@ -4,6 +4,7 @@ import {
 } from 'antd'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
+import { relationshipWithoutSelf } from 'utils/relationship'
 
 const { Title } = Typography
 const { Option } = Select
@@ -14,7 +15,7 @@ export default function NominationForm (props) {
     showForm, hideForm, requestApproval, sendEvaluatorReminder,
     match: { params: { campaignId, id: nominationId } },
     nomination: {
-      isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail,
+      isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail, options,
     },
     autocomplete: { users },
   } = props
@@ -86,7 +87,7 @@ export default function NominationForm (props) {
                   className="relationship-select"
                 >
                   <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
-                  {relationships.map(relation => (
+                  {relationshipWithoutSelf(relationships).map(relation => (
                     <Option
                       key={relation.id}
                       value={relation.id}
@@ -115,13 +116,15 @@ export default function NominationForm (props) {
             </Button>
           </Col>
           )}
+          {options.messages.subjectCanSendReminder && (
           <Col>
             <Button type="primary" onClick={handleSendEvaluatorReminder}>
               <Icon type="team" />
               {I18n.t('threesixty.remind_all')}
             </Button>
           </Col>
-          {isSelf || (
+          )}
+          {isSelf || !options.participants.manager.canApproveNominations || (
           <>
             <div className="divider" />
             <Col>

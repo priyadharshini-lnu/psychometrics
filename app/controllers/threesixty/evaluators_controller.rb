@@ -10,7 +10,17 @@ module Threesixty
               with_context(subject: @subject, threesixty_campaign: @campaign)
       if form.valid?
         result = ::Threesixty::Evaluators::NominateEvaluator.call!(@campaign, @subject, params, form.user)
-        Threesixty::Emails::Send.call!(Threesixty::Emails::Name::APPROVE_NOMINATION, threesixty_campaign: @campaign, subject: @subject)
+
+        if Threesixty::Emails::IsApproveNominationSendable.call!(threesixty_campaign: @campaign)
+          Threesixty::Emails::Send.call!(
+            Threesixty::Emails::Name::APPROVE_NOMINATION,
+            threesixty_campaign: @campaign,
+            subject: @subject,
+            evaluator: result.threesixty_evaluator
+          )
+        else
+          send_evaluator_invite_email(result.threesixty_evaluator)
+        end
         render json: result, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
       else
         render json: { errors: form.error_messages }, status: :bad_request
@@ -26,6 +36,8 @@ module Threesixty
           subject: @subject,
           evaluator: @nomination.threesixty_evaluator
         )
+      elsif @nomination.manager_nomination_approved?
+        send_evaluator_invite_email(@nomination.threesixty_evaluator)
       end
       render json: @nomination, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
     end
@@ -54,6 +66,16 @@ module Threesixty
 
     def evaluator_params
       params.permit(:evaluator_id, :relationship_id)
+    end
+
+    def send_evaluator_invite_email(evaluator)
+      return unless @campaign.option.messages['send_invite_to_new_evaluator']
+      Threesixty::Emails::Send.call!(
+        Threesixty::Emails::Name::EVALUATOR_INVITE,
+        threesixty_campaign: @campaign,
+        subject: @subject,
+        evaluator: evaluator
+      )
     end
   end
 end

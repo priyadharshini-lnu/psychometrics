@@ -3,6 +3,8 @@ module Threesixty
     layout 'layouts/threesixty_campaign'
     before_action :set_locale
     before_action :set_campaign, only: [:show]
+    before_action :set_init_state, only: [:index, :show], if: -> { request.format.html? }
+
 
     def index
       respond_to do |format|
@@ -32,7 +34,7 @@ module Threesixty
 
     def show
       respond_to do |format|
-        format.html {}
+        format.html { }
         format.json do
           subjects = ::Threesixty::NominationsByUserQuery.new(@campaign, current_user)
           evaluations = ::Threesixty::EvaluationsByUserQuery.new(@campaign, current_user)
@@ -56,6 +58,22 @@ module Threesixty
     end
 
     private
+
+    def set_init_state
+      @init_state = {
+        threeSixtyCampaign: {
+          temp: {
+            currentUser: serialized_current_user
+          }
+        }
+      }
+    end
+
+    def serialized_current_user
+      ::Threesixty::CurrentUserSerializer.new(current_user).
+        as_json.
+        deep_transform_keys! { |key| key.to_s.camelize(:lower) }
+    end
 
     def set_campaign
       @campaign = Threesixty::Campaign.find(params[:campaign_id] || params[:id])
