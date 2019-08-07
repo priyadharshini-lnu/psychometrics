@@ -4730,13 +4730,6 @@ CREATE INDEX index_threesixty_reminder_histories_on_user_id ON public.threesixty
 
 
 --
--- Name: index_threesixty_reminder_histories_on_user_id; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE INDEX index_threesixty_reminder_histories_on_user_id ON public.threesixty_reminder_histories USING btree (user_id);
-
-
---
 -- Name: index_threesixty_subjects_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
