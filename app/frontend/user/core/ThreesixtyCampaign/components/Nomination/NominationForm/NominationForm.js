@@ -124,7 +124,7 @@ export default function NominationForm (props) {
             </Button>
           </Col>
           )}
-          {isSelf || (
+          {isSelf || !options.participants.manager.canApproveNominations || (
           <>
             <div className="divider" />
             <Col>
