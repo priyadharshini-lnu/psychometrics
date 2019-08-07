@@ -21,12 +21,12 @@ export default function ApprovalSection ({
         {...parametersForSwitch('managerApprovesReports')}
       >
         <ExpandableOption
-          label="Allow manager to view individual responses"
+          label="Allow Manager to view individual responses"
           {...parametersForSwitch('allowManagerViewIndividualResponses')}
           type="checkbox"
         />
         <ExpandableOption
-          label="Email manager when report is ready for approval"
+          label="Email Manager when report is ready for approval"
           {...parametersForSwitch('emailManagerWhenReportReadyForApproval')}
           type="checkbox"
           actionable={<Button size="small">Edit email</Button>}

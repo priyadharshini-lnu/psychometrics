@@ -7,6 +7,7 @@ import { setIn } from 'utils/immutable'
 import SpreadSheet from 'components/SpreadSheet'
 import spreadSheetUtils from 'utils/spreadSheet'
 import ErrorAlertBox from 'admin/core/threeSixtyCampaign/components/common/ErrorAlertBox'
+import { relationshipWithoutSelf } from 'utils/relationship'
 import Form from './Form'
 
 const tableFields = [
@@ -30,7 +31,7 @@ const tableFields = [
     name: 'Relationship',
     key: 'relationshipName',
     type: 'Dropdown',
-    values: ({ relationships }) => relationships.map(r => ({ key: r.id, value: r.name })),
+    values: ({ relationships }) => relationshipWithoutSelf(relationships).map(r => ({ key: r.id, value: r.name })),
   },
 ]
 

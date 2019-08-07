@@ -42,7 +42,7 @@ export default function SubjectSection ({
       </ExpandableOption>
 
       <ExpandableOption
-        label="Subject Nominates Evaluators"
+        label="Subject nominates Evaluators"
         {...parametersForSwitch('canNominateEvaluators')}
         actionable={
           <Button size="small" onClick={openNominationRequirementModal}>Define Nomination requirement</Button>
@@ -67,7 +67,7 @@ export default function SubjectSection ({
           </ExpandableOption>
         </ExpandableOption>
         <ExpandableOption
-          label="Anyone in the DataSheet"
+          label="Anyone in the dataSheet"
           {...parametersForSwitch('canNominateAnyoneFromDatasheet')}
           type="checkbox"
         >
