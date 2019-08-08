@@ -117,6 +117,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -293,6 +300,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -473,6 +487,13 @@ I18n.translations["es"] = I18n.extend((I18n.translations["es"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -649,6 +670,13 @@ I18n.translations["bg"] = I18n.extend((I18n.translations["bg"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -829,6 +857,13 @@ I18n.translations["bs"] = I18n.extend((I18n.translations["bs"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -1005,6 +1040,13 @@ I18n.translations["ca"] = I18n.extend((I18n.translations["ca"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -1185,6 +1227,13 @@ I18n.translations["cn"] = I18n.extend((I18n.translations["cn"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -1361,6 +1410,13 @@ I18n.translations["cs"] = I18n.extend((I18n.translations["cs"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -1541,6 +1597,13 @@ I18n.translations["cy"] = I18n.extend((I18n.translations["cy"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -1717,6 +1780,13 @@ I18n.translations["da"] = I18n.extend((I18n.translations["da"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -1897,6 +1967,13 @@ I18n.translations["de"] = I18n.extend((I18n.translations["de"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -2073,6 +2150,13 @@ I18n.translations["el"] = I18n.extend((I18n.translations["el"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -2253,6 +2337,13 @@ I18n.translations["en-GB"] = I18n.extend((I18n.translations["en-GB"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -2429,6 +2520,13 @@ I18n.translations["eo"] = I18n.extend((I18n.translations["eo"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -2609,6 +2707,13 @@ I18n.translations["es-ES"] = I18n.extend((I18n.translations["es-ES"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -2785,6 +2890,13 @@ I18n.translations["et"] = I18n.extend((I18n.translations["et"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -2965,6 +3077,13 @@ I18n.translations["fa"] = I18n.extend((I18n.translations["fa"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -3141,6 +3260,13 @@ I18n.translations["fr"] = I18n.extend((I18n.translations["fr"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -3321,6 +3447,13 @@ I18n.translations["gu"] = I18n.extend((I18n.translations["gu"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -3497,6 +3630,13 @@ I18n.translations["he"] = I18n.extend((I18n.translations["he"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -3677,6 +3817,13 @@ I18n.translations["hi"] = I18n.extend((I18n.translations["hi"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -3853,6 +4000,13 @@ I18n.translations["hr"] = I18n.extend((I18n.translations["hr"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -4033,6 +4187,13 @@ I18n.translations["hu"] = I18n.extend((I18n.translations["hu"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -4209,6 +4370,13 @@ I18n.translations["id"] = I18n.extend((I18n.translations["id"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -4389,6 +4557,13 @@ I18n.translations["it"] = I18n.extend((I18n.translations["it"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -4565,6 +4740,13 @@ I18n.translations["ja"] = I18n.extend((I18n.translations["ja"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -4745,6 +4927,13 @@ I18n.translations["km"] = I18n.extend((I18n.translations["km"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -4921,6 +5110,13 @@ I18n.translations["ko"] = I18n.extend((I18n.translations["ko"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -5101,6 +5297,13 @@ I18n.translations["lt"] = I18n.extend((I18n.translations["lt"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -5277,6 +5480,13 @@ I18n.translations["lv"] = I18n.extend((I18n.translations["lv"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -5457,6 +5667,13 @@ I18n.translations["mk"] = I18n.extend((I18n.translations["mk"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -5633,6 +5850,13 @@ I18n.translations["mn"] = I18n.extend((I18n.translations["mn"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -5813,6 +6037,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -5989,6 +6220,13 @@ I18n.translations["my"] = I18n.extend((I18n.translations["my"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -6169,6 +6407,13 @@ I18n.translations["nl"] = I18n.extend((I18n.translations["nl"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -6345,6 +6590,13 @@ I18n.translations["no"] = I18n.extend((I18n.translations["no"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -6525,6 +6777,13 @@ I18n.translations["pl"] = I18n.extend((I18n.translations["pl"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -6701,6 +6960,13 @@ I18n.translations["pt-BR"] = I18n.extend((I18n.translations["pt-BR"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -6881,6 +7147,13 @@ I18n.translations["pt"] = I18n.extend((I18n.translations["pt"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -7057,6 +7330,13 @@ I18n.translations["ro"] = I18n.extend((I18n.translations["ro"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -7237,6 +7517,13 @@ I18n.translations["ru"] = I18n.extend((I18n.translations["ru"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -7413,6 +7700,13 @@ I18n.translations["sk"] = I18n.extend((I18n.translations["sk"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -7593,6 +7887,13 @@ I18n.translations["sl"] = I18n.extend((I18n.translations["sl"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -7769,6 +8070,13 @@ I18n.translations["sr"] = I18n.extend((I18n.translations["sr"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -7949,6 +8257,13 @@ I18n.translations["sv"] = I18n.extend((I18n.translations["sv"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -8125,6 +8440,13 @@ I18n.translations["sw"] = I18n.extend((I18n.translations["sw"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -8305,6 +8627,13 @@ I18n.translations["ta"] = I18n.extend((I18n.translations["ta"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -8481,6 +8810,13 @@ I18n.translations["th"] = I18n.extend((I18n.translations["th"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -8661,6 +8997,13 @@ I18n.translations["tr"] = I18n.extend((I18n.translations["tr"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -8837,6 +9180,13 @@ I18n.translations["uk"] = I18n.extend((I18n.translations["uk"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -9017,6 +9367,13 @@ I18n.translations["ur"] = I18n.extend((I18n.translations["ur"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -9193,6 +9550,13 @@ I18n.translations["vi"] = I18n.extend((I18n.translations["vi"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {
@@ -9373,6 +9737,13 @@ I18n.translations["zh"] = I18n.extend((I18n.translations["zh"] || {}), {
       "on_hold": "On hold"
     }
   },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
+    }
+  },
   "threesixty": {
     "add": "Add",
     "and": "And",
@@ -9549,6 +9920,13 @@ I18n.translations["zh-TW"] = I18n.extend((I18n.translations["zh-TW"] || {}), {
       "incomplete": "Incomplete",
       "not_available": "Not available",
       "on_hold": "On hold"
+    }
+  },
+  "subjects": {
+    "statuses": {
+      "completed": "Completed",
+      "done": "Done",
+      "not_completed": "Not Completed"
     }
   },
   "threesixty": {

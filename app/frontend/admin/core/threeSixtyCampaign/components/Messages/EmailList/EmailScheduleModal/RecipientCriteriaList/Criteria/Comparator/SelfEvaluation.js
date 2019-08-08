@@ -11,10 +11,10 @@ export default function SelfEvaluation ({ value, update, merge }) {
     <div>
       <Select dropdownMatchSelectWidth={false} size="small" value={value} onChange={value => update('value', value)}>
         <Select.Option key={SELF_EVALUATIONS_VALUES.NOT_COMPLETED} value={SELF_EVALUATIONS_VALUES.NOT_COMPLETED}>
-          Has not completed self evaluation
+          Has not completed Self evaluation
         </Select.Option>
         <Select.Option key={SELF_EVALUATIONS_VALUES.COMPLETED} value={SELF_EVALUATIONS_VALUES.COMPLETED}>
-          Has completed self evaluation
+          Has completed Self evaluation
         </Select.Option>
       </Select>
     </div>

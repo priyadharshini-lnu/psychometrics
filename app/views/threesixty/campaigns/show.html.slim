@@ -1,13 +1,7 @@
 div#three-sixty-container
 
 javascript:
-  window.__INITIAL_STATE__ = {
-    threeSixtyCampaign: {
-      temp: {
-        currentUser: JSON.parse('#{{json_escape(::Threesixty::CurrentUserSerializer.new(current_user).to_json)}}')
-      }
-    }
-  }
+  window.__INITIAL_STATE__ = JSON.parse('#{{json_escape(@init_state.to_json)}}')
 
 = javascript_pack_tag 'user/threeSixtyCampaign'
 = stylesheet_pack_tag 'user/threeSixtyCampaign'
