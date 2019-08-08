@@ -2,6 +2,7 @@ import _ from 'lodash'
 import { takeLatest, put } from 'redux-saga/effects'
 
 const CHANGE_LOCALE = 'temp/users/CHANGE_LOCALE'
+const LOGOUT = 'temp/users/LOGOUT'
 const SYNC = 'threeSixty/user/SYNC'
 const SET_USER = 'threeSixty/user/SET_USER'
 
@@ -10,6 +11,7 @@ export const get = state => _.get(state, ['threeSixtyCampaign', 'temp', 'current
 export const defaultState = null
 
 export const logout = () => ({
+  type: LOGOUT,
   request: {
     method: 'delete',
     url: '/users/sign_out',

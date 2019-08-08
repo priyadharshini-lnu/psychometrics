@@ -6,6 +6,7 @@ import {
 } from 'user/core/ThreesixtyCampaign/campaign/selectors'
 
 const mapStateToProps = state => ({
+  campaign: state.threeSixtyCampaign.campaign,
   instructions: state.threeSixtyCampaign.campaign.instructions,
   nominations: getNominations(state.threeSixtyCampaign).length
                + getApprovalNominations(state.threeSixtyCampaign).length,

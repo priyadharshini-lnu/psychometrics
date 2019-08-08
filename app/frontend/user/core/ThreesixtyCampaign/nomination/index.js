@@ -114,7 +114,7 @@ const defaultState = {
   evaluators: [],
   relationships: [],
   instructions: [],
-  options: { messages: {} },
+  options: { messages: {}, participants: { manager: {} } },
   form: {
     attrs: {},
     errors: {},

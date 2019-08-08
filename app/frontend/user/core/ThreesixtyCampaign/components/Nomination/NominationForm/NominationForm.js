@@ -5,6 +5,7 @@ import {
 } from 'antd'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
+import { relationshipWithoutSelf } from 'utils/relationship'
 
 const { Title } = Typography
 const { Option } = Select
@@ -81,7 +82,7 @@ export default function NominationForm (props) {
                   className="relationship-select"
                 >
                   <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
-                  {relationships.map(relation => (
+                  {relationshipWithoutSelf(relationships).map(relation => (
                     <Option
                       key={relation.id}
                       value={relation.id}
@@ -118,7 +119,7 @@ export default function NominationForm (props) {
             </Button>
           </Col>
           )}
-          {isSelf || (
+          {isSelf || !options.participants.manager.canApproveNominations || (
           <>
             <div className="divider" />
             <Col>

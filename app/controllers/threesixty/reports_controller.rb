@@ -1,10 +1,12 @@
 module Threesixty
   class ReportsController < ApplicationController
     include AuthenticateByToken
+    include ::Threesixty::InitialState
     layout 'layouts/threesixty_campaign'
     before_action :set_campaign
     before_action :set_users_report
     prepend_before_action :authenticate_by_token!, only: %i[show]
+    initial_state_for [:index, :show]
 
     def index
       respond_to do |format|
