@@ -515,6 +515,7 @@ Rails.application.routes.draw do
         get :upload_media_url
         put :upload_callback
         post :upload_media_dev
+        delete :remove_media
       end
     end
 
@@ -542,6 +543,7 @@ Rails.application.routes.draw do
             get :upload_media_url
             put :upload_callback
             post :upload_media_dev
+            delete :remove_media
           end
         end
         collection do

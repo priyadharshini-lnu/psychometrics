@@ -22,7 +22,7 @@
 #
 
 class AssignsController < ApplicationController
-  before_action :set_assign, only: %i[pass update upload_media_url upload_media_dev upload_callback]
+  before_action :set_assign, only: %i[pass update upload_media_url upload_media_dev upload_callback remove_media]
   append_before_action :pundit_authorize
 
   # Skip CSRF
@@ -96,6 +96,16 @@ class AssignsController < ApplicationController
     media.update_attributes(asset_key: params[:asset_key])
     media.reload # get data after fetching from s3
     render json: media
+  end
+
+  def remove_media
+    media = MediaResponse.find(params[:media_id])
+    media.destroy
+    if @assign.results[media.question_id.to_s]
+      @assign.results[media.question_id.to_s]['answers'] = []
+      @assign.save
+    end
+    head :ok
   end
 
   private

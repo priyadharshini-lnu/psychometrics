@@ -33,6 +33,10 @@ class AssignPolicy < BasePolicy
     @record.membership_id == @current_membership.id
   end
 
+  def remove_media?
+    @record.membership_id == @current_membership.id
+  end
+
   def redirect?
     index?
   end
