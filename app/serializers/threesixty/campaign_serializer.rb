@@ -13,14 +13,18 @@ module Threesixty
       end
     end
 
-    attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
-               :mindmill, :hogan, :instructions
+    attributes :id, :name, :reports, :type, :assessment_name, :questions_count, :timing,
+               :mindmill, :hogan, :instructions, :logo
 
     has_many :nominations, serializer: NomineeSerializer
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
     has_many :managed_subjects, serializer: Threesixty::EndUser::ManagedSubjectSerializer
     has_many :reports, serializer: UsersReportSerializer
     has_one :options, serializer: CampaignOptionsSerializer
+
+    def logo
+      object.logo.url
+    end
 
     def instructions
       object.instruction_templates.map do |instruction|

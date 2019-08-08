@@ -9,7 +9,7 @@ import EditProfileModal from '../EditProfileModal'
 
 const { SubMenu } = Menu
 
-function Navigation ({ changeLocale, logout }) {
+function Navigation ({ changeLocale, logout, logo }) {
   const [editProfileModalOpen, setEditProfileModal] = useState(false)
 
   const onLogout = () => {
@@ -38,7 +38,11 @@ function Navigation ({ changeLocale, logout }) {
             overflowedIndicator={<Icon type="menu" />}
           >
             <Menu.Item>
-              <a href="/">{I18n.t('threesixty.my_projects')}</a>
+              <a href="/">
+                {logo
+                  ? <img src={logo} alt="logo" className="logo" />
+                  : <Icon type="home" />}
+              </a>
             </Menu.Item>
 
             <SubMenu
@@ -55,7 +59,7 @@ function Navigation ({ changeLocale, logout }) {
             <Menu.Item key="app" className="align-right">
               <Dropdown overlay={() => langMenu()} trigger={['click']}>
                 <a>
-                  <Icon type="zhihu" />
+                  <Icon type="global" />
                   {I18n.t('threesixty.language')}
                 </a>
               </Dropdown>

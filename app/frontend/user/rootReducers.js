@@ -6,6 +6,7 @@ import evaluation from './core/ThreesixtyCampaign/evaluation'
 import report from './core/ThreesixtyCampaign/report'
 import autocomplete from './core/temp/autocomplete'
 import currentUser from './core/temp/currentUser'
+import project from './core/temp/project'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -17,6 +18,7 @@ export default combineReducers({
     temp: combineReducers({
       currentUser,
       autocomplete,
+      project,
     }),
   }),
 })
