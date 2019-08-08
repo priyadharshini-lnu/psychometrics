@@ -5,31 +5,25 @@ module Administration
     class ManagersController < Administration::ThreesixtyCampaigns::BaseController
       prepend_before_action :set_resource_class
       append_before_action :pundit_authorize
+      before_action :skip_policy_scope, only: [:index]
 
       def index
         option = threesixty_campaign.option || ::Threesixty::Option.new
-        managers = policy_scope(::Threesixty::Evaluator).
-                   includes(:user, self_subject: :user).
-                   joins(participants: :relationship).
-                   where(campaign_id: threesixty_campaign.campaign_id, participants: { relationships: { name: 'Manager', type: :global } }).
-                   order(id: :desc).
-                   distinct(:user_id).
-                   page(params[:page])
 
-        counters = ::Threesixty::Participants::CalcCounters.call!(managers.map(&:user_id), threesixty_campaign)
+        managers = ::Threesixty::GetManagersQuery.new(threesixty_campaign: threesixty_campaign).query
+
+        paginated_managers = managers.page(params[:page])
+        paginated_manager_ids = paginated_managers.map(&:user_id)
+        counters = ::Threesixty::Participants::CalcCounters.call!(paginated_manager_ids, threesixty_campaign)
         subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
-          managers.map(&:user_id),
+          paginated_manager_ids,
           threesixty_campaign
         )
         nomination_requirement_by_user_id = ::Threesixty::NominationRequirements::FindForUsers.call!(
-          managers.map(&:user),
+          paginated_managers.map(&:user),
           threesixty_campaign
         )
-        total = policy_scope(::Threesixty::Evaluator).
-                where(campaign_id: threesixty_campaign.campaign_id, participants: { relationships: { name: 'Manager', type: :global } }).
-                distinct(:user_id).
-                joins(participants: :relationship).
-                count
+        total = managers.count
 
         managers = managers.map do |m|
           ::Threesixty::EvaluatorSerializer.new(
