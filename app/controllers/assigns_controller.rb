@@ -99,7 +99,7 @@ class AssignsController < ApplicationController
   end
 
   def remove_media
-    media = MediaResponse.find(params[:media_id])
+    media = MediaResponse.find_by!(id: params[:media_id], assign_id: @assign.id)
     media.destroy
     if @assign.results[media.question_id.to_s]
       @assign.results[media.question_id.to_s]['answers'] = []

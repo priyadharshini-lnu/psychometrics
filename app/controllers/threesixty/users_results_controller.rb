@@ -32,7 +32,7 @@ module Threesixty
     end
 
     def remove_media
-      media = MediaResponse.find(params[:media_id])
+      media = MediaResponse.find_by!(id: params[:media_id], users_result_id: @users_result.id)
       media.destroy
       if @users_result.answers[media.question_id.to_s]
         @users_result.answers[media.question_id.to_s]['answers'] = []
