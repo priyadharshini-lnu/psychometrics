@@ -14,9 +14,7 @@ module Threesixty
         includes(:user, self_subject: :user).
         joins(participants_join_query).
         joins("LEFT JOIN relationships ON relationships.id = threesixty_participants.relationship_id").
-        where(
-          participants: { relationships: { name: 'Manager', type: :global } }
-        ).
+        where(participants: { relationships: { name: 'Manager', type: :global } }).
         order(id: :desc).
         distinct(:user_id)
     end
@@ -25,7 +23,8 @@ module Threesixty
 
     def participants_join_query
       <<-SQL.strip_heredoc
-        LEFT JOIN threesixty_participants ON threesixty_participants.evaluator_id = threesixty_evaluators.user_id
+        LEFT JOIN threesixty_participants
+        ON threesixty_participants.evaluator_id = threesixty_evaluators.user_id
         AND threesixty_participants.campaign_id = #{threesixty_campaign.campaign_id}
       SQL
     end

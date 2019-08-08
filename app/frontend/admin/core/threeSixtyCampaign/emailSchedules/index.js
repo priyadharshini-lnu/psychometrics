@@ -70,7 +70,7 @@ export function* genFecthRecipientsByCriteria (options = {}) {
 const HANDLERS = {
   [FETCH]: (state, { response }) => {
     const scheduledDate = moment().format()
-    const list = response.map((emailSchedule) => ({ ...emailSchedule, scheduledDate }))
+    const list = response.map(emailSchedule => ({ ...emailSchedule, scheduledDate }))
     return { ...state, list }
   },
   [FETCH_RECIPIENT_BY_CRITERIA]: (state, { response }) => ({ ...state, recipients: response }),
