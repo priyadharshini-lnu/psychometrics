@@ -26,7 +26,7 @@ module Threesixty
         ::Users::Regular.create_with(first_name: evaluator[:evaluator_first_name],
                                      last_name: evaluator[:evaluator_last_name],
                                      create_by_invite: true).
-                         find_or_create_by(email: evaluator[:evaluator_email], project: project)
+                         find_or_create_by!(email: evaluator[:evaluator_email], project: project)
       end
 
       def create_campaigns_user(evaluator_user)
