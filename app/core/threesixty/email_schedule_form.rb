@@ -12,7 +12,7 @@ module Threesixty
     attribute :scheduled_date, DateTime
     attribute :recipient_ids, Array
 
-    validates :from, :reply_to_email, presence: true
+    validates :from, :reply_to_email, :scheduled_date, presence: true
     validates :reply_to_email, format: { with: URI::MailTo::EMAIL_REGEXP }, allow_blank: true
   end
 end
