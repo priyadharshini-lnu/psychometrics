@@ -21,6 +21,18 @@ class AssignPolicy < BasePolicy
     @record.membership_id == @current_membership.id
   end
 
+  def upload_media_url?
+    @record.membership_id == @current_membership.id
+  end
+
+  def upload_media_dev?
+    @record.membership_id == @current_membership.id
+  end
+
+  def upload_callback?
+    @record.membership_id == @current_membership.id
+  end
+
   def redirect?
     index?
   end

@@ -22,7 +22,7 @@
 #
 
 class AssignsController < ApplicationController
-  before_action :set_assign, only: %i[pass update upload_media_url]
+  before_action :set_assign, only: %i[pass update upload_media_url upload_media_dev upload_callback]
   append_before_action :pundit_authorize
 
   # Skip CSRF
@@ -80,7 +80,7 @@ class AssignsController < ApplicationController
   end
 
   def upload_media_url
-    render json: UsersResults::GetMediaUploadUrl.call!(@assign, params[:question_id])
+    render json: Assigns::GetMediaUploadUrl.call!(@assign, params[:question_id])
   end
 
   def upload_media_dev
