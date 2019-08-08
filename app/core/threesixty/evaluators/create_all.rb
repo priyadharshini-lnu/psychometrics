@@ -21,12 +21,22 @@ module Threesixty
       end
 
       def fetch_or_create_evaluator_user(evaluator)
-        return evaluator[:evaluator_user] if evaluator[:evaluator_user]
+        user = evaluator[:evaluator_user]
+        user = ::Users::Regular.find_by(email: evaluator[:evaluator_email], project: project) unless user
 
-        ::Users::Regular.create_with(first_name: evaluator[:evaluator_first_name],
-                                     last_name: evaluator[:evaluator_last_name],
-                                     create_by_invite: true).
-                         find_or_create_by!(email: evaluator[:evaluator_email], project: project)
+        if user
+          user.update!(first_name: evaluator[:evaluator_first_name], last_name: evaluator[:evaluator_last_name])
+        else
+          user = ::Users::Regular.create(
+            email: evaluator[:evaluator_email],
+            first_name: evaluator[:evaluator_first_name],
+            last_name: evaluator[:evaluator_last_name],
+            create_by_invite: true,
+            project: project
+          )
+        end
+
+        user
       end
 
       def create_campaigns_user(evaluator_user)
