@@ -1,10 +1,9 @@
-module ::Threesixty::InitialState
+module Threesixty::InitialState
   extend ActiveSupport::Concern
 
   included do
     def self.initial_state_for actions
-      actions = actions.is_a?(Array) ? actions : [actions]
-      before_action :set_init_state, only: actions, if: -> { request.format.html? }
+      before_action :set_init_state, only: Array.wrap(actions), if: -> { request.format.html? }
     end
   end
 
