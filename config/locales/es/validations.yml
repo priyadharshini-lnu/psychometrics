@@ -1,6 +1,0 @@
-es:
-  validations:
-    title: '(es) Sorry, you cannot continue until you correct the following:'
-    issue: '(es) Issue'
-    min_length: '(es) Your response must be at least %{min} characters.'
-    character_range: '(es) Your response must be at least %{min} and no more than %{max} characters.'
