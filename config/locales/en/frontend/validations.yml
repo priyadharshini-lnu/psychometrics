@@ -16,3 +16,4 @@ en:
     must_select: 'Please select from %{min} to %{max} choices'
     each_group_contains: 'Each group needs to contain not less than %{min} and not more than %{max} items'
     please_answer_question: 'Please answer this question'
+    please_record_and_save_video_first: 'Please record and save the video before you continue'

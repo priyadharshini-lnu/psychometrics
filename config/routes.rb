@@ -511,6 +511,12 @@ Rails.application.routes.draw do
     resources :assigns, only: %i(index update) do
       get :pass, on: :member
       post :accept_privacy, on: :collection
+      member do
+        get :upload_media_url
+        put :upload_callback
+        post :upload_media_dev
+        delete :remove_media
+      end
     end
 
     scope module: :threesixty do
@@ -532,13 +538,19 @@ Rails.application.routes.draw do
           get :download, on: :member
         end
         resources :assessments, only: %i(index)
-        resources :users_results, only: %i[update]
+        resources :users_results, only: %i[update] do
+          member do
+            get :upload_media_url
+            put :upload_callback
+            post :upload_media_dev
+            delete :remove_media
+          end
+        end
         collection do
           post :change_locale
         end
       end
     end
-
     namespace :mindmill do
       resources :assigns, only: [] do
         member do
