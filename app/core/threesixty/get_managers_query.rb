@@ -4,7 +4,7 @@ module Threesixty
   class GetManagersQuery < Rectify::Query
     private_attr_reader :threesixty_campaign
 
-    def initialize(threesixty_campaign: threesixty_campaign)
+    def initialize(threesixty_campaign)
       @threesixty_campaign = threesixty_campaign
     end
 
