@@ -4,9 +4,7 @@ gem 'bundler',                    '>= 1.8.4'
 
 gem 'rails',                      '~> 5.1.6'
 gem 'pg',                         '~> 0.18.4'
-gem 'puma',                       '~> 3.8'
-# to work with ssl on chrome
-# gem 'puma', git: 'https://github.com/eric-norcross/puma.git', branch: 'chrome_70_ssl_curve_compatiblity'
+gem 'puma',                       '~> 4.0.1'
 gem 'sassc-rails',                 '~> 2.1.2'
 gem 'uglifier',                   '>= 1.3.0'
 gem 'coffee-rails',               '~> 4.2'

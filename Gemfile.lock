@@ -499,7 +499,8 @@ GEM
       pry (>= 0.9.10)
     psych (3.1.0)
     public_suffix (3.0.3)
-    puma (3.12.1)
+    puma (4.0.1)
+      nio4r (~> 2.0)
     pundit (1.1.0)
       activesupport (>= 3.0.0)
     rack (2.0.7)
@@ -903,7 +904,7 @@ DEPENDENCIES
   pry-rails
   psychometrics-reports-ui!
   psychometrics-survey-ui!
-  puma (~> 3.8)
+  puma (~> 4.0.1)
   pundit (~> 1.1.0)
   rack-timeout (~> 0.4.2)
   rails (~> 5.1.6)
