@@ -56,3 +56,6 @@ en:
           <li><p><b>Deny</b>  the report release.</p></li>
           <li><p>Approve the report for release.</p></li>
         </ol>
+      main:
+        <h2>Help</h2>
+        <p>need content for help modal</p>
