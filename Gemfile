@@ -5,6 +5,8 @@ gem 'bundler',                    '>= 1.8.4'
 gem 'rails',                      '~> 5.1.6'
 gem 'pg',                         '~> 0.18.4'
 gem 'puma',                       '~> 3.8'
+# to work with ssl on chrome
+# gem 'puma', git: 'https://github.com/eric-norcross/puma.git', branch: 'chrome_70_ssl_curve_compatiblity'
 gem 'sassc-rails',                 '~> 2.1.2'
 gem 'uglifier',                   '>= 1.3.0'
 gem 'coffee-rails',               '~> 4.2'
@@ -77,8 +79,8 @@ gem 'annotate', '~> 2.7.0'
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
-gem 'psychometrics-reports-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git', ref: 'b830fc45113cfb2841bb3bb76079552949de5724'
-gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', ref: '126a9aa52a4fb994ff147318bea4e2ec59fdc321'
+gem 'psychometrics-reports-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git', ref: '12a5d8f604a65986d5260ff2fcc360fddb4472f4'
+gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', ref: '7c1f96f6f12a94e57e37272257e0ab26546a28a5'
 
 ### XLS import
 gem 'rubyXL'
@@ -118,6 +120,7 @@ gem 'deep_cloneable', '~> 2.2.1'
 
 gem 'carrierwave', '~> 1.2.2'
 gem 'carrierwave-base64', '~> 2.5.3'
+gem 'carrierwave_direct'
 gem 'remotipart', '~> 1.2'
 gem 'mini_magick', '~> 4.5.1'
 gem 'fog-aws', '~> 2.0.1'

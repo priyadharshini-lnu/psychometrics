@@ -1,7 +1,7 @@
 if Rails.env.test? || Rails.env.development?
   CarrierWave.configure do |config|
-    config.storage = :file
     config.asset_host = ActionController::Base.asset_host
+    config.storage = :file
   end
 else
   CarrierWave.configure do |config|
@@ -16,8 +16,9 @@ else
     config.fog_directory = Rails.application.secrets.directory
     config.fog_attributes = { 'Cache-Control' => "max-age=#{365.day.to_i}" } # optional, defaults to {}
     config.storage = :fog
-    config.asset_host = Settings.file_host.present? ? 
-      ("#{Settings.protocol}://#{Settings.file_host}") : 
+    config.use_action_status = true
+    config.asset_host = Settings.file_host.present? ?
+      ("#{Settings.protocol}://#{Settings.file_host}") :
       "#{Settings.protocol}://#{Rails.application.secrets.directory}.s3.dualstack.#{Rails.application.secrets.region}.amazonaws.com"
   end
 end
