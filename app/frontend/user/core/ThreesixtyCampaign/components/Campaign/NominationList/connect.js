@@ -3,6 +3,7 @@ import { getApprovalNominations } from 'user/core/ThreesixtyCampaign/campaign/se
 
 const mapStateToProps = state => ({
   nominations: state.threeSixtyCampaign.campaign.nominations,
+  nominationsCounters: state.threeSixtyCampaign.campaign.nominationsCounters,
   approvalNominations: getApprovalNominations(state.threeSixtyCampaign),
   options: state.threeSixtyCampaign.campaign.options.participants,
 })

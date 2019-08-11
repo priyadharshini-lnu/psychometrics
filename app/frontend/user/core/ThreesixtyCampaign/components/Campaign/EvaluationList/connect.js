@@ -4,6 +4,7 @@ import { declineEvaluation } from 'user/core/ThreesixtyCampaign/campaign'
 
 const mapStateToProps = state => ({
   evaluations: getUserEvaluations(state.threeSixtyCampaign),
+  evaluationsCounters: state.threeSixtyCampaign.campaign.evaluationsCounters,
   managedSubjects: getManagedSubjects(state.threeSixtyCampaign),
   options: state.threeSixtyCampaign.campaign.options.participants,
 })

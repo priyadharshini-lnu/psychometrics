@@ -1,11 +1,15 @@
 module Threesixty
   class CampaignSerializer < ActiveModel::Serializer
     class NomineeSerializer < ActiveModel::Serializer
-      attributes :id, :is_self, :campaign_id, :evaluators_count
+      attributes :id, :is_self, :campaign_id, :evaluators_count, :counters
       has_one :user, serializer: UserSerializer
 
       def campaign_id
         object.campaign.threesixty_campaign.id
+      end
+
+      def counters
+        Threesixty::Participants::CalcCounters.call!([object.user_id], object.campaign.threesixty_campaign)
       end
 
       def is_self
@@ -14,13 +18,32 @@ module Threesixty
     end
 
     attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
-               :mindmill, :hogan, :instructions
+               :mindmill, :hogan, :instructions, 
+               :evaluations_counters, :nominations_counters, :reports_counters
 
     has_many :nominations, serializer: NomineeSerializer
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
     has_many :managed_subjects, serializer: Threesixty::EndUser::ManagedSubjectSerializer
     has_many :reports, serializer: UsersReportSerializer
     has_one :options, serializer: CampaignOptionsSerializer
+
+    def nominations_counters
+      {
+        total_nominations: nominations.count,
+        completed_nominations: 0
+      }
+    end
+
+    def evaluations_counters
+      Threesixty::Participants::CalcCounters.call!([current_user.id], object)[current_user.id]
+    end
+    
+    def reports_counters
+      {
+        total_reports: reports.count,
+        completed_reports: 0
+      }
+    end
 
     def instructions
       object.instruction_templates.map do |instruction|

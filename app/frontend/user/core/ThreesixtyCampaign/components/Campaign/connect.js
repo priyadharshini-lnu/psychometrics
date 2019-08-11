@@ -7,6 +7,9 @@ import {
 
 const mapStateToProps = state => ({
   instructions: state.threeSixtyCampaign.campaign.instructions,
+  evaluationsCounters: state.threeSixtyCampaign.campaign.evaluationsCounters,
+  nominationsCounters: state.threeSixtyCampaign.campaign.nominationsCounters,
+  reportsCounters: state.threeSixtyCampaign.campaign.reportsCounters,
   nominations: getNominations(state.threeSixtyCampaign).length
                + getApprovalNominations(state.threeSixtyCampaign).length,
   evaluations: getEvaluations(state.threeSixtyCampaign).length
