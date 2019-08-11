@@ -138,7 +138,7 @@ export default function RequirementTable (props) {
           title={(
             <div className="table-head-title">
               <span>{title}</span>
-              {conditionPresenter.getCondition(condition)}
+              {!condition.withoutConditions && conditionPresenter.getCondition(condition)}
             </div>
           )}
           key="title"

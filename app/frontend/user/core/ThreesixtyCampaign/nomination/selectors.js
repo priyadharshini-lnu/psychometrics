@@ -7,8 +7,16 @@ export const getRelationships = state => state.nomination.relationships
 
 export const requirementsSelector = createSelector(
   getConditions, getEvaluators, getRelationships,
-  (conditions, evaluators, relationships) => _.map(conditions, (condition) => {
-    const { name } = _.find(relationships, { id: condition.relationshipId })
-    return { condition, title: name, evaluators: evaluators[name] }
-  }),
+  (conditions, evaluators, relationships) => {
+    const groups = _.map(conditions, (condition) => {
+      const { name } = _.find(relationships, { id: condition.relationshipId })
+      return { condition, title: name, evaluators: evaluators[name] }
+    })
+    _.each(evaluators, (evaluators, name) => {
+      if (_.find(groups, { title: name }) || name === 'Self') { return }
+      const { id } = _.find(relationships, { name })
+      groups.push({ condition: { withoutConditions: true, relationshipId: id }, title: name, evaluators })
+    })
+    return groups
+  },
 )
