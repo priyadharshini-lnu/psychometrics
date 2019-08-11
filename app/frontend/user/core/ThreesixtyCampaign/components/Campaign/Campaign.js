@@ -20,9 +20,11 @@ export default function Campaign ({
     fetchCampaign(match.params.campaignId)
   }, [])
 
-  const nominationsPercent = (nominationsCounters.completedEvaluations / nominationsCounters.totalEvaluations) * 100
+  const nominationsPercent = (nominationsCounters.completedNominations / nominationsCounters.totalNominations) * 100
   const evaluationsPercent = (evaluationsCounters.completedEvaluations / evaluationsCounters.totalEvaluations) * 100
-  const reportsPercent = 0
+  const reportsPercent = (reportsCounters.completedReports / reportsCounters.totalReports) * 100
+  const totalProgress = (nominationsCounters.completedNominations  + evaluationsCounters.completedEvaluations + reportsCounters.completedReports) / 
+                        (nominationsCounters.totalNominations  + evaluationsCounters.totalEvaluations + reportsCounters.totalReports) * 100
   
   let welcomeMessage = _.find(instructions, { name: 'welcome_message' })
   if (nominations === 0) {
@@ -49,7 +51,7 @@ export default function Campaign ({
                   <div className="progress-column">
                     <Progress
                       strokeColor="#00B4AA"
-                      percent={nominationsPercent}
+                      percent={totalProgress}
                       strokeWidth={16}
                       format={percent => (
                         <div className="percentage">{`${percent}%`}</div>

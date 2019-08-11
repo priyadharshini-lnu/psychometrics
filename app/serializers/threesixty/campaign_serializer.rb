@@ -18,7 +18,7 @@ module Threesixty
     end
 
     attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
-               :mindmill, :hogan, :instructions, :logo
+               :mindmill, :hogan, :instructions, :logo,
                :evaluations_counters, :nominations_counters, :reports_counters
 
     has_many :nominations, serializer: NomineeSerializer
