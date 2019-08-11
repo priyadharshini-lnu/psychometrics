@@ -77,4 +77,23 @@ describe Threesixty::Evaluators::CreateAll do
       ], threesixty_campaign)
     }.to_not change(::Threesixty::Participant, :count)
   end
+
+  it 'updates user details if existing used is added as evalautor' do
+    user = create(:user, project: threesixty_campaign.project, email: 'daniel@cc.com', first_name: 'Daniel', last_name: 'Col')
+    create(:threesixty_evaluator, user: user, campaign: threesixty_campaign.campaign)
+
+    described_class.call!([{
+      evaluator_email: 'daniel@cc.com',
+      evaluator_first_name: "John",
+      evaluator_last_name: "Smith",
+      relationship_name: 'peer',
+      subject: subject_1,
+      subject_email: 'caleb@cc.com' }
+    ], threesixty_campaign)
+
+    user.reload
+
+    expect(user.first_name).to eq("John")
+    expect(user.last_name).to eq("Smith")
+  end
 end

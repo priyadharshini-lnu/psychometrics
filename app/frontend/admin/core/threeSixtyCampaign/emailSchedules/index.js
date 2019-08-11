@@ -68,7 +68,11 @@ export function* genFecthRecipientsByCriteria (options = {}) {
 }
 
 const HANDLERS = {
-  [FETCH]: (state, { response }) => ({ ...state, list: response }),
+  [FETCH]: (state, { response }) => {
+    const scheduledDate = moment().format()
+    const list = response.map(emailSchedule => ({ ...emailSchedule, scheduledDate }))
+    return { ...state, list }
+  },
   [FETCH_RECIPIENT_BY_CRITERIA]: (state, { response }) => ({ ...state, recipients: response }),
   [UPDATE]: (state, { payload: { key, value } }) => updateIn(
     state,

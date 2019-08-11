@@ -9,3 +9,6 @@ en:
             reply_to_email:
               blank: "Reply to email field can't be blank"
               invalid: 'Reply to email is invalid'
+            scheduled_date:
+              blank: "Scheduled date field can't be blank"
+
