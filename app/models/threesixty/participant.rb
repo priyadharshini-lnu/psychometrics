@@ -3,7 +3,7 @@ module Threesixty
     belongs_to :subject, class_name: 'User'
     belongs_to :evaluator, class_name: 'User'
     belongs_to :project, class_name: 'Client'
-    belongs_to :campaign
+    belongs_to :campaign, class_name: '::Campaign'
     belongs_to :relationship
 
     def threesixty_evaluator

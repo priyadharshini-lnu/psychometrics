@@ -4,7 +4,9 @@ import {
   changeLocale,
 } from 'user/core/temp/currentUser'
 
-const mapStateToProps = () => ({})
+const mapStateToProps = state => ({
+  logo: state.threeSixtyCampaign.temp.project.logo,
+})
 
 const mapDispatchToProps = {
   logout,

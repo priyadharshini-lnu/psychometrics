@@ -1,12 +1,17 @@
 class UsersResultSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :answers, :results, :scoring, :user_id, :assessment_id,
-             :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager, :manager_evaluation_status
+             :data_sheet, :relationship, :norm_id, :embedded_data, :is_self, :as_manager,
+             :manager_evaluation_status, :campaign_id
 
   attribute :relationship, if: -> { object.assessment.threesixty? }
 
   has_one :user, serializer: UserSerializer
   has_one :subject, serializer: UserSerializer
   has_one :participant, serializer: Threesixty::EndUser::NomineeSerializer
+
+  def campaign_id
+    campaign.id
+  end
 
   def results
     object.answers

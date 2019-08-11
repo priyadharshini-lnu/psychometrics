@@ -1,9 +1,11 @@
 import React from 'react'
+import _ from 'lodash'
 import {
-  Typography, Form, Icon, Input, Button, Select, Row, Col, AutoComplete, message,
+  Typography, Form, Icon, Input, Button, Select, Row, Col, AutoComplete, message, Alert,
 } from 'antd'
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
+import { relationshipWithoutSelf } from 'utils/relationship'
 
 const { Title } = Typography
 const { Option } = Select
@@ -14,7 +16,7 @@ export default function NominationForm (props) {
     showForm, hideForm, requestApproval, sendEvaluatorReminder,
     match: { params: { campaignId, id: nominationId } },
     nomination: {
-      isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail,
+      isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail, options,
     },
     autocomplete: { users },
   } = props
@@ -27,12 +29,12 @@ export default function NominationForm (props) {
 
   const handleRequestApproval = () => {
     requestApproval(campaignId, nominationId)
-      .then(() => message.info('Mail for approving nomination has been sent to managers'))
+      .then(() => message.info(I18n.t('threesixty.approving_mail_sent')))
   }
 
   const handleSendEvaluatorReminder = () => {
     sendEvaluatorReminder(campaignId, nominationId)
-      .then(() => message.info("Reminders sent to evaluators who haven't completed the evaluation"))
+      .then(() => message.info(I18n.t('threesixty.remind_mail_sent')))
   }
 
   return (
@@ -52,10 +54,7 @@ export default function NominationForm (props) {
               <Form.Item>
                 <Button type="primary" shape="circle" icon="close" size="large" onClick={hideForm} />
               </Form.Item>
-              <Form.Item
-                validateStatus={form.errors.evaluatorId ? 'error' : ''}
-                help={form.errors.evaluatorId && form.errors.evaluatorId}
-              >
+              <Form.Item>
                 <AutoComplete
                   dataSource={users.map(user => ({
                     value: user.email,
@@ -75,10 +74,7 @@ export default function NominationForm (props) {
               <Form.Item>
                 {I18n.t('threesixty.as_my')}
               </Form.Item>
-              <Form.Item
-                validateStatus={form.errors.relationshipId ? 'error' : ''}
-                help={form.errors.relationshipId && form.errors.relationshipId}
-              >
+              <Form.Item>
                 <Select
                   value={form.attrs.relationshipId}
                   onChange={relationshipId => updateForm({ ...form.attrs, relationshipId })}
@@ -86,7 +82,7 @@ export default function NominationForm (props) {
                   className="relationship-select"
                 >
                   <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
-                  {relationships.map(relation => (
+                  {relationshipWithoutSelf(relationships).map(relation => (
                     <Option
                       key={relation.id}
                       value={relation.id}
@@ -115,13 +111,15 @@ export default function NominationForm (props) {
             </Button>
           </Col>
           )}
+          {options.messages.subjectCanSendReminder && (
           <Col>
             <Button type="primary" onClick={handleSendEvaluatorReminder}>
               <Icon type="team" />
               {I18n.t('threesixty.remind_all')}
             </Button>
           </Col>
-          {isSelf || (
+          )}
+          {isSelf || !options.participants.manager.canApproveNominations || (
           <>
             <div className="divider" />
             <Col>
@@ -138,7 +136,13 @@ export default function NominationForm (props) {
           )}
         </Row>
       </div>
-
+      {_.some(form.errors) && (
+        <Alert
+          message={I18n.t('threesixty.validation_errors')}
+          description={_.map(form.errors, error => <div>{error.join(' ')}</div>)}
+          type="error"
+        />
+      )}
     </div>
   )
 }

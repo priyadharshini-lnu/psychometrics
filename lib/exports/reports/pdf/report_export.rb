@@ -37,8 +37,8 @@ module Exports
             auth: Rails.application.secrets.http_auth
           }.merge(opts).to_a.map { |key, value| "#{key}='#{value}'" }.join(' ')
 
-          Rails.logger.info "phantomjs #{Rails.root.join('lib/raster.js')} #{args}"
-          system("phantomjs #{Rails.root.join('lib/raster.js')} #{args}")
+          Rails.logger.info "$(cd #{Rails.root.to_s} && npm run export_pdf -- #{args})"
+          system("$(cd #{Rails.root.to_s} && npm run export_pdf -- #{args})")
 
           output
         end
@@ -48,7 +48,7 @@ module Exports
         def make_path
           dir = opts.delete(:output_dir) || Rails.root.join('tmp', 'reports')
           dir = File.join(dir, user.email)
-          filename = "#{user.email}_#{report.decorate.display_name.parameterize}.pdf"
+          filename = "#{user.email}_#{report.decorate.display_name.parameterize}_#{Time.now.to_i}.pdf"
           File.delete(filename) if File.exists?(filename)
           FileUtils.mkdir_p(dir)
           @output = File.join(dir, filename)

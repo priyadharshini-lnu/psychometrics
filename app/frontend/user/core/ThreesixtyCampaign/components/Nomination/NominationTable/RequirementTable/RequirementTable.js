@@ -13,8 +13,8 @@ const { Column } = Table
 export default function RequirementTable (props) {
   const {
     removeNomination, updateStatus,
-    isSelf, match,
-    nomination: { options },
+    match,
+    nomination: { isSelf, options },
     requirement: { condition, title, evaluators },
     match: { params: { campaignId, id: nominationId } },
   } = props
@@ -138,7 +138,7 @@ export default function RequirementTable (props) {
           title={(
             <div className="table-head-title">
               <span>{title}</span>
-              {conditionPresenter.getCondition(condition)}
+              {!condition.withoutConditions && conditionPresenter.getCondition(condition)}
             </div>
           )}
           key="title"

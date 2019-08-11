@@ -18,7 +18,7 @@ module Threesixty
     end
 
     attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
-               :mindmill, :hogan, :instructions, 
+               :mindmill, :hogan, :instructions, :logo
                :evaluations_counters, :nominations_counters, :reports_counters
 
     has_many :nominations, serializer: NomineeSerializer
@@ -43,6 +43,10 @@ module Threesixty
         total_reports: reports.count,
         completed_reports: 0
       }
+    end
+
+    def logo
+      object.logo.url
     end
 
     def instructions

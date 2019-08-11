@@ -2,7 +2,7 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react'
 import {
-  Layout, Typography, Row, Col, PageHeader, Progress,
+  Layout, Row, Col, PageHeader, Progress,
 } from 'antd'
 import _ from 'lodash'
 import Nominations from './NominationList'
@@ -10,21 +10,24 @@ import Evaluations from './EvaluationList'
 import Reports from './ReportList'
 import './styles.scss'
 
-const { Paragraph } = Typography
 const { Content } = Layout
 
 export default function Campaign ({
-  history, match, fetchCampaign, instructions, 
+  history, match, fetchCampaign, instructions, campaign, nominations, 
   evaluationsCounters, nominationsCounters, reportsCounters
 }) {
   useEffect(() => {
     fetchCampaign(match.params.campaignId)
   }, [])
 
-  const welcomeMessage = _.find(instructions, { name: 'welcome_message' })
   const nominationsPercent = (nominationsCounters.completedEvaluations / nominationsCounters.totalEvaluations) * 100
   const evaluationsPercent = (evaluationsCounters.completedEvaluations / evaluationsCounters.totalEvaluations) * 100
   const reportsPercent = 0
+  
+  let welcomeMessage = _.find(instructions, { name: 'welcome_message' })
+  if (nominations === 0) {
+    welcomeMessage = _.find(instructions, { name: 'evaluator_welcome' })
+  }
   return (
     <Layout>
       <Content className="fluid-container">
@@ -32,30 +35,12 @@ export default function Campaign ({
           <PageHeader
             className="page-header"
             onBack={() => history.push('/campaigns')}
-            title={<div className="title-with-dash">{I18n.t('threesixty.page_title')}</div>}
+            title={<div className="title-with-dash">{campaign.name}</div>}
           >
             <div className="content padding">
-              {welcomeMessage ? (
+              {welcomeMessage && (
                 <Row type="flex">
                   <div dangerouslySetInnerHTML={{ __html: welcomeMessage.content }} />
-                </Row>
-              ) : (
-                <Row type="flex">
-                  <Paragraph>
-                      Welcome to the 360 Degree Assessment at Signify. Your feedback is appreciated!
-                  </Paragraph>
-                  <Paragraph>
-                      Please respond to the questions open and honestly and remember your individual responses are confidential.
-                  </Paragraph>
-                  <Paragraph>
-                      If you have any questions regarding the 360 Degree process, please visit www.signify360.com or contact (email id here)
-                  </Paragraph>
-                  <Paragraph>
-                      Incase you experience any technical difficulties, please contact signify360@thetalententerprise.com
-                  </Paragraph>
-                  <Paragraph>
-                      Thank you for your participation!
-                  </Paragraph>
                 </Row>
               )}
 

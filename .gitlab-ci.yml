@@ -38,11 +38,7 @@ test:
   - bundle config github.https true
   - cp config/database.ci.yml config/database.yml
   # - cp config/secrets.ci.yml config/secrets.yml
-  - cp config/application.sample.yml  config/application.yml
-  - bundle install -j $(nproc) --path vendor  --without development # Install dependencies into ./vendor/ruby
-  - sudo apt update && sudo apt install postgresql-client
-  - sudo curl --output /usr/local/bin/phantomjs https://s3.amazonaws.com/circle-downloads/phantomjs-2.1.1
-  - sudo chmod 0655 /usr/local/bin/phantomjs
+  - cp config/application.yml.sample  config/application.yml
   - yarn install
   - node_modules/eslint/bin/eslint.js app/frontend/
   - bundle exec rake db:create

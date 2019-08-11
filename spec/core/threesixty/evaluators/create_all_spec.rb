@@ -42,4 +42,58 @@ describe Threesixty::Evaluators::CreateAll do
       expect(membership_exits).to eq(true)
     end
   end
+
+  it "doesn't create new evaluator record when it already exists" do
+    user = create(:user, project: threesixty_campaign.project, email: 'daniel@cc.com', first_name: 'Daniel')
+    create(:threesixty_evaluator, user: user, campaign: threesixty_campaign.campaign)
+
+    expect {
+      described_class.call!([{
+        evaluator_email: 'daniel@cc.com',
+        relationship_name: 'peer',
+        subject: subject_1,
+        subject_email: 'smith@cc.com' }
+      ], threesixty_campaign)
+    }.to_not change(::Threesixty::Evaluator, :count)
+  end
+
+  it "doesn't create participants if already exists" do
+    user = create(:user, project: threesixty_campaign.project, email: 'daniel@cc.com', first_name: 'Daniel')
+    evaluator = create(:threesixty_evaluator, user: user, campaign: threesixty_campaign.campaign)
+    create(
+      :threesixty_participant,
+      subject_id: subject_1.user_id,
+      campaign_id:  threesixty_campaign.campaign_id,
+      evaluator_id: evaluator.user_id
+    )
+
+    expect {
+      described_class.call!([{
+        evaluator_email: 'daniel@cc.com',
+        relationship_name: 'peer',
+        subject: subject_1,
+        subject_user: subject_1.user,
+        subject_email: 'smith@cc.com' }
+      ], threesixty_campaign)
+    }.to_not change(::Threesixty::Participant, :count)
+  end
+
+  it 'updates user details if existing used is added as evalautor' do
+    user = create(:user, project: threesixty_campaign.project, email: 'daniel@cc.com', first_name: 'Daniel', last_name: 'Col')
+    create(:threesixty_evaluator, user: user, campaign: threesixty_campaign.campaign)
+
+    described_class.call!([{
+      evaluator_email: 'daniel@cc.com',
+      evaluator_first_name: "John",
+      evaluator_last_name: "Smith",
+      relationship_name: 'peer',
+      subject: subject_1,
+      subject_email: 'caleb@cc.com' }
+    ], threesixty_campaign)
+
+    user.reload
+
+    expect(user.first_name).to eq("John")
+    expect(user.last_name).to eq("Smith")
+  end
 end

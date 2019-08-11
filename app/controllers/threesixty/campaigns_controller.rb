@@ -1,8 +1,10 @@
 module Threesixty
   class CampaignsController < ApplicationController
+    include ::Threesixty::InitialState
     layout 'layouts/threesixty_campaign'
     before_action :set_locale
     before_action :set_campaign, only: [:show]
+    initial_state_for [:index, :show]
 
     def index
       respond_to do |format|
@@ -32,7 +34,7 @@ module Threesixty
 
     def show
       respond_to do |format|
-        format.html {}
+        format.html { }
         format.json do
           subjects = ::Threesixty::NominationsByUserQuery.new(@campaign, current_user)
           evaluations = ::Threesixty::EvaluationsByUserQuery.new(@campaign, current_user)

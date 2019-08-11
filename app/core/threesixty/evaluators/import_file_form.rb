@@ -5,7 +5,7 @@ module Threesixty
     class ImportFileForm < Rectify::Form
       attribute :file, ActionDispatch::Http::UploadedFile
 
-      validates :file, file_content_type: { allow: ['text/csv'] }
+      validates :file, csv_file: true
     end
   end
 end

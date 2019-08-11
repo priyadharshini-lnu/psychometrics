@@ -1,17 +1,22 @@
-import React from 'react'
+import React, { useState } from 'react'
 import { Route } from 'react-router-dom'
 import {
-  Layout, Menu, Icon, Dropdown,
+  Layout, Menu, Icon, Dropdown, Modal,
 } from 'antd'
 import './styles.scss'
 import connect from './connect'
+import EditProfileModal from '../EditProfileModal'
 
 const { SubMenu } = Menu
 
-function Navigation ({ changeLocale, logout }) {
+function Navigation ({ changeLocale, logout, logo }) {
+  const [showHelp, setShowHelp] = useState(false)
+  const [editProfileModalOpen, setEditProfileModal] = useState(false)
+
   const onLogout = () => {
     logout().then(() => location.reload())
   }
+
   const langMenu = () => (
     <Menu onClick={({ key }) => { changeLocale(key).then(() => location.reload()) }}>
       <Menu.Item key="en">
@@ -34,7 +39,11 @@ function Navigation ({ changeLocale, logout }) {
             overflowedIndicator={<Icon type="menu" />}
           >
             <Menu.Item>
-              <a href="/">{I18n.t('threesixty.my_projects')}</a>
+              <a href="/">
+                {logo
+                  ? <img src={logo} alt="logo" className="logo" />
+                  : <Icon type="home" />}
+              </a>
             </Menu.Item>
 
             <SubMenu
@@ -45,23 +54,37 @@ function Navigation ({ changeLocale, logout }) {
                 </span>
               )}
             >
+              <Menu.Item key="profile" onClick={() => { setEditProfileModal(true) }}>Profile</Menu.Item>
               <Menu.Item key="logout" onClick={onLogout}>Logout</Menu.Item>
             </SubMenu>
             <Menu.Item key="app" className="align-right">
               <Dropdown overlay={() => langMenu()} trigger={['click']}>
                 <a>
-                  <Icon type="zhihu" />
+                  <Icon type="global" />
                   {I18n.t('threesixty.language')}
                 </a>
               </Dropdown>
             </Menu.Item>
-            <Menu.Item key="mail" className="align-right">
+            <Menu.Item key="help" className="align-right" onClick={() => setShowHelp(true)}>
               <Icon type="question-circle" />
               Help
             </Menu.Item>
           </Menu>
         )}
       </Route>
+      <Modal
+        title={(
+          <div className="help-modal-header">
+            {I18n.t('threesixty.help')}
+          </div>
+        )}
+        visible={showHelp}
+        onCancel={() => setShowHelp(false)}
+        footer={null}
+      >
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.help.main') }} />
+      </Modal>
+      {editProfileModalOpen && <EditProfileModal closeModal={() => setEditProfileModal(false)} />}
     </Layout.Header>
   )
 }

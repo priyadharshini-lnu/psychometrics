@@ -51,6 +51,10 @@ module Threesixty
         {
           field_types: %w[subject_status],
           class_name: ParticipatorByCriteria::BySubjectStatus
+        },
+        {
+          field_types: %w[atleast_one_non_self_evalaution],
+          class_name: ByAtleastOneNonSelfEvaluation
         }
       ].freeze
 

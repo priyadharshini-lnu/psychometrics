@@ -33,3 +33,7 @@ en:
     select_relationnship: Select Relationship
     user_name_input_placeholder: type name or email...
     as_my: as my
+    validation_errors: Validation Errors
+    approving_mail_sent: Mail for approving nomination has been sent to managers
+    remind_mail_sent: Reminders sent to evaluators who haven't completed the evaluation
+    help: Help

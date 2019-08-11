@@ -1,8 +1,10 @@
 module Threesixty
   class EvaluationsController < ApplicationController
+    include ::Threesixty::InitialState
     layout 'layouts/threesixty_campaign'
     before_action :set_campaign
     before_action :set_evaluation, except: [:deny]
+    initial_state_for [:show]
 
     def show
       respond_to do |format|
