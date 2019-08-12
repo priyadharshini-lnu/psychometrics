@@ -3,6 +3,7 @@ module Threesixty::EndUser
     attributes :id, :is_self, :evaluator_id, :campaign_id, :evaluator_nomination_status
 
     has_one :user, serializer: UserSerializer
+    has_one :subject, serializer: UserSerializer
 
     def campaign_id
       object.campaign.threesixty_campaign.id
@@ -10,6 +11,10 @@ module Threesixty::EndUser
 
     def user
       object.evaluator
+    end
+
+    def subject
+      object.subject
     end
 
     def is_self

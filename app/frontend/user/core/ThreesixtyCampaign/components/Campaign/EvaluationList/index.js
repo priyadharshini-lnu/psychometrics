@@ -53,7 +53,7 @@ function EvaluationList ({
               ? <Icon type="check-square" theme="filled" className="status-icon" />
               : <div className="empty-square" />}
             {' '}
-            {userPresenter.selfUserName(item)}
+            {userPresenter.selfUserName(item, item.subject)}
           </Link>
         </div>
         {options.evaluator.canDeclineNomination && !item.isSelf && (
