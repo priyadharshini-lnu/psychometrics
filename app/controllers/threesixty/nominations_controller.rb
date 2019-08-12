@@ -29,6 +29,11 @@ module Threesixty
       render json: :ok
     end
 
+    def update_status
+      @campaign.participants.where(subject_id: @subject.user_id).update_all(manager_nomination_status: params[:status])
+      render json: @subject, serializer: Threesixty::NominationSerializer, include: '**'
+    end
+
     private
 
     def set_campaign

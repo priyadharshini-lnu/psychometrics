@@ -9,6 +9,7 @@ import {
   hideForm,
   requestApproval,
   sendEvaluatorReminder,
+  updateAllNominationStatus,
 } from 'user/core/ThreesixtyCampaign/nomination'
 import { searchEvaluators } from 'user/core/temp/autocomplete'
 import { requirementsSelector } from 'user/core/ThreesixtyCampaign/nomination/selectors'
@@ -31,6 +32,7 @@ const mapDispatchToProps = {
   hideForm,
   requestApproval,
   sendEvaluatorReminder,
+  updateAllNominationStatus,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

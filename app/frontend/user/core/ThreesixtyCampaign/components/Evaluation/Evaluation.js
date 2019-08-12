@@ -35,6 +35,8 @@ export default function Evaluation ({
     fetchAssessment(params.campaignId, params.id, edit)
   }, [])
 
+  if (!loaded) { return null }
+
   const handleStatusClick = (status) => {
     updateStatus(params.campaignId, params.id, status)
   }

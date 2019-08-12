@@ -525,6 +525,7 @@ Rails.application.routes.draw do
           post :search_evaluators
           get :request_approval
           get :send_evaluator_reminders
+          put :update_status
           resources :evaluators do
             put :update_status
           end
