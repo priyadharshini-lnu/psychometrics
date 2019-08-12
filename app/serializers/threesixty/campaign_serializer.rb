@@ -30,12 +30,12 @@ module Threesixty
     def nominations_counters
       {
         total_nominations: nominations.count,
-        completed_nominations: 0
+        completed_nominations: Threesixty::NominationRequirements::FilledNominations.call!(nominations, object)
       }
     end
 
     def evaluations_counters
-      Threesixty::Participants::CalcCounters.call!([current_user.id], object)[current_user.id]
+      Threesixty::Participants::CalcCounters.call!([current_user.id], object)[current_user.id] if current_user
     end
     
     def reports_counters
@@ -87,7 +87,6 @@ module Threesixty
       object.assessment.timing
     end
 
-
     def nominations
       instance_options[:subjects] || []
     end
@@ -102,6 +101,10 @@ module Threesixty
 
     def reports
       instance_options[:reports] || []
+    end
+
+    def current_user 
+      instance_options[:current_user] 
     end
   end
 end

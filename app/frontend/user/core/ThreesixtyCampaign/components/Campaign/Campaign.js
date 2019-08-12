@@ -13,8 +13,8 @@ import './styles.scss'
 const { Content } = Layout
 
 export default function Campaign ({
-  history, match, fetchCampaign, instructions, campaign, nominations, 
-  evaluationsCounters, nominationsCounters, reportsCounters
+  history, match, fetchCampaign, instructions, campaign, nominations,
+  evaluationsCounters, nominationsCounters, reportsCounters,
 }) {
   useEffect(() => {
     fetchCampaign(match.params.campaignId)
@@ -23,9 +23,9 @@ export default function Campaign ({
   const nominationsPercent = (nominationsCounters.completedNominations / nominationsCounters.totalNominations) * 100
   const evaluationsPercent = (evaluationsCounters.completedEvaluations / evaluationsCounters.totalEvaluations) * 100
   const reportsPercent = (reportsCounters.completedReports / reportsCounters.totalReports) * 100
-  const totalProgress = (nominationsCounters.completedNominations  + evaluationsCounters.completedEvaluations + reportsCounters.completedReports) / 
-                        (nominationsCounters.totalNominations  + evaluationsCounters.totalEvaluations + reportsCounters.totalReports) * 100
-  
+  const totalProgress = (nominationsCounters.completedNominations + evaluationsCounters.completedEvaluations + reportsCounters.completedReports)
+                        / (nominationsCounters.totalNominations + evaluationsCounters.totalEvaluations + reportsCounters.totalReports) * 100
+
   let welcomeMessage = _.find(instructions, { name: 'welcome_message' })
   if (nominations === 0) {
     welcomeMessage = _.find(instructions, { name: 'evaluator_welcome' })

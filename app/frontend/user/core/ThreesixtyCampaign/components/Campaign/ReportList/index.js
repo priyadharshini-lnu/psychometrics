@@ -1,3 +1,4 @@
+/* eslint-disable react/no-danger */
 import React, { useState } from 'react'
 import {
   List, Collapse, Icon, Modal, Progress,
@@ -33,7 +34,9 @@ const CollapseItem = ({ title, list }) => (
   </Collapse>
 )
 
-function ReportList ({ approvalReports, subjectReport, percent, reportsCounters }) {
+function ReportList ({
+  approvalReports, subjectReport, percent, reportsCounters,
+}) {
   const [showHelp, setShowHelp] = useState(false)
   return (
     <List
@@ -51,7 +54,13 @@ function ReportList ({ approvalReports, subjectReport, percent, reportsCounters 
                 showInfo={false}
                 strokeColor="#00B4AA"
               />
-              <div className="value">{reportsCounters.completedReports} of {reportsCounters.totalReports}</div>
+              <div className="value">
+                {reportsCounters.completedReports}
+                {' '}
+                of
+                {' '}
+                {reportsCounters.totalReports}
+              </div>
             </div>
           </div>
           <div className="help">

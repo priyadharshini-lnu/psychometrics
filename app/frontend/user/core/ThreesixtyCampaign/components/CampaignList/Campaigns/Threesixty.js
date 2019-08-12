@@ -9,6 +9,10 @@ import mindmill from './mindmill.png'
 import hogan from './hogan.png'
 
 export default function Threesixty ({ campaign }) {
+  const { nominationsCounters, evaluationsCounters, reportsCounters } = campaign
+  const totalProgress = (nominationsCounters.completedNominations + evaluationsCounters.completedEvaluations + reportsCounters.completedReports)
+                        / (nominationsCounters.totalNominations + evaluationsCounters.totalEvaluations + reportsCounters.totalReports) * 100
+
   return (
     <Col className="card">
       <Link to={`/campaigns/${campaign.id}`}>
@@ -36,7 +40,7 @@ export default function Threesixty ({ campaign }) {
               </div>
               {campaign.mindmill && <img className="service" src={mindmill} alt="" />}
               {campaign.hogan && <img className="service" src={hogan} alt="" />}
-              <div className="card-progress"><Progress percent={30} strokeColor="#246479" /></div>
+              <div className="card-progress"><Progress percent={totalProgress} strokeColor="#246479" /></div>
             </div>
           )}
         >

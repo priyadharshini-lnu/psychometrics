@@ -12,7 +12,7 @@ const { Panel } = Collapse
 
 
 function EvaluationList ({
-  evaluations, managedSubjects, declineEvaluation, options, history, percent, evaluationsCounters
+  evaluations, managedSubjects, declineEvaluation, options, history, percent, evaluationsCounters,
 }) {
   const [showHelp, setShowHelp] = useState(false)
 
@@ -127,7 +127,11 @@ function EvaluationList ({
                 strokeColor="#00B4AA"
               />
               <div className="value">
-                {evaluationsCounters.completedEvaluations} of {evaluationsCounters.totalEvaluations}
+                {evaluationsCounters.completedEvaluations}
+                {' '}
+of
+                {' '}
+                {evaluationsCounters.totalEvaluations}
               </div>
             </div>
           </div>
