@@ -64,7 +64,8 @@ function NominationList ({
       )}
       bordered
     >
-      <CollapseItem key="nominations" title={I18n.t('threesixty.setup_nominations')} list={nominations} />
+      {!nominations.length ||
+        <CollapseItem key="nominations" title={I18n.t('threesixty.setup_nominations')} list={nominations} />}
       {options.manager.canApproveNominations && approvalNominations.length > 0
         && (
         <CollapseItem

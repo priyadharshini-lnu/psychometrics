@@ -136,11 +136,13 @@ function EvaluationList ({
       )}
       bordered
     >
+      {!evaluations.length || (
       <CollapseItem
         key="evaluations"
         title={<div className="collapse-title">{I18n.t('threesixty.evaluations')}</div>}
         list={evaluations}
       />
+      )}
       {options.manager.canApprovesEvaluations && managedSubjects.length > 0
         && (
         <ManagedList
