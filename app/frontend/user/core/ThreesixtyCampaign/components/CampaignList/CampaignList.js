@@ -1,29 +1,19 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, PageHeader, Icon,
-  Input, Dropdown, Menu,
+  Layout, Row, Col, PageHeader, Input,
 } from 'antd'
 import Campaigns from './Campaigns'
 import './styles.scss'
 
 const { Content } = Layout
 const { Search } = Input
+const COLORS = ['#dcf5ef', '#95e8d7', '#69dbc8', '#42cfbc', '#1fc2b2']
 
 export default function CampaignList ({ campaigns, fetchCampaigns, downloadReport }) {
   useEffect(() => {
     fetchCampaigns()
   }, [])
-  const menu = (
-    <Menu>
-      <Menu.Item key="0">
-        Date created
-      </Menu.Item>
-      <Menu.Item key="1">
-        Name
-      </Menu.Item>
-    </Menu>
-  )
 
   return (
     <Layout>
@@ -45,20 +35,11 @@ export default function CampaignList ({ campaigns, fetchCampaigns, downloadRepor
                   style={{ width: 220 }}
                 />
               </Col>
-              <Col>
-                <Dropdown overlay={menu} trigger={['click']}>
-                  <a className="ant-dropdown-link" href="#">
-                    Sort by
-                    {' '}
-                    <Icon type="down" />
-                  </a>
-                </Dropdown>
-              </Col>
             </Row>
             <Row type="flex" justify="start" className="cards">
-              {campaigns.map((campaign) => {
+              {campaigns.map((campaign, i) => {
                 const Component = Campaigns[campaign.type]
-                return <Component key={campaign.id} campaign={campaign} downloadReport={downloadReport} />
+                return <Component key={campaign.id} color={COLORS[i % COLORS.length]} campaign={campaign} downloadReport={downloadReport} />
               })}
             </Row>
           </PageHeader>
