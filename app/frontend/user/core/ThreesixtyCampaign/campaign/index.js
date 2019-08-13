@@ -13,10 +13,10 @@ export const fetchCampaign = campaignId => ({
 
 export const declineEvaluation = (campaignId, evaluationId) => ({
   type: DECLINE_EVALUATION,
+  evaluationId,
   request: {
-    url: `/campaigns/${campaignId}/evaluations/${evaluationId}/update_status`,
+    url: `/campaigns/${campaignId}/evaluations/${evaluationId}/deny`,
     method: 'put',
-    body: { status: 'denied' },
   },
 })
 
@@ -37,9 +37,9 @@ export const defaultState = {
 
 const HANDLERS = {
   [FETCH]: (state, action) => merge(state, action.response),
-  [DECLINE_EVALUATION]: (state, { response }) => {
-    const index = _.findIndex(state.evaluations, { id: response.id })
-    return setIn(state, ['evaluations', index, 'evaluatorNominationStatus'], response.evaluatorNominationStatus)
+  [DECLINE_EVALUATION]: (state, { requestAction: { evaluationId } }) => {
+    const evaluations = _.filter(state.evaluations, ({ id }) => id !== evaluationId)
+    return setIn(state, 'evaluations', evaluations)
   },
 }
 
