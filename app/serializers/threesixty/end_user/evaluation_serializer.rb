@@ -13,10 +13,6 @@ module Threesixty::EndUser
       object.evaluator
     end
 
-    def subject
-      object.subject
-    end
-
     def is_self
       object.subject_id == current_user.id
     end
