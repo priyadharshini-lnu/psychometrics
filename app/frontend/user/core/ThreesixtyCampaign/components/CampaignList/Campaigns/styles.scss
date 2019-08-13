@@ -1,16 +1,16 @@
 @import 'user/styles/variables';
 
+$colors: #dcf5ef #95e8d7 #69dbc8 #42cfbc #1fc2b2;
+
 :global {
   .cards .card {
-    margin-left: 16px;
-    max-width: 20%;
-    flex: 1;
+    margin: 0 8px 16px 8px;
+    max-width: calc(20% - 16px);
+    flex: 1 1 calc(20% - 16px);
 
     &:nth-child(1) {
-      margin-left: 0;
+      // margin-left: 0;
     }
-
-    // ['#dcf5ef', '#95e8d7', '#69dbc8', '#42cfbc', '#1fc2b2']
 
     .cover {
       position: relative;
@@ -66,92 +66,21 @@
       }
     }
 
-    &:nth-child(5n + 1) {
-      .cover {
-        background: #dcf5ef;
+    @for $i from 1 through 5 {
+      &:nth-child(5n + #{$i}) {
+        .cover {
+          background: nth($colors, $i);
 
-        .caption .title {
-          color: #246479;
-        }
-
-        .icon {
-          background: #fff;
-
-          svg {
-            fill: #246479;
+          .caption .title {
+            color: #246479;
           }
-        }
-      }
 
-    }
+          .icon {
+            background: #fff;
 
-    &:nth-child(5n + 2) {
-      .cover {
-        background: #95e8d7;
-
-        .caption .title {
-          color: #fff;
-        }
-
-        .icon {
-          background: #fff;
-
-          svg {
-            fill: #246479;
-          }
-        }
-      }
-    }
-
-    &:nth-child(5n + 3) {
-      .cover {
-        background: #69dbc8;
-
-        .caption .title {
-          color: #fff;
-        }
-
-        .icon {
-          background: #fff;
-
-          svg {
-            fill: #246479;
-          }
-        }
-      }
-    }
-
-    &:nth-child(5n + 4) {
-      .cover {
-        background: #42cfbc;
-
-        .caption .title {
-          color: #fff;
-        }
-
-        .icon {
-          background: #fff;
-
-          svg {
-            fill: #246479;
-          }
-        }
-      }
-    }
-
-    &:nth-child(5n + 5) {
-      .cover {
-        background: #1fc2b2;
-
-        .caption .title {
-          color: #fff;
-        }
-
-        .icon {
-          background: #fff;
-
-          svg {
-            fill: #246479;
+            svg {
+              fill: #246479;
+            }
           }
         }
       }
