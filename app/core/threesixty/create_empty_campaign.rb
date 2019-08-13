@@ -11,13 +11,13 @@ module Threesixty
       assessment = Assessment.new(name: "#{@campaign.campaign.name} Assessment",
                                   dimension_id: dimension.id,
                                   type: Assessment::TYPES[:common],
-                                  category: Assessment::CATEGORIES["360"])
+                                  category: Assessment::CATEGORIES[:threesixty])
       assessment.set_default_color
       assessment.save!
       report = Report.new(name: "#{@campaign.campaign.name} Report",
                           owner_id: @campaign.campaign.project_id,
                           assessment_id: assessment.id,
-                          category: 'threesixty')
+                          category: Assessment::CATEGORIES[:threesixty])
       report.set_default_color
       report.assessments << assessment
       report.save!
