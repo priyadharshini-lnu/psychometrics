@@ -13,21 +13,29 @@ export default function EvaluatorTable ({
   campaignId,
   removeUser,
 }) {
+  const openParticipantModal = (user) => {
+    openModal('ParticipantModal', { user, onClose: onCloseParticipantModal })
+  }
+
   return (
     <Table className="mtm" rowKey="id" dataSource={evaluators} pagination={false}>
-      <Column title="Name" key="fullName" render={({ user }) => userPresenter.getFullName(user)} />
       <Column
-        title="Email"
-        key="user_email"
+        title="Name"
+        key="fullName"
         render={({ user }) => (
           <a
             role="button"
             tabIndex="0"
-            onClick={() => openModal('ParticipantModal', { user, onClose: onCloseParticipantModal })}
+            onClick={() => openParticipantModal(user)}
           >
-            {user.email}
+            {userPresenter.getFullName(user)}
           </a>
         )}
+      />
+      <Column
+        title="Email"
+        key="user_email"
+        render={({ user }) => user.email}
       />
       <Column title="Evaluations Received" dataIndex="evaluators" key="received_evaluations" />
       <Column title="Evaluations Completed" dataIndex="evaluations" key="completed_evaluations" />

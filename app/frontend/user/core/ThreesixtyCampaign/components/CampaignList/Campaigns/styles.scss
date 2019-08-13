@@ -1,13 +1,15 @@
 @import 'user/styles/variables';
 
+$colors: #dcf5ef #95e8d7 #69dbc8 #42cfbc #1fc2b2;
+
 :global {
   .cards .card {
-    margin-left: 16px;
-    max-width: 20%;
-    flex: 1;
+    margin: 0 8px 16px 8px;
+    max-width: calc(20% - 16px);
+    flex: 1 1 calc(20% - 16px);
 
     &:nth-child(1) {
-      margin-left: 0;
+      // margin-left: 0;
     }
 
     .cover {
@@ -45,6 +47,7 @@
             margin-left: -2px;
           }
         }
+
       }
 
       img {
@@ -61,24 +64,26 @@
         border-radius: 16px;
         color: $gray-color;
       }
+    }
 
+    @for $i from 1 through 5 {
+      &:nth-child(5n + #{$i}) {
+        .cover {
+          background: nth($colors, $i);
 
-      &.threesixty {
-        background: #246479;
+          .caption .title {
+            color: #246479;
+          }
 
-        .caption .title {
-          color: #fff;
-        }
+          .icon {
+            background: #fff;
 
-        .icon {
-          background: #fff;
-
-          svg {
-            fill: #246479;
+            svg {
+              fill: #246479;
+            }
           }
         }
       }
-
     }
 
     .service {

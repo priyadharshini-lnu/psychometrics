@@ -1,11 +1,12 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Button, Menu, Dropdown, Icon, PageHeader,
+  Layout, Row, Col, Button, Menu, Dropdown, Icon, PageHeader, Tooltip,
 } from 'antd'
 import qs from 'query-string'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import './styles.scss'
+import humps from 'humps'
 
 const { Content } = Layout
 
@@ -23,7 +24,11 @@ export default function Evaluation ({
   match: { params },
   history,
 }) {
-  const { subject, id } = results
+  const { id } = results
+  let { subject, user } = results
+  subject = humps.camelizeKeys(subject)
+  user = humps.camelizeKeys(user)
+
   useEffect(() => {
     if (loaded && !error) {
       window.renderPassAssessment('pass_assessment')
@@ -34,6 +39,8 @@ export default function Evaluation ({
     const { edit } = qs.parse(location.search)
     fetchAssessment(params.campaignId, params.id, edit)
   }, [])
+
+  if (!loaded) { return null }
 
   const handleStatusClick = (status) => {
     updateStatus(params.campaignId, params.id, status)
@@ -84,6 +91,36 @@ export default function Evaluation ({
       )
   }
 
+  const title = () => {
+    if (asManager) {
+      return (
+        <div>
+          Subject:
+          {' '}
+          <Tooltip placement="topLeft" title={subject.email}>
+            {userPresenter.getFullName(subject)}
+          </Tooltip>
+
+          &nbsp; &nbsp;
+
+          Evalautor:
+          {' '}
+          <Tooltip placement="topLeft" title={user.email}>
+            {userPresenter.getFullName(user)}
+          </Tooltip>
+        </div>
+      )
+    }
+
+    return (
+      <div>
+          Evaluate:
+        {' '}
+        {userPresenter.getFullName(subject)}
+      </div>
+    )
+  }
+
   return (
     <Layout>
       <Content className="fluid-container">
@@ -96,13 +133,7 @@ export default function Evaluation ({
               Back to tasks
             </div>
           )}
-          title={(
-            <div>
-              Evaluate
-              {' '}
-              {userPresenter.getFullNameWithEmail(subject)}
-            </div>
-          )}
+          title={title()}
           onBack={() => history.push(`/campaigns/${params.campaignId}`)}
         >
           <div className="evaluation-container">

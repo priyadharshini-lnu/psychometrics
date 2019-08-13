@@ -4,7 +4,8 @@
 #report_preview.html_preview[data-user="#{@data[:user]}"
   data-results="#{@data[:results]}"
   data-data="#{@data[:data]}"
-    data-locales=@data[:locales]]
+  data-locales=@data[:locales]
+  data-campaign="#{@data[:campaign]}"]
 - if params[:export]
   = javascript_include_tag :psychometrics_pdf_vendor
   = javascript_include_tag :psychometrics_pdf_app

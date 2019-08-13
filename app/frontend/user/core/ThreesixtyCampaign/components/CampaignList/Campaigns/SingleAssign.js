@@ -4,6 +4,7 @@ import React from 'react'
 import {
   Row, Col, Icon, Card, Progress, Dropdown, Menu,
 } from 'antd'
+import { Link } from 'react-router-dom'
 import './styles.scss'
 import mindmill from './mindmill.png'
 import hogan from './hogan.png'
@@ -27,7 +28,7 @@ const StatusMenu = reports => (
 const renderButtonContent = ({ url, status, assignedReports }) => {
   if (status === IN_PROGRESS) {
     return (
-      <a href={url}>
+      <Link to={url}>
         <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <polygon id="path-1" points="0 0 18 0 18 17 0 17" />
@@ -48,7 +49,7 @@ const renderButtonContent = ({ url, status, assignedReports }) => {
         </svg>
         {' '}
         Continue
-      </a>
+      </Link>
     )
   }
 
@@ -75,6 +76,13 @@ const renderButtonContent = ({ url, status, assignedReports }) => {
         </a>
       )
     }
+    return (
+      <a>
+        <Icon type="check" />
+        {' '}
+        Completed
+      </a>
+    )
   }
   return (
     <a href={url}>
@@ -85,7 +93,7 @@ const renderButtonContent = ({ url, status, assignedReports }) => {
   )
 }
 
-export default function SingleAssign ({ campaign: assign }) {
+export default function SingleAssign ({ campaign: assign, color }) {
   return (
     <Col className="card">
       <Card
@@ -115,7 +123,7 @@ export default function SingleAssign ({ campaign: assign }) {
             <div className="card-progress">
               <Progress
                 percent={assign.completionPercent || 0}
-                strokeColor="#d9d9d9"
+                strokeColor={color}
               />
             </div>
           </div>

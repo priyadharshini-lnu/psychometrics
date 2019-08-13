@@ -21,7 +21,8 @@ module Reports
                 results: serialize_results.to_json,
                 data: ReportSerializer.new(report).to_json(include: '**'),
                 locales: translations.to_json,
-                available_translations: available_translations
+                available_translations: available_translations,
+                campaign: campaign_details.deep_transform_keys! { |key| key.to_s.camelize(:lower) }.to_json
     end
 
     def serialize_results
@@ -30,6 +31,11 @@ module Reports
       else
         lookup_results.group_by { |result| result.object.assessment_id }
       end
+    end
+
+    def campaign_details
+      return {} unless report.category_threesixty?
+      Threesixty::CampaignDetailsSerializer.new(users_report.threesixty_campaign, users_report: users_report).to_h
     end
 
     def lookup_results

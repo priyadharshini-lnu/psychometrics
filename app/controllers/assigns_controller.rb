@@ -22,11 +22,14 @@
 #
 
 class AssignsController < ApplicationController
-  before_action :set_assign, only: %i[pass update upload_media_url upload_media_dev upload_callback remove_media]
+  include ::Threesixty::InitialState
+
+  before_action :set_assign, only: %i[pass assessment update upload_media_url upload_media_dev upload_callback remove_media]
   append_before_action :pundit_authorize
 
   # Skip CSRF
   skip_before_action :verify_authenticity_token, only: %i[update]
+  initial_state_for :pass
 
   def index
     @assigns = policy_scope(Assign).
@@ -65,6 +68,17 @@ class AssignsController < ApplicationController
     end
     @selected_locale = @assign.selected_locale || user_locale
     @translations = ::Translation.to_hash_for_assessment(@assign.assessment_id, @selected_locale)
+
+    respond_to do |format|
+      format.html { render 'threesixty/campaigns/show', layout: 'layouts/threesixty_campaign' }
+      format.json {
+        render json: @assign, serializer: AssignSerializer
+      }
+    end
+  end
+
+  def assessment
+    render json: @assign.assessment, serializer: AssessmentSerializer, include: '**'
   end
 
   def update

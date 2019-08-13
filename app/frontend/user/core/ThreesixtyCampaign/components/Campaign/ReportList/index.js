@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React, { useState } from 'react'
 import {
-  List, Collapse, Icon, Modal, Progress,
+  List, Collapse, Icon, Modal, Progress, Tooltip,
 } from 'antd'
 import { Link } from 'react-router-dom'
 import userPresenter from 'presenters/userPresenter'
@@ -17,7 +17,9 @@ const ReportItem = item => (
         ? <Icon type="check-square" theme="filled" className="status-icon" />
         : <div className="empty-square" />}
       {' '}
-      {userPresenter.getFullNameWithEmail(item.user)}
+      <Tooltip placement="topLeft" title={item.user.email}>
+        {userPresenter.selfUserName(item)}
+      </Tooltip>
     </Link>
   </List.Item>
 )

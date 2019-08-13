@@ -510,6 +510,7 @@ Rails.application.routes.draw do
 
     resources :assigns, only: %i(index update) do
       get :pass, on: :member
+      get :assessment, on: :member
       post :accept_privacy, on: :collection
       member do
         get :upload_media_url
@@ -525,6 +526,7 @@ Rails.application.routes.draw do
           post :search_evaluators
           get :request_approval
           get :send_evaluator_reminders
+          put :update_status
           resources :evaluators do
             put :update_status
           end

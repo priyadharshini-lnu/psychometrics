@@ -1,7 +1,7 @@
 /* eslint-disable react/no-danger */
 import React, { useState } from 'react'
 import {
-  List, Collapse, Icon, Progress, Modal,
+  List, Collapse, Icon, Progress, Modal, Tooltip,
 } from 'antd'
 import { Link } from 'react-router-dom'
 import userPresenter from 'presenters/userPresenter'
@@ -17,7 +17,9 @@ const NominationItem = item => (
         ? <Icon type="check-square" theme="filled" className="status-icon" />
         : <div className="empty-square" />}
       {' '}
-      {userPresenter.selfUserName(item)}
+      <Tooltip placement="topLeft" title={item.user.email}>
+        {userPresenter.selfUserName(item)}
+      </Tooltip>
     </Link>
   </List.Item>
 )
@@ -70,7 +72,8 @@ of
       )}
       bordered
     >
-      <CollapseItem key="nominations" title={I18n.t('threesixty.setup_nominations')} list={nominations} />
+      {!nominations.length
+        || <CollapseItem key="nominations" title={I18n.t('threesixty.setup_nominations')} list={nominations} />}
       {options.manager.canApproveNominations && approvalNominations.length > 0
         && (
         <CollapseItem

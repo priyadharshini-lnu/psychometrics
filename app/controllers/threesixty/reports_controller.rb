@@ -38,7 +38,7 @@ module Threesixty
     def update_status
       subject = @users_report.threesixty_subject
       subject.update!(report_approval_status: params[:status])
-      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::SUBJECT_REPORT_READY, threesixty_campaign: threesixty_campaign, subject: subject)
+      Threesixty::Emails::Send.call!(Threesixty::Emails::Name::SUBJECT_REPORT_READY, threesixty_campaign:  @campaign, subject: subject)
       render json: { status: subject.report_approval_status }
     end
 

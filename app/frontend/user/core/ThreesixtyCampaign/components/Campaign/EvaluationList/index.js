@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  Menu, Dropdown, List, Collapse, Icon, Progress, Modal,
+  Menu, Dropdown, List, Collapse, Icon, Progress, Modal, Tooltip,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import connect from './connect'
@@ -53,20 +53,24 @@ function EvaluationList ({
               ? <Icon type="check-square" theme="filled" className="status-icon" />
               : <div className="empty-square" />}
             {' '}
-            {userPresenter.selfUserName(item)}
+
+            <Tooltip placement="topLeft" title={item.subject.email}>
+              {userPresenter.selfUserName(item, item.subject)}
+            </Tooltip>
+            {options.evaluator.canDeclineNomination && !item.isSelf && (
+              item.evaluatorNominationStatus === 'denied'
+                ? <div>{I18n.t('threesixty.denied')}</div>
+                : (
+                  <Dropdown overlay={() => menu(item)} trigger={['click']}>
+                    <a className="ant-dropdown-link actions-btn" href="#">
+                      <Icon type="down" className="menu-icon" />
+                    </a>
+                  </Dropdown>
+                )
+            )}
           </Link>
         </div>
-        {options.evaluator.canDeclineNomination && !item.isSelf && (
-          item.evaluatorNominationStatus === 'denied'
-            ? <div>{I18n.t('threesixty.denied')}</div>
-            : (
-              <Dropdown overlay={() => menu(item)} trigger={['click']}>
-                <a className="ant-dropdown-link actions-btn" href="#">
-                  <Icon type="down" className="menu-icon" />
-                </a>
-              </Dropdown>
-            )
-        )}
+
       </div>
     </List.Item>
   )
@@ -77,7 +81,9 @@ function EvaluationList ({
         <div>
           <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']}>
             <a className="ant-dropdown-link actions-btn" href="#">
-              {userPresenter.selfUserName(item)}
+              <Tooltip placement="topLeft" title={item.user.email}>
+                {userPresenter.selfUserName(item)}
+              </Tooltip>
               <Icon type="down" className="menu-icon" />
             </a>
           </Dropdown>
@@ -142,11 +148,13 @@ of
       )}
       bordered
     >
+      {!evaluations.length || (
       <CollapseItem
         key="evaluations"
         title={<div className="collapse-title">{I18n.t('threesixty.evaluations')}</div>}
         list={evaluations}
       />
+      )}
       {options.manager.canApprovesEvaluations && managedSubjects.length > 0
         && (
         <ManagedList
