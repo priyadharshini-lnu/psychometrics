@@ -1,27 +1,10 @@
 module Threesixty
   class CampaignSerializer < ActiveModel::Serializer
-    class NomineeSerializer < ActiveModel::Serializer
-      attributes :id, :is_self, :campaign_id, :evaluators_count, :counters
-      has_one :user, serializer: UserSerializer
-
-      def campaign_id
-        object.campaign.threesixty_campaign.id
-      end
-
-      def counters
-        Threesixty::Participants::CalcCounters.call!([object.user_id], object.campaign.threesixty_campaign)
-      end
-
-      def is_self
-        object.user_id == current_user.id
-      end
-    end
-
     attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
                :mindmill, :hogan, :instructions, :logo,
                :evaluations_counters, :nominations_counters, :reports_counters
 
-    has_many :nominations, serializer: NomineeSerializer
+    has_many :nominations, serializer: Threesixty::EndUser::CampaignNomineeSerializer
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
     has_many :managed_subjects, serializer: Threesixty::EndUser::ManagedSubjectSerializer
     has_many :reports, serializer: UsersReportSerializer
@@ -30,18 +13,18 @@ module Threesixty
     def nominations_counters
       {
         total_nominations: nominations.count,
-        completed_nominations: Threesixty::NominationRequirements::FilledNominations.call!(nominations, object)
+        completed_nominations: Threesixty::Subjects::IsNominationRequirementComplete.call!(object, nominations).count{|_,v| v}
       }
     end
 
     def evaluations_counters
-      Threesixty::Participants::CalcCounters.call!([current_user.id], object)[current_user.id] if current_user
+      Threesixty::Participants::CalcCounters.call!([current_user.id], object)[current_user.id]
     end
-    
+
     def reports_counters
       {
         total_reports: reports.count,
-        completed_reports: 0
+        completed_reports: reports.count
       }
     end
 
@@ -103,8 +86,8 @@ module Threesixty
       instance_options[:reports] || []
     end
 
-    def current_user 
-      instance_options[:current_user] 
+    def current_user
+      instance_options[:current_user]
     end
   end
 end

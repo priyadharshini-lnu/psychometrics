@@ -7,11 +7,10 @@ import { Link } from 'react-router-dom'
 import './styles.scss'
 import mindmill from './mindmill.png'
 import hogan from './hogan.png'
+import { getTotalProgress } from '../../../campaign/selectors'
 
 export default function Threesixty ({ campaign }) {
-  const { nominationsCounters, evaluationsCounters, reportsCounters } = campaign
-  const totalProgress = (nominationsCounters.completedNominations + evaluationsCounters.completedEvaluations + reportsCounters.completedReports)
-                        / (nominationsCounters.totalNominations + evaluationsCounters.totalEvaluations + reportsCounters.totalReports) * 100
+  const totalProgress = getTotalProgress(campaign)
 
   return (
     <Col className="card">

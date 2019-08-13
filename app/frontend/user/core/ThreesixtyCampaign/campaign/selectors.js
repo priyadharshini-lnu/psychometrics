@@ -7,6 +7,16 @@ export const getEvaluations = state => state.campaign.evaluations
 export const getManagedSubjects = state => state.campaign.managedSubjects
 export const getReports = state => state.campaign.reports
 
+export const getTotalProgress = (campaign) => {
+  const {
+    nominationsCounters: { completedNominations, totalNominations },
+    evaluationsCounters: { completedEvaluations, totalEvaluations },
+    reportsCounters: { completedReports, totalReports },
+  } = campaign
+  return (completedNominations + completedEvaluations + completedReports)
+    / (totalNominations + totalEvaluations + totalReports) * 100
+}
+
 export const getApprovalNominations = createSelector(
   getNominations,
   nominations => _.filter(nominations, { isSelf: false }),

@@ -2,7 +2,7 @@ import { connect } from 'react-redux'
 import { fetchCampaign } from 'user/core/ThreesixtyCampaign/campaign'
 import {
   getNominations, getEvaluations, getManagedSubjects,
-  getApprovalNominations, getSubjectReport,
+  getApprovalNominations, getSubjectReport, getTotalProgress,
 } from 'user/core/ThreesixtyCampaign/campaign/selectors'
 
 const mapStateToProps = state => ({
@@ -17,6 +17,7 @@ const mapStateToProps = state => ({
                + getManagedSubjects(state.threeSixtyCampaign).length,
   reports: state.threeSixtyCampaign.campaign.reports,
   subjectReport: getSubjectReport(state.threeSixtyCampaign),
+  totalProgress: getTotalProgress(state.threeSixtyCampaign.campaign),
 })
 
 const mapDispatchToProps = {

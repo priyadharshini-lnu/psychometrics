@@ -10,7 +10,9 @@ import './styles.scss'
 const { Content } = Layout
 const { Search } = Input
 
-export default function CampaignList ({ campaigns, fetchCampaigns, downloadReport }) {
+export default function CampaignList ({
+  campaigns, fetchCampaigns, downloadReport,
+}) {
   useEffect(() => {
     fetchCampaigns()
   }, [])
