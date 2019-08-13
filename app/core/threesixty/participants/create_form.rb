@@ -3,7 +3,7 @@
 module Threesixty
   module Participants
     class CreateForm < Rectify::Form
-      attribute :evaluator_email, Integer
+      attribute :evaluator_email, String
       attribute :relationship_id, Integer
 
       validates :relationship_id, :evaluator_email, presence: true

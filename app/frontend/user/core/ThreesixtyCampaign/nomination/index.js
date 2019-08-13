@@ -11,6 +11,7 @@ const UPDATE_FORM = 'threeSixty/nomination/UPDATE_FORM'
 const UPDATE_STATUS = 'threeSixty/nomination/UPDATE_STATUS'
 const REQUEST_APPROVAL = 'threeSixty/nomination/REQUEST_APPROVAL'
 const SEND_EVALUATOR_REMINDER = 'threeSixty/nomination/SEND_EVALUATOR_REMINDER'
+const UPDATE_ALL_NOMINATION_STATUS = 'threeSixty/nomination/UPDATE_ALL_NOMINATION_STATUS'
 
 export const fetchNomination = ({ campaignId, id }) => ({
   type: FETCH,
@@ -74,18 +75,28 @@ export const sendEvaluatorReminder = (campaignId, nominationId) => ({
   },
 })
 
+export const updateAllNominationStatus = (campaignId, nominationId, status) => ({
+  type: UPDATE_ALL_NOMINATION_STATUS,
+  request: {
+    url: `/campaigns/${campaignId}/nominations/${nominationId}/update_status`,
+    method: 'put',
+    body: { status },
+  },
+})
 
 export const updateForm = form => ({ type: UPDATE_FORM, form })
 
-const HANDLERS = {
-  [FETCH]: (state, action) => {
-    const evaluators = _.groupBy(action.response.evaluators, 'relationship.name')
-    const requirements = action.response.requirements || {}
+const setStateFromResponse = (state, action) => {
+  const evaluators = _.groupBy(action.response.evaluators, 'relationship.name')
+  const requirements = action.response.requirements || {}
 
-    return {
-      ...state, ...action.response, requirements, evaluators,
-    }
-  },
+  return {
+    ...state, ...action.response, requirements, evaluators,
+  }
+}
+
+const HANDLERS = {
+  [FETCH]: setStateFromResponse,
   [ADD]: (state, action) => {
     const { relationship } = action.response
     const newStore = updateIn(state, ['evaluators', relationship.name], (list = []) => list.concat(action.response))
@@ -103,6 +114,7 @@ const HANDLERS = {
     const evaluators = getIn(state, ['evaluators', relationship.name])
     return setIn(state, ['evaluators', relationship.name, _.findIndex(evaluators, { id })], action.response)
   },
+  [UPDATE_ALL_NOMINATION_STATUS]: setStateFromResponse,
   [SHOW_FORM]: state => setIn(state, ['form', 'show'], true),
   [HIDE_FORM]: state => setIn(state, ['form', 'show'], false),
 

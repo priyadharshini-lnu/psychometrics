@@ -14,7 +14,10 @@ module Threesixty
     private
 
     def subject_evaluators_scope(scope)
-      evaluators = scope.where(evaluator_id: current_user.id, manager_nomination_status: :approved).includes(:evaluator)
+      evaluators = scope.
+        where(evaluator_id: current_user.id, manager_nomination_status: :approved).
+        where.not(evaluator_nomination_status: :denied).
+        includes(:evaluator)
       evaluators = evaluators.where.not(subject_id: current_user.id) unless subject_evaluate_self?
       evaluators
     end

@@ -13,7 +13,7 @@ const { Option } = Select
 export default function NominationForm (props) {
   const {
     addNomination, searchEvaluators, updateForm,
-    showForm, hideForm, requestApproval, sendEvaluatorReminder,
+    showForm, hideForm, requestApproval, sendEvaluatorReminder, updateAllNominationStatus,
     match: { params: { campaignId, id: nominationId } },
     nomination: {
       isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail, options,
@@ -35,6 +35,16 @@ export default function NominationForm (props) {
   const handleSendEvaluatorReminder = () => {
     sendEvaluatorReminder(campaignId, nominationId)
       .then(() => message.info(I18n.t('threesixty.remind_mail_sent')))
+  }
+
+  const handleApproveAll = () => {
+    updateAllNominationStatus(campaignId, nominationId, 'approved')
+      .then(() => message.info(I18n.t('threesixty.approve_all_successful')))
+  }
+
+  const handleDenyAll = () => {
+    updateAllNominationStatus(campaignId, nominationId, 'denied')
+      .then(() => message.info(I18n.t('threesixty.deny_all_successful')))
   }
 
   return (
@@ -123,12 +133,12 @@ export default function NominationForm (props) {
           <>
             <div className="divider" />
             <Col>
-              <Button type="primary">
+              <Button type="primary" onClick={handleApproveAll}>
                 {I18n.t('threesixty.approve_all')}
               </Button>
             </Col>
             <Col>
-              <Button type="danger" className="deny-button">
+              <Button type="danger" className="deny-button" onClick={handleDenyAll}>
                 {I18n.t('threesixty.deny_all')}
               </Button>
             </Col>

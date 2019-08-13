@@ -14,16 +14,18 @@ module Threesixty
       end
 
       def call
-        @user = create_evaluator_user unless user
-        ensure_create_evaluator(user)
-        ensure_create_campaigns_user(user)
+        ActiveRecord::Base.transaction do
+          @user = create_evaluator_user unless user
+          ensure_create_evaluator(user)
+          ensure_create_campaigns_user(user)
+        end
 
         broadcast :ok, create_participant(user)
       end
 
       def create_evaluator_user
         ::Users::Regular.create_with(first_name: '', last_name: '', create_by_invite: true).
-          find_or_create_by(email: params[:evaluator_email], project: project)
+          find_or_create_by!(email: params[:evaluator_email], project: project)
       end
 
       def ensure_create_campaigns_user(evaluator_user)

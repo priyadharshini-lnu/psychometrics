@@ -11,11 +11,13 @@ module Threesixty
 
       def call
         result = evaluators.map do |evaluator|
-          evaluator_user = fetch_or_create_evaluator_user(evaluator)
-          create_campaigns_user(evaluator_user)
-          create_evaluator(evaluator, evaluator_user)
-          create_membership(evaluator_user)
-          create_participant(evaluator, evaluator_user)
+          ActiveRecord::Base.transaction do
+            evaluator_user = fetch_or_create_evaluator_user(evaluator)
+            create_campaigns_user(evaluator_user)
+            create_evaluator(evaluator, evaluator_user)
+            create_membership(evaluator_user)
+            create_participant(evaluator, evaluator_user)
+          end
         end
         broadcast :ok, result
       end
@@ -27,7 +29,7 @@ module Threesixty
         if user
           user.update!(first_name: evaluator[:evaluator_first_name], last_name: evaluator[:evaluator_last_name])
         else
-          user = ::Users::Regular.create(
+          user = ::Users::Regular.create!(
             email: evaluator[:evaluator_email],
             first_name: evaluator[:evaluator_first_name],
             last_name: evaluator[:evaluator_last_name],

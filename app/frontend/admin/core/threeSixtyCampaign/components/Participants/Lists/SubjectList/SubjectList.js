@@ -36,6 +36,14 @@ export default function SubjectList ({
     fetchSubjects(campaignId, page)
   }, [page])
   const curriedFetchSubjects = _.curry(fetchSubjects)
+
+  const openParticipantModal = (user) => {
+    openModal('ParticipantModal', {
+      user,
+      onClose: () => fetchSubjects(campaignId, offset),
+    })
+  }
+
   return (
     <>
       <Row>
@@ -53,23 +61,23 @@ export default function SubjectList ({
       <Row>
         <Col span={24}>
           <Table className="mtm" rowKey="id" dataSource={subjects} pagination={false}>
-            <Column title="Name" key="fullName" render={({ user }) => userPresenter.getFullName(user)} />
             <Column
-              title="Email"
-              key="email"
+              title="Name"
+              key="fullName"
               render={({ user }) => (
                 <a
                   role="button"
                   tabIndex="0"
-                  onClick={() => openModal('ParticipantModal', {
-                    user,
-                    onClose: () => fetchSubjects(campaignId, offset),
-                  })
-                  }
+                  onClick={() => openParticipantModal(user)}
                 >
-                  {user.email}
+                  {userPresenter.getFullName(user)}
                 </a>
               )}
+            />
+            <Column
+              title="Email"
+              key="user_email"
+              render={({ user }) => user.email}
             />
             <Column title="Evaluations Received" dataIndex="evaluators" key="received_evaluations" />
             <Column title="Evaluations Completed" dataIndex="evaluations" key="completed_evaluations" />
