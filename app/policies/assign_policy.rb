@@ -4,6 +4,10 @@ class AssignPolicy < BasePolicy
     @record.membership_id == @current_membership.id
   end
 
+  def assessment?
+    pass?
+  end
+
   def results?
     pass?
   end

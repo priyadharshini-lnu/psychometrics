@@ -1,0 +1,11 @@
+@import 'user/styles/variables';
+
+:global {
+  .evaluation-container {
+    .deny-button {
+      color: $white;
+      background-color: $red;
+      border: 0;
+    }
+  }
+}
