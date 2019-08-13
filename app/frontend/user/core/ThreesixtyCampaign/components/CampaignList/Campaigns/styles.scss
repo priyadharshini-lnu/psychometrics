@@ -10,6 +10,8 @@
       margin-left: 0;
     }
 
+    // ['#dcf5ef', '#95e8d7', '#69dbc8', '#42cfbc', '#1fc2b2']
+
     .cover {
       position: relative;
       display: flex;
@@ -45,6 +47,7 @@
             margin-left: -2px;
           }
         }
+
       }
 
       img {
@@ -61,10 +64,30 @@
         border-radius: 16px;
         color: $gray-color;
       }
+    }
 
+    &:nth-child(5n + 1) {
+      .cover {
+        background: #dcf5ef;
 
-      &.threesixty {
-        background: #246479;
+        .caption .title {
+          color: #246479;
+        }
+
+        .icon {
+          background: #fff;
+
+          svg {
+            fill: #246479;
+          }
+        }
+      }
+
+    }
+
+    &:nth-child(5n + 2) {
+      .cover {
+        background: #95e8d7;
 
         .caption .title {
           color: #fff;
@@ -78,7 +101,60 @@
           }
         }
       }
+    }
 
+    &:nth-child(5n + 3) {
+      .cover {
+        background: #69dbc8;
+
+        .caption .title {
+          color: #fff;
+        }
+
+        .icon {
+          background: #fff;
+
+          svg {
+            fill: #246479;
+          }
+        }
+      }
+    }
+
+    &:nth-child(5n + 4) {
+      .cover {
+        background: #42cfbc;
+
+        .caption .title {
+          color: #fff;
+        }
+
+        .icon {
+          background: #fff;
+
+          svg {
+            fill: #246479;
+          }
+        }
+      }
+    }
+
+    &:nth-child(5n + 5) {
+      .cover {
+        background: #1fc2b2;
+
+        .caption .title {
+          color: #fff;
+        }
+
+        .icon {
+          background: #fff;
+
+          svg {
+            fill: #246479;
+          }
+        }
+      }
     }
 
     .service {
