@@ -76,16 +76,8 @@ export default function SubjectList ({
             />
             <Column
               title="Email"
-              key="email"
-              render={({ user }) => (
-                <a
-                  role="button"
-                  tabIndex="0"
-                  onClick={() => openParticipantModal(user)}
-                >
-                  {user.email}
-                </a>
-              )}
+              key="user_email"
+              render={({ user }) => user.email}
             />
             <Column title="Evaluations Received" dataIndex="evaluators" key="received_evaluations" />
             <Column title="Evaluations Completed" dataIndex="evaluations" key="completed_evaluations" />
