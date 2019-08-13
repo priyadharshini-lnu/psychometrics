@@ -2,7 +2,7 @@
 import React, { useState } from 'react'
 import { Link } from 'react-router-dom'
 import {
-  Menu, Dropdown, List, Collapse, Icon, Progress, Modal,
+  Menu, Dropdown, List, Collapse, Icon, Progress, Modal, Tooltip,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import connect from './connect'
@@ -53,7 +53,10 @@ function EvaluationList ({
               ? <Icon type="check-square" theme="filled" className="status-icon" />
               : <div className="empty-square" />}
             {' '}
-            {userPresenter.selfUserName(item, item.subject)}
+
+            <Tooltip placement="topLeft" title={item.subject.email}>
+              {userPresenter.selfUserName(item, item.subject)}
+            </Tooltip>
           </Link>
         </div>
         {options.evaluator.canDeclineNomination && !item.isSelf && (
@@ -77,7 +80,9 @@ function EvaluationList ({
         <div>
           <Dropdown overlay={() => evaluatorsList(item)} trigger={['click']}>
             <a className="ant-dropdown-link actions-btn" href="#">
-              {userPresenter.selfUserName(item)}
+              <Tooltip placement="topLeft" title={item.user.email}>
+                {userPresenter.selfUserName(item)}
+              </Tooltip>
               <Icon type="down" className="menu-icon" />
             </a>
           </Dropdown>
