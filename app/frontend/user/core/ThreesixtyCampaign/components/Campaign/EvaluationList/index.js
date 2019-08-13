@@ -57,19 +57,20 @@ function EvaluationList ({
             <Tooltip placement="topLeft" title={item.subject.email}>
               {userPresenter.selfUserName(item, item.subject)}
             </Tooltip>
+            {options.evaluator.canDeclineNomination && !item.isSelf && (
+              item.evaluatorNominationStatus === 'denied'
+                ? <div>{I18n.t('threesixty.denied')}</div>
+                : (
+                  <Dropdown overlay={() => menu(item)} trigger={['click']}>
+                    <a className="ant-dropdown-link actions-btn" href="#">
+                      <Icon type="down" className="menu-icon" />
+                    </a>
+                  </Dropdown>
+                )
+            )}
           </Link>
         </div>
-        {options.evaluator.canDeclineNomination && !item.isSelf && (
-          item.evaluatorNominationStatus === 'denied'
-            ? <div>{I18n.t('threesixty.denied')}</div>
-            : (
-              <Dropdown overlay={() => menu(item)} trigger={['click']}>
-                <a className="ant-dropdown-link actions-btn" href="#">
-                  <Icon type="down" className="menu-icon" />
-                </a>
-              </Dropdown>
-            )
-        )}
+
       </div>
     </List.Item>
   )
