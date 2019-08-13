@@ -8,8 +8,6 @@ import './styles.scss'
 import mindmill from './mindmill.png'
 import hogan from './hogan.png'
 
-const COLORS = ['#dcf5ef', '#95e8d7', '#69dbc8', '#42cfbc', '#1fc2b2']
-
 export default function Threesixty ({ campaign, color }) {
   return (
     <Col className="card">
@@ -39,7 +37,7 @@ export default function Threesixty ({ campaign, color }) {
               {campaign.mindmill && <img className="service" src={mindmill} alt="" />}
               {campaign.hogan && <img className="service" src={hogan} alt="" />}
               <div className="card-progress">
-                <Progress percent={30} strokeColor={COLORS[color]} />
+                <Progress percent={30} strokeColor={color} />
               </div>
             </div>
           )}
