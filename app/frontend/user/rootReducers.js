@@ -3,6 +3,7 @@ import campaign from './core/ThreesixtyCampaign/campaign'
 import campaigns from './core/ThreesixtyCampaign/campaigns'
 import nomination from './core/ThreesixtyCampaign/nomination'
 import evaluation from './core/ThreesixtyCampaign/evaluation'
+import assign from './core/ThreesixtyCampaign/assign'
 import report from './core/ThreesixtyCampaign/report'
 import autocomplete from './core/temp/autocomplete'
 import currentUser from './core/temp/currentUser'
@@ -15,6 +16,7 @@ export default combineReducers({
     evaluation,
     report,
     campaigns,
+    assign,
     temp: combineReducers({
       currentUser,
       autocomplete,

@@ -4,6 +4,7 @@ import React from 'react'
 import {
   Row, Col, Icon, Card, Progress, Dropdown, Menu,
 } from 'antd'
+import { Link } from 'react-router-dom'
 import './styles.scss'
 import mindmill from './mindmill.png'
 import hogan from './hogan.png'
@@ -27,7 +28,7 @@ const StatusMenu = reports => (
 const renderButtonContent = ({ url, status, assignedReports }) => {
   if (status === IN_PROGRESS) {
     return (
-      <a href={url}>
+      <Link to={url}>
         <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <polygon id="path-1" points="0 0 18 0 18 17 0 17" />
@@ -48,7 +49,7 @@ const renderButtonContent = ({ url, status, assignedReports }) => {
         </svg>
         {' '}
         Continue
-      </a>
+      </Link>
     )
   }
 
