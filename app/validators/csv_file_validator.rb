@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 class CsvFileValidator < ActiveModel::EachValidator
-  VALID_CONTENT_TYPES = ['text/csv', 'application/vnd.ms-excel']
+  VALID_CONTENT_TYPES = ['text/csv', 'application/vnd.ms-excel', 'application/octet-stream']
 
   def validate_each(record, attribute, value)
     validate_mime_type(record, attribute, value)

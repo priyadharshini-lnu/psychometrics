@@ -18,10 +18,12 @@ module Threesixty
           end
 
           if params[:edit] == 'true'
-            render(json: {error: '403'}, status: 403) && return unless policy([:threesixty, @participant]).edit?
+            render(json: {error: '403'}, status: 403) && return unless policy(@participant).edit?
             @users_result.step = 0
             @users_result.status = :in_progress
           end
+
+          @users_result.step = params[:step].to_i if params[:step]
 
           render json: @users_result, serializer: UsersResultSerializer,
                  participant: @participant, campaign: @campaign,
@@ -33,12 +35,12 @@ module Threesixty
     def deny
       @participant = @campaign.participants.find_by!(evaluator_id: current_user.id, id: params[:evaluation_id] || params[:id])
       @participant.update_attributes(evaluator_nomination_status: :denied)
-      render json: @participant, serializer: Threesixty::EndUser::EvaluationSerializer, include: '**'
+      render json: @participant, serializer: Threesixty::EndUser::ParticipantSerializer, include: '**'
     end
 
     def update_status
       @participant.update_attributes(manager_evaluation_status: params[:status])
-      render json: @participant, serializer: Threesixty::EndUser::EvaluationSerializer, include: '**'
+      render json: @participant, serializer: Threesixty::EndUser::ParticipantSerializer, include: '**'
     end
 
     private

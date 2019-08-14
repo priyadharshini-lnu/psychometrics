@@ -36,7 +36,7 @@ function EvaluationList ({
       {subject.evaluators.map(evaluator => (
         <Menu.Item
           key={evaluator.id}
-          onClick={() => history.push(`/campaigns/${subject.campaignId}/evaluations/${evaluator.id}`)}
+          onClick={() => history.push(`/campaigns/${subject.campaignId}/evaluations/${evaluator.id}?step=0`)}
         >
           {userPresenter.getFullNameWithEmail(evaluator.user)}
         </Menu.Item>

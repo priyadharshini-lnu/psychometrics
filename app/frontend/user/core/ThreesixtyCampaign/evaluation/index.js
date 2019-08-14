@@ -9,7 +9,7 @@ const FETCH_ASSESSMENT = 'threeSixty/evaluation/FETCH_ASSESSMENT'
 const UPDATE_STATUS = 'threeSixty/evaluation/UPDATE_STATUS'
 const DENY_EVALUATION = 'threeSixty/evaluation/DENY_EVALUATION'
 
-export const fetchAssessment = (campaignId, evaluationId, isEdit) => ({
+export const fetchAssessment = (campaignId, evaluationId, { isEdit, step }) => ({
   type: FETCH_ASSESSMENT,
   request: {
     url: `/campaigns/${campaignId}/assessments`,
@@ -18,14 +18,15 @@ export const fetchAssessment = (campaignId, evaluationId, isEdit) => ({
   campaignId,
   evaluationId,
   isEdit,
+  step,
 })
 
-export const fetchEvaluation = (campaignId, evaluationId, isEdit) => ({
+export const fetchEvaluation = (campaignId, evaluationId, body) => ({
   type: FETCH,
   request: {
     url: `/campaigns/${campaignId}/evaluations/${evaluationId}`,
     camelize: false,
-    body: { edit: isEdit },
+    body,
   },
 })
 
@@ -72,7 +73,7 @@ const HANDLERS = {
     ['results', 'participant', 'evaluator_nomination_status'],
     action.response.evaluatorNominationStatus),
   [UPDATE_STATUS]: (state, action) => setIn(state,
-    ['results', 'participant', 'approval_status'],
+    ['results', 'participant', 'manager_evaluation_status'],
     action.response.managerNominationStatus),
 }
 export default function reducer (state = defaultState, action) {
@@ -80,8 +81,8 @@ export default function reducer (state = defaultState, action) {
   return handler ? handler(state, action) : state
 }
 
-function* genFetchEvaluation ({ requestAction: { campaignId, evaluationId, isEdit } }) {
-  yield put(fetchEvaluation(campaignId, evaluationId, isEdit))
+function* genFetchEvaluation ({ requestAction: { campaignId, evaluationId, isEdit, step } }) {
+  yield put(fetchEvaluation(campaignId, evaluationId, { isEdit, step }))
 }
 
 export const watchers = [

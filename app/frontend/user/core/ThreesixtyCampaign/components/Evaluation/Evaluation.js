@@ -16,8 +16,7 @@ export default function Evaluation ({
     results: {
       as_manager: asManager,
       participant: {
-        approval_status: approvalStatus,
-        evaluator_nomination_status: evaluatorNominationStatus,
+        manager_evaluation_status: managerEvaluationStatus
       },
     },
   }, fetchAssessment, clearEvalaution, updateStatus, denyEvaluation,
@@ -36,8 +35,8 @@ export default function Evaluation ({
   }, [loaded])
 
   useEffect(() => {
-    const { edit } = qs.parse(location.search)
-    fetchAssessment(params.campaignId, params.id, edit)
+    const { edit, step } = qs.parse(location.search)
+    fetchAssessment(params.campaignId, params.id, { isEdit: edit, step })
   }, [])
 
   if (!loaded) { return null }
@@ -75,20 +74,14 @@ export default function Evaluation ({
           overlay={StatusMenu}
         >
           <div>
-            {statusPresenter.getApprovalStatus(approvalStatus)}
+            {statusPresenter.getApprovalStatus(managerEvaluationStatus)}
             <Icon type="down" />
           </div>
         </Dropdown>
       )
     }
 
-    return evaluatorNominationStatus === 'denied'
-      ? <div>{statusPresenter.getApprovalStatus(evaluatorNominationStatus)}</div>
-      : (
-        <div>
-          <Button className="deny-button" onClick={() => handleDenyClick()} type="danger">Deny</Button>
-        </div>
-      )
+    return null
   }
 
   const title = () => {
