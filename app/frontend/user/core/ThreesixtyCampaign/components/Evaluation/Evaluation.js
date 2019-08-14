@@ -19,7 +19,7 @@ export default function Evaluation ({
         manager_evaluation_status: managerEvaluationStatus
       },
     },
-  }, fetchAssessment, clearEvalaution, updateStatus, denyEvaluation,
+  }, fetchAssessment, clearEvalaution, updateStatus,
   match: { params },
   history,
 }) {
@@ -34,8 +34,9 @@ export default function Evaluation ({
     }
   }, [loaded])
 
+  const { edit, step, approveEvaluation } = qs.parse(location.search)
+
   useEffect(() => {
-    const { edit, step } = qs.parse(location.search)
     fetchAssessment(params.campaignId, params.id, { isEdit: edit, step })
   }, [])
 
@@ -43,10 +44,6 @@ export default function Evaluation ({
 
   const handleStatusClick = (status) => {
     updateStatus(params.campaignId, params.id, status)
-  }
-
-  const handleDenyClick = () => {
-    denyEvaluation(params.campaignId, params.id)
   }
 
   const StatusMenu = () => (
@@ -67,7 +64,7 @@ export default function Evaluation ({
   )
 
   const StatusDropdown = () => {
-    if (asManager) {
+    if (approveEvaluation) {
       return (
         <Dropdown
           trigger={['click']}

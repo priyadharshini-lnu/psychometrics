@@ -61,8 +61,8 @@ export default function RequirementTable (props) {
 
   const renderApprovalStatus = (evaluator) => {
     if (!evaluator) { return { props: { colSpan: 0 } } }
-    if (evaluator.evaluatorNominationStatus === 'denied') {
-      return { children: 'Declined' }
+    if (evaluator.evaluatorNominationStatus === 'declined') {
+      return { children: evaluator.evaluatorNominationStatus }
     }
     if (isSelf || !options.participants.manager.canApproveNominations) {
       return { children: evaluator && statusPresenter.getApprovalStatus(evaluator.approvalStatus) }

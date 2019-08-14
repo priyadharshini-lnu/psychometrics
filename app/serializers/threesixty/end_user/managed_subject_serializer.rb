@@ -10,7 +10,7 @@ module Threesixty::EndUser
     end
 
     def evaluators
-      object.evaluators.where.not(evaluator_nomination_status: :denied)
+      object.evaluators.where(evaluator_nomination_status: :completed)
     end
 
     def campaign_id

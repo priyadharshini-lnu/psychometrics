@@ -18,16 +18,11 @@ function EvaluationList ({
 
   const menu = item => (
     <Menu>
-      <Menu.Item key="0" onClick={() => declineEvaluation(item.campaignId, item.id)}>
-        {I18n.t('threesixty.decline_invite')}
-      </Menu.Item>
-      {item.evaluatorNominationStatus === 'completed' && (
-        <Menu.Item key="1">
-          <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=true`} style={{ display: 'flex' }}>
-            Edit Evaluation
-          </Link>
+      {item.evaluatorNominationStatus !== 'completed' &&
+        <Menu.Item key="0" onClick={() => declineEvaluation(item.campaignId, item.id)}>
+          {I18n.t('threesixty.decline_invite')}
         </Menu.Item>
-      )}
+      }
     </Menu>
   )
 
@@ -36,7 +31,7 @@ function EvaluationList ({
       {subject.evaluators.map(evaluator => (
         <Menu.Item
           key={evaluator.id}
-          onClick={() => history.push(`/campaigns/${subject.campaignId}/evaluations/${evaluator.id}?step=0`)}
+          onClick={() => history.push(`/campaigns/${subject.campaignId}/evaluations/${evaluator.id}?approveEvaluation=true&step=0`)}
         >
           {userPresenter.getFullNameWithEmail(evaluator.user)}
         </Menu.Item>
@@ -48,7 +43,7 @@ function EvaluationList ({
     <List.Item>
       <div className="evaluation-item list-item">
         <div>
-          <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}`} style={{ display: 'flex' }}>
+          <Link to={`/campaigns/${item.campaignId}/evaluations/${item.id}?edit=${item.evaluatorNominationStatus === 'completed'}`} style={{ display: 'flex' }}>
             {item.evaluatorNominationStatus !== 'completed'
               ? <Icon type="check-square" theme="filled" className="status-icon" />
               : <div className="empty-square" />}
@@ -58,9 +53,8 @@ function EvaluationList ({
               {userPresenter.selfUserName(item, item.subject)}
             </Tooltip>
             {options.evaluator.canDeclineNomination && !item.isSelf && (
-              item.evaluatorNominationStatus === 'denied'
-                ? <div>{I18n.t('threesixty.denied')}</div>
-                : (
+              item.evaluatorNominationStatus !== 'completed' &&
+                (
                   <Dropdown overlay={() => menu(item)} trigger={['click']}>
                     <a className="ant-dropdown-link actions-btn" href="#">
                       <Icon type="down" className="menu-icon" />

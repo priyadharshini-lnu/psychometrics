@@ -17,7 +17,7 @@ module Threesixty
             result.status = :in_progress
           end
 
-          if params[:edit] == 'true'
+          if params[:is_edit] == 'true'
             render(json: {error: '403'}, status: 403) && return unless policy(@participant).edit?
             @users_result.step = 0
             @users_result.status = :in_progress
@@ -32,9 +32,9 @@ module Threesixty
       end
     end
 
-    def deny
+    def decline
       @participant = @campaign.participants.find_by!(evaluator_id: current_user.id, id: params[:evaluation_id] || params[:id])
-      @participant.update_attributes(evaluator_nomination_status: :denied)
+      @participant.update_attributes(evaluator_nomination_status: :declined)
       render json: @participant, serializer: Threesixty::EndUser::ParticipantSerializer, include: '**'
     end
 

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 import {
   fetchEvaluation, fetchAssessment, clearEvalaution,
-  updateStatus, denyEvaluation,
+  updateStatus,
 } from 'user/core/ThreesixtyCampaign/evaluation'
 
 const mapStateToProps = state => ({
@@ -13,7 +13,6 @@ const mapDispatchToProps = {
   fetchAssessment,
   clearEvalaution,
   updateStatus,
-  denyEvaluation,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)
