@@ -25,7 +25,7 @@ module Threesixty
           threesixty_projects = campaigns.map(&:threesixty_campaign)
 
           json = @single_assigns.map{ |assign| ::EndUser::AssignSerializer.new(assign, reports_ids: @reports_ids).to_h }
-          json.concat threesixty_projects.map{ |campaign| Threesixty::CampaignSerializer.new(campaign, include: '**').to_h }
+          json.concat threesixty_projects.map{ |campaign| Threesixty::CampaignSerializer.new(campaign, current_user: current_user, include: '**').to_h }
 
           render json: json
         end
@@ -45,7 +45,7 @@ module Threesixty
           end
 
           render json: @campaign, serializer: Threesixty::CampaignSerializer,
-                 subjects: subjects, evaluations: evaluations,
+                 subjects: subjects, evaluations: evaluations, current_user: current_user,
                  managed_subjects: managed_subjects, reports: reports, include: '**'
         end
       end

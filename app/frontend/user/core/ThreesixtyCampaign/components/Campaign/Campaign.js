@@ -14,16 +14,20 @@ const { Content } = Layout
 
 export default function Campaign ({
   history, match, fetchCampaign, instructions, campaign, nominations,
+  evaluationsCounters, nominationsCounters, reportsCounters, totalProgress,
 }) {
   useEffect(() => {
     fetchCampaign(match.params.campaignId)
   }, [])
 
+  const nominationsPercent = (nominationsCounters.completedNominations / nominationsCounters.totalNominations) * 100
+  const evaluationsPercent = (evaluationsCounters.completedEvaluations / evaluationsCounters.totalEvaluations) * 100
+  const reportsPercent = (reportsCounters.completedReports / reportsCounters.totalReports) * 100
+
   let welcomeMessage = _.find(instructions, { name: 'welcome_message' })
   if (nominations === 0) {
     welcomeMessage = _.find(instructions, { name: 'evaluator_welcome' })
   }
-
   return (
     <Layout>
       <Content className="fluid-container">
@@ -45,7 +49,7 @@ export default function Campaign ({
                   <div className="progress-column">
                     <Progress
                       strokeColor="#00B4AA"
-                      percent={30}
+                      percent={totalProgress}
                       strokeWidth={16}
                       format={percent => (
                         <div className="percentage">{`${percent}%`}</div>
@@ -60,7 +64,7 @@ export default function Campaign ({
                       <div className="letter-icon">N</div>
                       <Progress
                         className="progress-line"
-                        percent={30}
+                        percent={evaluationsPercent}
                         showInfo={false}
                         strokeColor="#00B4AA"
                         strokeWidth={2}
@@ -70,7 +74,7 @@ export default function Campaign ({
                       <div className="letter-icon">E</div>
                       <Progress
                         className="progress-line"
-                        percent={30}
+                        percent={evaluationsPercent}
                         showInfo={false}
                         strokeColor="#00B4AA"
                         strokeWidth={2}
@@ -80,7 +84,7 @@ export default function Campaign ({
                       <div className="letter-icon">R</div>
                       <Progress
                         className="progress-line"
-                        percent={30}
+                        percent={reportsPercent}
                         showInfo={false}
                         strokeColor="#00B4AA"
                         strokeWidth={2}
@@ -92,13 +96,13 @@ export default function Campaign ({
             </div>
             <Row type="flex" gutter={16} className="task_cards">
               <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
-                <Nominations />
+                <Nominations percent={nominationsPercent} />
               </Col>
               <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
-                <Evaluations history={history} />
+                <Evaluations history={history} percent={evaluationsPercent} />
               </Col>
               <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
-                <Reports />
+                <Reports percent={reportsPercent} />
               </Col>
             </Row>
           </PageHeader>

@@ -12,7 +12,7 @@ const { Panel } = Collapse
 
 
 function EvaluationList ({
-  evaluations, managedSubjects, declineEvaluation, options, history,
+  evaluations, managedSubjects, declineEvaluation, options, history, percent, evaluationsCounters,
 }) {
   const [showHelp, setShowHelp] = useState(false)
 
@@ -128,11 +128,17 @@ function EvaluationList ({
             <div className="progress-bars">
               <Progress
                 className="progress-line"
-                percent={30}
+                percent={percent}
                 showInfo={false}
                 strokeColor="#00B4AA"
               />
-              <div className="value">1 of 3</div>
+              <div className="value">
+                {evaluationsCounters.completedEvaluations}
+                {' '}
+of
+                {' '}
+                {evaluationsCounters.totalEvaluations}
+              </div>
             </div>
           </div>
           <div className="help">

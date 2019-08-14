@@ -37,7 +37,7 @@ const CollapseItem = ({ title, list }) => (
 )
 
 function NominationList ({
-  nominations, approvalNominations, options,
+  nominations, approvalNominations, options, percent, nominationsCounters,
 }) {
   const [showHelp, setShowHelp] = useState(false)
   return (
@@ -52,11 +52,17 @@ function NominationList ({
             <div className="progress-bars">
               <Progress
                 className="progress-line"
-                percent={30}
+                percent={percent}
                 showInfo={false}
                 strokeColor="#00B4AA"
               />
-              <div className="value">1 of 3</div>
+              <div className="value">
+                {nominationsCounters.completedNominations}
+                {' '}
+of
+                {' '}
+                {nominationsCounters.totalNominations}
+              </div>
             </div>
           </div>
           <div className="help">
