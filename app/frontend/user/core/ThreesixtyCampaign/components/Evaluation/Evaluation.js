@@ -20,7 +20,7 @@ export default function Evaluation ({
         evaluator_nomination_status: evaluatorNominationStatus,
       },
     },
-  }, fetchAssessment, updateStatus, denyEvaluation,
+  }, fetchAssessment, clearEvalaution, updateStatus, denyEvaluation,
   match: { params },
   history,
 }) {
@@ -121,6 +121,11 @@ export default function Evaluation ({
     )
   }
 
+  const handleBackButtonClick = () => {
+    clearEvalaution()
+    history.push(`/campaigns/${params.campaignId}`)
+  }
+
   return (
     <Layout>
       <Content className="fluid-container">
@@ -134,7 +139,7 @@ export default function Evaluation ({
             </div>
           )}
           title={title()}
-          onBack={() => history.push(`/campaigns/${params.campaignId}`)}
+          onBack={handleBackButtonClick}
         >
           <div className="evaluation-container">
             <Row type="flex" justify="end">
