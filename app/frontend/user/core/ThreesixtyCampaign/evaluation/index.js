@@ -1,5 +1,6 @@
 import { takeLatest, put } from 'redux-saga/effects'
 import { setIn } from 'utils/immutable'
+import humps from 'humps'
 
 const FETCH = 'threeSixty/evaluation/FETCH'
 const FETCH_FAILURE = 'threeSixty/evaluation/FETCH_FAILURE'
@@ -48,6 +49,7 @@ export const updateStatus = (campaignId, evaluationId, status) => ({
 export const defaultState = {
   results: {
     subject: {},
+    user: {},
     participant: {},
   },
   assessment: null,
@@ -56,7 +58,11 @@ export const defaultState = {
 }
 
 const HANDLERS = {
-  [FETCH]: (state, action) => ({ ...state, results: action.response, loaded: true }),
+  [FETCH]: (state, { response }) => {
+    const { subject, user } = response
+    const results = { ...response, subject: humps.camelizeKeys(subject), user: humps.camelizeKeys(user) }
+    return { ...state, results, loaded: true }
+  },
   [FETCH_FAILURE]: state => ({ ...state, loaded: true, error: true }),
   [FETCH_ASSESSMENT]: (state, action) => ({ ...state, assessment: action.response }),
   [CLEAR_EVALAUTION]: () => defaultState,
@@ -69,7 +75,11 @@ export default function reducer (state = defaultState, action) {
   return handler ? handler(state, action) : state
 }
 
-function* genFetchEvaluation ({ requestAction: { campaignId, evaluationId, isEdit, step } }) {
+function* genFetchEvaluation ({
+  requestAction: {
+    campaignId, evaluationId, isEdit, step,
+  },
+}) {
   yield put(fetchEvaluation(campaignId, evaluationId, { isEdit, step }))
 }
 

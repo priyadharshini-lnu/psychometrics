@@ -1,12 +1,11 @@
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, Button, Menu, Dropdown, Icon, PageHeader, Tooltip,
+  Layout, Row, Col, Menu, Dropdown, Icon, PageHeader, Tooltip,
 } from 'antd'
 import qs from 'query-string'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import './styles.scss'
-import humps from 'humps'
 
 const { Content } = Layout
 
@@ -14,20 +13,18 @@ export default function Evaluation ({
   evaluation: {
     loaded, error, assessment, results,
     results: {
+      id,
+      subject,
+      user,
       as_manager: asManager,
       participant: {
-        manager_evaluation_status: managerEvaluationStatus
+        manager_evaluation_status: managerEvaluationStatus,
       },
     },
   }, fetchAssessment, clearEvalaution, updateStatus,
   match: { params },
   history,
 }) {
-  const { id } = results
-  let { subject, user } = results
-  subject = humps.camelizeKeys(subject)
-  user = humps.camelizeKeys(user)
-
   useEffect(() => {
     if (loaded && !error) {
       window.renderPassAssessment('pass_assessment')
@@ -85,7 +82,8 @@ export default function Evaluation ({
     if (asManager) {
       return (
         <div>
-          Subject:
+          {I18n.t('threesixty.subject')}
+:
           {' '}
           <Tooltip placement="topLeft" title={subject.email}>
             {userPresenter.getFullName(subject)}
@@ -93,7 +91,8 @@ export default function Evaluation ({
 
           &nbsp; &nbsp;
 
-          Evalautor:
+          {I18n.t('threesixty.evaluator')}
+:
           {' '}
           <Tooltip placement="topLeft" title={user.email}>
             {userPresenter.getFullName(user)}
