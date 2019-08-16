@@ -17,8 +17,11 @@ export default function Nominations (props) {
   useEffect(() => {
     props.fetchNomination(props.match.params)
   }, [])
-  const { instructions } = props
+  const { instructions, nomination: { isSelf, options: { participants: options } } } = props
   const instruction = _.find(instructions, { name: 'invite_evaluators' })
+
+  const canNominate = isSelf ? options.subject.canNominateEvaluators : options.manager.canChooseEvaluators
+
   return (
     <Layout className="layout">
       <Content className="fluid-container">
@@ -51,8 +54,8 @@ export default function Nominations (props) {
                 </Paragraph>
               </div>
             )}
-            <NominationForm {...props} />
-            <NominationTable {...props} />
+            {canNominate && <NominationForm {...props} />}
+            <NominationTable {...props} canNominate={canNominate} />
           </div>
         </PageHeader>
       </Content>

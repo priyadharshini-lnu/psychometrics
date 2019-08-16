@@ -15,6 +15,7 @@ export default function RequirementTable (props) {
     removeNomination, updateStatus,
     match,
     nomination: { isSelf, options },
+    canNominate,
     requirement: { condition, title, evaluators },
     match: { params: { campaignId, id: nominationId } },
   } = props
@@ -173,6 +174,7 @@ export default function RequirementTable (props) {
           }}
         />
       </Table>
+      {canNominate && (
       <Row type="flex" justify="end" style={{ marginTop: 8 }}>
         <Button type="link" onClick={() => setShowForm(true)} disabled={showForm}>
           <Icon type="plus" />
@@ -182,6 +184,7 @@ export default function RequirementTable (props) {
           {title}
         </Button>
       </Row>
+      )}
     </div>
   )
 }
