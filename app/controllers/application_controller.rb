@@ -88,16 +88,6 @@ class ApplicationController < ::BaseController
     response.headers['X-Frame-Options'] = 'ALLOWALL'
   end
 
-  # Sets default URL params to be in all links
-  #
-  # def default_url_options
-  #   options = super
-  #   options.merge!(display: 'iframe') if params['display'] == 'iframe'
-  #   options.merge!(return_url: params['return_url']) if params.has_key?('return_url')
-  #   options.merge!(assign_id: params['assign_id']) if params.has_key?('assign_id')
-
-  #   options
-  # end
 
   def user_not_authorized
     render plain: 'You does not have access to this page', status: 403
