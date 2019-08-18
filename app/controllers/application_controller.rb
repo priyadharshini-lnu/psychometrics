@@ -6,17 +6,18 @@ class ApplicationController < ::BaseController
   # Authentication user/manager
   before_action :set_client_by_subdomain
   append_before_action :set_membership, if: :user_signed_in?
-  after_action :allow_iframe, if: proc { params['display'] == 'iframe' }
+  after_action :allow_iframe, if: proc { use_iframe? }
   before_action :set_locale
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   # Sets particular layout in depends of conditions
   #
   def layout_by_resource
+    byebug
     return 'devise'     if request.controller_class.to_s.start_with?('Administration')
     return 'ecommerce'  if request.controller_class.to_s.start_with?('Ecommerce')
     return 'devise'     if request.controller_class.to_s.start_with?('Devise')
-    return 'iframe'     if params['display'] == 'iframe'
+    return 'iframe'     if use_iframe?
 
     'users_new'
   end
@@ -82,17 +83,20 @@ class ApplicationController < ::BaseController
     response.headers['X-Frame-Options'] = 'ALLOWALL'
   end
 
+  def use_iframe?
+    session[:sso].try(:[], 'display') == 'iframe'
+  end
+
   # Sets default URL params to be in all links
   #
-  def default_url_options
-    options = super
+  # def default_url_options
+  #   options = super
+  #   options.merge!(display: 'iframe') if params['display'] == 'iframe'
+  #   options.merge!(return_url: params['return_url']) if params.has_key?('return_url')
+  #   options.merge!(assign_id: params['assign_id']) if params.has_key?('assign_id')
 
-    options.merge!(display: 'iframe') if params['display'] == 'iframe'
-    options.merge!(return_url: params['return_url']) if params.has_key?('return_url')
-    options.merge!(assign_id: params['assign_id']) if params.has_key?('assign_id')
-
-    options
-  end
+  #   options
+  # end
 
   def user_not_authorized
     render plain: 'You does not have access to this page', status: 403

@@ -52,7 +52,7 @@ export default function SingleAssign ({
                 data-type="pass_assessment"
                 data-data={JSON.stringify(assessment)}
                 data-result={JSON.stringify(results)}
-                data-dashboard-url="/campaigns"
+                data-dashboard-url="/assessment_completed"
               />
             )}
           </div>

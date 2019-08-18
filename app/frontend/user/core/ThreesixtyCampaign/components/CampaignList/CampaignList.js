@@ -8,7 +8,7 @@ import './styles.scss'
 
 const { Content } = Layout
 const { Search } = Input
-const COLORS = ['#dcf5ef', '#95e8d7', '#69dbc8', '#42cfbc', '#1fc2b2']
+const COLORS = ['#D8D8D8', '#00B1A8', '#246479', '#9DD8D7']
 
 export default function CampaignList ({
   campaigns, fetchCampaigns, downloadReport,

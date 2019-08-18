@@ -5,6 +5,11 @@ class HomeController < ApplicationController
 
   # TODO: needs some refactoring
   def sso
+    session[:sso] = {
+      assign_id: params[:assign_id],
+      display: params[:display],
+      return_url: params[:return_url]
+    }
     if params[:assign_id]
       assign = @current_membership.assigns.find_by(id: params[:assign_id])
       redirect_to_return_url('assessment_invalid') && return unless assign
@@ -23,10 +28,12 @@ class HomeController < ApplicationController
   private
 
   def redirect_to_return_url(type)
-    return redirect_to(root_path) if params[:return_url].blank?
+    return redirect_to(root_path) if session[:sso].try(:[], 'return_url').nil?
 
-    uri = URI.parse params[:return_url]
+    uri = URI.parse session[:sso]['return_url']
     uri.query = uri.query.gsub('ASSESSMENT_STATUS', type) unless uri.query.nil?
     redirect_to uri.to_s
+  rescue URI::InvalidURIError => e
+    redirect_to(root_path)
   end
 end
