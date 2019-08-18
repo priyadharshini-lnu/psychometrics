@@ -13,7 +13,6 @@ class ApplicationController < ::BaseController
   # Sets particular layout in depends of conditions
   #
   def layout_by_resource
-    byebug
     return 'devise'     if request.controller_class.to_s.start_with?('Administration')
     return 'ecommerce'  if request.controller_class.to_s.start_with?('Ecommerce')
     return 'devise'     if request.controller_class.to_s.start_with?('Devise')
@@ -29,6 +28,12 @@ class ApplicationController < ::BaseController
       current_project: @current_project,
       current_membership: @current_membership
     }
+  end
+
+  protected
+
+  def use_iframe?
+    session[:sso].try(:[], 'display') == 'iframe'
   end
 
   private
@@ -81,10 +86,6 @@ class ApplicationController < ::BaseController
   #
   def allow_iframe
     response.headers['X-Frame-Options'] = 'ALLOWALL'
-  end
-
-  def use_iframe?
-    session[:sso].try(:[], 'display') == 'iframe'
   end
 
   # Sets default URL params to be in all links

@@ -8,6 +8,7 @@ import report from './core/ThreesixtyCampaign/report'
 import autocomplete from './core/temp/autocomplete'
 import currentUser from './core/temp/currentUser'
 import project from './core/temp/project'
+import extras from './core/extras'
 
 export default combineReducers({
   threeSixtyCampaign: combineReducers({
@@ -23,4 +24,5 @@ export default combineReducers({
       project,
     }),
   }),
+  extras
 })
