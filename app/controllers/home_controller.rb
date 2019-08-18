@@ -5,9 +5,6 @@ class HomeController < ApplicationController
 
   # TODO: needs some refactoring
   def sso
-    if params[:return_url] && !params[:assign_id]
-      redirect_to_return_url('assessment_invalid') && return
-    end
     if params[:assign_id]
       assign = @current_membership.assigns.find_by(id: params[:assign_id])
       redirect_to_return_url('assessment_invalid') && return unless assign
