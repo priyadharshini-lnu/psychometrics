@@ -13,7 +13,7 @@ export default function Assign ({
   }, fetchAssessment,
   match: { params },
   history,
-  isFrame
+  isFrame,
 }) {
   useEffect(() => {
     if (loaded && !error) {

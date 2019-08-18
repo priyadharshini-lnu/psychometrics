@@ -4,6 +4,6 @@ export const defaultState = {
 }
 
 
-export default function reducer (state = defaultState, action) {
+export default function reducer (state = defaultState) {
   return state
 }

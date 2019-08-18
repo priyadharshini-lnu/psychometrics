@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 const mapStateToProps = state => ({
-  isFrame: state.extras.isFrame
+  isFrame: state.extras.isFrame,
 })
 
 const mapDispatchToProps = {}

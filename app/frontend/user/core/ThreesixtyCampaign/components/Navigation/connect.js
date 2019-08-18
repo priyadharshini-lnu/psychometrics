@@ -6,7 +6,7 @@ import {
 
 const mapStateToProps = state => ({
   logo: state.threeSixtyCampaign.temp.project.logo,
-  isFrame: state.extras.isFrame
+  isFrame: state.extras.isFrame,
 })
 
 const mapDispatchToProps = {
