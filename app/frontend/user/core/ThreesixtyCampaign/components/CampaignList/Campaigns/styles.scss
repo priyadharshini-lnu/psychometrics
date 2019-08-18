@@ -1,6 +1,7 @@
 @import 'user/styles/variables';
 
-$colors: #dcf5ef #95e8d7 #69dbc8 #42cfbc #1fc2b2;
+$colors: #D8D8D8 #00B1A8 #246479 #9DD8D7;
+$text-colors: #646464 #FFFFFF #FFFFFF #246479;
 
 :global {
   .cards .card {
@@ -66,20 +67,20 @@ $colors: #dcf5ef #95e8d7 #69dbc8 #42cfbc #1fc2b2;
       }
     }
 
-    @for $i from 1 through 5 {
-      &:nth-child(5n + #{$i}) {
+    @for $i from 1 through 4 {
+      &:nth-child(4n + #{$i}) {
         .cover {
           background: nth($colors, $i);
 
           .caption .title {
-            color: #246479;
+            color: nth($text-colors, $i);
           }
 
           .icon {
-            background: #fff;
+            background: nth($text-colors, $i);
 
             svg {
-              fill: #246479;
+              fill: nth($colors, $i);;
             }
           }
         }
