@@ -6,9 +6,9 @@ class HomeController < ApplicationController
   # TODO: needs some refactoring
   def sso
     session[:sso] = {
-      assign_id: params[:assign_id],
-      display: params[:display],
-      return_url: params[:return_url]
+      'assign_id' => params[:assign_id],
+      'display' => params[:display],
+      'return_url' => params[:return_url]
     }
     if params[:assign_id]
       assign = @current_membership.assigns.find_by(id: params[:assign_id])
