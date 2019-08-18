@@ -49,7 +49,7 @@ export default function Campaign ({
                   <div className="progress-column">
                     <Progress
                       strokeColor="#00B4AA"
-                      percent={totalProgress}
+                      percent={_.round(totalProgress)}
                       strokeWidth={16}
                       format={percent => (
                         <div className="percentage">{`${percent}%`}</div>

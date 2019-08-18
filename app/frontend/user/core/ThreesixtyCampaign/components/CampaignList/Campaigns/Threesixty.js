@@ -1,5 +1,6 @@
 /* eslint-disable max-len */
 import React from 'react'
+import _ from 'lodash'
 import {
   Row, Col, Icon, Card, Progress,
 } from 'antd'
@@ -10,7 +11,7 @@ import hogan from './hogan.png'
 import { getTotalProgress } from '../../../campaign/selectors'
 
 export default function Threesixty ({ campaign, color }) {
-  const totalProgress = getTotalProgress(campaign)
+  const totalProgress = _.round(getTotalProgress(campaign))
 
   return (
     <Col className="card">
