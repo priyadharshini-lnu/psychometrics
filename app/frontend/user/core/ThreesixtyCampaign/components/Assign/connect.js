@@ -5,6 +5,7 @@ import {
 
 const mapStateToProps = state => ({
   assign: state.threeSixtyCampaign.assign,
+  isFrame: state.extras.isFrame,
 })
 
 const mapDispatchToProps = {

@@ -7,12 +7,13 @@ import './styles.scss'
 
 const { Content } = Layout
 
-export default function SingleAssign ({
+export default function Assign ({
   assign: {
     loaded, error, assessment, results,
   }, fetchAssessment,
   match: { params },
   history,
+  isFrame
 }) {
   useEffect(() => {
     if (loaded && !error) {
@@ -31,7 +32,7 @@ export default function SingleAssign ({
       <Content className="fluid-container">
         <PageHeader
           className="page-header"
-          backIcon={(
+          backIcon={!isFrame && (
             <div>
               <Icon type="arrow-left" />
               {' '}
