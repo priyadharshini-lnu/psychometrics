@@ -1,5 +1,5 @@
 module EndUser
-  class AssignSerializer < ActiveModel::Serializer
+  class ReportSerializer < ActiveModel::Serializer
     include Rails.application.routes.url_helpers
     attributes :id, :name, :mindmill, :hogan, :hogan_url, :load_report,
                :has_external_report, :generating, :pdf_url, :mindmill_report_url
