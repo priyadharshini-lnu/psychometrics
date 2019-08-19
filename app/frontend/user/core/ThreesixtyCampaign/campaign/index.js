@@ -39,6 +39,7 @@ export const defaultState = {
       subject: {},
       evaluator: {},
     },
+    reports: { approval: {} },
   },
 }
 

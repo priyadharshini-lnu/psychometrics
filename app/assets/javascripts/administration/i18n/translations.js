@@ -5498,6 +5498,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
+    "view_my_report": "View My Report",
+    "view_reports": "View Reports",
     "waiting": "Waiting"
   },
   "time": {
@@ -11061,6 +11063,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
+    "view_my_report": "View My Report",
+    "view_reports": "View Reports",
     "waiting": "Waiting"
   },
   "time": {
@@ -16615,6 +16619,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "total_progress": "Total progress",
     "user_name_input_placeholder": "type name or email...",
     "validation_errors": "Validation Errors",
+    "view_my_report": "View My Report",
+    "view_reports": "View Reports",
     "waiting": "Waiting"
   },
   "time": {
