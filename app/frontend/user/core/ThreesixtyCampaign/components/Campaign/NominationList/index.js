@@ -47,7 +47,7 @@ function NominationList ({
 
   const viewableNominations = options.manager.canApproveNominations ? [] : notSelfNominations
 
-  const nominationsForSetup = (function () {
+  const getNominationsForSetup = () => {
     if (options.subject.canNominateEvaluators && options.manager.canChooseEvaluators) {
       return nominations
     }
@@ -61,7 +61,10 @@ function NominationList ({
     }
 
     return []
-  }())
+  }
+
+  const nominationsForSetup = getNominationsForSetup()
+
 
   const approvableNominations = options.manager.canApproveNominations ? notSelfNominations : []
 
