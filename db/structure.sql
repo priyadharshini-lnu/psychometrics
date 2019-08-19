@@ -5,22 +5,9 @@ SET client_encoding = 'UTF8';
 SET standard_conforming_strings = on;
 SELECT pg_catalog.set_config('search_path', '', false);
 SET check_function_bodies = false;
+SET xmloption = content;
 SET client_min_messages = warning;
 SET row_security = off;
-
---
--- Name: plpgsql; Type: EXTENSION; Schema: -; Owner: -
---
-
-CREATE EXTENSION IF NOT EXISTS plpgsql WITH SCHEMA pg_catalog;
-
-
---
--- Name: EXTENSION plpgsql; Type: COMMENT; Schema: -; Owner: -
---
-
-COMMENT ON EXTENSION plpgsql IS 'PL/pgSQL procedural language';
-
 
 --
 -- Name: citext; Type: EXTENSION; Schema: -; Owner: -
@@ -34,6 +21,20 @@ CREATE EXTENSION IF NOT EXISTS citext WITH SCHEMA public;
 --
 
 COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings';
+
+
+--
+-- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
 
 
 --
@@ -1944,9 +1945,9 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     category integer DEFAULT 0,
     provider integer
@@ -2607,11 +2608,11 @@ CREATE TABLE public.users (
 CREATE TABLE public.users_assessments (
     id bigint NOT NULL,
     assessment_id bigint,
+    user_id bigint,
     campaign_id bigint,
     selected_locale character varying,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL,
-    user_id bigint
+    updated_at timestamp without time zone NOT NULL
 );
 
 
@@ -4898,17 +4899,17 @@ CREATE INDEX index_users_results_on_subject_id ON public.users_results USING btr
 
 
 --
--- Name: participants_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
---
-
-CREATE UNIQUE INDEX participants_subject_evaluator_campaign ON public.threesixty_participants USING btree (subject_id, evaluator_id, campaign_id);
-
-
---
 -- Name: media_responses_users_assessment_question_id_index; Type: INDEX; Schema: public; Owner: -
 --
 
 CREATE UNIQUE INDEX media_responses_users_assessment_question_id_index ON public.media_responses USING btree (users_assessment_id, question_id);
+
+
+--
+-- Name: participants_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX participants_subject_evaluator_campaign ON public.threesixty_participants USING btree (subject_id, evaluator_id, campaign_id);
 
 
 --
@@ -4951,6 +4952,9 @@ CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_
 --
 
 CREATE UNIQUE INDEX users_assessments_user_uniquesness_index ON public.users_assessments USING btree (user_id, campaign_id, assessment_id);
+
+
+--
 -- Name: users_results_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5003,6 +5007,14 @@ ALTER TABLE ONLY public.users
 
 ALTER TABLE ONLY public.assessments_reports
     ADD CONSTRAINT fk_rails_105380adfd FOREIGN KEY (assessment_id) REFERENCES public.assessments(id) ON DELETE CASCADE;
+
+
+--
+-- Name: users_assessments fk_rails_11a087a70e; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.users_assessments
+    ADD CONSTRAINT fk_rails_11a087a70e FOREIGN KEY (user_id) REFERENCES public.users(id) ON DELETE RESTRICT;
 
 
 --
@@ -6012,7 +6024,6 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190312220042'),
 ('20190315160908'),
 ('20190331125508'),
-('20190404131136'),
 ('20190406093054'),
 ('20190406205517'),
 ('20190407085318'),
@@ -6054,3 +6065,5 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190728141145'),
 ('20190804195715'),
 ('20190805173213');
+
+

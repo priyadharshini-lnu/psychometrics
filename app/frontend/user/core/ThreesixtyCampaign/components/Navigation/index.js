@@ -10,7 +10,11 @@ import EditProfileModal from '../EditProfileModal'
 
 const { SubMenu } = Menu
 
-function Navigation ({ changeLocale, logout, logo }) {
+function Navigation ({
+  changeLocale, logout, logo, isFrame,
+}) {
+  if (isFrame) return null
+
   const [showHelp, setShowHelp] = useState(false)
   const [editProfileModalOpen, setEditProfileModal] = useState(false)
 

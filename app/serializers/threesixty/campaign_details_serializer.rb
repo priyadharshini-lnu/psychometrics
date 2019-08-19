@@ -19,7 +19,7 @@ module Threesixty
           actual_by_options(object.option).
           count
       else
-        UsersResult.where(subject_id: user_id, status: :completed, assessment_id: object.assessment_id).count
+        UsersResult.where(subject_id: user_id, status: :completed, assessment_id: object.assessment_id).where('subject_id != evaluator_id').count
       end
     end
 
@@ -28,7 +28,11 @@ module Threesixty
     end
 
     def total_evaluators_for_assessment
-      Threesixty::Participant.active.where(campaign_id: object.campaign_id).count
+      if object.option.participants.dig('subject', 'can_evaluate_self')
+        Threesixty::Participant.active.where(campaign_id: object.campaign_id).count
+      else
+        Threesixty::Participant.active.where(campaign_id: object.campaign_id).where('subject_id != evaluator_id').count
+      end
     end
 
     def options

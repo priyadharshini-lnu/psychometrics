@@ -15,7 +15,7 @@ export const declineEvaluation = (campaignId, evaluationId) => ({
   type: DECLINE_EVALUATION,
   evaluationId,
   request: {
-    url: `/campaigns/${campaignId}/evaluations/${evaluationId}/deny`,
+    url: `/campaigns/${campaignId}/evaluations/${evaluationId}/decline`,
     method: 'put',
   },
 })

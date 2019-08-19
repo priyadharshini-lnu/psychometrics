@@ -40,3 +40,5 @@ en:
     help: Help
     approve_all_successful: Approved all nominations
     deny_all_successful: Denied all nominations
+    subject: Subject
+    evaluator: Evaluator

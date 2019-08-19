@@ -16,6 +16,9 @@ module Threesixty::InitialState
           },
           currentUser: serialized_current_user
         }
+      },
+      extras: {
+        isFrame: use_iframe?
       }
     }
   end
