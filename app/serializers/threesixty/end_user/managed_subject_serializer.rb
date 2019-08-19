@@ -9,6 +9,10 @@ module Threesixty::EndUser
       object.user
     end
 
+    def evaluators
+      object.evaluators.where(evaluator_nomination_status: :completed)
+    end
+
     def campaign_id
       object.campaign.threesixty_campaign.id
     end

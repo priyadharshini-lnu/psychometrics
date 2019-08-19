@@ -7,7 +7,7 @@ class UsersResultSerializer < ActiveModel::Serializer
 
   has_one :user, serializer: UserSerializer
   has_one :subject, serializer: UserSerializer
-  has_one :participant, serializer: Threesixty::EndUser::NomineeSerializer
+  has_one :participant, serializer: Threesixty::EndUser::ParticipantSerializer
 
   def campaign_id
     campaign.id

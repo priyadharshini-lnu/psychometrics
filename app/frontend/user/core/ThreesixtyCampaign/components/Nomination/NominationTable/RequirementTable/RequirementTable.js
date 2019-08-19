@@ -6,6 +6,7 @@ import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import conditionPresenter from 'presenters/conditionPresenter'
 import './styles.scss'
+import { EVALUATOR_NOMINATION_STATUSES } from 'constants/participantStatuses'
 import InlineInput from '../InlineInput'
 
 const { Column } = Table
@@ -61,7 +62,7 @@ export default function RequirementTable (props) {
 
   const renderApprovalStatus = (evaluator) => {
     if (!evaluator) { return { props: { colSpan: 0 } } }
-    if (evaluator.evaluatorNominationStatus === 'denied') {
+    if (evaluator.evaluatorNominationStatus === EVALUATOR_NOMINATION_STATUSES.DECLINED) {
       return { children: 'Declined' }
     }
     if (isSelf || !options.participants.manager.canApproveNominations) {
