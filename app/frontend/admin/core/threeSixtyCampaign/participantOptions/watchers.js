@@ -8,6 +8,7 @@ import {
   syncWithServer,
   addDatasheetCriteria,
   UPDATE_PARTICIPANT_OPTIONS,
+  UPDATE_RELATIONSHIP,
   ADD_DATASHEET_CRITERIA,
   REMOVE_DATASHEET_CRITERIA,
   UPDATE_DATASHEET_CRITERIA,
@@ -17,8 +18,9 @@ import { getParticipantOption } from './selectors'
 
 function* genSyncWithServer () {
   yield delay(1000)
-  const participantOption = yield select(getParticipantOption)
+  const participantOption = { ...yield select(getParticipantOption) }
   const campaignId = yield select(getCurrentCampaignId)
+  delete participantOption.relationships
   yield put(syncWithServer(campaignId, participantOption))
 }
 
@@ -29,7 +31,13 @@ function* genAddDatasheetCriteriaWithValue ({ payload: { key } }) {
 
 const watchers = [
   takeLatest(
-    [UPDATE_PARTICIPANT_OPTIONS, ADD_DATASHEET_CRITERIA, REMOVE_DATASHEET_CRITERIA, UPDATE_DATASHEET_CRITERIA],
+    [
+      UPDATE_PARTICIPANT_OPTIONS,
+      ADD_DATASHEET_CRITERIA,
+      REMOVE_DATASHEET_CRITERIA,
+      UPDATE_DATASHEET_CRITERIA,
+      UPDATE_RELATIONSHIP,
+    ],
     genSyncWithServer,
   ),
   takeEvery(ADD_DATASHEET_CRITERIA_WITH_DEFAULT_VALUE, genAddDatasheetCriteriaWithValue),

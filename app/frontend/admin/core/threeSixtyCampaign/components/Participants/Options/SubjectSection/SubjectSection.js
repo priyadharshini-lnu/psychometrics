@@ -7,11 +7,13 @@ import NominationRequirementModal from './NominationRequirementModal'
 
 export default function SubjectSection ({
   options,
+  relationships,
   updateParticipantOptions,
   addDatasheetCriteriaWithDefaultValue,
   removeDatasheetCriteria,
   updateDatasheetCriteria,
   openNominationRequirementModal,
+  updateRelationship,
 }) {
   const OBJECT_KEY = 'subject'
 
@@ -25,6 +27,13 @@ export default function SubjectSection ({
     addCriteria: () => addDatasheetCriteriaWithDefaultValue([OBJECT_KEY, name]),
     removeCriteria: removeDatasheetCriteria([OBJECT_KEY, name]),
     updateCriteria: updateDatasheetCriteria([OBJECT_KEY, name]),
+  })
+
+  const parametersForRelationships = relationship => ({
+    value: options.canSelectRelationships && options.canSelectRelationships[relationship.id],
+    label: relationship.name,
+    onOptionChanged: () => updateRelationship(OBJECT_KEY, relationship,
+      !(options.canSelectRelationships && options.canSelectRelationships[relationship.id])),
   })
 
   return (
@@ -95,31 +104,13 @@ export default function SubjectSection ({
             {...parametersForSwitch('limitRelationshipThatSubjectCanSelect')}
             type="checkbox"
           >
-            <ExpandableOption
-              label="Customer"
-              {...parametersForSwitch('canSelectCustomerRelationship')}
-              type="checkbox"
-            />
-            <ExpandableOption
-              label="Direct Report"
-              {...parametersForSwitch('canSelectDirectReportRelationship')}
-              type="checkbox"
-            />
-            <ExpandableOption
-              label="Manager"
-              {...parametersForSwitch('canSelectManagerRelationship')}
-              type="checkbox"
-            />
-            <ExpandableOption
-              label="Peer"
-              {...parametersForSwitch('canSelectPeerRelationship')}
-              type="checkbox"
-            />
-            <ExpandableOption
-              label="Supplier"
-              {...parametersForSwitch('canSelectSupplierRelationship')}
-              type="checkbox"
-            />
+            {relationships.map(relationship => (
+              <ExpandableOption
+                key={relationship.id}
+                {...parametersForRelationships(relationship)}
+                type="checkbox"
+              />
+            ))}
           </ExpandableOption>
         </ExpandableOption>
       </ExpandableOption>
