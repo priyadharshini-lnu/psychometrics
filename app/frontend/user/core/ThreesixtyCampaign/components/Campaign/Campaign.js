@@ -15,10 +15,13 @@ const { Content } = Layout
 export default function Campaign ({
   history, match, fetchCampaign, instructions, campaign, nominations,
   evaluationsCounters, nominationsCounters, reportsCounters, totalProgress,
+  loaded,
 }) {
   useEffect(() => {
     fetchCampaign(match.params.campaignId)
   }, [])
+
+  if (!loaded) { return null }
 
   const nominationsPercent = (nominationsCounters.completedNominations / nominationsCounters.totalNominations) * 100
   const evaluationsPercent = (evaluationsCounters.completedEvaluations / evaluationsCounters.totalEvaluations) * 100
@@ -95,15 +98,18 @@ export default function Campaign ({
               </Row>
             </div>
             <Row type="flex" gutter={16} className="task_cards">
-              <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
-                <Nominations percent={nominationsPercent} />
-              </Col>
-              <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
-                <Evaluations history={history} percent={evaluationsPercent} />
-              </Col>
-              <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
+              {nominationsCounters.totalNominations !== 0 &&
+                <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
+                  <Nominations percent={nominationsPercent} />
+                </Col>}
+              {evaluationsCounters.totalEvaluations !== 0 &&
+                <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
+                  <Evaluations history={history} percent={evaluationsPercent} />
+                </Col>}
+              {reportsCounters.totalReports !== 0 &&
+                <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
                 <Reports percent={reportsPercent} />
-              </Col>
+              </Col>}
             </Row>
           </PageHeader>
         </div>

@@ -21,6 +21,7 @@ export const declineEvaluation = (campaignId, evaluationId) => ({
 })
 
 export const defaultState = {
+  loaded: false,
   nominations: [],
   evaluations: [],
   evaluationsCounters: {},
@@ -39,7 +40,7 @@ export const defaultState = {
 }
 
 const HANDLERS = {
-  [FETCH]: (state, action) => merge(state, action.response),
+  [FETCH]: (state, action) => ({ ...state, ...action.response, loaded: true}),
   [DECLINE_EVALUATION]: (state, { requestAction: { evaluationId } }) => {
     const evaluations = _.filter(state.evaluations, ({ id }) => id !== evaluationId)
     return setIn(state, 'evaluations', evaluations)
