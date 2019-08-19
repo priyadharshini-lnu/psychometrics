@@ -1,5 +1,5 @@
 import { connect } from 'react-redux'
-import { fetchCampaign } from 'user/core/ThreesixtyCampaign/campaign'
+import { fetchCampaign, reset as resetCampaign } from 'user/core/ThreesixtyCampaign/campaign'
 import {
   getNominations, getEvaluations, getManagedSubjects,
   getApprovalNominations, getSubjectReport, getTotalProgress,
@@ -23,6 +23,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchCampaign,
+  resetCampaign,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

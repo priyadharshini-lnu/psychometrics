@@ -15,10 +15,12 @@ const { Content } = Layout
 export default function Campaign ({
   history, match, fetchCampaign, instructions, campaign, nominations,
   evaluationsCounters, nominationsCounters, reportsCounters, totalProgress,
-  loaded,
+  loaded, resetCampaign,
 }) {
   useEffect(() => {
     fetchCampaign(match.params.campaignId)
+
+    return () => { resetCampaign() }
   }, [])
 
   if (!loaded) { return null }
@@ -98,18 +100,24 @@ export default function Campaign ({
               </Row>
             </div>
             <Row type="flex" gutter={16} className="task_cards">
-              {nominationsCounters.totalNominations !== 0 &&
+              {nominationsCounters.totalNominations !== 0
+                && (
                 <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
                   <Nominations percent={nominationsPercent} />
-                </Col>}
-              {evaluationsCounters.totalEvaluations !== 0 &&
+                </Col>
+                )}
+              {evaluationsCounters.totalEvaluations !== 0
+                && (
                 <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
                   <Evaluations history={history} percent={evaluationsPercent} />
-                </Col>}
-              {reportsCounters.totalReports !== 0 &&
+                </Col>
+                )}
+              {reportsCounters.totalReports !== 0
+                && (
                 <Col xs={{ span: 24 }} lg={{ span: 8 }} style={{ marginTop: 16 }}>
-                <Reports percent={reportsPercent} />
-              </Col>}
+                  <Reports percent={reportsPercent} />
+                </Col>
+                )}
             </Row>
           </PageHeader>
         </div>
