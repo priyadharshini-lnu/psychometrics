@@ -77,8 +77,8 @@ gem 'annotate', '~> 2.7.0'
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
-gem 'psychometrics-reports-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git', ref: '80dcbba7c38a3a8b8a204e637d8a229714ddf6eb'
-gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', ref: '35c3503a3f8d3bbb533d6cefd6e2828756868f70'
+gem 'psychometrics-reports-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git', ref: '0162e6fa70b7b94b0318e1138ad534a825707ef6'
+gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', ref: '1e92ddfcd9fa234dd3cff6215ccc875a685410a3'
 
 ### XLS import
 gem 'rubyXL'
@@ -213,7 +213,6 @@ group :test do
   gem 'rspec-retry', '~> 0.6.1'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'timecop', '~> 0.9.1'
-  gem 'rswag-specs', '~> 2.0.5'
   gem 'coveralls', require: false
   gem 'webdrivers'
 end

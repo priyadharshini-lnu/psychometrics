@@ -4,6 +4,7 @@ import {
   List, Collapse, Icon, Progress, Modal, Tooltip,
 } from 'antd'
 import { Link } from 'react-router-dom'
+import _ from 'lodash'
 import userPresenter from 'presenters/userPresenter'
 import './styles.scss'
 import connect from './connect'
@@ -36,10 +37,37 @@ const CollapseItem = ({ title, list }) => (
   </Collapse>
 )
 
+
 function NominationList ({
-  nominations, approvalNominations, options, percent, nominationsCounters,
+  nominations, options, percent, nominationsCounters,
 }) {
   const [showHelp, setShowHelp] = useState(false)
+
+  const [selfNominations, notSelfNominations] = _.partition(nominations, { isSelf: true })
+
+  const viewableNominations = options.manager.canApproveNominations ? [] : notSelfNominations
+
+  const getNominationsForSetup = () => {
+    if (options.subject.canNominateEvaluators && options.manager.canChooseEvaluators) {
+      return nominations
+    }
+
+    if (options.subject.canNominateEvaluators) {
+      return selfNominations
+    }
+
+    if (options.manager.canChooseEvaluators) {
+      return notSelfNominations
+    }
+
+    return []
+  }
+
+  const nominationsForSetup = getNominationsForSetup()
+
+
+  const approvableNominations = options.manager.canApproveNominations ? notSelfNominations : []
+
   return (
     <List
       className="nominations-list column-list"
@@ -72,14 +100,16 @@ of
       )}
       bordered
     >
-      {!nominations.length
-        || <CollapseItem key="nominations" title={I18n.t('threesixty.setup_nominations')} list={nominations} />}
-      {options.manager.canApproveNominations && approvalNominations.length > 0
+      {nominationsForSetup.length > 0
+        && <CollapseItem key="nominations" title={I18n.t('threesixty.setup_nominations')} list={nominationsForSetup} />}
+      {viewableNominations.length > 0
+        && <CollapseItem key="nominations" title={I18n.t('threesixty.view_nominations')} list={viewableNominations} />}
+      {approvableNominations.length > 0
         && (
         <CollapseItem
           key="approve_nominations"
           title={I18n.t('threesixty.approve_nominations')}
-          list={approvalNominations}
+          list={approvableNominations}
         />
         )}
       <Modal
