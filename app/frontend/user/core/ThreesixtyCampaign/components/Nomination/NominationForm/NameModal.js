@@ -21,7 +21,7 @@ function NameModal ({
       maskClosable={false}
       title={(
         <div className="help-modal-header">
-          Set name for Evaluator
+          {I18n.t('threesixty.set_name_for_evaluator')}
           {' '}
           {participant && participant.evaluator.email}
         </div>
@@ -30,35 +30,35 @@ function NameModal ({
       onCancel={() => setShowPrompt(false)}
       footer={null}
     >
-      <Form.Item label="First Name" labelCol={{ span: 6 }} wrapperCol={{ span: 16 }}>
+      <Form.Item label={I18n.t('threesixty.first_name')} labelCol={{ span: 6 }} wrapperCol={{ span: 16 }}>
         {form.getFieldDecorator('firstName', {
           rules: [
             {
               required: true,
-              message: 'Please input First Name',
+              message: I18n.t('threesixty.first_name_error'),
             },
           ],
         })(<Input
           required
-          placeholder="First name..."
+          placeholder={I18n.t('threesixty.first_name')}
         />)}
       </Form.Item>
-      <Form.Item label="Last Name" labelCol={{ span: 6 }} wrapperCol={{ span: 16 }}>
+      <Form.Item label={I18n.t('threesixty.last_name')} labelCol={{ span: 6 }} wrapperCol={{ span: 16 }}>
         {form.getFieldDecorator('lastName', {
           rules: [
             {
               required: true,
-              message: 'Please input Last Name',
+              message: I18n.t('threesixty.last_name_error'),
             },
           ],
         })(<Input
           required
-          placeholder="Last name..."
+          placeholder={I18n.t('threesixty.last_name')}
         />)}
       </Form.Item>
       <Form.Item wrapperCol={{ span: 12, offset: 10 }}>
         <Button type="primary" htmlType="submit" onClick={submit}>
-          Submit
+          {I18n.t('threesixty.submit')}
         </Button>
       </Form.Item>
     </Modal>
