@@ -1,4 +1,10 @@
 import _ from 'lodash'
 
 // eslint-disable-next-line import/prefer-default-export
-export const relationshipWithoutSelf = relationships => _.filter(relationships, r => _.lowerCase(r.name) !== 'self')
+export const relationshipWithoutSelf = (relationships, options) => {
+  if (options.participants.subject.limitRelationshipThatSubjectCanSelect) {
+    return _.filter(relationships, r => (options.participants.subject.canSelectRelationships[r.id]
+                && _.lowerCase(r.name) !== 'self'))
+  }
+  return _.filter(relationships, r => _.lowerCase(r.name) !== 'self')
+}

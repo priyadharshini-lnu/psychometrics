@@ -92,7 +92,7 @@ export default function NominationForm (props) {
                   className="relationship-select"
                 >
                   <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
-                  {relationshipWithoutSelf(relationships).map(relation => (
+                  {relationshipWithoutSelf(relationships, options).map(relation => (
                     <Option
                       key={relation.id}
                       value={relation.id}
