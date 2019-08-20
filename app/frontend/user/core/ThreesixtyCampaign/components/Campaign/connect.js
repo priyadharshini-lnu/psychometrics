@@ -1,11 +1,12 @@
 import { connect } from 'react-redux'
-import { fetchCampaign } from 'user/core/ThreesixtyCampaign/campaign'
+import { fetchCampaign, reset as resetCampaign } from 'user/core/ThreesixtyCampaign/campaign'
 import {
   getNominations, getEvaluations, getManagedSubjects,
   getApprovalNominations, getSubjectReport, getTotalProgress,
 } from 'user/core/ThreesixtyCampaign/campaign/selectors'
 
 const mapStateToProps = state => ({
+  loaded: state.threeSixtyCampaign.campaign.loaded,
   campaign: state.threeSixtyCampaign.campaign,
   instructions: state.threeSixtyCampaign.campaign.instructions,
   evaluationsCounters: state.threeSixtyCampaign.campaign.evaluationsCounters,
@@ -22,6 +23,7 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = {
   fetchCampaign,
+  resetCampaign,
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)

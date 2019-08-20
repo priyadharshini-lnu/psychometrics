@@ -43,7 +43,8 @@ module Threesixty
       subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
         [subject.user_id],
         @campaign
-      )
+      ).dig(subject.user_id, :completed) || {}
+
       status = Threesixty::Participants::GetReportStatus.call!(
         subject,
         @options,

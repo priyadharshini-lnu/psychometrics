@@ -38,8 +38,10 @@ const CollapseItem = ({ title, list }) => (
 
 function ReportList ({
   approvalReports, subjectReport, percent, reportsCounters,
+  options: { approval: { managerApprovesReports } },
 }) {
   const [showHelp, setShowHelp] = useState(false)
+
   return (
     <List
       className="column-list report-list"
@@ -78,13 +80,19 @@ function ReportList ({
             {!subjectReport.approved
               ? <Icon type="check-square" theme="filled" className="status-icon" />
               : <div className="empty-square" />}
-            {' View Report'}
+            {I18n.t('threesixty.view_my_report')}
           </Link>
         </div>
       )}
 
       {approvalReports.length > 0
-        && <CollapseItem key="approve_reports" title={I18n.t('threesixty.approve_reports')} list={approvalReports} />}
+        && (
+        <CollapseItem
+          key="view_or_approve_reports"
+          title={managerApprovesReports ? I18n.t('threesixty.approve_reports') : I18n.t('threesixty.view_reports')}
+          list={approvalReports}
+        />
+        )}
       <Modal
         title={(
           <div className="help-modal-header">
