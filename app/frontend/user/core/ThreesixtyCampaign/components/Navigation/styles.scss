@@ -1,14 +1,22 @@
 :global {
-  .threesixty-navigation {
+  .ant-layout-header.threesixty-navigation {
     border-bottom: 1px solid #e8e8e8;
     margin-bottom: 5px;
     box-shadow: 0 0px 4px 1px rgba(0, 0, 0, 0.10);
+    line-height: 79px;
     .align-right {
       float: right;
     }
+    .logo-wrap {
+      width: 40%;
+      float: left;
+    }
     .logo {
-      height: 43px;
-      width: 128px;
+      max-height: 60px;
+      max-width: 100%;
+    }
+    .overflow-menu-item {
+      right: 0;
     }
   }
 }

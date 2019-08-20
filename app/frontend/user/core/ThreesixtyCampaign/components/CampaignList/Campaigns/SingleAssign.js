@@ -95,7 +95,7 @@ const renderButtonContent = ({ url, status, assignedReports }) => {
 
 export default function SingleAssign ({ campaign: assign, color }) {
   return (
-    <Col className="card">
+    <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
       <Card
         bodyStyle={{ padding: 0 }}
         hoverable

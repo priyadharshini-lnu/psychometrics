@@ -5,10 +5,8 @@ $text-colors: #646464 #FFFFFF #FFFFFF #246479;
 
 :global {
   .cards .card {
-    margin: 0 8px 16px 8px;
-    max-width: calc(20% - 16px);
-    flex: 1 1 calc(20% - 16px);
-
+    margin-bottom: 12px;
+    min-width: 230px;
     &:nth-child(1) {
       // margin-left: 0;
     }

@@ -37,20 +37,20 @@ function Navigation ({
     <Layout.Header className="threesixty-navigation" mode="horizontal">
       <Route path="/campaigns/:id">
         {() => (
+          [<div className="logo-wrap" key="logo">
+            <a href="/">
+              {logo
+                ? <img src={logo} alt="logo" className="logo" />
+                : <Icon type="home" />}
+            </a>
+          </div>,
           <Menu
+            key="menu"
             mode="horizontal"
             theme="light"
-            style={{ lineHeight: '62px' }}
-            overflowedIndicator={<Icon type="menu" />}
+            style={{ lineHeight: '79px', height: '79px' }}
+            overflowedIndicator={<Icon type="menu" className="overflow-menu-item align-right"/>}
           >
-            <Menu.Item>
-              <a href="/">
-                {logo
-                  ? <img src={logo} alt="logo" className="logo" />
-                  : <Icon type="home" />}
-              </a>
-            </Menu.Item>
-
             <SubMenu
               className="align-right"
               title={(
@@ -75,7 +75,7 @@ function Navigation ({
               Help
             </Menu.Item>
           </Menu>
-        )}
+          ])}
       </Route>
       <Modal
         title={(
