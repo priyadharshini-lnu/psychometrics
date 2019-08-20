@@ -213,7 +213,6 @@ group :test do
   gem 'rspec-retry', '~> 0.6.1'
   gem 'wisper-rspec', '~> 1.1.0', require: false
   gem 'timecop', '~> 0.9.1'
-  gem 'rswag-specs', '~> 2.0.5'
   gem 'coveralls', require: false
   gem 'webdrivers'
 end
