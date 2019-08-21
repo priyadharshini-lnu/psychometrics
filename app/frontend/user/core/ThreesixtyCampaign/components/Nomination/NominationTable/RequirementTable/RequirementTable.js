@@ -175,7 +175,8 @@ export default function RequirementTable (props) {
           }}
         />
       </Table>
-      {canNominate && (
+      {/* TODO: Enable this and add First Name, Last Name prompt */}
+      {canNominate && false && (
       <Row type="flex" justify="end" style={{ marginTop: 8 }}>
         <Button type="link" onClick={() => setShowForm(true)} disabled={showForm}>
           <Icon type="plus" />

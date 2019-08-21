@@ -14,7 +14,7 @@ const { Panel } = Collapse
 const NominationItem = item => (
   <List.Item className="list-item">
     <Link to={`/campaigns/${item.campaignId}/nominations/${item.id}`} style={{ display: 'flex', alignItems: 'center' }}>
-      {!item.approved
+      {item.isNominationCompleted
         ? <Icon type="check-square" theme="filled" className="status-icon" />
         : <div className="empty-square" />}
       {' '}
