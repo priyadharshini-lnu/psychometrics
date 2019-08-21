@@ -2,7 +2,7 @@ import FroalaEditor from 'froala-editor'
 import store from 'admin/store'
 import { openModal } from 'admin/core/temp/modals'
 
-FroalaEditor.DefineIcon('pipedText', { NAME: 'code' })
+FroalaEditor.DefineIcon('pipedText', { NAME: '{x}', template: 'text' })
 FroalaEditor.RegisterCommand('pipedText', {
   title: 'Piped Text',
   focus: true,

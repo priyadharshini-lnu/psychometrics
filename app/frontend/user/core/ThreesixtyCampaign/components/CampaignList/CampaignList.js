@@ -30,14 +30,6 @@ export default function CampaignList ({
               </div>
             )}
           >
-            <Row type="flex" justify="space-between" align="middle" className="controls">
-              <Col>
-                <Search
-                  placeholder="Search"
-                  style={{ width: 220 }}
-                />
-              </Col>
-            </Row>
             <Row type="flex" gutter={12} className="cards">
               {campaigns.map((campaign, i) => {
                 const Component = Campaigns[campaign.type]

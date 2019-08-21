@@ -109,16 +109,15 @@ export default function RequirementTable (props) {
     )
   }
 
-  const renderStatus = ({ evaluator }) => {
+  const renderStatus = ({ evaluator, evaluatorNominationStatus }) => {
     if (!evaluator) { return { props: { colSpan: 0 } } }
-
     return {
       children: (
         <div className="status-with-icon">
-          {evaluator.evaluationStatus === 'completed'
+          {evaluatorNominationStatus === 'completed'
             ? <Icon type="check" />
             : <Icon type="sync" /> }
-          {statusPresenter.getStatus(evaluator.evaluationStatus)}
+          {statusPresenter.getStatus(evaluatorNominationStatus)}
         </div>),
     }
   }
