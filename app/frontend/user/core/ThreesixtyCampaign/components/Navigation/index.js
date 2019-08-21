@@ -89,7 +89,7 @@ function Navigation ({
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.help.main') }} />
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.helps.main') }} />
       </Modal>
       {editProfileModalOpen && <EditProfileModal closeModal={() => setEditProfileModal(false)} />}
     </Layout.Header>
