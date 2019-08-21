@@ -1,5 +1,5 @@
 const APPROVAL_STATUSES = {
-  waiting: 'Need Approve',
+  waiting: 'Needs Approval',
   approved: 'Approved',
   denied: 'Denied',
 }

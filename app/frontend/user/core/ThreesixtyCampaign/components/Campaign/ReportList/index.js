@@ -104,7 +104,7 @@ function ReportList ({
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.help.report') }} />
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.helps.report') }} />
       </Modal>
     </List>
   )
