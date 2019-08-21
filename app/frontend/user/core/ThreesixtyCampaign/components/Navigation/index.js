@@ -62,7 +62,7 @@ function Navigation ({
               <Menu.Item key="profile" onClick={() => { setEditProfileModal(true) }}>Profile</Menu.Item>
               <Menu.Item key="logout" onClick={onLogout}>Logout</Menu.Item>
             </SubMenu>
-            <Menu.Item key="app" className="align-right">
+            <Menu.Item key="app" className="align-right hidden">
               <Dropdown overlay={() => langMenu()} trigger={['click']}>
                 <a>
                   <Icon type="global" />
@@ -70,7 +70,7 @@ function Navigation ({
                 </a>
               </Dropdown>
             </Menu.Item>
-            <Menu.Item key="help" className="align-right" onClick={() => setShowHelp(true)}>
+            <Menu.Item key="help" className="align-right hidden" onClick={() => setShowHelp(true)}>
               <Icon type="question-circle" />
               Help
             </Menu.Item>
