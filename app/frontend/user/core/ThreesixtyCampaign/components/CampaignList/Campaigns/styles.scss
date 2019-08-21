@@ -7,10 +7,10 @@ $text-colors: #646464 #FFFFFF #FFFFFF #246479;
   .cards .card {
     margin-bottom: 12px;
     min-width: 230px;
-    &:nth-child(1) {
-      // margin-left: 0;
+    overflow: hidden;
+    .ant-card {
+      border-radius: 4px;
     }
-
     .cover {
       position: relative;
       display: flex;

@@ -1,0 +1,26 @@
+table.table-minimal-hr {
+    border: none;
+    th {
+
+    }
+}
+
+table.table-minimal-hr {
+	margin: 45px;
+    border-collapse: collapse;
+    border: none;
+    td.table-cell-header, th {
+        font-weight: bold;
+        color: #666;
+        padding: 10px 8px;
+    }
+    th {
+        border-bottom: 2px solid #eee;    
+    }
+    td {
+        padding: 8px;
+    }
+    tr:hover td {
+	    color: #666;
+    }
+}

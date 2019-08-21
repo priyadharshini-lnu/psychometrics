@@ -65,36 +65,45 @@ export default function Campaign ({
                 </Col>
                 <Col xs={{ span: 32 }} lg={{ span: 8 }}>
                   <div className="progresses">
-                    <div className="mini-progress">
-                      <div className="letter-icon">N</div>
-                      <Progress
-                        className="progress-line"
-                        percent={evaluationsPercent}
-                        showInfo={false}
-                        strokeColor="#00B4AA"
-                        strokeWidth={2}
-                      />
-                    </div>
-                    <div className="mini-progress">
-                      <div className="letter-icon">E</div>
-                      <Progress
-                        className="progress-line"
-                        percent={evaluationsPercent}
-                        showInfo={false}
-                        strokeColor="#00B4AA"
-                        strokeWidth={2}
-                      />
-                    </div>
-                    <div className="mini-progress">
-                      <div className="letter-icon">R</div>
-                      <Progress
-                        className="progress-line"
-                        percent={reportsPercent}
-                        showInfo={false}
-                        strokeColor="#00B4AA"
-                        strokeWidth={2}
-                      />
-                    </div>
+                    {reportsCounters.totalNominations !== 0
+                      && (
+                      <div className="mini-progress">
+                        <div className="letter-icon">N</div>
+                        <Progress
+                          className="progress-line"
+                          percent={nominationsPercent}
+                          showInfo={false}
+                          strokeColor="#00B4AA"
+                          strokeWidth={2}
+                        />
+                      </div>
+                      )}
+                    {reportsCounters.totalEvaluations !== 0
+                      && (
+                      <div className="mini-progress">
+                        <div className="letter-icon">E</div>
+                        <Progress
+                          className="progress-line"
+                          percent={evaluationsPercent}
+                          showInfo={false}
+                          strokeColor="#00B4AA"
+                          strokeWidth={2}
+                        />
+                      </div>
+                      )}
+                    {reportsCounters.totalReports !== 0
+                      && (
+                      <div className="mini-progress">
+                        <div className="letter-icon">R</div>
+                        <Progress
+                          className="progress-line"
+                          percent={reportsPercent}
+                          showInfo={false}
+                          strokeColor="#00B4AA"
+                          strokeWidth={2}
+                        />
+                      </div>
+                      )}
                   </div>
                 </Col>
               </Row>

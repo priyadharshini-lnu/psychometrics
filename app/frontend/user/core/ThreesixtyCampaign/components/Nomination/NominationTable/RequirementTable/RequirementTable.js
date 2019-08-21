@@ -109,16 +109,15 @@ export default function RequirementTable (props) {
     )
   }
 
-  const renderStatus = ({ evaluator }) => {
+  const renderStatus = ({ evaluator, evaluatorNominationStatus }) => {
     if (!evaluator) { return { props: { colSpan: 0 } } }
-
     return {
       children: (
         <div className="status-with-icon">
-          {evaluator.evaluationStatus === 'completed'
+          {evaluatorNominationStatus === 'completed'
             ? <Icon type="check" />
             : <Icon type="sync" /> }
-          {statusPresenter.getStatus(evaluator.evaluationStatus)}
+          {statusPresenter.getStatus(evaluatorNominationStatus)}
         </div>),
     }
   }
@@ -175,7 +174,8 @@ export default function RequirementTable (props) {
           }}
         />
       </Table>
-      {canNominate && (
+      {/* TODO: Enable this and add First Name, Last Name prompt */}
+      {canNominate && false && (
       <Row type="flex" justify="end" style={{ marginTop: 8 }}>
         <Button type="link" onClick={() => setShowForm(true)} disabled={showForm}>
           <Icon type="plus" />
