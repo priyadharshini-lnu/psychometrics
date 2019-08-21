@@ -5,14 +5,21 @@ module Threesixty
     attributes :invited_evaluators, :received_evaluations, :total_evaluators_for_assessment, :options
 
     def invited_evaluators
-      Threesixty::Participant.active.where(campaign_id: object.campaign_id, subject_id: user_id).where.not(evaluator_id: user_id).count
+      Threesixty::Participant.
+        active.
+        where(campaign_id: object.campaign_id, subject_id: user_id).
+        actual_by_options(object.option).
+        count
     end
 
     def received_evaluations
       if object.option.participants.dig('manager', 'can_approves_evaluations')
-        Threesixty::Participant.where(subject_id: user_id, manager_nomination_status: :approved, campaign_id: object.campaign_id).count
+        Threesixty::Participant.
+          where(subject_id: user_id, manager_nomination_status: :approved, campaign_id: object.campaign_id).
+          actual_by_options(object.option).
+          count
       else
-        UsersResult.where(subject_id: user_id, status: :completed, assessment_id: object.assessment_id).count
+        UsersResult.where(subject_id: user_id, status: :completed, assessment_id: object.assessment_id).where('subject_id != evaluator_id').count
       end
     end
 
@@ -21,7 +28,11 @@ module Threesixty
     end
 
     def total_evaluators_for_assessment
-      Threesixty::Participant.active.where(campaign_id: object.campaign_id).count
+      if object.option.participants.dig('subject', 'can_evaluate_self')
+        Threesixty::Participant.active.where(campaign_id: object.campaign_id).count
+      else
+        Threesixty::Participant.active.where(campaign_id: object.campaign_id).where('subject_id != evaluator_id').count
+      end
     end
 
     def options
