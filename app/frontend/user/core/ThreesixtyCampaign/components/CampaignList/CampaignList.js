@@ -1,13 +1,12 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, PageHeader, Input,
+  Layout, Row, PageHeader,
 } from 'antd'
 import Campaigns from './Campaigns'
 import './styles.scss'
 
 const { Content } = Layout
-const { Search } = Input
 const COLORS = ['#dcf5ef', '#95e8d7', '#69dbc8', '#42cfbc', '#1fc2b2']
 
 export default function CampaignList ({

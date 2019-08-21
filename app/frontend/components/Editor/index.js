@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react'
 import 'codemirror/lib/codemirror.css'
 import CodeMirror from 'codemirror'
-import 'codemirror/mode/xml/xml.js'
+import 'codemirror/mode/xml/xml'
 import 'froala-editor/css/froala_style.min.css'
 import 'froala-editor/css/froala_editor.pkgd.min.css'
 
@@ -68,10 +68,10 @@ function Editor ({ content, handleContentChange, type }) {
     key: '7MD3aC3A2C4B4D4A2xROKLJKYHROLDXDRE1b1YYGRi1Bd1C4F4B3H3G3A15A13A12C4C4==',
     attribution: false,
     tableStyles: {
-      'table-minimal-hr': 'Minimal'
+      'table-minimal-hr': 'Minimal',
     },
     tableCellStyles: {
-      'table-cell-header': 'Header'
+      'table-cell-header': 'Header',
     },
   }
   const ref = React.createRef()

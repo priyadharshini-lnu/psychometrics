@@ -77,7 +77,7 @@ export default function Campaign ({
                           strokeWidth={2}
                         />
                       </div>
-                    )}
+                      )}
                     {reportsCounters.totalEvaluations !== 0
                       && (
                       <div className="mini-progress">
@@ -90,7 +90,7 @@ export default function Campaign ({
                           strokeWidth={2}
                         />
                       </div>
-                    )}
+                      )}
                     {reportsCounters.totalReports !== 0
                       && (
                       <div className="mini-progress">
@@ -103,8 +103,8 @@ export default function Campaign ({
                           strokeWidth={2}
                         />
                       </div>
-                    )}
-                    </div>
+                      )}
+                  </div>
                 </Col>
               </Row>
             </div>
