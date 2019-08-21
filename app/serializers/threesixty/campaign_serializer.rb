@@ -13,7 +13,7 @@ module Threesixty
     def nominations_counters
       {
         total_nominations: nominations.count,
-        completed_nominations: Threesixty::Subjects::IsNominationRequirementComplete.call!(object, nominations).count{|_,v| v}
+        completed_nominations: Threesixty::Subjects::IsNominationRequirementComplete.call!(object, nominations.map(&:user)).count{|_,v| v}
       }
     end
 
