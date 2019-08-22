@@ -1,6 +1,6 @@
 /* eslint-disable react/no-danger */
 /* eslint-disable max-len */
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import {
   Layout, Typography, PageHeader, Icon,
 } from 'antd'
@@ -8,6 +8,8 @@ import _ from 'lodash'
 
 import NominationForm from './NominationForm/NominationForm'
 import NominationTable from './NominationTable/NominationTable'
+import NameModal from './NominationForm/NameModal'
+
 import './styles.scss'
 
 const { Paragraph } = Typography
@@ -17,10 +19,23 @@ export default function Nominations (props) {
   useEffect(() => {
     props.fetchNomination(props.match.params)
   }, [])
+  const { match: { params: { campaignId, id: nominationId } } } = props
+
+  const [showPrompt, setShowPrompt] = useState(false)
+  const [participant, setParticipant] = useState(null)
+
   const { instructions, nomination: { isSelf, options: { participants: options } } } = props
   const instruction = _.find(instructions, { name: 'invite_evaluators' })
 
   const canNominate = isSelf ? options.subject.canNominateEvaluators : options.manager.canChooseEvaluators
+
+  const updateNomination = (id, values) => {
+    props.updateNomination({
+      campaignId, nominationId, id, ...values,
+    }).then(() => {
+      setShowPrompt(false)
+    })
+  }
 
   return (
     <Layout className="layout">
@@ -54,8 +69,25 @@ export default function Nominations (props) {
                 </Paragraph>
               </div>
             )}
-            {canNominate && <NominationForm {...props} />}
-            <NominationTable {...props} canNominate={canNominate} />
+            {canNominate && (
+            <NominationForm
+              {...props}
+              setShowPrompt={setShowPrompt}
+              setParticipant={setParticipant}
+            />
+            )}
+            <NominationTable
+              {...props}
+              canNominate={canNominate}
+              setShowPrompt={setShowPrompt}
+              setParticipant={setParticipant}
+            />
+            <NameModal
+              participant={participant}
+              showPrompt={showPrompt}
+              setShowPrompt={setShowPrompt}
+              updateNomination={updateNomination}
+            />
           </div>
         </PageHeader>
       </Content>

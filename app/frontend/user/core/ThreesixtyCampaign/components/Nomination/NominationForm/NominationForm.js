@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React from 'react'
 import _ from 'lodash'
 import {
   Typography, Form, Icon, Input, Button, Select, Row, Col, AutoComplete, message, Alert,
@@ -6,24 +6,21 @@ import {
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
 import { relationshipWithoutSelf } from 'utils/relationship'
-import NameModal from './NameModal'
 
 const { Title } = Typography
 const { Option } = Select
 
 export default function NominationForm (props) {
   const {
-    addNomination, searchEvaluators, updateForm, updateNomination,
+    addNomination, searchEvaluators, updateForm,
     showForm, hideForm, requestApproval, sendEvaluatorReminder, updateAllNominationStatus,
     match: { params: { campaignId, id: nominationId } },
     nomination: {
       isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail, options,
     },
     autocomplete: { users },
+    setShowPrompt, setParticipant,
   } = props
-
-  const [showPrompt, setShowPrompt] = useState(false)
-  const [participant, setParticipant] = useState(null)
 
   const handleAdd = () => {
     addNomination({
@@ -34,14 +31,6 @@ export default function NominationForm (props) {
         setParticipant(data.response)
         setShowPrompt(true)
       }
-    })
-  }
-
-  const updateName = (id, values) => {
-    updateNomination({
-      campaignId, nominationId, id, ...values,
-    }).then(() => {
-      setShowPrompt(false)
     })
   }
 
@@ -74,12 +63,6 @@ export default function NominationForm (props) {
           {isSelf ? 'Yourself' : userPresenter.getFullNameWithEmail(subject)}
         </div>
       </Title>
-      <NameModal
-        participant={participant}
-        showPrompt={showPrompt}
-        setShowPrompt={setShowPrompt}
-        updateNomination={updateName}
-      />
       <div className="form">
         {show
           ? (
