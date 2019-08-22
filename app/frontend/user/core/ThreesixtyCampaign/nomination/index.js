@@ -4,6 +4,7 @@ import { updateIn, setIn, getIn } from 'utils/immutable'
 const FETCH = 'threeSixty/nomination/FETCH'
 const REMOVE = 'threeSixty/nomination/REMOVE'
 const ADD = 'threeSixty/nomination/ADD'
+const UPDATE = 'threeSixty/nomination/UPDATE'
 const ADD_FAILURE = 'threeSixty/nomination/ADD_FAILURE'
 const SHOW_FORM = 'threeSixty/nomination/SHOW_FORM'
 const HIDE_FORM = 'threeSixty/nomination/HIDE_FORM'
@@ -42,6 +43,21 @@ export const addNomination = ({
     body: {
       relationshipId,
       evaluatorEmail,
+    },
+  },
+})
+
+
+export const updateNomination = ({
+  campaignId, nominationId, id, firstName, lastName,
+}) => ({
+  type: UPDATE,
+  request: {
+    url: `/campaigns/${campaignId}/nominations/${nominationId}/evaluators/${id}`,
+    method: 'put',
+    body: {
+      firstName,
+      lastName,
     },
   },
 })

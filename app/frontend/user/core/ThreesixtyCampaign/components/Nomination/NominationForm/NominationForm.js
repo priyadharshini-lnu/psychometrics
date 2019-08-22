@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import _ from 'lodash'
 import {
   Typography, Form, Icon, Input, Button, Select, Row, Col, AutoComplete, message, Alert,
@@ -6,13 +6,14 @@ import {
 import './styles.scss'
 import userPresenter from 'presenters/userPresenter'
 import { relationshipWithoutSelf } from 'utils/relationship'
+import NameModal from './NameModal'
 
 const { Title } = Typography
 const { Option } = Select
 
 export default function NominationForm (props) {
   const {
-    addNomination, searchEvaluators, updateForm,
+    addNomination, searchEvaluators, updateForm, updateNomination,
     showForm, hideForm, requestApproval, sendEvaluatorReminder, updateAllNominationStatus,
     match: { params: { campaignId, id: nominationId } },
     nomination: {
@@ -21,9 +22,26 @@ export default function NominationForm (props) {
     autocomplete: { users },
   } = props
 
+  const [showPrompt, setShowPrompt] = useState(false)
+  const [participant, setParticipant] = useState(null)
+
   const handleAdd = () => {
     addNomination({
       campaignId, nominationId, ...form.attrs,
+    }).then((data) => {
+      const { evaluator } = data.response
+      if (!evaluator.firstName || !evaluator.lastName) {
+        setParticipant(data.response)
+        setShowPrompt(true)
+      }
+    })
+  }
+
+  const updateName = (id, values) => {
+    updateNomination({
+      campaignId, nominationId, id, ...values,
+    }).then(() => {
+      setShowPrompt(false)
     })
   }
 
@@ -56,7 +74,12 @@ export default function NominationForm (props) {
           {isSelf ? 'Yourself' : userPresenter.getFullNameWithEmail(subject)}
         </div>
       </Title>
-
+      <NameModal
+        participant={participant}
+        showPrompt={showPrompt}
+        setShowPrompt={setShowPrompt}
+        updateNomination={updateName}
+      />
       <div className="form">
         {show
           ? (
@@ -153,6 +176,7 @@ export default function NominationForm (props) {
           type="error"
         />
       )}
+
     </div>
   )
 }

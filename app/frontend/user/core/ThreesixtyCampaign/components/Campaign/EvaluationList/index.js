@@ -176,7 +176,7 @@ of
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.help.evaluation') }} />
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.helps.evaluation') }} />
       </Modal>
     </List>
   )

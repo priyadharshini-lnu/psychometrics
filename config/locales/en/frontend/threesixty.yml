@@ -10,6 +10,8 @@ en:
     approve_evaluations: Approve Evaluations
     approve_nominations: Approve Nominations
     approve_reports: Approve Reports
+    view_reports: View Reports
+    view_my_report: View My Report
     page_title: Signify 360° Review - Apply Level
     approved: Approved
     denied: Denied
@@ -42,3 +44,9 @@ en:
     deny_all_successful: Denied all nominations
     subject: Subject
     evaluator: Evaluator
+    set_name_for_evaluator: Set name for Evaluator
+    first_name_error: Please input First Name
+    last_name_error: Please input Last Name
+    first_name: First Name
+    last_name: Last Name
+    submit: Submit

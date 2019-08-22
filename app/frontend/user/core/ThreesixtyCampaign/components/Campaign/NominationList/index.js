@@ -14,7 +14,7 @@ const { Panel } = Collapse
 const NominationItem = item => (
   <List.Item className="list-item">
     <Link to={`/campaigns/${item.campaignId}/nominations/${item.id}`} style={{ display: 'flex', alignItems: 'center' }}>
-      {!item.approved
+      {item.isNominationCompleted
         ? <Icon type="check-square" theme="filled" className="status-icon" />
         : <div className="empty-square" />}
       {' '}
@@ -123,7 +123,7 @@ of
         onCancel={() => setShowHelp(false)}
         footer={null}
       >
-        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.help.nomination') }} />
+        <div className="help-modal-body" dangerouslySetInnerHTML={{ __html: I18n.t('threesixty.helps.nomination') }} />
       </Modal>
     </List>
   )

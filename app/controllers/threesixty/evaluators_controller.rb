@@ -3,11 +3,12 @@ module Threesixty
     layout 'layouts/threesixty_campaign'
     before_action :set_campaign
     before_action :set_subject
-    before_action :set_nomination, only: [:update_status]
+    before_action :set_nomination, only: [:update_status, :update]
 
     def create
       form = ::Threesixty::Participants::CreateForm.from_params(params).
               with_context(subject: @subject, threesixty_campaign: @campaign)
+
       if form.valid?
         result = ::Threesixty::Evaluators::NominateEvaluator.call!(@campaign, @subject, params, form.user)
 
@@ -25,6 +26,11 @@ module Threesixty
       else
         render json: { errors: form.error_messages }, status: :bad_request
       end
+    end
+
+    def update
+      @nomination.evaluator.update(first_name: params[:first_name], last_name: params[:last_name])
+      render json: @nomination, serializer: Threesixty::EndUser::NomineeSerializer, include: '**'
     end
 
     def update_status

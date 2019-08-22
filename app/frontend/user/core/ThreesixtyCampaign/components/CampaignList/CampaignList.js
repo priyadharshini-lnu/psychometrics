@@ -1,14 +1,13 @@
 /* eslint-disable max-len */
 import React, { useEffect } from 'react'
 import {
-  Layout, Row, Col, PageHeader, Input,
+  Layout, Row, PageHeader,
 } from 'antd'
 import Campaigns from './Campaigns'
 import './styles.scss'
 
 const { Content } = Layout
-const { Search } = Input
-const COLORS = ['#D8D8D8', '#00B1A8', '#246479', '#9DD8D7']
+const COLORS = ['#dcf5ef', '#95e8d7', '#69dbc8', '#42cfbc', '#1fc2b2']
 
 export default function CampaignList ({
   campaigns, fetchCampaigns, downloadReport,
@@ -30,15 +29,7 @@ export default function CampaignList ({
               </div>
             )}
           >
-            <Row type="flex" justify="space-between" align="middle" className="controls">
-              <Col>
-                <Search
-                  placeholder="Search"
-                  style={{ width: 220 }}
-                />
-              </Col>
-            </Row>
-            <Row type="flex" justify="start" className="cards">
+            <Row type="flex" gutter={12} className="cards">
               {campaigns.map((campaign, i) => {
                 const Component = Campaigns[campaign.type]
                 return <Component key={campaign.id} color={COLORS[i % COLORS.length]} campaign={campaign} downloadReport={downloadReport} />
