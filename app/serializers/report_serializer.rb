@@ -14,11 +14,16 @@
 class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations, :props,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
-             :category
+             :category, :pages
 
-  has_many :pages, serializer: Reports::PageSerializer
   has_many :filters, serializer: Reports::FilterSerializer
   has_many :assessments, serializer: Reports::AssessmentSerializer
+
+  def pages
+    object.pages.map do |page|
+      Reports::PageSerializer.new(page, piped_text_context: @instance_options[:piped_text_context])
+    end
+  end
 
   def factors
     object_assessment_ids = object.assessment_ids
