@@ -33,6 +33,12 @@ module Threesixty
           name: 'date',
           class_name: 'Threesixty::PipedText::Branches::DateTime',
           required_context: []
+        },
+        {
+          key: 'sst',
+          name: 'subject_smart_text',
+          class_name: 'Threesixty::PipedText::Branches::SubjectSmartText',
+          required_context: %i[subject evaluator]
         }
       ].freeze
 

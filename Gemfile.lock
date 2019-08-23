@@ -488,6 +488,7 @@ GEM
     pg (0.18.4)
     polyamorous (1.3.3)
       activerecord (>= 3.0)
+    possessive (1.0.1)
     pry (0.10.4)
       coderay (~> 1.1.0)
       method_source (~> 0.8.1)
@@ -900,6 +901,7 @@ DEPENDENCIES
   newrelic_rpm (~> 6.3, >= 6.3.0.355)
   paranoia (~> 2.4)
   pg (~> 0.18.4)
+  possessive (~> 1.0.1)
   pry-byebug
   pry-rails
   psychometrics-reports-ui!
