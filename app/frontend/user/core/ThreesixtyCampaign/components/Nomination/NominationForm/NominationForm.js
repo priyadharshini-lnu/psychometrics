@@ -19,7 +19,7 @@ export default function NominationForm (props) {
       isSelf, subject, relationships, form, form: { show }, canSendRequestApprovalEmail, options,
     },
     autocomplete: { users },
-    setShowPrompt, setParticipant,
+    setShowPrompt, setParticipant, requirements,
   } = props
 
   const handleAdd = () => {
@@ -53,6 +53,8 @@ export default function NominationForm (props) {
     updateAllNominationStatus(campaignId, nominationId, 'denied')
       .then(() => message.info(I18n.t('threesixty.deny_all_successful')))
   }
+
+  const hasEvaluations = _.some(requirements, req => req.evaluators && req.evaluators.length > 0)
 
   return (
     <div className="nominations-form">
@@ -118,39 +120,41 @@ export default function NominationForm (props) {
           : (
             <Button type="primary" shape="circle" icon="plus" size="large" onClick={showForm} />
           )}
-        <Row type="flex" justify="end" gutter={8}>
-          {isSelf && canSendRequestApprovalEmail && (
-          <Col>
-            <Button type="link" onClick={handleRequestApproval}>
-              <Icon type="team" />
-              {I18n.t('threesixty.email_approve_request')}
-            </Button>
-          </Col>
-          )}
-          {options.messages.subjectCanSendReminder && (
-          <Col>
-            <Button type="primary" onClick={handleSendEvaluatorReminder}>
-              <Icon type="team" />
-              {I18n.t('threesixty.remind_all')}
-            </Button>
-          </Col>
-          )}
-          {isSelf || !options.participants.manager.canApproveNominations || (
-          <>
-            <div className="divider" />
+        {hasEvaluations && (
+          <Row type="flex" justify="end" gutter={8}>
+            {isSelf && canSendRequestApprovalEmail && (
             <Col>
-              <Button type="primary" onClick={handleApproveAll}>
-                {I18n.t('threesixty.approve_all')}
+              <Button type="link" onClick={handleRequestApproval}>
+                <Icon type="team" />
+                {I18n.t('threesixty.email_approve_request')}
               </Button>
             </Col>
+            )}
+            {options.messages.subjectCanSendReminder && (
             <Col>
-              <Button type="danger" className="deny-button" onClick={handleDenyAll}>
-                {I18n.t('threesixty.deny_all')}
+              <Button type="primary" onClick={handleSendEvaluatorReminder}>
+                <Icon type="team" />
+                {I18n.t('threesixty.remind_all')}
               </Button>
             </Col>
-          </>
-          )}
-        </Row>
+            )}
+            {isSelf || !options.participants.manager.canApproveNominations || (
+            <>
+              <div className="divider" />
+              <Col>
+                <Button type="primary" onClick={handleApproveAll}>
+                  {I18n.t('threesixty.approve_all')}
+                </Button>
+              </Col>
+              <Col>
+                <Button type="danger" className="deny-button" onClick={handleDenyAll}>
+                  {I18n.t('threesixty.deny_all')}
+                </Button>
+              </Col>
+            </>
+            )}
+          </Row>
+        )}
       </div>
       {_.some(form.errors) && (
         <Alert

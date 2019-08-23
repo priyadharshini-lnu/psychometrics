@@ -10,7 +10,7 @@ module Threesixty::EndUser
     end
 
     def status
-      object.result.status
+      object.result&.status
     end
 
     def user
