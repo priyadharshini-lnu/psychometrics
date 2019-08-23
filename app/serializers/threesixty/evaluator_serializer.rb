@@ -6,6 +6,8 @@ module Threesixty
     has_one :user, serializer: UserSerializer
 
     def status
+      return nil unless object.self_subject
+
       Threesixty::Participants::GetStatus.call!(
         object.self_subject,
         @instance_options[:nomination_requirement],
@@ -15,6 +17,8 @@ module Threesixty
     end
 
     def report_status
+      return nil unless object.self_subject
+
       Threesixty::Participants::GetReportStatus.call!(
         object.self_subject,
         @instance_options[:option],

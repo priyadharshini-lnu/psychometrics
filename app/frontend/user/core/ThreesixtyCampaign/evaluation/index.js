@@ -14,6 +14,9 @@ export const fetchAssessment = (campaignId, evaluationId, { isEdit, step }) => (
   request: {
     url: `/campaigns/${campaignId}/assessments`,
     camelize: false,
+    body: {
+      evaluation_id: evaluationId,
+    },
   },
   campaignId,
   evaluationId,

@@ -46,7 +46,7 @@ export default function EvaluatorTable ({
         render={({ reportStatus }) => reportStatus && I18n.t(`reports.statuses.${reportStatus}`)}
       />
 
-      <Column title="Status" key="status" render={({ status }) => I18n.t(`subjects.statuses.${status}`)} />
+      <Column title="Status" key="status" render={({ status }) => status && I18n.t(`subjects.statuses.${status}`)} />
 
       <Column
         title="Is Subject"

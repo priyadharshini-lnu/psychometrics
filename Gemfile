@@ -77,8 +77,8 @@ gem 'annotate', '~> 2.7.0'
 gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
-gem 'psychometrics-reports-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git', ref: '619ecd2be11804cf97fb8df8a8c2b14056c9ceea'
-gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', ref: '1e92ddfcd9fa234dd3cff6215ccc875a685410a3'
+gem 'psychometrics-reports-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git', ref: 'd62783d840c18e67a30b0d5920530efd3cc8eba2'
+gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', ref: '152857023584725f29150e3b03ac1651a28443af'
 
 ### XLS import
 gem 'rubyXL'
@@ -160,6 +160,7 @@ gem 'rswag-ui', '~> 2.0.5'
 gem 'tty-progressbar', '~> 0.16.0', require: false
 
 gem 'activerecord-import', '~> 1.0.2'
+gem 'possessive', '~> 1.0.1'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

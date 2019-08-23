@@ -18,10 +18,9 @@
 class BlockSerializer < ActiveModel::Serializer
   attributes :id, :name, :position, :deleted, :props, :created_at, :template_id, :questions
 
-  #
   def questions
     object.questions_ams.map do |q|
-      QuestionSerializer.new(q)
+      QuestionSerializer.new(q, piped_text_context: @instance_options[:piped_text_context])
     end
   end
 

@@ -5,7 +5,7 @@ import {
   Menu, Dropdown, List, Collapse, Icon, Progress, Modal, Tooltip,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
-import { EVALUATOR_NOMINATION_STATUSES } from 'constants/participantStatuses'
+import { STATUSES } from 'constants/userResult'
 import connect from './connect'
 import './styles.scss'
 
@@ -16,7 +16,7 @@ function EvaluationList ({
   evaluations, managedSubjects, declineEvaluation, options, history, percent, evaluationsCounters,
 }) {
   const [showHelp, setShowHelp] = useState(false)
-  const isEvaluationCompleted = item => item.evaluatorNominationStatus === EVALUATOR_NOMINATION_STATUSES.COMPLETED
+  const isEvaluationCompleted = item => item.status === STATUSES.COMPLETED
 
   const menu = item => (
     <Menu>
