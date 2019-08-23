@@ -17,8 +17,8 @@ module Reports
       translations = Translation.to_hash_for_report(report.id, report.assessment_ids, locale)
       available_translations = Translation.available_translation_for_report(report.id, report.assessment_ids)
       piped_text_context = {
-        subject: users_report.user,
-        threesixty_campaign: users_report.threesixty_campaign,
+        subject: users_report&.user,
+        threesixty_campaign: users_report&.threesixty_campaign,
       }
       broadcast :ok,
                 user: Reports::UserSerializer.new(users_report&.user || membership.user).to_json,
