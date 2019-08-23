@@ -38,7 +38,7 @@ module Threesixty
 
       def initialize(body, context = {})
         @body = body
-        @context = context
+        @context = context || {}
       end
 
       def call

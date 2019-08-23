@@ -19,16 +19,18 @@
 
 class AssessmentSerializer < ActiveModel::Serializer
   attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id,
-             :enable_back, :enable_progress, :data_sheet_columns, :relationships
+             :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks
 
-  has_many :blocks, serializer: BlockSerializer do
+  def blocks
     object.blocks.
       selecting { ['blocks.*',
                    coalesce(template.props, props).as('props'),
                    coalesce(template.name, name).as('name')] }.
       joining { template.outer }.
       includes(questions_ams: :comments).
-      where.has { (template.disabled == false) | (template.id == nil) }
+      where.has { (template.disabled == false) | (template.id == nil) }.map do |block|
+      BlockSerializer.new(block, piped_text_context: @instance_options[:piped_text_context])
+    end
   end
 
   def factors
