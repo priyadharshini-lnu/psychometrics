@@ -62,6 +62,7 @@ export default function RequirementTable (props) {
   }
 
   const renderApprovalStatus = (evaluator) => {
+    if (evaluator.id === 'form') { return { props: { colSpan: 0 } } }
     if (!evaluator) { return { props: { colSpan: 0 } } }
     if (evaluator.evaluatorNominationStatus === EVALUATOR_NOMINATION_STATUSES.DECLINED) {
       return { children: 'Declined' }
@@ -127,6 +128,11 @@ export default function RequirementTable (props) {
   if (showForm) {
     rowData.push({ id: 'form' })
   }
+
+  let canAdd = canNominate
+  if (options.participants.subject.limitRelationshipThatSubjectCanSelect) {
+    canAdd = canAdd && options.participants.subject.canSelectRelationships[condition.relationshipId]
+  }
   return (
     <div className="requirement">
       <Table
@@ -174,13 +180,12 @@ export default function RequirementTable (props) {
           }}
         />
       </Table>
-      {/* TODO: Enable this and add First Name, Last Name prompt */}
-      {canNominate && false && (
+      {canAdd && (
       <Row type="flex" justify="end" style={{ marginTop: 8 }}>
         <Button type="link" onClick={() => setShowForm(true)} disabled={showForm}>
           <Icon type="plus" />
           {' '}
-          {I18n.t('threesixty.and')}
+          {I18n.t('threesixty.add')}
           {' '}
           {title}
         </Button>

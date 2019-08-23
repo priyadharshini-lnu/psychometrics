@@ -5,6 +5,7 @@ export const ADD_DATASHEET_CRITERIA = 'threeSixty/option/ADD_DATASHEET_CRITERIA'
 export const ADD_DATASHEET_CRITERIA_WITH_DEFAULT_VALUE = 'threeSixty/option/ADD_DATASHEET_CRITERIA_WITH_DEFAULT_VALUE'
 export const REMOVE_DATASHEET_CRITERIA = 'threeSixty/option/participants/REMOVE_DATASHEET_CRITERIA'
 export const UPDATE_DATASHEET_CRITERIA = 'threeSixty/option/participants/UPDATE_DATASHEET_CRITERIA'
+export const UPDATE_RELATIONSHIP = 'threeSixty/option/participants/UPDATE_RELATIONSHIP'
 
 export const fetch = campaignId => ({
   type: FETCH_PARTICIPANT_OPTIONS,
@@ -49,6 +50,15 @@ export const updateDatasheetCriteria = (key, index, name, value) => ({
     key,
     index,
     name,
+    value,
+  },
+})
+
+export const updateRelationship = (key, { id }, value) => ({
+  type: UPDATE_RELATIONSHIP,
+  payload: {
+    key,
+    id,
     value,
   },
 })

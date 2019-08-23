@@ -13,13 +13,7 @@ module Threesixty
         can_nominate_anyone_from_datasheet
         limit_nomination_by_subject_from_datasheet
         cannot_remove_nomination_set_by_manager_and_admin
-        can_select_relationship
         limit_relationship_that_subject_can_select
-        can_select_customer_relationship
-        can_select_direct_report_relationship
-        can_select_manager_relationship
-        can_select_peer_relationship
-        can_select_supplier_relationship
         can_view_completion_status_of_evaluation
         can_view_individual_evaluations
       )
@@ -39,13 +33,8 @@ module Threesixty
       attribute :can_nominate_anyone_from_datasheet, Boolean, deafult: false
       attribute :limit_nomination_by_subject_from_datasheet, Boolean, deafult: false
       attribute :cannot_remove_nomination_set_by_manager_and_admin, Boolean, deafult: false
-      attribute :can_select_relationship, Boolean, deafult: false
       attribute :limit_relationship_that_subject_can_select, Boolean, deafult: false
-      attribute :can_select_customer_relationship, Boolean, deafult: false
-      attribute :can_select_direct_report_relationship, Boolean, deafult: false
-      attribute :can_select_manager_relationship, Boolean, deafult: false
-      attribute :can_select_peer_relationship, Boolean, deafult: false
-      attribute :can_select_supplier_relationship, Boolean, deafult: false
+      attribute :can_select_relationships, Hash, deafult: {}
       attribute :can_view_completion_status_of_evaluation, Boolean, deafult: false
       attribute :can_view_individual_evaluations, Boolean, deafult: false
 

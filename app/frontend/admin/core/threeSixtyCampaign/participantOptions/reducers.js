@@ -6,6 +6,7 @@ import {
   ADD_DATASHEET_CRITERIA,
   REMOVE_DATASHEET_CRITERIA,
   UPDATE_DATASHEET_CRITERIA,
+  UPDATE_RELATIONSHIP,
 } from './actions'
 
 const HANDLERS = {
@@ -28,9 +29,23 @@ const HANDLERS = {
   }) => (
     updateIn(state, [...key, index], criteria => ({ ...criteria, [name]: value }))
   ),
+  [UPDATE_RELATIONSHIP]: (state, { payload: { key, id, value } }) => (
+    updateIn(
+      state,
+      [key, 'canSelectRelationships'],
+      hash => Object.assign({}, hash, { [id]: value }),
+    )
+  ),
 }
 
-const defaultState = { subject: {}, manager: {}, evaluator: {} }
+const defaultState = {
+  subject: {
+    canSelectRelationships: {},
+  },
+  manager: {},
+  evaluator: {},
+  relationships: [],
+}
 
 export default function reducer (state = defaultState, action) {
   const handler = HANDLERS[action.type]

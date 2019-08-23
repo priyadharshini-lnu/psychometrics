@@ -5,13 +5,18 @@ import {
   addDatasheetCriteriaWithDefaultValue,
   removeDatasheetCriteria,
   updateDatasheetCriteria,
+  updateRelationship,
 } from 'admin/core/threeSixtyCampaign/participantOptions/actions'
-import { getSubjectOption } from 'admin/core/threeSixtyCampaign/participantOptions/selectors'
+import { getSubjectOption, getRelationships } from 'admin/core/threeSixtyCampaign/participantOptions/selectors'
 import { openModal } from 'admin/core/temp/modals'
 
 export default connect(
-  state => ({ options: getSubjectOption(state) }),
+  state => ({
+    relationships: getRelationships(state),
+    options: getSubjectOption(state),
+  }),
   dispatch => ({
+    updateRelationship: (...args) => dispatch(updateRelationship(...args)),
     updateParticipantOptions: _.curry((key, value) => dispatch(updateParticipantOptions(key, value))),
     removeDatasheetCriteria: _.curry((key, index) => dispatch(removeDatasheetCriteria(key, index))),
     updateDatasheetCriteria: _.curry(

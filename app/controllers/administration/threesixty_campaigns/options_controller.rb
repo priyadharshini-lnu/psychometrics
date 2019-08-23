@@ -8,7 +8,9 @@ module Administration
       append_before_action :pundit_authorize
 
       def participant_options
-        render json: threesixty_campaign.option.participants
+        render(json: threesixty_campaign.option.participants.tap do |data|
+          data[:relationships] = Relationships::ByCampaign.new(threesixty_campaign.campaign).map { |r| RelationshipSerializer.new(r).to_h }
+        end)
       end
 
       def message_options
