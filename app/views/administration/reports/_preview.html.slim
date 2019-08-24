@@ -1,6 +1,6 @@
 = stylesheet_link_tag :psychometrics_reports_vendor
 = stylesheet_link_tag :psychometrics_reports_preview
-#report_preview class="#{params[:export] ? '' : 'html_preview' }" data-data="#{ReportSerializer.new(resource).to_json(include: '**')}"
+#report_preview class="#{params[:export] ? '' : 'html_preview' }" data-data="#{ReportSerializer.new(resource, piped_text_context: {}).to_json(include: '**')}"
 - if params[:export]
   = javascript_include_tag :psychometrics_pdf_vendor
   = javascript_include_tag :psychometrics_pdf_app
