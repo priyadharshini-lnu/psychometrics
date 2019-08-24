@@ -5,16 +5,39 @@ import cs from 'classnames'
 import { NAME } from 'constants/emailTemplate'
 import { TYPES } from 'constants/emailCriteria'
 import style from './style.scss'
-import StringComparator from './Comparator/String'
-import DatasheetComparator from './Comparator/Datasheet'
-import RelationshipComparator from './Comparator/Relationship'
-import NominationRequirementComparator from './Comparator/NominationRequirement'
-import SelfEvaluationComparator from './Comparator/SelfEvaluation'
-import EvaluationComparator from './Comparator/Evaluation'
-import EvaluatorTypeComparator from './Comparator/EvaluatorType'
-import NumberComparator from './Comparator/Number'
-import TaskComparator from './Comparator/Task'
-import ManagerTaskComparator from './Comparator/ManagerTask'
+import Comparators from './Comparators'
+
+const isEvaluatorEmail = name => _.includes([NAME.EVALUATOR_INVITE, NAME.EVALUATOR_REMINDER], name)
+const isInvitationEmail = name => _.includes([NAME.EVALUATOR_INVITE, NAME.SUBJECT_INVITE], name)
+
+const OPTIONS = [
+  { name: 'Name or Email', key: TYPES.NAME_OR_EMAIL },
+  { name: 'Last name', key: TYPES.LAST_NAME },
+  { name: 'First name', key: TYPES.FIRST_NAME },
+  { name: 'Metadata', key: TYPES.DATASHEET },
+  { name: 'Has Relationship', key: TYPES.RELATIONSHIP },
+  { name: 'Self Evaluations', key: TYPES.SELF_EVALUATIONS },
+  {
+    name: 'Nomination Requirements',
+    key: TYPES.NOMINATION_REQUIREMENTS,
+    condition: ({ emailName }) => !isEvaluatorEmail(emailName),
+  },
+  { name: 'Evaluations', key: TYPES.EVALUATIONS, condition: ({ emailName }) => !isEvaluatorEmail(emailName) },
+  {
+    name: 'Evaluations Received',
+    key: TYPES.EVALUATIONS_RECEIVED,
+    condition: ({ emailName }) => !isEvaluatorEmail(emailName),
+  },
+  { name: 'Tasks', key: TYPES.TASKS, condition: ({ emailName }) => !isEvaluatorEmail(emailName) },
+  { name: 'Manager Tasks', key: TYPES.MANAGER_TASKS, condition: ({ emailName }) => !isEvaluatorEmail(emailName) },
+  { name: 'Subject Metadata', key: TYPES.SUBJECT_DATASHEET, condition: ({ emailName }) => isEvaluatorEmail(emailName) },
+  {
+    name: 'External Participants',
+    key: TYPES.EVALUATOR_TYPE,
+    condition: ({ emailName }) => isEvaluatorEmail(emailName),
+  },
+  { name: 'Invitation', key: TYPES.INVITATION, condition: ({ emailName }) => isInvitationEmail(emailName) },
+]
 
 export default function Criteria ({
   emailName,
@@ -26,68 +49,22 @@ export default function Criteria ({
   remove,
   merge,
 }) {
-  const evaluatorEmail = () => _.includes([NAME.EVALUATOR_INVITE, NAME.EVALUATOR_REMINDER], emailName)
-
   const renderComparator = () => {
-    const props = {
-      comparator,
-      update,
-      merge,
-      subField,
-      value,
-    }
-    switch (field) {
-      case TYPES.NAME_OR_EMAIL:
-      case TYPES.FIRST_NAME:
-      case TYPES.LAST_NAME:
-        return <StringComparator {...props} />
-      case TYPES.DATASHEET:
-      case TYPES.SUBJECT_DATASHEET:
-        return <DatasheetComparator {...props} />
-      case TYPES.RELATIONSHIP:
-        return <RelationshipComparator {...props} />
-      case TYPES.NOMINATION_REQUIREMENTS:
-        return <NominationRequirementComparator {...props} />
-      case TYPES.SELF_EVALUATIONS:
-        return <SelfEvaluationComparator {...props} />
-      case TYPES.EVALUATIONS:
-        return <EvaluationComparator {...props} />
-      case TYPES.EVALUATIONS_RECEIVED:
-        return <NumberComparator {...props} />
-      case TYPES.TASKS:
-        return <TaskComparator {...props} />
-      case TYPES.MANAGER_TASKS:
-        return <ManagerTaskComparator {...props} />
-      case TYPES.EVALUATOR_TYPE:
-        return <EvaluatorTypeComparator {...props} />
-      default:
-        return null
-    }
+    const Comparator = Comparators[field]
+    if (!Comparator) return null
+
+    return <Comparator comparator={comparator} update={update} merge={merge} subField={subField} value={value} />
   }
 
   return (
     <div className="mbm">
       <div>
         <Select dropdownMatchSelectWidth={false} size="small" value={field} onChange={value => update('field', value)}>
-          <Select.Option key={TYPES.NAME_OR_EMAIL}>Name or Email</Select.Option>
-          <Select.Option key={TYPES.LAST_NAME}>Last name</Select.Option>
-          <Select.Option key={TYPES.FIRST_NAME}>First name</Select.Option>
-          <Select.Option key={TYPES.DATASHEET}>Metadata</Select.Option>
-          <Select.Option key={TYPES.RELATIONSHIP}>Has Relationship</Select.Option>
-          <Select.Option key={TYPES.SELF_EVALUATIONS}>Self Evaluations</Select.Option>
-          {evaluatorEmail() || [
-            <Select.Option key={TYPES.NOMINATION_REQUIREMENTS}>Nomination Requirements</Select.Option>,
-            <Select.Option key={TYPES.EVALUATIONS}>Evaluations</Select.Option>,
-            <Select.Option key={TYPES.EVALUATIONS_RECEIVED}>Evaluations Received</Select.Option>,
-            <Select.Option key={TYPES.TASKS}>Tasks</Select.Option>,
-            <Select.Option key={TYPES.MANAGER_TASKS}>Manager Tasks</Select.Option>,
-          ]
-          }
-          {evaluatorEmail() && [
-            <Select.Option key={TYPES.SUBJECT_DATASHEET}>Subject Metadata</Select.Option>,
-            <Select.Option key={TYPES.EVALUATOR_TYPE}>External Participants</Select.Option>,
-          ]
-          }
+          {OPTIONS.map(
+            option => (!option.condition || option.condition({ emailName })) && (
+            <Select.Option key={option.key}>{option.name}</Select.Option>
+            ),
+          )}
         </Select>
         <div className={cs(['mls', style.comparatorContainer])}>{renderComparator()}</div>
         <span>

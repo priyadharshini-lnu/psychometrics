@@ -11,6 +11,7 @@ export const EVALUATIONS_RECEIVED = 'evaluations_received'
 export const TASKS = 'tasks'
 export const MANAGER_TASKS = 'manager_tasks'
 export const EVALUATOR_TYPE = 'evaluator_type'
+export const INVITATION = 'invitation'
 
 export const TYPES = {
   NAME_OR_EMAIL,
@@ -26,6 +27,7 @@ export const TYPES = {
   TASKS,
   MANAGER_TASKS,
   EVALUATOR_TYPE,
+  INVITATION,
 }
 
 export const COMPLETED = 'completed'
@@ -44,6 +46,9 @@ export const EQUAL = 'equal'
 export const NOT_EQUAL = 'not_equal'
 export const GREATER_THAN = 'greater_than'
 export const LESS_THAN = 'less_than'
+
+export const NOT_RECEIVED = 'not_received'
+export const RECEIVED_AFTER = 'received_after'
 
 export const STRING_COMPARATOR = {
   STARTS_WITH,
@@ -88,4 +93,9 @@ export const TASKS_VALUES = {
   NOT_COMPLETED,
   VIEWED_REPORT,
   NOT_VIEWED_REPORT,
+}
+
+export const INVITATION_VALUES = {
+  NOT_RECEIVED,
+  RECEIVED_AFTER,
 }
