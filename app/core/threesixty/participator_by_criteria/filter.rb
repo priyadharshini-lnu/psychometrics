@@ -55,6 +55,10 @@ module Threesixty
         {
           field_types: %w[atleast_one_non_self_evalaution],
           class_name: ByAtleastOneNonSelfEvaluation
+        },
+        {
+          field_types: %w[invitation],
+          class_name: ParticipatorByCriteria::ByInvitation
         }
       ].freeze
 
