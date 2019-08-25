@@ -28,7 +28,7 @@ GIT
 
 GIT
   remote: https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git
-  revision: 3fe315fcb16ee8af3f6eff24d0ffa6fbad83b192
+  revision: 573852b95f94cc537a1b7c1c0323b4c28bfe07a5
   branch: master
   specs:
     psychometrics-survey-ui (0.0.1)
@@ -664,7 +664,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (~> 1.0, >= 1.0.1)
     ruby-progressbar (1.10.0)
-    rubyXL (3.3.21)
+    rubyXL (3.4.6)
       nokogiri (>= 1.4.4)
       rubyzip (>= 1.1.6)
     rubyzip (1.2.2)
@@ -925,7 +925,7 @@ DEPENDENCIES
   rswag-specs (~> 2.0.5)
   rswag-ui (~> 2.0.5)
   rubocop
-  rubyXL
+  rubyXL (~> 3.4.6)
   sass-rails (~> 5.0)
   savon (~> 2.11.0)
   selenium-webdriver (~> 3.141.0)
