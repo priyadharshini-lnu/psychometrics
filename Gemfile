@@ -81,7 +81,7 @@ gem 'psychometrics-reports-ui', git: 'https://gitlab.com/tte-lighthouse/psychome
 gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', ref: '152857023584725f29150e3b03ac1651a28443af'
 
 ### XLS import
-gem 'rubyXL'
+gem 'rubyXL',                     '~> 3.4.6'
 gem 'file_validators',            '~> 2.3.0'
 
 # For import csv
