@@ -123,6 +123,14 @@ export default function RequirementTable (props) {
     }
   }
 
+  const removeNominationWithConfirmation = (evaluator) => {
+    /* eslint-disable */
+    if (confirm(I18n.t('threesixty.confirmation_for_nomination_removal'))) { 
+      removeNomination({ campaignId, nominationId, evaluator })
+    }
+    /* eslint-enable */
+  }
+
   // eslint-disable-next-line no-mixed-operators
   const rowData = evaluators && [...evaluators] || []
   if (showForm) {
@@ -175,7 +183,7 @@ export default function RequirementTable (props) {
             return (
               <Icon
                 type="close"
-                onClick={() => removeNomination({ campaignId, nominationId, evaluator: value })}
+                onClick={() => removeNominationWithConfirmation(value)}
               />
             )
           }}

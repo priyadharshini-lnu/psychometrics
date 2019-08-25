@@ -4836,6 +4836,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       }
     }
   },
+  "my": "My",
+  "myself": "Myself",
   "next": "Next",
   "no": "No",
   "number": {
@@ -5472,6 +5474,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "as_my": "as my",
     "back_to_tasks": "Back to tasks",
     "cancel": "Cancel",
+    "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -5568,7 +5571,9 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "truncate": "&hellip;"
     }
   },
-  "yes": "Yes"
+  "yes": "Yes",
+  "your": "Your",
+  "yourself": "Yourself"
 });
 I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "activemodel": {
@@ -10411,6 +10416,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       }
     }
   },
+  "my": "My",
+  "myself": "Myself",
   "next": "Next",
   "no": "No",
   "number": {
@@ -11047,6 +11054,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "as_my": "as my",
     "back_to_tasks": "Back to tasks",
     "cancel": "Cancel",
+    "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -11143,7 +11151,9 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "truncate": "&hellip;"
     }
   },
-  "yes": "Yes"
+  "yes": "Yes",
+  "your": "Your",
+  "yourself": "Yourself"
 });
 I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "activemodel": {
@@ -15982,6 +15992,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       }
     }
   },
+  "my": "My",
+  "myself": "Myself",
   "next": "Next",
   "no": "No",
   "number": {
@@ -16618,6 +16630,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "as_my": "as my",
     "back_to_tasks": "Back to tasks",
     "cancel": "Cancel",
+    "confirmation_for_nomination_removal": "Are you sure you want to remove the nomination",
     "decline": "Decline",
     "decline_invite": "Decline Invite",
     "denied": "Denied",
@@ -16714,5 +16727,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "truncate": "&hellip;"
     }
   },
-  "yes": "Yes"
+  "yes": "Yes",
+  "your": "Your",
+  "yourself": "Yourself"
 });
