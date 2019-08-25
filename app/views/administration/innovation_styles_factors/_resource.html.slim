@@ -1,0 +1,11 @@
+tr data-sidebar=url_for([:sidebar, :administration, @dimension, @innovation_style, :factor, {id: resource.id}]) id=dom_id(resource)
+  td = resource.decorate.display_name
+  td.text-center = resource.decorate.condition
+  td.text-center = resource.position
+  td.text-center.vertical_middle = resource.decorate.created_at
+  td.text-center.vertical_middle = resource.decorate.updated_at
+  td.actions-cell
+    = link_to [:edit, :administration, @dimension, @innovation_style, :factor, {id: resource.id}], remote: true, class: 'btn btn-default btn-rounded btn-sm', data: { toggle: 'tooltip', title: t('.tooltips.edit') }
+      span.fa.fa-pencil
+    = link_to [:administration, @dimension, @innovation_style, :factor, {id: resource.id}], remote: true, class: 'btn btn-default btn-rounded btn-sm', method: 'delete', data: { confirm: resource.decorate.delete_confirmation, toggle: 'tooltip', title: t('.tooltips.delete')}
+      span.fa.fa-times
