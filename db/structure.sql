@@ -1244,7 +1244,8 @@ CREATE TABLE public.innovation_styles (
     icon character varying,
     description text,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    dimension_id bigint
 );
 
 
@@ -4291,6 +4292,13 @@ CREATE INDEX index_innovation_styles_factors_on_innovation_style_id ON public.in
 
 
 --
+-- Name: index_innovation_styles_on_dimension_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_innovation_styles_on_dimension_id ON public.innovation_styles USING btree (dimension_id);
+
+
+--
 -- Name: index_libraries_on_ancestry; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5175,6 +5183,14 @@ ALTER TABLE ONLY public.datasheet_rows
 
 
 --
+-- Name: innovation_styles fk_rails_793ed7fb90; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.innovation_styles
+    ADD CONSTRAINT fk_rails_793ed7fb90 FOREIGN KEY (dimension_id) REFERENCES public.dimensions(id);
+
+
+--
 -- Name: communications_users fk_rails_7a00292b33; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -5949,6 +5965,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190713155551'),
 ('20190717131104'),
 ('20190819122240'),
-('20190819122944');
+('20190819122944'),
+('20190825080403');
 
 
