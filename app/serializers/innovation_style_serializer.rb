@@ -10,7 +10,7 @@
 #  created_at                         :datetime         not null
 #  updated_at                         :datetime         not null
 
-class OccupationSerializer < ActiveModel::Serializer
+class InnovationStyleSerializer < ActiveModel::Serializer
   attributes :id, :name, :description, :icon
 
   def factors
