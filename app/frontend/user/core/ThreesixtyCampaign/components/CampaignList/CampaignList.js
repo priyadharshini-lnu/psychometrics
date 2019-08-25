@@ -29,7 +29,7 @@ export default function CampaignList ({
             )}
           >
             <Row type="flex" gutter={12} className="cards">
-              {campaigns.map((campaign, i) => {
+              {campaigns.map((campaign) => {
                 const Component = Campaigns[campaign.type]
                 return <Component key={campaign.id} campaign={campaign} downloadReport={downloadReport} />
               })}
