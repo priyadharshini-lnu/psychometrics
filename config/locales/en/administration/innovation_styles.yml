@@ -1,6 +1,6 @@
 en:
   administration:
-    occupations:
+    innovation_styles:
       index:
         title: 'Innovation Styles'
         tooltips:
@@ -32,12 +32,12 @@ en:
 
       resource:
         tooltips:
-          copy: Copy Innovation Style
-          edit: Edit Innovation Style
-          delete: Delete Innovation Style
+          copy: 'Copy Innovation Style'
+          edit: 'Edit Innovation Style'
+          delete: 'Delete Innovation Style'
         confirmations:
           delete:
             title:
               Delete <strong>Innovation Style</strong> ?
             body: >
-              <p>Are you sure you want to delete this occupation?</p>
+              <p>Are you sure you want to delete this innovation style?</p>
