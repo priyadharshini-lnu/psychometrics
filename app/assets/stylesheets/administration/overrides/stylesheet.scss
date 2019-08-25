@@ -42,3 +42,10 @@ body { overflow-x: initial; height: 100%; }
 .gallery .gallery-item i.icon { font-size: 7vw; margin: 12.6% 27%; }
 /**/
 .checkbox label.disabled { cursor: auto }
+
+.row-no-padding {
+	> [class*="col-"] {
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+  }
+}

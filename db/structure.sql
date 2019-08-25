@@ -839,7 +839,9 @@ CREATE TABLE public.dimensions (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     factors_count integer DEFAULT 0,
-    owner_id integer
+    owner_id integer,
+    occupations_enabled boolean DEFAULT false NOT NULL,
+    innovation_styles_enabled boolean DEFAULT false NOT NULL
 );
 
 
@@ -5966,6 +5968,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190717131104'),
 ('20190819122240'),
 ('20190819122944'),
-('20190825080403');
+('20190825080403'),
+('20190825114742');
 
 

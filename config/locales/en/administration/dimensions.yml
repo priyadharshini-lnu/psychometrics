@@ -35,6 +35,9 @@ en:
           copy: 'Copy Dimension'
           edit: 'Edit Dimension Name'
           delete: 'Delete Dimension'
+        form:
+          enable_occupations: 'Enable Occupations'
+          enable_innovation_styles: 'Enable Innovation Styles'
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?
