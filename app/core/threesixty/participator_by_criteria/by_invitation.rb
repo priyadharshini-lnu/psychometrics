@@ -9,15 +9,22 @@ module Threesixty
       private
 
       def user_matches_criteria?(user, criteria)
-        return false if criteria['sub_field'] == NOT_RECEIVED
+        return !email_history_map[user.id] if criteria['sub_field'] == NOT_RECEIVED
 
         return false if criteria['value'].blank?
 
-        participator_map[user.id].created_at >= criteria['value'].to_datetime
+        last_sent_at = email_history_map[user.id]&.last_sent_at
+        last_sent_at && last_sent_at >= criteria['value'].to_datetime
       end
 
-      def participator_map
-        @participator_map ||= participators.index_by(&:user_id)
+      def email_history_map
+        @email_history_map ||= Threesixty::ReminderHistory.
+          where(
+            threesixty_campaign: threesixty_campaign,
+            email_name: email_name,
+            user_id: participators.map(&:user_id)
+          ).
+          index_by(&:user_id)
       end
     end
   end

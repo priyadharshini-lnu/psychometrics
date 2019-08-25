@@ -12,24 +12,31 @@ describe Threesixty::ParticipatorByCriteria::ByInvitation do
   end
 
   it 'not_received criteria' do
+    create(:threesixty_reminder_history, threesixty_campaign: threesixty_campaign, email_name: 'subject_invite', user_id: threesixty_subjects[0].user_id)
+    create(:threesixty_reminder_history, threesixty_campaign: threesixty_campaign, email_name: 'evaluator_invite', user_id: threesixty_subjects[1].user_id)
     criteria_list = [{ 'field' => 'invitation', 'sub_field' => 'not_received' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
       participators: threesixty_subjects,
-      criteria_list: criteria_list
+      criteria_list: criteria_list,
+      email_name: 'subject_invite'
     )
 
-    expect(results).to eq([])
+    expect(results).to match_array(threesixty_subjects[1..2])
   end
 
   it 'received_after criteria' do
+    create(:threesixty_reminder_history, threesixty_campaign: threesixty_campaign, email_name: 'subject_invite', user_id: threesixty_subjects[0].user_id, last_sent_at: '2019-08-24T17:46:30+03:00'.to_datetime)
+    create(:threesixty_reminder_history, threesixty_campaign: threesixty_campaign, email_name: 'evaluator_invite', user_id: threesixty_subjects[1].user_id, last_sent_at: '2019-08-24T17:46:30+03:00'.to_datetime)
+    create(:threesixty_reminder_history, threesixty_campaign: threesixty_campaign, email_name: 'subject_invite', user_id: threesixty_subjects[2].user_id, last_sent_at: '2019-08-23T17:46:30+03:00'.to_datetime)
     criteria_list = [{ 'field' => 'invitation', 'sub_field' => 'received_after', 'value' => '2019-08-24T07:46:30+03:00' }]
     results = described_class.call!(
       threesixty_campaign: threesixty_campaign,
       participators: threesixty_subjects,
-      criteria_list: criteria_list
+      criteria_list: criteria_list,
+      email_name: 'subject_invite'
     )
 
-    expect(results).to match_array(threesixty_subjects[1..2])
+    expect(results).to match_array([threesixty_subjects[0]])
   end
 end
