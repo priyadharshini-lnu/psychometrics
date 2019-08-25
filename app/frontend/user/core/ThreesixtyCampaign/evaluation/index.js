@@ -33,7 +33,7 @@ export const fetchEvaluation = (campaignId, evaluationId, body) => ({
   },
 })
 
-export const clearEvalaution = () => ({
+export const clearEvaluation = () => ({
   type: CLEAR_EVALAUTION,
 })
 
