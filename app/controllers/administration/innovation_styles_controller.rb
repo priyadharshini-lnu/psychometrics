@@ -71,7 +71,7 @@ module Administration
 	  end
 
 	  def resource_params
-	    params.require(:resource).permit(:name, :description, :icon)
+	    params.require(:resource).permit(:name, :description, :icon, :remove_icon)
 	  end
 	end
 end
