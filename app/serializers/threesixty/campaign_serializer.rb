@@ -2,9 +2,8 @@ module Threesixty
   class CampaignSerializer < ActiveModel::Serializer
     attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
                :mindmill, :hogan, :instructions, :logo,
-               :evaluations_counters, :nominations_counters, :reports_counters
+               :evaluations_counters, :nominations_counters, :reports_counters, :nominations
 
-    has_many :nominations, serializer: Threesixty::EndUser::CampaignNomineeSerializer
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
     has_many :managed_subjects, serializer: Threesixty::EndUser::ManagedSubjectSerializer
     has_many :reports, serializer: UsersReportSerializer
@@ -13,7 +12,7 @@ module Threesixty
     def nominations_counters
       {
         total_nominations: nominations.count,
-        completed_nominations: Threesixty::Subjects::IsNominationRequirementComplete.call!(object, nominations.map(&:user)).count{|_,v| v}
+        completed_nominations: Threesixty::Subjects::IsNominationRequirementComplete.call!(object, nomination_users).count{|_,v| v}
       }
     end
 
@@ -71,7 +70,22 @@ module Threesixty
     end
 
     def nominations
-      instance_options[:subjects] || []
+      return [] unless nomination_subjects
+      is_nomination_complete_hash = Threesixty::Subjects::IsNominationRequirementComplete.call!(object.campaign.threesixty_campaign, nomination_users)
+      
+      nomination_subjects.map do |subject|
+        Threesixty::EndUser::CampaignNomineeSerializer.
+          new(subject, current_user: current_user, is_nomination_completed: is_nomination_complete_hash[subject.user_id]).
+          to_hash
+      end
+    end
+
+    def nomination_users
+      nomination_subjects.map(&:user)
+    end
+
+    def nomination_subjects
+      instance_options[:subjects]
     end
 
     def managed_subjects
