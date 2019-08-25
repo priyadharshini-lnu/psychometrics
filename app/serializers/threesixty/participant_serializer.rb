@@ -2,10 +2,24 @@
 
 module Threesixty
   class ParticipantSerializer < ActiveModel::Serializer
-    attributes :id, :manager_nomination_status, :evaluator_nomination_status
+    attributes :id, :manager_nomination_status, :evaluation_status
 
     has_one :subject, serializer: UserSerializer
     has_one :evaluator, serializer: UserSerializer
     has_one :relationship, serializer: RelationshipSerializer
+
+    def evaluation_status
+      return :completed if result&.completed?
+
+      return :declined if object.evaluator_nomination_declined?
+
+      :waiting
+    end
+
+    private
+
+    def result
+      (@instance_options[:user_result_map] || {})[[object.evaluator_id, object.subject_id]]
+    end
   end
 end
