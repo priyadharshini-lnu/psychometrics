@@ -145,6 +145,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "deny_all": "Deny All",
     "deny_all_successful": "Denied all nominations",
     "email_approve_request": "Email Approval Request",
+    "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
@@ -182,7 +183,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "view_my_report": "View My Report",
     "view_nominations": "View nominations",
     "view_reports": "View Reports",
-    "waiting": "Waiting"
+    "waiting": "Waiting",
+    "yourself": "Yourself"
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
@@ -350,6 +352,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "deny_all": "Deny All",
     "deny_all_successful": "Denied all nominations",
     "email_approve_request": "Email Approval Request",
+    "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
@@ -387,7 +390,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "view_my_report": "View My Report",
     "view_nominations": "View nominations",
     "view_reports": "View Reports",
-    "waiting": "Waiting"
+    "waiting": "Waiting",
+    "yourself": "Yourself"
   },
   "validations": {
     "character_range": "يجب أن تتكون إجابتك من  %{min} حرفاً كحد أدنى وألا تزيد عن %{max} حرفًا كحد أقصى.",
@@ -555,6 +559,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "deny_all": "Deny All",
     "deny_all_successful": "Denied all nominations",
     "email_approve_request": "Email Approval Request",
+    "evaluate": "Evaluate",
     "evaluation": "Evaluation",
     "evaluations": "Evaluations",
     "evaluator": "Evaluator",
@@ -592,7 +597,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "view_my_report": "View My Report",
     "view_nominations": "View nominations",
     "view_reports": "View Reports",
-    "waiting": "Waiting"
+    "waiting": "Waiting",
+    "yourself": "Yourself"
   },
   "validations": {
     "character_range": "Your response must be at least %{min} and no more than %{max} characters.",
