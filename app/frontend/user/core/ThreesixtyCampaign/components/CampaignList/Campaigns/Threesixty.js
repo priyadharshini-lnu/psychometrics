@@ -10,7 +10,7 @@ import mindmill from './mindmill.png'
 import hogan from './hogan.png'
 import { getTotalProgress } from '../../../campaign/selectors'
 
-export default function Threesixty ({ campaign, color }) {
+export default function Threesixty ({ campaign }) {
   const totalProgress = _.round(getTotalProgress(campaign))
 
   return (
@@ -41,7 +41,7 @@ export default function Threesixty ({ campaign, color }) {
               {campaign.mindmill && <img className="service" src={mindmill} alt="" />}
               {campaign.hogan && <img className="service" src={hogan} alt="" />}
               <div className="card-progress">
-                <Progress percent={totalProgress} strokeColor={color} />
+                <Progress percent={totalProgress} />
               </div>
             </div>
           )}

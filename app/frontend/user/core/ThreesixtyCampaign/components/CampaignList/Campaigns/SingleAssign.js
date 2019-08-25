@@ -93,7 +93,7 @@ const renderButtonContent = ({ url, status, assignedReports }) => {
   )
 }
 
-export default function SingleAssign ({ campaign: assign, color }) {
+export default function SingleAssign ({ campaign: assign }) {
   return (
     <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
       <Card
@@ -123,7 +123,6 @@ export default function SingleAssign ({ campaign: assign, color }) {
             <div className="card-progress">
               <Progress
                 percent={assign.completionPercent || 0}
-                strokeColor={color}
               />
             </div>
           </div>
