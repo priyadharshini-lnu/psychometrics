@@ -33,10 +33,6 @@ module Threesixty
       Threesixty::NominationRequirements::FindForUsers.call!(object.user, object.campaign.threesixty_campaign)[object.user_id]
     end
 
-    def evaluators
-      object.evaluators.where.not(evaluator_id: current_user.id)
-    end
-
     def instructions
       object.campaign.threesixty_campaign.instruction_templates
     end

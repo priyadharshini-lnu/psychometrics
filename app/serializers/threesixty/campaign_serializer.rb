@@ -70,7 +70,6 @@ module Threesixty
     end
 
     def nominations
-      return [] unless nomination_subjects
       is_nomination_complete_hash = Threesixty::Subjects::IsNominationRequirementComplete.call!(object.campaign.threesixty_campaign, nomination_users)
       
       nomination_subjects.map do |subject|
@@ -85,7 +84,7 @@ module Threesixty
     end
 
     def nomination_subjects
-      instance_options[:subjects]
+      instance_options[:subjects] || []
     end
 
     def managed_subjects
