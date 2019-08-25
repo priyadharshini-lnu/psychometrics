@@ -676,7 +676,7 @@ GEM
       ruby-progressbar (~> 1.7)
       unicode-display_width (>= 1.4.0, < 1.6)
     ruby-progressbar (1.10.1)
-    rubyXL (3.3.21)
+    rubyXL (3.4.6)
       nokogiri (>= 1.4.4)
       rubyzip (>= 1.1.6)
     rubyzip (1.2.2)
@@ -945,7 +945,7 @@ DEPENDENCIES
   rswag-specs (~> 2.0.5)
   rswag-ui (~> 2.0.5)
   rubocop (~> 0.67.2)
-  rubyXL
+  rubyXL (~> 3.4.6)
   sassc-rails (~> 2.1.2)
   savon (~> 2.11.0)
   selenium-webdriver (~> 3.141.0)
