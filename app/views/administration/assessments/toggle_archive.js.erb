@@ -1,0 +1,10 @@
+$('#filter').trigger('reloadList');
+// Reinit all plugins
+$(document).trigger('initPlugins');
+
+$(document).trigger('close_sidebar');
+$('#<%= dom_id(resource) %>').hide('fast')
+
+// Notify message
+noty({ text: '<%= t("administration.#{i18n || resource_class.model_name.plural}.toggle_archive.successfully",
+  name: resource.decorate.display_name, status: "#{ @_resource.archived ? 'archived' : 'unarchived' }" )%>', type: 'success' });
