@@ -2,7 +2,8 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td.text-center
     = link_to([:toggle_status, :administration, resource], method: :patch, remote: true, class: 'toggle-status', data: { confirm: resource.decorate.toggle_status_confirmation })
       = resource.decorate.status
-  td == "#{resource.name} (#{link_to('factors', [:administration, resource, :factors])} / #{link_to('occupations', [:administration, resource, :occupations])})"
+  /! td == "#{resource.name} (#{link_to('factors', [:administration, resource, :factors])} / #{link_to('occupations', [:administration, resource, :occupations])})"
+  td == "#{link_to(resource.name, [:administration, resource, :factors])} (#{link_to('occupations', [:administration, resource, :occupations])} / #{link_to('innovation styles', [:administration, resource, :innovation_styles])})"
   td.text-center = resource.factors_count
   td = resource.decorate.client_name
   td.text-center = resource.decorate.created_at

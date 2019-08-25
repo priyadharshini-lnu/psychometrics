@@ -11,4 +11,11 @@
 #
 
 class InnovationStyle < ApplicationRecord
+	has_many :innovation_styles_factors
+	belongs_to :dimension
+
+	validates :name, presence: true
+	validates :name, length: { maximum: 150 }, allow_blank: true
+
+	mount_uploader :icon, ImageUploader
 end
