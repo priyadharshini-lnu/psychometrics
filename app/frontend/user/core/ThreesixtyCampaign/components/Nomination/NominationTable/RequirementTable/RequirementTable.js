@@ -133,6 +133,7 @@ export default function RequirementTable (props) {
   if (options.participants.subject.limitRelationshipThatSubjectCanSelect) {
     canAdd = canAdd && options.participants.subject.canSelectRelationships[condition.relationshipId]
   }
+
   return (
     <div className="requirement">
       <Table
