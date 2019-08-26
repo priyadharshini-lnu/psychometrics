@@ -1,7 +1,7 @@
 @import 'user/styles/variables';
 
-$colors: #D8D8D8 #00B1A8 #246479 #9DD8D7;
-$text-colors: #646464 #FFFFFF #FFFFFF #246479;
+$colors: #246479 #9DD8D7 #00B1A8;
+$text-colors: #FFFFFF #246479 #FFFFFF;
 
 :global {
   .cards .card {
@@ -65,15 +65,17 @@ $text-colors: #646464 #FFFFFF #FFFFFF #246479;
       }
     }
 
-    @for $i from 1 through 4 {
-      &:nth-child(4n + #{$i}) {
+    @for $i from 1 through 3 {
+      &:nth-child(3n + #{$i}) {
         .cover {
           background: nth($colors, $i);
 
           .caption .title {
             color: nth($text-colors, $i);
           }
-
+          :global(.ant-progress-bg) {
+            background: nth($colors, $i);
+          }
           .icon {
             background: nth($text-colors, $i);
 

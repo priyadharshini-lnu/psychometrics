@@ -7,10 +7,11 @@
 
     .footer-wrapper {
       padding: 16px 24px;
-    }
-
-    .footer-logo {
-      max-height: 70px;
+      display: flex;
+      justify-content: space-between;
+      img {
+        max-height: 50px;
+      }
     }
   }
 }
