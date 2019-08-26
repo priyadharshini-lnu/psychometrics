@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Table, Dropdown, Menu, Icon, Button, Row,
+  Table, Dropdown, Menu, Icon, Button, Row, Popconfirm,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
@@ -123,14 +123,6 @@ export default function RequirementTable (props) {
     }
   }
 
-  const removeNominationWithConfirmation = (evaluator) => {
-    /* eslint-disable */
-    if (confirm(I18n.t('threesixty.confirmation_for_nomination_removal'))) { 
-      removeNomination({ campaignId, nominationId, evaluator })
-    }
-    /* eslint-enable */
-  }
-
   // eslint-disable-next-line no-mixed-operators
   const rowData = evaluators && [...evaluators] || []
   if (showForm) {
@@ -181,10 +173,12 @@ export default function RequirementTable (props) {
           render={(value) => {
             if (!value.evaluator) { return { props: { colSpan: 0 } } }
             return (
-              <Icon
-                type="close"
-                onClick={() => removeNominationWithConfirmation(value)}
-              />
+              <Popconfirm
+                title={I18n.t('threesixty.confirmation_for_nomination_removal')}
+                onConfirm={() => removeNomination({ campaignId, nominationId, evaluator: value })}
+              >
+                <Icon type="close" />
+              </Popconfirm>
             )
           }}
         />
