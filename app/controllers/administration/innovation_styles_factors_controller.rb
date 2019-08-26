@@ -1,6 +1,6 @@
 module Administration
-	class InnovationStylesFactorsController < Administration::BaseController
-		prepend_before_action :set_resource_class
+  class InnovationStylesFactorsController < Administration::BaseController
+  	prepend_before_action :set_resource_class
     before_action :set_resource, only: [:edit, :update, :destroy, :copy, :toggle_status, :sidebar]
     before_action :skip_authorization, only: [:sidebar]
     before_action :set_dimension
@@ -81,5 +81,5 @@ module Administration
     def resource_params
       params.require(:resource).permit(:predicate, :value, :factor_id, :position)
     end
-	end
+  end
 end
