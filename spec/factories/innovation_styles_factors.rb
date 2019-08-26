@@ -14,10 +14,9 @@
 
 FactoryGirl.define do
   factory :innovation_styles_factor do
-    innovation_style_id nil
-    factor_id nil
-    predicate "MyString"
-    value 1.5
-    position 1
+    innovation_style
+    factor
+    predicate { :equal_to }
+    value { 3.0 }
   end
 end

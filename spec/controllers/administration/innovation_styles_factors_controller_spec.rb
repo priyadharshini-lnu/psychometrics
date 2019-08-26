@@ -1,5 +1,5 @@
 require 'rails_helper'
 
-RSpec.describe InnovationStylesFactorsController, type: :controller do
+RSpec.describe Administration::InnovationStylesFactorsController, type: :controller do
 
 end

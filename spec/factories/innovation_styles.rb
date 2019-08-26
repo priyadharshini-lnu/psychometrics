@@ -12,8 +12,8 @@
 
 FactoryGirl.define do
   factory :innovation_style do
-    name "MyString"
-    icon "MyString"
-    description "MyText"
+    sequence(:name) { |i| "IS #{i}" }
+    sequence(:description) { |i| "Innovation Style #{i}" }
+    dimension
   end
 end
