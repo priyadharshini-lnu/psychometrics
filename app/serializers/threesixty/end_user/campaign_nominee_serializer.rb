@@ -12,12 +12,11 @@ module Threesixty::EndUser
     end
 
     def is_self
-      object.user_id == current_user.id
+      object.user_id == instance_options[:current_user].id
     end
 
     def is_nomination_completed
-      # TODO: Fix N+1
-      Threesixty::Subjects::IsNominationRequirementComplete.call!(object.campaign.threesixty_campaign, object.user).dig(object.user_id)
+      instance_options[:is_nomination_completed]
     end
   end
 end
