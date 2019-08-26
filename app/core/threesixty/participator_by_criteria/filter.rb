@@ -55,6 +55,10 @@ module Threesixty
         {
           field_types: %w[atleast_one_non_self_evalaution],
           class_name: ByAtleastOneNonSelfEvaluation
+        },
+        {
+          field_types: %w[invitation],
+          class_name: ParticipatorByCriteria::ByInvitation
         }
       ].freeze
 
@@ -63,6 +67,7 @@ module Threesixty
         @participator_types = Array.wrap(options[:participator_types])
         @participators = options[:participators]
         @criteria_list = options[:criteria_list]
+        @email_name = options[:email_name]
       end
 
       def call
@@ -75,7 +80,7 @@ module Threesixty
 
       private
 
-      private_attr_reader :threesixty_campaign, :participator_types, :criteria_list
+      private_attr_reader :threesixty_campaign, :participator_types, :criteria_list, :email_name
 
       def get_participators_by_filter(participator_type)
         participators = @participators || get_participators(participator_type)
@@ -87,7 +92,8 @@ module Threesixty
             threesixty_campaign: threesixty_campaign,
             participator_type: participator_type,
             participators: participators,
-            criteria_list: valid_criteria
+            criteria_list: valid_criteria,
+            email_name: email_name
           )
         end
         participators

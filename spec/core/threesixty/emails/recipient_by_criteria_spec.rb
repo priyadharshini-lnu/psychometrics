@@ -66,7 +66,8 @@ describe Threesixty::Emails::RecipientByCriteria do
         with(
           threesixty_campaign: threesixty_campaign,
           participator_types: [:subject],
-          criteria_list: [default_recipient_criteria]
+          criteria_list: [default_recipient_criteria],
+          email_name: 'subject_reminder'
         ).and_return([threesixty_subject, threesixty_evaluator])
 
       described_class.call!(
@@ -81,7 +82,8 @@ describe Threesixty::Emails::RecipientByCriteria do
         with(
           threesixty_campaign: threesixty_campaign,
           participator_types: [:evaluator],
-          criteria_list: default_recipient_criteria
+          criteria_list: default_recipient_criteria,
+          email_name: 'evaluator_invite'
         ).and_return([threesixty_subject, threesixty_evaluator])
 
       described_class.call!(
@@ -99,7 +101,8 @@ describe Threesixty::Emails::RecipientByCriteria do
         with(
           threesixty_campaign: threesixty_campaign,
           participator_types: [:evaluator],
-          criteria_list: default_recipient_criteria
+          criteria_list: default_recipient_criteria,
+          email_name: 'evaluator_reminder'
         ).and_return([threesixty_subject, threesixty_evaluator])
 
       described_class.call!(
