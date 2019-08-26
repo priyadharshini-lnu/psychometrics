@@ -27,8 +27,7 @@ module Administration
     end
 
     def set_resource
-      # @_resource = policy_scope(resource_class).find(params[:id])
-      @_resource = policy_scope(resource_class).where(id: params[:id]).first
+      @_resource = policy_scope(resource_class).find(params[:id])
     end
 
     def resource=(resource)
