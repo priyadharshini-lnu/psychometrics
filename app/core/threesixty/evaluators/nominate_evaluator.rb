@@ -16,8 +16,9 @@ module Threesixty
       def call
         ActiveRecord::Base.transaction do
           @user = create_evaluator_user unless user
-          ensure_create_evaluator(user)
           ensure_create_campaigns_user(user)
+          create_membership(user)
+          ensure_create_evaluator(user)
         end
 
         broadcast :ok, create_participant(user)
@@ -34,6 +35,10 @@ module Threesixty
 
       def ensure_create_evaluator(evaluator_user)
         ::Threesixty::Evaluator.find_or_create_by!(user: evaluator_user, campaign: threesixty_campaign.campaign)
+      end
+
+      def create_membership(user)
+        threesixty_campaign.project.memberships.find_or_create_by!(user_id: user.id)
       end
 
       def create_participant(evaluator_user)

@@ -3,6 +3,10 @@ import { reset as resetCampaign, resetAllNominations } from 'admin/core/threeSix
 import { openModal } from 'admin/core/temp/modals'
 
 export default connect(
-  null,
+  ({
+    threeSixtyCampaign: {
+      campaignDetails: { dimensionId },
+    },
+  }) => ({ dimensionId }),
   { resetCampaign, resetAllNominations, openModal },
 )

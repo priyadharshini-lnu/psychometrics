@@ -16,12 +16,13 @@ export default function Evaluation ({
       id,
       subject,
       user,
+      is_self: isSelf,
       as_manager: asManager,
       participant: {
         manager_evaluation_status: managerEvaluationStatus,
       },
     },
-  }, fetchAssessment, clearEvalaution, updateStatus,
+  }, fetchAssessment, clearEvaluation, updateStatus,
   match: { params },
   history,
 }) {
@@ -83,7 +84,7 @@ export default function Evaluation ({
       return (
         <div>
           {I18n.t('threesixty.subject')}
-:
+          :
           {' '}
           <Tooltip placement="topLeft" title={subject.email}>
             {userPresenter.getFullName(subject)}
@@ -92,7 +93,7 @@ export default function Evaluation ({
           &nbsp; &nbsp;
 
           {I18n.t('threesixty.evaluator')}
-:
+          :
           {' '}
           <Tooltip placement="topLeft" title={user.email}>
             {userPresenter.getFullName(user)}
@@ -103,15 +104,15 @@ export default function Evaluation ({
 
     return (
       <div>
-          Evaluate:
-        {' '}
-        {userPresenter.getFullName(subject)}
+        {I18n.t('threesixty.evaluate')}
+        {': '}
+        {isSelf ? I18n.t('threesixty.yourself') : userPresenter.getFullName(subject)}
       </div>
     )
   }
 
   const handleBackButtonClick = () => {
-    clearEvalaution()
+    clearEvaluation()
     history.push(`/campaigns/${params.campaignId}`)
   }
 

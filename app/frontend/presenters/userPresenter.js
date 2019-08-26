@@ -10,7 +10,7 @@ const userPresenter = {
     return user.email
   },
   selfUserName (item, user = item.user) {
-    return item.isSelf ? 'Yourself' : this.getFullName(user)
+    return item.isSelf ? I18n.t('threesixty.yourself') : this.getFullName(user)
   },
 }
 

@@ -4,7 +4,7 @@ html.body-full-height style=device_html_style
     meta http-equiv='X-UA-Compatible' content='IE=edge'
     meta name='viewport' content='width=device-width, initial-scale=1'
     meta content='text/html; charset=UTF-8' http-equiv='Content-Type'
-    title = t('devise.administrators.meta_title')
+    title = @current_project&.name || t('devise.administrators.meta_title')
     = csrf_meta_tags
     = jquery_include_tag :google
     = stylesheet_link_tag    'application_new', media: 'all'

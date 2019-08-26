@@ -1,6 +1,6 @@
 import { connect } from 'react-redux'
 import {
-  fetchEvaluation, fetchAssessment, clearEvalaution,
+  fetchEvaluation, fetchAssessment, clearEvaluation,
   updateStatus,
 } from 'user/core/ThreesixtyCampaign/evaluation'
 
@@ -11,7 +11,7 @@ const mapStateToProps = state => ({
 const mapDispatchToProps = {
   fetchEvaluation,
   fetchAssessment,
-  clearEvalaution,
+  clearEvaluation,
   updateStatus,
 }
 
