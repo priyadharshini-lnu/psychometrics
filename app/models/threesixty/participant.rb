@@ -15,7 +15,7 @@ module Threesixty
     end
 
     def result
-      UsersResult.find_by(evaluator_id: evaluator_id, subject_id: subject_id)
+      UsersResult.find_by(evaluator_id: evaluator_id, subject_id: subject_id, campaign_id: campaign_id)
     end
 
     enum manager_nomination_status: { waiting: 0, approved: 1, denied: 2 }, _prefix: :manager_nomination
