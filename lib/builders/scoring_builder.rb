@@ -62,7 +62,7 @@ module Builders
         rows << question_recoding
       end
       #TODO: Remove this by fixing duplicate scoring on frontend
-      rows.uniq!(&:question_id)
+      rows.uniq! { |r| r[:question_id] }
       QuestionRecoding.import rows, on_duplicate_key_update: {conflict_target: [:question_id, :assessment_id], columns: [:props]}
       QuestionRecoding.where("props::text = '[]'").delete_all
     end
