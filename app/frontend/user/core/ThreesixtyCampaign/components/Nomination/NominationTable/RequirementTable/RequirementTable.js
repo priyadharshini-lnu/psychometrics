@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import {
-  Table, Dropdown, Menu, Icon, Button, Row,
+  Table, Dropdown, Menu, Icon, Button, Row, Popconfirm,
 } from 'antd'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
@@ -135,6 +135,7 @@ export default function RequirementTable (props) {
       && options.participants.subject.canSelectRelationships
       && options.participants.subject.canSelectRelationships[condition.relationshipId]
   }
+
   return (
     <div className="requirement">
       <Table
@@ -174,10 +175,12 @@ export default function RequirementTable (props) {
           render={(value) => {
             if (!value.evaluator) { return { props: { colSpan: 0 } } }
             return (
-              <Icon
-                type="close"
-                onClick={() => removeNomination({ campaignId, nominationId, evaluator: value })}
-              />
+              <Popconfirm
+                title={I18n.t('threesixty.confirmation_for_nomination_removal')}
+                onConfirm={() => removeNomination({ campaignId, nominationId, evaluator: value })}
+              >
+                <Icon type="close" />
+              </Popconfirm>
             )
           }}
         />

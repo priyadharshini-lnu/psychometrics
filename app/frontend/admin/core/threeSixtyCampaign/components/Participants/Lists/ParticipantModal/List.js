@@ -4,7 +4,7 @@ import userPresenter from 'presenters/userPresenter'
 import { ASSIGN_TYPES } from 'constants/relationship'
 
 const MANAGER_STATUSES = ['waiting', 'approved', 'denied']
-const EVALUATOR_STATUSES = ['waiting', 'completed', 'denied']
+const EVALUATOR_STATUSES = ['waiting', 'declined']
 
 export default function List ({
   participants,
@@ -39,7 +39,7 @@ export default function List ({
         )}
       />
       <Table.Column
-        title="Approved"
+        title="Nomination"
         key="managerNominationStatus"
         render={({ managerNominationStatus, id, relationship }) => (
           <StatusSelect
@@ -53,17 +53,18 @@ export default function List ({
         )}
       />
       <Table.Column
-        title="Complete"
-        key="evaluatorNominationStatus"
-        render={({ evaluatorNominationStatus, id }) => (
+        title="Evaluation"
+        key="evaluationStatus"
+        render={({ evaluationStatus, id }) => (evaluationStatus === 'completed' ? 'completed' : (
           <StatusSelect
             availableStatuses={EVALUATOR_STATUSES}
             id={id}
             name="evaluatorNominationStatus"
             onChange={updateParticipant}
-            managerNominationStatus={evaluatorNominationStatus}
+            managerNominationStatus={evaluationStatus}
           />
-        )}
+        ))
+        }
       />
       <Table.Column
         key="actions"

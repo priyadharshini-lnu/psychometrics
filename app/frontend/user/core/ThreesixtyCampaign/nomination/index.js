@@ -131,6 +131,15 @@ const HANDLERS = {
     return setIn(state, ['evaluators', relationship.name, _.findIndex(evaluators, { id })], action.response)
   },
   [UPDATE_ALL_NOMINATION_STATUS]: setStateFromResponse,
+  [UPDATE]: (state, { response }) => {
+    const { relationship } = response
+    return updateIn(state, ['evaluators', relationship.name],
+      (list = []) => list.map((evaluator) => {
+        if (evaluator.id === response.id) { return response }
+
+        return evaluator
+      }))
+  },
   [SHOW_FORM]: state => setIn(state, ['form', 'show'], true),
   [HIDE_FORM]: state => setIn(state, ['form', 'show'], false),
 
