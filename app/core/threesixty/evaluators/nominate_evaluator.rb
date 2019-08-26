@@ -41,14 +41,19 @@ module Threesixty
         threesixty_campaign.project.memberships.find_or_create_by!(user_id: user.id)
       end
 
-      def create_participant(evaluator_user)
+      def create_participant(evaluator_user)    
         @subject.participants.create!(
           evaluator_id: evaluator_user.id,
           project_id: threesixty_campaign.campaign.project_id,
           campaign: threesixty_campaign.campaign,
           subject_id: subject.user_id,
-          relationship_id: params[:relationship_id]
+          relationship_id: params[:relationship_id],
+          manager_nomination_status: manager_can_approve_evaluation? ? :waiting : :approved 
         )
+      end
+
+      def manager_can_approve_evaluation?
+        threesixty_campaign.option.participants.dig('manager', 'can_approve_nominations')
       end
     end
   end
