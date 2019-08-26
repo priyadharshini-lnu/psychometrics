@@ -44,7 +44,7 @@ body { overflow-x: initial; height: 100%; }
 .checkbox label.disabled { cursor: auto }
 
 .row-no-padding {
-	> [class*="col-"] {
+  > [class*="col-"] {
     padding-left: 0 !important;
     padding-right: 0 !important;
   }
