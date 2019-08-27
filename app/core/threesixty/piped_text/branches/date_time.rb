@@ -6,7 +6,7 @@ module Threesixty
       class DateTime < BaseBranch
         def call
           class_name = "Threesixty::PipedText::Branches::DateTimeFields::#{path.first}".safe_constantize
-          broadcast :ok, class_name&.call!(path, params)
+          broadcast :ok, class_name&.call!(path, params, context)
         end
       end
     end

@@ -32,7 +32,7 @@ module Threesixty
           key: 'd',
           name: 'date',
           class_name: 'Threesixty::PipedText::Branches::DateTime',
-          required_context: []
+          required_context: %i[subject threesixty_campaign]
         },
         {
           key: 'sst',

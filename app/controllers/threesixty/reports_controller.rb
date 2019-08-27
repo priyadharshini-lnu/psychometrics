@@ -21,7 +21,7 @@ module Threesixty
           results = Threesixty::Reports::ResultsForSubject.call!(@users_report, current_user)
           piped_text_context = {
             subject: @users_report.user,
-            threesixty_campaign: @campaign,
+            threesixty_campaign: @campaign
           }
           render json: @users_report, report: @campaign.report,
                  options: @campaign.option, results: results,
