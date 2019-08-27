@@ -13,7 +13,7 @@
 FactoryGirl.define do
   factory :innovation_style do
     sequence(:name) { |i| "IS #{i}" }
-    sequence(:description) { |i| "Innovation Style #{i}" }
+    sequence(:description) { |j| "Innovation Style #{j}" }
     dimension
   end
 end
