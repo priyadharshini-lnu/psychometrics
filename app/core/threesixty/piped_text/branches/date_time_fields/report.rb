@@ -18,7 +18,7 @@ module Threesixty
           def self_evaluation_date
             threesixty_campaign.
               users_results.
-              find_by(subject_id: subject.id,  evaluator_id: subject.id)&.
+              find_by(subject_id: subject.id, evaluator_id: subject.id)&.
               completed_at
           end
 
