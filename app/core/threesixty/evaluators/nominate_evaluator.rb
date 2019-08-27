@@ -47,8 +47,13 @@ module Threesixty
           project_id: threesixty_campaign.campaign.project_id,
           campaign: threesixty_campaign.campaign,
           subject_id: subject.user_id,
-          relationship_id: params[:relationship_id]
+          relationship_id: params[:relationship_id],
+          manager_nomination_status: manager_can_approve_evaluation? ? :waiting : :approved
         )
+      end
+
+      def manager_can_approve_evaluation?
+        threesixty_campaign.option.participants.dig('manager', 'can_approve_nominations')
       end
     end
   end
