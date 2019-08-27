@@ -5,6 +5,7 @@ module Features
         visit administration_users_path
         click_link(t('administration.users.index.new_superadmin'), href: '/administration/users/new')
         find('.modal-header').click
+        sleep 1
         within '#new_resource' do
           fill_in 'resource_email', with: opts[:email]
           fill_in 'resource_first_name', with: opts[:first_name]
