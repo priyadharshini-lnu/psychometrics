@@ -132,8 +132,7 @@ export default function RequirementTable (props) {
 
   let canAdd = canNominate
   if (options.participants.subject.limitRelationshipThatSubjectCanSelect) {
-    const canSelectRelationships = _.get(options, ['participants', 'subject', 'canSelectRelationships'])
-    canAdd = canAdd && canSelectRelationships && canSelectRelationships[condition.relationshipId]
+    canAdd = canAdd && _.get(options, ['participants', 'subject', 'canSelectRelationships', condition.relationshipId])
   }
 
   return (
