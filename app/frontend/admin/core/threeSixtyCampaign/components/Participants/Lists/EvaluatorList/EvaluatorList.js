@@ -36,10 +36,10 @@ export default function EvaluatorList ({
           <Icon type="user" />
           <span className="mlm">{`${total} Evaluators`}</span>
         </Col>
-        <Col span={6} offset={14} className="text-align-r">
+        <div className="float-r">
           <ToolsDropdown />
           <CreateEvaluatorsDropdown />
-        </Col>
+        </div>
       </Row>
       <Row>
         <Col span={24}>
