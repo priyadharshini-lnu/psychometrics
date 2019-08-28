@@ -4,6 +4,7 @@ require 'rails_helper'
 
 describe Threesixty::Evaluators::NominateEvaluator do
   let(:campaign) { create(:threesixty_campaign) }
+  let!(:option) { create(:threesixty_option, threesixty_campaign: campaign)}
   let(:user) { create(:user, email: 'exists@a.com', project: campaign.project) }
   let(:subject) { create(:threesixty_subject, campaign: campaign.campaign) }
   let (:peer) { create(:relationship, name: 'Peer', type: :campaign) }

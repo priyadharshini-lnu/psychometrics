@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import {
   Table, Dropdown, Menu, Icon, Button, Row, Popconfirm,
 } from 'antd'
+import _ from 'lodash'
 import userPresenter from 'presenters/userPresenter'
 import statusPresenter from 'presenters/statusPresenter'
 import conditionPresenter from 'presenters/conditionPresenter'
@@ -131,7 +132,7 @@ export default function RequirementTable (props) {
 
   let canAdd = canNominate
   if (options.participants.subject.limitRelationshipThatSubjectCanSelect) {
-    canAdd = canAdd && options.participants.subject.canSelectRelationships[condition.relationshipId]
+    canAdd = canAdd && _.get(options, ['participants', 'subject', 'canSelectRelationships', condition.relationshipId])
   }
 
   return (
