@@ -558,6 +558,8 @@ GEM
       nokogiri (>= 1.6)
     rails-html-sanitizer (1.0.4)
       loofah (~> 2.2, >= 2.2.2)
+    rails_autoscale_agent (0.6.3)
+      activesupport (>= 3.2)
     railties (5.1.6)
       actionpack (= 5.1.6)
       activesupport (= 5.1.6)
@@ -911,6 +913,7 @@ DEPENDENCIES
   rails-assets-summernote (= 0.8.6)!
   rails-assets-x-editable (= 1.5.0)!
   rails-controller-testing
+  rails_autoscale_agent (~> 0.6.3)
   ransack (~> 1.8.2)
   react-rails (~> 1.10.0)
   rectify (~> 0.13.0)
