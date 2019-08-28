@@ -60,7 +60,7 @@ describe Threesixty::PipedText::Perform do
     end
 
     it do
-      response = described_class.call!('{{d://Current?f=%-d/%-m/%Y}}')
+      response = described_class.call!('{{d://Current?f=%-d/%-m/%Y}}', threesixty_campaign: double(), subject: user)
       expect(response).to eq(Time.now.strftime('%-d/%-m/%Y'))
     end
 
@@ -71,7 +71,7 @@ describe Threesixty::PipedText::Perform do
     end
 
     it do
-      response = described_class.call!('{{d://Other/+1d?f=%-d/%-m/%Y}}')
+      response = described_class.call!('{{d://Other/+1d?f=%-d/%-m/%Y}}', threesixty_campaign: double(), subject: user )
       time = Time.now+1.day
       expect(response).to eq(time.strftime('%-d/%-m/%Y'))
     end
