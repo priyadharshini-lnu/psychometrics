@@ -34,33 +34,15 @@ module Threesixty
       end
 
       def completed_evaluations
-        @completed_evaluations ||=
-          if option.participants.dig('manager', 'can_approves_evaluations')
-            threesixty_campaign.
-              participants.select('count(id) as completed_evaluations_count, evaluator_id').
-              active.
-              actual_by_options(option).
-              where(evaluator_id: user_ids, manager_evaluation_status: :approved).
-              group(:evaluator_id).
-              index_by(&:evaluator_id)
-          else
-            Threesixty::Participants::GetCompletedEvaluations.call!(threesixty_campaign, user_ids)
-          end
+        @completed_evaluations ||= Threesixty::Participants::GetCompletedEvaluations.call!(threesixty_campaign, user_ids)
       end
 
       def completed_evaluators
-        @completed_evaluators ||=
-          if option.participants.dig('manager', 'can_approves_evaluations')
-            threesixty_campaign.participants.select('count(id) as cache_counter, subject_id').active.actual_by_options(option).
-              where(subject_id: user_ids, manager_evaluation_status: :approved).
-              group(:subject_id).
-              index_by(&:subject_id)
-          else
+        @completed_evaluators =
             UsersResult.select('count(id) as cache_counter, subject_id').actual_by_options(option).
               where(subject_id: user_ids, status: :completed).
               group(:subject_id).
               index_by(&:subject_id)
-          end
       end
     end
   end
