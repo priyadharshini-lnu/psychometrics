@@ -1247,7 +1247,8 @@ CREATE TABLE public.innovation_styles (
     description text,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    dimension_id bigint
+    dimension_id bigint,
+    full_description text
 );
 
 
@@ -5969,6 +5970,7 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190819122240'),
 ('20190819122944'),
 ('20190825080403'),
-('20190825114742');
+('20190825114742'),
+('20190828084401');
 
 
