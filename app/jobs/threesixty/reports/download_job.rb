@@ -15,6 +15,7 @@ module Threesixty
         send_to_user
       rescue Exception => e
         notify_error
+        Raven.capture_exception(e)
       end
 
       private
