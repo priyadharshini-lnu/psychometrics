@@ -24,7 +24,7 @@ class AssignSerializer < ActiveModel::Serializer
              :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
              :relationship, :selected_locale, :type
 
-  attribute :relationship, if: -> { object.assessment.threesixty? }
+  attribute :relationship
 
   has_one :user, serializer: UserSerializer
 
@@ -42,15 +42,22 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   def relationship
-    participant =
+    object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship if @instance_options[:membership]
+  end
+
+  def relationship
+    if object.assessment.threesixty?
+      participant =
       # For multi assigns we should pass participant map in order to avoid N+1 queries
       if @instance_options[:participants_map]
         @instance_options[:participants_map][object.evaluator_id]
       else
         Threesixty::Participant.find_by(evaluator_id: object.evaluator_id, subject_id: object.subject_id)
       end
-
-    participant&.relationship&.name
+      participant&.relationship&.name
+    else
+      object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship if @instance_options[:membership]
+    end
   end
 
   def hash_id
