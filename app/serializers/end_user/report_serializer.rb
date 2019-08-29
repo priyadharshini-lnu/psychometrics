@@ -5,7 +5,7 @@ module EndUser
                :has_external_report, :generating, :pdf_url, :mindmill_report_url
 
     def mindmill
-      assign.mindmill?
+      object.mindmill?
     end
 
     def mindmill_report_url
