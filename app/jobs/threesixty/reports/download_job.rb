@@ -13,6 +13,8 @@ module Threesixty
         save_to_s3
         remove_tmp_file
         send_to_user
+      rescue Exception => e
+        notify_error
       end
 
       private
@@ -50,8 +52,16 @@ module Threesixty
       #
       def send_to_user
         ActionCable.server.broadcast "notification_channel_for_#{current_user.id}",
+                                     type: 'success',
                                      message: I18n.t('jobs.threesixty.reports.download.message'),
                                      description: I18n.t('jobs.threesixty.reports.download.description', url: s3_obj.presigned_url(:get))
+      end
+
+      def notify_error
+        ActionCable.server.broadcast "notification_channel_for_#{current_user.id}",
+                                     type: 'error',
+                                     message: I18n.t('jobs.threesixty.reports.download.error'),
+                                     description: I18n.t('jobs.threesixty.reports.download.error_description')
       end
     end
   end
