@@ -6,6 +6,7 @@
       = f.input :name
       = f.input :description, as: :text
       = f.input :full_description, as: :text
+      = f.input :position, as: :integer
       = f.input :icon, hint: f.object.icon.present? ? f.input(:remove_icon, as: :boolean) + image_tag(f.object.icon.url(:factors_icon), class: 'thumb') : content_tag(:span, t('.no_icon'))
   .modal-footer
     .btn-group
