@@ -98,12 +98,24 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def relationships
-    return [] unless object.category_threesixty?
-
-    Relationships::ByCampaign.new(connected_campaign).map { |r| RelationshipSerializer.new(r).to_h }
+    if object.category_threesixty?
+      Relationships::ByCampaign.new(connected_campaign).map { |r| RelationshipSerializer.new(r).to_h }
+    else
+      non_threesixty_relationships
+    end
   end
 
   def connected_campaign
     @connected_campaign ||= Campaign.joins(:threesixty_campaign).find_by(threesixty_campaigns: { report_id: object.id })
+  end
+
+  def non_threesixty_relationships
+    return []
+    [
+      { id: 'Self', name: 'Self' },
+      { id: 'Manager', name: 'Direct Manager' },
+      { id: 'Peer', name: 'Peer' },
+      { id: 'DirectReport', name: 'DirectReport' },
+    ]
   end
 end
