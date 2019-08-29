@@ -24,7 +24,7 @@ module Administration
             locale: user_locale,
           }
 
-          @data = Reports::PrepareDataForReport.call!(args)
+          @data = ::Reports::PrepareDataForReport.call!(args)
 
           respond_to do |format|
             format.html do
