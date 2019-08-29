@@ -7,6 +7,7 @@ module Threesixty
       attribute :relationship_id, Integer
 
       validates :relationship_id, :evaluator_email, presence: true
+      validates :evaluator_email, format: { with: URI::MailTo::EMAIL_REGEXP }
 
       validate :check_for_valid_user
       validate :check_existing_participant, if: -> { user.present? }

@@ -7,7 +7,7 @@ describe Threesixty::ParticipatorByCriteria::BySubjectStatus do
   let(:threesixty_subjects) { create_list(:threesixty_subject, 2) }
 
   before do
-    @counter = double(:counter)
+    @counter = {}
     @subject_evaluator_counters = {}
     @nomination_requirement_by_user_id = {}
 
@@ -21,14 +21,14 @@ describe Threesixty::ParticipatorByCriteria::BySubjectStatus do
       with(
         threesixty_subjects[0],
         nil,
-        @counter,
+        nil,
         nil
       ).and_return(Threesixty::Participants::GetStatus::COMPLETED)
     allow(Threesixty::Participants::GetStatus).to receive(:call!).
       with(
         threesixty_subjects[1],
         nil,
-        @counter,
+        nil,
         nil
       ).and_return(Threesixty::Participants::GetStatus::NOT_COMPLETED)
 

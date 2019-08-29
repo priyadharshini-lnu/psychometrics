@@ -9,7 +9,7 @@ module Threesixty
             status = Threesixty::Participants::GetStatus.call!(
               subject,
               nomination_requirement_by_user_id[subject.user_id],
-              counters,
+              counters[subject.user_id],
               subject_evaluator_counters.dig(subject.user_id, :all)
             )
             status == criteria['value']
