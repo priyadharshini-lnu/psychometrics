@@ -9,6 +9,7 @@ export default class NotificationCenter extends Component {
         notification.open({
           message: data.message,
           description: <div dangerouslySetInnerHTML={{ __html: data.description }} />,
+          duration: 0,
         })
       },
     })
