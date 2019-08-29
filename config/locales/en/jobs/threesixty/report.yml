@@ -5,3 +5,5 @@ en:
         download:
           message: Report is ready
           description: "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>"
+          error: An Error is occur
+          error_description: "You report generation failed. Please contact to Administrator or try to <b>download</b> again."
