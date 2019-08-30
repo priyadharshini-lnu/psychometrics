@@ -6,10 +6,13 @@ export default class NotificationCenter extends Component {
   componentDidMount () {
     window.App.notifications = window.App.cable.subscriptions.create('NotificationChannel', {
       received: (data) => {
-        notification.open({
+        const config = {
           message: data.message,
           description: <div dangerouslySetInnerHTML={{ __html: data.description }} />,
-        })
+          duration: 0,
+        }
+        const type = data.type || 'success'
+        notification[type](config)
       },
     })
   }
