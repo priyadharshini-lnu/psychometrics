@@ -48,7 +48,7 @@ module Threesixty
           campaign: threesixty_campaign.campaign,
           subject_id: subject.user_id,
           relationship_id: params[:relationship_id],
-          manager_nomination_status: manager_can_approve_evaluation? ? :waiting : :approved
+          manager_nomination_status: manager_can_approve_evaluation? ? (Relationship.manager_relationship.id == params[:relationship_id] ? :approved : :waiting) : :approved
         )
       end
 

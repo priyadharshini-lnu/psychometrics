@@ -10,4 +10,8 @@ class Relationship < ApplicationRecord
   def self.self_relationship
     Relationship.find_by(name: 'Self')
   end
+
+  def self.manager_relationship
+    Relationship.find_by(name: 'Manager')
+  end
 end
