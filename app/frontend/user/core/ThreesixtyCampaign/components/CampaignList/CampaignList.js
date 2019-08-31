@@ -9,11 +9,17 @@ import './styles.scss'
 const { Content } = Layout
 
 export default function CampaignList ({
-  campaigns, fetchCampaigns, downloadReport,
+  campaigns, fetchCampaigns, downloadReport, history,
 }) {
   useEffect(() => {
     fetchCampaigns()
   }, [])
+
+  useEffect(() => {
+    if (campaigns.length === 1) {
+      history.push(`/campaigns/${campaigns[0].id}`)
+    }
+  }, [campaigns])
 
   return (
     <Layout>
