@@ -76,7 +76,7 @@ export default function SubjectSection ({
           </ExpandableOption>
         </ExpandableOption>
         <ExpandableOption
-          label="Anyone in the dataSheet"
+          label="Anyone in the datasheet"
           {...parametersForSwitch('canNominateAnyoneFromDatasheet')}
           type="checkbox"
         >
@@ -116,7 +116,7 @@ export default function SubjectSection ({
       </ExpandableOption>
 
       <ExpandableOption
-        label="Subjects can view completion status of evaluations"
+        label="Subjects can view the completion status of evaluations"
         {...parametersForSwitch('canViewCompletionStatusOfEvaluation')}
       >
         <ExpandableOption

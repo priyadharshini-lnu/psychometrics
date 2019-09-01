@@ -51,7 +51,7 @@ module Reports
           assessment_id: report.assessment_ids
         ).
         references(:membership).
-        map { |a| ::AssignSerializer.new(a) }
+        map { |a| ::AssignSerializer.new(a, membership: membership) }
     end
   end
 end

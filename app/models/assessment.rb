@@ -60,6 +60,7 @@ class Assessment < ApplicationRecord
   has_many :communications, dependent: :destroy
   has_many :translations, as: :resource, dependent: :destroy
   has_many :tasks, dependent: :destroy
+  has_many :campaign_templates, dependent: :destroy
 
   # HABTM Factors
   has_many :factors_scoring, dependent: :destroy

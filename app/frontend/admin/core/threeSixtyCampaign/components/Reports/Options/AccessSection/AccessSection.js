@@ -15,7 +15,7 @@ export default function AccessSection ({
 
   return (
     <OptionSection label="Report Access">
-      <ExpandableOption label="Subject can access their report" {...parametersForSwitch('selfCanAccess')} />
+      <ExpandableOption label="Subject can access their reports" {...parametersForSwitch('selfCanAccess')} />
       <ExpandableOption label="Manager can access subject reports" {...parametersForSwitch('managerCanAccess')}>
         <ExpandableOption
           label="Manager cannot see report until requirements are met"

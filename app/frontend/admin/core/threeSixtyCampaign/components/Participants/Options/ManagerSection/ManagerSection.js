@@ -17,13 +17,13 @@ export default function ManagerSection ({
     <OptionSection label="Manager Options">
       <ExpandableOption label="Manager can view nominations" {...parametersForSwitch('canViewNominations')} />
       <ExpandableOption
-        label="Manager May Choose Evaluators"
+        label="Manager may choose Evaluators"
         {...parametersForSwitch('canChooseEvaluators')}
       />
-      <ExpandableOption label="Manager approve nominations" {...parametersForSwitch('canApproveNominations')}>
+      <ExpandableOption label="Manager approves nominations" {...parametersForSwitch('canApproveNominations')}>
         <div>
           <ExpandableOption
-            label="Email managers when a subject's nominations are ready for approval"
+            label="Email managers when a subject's nomination is ready for approval"
             {...parametersForSwitch('emailManagersOnNominationApproval')}
             type="checkbox"
           />
