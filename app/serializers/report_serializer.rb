@@ -114,7 +114,7 @@ class ReportSerializer < ActiveModel::Serializer
       { id: 'Self', name: 'Self' },
       { id: 'Manager', name: 'Direct Manager' },
       { id: 'Peer', name: 'Peer' },
-      { id: 'DirectReport', name: 'DirectReport' },
+      { id: 'DirectReport', name: 'Direct Report' },
     ]
   end
 end
