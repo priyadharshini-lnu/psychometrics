@@ -54,6 +54,17 @@ export default function NominationForm (props) {
       .then(() => message.info(I18n.t('threesixty.deny_all_successful')))
   }
 
+  const canAddEvaluators = (relationship) => {
+    const requirement = _.find(requirements, { title: relationship.name })
+    if (!requirement) { return true }
+
+    const { evaluators, condition } = requirement
+    if (evaluators && condition.comparator !== 'atleast' && evaluators.length === +condition.value) {
+      return false
+    }
+    return true
+  }
+
   const hasEvaluations = _.some(requirements, req => req.evaluators && req.evaluators.length > 0)
 
   return (
@@ -100,14 +111,17 @@ export default function NominationForm (props) {
                   className="relationship-select"
                 >
                   <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
-                  {relationshipWithoutSelf(relationships, options).map(relation => (
-                    <Option
-                      key={relation.id}
-                      value={relation.id}
-                    >
-                      {relation.name}
-                    </Option>
-                  ))}
+                  {relationshipWithoutSelf(relationships, options).map((relation) => {
+                    if (!canAddEvaluators(relation)) { return }
+                    return (
+                      <Option
+                        key={relation.id}
+                        value={relation.id}
+                      >
+                        {relation.name}
+                      </Option>
+                    )
+                  })}
                 </Select>
               </Form.Item>
               <Form.Item>
