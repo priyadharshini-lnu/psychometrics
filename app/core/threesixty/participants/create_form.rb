@@ -18,7 +18,7 @@ module Threesixty
       def check_nomination_requirement
         condition = nomination_requirement.conditions.find{ |c| c['relationship_id'] == relationship_id}
         if condition && condition['comparator'] != 'atleast' &&
-           condition['value'] == subject_evaluators_count_by_relationship
+           condition['value'].to_i == subject_evaluators_count_by_relationship
           errors.add(:evaluator, I18n.t('evaluators.errors.max_evaluators'))
         end
       end
