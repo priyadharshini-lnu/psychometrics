@@ -10,6 +10,8 @@ module Threesixty
     has_one :options, serializer: CampaignOptionsSerializer
 
     def managed_subjects
+      return [] unless instance_options[:managed_subjects]
+
       instance_options[:managed_subjects].map do |subject|
         data = ::Threesixty::EndUser::ManagedSubjectSerializer.new(subject, scope: current_user).
           to_hash(include: '**')

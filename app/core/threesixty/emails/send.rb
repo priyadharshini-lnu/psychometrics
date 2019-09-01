@@ -32,8 +32,7 @@ module Threesixty
         {
           condition_class: Threesixty::Emails::IsDeniedNominationSendable,
           template_name: Threesixty::Emails::Name::NOMINATION_DENIED,
-          recipient_class: Threesixty::Subjects::GetManagers,
-          recipient_type: :evaluator
+          recipient_type: :subject
         },
         {
           condition_class: Threesixty::Emails::IsRequestApprovalSendable,
