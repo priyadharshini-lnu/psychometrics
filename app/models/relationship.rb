@@ -8,10 +8,10 @@ class Relationship < ApplicationRecord
   enum assign_type: { manual: 0, automatic: 1 }
 
   def self.self_relationship
-    Relationship.find_by(name: 'Self')
+    Relationship.find_by(name: 'Self', type: :global)
   end
 
   def self.manager_relationship
-    Relationship.find_by(name: 'Manager')
+    Relationship.find_by(name: 'Manager', type: :global)
   end
 end
