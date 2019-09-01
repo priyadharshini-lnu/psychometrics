@@ -32,7 +32,29 @@ module Hogan
 
     def pass
       Hogan::PassAssessment.call(@assign, @current_membership.membership_with_result, @current_project) do
-        on(:ok)      { render(:pass) }
+        on(:ok)      {
+          respond_to do |format|
+            format.html { render(:pass) }
+            format.json {
+              hogan_params = {
+                url: Rails.application.secrets.hogan[:login_url],
+                user_id: current_user.current_membership.hogan_credential&.participant_id,
+                password: current_user.current_membership.hogan_credential&.password,
+                unique_id: current_user.email,
+                first_name: current_user.first_name,
+                last_name: current_user.last_name,
+                language_id: 'en',
+                direct_assessment_id: @assign.assessment.hogan_assessment_setting.hogan_assessment_id,
+                display_informed_consent: 'YES',
+                return_url: redirect_hogan_assign_url(@assign, email: 'CandID',
+                                participant_id: 'HASUserID', status: 'AssessmentStatus',
+                                assessment_id: 'AssessmentID')
+              }
+              render json: hogan_params
+            }
+          end
+
+        }
         on(:invalid) { render(:error, locals: { message: t('errors.error_500') }) }
       end
     end

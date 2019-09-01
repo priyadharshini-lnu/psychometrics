@@ -2,6 +2,14 @@
 
 module Administration::Threesixty
   class CampaignPolicy < BasePolicy
+    def show?
+      super_admins_or_admins?
+    end
+
+    def index?
+      super_admins_or_admins?
+    end
+
     def assessments?
       super_admins_or_admins?
     end

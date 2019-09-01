@@ -9,7 +9,7 @@ import './styles.scss'
 const { Content } = Layout
 
 export default function CampaignList ({
-  campaigns, fetchCampaigns, downloadReport, history,
+  campaigns, fetchCampaigns, downloadReport, history, loginHogan,
 }) {
   useEffect(() => {
     fetchCampaigns()
@@ -37,7 +37,14 @@ export default function CampaignList ({
             <Row type="flex" gutter={12} className="cards">
               {campaigns.map((campaign) => {
                 const Component = Campaigns[campaign.type]
-                return <Component key={campaign.id} campaign={campaign} downloadReport={downloadReport} />
+                return (
+                  <Component
+                    key={campaign.id}
+                    campaign={campaign}
+                    downloadReport={downloadReport}
+                    loginHogan={loginHogan}
+                  />
+                )
               })}
             </Row>
           </PageHeader>
