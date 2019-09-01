@@ -18,7 +18,7 @@ class InnovationStyle < ApplicationRecord
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true
 
-  validates :position, numericality: { only_integer: true }
+  validates :position, numericality: { only_integer: true }, allow_nil: true
 
   mount_uploader :icon, ImageUploader
 end

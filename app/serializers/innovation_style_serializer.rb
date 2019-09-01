@@ -11,7 +11,7 @@
 #  updated_at                         :datetime         not null
 
 class InnovationStyleSerializer < ActiveModel::Serializer
-  attributes :id, :name, :description, :full_description, :icon, :factors
+  attributes :id, :name, :description, :full_description, :icon, :factors, :position
 
   def factors
     object.innovation_styles_factors.map do |obj|
