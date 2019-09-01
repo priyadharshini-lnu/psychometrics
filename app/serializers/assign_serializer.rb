@@ -24,8 +24,6 @@ class AssignSerializer < ActiveModel::Serializer
              :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
              :relationship, :selected_locale, :type
 
-  attribute :relationship
-
   has_one :user, serializer: UserSerializer
 
   def type
@@ -39,10 +37,6 @@ class AssignSerializer < ActiveModel::Serializer
   # TODO (atanych): Do we still need this?
   def hris
     {}
-  end
-
-  def relationship
-    object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship if @instance_options[:membership]
   end
 
   def relationship

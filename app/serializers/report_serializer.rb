@@ -110,7 +110,6 @@ class ReportSerializer < ActiveModel::Serializer
   end
 
   def non_threesixty_relationships
-    return []
     [
       { id: 'Self', name: 'Self' },
       { id: 'Manager', name: 'Direct Manager' },
