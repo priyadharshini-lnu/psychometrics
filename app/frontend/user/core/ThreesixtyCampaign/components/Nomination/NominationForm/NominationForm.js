@@ -59,7 +59,7 @@ export default function NominationForm (props) {
     if (!requirement) { return true }
 
     const { evaluators, condition } = requirement
-    if (evaluators && condition.comparator !== 'atleast' && evaluators.length === +condition.value) {
+    if (evaluators && condition.comparator !== 'atleast' && condition.value && evaluators.length === +condition.value) {
       return false
     }
     return true
@@ -111,9 +111,8 @@ export default function NominationForm (props) {
                   className="relationship-select"
                 >
                   <Option value="" disabled>{I18n.t('threesixty.select_relationnship')}</Option>
-                  {relationshipWithoutSelf(relationships, options).map((relation) => {
-                    if (!canAddEvaluators(relation)) { return }
-                    return (
+                  {relationshipWithoutSelf(relationships, options).map(relation => (
+                    canAddEvaluators(relation) && (
                       <Option
                         key={relation.id}
                         value={relation.id}
@@ -121,7 +120,7 @@ export default function NominationForm (props) {
                         {relation.name}
                       </Option>
                     )
-                  })}
+                  ))}
                 </Select>
               </Form.Item>
               <Form.Item>
