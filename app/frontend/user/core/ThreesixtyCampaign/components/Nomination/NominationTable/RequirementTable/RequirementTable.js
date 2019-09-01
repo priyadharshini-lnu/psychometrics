@@ -135,6 +135,10 @@ export default function RequirementTable (props) {
     canAdd = canAdd && _.get(options, ['participants', 'subject', 'canSelectRelationships', condition.relationshipId])
   }
 
+  if (evaluators && condition.comparator !== 'atleast' && condition.value && evaluators.length === +condition.value) {
+    canAdd = false
+  }
+
   return (
     <div className="requirement">
       <Table

@@ -11,12 +11,21 @@ module Threesixty
 
       validate :check_for_valid_user
       validate :check_existing_participant, if: -> { user.present? }
+      validate :check_nomination_requirement, if: -> { has_nomination_requirement? }
 
       attr_reader :user
 
+      def check_nomination_requirement
+        condition = nomination_requirement.conditions.find{ |c| c['relationship_id'] == relationship_id}
+        if condition && condition['value'] && condition['comparator'] != 'atleast' &&
+           condition['value'].to_i == subject_evaluators_count_by_relationship
+          errors.add(:evaluator, I18n.t('evaluators.errors.max_evaluators'))
+        end
+      end
+
       def check_existing_participant
         if subject && subject.participants.find_by(evaluator_id: user.id)
-          errors.add(:evaluator, 'already exists')
+          errors.add(:evaluator, I18n.t('evaluators.errors.exists'))
         end
       end
 
@@ -73,10 +82,22 @@ module Threesixty
       end
 
       def can_not_be_processed!
-        errors.add(:evaluator, 'can not be processed')
+        errors.add(:evaluator, I18n.t('evaluators.errors.can_not_processed'))
       end
 
       private
+
+      def subject_evaluators_count_by_relationship
+        subject.evaluators.joins(:relationship).where(relationships: {id: relationship_id}).count
+      end
+
+      def nomination_requirement
+        @requirement ||= Threesixty::NominationRequirements::FindForUsers.call!(subject.user, threesixty_campaign)[subject.user_id]
+      end
+
+      def has_nomination_requirement?
+        nomination_requirement.present?
+      end
 
       def can_nominate_anyone?
         options.participants.dig('subject', 'can_nominate_anyone_not_in_assessment')

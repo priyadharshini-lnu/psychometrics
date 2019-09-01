@@ -44,6 +44,9 @@ module UsersResults
         if (users_result.campaign.threesixty?)
           participant = @threesixty_campaign.participants.find_by(subject_id: @subject_user, evaluator_id: @evaluator_user)
           participant.update_attributes(evaluator_nomination_status: :completed)
+          if participant.relationship_id == Relationship.manager_relationship.id
+            participant.update_attributes(manager_evaluation_status: :approved)
+          end
         end
       end
 
