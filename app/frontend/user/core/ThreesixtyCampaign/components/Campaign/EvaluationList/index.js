@@ -27,7 +27,8 @@ function EvaluationList ({
           onClick={({ domEvent }) => {
             domEvent.stopPropagation()
             declineEvaluation(item.campaignId, item.id)
-          }}>
+          }}
+        >
           {I18n.t('threesixty.decline_invite')}
         </Menu.Item>
         )
