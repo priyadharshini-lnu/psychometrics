@@ -79,7 +79,7 @@ module Administration
     end
 
     def resource_params
-      params.require(:resource).permit(:predicate, :value, :factor_id, :position)
+      params.require(:resource).permit(:predicate, :value, :factor_id, :position, :weight)
     end
   end
 end

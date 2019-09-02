@@ -21,7 +21,7 @@
 
 class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id, :relationship,
-             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet, :selected_locale
+             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet, :selected_locale, :occupations, :innovation_styles
 
   attribute :agile_scoring, if: -> { object.membership_id == @instance_options[:membership].try(:id) }
 

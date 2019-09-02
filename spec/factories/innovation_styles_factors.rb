@@ -18,5 +18,6 @@ FactoryGirl.define do
     factor
     predicate { :equal_to }
     value { 3.0 }
+    weight { 1.0 }
   end
 end
