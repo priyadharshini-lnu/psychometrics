@@ -26,9 +26,9 @@ module Threesixty
         value_from_datasheet = datasheet_row_data[field].to_s.downcase
         result =
           if condition['comparator'] == 'equal'
-            value_from_datasheet == value.downcase
+            value_from_datasheet == value
           else
-            value_from_datasheet != value.downcase
+            value_from_datasheet != value
           end
 
         { operator: condition['operator'], result: result }
