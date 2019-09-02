@@ -170,7 +170,7 @@ export default function Hogan ({ campaign: assign, loginHogan }) {
       </Card>
 
       {hoganData && (
-        <form action={hoganData.url} method="post" ref={formRef}>
+        <form action={hoganData.url} method="post" ref={formRef} style={{ display: 'none' }}>
           <Input type="hidden" name="UserID" value={hoganData.userId} />
           <Input type="hidden" name="Password" value={hoganData.password} />
           <Input type="hidden" name="UniqueID" value={hoganData.uniqueId} />
