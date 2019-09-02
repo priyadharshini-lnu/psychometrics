@@ -103,6 +103,10 @@ class Assign < ApplicationRecord
 
   mount_base64_uploader :mindmill_report, FileUploader, file_name: proc { 'mindmill_report' }
 
+  def as_json(*)
+    super(only: %i[id assignment_id status started_at completed_at step])
+  end
+
   #
   # 1 step:
   # Generate hash: { factor_id: [FactorsScoring, FactorsScoring, ...], ...} - factors_scoring_map

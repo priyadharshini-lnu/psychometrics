@@ -32,11 +32,21 @@ class AssessmentDecorator < BaseDecorator
   end
 
   def anonym_link_for(client)
-    hasids = Hashids.new(ENV['HASHIDS_SALT'], Settings.hashids_length.anonym)
-    url = h.anonym_assessment_pass_url(client_id: hasids.encode(client.id),
-                                       assessment_id: hasids.encode(object.id),
-                                       domain: Settings.domain,
-                                       subdomain: client.project.subdomain)
+    # Disallow universal links for Hogan and MM
+    return if object.external?
+
+    assessments_client = client.assessments_clients.find_by(assessment_id: object.id)
+
+    return unless assessments_client.enable_universal_links?
+    return unless assessments_client.assessment_key
+
+    options = {
+      assessment_key: assessments_client.assessment_key,
+      domain: Settings.domain,
+      subdomain: client.project.subdomain
+    }
+    url = h.anonym_assessment_pass_url(options)
+
     h.link_to(url, url)
   end
 

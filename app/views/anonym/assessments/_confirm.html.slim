@@ -1,0 +1,14 @@
+script id="mb-confirm-template" type="x-tmpl-mustache"
+  #mb-confirm.message-box.animated.fadeIn data-sound="alert"
+    .mb-container
+      .mb-middle
+        .mb-title
+          span.mb-title-icon.fa.fa-warning
+          span.mb-title-text
+            | {{{ title }}}
+        .mb-content
+          | {{{ body }}}
+        .mb-footer
+          .pull-right
+            button.btn.btn-success.btn-lg.mb-control-close.mb-confirm-yes data-dismiss="modal" = 'Start New'
+            button.btn.btn-default.btn-lg.mb-control-close data-dismiss="modal" = 'Continue'

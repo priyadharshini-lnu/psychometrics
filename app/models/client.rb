@@ -260,6 +260,14 @@ class Client < ApplicationRecord
     self.hogan_group_name = generate_hogan_group_name
   end
 
+  def assessment_universal_links_enabled?(assessment_id)
+    assessments_clients.find_by(assessment_id: assessment_id)&.enable_universal_links?
+  end
+
+  def has_assessment_key?(assessment_id)
+    !!assessments_clients.find_by(assessment_id: assessment_id)&.assessment_key
+  end
+
   private
 
   def generate_hogan_group_name

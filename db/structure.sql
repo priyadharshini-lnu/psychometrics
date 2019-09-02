@@ -149,7 +149,11 @@ CREATE TABLE public.assessments_clients (
     assessment_id bigint,
     "position" integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    enable_universal_links boolean DEFAULT false,
+    assessment_key character varying,
+    key_generated_at timestamp without time zone,
+    key_expires_at timestamp without time zone
 );
 
 
@@ -249,10 +253,10 @@ CREATE TABLE public.assigns (
     mindmill_prefix character varying,
     external_results json,
     occupations jsonb DEFAULT '[]'::jsonb,
-    innovation_styles jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
-    subject_id bigint
+    subject_id bigint,
+    innovation_styles jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -1973,11 +1977,10 @@ ALTER SEQUENCE public.questions_id_seq OWNED BY public.questions.id;
 CREATE TABLE public.registration_codes (
     id bigint NOT NULL,
     name character varying,
-    code public.citext,
+    code character varying,
     total_count integer NOT NULL,
     use_count integer DEFAULT 0,
-    end_level_id integer,
-    project_id integer,
+    client_id bigint,
     start_date timestamp without time zone,
     end_date timestamp without time zone,
     disabled boolean DEFAULT true,
@@ -2096,12 +2099,12 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
-    provider integer,
     category integer DEFAULT 0,
+    provider integer,
     archived boolean DEFAULT false
 );
 
@@ -2754,7 +2757,7 @@ ALTER SEQUENCE public.translations_id_seq OWNED BY public.translations.id;
 
 CREATE TABLE public.users (
     id integer NOT NULL,
-    email public.citext DEFAULT ''::character varying NOT NULL,
+    email character varying DEFAULT ''::character varying NOT NULL,
     encrypted_password character varying DEFAULT ''::character varying NOT NULL,
     reset_password_token character varying,
     reset_password_sent_at timestamp without time zone,
@@ -4840,17 +4843,17 @@ CREATE INDEX index_questions_on_template_id ON public.questions USING btree (tem
 
 
 --
--- Name: index_registration_codes_on_end_level_id_and_code; Type: INDEX; Schema: public; Owner: -
+-- Name: index_registration_codes_on_client_id; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_registration_codes_on_end_level_id_and_code ON public.registration_codes USING btree (end_level_id, code);
+CREATE INDEX index_registration_codes_on_client_id ON public.registration_codes USING btree (client_id);
 
 
 --
--- Name: index_registration_codes_on_project_id_and_code; Type: INDEX; Schema: public; Owner: -
+-- Name: index_registration_codes_on_code; Type: INDEX; Schema: public; Owner: -
 --
 
-CREATE UNIQUE INDEX index_registration_codes_on_project_id_and_code ON public.registration_codes USING btree (project_id, code);
+CREATE UNIQUE INDEX index_registration_codes_on_code ON public.registration_codes USING btree (code);
 
 
 --
@@ -5931,6 +5934,14 @@ ALTER TABLE ONLY public.communications_users
 
 
 --
+-- Name: registration_codes fk_rails_bc34ddc03d; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.registration_codes
+    ADD CONSTRAINT fk_rails_bc34ddc03d FOREIGN KEY (client_id) REFERENCES public.clients(id);
+
+
+--
 -- Name: users_reports fk_rails_c02c547c00; Type: FK CONSTRAINT; Schema: public; Owner: -
 --
 
@@ -6511,6 +6522,9 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190902100425'),
 ('20190902100625'),
 ('20190903131845'),
+('20190915124839'),
+('20190916070023'),
+('20190916070101'),
 ('20190917082805'),
 ('20190917122130'),
 ('20190917140510'),

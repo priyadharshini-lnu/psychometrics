@@ -29,3 +29,4 @@ Rails.application.config.assets.precompile += %w[psychometrics_reports_vendor.cs
                                                  psychometrics_reports_app.scss]
 Rails.application.config.assets.precompile += %w[psychometrics_pdf_app.css]
 Rails.application.config.assets.precompile += %w[psychometrics_pdf_vendor.js psychometrics_pdf_app.js]
+Rails.application.config.assets.precompile += %w[anonym/index.js anonym.scss]

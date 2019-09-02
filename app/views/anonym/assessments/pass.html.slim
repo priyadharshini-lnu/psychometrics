@@ -4,7 +4,7 @@
     .contentBox
       .contentTitleHeader
         i.glyphicon.glyphicon-question-sign.titleIcon.pull-left
-        p.contentTitle.pull-left Questions
+        p.contentTitle.pull-left = @resource.decorate.name
         = render partial: 'application/lang', locals: { with_confirm: true, locales: @available_translations }
         .clearfix
       .questionContent
