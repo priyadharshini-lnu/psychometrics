@@ -2,8 +2,7 @@
 /* eslint-disable max-len */
 import React, { useState, useCallback } from 'react'
 import {
-  Row, Col, Icon, Card, Progress, Dropdown, Menu,
-  Modal, Input,
+  Row, Col, Icon, Card, Progress, Dropdown, Menu, Input,
 } from 'antd'
 import './styles.scss'
 import mindmill from './mindmill.png'
@@ -171,25 +170,17 @@ export default function Hogan ({ campaign: assign, loginHogan }) {
       </Card>
 
       {hoganData && (
-        <Modal
-          width={600}
-          title="Login to Hogan"
-          visible={hoganData}
-          onCancel={() => setHoganData(null)}
-          footer={false}
-        >
-          <form action={hoganData.url} method="post" ref={formRef}>
-            <Input type="hidden" name="UserID" value={hoganData.userId} disabled />
-            <Input type="hidden" name="Password" value={hoganData.password} disabled />
-            <Input type="hidden" name="UniqueID" value={hoganData.uniqueId} disabled />
-            <Input type="hidden" name="FirstName" value={hoganData.firstName} disabled />
-            <Input type="hidden" name="LastName" value={hoganData.lastName} disabled />
-            <Input type="hidden" name="LanguageID" value={hoganData.languageId} disabled />
-            <Input type="hidden" name="DirectAssessmentID" value={hoganData.directAssessmentId} disabled />
-            <Input type="hidden" name="DisplayInformedConsent" value={hoganData.displayInformedConsent} disabled />
-            <Input type="hidden" name="ReturnURL" value={hoganData.returnUrl} disabled />
-          </form>
-        </Modal>
+        <form action={hoganData.url} method="post" ref={formRef}>
+          <Input type="hidden" name="UserID" value={hoganData.userId} />
+          <Input type="hidden" name="Password" value={hoganData.password} />
+          <Input type="hidden" name="UniqueID" value={hoganData.uniqueId} />
+          <Input type="hidden" name="FirstName" value={hoganData.firstName} />
+          <Input type="hidden" name="LastName" value={hoganData.lastName} />
+          <Input type="hidden" name="LanguageID" value={hoganData.languageId} />
+          <Input type="hidden" name="DirectAssessmentID" value={hoganData.directAssessmentId} />
+          <Input type="hidden" name="DisplayInformedConsent" value={hoganData.displayInformedConsent} />
+          <Input type="hidden" name="ReturnURL" value={hoganData.returnUrl} />
+        </form>
       )}
     </Col>
   )
