@@ -1,10 +1,9 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable max-len */
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import {
-  Row, Col, Icon, Card, Progress, Dropdown, Menu,
+  Row, Col, Icon, Card, Progress, Dropdown, Menu, Input,
 } from 'antd'
-import { Link } from 'react-router-dom'
 import './styles.scss'
 import mindmill from './mindmill.png'
 import hogan from './hogan.png'
@@ -26,16 +25,11 @@ const StatusMenu = reports => (
 )
 
 const renderButtonContent = ({
-  mindmill, mindmillUrl, url, status, assignedReports,
-}) => {
-  let href = url
-  if (mindmill) { href = mindmillUrl }
-  const LinkTag = ({ children }) => (mindmill
-    ? <a href={href}>{children}</a>
-    : <Link to={href}>{children}</Link>)
+  url, status, assignedReports,
+}, loginHogan) => {
   if (status === IN_PROGRESS) {
     return (
-      <LinkTag>
+      <a href="#" onClick={loginHogan}>
         <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <polygon id="path-1" points="0 0 18 0 18 17 0 17" />
@@ -56,7 +50,7 @@ const renderButtonContent = ({
         </svg>
         {' '}
         Continue
-      </LinkTag>
+      </a>
     )
   }
 
@@ -92,7 +86,7 @@ const renderButtonContent = ({
     )
   }
   return (
-    <a href={href}>
+    <a href="#" onClick={loginHogan}>
       <Icon type="play-circle" />
       {' '}
       Begin
@@ -100,7 +94,22 @@ const renderButtonContent = ({
   )
 }
 
-export default function SingleAssign ({ campaign: assign }) {
+export default function Hogan ({ campaign: assign, loginHogan }) {
+  const [hoganData, setHoganData] = useState(null)
+
+  const onLoginHogan = (e) => {
+    e.preventDefault()
+    loginHogan(assign.hoganUrl).then((data) => {
+      setHoganData(data.response)
+    })
+  }
+
+  const formRef = useCallback((form) => {
+    if (hoganData && form !== null) {
+      form.submit()
+    }
+  }, [hoganData])
+
   return (
     <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
       <Card
@@ -154,11 +163,25 @@ export default function SingleAssign ({ campaign: assign }) {
             </Row>
             <div className="divider" />
             <div className="button">
-              {renderButtonContent(assign)}
+              {renderButtonContent(assign, onLoginHogan)}
             </div>
           </div>
         </div>
       </Card>
+
+      {hoganData && (
+        <form action={hoganData.url} method="post" ref={formRef} style={{ display: 'none' }}>
+          <Input type="hidden" name="UserID" value={hoganData.userId} />
+          <Input type="hidden" name="Password" value={hoganData.password} />
+          <Input type="hidden" name="UniqueID" value={hoganData.uniqueId} />
+          <Input type="hidden" name="FirstName" value={hoganData.firstName} />
+          <Input type="hidden" name="LastName" value={hoganData.lastName} />
+          <Input type="hidden" name="LanguageID" value={hoganData.languageId} />
+          <Input type="hidden" name="DirectAssessmentID" value={hoganData.directAssessmentId} />
+          <Input type="hidden" name="DisplayInformedConsent" value={hoganData.displayInformedConsent} />
+          <Input type="hidden" name="ReturnURL" value={hoganData.returnUrl} />
+        </form>
+      )}
     </Col>
   )
 }

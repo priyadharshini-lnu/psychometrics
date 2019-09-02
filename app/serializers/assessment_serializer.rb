@@ -34,6 +34,7 @@ class AssessmentSerializer < ActiveModel::Serializer
   end
 
   def factors
+    return [] unless object.dimension
     object.dimension.all_factors.map { |factor| Factors::WithoutSubFactorsSerializer.new(factor).to_hash }
   end
 

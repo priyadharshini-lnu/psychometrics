@@ -71,7 +71,7 @@ module Threesixty
 
     def nominations
       is_nomination_complete_hash = Threesixty::Subjects::IsNominationRequirementComplete.call!(object.campaign.threesixty_campaign, nomination_users)
-      
+
       nomination_subjects.map do |subject|
         Threesixty::EndUser::CampaignNomineeSerializer.
           new(subject, current_user: current_user, is_nomination_completed: is_nomination_complete_hash[subject.user_id]).
