@@ -22,7 +22,12 @@ function EvaluationList ({
     <Menu>
       {!isEvaluationCompleted(item)
         && (
-        <Menu.Item key="0" onClick={() => declineEvaluation(item.campaignId, item.id)}>
+        <Menu.Item
+          key="0"
+          onClick={({ domEvent }) => {
+            domEvent.stopPropagation()
+            declineEvaluation(item.campaignId, item.id)
+          }}>
           {I18n.t('threesixty.decline_invite')}
         </Menu.Item>
         )
