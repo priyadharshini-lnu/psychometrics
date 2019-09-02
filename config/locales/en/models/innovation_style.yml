@@ -1,0 +1,16 @@
+en:
+  activerecord:
+    models:
+      occupation: 'Innovation Styles'
+    attributes:
+      occupation: &DEFAULT
+        id: 'ID'
+        name: 'Name'
+        description: 'Description'
+        created_at: 'Created Date'
+        updated_at: 'Modified Date'
+        active: 'Active'
+  simple_form:
+    placeholders:
+      norm:
+        <<: *DEFAULT

@@ -238,6 +238,23 @@ Rails.application.routes.draw do
         ### END FACTORS
       end
       ### END OCCUPATIONS
+      ### INNOVATION STYLES
+      resources :innovation_styles do
+        member do
+          get :copy
+          get :sidebar
+          patch :toggle_status
+        end
+        ### FACTORS
+        resources :factors, controller: :innovation_styles_factors do
+          member do
+            get :copy
+            get :sidebar
+            patch :toggle_status
+          end
+        end
+      end
+      ### END INNOVATION STYLES
     end
     ### END DIMENSIONS
 
