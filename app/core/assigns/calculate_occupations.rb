@@ -19,20 +19,22 @@ module Assigns
              includes(occupations_factors: :factor)&.
              each_with_object([]) do |occupation, mem|
         # Fetchs a valid factor ids
-        valid_factor_ids = []
+        valid_factors = []
         occupation.occupations_factors.each do |occupations_factor|
           # Calculates AVG of scoring
           avg_scoring = AverageScoring.call!(assign.scoring, occupations_factor.factor)
           # Collects factor ID if condition is valid
-          valid_factor_ids << occupations_factor.factor_id if condition_valid?(occupations_factor, avg_scoring)
+          valid_factors << occupations_factor if condition_valid?(occupations_factor, avg_scoring)
         end
         # Calculates ratio of valid factors
-        value = (valid_factor_ids.size / occupation.occupations_factors.size.to_f).round(2)
+        valid_factors_weight_sum = valid_factors.map{|f| f[:weight]}.reduce(&:+) || 0
+        total_factors_weight_sum = occupation.occupations_factors.map{|f| f[:weight]}.reduce(&:+)
+        value = valid_factors_weight_sum ? (valid_factors_weight_sum / total_factors_weight_sum).round(2) : 0
 
         mem << {
           id: occupation.id,
           value: value,
-          factor_ids: valid_factor_ids
+          factor_ids: valid_factors.map(&:factor_id)
         }
       end
     end

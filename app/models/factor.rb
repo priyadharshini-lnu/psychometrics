@@ -23,6 +23,7 @@ class Factor < ApplicationRecord
   has_many :factors_norms
   has_many :factors_scoring
   has_many :occupations_factors, dependent: :destroy
+  has_many :innovation_styles_factors, dependent: :destroy
   has_many :aliases, class_name: 'FactorsAlias', dependent: :destroy
 
   validates :name, :dimension, presence: true

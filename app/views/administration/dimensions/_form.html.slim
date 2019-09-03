@@ -6,6 +6,9 @@
       = f.input :name
       - if current_user.is?(:superadmin)
         = f.association :owner, collection: policy_scope(Client).roots, include_blank: t('administration.tte'), input_html: { data: { live_search: true } }
+      div.row.row-no-padding
+        = f.input :occupations_enabled, inline_label: t('.form.enable_occupations'), wrapper_html: { class: 'col-md-6' }
+        = f.input :innovation_styles_enabled, inline_label: t('.form.enable_innovation_styles'), wrapper_html: { class: 'col-md-6' }
 
   .modal-footer
     .btn-group

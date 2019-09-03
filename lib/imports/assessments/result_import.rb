@@ -121,6 +121,7 @@ module Imports
           if assign.completed?
             assign.calculate_scoring
             assign.occupations = Assigns::CalculateOccupations.call!(assign)
+            assign.innovation_styles = Assigns::CalculateInnovationStyles.call!(assign)
           end
           assign
         end
