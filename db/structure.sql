@@ -1142,7 +1142,8 @@ CREATE TABLE public.innovation_styles_factors (
     value double precision,
     "position" integer,
     created_at timestamp without time zone NOT NULL,
-    updated_at timestamp without time zone NOT NULL
+    updated_at timestamp without time zone NOT NULL,
+    weight double precision DEFAULT 1.0
 );
 
 
@@ -1470,7 +1471,8 @@ CREATE TABLE public.occupations_factors (
     value double precision,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    "position" integer
+    "position" integer,
+    weight double precision DEFAULT 1.0
 );
 
 
@@ -4477,6 +4479,8 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190825114742'),
 ('20190828084401'),
 ('20190829135506'),
-('20190901055329');
+('20190901055329'),
+('20190902100425'),
+('20190902100625');
 
 

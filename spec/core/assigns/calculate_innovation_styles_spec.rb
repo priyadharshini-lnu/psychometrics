@@ -5,11 +5,14 @@ describe Assigns::CalculateInnovationStyles do
   let(:dimension) { assign.assessment.dimension }
   let(:factor1) { create(:factor, dimension: dimension) }
   let(:factor2) { create(:factor, dimension: dimension) }
+  let(:factor3) { create(:factor, dimension: dimension) }
 
   # InnovationStyle and InnovationStylesFactor #1
   let(:innovation_style1) { create(:innovation_style, dimension: dimension) }
   let(:innovation_styles_factor1_1) { create(:innovation_styles_factor, innovation_style: innovation_style1, factor: factor1) }
   let(:innovation_styles_factor1_2) { create(:innovation_styles_factor, innovation_style: innovation_style1, factor: factor2) }
+  let(:innovation_styles_factor1_3) { create(:innovation_styles_factor, innovation_style: innovation_style1, factor: factor1, predicate: 'greater_then', value: 4.0, weight: 0.5) }
+  let(:innovation_styles_factor1_4) { create(:innovation_styles_factor, innovation_style: innovation_style1, factor: factor2, predicate: 'greater_then', value: 3.0) }
 
   # InnovationStyle and InnovationStylesFactor #2
   let(:innovation_style2) { create(:innovation_style, dimension: dimension) }
@@ -20,21 +23,77 @@ describe Assigns::CalculateInnovationStyles do
   end
 
   context '#condition_valid?' do
-    subject { described_class.new(assign).send(:condition_valid?, innovation_styles_factor1_1, avg_scoring) }
-    let(:innovation_styles_factor1_1) { create(:innovation_styles_factor, innovation_style: innovation_style1, factor: factor1, predicate: predicate, value: 3.0) }
-
     context 'equal_to' do
       let(:predicate) { 'equal_to' }
-      let!(:avg_scoring) { 3.0 }
 
       it 'pass' do
-        is_expected.to be_truthy
+        result = described_class.new(assign).send(:condition_valid?, innovation_styles_factor1_1, 3.0)
+        expect(result).to be_truthy
       end
 
-      xit 'not pass' do
-        avg_scoring += 3.1
-        is_expected.to be_falsy
+      it 'not pass' do
+        result = described_class.new(assign).send(:condition_valid?, innovation_styles_factor1_1, 6.0)
+        expect(result).to be_falsy
       end
+    end
+  end
+
+  context '.call' do
+    it 'calculates innovation_style score' do
+      scoring = {
+        "#{innovation_styles_factor1_1.factor.id}" => {
+          'results' => [
+            {
+              value: 4.0
+            },
+            {
+              value: 2.0
+            }
+          ]
+        },
+        "#{innovation_styles_factor1_2.factor.id}" => {
+          'results' => [
+            {
+              value: 3.0
+            },
+            {
+              value: 5.0
+            }
+          ]
+        },
+      }
+      assign.scoring = scoring
+      result = described_class.call!(assign)
+      expect(result.first[:factor_ids]).to eq([innovation_styles_factor1_1.factor.id])
+      expect(result.first[:value]).to eq(50)
+    end
+    it 'calculates weighted innovation_style score' do
+      scoring = {
+        "#{innovation_styles_factor1_3.factor.id}" => {
+          'results' => [
+            {
+              value: 4.0
+            },
+            {
+              value: 2.0
+            }
+          ]
+        },
+        "#{innovation_styles_factor1_4.factor.id}" => {
+          'results' => [
+            {
+              value: 3.0
+            },
+            {
+              value: 5.0
+            }
+          ]
+        },
+      }  
+      assign.scoring = scoring
+      result = described_class.call!(assign)
+      expect(result.first[:factor_ids]).to eq([innovation_styles_factor1_4.factor.id])
+      expect(result.first[:value]).to eq((1/1.5).round(2) * 100)
     end
   end
 end

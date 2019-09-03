@@ -2,6 +2,7 @@ tr data-sidebar=url_for([:sidebar, :administration, @dimension, @innovation_styl
   td = resource.decorate.display_name
   td.text-center = resource.decorate.condition
   td.text-center = resource.position
+  td.text-center = resource.weight
   td.text-center.vertical_middle = resource.decorate.created_at
   td.text-center.vertical_middle = resource.decorate.updated_at
   td.actions-cell

@@ -19,20 +19,22 @@ module Assigns
              includes(innovation_styles_factors: :factor)&.
              each_with_object([]) do |innovation_style, mem|
         # Fetchs a valid factor ids
-        valid_factor_ids = []
+        valid_factors = []
         innovation_style.innovation_styles_factors.each do |innovation_styles_factor|
           # Calculates AVG of scoring
           avg_scoring = AverageScoring.call!(assign.scoring, innovation_styles_factor.factor)
           # Collects factor ID if condition is valid
-          valid_factor_ids << innovation_styles_factor.factor_id if condition_valid?(innovation_styles_factor, avg_scoring)
+          valid_factors << innovation_styles_factor if condition_valid?(innovation_styles_factor, avg_scoring)
         end
         # Calculates ratio of valid factors
-        value = (valid_factor_ids.size / innovation_style.innovation_styles_factors.size.to_f).round(2) * 100
+        valid_factors_weight_sum = valid_factors.map{|f| f[:weight]}.reduce(&:+) || 0
+        total_factors_weight_sum = innovation_style.innovation_styles_factors.map{|f| f[:weight]}.reduce(&:+)
+        value = valid_factors_weight_sum ? (valid_factors_weight_sum / total_factors_weight_sum).round(2) * 100 : 0
 
         mem << {
           id: innovation_style.id,
           value: value,
-          factor_ids: valid_factor_ids
+          factor_ids: valid_factors.map(&:factor_id)
         }
       end
     end
