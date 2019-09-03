@@ -1,7 +1,7 @@
 tr id=dom_id(resource)
   td = resource.name
-  td = link_to resource.assessment.name, administration_assessment_path(resource.assessment)
-  td = link_to resource.report.name, administration_report_path(resource.report)
+  td = resource.assessment ? link_to(resource.assessment.name, administration_assessment_path(resource.assessment)) : ""
+  td = resource.report ? link_to(resource.report.name, administration_report_path(resource.report)) : ""
   td.text-center = resource.created_at
   td.text-center = resource.updated_at
   td.actions-cell

@@ -1,4 +1,5 @@
 const FETCH = 'threeSixty/campaignList/FETCH'
+const LOGIN_HOGAN = 'threeSixty/campaignList/LOGIN_HOGAN'
 
 export const fetchCampaigns = () => ({
   type: FETCH,
@@ -6,6 +7,15 @@ export const fetchCampaigns = () => ({
     url: '/campaigns',
   },
 })
+
+export const loginHogan = url => ({
+  type: LOGIN_HOGAN,
+  request: {
+    method: 'PUT',
+    url,
+  },
+})
+
 
 export const defaultState = []
 

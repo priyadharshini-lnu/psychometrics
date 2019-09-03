@@ -25,10 +25,17 @@ const StatusMenu = reports => (
   </Menu>
 )
 
-const renderButtonContent = ({ url, status, assignedReports }) => {
+const renderButtonContent = ({
+  mindmill, mindmillUrl, url, status, assignedReports,
+}) => {
+  let href = url
+  if (mindmill) { href = mindmillUrl }
+  const LinkTag = ({ children }) => (mindmill
+    ? <a href={href}>{children}</a>
+    : <Link to={href}>{children}</Link>)
   if (status === IN_PROGRESS) {
     return (
-      <Link to={url}>
+      <LinkTag>
         <svg width="18px" height="17px" viewBox="0 0 18 17" version="1.1" xmlns="http://www.w3.org/2000/svg">
           <defs>
             <polygon id="path-1" points="0 0 18 0 18 17 0 17" />
@@ -49,7 +56,7 @@ const renderButtonContent = ({ url, status, assignedReports }) => {
         </svg>
         {' '}
         Continue
-      </Link>
+      </LinkTag>
     )
   }
 
@@ -85,7 +92,7 @@ const renderButtonContent = ({ url, status, assignedReports }) => {
     )
   }
   return (
-    <a href={url}>
+    <a href={href}>
       <Icon type="play-circle" />
       {' '}
       Begin

@@ -55,6 +55,7 @@ class Report < ApplicationRecord
   has_many :dimensions, -> { distinct }, through: :assessments_default_order
   has_many :factors_aliases, dependent: :destroy
   has_many :factors_through_factors_aliases, through: :factors_aliases, source: :factor
+  has_many :campaign_templates, dependent: :destroy
 
   has_one :hogan_report_setting
   accepts_nested_attributes_for :hogan_report_setting, allow_destroy: true

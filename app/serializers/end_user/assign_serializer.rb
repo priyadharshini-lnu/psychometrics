@@ -3,12 +3,16 @@ module EndUser
     include Rails.application.routes.url_helpers
     attributes :id, :status, :step, :type, :completion_percent, :url, :assigned_reports,
                :assessment_name, :questions_count, :timing, :mindmill, :hogan
+    attribute :mindmill_url, if: -> { object.assessment.mindmill? }
+    attribute :hogan_url, if: -> { object.assessment.hogan? }
 
     def url
       pass_assign_path(object)
     end
 
     def type
+      return 'hogan' if object.assessment.hogan?
+
       'single_assign'
     end
 
@@ -34,8 +38,16 @@ module EndUser
       object.assessment.mindmill?
     end
 
+    def mindmill_url
+      pass_mindmill_assign_path(object)
+    end
+
     def hogan
       object.assessment.hogan?
+    end
+
+    def hogan_url
+      pass_hogan_assign_path(object.id)
     end
 
     def completion_percent

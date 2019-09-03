@@ -5450,6 +5450,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
   "subjects": {
     "statuses": {
       "completed": "Completed",
+      "declined": "Declined",
       "denied": "Denied",
       "done": "Done",
       "not_completed": "Not Completed",
@@ -11035,6 +11036,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
   "subjects": {
     "statuses": {
       "completed": "Completed",
+      "declined": "Declined",
       "denied": "Denied",
       "done": "Done",
       "not_completed": "Not Completed",
@@ -16616,6 +16618,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
   "subjects": {
     "statuses": {
       "completed": "Completed",
+      "declined": "Declined",
       "denied": "Denied",
       "done": "Done",
       "not_completed": "Not Completed",
