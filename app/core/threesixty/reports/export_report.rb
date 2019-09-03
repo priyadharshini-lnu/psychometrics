@@ -87,6 +87,7 @@ module Threesixty
       #
       def build_user_url(params = {})
         params = params.merge(
+          domain: Settings.domain,
           subdomain: threesixty_campaign.campaign.project.subdomain,
           campaign_id: threesixty_campaign.id,
           id: users_report.id,
