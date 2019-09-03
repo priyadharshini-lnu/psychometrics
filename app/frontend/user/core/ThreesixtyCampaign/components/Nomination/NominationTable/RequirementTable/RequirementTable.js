@@ -68,8 +68,12 @@ export default function RequirementTable (props) {
     if (evaluator.evaluatorNominationStatus === EVALUATOR_NOMINATION_STATUSES.DECLINED) {
       return { children: 'Declined' }
     }
-    if (isSelf || !options.participants.manager.canApproveNominations) {
+    if (isSelf) {
       return { children: evaluator && statusPresenter.getApprovalStatus(evaluator.approvalStatus) }
+    }
+
+    if (!options.participants.manager.canApproveNominations) {
+      return { children: '' }
     }
 
     if (evaluator.approvalStatus !== 'waiting') {

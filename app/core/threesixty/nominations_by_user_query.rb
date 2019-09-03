@@ -37,7 +37,9 @@ module Threesixty
 
     def manager_can_manage_evaluations?
       manager_opts = @options.participants['manager']
-      manager_opts['can_view_nominations'] || manager_opts['can_choose_evaluators']
+      manager_opts['can_view_nominations'] ||
+        manager_opts['can_choose_evaluators'] ||
+        manager_opts['can_approve_nominations']
     end
 
     attr_reader :current_user

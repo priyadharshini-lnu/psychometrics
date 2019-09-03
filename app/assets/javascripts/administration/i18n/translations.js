@@ -4625,6 +4625,8 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
       "reports": {
         "download": {
           "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "error": "An Error is occur",
+          "error_description": "You report generation failed. Please contact to Administrator or try to <b>download</b> again.",
           "message": "Report is ready"
         }
       }
@@ -5488,6 +5490,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "evaluator": "Evaluator",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
+    "generate_report": "Generate Report",
     "help": "Help",
     "helps": {
       "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a Manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
@@ -10208,6 +10211,8 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
       "reports": {
         "download": {
           "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "error": "An Error is occur",
+          "error_description": "You report generation failed. Please contact to Administrator or try to <b>download</b> again.",
           "message": "Report is ready"
         }
       }
@@ -11071,6 +11076,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "evaluator": "Evaluator",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
+    "generate_report": "Generate Report",
     "help": "Help",
     "helps": {
       "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a Manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",
@@ -15787,6 +15793,8 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
       "reports": {
         "download": {
           "description": "To download the report, please follow link: <a href='%{url}' target='_blank'>Download</a>",
+          "error": "An Error is occur",
+          "error_description": "You report generation failed. Please contact to Administrator or try to <b>download</b> again.",
           "message": "Report is ready"
         }
       }
@@ -16650,6 +16658,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "evaluator": "Evaluator",
     "first_name": "First Name",
     "first_name_error": "Please input First Name",
+    "generate_report": "Generate Report",
     "help": "Help",
     "helps": {
       "evaluation": "<h2>Evaluations</h2> <p>There can be two different sections under Evaluations.</p> <h3>EVALUATIONS</h3> <p>Click on the person’s name to complete an evaluation of them.</p> <p>If you leave the page before you finish, you will be prompted to save.</p> <h3>APPROVE EVALUATIONS</h3> <p>This section only appears if you’re a Manager and have been given permission to approve your direct reports’ evaluations. An evaluation will not be added to the data in your direct report’s report until you approve.</p>\n<ol> <li><p>Navigate between your direct reports.</p></li> <li><p>Navigate between your direct reports’ evaluators.</p></li> <li><p>Change the status of the evaluation to <b>Approved</b>  or <b>Denied</b>.</p></li> </ol> <p>You can also download a PDF of the evaluation you’re reviewing.</p>",

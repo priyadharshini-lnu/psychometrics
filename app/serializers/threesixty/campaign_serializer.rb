@@ -2,12 +2,22 @@ module Threesixty
   class CampaignSerializer < ActiveModel::Serializer
     attributes :id, :reports, :type, :assessment_name, :questions_count, :timing,
                :mindmill, :hogan, :instructions, :logo,
-               :evaluations_counters, :nominations_counters, :reports_counters, :nominations
+               :evaluations_counters, :nominations_counters, :reports_counters, :nominations,
+               :managed_subjects
 
     has_many :evaluations, serializer: Threesixty::EndUser::EvaluationSerializer
-    has_many :managed_subjects, serializer: Threesixty::EndUser::ManagedSubjectSerializer
     has_many :reports, serializer: UsersReportSerializer
     has_one :options, serializer: CampaignOptionsSerializer
+
+    def managed_subjects
+      return [] unless instance_options[:managed_subjects]
+
+      instance_options[:managed_subjects].map do |subject|
+        data = ::Threesixty::EndUser::ManagedSubjectSerializer.new(subject, scope: current_user, scope_name: :current_user).
+          to_hash(include: '**')
+        data[:evaluators].present? ? data : nil
+      end.compact
+    end
 
     def nominations_counters
       {
@@ -85,10 +95,6 @@ module Threesixty
 
     def nomination_subjects
       instance_options[:subjects] || []
-    end
-
-    def managed_subjects
-      instance_options[:managed_subjects] || []
     end
 
     def evaluations
