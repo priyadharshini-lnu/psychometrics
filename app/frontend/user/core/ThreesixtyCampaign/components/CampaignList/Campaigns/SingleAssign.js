@@ -1,11 +1,12 @@
 /* eslint-disable react/jsx-no-target-blank */
 /* eslint-disable max-len */
-import React from 'react'
+import React, { useState } from 'react'
 import {
   Row, Col, Icon, Card, Progress, Dropdown, Menu,
 } from 'antd'
 import { Link } from 'react-router-dom'
 import './styles.scss'
+import PrivacyModal from './PrivacyModal'
 import mindmill from './mindmill.png'
 import hogan from './hogan.png'
 
@@ -15,7 +16,7 @@ const StatusMenu = reports => (
   <Menu>
     {reports.map(report => (
       <Menu.Item key={report.id}>
-        <a href={`${report.pdf_url}`} target="_blank">
+        <a href={`${report.pdfUrl}`} target="_blank">
           <Icon type="download" />
           {' '}
           {report.name}
@@ -26,13 +27,25 @@ const StatusMenu = reports => (
 )
 
 const renderButtonContent = ({
-  mindmill, mindmillUrl, url, status, assignedReports,
-}) => {
+  mindmill, mindmillUrl, url, status, assignedReports, needConfirm,
+}, setShowConfirm) => {
   let href = url
   if (mindmill) { href = mindmillUrl }
+
+  const showPolicyConfirm = (e) => {
+    e.preventDefault()
+    if (needConfirm) {
+      setShowConfirm(true)
+    } else {
+      location.href = href
+    }
+  }
+
   const LinkTag = ({ children }) => (mindmill
-    ? <a href={href}>{children}</a>
-    : <Link to={href}>{children}</Link>)
+    ? <a href={href} onClick={showPolicyConfirm}>{children}</a>
+    : <Link to={href} onClick={showPolicyConfirm}>{children}</Link>)
+
+
   if (status === IN_PROGRESS) {
     return (
       <LinkTag>
@@ -76,7 +89,7 @@ const renderButtonContent = ({
       )
     } if (assignedReports.length === 1) {
       return (
-        <a href={`${url}.pdf`} target="_blank">
+        <a href={`${assignedReports[0].pdfUrl}.pdf`} target="_blank">
           <Icon type="download" />
           {' '}
           Download Report
@@ -92,7 +105,7 @@ const renderButtonContent = ({
     )
   }
   return (
-    <a href={href}>
+    <a href={href} onClick={showPolicyConfirm}>
       <Icon type="play-circle" />
       {' '}
       Begin
@@ -100,10 +113,16 @@ const renderButtonContent = ({
   )
 }
 
-export default function SingleAssign ({ campaign: assign }) {
+export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
+  const [showConfirm, setShowConfirm] = useState(false)
+  const accept = () => {
+    acceptPolicy().then(() => {
+      location.href = assign.url
+    })
+  }
   return (
     <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
-      <Link to={assign.url}>
+      <Link to={assign.status != 'completed' ? assign.url : '#'}>
         <Card
           bodyStyle={{ padding: 0 }}
           hoverable
@@ -155,12 +174,13 @@ export default function SingleAssign ({ campaign: assign }) {
               </Row>
               <div className="divider" />
               <div className="button">
-                {renderButtonContent(assign)}
+                {renderButtonContent(assign, setShowConfirm)}
               </div>
             </div>
           </div>
         </Card>
       </Link>
+      {assign.needConfirm && <PrivacyModal accept={accept} show={showConfirm} close={() => setShowConfirm(false)} />}
     </Col>
   )
 }

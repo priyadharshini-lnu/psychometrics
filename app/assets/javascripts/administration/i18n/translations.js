@@ -4427,6 +4427,13 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
+  "evaluators": {
+    "errors": {
+      "can_not_processed": "can not be processed",
+      "exists": "already exists",
+      "max_evaluators": "you already have enough evaluators"
+    }
+  },
   "flash": {
     "actions": {
       "create": {
@@ -5465,6 +5472,12 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     }
   },
   "threesixty": {
+    "accept_privacy_modal": {
+      "accept": "Accept",
+      "reject": "Reject",
+      "text": "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.",
+      "title": "Data processing consent"
+    },
     "add": "Add",
     "and": "And",
     "approve_all": "Approve All",
@@ -5501,6 +5514,7 @@ I18n.translations["en"] = I18n.extend((I18n.translations["en"] || {}), {
     "language": "Language",
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
+    "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
     "nominate_evaluators": "Nominate Evaluators to",
@@ -10013,6 +10027,13 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
+  "evaluators": {
+    "errors": {
+      "can_not_processed": "can not be processed",
+      "exists": "already exists",
+      "max_evaluators": "you already have enough evaluators"
+    }
+  },
   "flash": {
     "actions": {
       "create": {
@@ -11051,6 +11072,12 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     }
   },
   "threesixty": {
+    "accept_privacy_modal": {
+      "accept": "Accept",
+      "reject": "Reject",
+      "text": "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.",
+      "title": "Data processing consent"
+    },
     "add": "Add",
     "and": "And",
     "approve_all": "Approve All",
@@ -11087,6 +11114,7 @@ I18n.translations["ar"] = I18n.extend((I18n.translations["ar"] || {}), {
     "language": "Language",
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
+    "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
     "nominate_evaluators": "Nominate Evaluators to",
@@ -15595,6 +15623,13 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "unacceptable_request": "A supported version is expected in the Accept header.\n",
     "unavailable_session": "Session %{id} is is no longer available in memory.\n\nIf you happen to run on a multi-process server (like Unicorn or Puma) the process\nthis request hit doesn't store %{id} in memory. Consider turning the number of\nprocesses/workers to one (1) or using a different server in development.\n"
   },
+  "evaluators": {
+    "errors": {
+      "can_not_processed": "can not be processed",
+      "exists": "already exists",
+      "max_evaluators": "you already have enough evaluators"
+    }
+  },
   "flash": {
     "actions": {
       "create": {
@@ -16633,6 +16668,12 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     }
   },
   "threesixty": {
+    "accept_privacy_modal": {
+      "accept": "Accept",
+      "reject": "Reject",
+      "text": "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have.",
+      "title": "Data processing consent"
+    },
     "add": "Add",
     "and": "And",
     "approve_all": "Approve All",
@@ -16669,6 +16710,7 @@ I18n.translations["ms"] = I18n.extend((I18n.translations["ms"] || {}), {
     "language": "Language",
     "last_name": "Last Name",
     "last_name_error": "Please input Last Name",
+    "mindmill_confirmation": "Starting this assessment you will lost results \"%{assessment}\". Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue",
     "my_projects": "My Projects",
     "nominate": "Nominate",
     "nominate_evaluators": "Nominate Evaluators to",

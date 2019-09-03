@@ -1,5 +1,6 @@
 const FETCH = 'threeSixty/campaignList/FETCH'
 const LOGIN_HOGAN = 'threeSixty/campaignList/LOGIN_HOGAN'
+const ACCEPT_POLICY = 'threeSixty/campaignList/ACCEPT_POLICY'
 
 export const fetchCampaigns = () => ({
   type: FETCH,
@@ -16,6 +17,13 @@ export const loginHogan = url => ({
   },
 })
 
+export const acceptPolicy = () => ({
+  type: ACCEPT_POLICY,
+  request: {
+    method: 'POST',
+    url: '/assigns/accept_privacy',
+  },
+})
 
 export const defaultState = []
 

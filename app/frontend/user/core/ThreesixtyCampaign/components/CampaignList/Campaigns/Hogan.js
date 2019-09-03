@@ -10,17 +10,23 @@ import hogan from './hogan.png'
 
 const IN_PROGRESS = 'in_progress'
 
-const StatusMenu = reports => (
+const ReportsMenu = reports => (
   <Menu>
-    {reports.map(report => (
-      <Menu.Item key={report.id}>
-        <a href={`${report.pdf_url}`} target="_blank">
-          <Icon type="download" />
-          {' '}
-          {report.name}
-        </a>
-      </Menu.Item>
-    ))}
+    {reports.map((report) => {
+      let url = report.pdfUrl
+      if (report.hogan) {
+        url = report.hoganUrl
+      }
+      return (
+        <Menu.Item key={report.id}>
+          <a href={`${url}`} target="_blank">
+            <Icon type="download" />
+            {' '}
+            {report.name}
+          </a>
+        </Menu.Item>
+      )
+    })}
   </Menu>
 )
 
@@ -59,7 +65,7 @@ const renderButtonContent = ({
       return (
         <Dropdown
           trigger={['click']}
-          overlay={() => StatusMenu(assignedReports)}
+          overlay={() => ReportsMenu(assignedReports)}
         >
           <div>
             <Icon type="download" />
@@ -69,6 +75,11 @@ const renderButtonContent = ({
         </Dropdown>
       )
     } if (assignedReports.length === 1) {
+      const report = assignedReports[0]
+      let url = report.pdfUrl
+      if (report.hogan) {
+        url = report.hoganUrl
+      }
       return (
         <a href={`${url}.pdf`} target="_blank">
           <Icon type="download" />

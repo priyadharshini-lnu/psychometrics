@@ -5,6 +5,7 @@ module EndUser
                :assessment_name, :questions_count, :timing, :mindmill, :hogan
     attribute :mindmill_url, if: -> { object.assessment.mindmill? }
     attribute :hogan_url, if: -> { object.assessment.hogan? }
+    attribute :need_confirm, if: -> { !object.assessment.hogan? }
 
     def url
       pass_assign_path(object)
@@ -63,9 +64,13 @@ module EndUser
     end
 
     def assigned_reports
-      filtered_reports = object.single_reports.select { |report| reports_ids.include?(report.id) && ReportPolicy.new(report).show? }
+      filtered_reports = object.single_reports.select { |report| reports_ids.include?(report.id) }
       reports = filter_reports_by_type(filtered_reports, object.norm_type)
-      reports.map { |report| ::EndUser::ReportSerializer.new(reportn, assign: assign).to_h }
+      reports.map { |report| ::EndUser::ReportSerializer.new(report, assign: object).to_h }
+    end
+
+    def need_confirm
+      object.membership.client.privacy_consent && !object.membership.accepted_privacy?
     end
 
     private
