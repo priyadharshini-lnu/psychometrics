@@ -78,7 +78,7 @@ gem 'figaro',                     '~> 1.1.1'
 gem 'config',                     '~> 1.2.1'
 
 gem 'psychometrics-reports-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git', ref: 'd62783d840c18e67a30b0d5920530efd3cc8eba2'
-gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', ref: '24cf8289c79803a1e35f17c6e122862cffb61e48'
+gem 'psychometrics-survey-ui', git: 'https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git', ref: 'ce30119880933b4ea7db30e729d9e953120dff29'
 
 ### XLS import
 gem 'rubyXL',                     '~> 3.4.6'
