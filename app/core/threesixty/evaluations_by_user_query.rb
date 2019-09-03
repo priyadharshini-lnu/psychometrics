@@ -19,7 +19,7 @@ module Threesixty
         where.not(evaluator_nomination_status: :declined).
         includes(:evaluator)
       evaluators = evaluators.where.not(subject_id: current_user.id) unless subject_evaluate_self?
-      evaluators = evaluators.where(manager_nomination_status: :approved) if @options.participants.dig('manager', 'can_approve_nominations')
+      evaluators = evaluators.where(manager_nomination_status: :approved) if manager_can_approve_nominations?
       evaluators
     end
 
@@ -41,6 +41,10 @@ module Threesixty
 
     def manager_can_approve_evaluations?
       @options.participants.dig('manager', 'can_approves_evaluations')
+    end
+
+    def manager_can_approve_nominations?
+      @options.participants.dig('manager', 'can_approve_nominations')
     end
 
     attr_reader :current_user
