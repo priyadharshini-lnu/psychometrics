@@ -31,7 +31,7 @@ const ReportsMenu = reports => (
 )
 
 const renderButtonContent = ({
-  url, status, assignedReports,
+  status, assignedReports,
 }, loginHogan) => {
   if (status === IN_PROGRESS) {
     return (

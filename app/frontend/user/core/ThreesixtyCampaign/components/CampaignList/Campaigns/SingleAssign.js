@@ -122,7 +122,7 @@ export default function SingleAssign ({ campaign: assign, acceptPolicy }) {
   }
   return (
     <Col className="card" xs={24} sm={12} md={8} lg={6} xl={4}>
-      <Link to={assign.status != 'completed' ? assign.url : '#'}>
+      <Link to={assign.status !== 'completed' ? assign.url : '#'}>
         <Card
           bodyStyle={{ padding: 0 }}
           hoverable
