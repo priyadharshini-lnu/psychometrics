@@ -25,6 +25,7 @@ describe ::UsersResults::ExpandAnswersByRecoding do
     expect(described_class.call!(users_result)).to eq(
       '17288' => {
         'answers' => [{ 'value' => '3', 'recode_value' => 3 }],
+        'not_applicable' => nil,
         'question_id' => 17_288
       }
     )
