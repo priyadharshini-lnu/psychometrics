@@ -19,7 +19,7 @@ export default function Criteria ({
       <span className="mrs">from have been completed</span>
       <NestedOperator
         operator={operator}
-        updateAvailiblityCondition={value => updateAvailiblityCondition('operator', value)}
+        update={value => updateAvailiblityCondition('operator', value)}
         moveConditionToNextLogicSet={moveConditionToNextLogicSet}
       />
       <Input
