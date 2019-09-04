@@ -10,7 +10,7 @@ module Administration
       def index
         option = threesixty_campaign.option || ::Threesixty::Option.new
 
-        managers = ::Threesixty::GetManagersQuery.new(threesixty_campaign).query
+        managers = ::Threesixty::GetManagersQuery.new(threesixty_campaign, params[:q]).query
 
         paginated_managers = managers.page(params[:page])
         paginated_manager_ids = paginated_managers.map(&:user_id)

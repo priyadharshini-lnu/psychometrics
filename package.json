@@ -89,6 +89,7 @@
     "reselect": "^4.0.0",
     "sass-loader": "^7.1.0",
     "style-loader": "^0.23.1",
+    "use-debounce": "^3.0.0",
     "webpack": "^4.29.6",
     "webpack-merge": "^4.2.1",
     "webpack-sources": "^1.3.0"

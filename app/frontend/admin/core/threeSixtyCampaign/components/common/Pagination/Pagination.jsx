@@ -13,7 +13,7 @@ function Pagination ({
   return (
     <div className={styles.container}>
       <AntPagination
-        defaultCurrent={routeUtils.getPage()}
+        current={routeUtils.getPage()}
         pageSize={settings.pageLimit}
         total={total}
         onChange={onChange}
