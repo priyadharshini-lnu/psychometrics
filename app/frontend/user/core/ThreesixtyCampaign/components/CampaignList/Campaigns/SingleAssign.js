@@ -13,7 +13,8 @@ import AssessmentIcon from './AssessmentIcon'
 
 const IN_PROGRESS = 'in_progress'
 
-const openReport = (report) => {
+const openReport = (e, report) => {
+  e.stopPropagation()
   window.open(report.mindmillReportUrl, 'windowMindmill', 'width=980,height=700')
   return false
 }
@@ -21,7 +22,7 @@ const openReport = (report) => {
 const DownloadLink = ({ report, showName }) => {
   if (report.mindmill) {
     return (
-      <a href={`${report.mindmillReportUrl}`} onClick={() => openReport(report)}>
+      <a href={`${report.mindmillReportUrl}`} onClick={e => openReport(e, report)}>
         <Icon type="download" />
         {' '}
         {showName ? report.name : I18n.t('threesixty.download_report')}
@@ -29,7 +30,7 @@ const DownloadLink = ({ report, showName }) => {
     )
   }
   return (
-    <a href={`${report.pdfUrl}.pdf`} target="_blank">
+    <a href={`${report.pdfUrl}.pdf`} onClick={e => e.stopPropagation()} target="_blank">
       <Icon type="download" />
       {' '}
       {showName ? report.name : I18n.t('threesixty.download_report') }
@@ -42,11 +43,6 @@ const ReportsMenu = reports => (
     {reports.map(report => (
       <Menu.Item key={report.id}>
         <DownloadLink report={report} showName />
-        <a href={`${report.pdfUrl}`} target="_blank">
-          <Icon type="download" />
-          {' '}
-          {report.name}
-        </a>
       </Menu.Item>
     ))}
   </Menu>

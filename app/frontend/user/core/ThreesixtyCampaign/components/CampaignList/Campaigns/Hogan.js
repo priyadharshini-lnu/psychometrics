@@ -11,7 +11,8 @@ import AssessmentIcon from './AssessmentIcon'
 
 const IN_PROGRESS = 'in_progress'
 
-const openReport = (report) => {
+const openReport = (e, report) => {
+  e.stopPropagation()
   window.open(report.externalReportUrl, 'windowMindmill', 'width=980,height=700')
   return null
 }
@@ -19,7 +20,7 @@ const openReport = (report) => {
 const DownloadLink = ({ report, showName }) => {
   if (report.hasExternalReport && report.externalReportUrl) {
     return (
-      <a onClick={() => openReport(report)} href={`${report.externalReportUrl}`}>
+      <a onClick={e => openReport(e, report)} href={`${report.externalReportUrl}`}>
         <Icon type="download" />
         {' '}
         {showName ? report.name : I18n.t('threesixty.download_report')}
@@ -27,7 +28,7 @@ const DownloadLink = ({ report, showName }) => {
     )
   }
   return (
-    <a href={`${report.resultsHoganUrl}`}>
+    <a href={`${report.resultsHoganUrl}`} onClick={e => e.stopPropagation()}>
       <Icon type="download" />
       {' '}
       {I18n.t('threesixty.load_results')}
