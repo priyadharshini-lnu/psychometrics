@@ -30,6 +30,7 @@ describe ::UsersResults::ExpandAnswersByRecoding do
         'answers' => [
           { 'index' => 0, 'value' => 35 }, { 'index' => 2, 'value' => 43 }, { 'index' => 1, 'value' => 50 }
         ],
+        'not_applicable' => nil,
         'question_id' => 17_160
       }
     )
