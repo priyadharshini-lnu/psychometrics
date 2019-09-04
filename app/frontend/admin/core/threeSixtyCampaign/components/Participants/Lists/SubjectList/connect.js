@@ -14,7 +14,7 @@ export default connect(
     },
   }) => ({ subjects: list, total, page: routeUtils.getPage() }),
   dispatch => ({
-    fetchSubjects: (campaignId, offset) => dispatch(fetchSubjects(campaignId, offset)),
+    fetchSubjects: (campaignId, page, query) => dispatch(fetchSubjects(campaignId, page, query)),
     openModal: (name, data) => dispatch(openModal(name, data)),
     update: (campaignId, subjectId, data) => dispatch(update(campaignId, subjectId, data)),
     remove: (campaignId, subjectId) => dispatch(remove(campaignId, subjectId)),

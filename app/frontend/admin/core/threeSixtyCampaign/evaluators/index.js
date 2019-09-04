@@ -30,12 +30,13 @@ export const createAllEvaluators = (campaignId, evaluators) => ({
 export const fillEvaluators = evaluators => ({ type: FILL_EVALUATORS, evaluators })
 export const clearForm = () => ({ type: CLEAR_FORM })
 
-export const fetchEvaluators = (campaignId, page) => ({
+export const fetchEvaluators = (campaignId, page, q) => ({
   type: FETCH_EVALUATORS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/evaluators`,
     body: {
       page,
+      q,
     },
   },
 })

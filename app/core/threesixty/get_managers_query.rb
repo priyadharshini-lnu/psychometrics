@@ -2,10 +2,11 @@
 
 module Threesixty
   class GetManagersQuery < Rectify::Query
-    private_attr_reader :threesixty_campaign
+    private_attr_reader :threesixty_campaign, :q
 
-    def initialize(threesixty_campaign)
+    def initialize(threesixty_campaign, q = nil)
       @threesixty_campaign = threesixty_campaign
+      @q = q
     end
 
     def query
@@ -15,7 +16,9 @@ module Threesixty
         joins(participants_join_query).
         joins("LEFT JOIN relationships ON relationships.id = threesixty_participants.relationship_id").
         where(participants: { relationships: { name: 'Manager', type: :global } }).
+        where('users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?', "%#{q}%", "%#{q}%", "%#{q}%").
         order(id: :desc).
+        references(:user).
         distinct(:user_id)
     end
 
