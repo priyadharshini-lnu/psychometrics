@@ -8,6 +8,9 @@ $text-colors: #FFFFFF #246479 #FFFFFF;
     margin-bottom: 12px;
     min-width: 230px;
     overflow: hidden;
+    >a {
+      text-decoration: none;
+    }
     .ant-card {
       border-radius: 4px;
     }

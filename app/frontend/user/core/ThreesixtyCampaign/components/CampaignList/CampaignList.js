@@ -9,7 +9,7 @@ import './styles.scss'
 const { Content } = Layout
 
 export default function CampaignList ({
-  campaigns, fetchCampaigns, downloadReport, history, loginHogan,
+  campaigns, fetchCampaigns, downloadReport, history, loginHogan, acceptPolicy,
 }) {
   useEffect(() => {
     fetchCampaigns()
@@ -43,6 +43,7 @@ export default function CampaignList ({
                     campaign={campaign}
                     downloadReport={downloadReport}
                     loginHogan={loginHogan}
+                    acceptPolicy={acceptPolicy}
                   />
                 )
               })}
