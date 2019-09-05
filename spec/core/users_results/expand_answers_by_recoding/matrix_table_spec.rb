@@ -54,7 +54,8 @@ describe ::UsersResults::ExpandAnswersByRecoding do
           { 'scale' => 1, 'value' => true, 'recode_value' => 2, 'choice' => 1 },
           { 'scale' => 2, 'value' => true, 'recode_value' => 3, 'choice' => 2 }
         ],
-        'question_id' => 17_156
+        'question_id' => 17_156,
+        'not_applicable' => nil
       }
     )
   end

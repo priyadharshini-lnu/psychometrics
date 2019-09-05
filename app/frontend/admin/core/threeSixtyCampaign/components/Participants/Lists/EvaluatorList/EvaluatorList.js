@@ -8,6 +8,7 @@ import CreateEvaluatorsDropdown from './CreateEvaluatorsDropdown'
 import CreateEvaluatorModal from './CreateEvaluatorModal'
 import Pagination from '../../../common/Pagination'
 import EvaluatorImportModal from './EvaluatorImportModal'
+import SearchInput from '../SearchInput'
 
 export default function EvaluatorList ({
   fetchEvaluators,
@@ -37,6 +38,7 @@ export default function EvaluatorList ({
           <span className="mlm">{`${total} Evaluators`}</span>
         </Col>
         <div className="float-r">
+          <SearchInput onChange={curriedFetchEvaluators(campaignId)} path="/participants/evaluators" />
           <ToolsDropdown />
           <CreateEvaluatorsDropdown />
         </div>

@@ -17,7 +17,8 @@ module UsersResults
           if question_recoding
             {
               'answers' => lookup_type_class(question_recoding)&.call!(answer['answers'], question_recoding) || answer['answers'],
-              'question_id' => answer['question_id']
+              'question_id' => answer['question_id'],
+              'not_applicable' => answer['not_applicable']
             }
           else
             answer

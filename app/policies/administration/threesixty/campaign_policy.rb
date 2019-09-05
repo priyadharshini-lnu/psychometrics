@@ -1,7 +1,7 @@
 # frozen_string_literal: true
 
 module Administration::Threesixty
-  class CampaignPolicy < BasePolicy
+  class CampaignPolicy < Administration::Threesixty::BasePolicy
     def show?
       super_admins_or_admins?
     end

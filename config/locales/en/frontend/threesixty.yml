@@ -54,3 +54,17 @@ en:
     evaluate: Evaluate
     yourself: Yourself
     generate_report: 'Generate Report'
+    download_report: Download Report
+    download_reports: Download Reports
+    continue: Continue
+    begin: Begin
+    completed: Completed
+    load_results: Load Results
+    assessment: Assessment
+    accept_privacy_modal:
+      title: Data processing consent
+      text: "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have."
+      accept: Accept
+      reject: Reject
+    mindmill_confirmation: "Starting this assessment you will lost results \"%{assessment}\".
+                            Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue"

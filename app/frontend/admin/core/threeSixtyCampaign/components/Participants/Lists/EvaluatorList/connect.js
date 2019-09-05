@@ -11,7 +11,7 @@ export default connect(
     },
   }) => ({ evaluators: list, total, page: routeUtils.getPage() }),
   dispatch => ({
-    fetchEvaluators: (campaignId, offset) => dispatch(fetchEvaluators(campaignId, offset)),
+    fetchEvaluators: (campaignId, page, query) => dispatch(fetchEvaluators(campaignId, page, query)),
     openModal: (name, data) => dispatch(openModal(name, data)),
     removeUser: (campaignId, userId) => dispatch(removeUser(campaignId, userId)),
   }),

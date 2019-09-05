@@ -23,12 +23,13 @@ export const defaultState = {
   autocompleted: [],
 }
 
-export const fetchSubjects = (campaignId, page) => ({
+export const fetchSubjects = (campaignId, page, q) => ({
   type: FETCH_SUBJECTS,
   request: {
     url: `/administration/threesixty_campaigns/${campaignId}/subjects`,
     body: {
       page,
+      q,
     },
   },
 })

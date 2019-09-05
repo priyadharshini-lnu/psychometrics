@@ -12,6 +12,7 @@ import CreateSubjectsDropdown from './CreateSubjectsDropdown'
 import CreateSubjectModal from './CreateSubjectModal'
 import SubjectImportModal from './SubjectImportModal'
 import Pagination from '../../../common/Pagination'
+import SearchInput from '../SearchInput'
 
 const { Column } = Table
 
@@ -53,6 +54,7 @@ export default function SubjectList ({
         </Col>
         <Col>
           <div className="float-r">
+            <SearchInput onChange={curriedFetchSubjects(campaignId)} path="/participants/subjects" />
             <ToolsDropdown />
             <CreateSubjectsDropdown />
           </div>

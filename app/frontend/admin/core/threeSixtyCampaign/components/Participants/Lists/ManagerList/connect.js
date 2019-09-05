@@ -10,7 +10,7 @@ export default connect(
     },
   }) => ({ managers: list, total, page: routeUtils.getPage() }),
   dispatch => ({
-    fetchManagers: (campaignId, page) => dispatch(fetchManagers(campaignId, page)),
+    fetchManagers: (campaignId, page, query) => dispatch(fetchManagers(campaignId, page, query)),
     openModal: (name, data) => dispatch(openModal(name, data)),
   }),
 )

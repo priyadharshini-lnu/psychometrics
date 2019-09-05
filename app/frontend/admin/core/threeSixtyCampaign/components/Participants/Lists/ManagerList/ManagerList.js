@@ -4,6 +4,7 @@ import { Col, Icon, Row } from 'antd'
 import ToolsDropdown from '../ToolsDropdown'
 import EvaluatorTable from '../EvaluatorList/EvaluatorTable/EvaluatorTable'
 import Pagination from '../../../common/Pagination'
+import SearchInput from '../SearchInput'
 
 export default function ManagerList ({
   fetchManagers,
@@ -29,6 +30,7 @@ export default function ManagerList ({
           <span className="mlm">{`${total} Managers`}</span>
         </Col>
         <Col span={6} offset={14} className="text-align-r">
+          <SearchInput onChange={curriedFetchManagers(campaignId)} path="/participants/managers" />
           <ToolsDropdown />
         </Col>
       </Row>

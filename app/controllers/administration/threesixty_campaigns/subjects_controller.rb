@@ -8,14 +8,14 @@ module Administration
       append_before_action :pundit_authorize
 
       def index
-        subjects = policy_scope(::Threesixty::Subject).
+        query = policy_scope(::Threesixty::Subject).
           includes(:self_evaluator, :user).
           where(campaign_id: threesixty_campaign.campaign_id).
-          order(id: :desc).
-          page(params[:page])
-
-        subjects = ::Threesixty::Subjects::Serialize.call!(subjects, threesixty_campaign)
-        total = policy_scope(::Threesixty::Subject).where(campaign_id: threesixty_campaign.campaign_id).count
+          where('users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?', "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%").
+          references(:user).
+          order(id: :desc)
+        subjects = ::Threesixty::Subjects::Serialize.call!(query.page(params[:page]), threesixty_campaign)
+        total = query.count
         render json: { subjects: subjects, total: total }
       end
 

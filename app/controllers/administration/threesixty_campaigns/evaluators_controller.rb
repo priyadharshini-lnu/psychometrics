@@ -9,11 +9,13 @@ module Administration
 
       def index
         option = threesixty_campaign.option
-        evaluators = policy_scope(::Threesixty::Evaluator).
-                     includes(:user, self_subject: :user).
-                     where(campaign_id: threesixty_campaign.campaign_id).
-                     order(id: :desc).
-                     page(params[:page])
+        query = policy_scope(::Threesixty::Evaluator).
+          includes(:user, self_subject: :user).
+          where(campaign_id: threesixty_campaign.campaign_id).
+          where('users.first_name ILIKE ? OR users.last_name ILIKE ? OR users.email ILIKE ?', "%#{params[:q]}%", "%#{params[:q]}%", "%#{params[:q]}%").
+          references(:user).
+          order(id: :desc)
+        evaluators = query.page(params[:page])
         counters = ::Threesixty::Participants::CalcCounters.call!(evaluators.map(&:user_id), threesixty_campaign)
         subject_evaluator_counters = ::Threesixty::Subjects::CalcSubjectEvaluatorsCounters.call!(
           evaluators.map(&:user_id),
@@ -23,7 +25,7 @@ module Administration
           evaluators.map(&:user),
           threesixty_campaign
         )
-        total = policy_scope(::Threesixty::Evaluator).where(campaign_id: threesixty_campaign.campaign_id).count
+        total = query.count
 
         evaluators = evaluators.map do |e|
           ::Threesixty::EvaluatorSerializer.new(
