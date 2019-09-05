@@ -28,7 +28,7 @@ const OPTIONS = [
     key: TYPES.EVALUATIONS_RECEIVED,
     condition: ({ emailName }) => !isEvaluatorEmail(emailName),
   },
-  { name: 'Tasks', key: TYPES.TASKS, condition: ({ emailName }) => !isEvaluatorEmail(emailName) },
+  // { name: 'Tasks', key: TYPES.TASKS, condition: ({ emailName }) => !isEvaluatorEmail(emailName) },
   { name: 'Manager Tasks', key: TYPES.MANAGER_TASKS, condition: ({ emailName }) => !isEvaluatorEmail(emailName) },
   { name: 'Subject Metadata', key: TYPES.SUBJECT_DATASHEET, condition: ({ emailName }) => isEvaluatorEmail(emailName) },
   {
