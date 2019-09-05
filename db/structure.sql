@@ -24,6 +24,20 @@ COMMENT ON EXTENSION citext IS 'data type for case-insensitive character strings
 
 
 --
+-- Name: pg_stat_statements; Type: EXTENSION; Schema: -; Owner: -
+--
+
+CREATE EXTENSION IF NOT EXISTS pg_stat_statements WITH SCHEMA public;
+
+
+--
+-- Name: EXTENSION pg_stat_statements; Type: COMMENT; Schema: -; Owner: -
+--
+
+COMMENT ON EXTENSION pg_stat_statements IS 'track execution statistics of all SQL statements executed';
+
+
+--
 -- Name: factors_norms_types; Type: TYPE; Schema: public; Owner: -
 --
 
@@ -120,7 +134,8 @@ CREATE TABLE public.assessments (
     enable_back boolean DEFAULT false NOT NULL,
     enable_progress boolean DEFAULT true,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
-    icon character varying
+    icon character varying,
+    archived boolean DEFAULT false
 );
 
 
@@ -236,7 +251,8 @@ CREATE TABLE public.assigns (
     occupations jsonb DEFAULT '[]'::jsonb,
     campaign_id bigint,
     evaluator_id bigint,
-    subject_id bigint
+    subject_id bigint,
+    innovation_styles jsonb DEFAULT '[]'::jsonb
 );
 
 
@@ -839,7 +855,9 @@ CREATE TABLE public.dimensions (
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
     factors_count integer DEFAULT 0,
-    owner_id integer
+    owner_id integer,
+    occupations_enabled boolean DEFAULT false NOT NULL,
+    innovation_styles_enabled boolean DEFAULT false NOT NULL
 );
 
 
@@ -1235,6 +1253,78 @@ ALTER SEQUENCE public.hogan_report_settings_id_seq OWNED BY public.hogan_report_
 
 
 --
+-- Name: innovation_styles; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.innovation_styles (
+    id bigint NOT NULL,
+    name character varying,
+    icon character varying,
+    description text,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    dimension_id bigint,
+    full_description text,
+    "position" integer
+);
+
+
+--
+-- Name: innovation_styles_factors; Type: TABLE; Schema: public; Owner: -
+--
+
+CREATE TABLE public.innovation_styles_factors (
+    id bigint NOT NULL,
+    innovation_style_id bigint,
+    factor_id bigint,
+    predicate character varying,
+    value double precision,
+    "position" integer,
+    created_at timestamp without time zone NOT NULL,
+    updated_at timestamp without time zone NOT NULL,
+    weight double precision DEFAULT 1.0
+);
+
+
+--
+-- Name: innovation_styles_factors_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.innovation_styles_factors_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: innovation_styles_factors_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.innovation_styles_factors_id_seq OWNED BY public.innovation_styles_factors.id;
+
+
+--
+-- Name: innovation_styles_id_seq; Type: SEQUENCE; Schema: public; Owner: -
+--
+
+CREATE SEQUENCE public.innovation_styles_id_seq
+    START WITH 1
+    INCREMENT BY 1
+    NO MINVALUE
+    NO MAXVALUE
+    CACHE 1;
+
+
+--
+-- Name: innovation_styles_id_seq; Type: SEQUENCE OWNED BY; Schema: public; Owner: -
+--
+
+ALTER SEQUENCE public.innovation_styles_id_seq OWNED BY public.innovation_styles.id;
+
+
+--
 -- Name: libraries; Type: TABLE; Schema: public; Owner: -
 --
 
@@ -1559,7 +1649,8 @@ CREATE TABLE public.occupations_factors (
     value double precision,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL,
-    "position" integer
+    "position" integer,
+    weight double precision DEFAULT 1.0
 );
 
 
@@ -1931,12 +2022,13 @@ CREATE TABLE public.reports (
     mindmill boolean DEFAULT false,
     extra jsonb DEFAULT '{}'::jsonb NOT NULL,
     icon character varying,
+    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_configuration jsonb DEFAULT '{}'::jsonb,
     default_language character varying DEFAULT 'en'::character varying,
-    props jsonb DEFAULT '{}'::jsonb NOT NULL,
     data_sheet_columns jsonb DEFAULT '[]'::jsonb NOT NULL,
     category integer DEFAULT 0,
-    provider integer
+    provider integer,
+    archived boolean DEFAULT false
 );
 
 
@@ -2596,6 +2688,7 @@ CREATE TABLE public.users_assessments (
     assessment_id bigint,
     user_id bigint,
     campaign_id bigint,
+    selected_locale character varying,
     created_at timestamp without time zone NOT NULL,
     updated_at timestamp without time zone NOT NULL
 );
@@ -2938,6 +3031,20 @@ ALTER TABLE ONLY public.hogan_credentials ALTER COLUMN id SET DEFAULT nextval('p
 --
 
 ALTER TABLE ONLY public.hogan_report_settings ALTER COLUMN id SET DEFAULT nextval('public.hogan_report_settings_id_seq'::regclass);
+
+
+--
+-- Name: innovation_styles id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.innovation_styles ALTER COLUMN id SET DEFAULT nextval('public.innovation_styles_id_seq'::regclass);
+
+
+--
+-- Name: innovation_styles_factors id; Type: DEFAULT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.innovation_styles_factors ALTER COLUMN id SET DEFAULT nextval('public.innovation_styles_factors_id_seq'::regclass);
 
 
 --
@@ -3482,6 +3589,22 @@ ALTER TABLE ONLY public.hogan_credentials
 
 ALTER TABLE ONLY public.hogan_report_settings
     ADD CONSTRAINT hogan_report_settings_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: innovation_styles_factors innovation_styles_factors_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.innovation_styles_factors
+    ADD CONSTRAINT innovation_styles_factors_pkey PRIMARY KEY (id);
+
+
+--
+-- Name: innovation_styles innovation_styles_pkey; Type: CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.innovation_styles
+    ADD CONSTRAINT innovation_styles_pkey PRIMARY KEY (id);
 
 
 --
@@ -4282,6 +4405,27 @@ CREATE INDEX index_hogan_report_settings_on_report_id ON public.hogan_report_set
 
 
 --
+-- Name: index_innovation_styles_factors_on_factor_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_innovation_styles_factors_on_factor_id ON public.innovation_styles_factors USING btree (factor_id);
+
+
+--
+-- Name: index_innovation_styles_factors_on_innovation_style_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_innovation_styles_factors_on_innovation_style_id ON public.innovation_styles_factors USING btree (innovation_style_id);
+
+
+--
+-- Name: index_innovation_styles_on_dimension_id; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE INDEX index_innovation_styles_on_dimension_id ON public.innovation_styles USING btree (dimension_id);
+
+
+--
 -- Name: index_libraries_on_ancestry; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4639,6 +4783,13 @@ CREATE INDEX index_threesixty_campaigns_on_report_id ON public.threesixty_campai
 
 
 --
+-- Name: index_threesixty_email_templates_campaign_name; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX index_threesixty_email_templates_campaign_name ON public.threesixty_email_templates USING btree (threesixty_campaign_id, name);
+
+
+--
 -- Name: index_threesixty_evaluators_on_campaign_id; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -4926,6 +5077,13 @@ CREATE INDEX threesixty_reminder_histories_cam_id ON public.threesixty_reminder_
 
 
 --
+-- Name: users_assessments_user_uniquesness_index; Type: INDEX; Schema: public; Owner: -
+--
+
+CREATE UNIQUE INDEX users_assessments_user_uniquesness_index ON public.users_assessments USING btree (user_id, campaign_id, assessment_id);
+
+
+--
 -- Name: users_results_subject_evaluator_campaign; Type: INDEX; Schema: public; Owner: -
 --
 
@@ -5050,6 +5208,14 @@ ALTER TABLE ONLY public.users_reports
 
 ALTER TABLE ONLY public.communication_emails
     ADD CONSTRAINT fk_rails_2a329ed34d FOREIGN KEY (membership_id) REFERENCES public.memberships(id) ON DELETE CASCADE;
+
+
+--
+-- Name: innovation_styles_factors fk_rails_2d436cbfdb; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.innovation_styles_factors
+    ADD CONSTRAINT fk_rails_2d436cbfdb FOREIGN KEY (innovation_style_id) REFERENCES public.innovation_styles(id);
 
 
 --
@@ -5242,6 +5408,14 @@ ALTER TABLE ONLY public.users_results
 
 ALTER TABLE ONLY public.datasheet_rows
     ADD CONSTRAINT fk_rails_782a23bcc9 FOREIGN KEY (datasheet_id) REFERENCES public.datasheets(id) ON DELETE CASCADE;
+
+
+--
+-- Name: innovation_styles fk_rails_793ed7fb90; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.innovation_styles
+    ADD CONSTRAINT fk_rails_793ed7fb90 FOREIGN KEY (dimension_id) REFERENCES public.dimensions(id);
 
 
 --
@@ -5458,6 +5632,14 @@ ALTER TABLE ONLY public.ecommerce_purchase_invites
 
 ALTER TABLE ONLY public.dimensions
     ADD CONSTRAINT fk_rails_ae68a3a37d FOREIGN KEY (owner_id) REFERENCES public.clients(id) ON DELETE SET NULL;
+
+
+--
+-- Name: innovation_styles_factors fk_rails_b0b768b7ef; Type: FK CONSTRAINT; Schema: public; Owner: -
+--
+
+ALTER TABLE ONLY public.innovation_styles_factors
+    ADD CONSTRAINT fk_rails_b0b768b7ef FOREIGN KEY (factor_id) REFERENCES public.factors(id);
 
 
 --
@@ -6036,7 +6218,18 @@ INSERT INTO "schema_migrations" (version) VALUES
 ('20190728141145'),
 ('20190804195715'),
 ('20190805173213'),
+('20190819122240'),
+('20190819122944'),
+('20190825080403'),
+('20190825114742'),
+('20190825132401'),
+('20190827080838'),
+('20190828084401'),
+('20190829135506'),
+('20190901055329'),
 ('20190901150954'),
+('20190902100425'),
+('20190902100625'),
 ('20190903131845');
 
 

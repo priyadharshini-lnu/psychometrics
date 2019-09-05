@@ -1,0 +1,15 @@
+en:
+  activerecord:
+    models:
+      innovation_styles_factor: 'Innovation Styles'
+    attributes:
+      innovation_styles_factor: &DEFAULT
+        id: 'ID'
+        name: 'Name'
+        created_at: 'Created Date'
+        updated_at: 'Modified Date'
+        active: 'Active'
+  simple_form:
+    placeholders:
+      norm:
+        <<: *DEFAULT

@@ -257,12 +257,12 @@ Rails.application.routes.draw do
         get :copy
         get :sidebar
         patch :toggle_status
-        post :preview
         get :preview
         post :preview
         get :reports
         get :export
         put :save
+        patch :toggle_archive
       end
       scope module: 'assessments' do
         resources :assigns, only: [:new, :create] do
@@ -322,6 +322,23 @@ Rails.application.routes.draw do
         ### END FACTORS
       end
       ### END OCCUPATIONS
+      ### INNOVATION STYLES
+      resources :innovation_styles do
+        member do
+          get :copy
+          get :sidebar
+          patch :toggle_status
+        end
+        ### FACTORS
+        resources :factors, controller: :innovation_styles_factors do
+          member do
+            get :copy
+            get :sidebar
+            patch :toggle_status
+          end
+        end
+      end
+      ### END INNOVATION STYLES
     end
     ### END DIMENSIONS
 
@@ -381,6 +398,7 @@ Rails.application.routes.draw do
         get :preview
         put :regenerate
         post :upload_data_sheet
+        patch :toggle_archive
       end
       collection do
         get :hogan_reports

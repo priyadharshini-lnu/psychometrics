@@ -1,0 +1,43 @@
+en:
+  administration:
+    innovation_styles:
+      index:
+        title: 'Innovation Styles'
+        tooltips:
+          create: Create
+        new: Add
+      list:
+        updated_at: Modified Date
+        created_at: Created Date
+      new:
+        header: 'New Innovation Style'
+      edit:
+        header: 'Edit Innovation Style'
+      destroy:
+        successfully: 'Innovation Style #%{name} was successfully deleted.'
+      copy:
+        error: 'Innovation Style #%{id} was not copied.'
+      toggle_status:
+        successfully: 'Innovation Style was successfully updated.'
+      form:
+        hint:
+          key_career_tracks: '"+" - list, "*" - bold. Example: + *Biology* - some description...'
+      sidebar:
+        title: Innovation Style's options
+        disable: Disable
+        enable: Enable
+        edit: Edit
+        new: New Innovation Style
+        copy: Copy Innovation Style
+
+      resource:
+        tooltips:
+          copy: 'Copy Innovation Style'
+          edit: 'Edit Innovation Style'
+          delete: 'Delete Innovation Style'
+        confirmations:
+          delete:
+            title:
+              Delete <strong>Innovation Style</strong> ?
+            body: >
+              <p>Are you sure you want to delete this innovation style?</p>

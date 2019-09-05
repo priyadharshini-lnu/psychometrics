@@ -40,6 +40,8 @@ en:
         successfully: 'Assessment %{name} was Updated Successfully.'
       toggle_status:
         successfully: 'Assessment %{name} was Updated Successfully.'
+      toggle_archive:
+        successfully: 'Assessment %{name} was %{status} successfully.'
       sidebar:
         title: Assessment's options
         disable: Disable
@@ -57,6 +59,7 @@ en:
           copy: Copy Assessment
           edit: Edit Assessment
           delete: Delete Assessment
+          archive: Archive Assessment
         confirmations:
           toggle_status:
             title: <strong>%{status}</strong> %{name}?

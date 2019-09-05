@@ -16,6 +16,7 @@
 #  access_reports_at :datetime
 #  status            :integer
 #  owner_id          :integer
+#  archived          :boolean          default(false)
 #
 
 class Assessment < ApplicationRecord
@@ -107,6 +108,8 @@ class Assessment < ApplicationRecord
   scope :external, -> { where.has { type.in([TYPES[:mindmill], TYPES[:hogan]]) } }
   scope :enabled, -> { where.not(disabled: true) }
   scope :disabled, -> { where(disabled: true) }
+  scope :archived, -> { where(archived: true) }
+  scope :unarchived, -> { where(archived: false) }
   scope :with_category, lambda { |category|
     where(category: category)
   }

@@ -59,3 +59,4 @@ $> Users::SuperAdmin.create(
 # Run tests
 
 1. `$> bundle exec rspec`
+.

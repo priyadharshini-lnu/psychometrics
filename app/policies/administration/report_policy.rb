@@ -61,6 +61,11 @@ module Administration
       edit?
     end
 
+    # Can archive/unarchive Assessment
+    def toggle_archive?
+      @user.is?(:superadmin)
+    end
+
     # Can regenerate reports if Superadmin
     #   and record is not external
     #

@@ -84,6 +84,6 @@ class Administration::DimensionsController < Administration::BaseController
   end
 
   def resource_params
-    params.require(:resource).permit(:name, :owner_id)
+    params.require(:resource).permit(:name, :owner_id, :occupations_enabled, :innovation_styles_enabled)
   end
 end

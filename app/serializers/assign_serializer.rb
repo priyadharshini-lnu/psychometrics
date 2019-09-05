@@ -22,7 +22,7 @@
 class AssignSerializer < ActiveModel::Serializer
   attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
              :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
-             :relationship, :selected_locale, :type
+             :relationship, :selected_locale, :type, :occupations, :innovation_styles
 
   has_one :user, serializer: UserSerializer
 

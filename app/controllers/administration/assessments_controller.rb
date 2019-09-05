@@ -1,6 +1,7 @@
 class Administration::AssessmentsController < Administration::BaseController
+  include Archivable
   prepend_before_action :set_resource_class
-  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy, :preview, :export]
+  before_action :set_resource, only: [:show, :edit, :update, :destroy, :toggle_status, :sidebar, :copy, :preview, :export, :toggle_archive]
   before_action :skip_authorization, only: [:sidebar]
   before_action :init_breadcrumbs
   append_before_action :pundit_authorize, except: [:sidebar]
@@ -8,6 +9,7 @@ class Administration::AssessmentsController < Administration::BaseController
   # GET /administration/resources
   def index
     @_filter_form = policy_scope(resource_class).includes(:dimension).search(params[:q])
+    filter_form.archived_true ||= false
     @_resources = filter_form.result.page(params[:page])
 
     respond_to do |format|

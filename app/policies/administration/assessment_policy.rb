@@ -82,6 +82,11 @@ module Administration
         super
     end
 
+    # Can archive/unarchive Assessment
+    def toggle_archive?
+      @user.is?(:superadmin)
+    end
+
     # Can export Assessment's questions and scoring
     # true if it's Common Assessment
     def export?

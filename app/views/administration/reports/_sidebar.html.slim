@@ -8,7 +8,10 @@ ul.x-navigation.x-navigation-panel id="sidebar_#{dom_id(resource)}"
     li = link_to(t('.destroy'), { action: :destroy, id: resource }, remote: true, method: :delete, data: { confirm: resource.decorate.delete_confirmation })
   - if policy(resource).regenerate?
     li = link_to(t('.regenerate'), { action: :regenerate, id: resource },
-                                   remote: true,
-                                   method: :put,
-                                   data: { confirm: { title: t('administration.reports.resource.confirmations.regenerate.title', name: resource.decorate.display_name),
-                                                      body: t('administration.reports.resource.confirmations.regenerate.body') } })
+      remote: true, method: :put,
+      data: { confirm: { title: t('administration.reports.resource.confirmations.regenerate.title', name: resource.decorate.display_name),
+      body: t('administration.reports.resource.confirmations.regenerate.body') } })
+  - if policy(resource).toggle_archive?
+    li = link_to(resource.decorate.toggle_archive_status_text, [:toggle_archive, :administration, resource],
+      remote: true, method: :patch,
+      data: { confirm: resource.decorate.toggle_archive_confirmation })

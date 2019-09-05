@@ -18,7 +18,6 @@ module Assigns
                   flatten.
                   compact
       end
-
       # Returns nil if there are no results
       return broadcast :ok, 0.0 if results.blank?
 
@@ -26,7 +25,6 @@ module Assigns
       sum_scoring = results.inject(0.0) { |sum, result| sum + result['value'].to_f }
       # Calculates avg of value with 2 numbers after comma
       avg_scoring = (sum_scoring / results.size.to_f).round(2)
-
       broadcast :ok, avg_scoring
     end
 
