@@ -41,6 +41,8 @@ en:
         successfully: 'Report was successfully updated.'
       regenerate:
         successfully: 'Report successfully sent for regeneration'
+      toggle_archive:
+        successfully: 'Assessment %{name} was %{status} successfully.'
       form:
         types:
           <<: *types

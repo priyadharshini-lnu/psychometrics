@@ -80,6 +80,9 @@ module AdministrationHelper
   end
 
   def assessments_options_for_select(assessments, report = nil)
+    if report && !report.new_record?
+      assessments = Assessment.where(id: assessments.ids | report.assessments.ids)
+    end
     assessments.all.map do |a|
       disabled = report && (report.assigns_reports.any? || report.clients_reports.any?)
       data = { mindmill: a.mindmill?, hogan: a.hogan?, psychometric: a.psychometric? }

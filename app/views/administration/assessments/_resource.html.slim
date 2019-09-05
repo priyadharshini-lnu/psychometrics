@@ -13,7 +13,7 @@ tr data-sidebar=url_for([:sidebar, :administration, resource]) id=dom_id(resourc
   td.text-center = resource.decorate.created_at
   td.text-center = resource.decorate.updated_at
   td.actions-cell
-    = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') }do
+    = link_to [:edit, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm edit', data: { toggle: 'tooltip', title: t('.tooltips.edit') } do
       span.fa.fa-pencil
     = link_to [:copy, :administration, resource], remote: true, class: 'btn btn-default btn-rounded btn-sm copy' , data: { toggle: 'tooltip', title: t('.tooltips.copy') } do
       span.fa.fa-copy

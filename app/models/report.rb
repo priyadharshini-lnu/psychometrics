@@ -10,6 +10,7 @@
 #  updated_at    :datetime         not null
 #  type          :integer          default("common")
 #  owner_id      :integer
+#  archived      :boolean          default(false)
 #
 
 class Report < ApplicationRecord
@@ -108,6 +109,8 @@ class Report < ApplicationRecord
   scope :single, -> { joins(:assessments).group('reports.id').having('COUNT(assessments) = 1') }
   scope :yti_eti, -> { where(type: [YTI_TYPE, ETI_TYPE]) }
   scope :not_external, -> { where(provider: :internal) }
+  scope :archived, -> { where(archived: true) }
+  scope :unarchived, -> { where(archived: false) }
 
   # Copy report with nested resources
   #
