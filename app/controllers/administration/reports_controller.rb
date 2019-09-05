@@ -2,13 +2,14 @@
 
 module Administration
   class ReportsController < Administration::BaseController
+    include Archivable
     # Turn off normally auth
     skip_before_action :authenticate_user!
     # Turn on auth by token
     prepend_before_action :authenticate_user_from_token!
 
     prepend_before_action :set_resource_class
-    before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview regenerate upload_data_sheet]
+    before_action :set_resource, only: %i[show edit update destroy copy toggle_status sidebar preview regenerate upload_data_sheet toggle_archive]
     before_action :skip_authorization, only: [:sidebar]
     append_before_action :init_breadcrumbs
     append_before_action :pundit_authorize, except: [:sidebar]
@@ -20,6 +21,7 @@ module Administration
       scope = scope.with_owner(current_user.project_admin_clients_tte_ids) if current_user.is?(:project_admin)
       scope = scope.with_owner(current_user.project_admin_client_ids) if current_user.is?(:client_admin)
       @_filter_form = scope.search(params[:q])
+      filter_form.archived_true ||= false
       @_resources = filter_form.result.page(params[:page])
 
       respond_to do |format|

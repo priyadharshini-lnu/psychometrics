@@ -1,0 +1,6 @@
+.btn-group role="group"
+  = active_link_to(t('administration.navigation.factors'), [:administration, @dimension, :factors], class: 'btn btn-default')
+  - if @dimension.occupations_enabled?
+    = link_to(t('administration.navigation.occupations'), [:administration, @dimension, :occupations], class: "btn btn-default #{'active' if current_page?(controller: 'occupations', action: :index)}")
+  - if @dimension.innovation_styles_enabled?
+    = link_to(t('administration.navigation.innovation_styles'), [:administration, @dimension, :innovation_styles], class: "btn btn-default #{'active' if current_page?(controller: 'innovation_styles', action: :index)}")

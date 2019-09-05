@@ -1,0 +1,2 @@
+class InnovationStyleDecorator < BaseDecorator
+end

@@ -21,6 +21,7 @@ class Dimension < ApplicationRecord
   has_many :all_factors, class_name: 'Factor'
   has_many :assessments
   has_many :norms
+  has_many :innovation_styles
 
   validates :name, presence: true
   validates :name, length: { maximum: 150 }, allow_blank: true

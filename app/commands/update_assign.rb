@@ -31,6 +31,7 @@ class UpdateAssign < Rectify::Command
     if assign.completed?
       assign.calculate_scoring
       assign.occupations = Assigns::CalculateOccupations.call!(assign)
+      assign.innovation_styles = Assigns::CalculateInnovationStyles.call!(assign)
       assign.completed_at = Time.now
     end
 

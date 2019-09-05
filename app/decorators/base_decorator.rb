@@ -33,6 +33,14 @@ class BaseDecorator < Draper::Decorator
     end
   end
 
+  def toggle_archive_status_text
+    if object.archived
+      'Unarchive'
+    else
+      'Archive'
+    end
+  end
+
   def id
     "##{object.id}"
   end
@@ -71,6 +79,21 @@ class BaseDecorator < Draper::Decorator
         "administration.#{i18n}.resource.confirmations.toggle_status.body",
         status: status.downcase
       )
+    }.to_json
+  end
+
+  def toggle_archive_confirmation
+    status = object.archived ? 'Unarchive' : 'Archive'
+    {
+        title: I18n.t(
+            "administration.#{i18n}.resource.confirmations.toggle_status.title",
+            status: status,
+            name: display_name
+        ),
+        body: I18n.t(
+            "administration.#{i18n}.resource.confirmations.toggle_status.body",
+            status: status.downcase
+        )
     }.to_json
   end
 

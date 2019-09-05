@@ -16,7 +16,7 @@ module Imports
                                                     'application/octet-stream',
                                                     'text/plain'] }
 
-      AVAILABLE_TRANSLATEABLE_TYPES = %w(reports/filter factor occupation reports/module external/factor).freeze
+      AVAILABLE_TRANSLATEABLE_TYPES = %w(reports/filter factor occupation innovation_style reports/module external/factor).freeze
 
       def process!
         # Return error if form not valid

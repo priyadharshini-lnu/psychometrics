@@ -14,7 +14,7 @@
 class ReportSerializer < ActiveModel::Serializer
   attributes :id, :name, :disabled, :created_at, :filters, :factors, :assigns, :factor_norms, :occupations, :props,
              :dimension_ids, :completed_assessments, :data_configuration, :data_sheet_columns, :relationships,
-             :category, :pages
+             :category, :pages, :innovation_styles
 
   has_many :filters, serializer: Reports::FilterSerializer
   has_many :assessments, serializer: Reports::AssessmentSerializer
@@ -56,6 +56,15 @@ class ReportSerializer < ActiveModel::Serializer
                   order(name: :asc)
     occupations.group_by(&:dimension_id).transform_values do |group|
       group.map { |occupation| OccupationSerializer.new(occupation) }
+    end
+  end
+
+  def innovation_styles
+    innovation_styles = InnovationStyle.includes(:innovation_styles_factors).
+                             where(dimension_id: object.assessments.pluck(:dimension_id)).
+                             order(name: :asc)
+    innovation_styles.group_by(&:dimension_id).transform_values do |group|
+      group.map { |innovation_style| InnovationStyleSerializer.new(innovation_style) }
     end
   end
 
