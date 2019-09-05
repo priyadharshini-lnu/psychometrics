@@ -19,8 +19,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/tte-lighthouse/psychometrics-reports-ui.git
-  revision: e114bc318362392d6c5802f0676f246956b5bf7a
-  ref: e114bc318362392d6c5802f0676f246956b5bf7a
+  revision: 4f3a62e0b7f1e1a010030b8b997f294789fa8000
+  ref: 4f3a62e0b7f1e1a010030b8b997f294789fa8000
   specs:
     psychometrics-reports-ui (0.0.1)
       railties (~> 5.0)
@@ -28,8 +28,8 @@ GIT
 
 GIT
   remote: https://gitlab.com/tte-lighthouse/psychometrics-survey-ui.git
-  revision: 24a55ee4c890b68b6fa860ba7ebae5c5491a3ad0
-  ref: 24a55ee4c890b68b6fa860ba7ebae5c5491a3ad0
+  revision: 2ace9544eaa4ccb38b0c91d35aebc171ac8f4e50
+  ref: 2ace9544eaa4ccb38b0c91d35aebc171ac8f4e50
   specs:
     psychometrics-survey-ui (0.0.1)
       railties (~> 5.0)
