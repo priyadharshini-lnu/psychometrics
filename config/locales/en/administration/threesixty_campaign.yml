@@ -1,0 +1,107 @@
+en:
+  administration:
+    clients:
+      projects:
+        threesixty_campaigns:
+          base:
+            disable: Archive
+            enable: Unarchive
+            archived: Archived
+            active: Active
+          index:
+            title: 360 Campaigns
+            new: Add 360 Campaign
+            export: Export
+          url: Url
+          list: &list
+            admin: Client Admin
+            client_admins: Client Admins
+            report_bundle: Report Bundle
+          export:
+            <<: *list
+          new:
+            header: 'New 360 Campaign'
+          edit:
+            header: 'Edit 360 Campaign'
+          licenses:
+            update:
+              successfully: Licenses successfully updated
+              duplicate_licenses: You have duplicate licenses
+          license:
+            header: '%{name} - Edit license'
+          destroy:
+            successfully: 'Client Tenancy %{name} was successfully deleted.'
+          copy:
+            successfully: 'Client Tenancy %{name} was successfully copied.'
+            error: 'Client Tenancy %{name} was not copied.'
+          create:
+            successfully: 'Client Tenancy %{name} was successfully created.'
+          update:
+            successfully: 'Client Tenancy %{name} was successfully updated.'
+          toggle_status:
+            successfully: 'Client Tenancy %{name} was successfully updated.'
+          designs:
+            form:
+              no_logo: 'No Logo yet'
+              no_background: 'No Background yet'
+          resource:
+            tooltips:
+              copy: Copy Client
+              edit: Edit Client
+              delete: Delete Client
+              disable: Disable Client
+              enable: Enable Client
+              create_admin: Create Client Admin
+            confirmations:
+              disable:
+                title:
+                  Archive <strong>%{name}</strong> ?
+                body:
+                  0:
+                    <p>Are you sure you want to archive?</p>
+                    <p>All Campaigns, Sub-campaigns and users will also be archived</p>
+                  1:
+                    <p>Are you sure you want to archive?</p>
+                    <p>All Sub-campaigns and users will also be archived</p>
+                  2:
+                    <p>Are you sure you want to archive?</p>
+                    <p>All users will also be archived</p>
+                  3:
+                    <p>Are you sure you want to archive?</p>
+                    <p>All users will also be archived</p>
+              enable:
+                title:
+                  Unarchive <strong>%{name}</strong> ?
+                body:
+                  0:
+                    <p>Are you sure you want to unarchive?</p>
+                  1:
+                    <p>Are you sure you want to unarchive?</p>
+                  2:
+                    <p>Are you sure you want to unarchive?</p>
+                  3:
+                    <p>Are you sure you want to unarchive?</p>
+              delete:
+                title:
+                  Delete <strong>%{name}</strong> ?
+                body:
+                  0:
+                    <p>Are you sure you want to delete?</p>
+                    <p>All Campaigns, Sub-campaigns and users will also be deleted</p>
+                  1:
+                    <p>Are you sure you want to delete?</p>
+                    <p>All Sub-campaigns and users will also be deleted</p>
+                  2:
+                    <p>Are you sure you want to delete?</p>
+                    <p>All users will also be deleted</p>
+          statistics:
+            index:
+              title: Statistics
+              all_assessments: All assessments
+              assessment_type: Assessment type
+          completion_statuses:
+            not_started: Not Started
+            in_progress: In Progress
+            approved: Approved
+            denied: Denied
+            completed: Completed

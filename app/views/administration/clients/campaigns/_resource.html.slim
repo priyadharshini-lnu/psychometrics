@@ -5,6 +5,11 @@ tr data-sidebar=url_for(sidebar_administration_client_campaign_path(client, reso
     - else
       = link_to resource.name, administration_client_project_campaign_sub_campaigns_path(client, resource.parent_id, resource)
   td
+    = resource.decorate.reports
+    - if policy(:clients_report).create?
+      .add-icon-box
+        = link_to new_administration_client_reports_regenerate_path(client_id: resource.id), remote: true, data: { toggle: 'tooltip', title: t('.tooltips.create_report') }
+          span.fa.fa-plus
     - if resource.project.campaign_level?
       = render '/administration/clients/projects/assign_assessments', resource: resource
   td

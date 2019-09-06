@@ -4,8 +4,8 @@ require 'swagger_helper'
 describe 'Campaigns' do
   let!(:membership) { create(:client_admin_membership) }
   let!(:project) { create(:project, parent: membership.client) }
-  let(:campaign) { create(:campaign, parent: project) }
-  let(:campaign_2) { create(:campaign, parent: project) }
+  let(:campaign) { create(:client_campaign, parent: project) }
+  let(:campaign_2) { create(:client_campaign, parent: project) }
   let(:Authorization) { "Basic #{::Base64.strict_encode64('key:token')}" }
 
   before { create(:api_key, token: 'token', key: 'key', user: membership.user) }
@@ -157,7 +157,7 @@ describe 'Campaigns' do
         let(:project_id) { project.id }
         let(:user_id) { user.id }
         before do
-          campaign = create(:campaign, parent: project, name: 'Super campaign', id: 1111)
+          campaign = create(:client_campaign, parent: project, name: 'Super campaign', id: 1111)
           create(:membership, client: campaign, user: user)
         end
         run_test! do |response|

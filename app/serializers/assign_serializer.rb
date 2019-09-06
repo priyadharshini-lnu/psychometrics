@@ -20,23 +20,38 @@
 #
 
 class AssignSerializer < ActiveModel::Serializer
-  attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id, :relationship,
-             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet, :selected_locale, :occupations, :innovation_styles
-
-  attribute :agile_scoring, if: -> { object.membership_id == @instance_options[:membership].try(:id) }
+  attributes :id, :status, :step, :results, :embedded_data, :scoring, :user_id,
+             :hris, :hash_id, :norm_data, :assessment_id, :external_scoring, :data_sheet,
+             :relationship, :selected_locale, :type, :occupations, :innovation_styles
 
   has_one :user, serializer: UserSerializer
 
-  def relationship
-    object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship if @instance_options[:membership]
-  end
-
-  def hris
-    object.membership.hris
+  def type
+    'single_assign'
   end
 
   def user_id
-    object.membership.user_id
+    object.evaluator_id || object.membership.user_id
+  end
+
+  # TODO (atanych): Do we still need this?
+  def hris
+    {}
+  end
+
+  def relationship
+    if object.assessment.threesixty?
+      participant =
+      # For multi assigns we should pass participant map in order to avoid N+1 queries
+      if @instance_options[:participants_map]
+        @instance_options[:participants_map][object.evaluator_id]
+      else
+        Threesixty::Participant.find_by(evaluator_id: object.evaluator_id, subject_id: object.subject_id)
+      end
+      participant&.relationship&.name
+    else
+      object.membership.decorate(context: { current_membership: @instance_options[:membership] }).relationship if @instance_options[:membership]
+    end
   end
 
   def hash_id
@@ -44,7 +59,7 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   def selected_locale
-    locale = object.selected_locale || I18n.default_locale 
+    locale = object.selected_locale || I18n.default_locale
     {
       code: locale,
       name: I18n.t("languages.#{locale}")
@@ -75,8 +90,14 @@ class AssignSerializer < ActiveModel::Serializer
   end
 
   def data_sheet
-    # TODO (atanych): this serialization can not be used for multi assigns (e.g. for 360)
-    row = DatasheetRow.joins(:datasheet).find_by(datasheets: {project_id: object.membership.client_id}, email: object.membership.user.email)
+    row =
+      # For multi assigns we should pass data sheet map in order to avoid N+1 queries
+      if @instance_options[:data_sheet_map]
+        @instance_options[:data_sheet_map][object.evaluator.email]
+      else
+        DatasheetRow.joins(:datasheet).
+          find_by(datasheets: { project_id: object.membership.client_id }, email: object.membership.user.email)
+      end
     row&.data || {}
   end
 

@@ -14,8 +14,12 @@
 
 module Reports
   class PageSerializer < ActiveModel::Serializer
-    attributes :id, :name, :position, :props
+    attributes :id, :name, :position, :props, :display_logic, :modules
 
-    has_many :modules, serializer: Reports::ModuleSerializer
+    def modules
+      object.modules.map do |mod|
+        ModuleSerializer.new(mod, piped_text_context: @instance_options[:piped_text_context])
+      end
+    end
   end
 end

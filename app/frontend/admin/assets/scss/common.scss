@@ -1,0 +1,14 @@
+:root {
+  --success-color: #52c41a;
+  --grey-color: #e8e8e8;
+}
+
+.text-success {
+  color: var(--success-color) !important;
+}
+
+.align-middle {
+  display: flex;
+  align-items: center;
+}
+

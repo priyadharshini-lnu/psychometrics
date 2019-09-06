@@ -3,7 +3,7 @@ require 'rails_helper'
 RSpec.describe Assign, type: :model do
   context 'Scopes' do
     context '.with_status' do
-      let(:campaign) { create(:campaign, :with_reports) }
+      let(:campaign) { create(:campaign_base, :with_reports) }
       let(:report) { campaign.clients_reports.first.report }
       let(:assessment) { campaign.assessments_clients.first.assessment }
       let(:membership) { create(:membership, client: campaign) }

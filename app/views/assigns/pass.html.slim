@@ -10,6 +10,7 @@
       .assessment-box
         #psychometrics_preview[data-result="#{AssignSerializer.new(@assign).to_json}"
                                data-type="pass_assessment"
+                               data-subject="#{@threesixty_subject ? Results::SubjectSerializer.new(@threesixty_subject).to_json : nil}"
                                data-data="#{AssessmentSerializer.new(@assign.assessment).to_json(include: '**')}"
                                data-locales=@translations.to_json
                                data-dashboard-url=assessment_completed_path]

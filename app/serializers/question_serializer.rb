@@ -30,4 +30,10 @@ class QuestionSerializer < ActiveModel::Serializer
   def deleted
     !!object.deleted_at
   end
+
+  def props
+    return object.props unless object.props['questionText']
+
+    object.props.merge(questionText: Threesixty::PipedText::Perform.call!(object.props['questionText'], @instance_options[:piped_text_context]))
+  end
 end

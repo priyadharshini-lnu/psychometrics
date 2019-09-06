@@ -14,6 +14,13 @@ require 'capybara_config'
 
 Dir[Rails.root.join('spec/support/**/*.rb')].sort.each { |f| require f }
 
+Shoulda::Matchers.configure do |config|
+  config.integrate do |with|
+    with.test_framework :rspec
+    with.library :rails
+  end
+end
+
 ActiveRecord::Migration.maintain_test_schema!
 Psychometrics::Application.load_tasks
 # Needs for able to stub methods inside FactoryGirl

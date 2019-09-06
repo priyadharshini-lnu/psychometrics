@@ -3,14 +3,15 @@ module Scoring
 
     def calculate(_question, result, scoring_template)
       values = []
+
       result['answers'].each do |answer|
-        if answer['value']
+        if answer['value'] && result['not_applicable'] != true
           object = scoring_template.find { |template| template['index'] == answer['index'] }
           values << object['value'] if object
         end
       end
-      return values.sum.to_f / values.size unless values.empty?
-      nil
+      value = values.empty? ? nil : values.sum.to_f / values.size
+      { value: value, options: [] }
     end
   end
 end

@@ -1,0 +1,16 @@
+.table-responsive
+  table.table.table-bordered.table-actions.table-hover.selectable.list id="#{resource_class.model_name.plural}_list"
+    thead
+      tr
+        th = t('.id')
+        th = t('.campaign_name')
+        th = t('.subject_name')
+        th = t('.subject_email')
+        th = t('.created_at')
+    tbody
+      - if resources.present?
+        = render partial: 'resource', collection: resources
+      - else
+        tr.no_records
+          td align='center' colspan='9' = t('administration.no_data_found')
+  = paginate resources, theme: 'twitter-bootstrap-3'

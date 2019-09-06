@@ -4,6 +4,7 @@
       tr
         th.text-center width='1%' = t('.active')
         th = t('.report_family')
+        th = t('.type')
         th = t('.used_license_number')
         - if current_user.is?(:superadmin) && client.root?
           th = t('.used_license_overuse_number')

@@ -1,7 +1,6 @@
 *.rbc
 capybara-*.html
 .rspec
-.rubocop.yml
 /log
 /tmp
 /db/*.sqlite3
@@ -55,7 +54,6 @@ config/settings/development.yml
 
 config/environments/*.local.yml
 config/environments/frontend.rb
-.rubocop.yml
 
 .ruby-gemset
 
@@ -63,4 +61,11 @@ config/environments/frontend.rb
 npm-debug.log
 
 /node_modules
+/public/packs
+/public/packs-test
+/node_modules
+/yarn-error.log
+yarn-debug.log*
+.yarn-integrity
+package-lock.json
 .DS_Store

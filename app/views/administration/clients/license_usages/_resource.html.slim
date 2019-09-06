@@ -1,0 +1,6 @@
+tr id=dom_id(resource)
+  td = resource.id
+  td = resource.campaign ? link_to(resource.extras['campaign_name'], administration_client_project_threesixty_campaign_path(client, resource.campaign.project, resource.campaign.threesixty_campaign)) : resource.extras['campaign_name']
+  td = resource.extras['subject_name']
+  td = resource.extras['subject_email']
+  td = resource.decorate.created_at

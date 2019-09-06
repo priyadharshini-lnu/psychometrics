@@ -18,19 +18,39 @@
 #
 
 class AssessmentSerializer < ActiveModel::Serializer
-  attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id, :enable_back, :enable_progress
+  attributes :id, :name, :category, :disabled, :created_at, :flow, :norm_rules, :factors, :dimension_id,
+             :enable_back, :enable_progress, :data_sheet_columns, :relationships, :blocks
 
-  has_many :blocks, serializer: BlockSerializer do
+  def blocks
     object.blocks.
       selecting { ['blocks.*',
                    coalesce(template.props, props).as('props'),
                    coalesce(template.name, name).as('name')] }.
       joining { template.outer }.
       includes(questions_ams: :comments).
-      where.has { (template.disabled == false) | (template.id == nil) }
+      where.has { (template.disabled == false) | (template.id == nil) }.map do |block|
+      BlockSerializer.new(block, piped_text_context: @instance_options[:piped_text_context])
+    end
   end
 
   def factors
+    return [] unless object.dimension
     object.dimension.all_factors.map { |factor| Factors::WithoutSubFactorsSerializer.new(factor).to_hash }
+  end
+
+  def data_sheet_columns
+    return [] unless object.threesixty?
+
+    Datasheet.find_by(project_id: connected_campaign.project_id)&.normalize_columns || []
+  end
+
+  def relationships
+    return [] unless object.threesixty?
+
+    Relationships::ByCampaign.new(connected_campaign).map { |r| RelationshipSerializer.new(r).to_h }
+  end
+
+  def connected_campaign
+    @connected_campaign ||= Campaign.joins(:threesixty_campaign).find_by(threesixty_campaigns: { assessment_id: object.id })
   end
 end

@@ -1,0 +1,48 @@
+{
+  "parser": "babel-eslint",
+  "env": {
+    "browser": true,
+    "es6": true
+  },
+  "extends": ["airbnb"],
+  "parserOptions": {
+    "ecmaVersion": 8,
+    "ecmaFeatures": {
+      "experimentalObjectRestSpread": true,
+      "jsx": true
+    },
+    "sourceType": "module"
+  },
+  "plugins": ["babel", "react", "import"],
+  "rules": {
+    "semi": [2, "never"],
+    "max-len": [2, 120, 2],
+    "no-debugger": "off",
+    "react/no-array-index-key": 0,
+    "no-shadow": 0,
+    "react/prop-types": 0,
+    "space-before-function-paren": ["error", "always"],
+    "no-restricted-globals": 0,
+    "class-methods-use-this": 0,
+    "react/jsx-filename-extension": [1, { "extensions": [".js", ".jsx"] }],
+    "import/no-extraneous-dependencies": 0,
+    "jsx-a11y/anchor-is-valid": 0,
+    "jsx-a11y/click-events-have-key-events": 0,
+    "import/no-cycle": 0
+  },
+  "globals": {
+    "__DEV__": true,
+    "__PROD__": true,
+    "location": true,
+    "I18n": true,
+    "moment": true
+  },
+  "settings": {
+    "import/resolver": {
+      "node": {
+        "paths": ["app/frontend"]
+      },
+      "babel-module": {}
+    }
+  }
+}

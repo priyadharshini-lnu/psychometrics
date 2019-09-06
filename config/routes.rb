@@ -133,6 +133,9 @@ Rails.application.routes.draw do
           collection do
             get :export
           end
+          member do
+            post :search_users
+          end
           # resource :designs, only: [:edit, :update]
           scope module: :projects do
             resources :campaigns, concerns: :client_editable do
@@ -147,12 +150,22 @@ Rails.application.routes.draw do
                 end
               end
             end
+            resources :threesixty_campaigns, concerns: :client_editable do
+              collection do
+                get :assessments
+                get :factors
+              end
+            end
           end
         end
         resources :campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
+        get '/projects/:project_id/threesixty_campaigns/:id/*all', to: 'projects/threesixty_campaigns#show', constraints: { all: /.*/ }
+        get '/projects/:project_id/threesixty_campaigns/:id/', to: 'projects/threesixty_campaigns#show'
+
         resources :sub_campaigns, concerns: :client_editable, only: [:index, :edit, :update, :destroy]
 
         resources :licenses, only: %i[index show new create edit update] do
+          resources :license_usages, only: [:index]
           patch :toggle_status, on: :member
           get :overview, on: :collection
         end
@@ -165,7 +178,78 @@ Rails.application.routes.draw do
 
       end
     end
+
     ### END CLIENTS
+    resources :threesixty_campaigns do
+      scope module: 'threesixty_campaigns' do
+        resources :subjects do
+          collection do
+            get :download_example_import_file
+            post :create_all
+            post :search
+            post :import
+          end
+          member do
+            get :preview_report
+          end
+
+          resource :reports, only: [:show] do
+            get :download, on: :member
+          end
+        end
+        resources :evaluators do
+          collection do
+            get :download_example_import_file
+            post :import
+            post :create_all
+          end
+        end
+
+        resource :options do
+          get :participant_options
+          get :report_options
+          get :message_options
+        end
+
+        resources :email_templates do
+          member do
+            get :send_test_email
+          end
+        end
+        resources :instruction_templates
+
+        resources :email_schedules do
+          collection do
+            get :schedulable_templates
+            post :recipient_by_criteria
+          end
+        end
+
+        resources :managers
+        resources :relationships do
+          collection do
+            get :fetch_with_usage
+          end
+        end
+
+        resources :participants do
+          member do
+            get :spoof
+          end
+        end
+        resources :nomination_requirements do
+          collection do
+            put :save
+          end
+        end
+      end
+      member do
+        get 'export_completion_status'
+        delete 'reset'
+        delete 'reset_nominations'
+        delete 'remove_user'
+      end
+    end
 
     ### ASSESSMENTS
     resources :assessments do
@@ -373,6 +457,7 @@ Rails.application.routes.draw do
       end
     end
 
+    resources :campaign_templates
     root to: 'clients#index'
   end
   #
@@ -443,7 +528,48 @@ Rails.application.routes.draw do
 
     resources :assigns, only: %i(index update) do
       get :pass, on: :member
+      get :assessment, on: :member
       post :accept_privacy, on: :collection
+      member do
+        get :upload_media_url
+        put :upload_callback
+        post :upload_media_dev
+        delete :remove_media
+      end
+    end
+
+    scope module: :threesixty do
+      resources :campaigns, only: %i(show index) do
+        resources :nominations do
+          post :search_evaluators
+          get :request_approval
+          get :send_evaluator_reminders
+          put :update_status
+          resources :evaluators do
+            put :update_status
+          end
+        end
+        resources :evaluations do
+          put :update_status
+          put :decline
+        end
+        resources :reports do
+          put :update_status
+          get :download, on: :member
+        end
+        resources :assessments, only: %i(index)
+        resources :users_results, only: %i[update] do
+          member do
+            get :upload_media_url
+            put :upload_callback
+            post :upload_media_dev
+            delete :remove_media
+          end
+        end
+        collection do
+          post :change_locale
+        end
+      end
     end
     namespace :mindmill do
       resources :assigns, only: [] do
@@ -467,10 +593,12 @@ Rails.application.routes.draw do
       get :export, on: :member
     end
     resource :profiles, only: %i(update edit)
+    patch 'users/update_details', to: 'users#update_details'
+
     get 'survey_instructions', to: 'home#survey_instructions'
     get 'sso/:user_id/:sso_token', to: 'home#sso'
     get 'assessment_completed', to: 'home#assessment_completed'
-    root to: 'assigns#index'
+    root to: 'threesixty/campaigns#index'
   end
 
   Sidekiq::Web.use Rack::Auth::Basic do |username, password|

@@ -3,6 +3,7 @@ module Administration
     class ProjectsController < Administration::ClientsController
       include Administration::Clients
       before_action :ensure_client
+      before_action :set_resource, only: %i[search_users show edit update destroy sidebar toggle_status copy archive]
 
       def index
         @_filter_form = policy_scope(resource_class)
@@ -22,6 +23,13 @@ module Administration
       def new
         @_resource = resource_class.new
         resource.parent = client
+      end
+
+      def search_users
+        users = ::Projects::UsersQuery.new(resource, params[:q]).to_a.map do |user|
+          ::Projects::SearchUserSerializer.new(user).to_h
+        end
+        render json: users
       end
 
       def export

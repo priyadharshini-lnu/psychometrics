@@ -1,0 +1,70 @@
+en:
+  threesixty:
+    my_projects: My Projects
+    total_progress: Total progress
+    nominations: Nominations
+    evaluations: Evaluations
+    reports: Reports
+    setup_nominations: Set up nominations
+    view_nominations: View nominations
+    approve_evaluations: Approve Evaluations
+    approve_nominations: Approve Nominations
+    approve_reports: Approve Reports
+    view_reports: View Reports
+    view_my_report: View My Report
+    page_title: Signify 360° Review - Apply Level
+    approved: Approved
+    denied: Denied
+    waiting: Waiting
+    decline: Decline
+    decline_invite: Decline Invite
+    evaluation: Evaluation
+    nomination: Nomination
+    and: And
+    or: Or
+    language: Language
+    remind_all: Remind All
+    email_approve_request: Email Approval Request
+    approve_all: Approve All
+    deny_all: Deny All
+    nominate: Nominate
+    select_relationship: Select Relationship
+    nominate_evaluators: Nominate Evaluators to
+    add: Add
+    cancel: Cancel
+    back_to_tasks: Back to tasks
+    select_relationnship: Select Relationship
+    user_name_input_placeholder: type name or email...
+    as_my: as my
+    validation_errors: Validation Errors
+    approving_mail_sent: Mail for approving nomination has been sent to managers
+    remind_mail_sent: Reminders sent to evaluators who haven't completed the evaluation
+    help: Help
+    approve_all_successful: Approved all nominations
+    deny_all_successful: Denied all nominations
+    subject: Subject
+    evaluator: Evaluator
+    set_name_for_evaluator: Set name for Evaluator
+    first_name_error: Please input First Name
+    last_name_error: Please input Last Name
+    first_name: First Name
+    last_name: Last Name
+    submit: Submit
+    confirmation_for_nomination_removal: Are you sure you want to remove the nomination
+    evaluate: Evaluate
+    yourself: Yourself
+    generate_report: 'Generate Report'
+    download_report: Download Report
+    download_reports: Download Reports
+    continue: Continue
+    begin: Begin
+    completed: Completed
+    load_results: Load Results
+    assessment: Assessment
+    accept_privacy_modal:
+      title: Data processing consent
+      text: "In completing this questionnaire(s), you are consenting for any data collected as a result to be used for the purposes intended and described in the communication you have already received. Your responses to the questions asked, along with any other associated data provided, will be used for the purposes of analysing and reporting your individual responses. We may also use your responses as part of large scale research projects. Your data will be treated with the requisite sensitivity and security. Please click <a href='https://thetalententerprise.com/privacy-statement/' target='_blank'>here</a> / go to this website to find out more or to contact someone for any more specific queries you may have."
+      accept: Accept
+      reject: Reject
+    mindmill_confirmation: "Starting this assessment you will lost results \"%{assessment}\".
+                            Click \"Cancel\" if you want leave results, and click \"Ok\" if you want continue"

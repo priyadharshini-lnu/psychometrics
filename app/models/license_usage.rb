@@ -12,9 +12,8 @@ class LicenseUsage < ApplicationRecord
   belongs_to :license,        inverse_of: :license_usages
   belongs_to :assigns_report, inverse_of: :license_usages
   belongs_to :client,         inverse_of: :license_usages
+  belongs_to :campaign,       inverse_of: :license_usages
   belongs_to :user,           inverse_of: :license_usages
-
-  validates :license, :assigns_report, :client, presence: true
 
   after_create :increase_license_used_number
 

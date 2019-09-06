@@ -76,6 +76,7 @@ en:
       sub_campaigns: Sub Campaigns
       licenses: Licenses
       datasheets: Datasheets
+      campaign_templates: Campaign Templates
     breadcrumbs:
       <<: *NAVIGATION
     tte: TTE

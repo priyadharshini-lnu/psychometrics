@@ -1,0 +1,8 @@
+en:
+  activemodel:
+    errors:
+      models:
+        create_all:
+          attributes:
+            subjects:
+              email_duplicated: 'Some subjects have the same email'

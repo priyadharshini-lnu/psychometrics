@@ -27,7 +27,7 @@ class Assessment < ApplicationRecord
     PSYCHOMETRIC = 'psychometric'.freeze,
     ORGANISATIONAL = 'organisational'.freeze,
     CASE_STUDY = 'case_study'.freeze,
-    NUM_360 = '360'.freeze,
+    THREESIXTY = 'threesixty'.freeze,
     MINDMILL = 'mindmill'.freeze,
     HOGAN = 'hogan'.freeze,
   ].freeze
@@ -35,7 +35,7 @@ class Assessment < ApplicationRecord
     psychometric: PSYCHOMETRIC,
     organisational: ORGANISATIONAL,
     case_study: CASE_STUDY,
-    '360' => NUM_360,
+    threesixty: THREESIXTY,
     mindmill: MINDMILL,
     hogan: HOGAN,
   }.freeze
@@ -61,6 +61,7 @@ class Assessment < ApplicationRecord
   has_many :communications, dependent: :destroy
   has_many :translations, as: :resource, dependent: :destroy
   has_many :tasks, dependent: :destroy
+  has_many :campaign_templates, dependent: :destroy
 
   # HABTM Factors
   has_many :factors_scoring, dependent: :destroy

@@ -18,9 +18,9 @@ module Reports
         data['filters'].each do |filter|
           if filter['id']
             db_filter = map_filters[filter['id']].first
-            db_filter.update_attributes(conditions: filter['conditions'], name: filter['name'])
+            db_filter.update_attributes(conditions: filter['conditions'], name: filter['name'], assessment_id: filter['assessment_id'])
           else
-            report.filters.create(conditions: filter['conditions'], name: filter['name'])
+            report.filters.create(conditions: filter['conditions'], name: filter['name'], assessment_id: filter['assessment_id'])
           end
         end
         # clear unused filter from all modules

@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe ::Clients::Reports::RemoveReport do
-  let(:campaign) { create(:campaign, :with_reports) }
+  let(:campaign) { create(:campaign_base, :with_reports) }
   let(:report) { campaign.clients_reports.first.report }
   let(:assessment) { campaign.assessments_clients.first.assessment }
   let(:assessments) { campaign.assessments }

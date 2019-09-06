@@ -1,0 +1,32 @@
+.criteriaSelectList {
+  width: 160px !important;
+}
+
+.operatorSelectList {
+  @extend .criteriaSelectList;
+  margin: 0px 10px !important;
+}
+
+.value {
+  @extend .criteriaSelectList;
+  margin-right: 10px !important;
+}
+
+.addLink {
+  color: #1890ff;
+  cursor: pointer;
+}
+
+.datasheetNotAvailableMethod {
+  font-size: 10px;
+  color: red;
+}
+
+.deleteIcon {
+  font-size: 18px;
+}
+
+.addIcon {
+  @extend .deleteIcon;
+  margin-left: 3px
+}

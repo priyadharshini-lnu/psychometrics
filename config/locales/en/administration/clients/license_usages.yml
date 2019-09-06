@@ -1,0 +1,12 @@
+en:
+  administration:
+    clients:
+      license_usages:
+        index:
+          title: Usage Details
+        list:
+          id: 'Usage ID'
+          campaign_name: Campaign Name
+          subject_name: Subject Name
+          subject_email: Subject Email
+          created_at: Date

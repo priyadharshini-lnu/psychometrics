@@ -1,3 +1,4 @@
 = active_link_to(t('administration.navigation.project_admins'), administration_client_project_admins_path(project), class: 'btn btn-default')
 - if policy(:datasheet).index?
   = active_link_to(t('administration.navigation.datasheets'), administration_client_datasheet_rows_path(project), class: 'btn btn-default')
+= link_to '360 Campaigns', administration_client_project_threesixty_campaigns_path(client, project), class: "btn btn-default #{'active' if current_page?(controller: 'threesixty_campaigns',action: :index)}"

@@ -1,0 +1,9 @@
+en:
+  subjects:
+    statuses:
+      not_completed: "Not Completed"
+      completed: "Completed"
+      done: "Done"
+      waiting: "Waiting"
+      denied: "Denied"
+      declined: "Declined"
